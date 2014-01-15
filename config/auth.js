@@ -28,19 +28,19 @@ module.exports = {
   'facebookAuth' : {
     'clientID'    : 'INSERT_SECERT_HERE', // your App ID
     'clientSecret'  : 'INSERT_SECERT_HERE', // your App Secret
-    'callbackURL'   : 'http://meshines.jit.su/auth/facebook/callback'
+    'callbackURL'   : 'http://meshines.com/auth/facebook/callback'
   },
 
   'twitterAuth' : {
     'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
     'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
-    'callbackURL'     : 'http://meshines.jit.su/auth/twitter/callback'
+    'callbackURL'     : 'http://meshines.com/auth/twitter/callback'
   },
 
   'googleAuth' : {
     'clientID'    : '541059729530-bbt3n8qh5s8c8m5dm7dh6gojiqqrfrbg.apps.googleusercontent.com',
     'clientSecret'  : 'SVTqhJ7RtsK6zqRcKUZrjxM6',
-    'callbackURL'   : 'http://meshines.jit.su/auth/google/callback'
+    'callbackURL'   : 'http://meshines.com/auth/google/callback'
   },
   'port' : 80
 
