@@ -1,0 +1,31 @@
+{
+  "name": "meshines",
+  "version": "0.0.1-3",
+  "description": "meshines.com",
+  "main": "server.js",
+  "author": "Chris Matthieu",
+  "dependencies": {
+    "express": "~3.4.4",
+    "mongoose": "~3.8.1",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "passport-facebook": "~1.0.2",
+    "passport-twitter": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "connect-flash": "~0.1.1",
+    "bcrypt-nodejs": "latest"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=0.6"
+  },
+  "subdomain": "meshines",
+  "domains": [
+    "meshines.com",
+    "www.meshines.com",
+    "meshines.net",
+    "www.meshines.net"
+  ]
+}

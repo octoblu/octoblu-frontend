@@ -1,0 +1,83 @@
+<div class='contrast-red login contrast-background '>
+  <div class='middle-container'>
+    <div class='middle-row'>
+      <div class='middle-wrapper'>
+        <div class='login-container-header'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-12'>
+                <div class='text-center'>
+                  <!-- <img width="121" height="31" src="assets/images/logo_lg.svg" /> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='login-container'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-sm-4 col-sm-offset-4'>
+                <h1 class='text-center title'>Sign in</h1>
+                <form action="/login" method="post" class='validate-form'>
+                  <div class='form-group'>
+                    <div class='controls with-icon-over-input'>
+                      <input value="" placeholder="E-mail" class="form-control" data-rule-required="true" name="email" type="text" />
+                      <i class='icon-user text-muted'></i>
+                    </div>
+                  </div>
+                  <div class='form-group'>
+                    <div class='controls with-icon-over-input'>
+                      <input value="" placeholder="Password" class="form-control" data-rule-required="true" name="password" type="password" />
+                      <i class='icon-lock text-muted'></i>
+                    </div>
+                  </div>
+                  <div class='checkbox'>
+                    <label for='remember_me'>
+                      <input id='remember_me' name='remember_me' type='checkbox' value='1'>
+                      Remember me
+                    </label>
+                  </div>
+                  <button class='btn btn-block'>Sign in</button>
+                </form>
+                <div class='text-center'>
+                  <hr class='hr-normal'>
+                  <a href='#forgot'>Forgot your password?</a> / 
+                  <a href='#signup'><strong>Sign up!</strong></a>
+                </div>
+                <br />
+            
+                <div class="row text-center">
+                  <a class="btn btn-fb" href="/auth/facebook">
+                    <span class="fa fa-facebook"> Facebook</span>
+                  </a>
+                  <a class="btn btn-primary" href="/auth/twitter">
+                    <span class="fa fa-twitter"> Twitter</span>
+                  </a>
+                  <a class="btn btn-danger" href="/auth/google">
+                    <span class="fa fa-google-plus"> Google+</span>
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='login-container-footer'>
+          <div class='container '>
+            <div class='row'>
+              <div class='col-sm-12'>
+<!--                 <div class='text-center'>
+                  <a href='#signup'>
+                    <i class='icon-user'></i>
+                    New to E2E?
+                    <strong>Sign up</strong>
+                  </a>
+                </div>
+ -->              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
