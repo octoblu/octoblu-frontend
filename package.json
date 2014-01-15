@@ -1,6 +1,6 @@
 {
   "name": "meshines",
-  "version": "0.0.1-3",
+  "version": "0.0.1-7",
   "description": "meshines.com",
   "main": "server.js",
   "author": "Chris Matthieu",
