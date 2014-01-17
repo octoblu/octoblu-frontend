@@ -28,62 +28,22 @@
             <span>Analytics</span>
           </a>
         </li>
-        
+
         <li>
-          <accordion close-others="oneAtATime">
-            <accordion-group is-open="isopen">
-                <accordion-heading class="">
-                    <i class='icon-book'></i>
-                    <span>Resources</span>
-                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
-                </accordion-heading>
-                <div class=''>
-                  <div class=''>
-                    <a href='/docs'>
-                      <i class='icon-cogs'></i>
-                      <span>API Docs</span>
-                    </a>
-                  </div>
-                  <div class=''>
-                    <a href='/pricing'>
-                      <i class='icon-table'></i>
-                      <span>Pricing tables</span>
-                    </a>
-                  </div>
-                  <div class=''>
-                    <a href='/faqs'>
-                      <i class='icon-bullhorn'></i>
-                      <span>FAQ</span>
-                    </a>
-                  </div>
-                </div>
-            </accordion-group>            
-          </accordian>
-        </li>
-
-        <li class="dropdown">
-          <a class="dropdown-toggle">
-            <i class='icon-book'></i>
-            <span>Resources</span>
-            <i class='icon-angle-down angle-down'></i>
+          <a class='' href='/admin'>
+            <i class='icon-lock'></i>
+            <span>Admin</span>
           </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a>Docs</a>
-            </li>
-          </ul>
         </li>
+       
 
-
-
-        
         <li class="">
-          <a class='dropdown-collapse ' href="#">
+          <a class='dropdown-collapse ' href="#" g-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
             <i class='icon-book'></i>
             <span>Resources</span>
             <i class='icon-angle-down angle-down'></i>
           </a>
-          <ul class='nav nav-stacked'>
+          <ul class='nav nav-stacked' ng-class="navCollapsed && 'in'">
             <li class=''>
               <a href='/docs'>
                 <i class='icon-cogs'></i>
@@ -104,6 +64,15 @@
             </li>
           </ul>
         </li>
+
+        <li>
+          <a class='' href='/community'>
+            <i class='icon-group'></i>
+            <span>Community</span>
+          </a>
+        </li>
+
+
       </ul>
     </div>
   </nav>
