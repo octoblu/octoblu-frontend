@@ -1,6 +1,7 @@
 module.exports = function(app, passport) {
 	
 	var User = require('./models/user');
+	var request = require('request');
 
 	// app.get('/profile', isLoggedIn, function(req, res) {
 	// 	res.render('profile', {
@@ -18,90 +19,152 @@ module.exports = function(app, passport) {
 	app.post('/login', function(req, res, next) {
 	  passport.authenticate('local-login', function(err, user, info) {
 	    if (err) { return next(err); }
-	    if (!user) { return res.redirect('/#/login'); }
+	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
         res.cookie('e2e', user._id.toString(), {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           httpOnly: false
-        });		      
-	      return res.redirect('/#/dashboard');
+        });	
+
+ 	      // Todo: Update user presence on Skynet
+
+	      return res.redirect('/dashboard');
 	    });
 	  })(req, res, next);
 	});		
 
-	// // process the signup form
-	// app.post('/signup', passport.authenticate('local-signup', {
-	// 	successRedirect : '/#/dashboard', // redirect to the secure profile section
-	// 	failureRedirect : '/#/signup', // redirect back to the signup page if there is an error
-	// 	failureFlash : true // allow flash messages
-	// }));
 	app.post('/signup', function(req, res, next) {
 	  passport.authenticate('local-signup', function(err, user, info) {
 	    if (err) { return next(err); }
-	    if (!user) { return res.redirect('/#/login'); }
+	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
         res.cookie('e2e', user._id.toString(), {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           httpOnly: false
         });		      
-	      return res.redirect('/#/dashboard');
+
+        // Add user to Skynet
+		    request.post('http://skynet.im/devices', 
+		    	{form: {"type":"user", "email": user.local.email}}
+			  , function (error, response, body) {
+			      if(response.statusCode == 200){
+
+			      	data = JSON.parse(body);
+
+			        User.update({_id: user._id}, 
+			        	{local: {email: user.local.email, password: user.local.password, skynetuuid: data.uuid, skynettoken: data.token}}
+			        , function(err){
+								if(!err) {
+		                console.log("user " + user._id + " updated");
+		            }
+		            else {
+		                console.log("Error: could not update user - error " + err);
+		            }
+			        });
+
+							// User.findOne({_id: user._id}, function(err, user) {
+							//     if(!err) {
+							//         if(!user) {
+							//             user = new User();
+							//             user.local.email = user.local.email;
+							//         }
+							//         user.local.skynetuuid = data.uuid.toString();
+							//         user.local.skynettoken = data.token.toString();
+							//         user.save(function(err) {
+							//             if(!err) {
+							//                 console.log("user " + user._id + " updated ");
+							//             }
+							//             else {
+							//                 console.log("Error: " + err);
+							//             }
+							//         });
+							//     }
+							// });
+
+			      } else {
+			        console.log('error: '+ response.statusCode);
+			        console.log(error);
+			      }
+			      return res.redirect('/dashboard');
+			    }
+			  )
+
 	    });
 	  })(req, res, next);
 	});		
 
 
-// facebook -------------------------------
-
-	// send to facebook to do the authentication
 	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-	// // handle the callback after facebook has authenticated the user
-	// app.get('/auth/facebook/callback',
-	// 	passport.authenticate('facebook', {
-	// 		successRedirect : '/#/dashboard',
-	// 		failureRedirect : '/'
-	// 	}));
-
 	app.get('/auth/facebook/callback', function(req, res, next) {
 
 	  passport.authenticate('facebook', function(err, user, info) {
 	    if (err) { return next(err); }
-	    if (!user) { return res.redirect('/#/login'); }
+	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
-	      console.log(user);
-	      console.log(info);
         res.cookie('e2e', user._id.toString(), {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           httpOnly: false
-        });		      
-	      return res.redirect('/#/dashboard');
+        });		     
+
+        // Check if user exists in Skynet
+				request.get('http://skynet.im/devices', 
+		    	{qs: {"email": user.facebook.email}}
+			  , function (error, response, body) {
+					data = JSON.parse(body);
+			    if(data.errors){
+
+		        // Add user to Skynet
+				    request.post('http://skynet.im/devices', 
+				    	{form: {"type":"user", "email": user.facebook.email}}
+					  , function (error, response, body) {
+					      if(response.statusCode == 200){
+
+					      	data = JSON.parse(body);
+									User.findOne({_id: user._id}, function(err, user) {
+								    if(!err) {
+							        user.facebook.skynetuuid = data.uuid.toString();
+							        user.facebook.skynettoken = data.token.toString();
+							        user.save(function(err) {
+						            if(!err) {
+						                console.log("user " + user._id + " updated ");
+						            }
+						            else {
+						                console.log("Error: " + err);
+						            }
+							        });
+								    }
+									});
+
+					      } else {
+					        console.log('error: '+ response.statusCode);
+					        console.log(error);
+					      }
+					      return res.redirect('/dashboard');
+					    }
+					  )
+
+
+			    } else {
+			    	return res.redirect('/dashboard');
+			    }
+
+				});
+
 	    });
 	  })(req, res, next);
 
 	});
 
 
-// twitter --------------------------------
-
-	// send to twitter to do the authentication
 	app.get('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
-
-	// handle the callback after twitter has authenticated the user
-	// app.get('/auth/twitter/callback',
-	// 	passport.authenticate('twitter', {
-	// 		successRedirect : '/#/dashboard',
-	// 		failureRedirect : '/'
-	// 	})
-	// )
-
 	app.get('/auth/twitter/callback', function(req, res, next) {
 
 	  passport.authenticate('twitter', function(err, user, info) {
 	    if (err) { return next(err); }
-	    if (!user) { return res.redirect('/#/login'); }
+	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
 	      console.log(user);
@@ -110,29 +173,66 @@ module.exports = function(app, passport) {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           httpOnly: false
         });		      
-	      return res.redirect('/#/dashboard');
+
+        // Check if user exists in Skynet
+				request.get('http://skynet.im/devices', 
+		    	{qs: {"email": user.twitter.username + "@twitter"}}
+			  , function (error, response, body) {
+					data = JSON.parse(body);
+			    if(data.errors){
+
+		        // Add user to Skynet
+				    request.post('http://skynet.im/devices', 
+				    	{form: {"type":"user", "email": user.twitter.username + "@twitter"}}
+					  , function (error, response, body) {
+					      if(response.statusCode == 200){
+
+					      	data = JSON.parse(body);
+									User.findOne({_id: user._id}, function(err, user) {
+								    if(!err) {
+							        user.twitter.skynetuuid = data.uuid.toString();
+							        user.twitter.skynettoken = data.token.toString();
+							        user.save(function(err) {
+						            if(!err) {
+						                console.log("user " + user._id + " updated ");
+						            }
+						            else {
+						                console.log("Error: " + err);
+						            }
+							        });
+								    }
+									});
+
+					      } else {
+					        console.log('error: '+ response.statusCode);
+					        console.log(error);
+					      }
+					      return res.redirect('/dashboard');
+					    }
+					  )
+
+
+			    } else {
+			    	return res.redirect('/dashboard');
+			    }
+
+				});
+
+
+
+
 	    });
 	  })(req, res, next);
 
 	});
 
 
-// google ---------------------------------
-
-	// send to google to do the authentication
 	app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-
-	// the callback after google has authenticated the user
-	// app.get('/auth/google/callback',
-	// 	passport.authenticate('google', {
-	// 		successRedirect : '/#/dashboard',
-	// 		failureRedirect : '/'
-	// 	}));
 	app.get('/auth/google/callback', function(req, res, next) {
 
 	  passport.authenticate('google', function(err, user, info) {
 	    if (err) { return next(err); }
-	    if (!user) { return res.redirect('/#/login'); }
+	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
 	      console.log(user);
@@ -141,7 +241,52 @@ module.exports = function(app, passport) {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           httpOnly: false
         });		      
-	      return res.redirect('/#/dashboard');
+
+        // Check if user exists in Skynet
+				request.get('http://skynet.im/devices', 
+		    	{qs: {"email": user.google.email}}
+			  , function (error, response, body) {
+					data = JSON.parse(body);
+			    if(data.errors){
+
+		        // Add user to Skynet
+				    request.post('http://skynet.im/devices', 
+				    	{form: {"type":"user", "email": user.google.email}}
+					  , function (error, response, body) {
+					      if(response.statusCode == 200){
+
+					      	data = JSON.parse(body);
+									User.findOne({_id: user._id}, function(err, user) {
+								    if(!err) {
+							        user.google.skynetuuid = data.uuid.toString();
+							        user.google.skynettoken = data.token.toString();
+							        user.save(function(err) {
+						            if(!err) {
+						                console.log("user " + user._id + " updated ");
+						            }
+						            else {
+						                console.log("Error: " + err);
+						            }
+							        });
+								    }
+									});
+
+					      } else {
+					        console.log('error: '+ response.statusCode);
+					        console.log(error);
+					      }
+					      return res.redirect('/dashboard');
+					    }
+					  )
+
+
+			    } else {
+			    	return res.redirect('/dashboard');
+			    }
+
+				});
+
+
 	    });
 	  })(req, res, next);
 
@@ -156,7 +301,7 @@ module.exports = function(app, passport) {
 		res.render('connect-local.ejs', { message: req.flash('loginMessage') });
 	});
 	app.post('/connect/local', passport.authenticate('local-signup', {
-		successRedirect : '/#/dashboard', // redirect to the secure profile section
+		successRedirect : '/dashboard', // redirect to the secure profile section
 		failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
@@ -169,7 +314,7 @@ module.exports = function(app, passport) {
 	// handle the callback after facebook has authorized the user
 	app.get('/connect/facebook/callback',
 		passport.authorize('facebook', {
-			successRedirect : '/#/dashboard',
+			successRedirect : '/dashboard',
 			failureRedirect : '/'
 		}));
 
@@ -181,7 +326,7 @@ module.exports = function(app, passport) {
 	// handle the callback after twitter has authorized the user
 	app.get('/connect/twitter/callback',
 		passport.authorize('twitter', {
-			successRedirect : '/#/dashboard',
+			successRedirect : '/dashboard',
 			failureRedirect : '/'
 		}));
 
@@ -194,7 +339,7 @@ module.exports = function(app, passport) {
 	// the callback after google has authorized the user
 	app.get('/connect/google/callback',
 		passport.authorize('google', {
-			successRedirect : '/#/dashboard',
+			successRedirect : '/dashboard',
 			failureRedirect : '/'
 		}));
 
@@ -211,7 +356,7 @@ module.exports = function(app, passport) {
 		user.local.email    = undefined;
 		user.local.password = undefined;
 		user.save(function(err) {
-			res.redirect('/#/dashboard');
+			res.redirect('/dashboard');
 		});
 	});
 
@@ -220,7 +365,7 @@ module.exports = function(app, passport) {
 		var user            = req.user;
 		user.facebook.token = undefined;
 		user.save(function(err) {
-			res.redirect('/#/dashboard');
+			res.redirect('/dashboard');
 		});
 	});
 
@@ -229,7 +374,7 @@ module.exports = function(app, passport) {
 		var user           = req.user;
 		user.twitter.token = undefined;
 		user.save(function(err) {
-			res.redirect('/#/dashboard');
+			res.redirect('/dashboard');
 		});
 	});
 
@@ -238,13 +383,8 @@ module.exports = function(app, passport) {
 		var user          = req.user;
 		user.google.token = undefined;
 		user.save(function(err) {
-			res.redirect('/#/dashboard');
+			res.redirect('/dashboard');
 		});
-	});
-
-	// show the home page (will also have our login links)
-	app.get('/', function(req, res) {
-		res.sendfile('./public/index.html');
 	});
 
 	// APIs
@@ -265,6 +405,10 @@ module.exports = function(app, passport) {
     });
 	});
 
+	// show the home page (will also have our login links)
+	app.get('/*', function(req, res) {
+		res.sendfile('./public/index.html');
+	});
 
 
 };

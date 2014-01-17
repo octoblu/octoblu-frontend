@@ -1,7 +1,7 @@
 <div id='main-nav-bg'></div>
   <nav id='main-nav'>
     <div class='navigation'>
-      <div class='search'>
+<!--       <div class='search'>
         <form action='search_results.html' method='get'>
           <div class='search-wrapper'>
             <input value="" class="search-query form-control" placeholder="Search..." autocomplete="off" name="q" type="text" />
@@ -9,45 +9,95 @@
           </div>
         </form>
       </div>
+ -->      
       <ul class='nav nav-stacked'>
         <li class='active'>
-          <a href='/#/dashboard'>
+          <a href='/dashboard'>
             <i class='icon-dashboard'></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li class=''>
-          <a class="dropdown-collapse" href="#"><i class='icon-edit'></i>
+          <a class="" href="/designer"><i class='icon-edit'></i>
             <span>Designer</span>
           </a>
         </li>
         <li>
-          <a class='dropdown-collapse ' href='#'>
+          <a class='' href='/analytics'>
             <i class='icon-cloud'></i>
             <span>Analytics</span>
           </a>
         </li>
+        
         <li>
-          <a class='dropdown-collapse ' href='#'>
+          <accordion close-others="oneAtATime">
+            <accordion-group is-open="isopen">
+                <accordion-heading class="">
+                    <i class='icon-book'></i>
+                    <span>Resources</span>
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                </accordion-heading>
+                <div class=''>
+                  <div class=''>
+                    <a href='/docs'>
+                      <i class='icon-cogs'></i>
+                      <span>API Docs</span>
+                    </a>
+                  </div>
+                  <div class=''>
+                    <a href='/pricing'>
+                      <i class='icon-table'></i>
+                      <span>Pricing tables</span>
+                    </a>
+                  </div>
+                  <div class=''>
+                    <a href='/faqs'>
+                      <i class='icon-bullhorn'></i>
+                      <span>FAQ</span>
+                    </a>
+                  </div>
+                </div>
+            </accordion-group>            
+          </accordian>
+        </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle">
+            <i class='icon-book'></i>
+            <span>Resources</span>
+            <i class='icon-angle-down angle-down'></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a>Docs</a>
+            </li>
+          </ul>
+        </li>
+
+
+
+        
+        <li class="">
+          <a class='dropdown-collapse ' href="#">
             <i class='icon-book'></i>
             <span>Resources</span>
             <i class='icon-angle-down angle-down'></i>
           </a>
           <ul class='nav nav-stacked'>
             <li class=''>
-              <a href='docs.html'>
+              <a href='/docs'>
                 <i class='icon-cogs'></i>
                 <span>API Docs</span>
               </a>
             </li>
             <li class=''>
-              <a href='pricing.html'>
+              <a href='/pricing'>
                 <i class='icon-table'></i>
                 <span>Pricing tables</span>
               </a>
             </li>
             <li class=''>
-              <a href='faq.html'>
+              <a href='/faqs'>
                 <i class='icon-bullhorn'></i>
                 <span>FAQ</span>
               </a>
@@ -65,7 +115,7 @@
           <div class='page-header page-header-with-buttons'>
             <h1 class='pull-left'>
               <i class='icon-dashboard'></i>
-              <span>Dashboard - {{user}}</span>
+              <span>Dashboard - {{user}}</span>              
             </h1>
             <div class='pull-right'>
               <div class='btn-group'>
@@ -80,75 +130,15 @@
               </div>
             </div>
           </div>
-          <div class='alert alert-info alert-dismissable'>
+          <p><strong>Your SkyNet UUID is:</strong> {{skynetuuid}}</p>
+<!--           <div class='alert alert-info alert-dismissable'>
             <a class='close' data-dismiss='alert' href='#'>&times;</a>
             Welcome to
             <strong>MESHINES</strong>
             - the Platform and API for the Internet of Things.
           </div>
-          <div class='row box box-transparent'>
-            <div class='col-xs-4 col-sm-2'>
-              <div class='box-quick-link blue-background'>
-                <a href='#'>
-                  <div class='header'>
-                    <div class='icon-comments'></div>
-                  </div>
-                  <div class='content'>Option 1</div>
-                </a>
-              </div>
-            </div>
-            <div class='col-xs-4 col-sm-2'>
-              <div class='box-quick-link green-background'>
-                <a href='#'>
-                  <div class='header'>
-                    <div class='icon-star'></div>
-                  </div>
-                  <div class='content'>Option 2</div>
-                </a>
-              </div>
-            </div>
-            <div class='col-xs-4 col-sm-2'>
-              <div class='box-quick-link orange-background'>
-                <a href='#'>
-                  <div class='header'>
-                    <div class='icon-magic'></div>
-                  </div>
-                  <div class='content'>Option 3</div>
-                </a>
-              </div>
-            </div>
-            <div class='col-xs-4 col-sm-2'>
-              <div class='box-quick-link purple-background'>
-                <a href='#'>
-                  <div class='header'>
-                    <div class='icon-eye-open'></div>
-                  </div>
-                  <div class='content'>Option 4</div>
-                </a>
-              </div>
-            </div>
-            <div class='col-xs-4 col-sm-2'>
-              <div class='box-quick-link red-background'>
-                <a href='orders.html'>
-                  <div class='header'>
-                    <div class='icon-inbox'></div>
-                  </div>
-                  <div class='content'>Option 5</div>
-                </a>
-              </div>
-            </div>
-            <div class='col-xs-4 col-sm-2'>
-              <div class='box-quick-link muted-background'>
-                <a href='#'>
-                  <div class='header'>
-                    <div class='icon-refresh'></div>
-                  </div>
-                  <div class='content'>Option 6</div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class='row'>
+ -->
+           <div class='row'>
             <div class='col-sm-6 box'>
               <div class='box-header'>
                 <div class='title'>
@@ -157,6 +147,7 @@
                 </div>
               </div>
               <div class="box-content">
+                <div id='stats-chart2'></div>
               </div>                                
             </div>
             <div class='col-sm-6 box'>
