@@ -9,7 +9,6 @@ module.exports = function(app, passport) {
 	// 	});
 	// });
 
-	// LOGOUT ==============================
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.clearCookie('meshines');
@@ -30,12 +29,9 @@ module.exports = function(app, passport) {
           httpOnly: false
         });	
 
- 	      // Todo: Update user presence on Skynet
  	      console.log('redirecting');
 	      return res.redirect('/dashboard');
 	    });
-
-
 
 	  })(req, res, next);
 	});		
