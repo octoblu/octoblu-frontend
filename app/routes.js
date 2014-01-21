@@ -12,27 +12,34 @@ module.exports = function(app, passport) {
 	// LOGOUT ==============================
 	app.get('/logout', function(req, res) {
 		req.logout();
-		res.clearCookie('e2e');
+		res.clearCookie('meshines');
 		res.redirect('/');
 	});
 
 	app.post('/login', function(req, res, next) {
+		console.log('login post');
 	  passport.authenticate('local-login', function(err, user, info) {
+	  	console.log(user);
 	    if (err) { return next(err); }
 	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
-        res.cookie('e2e', user._id.toString(), {
+	      console.log(user.local.skynetuuid);
+        res.cookie('meshines', user.local.skynetuuid, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           httpOnly: false
         });	
 
  	      // Todo: Update user presence on Skynet
-
+ 	      console.log('redirecting');
 	      return res.redirect('/dashboard');
 	    });
+
+
+
 	  })(req, res, next);
 	});		
+
 
 	app.post('/signup', function(req, res, next) {
 	  passport.authenticate('local-signup', function(err, user, info) {
@@ -40,10 +47,6 @@ module.exports = function(app, passport) {
 	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
-        res.cookie('e2e', user._id.toString(), {
-          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-          httpOnly: false
-        });		      
 
         // Add user to Skynet
 		    request.post('http://skynet.im/devices', 
@@ -57,10 +60,18 @@ module.exports = function(app, passport) {
 			        	{local: {email: user.local.email, password: user.local.password, skynetuuid: data.uuid, skynettoken: data.token}}
 			        , function(err){
 								if(!err) {
-		                console.log("user " + user._id + " updated");
+		                console.log("user " + data.uuid + " updated");
+						        res.cookie('meshines', data.uuid, {
+						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+						          httpOnly: false
+						        });		     
+							      return res.redirect('/dashboard');
+
 		            }
 		            else {
 		                console.log("Error: could not update user - error " + err);
+							      return res.redirect('/dashboard');
+
 		            }
 			        });
 
@@ -86,8 +97,9 @@ module.exports = function(app, passport) {
 			      } else {
 			        console.log('error: '+ response.statusCode);
 			        console.log(error);
+  			      return res.redirect('/dashboard');
+
 			      }
-			      return res.redirect('/dashboard');
 			    }
 			  )
 
@@ -104,15 +116,12 @@ module.exports = function(app, passport) {
 	    if (!user) { return res.redirect('/login'); }
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
-        res.cookie('e2e', user._id.toString(), {
-          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-          httpOnly: false
-        });		     
 
         // Check if user exists in Skynet
 				request.get('http://skynet.im/devices', 
 		    	{qs: {"email": user.facebook.email}}
 			  , function (error, response, body) {
+			  	console.log(body);
 					data = JSON.parse(body);
 			    if(data.errors){
 
@@ -129,10 +138,18 @@ module.exports = function(app, passport) {
 							        user.facebook.skynettoken = data.token.toString();
 							        user.save(function(err) {
 						            if(!err) {
-						                console.log("user " + user._id + " updated ");
+						                console.log("user " + data.uuid + " updated ");
+										        res.cookie('meshines', data.uuid, {
+										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          httpOnly: false
+										        });		     
+											      return res.redirect('/dashboard');
+
 						            }
 						            else {
 						                console.log("Error: " + err);
+											      return res.redirect('/dashboard');
+
 						            }
 							        });
 								    }
@@ -141,13 +158,18 @@ module.exports = function(app, passport) {
 					      } else {
 					        console.log('error: '+ response.statusCode);
 					        console.log(error);
+						      return res.redirect('/dashboard');
 					      }
-					      return res.redirect('/dashboard');
 					    }
 					  )
 
 
 			    } else {
+		        res.cookie('meshines', data.devices[0], {
+		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		          httpOnly: false
+		        });		     
+
 			    	return res.redirect('/dashboard');
 			    }
 
@@ -169,10 +191,6 @@ module.exports = function(app, passport) {
 	      if (err) { return next(err); }
 	      console.log(user);
 	      console.log(info);
-        res.cookie('e2e', user._id.toString(), {
-          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-          httpOnly: false
-        });		      
 
         // Check if user exists in Skynet
 				request.get('http://skynet.im/devices', 
@@ -194,10 +212,17 @@ module.exports = function(app, passport) {
 							        user.twitter.skynettoken = data.token.toString();
 							        user.save(function(err) {
 						            if(!err) {
-						                console.log("user " + user._id + " updated ");
+						                console.log("user " + data.uuid + " updated ");
+										        res.cookie('meshines', data.uuid, {
+										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          httpOnly: false
+										        });		     
+											      return res.redirect('/dashboard');
+
 						            }
 						            else {
 						                console.log("Error: " + err);
+											      return res.redirect('/dashboard');
 						            }
 							        });
 								    }
@@ -206,13 +231,17 @@ module.exports = function(app, passport) {
 					      } else {
 					        console.log('error: '+ response.statusCode);
 					        console.log(error);
+						      return res.redirect('/dashboard');
 					      }
-					      return res.redirect('/dashboard');
 					    }
 					  )
 
 
 			    } else {
+		        res.cookie('meshines', data.devices[0], {
+		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		          httpOnly: false
+		        });		     
 			    	return res.redirect('/dashboard');
 			    }
 
@@ -237,10 +266,6 @@ module.exports = function(app, passport) {
 	      if (err) { return next(err); }
 	      console.log(user);
 	      console.log(info);
-        res.cookie('e2e', user._id.toString(), {
-          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-          httpOnly: false
-        });		      
 
         // Check if user exists in Skynet
 				request.get('http://skynet.im/devices', 
@@ -262,10 +287,17 @@ module.exports = function(app, passport) {
 							        user.google.skynettoken = data.token.toString();
 							        user.save(function(err) {
 						            if(!err) {
-						                console.log("user " + user._id + " updated ");
+						                console.log("user " + data.uuid + " updated ");
+										        res.cookie('meshines', data.uuid, {
+										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          httpOnly: false
+										        });		     
+											      return res.redirect('/dashboard');
+
 						            }
 						            else {
-						                console.log("Error: " + err);
+					                console.log("Error: " + err);
+										      return res.redirect('/dashboard');
 						            }
 							        });
 								    }
@@ -274,13 +306,17 @@ module.exports = function(app, passport) {
 					      } else {
 					        console.log('error: '+ response.statusCode);
 					        console.log(error);
+						      return res.redirect('/dashboard');
 					      }
-					      return res.redirect('/dashboard');
 					    }
 					  )
 
 
 			    } else {
+		        res.cookie('meshines', data.devices[0], {
+		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		          httpOnly: false
+		        });		     
 			    	return res.redirect('/dashboard');
 			    }
 
@@ -391,15 +427,22 @@ module.exports = function(app, passport) {
 	app.get('/api/user/:id', function(req, res) {
 
 		// use mongoose to find user
-    User.findOne({
-      _id : req.params.id
+    User.findOne({ $or: [
+    	{"local.skynetuuid" : req.params.id},
+    	{"twitter.skynetuuid" : req.params.id},
+    	{"facebook.skynetuuid" : req.params.id},
+    	{"google.skynetuuid" : req.params.id}
+    	]
     }, function(err, userInfo) {
+    	// console.log(userInfo);
       if (err) {
         res.send(err);
       } else {
       	// not sure why local.password cannot be deleted from user object
-      	userInfo.local.password = null;
-      	delete userInfo.local.password;
+      	if (userInfo && userInfo.local != null){
+	      	userInfo.local.password = null;
+	      	delete userInfo.local.password;      		
+      	}
         res.json(userInfo);
       }
     });
@@ -407,19 +450,20 @@ module.exports = function(app, passport) {
 
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {
+		console.log('serving page');
 		res.sendfile('./public/index.html');
 	});
 
 
 };
 
-// route middleware to ensure user is logged in
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated())
-		return next();
+// // route middleware to ensure user is logged in
+// function isLoggedIn(req, res, next) {
+// 	if (req.isAuthenticated())
+// 		return next();
 
-	res.redirect('/');
-}
+// 	res.redirect('/');
+// }
 
 
 
