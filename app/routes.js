@@ -9,6 +9,15 @@ module.exports = function(app, passport) {
 	// 	});
 	// });
 
+	app.get("/*", function(req, res, next) {
+	  if (req.headers.host.match(/^www/) !== null) {
+	    return res.redirect("https://" + req.headers.host.replace(/^www\./, "") + req.url);
+	  } else {
+	    return next();
+	  }
+	});
+
+
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.clearCookie('meshines');
@@ -192,6 +201,7 @@ module.exports = function(app, passport) {
 				request.get('http://skynet.im/devices', 
 		    	{qs: {"email": user.twitter.username + "@twitter"}}
 			  , function (error, response, body) {
+			  	console.log(body);
 					data = JSON.parse(body);
 			    if(data.error){
 
