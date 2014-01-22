@@ -94,7 +94,7 @@ e2eApp.controller('mainController', function($scope, $location) {
       );
     });
   });
-    
+
 
  $(window).load(function () {
    /*GALLERY*/
@@ -309,26 +309,26 @@ function checkLogin($scope, $http, secured, cb) {
         $(".toggle-nav").show();
         $(".navbar-brand").attr("href", "/dashboard");
 
-        if (data.local != undefined) {
+        if (data.local) {
           $(".user-name").html(data.local.email.toString());
           $scope.user = data.local.email;
           $scope.skynetuuid = data.local.skynetuuid;
           $scope.skynettoken = data.local.skynettoken;
 
-        } else if (data.twitter != undefined) {
+        } else if (data.twitter) {
           $(".user-name").html('@' + data.twitter.username.toString());
           $scope.user = data.twitter.displayName;
           $scope.skynetuuid = data.twitter.skynetuuid;
           $scope.skynettoken = data.twitter.skynettoken;
 
-        } else if (data.facebook != undefined) {                    
+        } else if (data.facebook) {                    
           $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
           $(".user-name").html(data.facebook.name.toString());
           $scope.user = data.facebook.name;
           $scope.skynetuuid = data.facebook.skynetuuid;
           $scope.skynettoken = data.facebook.skynettoken;
 
-        } else if (data.google != undefined) {
+        } else if (data.google) {
           $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
           $(".user-name").html('+' + data.google.name.toString());
           $scope.user = data.google.name;
