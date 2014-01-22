@@ -11,7 +11,7 @@ module.exports = function(app, passport) {
 
 	app.get("/*", function(req, res, next) {
 	  if (req.headers.host.match(/^www/) !== null) {
-	    return res.redirect("https://" + req.headers.host.replace(/^www\./, "") + req.url);
+	    res.redirect("http://" + req.headers.host.replace(/^www\./, "") + req.url);
 	  } else {
 	    return next();
 	  }
