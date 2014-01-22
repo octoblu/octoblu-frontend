@@ -445,7 +445,7 @@ module.exports = function(app, passport) {
         res.send(err);
       } else {
       	// not sure why local.password cannot be deleted from user object
-      	if (userInfo && userInfo.local != null){
+      	if (userInfo && userInfo.local){
 	      	userInfo.local.password = null;
 	      	delete userInfo.local.password;      		
       	}
