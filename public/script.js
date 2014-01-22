@@ -258,6 +258,7 @@ e2eApp.controller('profileController', function($scope) {
 });
 
 e2eApp.controller('dashboardController', function($scope, $http, $location) {
+  $scope.skynetStatus = false
   checkLogin($scope, $http, true, function(){
 
     // connect to skynet
@@ -268,6 +269,7 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
     skynet(skynetConfig, function (e, socket) {
       if (e) throw e
 
+      $scope.skynetStatus = true
       socket.emit('status', function(data){
         console.log('status received');
         console.log(data);
@@ -276,9 +278,45 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
         alert(JSON.stringify(message));
         console.log('message received', channel, message);
       });
-
     });
 
+    // Get user devices
+    $http.get('/api/owner/' + $scope.skynetuuid)
+      .success(function(data) {
+        console.log(data);
+        $scope.devices = data.devices;
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+
+    $scope.createDevice = function(){
+
+      $http.post('/api/devices/' + $scope.skynetuuid)                
+        .success(function(data) {
+          console.log(data);
+          $scope.devices.push(data.uuid);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+        });
+      
+    };
+
+    $scope.sendMessage = function(){
+      console.log($scope.sendUuid);
+      console.log($scope.sendText);
+
+      $http.post('/api/message/', {uuid: $scope.sendUuid, message: $scope.sendText})                
+        .success(function(data) {
+          console.log(data);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+        });
+
+
+    }
 
   });  
 

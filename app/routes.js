@@ -430,9 +430,9 @@ module.exports = function(app, passport) {
 	});
 
 	// APIs
+	// Get user
 	app.get('/api/user/:id', function(req, res) {
 
-		// use mongoose to find user
     User.findOne({ $or: [
     	{"local.skynetuuid" : req.params.id},
     	{"twitter.skynetuuid" : req.params.id},
@@ -453,6 +453,44 @@ module.exports = function(app, passport) {
       }
     });
 	});
+
+	// Get devices by owner
+	app.get('/api/owner/:id', function(req, res) {
+
+		request.get('http://skynet.im/devices', 
+	  	{qs: {"owner": req.params.id}}
+	  , function (error, response, body) {
+				data = JSON.parse(body);
+	    	res.json(data);
+		});
+
+	});
+
+	// Register device with Skynet
+	app.post('/api/devices/:id', function(req, res) {
+
+		request.post('http://skynet.im/devices', 
+	  	{form: {"owner": req.params.id}}
+	  , function (error, response, body) {
+				data = JSON.parse(body);
+	    	res.json(data);
+		});
+
+	});	
+
+	// Register device with Skynet
+	app.post('/api/message', function(req, res) {
+		console.log({"devices": req.body.uuid, "message": {"text": req.body.message}});
+
+		request.post('http://skynet.im/messages', 
+	  	{form: {"devices": req.body.uuid, "message": req.body.message}}
+	  , function (error, response, body) {
+	  		console.log(body);
+				data = JSON.parse(body);
+	    	res.json(data);
+		});
+
+	});	
 
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {
