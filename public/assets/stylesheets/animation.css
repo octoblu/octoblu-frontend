@@ -1,0 +1,124 @@
+/*pricing table*/
+.pricing-table {
+	-webkit-transition:color 500ms ease-in !important;
+	-moz-transition:color 500ms ease-in !important;
+	-o-transition:color 500ms ease-in !important;
+	transition:color 500ms ease-in !important;
+	
+	-webkit-transition: background-color 500ms ease-out !important;
+	-moz-transition: background-color 500ms ease-out !important;
+	-o-transition: background-color 500ms ease-out !important;
+	transition: background-color 500ms ease-out !important;
+}
+.price-content {
+	-webkit-transition: 0.5s ease-in-out !important;
+	-moz-transition: 0.5s ease-in-out !important;
+	-o-transition: 0.5s ease-in-out !important;
+	transition: 0.5s ease-in-out !important;
+}
+.price {
+	-webkit-transition: 0.5s ease-in-out !important;
+	-moz-transition: 0.5s ease-in-out !important;
+	-o-transition: 0.5s ease-in-out !important;
+	transition: 0.5s ease-in-out !important;
+}
+.price-icon {
+	-webkit-transition: 0.5s ease-in-out !important;
+	-moz-transition: 0.5s ease-in-out !important;
+	-o-transition: 0.5s ease-in-out !important;
+	transition: 0.5s ease-in-out !important;
+}
+.pricing-table:hover > .caption .price-content .price {
+	opacity: 1;
+	z-index: 1;
+}
+.pricing-table:hover > .caption .price-content .price-icon {
+	opacity: 0;
+}
+.pricing-table:hover > .caption .price-content {
+	transform: rotateY(180deg);
+	-ms-transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+}
+/**/
+.icon-one, .icon-two {
+	-webkit-transition: all 0.5s ease !important;
+	-moz-transition: all 0.5s ease !important;
+	-o-transition: all 0.5s ease !important;
+	-ms-transition: all 0.5s ease !important;
+}
+.icon-container:hover > .icon-one {
+	-webkit-transform: rotateZ(360deg);
+	-moz-transform: rotateZ(360deg);
+	-o-transform: rotateZ(360deg);
+	-ms-transform: rotateZ(360deg);
+	opacity: 0;
+}
+.icon-container:hover > .icon-two {
+	-webkit-transform: rotateZ(360deg);
+	-moz-transform: rotateZ(360deg);
+	-o-transform: rotateZ(360deg);
+	-ms-transform: rotateZ(360deg);
+	opacity: 1;
+}
+/*TEAM*/
+.team-single img, .team-social {
+	-webkit-transition: opacity 0.5s ease-in-out !important;
+	-moz-transition: opacity 0.5s ease-in-out !important;
+	-ms-transition: opacity 0.5s ease-in-out !important;
+	-o-transition: opacity 0.5s ease-in-out !important;
+	transition: opacity 0.5s ease-in-out !important;	
+}
+.team-single:hover > div img {
+	opacity: 0.5;	
+}
+.team-single:hover > .team-social {
+	opacity: 1;	
+}
+/*FOOTER*/
+.footer-icon, .icon {
+	-webkit-transition:color 300ms ease-in !important;
+	-moz-transition:color 300ms ease-in !important;
+	-o-transition:color 300ms ease-in !important;
+	transition:color 300ms ease-in !important;
+}
+
+/*WORKS*/
+.parallax-logo-img {
+	-webkit-transition: opacity 0.5s ease-in-out !important;
+	-moz-transition: opacity 0.5s ease-in-out !important;
+	-ms-transition: opacity 0.5s ease-in-out !important;
+	-o-transition: opacity 0.5s ease-in-out !important;
+	transition: opacity 0.5s ease-in-out !important;
+}
+.parallax-logo-img:hover {
+	opacity: 1;
+}
+/*BT*/
+.btn {
+	-webkit-transition:color 500ms ease-in !important;
+	-moz-transition:color 500ms ease-in !important;
+	-o-transition:color 500ms ease-in !important;
+	transition:color 500ms ease-in !important;
+
+	-webkit-transition: background-color 500ms ease-out !important;
+	-moz-transition: background-color 500ms ease-out !important;
+	-o-transition: background-color 500ms ease-out !important;
+	transition: background-color 500ms ease-out !important;
+}
+/*CONTACT*/
+.form-control {
+	-webkit-transition: border 500ms ease-in !important;
+	-moz-transition: border 500ms ease-in !important;
+	-o-transition: border 500ms ease-in !important;
+	transition: border 500ms ease-in !important;
+
+	-webkit-transition: all 500ms ease-in !important;
+	-moz-transition: all 500ms ease-in !important;
+	-o-transition: all 500ms ease-in !important;
+	transition: all 500ms ease-in !important;
+}
+.form-control:focus {
+	outline: 0;
+	box-shadow: none;
+}

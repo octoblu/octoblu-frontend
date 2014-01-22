@@ -2186,7 +2186,9 @@ body {
       overflow: hidden; } }
 
 #content-wrapper {
-  padding-bottom: 20px; }
+  padding-bottom: 20px; 
+  padding-top: 40px; 
+}
 
 #content {
   margin-left: 251px;

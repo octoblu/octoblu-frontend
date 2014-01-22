@@ -24,20 +24,26 @@
   <link href="assets/stylesheets/theme-colors.css" media="all" rel="stylesheet" type="text/css" />
   <link href="assets/stylesheets/demo.css" media="all" rel="stylesheet" type="text/css" />
 
-  <!-- <base href="/"> -->
+  <link href="assets/stylesheets/erosIntro.css" rel="stylesheet" media="screen">
+  <link href="assets/stylesheets/style.css" rel="stylesheet" media="screen">
+  <link href="assets/stylesheets/custom.css" rel="stylesheet">
+  <link href="assets/stylesheets/animation.css" rel="stylesheet">
+  <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet" >
+  <!-- <link href="assets/stylesheets/isotope.css" rel="stylesheet"> -->
+  <!-- <link href="assets/stylesheets/hermesMenu.css" rel="stylesheet"> -->
+  <!-- <link href="assets/stylesheets/apolloGallery.css" rel="stylesheet"> -->
+  <link href="assets/stylesheets/athenaSlide.css" rel="stylesheet">
+  <link rel="shortcut icon" href="images/favicon.png">
+
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
 <!-- <body ng-controller="mainController"> -->
 <body class='contrast-blue'>
-	<!-- $locationProvider.html5Mode(true) -->
-	<!-- HEADER AND NAVBAR -->
+
 	<header>
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default navbar-fixed-top">
       <a class='navbar-brand' href='/'>
-<!--         <img width="81" height="21" class="logo" alt="Flatty" src="assets/images/logo.svg" />
-        <img width="21" height="21" class="logo-xs" alt="Flatty" src="assets/images/logo_xs.svg" />
- -->      
 			MESHINES
 			</a>
       <a class='toggle-nav btn pull-left' href='#' style="display:none">
@@ -47,11 +53,9 @@
       <ul class='nav'>
 
 				<li class="auth"><a href="/login"><i class="fa fa-lock"></i> Sign In/Up</a></li>
-				<!-- <li><a href="#signup"><i class="fa fa-lock"></i> SignUp</a></li> -->
 
         <li class='dropdown dark user-menu' style="display:none">
           <a class='dropdown-toggle' data-toggle='dropdown' href="#">
-            <!-- <img width="23" height="23" alt="Mila Kunis" src="assets/images/avatar.jpg" /> -->
             <span class='avatar'></span>
             <span class='user-name'></span>
             <b class='caret'></b>
@@ -77,21 +81,54 @@
               </a>
             </li>
           </ul>
-        </li>
-      
-
-
+        </li>    
 			</ul>
-
-<!--     <form action='search_results.html' class='navbar-form navbar-right hidden-xs' method='get'>
-      <button class='btn btn-link icon-search' name='button' type='submit'></button>
-      <div class='form-group'>
-        <input value="" class="form-control" placeholder="Search..." autocomplete="off" id="q_header" name="q" type="text" />
-      </div>
-    </form>
- -->
 		</nav>
 	</header>
+
+
+<!-- <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"><div style="font-size: 30px;">MESHINES</div></a>
+    <a class='toggle-nav btn pull-left' href='#' style="display:none">
+        <i class='icon-reorder'></i>
+    </a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul id="mainmenu" class="nav navbar-nav navbar-right">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#portfolio">Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a class="nobar" href="features.html">Features</a></li>
+          <li><a class="nobar" href="HELP-FILE.html">Help File</a></li>
+          <li><a class="nobar" href="#">Menu Example</a></li>
+          <li class="divider"></li>
+          <li><a class="nobar" href="#">Menu Example</a></li>
+          <li class="divider"></li>
+          <li><a class="nobar" href="#">Menu Example</a></li>
+        </ul>
+      </li>
+      <div id="mainmenubar"></div>
+    </ul>
+  </div>
+  </div>
+</nav>
+ -->
+
 
 	<!-- MAIN CONTENT AND INJECTED VIEWS -->
 	<div id="main">
@@ -99,20 +136,12 @@
 		<div ng-view></div>
 
 	</div>
-<!--  -->
-	<div id="footer" class="container">
-	    <nav class="navbar navbar-default navbar-fixed-bottom">
-	        <div class="navbar-inner navbar-content-center">
-	            <p class="text-muted credit"> &copy 2014 Meshines, inc.  <a href="about"><i class="fa fa-shield"></i> About</a> | <a href="contact"><i class="fa fa-comment"></i> Contact</a></p>
-	        </div>
-	    </nav>
-	</div>
+
 
   <!-- // <script src="assets/javascripts/jquery/jquery.min.js" type="text/javascript"></script> -->
   <script src="http://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
   <!-- / jquery mobile (for touch events) -->
-  <!-- // <script src="assets/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script> -->
-  <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js" type="text/javascript"></script>
+  <!-- // <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js" type="text/javascript"></script> -->
   <!-- / jquery migrate (for compatibility with new jquery) [required] -->
   <!-- // <script src="assets/javascripts/jquery/jquery-migrate.min.js" type="text/javascript"></script> -->
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
@@ -123,6 +152,8 @@
   <script src="assets/javascripts/plugins/jquery_ui_touch_punch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
   <script src="assets/javascripts/jquery/jquery.cookie.js"></script>
   <!-- / modernizr -->
+  <script src="assets/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
+
   <script src="assets/javascripts/plugins/modernizr/modernizr.min.js" type="text/javascript"></script>
   <!-- / retina -->
   <script src="assets/javascripts/plugins/retina/retina.js" type="text/javascript"></script>
@@ -146,6 +177,13 @@
 	<script src="script.js"></script>	
   <script src="http://skynet.im/js/skynet.js"></script>
 
+  <!-- // <script src="assets/javascripts/isotope.min.js"></script> -->
+  <!-- // <script src="assets/javascripts/ermesMenu.js"></script> -->
+  <!-- // <script src="assets/javascripts/erosIntro.js"></script> -->
+  <script src="assets/javascripts/athenaSlide.js"></script>
+  <!-- // <script src="assets/javascripts/apolloGallery.js"></script> -->
+  <script src="assets/javascripts/demeterScroll.js"></script>
+  <!-- // <script src="assets/javascripts/main.js"></script> -->
 
 </body>
 </html>

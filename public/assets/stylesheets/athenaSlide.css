@@ -1,0 +1,159 @@
+#home {
+	width: 100%;
+	height: 700px;
+	padding: 0px;
+	background-image: url(/assets/images/Parallax2.jpg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+#slidecontent, #slidecommands {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#slidecommands {
+}
+#slide-previous {
+	position: absolute;
+	top: 385px;
+	left: 5%;
+	cursor: pointer;
+	z-index: 5;
+}
+#slide-next {
+	position: absolute;
+	top: 385px;
+	right: 5%;
+	cursor: pointer;
+	z-index: 5;
+}
+#slide-dots {
+	position: absolute;
+	width: 100%;
+	left: 0%;
+	bottom: 5%;
+	z-index: 5;
+	text-align: center;
+}
+.slide-dot {
+	width: 15px;
+	height: 15px;
+	border: 3px solid;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-web-kit-border-radius: 10px;
+}
+
+.slide {
+	width : 100%;
+	height : 100%;
+	position : absolute;
+	z-index : 0;
+	top : 0;
+	left: 0;
+}
+.slide-panel {
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	text-align: center;
+}
+.sptext {
+	line-height: 100%;
+	position: relative;
+	max-width: 70%;
+	z-index: 1;
+	display: inline-block;
+}
+.spimage {
+	position: relative;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.msg-welcome {}
+.msg-ulysses {
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px; 
+	border: 3px dashed;
+}
+#spt-1, #spt-5, #spt-9 {
+	top: 42%;
+	font-size: 50px;
+}
+#spt-2, #spt-6, #spt-10 {
+	top: 56%;
+	font-size: 20px;
+}
+#spt-3, #spt-7, #spt-11 {
+	top: 65%;
+	right: 74.5px;
+}
+#spt-4, #spt-8, #spt-12 {
+	top: 65%;
+	left: 74.5px;
+}
+#spi-1 {
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/slide.jpg);
+	background-size: cover;
+}
+/*RESPONSIVE*/
+@media (max-width: 768px) {
+
+#spt-1 {
+	top: 30%;
+}
+
+.msg-welcome {
+	display: block;
+	margin: 30px 0px;
+}
+#spt-2, #spt-6, #spt-10 {
+	top: 60%;
+}
+#spt-3, #spt-7, #spt-11{
+	top: 70%;
+}
+#spt-4, #spt-8, #spt-12{
+	top: 70%;
+}
+#spt-5 {
+	top: 38%;
+}
+#spt-9 {
+	top: 24%;
+}
+}
+@media (max-width: 500px) {
+#spt-1, #spt-9 {
+	top: 15%;
+}
+#spt-2, #spt-6, #spt-10 {
+	top: 50%;
+}
+#spt-3, #spt-7, #spt-11{
+	top: 68%;
+	right: 0%;
+}
+#spt-4, #spt-8, #spt-12{
+	top: 78%;
+	left: 0%;
+}
+#spt-5 {
+	top: 25%;
+	max-width: 100%;
+}
+}

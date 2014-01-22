@@ -119,7 +119,7 @@ module.exports = function(app, passport) {
 			  , function (error, response, body) {
 			  	console.log(body);
 					data = JSON.parse(body);
-			    if(data.errors){
+			    if(data.error){
 
 		        // Add user to Skynet
 				    request.post('http://skynet.im/devices', 
@@ -193,7 +193,7 @@ module.exports = function(app, passport) {
 		    	{qs: {"email": user.twitter.username + "@twitter"}}
 			  , function (error, response, body) {
 					data = JSON.parse(body);
-			    if(data.errors){
+			    if(data.error){
 
 		        // Add user to Skynet
 				    request.post('http://skynet.im/devices', 
@@ -268,7 +268,7 @@ module.exports = function(app, passport) {
 		    	{qs: {"email": user.google.email}}
 			  , function (error, response, body) {
 					data = JSON.parse(body);
-			    if(data.errors){
+			    if(data.error){
 
 		        // Add user to Skynet
 				    request.post('http://skynet.im/devices', 

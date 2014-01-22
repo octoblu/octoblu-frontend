@@ -1,0 +1,23 @@
+#mainmenubar {
+	position: absolute;
+	z-index: -1;
+	border-bottom: 5px solid
+}
+#navtabs_menubar {
+	position: absolute;
+	z-index: -1;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	
+}
+#isotope_filtersbar {
+	position: absolute;
+	z-index: -1;
+	border-radius: 5px;
+}
+/*RESPONSIVE*/
+@media (max-width: 768px) {
+#mainmenubar {
+	display: none;
+}
+}
