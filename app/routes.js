@@ -123,7 +123,7 @@ module.exports = function(app, passport) {
 
 		        // Add user to Skynet
 				    request.post('http://skynet.im/devices', 
-				    	{form: {email": user.facebook.email}}
+				    	{form: {"email": user.facebook.email}}
 					  , function (error, response, body) {
 					      if(response.statusCode == 200){
 
