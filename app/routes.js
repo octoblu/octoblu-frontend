@@ -455,14 +455,22 @@ module.exports = function(app, passport) {
 	});
 
 	// Get devices by owner
-	app.get('/api/owner/:id', function(req, res) {
+	app.get('/api/owner/:id/:token', function(req, res) {
 
-		request.get('http://skynet.im/devices', 
-	  	{qs: {"owner": req.params.id}}
+		// request.get('http://skynet.im/devices', 
+	 //  	{qs: {"owner": req.params.id}}
+	 //  , function (error, response, body) {
+		// 		data = JSON.parse(body);
+	 //    	res.json(data);
+		// });
+
+		request.get('http://skynet.im/mydevices/' + req.params.id, 
+	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
 				data = JSON.parse(body);
 	    	res.json(data);
 		});
+
 
 	});
 
@@ -477,6 +485,19 @@ module.exports = function(app, passport) {
 		});
 
 	});	
+
+	// Register device with Skynet
+	app.del('/api/devices/:id/:token', function(req, res) {
+
+		request.del('http://skynet.im/devices/' + req.params.id, 
+	  	{form: {"token": req.params.token}}
+	  , function (error, response, body) {
+				data = JSON.parse(body);
+	    	res.json(data);
+		});
+
+	});	
+
 
 	// Register device with Skynet
 	app.post('/api/message', function(req, res) {

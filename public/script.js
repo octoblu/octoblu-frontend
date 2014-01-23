@@ -281,7 +281,7 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
     });
 
     // Get user devices
-    $http.get('/api/owner/' + $scope.skynetuuid)
+    $http.get('/api/owner/' + $scope.skynetuuid + '/' + $scope.skynettoken)
       .success(function(data) {
         console.log(data);
         $scope.devices = data.devices;
@@ -295,13 +295,29 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
       $http.post('/api/devices/' + $scope.skynetuuid)                
         .success(function(data) {
           console.log(data);
-          $scope.devices.push(data.uuid);
+          $scope.devices.push(data);
         })
         .error(function(data) {
           console.log('Error: ' + data);
         });
       
     };
+
+    $scope.deleteDevice = function( idx ){
+
+      var device_to_delete = $scope.devices[idx];
+
+      $http.delete('/api/devices/' + device_to_delete.uuid + '/' + device_to_delete.token)                
+        .success(function(data) {
+          console.log(data);
+          $scope.devices.splice(idx, 1);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+        });
+      
+    };
+
 
     $scope.sendMessage = function(){
       console.log($scope.sendUuid);
