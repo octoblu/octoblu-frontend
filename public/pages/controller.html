@@ -17,7 +17,7 @@
             <span>Dashboard</span>
           </a>
         </li>
-        <li class='active'>
+        <li class=''>
           <a href="/designer"><i class='icon-edit'></i>
             <span>Designer</span>
           </a>
@@ -36,7 +36,7 @@
           </a>
         </li>
 
-        <li>
+        <li class='active'>
           <a class='' href='/controller'>
             <i class='icon-cogs'></i>
             <span>Controller</span>
@@ -93,9 +93,16 @@
   </nav>
   <section id='content'>
     <div class='container'>
-      <br /><br />
-      
-      <iframe  width="100%" height="1000" ng-src="{{redFrame}}"></iframe>
+      <br/><br/>
+      <div class='page-header page-header-with-buttons'>
+        <h1 class='pull-left'>
+          <i class='icon-cogs'></i>
+          <span>Controller</span>              
+        </h1>
+      </div>
+
+      <!--  -->
+      <!-- <iframe  width="100%" height="1000" ng-src="{{redFrame}}"></iframe> -->
 <!--       <iframe class="youtube-player" type="text/html" width="640" height="385" ng-src="{{trustSrc(redFrame)}}" allowfullscreen frameborder="0">
 </iframe>
  -->    </div>

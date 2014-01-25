@@ -42,6 +42,11 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
       controller  : 'dashboardController'
     }) 
 
+    .when('/connector', {
+      templateUrl : 'pages/connector.html',
+      controller  : 'connectorController'
+    }) 
+
     .when('/designer', {
       templateUrl : 'pages/designer.html',
       controller  : 'designerController'
@@ -50,6 +55,16 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
     .when('/analytics', {
       templateUrl : 'pages/analytics.html',
       controller  : 'analyticsController'
+    }) 
+
+    .when('/controller', {
+      templateUrl : 'pages/controller.html',
+      controller  : 'controllerController'
+    }) 
+
+    .when('/community', {
+      templateUrl : 'pages/community.html',
+      controller  : 'communityController'
     }) 
 
     .when('/signup', {
@@ -65,7 +80,7 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
     .when('/forgot', {
       templateUrl : 'pages/forgot.html',
       controller  : 'forgotController'
-    })
+    });
 
     // .otherwise({redirectTo: '/'});
     // .otherwise({window.location.href='/'});
@@ -271,6 +286,21 @@ e2eApp.controller('profileController', function($scope) {
 });
 
 e2eApp.controller('dashboardController', function($scope, $http, $location) {
+  $scope.message = 'Contact page content pending.';
+  checkLogin($scope, $http, false, function(){});  
+});
+
+e2eApp.controller('controllerController', function($scope, $http, $location) {
+  $scope.message = 'Contact page content pending.';
+  checkLogin($scope, $http, false, function(){});  
+});
+
+e2eApp.controller('communityController', function($scope, $http, $location) {
+  $scope.message = 'Contact page content pending.';
+  checkLogin($scope, $http, false, function(){});  
+});
+
+e2eApp.controller('connectorController', function($scope, $http, $location) {
   $scope.skynetStatus = false
   checkLogin($scope, $http, true, function(){
 
@@ -376,7 +406,7 @@ e2eApp.controller('designerController', function($scope, $http, $location) {
     $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
       .success(function(data) {
         $scope.redPort = data.replace(/["']/g, "");
-        $scope.redFrame = "http://" + $scope.skynetuuid + ":" + $scope.skynettoken + "@red.meshines.com:" + $scope.redPort
+        $scope.redFrame = "http://" + $scope.skynetuuid + ":" + $scope.skynettoken + "@red.meshines.com:" + $scope.redPort;
         // $scope.redFrame = "http://skynet.im";
         console.log($scope.redFrame);
       })
