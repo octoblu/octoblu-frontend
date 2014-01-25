@@ -3,10 +3,17 @@
 var e2eApp = angular.module('e2eApp', ['ngRoute', 'ui.bootstrap']); 
 
 // configure our routes
-// e2eApp.config(function($routeProvider, $locationProvider) {
-e2eApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+// e2eApp.config(function($routeProvider, $locationProvider, $sceDelegateProvider) {  
+e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', function($routeProvider, $locationProvider, $sceDelegateProvider) {
 
-  
+  $sceDelegateProvider.resourceUrlWhitelist([
+    'self', 
+    'http://*:*@red.meshines.com:*/**', 
+    'http://skynet.im/**',
+    'http://54.203.249.138/**',
+    '**'
+  ]);
+
   $routeProvider
 
     // define SPA routes
@@ -35,6 +42,16 @@ e2eApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
       controller  : 'dashboardController'
     }) 
 
+    .when('/designer', {
+      templateUrl : 'pages/designer.html',
+      controller  : 'designerController'
+    }) 
+
+    .when('/analytics', {
+      templateUrl : 'pages/analytics.html',
+      controller  : 'analyticsController'
+    }) 
+
     .when('/signup', {
       templateUrl : 'pages/signup.html',
       controller  : 'signupController'
@@ -52,11 +69,11 @@ e2eApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
 
     // .otherwise({redirectTo: '/'});
     // .otherwise({window.location.href='/'});
-
     
     $locationProvider
       .html5Mode(true)
       .hashPrefix('!');
+
 // });
 }]);
 
@@ -247,10 +264,6 @@ e2eApp.controller('loginController', function($scope, $http) {
   if (user != undefined){
     window.location.href = "/dashboard";
   }
-
-  // $scope.message = 'Login.';
-  
-  // window.location.href = "/";
 });
 
 e2eApp.controller('profileController', function($scope) {
@@ -290,12 +303,26 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
         console.log('Error: ' + data);
       });
 
+    // Get NodeRed port number
+    $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
+      .success(function(data) {
+        $scope.redPort = data.replace(/["']/g, "");
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+
+
     $scope.createDevice = function(){
 
       $http.post('/api/devices/' + $scope.skynetuuid)                
         .success(function(data) {
           console.log(data);
-          $scope.devices.push(data);
+          try{
+            $scope.devices.push(data);
+          } catch(e){
+            $scope.devices = [data];
+          }
         })
         .error(function(data) {
           console.log('Error: ' + data);
@@ -342,6 +369,34 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
 
 });
 
+e2eApp.controller('designerController', function($scope, $http, $location) {
+  checkLogin($scope, $http, true, function(){
+
+    // Get NodeRed port number
+    $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
+      .success(function(data) {
+        $scope.redPort = data.replace(/["']/g, "");
+        $scope.redFrame = "http://" + $scope.skynetuuid + ":" + $scope.skynettoken + "@red.meshines.com:" + $scope.redPort
+        // $scope.redFrame = "http://skynet.im";
+        console.log($scope.redFrame);
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+
+  });
+});
+
+e2eApp.controller('analyticsController', function($scope, $http, $location) {
+  checkLogin($scope, $http, true, function(){
+
+    $scope.splunkFrame = "http://54.203.249.138:8000/"
+    // $scope.redFrame = "http://skynet.im";
+
+  });
+});
+
+
 function checkLogin($scope, $http, secured, cb) {
   user = $.cookie("meshines");
   console.log(user);
@@ -354,8 +409,6 @@ function checkLogin($scope, $http, secured, cb) {
 
     $http.get('/api/user/' + user)
       .success(function(data) {
-        console.log('get user a success');
-        console.log(data);
         $scope.user_id = data._id;
 
         $(".auth").hide();

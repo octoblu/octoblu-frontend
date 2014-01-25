@@ -474,6 +474,18 @@ module.exports = function(app, passport) {
 
 	});
 
+	// Get nodered port
+	app.get('/api/redport/:uuid/:token', function(req, res) {
+		// curl -X PUT http://red.meshines.com:4444/red/aaa?token=bbb
+		request.put('http://red.meshines.com:4444/red/' + req.params.uuid, 
+	  	{qs: {"token": req.params.token}}
+	  , function (error, response, body) {
+				// console.log(body);
+	    	res.json(body);
+		});	    		
+	});
+
+
 	// Register device with Skynet
 	app.post('/api/devices/:id', function(req, res) {
 

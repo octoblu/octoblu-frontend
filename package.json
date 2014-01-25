@@ -1,7 +1,7 @@
 {
-  "name": "meshines",
+  "name": "octoblu",
   "version": "0.0.1-7",
-  "description": "meshines.com",
+  "description": "octoblu.com",
   "main": "server.js",
   "author": "Chris Matthieu",
   "dependencies": {
@@ -22,11 +22,9 @@
   "engines": {
     "node": ">=0.6"
   },
-  "subdomain": "meshines",
+  "subdomain": "octoblu",
   "domains": [
-    "meshines.com",
-    "www.meshines.com",
-    "meshines.net",
-    "www.meshines.net"
+    "octoblu.com",
+    "www.octoblu.com"
   ]
 }
