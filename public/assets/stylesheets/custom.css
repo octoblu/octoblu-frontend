@@ -165,7 +165,7 @@ a, a:hover, a:focus {color: #3498db;}
 		/* *** FIRST PARALLAX *** */
 .parallax1 {
 	/* copy your image link into the second url space, the first space is the pattern. */
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/iot_original.jpg);
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/Octoblu.jpg);
   height: 500px; /* Height: auto is to keep aspect ratio */
 }
 
@@ -186,7 +186,7 @@ a, a:hover, a:focus {color: #3498db;}
 		
 		/* *** PRICING TABLES *** */
 .pricing-bg {
-	/*background: url(/assets/images/iot_original.jpg) #444;*/
+	/*background: url(/assets/images/iot_original_web.jpg) #444;*/
 	/*background-attachment: fixed;*/
 }
 .pricing-bg-title {
@@ -247,7 +247,7 @@ a, a:hover, a:focus {color: #3498db;}
 		/* *** THIRD PARALLAX *** */
 .parallax3 {
 	/* copy your image link into the second url space, the first space is the pattern. */
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/iot_original.jpg);
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/iot_original_web.jpg);
 }
 	.parallax-inner3 {
 		color: #fff;
