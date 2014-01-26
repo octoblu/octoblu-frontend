@@ -36,10 +36,16 @@ module.exports = {
     'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
     'callbackURL'     : 'http://octoblu.com/auth/twitter/callback'
   },
-
+  // // Meshines
+  // 'googleAuth' : {
+  //   'clientID'    : '541059729530-bbt3n8qh5s8c8m5dm7dh6gojiqqrfrbg.apps.googleusercontent.com',
+  //   'clientSecret'  : 'SVTqhJ7RtsK6zqRcKUZrjxM6',
+  //   'callbackURL'   : 'http://octoblu.com/auth/google/callback'
+  // },
+  // Octoblu
   'googleAuth' : {
-    'clientID'    : '541059729530-bbt3n8qh5s8c8m5dm7dh6gojiqqrfrbg.apps.googleusercontent.com',
-    'clientSecret'  : 'SVTqhJ7RtsK6zqRcKUZrjxM6',
+    'clientID'    : '369178117909-psv35jjicbu961aj4ups6h5s2mb08j6m.apps.googleusercontent.com',
+    'clientSecret'  : 'bgqPgsEjZC_F65rKDxp7PwRQ',
     'callbackURL'   : 'http://octoblu.com/auth/google/callback'
   },
   'port' : 80

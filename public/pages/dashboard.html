@@ -1,233 +1,138 @@
-<div id='main-nav-bg'></div>
-  <nav id='main-nav'>
-    <div class='navigation'>
-<!--       <div class='search'>
-        <form action='search_results.html' method='get'>
-          <div class='search-wrapper'>
-            <input value="" class="search-query form-control" placeholder="Search..." autocomplete="off" name="q" type="text" />
-            <button class='btn btn-link icon-search' name='button' type='submit'></button>
-          </div>
-        </form>
-      </div>
- -->      
-      <ul class='nav nav-stacked'>
-        <li class='active'>
-          <a href='/dashboard'>
+<section id='content'>
+  <div class='container'>
+    <div class='row' id='content-wrapper'>
+      <div class='col-xs-12'>
+        
+        <div class='page-header page-header-with-buttons'>
+          <h1 class='pull-left'>
             <i class='icon-dashboard'></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li class=''>
-          <a href="/designer"><i class='icon-edit'></i>
-            <span>Designer</span>
-          </a>
-        </li>
-        <li>
-          <a class='' href='/analytics'>
-            <i class='icon-bar-chart'></i>
-            <span>Analytics</span>
-          </a>
-        </li>
-
-        <li class="">
-          <a class='' href='/connector'>
-            <i class='icon-code-fork'></i>
-            <span>Connector</span>
-          </a>
-        </li>
-
-        <li>
-          <a class='' href='/controller'>
-            <i class='icon-cogs'></i>
-            <span>Controller</span>
-          </a>
-        </li>
-
-        <li>
-          <a class='' href='/community'>
-            <i class='icon-group'></i>
-            <span>Community</span>
-          </a>
-        </li>
-
-        <li>
-          <a class='' href='/admin'>
-            <i class='icon-lock'></i>
-            <span>Admin</span>
-          </a>
-        </li>
-       
-
-
-        <li class="">
-          <a class='dropdown-collapse ' href="#" g-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-            <i class='icon-book'></i>
-            <span>Resources</span>
-            <i class='icon-angle-down angle-down'></i>
-          </a>
-          <ul class='nav nav-stacked' ng-class="navCollapsed && 'in'">
-            <li class=''>
-              <a href='/docs'>
-                <i class='icon-cogs'></i>
-                <span>API Docs</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='/pricing'>
-                <i class='icon-table'></i>
-                <span>Pricing tables</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='/faqs'>
-                <i class='icon-bullhorn'></i>
-                <span>FAQ</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-
-
-      </ul>
-    </div>
-  </nav>
-  <section id='content'>
-    <div class='container'>
-      <div class='row' id='content-wrapper'>
-        <div class='col-xs-12'>
-          
-          <div class='page-header page-header-with-buttons'>
-            <h1 class='pull-left'>
-              <i class='icon-dashboard'></i>
-              <span>Dashboard - {{user}}</span>              
-            </h1>
+            <span>Dashboard - {{user}}</span>              
+          </h1>
 <!--             <div class='pull-right'>
-              <div class='btn-group'>
-                <a class="btn btn-white hidden-xs" href="#">Last month</a>
-                <a class="btn btn-white" href="#">Last week</a>
-                <a class="btn btn-white " href="#">Today</a>
-                      <a class="btn btn-white" id="daterange" href="#"><i class='icon-calendar'></i>
-                <span>Custom</span>
-                <b class='caret'></b>
-                </a>
-          
-              </div>
+            <div class='btn-group'>
+              <a class="btn btn-white hidden-xs" href="#">Last month</a>
+              <a class="btn btn-white" href="#">Last week</a>
+              <a class="btn btn-white " href="#">Today</a>
+                    <a class="btn btn-white" id="daterange" href="#"><i class='icon-calendar'></i>
+              <span>Custom</span>
+              <b class='caret'></b>
+              </a>
+        
             </div>
- -->          
           </div>
+-->          
+        </div>
 
 
-          <!-- <hr class='hr-drouble'> -->
+        <!-- <hr class='hr-drouble'> -->
 
 <!--           <div class='row'>
-            <div class='col-sm-12 col-md-6'>
-              <div class='box'>
-                <div class='box-header'>
-                  <div class='title'>
-                    <div class='icon-inbox'></div>
-                    Orders
+          <div class='col-sm-12 col-md-6'>
+            <div class='box'>
+              <div class='box-header'>
+                <div class='title'>
+                  <div class='icon-inbox'></div>
+                  Orders
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-sm-6'>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-error'>191</h3>
+                    <small>New</small>
+                    <div class='text-error icon-inbox align-right'></div>
+                  </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-warning'>311</h3>
+                    <small>In process</small>
+                    <div class='text-warning icon-check align-right'></div>
+                  </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-info'>3</h3>
+                    <small>Pending</small>
+                    <div class='text-info icon-time align-right'></div>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-sm-6'>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-error'>191</h3>
-                      <small>New</small>
-                      <div class='text-error icon-inbox align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-warning'>311</h3>
-                      <small>In process</small>
-                      <div class='text-warning icon-check align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-info'>3</h3>
-                      <small>Pending</small>
-                      <div class='text-info icon-time align-right'></div>
-                    </div>
+                <div class='col-sm-6'>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-primary'>3</h3>
+                    <small>Shipped</small>
+                    <div class='text-primary icon-truck align-right'></div>
                   </div>
-                  <div class='col-sm-6'>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-primary'>3</h3>
-                      <small>Shipped</small>
-                      <div class='text-primary icon-truck align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-success'>981</h3>
-                      <small>Completed</small>
-                      <div class='text-success icon-flag align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-muted'>0</h3>
-                      <small>Canceled</small>
-                      <div class='text-muted icon-remove align-right'></div>
-                    </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-success'>981</h3>
+                    <small>Completed</small>
+                    <div class='text-success icon-flag align-right'></div>
+                  </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-muted'>0</h3>
+                    <small>Canceled</small>
+                    <div class='text-muted icon-remove align-right'></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class='col-sm-6 col-md-3'>
-              <div class='box'>
-                <div class='box-header'>
-                  <div class='title'>
-                    <i class='icon-group'></i>
-                    Visitors
-                  </div>
-                </div>
-                <div class='row'>
-                  <div class='col-sm-12'>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-error'>9100</h3>
-                      <small>Unique</small>
-                      <div class='text-error icon-user align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-warning'>41 000</h3>
-                      <small>Pageviews</small>
-                      <div class='text-warning icon-book align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-primary'>12:21</h3>
-                      <small>Average time</small>
-                      <div class='text-primary icon-time align-right'></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class='col-sm-6 col-md-3'>
-              <div class='box'>
-                <div class='box-header'>
-                  <div class='title'>
-                    <i class='icon-comments'></i>
-                    Comments
-                  </div>
-                </div>
-                <div class='row'>
-                  <div class='col-sm-12'>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-error'>91</h3>
-                      <small>New</small>
-                      <div class='text-error icon-plus align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-success'>1</h3>
-                      <small>Approved</small>
-                      <div class='text-success icon-ok align-right'></div>
-                    </div>
-                    <div class='box-content box-statistic'>
-                      <h3 class='title text-info'>123</h3>
-                      <small>Pending</small>
-                      <div class='text-info icon-time align-right'></div>
-                    </div>
-                  </div>
-                </div>
-                <br /><br /><br /><br />
-              </div>
-            </div>
- -->          
           </div>
+          <div class='col-sm-6 col-md-3'>
+            <div class='box'>
+              <div class='box-header'>
+                <div class='title'>
+                  <i class='icon-group'></i>
+                  Visitors
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-error'>9100</h3>
+                    <small>Unique</small>
+                    <div class='text-error icon-user align-right'></div>
+                  </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-warning'>41 000</h3>
+                    <small>Pageviews</small>
+                    <div class='text-warning icon-book align-right'></div>
+                  </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-primary'>12:21</h3>
+                    <small>Average time</small>
+                    <div class='text-primary icon-time align-right'></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-sm-6 col-md-3'>
+            <div class='box'>
+              <div class='box-header'>
+                <div class='title'>
+                  <i class='icon-comments'></i>
+                  Comments
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-sm-12'>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-error'>91</h3>
+                    <small>New</small>
+                    <div class='text-error icon-plus align-right'></div>
+                  </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-success'>1</h3>
+                    <small>Approved</small>
+                    <div class='text-success icon-ok align-right'></div>
+                  </div>
+                  <div class='box-content box-statistic'>
+                    <h3 class='title text-info'>123</h3>
+                    <small>Pending</small>
+                    <div class='text-info icon-time align-right'></div>
+                  </div>
+                </div>
+              </div>
+              <br /><br /><br /><br />
+            </div>
+          </div>
+-->          
         </div>
       </div>
     </div>

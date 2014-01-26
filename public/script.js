@@ -52,9 +52,9 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
       controller  : 'designerController'
     }) 
 
-    .when('/analytics', {
-      templateUrl : 'pages/analytics.html',
-      controller  : 'analyticsController'
+    .when('/analyzer', {
+      templateUrl : 'pages/analyzer.html',
+      controller  : 'analyzerController'
     }) 
 
     .when('/controller', {
@@ -94,6 +94,7 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
 
 
 e2eApp.controller('mainController', function($scope, $location) {
+  $("#main-nav-bg").hide();
   user = $.cookie("meshines");
   if(user != undefined ){
     window.location.href = "/dashboard";
@@ -287,22 +288,19 @@ e2eApp.controller('profileController', function($scope) {
 
 e2eApp.controller('dashboardController', function($scope, $http, $location) {
   $scope.message = 'Contact page content pending.';
-  checkLogin($scope, $http, false, function(){});  
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-dashboard").addClass('active');
+    $("#main-nav-bg").show();
+
+  });  
 });
 
 e2eApp.controller('controllerController', function($scope, $http, $location) {
-  $scope.message = 'Contact page content pending.';
-  checkLogin($scope, $http, false, function(){});  
-});
-
-e2eApp.controller('communityController', function($scope, $http, $location) {
-  $scope.message = 'Contact page content pending.';
-  checkLogin($scope, $http, false, function(){});  
-});
-
-e2eApp.controller('connectorController', function($scope, $http, $location) {
-  $scope.skynetStatus = false
-  checkLogin($scope, $http, true, function(){
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-controller").addClass('active');
+    $("#main-nav-bg").show();
 
     // connect to skynet
     var skynetConfig = {
@@ -313,10 +311,61 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
       if (e) throw e
 
       $scope.skynetStatus = true
-      socket.emit('status', function(data){
-        console.log('status received');
-        console.log(data);
-      });   
+      // socket.emit('status', function(data){
+      //   console.log('status received');
+      //   console.log(data);
+      // });   
+      socket.on('message', function(channel, message){
+        alert(JSON.stringify(message));
+        console.log('message received', channel, message);
+      });
+    });
+
+    $scope.sendMessage = function(){
+      console.log($scope.sendUuid);
+      console.log($scope.sendText);
+
+      $http.post('/api/message/', {uuid: $scope.sendUuid, message: $scope.sendText})                
+        .success(function(data) {
+          console.log(data);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+        });
+    }
+
+  });  
+});
+
+e2eApp.controller('communityController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-community").addClass('active');
+    $("#main-nav-bg").show();
+
+  });  
+});
+
+e2eApp.controller('connectorController', function($scope, $http, $location) {
+  $scope.skynetStatus = false
+  checkLogin($scope, $http, true, function(){
+    $(".active").removeClass();
+    $("#nav-connector").addClass('active');
+    $("#main-nav-bg").show();
+
+    // connect to skynet
+    var skynetConfig = {
+      "uuid": $scope.skynetuuid,
+      "token": $scope.skynettoken
+    }    
+    skynet(skynetConfig, function (e, socket) {
+      if (e) throw e
+
+      $scope.skynetStatus = true
+      // socket.emit('status', function(data){
+      //   console.log('status received');
+      //   console.log(data);
+      // });   
       socket.on('message', function(channel, message){
         alert(JSON.stringify(message));
         console.log('message received', channel, message);
@@ -375,22 +424,6 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
       
     };
 
-
-    $scope.sendMessage = function(){
-      console.log($scope.sendUuid);
-      console.log($scope.sendText);
-
-      $http.post('/api/message/', {uuid: $scope.sendUuid, message: $scope.sendText})                
-        .success(function(data) {
-          console.log(data);
-        })
-        .error(function(data) {
-          console.log('Error: ' + data);
-        });
-
-
-    }
-
   });  
 
 
@@ -401,6 +434,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
 
 e2eApp.controller('designerController', function($scope, $http, $location) {
   checkLogin($scope, $http, true, function(){
+    $(".active").removeClass();
+    $("#nav-designer").addClass('active');
+    $("#main-nav-bg").show();
 
     // Get NodeRed port number
     $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
@@ -417,8 +453,11 @@ e2eApp.controller('designerController', function($scope, $http, $location) {
   });
 });
 
-e2eApp.controller('analyticsController', function($scope, $http, $location) {
+e2eApp.controller('analyzerController', function($scope, $http, $location) {
   checkLogin($scope, $http, true, function(){
+    $(".active").removeClass();
+    $("#nav-analyzer").addClass('active');
+    $("#main-nav-bg").show();
 
     $scope.splunkFrame = "http://54.203.249.138:8000/"
     // $scope.redFrame = "http://skynet.im";
