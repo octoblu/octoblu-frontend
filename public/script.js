@@ -94,7 +94,7 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
 
 
 e2eApp.controller('mainController', function($scope, $location) {
-  $("#main-nav-bg").hide();
+  $("#main-nav").hide();
   user = $.cookie("meshines");
   if(user != undefined ){
     window.location.href = "/dashboard";
@@ -291,7 +291,7 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
   checkLogin($scope, $http, false, function(){
     $(".active").removeClass();
     $("#nav-dashboard").addClass('active');
-    $("#main-nav-bg").show();
+    $("#main-nav").show();
 
   });  
 });
@@ -300,7 +300,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location) {
   checkLogin($scope, $http, false, function(){
     $(".active").removeClass();
     $("#nav-controller").addClass('active');
-    $("#main-nav-bg").show();
+    $("#main-nav").show();
 
     // connect to skynet
     var skynetConfig = {
@@ -341,7 +341,7 @@ e2eApp.controller('communityController', function($scope, $http, $location) {
   checkLogin($scope, $http, false, function(){
     $(".active").removeClass();
     $("#nav-community").addClass('active');
-    $("#main-nav-bg").show();
+    $("#main-nav").show();
 
   });  
 });
@@ -351,7 +351,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
     $("#nav-connector").addClass('active');
-    $("#main-nav-bg").show();
+    $("#main-nav").show();
 
     // connect to skynet
     var skynetConfig = {
@@ -436,7 +436,7 @@ e2eApp.controller('designerController', function($scope, $http, $location) {
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
     $("#nav-designer").addClass('active');
-    $("#main-nav-bg").show();
+    $("#main-nav").show();
 
     // Get NodeRed port number
     $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
@@ -457,7 +457,7 @@ e2eApp.controller('analyzerController', function($scope, $http, $location) {
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
     $("#nav-analyzer").addClass('active');
-    $("#main-nav-bg").show();
+    $("#main-nav").show();
 
     $scope.splunkFrame = "http://54.203.249.138:8000/"
     // $scope.redFrame = "http://skynet.im";
