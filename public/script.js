@@ -10,7 +10,7 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
     'self', 
     'http://*:*@red.meshines.com:*/**', 
     'http://skynet.im/**',
-    'http://54.203.249.138/**',
+    'http://54.203.249.138:8000/**',
     '**'
   ]);
 
@@ -292,15 +292,7 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
     $(".active").removeClass();
     $("#nav-dashboard").addClass('active');
     $("#main-nav").show();
-
-  });  
-});
-
-e2eApp.controller('controllerController', function($scope, $http, $location) {
-  checkLogin($scope, $http, false, function(){
-    $(".active").removeClass();
-    $("#nav-controller").addClass('active');
-    $("#main-nav").show();
+    $("#main-nav-bg").show();
 
     // connect to skynet
     var skynetConfig = {
@@ -315,11 +307,41 @@ e2eApp.controller('controllerController', function($scope, $http, $location) {
       //   console.log('status received');
       //   console.log(data);
       // });   
-      socket.on('message', function(channel, message){
-        alert(JSON.stringify(message));
-        console.log('message received', channel, message);
-      });
+      // socket.on('message', function(channel, message){
+      //   alert(JSON.stringify(message));
+      //   console.log('message received', channel, message);
+      // });
     });
+
+
+  });  
+});
+
+e2eApp.controller('controllerController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-controller").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+    // // connect to skynet
+    // var skynetConfig = {
+    //   "uuid": $scope.skynetuuid,
+    //   "token": $scope.skynettoken
+    // }    
+    // skynet(skynetConfig, function (e, socket) {
+    //   if (e) throw e
+
+    //   $scope.skynetStatus = true
+    //   // socket.emit('status', function(data){
+    //   //   console.log('status received');
+    //   //   console.log(data);
+    //   // });   
+    //   socket.on('message', function(channel, message){
+    //     alert(JSON.stringify(message));
+    //     console.log('message received', channel, message);
+    //   });
+    // });
 
     $scope.sendMessage = function(){
       console.log($scope.sendUuid);
@@ -342,6 +364,7 @@ e2eApp.controller('communityController', function($scope, $http, $location) {
     $(".active").removeClass();
     $("#nav-community").addClass('active');
     $("#main-nav").show();
+    $("#main-nav-bg").show();
 
   });  
 });
@@ -352,6 +375,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
     $(".active").removeClass();
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
+    $("#main-nav-bg").show();
 
     // connect to skynet
     var skynetConfig = {
@@ -382,30 +406,37 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
         console.log('Error: ' + data);
       });
 
-    // Get NodeRed port number
-    $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
-      .success(function(data) {
-        $scope.redPort = data.replace(/["']/g, "");
-      })
-      .error(function(data) {
-        console.log('Error: ' + data);
-      });
+    // // Get NodeRed port number
+    // $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
+    //   .success(function(data) {
+    //     $scope.redPort = data.replace(/["']/g, "");
+    //   })
+    //   .error(function(data) {
+    //     console.log('Error: ' + data);
+    //   });
 
 
     $scope.createDevice = function(){
 
-      $http.post('/api/devices/' + $scope.skynetuuid)                
-        .success(function(data) {
-          console.log(data);
-          try{
-            $scope.devices.push(data);
-          } catch(e){
-            $scope.devices = [data];
-          }
-        })
-        .error(function(data) {
-          console.log('Error: ' + data);
-        });
+      if($scope.deviceName){
+
+        formData = {};
+        formData.name = $scope.deviceName;
+        formData.keyvals = $scope.keys;
+
+        $http.post('/api/devices/' + $scope.skynetuuid, formData)                
+          .success(function(data) {
+            console.log(data);
+            try{
+              $scope.devices.push(data);
+            } catch(e){
+              $scope.devices = [data];
+            }
+          })
+          .error(function(data) {
+            console.log('Error: ' + data);
+          });
+      }
       
     };
 
@@ -424,6 +455,13 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
       
     };
 
+    $scope.keys = [{key:'', value:''}];    
+    $scope.addKeyVals = function() {
+      $scope.keys.push( {key:'', value:''} ); 
+    }
+
+
+
   });  
 
 
@@ -432,11 +470,16 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
 
 });
 
+e2eApp.controller('deviceController', function($scope, $http, $location) {
+});
+
+
 e2eApp.controller('designerController', function($scope, $http, $location) {
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
     $("#nav-designer").addClass('active');
     $("#main-nav").show();
+    $("#main-nav-bg").show();
 
     // Get NodeRed port number
     $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
@@ -458,8 +501,9 @@ e2eApp.controller('analyzerController', function($scope, $http, $location) {
     $(".active").removeClass();
     $("#nav-analyzer").addClass('active');
     $("#main-nav").show();
+    $("#main-nav-bg").show();
 
-    $scope.splunkFrame = "http://54.203.249.138:8000/"
+    $scope.splunkFrame = "http://54.203.249.138:8000?output=embed"
     // $scope.redFrame = "http://skynet.im";
 
   });

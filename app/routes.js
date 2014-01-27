@@ -488,9 +488,28 @@ module.exports = function(app, passport) {
 
 	// Register device with Skynet
 	app.post('/api/devices/:id', function(req, res) {
+		// console.log(req);
+
+		var deviceData = {};
+		deviceData.owner = req.params.id;
+		deviceData.name = req.body.name;
+
+		// flatten array
+		var obj = req.body.keyvals;
+		for (var i in obj) {
+		  // for (var prop in obj[i]) {
+		  //   if (obj[i].hasOwnProperty(prop)) { 
+		  //   // or if (Object.prototype.hasOwnProperty.call(obj,prop)) for safety...
+		  //     // alert("prop: " + prop + " value: " + obj[prop])
+		  //     deviceData[prop] = obj[i][prop];
+		  //   }
+		  // }  
+		  console.log()
+		  deviceData[obj[i]["key"]] = obj[i]["value"];
+		}
 
 		request.post('http://skynet.im/devices', 
-	  	{form: {"owner": req.params.id}}
+	  	{form: deviceData}
 	  , function (error, response, body) {
 				data = JSON.parse(body);
 	    	res.json(data);
