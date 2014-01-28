@@ -1,6 +1,6 @@
 // create the module and name it e2eApp
 // var e2eApp = angular.module('e2eApp', ['ngRoute']); 
-var e2eApp = angular.module('e2eApp', ['ngRoute', 'ui.bootstrap']); 
+var e2eApp = angular.module('e2eApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate']); 
 
 // configure our routes
 // e2eApp.config(function($routeProvider, $locationProvider, $sceDelegateProvider) {  
@@ -91,7 +91,6 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
 
 // });
 }]);
-
 
 e2eApp.controller('mainController', function($scope, $location) {
   $("#main-nav").hide();
@@ -415,27 +414,44 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
     //     console.log('Error: ' + data);
     //   });
 
+    $scope.alert = function(alertContent){
+      alert(JSON.stringify(alertContent));
+    };
 
     $scope.createDevice = function(){
 
       if($scope.deviceName){
 
-        formData = {};
-        formData.name = $scope.deviceName;
-        formData.keyvals = $scope.keys;
+        var dupeFound = false;
+        $scope.duplicateDevice = false;
+        for (var i in $scope.devices) {
+          if($scope.devices[i].name == $scope.deviceName){
+            dupeFound = true;            
+            $scope.duplicateDevice = true;
+          }
+        }        
 
-        $http.post('/api/devices/' + $scope.skynetuuid, formData)                
-          .success(function(data) {
-            console.log(data);
-            try{
-              $scope.devices.push(data);
-            } catch(e){
-              $scope.devices = [data];
-            }
-          })
-          .error(function(data) {
-            console.log('Error: ' + data);
-          });
+        if(!dupeFound){
+          formData = {};
+          formData.name = $scope.deviceName;
+          formData.keyvals = $scope.keys;
+
+          $http.post('/api/devices/' + $scope.skynetuuid, formData)                
+            .success(function(data) {
+              console.log(data);
+              try{
+                $scope.devices.push(data);
+                $scope.deviceName = "";
+                $scope.keys = [{}];
+              } catch(e){
+                $scope.devices = [data];
+              }
+              $scope.addDevice = false;
+            })
+            .error(function(data) {
+              console.log('Error: ' + data);
+            });
+        }
       }
       
     };

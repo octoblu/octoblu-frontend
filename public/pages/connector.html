@@ -8,41 +8,23 @@
             <i class='icon-code-fork'></i>
             <span>Connector</span>              
           </h1>
-<!--             <div class='pull-right'>
-            <div class='btn-group'>
-              <a class="btn btn-white hidden-xs" href="#">Last month</a>
-              <a class="btn btn-white" href="#">Last week</a>
-              <a class="btn btn-white " href="#">Today</a>
-                    <a class="btn btn-white" id="daterange" href="#"><i class='icon-calendar'></i>
-              <span>Custom</span>
-              <b class='caret'></b>
-              </a>
-        
-            </div>
-          </div>
--->          
+     
         </div>
 
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#">Devices</a></li>
+          <li class="active"><a href="">Devices</a></li>
           <li><a href="#">Gateways</a></li>
           <li><a href="#">APIs</a></li>
           <li><a href="#">Developer Tools</a></li>
         </ul>          
 
         <div>
-          <div class="pull-left"><strong>Your SkyNet UUID is:</strong> {{skynetuuid}}</div>
+          <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div>
           <div class="pull-right" ng-hide="skynetStatus" style="color:green;">Connected!</div>
         </div>
 
         <br /><br />
-<!--           <div class='alert alert-info alert-dismissable'>
-          <a class='close' data-dismiss='alert' href='#'>&times;</a>
-          Welcome to
-          <strong>MESHINES</strong>
-          - the Platform and API for the Internet of Things.
-        </div>
--->
+
          <div class='row'>
           <div class='col-sm-12 box'>
             <div class='box-header'>
@@ -65,176 +47,63 @@
 
             <div class="col-sm-12" ng-show="addDevice">
               <h3>Add Device</h3>   
-            <form name="myForm">          
-              <input class="form-control" name="deviceName" ng-model="deviceName" placeholder="Device Name" required><br />
+              <form name="myForm">          
+                <input class="form-control" name="deviceName" ng-model="deviceName" placeholder="Device Name (required)" required>
+                <span ng-show="duplicateDevice" style="color:red;">Device name already exists.</span>
+                <br />
 
-              <div ng-repeat="key in keys" class="form-inline">
-                <div class="form-group">
-                  <input class="form-control" ng-model="key.key" placeholder="Key">
+                <div ng-repeat="key in keys" class="form-inline">
+                  <div class="form-group">
+                    <input class="form-control" ng-model="key.key" placeholder="Key">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="key.value" placeholder="Value">
+                  </div>
+                  <a href ng-click="addKeyVals()"> <i class="icon-plus"></i></a>
+
                 </div>
-                <div class="form-group">
-                  <input class="form-control" ng-model="key.value" placeholder="Value">
-                </div>
-                <a href ng-click="addKeyVals()"> <i class="icon-plus"></i></a>
 
-              </div>
-
-              <br /><br />
-              <button class="btn" ng-click="createDevice()">Create</button>  
-              <br /><br />            
-            </form>
+                <br /><br />
+                <button class="btn" ng-click="createDevice()">Create</button>  
+                <br /><br />            
+              </form>
             </div>
 
 
             <div ng-hide="devices.length">No devices found</div>
-            <table class="table table-striped table-responsive table-hover">
-              <tr ng-repeat="device in devices">
-                <!-- <td>{{device}}</td><td><button class="btn btn-danger" ng-click="deleteDevice($index)">Delete</button></td> -->
-                <td>{{device.name}}</td>
-                <td>{{device.uuid}}</td>
-                <td>{{device.token}}</td>
-                <td>
-                  <a ng-click="moreInfo = true" ng-hide="moreInfo">more...</a>
-                  <a ng-click="moreInfo = false" ng-show="moreInfo">{{device}}</a>
-                </td>
-                <td><button class="btn btn-danger" ng-click="deleteDevice($index)">Delete</button></td>
-              </tr>
-            </table>
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <tr>
+                  <th>Name</th>
+                  <th>UUID</th>
+                  <th>Token</th>
+                  <th>Online</th>
+                  <th>Action</th>
+                </tr>
+                <tr ng-repeat="device in devices">
+                  
+                  <td>{{device.name}}</td>
+                  <td>{{device.uuid}}</td>
+                  <td>
+                    <a ng-click="moreInfo = true" ng-hide="moreInfo" href="">********************************</a>
+                    <input type="text" ng-show="moreInfo" value="{{device.token}}" size="40">
+                    
+                  </td>
+                  <td>{{device.online}}</td>
+                  <td>
+                    <!-- <a ng-click="moreInfo = true" ng-hide="moreInfo">more...</a> -->
+                    <!-- <a ng-click="moreInfo = false" ng-show="moreInfo">{{device}}</a> -->
+                    <button class="btn"ng-click="alert(device)" href="">Info</button>
+                    <button class="btn btn-danger" ng-click="deleteDevice($index)">Delete</button>
+                  </td>
 
-<!--               <div class="box-content">
-              <div id='stats-chart2'>
-                <ul ui-if="devices.length">
-                    <li ng-hide="devices.length">No devices found</li>
-                    <li ng-repeat="device in devices">{{device}}</li>
-                </ul>                  
-              </div>
-            </div>                                
--->         
-           </div>
-<!--             <div class='col-sm-6 box'>
-            <div class='box-header'>
-              <div class='title'>
-                <i class='icon-bolt'></i>
-                Activity
-              </div>
-            </div>
-            <div class='box-content'>
-              <div id='stats-chart2'></div>
+                </tr>
+              </table>
             </div>
           </div>
--->          
         </div>
 
 
-        <!-- <hr class='hr-drouble'> -->
-
-<!--           <div class='row'>
-          <div class='col-sm-12 col-md-6'>
-            <div class='box'>
-              <div class='box-header'>
-                <div class='title'>
-                  <div class='icon-inbox'></div>
-                  Orders
-                </div>
-              </div>
-              <div class='row'>
-                <div class='col-sm-6'>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-error'>191</h3>
-                    <small>New</small>
-                    <div class='text-error icon-inbox align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-warning'>311</h3>
-                    <small>In process</small>
-                    <div class='text-warning icon-check align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-info'>3</h3>
-                    <small>Pending</small>
-                    <div class='text-info icon-time align-right'></div>
-                  </div>
-                </div>
-                <div class='col-sm-6'>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-primary'>3</h3>
-                    <small>Shipped</small>
-                    <div class='text-primary icon-truck align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-success'>981</h3>
-                    <small>Completed</small>
-                    <div class='text-success icon-flag align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-muted'>0</h3>
-                    <small>Canceled</small>
-                    <div class='text-muted icon-remove align-right'></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class='col-sm-6 col-md-3'>
-            <div class='box'>
-              <div class='box-header'>
-                <div class='title'>
-                  <i class='icon-group'></i>
-                  Visitors
-                </div>
-              </div>
-              <div class='row'>
-                <div class='col-sm-12'>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-error'>9100</h3>
-                    <small>Unique</small>
-                    <div class='text-error icon-user align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-warning'>41 000</h3>
-                    <small>Pageviews</small>
-                    <div class='text-warning icon-book align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-primary'>12:21</h3>
-                    <small>Average time</small>
-                    <div class='text-primary icon-time align-right'></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class='col-sm-6 col-md-3'>
-            <div class='box'>
-              <div class='box-header'>
-                <div class='title'>
-                  <i class='icon-comments'></i>
-                  Comments
-                </div>
-              </div>
-              <div class='row'>
-                <div class='col-sm-12'>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-error'>91</h3>
-                    <small>New</small>
-                    <div class='text-error icon-plus align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-success'>1</h3>
-                    <small>Approved</small>
-                    <div class='text-success icon-ok align-right'></div>
-                  </div>
-                  <div class='box-content box-statistic'>
-                    <h3 class='title text-info'>123</h3>
-                    <small>Pending</small>
-                    <div class='text-info icon-time align-right'></div>
-                  </div>
-                </div>
-              </div>
-              <br /><br /><br /><br />
-            </div>
-          </div>
--->          
         </div>
       </div>
     </div>

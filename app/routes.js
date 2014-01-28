@@ -497,14 +497,6 @@ module.exports = function(app, passport) {
 		// flatten array
 		var obj = req.body.keyvals;
 		for (var i in obj) {
-		  // for (var prop in obj[i]) {
-		  //   if (obj[i].hasOwnProperty(prop)) { 
-		  //   // or if (Object.prototype.hasOwnProperty.call(obj,prop)) for safety...
-		  //     // alert("prop: " + prop + " value: " + obj[prop])
-		  //     deviceData[prop] = obj[i][prop];
-		  //   }
-		  // }  
-		  console.log()
 		  deviceData[obj[i]["key"]] = obj[i]["value"];
 		}
 
