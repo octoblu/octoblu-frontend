@@ -389,16 +389,16 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
       //   console.log('status received');
       //   console.log(data);
       // });   
-      socket.on('message', function(channel, message){
-        alert(JSON.stringify(message));
-        console.log('message received', channel, message);
-      });
+      // socket.on('message', function(channel, message){
+      //   alert(JSON.stringify(message));
+      //   console.log('message received', channel, message);
+      // });
     });
 
     // Get user devices
     $http.get('/api/owner/' + $scope.skynetuuid + '/' + $scope.skynettoken)
       .success(function(data) {
-        console.log(data);
+        // console.log(data);
         $scope.devices = data.devices;
       })
       .error(function(data) {
@@ -527,8 +527,9 @@ e2eApp.controller('analyzerController', function($scope, $http, $location) {
 
 
 function checkLogin($scope, $http, secured, cb) {
+  googleAnalytics();
   user = $.cookie("meshines");
-  console.log(user);
+  // console.log(user);  
   if(user == undefined || user == null){
     if (secured){
       window.location.href = "/login";
@@ -584,6 +585,16 @@ function checkLogin($scope, $http, secured, cb) {
         // return false;
       });
 
+  }
+
+  function googleAnalytics(){
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-2483685-30', 'octoblu.com');
+    ga('send', 'pageview');    
   }
 
 }
