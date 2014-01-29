@@ -1,10 +1,12 @@
 <section id='content'>
   <div class='container'>
-    <br /><br />
-    
-    <iframe  width="100%" height="1000" ng-src="{{splunkFrame}}"></iframe>
-    <!-- <img src="assets/images/splunk.png"> -->
-
+    <br /><br />    
+    <iframe  width="100%" height="1000" ng-src="{{splunkFrame}}" id="splunkFrame"></iframe>
   </div>
 </section>
-
+<script>
+$('#splunkFrame').attr('height',$("body").height()-50)
+window.onresize = function(event) {
+  $('#splunkFrame').attr('height',$("body").height()-50);
+}
+</script>
