@@ -8,103 +8,38 @@
             <i class='icon-code-fork'></i>
             <span>Connector</span>              
           </h1>
-     
         </div>
-
         <ul class="nav nav-tabs">
-          <li class="active"><a href="">Devices</a></li>
-          <li><a href="#">Gateways</a></li>
-          <li><a href="#">APIs</a></li>
-          <li><a href="#">Developer Tools</a></li>
-        </ul>          
-
-        <div>
-          <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div>
-          <div class="pull-right" ng-hide="skynetStatus" style="color:green;">Connected!</div>
-        </div>
-
-        <br /><br />
-
-         <div class='row'>
-          <div class='col-sm-12 box'>
-            <div class='box-header'>
-              <div class='title pull-left'>
-                <i class='icon-lightbulb'></i>
-                Devices
-              </div>
-              <div class='pull-right'>
-                <!-- <button ng-click="createDevice()">Add</button> -->
-
-                <button ng-click="addDevice = true" class="btn btn-primary" ng-hide="addDevice">
-                  <i class="icon-chevron-down"></i> Add Device
-                </button>
-                <button ng-click="addDevice = false" class="btn btn-primary" ng-show="addDevice">
-                  <i class="icon-chevron-up"></i> Cancel
-                </button>
-
-              </div>
+          <li ng-class="{active: activeTab == 'devices'}" id="devices">
+            <a ng-click="activeTab = 'devices'" href="">Devices</a>
+          </li>
+          <li ng-class="{active: activeTab == 'gateways'}">
+            <a ng-click="activeTab = 'gateways'" href="">Gateways</a>
+          </li>
+          <li ng-class="{active: activeTab == 'apis'}">
+            <a ng-click="activeTab = 'apis'" href="">APIs</a>
+          </li>
+          <li ng-class="{active: activeTab == 'devtools'}">
+            <a ng-click="activeTab = 'devtools'" href="">Developer Tools</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div ng-switch="activeTab">
+            <div ng-switch-when="devices">
+               <ng-include src=" 'pages/devices.html' "></ng-include>
             </div>
-
-            <div class="col-sm-12" ng-show="addDevice">
-              <h3>Add Device</h3>   
-              <form name="myForm">          
-                <input class="form-control" name="deviceName" ng-model="deviceName" placeholder="Device Name (required)" required>
-                <span ng-show="duplicateDevice" style="color:red;">Device name already exists.</span>
-                <br />
-
-                <div ng-repeat="key in keys" class="form-inline">
-                  <div class="form-group">
-                    <input class="form-control" ng-model="key.key" placeholder="Key">
-                  </div>
-                  <div class="form-group">
-                    <input class="form-control" ng-model="key.value" placeholder="Value">
-                  </div>
-                  <a href ng-click="addKeyVals()"> <i class="icon-plus"></i></a>
-
-                </div>
-
-                <br /><br />
-                <button class="btn" ng-click="createDevice()">Create</button>  
-                <br /><br />            
-              </form>
+            <div ng-switch-when="gateways">
+               <ng-include src=" 'pages/gateways.html' "></ng-include>
             </div>
-
-
-            <div ng-hide="devices.length">No devices found</div>
-            <div class="table-responsive">
-              <table class="table table-striped table-hover">
-                <tr>
-                  <th>Name</th>
-                  <th>UUID</th>
-                  <th>Token</th>
-                  <th>Online</th>
-                  <th>Action</th>
-                </tr>
-                <tr ng-repeat="device in devices">
-                  
-                  <td>{{device.name}}</td>
-                  <td>{{device.uuid}}</td>
-                  <td>
-                    <a ng-click="moreInfo = true" ng-hide="moreInfo" href="">********************************</a>
-                    <input type="text" ng-show="moreInfo" value="{{device.token}}" size="40">
-                    
-                  </td>
-                  <td>{{device.online}}</td>
-                  <td>
-                    <!-- <a ng-click="moreInfo = true" ng-hide="moreInfo">more...</a> -->
-                    <!-- <a ng-click="moreInfo = false" ng-show="moreInfo">{{device}}</a> -->
-                    <button class="btn"ng-click="alert(device)" href="">Info</button>
-                    <button class="btn btn-danger" ng-click="deleteDevice($index)">Delete</button>
-                  </td>
-
-                </tr>
-              </table>
+            <div ng-switch-when="apis">
+               <ng-include src=" 'pages/apis.html' "></ng-include>
+            </div>
+            <div ng-switch-when="devtools">
+               <ng-include src=" 'pages/devtools.html' "></ng-include>
             </div>
           </div>
         </div>
 
-
-        </div>
       </div>
     </div>
   </div>

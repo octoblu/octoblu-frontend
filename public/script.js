@@ -67,6 +67,31 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
       controller  : 'communityController'
     }) 
 
+    .when('/services', {
+      templateUrl : 'pages/services.html',
+      controller  : 'servicesController'
+    }) 
+
+    .when('/admin', {
+      templateUrl : 'pages/admin.html',
+      controller  : 'adminController'
+    }) 
+
+    .when('/docs', {
+      templateUrl : 'pages/docs.html',
+      controller  : 'docsController'
+    }) 
+
+    .when('/pricing', {
+      templateUrl : 'pages/pricing.html',
+      controller  : 'pricingController'
+    }) 
+
+    .when('/faqs', {
+      templateUrl : 'pages/faqs.html',
+      controller  : 'faqsController'
+    }) 
+
     .when('/signup', {
       templateUrl : 'pages/signup.html',
       controller  : 'signupController'
@@ -281,8 +306,54 @@ e2eApp.controller('loginController', function($scope, $http) {
   }
 });
 
-e2eApp.controller('profileController', function($scope) {
-  $scope.email = 'topher@me.com';
+e2eApp.controller('profileController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    // $("#nav-community").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+  });  
+});
+
+e2eApp.controller('servicesController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    // $("#nav-community").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+  });  
+});
+
+e2eApp.controller('docsController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-resources").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+  });  
+});
+
+e2eApp.controller('faqsController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-resources").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+  });  
+});
+
+e2eApp.controller('pricingController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-resources").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+  });  
 });
 
 e2eApp.controller('dashboardController', function($scope, $http, $location) {
@@ -368,6 +439,16 @@ e2eApp.controller('communityController', function($scope, $http, $location) {
   });  
 });
 
+e2eApp.controller('adminController', function($scope, $http, $location) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-admin").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+  });  
+});
+
 e2eApp.controller('connectorController', function($scope, $http, $location) {
   $scope.skynetStatus = false
   checkLogin($scope, $http, true, function(){
@@ -375,6 +456,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
+
+    $scope.activeTab = 'devices';
+    $("#devices").addClass('active')
 
     // connect to skynet
     var skynetConfig = {
@@ -438,7 +522,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
 
           $http.post('/api/devices/' + $scope.skynetuuid, formData)                
             .success(function(data) {
-              console.log(data);
+              // console.log(data);
               try{
                 $scope.devices.push(data);
                 $scope.deviceName = "";
@@ -462,7 +546,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
 
       $http.delete('/api/devices/' + device_to_delete.uuid + '/' + device_to_delete.token)                
         .success(function(data) {
-          console.log(data);
+          // console.log(data);
           $scope.devices.splice(idx, 1);
         })
         .error(function(data) {
@@ -486,16 +570,14 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
 
 });
 
-e2eApp.controller('deviceController', function($scope, $http, $location) {
-});
-
-
 e2eApp.controller('designerController', function($scope, $http, $location) {
+
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
     $("#nav-designer").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
+    $(document).trigger("nav-close");
 
     // Get NodeRed port number
     $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
@@ -509,7 +591,8 @@ e2eApp.controller('designerController', function($scope, $http, $location) {
         console.log('Error: ' + data);
       });
 
-  });
+  });  
+
 });
 
 e2eApp.controller('analyzerController', function($scope, $http, $location) {
