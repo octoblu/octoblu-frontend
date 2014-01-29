@@ -6,4 +6,7 @@
 </section>
 <script>
 $('#designerFrame').attr('height',$("body").height()-50)
+window.onresize = function(event) {
+  $('#designerFrame').attr('height',$("body").height()-50);
+}
 </script>
