@@ -8,37 +8,33 @@
       </h1>
     </div>
     <!-- <img src="assets/images/conversations.png"> -->
-<!--     <iframe id="forum_embed"
- src="javascript:void(0)"
- scrolling="no"
- frameborder="0"
- width="100%"
- height="700">
-</iframe>
 
-<script type="text/javascript">
- document.getElementById("forum_embed").src =
- "https://groups.google.com/forum/embed/?place=forum/nodeaz&showpopout=true&theme=default"
+    <!-- Google Groups -->
+    <!-- <iframe id="forum_embed"
+      src="javascript:void(0)"
+      scrolling="no"
+      frameborder="0"
+      width="100%"
+      height="100">
+    </iframe>
+    <script type="text/javascript">
+      document.getElementById('forum_embed').src =
+         'https://groups.google.com/forum/embed/?place=forum/octoblu'
+         + '&showsearch=true&showpopout=true&showtabs=false';
 
-</script>
- -->  
-<iframe id="forum_embed"
-  src="javascript:void(0)"
-  scrolling="no"
-  frameborder="0"
-  width="100%"
-  height="100">
-</iframe>
-<script type="text/javascript">
-  document.getElementById('forum_embed').src =
-     'https://groups.google.com/forum/embed/?place=forum/octoblu'
-     + '&showsearch=true&showpopout=true&showtabs=false';
+    $('#forum_embed').attr('height',$("body").height()-50)
+    window.onresize = function(event) {
+      $('#forum_embed').attr('height',$("body").height()-50);
+    }     
+    </script>
+    -->
 
-$('#forum_embed').attr('height',$("body").height()-50)
-window.onresize = function(event) {
-  $('#forum_embed').attr('height',$("body").height()-50);
-}     
-</script>
+    <br /><br />
+    <div class="entry">
+      <script type="text/javascript" src="http://octoblu.vanillaforums.com/js/embed.js"></script> 
+    </div>
+
 
   </div>
 </section>
+
