@@ -710,6 +710,11 @@ e2eApp.controller('designerController', function($scope, $http, $location) {
     $("#main-nav-bg").show();
     $(document).trigger("nav-close");
 
+    var designerFrame = {};
+    designerFrame.skynetid = $scope.skynetuuid;
+    designerFrame.skynettoken = $scope.skynettoken;
+    $scope.designerFrame = designerFrame;
+
     // Get NodeRed port number
     $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
       .success(function(data) {
