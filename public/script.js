@@ -394,6 +394,16 @@ e2eApp.controller('controllerController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
+    // Get user devices
+    $http.get('/api/owner/' + $scope.skynetuuid + '/' + $scope.skynettoken)
+      .success(function(data) {
+        // console.log(data);
+        $scope.devices = data.devices;
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+
     // // connect to skynet
     // var skynetConfig = {
     //   "uuid": $scope.skynetuuid,
@@ -414,16 +424,31 @@ e2eApp.controller('controllerController', function($scope, $http, $location) {
     // });
 
     $scope.sendMessage = function(){
-      console.log($scope.sendUuid);
-      console.log($scope.sendText);
+      // console.log($scope.device);
+      // console.log($scope.sendUuid);
+      // console.log($scope.sendText);
 
-      $http.post('/api/message/', {uuid: $scope.sendUuid, message: $scope.sendText})                
-        .success(function(data) {
-          console.log(data);
-        })
-        .error(function(data) {
-          console.log('Error: ' + data);
-        });
+      if($scope.sendUuid == undefined){
+        if($scope.device){
+          var uuid = $scope.device.uuid;
+        } else {
+          var uuid = "";
+        }
+      } else {
+        var uuid = $scope.sendUuid;
+      }
+
+      if(uuid){
+        $http.post('/api/message/', {uuid: uuid, message: $scope.sendText})                
+          .success(function(data) {
+            // console.log(data);
+            $scope.messageOutput = data;
+          })
+          .error(function(data) {
+            console.log('Error: ' + data);
+          });
+
+      }
     }
 
   });  
@@ -506,19 +531,48 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
 
       if($scope.deviceName){
 
-        var dupeFound = false;
-        $scope.duplicateDevice = false;
+        // var dupeFound = false;
+        // $scope.duplicateDevice = false;
+        var dupeUuid;
         for (var i in $scope.devices) {
           if($scope.devices[i].name == $scope.deviceName){
-            dupeFound = true;            
-            $scope.duplicateDevice = true;
+            // dupeFound = true;            
+            // $scope.duplicateDevice = true;
+            dupeUuid = $scope.devices[i].uuid;
+            dupeToken = $scope.devices[i].token;
+            dupeIndex = i;
           }
         }        
 
-        if(!dupeFound){
-          formData = {};
-          formData.name = $scope.deviceName;
-          formData.keyvals = $scope.keys;
+        formData = {};
+        formData.name = $scope.deviceName;
+        formData.keyvals = $scope.keys;
+
+        if(dupeUuid){
+
+          formData.uuid = dupeUuid;
+          formData.token = dupeToken;
+          
+
+          $http.put('/api/devices/' + $scope.skynetuuid, formData)                
+            .success(function(data) {
+              // console.log(data);
+              try{
+                $scope.devices.splice(dupeIndex,1);
+                data.token = dupeToken;
+                data.online = false;
+                $scope.devices.push(data);
+                $scope.deviceName = "";
+                $scope.keys = [{}];
+              } catch(e){
+                $scope.devices = [data];
+              }
+              $scope.addDevice = false;
+            })
+            .error(function(data) {
+              console.log('Error: ' + data);
+            });
+        } else {
 
           $http.post('/api/devices/' + $scope.skynetuuid, formData)                
             .success(function(data) {
@@ -539,6 +593,25 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
       }
       
     };
+
+// {"_id":"52e6e1164980420c4a0001ee","channel":"main","name":"arduino","online":false,"owner":"5d6e9c91-820e-11e3-a399-f5b85b6b9fd0","socketId":"F4CCXnUcloecvBy6ckfg","timestamp":1391113055741,"token":"xjq9h3yzhemf5hfrme8y08fh0sm50zfr","uuid":"742401f1-87a4-11e3-834d-670dadc0ddbf","$$hashKey":"00I"}
+
+    $scope.editDevice = function( idx ){
+      $scope.addDevice = true;
+      var device_to_edit = $scope.devices[idx];
+      $scope.deviceName = device_to_edit.name;
+
+      // find additional keys to edit
+      var keys = [];
+      for (var key in device_to_edit) {
+        if (device_to_edit.hasOwnProperty(key)) {
+          if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
+            keys.push({"key": key, "value": device_to_edit[key]});
+          }        
+        }
+      }      
+      $scope.keys = keys;
+    }
 
     $scope.deleteDevice = function( idx ){
 

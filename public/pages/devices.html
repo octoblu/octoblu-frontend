@@ -27,10 +27,10 @@
     </div>
 
     <div class="col-sm-12" ng-show="addDevice">
-      <h3>Add Device</h3>   
+      <h3>Add/Edit Device</h3>   
       <form name="myForm">          
-        <input class="form-control" name="deviceName" ng-model="deviceName" placeholder="Device Name (required)" required>
-        <span ng-show="duplicateDevice" style="color:red;">Device name already exists.</span>
+        <input class="form-control" name="deviceName" ng-model="deviceName" placeholder="Device Name (required)" ng-value="deviceName" required>
+        <!-- <span ng-show="duplicateDevice" style="color:red;">Device name already exists.</span> -->
         <br />
 
         <div ng-repeat="key in keys" class="form-inline">
@@ -45,7 +45,7 @@
         </div>
 
         <br />
-        <button class="btn" ng-click="createDevice()">Create</button>  
+        <button class="btn" ng-click="createDevice()">Submit</button>  
         <br /><br />            
       </form>
     </div>
@@ -75,6 +75,7 @@
             <!-- <a ng-click="moreInfo = true" ng-hide="moreInfo">more...</a> -->
             <!-- <a ng-click="moreInfo = false" ng-show="moreInfo">{{device}}</a> -->
             <button class="btn"ng-click="alert(device)" href="">Info</button>
+            <button class="btn btn-inverse" ng-click="editDevice($index)">Edit</button>
             <button class="btn btn-danger" ng-click="deleteDevice($index)">Delete</button>
           </td>
 

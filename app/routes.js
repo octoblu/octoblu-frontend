@@ -509,6 +509,30 @@ module.exports = function(app, passport) {
 
 	});	
 
+	// Update device with Skynet
+	app.put('/api/devices/:id', function(req, res) {
+		// console.log(req);
+
+		var deviceData = {};
+		deviceData.owner = req.params.id;
+		deviceData.name = req.body.name;
+		deviceData.token = req.body.token;
+
+		// flatten array
+		var obj = req.body.keyvals;
+		for (var i in obj) {
+		  deviceData[obj[i]["key"]] = obj[i]["value"];
+		}
+
+		request.put('http://skynet.im/devices/' + req.body.uuid, 
+	  	{form: deviceData}
+	  , function (error, response, body) {
+				data = JSON.parse(body);
+	    	res.json(data);
+		});
+
+	});	
+
 	// Register device with Skynet
 	app.del('/api/devices/:id/:token', function(req, res) {
 
