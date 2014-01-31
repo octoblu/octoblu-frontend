@@ -710,16 +710,16 @@ e2eApp.controller('designerController', function($scope, $http, $location) {
     $("#main-nav-bg").show();
     $(document).trigger("nav-close");
 
-    var designerFrame = {};
-    designerFrame.skynetid = $scope.skynetuuid;
-    designerFrame.skynettoken = $scope.skynettoken;
-    $scope.designerFrame = designerFrame;
-
     // Get NodeRed port number
     $http.get('/api/redport/' + $scope.skynetuuid + '/' + $scope.skynettoken)
       .success(function(data) {
         $scope.redPort = data.replace(/["']/g, "");
         $scope.redFrame = "http://" + $scope.skynetuuid + ":" + $scope.skynettoken + "@designer.octoblu.com:" + $scope.redPort;
+
+        designerFrame.skynetid = $scope.skynetuuid;
+        designerFrame.skynettoken = $scope.skynettoken;
+        $scope.designerFrame = designerFrame;
+
         // $scope.redFrame = "http://skynet.im";
         console.log($scope.redFrame);
       })
