@@ -747,7 +747,9 @@ e2eApp.controller('analyzerController', function($scope, $http, $location) {
 
 function checkLogin($scope, $http, secured, cb) {
   googleAnalytics();
-  user = $.cookie("meshines");
+  userdata = $.cookie("meshines");
+  userarray = userdata.split(':');
+  user = userarray[0];
   // console.log(user);  
   if(user == undefined || user == null){
     if (secured){

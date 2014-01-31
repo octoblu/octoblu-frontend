@@ -33,7 +33,7 @@ module.exports = function(app, passport) {
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
 	      console.log(user.local.skynetuuid);
-        res.cookie('meshines', user.local.skynetuuid, {
+        res.cookie('meshines', user.local.skynetuuid + ':' + user.local.skynettoken, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           httpOnly: false
         });	
@@ -66,7 +66,7 @@ module.exports = function(app, passport) {
 			        , function(err){
 								if(!err) {
 		                console.log("user " + data.uuid + " updated");
-						        res.cookie('meshines', data.uuid, {
+						        res.cookie('meshines', data.uuid + ':' + data.token, {
 						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 						          httpOnly: false
 						        });		     
@@ -144,7 +144,7 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('meshines', data.uuid, {
+										        res.cookie('meshines', data.uuid + ':' + data.token, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 										          httpOnly: false
 										        });		     
@@ -219,7 +219,7 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('meshines', data.uuid, {
+										        res.cookie('meshines', data.uuid + ':' + data.token, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 										          httpOnly: false
 										        });		     
@@ -294,7 +294,7 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('meshines', data.uuid, {
+										        res.cookie('meshines', data.uuid + ':' + data.token, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 										          httpOnly: false
 										        });		     
