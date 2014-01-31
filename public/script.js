@@ -377,11 +377,69 @@ e2eApp.controller('dashboardController', function($scope, $http, $location) {
       //   console.log('status received');
       //   console.log(data);
       // });   
-      // socket.on('message', function(channel, message){
-      //   alert(JSON.stringify(message));
-      //   console.log('message received', channel, message);
-      // });
+      socket.on('message', function(channel, message){
+        alert(JSON.stringify(message));
+        console.log('message received', channel, message);
+      });
     });
+
+    // Get user devices
+    $http.get('/api/owner/' + $scope.skynetuuid + '/' + $scope.skynettoken)
+      .success(function(data) {
+        // console.log(data);
+        $scope.devices = data.devices;
+      })
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+
+
+    // Live chart data
+    var dps = []; // dataPoints
+
+    var chart = new CanvasJS.Chart("chartContainer",{
+      title :{
+        text: "Live Sensor Data"
+      },      
+      data: [{
+        type: "line",
+        dataPoints: dps 
+      }]
+    });
+
+    var xVal = 0;
+    var yVal = 100; 
+    var updateInterval = 20;
+    var dataLength = 500; // number of dataPoints visible at any point
+
+    var updateChart = function (count) {
+      count = count || 1;
+      // count is number of times loop runs to generate random dataPoints.
+      
+      for (var j = 0; j < count; j++) { 
+        yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+        dps.push({
+          x: xVal,
+          y: yVal
+        });
+        xVal++;
+      };
+      if (dps.length > dataLength)
+      {
+        dps.shift();        
+      }
+      
+      chart.render();   
+
+    };
+
+    // generates first set of dataPoints
+    updateChart(dataLength); 
+
+    // update chart after specified time. 
+    setInterval(function(){updateChart()}, updateInterval); 
+
+
 
 
   });  
@@ -428,7 +486,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location) {
       // console.log($scope.sendUuid);
       // console.log($scope.sendText);
 
-      if($scope.sendUuid == undefined){
+      if($scope.sendUuid == undefined || $scope.sendUuid == ""){
         if($scope.device){
           var uuid = $scope.device.uuid;
         } else {
