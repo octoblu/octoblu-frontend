@@ -20,7 +20,8 @@ module.exports = function(app, passport) {
 
 	app.get('/logout', function(req, res) {
 		req.logout();
-		res.clearCookie('meshines');
+		res.clearCookie('skynetuuid');
+		res.clearCookie('skynettoken');
 		res.redirect('/');
 	});
 
@@ -33,8 +34,24 @@ module.exports = function(app, passport) {
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
 	      console.log(user.local.skynetuuid);
-        res.cookie('meshines', user.local.skynetuuid + ':' + user.local.skynettoken, {
+        res.cookie('skynetuuid', user.local.skynetuuid, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+          domain: '.octoblu.com',
+          httpOnly: false
+        });	
+        res.cookie('skynettoken', user.local.skynettoken, {
+          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+          domain: '.octoblu.com',
+          httpOnly: false
+        });	
+        res.cookie('skynetuuid', user.local.skynetuuid, {
+          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+          // domain: 'localhost:8080',
+          httpOnly: false
+        });	
+        res.cookie('skynettoken', user.local.skynettoken, {
+          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+          // domain: 'localhost:8080',
           httpOnly: false
         });	
 
@@ -66,10 +83,17 @@ module.exports = function(app, passport) {
 			        , function(err){
 								if(!err) {
 		                console.log("user " + data.uuid + " updated");
-						        res.cookie('meshines', data.uuid + ':' + data.token, {
+						        res.cookie('skynetuuid', data.uuid, {
 						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+						          domain: ".octoblu.com",
 						          httpOnly: false
-						        });		     
+						        });	
+						        res.cookie('skynettoken', data.token, {
+						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+						          domain: ".octoblu.com",
+						          httpOnly: false
+						        });	
+
 							      return res.redirect('/dashboard');
 
 		            }
@@ -144,10 +168,16 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('meshines', data.uuid + ':' + data.token, {
+										        res.cookie('skynetuuid', data.uuid, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          domain: ".octoblu.com",
 										          httpOnly: false
-										        });		     
+										        });	
+										        res.cookie('skynettoken', data.token, {
+										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          domain: ".octoblu.com",
+										          httpOnly: false
+										        });	
 											      return res.redirect('/dashboard');
 
 						            }
@@ -170,7 +200,7 @@ module.exports = function(app, passport) {
 
 
 			    } else {
-		        res.cookie('meshines', data.devices[0], {
+		        res.cookie('skynetuuid', data.devices[0], {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 		          httpOnly: false
 		        });		     
@@ -219,10 +249,16 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('meshines', data.uuid + ':' + data.token, {
+										        res.cookie('skynetuuid', data.uuid, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          domain: ".octoblu.com",
 										          httpOnly: false
-										        });		     
+										        });	
+										        res.cookie('skynettoken', data.token, {
+										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          domain: ".octoblu.com",
+										          httpOnly: false
+										        });	
 											      return res.redirect('/dashboard');
 
 						            }
@@ -244,7 +280,7 @@ module.exports = function(app, passport) {
 
 
 			    } else {
-		        res.cookie('meshines', data.devices[0], {
+		        res.cookie('skynetuuid', data.devices[0], {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 		          httpOnly: false
 		        });		     
@@ -294,10 +330,16 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('meshines', data.uuid + ':' + data.token, {
+										        res.cookie('skynetuuid', data.uuid, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          domain: ".octoblu.com",
 										          httpOnly: false
-										        });		     
+										        });	
+										        res.cookie('skynettoken', data.token, {
+										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+										          domain: ".octoblu.com",
+										          httpOnly: false
+										        });	
 											      return res.redirect('/dashboard');
 
 						            }
@@ -319,7 +361,7 @@ module.exports = function(app, passport) {
 
 
 			    } else {
-		        res.cookie('meshines', data.devices[0], {
+		        res.cookie('skynetuuid', data.devices[0], {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 		          httpOnly: false
 		        });		     

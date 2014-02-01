@@ -119,7 +119,7 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
 
 e2eApp.controller('mainController', function($scope, $location) {
   $("#main-nav").hide();
-  user = $.cookie("meshines");
+  user = $.cookie("skynetuuid");
   if(user != undefined ){
     window.location.href = "/dashboard";
   } else {  
@@ -299,7 +299,7 @@ e2eApp.controller('signupController', function($scope, $location) {
 
 e2eApp.controller('loginController', function($scope, $http) {
   console.log('login');
-  user = $.cookie("meshines");
+  user = $.cookie("skynetuuid");
   console.log(user);
   if (user != undefined){
     window.location.href = "/dashboard";
@@ -747,9 +747,7 @@ e2eApp.controller('analyzerController', function($scope, $http, $location) {
 
 function checkLogin($scope, $http, secured, cb) {
   googleAnalytics();
-  userdata = $.cookie("meshines");
-  userarray = userdata.split(':');
-  user = userarray[0];
+  user = $.cookie("skynetuuid");
   // console.log(user);  
   if(user == undefined || user == null){
     if (secured){
