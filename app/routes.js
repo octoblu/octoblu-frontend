@@ -20,8 +20,8 @@ module.exports = function(app, passport) {
 
 	app.get('/logout', function(req, res) {
 		req.logout();
-		res.clearCookie('skynetuuid');
-		res.clearCookie('skynettoken');
+		res.clearCookie('skynetuuid', {domain: '.octoblu.com'});
+		res.clearCookie('skynettoken', {domain: '.octoblu.com'});
 		res.redirect('/');
 	});
 
