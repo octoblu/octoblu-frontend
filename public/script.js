@@ -9,6 +9,7 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
   $sceDelegateProvider.resourceUrlWhitelist([
     'self', 
     'http://*:*@red.meshines.com:*/**', 
+    'http://*:*@designer.octoblu.com:*/**', 
     'http://skynet.im/**',
     'http://54.203.249.138:8000/**',
     '**'
