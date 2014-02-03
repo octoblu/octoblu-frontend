@@ -20,10 +20,10 @@ module.exports = function(app, passport) {
 
 	app.get('/logout', function(req, res) {
 		req.logout();
-		// res.clearCookie('skynetuuid', {domain: '.octoblu.com'});
-		// res.clearCookie('skynettoken', {domain: '.octoblu.com'});
-		res.clearCookie('skynetuuid');
-		res.clearCookie('skynettoken');
+		res.clearCookie('skynetuuid', {domain: '.octoblu.com'});
+		res.clearCookie('skynettoken', {domain: '.octoblu.com'});
+		// res.clearCookie('skynetuuid');
+		// res.clearCookie('skynettoken');
 		res.redirect('/');
 	});
 
@@ -38,12 +38,12 @@ module.exports = function(app, passport) {
 	      console.log(user.local.skynetuuid);
         res.cookie('skynetuuid', user.local.skynetuuid, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-          // domain: '.octoblu.com',
+          domain: '.octoblu.com',
           httpOnly: false
         });	
         res.cookie('skynettoken', user.local.skynettoken, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-          // domain: '.octoblu.com',
+          domain: '.octoblu.com',
           httpOnly: false
         });	
 
