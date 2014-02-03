@@ -77,12 +77,12 @@ module.exports = function(app, passport) {
 		                console.log("user " + data.uuid + " updated");
 						        res.cookie('skynetuuid', data.uuid, {
 						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-						          // domain: ".octoblu.com",
+						          domain: ".octoblu.com",
 						          httpOnly: false
 						        });	
 						        res.cookie('skynettoken', data.token, {
 						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-						          // domain: ".octoblu.com",
+						          domain: ".octoblu.com",
 						          httpOnly: false
 						        });	
 						        // res.cookie('skynetuuid', data.uuid, {
@@ -170,12 +170,12 @@ module.exports = function(app, passport) {
 						                console.log("user " + data.uuid + " updated ");
 										        res.cookie('skynetuuid', data.uuid, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          // domain: ".octoblu.com",
+										          domain: ".octoblu.com",
 										          httpOnly: false
 										        });	
 										        res.cookie('skynettoken', data.token, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          // domain: ".octoblu.com",
+										          domain: ".octoblu.com",
 										          httpOnly: false
 										        });	
 										        // res.cookie('skynetuuid', data.uuid, {
@@ -210,7 +210,7 @@ module.exports = function(app, passport) {
 			    } else {
 		        res.cookie('skynetuuid', data.devices[0], {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-		          // domain: '.octoblu.com',
+		          domain: '.octoblu.com',
 		          httpOnly: false
 		        });		     
 		        // res.cookie('skynetuuid', data.devices[0], {
@@ -264,12 +264,12 @@ module.exports = function(app, passport) {
 						                console.log("user " + data.uuid + " updated ");
 										        res.cookie('skynetuuid', data.uuid, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          // domain: ".octoblu.com",
+										          domain: ".octoblu.com",
 										          httpOnly: false
 										        });	
 										        res.cookie('skynettoken', data.token, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          // domain: ".octoblu.com",
+										          domain: ".octoblu.com",
 										          httpOnly: false
 										        });	
 										        // res.cookie('skynetuuid', data.uuid, {
@@ -303,7 +303,7 @@ module.exports = function(app, passport) {
 			    } else {
 		        res.cookie('skynetuuid', data.devices[0], {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-		          // domain: '.octoblu.com',
+		          domain: '.octoblu.com',
 		          httpOnly: false
 		        });		     
 		        // res.cookie('skynetuuid', data.devices[0], {
@@ -358,12 +358,12 @@ module.exports = function(app, passport) {
 						                console.log("user " + data.uuid + " updated ");
 										        res.cookie('skynetuuid', data.uuid, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          // domain: ".octoblu.com",
+										          domain: ".octoblu.com",
 										          httpOnly: false
 										        });	
 										        res.cookie('skynettoken', data.token, {
 										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          // domain: ".octoblu.com",
+										          domain: ".octoblu.com",
 										          httpOnly: false
 										        });	
 										        // res.cookie('skynetuuid', data.uuid, {
@@ -397,7 +397,7 @@ module.exports = function(app, passport) {
 			    } else {
 		        res.cookie('skynetuuid', data.devices[0], {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-		          // domain: '.octoblu.com',
+		          domain: '.octoblu.com',
 		          httpOnly: false
 		        });		     
 		        // res.cookie('skynetuuid', data.devices[0], {
