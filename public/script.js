@@ -544,24 +544,24 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
     $scope.activeTab = 'devices';
     $("#devices").addClass('active')
 
-    // connect to skynet
-    var skynetConfig = {
-      "uuid": $scope.skynetuuid,
-      "token": $scope.skynettoken
-    }    
-    skynet(skynetConfig, function (e, socket) {
-      if (e) throw e
+    // // connect to skynet
+    // var skynetConfig = {
+    //   "uuid": $scope.skynetuuid,
+    //   "token": $scope.skynettoken
+    // }    
+    // skynet(skynetConfig, function (e, socket) {
+    //   if (e) throw e
 
-      $scope.skynetStatus = true
-      // socket.emit('status', function(data){
-      //   console.log('status received');
-      //   console.log(data);
-      // });   
-      // socket.on('message', function(channel, message){
-      //   alert(JSON.stringify(message));
-      //   console.log('message received', channel, message);
-      // });
-    });
+    //   $scope.skynetStatus = true
+    //   // socket.emit('status', function(data){
+    //   //   console.log('status received');
+    //   //   console.log(data);
+    //   // });   
+    //   // socket.on('message', function(channel, message){
+    //   //   alert(JSON.stringify(message));
+    //   //   console.log('message received', channel, message);
+    //   // });
+    // });
 
     // Get user devices
     $http.get('/api/owner/' + $scope.skynetuuid + '/' + $scope.skynettoken)
