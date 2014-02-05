@@ -669,7 +669,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location) {
           }        
         }
       }      
-      $scope.keys = keys;
+      if(keys.length){
+        $scope.keys = keys;
+      } else {
+        $scope.keys = [{}];
+      }
+      
     }
 
     $scope.deleteDevice = function( idx ){
@@ -767,11 +772,12 @@ function checkLogin($scope, $http, secured, cb) {
         $(".navbar-brand").attr("href", "/dashboard");
 
         if (data.local) {
+          $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
           $(".user-name").html(data.local.email.toString());
           $scope.user = data.local.email;
           $scope.skynetuuid = data.local.skynetuuid;
           $scope.skynettoken = data.local.skynettoken;
-          token = data.local.skynettoken;
+          token = data.local.skynettoken;          
 
         } else if (data.twitter) {
           $(".user-name").html('@' + data.twitter.username.toString());
