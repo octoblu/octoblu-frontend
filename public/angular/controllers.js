@@ -476,6 +476,23 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
 
 });
 
+e2eApp.controller('apisController', function($scope, $http, $location) {
+
+  checkLogin($scope, $http, true, function(){
+    $(".active").removeClass();
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+    $scope.activeTab = 'apis';
+    $("#apis").addClass('active');
+
+  });  
+
+});
+
+
+
 e2eApp.controller('designerController', function($scope, $http, $location, nodeRedService) {
 
   checkLogin($scope, $http, true, function(){
