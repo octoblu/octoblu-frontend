@@ -580,3 +580,14 @@ border-right: 2px solid red!important;
 margin-left: auto!important;
 margin-right: auto!important;
 }
+
+.channellist {
+	list-style-type: none;
+}
+.channellist li {
+	display:-moz-inline-stack;
+	display:inline-block;
+	zoom:1;
+	*display:inline;
+	padding: 10px;
+}

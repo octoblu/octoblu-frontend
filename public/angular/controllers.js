@@ -349,8 +349,10 @@ e2eApp.controller('adminController', function($scope, $http, $location) {
   });  
 });
 
-e2eApp.controller('connectorController', function($scope, $http, $location, ownerService, deviceService) {
-  $scope.skynetStatus = false
+e2eApp.controller('connectorController', function($scope, $http, $location, ownerService, deviceService, channelService) {
+  $scope.skynetStatus = false;
+  $scope.channelList = [];
+
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
     $("#nav-connector").addClass('active');
@@ -365,6 +367,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
     ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
       $scope.devices = data.devices;
     });
+
+    // get api list
+    channelService.getList(function(data) {
+      $scope.channelList = data;
+    });
+
 
     $scope.alert = function(alertContent){
       alert(JSON.stringify(alertContent));

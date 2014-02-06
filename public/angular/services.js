@@ -118,5 +118,35 @@
     nodeRedService.$inject = ['$http'];
     angular.module('e2eApp').service('nodeRedService', nodeRedService);
 
+    //channelService
+    var channelService = function ($http) { 
+
+    	this.getList = function(callback) {
+
+    		var data = [
+    			{ 'name': "One", "icon":"none", "description": "description", "details":"details" }, 
+    			{ 'name': "Two", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Three", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Four", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Five", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Six", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Seven", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Eight", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Nine", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Ten", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Eleven", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Twelve", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Thirteen", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Fourteen", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "Fifteen", "icon":"none", "description": "description", "details":"details" },
+    			];
+    		callback(data);
+
+    	};
+
+    };
+    channelService.$inject = ['$http'];
+    angular.module('e2eApp').service('channelService', channelService);
+
 }());
 
