@@ -7,7 +7,6 @@ angular.module('e2eApp')
         element.tooltip();
         $(element).bind('mouseover',function(e) {
             
-                // attr.$set('originalTitle', "Some text "+i++);  
                 element.tooltip('show');
 
             });
