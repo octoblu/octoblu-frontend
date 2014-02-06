@@ -124,21 +124,21 @@
     	this.getList = function(callback) {
 
     		var data = [
-    			{ 'name': "One", "icon":"none", "description": "description", "details":"details" }, 
-    			{ 'name': "Two", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Three", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Four", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Five", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Six", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Seven", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Eight", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Nine", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Ten", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Eleven", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Twelve", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Thirteen", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Fourteen", "icon":"none", "description": "description", "details":"details" },
-    			{ 'name': "Fifteen", "icon":"none", "description": "description", "details":"details" },
+    			{ 'name': "One", "icon":"none", "description": "description", "details":"some details to display in tooltip 1" }, 
+    			{ 'name': "Two", "icon":"none", "description": "description", "details":"some details to display in tooltip 2" },
+    			{ 'name': "Three", "icon":"none", "description": "description", "details":"some details to display in tooltip 3" },
+    			{ 'name': "Four", "icon":"none", "description": "description", "details":"some details to display in tooltip 4" },
+    			{ 'name': "Five", "icon":"none", "description": "description", "details":"some details to display in tooltip 5" },
+    			{ 'name': "Six", "icon":"none", "description": "description", "details":"some details to display in tooltip 6" },
+    			{ 'name': "Seven", "icon":"none", "description": "description", "details":"some details to display in tooltip 7" },
+    			{ 'name': "Eight", "icon":"none", "description": "description", "details":"some details to display in tooltip 8" },
+    			{ 'name': "Nine", "icon":"none", "description": "description", "details":"some details to display in tooltip 9" },
+    			{ 'name': "Ten", "icon":"none", "description": "description", "details":"some details to display in tooltip 10" },
+    			{ 'name': "Eleven", "icon":"none", "description": "description", "details":"some details to display in tooltip 11" },
+    			{ 'name': "Twelve", "icon":"none", "description": "description", "details":"some details to display in tooltip 12" },
+    			{ 'name': "Thirteen", "icon":"none", "description": "description", "details":"some details to display in tooltip 13" },
+    			{ 'name': "Fourteen", "icon":"none", "description": "description", "details":"some details to display in tooltip 14" },
+    			{ 'name': "Fifteen", "icon":"none", "description": "description", "details":"some details to display in tooltip 15" },
     			];
     		callback(data);
 
