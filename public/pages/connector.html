@@ -11,16 +11,16 @@
         </div>
         <ul class="nav nav-tabs">
           <li ng-class="{active: activeTab == 'devices'}" id="devices">
-            <a ng-click="activeTab = 'devices'" href="">Devices</a>
+            <a ng-click="activeTab = 'devices'" href="/devices">Devices</a>
           </li>
-          <li ng-class="{active: activeTab == 'gateways'}" id="gateways">
-            <a ng-click="activeTab = 'gateways'" href="">Gateways</a>
+          <li ng-class="{active: activeTab == 'gateways'}">
+            <a ng-click="activeTab = 'gateways'" href="/gateways">Gateways</a>
           </li>
-          <li ng-class="{active: activeTab == 'apis'}" id="apis">
-            <a ng-click="activeTab = 'apis'" href="">APIs</a>
+          <li ng-class="{active: activeTab == 'apis'}">
+            <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
           </li>
-          <li ng-class="{active: activeTab == 'devtools'}" id="devtools">
-            <a ng-click="activeTab = 'devtools'" href="">Developer Tools</a>
+          <li ng-class="{active: activeTab == 'devtools'}">
+            <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
           </li>
         </ul>
         <div class="tab-content">

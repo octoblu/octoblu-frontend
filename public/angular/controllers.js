@@ -357,10 +357,19 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
     $(".active").removeClass();
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
-    $("#main-nav-bg").show();
-
-    $scope.activeTab = 'devices';
-    $("#devices").addClass('active')
+    $("#main-nav-bg").show();    
+    
+    console.log($location.$$path);
+    if($location.$$path == "/connector" || $location.$$path == "/devices") {
+      $scope.activeTab = 'devices';
+      // $("#devices").addClass('active');
+    } else if($location.$$path == "/gateways") {
+      $scope.activeTab = 'gateways';
+    } else if($location.$$path == "/apis") {
+      $scope.activeTab = 'apis';
+    } else if($location.$$path == "/tools") {
+      $scope.activeTab = 'devtools';
+    }
 
 
     // Get user devices
@@ -475,23 +484,6 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
   });  
 
 });
-
-e2eApp.controller('apisController', function($scope, $http, $location) {
-
-  checkLogin($scope, $http, true, function(){
-    $(".active").removeClass();
-    $("#nav-connector").addClass('active');
-    $("#main-nav").show();
-    $("#main-nav-bg").show();
-
-    $scope.activeTab = 'apis';
-    $("#apis").addClass('active');
-
-  });  
-
-});
-
-
 
 e2eApp.controller('designerController', function($scope, $http, $location, nodeRedService) {
 
