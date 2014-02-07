@@ -417,7 +417,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
           formData.uuid = dupeUuid;
           formData.token = dupeToken;
           
-          deviceService.createDevice($scope.skynetuuid, formData, function(data) {
+          deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
             try{
                 $scope.devices.splice(dupeIndex,1);
                 data.token = dupeToken;
