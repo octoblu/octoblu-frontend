@@ -4,6 +4,7 @@ module.exports = function(app, passport) {
 	var Api = require('./models/api');
 	var request = require('request');
 	var config = require('../config/auth.js');
+	var async = require('async');
 
 	// app.get('/profile', isLoggedIn, function(req, res) {
 	// 	res.render('profile', {
@@ -514,58 +515,45 @@ module.exports = function(app, passport) {
 	// Get devices by owner
 	app.get('/api/owner/gateways/:id/:token', function(req, res) {
 
-		// request.get('http://skynet.im/mydevices/' + req.params.id, 
-	 //  	{qs: {"token": req.params.token}}
-	 //  , function (error, response, body) {
-		// 		myDevices = JSON.parse(body);
-		// 		console.log(myDevices);
-		// 		myDevices = myDevices.devices
-		// 		gateways = []
-		// 		for (var i in myDevices) {
-		// 			if(myDevices[i].type == 'gateway'){
-		// 				gateways.push(myDevices[i]);
-		// 			}
-		// 		}
-				
-		// 		request.get('http://skynet.im/devices', 
-		// 	  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
-		// 	  , function (error, response, body) {
-		// 	  		console.log(body);
-		// 	  		ipDevices = JSON.parse(body);
-		// 	  		devices = ipDevices.devices
-
-		// 				for (var i in devices) {
-		// 					request.get('http://skynet.im/devices/' + devices[i]
-		// 				  , function (error, response, body) {
-		// 							data = JSON.parse(body);
-		// 							gateways.push(data);			
-		// 							console.log(gateways);			    	
-		// 					});						  
-		// 				}
-
-		// 				console.log(gateways);
-		// 				res.json(gateways);
-
-		// 		});				
-
-		// });
-
-
-		request.get('http://skynet.im/devices', 
-	  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
+		request.get('http://skynet.im/mydevices/' + req.params.id, 
+	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
-	  		console.log(body);
-				ipDevices = JSON.parse(body);
-	  		devices = ipDevices.devices
-	  		gateways = []
-	  		for (var i in devices) {
-	  			gateways.push({"uuid": devices[i], "ipAddress": req.ip });
-	  		}
-	  		console.log(gateways);
-				res.json({"gateways": gateways});
+				myDevices = JSON.parse(body);
+				console.log(myDevices);
+				myDevices = myDevices.devices
+				gateways = []
+				for (var i in myDevices) {
+					if(myDevices[i].type == 'gateway'){
+						gateways.push(myDevices[i]);
+					}
+				}
+				
+				request.get('http://skynet.im/devices', 
+			  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
+			  , function (error, response, body) {
+			  		console.log(body);
+			  		ipDevices = JSON.parse(body);
+			  		devices = ipDevices.devices
 
-		});				
+						async.times(devices.length, function(n, next){
 
+								request.get('http://skynet.im/devices/' + devices[n]
+							  , function (error, response, body) {
+										data = JSON.parse(body);
+										gateways.push(data);			
+										console.log(gateways);	
+										next(error, gateways);		    	
+								});						  
+
+
+						}, function(err, gateways) {
+							console.log(gateways[0]);
+							res.json({"gateways": gateways[0]});
+						});						
+
+				});				
+
+		});
 
 	});
 
