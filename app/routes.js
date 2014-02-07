@@ -491,7 +491,7 @@ module.exports = function(app, passport) {
 	});
 
 	// Get devices by owner
-	app.get('/api/owner/:id/:token', function(req, res) {
+	app.get('/api/owner/devices/:id/:token', function(req, res) {
 
 		// request.get('http://skynet.im/devices', 
 	 //  	{qs: {"owner": req.params.id}}
@@ -510,6 +510,66 @@ module.exports = function(app, passport) {
 
 	});
 
+	// Get devices by owner
+	app.get('/api/owner/gateways/:id/:token', function(req, res) {
+
+		// request.get('http://skynet.im/mydevices/' + req.params.id, 
+	 //  	{qs: {"token": req.params.token}}
+	 //  , function (error, response, body) {
+		// 		myDevices = JSON.parse(body);
+		// 		console.log(myDevices);
+		// 		myDevices = myDevices.devices
+		// 		gateways = []
+		// 		for (var i in myDevices) {
+		// 			if(myDevices[i].type == 'gateway'){
+		// 				gateways.push(myDevices[i]);
+		// 			}
+		// 		}
+				
+		// 		request.get('http://skynet.im/devices', 
+		// 	  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
+		// 	  , function (error, response, body) {
+		// 	  		console.log(body);
+		// 	  		ipDevices = JSON.parse(body);
+		// 	  		devices = ipDevices.devices
+
+		// 				for (var i in devices) {
+		// 					request.get('http://skynet.im/devices/' + devices[i]
+		// 				  , function (error, response, body) {
+		// 							data = JSON.parse(body);
+		// 							gateways.push(data);			
+		// 							console.log(gateways);			    	
+		// 					});						  
+		// 				}
+
+		// 				console.log(gateways);
+		// 				res.json(gateways);
+
+		// 		});				
+
+		// });
+
+
+		request.get('http://skynet.im/devices', 
+	  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
+	  , function (error, response, body) {
+	  		console.log(body);
+				ipDevices = JSON.parse(body);
+	  		devices = ipDevices.devices
+	  		gateways = []
+	  		for (var i in devices) {
+	  			gateways.push({"uuid": devices[i], "ipAddress": req.ip });
+	  		}
+	  		console.log(gateways);
+				res.json({"gateways": gateways});
+
+		});				
+
+
+	});
+
+
+
 	// Get nodered port
 	app.get('/api/redport/:uuid/:token', function(req, res) {
 		// curl -X PUT http://red.meshines.com:4444/red/aaa?token=bbb
@@ -520,6 +580,17 @@ module.exports = function(app, passport) {
 	    	res.json(body);
 		});	    		
 	});
+
+	// Get device info from Skynet
+	app.get('/api/devices/:id', function(req, res) {
+
+		request.post('http://skynet.im/devices/' + req.params.id
+	  , function (error, response, body) {
+				data = JSON.parse(body);
+	    	res.json(data);
+		});
+
+	});	
 
 
 	// Register device with Skynet

@@ -377,6 +377,11 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
       $scope.devices = data.devices;
     });
 
+    // Get user gateways
+    ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
+      $scope.gateways = data.gateways;
+    });
+
     // get api list
     channelService.getList(function(data) {
       $scope.channelList = data;

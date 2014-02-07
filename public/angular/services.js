@@ -23,7 +23,7 @@
 
 		this.getDevices = function(uuid, token, callback) {
 
-			$http.get('/api/owner/' + uuid + '/' + token)
+			$http.get('/api/owner/devices/' + uuid + '/' + token)
 			      .success(function(data) {
 			        callback(data);
 			      })
@@ -32,6 +32,19 @@
 			      });
 
 		};
+
+    this.getGateways = function(uuid, token, callback) {
+
+      $http.get('/api/owner/gateways/' + uuid + '/' + token)
+            .success(function(data) {
+              callback(data);
+            })
+            .error(function(data) {
+              console.log('Error: ' + data);
+            });
+
+    };
+
 	};
 	ownerService.$inject = ['$http'];
     angular.module('e2eApp').service('ownerService', ownerService);
