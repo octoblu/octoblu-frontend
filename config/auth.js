@@ -1,4 +1,4 @@
-var development = false;
+var development = true;
 if (development) {
 
   // expose our config directly to our application using module.exports
