@@ -124,21 +124,21 @@
     	this.getList = function(callback) {
 
     		var data = [
-    			{ 'name': "One", "icon":"none", "description": "description", "details":"some details to display in tooltip 1" }, 
-    			{ 'name': "Two", "icon":"none", "description": "description", "details":"some details to display in tooltip 2" },
-    			{ 'name': "Three", "icon":"none", "description": "description", "details":"some details to display in tooltip 3" },
-    			{ 'name': "Four", "icon":"none", "description": "description", "details":"some details to display in tooltip 4" },
-    			{ 'name': "Five", "icon":"none", "description": "description", "details":"some details to display in tooltip 5" },
-    			{ 'name': "Six", "icon":"none", "description": "description", "details":"some details to display in tooltip 6" },
-    			{ 'name': "Seven", "icon":"none", "description": "description", "details":"some details to display in tooltip 7" },
-    			{ 'name': "Eight", "icon":"none", "description": "description", "details":"some details to display in tooltip 8" },
-    			{ 'name': "Nine", "icon":"none", "description": "description", "details":"some details to display in tooltip 9" },
-    			{ 'name': "Ten", "icon":"none", "description": "description", "details":"some details to display in tooltip 10" },
-    			{ 'name': "Eleven", "icon":"none", "description": "description", "details":"some details to display in tooltip 11" },
-    			{ 'name': "Twelve", "icon":"none", "description": "description", "details":"some details to display in tooltip 12" },
-    			{ 'name': "Thirteen", "icon":"none", "description": "description", "details":"some details to display in tooltip 13" },
-    			{ 'name': "Fourteen", "icon":"none", "description": "description", "details":"some details to display in tooltip 14" },
-    			{ 'name': "Fifteen", "icon":"none", "description": "description", "details":"some details to display in tooltip 15" },
+    			{ 'name': "One", "icon":"none", "description": "some details to display in tooltip 1", "enabled": true, "documentation": "", "base_url": "" }, 
+    			{ 'name': "Two", "icon":"none", "description": "some details to display in tooltip 2", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Three", "icon":"none", "description": "some details to display in tooltip 3", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Four", "icon":"none", "description": "some details to display in tooltip 4", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Five", "icon":"none", "description": "some details to display in tooltip 5", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Six", "icon":"none", "description": "some details to display in tooltip 6", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Seven", "icon":"none", "description": "some details to display in tooltip 7", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Eight", "icon":"none", "description": "some details to display in tooltip 8", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Nine", "icon":"none", "description": "some details to display in tooltip 9", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Ten", "icon":"none", "description": "some details to display in tooltip 10", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Eleven", "icon":"none", "description": "some details to display in tooltip 11", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Twelve", "icon":"none", "description": "some details to display in tooltip 12", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Thirteen", "icon":"none", "description": "some details to display in tooltip 13", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Fourteen", "icon":"none", "description": "some details to display in tooltip 14", "enabled": true, "documentation": "", "base_url": "" },
+    			{ 'name': "Fifteen", "icon":"none", "description": "some details to display in tooltip 15", "enabled": true, "documentation": "", "base_url": "" },
     			];
     		callback(data);
 
