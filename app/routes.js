@@ -540,7 +540,15 @@ module.exports = function(app, passport) {
 								request.get('http://skynet.im/devices/' + devices[n]
 							  , function (error, response, body) {
 										data = JSON.parse(body);
-										gateways.push(data);			
+										var dupeFound = false;
+										for (var i in gateways) {
+											if(gateways[i].uuid == data.uuid){
+												dupeFound = true;
+											}
+										}										
+										if(!dupeFound){
+											gateways.push(data);
+										}
 										console.log(gateways);	
 										next(error, gateways);		    	
 								});						  
