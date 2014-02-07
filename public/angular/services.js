@@ -54,7 +54,7 @@
 
 		this.createDevice = function(uuid, formData, callback) {
 
-			$http.put('/api/devices/' + uuid, formData)                
+			$http.post('/api/devices/' + uuid, formData)                
 	            .success(function(data) {
 	              callback(data);   
 	            })
@@ -66,7 +66,7 @@
 
 		this.updateDevice = function(uuid, formData, callback) {
 
-			$http.post('/api/devices/' + uuid, formData)
+			$http.put('/api/devices/' + uuid, formData)
 	            .success(function(data) {
 	              callback(data);	              
 	            })
