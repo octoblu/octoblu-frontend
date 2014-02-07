@@ -34,7 +34,8 @@ var userSchema = mongoose.Schema({
         name         : String,
         skynetuuid   : String,
         skynettoken  : String
-    }
+    },
+    api              : [{ id: String, name: String, token: String }]
 
 });
 

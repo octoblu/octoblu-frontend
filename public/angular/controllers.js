@@ -359,7 +359,6 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
     $("#main-nav").show();
     $("#main-nav-bg").show();    
     
-    console.log($location.$$path);
     if($location.$$path == "/connector" || $location.$$path == "/devices") {
       $scope.activeTab = 'devices';
       // $("#devices").addClass('active');

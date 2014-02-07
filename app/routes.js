@@ -1,6 +1,7 @@
 module.exports = function(app, passport) {
 	
 	var User = require('./models/user');
+	var Api = require('./models/api');
 	var request = require('request');
 	var config = require('../config/auth.js');
 
