@@ -686,8 +686,6 @@ module.exports = function(app, passport) {
     			{ 'name': "Fifteen", "icon":"none", "description": "some details to display in tooltip 15", "enabled": true, "documentation": "", "base_url": "" },
     			];
 
-		// res.write(JSON.stringify(data));
-		// res.end();
 		res.json(data);
 
 	});	
