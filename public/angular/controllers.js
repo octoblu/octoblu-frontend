@@ -381,10 +381,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
       $scope.gateways = data.gateways;
     });
 
-    // get api list
-    channelService.getList(function(data) {
-      $scope.channelList = data;
-    });
+    // get api list, if showing api
+    if($scope.activeTab == 'apis') {
+      channelService.getList(function(data) {
+        $scope.channelList = data;
+      });
+    }
 
 
     $scope.alert = function(alertContent){
