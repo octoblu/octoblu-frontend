@@ -361,7 +361,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
     
     if($location.$$path == "/connector" || $location.$$path == "/devices") {
       $scope.activeTab = 'devices';
-      // $("#devices").addClass('active');
+      $("#devices").addClass('active');
     } else if($location.$$path == "/gateways") {
       $scope.activeTab = 'gateways';
     } else if($location.$$path == "/apis") {
