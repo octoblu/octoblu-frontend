@@ -523,7 +523,25 @@ e2eApp.controller('analyzerController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-    $scope.splunkFrame = "http://54.203.249.138:8000?output=embed"
+    $scope.splunkFrame = "http://54.203.249.138:8000?output=embed";
+
+  });
+});
+
+e2eApp.controller('gatewayController', function($scope, $http, $location, deviceService) {
+  checkLogin($scope, $http, false, function(){
+    $(".active").removeClass();
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+    deviceService.getDevice($location.search().uuid, function(data) {
+      try{
+        $scope.gatewayFrame = "http://" + data.localhost + ":" + data.port;
+      } catch(e){
+        $scope.gatewayFrame = "";
+      }
+    });    
 
   });
 });

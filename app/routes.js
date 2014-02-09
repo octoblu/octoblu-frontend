@@ -581,7 +581,7 @@ module.exports = function(app, passport) {
 	// Get device info from Skynet
 	app.get('/api/devices/:id', function(req, res) {
 
-		request.post('http://skynet.im/devices/' + req.params.id
+		request.get('http://skynet.im/devices/' + req.params.id
 	  , function (error, response, body) {
 				data = JSON.parse(body);
 	    	res.json(data);

@@ -20,7 +20,8 @@
           
           <td>{{gateway.name}}</td>
           <td>{{gateway.uuid}}</td>
-          <td><a href="http://{{gateway.localhost}}:{{gateway.port}}">configure</a></td>
+          <!-- <td><a href="http://{{gateway.localhost}}:{{gateway.port}}">configure</a></td> -->
+          <td><a href="/gateway?uuid={{gateway.uuid}}">configure</a></td>
 
         </tr>
       </table>

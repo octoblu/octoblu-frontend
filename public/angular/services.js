@@ -52,6 +52,17 @@
 	//deviceService
 	var deviceService = function ($http) { 
 
+    this.getDevice = function(uuid, callback) {
+      $http.get('/api/devices/' + uuid)                
+              .success(function(data) {
+                callback(data);   
+              })
+              .error(function(data) {
+                console.log('Error: ' + data);
+              });
+
+    };
+
 		this.createDevice = function(uuid, formData, callback) {
 
 			$http.post('/api/devices/' + uuid, formData)                
