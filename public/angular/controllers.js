@@ -349,7 +349,8 @@ e2eApp.controller('adminController', function($scope, $http, $location) {
   });  
 });
 
-e2eApp.controller('connectorController', function($scope, $http, $location, ownerService, deviceService, channelService) {
+e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, 
+      ownerService, deviceService, channelService) {
   $scope.skynetStatus = false;
   $scope.channelList = [];
 
@@ -387,6 +388,39 @@ e2eApp.controller('connectorController', function($scope, $http, $location, owne
         $scope.channelList = data;
       });
     }
+
+    $scope.channel = {"description": "test"};
+    $scope.openDetails = function (channel) {
+
+      $scope.channel = channel;
+      // console.log(channel.description);
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance, channel) {
+
+          $scope.ok = function () {
+            // $modalInstance.close($scope.selected.item);
+            $modalInstance.close();
+          };
+
+          $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+          };
+        },
+        resolve: {
+          channel: function () {
+            console.log($scope.channel.description);
+            return $scope.channel;
+          }
+        }
+      });
+
+      modalInstance.result.then(function () {
+        // $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
 
 
     $scope.alert = function(alertContent){
@@ -544,6 +578,11 @@ e2eApp.controller('gatewayController', function($scope, $http, $location, device
     });    
 
   });
+});
+
+e2eApp.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
+
+  
 });
 
 function checkLogin($scope, $http, secured, cb) {
