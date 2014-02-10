@@ -389,37 +389,41 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       });
     }
 
+    $scope.items = ['item1', 'item2', 'item3'];
     $scope.channel = {"description": "test"};
-    $scope.openDetails = function (channel) {
 
+    $scope.openDetails = function (channel) {
       $scope.channel = channel;
-      // console.log(channel.description);
+
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
         controller: function ($scope, $modalInstance, channel) {
 
+          $scope.channel = channel;
+          
           $scope.ok = function () {
-            // $modalInstance.close($scope.selected.item);
             $modalInstance.close();
           };
 
           $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
           };
+
         },
         resolve: {
           channel: function () {
-            console.log($scope.channel.description);
             return $scope.channel;
           }
         }
       });
 
-      modalInstance.result.then(function () {
+      modalInstance.result.then(function (selectedItem) {
         // $scope.selected = selectedItem;
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+
+   
     };
 
 
@@ -524,6 +528,26 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
   });  
 
 });
+
+// Please note that $modalInstance represents a modal window (instance) dependency.
+// It is not the same as the $modal service used above.
+
+var ModalInstanceCtrl = function ($scope, $modalInstance, items, channel) {
+
+  $scope.items = items;
+  $scope.channel = channel;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
 
 e2eApp.controller('designerController', function($scope, $http, $location, nodeRedService) {
 
