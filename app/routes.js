@@ -97,25 +97,6 @@ module.exports = function(app, passport) {
 		            }
 			        });
 
-							// User.findOne({_id: user._id}, function(err, user) {
-							//     if(!err) {
-							//         if(!user) {
-							//             user = new User();
-							//             user.local.email = user.local.email;
-							//         }
-							//         user.local.skynetuuid = data.uuid.toString();
-							//         user.local.skynettoken = data.token.toString();
-							//         user.save(function(err) {
-							//             if(!err) {
-							//                 console.log("user " + user._id + " updated ");
-							//             }
-							//             else {
-							//                 console.log("Error: " + err);
-							//             }
-							//         });
-							//     }
-							// });
-
 			      } else {
 			        console.log('error: '+ response.statusCode);
 			        console.log(error);
@@ -668,25 +649,14 @@ module.exports = function(app, passport) {
 	app.get('/api/channels', function(req, res) {
 		console.log('returning channel list');
 
-		var data = [
-    			{ 'name': "One", "icon":"none", "description": "some details to display in tooltip 1", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" }, 
-    			{ 'name': "Two", "icon":"none", "description": "some details to display in tooltip 2", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Three", "icon":"none", "description": "some details to display in tooltip 3", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Four", "icon":"none", "description": "some details to display in tooltip 4", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Five", "icon":"none", "description": "some details to display in tooltip 5", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Six", "icon":"none", "description": "some details to display in tooltip 6", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Seven", "icon":"none", "description": "some details to display in tooltip 7", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Eight", "icon":"none", "description": "some details to display in tooltip 8", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Nine", "icon":"none", "description": "some details to display in tooltip 9", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Ten", "icon":"none", "description": "some details to display in tooltip 10", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Eleven", "icon":"none", "description": "some details to display in tooltip 11", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Twelve", "icon":"none", "description": "some details to display in tooltip 12", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Thirteen", "icon":"none", "description": "some details to display in tooltip 13", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Fourteen", "icon":"none", "description": "some details to display in tooltip 14", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			{ 'name': "Fifteen", "icon":"none", "description": "some details to display in tooltip 15", "enabled": true, "documentation": "", "base_url": "", "logo": "https://ifttt.com/images/channels_bw/500px.png" },
-    			];
-
-		res.json(data);
+		Api.find(function (err, apis) {
+		  	if (err) {
+		  		res.send(err);
+		  	} else {}
+			  	console.log(apis)
+				res.json(apis);
+			}
+		});
 
 	});	
 
