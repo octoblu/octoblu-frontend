@@ -652,7 +652,7 @@ module.exports = function(app, passport) {
 		Api.find(function (err, apis) {
 		  	if (err) {
 		  		res.send(err);
-		  	} else {}
+		  	} else {
 			  	console.log(apis)
 				res.json(apis);
 			}
