@@ -650,10 +650,10 @@ module.exports = function(app, passport) {
 		console.log('returning channel list');
 
 		Api.find(function (err, apis) {
-		  	if (err) {
-		  		res.send(err);
-		  	} else {}
-			  	console.log(apis)
+	  	if (err) {
+	  		res.send(err);
+	  	} else {
+		  	console.log(apis)
 				res.json(apis);
 			}
 		});
