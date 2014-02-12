@@ -147,7 +147,20 @@
 
     	this.getList = function(callback) {
 
-    		$http.get('/api/channels/')
+    		$http.get('/api/channels/', { cache: true})
+		      .success(function(data) {
+		      	callback(data);
+		        
+		      })
+		      .error(function(data) {
+		        console.log('Error: ' + data);
+		      });
+
+    	};
+
+    	this.getByName = function(name, callback) {
+
+    		$http.get('/api/channels/'+name, { cache: true})
 		      .success(function(data) {
 		      	callback(data);
 		        

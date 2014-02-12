@@ -517,6 +517,11 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     // channelService.getList(function(data) {
     //   $scope.channelList = data;
     // });
+    console.log($routeParams.name);
+    channelService.getByName($routeParams.name, function(data) {
+        console.log(data);
+        $scope.channel = data;
+      });
 
   });
 

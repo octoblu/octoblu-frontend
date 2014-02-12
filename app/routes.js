@@ -658,6 +658,17 @@ module.exports = function(app, passport) {
 
 	});	
 
+	app.get('/api/channels/:name', function(req, res) {
+		Api.findOne({name: req.params.name}, function (err, api) {
+		  	if (err) {
+		  		res.send(err);
+		  	} else {
+				res.json(api);
+			}
+		});
+
+	});	
+
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {
 		res.sendfile('./public/index.html');
