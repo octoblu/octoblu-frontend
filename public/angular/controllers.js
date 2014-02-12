@@ -358,7 +358,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     $(".active").removeClass();
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
-    $("#main-nav-bg").show();    
+    $("#main-nav-bg").show();
     
     if($location.$$path == "/connector" || $location.$$path == "/devices") {
       $scope.activeTab = 'devices';
@@ -393,39 +393,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     $scope.channel = {"description": "test"};
 
     $scope.openDetails = function (channel) {
-      $scope.channel = channel;
-
-      var modalInstance = $modal.open({
-        templateUrl: 'myModalContent.html',
-        controller: function ($scope, $modalInstance, channel) {
-
-          $scope.channel = channel;
-          
-          $scope.ok = function () {
-            $modalInstance.close();
-          };
-
-          $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-          };
-
-        },
-        resolve: {
-          channel: function () {
-            return $scope.channel;
-          }
-        }
-      });
-
-      modalInstance.result.then(function (selectedItem) {
-        // $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
-
-   
+      // $scope.channel = channel;
+      $location.path( '/apis/' + channel.name );
     };
-
 
     $scope.alert = function(alertContent){
       alert(JSON.stringify(alertContent));
@@ -526,6 +496,29 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     }
 
   });  
+
+});
+
+e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $log, 
+      ownerService, channelService) {
+
+  console.log($routeParams.name);
+  
+  $scope.skynetStatus = false;
+  $scope.channelList = [];
+
+  checkLogin($scope, $http, true, function(){
+    $(".active").removeClass();
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+
+    // get api list, if showing api
+    // channelService.getList(function(data) {
+    //   $scope.channelList = data;
+    // });
+
+  });
 
 });
 

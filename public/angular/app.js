@@ -63,6 +63,11 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
       controller  : 'gatewayController'
     }) 
 
+    .when('/apis/:name', {
+      templateUrl : 'pages/api_detail.html',
+      controller  : 'apiController'
+    })
+
     .when('/apis', {
       templateUrl : 'pages/connector.html',
       controller  : 'connectorController'

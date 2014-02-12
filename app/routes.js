@@ -20,7 +20,6 @@ module.exports = function(app, passport) {
 	  }
 	});
 
-
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.clearCookie('skynetuuid', {domain: config.domain});
@@ -653,7 +652,6 @@ module.exports = function(app, passport) {
 		  	if (err) {
 		  		res.send(err);
 		  	} else {
-			  	console.log(apis)
 				res.json(apis);
 			}
 		});

@@ -5,11 +5,11 @@
   	<li ng-repeat="channel in channelList" class="channel_icon-grid-view mod-index-0 pop-over"
 	  	data-original-title="{{channel.description}}" data-placement="auto" ng-click="openDetails(channel)">
 		<div class="channel is-inactive" id="channel_83">
-			<a href="#">
+			<a href="javascript:///">
 				<img alt="{{channel.name}}" class="channel-icon is-size-110  is-using-gray-url" 
 					height="110" src="{{channel['logo-bw']}}" width="110">
 			</a>
-			<a href="#">
+			<a href="javascript:///">
 				<div class="channel_title">{{channel.name}}</div>
 				<div></div>
 			</a>
@@ -20,15 +20,3 @@
   </ul>
 
 </div>
-
-<script type="text/ng-template" id="myModalContent.html">
-     <div class="modal-header">
-        <h3>API Channel Details</h3>
-    </div>
-    <div class="modal-body">
-        {{channel.description}}
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-    </div>
-</script>
