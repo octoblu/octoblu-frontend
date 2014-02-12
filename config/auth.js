@@ -22,6 +22,11 @@ if (development) {
       'clientSecret'  : 'VE5h4f7DAh4Z5jQgscPFVIZk',
       'callbackURL'   : 'http://localhost:8080/auth/google/callback'
     },
+    'linkedIn' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
+    },
     'port' : 8080,
     'domain': null
   }

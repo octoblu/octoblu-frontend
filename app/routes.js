@@ -669,6 +669,15 @@ module.exports = function(app, passport) {
 
 	});	
 
+	app.get('/api/auth/linkedin',
+  	  passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	//app.get('/api/auth/linkedin', passport.authenticate('twitter', { scope : 'email' }));
+	app.get('/api/auth/linkedin/callback', function(req, res, next) {
+		console.log('handled linkedin callback');
+		res.redirect('/');
+
+	});
+
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {
 		res.sendfile('./public/index.html');

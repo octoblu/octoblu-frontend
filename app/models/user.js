@@ -35,7 +35,7 @@ var userSchema = mongoose.Schema({
         skynetuuid   : String,
         skynettoken  : String
     },
-    api              : [{ id: String, name: String, token: String }]
+    api              : [{ id: String, name: String, token: String, permissions: String }]
 
 });
 

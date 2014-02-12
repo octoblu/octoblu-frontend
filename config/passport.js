@@ -3,6 +3,7 @@ var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var LinkedInStrategy = require('passport-linkedin').Strategy
 
 // load up the user model
 var User       = require('../app/models/user');
@@ -354,5 +355,18 @@ module.exports = function(passport) {
         });
 
     }));
+
+    passport.use(new LinkedInStrategy({
+        consumerKey     : configAuth.linkedIn.consumerKey,
+        consumerSecret  : configAuth.linkedIn.consumerSecret,
+        callbackURL     : configAuth.linkedIn.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(token, tokenSecret, profile, done) {
+        User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+          return done(err, user);
+        });
+      }
+    ));
 
 };
