@@ -58,6 +58,11 @@ if (development) {
       'clientSecret'  : 'bgqPgsEjZC_F65rKDxp7PwRQ',
       'callbackURL'   : 'http://octoblu.com/auth/google/callback'
     },
+    'linkedIn' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
+    },
     'port' : 80,
     'domain': '.octoblu.com'
   }
