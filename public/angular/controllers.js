@@ -1,4 +1,4 @@
-e2eApp.controller('mainController', function($scope, $location) {
+e2eApp.controller('mainController', function(checkLogin$scope, $location) {
   $("#main-nav").hide();
   user = $.cookie("skynetuuid");
   if(user != undefined ){
@@ -242,13 +242,15 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
         $scope.devices = data.devices;
  
         // Subscribe to user's devices messages and events
-        for (var i = 0; i < data.devices.length; i++) {
-          socket.emit('subscribe', {
-            "uuid": data.devices[i].uuid,
-            "token": data.devices[i].token
-          }, function (data) {
-            // console.log(data); 
-          });
+        if(data.devices) {
+          for (var i = 0; i < data.devices.length; i++) {
+            socket.emit('subscribe', {
+              "uuid": data.devices[i].uuid,
+              "token": data.devices[i].token
+            }, function (data) {
+              // console.log(data); 
+            });
+        }
 
           // Setup dashboard arrays for devices
           dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid }); 
@@ -826,6 +828,7 @@ function checkLogin($scope, $http, secured, cb) {
     userService.getUser(user, function(data) {
 
       $scope.user_id = data._id;
+      $scope.user = data;
 
       $(".auth").hide();
       $(".user-menu").show();
