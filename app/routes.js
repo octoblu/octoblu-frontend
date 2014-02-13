@@ -680,7 +680,7 @@ module.exports = function(app, passport) {
 
         console.log('user:');
         console.log('res='+res.cookie('skynetuuid'));
-        console.log('req='+req.cookie('skynetuuid'));
+        // console.log('req='+req.cookie('skynetuuid'));
 
         //next step is get an account and add or update the api token and verifier, and date fields (maybe)
 
