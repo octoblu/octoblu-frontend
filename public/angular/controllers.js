@@ -1,4 +1,4 @@
-e2eApp.controller('mainController', function(checkLogin$scope, $location) {
+e2eApp.controller('mainController', function($scope, $location) {
   $("#main-nav").hide();
   user = $.cookie("skynetuuid");
   if(user != undefined ){
@@ -240,7 +240,6 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
       // Get user's devices
       ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
         $scope.devices = data.devices;
-        console.log(data.devices);
  
         // Subscribe to user's devices messages and events
         if(data.devices) {
