@@ -680,8 +680,15 @@ module.exports = function(app, passport) {
         	verifier = req.param('oauth_verifier')
 
         //next step is get an account and add or update the api token and verifier, and date fields (maybe)
-        User.findOne({skynetuuid: req.cookies.skynetuuid}, function(err, user) {
+       User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    	}, function(err, user) {
 		    if(!err) {
+		    	console.log(user);
 		    	user.addOrUpdateApiByName('LinkedIn', token, verifier);
 	        	user.save(function(err) {
 	            	if(!err) {

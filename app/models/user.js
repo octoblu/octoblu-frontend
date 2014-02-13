@@ -1,4 +1,5 @@
 // load the things we need
+var mongoose = require('safe_datejs');
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 
@@ -41,31 +42,34 @@ var userSchema = mongoose.Schema({
 
 // find api connection by name
 userSchema.methods.findApiByName = function(name) {
-    if(!api) return null;
-    for(var l = 0; l < api.length; l++) {
-        if(api[l].name === name) {
-            return api[l];
+    if(this.api==null && this.api==nil) {this.api = [];}
+
+    for(var l = 0; l < this.api.length; l++) {
+        if(this.api[l].name === name) {
+            return this.api[l];
         }
     }
     return null;
 };
 
 userSchema.methods.addOrUpdateApiByName = function(name, token, verifier) {
+    if(this.api==null && this.api==nil) {this.api = [];}
+
+    var today = new Date();
+    var jsToday = today.AsDateJs();
     
-    if(api) {
-        for(var l = 0; l < api.length; l++) {
-            if(api[l].name === name) {
-                api[l].token = token;
-                api[l].verifier = verifier;
-                api[l].updated = Date.now;
-                return;
-            }
+    for(var l = 0; l < this.api.length; l++) {
+        if(this.api[l].name === name) {
+            this.api[l].token = token;
+            this.api[l].verifier = verifier;
+            this.api[l].updated = jsToday;
+            return;
         }
     }
 
     // at this point the match wasn't found, so add it..
-    api = {name: name, token: token, verifier: verifier, updated: Date.now};
-    api.push(api);
+    item = {name: name, token: token, verifier: verifier, updated: jsToday};
+    this.api.push(item);
 
 };
 
