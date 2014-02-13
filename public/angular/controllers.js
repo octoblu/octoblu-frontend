@@ -240,6 +240,7 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
       // Get user's devices
       ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
         $scope.devices = data.devices;
+        console.log(data.devices);
  
         // Subscribe to user's devices messages and events
         if(data.devices) {
@@ -250,11 +251,13 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
             }, function (data) {
               // console.log(data); 
             });
-        }
 
-          // Setup dashboard arrays for devices
-          dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid }); 
-          deviceData[data.devices[i].uuid] = 0;
+            // Setup dashboard arrays for devices
+            dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid }); 
+            deviceData[data.devices[i].uuid] = 0;
+  
+          }
+
         }
 
         // http://canvasjs.com/ << TODO: pucharse $299
