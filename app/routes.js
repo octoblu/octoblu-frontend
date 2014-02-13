@@ -669,24 +669,33 @@ module.exports = function(app, passport) {
 
 	});	
 
-	app.get('/api/auth/linkedin',
+	app.get('/api/auth/LinkedIn',
   	  passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-	app.get('/api/auth/linkedin/callback', function(req, res, next) {
+	app.get('/api/auth/LinkedIn/callback', function(req, res, next) {
+
 		console.log('handled linkedin callback..........................................................');
 
 		// oauth_token={...}&oauth_token_secret={...}&oauth_callback_confirmed=true&oauth_expires_in=599
         var token = req.param('oauth_token'),
         	verifier = req.param('oauth_verifier')
 
-        console.log('user:');
-        console.log('res='+res.cookie('skynetuuid'));
-        // console.log('req='+req.cookie('skynetuuid'));
-
         //next step is get an account and add or update the api token and verifier, and date fields (maybe)
+        User.findOne({skynetuuid: req.cookies.skynetuuid}, function(err, user) {
+		    if(!err) {
+		    	user.addOrUpdateApiByName('LinkedIn', token, verifier);
+	        	user.save(function(err) {
+	            	if(!err) {
+	                	console.log("user " + data.uuid + " updated ");
+	                	console.log(user);
+						return res.redirect('/dashboard');
 
-    	console.log({token: token, token_verifier: verifier});
-
-		res.redirect('/');
+	            	} else {
+	                	console.log("Error: " + err);
+						return res.redirect('/dashboard');
+	            	}
+		        });
+		    }
+		});
 
 	});
 

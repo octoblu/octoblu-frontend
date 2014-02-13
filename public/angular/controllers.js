@@ -389,9 +389,6 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       });
     }
 
-    $scope.items = ['item1', 'item2', 'item3'];
-    $scope.channel = {"description": "test"};
-
     $scope.openDetails = function (channel) {
       // $scope.channel = channel;
       $location.path( '/apis/' + channel.name );
@@ -522,6 +519,11 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
         console.log(data);
         $scope.channel = data;
       });
+
+    $scope.authorize = function (channel) {
+      //$location.path( '/api/auth/' + channel.name );
+      location.href = '/api/auth/' + channel.name;
+    };
 
     $scope.logo_url = function() {
       if(!$scope.channel || !$scope.channel['logo-color']) return '';

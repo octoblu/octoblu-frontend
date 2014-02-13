@@ -25,7 +25,7 @@ if (development) {
     'linkedIn' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
     'port' : 8080,
     'domain': null
