@@ -22,6 +22,11 @@ if (development) {
       'clientSecret'  : 'VE5h4f7DAh4Z5jQgscPFVIZk',
       'callbackURL'   : 'http://localhost:8080/auth/google/callback'
     },
+    'linkedIn' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
+    },
     'port' : 8080,
     'domain': null
   }
@@ -52,6 +57,11 @@ if (development) {
       'clientID'    : '369178117909-psv35jjicbu961aj4ups6h5s2mb08j6m.apps.googleusercontent.com',
       'clientSecret'  : 'bgqPgsEjZC_F65rKDxp7PwRQ',
       'callbackURL'   : 'http://octoblu.com/auth/google/callback'
+    },
+    'linkedIn' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
     },
     'port' : 80,
     'domain': '.octoblu.com'

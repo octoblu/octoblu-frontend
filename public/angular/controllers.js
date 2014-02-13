@@ -701,7 +701,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
   console.log($routeParams.name);
   
   $scope.skynetStatus = false;
-  $scope.channelList = [];
+  $scope.channel = {};
 
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
@@ -718,6 +718,12 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
         console.log(data);
         $scope.channel = data;
       });
+
+    $scope.logo_url = function() {
+      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+      return $scope.channel['logo-color'];
+    };
 
   });
 

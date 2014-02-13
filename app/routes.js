@@ -669,6 +669,27 @@ module.exports = function(app, passport) {
 
 	});	
 
+	app.get('/api/auth/linkedin',
+  	  passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/linkedin/callback', function(req, res, next) {
+		console.log('handled linkedin callback..........................................................');
+
+		// oauth_token={...}&oauth_token_secret={...}&oauth_callback_confirmed=true&oauth_expires_in=599
+        var token = req.param('oauth_token'),
+        	verifier = req.param('oauth_verifier')
+
+        console.log('user:');
+        console.log('res='+res.cookie('skynetuuid'));
+        console.log('req='+req.cookie('skynetuuid'));
+
+        //next step is get an account and add or update the api token and verifier, and date fields (maybe)
+
+    	console.log({token: token, token_verifier: verifier});
+
+		res.redirect('/');
+
+	});
+
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {
 		res.sendfile('./public/index.html');

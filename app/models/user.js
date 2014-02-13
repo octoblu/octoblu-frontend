@@ -35,9 +35,39 @@ var userSchema = mongoose.Schema({
         skynetuuid   : String,
         skynettoken  : String
     },
-    api              : [{ id: String, name: String, token: String }]
+    api              : [{ name: String, token: String, verifier: String, updated: { type: Date, default: Date.now } }]
 
 });
+
+// find api connection by name
+userSchema.methods.findApiByName = function(name) {
+    if(!api) return null;
+    for(var l = 0; l < api.length; l++) {
+        if(api[l].name === name) {
+            return api[l];
+        }
+    }
+    return null;
+};
+
+userSchema.methods.addOrUpdateApiByName = function(name, token, verifier) {
+    
+    if(api) {
+        for(var l = 0; l < api.length; l++) {
+            if(api[l].name === name) {
+                api[l].token = token;
+                api[l].verifier = verifier;
+                api[l].updated = Date.now;
+                return;
+            }
+        }
+    }
+
+    // at this point the match wasn't found, so add it..
+    api = {name: name, token: token, verifier: verifier, updated: Date.now};
+    api.push(api);
+
+};
 
 // generating a hash
 userSchema.methods.generateHash = function(password) {
