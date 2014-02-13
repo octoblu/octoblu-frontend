@@ -362,10 +362,11 @@ module.exports = function(passport) {
         callbackURL     : configAuth.linkedIn.callbackURL,
         profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
       },
-      function(token, tokenSecret, profile, done) {
-        User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
-          return done(err, user);
-        });
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling linkedin response with passport');
+        // User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+        //   return done(err, user);
+        // });
       }
     ));
 
