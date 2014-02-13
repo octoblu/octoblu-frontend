@@ -617,7 +617,7 @@ module.exports = function(app, passport) {
 
 	});	
 
-	// Register device with Skynet
+	// Remove device with Skynet
 	app.del('/api/devices/:id/:token', function(req, res) {
 
 		request.del('http://skynet.im/devices/' + req.params.id, 

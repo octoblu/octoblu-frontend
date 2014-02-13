@@ -106,6 +106,7 @@
 	//messageService
 	var messageService = function ($http) { 
 
+    // TODO: Send via websockets so it adds fromUUID (your uuid)
 		this.sendMessage = function(uuid, text, callback) {
 			$http.post('/api/message/', {uuid: uuid, message: text})
 	          .success(function(data) {
