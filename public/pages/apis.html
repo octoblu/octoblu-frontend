@@ -1,22 +1,30 @@
-<div class="jumbotron text-center">
+<div>
+  <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div>
+</div><br /><br />
 
-  <ul class="channellist">
+<div class='row'>
+  <div class='col-sm-12 box'>
+    <div class="text-center">
 
-  	<li ng-repeat="channel in channelList" class="channel_icon-grid-view mod-index-0 pop-over"
-	  	data-original-title="{{channel.description}}" data-placement="auto" ng-click="openDetails(channel)">
-		<div class="channel is-inactive" id="channel_83">
-			<a href="javascript:///">
-				<img alt="{{channel.name}}" class="channel-icon is-size-110  is-using-gray-url" 
-					height="110" src="{{channel['logo-bw']}}" width="110">
-			</a>
-			<a href="javascript:///">
-				<div class="channel_title">{{channel.name}}</div>
-				<div></div>
-			</a>
+		  <ul class="channellist">
+
+		  	<li ng-repeat="channel in channelList" class="channel_icon-grid-view mod-index-0 pop-over"
+			  	data-original-title="{{channel.description}}" data-placement="auto" ng-click="openDetails(channel)">
+				<div class="channel is-inactive" id="channel_83">
+					<a href="javascript:///">
+						<img alt="{{channel.name}}" class="channel-icon is-size-110  is-using-gray-url" 
+							height="110" src="{{channel['logo-bw']}}" width="110">
+					</a>
+					<a href="javascript:///">
+						<div class="channel_title">{{channel.name}}</div>
+						<div></div>
+					</a>
+				</div>
+
+			</li>
+
+		  </ul>
+
 		</div>
-
-	</li>
-
-  </ul>
-
+	</div>
 </div>
