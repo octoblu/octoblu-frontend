@@ -65,8 +65,8 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'rdio' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
+      'consumerSecret' : 'E5EbEc5vdf',
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'port' : 8080,
@@ -143,8 +143,8 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'rdio' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
+      'consumerSecret' : 'E5EbEc5vdf',
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'port' : 80,
