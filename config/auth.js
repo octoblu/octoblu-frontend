@@ -33,11 +33,13 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'stackexchange' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'clientId'       : '2619',
+      'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
+      'clientSecret' : 'OlbENW0n3RlpTLwLCicYgA((',
+      'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
     },
     'bitly' : {
+      'clientID'    : '75athujre0gp76',
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
@@ -109,8 +111,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
     },
     'stackexchange' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'clientId'       : '2619',
+      'consumerKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
+      'consumerSecret' : 'OlbENW0n3RlpTLwLCicYgA((',
       'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
     },
     'bitly' : {

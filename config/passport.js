@@ -388,9 +388,9 @@ module.exports = function(passport) {
     ));
 
     passport.use(new StackExchangeStrategy({
-        key             : configAuth.stackexchange.consumerKey,
-        clientID        : configAuth.stackexchange.consumerSecret,
-        clientSecret    : configAuth.stackexchange.consumerSecret,
+        clientID        : configAuth.stackexchange.clientId,
+        key             : configAuth.stackexchange.clientKey,
+        clientSecret    : configAuth.stackexchange.clientSecret,
         callbackURL     : configAuth.stackexchange.callbackURL,
         profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
       },
@@ -400,8 +400,9 @@ module.exports = function(passport) {
     ));
 
     passport.use(new BitlyStrategy({
-        clientID        : configAuth.stackexchange.consumerSecret,
-        clientSecret    : configAuth.stackexchange.consumerSecret,
+        clientID        : configAuth.stackexchange.clientId,
+        key             : configAuth.stackexchange.clientKey,
+        clientSecret    : configAuth.stackexchange.clientSecret,
         callbackURL     : configAuth.bitly.callbackURL,
         profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
       },
@@ -422,8 +423,9 @@ module.exports = function(passport) {
     ));
 
     passport.use(new FourSquareStrategy({
-        clientID        : configAuth.stackexchange.consumerSecret,
-        clientSecret    : configAuth.stackexchange.consumerSecret,
+        clientID        : configAuth.stackexchange.clientId,
+        key             : configAuth.stackexchange.clientKey,
+        clientSecret    : configAuth.stackexchange.clientSecret,
         callbackURL     : configAuth.foursquare.callbackURL,
         profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
       },
