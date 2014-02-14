@@ -312,25 +312,71 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
       $scope.devices = data.devices;
     });
 
-    $scope.sendMessage = function(){
+    // connect to skynet
+    var skynetConfig = {
+      "uuid": $scope.skynetuuid,
+      "token": $scope.skynettoken
+    }    
+    skynet(skynetConfig, function (e, socket) {
+      if (e) throw e
 
-      if($scope.sendUuid == undefined || $scope.sendUuid == ""){
-        if($scope.device){
-          var uuid = $scope.device.uuid;
+      // socket.emit('subscribe', {
+      //   "uuid": data.devices[i].uuid,
+      //   "token": data.devices[i].token
+      // }, function (data) {
+      //   // console.log(data); 
+      // });
+
+      $scope.sendMessage = function(){
+
+        if($scope.sendUuid == undefined || $scope.sendUuid == ""){
+          if($scope.device){
+            var uuid = $scope.device.uuid;
+          } else {
+            var uuid = "";
+          }
         } else {
-          var uuid = "";
+          var uuid = $scope.sendUuid;
         }
-      } else {
-        var uuid = $scope.sendUuid;
+
+        if(uuid){
+          // messageService.sendMessage(uuid, $scope.sendText, function(data) {
+          //   $scope.messageOutput = data;
+          // });
+
+          socket.emit('message', {
+            "devices": uuid,
+            "message": $scope.sendText
+          }, function(data){
+            console.log(data); 
+          });     
+          $scope.messageOutput = "Message Sent!";      
+
+        }
       }
 
-      if(uuid){
-        messageService.sendMessage(uuid, $scope.sendText, function(data) {
-          $scope.messageOutput = data;
-        });
 
-      }
-    }
+    });
+
+    // $scope.sendMessage = function(){
+
+    //   if($scope.sendUuid == undefined || $scope.sendUuid == ""){
+    //     if($scope.device){
+    //       var uuid = $scope.device.uuid;
+    //     } else {
+    //       var uuid = "";
+    //     }
+    //   } else {
+    //     var uuid = $scope.sendUuid;
+    //   }
+
+    //   if(uuid){
+    //     messageService.sendMessage(uuid, $scope.sendText, function(data) {
+    //       $scope.messageOutput = data;
+    //     });
+
+    //   }
+    // }
 
   });  
 });
