@@ -370,4 +370,18 @@ module.exports = function(passport) {
       }
     ));
 
+    // passport.use(new LinkedInStrategy({
+    //     consumerKey     : configAuth.linkedIn.consumerKey,
+    //     consumerSecret  : configAuth.linkedIn.consumerSecret,
+    //     callbackURL     : configAuth.linkedIn.callbackURL,
+    //     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+    //   },
+    //   function(req, token, tokenSecret, profile, done) {
+    //     console.log('handling linkedin response with passport');
+    //     // User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
+    //     //   return done(err, user);
+    //     // });
+    //   }
+    // ));
+
 };

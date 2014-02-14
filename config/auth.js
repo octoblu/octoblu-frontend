@@ -27,6 +27,11 @@ if (development) {
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
+    'rdio' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
     'port' : 8080,
     'domain': null
   }
@@ -62,6 +67,11 @@ if (development) {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
+    },
+    'rdio' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'port' : 80,
     'domain': '.octoblu.com'

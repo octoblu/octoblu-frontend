@@ -592,6 +592,20 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       $location.path( '/apis/' + channel.name );
     };
 
+    $scope.getLogoLink = function (channel) {      
+      if($scope.current_user.api) {
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===channel.name) {
+            return channel['logo-color'];
+          }
+        }
+      }
+
+      // if(channel.name==='LinkedIn') return channel['logo-color'];
+      
+      return channel['logo-bw'];
+    };
+
     $scope.alert = function(alertContent){
       alert(JSON.stringify(alertContent));
     };
@@ -714,7 +728,6 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     // });
     console.log($routeParams.name);
     channelService.getByName($routeParams.name, function(data) {
-        console.log(data);
         $scope.channel = data;
       });
 
@@ -828,7 +841,7 @@ function checkLogin($scope, $http, secured, cb) {
     userService.getUser(user, function(data) {
 
       $scope.user_id = data._id;
-      $scope.user = data;
+      $scope.current_user = data;
 
       $(".auth").hide();
       $(".user-menu").show();

@@ -673,7 +673,40 @@ module.exports = function(app, passport) {
   	  passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
 	app.get('/api/auth/LinkedIn/callback', function(req, res, next) {
 
-		console.log('handled linkedin callback..........................................................');
+		// oauth_token={...}&oauth_token_secret={...}&oauth_callback_confirmed=true&oauth_expires_in=599
+        var token = req.param('oauth_token'),
+        	verifier = req.param('oauth_verifier')
+
+        //next step is get an account and add or update the api token and verifier, and date fields (maybe)
+       User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {
+		    	console.log(user);
+		    	user.addOrUpdateApiByName('LinkedIn', token, verifier);
+	        	user.save(function(err) {
+	            	if(!err) {
+	                	console.log("user " + data.uuid + " updated ");
+	                	console.log(user);
+						return res.redirect('/dashboard');
+
+	            	} else {
+	                	console.log("Error: " + err);
+						return res.redirect('/dashboard');
+	            	}
+		        });
+		    }
+		});
+
+	});
+
+	app.get('/api/auth/Rdio',
+  	  passport.authenticate('rdio', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/Rdio/callback', function(req, res, next) {
 
 		// oauth_token={...}&oauth_token_secret={...}&oauth_callback_confirmed=true&oauth_expires_in=599
         var token = req.param('oauth_token'),
