@@ -446,18 +446,37 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       $location.path( '/apis/' + channel.name );
     };
 
-    $scope.getLogoLink = function (channel) {      
+    $scope.isActive = function (channel) {
       if($scope.current_user.api) {
         for(var l = 0; l<$scope.current_user.api.length; l++) {
           if($scope.current_user.api[l].name===channel.name) {
-            return channel['logo-color'];
+            return true;
           }
         }
       }
 
-      // if(channel.name==='LinkedIn') return channel['logo-color'];
-      
-      return channel['logo-bw'];
+      return false;
+    };
+
+    $scope.getFAName = function (channel) {
+      var prefix = 'fa-';
+      var name = channel.name.toLowerCase();
+      if(name==='stackoverflow') { return prefix+'stack-overflow'; }
+      if(name==='vimeo') { return prefix+'vimeo-square'; }
+      if(name==='tumblr') { return prefix+'tumblr-square'; }
+      if(name==='fitbit') { return prefix+'square'; }
+      if(name==='twilio') { return prefix+'square'; }
+      if(name==='tropo') { return prefix+'square'; }
+      if(name==='rdio') { return prefix+'square'; }
+      if(name==='newyork times') { return prefix+'square'; }
+      if(name==='musixmatch') { return prefix+'square'; }
+      if(name==='lastfm') { return prefix+'square'; }
+      if(name==='etsy') { return prefix+'square'; }
+      if(name==='spotify') { return prefix+'square'; }
+      if(name==='delicious') { return prefix+'square'; }
+      if(name==='bitly') { return prefix+'square'; }
+      if(name==='readability') { return prefix+'square'; }
+      return prefix + name;
     };
 
     $scope.alert = function(alertContent){
@@ -630,25 +649,6 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
 });
 
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
-
-var ModalInstanceCtrl = function ($scope, $modalInstance, items, channel) {
-
-  $scope.items = items;
-  $scope.channel = channel;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
-
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-};
 
 e2eApp.controller('designerController', function($scope, $http, $location, nodeRedService) {
 
@@ -713,7 +713,7 @@ e2eApp.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 function checkLogin($scope, $http, secured, cb) {
   googleAnalytics();
   user = $.cookie("skynetuuid");
-  // console.log(user);  
+  console.log("UUID="+user);  
   if(user == undefined || user == null){
     if (secured){
       window.location.href = "/login";

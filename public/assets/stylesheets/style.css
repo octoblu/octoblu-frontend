@@ -590,5 +590,9 @@ margin-right: auto!important;
 	zoom:1;
 	*display:inline;
 	padding: 10px;
-	min-width: 110px
+	min-width: 110px;
+}
+
+.channellist li.activechannel {
+	color: #000;
 }
