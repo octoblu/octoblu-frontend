@@ -667,77 +667,85 @@ module.exports = function(app, passport) {
 			}
 		});
 
-	});	
+	});
+
+	var handleOauth1 = function(name, req, res, next) {
+
+		var token = req.param('oauth_token'),
+        	verifier = req.param('oauth_verifier')
+
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {
+		    	user.addOrUpdateApiByName(name, token, verifier);
+	        	user.save(function(err) {
+	            	if(!err) {
+	                	console.log(user);
+						return res.redirect('/dashboard');
+
+	            	} else {
+	                	console.log("Error: " + err);
+						return res.redirect('/dashboard');
+	            	}
+		        });
+		    }
+		});
+
+	};
 
 	app.get('/api/auth/LinkedIn',
-  	  passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+  	  passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
 	app.get('/api/auth/LinkedIn/callback', function(req, res, next) {
 
-		// oauth_token={...}&oauth_token_secret={...}&oauth_callback_confirmed=true&oauth_expires_in=599
-        var token = req.param('oauth_token'),
-        	verifier = req.param('oauth_verifier')
-
-        //next step is get an account and add or update the api token and verifier, and date fields (maybe)
-       User.findOne({ $or: [
-	    	{"local.skynetuuid" : req.params.id},
-	    	{"twitter.skynetuuid" : req.params.id},
-	    	{"facebook.skynetuuid" : req.params.id},
-	    	{"google.skynetuuid" : req.params.id}
-	    	]
-	    	}, function(err, user) {
-		    if(!err) {
-		    	console.log(user);
-		    	user.addOrUpdateApiByName('LinkedIn', token, verifier);
-	        	user.save(function(err) {
-	            	if(!err) {
-	                	console.log("user " + data.uuid + " updated ");
-	                	console.log(user);
-						return res.redirect('/dashboard');
-
-	            	} else {
-	                	console.log("Error: " + err);
-						return res.redirect('/dashboard');
-	            	}
-		        });
-		    }
-		});
-
+		handleOauth1('LinkedIn', req, res, next);
+				
 	});
+
+
+	app.get('/api/auth/Readability',
+  	  passport.authorize('readability', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/Rdio/callback', 
+		function(req, res, next) { handleOauth1('Rdio', req, res, next); });
+
+	app.get('/api/auth/StackOverflow',
+  	  passport.authorize('stackexchange', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/StackOverflow/callback', 
+		function(req, res, next) { handleOauth1('StackOverflow', req, res, next); });
+
+	app.get('/api/auth/Bitly',
+  	  passport.authorize('bitly', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/Bitly/callback', 
+		function(req, res, next) { handleOauth1('Bitly', req, res, next); });
+
+	app.get('/api/auth/Vimeo',
+  	  passport.authorize('vimeo', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/Vimeo/callback', 
+		function(req, res, next) { handleOauth1('Vimeo', req, res, next); });
+
+	app.get('/api/auth/FourSquare',
+  	  passport.authorize('foursquare', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/FourSquare/callback', 
+		function(req, res, next) { handleOauth1('FourSquare', req, res, next); });
+
+	app.get('/api/auth/Tumblr',
+  	  passport.authorize('tumblr', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/Tumblr/callback', 
+		function(req, res, next) { handleOauth1('Tumblr', req, res, next); });
+
+	app.get('/api/auth/FitBit',
+  	  passport.authorize('fitbit', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/FitBit/callback', 
+		function(req, res, next) { handleOauth1('FitBit', req, res, next); });
 
 	app.get('/api/auth/Rdio',
-  	  passport.authenticate('rdio', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-	app.get('/api/auth/Rdio/callback', function(req, res, next) {
-
-		// oauth_token={...}&oauth_token_secret={...}&oauth_callback_confirmed=true&oauth_expires_in=599
-        var token = req.param('oauth_token'),
-        	verifier = req.param('oauth_verifier')
-
-        //next step is get an account and add or update the api token and verifier, and date fields (maybe)
-       User.findOne({ $or: [
-	    	{"local.skynetuuid" : req.params.id},
-	    	{"twitter.skynetuuid" : req.params.id},
-	    	{"facebook.skynetuuid" : req.params.id},
-	    	{"google.skynetuuid" : req.params.id}
-	    	]
-	    	}, function(err, user) {
-		    if(!err) {
-		    	console.log(user);
-		    	user.addOrUpdateApiByName('LinkedIn', token, verifier);
-	        	user.save(function(err) {
-	            	if(!err) {
-	                	console.log("user " + data.uuid + " updated ");
-	                	console.log(user);
-						return res.redirect('/dashboard');
-
-	            	} else {
-	                	console.log("Error: " + err);
-						return res.redirect('/dashboard');
-	            	}
-		        });
-		    }
-		});
-
-	});
+  	  passport.authorize('rdio', { scope: ['r_basicprofile', 'r_emailaddress'] }));
+	app.get('/api/auth/Rdio/callback', 
+		function(req, res, next) { handleOauth1('Rdio', req, res, next); });
 
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {

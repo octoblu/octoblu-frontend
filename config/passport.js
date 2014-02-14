@@ -5,6 +5,15 @@ var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var LinkedInStrategy = require('passport-linkedin').Strategy
 
+var ReadabilityStrategy = require('passport-readability').Strategy
+var StackExchangeStrategy = require('passport-stackexchange').Strategy
+var BitlyStrategy = require('passport-bitly').Strategy
+var VimeoStrategy = require('passport-vimeo').Strategy
+var FourSquareStrategy = require('passport-foursquare').Strategy
+var TumblrStrategy = require('passport-tumblr').Strategy
+var FitBitStrategy = require('passport-fitbit').Strategy
+var RdioStrategy     = require('passport-rdio').Strategy
+
 // load up the user model
 var User       = require('../app/models/user');
 
@@ -364,24 +373,96 @@ module.exports = function(passport) {
       },
       function(req, token, tokenSecret, profile, done) {
         console.log('handling linkedin response with passport');
-        // User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
-        //   return done(err, user);
-        // });
       }
     ));
 
-    // passport.use(new LinkedInStrategy({
-    //     consumerKey     : configAuth.linkedIn.consumerKey,
-    //     consumerSecret  : configAuth.linkedIn.consumerSecret,
-    //     callbackURL     : configAuth.linkedIn.callbackURL,
-    //     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-    //   },
-    //   function(req, token, tokenSecret, profile, done) {
-    //     console.log('handling linkedin response with passport');
-    //     // User.findOrCreate({ linkedinId: profile.id }, function (err, user) {
-    //     //   return done(err, user);
-    //     // });
-    //   }
-    // ));
+    passport.use(new ReadabilityStrategy({
+        consumerKey     : configAuth.readability.consumerKey,
+        consumerSecret  : configAuth.readability.consumerSecret,
+        callbackURL     : configAuth.readability.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling readability response with passport');
+      }
+    ));
+
+    passport.use(new StackExchangeStrategy({
+        key             : configAuth.stackexchange.consumerKey,
+        clientID        : configAuth.stackexchange.consumerSecret,
+        clientSecret    : configAuth.stackexchange.consumerSecret,
+        callbackURL     : configAuth.stackexchange.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling stackexchange response with passport');
+      }
+    ));
+
+    passport.use(new BitlyStrategy({
+        clientID        : configAuth.stackexchange.consumerSecret,
+        clientSecret    : configAuth.stackexchange.consumerSecret,
+        callbackURL     : configAuth.bitly.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling bitly response with passport');
+      }
+    ));
+
+    passport.use(new VimeoStrategy({
+        consumerKey     : configAuth.vimeo.consumerKey,
+        consumerSecret  : configAuth.vimeo.consumerSecret,
+        callbackURL     : configAuth.vimeo.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling vimeo response with passport');
+      }
+    ));
+
+    passport.use(new FourSquareStrategy({
+        clientID        : configAuth.stackexchange.consumerSecret,
+        clientSecret    : configAuth.stackexchange.consumerSecret,
+        callbackURL     : configAuth.foursquare.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling foursquare response with passport');
+      }
+    ));
+
+    passport.use(new TumblrStrategy({
+        consumerKey     : configAuth.tumblr.consumerKey,
+        consumerSecret  : configAuth.tumblr.consumerSecret,
+        callbackURL     : configAuth.tumblr.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling tumblr response with passport');
+      }
+    ));
+
+    passport.use(new FitBitStrategy({
+        consumerKey     : configAuth.fitbit.consumerKey,
+        consumerSecret  : configAuth.fitbit.consumerSecret,
+        callbackURL     : configAuth.fitbit.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling fitbit response with passport');
+      }
+    ));
+
+    passport.use(new RdioStrategy({
+        consumerKey     : configAuth.rdio.consumerKey,
+        consumerSecret  : configAuth.rdio.consumerSecret,
+        callbackURL     : configAuth.rdio.callbackURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+      },
+      function(req, token, tokenSecret, profile, done) {
+        console.log('handling rdio response with passport');
+      }
+    ));
 
 };

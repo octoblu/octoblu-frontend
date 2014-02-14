@@ -1,4 +1,4 @@
-e2eApp.controller('mainController', function(checkLogin$scope, $location) {
+e2eApp.controller('mainController', function($scope, $location) {
   $("#main-nav").hide();
   user = $.cookie("skynetuuid");
   if(user != undefined ){
@@ -250,11 +250,13 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
             }, function (data) {
               // console.log(data); 
             });
-        }
 
-          // Setup dashboard arrays for devices
-          dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid }); 
-          deviceData[data.devices[i].uuid] = 0;
+            // Setup dashboard arrays for devices
+            dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid }); 
+            deviceData[data.devices[i].uuid] = 0;
+  
+          }
+
         }
 
         // http://canvasjs.com/ << TODO: pucharse $299
@@ -295,200 +297,6 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
       });
     });
 
-
-
-    // // Live chart data
-    // var dps = []; // dataPoints
-
-    // var chart = new CanvasJS.Chart("chartContainer",{
-    //   title :{
-    //     text: "Live Sensor Data"
-    //   },      
-    //   data: [{
-    //     type: "line",
-    //     dataPoints: dps 
-    //   }]
-    // });
-
-    // var xVal = 0;
-    // var yVal = 100; 
-    // var updateInterval = 20;
-    // var dataLength = 500; // number of dataPoints visible at any point
-
-    // var updateChart = function (count) {
-    //   count = count || 1;
-    //   // count is number of times loop runs to generate random dataPoints.
-      
-    //   for (var j = 0; j < count; j++) { 
-    //     yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
-    //     dps.push({
-    //       x: xVal,
-    //       y: yVal
-    //     });
-    //     xVal++;
-    //   };
-    //   if (dps.length > dataLength)
-    //   {
-    //     dps.shift();        
-    //   }
-      
-    //   chart.render();   
-
-    // };
-
-    // // generates first set of dataPoints
-    // updateChart(dataLength); 
-
-    // // update chart after specified time. 
-    // setInterval(function(){updateChart()}, updateInterval); 
-
-
-
-
-    // // dataPoints
-    // var dataPoints1 = [];
-    // var dataPoints2 = [];
-
-    // var chart = new CanvasJS.Chart("chartContainer",{
-    //   zoomEnabled: true,
-    //   title: {
-    //     text: "Device Activity"    
-    //   },
-    //   toolTip: {
-    //     shared: true
-        
-    //   },
-    //   legend: {
-    //     verticalAlign: "top",
-    //     horizontalAlign: "center",
-    //     fontSize: 14,
-    //     fontWeight: "bold",
-    //     fontFamily: "calibri",
-    //     fontColor: "dimGrey"
-    //   },
-    //   axisX: {
-    //     title: "chart updates on every device event"
-    //   },
-    //   axisY:{
-    //     prefix: '',
-    //     includeZero: false
-    //   }, 
-    //   data: [{ 
-    //     // dataSeries1
-    //     type: "line",
-    //     xValueType: "dateTime",
-    //     showInLegend: true,
-    //     name: "Company A",
-    //     dataPoints: dataPoints1
-    //   },
-    //   {       
-    //     // dataSeries2
-    //     type: "line",
-    //     xValueType: "dateTime",
-    //     showInLegend: true,
-    //     name: "Company B" ,
-    //     dataPoints: dataPoints2
-    //   }]
-    // });
-
-
-
-    // var updateInterval = 3000;
-    // // initial value
-    // var yValue1 = 640; 
-    // var yValue2 = 604;
-
-    // var time = new Date;
-    // time.setHours(9);
-    // time.setMinutes(30);
-    // time.setSeconds(00);
-    // time.setMilliseconds(00);
-    // // starting at 9.30 am
-
-    // var updateChart = function (count) {
-    //   count = count || 1;
-
-    //   // count is number of times loop runs to generate random dataPoints. 
-
-    //   for (var i = 0; i < count; i++) {
-        
-    //     // add interval duration to time        
-    //     time.setTime(time.getTime()+ updateInterval);
-
-
-    //     // generating random values
-    //     var deltaY1 = .5 + Math.random() *(-.5-.5);
-    //     var deltaY2 = .5 + Math.random() *(-.5-.5);
-
-    //     // adding random value and rounding it to two digits. 
-    //     yValue1 = Math.round((yValue1 + deltaY1)*100)/100;
-    //     yValue2 = Math.round((yValue2 + deltaY2)*100)/100;
-        
-    //     // pushing the new values
-    //     dataPoints1.push({
-    //       x: time.getTime(),
-    //       y: yValue1
-    //     });
-    //     dataPoints2.push({
-    //       x: time.getTime(),
-    //       y: yValue2
-    //     });
-
-
-    //   };
-
-    //   // updating legend text with  updated with y Value 
-    //   chart.options.data[0].legendText = " Company A  $" + yValue1;
-    //   chart.options.data[1].legendText = " Company B  $" + yValue2; 
-
-    //   chart.render();
-
-    // };
-
-    // // generates first set of dataPoints 
-    // updateChart(3000);  
-     
-    // // update chart after specified interval 
-    // setInterval(function(){updateChart()}, updateInterval);
-
-
-
-
-//     var chart = new CanvasJS.Chart("chartContainer", {
-//         theme: "theme2",//theme1
-//         title:{
-//             text: "Real-time Device Activity"              
-//        },
-//         data: [              
-//         {
-// // Change type to "bar", "splineArea", "area", "spline", "pie",etc.
-//             type: "column",
-//             dataPoints: [
-//             { label: "apple", y: 10 },
-//             { label: "orange", y: 15 },
-//             { label: "banana", y: 25 },
-//             { label: "mango", y: 30 },
-//             { label: "grape", y: 28 }
-//             ]
-//         }
-//         ]
-//     });
-
-//     chart.render();
-
-
-    // chart.options.data[0].dataPoints = [
-    //         { label: "apple", y: 20 },
-    //         { label: "orange", y: 15 },
-    //         { label: "banana", y: 25 },
-    //         { label: "mango", y: 30 },
-    //         { label: "grape", y: 28 }
-    //         ]
-    // chart.render();
-
-
-
-
   });  
 });
 
@@ -504,25 +312,71 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
       $scope.devices = data.devices;
     });
 
-    $scope.sendMessage = function(){
+    // connect to skynet
+    var skynetConfig = {
+      "uuid": $scope.skynetuuid,
+      "token": $scope.skynettoken
+    }    
+    skynet(skynetConfig, function (e, socket) {
+      if (e) throw e
 
-      if($scope.sendUuid == undefined || $scope.sendUuid == ""){
-        if($scope.device){
-          var uuid = $scope.device.uuid;
+      // socket.emit('subscribe', {
+      //   "uuid": data.devices[i].uuid,
+      //   "token": data.devices[i].token
+      // }, function (data) {
+      //   // console.log(data); 
+      // });
+
+      $scope.sendMessage = function(){
+
+        if($scope.sendUuid == undefined || $scope.sendUuid == ""){
+          if($scope.device){
+            var uuid = $scope.device.uuid;
+          } else {
+            var uuid = "";
+          }
         } else {
-          var uuid = "";
+          var uuid = $scope.sendUuid;
         }
-      } else {
-        var uuid = $scope.sendUuid;
+
+        if(uuid){
+          // messageService.sendMessage(uuid, $scope.sendText, function(data) {
+          //   $scope.messageOutput = data;
+          // });
+
+          socket.emit('message', {
+            "devices": uuid,
+            "message": $scope.sendText
+          }, function(data){
+            console.log(data); 
+          });     
+          $scope.messageOutput = "Message Sent!";      
+
+        }
       }
 
-      if(uuid){
-        messageService.sendMessage(uuid, $scope.sendText, function(data) {
-          $scope.messageOutput = data;
-        });
 
-      }
-    }
+    });
+
+    // $scope.sendMessage = function(){
+
+    //   if($scope.sendUuid == undefined || $scope.sendUuid == ""){
+    //     if($scope.device){
+    //       var uuid = $scope.device.uuid;
+    //     } else {
+    //       var uuid = "";
+    //     }
+    //   } else {
+    //     var uuid = $scope.sendUuid;
+    //   }
+
+    //   if(uuid){
+    //     messageService.sendMessage(uuid, $scope.sendText, function(data) {
+    //       $scope.messageOutput = data;
+    //     });
+
+    //   }
+    // }
 
   });  
 });
@@ -703,6 +557,10 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     $scope.addKeyVals = function() {
       $scope.keys.push( {key:'', value:''} ); 
     }
+    $scope.removeKeyVals = function(idx) {
+      // $scope.keys.push( {key:'', value:''} ); 
+      $scope.keys.splice(idx,1);
+    }
 
   });  
 
@@ -733,7 +591,9 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
     $scope.authorize = function (channel) {
       //$location.path( '/api/auth/' + channel.name );
-      location.href = '/api/auth/' + channel.name;
+      var loc = '/api/auth/' + channel.name;
+      console.log(loc);
+      location.href = loc;
     };
 
     $scope.logo_url = function() {

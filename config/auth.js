@@ -27,6 +27,41 @@ if (development) {
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
+    'readability' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'stackexchange' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'bitly' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'vimeo' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'foursquare' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'tumblr' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'fitbit' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
     'rdio' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
@@ -67,6 +102,41 @@ if (development) {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
+    },
+    'readability' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'stackexchange' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'bitly' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'vimeo' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'foursquare' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'tumblr' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'fitbit' : {
+      'consumerKey'    : '75athujre0gp76',
+      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'rdio' : {
       'consumerKey'    : '75athujre0gp76',
