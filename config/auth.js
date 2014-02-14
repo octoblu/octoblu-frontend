@@ -60,9 +60,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Tumblr/callback'
     },
     'fitbit' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'consumerKey'    : '2757456acad54cdabf6414926303421d',
+      'consumerSecret' : 'a3648d726d0e4ea091fe2d40ecc1b55b',
+      'callbackURL'    : 'http://localhost:8080/api/auth/FitBit/callback'
     },
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
@@ -138,9 +138,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Tumblr/callback'
     },
     'fitbit' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'consumerKey'    : '2757456acad54cdabf6414926303421d',
+      'consumerSecret' : 'a3648d726d0e4ea091fe2d40ecc1b55b',
+      'callbackURL'    : 'http://localhost:8080/api/auth/FitBit/callback'
     },
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
