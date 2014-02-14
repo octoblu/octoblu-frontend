@@ -1,14 +1,86 @@
-<div class="jumbotron text-center">
+<section id='content'>
+  <div class='container'>
+    <div class='row' id='content-wrapper'>
+      <div class='col-xs-12'>
+        
+        <div class='page-header page-header-with-buttons'>
+          <h1 class='pull-left'>
+            <i class='icon-code-fork'></i>
+            <span>Connector</span>              
+          </h1>
+        </div>
+        <ul class="nav nav-tabs">
+          <li ng-class="{active: activeTab == 'devices'}" id="devices">
+            <a ng-click="activeTab = 'devices'" href="/devices">Devices</a>
+          </li>
+          <li ng-class="{active: activeTab == 'gateways'}">
+            <a ng-click="activeTab = 'gateways'" href="/gateways">Gateways</a>
+          </li>
+          <li ng-class="{active: activeTab == 'apis'}">
+            <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
+          </li>
+          <li ng-class="{active: activeTab == 'devtools'}">
+            <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div ng-switch="activeTab">
+            <div ng-switch-when="devices">
+               <ng-include src=" 'pages/devices.html' "></ng-include>
+            </div>
+            <div ng-switch-when="gateways">
+               <ng-include src=" 'pages/gateways.html' "></ng-include>
+            </div>
+            <div ng-switch-when="apis">
+               <ng-include src=" 'pages/apis.html' "></ng-include>
+            </div>
+            <div ng-switch-when="devtools">
+               <ng-include src=" 'pages/devtools.html' "></ng-include>
+            </div>
+          </div>
+        </div>
 
-  <div>
-    <img src="{{logo_url()}}" height="30px" /> &nbsp; <b>{{channel.name}}</b>
-  </div>
+      </div>
 
-  <div ng-hide="isSimpleAuth()">
-    <button class="btn btn-default" ng-click="authorize(channel)">Authenticate</button>
-  </div>
+    </div>
+    <div class="row col-xs-12">
 
-  <div ng-show="isSimpleAuth()">
+    <div class="text-center">
+
+      <div class="pull-left">
+        <img src="{{logo_url()}}" height="100px" /> &nbsp; <h2>{{channel.name}}</h2>
+      </div>
+
+      <div class="pull-right" ng-hide="isSimpleAuth()">
+        <button class="btn btn-large btn-primary" ng-click="authorize(channel)">Authenticate</button>
+      </div>
+
+    </div>
+    </div>
+    <div class="row col-xs-12">
+      <br /><br />
+      <h4><strong>Base URI: {{channel.application.resources.base}}</strong></h4>
+      <br /><br />
+    <div ng-hide="channel.application.resources.resource.length">No API resources found</div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <tr ng-repeat="resource in channel.application.resources.resource">
+          
+          <td>{{resource.method.name}}</td>
+          <td>{{resource.path}}</td>
+          <td>{{resource.method.doc.$t}}</td>
+
+        </tr>
+      </table>
+    </div>
+
+
+    </div>
+
+</section>
+
+
+<!--   <div ng-show="isSimpleAuth()">
   	<fieldset>
   		<label for="key">Key:</label>
   		<input id="key" name="key" type="text" />
@@ -21,5 +93,4 @@
   		<button class="btn btn-default" ng-click="save()">Save</button>
   	</fieldset>
   </div>
-
-</div>
+ -->

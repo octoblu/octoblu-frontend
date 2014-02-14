@@ -573,6 +573,8 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
   
   $scope.skynetStatus = false;
   $scope.channel = {};
+  $scope.activeTab = 'apis';
+  $("#apis").addClass('active');  
 
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
