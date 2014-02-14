@@ -50,9 +50,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'foursquare' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
+      'clientSecret' : '3XRB1YRDIP1WYTUXZWZPN5IE5OLXV0GIBQT1VYZYDFMKGWX4',
+      'callbackURL'    : 'http://localhost:8080/api/auth/FourSquare/callback'
     },
     'tumblr' : {
       'consumerKey'    : '75athujre0gp76',

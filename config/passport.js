@@ -423,9 +423,9 @@ module.exports = function(passport) {
     ));
 
     passport.use(new FourSquareStrategy({
-        clientID        : configAuth.stackexchange.clientId,
-        key             : configAuth.stackexchange.clientKey,
-        clientSecret    : configAuth.stackexchange.clientSecret,
+        clientID        : configAuth.foursquare.clientKey,
+        key             : configAuth.foursquare.clientKey,
+        clientSecret    : configAuth.foursquare.clientSecret,
         callbackURL     : configAuth.foursquare.callbackURL,
         profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
       },
