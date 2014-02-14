@@ -55,9 +55,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/FourSquare/callback'
     },
     'tumblr' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'consumerKey'    : 'XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb',
+      'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Tumblr/callback'
     },
     'fitbit' : {
       'consumerKey'    : '75athujre0gp76',
@@ -108,38 +108,39 @@ if (development) {
     'readability' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
-      'consumerKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
-      'consumerSecret' : 'OlbENW0n3RlpTLwLCicYgA((',
+      'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
+      'clientSecret' : 'OlbENW0n3RlpTLwLCicYgA((',
       'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
     },
     'bitly' : {
+      'clientID'    : '75athujre0gp76',
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Bitly/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'vimeo' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Vimeo/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'foursquare' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
+      'clientSecret' : '3XRB1YRDIP1WYTUXZWZPN5IE5OLXV0GIBQT1VYZYDFMKGWX4',
       'callbackURL'    : 'http://localhost:8080/api/auth/FourSquare/callback'
     },
     'tumblr' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
+      'consumerKey'    : 'XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb',
+      'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
       'callbackURL'    : 'http://localhost:8080/api/auth/Tumblr/callback'
     },
     'fitbit' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/FitBit/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'rdio' : {
       'consumerKey'    : '75athujre0gp76',
