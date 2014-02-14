@@ -28,9 +28,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
     'readability' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'consumerKey'    : 'rebootd',
+      'consumerSecret' : 'gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
@@ -106,9 +106,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
     'readability' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'consumerKey'    : 'rebootd',
+      'consumerSecret' : 'gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
