@@ -51,7 +51,7 @@
         <img src="{{logo_url()}}" height="100px" /> &nbsp; <h2>{{channel.name}}</h2>
       </div>
 
-      <div class="pull-right">
+      <div class="pull-right" ng-hide="isSimpleAuth()">
         <button class="btn btn-large btn-primary" ng-click="authorize(channel)">Authenticate</button>
       </div>
 
@@ -77,8 +77,20 @@
 
     </div>
 
-
-  </div>
 </section>
 
 
+<!--   <div ng-show="isSimpleAuth()">
+  	<fieldset>
+  		<label for="key">Key:</label>
+  		<input id="key" name="key" type="text" />
+  		<br/>
+
+  		<label for="token">Token:</label>
+  		<input id="token" name="token" type="text" />
+  		<br/>
+
+  		<button class="btn btn-default" ng-click="save()">Save</button>
+  	</fieldset>
+  </div>
+ -->

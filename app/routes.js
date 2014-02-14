@@ -36,7 +36,7 @@ module.exports = function(app, passport) {
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
 	      console.log(user.local.skynetuuid);
-        res.cookie('skynetuuid', user.local.skynetuuid, {
+	    res.cookie('skynetuuid', user.local.skynetuuid, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           domain: config.domain,
           httpOnly: false
@@ -75,18 +75,18 @@ module.exports = function(app, passport) {
 			        , function(err){
 								if(!err) {
 		                console.log("user " + data.uuid + " updated");
-						        res.cookie('skynetuuid', data.uuid, {
-						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-						          domain: config.domain,
-						          httpOnly: false
-						        });	
-						        res.cookie('skynettoken', data.token, {
-						          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-						          domain: config.domain,
-						          httpOnly: false
-						        });	
+		                res.cookie('skynetuuid', data.uuid, {
+				          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+				          domain: config.domain,
+				          httpOnly: false
+				        });	
+				        res.cookie('skynettoken', data.token, {
+				          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+				          domain: config.domain,
+				          httpOnly: false
+				        });	
 
-							      return res.redirect('/dashboard');
+					      return res.redirect('/dashboard');
 
 		            }
 		            else {
@@ -141,17 +141,17 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('skynetuuid', data.uuid, {
-										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          domain: config.domain,
-										          httpOnly: false
-										        });	
-										        res.cookie('skynettoken', data.token, {
-										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          domain: config.domain,
-										          httpOnly: false
-										        });	
-											      return res.redirect('/dashboard');
+						                res.cookie('skynetuuid', data.uuid, {
+								          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+								          domain: config.domain,
+								          httpOnly: false
+								        });	
+								        res.cookie('skynettoken', data.token, {
+								          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+								          domain: config.domain,
+								          httpOnly: false
+								        });	
+									      return res.redirect('/dashboard');
 
 						            }
 						            else {
@@ -173,11 +173,12 @@ module.exports = function(app, passport) {
 
 
 			    } else {
-		        res.cookie('skynetuuid', data.devices[0], {
-		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-		          domain: config.domain,
-		          httpOnly: false
-		        });		     
+
+			    	res.cookie('skynetuuid', data.devices[0], {
+			          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+			          domain: config.domain,
+			          httpOnly: false
+			        });
 
 			    	return res.redirect('/dashboard');
 			    }
@@ -305,17 +306,17 @@ module.exports = function(app, passport) {
 							        user.save(function(err) {
 						            if(!err) {
 						                console.log("user " + data.uuid + " updated ");
-										        res.cookie('skynetuuid', data.uuid, {
-										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          domain: config.domain,
-										          httpOnly: false
-										        });	
-										        res.cookie('skynettoken', data.token, {
-										          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-										          domain: config.domain,
-										          httpOnly: false
-										        });	
-											      return res.redirect('/dashboard');
+								        res.cookie('skynetuuid', data.uuid, {
+								          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+								          domain: config.domain,
+								          httpOnly: false
+								        });	
+								        res.cookie('skynettoken', data.token, {
+								          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+								          domain: config.domain,
+								          httpOnly: false
+								        });	
+									      return res.redirect('/dashboard');
 
 						            }
 						            else {
@@ -451,25 +452,25 @@ module.exports = function(app, passport) {
 	// Get user
 	app.get('/api/user/:id', function(req, res) {
 
-    User.findOne({ $or: [
-    	{"local.skynetuuid" : req.params.id},
-    	{"twitter.skynetuuid" : req.params.id},
-    	{"facebook.skynetuuid" : req.params.id},
-    	{"google.skynetuuid" : req.params.id}
-    	]
-    }, function(err, userInfo) {
-    	// console.log(userInfo);
-      if (err) {
-        res.send(err);
-      } else {
-      	// not sure why local.password cannot be deleted from user object
-      	// if (userInfo && userInfo.local){
-	      // 	userInfo.local.password = null;
-	      // 	delete userInfo.local.password;      		
-      	// }
-        res.json(userInfo);
-      }
-    });
+	    User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    }, function(err, userInfo) {
+	    	// console.log(userInfo);
+	      if (err) {
+	        res.send(err);
+	      } else {
+	      	// not sure why local.password cannot be deleted from user object
+	      	// if (userInfo && userInfo.local){
+		      // 	userInfo.local.password = null;
+		      // 	delete userInfo.local.password;      		
+	      	// }
+	        res.json(userInfo);
+	      }
+	    });
 	});
 
 	// Get devices by owner
@@ -669,10 +670,7 @@ module.exports = function(app, passport) {
 
 	});
 
-	var handleOauth1 = function(name, req, res, next) {
-
-		var token = req.param('oauth_token'),
-        	verifier = req.param('oauth_verifier')
+	app.put('/api/user/:userid/channel/:name', function(req, res) {
 
 		User.findOne({ $or: [
 	    	{"local.skynetuuid" : req.params.id},
@@ -681,8 +679,37 @@ module.exports = function(app, passport) {
 	    	{"google.skynetuuid" : req.params.id}
 	    	]
 	    	}, function(err, user) {
+		    if(!err) {		  
+		    	user.addOrUpdateApiByName(name, 'simple', null, token, verifier);
+	        	user.save(function(err) {
+	            	if(!err) {
+	                	console.log(user);
+						res.json(user);
+
+	            	} else {
+	                	console.log("Error: " + err);
+						res.json(user);
+	            	}
+		        });
+		    }
+		});
+
+	});
+
+	var handleOauth1 = function(name, req, res, next) {
+
+		var token = req.param('oauth_token'),
+        	verifier = req.param('oauth_verifier')
+
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.cookies.skynetuuid},
+	    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
+	    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
+	    	{"google.skynetuuid" : req.cookies.skynetuuid}
+	    	]
+	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(name, token, verifier);
+		    	user.addOrUpdateApiByName(name, 'oauth', null, token, verifier);
 	        	user.save(function(err) {
 	            	if(!err) {
 	                	console.log(user);
@@ -700,17 +727,13 @@ module.exports = function(app, passport) {
 
 	app.get('/api/auth/LinkedIn',
   	  passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-	app.get('/api/auth/LinkedIn/callback', function(req, res, next) {
-
-		handleOauth1('LinkedIn', req, res, next);
-				
-	});
-
+	app.get('/api/auth/LinkedIn/callback', 
+		function(req, res, next) { handleOauth1('LinkedIn', req, res, next); });
 
 	app.get('/api/auth/Readability',
   	  passport.authorize('readability', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-	app.get('/api/auth/Rdio/callback', 
-		function(req, res, next) { handleOauth1('Rdio', req, res, next); });
+	app.get('/api/auth/Readability/callback', 
+		function(req, res, next) { handleOauth1('Readability', req, res, next); });
 
 	app.get('/api/auth/StackOverflow',
   	  passport.authorize('stackexchange', { scope: ['r_basicprofile', 'r_emailaddress'] }));
@@ -746,6 +769,7 @@ module.exports = function(app, passport) {
   	  passport.authorize('rdio', { scope: ['r_basicprofile', 'r_emailaddress'] }));
 	app.get('/api/auth/Rdio/callback', 
 		function(req, res, next) { handleOauth1('Rdio', req, res, next); });
+
 
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {
