@@ -400,9 +400,9 @@ module.exports = function(passport) {
     ));
 
     passport.use(new BitlyStrategy({
-        clientID        : configAuth.stackexchange.clientId,
-        key             : configAuth.stackexchange.clientKey,
-        clientSecret    : configAuth.stackexchange.clientSecret,
+        clientID        : configAuth.bitly.clientId,
+        key             : configAuth.bitly.clientId,
+        clientSecret    : configAuth.bitly.clientSecret,
         callbackURL     : configAuth.bitly.callbackURL,
         profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
       },

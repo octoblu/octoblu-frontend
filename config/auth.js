@@ -39,10 +39,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
     },
     'bitly' : {
-      'clientID'       : '75athujre0gp76',
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'clientId'       : '1c55f213d790c4b5efc3ab67520d71926daf33fe',
+      'clientSecret'    : 'e07a564eca8414628833830ea3c42800f16aef98',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Bitly/callback'
     },
     'vimeo' : {
       'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
@@ -118,10 +117,9 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
     },
     'bitly' : {
-      'clientID'    : '75athujre0gp76',
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'clientId'       : '1c55f213d790c4b5efc3ab67520d71926daf33fe',
+      'clientSecret'    : 'e07a564eca8414628833830ea3c42800f16aef98',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Bitly/callback'
     },
     'vimeo' : {
       'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
