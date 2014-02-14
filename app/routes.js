@@ -669,6 +669,32 @@ module.exports = function(app, passport) {
 
 	});
 
+	app.put('/api/user/:userid/channel/:name', function(req, res) {
+
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {		  
+		    	user.addOrUpdateApiByName(name, 'simple', null, token, verifier);
+	        	user.save(function(err) {
+	            	if(!err) {
+	                	console.log(user);
+						res.json(user);
+
+	            	} else {
+	                	console.log("Error: " + err);
+						res.json(user);
+	            	}
+		        });
+		    }
+		});
+
+	});
+
 	var handleOauth1 = function(name, req, res, next) {
 
 		var token = req.param('oauth_token'),
@@ -682,7 +708,7 @@ module.exports = function(app, passport) {
 	    	]
 	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(name, token, verifier);
+		    	user.addOrUpdateApiByName(name, 'oauth', null, token, verifier);
 	        	user.save(function(err) {
 	            	if(!err) {
 	                	console.log(user);
@@ -700,12 +726,8 @@ module.exports = function(app, passport) {
 
 	app.get('/api/auth/LinkedIn',
   	  passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-	app.get('/api/auth/LinkedIn/callback', function(req, res, next) {
-
-		handleOauth1('LinkedIn', req, res, next);
-				
-	});
-
+	app.get('/api/auth/LinkedIn/callback', 
+		function(req, res, next) { handleOauth1('LinkedIn', req, res, next); });
 
 	app.get('/api/auth/Readability',
   	  passport.authorize('readability', { scope: ['r_basicprofile', 'r_emailaddress'] }));
@@ -746,6 +768,7 @@ module.exports = function(app, passport) {
   	  passport.authorize('rdio', { scope: ['r_basicprofile', 'r_emailaddress'] }));
 	app.get('/api/auth/Rdio/callback', 
 		function(req, res, next) { handleOauth1('Rdio', req, res, next); });
+
 
 	// show the home page (will also have our login links)
 	app.get('/*', function(req, res) {

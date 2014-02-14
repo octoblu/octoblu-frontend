@@ -579,15 +579,37 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
-
-    // get api list, if showing api
-    // channelService.getList(function(data) {
-    //   $scope.channelList = data;
-    // });
+    
     console.log($routeParams.name);
     channelService.getByName($routeParams.name, function(data) {
         $scope.channel = data;
       });
+
+    $scope.isSimpleAuth = function() {
+      if(!$scope.channel) return false;
+      if($scope.channel.name==='Twilio' || 
+        $scope.channel.name==='Tropo') {
+        return true;
+      }
+
+      return false;
+
+    };
+
+    $scope.save = function() {
+      if(!$scope.channel) return;
+      if($scope.channel.name==='Twilio' || 
+        $scope.channel.name==='Tropo') {
+        return true;
+      }
+
+      //current user: $scope.current_user = data;
+      //skynetuuid: $scope.skynetuuid
+      
+      
+      return false;
+
+    };
 
     $scope.authorize = function (channel) {
       //$location.path( '/api/auth/' + channel.name );

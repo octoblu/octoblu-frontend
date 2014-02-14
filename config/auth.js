@@ -101,42 +101,42 @@ if (development) {
     'linkedIn' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/linkedin/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
     'readability' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
     },
     'stackexchange' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
     },
     'bitly' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Bitly/callback'
     },
     'vimeo' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Vimeo/callback'
     },
     'foursquare' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/FourSquare/callback'
     },
     'tumblr' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/Tumblr/callback'
     },
     'fitbit' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://localhost:8080/api/auth/FitBit/callback'
     },
     'rdio' : {
       'consumerKey'    : '75athujre0gp76',
