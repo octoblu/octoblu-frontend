@@ -35,19 +35,20 @@ if (development) {
     'stackexchange' : {
       'clientId'       : '2619',
       'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
-      'clientSecret' : 'OlbENW0n3RlpTLwLCicYgA((',
+      'clientSecret'   : 'OlbENW0n3RlpTLwLCicYgA((',
       'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
     },
     'bitly' : {
-      'clientID'    : '75athujre0gp76',
+      'clientID'       : '75athujre0gp76',
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'vimeo' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
+      'consumerSecret'   : 'dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8',
+      'token'          : 'adcfb27faab26a4f06eb20750f628b86',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Vimeo/callback'
     },
     'foursquare' : {
       'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
@@ -123,9 +124,10 @@ if (development) {
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
     'vimeo' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
+      'consumerSecret'   : 'dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8',
+      'token'          : 'adcfb27faab26a4f06eb20750f628b86',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Vimeo/callback'
     },
     'foursquare' : {
       'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
