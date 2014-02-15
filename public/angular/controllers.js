@@ -431,7 +431,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
     // Get user gateways
     ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
+      $scope.editGatewaySection = false;
       $scope.gateways = data.gateways;
+
     });
 
     // get api list, if showing api
@@ -580,6 +582,29 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       // $scope.keys.push( {key:'', value:''} ); 
       $scope.keys.splice(idx,1);
     }
+
+    $scope.editGateway = function( idx ){
+      $scope.editGatewaySection = true;
+      var gateway_to_edit = $scope.gateways[idx];
+      $scope.gatewayName = gateway_to_edit.name;
+
+      // find additional keys to edit
+      var keys = [];
+      for (var key in gateway_to_edit) {
+        if (gateway_to_edit.hasOwnProperty(key)) {
+          if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
+            keys.push({"key": key, "value": gateway_to_edit[key]});
+          }        
+        }
+      }      
+      if(keys.length){
+        $scope.keys = keys;
+      } else {
+        $scope.keys = [{}];
+      }
+      
+    }
+
 
   });  
 
