@@ -516,29 +516,34 @@ module.exports = function(app, passport) {
 			  		ipDevices = JSON.parse(body);
 			  		devices = ipDevices.devices
 
-						async.times(devices.length, function(n, next){
+						if(devices){
+							async.times(devices.length, function(n, next){
 
-								request.get('http://skynet.im/devices/' + devices[n]
-							  , function (error, response, body) {
-										data = JSON.parse(body);
-										var dupeFound = false;
-										for (var i in gateways) {
-											if(gateways[i].uuid == data.uuid){
-												dupeFound = true;
+									request.get('http://skynet.im/devices/' + devices[n]
+								  , function (error, response, body) {
+											data = JSON.parse(body);
+											var dupeFound = false;
+											for (var i in gateways) {
+												if(gateways[i].uuid == data.uuid){
+													dupeFound = true;
+												}
+											}										
+											if(!dupeFound){
+												gateways.push(data);
 											}
-										}										
-										if(!dupeFound){
-											gateways.push(data);
-										}
-										console.log(gateways);	
-										next(error, gateways);		    	
-								});						  
+											console.log(gateways);	
+											next(error, gateways);		    	
+									});						  
 
 
-						}, function(err, gateways) {
-							console.log(gateways[0]);
-							res.json({"gateways": gateways[0]});
-						});						
+							}, function(err, gateways) {
+								console.log(gateways[0]);
+								res.json({"gateways": gateways[0]});
+							});	
+
+						} else {
+							res.json({"gateways": []});
+						}					
 
 				});				
 

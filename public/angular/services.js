@@ -41,6 +41,7 @@
             })
             .error(function(data) {
               console.log('Error: ' + data);
+              callback({});
             });
 
     };
