@@ -14,6 +14,18 @@
 			      });
 
 		};
+
+		this.saveConnection = function(uuid, name, key, token, callback) {
+
+			$http.put('/api/user/' + uuid+ '/channel/' + name, {key: key, token: token})
+			      .success(function(data) {
+			        callback(data);
+			      })
+			      .error(function(data) {
+			        console.log('Error: ' + data);
+			      });
+
+		};
 	};
 	userService.$inject = ['$http'];
     angular.module('e2eApp').service('userService', userService);

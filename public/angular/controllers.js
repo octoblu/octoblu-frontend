@@ -611,12 +611,14 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 });
 
 e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $log, 
-      ownerService, channelService) {
+      channelService, userService) {
 
   console.log($routeParams.name);
   
   $scope.skynetStatus = false;
   $scope.channel = {};
+  $scope.key = '';
+  $scope.token = '';
   $scope.activeTab = 'apis';
   $("#apis").addClass('active');  
 
@@ -642,18 +644,30 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
     };
 
-    $scope.save = function() {
+    $scope.$watch('channel', function() {
       if(!$scope.channel) return;
-      if($scope.channel.name==='Twilio' || 
-        $scope.channel.name==='Tropo') {
-        return true;
+      
+      if(!$scope.current_user.api) return;
+      
+      for(var l = 0; l<$scope.current_user.api.length; l++) {
+        if($scope.current_user.api[l].name===$scope.channel.name) {
+          $scope.key = $scope.current_user.api[l].key;
+          $scope.token = $scope.current_user.api[l].token;
+        }
       }
 
-      //current user: $scope.current_user = data;
-      //skynetuuid: $scope.skynetuuid
-      
-      
-      return false;
+    });
+    
+    $scope.save = function() {
+      if(!$scope.channel) return;
+
+      userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, 
+        function(data) {
+          console.log('saved');
+
+        });
+
+      return;
 
     };
 

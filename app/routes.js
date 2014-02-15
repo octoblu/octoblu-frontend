@@ -671,7 +671,9 @@ module.exports = function(app, passport) {
 
 	});
 
-	app.put('/api/user/:userid/channel/:name', function(req, res) {
+	app.put('/api/user/:id/channel/:name', function(req, res) {
+
+		var key = req.body.key, token = req.body.token;
 
 		User.findOne({ $or: [
 	    	{"local.skynetuuid" : req.params.id},
@@ -680,18 +682,20 @@ module.exports = function(app, passport) {
 	    	{"google.skynetuuid" : req.params.id}
 	    	]
 	    	}, function(err, user) {
-		    if(!err) {		  
-		    	user.addOrUpdateApiByName(name, 'simple', null, token, verifier);
+		    if(!err) {
+		    	user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null);
 	        	user.save(function(err) {
 	            	if(!err) {
-	                	console.log(user);
-						res.json(user);
+	            		console.log(user);
+	                	res.json(user);
 
 	            	} else {
 	                	console.log("Error: " + err);
 						res.json(user);
 	            	}
 		        });
+		    } else {
+		    	res.json(err);
 		    }
 		});
 
