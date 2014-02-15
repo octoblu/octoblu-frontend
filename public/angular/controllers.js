@@ -613,8 +613,6 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $log, 
       channelService, userService) {
 
-  console.log($routeParams.name);
-  
   $scope.skynetStatus = false;
   $scope.channel = {};
   $scope.key = '';
@@ -628,7 +626,6 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $("#main-nav").show();
     $("#main-nav-bg").show();
     
-    console.log($routeParams.name);
     channelService.getByName($routeParams.name, function(data) {
         $scope.channel = data;
       });
@@ -752,7 +749,6 @@ e2eApp.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
 function checkLogin($scope, $http, secured, cb) {
   googleAnalytics();
   user = $.cookie("skynetuuid");
-  console.log("UUID="+user);  
   if(user == undefined || user == null){
     if (secured){
       window.location.href = "/login";
