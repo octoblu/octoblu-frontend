@@ -516,6 +516,7 @@ module.exports = function(app, passport) {
 			  		ipDevices = JSON.parse(body);
 			  		devices = ipDevices.devices
 
+		  			if(devices) {
 						async.times(devices.length, function(n, next){
 
 								request.get('http://skynet.im/devices/' + devices[n]
@@ -538,8 +539,8 @@ module.exports = function(app, passport) {
 						}, function(err, gateways) {
 							console.log(gateways[0]);
 							res.json({"gateways": gateways[0]});
-						});						
-
+						});	
+					}
 				});				
 
 		});
