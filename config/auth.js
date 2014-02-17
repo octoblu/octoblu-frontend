@@ -69,6 +69,12 @@ if (development) {
       'consumerSecret' : 'E5EbEc5vdf',
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
     },
+    'lastfm' : {
+      'consumerKey'    : 'c034d4839dfa3e855f610145d1ecb819',
+      'consumerSecret' : 'd02830cccb806daada107f8a1f1b3777',
+      'base_url'       : 'http://www.last.fm/api/auth/',
+      'callbackURL'    : 'http://localhost:8080/api/auth/LastFM/callback'
+    },
     'port' : 8080,
     'domain': null
   }
@@ -146,6 +152,12 @@ if (development) {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
       'consumerSecret' : 'E5EbEc5vdf',
       'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+    },
+    'lastfm' : {
+      'consumerKey'    : 'c034d4839dfa3e855f610145d1ecb819',
+      'consumerSecret' : 'd02830cccb806daada107f8a1f1b3777',
+      'base_url'       : 'http://www.last.fm/api/auth/',
+      'callbackURL'    : 'http://localhost:8080/api/auth/LastFM/callback'
     },
     'port' : 80,
     'domain': '.octoblu.com'
