@@ -57,6 +57,22 @@
 
       <div class="pull-right" ng-show="isSimpleAuth() && !isNoAuth()">
 
+        <div class="clearfix" ng-repeat="field in channel.custom_tokens | orderBy:'name'">
+          <label>{{field.name}}</label>
+            <div class="input">
+                <input type="text" class="span3" placeholder="{{field.name}}" ng-model="key" />
+            </div>
+        </div>
+
+        <br/>
+        <div class="clearfix">
+          <button class="btn btn-default" ng-click="save()">Save</button>
+        </div>
+        
+      </div>
+
+      <div class="pull-right" ng-show="isCustomAuth()">
+
         <div class="clearfix">
             <label>Key</label>
             <div class="input">

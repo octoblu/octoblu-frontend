@@ -471,7 +471,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       if(name==='twilio') { return prefix+'square'; }
       if(name==='tropo') { return prefix+'square'; }
       if(name==='rdio') { return prefix+'square'; }
-      if(name==='newyork times') { return prefix+'square'; }
+      if(name==='newyorktimes') { return prefix+'square'; }
       if(name==='musixmatch') { return prefix+'square'; }
       if(name==='lastfm') { return prefix+'square'; }
       if(name==='etsy') { return prefix+'square'; }
@@ -633,8 +633,19 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
     $scope.isSimpleAuth = function() {
       if(!$scope.channel) return false;
-      console.log('$scope.channel.auth_strategy='+$scope.channel.auth_strategy);
+      
       if($scope.channel.auth_strategy==='simple') {
+        return true;
+      }
+
+      return false;
+
+    };
+
+    $scope.isCustomAuth = function() {
+      if(!$scope.channel) return false;
+
+      if($scope.channel.auth_strategy==='custom') {
         return true;
       }
 
@@ -644,7 +655,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
     $scope.isNoAuth = function() {
       if(!$scope.channel) return false;
-      console.log('$scope.channel.auth_strategy='+$scope.channel.auth_strategy);
+      
       if($scope.channel.auth_strategy==='none') {
         return true;
       }
