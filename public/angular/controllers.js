@@ -633,6 +633,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $scope.isSimpleAuth = function() {
       if(!$scope.channel) return false;
       if($scope.channel.name==='Twilio' || 
+        $scope.channel.name==='MusixMatch' || 
         $scope.channel.name==='Tropo') {
         return true;
       }
@@ -640,6 +641,15 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
       return false;
 
     };
+
+    $scope.hideSecretField = function() {
+      if(!$scope.channel) return false;
+      if($scope.channel.name==='MusixMatch') {
+        return true;
+      }
+
+      return false;      
+    }
 
     $scope.$watch('channel', function() {
       if(!$scope.channel) return;
@@ -739,11 +749,6 @@ e2eApp.controller('gatewayController', function($scope, $http, $location, device
     });    
 
   });
-});
-
-e2eApp.controller('ModalDemoCtrl', function ($scope, $modal, $log) {
-
-  
 });
 
 function checkLogin($scope, $http, secured, cb) {

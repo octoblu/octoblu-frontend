@@ -81,6 +81,9 @@ if (development) {
       'base_url'       : 'https://delicious.com/',
       'callbackURL'    : 'http://localhost:8080/api/auth/Delicious/callback'
     },
+    'musixmatch' : {
+      'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
+    },
     'port' : 8080,
     'domain': null
   }
@@ -170,6 +173,9 @@ if (development) {
       'consumerSecret' : 'fc69b39b321995c141ecf4e30207b0a2',
       'base_url'       : 'https://delicious.com/',
       'callbackURL'    : 'http://octoblu.com/api/auth/Delicious/callback'
+    },
+    'musixmatch' : {
+      'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
     },
     'port' : 80,
     'domain': '.octoblu.com'
