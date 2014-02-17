@@ -109,55 +109,55 @@ if (development) {
     'linkedIn' : {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/LinkedIn/callback'
     },
     'readability' : {
       'consumerKey'    : 'rebootd',
       'consumerSecret' : 'gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/Readability/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
       'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
       'clientSecret' : 'OlbENW0n3RlpTLwLCicYgA((',
-      'callbackURL'    : 'http://localhost:8080/api/auth/StackOverflow/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/StackOverflow/callback'
     },
     'bitly' : {
       'clientId'       : '1c55f213d790c4b5efc3ab67520d71926daf33fe',
       'clientSecret'    : 'e07a564eca8414628833830ea3c42800f16aef98',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Bitly/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/Bitly/callback'
     },
     'vimeo' : {
       'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
       'consumerSecret'   : 'dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8',
       'token'          : 'adcfb27faab26a4f06eb20750f628b86',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Vimeo/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/Vimeo/callback'
     },
     'foursquare' : {
       'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
       'clientSecret' : '3XRB1YRDIP1WYTUXZWZPN5IE5OLXV0GIBQT1VYZYDFMKGWX4',
-      'callbackURL'    : 'http://localhost:8080/api/auth/FourSquare/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/FourSquare/callback'
     },
     'tumblr' : {
       'consumerKey'    : 'XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb',
       'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Tumblr/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/Tumblr/callback'
     },
     'fitbit' : {
       'consumerKey'    : '2757456acad54cdabf6414926303421d',
       'consumerSecret' : 'a3648d726d0e4ea091fe2d40ecc1b55b',
-      'callbackURL'    : 'http://localhost:8080/api/auth/FitBit/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/FitBit/callback'
     },
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
       'consumerSecret' : 'E5EbEc5vdf',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Rdio/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/Rdio/callback'
     },
     'lastfm' : {
       'consumerKey'    : 'c034d4839dfa3e855f610145d1ecb819',
       'consumerSecret' : 'd02830cccb806daada107f8a1f1b3777',
       'base_url'       : 'http://www.last.fm/api/auth/',
-      'callbackURL'    : 'http://localhost:8080/api/auth/LastFM/callback'
+      'callbackURL'    : 'http://octoblu.com/api/auth/LastFM/callback'
     },
     'port' : 80,
     'domain': '.octoblu.com'
