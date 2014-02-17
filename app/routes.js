@@ -716,19 +716,23 @@ module.exports = function(app, passport) {
 		    if(!err) {
 		    	user.addOrUpdateApiByName(name, 'oauth', null, token, verifier);
 	        	user.save(function(err) {
-	            	if(!err) {
-	                	console.log(user);
-						return res.redirect('/dashboard');
-
-	            	} else {
-	                	console.log("Error: " + err);
-						return res.redirect('/dashboard');
-	            	}
+	        		return handleApiCompleteRedirect(res, user, name, err);
 		        });
 		    }
 		});
 
 	};
+
+	var handleApiCompleteRedirect = function(res, user, name, err) {
+		if(!err) {
+        	console.log(user);
+			return res.redirect('/apis/' + name);
+
+    	} else {
+        	console.log("Error: " + err);
+			return res.redirect('/apis/' + name);
+    	}
+	}
 
 	app.get('/api/auth/LinkedIn',
   	  passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
@@ -794,14 +798,7 @@ module.exports = function(app, passport) {
 			    if(!err) {
 			    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null);
 		        	user.save(function(err) {
-		            	if(!err) {
-		                	console.log(user);
-							return res.redirect('/dashboard');
-
-		            	} else {
-		                	console.log("Error: " + err);
-							return res.redirect('/dashboard');
-		            	}
+		        		return handleApiCompleteRedirect(res, user, 'LastFM', err);
 			        });
 			    }
 			});
@@ -828,14 +825,7 @@ module.exports = function(app, passport) {
 			    if(!err) {
 			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null);
 		        	user.save(function(err) {
-		            	if(!err) {
-		                	console.log(user);
-							return res.redirect('/dashboard');
-
-		            	} else {
-		                	console.log("Error: " + err);
-							return res.redirect('/dashboard');
-		            	}
+		            	return handleApiCompleteRedirect(res, user, 'Delicious', err);
 			        });
 			    }
 			});
