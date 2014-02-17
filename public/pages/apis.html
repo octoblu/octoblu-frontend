@@ -8,10 +8,10 @@
 
 	  <ul class="channellist">
 
-	  	<li ng-repeat="channel in channelList">
-	        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
-	            ng-class="{'activechannel': isActive(channel)}"
-			  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
+	  	<li ng-repeat="channel in channelList | orderBy:predicate">
+		        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
+		            ng-class="{'activechannel': isActive(channel)}"
+				  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
 		</li>
 
 	  </ul>
