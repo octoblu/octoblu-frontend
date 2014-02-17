@@ -51,27 +51,11 @@
         <img src="{{logo_url()}}" height="100px" /> &nbsp; <h2>{{channel.name}}</h2>
       </div>
 
-      <div class="pull-right" ng-hide="isSimpleAuth() || isNoAuth()">
+      <div class="pull-right" ng-hide="!isOAuth()">
         <button class="btn btn-large btn-primary" ng-click="authorize(channel)">Authenticate</button>
       </div>
 
-      <div class="pull-right" ng-show="isSimpleAuth() && !isNoAuth()">
-
-        <div class="clearfix" ng-repeat="field in channel.custom_tokens | orderBy:'name'">
-          <label>{{field.name}}</label>
-            <div class="input">
-                <input type="text" class="span3" placeholder="{{field.name}}" ng-model="key" />
-            </div>
-        </div>
-
-        <br/>
-        <div class="clearfix">
-          <button class="btn btn-default" ng-click="save()">Save</button>
-        </div>
-        
-      </div>
-
-      <div class="pull-right" ng-show="isCustomAuth()">
+      <div class="pull-right" ng-show="isSimpleAuth()">
 
         <div class="clearfix">
             <label>Key</label>
@@ -84,6 +68,22 @@
             <label>Token</label>
             <div class="input">
                 <input type="text" class="span3" placeholder="token" ng-model="token" />
+            </div>
+        </div>
+
+        <br/>
+        <div class="clearfix">
+          <button class="btn btn-default" ng-click="save()">Save</button>
+        </div>
+        
+      </div>
+
+      <div class="pull-right" ng-show="isCustomAuth()">
+
+      <div class="clearfix" ng-repeat="custom in channel.custom_tokens | orderBy:'name'">
+          <label>{{custom['name']}}</label>
+            <div class="input">
+                <input type="text" class="span3" placeholder="{{custom['name']}}" ng-model="key" />
             </div>
         </div>
 

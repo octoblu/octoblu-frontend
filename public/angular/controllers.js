@@ -631,10 +631,16 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
         $scope.channel = data;
       });
 
+    $scope.isOAuth = function() {
+      if($scope.channel && $scope.channel.auth_strategy==='oauth') {
+        return true;
+      }
+
+      return false;
+    };
+
     $scope.isSimpleAuth = function() {
-      if(!$scope.channel) return false;
-      
-      if($scope.channel.auth_strategy==='simple') {
+      if($scope.channel && $scope.channel.auth_strategy==='simple') {
         return true;
       }
 
@@ -643,9 +649,8 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     };
 
     $scope.isCustomAuth = function() {
-      if(!$scope.channel) return false;
-
-      if($scope.channel.auth_strategy==='custom') {
+      return true;
+      if($scope.channel && $scope.channel.auth_strategy==='custom') {
         return true;
       }
 
@@ -654,9 +659,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     };
 
     $scope.isNoAuth = function() {
-      if(!$scope.channel) return false;
-      
-      if($scope.channel.auth_strategy==='none') {
+      if($scope.channel && $scope.channel.auth_strategy==='none') {
         return true;
       }
 
