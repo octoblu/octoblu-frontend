@@ -51,11 +51,11 @@
         <img src="{{logo_url()}}" height="100px" /> &nbsp; <h2>{{channel.name}}</h2>
       </div>
 
-      <div class="pull-right" ng-hide="isSimpleAuth()">
+      <div class="pull-right" ng-hide="isSimpleAuth() || isNoAuth()">
         <button class="btn btn-large btn-primary" ng-click="authorize(channel)">Authenticate</button>
       </div>
 
-      <div class="pull-right" ng-show="isSimpleAuth()">
+      <div class="pull-right" ng-show="isSimpleAuth() && !isNoAuth()">
 
         <div class="clearfix">
             <label>Key</label>
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="clearfix" ng-hide="hideSecretField">
+        <div class="clearfix" ng-hide="hideSecretField()">
             <label>Token</label>
             <div class="input">
                 <input type="text" class="span3" placeholder="token" ng-model="token" />

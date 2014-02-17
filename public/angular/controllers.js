@@ -633,9 +633,19 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
     $scope.isSimpleAuth = function() {
       if(!$scope.channel) return false;
-      if($scope.channel.name==='Twilio' || 
-        $scope.channel.name==='MusixMatch' || 
-        $scope.channel.name==='Tropo') {
+      console.log('$scope.channel.auth_strategy='+$scope.channel.auth_strategy);
+      if($scope.channel.auth_strategy==='simple') {
+        return true;
+      }
+
+      return false;
+
+    };
+
+    $scope.isNoAuth = function() {
+      if(!$scope.channel) return false;
+      console.log('$scope.channel.auth_strategy='+$scope.channel.auth_strategy);
+      if($scope.channel.auth_strategy==='none') {
         return true;
       }
 
