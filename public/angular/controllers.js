@@ -405,6 +405,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       ownerService, deviceService, channelService) {
   $scope.skynetStatus = false;
   $scope.channelList = [];
+  $scope.predicate = 'name';
 
   checkLogin($scope, $http, true, function(){
     $(".active").removeClass();
