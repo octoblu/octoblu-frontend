@@ -806,45 +806,41 @@ module.exports = function(app, passport) {
 			    }
 			});
 
-			return res.redirect('/dashboard');
-
 		});
 
-	// app.get('/api/auth/Delicious', function(req, res) {
-	// 	var api_url = config.lastfm.base_url + '?api_key' + config.lastfm.consumerKey;
-	// 	console.log('url = '+api_url);
-	// 	return res.redirect('http://www.last.fm/api/auth/?api_key=c034d4839dfa3e855f610145d1ecb819');
-	// });
-	// app.get('/api/auth/Delicious/callback', 
-	// 	function(req, res, next) { 
-	// 		// perform custom handling here....
-	// 		var token = req.param('token')
+	app.get('/api/auth/Delicious', function(req, res) {
+		var api_url = config.delicious.base_url + 'auth/authorize?client_id=' + config.delicious.consumerKey;
+		api_url += '&redirect_uri=' + config.delicious.callbackURL;
+		return res.redirect(api_url);
+	});
+	app.get('/api/auth/Delicious/callback', 
+		function(req, res, next) { 
+			// perform custom handling here....
+			var token = req.param('code')
 
-	// 		User.findOne({ $or: [
-	// 	    	{"local.skynetuuid" : req.cookies.skynetuuid},
-	// 	    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
-	// 	    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
-	// 	    	{"google.skynetuuid" : req.cookies.skynetuuid}
-	// 	    	]
-	// 	    	}, function(err, user) {
-	// 		    if(!err) {
-	// 		    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null);
-	// 	        	user.save(function(err) {
-	// 	            	if(!err) {
-	// 	                	console.log(user);
-	// 						return res.redirect('/dashboard');
+			User.findOne({ $or: [
+		    	{"local.skynetuuid" : req.cookies.skynetuuid},
+		    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
+		    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
+		    	{"google.skynetuuid" : req.cookies.skynetuuid}
+		    	]
+		    	}, function(err, user) {
+			    if(!err) {
+			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null);
+		        	user.save(function(err) {
+		            	if(!err) {
+		                	console.log(user);
+							return res.redirect('/dashboard');
 
-	// 	            	} else {
-	// 	                	console.log("Error: " + err);
-	// 						return res.redirect('/dashboard');
-	// 	            	}
-	// 		        });
-	// 		    }
-	// 		});
+		            	} else {
+		                	console.log("Error: " + err);
+							return res.redirect('/dashboard');
+		            	}
+			        });
+			    }
+			});
 
-	// 		return res.redirect('/dashboard');
-
-	// 	});
+		});
 
 
 	// show the home page (will also have our login links)

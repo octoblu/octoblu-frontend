@@ -75,6 +75,12 @@ if (development) {
       'base_url'       : 'http://www.last.fm/api/auth/',
       'callbackURL'    : 'http://localhost:8080/api/auth/LastFM/callback'
     },
+    'delicious' : {
+      'consumerKey'    : 'e9e36c5c7ab86dd3a33cccafa2c9afbb',
+      'consumerSecret' : 'fc69b39b321995c141ecf4e30207b0a2',
+      'base_url'       : 'https://delicious.com/',
+      'callbackURL'    : 'http://localhost:8080/api/auth/Delicious/callback'
+    },
     'port' : 8080,
     'domain': null
   }
@@ -158,6 +164,12 @@ if (development) {
       'consumerSecret' : 'd02830cccb806daada107f8a1f1b3777',
       'base_url'       : 'http://www.last.fm/api/auth/',
       'callbackURL'    : 'http://octoblu.com/api/auth/LastFM/callback'
+    },
+    'delicious' : {
+      'consumerKey'    : 'e9e36c5c7ab86dd3a33cccafa2c9afbb',
+      'consumerSecret' : 'fc69b39b321995c141ecf4e30207b0a2',
+      'base_url'       : 'https://delicious.com/',
+      'callbackURL'    : 'http://octoblu.com/api/auth/Delicious/callback'
     },
     'port' : 80,
     'domain': '.octoblu.com'
