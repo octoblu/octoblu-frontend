@@ -53,13 +53,19 @@
 
       <div class="pull-right" ng-show="isActivated()">
         <button class="btn btn-large btn-success" >Active</button>
+        <span ng-show="isSimpleAuth() || isCustomAuth()" >
+          <button class="btn btn-large btn-danger" ng-click="setEdit()">Click to Edit</button>
+        </span>
+        <span ng-show="isOAuth()" >
+          <button class="btn btn-large btn-danger" ng-click="setDeactivate()">Click to Deactivate</button>
+        </span>
       </div>
 
-      <div class="pull-right" ng-show="isOAuth()">
+      <div class="pull-right" ng-show="isOAuth() && !isActivated()">
         <button class="btn btn-large btn-primary" ng-click="authorize(channel)">Authenticate</button>
       </div>
 
-      <div class="pull-right" ng-show="isSimpleAuth()">
+      <div class="pull-right" ng-show="isSimpleAuth() && !isActivated()">
 
         <div class="clearfix">
             <label>Key</label>
@@ -82,7 +88,7 @@
         
       </div>
 
-      <div class="pull-right" ng-show="isCustomAuth()">
+      <div class="pull-right" ng-show="isCustomAuth() && !isActivated()">
 
         <div class="clearfix" ng-repeat="custom in custom_tokens | orderBy:'name'">
           <label>{{custom.name}}</label>
