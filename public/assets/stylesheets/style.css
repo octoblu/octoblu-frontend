@@ -593,6 +593,6 @@ margin-right: auto!important;
 	min-width: 110px;
 }
 
-.channellist li.activechannel {
+.activechannel {
 	color: #000;
 }
