@@ -690,11 +690,11 @@ module.exports = function(app, passport) {
 	    	{"google.skynetuuid" : uuid, "google.skynettoken" : token}
 	    	]
 	    	}, function(err, user) {
-	    		if(err) { res.json(err); } else {
+	    	if(err) { res.json(err); } else {
 		    	
 		    	var criteria = [];
 		    	if(!user || !user.api) { 
-		    		res.json( {'result': 'not found'} ); 
+		    		res.json(404, {'result': 'not found'} ); 
 		    	} else {
 
 			    	for(var l=0; l<user.api.length; l++) {
@@ -702,24 +702,28 @@ module.exports = function(app, passport) {
 			    	}
 			    	Api.find({$or: criteria},function(err, apis) {
 			    		if(err) { res.json(err); }
-
 			    		var results = [];
 		    			for(var a=0; a<apis.length;a++) {
 		    				var api = apis[a];
-		    				
+		    				var newApi = {};
 		    				for(var l=0; l<user.api.length; l++) {
 		    					if(user.api[l].name===api.name) {
-		    						api.user_settings = user.api[l];
-		    						continue;
+		    						newApi.name = api.name;
+		    						newApi.auth_strategy = api.auth_strategy;
+		    						newApi.logo_bw = api['logo-bw'];
+		    						newApi.logo_color = api['logo-color'];
+		    						newApi.user_settings = user.api[l];
+		    						newApi.custom_tokens = api.custom_tokens;
+		    						console.log(newApi);
+
+							    	results.push(newApi);
 		    					}
 					    	}
-
-					    	results.push(api);
 		    			}
-		    			res.json(results);
+		    			res.json({results: results });
 			    	});
 			    }
-			}
+				}
 		});
 
 	});
