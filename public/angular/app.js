@@ -2,8 +2,14 @@
 // var e2eApp = angular.module('e2eApp', ['ngRoute']); 
 var e2eApp = angular.module('e2eApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate']); 
 
+// enabled CORS by removing ajax header
+e2eApp.config(['$httpProvider', function($httpProvider) {
+
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+}]);
+
 // configure our routes
-// e2eApp.config(function($routeProvider, $locationProvider, $sceDelegateProvider) {  
 e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', function($routeProvider, $locationProvider, $sceDelegateProvider) {
 
   $sceDelegateProvider.resourceUrlWhitelist([
