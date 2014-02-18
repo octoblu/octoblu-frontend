@@ -616,8 +616,9 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
   $scope.skynetStatus = false;
   $scope.channel = {};
-  $scope.key = '';
-  $scope.token = '';
+  $scope.user_channel = {};
+  $scope.has_user_channel = false;
+  $scope.custom_tokens = {};
   $scope.activeTab = 'apis';
   $("#apis").addClass('active');  
 
@@ -628,10 +629,25 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $("#main-nav-bg").show();
     
     channelService.getByName($routeParams.name, function(data) {
+        console.log(data);
         $scope.channel = data;
+        $scope.custom_tokens = data.custom_tokens;
+
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {
+            $scope.user_channel = $scope.current_user.api[l];
+            $scope.has_user_channel = true;
+          }
+        }
       });
 
+    $scope.isActivated = function() {
+      return false;
+      // return $scope.has_user_channel;
+    };
+
     $scope.isOAuth = function() {
+      if($scope.isActivated()) return false;
       if($scope.channel && $scope.channel.auth_strategy==='oauth') {
         return true;
       }
@@ -640,6 +656,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     };
 
     $scope.isSimpleAuth = function() {
+      if($scope.isActivated()) return false;
       if($scope.channel && $scope.channel.auth_strategy==='simple') {
         return true;
       }
@@ -649,7 +666,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     };
 
     $scope.isCustomAuth = function() {
-      return true;
+      if($scope.isActivated()) return false;
       if($scope.channel && $scope.channel.auth_strategy==='custom') {
         return true;
       }
@@ -659,6 +676,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     };
 
     $scope.isNoAuth = function() {
+      if($scope.isActivated()) return false;
       if($scope.channel && $scope.channel.auth_strategy==='none') {
         return true;
       }
@@ -675,28 +693,14 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
       return false;      
     }
-
-    $scope.$watch('channel', function() {
-      if(!$scope.channel) return;
-      
-      if(!$scope.current_user.api) return;
-      
-      for(var l = 0; l<$scope.current_user.api.length; l++) {
-        if($scope.current_user.api[l].name===$scope.channel.name) {
-          $scope.key = $scope.current_user.api[l].key;
-          $scope.token = $scope.current_user.api[l].token;
-        }
-      }
-
-    });
     
     $scope.save = function() {
       if(!$scope.channel) return;
 
-      userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, 
+      userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
         function(data) {
           console.log('saved');
-
+          $scope.has_user_channel = true;
         });
 
       return;

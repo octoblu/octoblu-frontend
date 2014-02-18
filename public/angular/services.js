@@ -15,9 +15,9 @@
 
 		};
 
-		this.saveConnection = function(uuid, name, key, token, callback) {
+		this.saveConnection = function(uuid, name, key, token, custom_tokens, callback) {
 
-			$http.put('/api/user/' + uuid+ '/channel/' + name, {key: key, token: token})
+			$http.put('/api/user/' + uuid+ '/channel/' + name, {key: key, token: token, custom_tokens: custom_tokens})
 			      .success(function(data) {
 			        callback(data);
 			      })

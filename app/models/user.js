@@ -37,7 +37,7 @@ var userSchema = mongoose.Schema({
         skynettoken  : String
     },
     api              : [{ name: String, authtype: String, key: String, token: String, 
-                            verifier: String, updated: { type: Date, default: Date.now } }]
+                            verifier: String, updated: { type: Date, default: Date.now }, custom_tokens: [{name: String, value: String}] }]
 
 });
 
@@ -53,7 +53,7 @@ userSchema.methods.findApiByName = function(name) {
     return null;
 };
 
-userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, verifier) {
+userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, verifier, custom_tokens) {
     if(this.api==null && this.api==nil) {this.api = [];}
 
     var today = new Date();
@@ -66,12 +66,14 @@ userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, verif
             this.api[l].token = token;
             this.api[l].verifier = verifier;
             this.api[l].updated = jsToday;
+            this.api[l].custom_tokens = custom_tokens;
             return;
         }
     }
 
     // at this point the match wasn't found, so add it..
-    item = {name: name, authtype:type, key: key, token: token, verifier: verifier, updated: jsToday};
+    item = {name: name, authtype:type, key: key, token: token, 
+        verifier: verifier, custom_tokens: custom_tokens, updated: jsToday};
     this.api.push(item);
 
 };

@@ -673,7 +673,12 @@ module.exports = function(app, passport) {
 
 	app.put('/api/user/:id/channel/:name', function(req, res) {
 
-		var key = req.body.key, token = req.body.token;
+		var key = req.body.key, 
+			token = req.body.token,
+			custom_tokens = req.body.custom_tokens;
+
+		// console.log(custom_tokens);
+		// res.json({});
 
 		User.findOne({ $or: [
 	    	{"local.skynetuuid" : req.params.id},
@@ -683,7 +688,7 @@ module.exports = function(app, passport) {
 	    	]
 	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null);
+		    	user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null, custom_tokens);
 	        	user.save(function(err) {
 	            	if(!err) {
 	            		console.log(user);
@@ -714,7 +719,7 @@ module.exports = function(app, passport) {
 	    	]
 	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(name, 'oauth', null, token, verifier);
+		    	user.addOrUpdateApiByName(name, 'oauth', null, token, verifier, null);
 	        	user.save(function(err) {
 	        		return handleApiCompleteRedirect(res, user, name, err);
 		        });
@@ -796,7 +801,7 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 			    if(!err) {
-			    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null);
+			    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null);
 		        	user.save(function(err) {
 		        		return handleApiCompleteRedirect(res, user, 'LastFM', err);
 			        });
@@ -823,7 +828,7 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 			    if(!err) {
-			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null);
+			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null);
 		        	user.save(function(err) {
 		            	return handleApiCompleteRedirect(res, user, 'Delicious', err);
 			        });
