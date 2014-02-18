@@ -675,6 +675,50 @@ module.exports = function(app, passport) {
 
 	});
 
+	app.get('/api/user_api/:id/:token', function(req, res) {
+
+		var uuid = req.params.id, 
+			token = req.params.token
+
+		// console.log(uuid);
+		// res.json({});
+
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : uuid, "local.skynettoken" : token},
+	    	{"twitter.skynetuuid" : uuid, "twitter.skynettoken" : token},
+	    	{"facebook.skynetuuid" : uuid, "facebook.skynettoken" : token},
+	    	{"google.skynetuuid" : uuid, "google.skynettoken" : token}
+	    	]
+	    	}, function(err, user) {
+	    		if(err) { res.json(err); }
+		    	
+		    	var criteria = [];
+		    	if(!user.api) { res.json( {'result': 'not found'} ); }
+		    	for(var l=0; l<user.api.length; l++) {
+		    		criteria.push({'name': user.api[l].name});
+		    	}
+		    	Api.find({$or: criteria},function(err, apis) {
+		    		if(err) { res.json(err); }
+
+		    		var results = [];
+	    			for(var a=0; a<apis.length;a++) {
+	    				var api = apis[a];
+	    				
+	    				for(var l=0; l<user.api.length; l++) {
+	    					if(user.api[l].name===api.name) {
+	    						api.user_settings = user.api[l];
+	    						continue;
+	    					}
+				    	}
+
+				    	results.push(api);
+	    			}
+	    			res.json(results);
+		    	});		    
+		});
+
+	});
+
 	app.put('/api/user/:id/channel/:name', function(req, res) {
 
 		var key = req.body.key, 
