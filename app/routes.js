@@ -708,17 +708,8 @@ module.exports = function(app, passport) {
 		    				var newApi = {};
 		    				for(var l=0; l<user.api.length; l++) {
 		    					if(user.api[l].name===api.name) {
-		    						// newApi.name = api.name;
-		    						// newApi.auth_strategy = api.auth_strategy;
-		    						// newApi.logo_bw = api['logo-bw'];
-		    						// newApi.logo_color = api['logo-color'];
-		    						// newApi.user_settings = user.api[l];
-		    						// newApi.custom_tokens = api.custom_tokens;
 		    						newApi.usersettings = user.api[l];
-		    						// delete newApi['_id'];
 		    						newApi.wadl = apis[a];
-		    						console.log(newApi);
-
 							    	results.push(newApi);
 		    					}
 					    	}
