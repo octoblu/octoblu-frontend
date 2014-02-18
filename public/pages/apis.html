@@ -6,12 +6,12 @@
     .divScroll {
         overflow:scroll;
         height: auto;
-        width: 100%;
+        max-width: 100%;
     }
     .scrollWrapper {
         overflow: visible;
         height: auto;
-        width: 3000px;
+        width: 100%;
     }
     .divScroll ul {
     	list-style-type: none;
@@ -22,46 +22,70 @@
 		zoom: 1;
 		*display: inline;
 		padding: 10px;
-		height: 500px;
-    	width: 300px;
+		height: auto;
+    	width: auto;
     	vertical-align: top;
     }
 </style>
+
+<!-- <div class='row'>
+  <div class='col-sm-12 box'>
+    <div class="text-center">
+	  <ul class="channellist">
+ 
+	  	<li ng-repeat="channel in channelList | orderBy:'name'">
+		        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
+		            ng-class="{'activechannel': isActive(channel)}"
+				  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
+		</li>
+	  </ul>
+	</div>
+  </div>
+</div> -->
+
 
 
  <div class="divScroll">
  	<div class="scrollWrapper">
 
- 		<ul>
- 			<li>
- 				<h3>Active</h3>
+ 		<div>
+			<h3>Active</h3>
 	  
-			  	<span ng-repeat="channel in channelList | filter:isActive | orderBy:'name'">
+		  	<ul class="channellist">
+ 
+			  	<li ng-repeat="channel in channelList | filter:isActive | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
-				</span>	
- 			</li>
+				</li>
+			  </ul>
+		</div>
 
- 			<li>
- 				<h3>Available</h3>
+		<div>
+			<h3>Available</h3>
 	  
-			  	<span ng-repeat="channel in channelList | filter:isInactive | orderBy:'name'">
+		  	<ul class="channellist">
+ 
+			  	<li ng-repeat="channel in channelList | filter:isInactive | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
-				</span>	
- 			</li>
- 			
- 			<li>
- 				<h3>Custom</h3>
+				</li>
+			  </ul>
+		</div>
+		
+		<div>
+			<h3>Custom</h3>
 	  
-			  	<span ng-repeat="channel in channelList | orderBy:'name'">
+		  	<ul class="channellist">
+ 
+			  	<li ng-repeat="channel in channelList | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
-				</span>	
- 			</li>
- 		</ul>
+				</li>
+			  </ul>
+		</div>
+
  	</div>
 </div>
