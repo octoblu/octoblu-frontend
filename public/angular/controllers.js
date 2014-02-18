@@ -461,6 +461,18 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       return false;
     };
 
+    $scope.isInactive = function (channel) {
+      if($scope.current_user.api) {
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===channel.name) {
+            return false;
+          }
+        }
+      }
+
+      return true;
+    };
+
     $scope.getFAName = function (channel) {
       var prefix = 'fa-';
       var name = channel.name.toLowerCase();
