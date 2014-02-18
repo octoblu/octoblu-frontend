@@ -693,7 +693,8 @@ module.exports = function(app, passport) {
 	    		if(err) { res.json(err); }
 		    	
 		    	var criteria = [];
-		    	if(!user.api) { res.json( {'result': 'not found'} ); }
+		    	if(!user || user.api) { res.json( {'result': 'not found'} ); }
+
 		    	for(var l=0; l<user.api.length; l++) {
 		    		criteria.push({'name': user.api[l].name});
 		    	}
