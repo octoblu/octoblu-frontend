@@ -619,11 +619,8 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
   $scope.user_channel = {};
   $scope.has_user_channel = false;
   $scope.custom_tokens = {};
-  $scope.activeTab = 'apis';
-  $("#apis").addClass('active');  
 
   checkLogin($scope, $http, true, function(){
-    $(".active").removeClass();
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();

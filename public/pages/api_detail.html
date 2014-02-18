@@ -10,16 +10,16 @@
           </h1>
         </div>
         <ul class="nav nav-tabs">
-          <li ng-class="{active: activeTab == 'devices'}" id="devices">
+          <li id="devices">
             <a ng-click="activeTab = 'devices'" href="/devices">Devices</a>
           </li>
-          <li ng-class="{active: activeTab == 'gateways'}">
+          <li>
             <a ng-click="activeTab = 'gateways'" href="/gateways">Gateways</a>
           </li>
-          <li ng-class="{active: activeTab == 'apis'}">
+          <li class="active">
             <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
           </li>
-          <li ng-class="{active: activeTab == 'devtools'}">
+          <li>
             <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
           </li>
         </ul>
