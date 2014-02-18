@@ -728,7 +728,7 @@ e2eApp.controller('designerController', function($scope, $http, $location, nodeR
     $("#nav-designer").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
-    $(document).trigger("nav-close");
+    // $(document).trigger("nav-close");
 
     // Get NodeRed port number
     nodeRedService.getPort($scope.skynetuuid, $scope.skynettoken, function(data) {
