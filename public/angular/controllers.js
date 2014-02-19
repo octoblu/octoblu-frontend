@@ -420,6 +420,8 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       $scope.activeTab = 'gateways';
     } else if($location.$$path == "/apis") {
       $scope.activeTab = 'apis';
+    } else if($location.$$path == "/people") {
+      $scope.activeTab = 'people';
     } else if($location.$$path == "/tools") {
       $scope.activeTab = 'devtools';
     }
@@ -428,12 +430,18 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     // Get user devices
     ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
       $scope.devices = data.devices;
+        for (var i in $scope.devices) {
+          if($scope.devices[i].type == 'gateway'){
+            $scope.devices.splice(i,1);
+          }
+        }             
     });
 
     // Get user gateways
     ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
       $scope.editGatewaySection = false;
       $scope.gateways = data.gateways;
+      console.log(data.gateways);
 
     });
 
@@ -595,11 +603,15 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       // $scope.keys.push( {key:'', value:''} ); 
       $scope.keys.splice(idx,1);
     }
+    $scope.editGatewayCancel = function() {
+      $scope.editGatewaySection = false; 
+    }
 
     $scope.editGateway = function( idx ){
       $scope.editGatewaySection = true;
       var gateway_to_edit = $scope.gateways[idx];
       $scope.gatewayName = gateway_to_edit.name;
+      $scope.editGatewayUuid = gateway_to_edit.uuid;
 
       // find additional keys to edit
       var keys = [];
@@ -617,6 +629,56 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       }
       
     }
+
+    $scope.updateGateway = function(){
+      $scope.gatewayName = $('#gatewayName').val();
+      if($scope.gatewayName){
+
+        for (var i in $scope.gateways) {
+          if($scope.gateways[i].uuid == $scope.editGatewayUuid){
+            dupeUuid = $scope.gateways[i].uuid;
+            dupeToken = $scope.gateways[i].token;
+            dupeIndex = i;
+          }
+        }  
+
+        formData = {};
+        formData.owner = $scope.skynetuuid;
+        formData.name = $scope.gatewayName;
+        formData.keyvals = $scope.keys;        
+
+        formData.uuid = dupeUuid;
+        formData.token = dupeToken;
+        
+        deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
+          console.log(data);
+          try{
+              $scope.gateways.splice(dupeIndex,1);
+              data.token = dupeToken;
+              $scope.gateways.push(data);
+              $scope.gatewayName = "";
+              $scope.keys = [{}];
+            } catch(e){
+              $scope.gateways = [data];
+            }
+            $scope.editGatewaySection = false;
+        });
+          
+
+      } else {
+        $scope.editGatewayUuid        
+      }
+      
+    };
+
+    $scope.deleteGateway = function( idx ){
+
+      var gateway_to_delete = $scope.gateways[idx];
+      deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) { 
+        $scope.gateways.splice(idx, 1);
+      });
+      
+    };
 
 
   });  

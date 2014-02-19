@@ -84,6 +84,11 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
       controller  : 'connectorController'
     }) 
 
+    .when('/people', {
+      templateUrl : 'pages/connector.html',
+      controller  : 'connectorController'
+    }) 
+
     .when('/designer', {
       templateUrl : 'pages/designer.html',
       controller  : 'designerController'
