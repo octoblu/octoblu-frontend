@@ -836,6 +836,284 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
 });
 
+e2eApp.controller('apieditorController', function($scope, $http, $location, $routeParams, $modal, $log, 
+      channelService, userService) {
+
+  $scope.skynetStatus = false;
+  $scope.channel = {};
+  $scope.user_channel = {};
+  $scope.has_user_channel = false;
+  $scope.custom_tokens = {};
+
+  checkLogin($scope, $http, true, function(){
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+    
+    channelService.getByName($routeParams.name, function(data) {
+          
+        $scope.channel = data;
+        $scope.custom_tokens = data.custom_tokens;
+
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
+            $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+            $scope.has_user_channel = true;
+          }
+        }
+      });
+
+    $scope.editor = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+    
+    $scope.save = function() {
+      if(!$scope.channel) return;
+
+      // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
+      //   function(data) {
+      //     console.log('saved');
+      //     $scope.has_user_channel = true;
+      //   });
+
+      return;
+
+    };
+
+    $scope.authorize = function (channel) {
+      //$location.path( '/api/auth/' + channel.name );
+      var loc = '/api/auth/' + channel.name;
+      console.log(loc);
+      location.href = loc;
+    };
+
+    $scope.logo_url = function() {
+      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+      return $scope.channel['logo-color'];
+    };
+
+  });
+
+});
+
+e2eApp.controller('apiresourcesController', function($scope, $http, $location, $routeParams, $modal, $log, 
+      channelService, userService) {
+
+  $scope.skynetStatus = false;
+  $scope.channel = {};
+  $scope.user_channel = {};
+  $scope.has_user_channel = false;
+  $scope.custom_tokens = {};
+
+  checkLogin($scope, $http, true, function(){
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+    
+    channelService.getByName($routeParams.name, function(data) {
+          
+        $scope.channel = data;
+        $scope.custom_tokens = data.custom_tokens;
+
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
+            $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+            $scope.has_user_channel = true;
+          }
+        }
+      });
+
+    $scope.editor = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+    
+    $scope.save = function() {
+      if(!$scope.channel) return;
+
+      // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
+      //   function(data) {
+      //     console.log('saved');
+      //     $scope.has_user_channel = true;
+      //   });
+
+      return;
+
+    };
+
+    $scope.authorize = function (channel) {
+      //$location.path( '/api/auth/' + channel.name );
+      var loc = '/api/auth/' + channel.name;
+      console.log(loc);
+      location.href = loc;
+    };
+
+    $scope.logo_url = function() {
+      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+      return $scope.channel['logo-color'];
+    };
+
+  });
+
+});
+
+e2eApp.controller('apiresourcedetailController', function($scope, $http, $location, $routeParams, $modal, $log, 
+      channelService, userService) {
+
+  $scope.skynetStatus = false;
+  $scope.channel = {};
+  $scope.user_channel = {};
+  $scope.has_user_channel = false;
+  $scope.custom_tokens = {};
+
+  checkLogin($scope, $http, true, function(){
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+    
+    channelService.getByName($routeParams.name, function(data) {
+          
+        $scope.channel = data;
+        $scope.custom_tokens = data.custom_tokens;
+
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
+            $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+            $scope.has_user_channel = true;
+          }
+        }
+      });
+
+    $scope.editor = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+    
+    $scope.save = function() {
+      if(!$scope.channel) return;
+
+      // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
+      //   function(data) {
+      //     console.log('saved');
+      //     $scope.has_user_channel = true;
+      //   });
+
+      return;
+
+    };
+
+    $scope.authorize = function (channel) {
+      //$location.path( '/api/auth/' + channel.name );
+      var loc = '/api/auth/' + channel.name;
+      console.log(loc);
+      location.href = loc;
+    };
+
+    $scope.logo_url = function() {
+      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+      return $scope.channel['logo-color'];
+    };
+
+  });
+
+});
 
 e2eApp.controller('designerController', function($scope, $http, $location, nodeRedService) {
 

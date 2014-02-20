@@ -1,0 +1,118 @@
+<style>
+.field label {
+  min-width: 150px;
+}
+.field input {
+  min-width: 400px;
+}
+.field select {
+  min-width: 150px;
+}
+</style>
+<section id='content'>
+  <div class='container'>
+    <div class='row' id='content-wrapper'>
+      <div class='col-xs-12'>
+        
+        <div class='page-header page-header-with-buttons'>
+          <h1 class='pull-left'>
+            <i class='icon-code-fork'></i>
+            <span>Connector</span>              
+          </h1>
+        </div>
+        <ul class="nav nav-tabs">
+          <li id="devices">
+            <a ng-click="activeTab = 'devices'" href="/devices">Devices</a>
+          </li>
+          <li>
+            <a ng-click="activeTab = 'gateways'" href="/gateways">Gateways</a>
+          </li>
+          <li class="active">
+            <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
+          </li>
+          <li>
+            <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div ng-switch="activeTab">
+            <div ng-switch-when="devices">
+               <ng-include src=" 'pages/devices.html' "></ng-include>
+            </div>
+            <div ng-switch-when="gateways">
+               <ng-include src=" 'pages/gateways.html' "></ng-include>
+            </div>
+            <div ng-switch-when="apis">
+               <ng-include src=" 'pages/apis.html' "></ng-include>
+            </div>
+            <div ng-switch-when="devtools">
+               <ng-include src=" 'pages/devtools.html' "></ng-include>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="row col-xs-12">
+
+    <div xclass="text-center">
+
+      <div class="pull-left">
+        <h2>{{channel.name}} Resources</h2>
+
+        <div class="field">
+          <label for="resource_resourcename">Name</label>
+          <input class="input-xxlarge" id="resource_resourcename" name="resource[resourcename]" size="30" type="text" value="search" />
+        </div>
+
+        <div class="field">
+          <label for="resource_resourcename">Path</label>
+          <input class="input-xxlarge" id="resource_resourcename" name="resource[resourcename]" size="30" type="text" value="search" />
+        </div>
+
+        <div class="field">
+          <label for="resource_resourcename">HTTP Method</label>
+          <input class="input-xxlarge" id="resource_resourcename" name="resource[resourcename]" size="30" type="text" value="search" />
+        </div>
+
+        <div class="field">
+          <label for="resource_resourcename">Doc URL</label>
+          <input class="input-xxlarge" id="resource_resourcename" name="resource[resourcename]" size="30" type="text" value="search" />
+        </div>
+
+        <div class="field">
+          <label for="resource_resourcename">CURL</label>
+          <input class="input-xxlarge" id="resource_resourcename" name="resource[resourcename]" size="30" type="text" value="search" />
+        </div>
+
+        <div class="field">
+          <label for="resource_resourcename">Description</label>
+          <input class="input-xxlarge" id="resource_resourcename" name="resource[resourcename]" size="30" type="text" value="search" />
+        </div>
+
+      </div>
+
+      <div class="pull-right" style="float:right; posiion:relative">
+
+        <br/>
+        <div class="clearfix">
+          <button class="btn btn-success" ng-click="editor()">Open Editor</button>
+        </div>
+        
+      </div>
+
+    </div>
+    </div>    
+
+</section>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-body">
+        <h3>Are you sure you want to delete the settings for this api?</h3>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
