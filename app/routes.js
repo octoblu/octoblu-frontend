@@ -490,7 +490,11 @@ module.exports = function(app, passport) {
 		request.get('http://skynet.im/mydevices/' + req.params.id, 
 	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
-				data = JSON.parse(body);
+	  		try{
+					data = JSON.parse(body);
+				} catch(e){
+					data = {};
+				}
 	    	res.json(data);
 		});
 
