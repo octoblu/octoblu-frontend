@@ -700,13 +700,16 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $("#main-nav-bg").show();
     
     channelService.getByName($routeParams.name, function(data) {
-        console.log(data);
+        
         $scope.channel = data;
         $scope.custom_tokens = data.custom_tokens;
 
         for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===$scope.channel.name) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
             $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
             $scope.has_user_channel = true;
           }
         }
