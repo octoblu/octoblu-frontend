@@ -756,6 +756,50 @@ module.exports = function(app, passport) {
 
 	});
 
+	app.delete('/api/user/:id/channel/:name', function(req, res) {
+		
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {
+
+		    	var found = false, 
+		    		name = req.params.name;
+		    	if(user.api) {
+		    		for(var i = user.api.length-1; i >= 0; i--) {  
+		    			if(user.api[i].name === name) {
+		    				user.api.splice(i,1);
+				        	found = true;
+				        	break;
+				        }
+					}
+
+				    if(found) {
+			        	user.save(function(err) {
+			            	if(!err) {
+			            		res.json({"message": "success"});
+
+			            	} else {
+			                	console.log("Error: " + err);
+								res.json(404, {"message": "not found"});
+			            	}
+				        });
+		        	} else {
+		        		res.json(404, {"message": "not found"});
+		        	}
+	        	}
+
+		    } else {
+		    	res.json(err);
+		    }
+		});
+
+	});
+
 	var handleOauth1 = function(name, req, res, next) {
 
 		var token = req.param('oauth_token'),

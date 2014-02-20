@@ -52,13 +52,7 @@
       </div>
 
       <div class="pull-right" ng-show="isActivated()">
-        <button class="btn btn-large btn-success" >Active</button>
-        <span ng-show="isSimpleAuth() || isCustomAuth()" >
-          <button class="btn btn-large btn-danger" ng-click="setEdit()">Click to Edit</button>
-        </span>
-        <span ng-show="isOAuth()" >
-          <button class="btn btn-large btn-danger" ng-click="setDeactivate()">Click to Deactivate</button>
-        </span>
+        <button class="btn btn-large btn-success" ng-click="setDeactivate()" >Active</button>        
       </div>
 
       <div class="pull-right" ng-show="isOAuth() && !isActivated()">
@@ -128,3 +122,13 @@
     </div>
 
 </section>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-body">
+        <h3>Are you sure you want to delete the settings for this api?</h3>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
