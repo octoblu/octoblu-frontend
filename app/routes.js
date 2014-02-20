@@ -773,7 +773,7 @@ module.exports = function(app, passport) {
 		    	if(user.api) {
 		    		for(var i = user.api.length-1; i >= 0; i--) {  
 		    			if(user.api[i].name === name) {
-		    				user.api[i].splice(i,1);
+		    				user.api.splice(i,1);
 				        	found = true;
 				        	break;
 				        }
@@ -782,8 +782,7 @@ module.exports = function(app, passport) {
 				    if(found) {
 			        	user.save(function(err) {
 			            	if(!err) {
-			            		console.log(user);
-			                	res.json({"message": "success"});
+			            		res.json({"message": "success"});
 
 			            	} else {
 			                	console.log("Error: " + err);

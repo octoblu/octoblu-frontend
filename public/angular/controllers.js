@@ -700,7 +700,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $("#main-nav-bg").show();
     
     channelService.getByName($routeParams.name, function(data) {
-        
+          
         $scope.channel = data;
         $scope.custom_tokens = data.custom_tokens;
 
