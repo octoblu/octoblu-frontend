@@ -716,7 +716,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $scope.setDeactivate = function() {};
 
     $scope.isActivated = function() {
-      // return false;
+      return false;
       return $scope.has_user_channel;
     };
 
