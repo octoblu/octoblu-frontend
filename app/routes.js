@@ -757,6 +757,54 @@ module.exports = function(app, passport) {
 
 	});
 
+	app.delete('/api/user/:id/channel/:name', function(req, res) {
+		
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {
+
+		    	console.log('TODO: delete api entry....');
+		    	res.json({"message": "todo"});
+
+		    	var found = false, 
+		    		name = req.params.name;
+		    	// if(user.api) {
+			    // 	for(var l = 0; l < user.api.length; l++) {
+				   //      if(user.api[l].name === name) {
+
+				   //      	found = true;
+				   //      	break;
+				   //      }
+				   //  }
+
+				   //  if(found) {
+			    //     	user.save(function(err) {
+			    //         	if(!err) {
+			    //         		console.log(user);
+			    //             	res.json(user);
+
+			    //         	} else {
+			    //             	console.log("Error: " + err);
+							// 	res.json(user);
+			    //         	}
+				   //      });
+		     //    	} else {
+		     //    		res.json(404, {"message": "not found"});
+		     //    	}
+	      //   	}
+
+		    } else {
+		    	res.json(err);
+		    }
+		});
+
+	});
+
 	var handleOauth1 = function(name, req, res, next) {
 
 		var token = req.param('oauth_token'),

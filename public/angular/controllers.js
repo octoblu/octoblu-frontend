@@ -685,7 +685,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
 });
 
-e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $log, 
+e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $modal, $log, 
       channelService, userService) {
 
   $scope.skynetStatus = false;
@@ -712,8 +712,47 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
         }
       });
 
-    $scope.setEdit = function() { $scope.has_user_channel = false;};
-    $scope.setDeactivate = function() {};
+    $scope.open = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    $scope.setDeactivate = function() {
+      if($scope.isOAuth()) {
+        $scope.open();
+        return;
+      }
+
+      $scope.has_user_channel = false;      
+    };
 
     $scope.isActivated = function() {
       // return false;

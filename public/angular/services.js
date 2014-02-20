@@ -26,6 +26,18 @@
 			      });
 
 		};
+
+		this.removeConnection = function(uuid, name, callback) {
+
+			$http.delete('/api/user/' + uuid+ '/channel/' + name, {} )
+			      .success(function(data) {
+			        callback(data);
+			      })
+			      .error(function(data) {
+			        console.log('Error: ' + data);
+			      });
+			      
+		};
 	};
 	userService.$inject = ['$http'];
     angular.module('e2eApp').service('userService', userService);
