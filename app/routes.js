@@ -768,35 +768,32 @@ module.exports = function(app, passport) {
 	    	}, function(err, user) {
 		    if(!err) {
 
-		    	console.log('TODO: delete api entry....');
-		    	res.json({"message": "todo"});
-
 		    	var found = false, 
 		    		name = req.params.name;
-		    	// if(user.api) {
-			    // 	for(var l = 0; l < user.api.length; l++) {
-				   //      if(user.api[l].name === name) {
+		    	if(user.api) {
+		    		for(var i = user.api.length-1; i >= 0; i--) {  
+		    			if(user.api[i].name === name) {
+		    				user.api[i].splice(i,1);
+				        	found = true;
+				        	break;
+				        }
+					}
 
-				   //      	found = true;
-				   //      	break;
-				   //      }
-				   //  }
+				    if(found) {
+			        	user.save(function(err) {
+			            	if(!err) {
+			            		console.log(user);
+			                	res.json({"message": "success"});
 
-				   //  if(found) {
-			    //     	user.save(function(err) {
-			    //         	if(!err) {
-			    //         		console.log(user);
-			    //             	res.json(user);
-
-			    //         	} else {
-			    //             	console.log("Error: " + err);
-							// 	res.json(user);
-			    //         	}
-				   //      });
-		     //    	} else {
-		     //    		res.json(404, {"message": "not found"});
-		     //    	}
-	      //   	}
+			            	} else {
+			                	console.log("Error: " + err);
+								res.json(404, {"message": "not found"});
+			            	}
+				        });
+		        	} else {
+		        		res.json(404, {"message": "not found"});
+		        	}
+	        	}
 
 		    } else {
 		    	res.json(err);
