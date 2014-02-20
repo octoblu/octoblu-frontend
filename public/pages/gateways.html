@@ -14,7 +14,7 @@
           <i class="icon-chevron-down"></i> Add Device
         </button>
  -->        
-        <button ng-click="editGatewaySection = false" class="btn btn-primary" ng-show="editGatewaySection">
+        <button ng-click="editGatewayCancel()" class="btn btn-primary" ng-show="editGatewaySection">
           <i class="icon-chevron-up"></i> Cancel
         </button>
 
@@ -24,7 +24,7 @@
     <div class="col-sm-12" ng-show="editGatewaySection">
       <h3>Edit Gateway</h3>   
       <form name="myForm">          
-        <input class="form-control" name="gatewayName" ng-model="gatewayName" placeholder="Gateway Name (required)" ng-value="gatewayName" required>
+        <input class="form-control" name="gatewayName" ng-model="gatewayName" placeholder="Gateway Name (required)" ng-value="gatewayName" required id="gatewayName">
         <!-- <span ng-show="duplicateDevice" style="color:red;">Device name already exists.</span> -->
         <br />
 
@@ -41,7 +41,7 @@
         </div>
 
         <br />
-        <button class="btn" ng-click="createGateway()">Submit</button>  
+        <button class="btn" ng-click="updateGateway()">Submit</button>  
         <br /><br />            
       </form>
     </div>
