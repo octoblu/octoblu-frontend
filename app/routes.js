@@ -748,7 +748,7 @@ module.exports = function(app, passport) {
 	    	]
 	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null, custom_tokens);
+		    	user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null, null, custom_tokens);
 	        	user.save(function(err) {
 	            	if(!err) {
 	            		console.log(user);
@@ -779,25 +779,133 @@ module.exports = function(app, passport) {
 	    	]
 	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(name, 'oauth', null, token, verifier, null);
+		    	user.addOrUpdateApiByName(name, 'oauth', null, token, null, verifier, null);
 	        	user.save(function(err) {
-	        		return handleApiCompleteRedirect(res, user, name, err);
+	        		return handleApiCompleteRedirect(res, name, err);
 		        });
 		    }
 		});
 
 	};
 
-	var handleApiCompleteRedirect = function(res, user, name, err) {
-		if(!err) {
-        	console.log(user);
-			return res.redirect('/apis/' + name);
+	var saveOAuthInfo = function(name, uuid, key, token, secret, verifier) {
 
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : uuid},
+	    	{"twitter.skynetuuid" : uuid},
+	    	{"facebook.skynetuuid" : uuid},
+	    	{"google.skynetuuid" : uuid}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {
+		    	user.addOrUpdateApiByName(name, 'oauth', key, token, secret, null, verifier, null);
+	        	user.save(function(err) {
+	        		return true;
+		        });
+		    } else { return false; }
+		});
+
+	};
+
+	var getOAuthInstanceFromConfig = function(configSection) {
+		var OAuth = require('oauth').OAuth;
+
+		var oa = new OAuth(
+			configSection.requestTokenURL,
+			configSection.accessTokenURL,
+			configSection.consumerKey,
+			configSection.consumerSecret,
+			configSection.oauthVersion,
+			configSection.callbackURL,
+			"HMAC-SHA1"
+		);
+
+		return oa;
+
+	};
+
+	var handleApiCompleteRedirect = function(res, name, err) {
+		if(!err) {
+        	return res.redirect('/apis/' + name);
     	} else {
         	console.log("Error: " + err);
 			return res.redirect('/apis/' + name);
     	}
 	}
+
+	var handleCustomOAuthRequest = function(req, res, name) {
+		var oa = getOAuthInstanceFromConfig(config[name.toLowerCase()]);
+
+		oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+			if (error) {
+				console.log(error);
+				res.send("yeah no. didn't work.")
+			}
+			else {
+
+				req.session.oauth = {};
+				req.session.oauth.token = oauth_token;
+				console.log('oauth.token: ' + req.session.oauth.token);
+				req.session.oauth.token_secret = oauth_token_secret;
+				console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
+				
+				var authURL = config.etsy.authorizationURL + '?oauth_token=' 
+					+ oauth_token + '&oauth_consumer_key=' + config.etsy.consumerKey
+					+ '&callback=' + config.etsy.callbackURL;
+				res.redirect(authURL);
+			}
+		});
+	};
+
+	var handleCustomOAuthCallback = function(req, res, name) {
+		req.session.oauth.verifier = req.query.oauth_verifier;
+		var oauth = req.session.oauth;
+
+		var oa = getOAuthInstanceFromConfig(config[name.toLowerCase()]);
+
+		oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
+			function(error, oauth_access_token, oauth_access_token_secret, results){
+				if (error){
+					console.log(error);
+
+					// res.send("yeah something broke.");
+					res.redirect(500, '/apis/' + name);
+				} else {
+					User.findOne({ $or: [
+				    	{"local.skynetuuid" : req.cookies.skynetuuid},
+				    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
+				    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
+				    	{"google.skynetuuid" : req.cookies.skynetuuid}
+				    	]
+				    	}, function(err, user) {
+					    if(!err) {
+					    	user.addOrUpdateApiByName(name, 'oauth', null, 
+					    		oauth_access_token, oauth_access_token_secret, null, null);
+				        	user.save(function(err) {
+				        		console.log('saved oauth token');
+				        		return handleApiCompleteRedirect(res, name, err);
+					        });
+					    } else { 
+					    	console.log('error saving oauth token');
+					    	res.redirect('/apis/' + name);
+					    }
+					});
+					
+				}
+			}
+		);
+	};
+
+	// use custom OAuth handling with Etsy; re-use for others. I hope.
+	app.get('/api/auth/Etsy', function(req, res){
+		handleCustomOAuthRequest(req, res, 'Etsy');
+	});
+	app.get('/api/auth/Etsy/callback', function(req, res, next){
+		if (req.session.oauth) {
+			handleCustomOAuthCallback(req, res, 'Etsy');
+		} else
+			next(new Error("you're not supposed to be here."))
+	});
 
 	app.get('/api/auth/LinkedIn',
   	  passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
@@ -861,9 +969,9 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 			    if(!err) {
-			    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null);
+			    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null, null);
 		        	user.save(function(err) {
-		        		return handleApiCompleteRedirect(res, user, 'LastFM', err);
+		        		return handleApiCompleteRedirect(res, 'LastFM', err);
 			        });
 			    }
 			});
@@ -888,9 +996,9 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 			    if(!err) {
-			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null);
+			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null, null);
 		        	user.save(function(err) {
-		            	return handleApiCompleteRedirect(res, user, 'Delicious', err);
+		            	return handleApiCompleteRedirect(res, 'Delicious', err);
 			        });
 			    }
 			});
