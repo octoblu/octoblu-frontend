@@ -499,14 +499,14 @@ module.exports = function(app, passport) {
 
 	// Get devices by owner
 	app.get('/api/owner/gateways/:id/:token', function(req, res) {
-
 		request.get('http://skynet.im/mydevices/' + req.params.id, 
 	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
 				myDevices = JSON.parse(body);
 				console.log(myDevices);
 				myDevices = myDevices.devices
-				gateways = []
+				console.log(myDevices);
+				var gateways = []
 				for (var i in myDevices) {
 					if(myDevices[i].type == 'gateway'){
 						gateways.push(myDevices[i]);
@@ -516,12 +516,11 @@ module.exports = function(app, passport) {
 				request.get('http://skynet.im/devices', 
 			  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
 			  , function (error, response, body) {
-			  		console.log(body);
 			  		ipDevices = JSON.parse(body);
 			  		devices = ipDevices.devices
 
 		  			if(devices) {
-						async.times(devices.length, function(n, next){
+							async.times(devices.length, function(n, next){
 
 								request.get('http://skynet.im/devices/' + devices[n]
 							  , function (error, response, body) {
@@ -535,15 +534,15 @@ module.exports = function(app, passport) {
 										if(!dupeFound){
 											gateways.push(data);
 										}
-										console.log(gateways);	
 										next(error, gateways);		    	
 								});						  
 
 
 						}, function(err, gateways) {
-							console.log(gateways[0]);
 							res.json({"gateways": gateways[0]});
 						});	
+					} else {
+						res.json({"gateways": gateways});
 					}
 				});				
 
