@@ -536,6 +536,8 @@ module.exports = function(app, passport) {
 											}
 										}										
 										if(!dupeFound){
+											// data.plugins = [];
+											// data.subdevices = [];
 											gateways.push(data);
 										}
 										next(error, gateways);		    	

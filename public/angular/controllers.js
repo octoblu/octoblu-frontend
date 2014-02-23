@@ -343,14 +343,14 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
           // messageService.sendMessage(uuid, $scope.sendText, function(data) {
           //   $scope.messageOutput = data;
           // });
-
+          // console.log($scope.sendText);
           socket.emit('message', {
             "devices": uuid,
             "message": $scope.sendText
           }, function(data){
             console.log(data); 
           });     
-          $scope.messageOutput = "Message Sent!";      
+          $scope.messageOutput = "Message Sent: " + $scope.sendText;      
 
         }
       }
@@ -426,6 +426,14 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       $scope.activeTab = 'devtools';
     }
 
+    // connect to skynet
+    var skynetConfig = {
+      "uuid": $scope.skynetuuid,
+      "token": $scope.skynettoken
+    }    
+    skynet(skynetConfig, function (e, socket) {
+      if (e) throw e
+
 
     // Get user devices
     ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
@@ -442,6 +450,38 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       $scope.editGatewaySection = false;
       $scope.gateways = data.gateways;
       console.log(data.gateways);
+
+      for (var i in data.gateways) {
+        if(data.gateways[i].online){
+
+          // Get Plugins
+          socket.emit('gatewayConfig', {
+            "uuid": data.gateways[i].uuid,
+            "token": data.gateways[i].token,
+            "method": "getPlugins"
+          }, function (plugins) {
+            // console.log(plugins); 
+            // $('#' + gateway_to_config.uuid + '_plugins').html(JSON.stringify(data));
+            $scope.gateways[i]["plugins"] = plugins.result;
+            console.log($scope.gateways[i]); 
+          }); 
+
+          // Get Subdevices
+          socket.emit('gatewayConfig', {
+            "uuid": data.gateways[i].uuid,
+            "token": data.gateways[i].token,
+            "method": "getSubdevices"
+          }, function (subdevices) {
+            // console.log(subdevices); 
+            // $('#' + gateway_to_config.uuid + '_subdevices').html(JSON.stringify(data));
+            $scope.gateways[i]["subdevices"] = subdevices.result;
+
+          }); 
+
+
+        }
+      }  
+
 
     });
 
@@ -680,6 +720,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       
     };
 
+    }); //end skynet.js
 
   });  
 
