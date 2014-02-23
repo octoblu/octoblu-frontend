@@ -105,15 +105,18 @@
       <br /><br />
       <h4><strong>Base URI: {{channel.application.resources.base}}</strong></h4>
       <br /><br />
-    <div ng-hide="channel.application.resources.resource.length">No API resources found</div>
+    <div ng-hide="channel.application.resources.resource.length || channel.application.resources.length">No API resources found</div>
     <div class="table-responsive">
       <table class="table table-striped table-hover">
         <tr ng-repeat="resource in channel.application.resources.resource">
-          
           <td>{{resource.method.name}}</td>
           <td>{{resource.path}}</td>
           <td>{{resource.method.doc.$t}}</td>
-
+        </tr>
+        <tr ng-repeat="resource in channel.application.resources">
+          <td>{{resource.httpMethod}}</td>
+          <td>{{resource.path}}</td>
+          <td>{{resource.doc.t}}</td>
         </tr>
       </table>
     </div>
