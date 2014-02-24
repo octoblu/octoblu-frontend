@@ -19,6 +19,9 @@
           <li ng-class="{active: activeTab == 'apis'}">
             <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
           </li>
+          <li ng-class="{active: activeTab == 'people'}">
+            <a ng-click="activeTab = 'people'" href="/people">People</a>
+          </li>
           <li ng-class="{active: activeTab == 'devtools'}">
             <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
           </li>
@@ -33,6 +36,9 @@
             </div>
             <div ng-switch-when="apis">
                <ng-include src=" 'pages/apis.html' "></ng-include>
+            </div>
+            <div ng-switch-when="people">
+               <ng-include src=" 'pages/people.html' "></ng-include>
             </div>
             <div ng-switch-when="devtools">
                <ng-include src=" 'pages/devtools.html' "></ng-include>

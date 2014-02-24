@@ -36,7 +36,7 @@ var userSchema = mongoose.Schema({
         skynetuuid   : String,
         skynettoken  : String
     },
-    api              : [{ name: String, authtype: String, key: String, token: String, 
+    api              : [{ name: String, authtype: String, key: String, token: String, secret: String,
                             verifier: String, updated: { type: Date, default: Date.now }, custom_tokens: [{name: String, value: String}] }]
 
 });
@@ -53,7 +53,7 @@ userSchema.methods.findApiByName = function(name) {
     return null;
 };
 
-userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, verifier, custom_tokens) {
+userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secret, verifier, custom_tokens) {
     if(this.api==null && this.api==nil) {this.api = [];}
 
     var today = new Date();
@@ -64,6 +64,7 @@ userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, verif
             this.api[l].key = key;
             this.api[l].authtype = type;
             this.api[l].token = token;
+            this.api[l].secret = secret;
             this.api[l].verifier = verifier;
             this.api[l].updated = jsToday;
             this.api[l].custom_tokens = custom_tokens;
@@ -72,7 +73,7 @@ userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, verif
     }
 
     // at this point the match wasn't found, so add it..
-    item = {name: name, authtype:type, key: key, token: token, 
+    item = {name: name, authtype:type, key: key, token: token, secret: secret, 
         verifier: verifier, custom_tokens: custom_tokens, updated: jsToday};
     this.api.push(item);
 

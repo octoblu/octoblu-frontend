@@ -5,6 +5,21 @@ module.exports = function(app, passport) {
 	var request = require('request');
 	var config = require('../config/auth.js');
 	var async = require('async');
+	var skynet = require('skynet');
+
+	console.log('connecting to skynet');
+	var conn = skynet.createConnection({
+	  "uuid": "9b47c2f1-9d9b-11e3-a443-ab1cdce04787",
+	  "token": "pxdq6kdnf74iy66rhuvdw9h5d2f0f6r",
+	  "protocol": "websocket"
+	});
+
+	conn.on('notReady', function(data){
+		console.log('skynet authentication failed');
+	});
+
+	conn.on('ready', function(data){
+
 
 	// app.get('/profile', isLoggedIn, function(req, res) {
 	// 	res.render('profile', {
@@ -490,7 +505,11 @@ module.exports = function(app, passport) {
 		request.get('http://skynet.im/mydevices/' + req.params.id, 
 	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
-				data = JSON.parse(body);
+	  		try{
+					data = JSON.parse(body);
+				} catch(e){
+					data = {};
+				}
 	    	res.json(data);
 		});
 
@@ -499,14 +518,12 @@ module.exports = function(app, passport) {
 
 	// Get devices by owner
 	app.get('/api/owner/gateways/:id/:token', function(req, res) {
-
 		request.get('http://skynet.im/mydevices/' + req.params.id, 
 	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
 				myDevices = JSON.parse(body);
-				console.log(myDevices);
 				myDevices = myDevices.devices
-				gateways = []
+				var gateways = []
 				for (var i in myDevices) {
 					if(myDevices[i].type == 'gateway'){
 						gateways.push(myDevices[i]);
@@ -516,16 +533,16 @@ module.exports = function(app, passport) {
 				request.get('http://skynet.im/devices', 
 			  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
 			  , function (error, response, body) {
-			  		console.log(body);
 			  		ipDevices = JSON.parse(body);
 			  		devices = ipDevices.devices
 
 		  			if(devices) {
-						async.times(devices.length, function(n, next){
+							async.times(devices.length, function(n, next){
 
 								request.get('http://skynet.im/devices/' + devices[n]
 							  , function (error, response, body) {
 										data = JSON.parse(body);
+										console.log(data);
 										var dupeFound = false;
 										for (var i in gateways) {
 											if(gateways[i].uuid == data.uuid){
@@ -535,15 +552,53 @@ module.exports = function(app, passport) {
 										if(!dupeFound){
 											gateways.push(data);
 										}
-										console.log(gateways);	
 										next(error, gateways);		    	
 								});						  
 
 
-						}, function(err, gateways) {
-							console.log(gateways[0]);
-							res.json({"gateways": gateways[0]});
-						});	
+							}, function(err, gateways) {
+
+								gateways = gateways[0]
+									// console.log('gateways plugins check');
+
+								// Lookup plugins on each gateway
+								async.times(gateways.length, function(n, next){									
+						      conn.gatewayConfig({
+						        "uuid": gateways[n].uuid,
+						        "token": gateways[n].token,
+						        "method": "getPlugins"
+						      }, function (plugins) {
+						        gateways[n].plugins = plugins.result;
+										next(error, gateways[n]);
+									});
+
+						    }, function(err, gateways) {
+
+									// console.log('gateways subdevices check');
+
+									// Lookup subdevices on each gateway
+									async.times(gateways.length, function(n, next){									
+							      conn.gatewayConfig({
+							        "uuid": gateways[n].uuid,
+							        "token": gateways[n].token,
+							        "method": "getSubdevices"
+							      }, function (subdevices) {
+							        gateways[n].subdevices = subdevices.result;
+											next(error, gateways[n]);
+										});
+
+							    }, function(err, gateways) {
+							    	console.log('gateways result', gateways);
+										res.json({"gateways": gateways});
+									});
+
+								});							
+
+						})						
+
+
+					} else {
+						res.json({"gateways": gateways});
 					}
 				});				
 
@@ -739,7 +794,7 @@ module.exports = function(app, passport) {
 	    	]
 	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null, custom_tokens);
+		    	user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null, null, custom_tokens);
 	        	user.save(function(err) {
 	            	if(!err) {
 	            		console.log(user);
@@ -750,6 +805,50 @@ module.exports = function(app, passport) {
 						res.json(user);
 	            	}
 		        });
+		    } else {
+		    	res.json(err);
+		    }
+		});
+
+	});
+
+	app.delete('/api/user/:id/channel/:name', function(req, res) {
+		
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : req.params.id},
+	    	{"twitter.skynetuuid" : req.params.id},
+	    	{"facebook.skynetuuid" : req.params.id},
+	    	{"google.skynetuuid" : req.params.id}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {
+
+		    	var found = false, 
+		    		name = req.params.name;
+		    	if(user.api) {
+		    		for(var i = user.api.length-1; i >= 0; i--) {  
+		    			if(user.api[i].name === name) {
+		    				user.api.splice(i,1);
+				        	found = true;
+				        	break;
+				        }
+					}
+
+				    if(found) {
+			        	user.save(function(err) {
+			            	if(!err) {
+			            		res.json({"message": "success"});
+
+			            	} else {
+			                	console.log("Error: " + err);
+								res.json(404, {"message": "not found"});
+			            	}
+				        });
+		        	} else {
+		        		res.json(404, {"message": "not found"});
+		        	}
+	        	}
+
 		    } else {
 		    	res.json(err);
 		    }
@@ -770,25 +869,133 @@ module.exports = function(app, passport) {
 	    	]
 	    	}, function(err, user) {
 		    if(!err) {
-		    	user.addOrUpdateApiByName(name, 'oauth', null, token, verifier, null);
+		    	user.addOrUpdateApiByName(name, 'oauth', null, token, null, verifier, null);
 	        	user.save(function(err) {
-	        		return handleApiCompleteRedirect(res, user, name, err);
+	        		return handleApiCompleteRedirect(res, name, err);
 		        });
 		    }
 		});
 
 	};
 
-	var handleApiCompleteRedirect = function(res, user, name, err) {
-		if(!err) {
-        	console.log(user);
-			return res.redirect('/apis/' + name);
+	var saveOAuthInfo = function(name, uuid, key, token, secret, verifier) {
 
+		User.findOne({ $or: [
+	    	{"local.skynetuuid" : uuid},
+	    	{"twitter.skynetuuid" : uuid},
+	    	{"facebook.skynetuuid" : uuid},
+	    	{"google.skynetuuid" : uuid}
+	    	]
+	    	}, function(err, user) {
+		    if(!err) {
+		    	user.addOrUpdateApiByName(name, 'oauth', key, token, secret, null, verifier, null);
+	        	user.save(function(err) {
+	        		return true;
+		        });
+		    } else { return false; }
+		});
+
+	};
+
+	var getOAuthInstanceFromConfig = function(configSection) {
+		var OAuth = require('oauth').OAuth;
+
+		var oa = new OAuth(
+			configSection.requestTokenURL,
+			configSection.accessTokenURL,
+			configSection.consumerKey,
+			configSection.consumerSecret,
+			configSection.oauthVersion,
+			configSection.callbackURL,
+			"HMAC-SHA1"
+		);
+
+		return oa;
+
+	};
+
+	var handleApiCompleteRedirect = function(res, name, err) {
+		if(!err) {
+        	return res.redirect('/apis/' + name);
     	} else {
         	console.log("Error: " + err);
 			return res.redirect('/apis/' + name);
     	}
 	}
+
+	var handleCustomOAuthRequest = function(req, res, name) {
+		var oa = getOAuthInstanceFromConfig(config[name.toLowerCase()]);
+
+		oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+			if (error) {
+				console.log(error);
+				res.send("yeah no. didn't work.")
+			}
+			else {
+
+				req.session.oauth = {};
+				req.session.oauth.token = oauth_token;
+				console.log('oauth.token: ' + req.session.oauth.token);
+				req.session.oauth.token_secret = oauth_token_secret;
+				console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
+				
+				var authURL = config.etsy.authorizationURL + '?oauth_token=' 
+					+ oauth_token + '&oauth_consumer_key=' + config.etsy.consumerKey
+					+ '&callback=' + config.etsy.callbackURL;
+				res.redirect(authURL);
+			}
+		});
+	};
+
+	var handleCustomOAuthCallback = function(req, res, name) {
+		req.session.oauth.verifier = req.query.oauth_verifier;
+		var oauth = req.session.oauth;
+
+		var oa = getOAuthInstanceFromConfig(config[name.toLowerCase()]);
+
+		oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
+			function(error, oauth_access_token, oauth_access_token_secret, results){
+				if (error){
+					console.log(error);
+
+					// res.send("yeah something broke.");
+					res.redirect(500, '/apis/' + name);
+				} else {
+					User.findOne({ $or: [
+				    	{"local.skynetuuid" : req.cookies.skynetuuid},
+				    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
+				    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
+				    	{"google.skynetuuid" : req.cookies.skynetuuid}
+				    	]
+				    	}, function(err, user) {
+					    if(!err) {
+					    	user.addOrUpdateApiByName(name, 'oauth', null, 
+					    		oauth_access_token, oauth_access_token_secret, null, null);
+				        	user.save(function(err) {
+				        		console.log('saved oauth token');
+				        		return handleApiCompleteRedirect(res, name, err);
+					        });
+					    } else { 
+					    	console.log('error saving oauth token');
+					    	res.redirect('/apis/' + name);
+					    }
+					});
+					
+				}
+			}
+		);
+	};
+
+	// use custom OAuth handling with Etsy; re-use for others. I hope.
+	app.get('/api/auth/Etsy', function(req, res){
+		handleCustomOAuthRequest(req, res, 'Etsy');
+	});
+	app.get('/api/auth/Etsy/callback', function(req, res, next){
+		if (req.session.oauth) {
+			handleCustomOAuthCallback(req, res, 'Etsy');
+		} else
+			next(new Error("you're not supposed to be here."))
+	});
 
 	app.get('/api/auth/LinkedIn',
   	  passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
@@ -852,9 +1059,9 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 			    if(!err) {
-			    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null);
+			    	user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null, null);
 		        	user.save(function(err) {
-		        		return handleApiCompleteRedirect(res, user, 'LastFM', err);
+		        		return handleApiCompleteRedirect(res, 'LastFM', err);
 			        });
 			    }
 			});
@@ -879,9 +1086,9 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 			    if(!err) {
-			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null);
+			    	user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null, null);
 		        	user.save(function(err) {
-		            	return handleApiCompleteRedirect(res, user, 'Delicious', err);
+		            	return handleApiCompleteRedirect(res, 'Delicious', err);
 			        });
 			    }
 			});
@@ -894,6 +1101,7 @@ module.exports = function(app, passport) {
 		res.sendfile('./public/index.html');
 	});
 
+	}); // end skynet
 
 };
 

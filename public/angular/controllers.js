@@ -343,14 +343,14 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
           // messageService.sendMessage(uuid, $scope.sendText, function(data) {
           //   $scope.messageOutput = data;
           // });
-
+          // console.log($scope.sendText);
           socket.emit('message', {
             "devices": uuid,
             "message": $scope.sendText
           }, function(data){
             console.log(data); 
           });     
-          $scope.messageOutput = "Message Sent!";      
+          $scope.messageOutput = "Message Sent: " + $scope.sendText;      
 
         }
       }
@@ -401,7 +401,7 @@ e2eApp.controller('adminController', function($scope, $http, $location) {
   });  
 });
 
-e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, 
+e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, $q, 
       ownerService, deviceService, channelService) {
   $scope.skynetStatus = false;
   $scope.channelList = [];
@@ -420,21 +420,39 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       $scope.activeTab = 'gateways';
     } else if($location.$$path == "/apis") {
       $scope.activeTab = 'apis';
+    } else if($location.$$path == "/people") {
+      $scope.activeTab = 'people';
     } else if($location.$$path == "/tools") {
       $scope.activeTab = 'devtools';
     }
+    
+    $scope.navType = 'pills';
+    // $scope.navType = 'tabs';
+
+    // connect to skynet
+    var skynetConfig = {
+      "uuid": $scope.skynetuuid,
+      "token": $scope.skynettoken
+    }    
+    skynet(skynetConfig, function (e, socket) {
+      if (e) throw e
 
 
     // Get user devices
     ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
       $scope.devices = data.devices;
+        for (var i in $scope.devices) {
+          if($scope.devices[i].type == 'gateway'){
+            $scope.devices.splice(i,1);
+          }
+        }             
     });
 
     // Get user gateways
     ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
+      console.log('gateways', data);
       $scope.editGatewaySection = false;
       $scope.gateways = data.gateways;
-
     });
 
     // get api list, if showing api
@@ -595,11 +613,15 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       // $scope.keys.push( {key:'', value:''} ); 
       $scope.keys.splice(idx,1);
     }
+    $scope.editGatewayCancel = function() {
+      $scope.editGatewaySection = false; 
+    }
 
     $scope.editGateway = function( idx ){
       $scope.editGatewaySection = true;
       var gateway_to_edit = $scope.gateways[idx];
       $scope.gatewayName = gateway_to_edit.name;
+      $scope.editGatewayUuid = gateway_to_edit.uuid;
 
       // find additional keys to edit
       var keys = [];
@@ -618,12 +640,63 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       
     }
 
+    $scope.updateGateway = function(){
+      $scope.gatewayName = $('#gatewayName').val();
+      if($scope.gatewayName){
+
+        for (var i in $scope.gateways) {
+          if($scope.gateways[i].uuid == $scope.editGatewayUuid){
+            dupeUuid = $scope.gateways[i].uuid;
+            dupeToken = $scope.gateways[i].token;
+            dupeIndex = i;
+          }
+        }  
+
+        formData = {};
+        formData.owner = $scope.skynetuuid;
+        formData.name = $scope.gatewayName;
+        formData.keyvals = $scope.keys;        
+
+        formData.uuid = dupeUuid;
+        formData.token = dupeToken;
+        
+        deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
+          console.log(data);
+          try{
+              $scope.gateways.splice(dupeIndex,1);
+              data.token = dupeToken;
+              $scope.gateways.push(data);
+              $scope.gatewayName = "";
+              $scope.keys = [{}];
+            } catch(e){
+              $scope.gateways = [data];
+            }
+            $scope.editGatewaySection = false;
+        });
+          
+
+      } else {
+        $scope.editGatewayUuid        
+      }
+      
+    };
+
+    $scope.deleteGateway = function( idx ){
+
+      var gateway_to_delete = $scope.gateways[idx];
+      deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) { 
+        $scope.gateways.splice(idx, 1);
+      });
+      
+    };
+
+    }); //end skynet.js
 
   });  
 
 });
 
-e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $log, 
+e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $modal, $log, 
       channelService, userService) {
 
   $scope.skynetStatus = false;
@@ -638,20 +711,62 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $("#main-nav-bg").show();
     
     channelService.getByName($routeParams.name, function(data) {
-        console.log(data);
+          
         $scope.channel = data;
         $scope.custom_tokens = data.custom_tokens;
 
         for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===$scope.channel.name) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
             $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
             $scope.has_user_channel = true;
           }
         }
       });
 
-    $scope.setEdit = function() { $scope.has_user_channel = false;};
-    $scope.setDeactivate = function() {};
+    $scope.open = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    $scope.setDeactivate = function() {
+      if($scope.isOAuth()) {
+        $scope.open();
+        return;
+      }
+
+      $scope.has_user_channel = false;      
+    };
 
     $scope.isActivated = function() {
       // return false;
@@ -732,6 +847,284 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
 });
 
+e2eApp.controller('apieditorController', function($scope, $http, $location, $routeParams, $modal, $log, 
+      channelService, userService) {
+
+  $scope.skynetStatus = false;
+  $scope.channel = {};
+  $scope.user_channel = {};
+  $scope.has_user_channel = false;
+  $scope.custom_tokens = {};
+
+  checkLogin($scope, $http, true, function(){
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+    
+    channelService.getByName($routeParams.name, function(data) {
+          
+        $scope.channel = data;
+        $scope.custom_tokens = data.custom_tokens;
+
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
+            $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+            $scope.has_user_channel = true;
+          }
+        }
+      });
+
+    $scope.editor = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+    
+    $scope.save = function() {
+      if(!$scope.channel) return;
+
+      // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
+      //   function(data) {
+      //     console.log('saved');
+      //     $scope.has_user_channel = true;
+      //   });
+
+      return;
+
+    };
+
+    $scope.authorize = function (channel) {
+      //$location.path( '/api/auth/' + channel.name );
+      var loc = '/api/auth/' + channel.name;
+      console.log(loc);
+      location.href = loc;
+    };
+
+    $scope.logo_url = function() {
+      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+      return $scope.channel['logo-color'];
+    };
+
+  });
+
+});
+
+e2eApp.controller('apiresourcesController', function($scope, $http, $location, $routeParams, $modal, $log, 
+      channelService, userService) {
+
+  $scope.skynetStatus = false;
+  $scope.channel = {};
+  $scope.user_channel = {};
+  $scope.has_user_channel = false;
+  $scope.custom_tokens = {};
+
+  checkLogin($scope, $http, true, function(){
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+    
+    channelService.getByName($routeParams.name, function(data) {
+          
+        $scope.channel = data;
+        $scope.custom_tokens = data.custom_tokens;
+
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
+            $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+            $scope.has_user_channel = true;
+          }
+        }
+      });
+
+    $scope.editor = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+    
+    $scope.save = function() {
+      if(!$scope.channel) return;
+
+      // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
+      //   function(data) {
+      //     console.log('saved');
+      //     $scope.has_user_channel = true;
+      //   });
+
+      return;
+
+    };
+
+    $scope.authorize = function (channel) {
+      //$location.path( '/api/auth/' + channel.name );
+      var loc = '/api/auth/' + channel.name;
+      console.log(loc);
+      location.href = loc;
+    };
+
+    $scope.logo_url = function() {
+      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+      return $scope.channel['logo-color'];
+    };
+
+  });
+
+});
+
+e2eApp.controller('apiresourcedetailController', function($scope, $http, $location, $routeParams, $modal, $log, 
+      channelService, userService) {
+
+  $scope.skynetStatus = false;
+  $scope.channel = {};
+  $scope.user_channel = {};
+  $scope.has_user_channel = false;
+  $scope.custom_tokens = {};
+
+  checkLogin($scope, $http, true, function(){
+    $("#nav-connector").addClass('active');
+    $("#main-nav").show();
+    $("#main-nav-bg").show();
+    
+    channelService.getByName($routeParams.name, function(data) {
+          
+        $scope.channel = data;
+        $scope.custom_tokens = data.custom_tokens;
+
+        for(var l = 0; l<$scope.current_user.api.length; l++) {
+          if($scope.current_user.api[l].name===$scope.channel.name) {            
+            $scope.user_channel = $scope.current_user.api[l];
+
+            if($scope.current_user.api[l].custom_tokens)
+              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+            $scope.has_user_channel = true;
+          }
+        }
+      });
+
+    $scope.editor = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $modalInstance) {
+            
+            $scope.ok = function () {
+              $modalInstance.close('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+        resolve: { }
+      });
+
+      modalInstance.result.then(function (response) {
+        if(response==='ok') {
+          $log.info('clicked ok');
+
+          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
+
+            $scope.has_user_channel = false;
+
+          });
+
+        };
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+    
+    $scope.save = function() {
+      if(!$scope.channel) return;
+
+      // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
+      //   function(data) {
+      //     console.log('saved');
+      //     $scope.has_user_channel = true;
+      //   });
+
+      return;
+
+    };
+
+    $scope.authorize = function (channel) {
+      //$location.path( '/api/auth/' + channel.name );
+      var loc = '/api/auth/' + channel.name;
+      console.log(loc);
+      location.href = loc;
+    };
+
+    $scope.logo_url = function() {
+      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+      return $scope.channel['logo-color'];
+    };
+
+  });
+
+});
 
 e2eApp.controller('designerController', function($scope, $http, $location, nodeRedService) {
 

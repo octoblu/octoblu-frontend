@@ -52,13 +52,7 @@
       </div>
 
       <div class="pull-right" ng-show="isActivated()">
-        <button class="btn btn-large btn-success" >Active</button>
-        <span ng-show="isSimpleAuth() || isCustomAuth()" >
-          <button class="btn btn-large btn-danger" ng-click="setEdit()">Click to Edit</button>
-        </span>
-        <span ng-show="isOAuth()" >
-          <button class="btn btn-large btn-danger" ng-click="setDeactivate()">Click to Deactivate</button>
-        </span>
+        <button class="btn btn-large btn-success" ng-click="setDeactivate()" >Active</button>        
       </div>
 
       <div class="pull-right" ng-show="isOAuth() && !isActivated()">
@@ -111,15 +105,18 @@
       <br /><br />
       <h4><strong>Base URI: {{channel.application.resources.base}}</strong></h4>
       <br /><br />
-    <div ng-hide="channel.application.resources.resource.length">No API resources found</div>
+    <div ng-hide="channel.application.resources.resource.length || channel.application.resources.length">No API resources found</div>
     <div class="table-responsive">
       <table class="table table-striped table-hover">
         <tr ng-repeat="resource in channel.application.resources.resource">
-          
           <td>{{resource.method.name}}</td>
           <td>{{resource.path}}</td>
           <td>{{resource.method.doc.$t}}</td>
-
+        </tr>
+        <tr ng-repeat="resource in channel.application.resources">
+          <td>{{resource.httpMethod}}</td>
+          <td>{{resource.path}}</td>
+          <td>{{resource.doc.t}}</td>
         </tr>
       </table>
     </div>
@@ -128,3 +125,13 @@
     </div>
 
 </section>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-body">
+        <h3>Are you sure you want to delete the settings for this api?</h3>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

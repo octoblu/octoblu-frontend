@@ -77,9 +77,29 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
     .when('/apis', {
       templateUrl : 'pages/connector.html',
       controller  : 'connectorController'
+    })
+
+    .when('/apieditor/:name', {
+      templateUrl : 'pages/api_editor.html',
+      controller  : 'apieditorController'
     }) 
 
+    .when('/apieditor/:name/resources', {
+      templateUrl : 'pages/api_resources.html',
+      controller  : 'apiresourcesController'
+    })
+
+    .when('/apieditor/:name/resources/:apiname', {
+      templateUrl : 'pages/api_resource_details.html',
+      controller  : 'apiresourcedetailController'
+    })
+
     .when('/tools', {
+      templateUrl : 'pages/connector.html',
+      controller  : 'connectorController'
+    }) 
+
+    .when('/people', {
       templateUrl : 'pages/connector.html',
       controller  : 'connectorController'
     }) 

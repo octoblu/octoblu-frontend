@@ -11,6 +11,7 @@
 			      })
 			      .error(function(data) {
 			        console.log('Error: ' + data);
+              callback({});
 			      });
 
 		};
@@ -23,8 +24,22 @@
 			      })
 			      .error(function(data) {
 			        console.log('Error: ' + data);
+              callback({});
 			      });
 
+		};
+
+		this.removeConnection = function(uuid, name, callback) {
+
+			$http.delete('/api/user/' + uuid+ '/channel/' + name, {} )
+			      .success(function(data) {
+			        callback(data);
+			      })
+			      .error(function(data) {
+			        console.log('Error: ' + data);
+              callback({});
+			      });
+			      
 		};
 	};
 	userService.$inject = ['$http'];
@@ -41,6 +56,7 @@
 			      })
 			      .error(function(data) {
 			        console.log('Error: ' + data);
+              callback({});
 			      });
 
 		};
@@ -72,6 +88,7 @@
               })
               .error(function(data) {
                 console.log('Error: ' + data);
+                callback({});
               });
 
     };
@@ -84,6 +101,7 @@
 	            })
 	            .error(function(data) {
 	              console.log('Error: ' + data);
+                callback({});
 	            });
 
 		};
@@ -96,6 +114,7 @@
 	            })
 	            .error(function(data) {
 	              console.log('Error: ' + data);
+                callback({});
 	            });
 
 		};
@@ -108,6 +127,7 @@
 		        })
 		        .error(function(data) {
 		          console.log('Error: ' + data);
+              callback({});
 		        });
 
 		};
@@ -128,6 +148,7 @@
 	          })
 	          .error(function(data) {
 	            console.log('Error: ' + data);
+              callback({});
 	          });
 		};
 
@@ -148,6 +169,7 @@
 		      })
 		      .error(function(data) {
 		        console.log('Error: ' + data);
+            callback({});
 		      });
 
     	};
@@ -168,6 +190,7 @@
 		      })
 		      .error(function(data) {
 		        console.log('Error: ' + data);
+            callback({});
 		      });
 
     	};
@@ -181,6 +204,7 @@
 		      })
 		      .error(function(data) {
 		        console.log('Error: ' + data);
+            callback({});
 		      });
 
     	};
