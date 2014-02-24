@@ -28,7 +28,8 @@
     "connect-flash": "~0.1.1",
     "bcrypt-nodejs": "latest",
     "request": "*",
-    "async": "*"
+    "async": "*",
+    "skynet": "*"
   },
   "scripts": {
     "start": "node server.js"

@@ -401,7 +401,7 @@ e2eApp.controller('adminController', function($scope, $http, $location) {
   });  
 });
 
-e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, 
+e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, $q, 
       ownerService, deviceService, channelService) {
   $scope.skynetStatus = false;
   $scope.channelList = [];
@@ -447,42 +447,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
     // Get user gateways
     ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
+      console.log('gateways', data);
       $scope.editGatewaySection = false;
       $scope.gateways = data.gateways;
-      console.log(data.gateways);
-
-      for (var i in data.gateways) {
-        if(data.gateways[i].online){
-
-          // Get Plugins
-          socket.emit('gatewayConfig', {
-            "uuid": data.gateways[i].uuid,
-            "token": data.gateways[i].token,
-            "method": "getPlugins"
-          }, function (plugins) {
-            // console.log(plugins); 
-            // $('#' + gateway_to_config.uuid + '_plugins').html(JSON.stringify(data));
-            $scope.gateways[i]["plugins"] = plugins.result;
-            console.log($scope.gateways[i]); 
-          }); 
-
-          // Get Subdevices
-          socket.emit('gatewayConfig', {
-            "uuid": data.gateways[i].uuid,
-            "token": data.gateways[i].token,
-            "method": "getSubdevices"
-          }, function (subdevices) {
-            // console.log(subdevices); 
-            // $('#' + gateway_to_config.uuid + '_subdevices').html(JSON.stringify(data));
-            $scope.gateways[i]["subdevices"] = subdevices.result;
-
-          }); 
-
-
-        }
-      }  
-
-
     });
 
     // get api list, if showing api

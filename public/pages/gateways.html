@@ -20,7 +20,6 @@
 
       </div>      
     </div>
-
     <div class="col-sm-12" ng-show="editGatewaySection">
       <h3>Edit Gateway</h3>   
       <form name="myForm">          
@@ -51,24 +50,17 @@
       <div class="panel-heading">
         <h3 class="panel-title">
           <div>
-          {{gateway.name}} - {{gateway.uuid}}
-          <button class="btn btn-inverse" ng-click="editGateway($index)"><i class="icon-edit"></i></button>
-          <button class="btn btn-danger" ng-click="deleteGateway($index)"><i class="icon-trash"></i></button>
+            {{gateway.name}} - {{gateway.uuid}}
+            <button class="btn btn-inverse" ng-click="editGateway($index)"><i class="icon-edit"></i></button>
+            <button class="btn btn-danger" ng-click="deleteGateway($index)"><i class="icon-trash"></i></button>
+            <a class="btn" href="/gateway?uuid={{gateway.uuid}}"><i class="icon-reply"></i> Goto</a>
 
-          <span class="pull-right">{{gateway.online}}</span>
+            <span class="pull-right" ng-show="gateway.online"> online </span>
+
           </div>
         </h3>
       </div>
       <div class="panel-body">
-        <p>
-          <a class="btn" href="/gateway?uuid={{gateway.uuid}}">Goto</a>
-<!--           <button class="btn btn-inverse" ng-click="editGateway($index)">Claim/Edit</button>
-          <button class="btn btn-danger" ng-click="deleteGateway($index)">Delete</button>
- -->
-          <button class="btn btn-primary" ng-click="getGatewayPlugins($index)">Plugins</button>
-          <button class="btn btn-primary" ng-click="getGatewaySubdevices($index)">Subdevices</button>
-        </p>
-
         <div class="table-responsive">
           <table class="table table-striped table-hover">
             <tr>
@@ -77,6 +69,7 @@
             </tr>
 
             <tr ng-repeat="plugin in gateway.plugins">
+            <!-- <tr ng-repeat="plugin in plugins"> -->
               
               <td>
                 {{plugin.name}}
@@ -94,7 +87,8 @@
               <th>Type</th>
             </tr>
 
-            <tr ng-repeat="subdevice in gateway.subdevices">
+            <tr ng-repeat="subdevice in gateway.subdevices.value">
+            <!-- <tr ng-repeat="subdevice in subdevices"> -->
               
               <td>
                 {{subdevice.name}}

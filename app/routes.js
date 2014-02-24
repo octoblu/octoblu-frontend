@@ -5,6 +5,21 @@ module.exports = function(app, passport) {
 	var request = require('request');
 	var config = require('../config/auth.js');
 	var async = require('async');
+	var skynet = require('skynet');
+
+	console.log('connecting to skynet');
+	var conn = skynet.createConnection({
+	  "uuid": "9b47c2f1-9d9b-11e3-a443-ab1cdce04787",
+	  "token": "pxdq6kdnf74iy66rhuvdw9h5d2f0f6r",
+	  "protocol": "websocket"
+	});
+
+	conn.on('notReady', function(data){
+		console.log('skynet authentication failed');
+	});
+
+	conn.on('ready', function(data){
+
 
 	// app.get('/profile', isLoggedIn, function(req, res) {
 	// 	res.render('profile', {
@@ -503,13 +518,12 @@ module.exports = function(app, passport) {
 
 	// Get devices by owner
 	app.get('/api/owner/gateways/:id/:token', function(req, res) {
+		console.log('searching for gateways');
 		request.get('http://skynet.im/mydevices/' + req.params.id, 
 	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
 				myDevices = JSON.parse(body);
-				console.log(myDevices);
 				myDevices = myDevices.devices
-				console.log(myDevices);
 				var gateways = []
 				for (var i in myDevices) {
 					if(myDevices[i].type == 'gateway'){
@@ -524,11 +538,14 @@ module.exports = function(app, passport) {
 			  		devices = ipDevices.devices
 
 		  			if(devices) {
+							console.log('gateways found', devices.length);
+
 							async.times(devices.length, function(n, next){
 
 								request.get('http://skynet.im/devices/' + devices[n]
 							  , function (error, response, body) {
 										data = JSON.parse(body);
+										console.log(data);
 										var dupeFound = false;
 										for (var i in gateways) {
 											if(gateways[i].uuid == data.uuid){
@@ -536,17 +553,79 @@ module.exports = function(app, passport) {
 											}
 										}										
 										if(!dupeFound){
-											// data.plugins = [];
-											// data.subdevices = [];
 											gateways.push(data);
 										}
 										next(error, gateways);		    	
 								});						  
 
 
-						}, function(err, gateways) {
-							res.json({"gateways": gateways[0]});
-						});	
+							}, function(err, gateways) {
+
+								console.log('gateways merged', gateways);
+								gateways = gateways[0]
+
+								// console.log('connecting to skynet');
+								// console.log(req.params.id);
+								// console.log(req.params.token);
+								// var conn = skynet.createConnection({
+								//   "uuid": req.params.id,
+								//   "token": req.params.token,
+								//   "protocol": "websocket"
+								// });
+
+								// conn.on('notReady', function(data){
+								// 	console.log('skynet authentication failed');
+								// 	console.log('gateways result', gateways);
+								// 	res.json({"gateways": gateways});
+								// });
+
+								// conn.on('ready', function(data){
+
+									console.log('gateways plugins check');
+
+									// Lookup plugins on each gateway
+									async.times(gateways.length, function(n, next){									
+							      conn.gatewayConfig({
+							        "uuid": gateways[n].uuid,
+							        "token": gateways[n].token,
+							        "method": "getPlugins"
+							      }, function (plugins) {
+							        gateways[n].plugins = plugins.result;
+											next(error, gateways[n]);
+										});
+
+							    }, function(err, gateways) {
+
+										console.log('gateways subdevices check');
+
+										// Lookup subdevices on each gateway
+										async.times(gateways.length, function(n, next){									
+								      conn.gatewayConfig({
+								        "uuid": gateways[n].uuid,
+								        "token": gateways[n].token,
+								        "method": "getSubdevices"
+								      }, function (subdevices) {
+								        gateways[n].subdevices = subdevices.result;
+												next(error, gateways[n]);
+											});
+
+								    }, function(err, gateways) {
+								    	console.log('gateways result', gateways);
+											res.json({"gateways": gateways});
+										});
+
+									});
+
+							  // }); //skynet
+
+
+								// res.json({"gateways": gateways[0]});
+							// });	
+							
+
+						})						
+
+
 					} else {
 						res.json({"gateways": gateways});
 					}
@@ -1051,6 +1130,7 @@ module.exports = function(app, passport) {
 		res.sendfile('./public/index.html');
 	});
 
+	}); // end skynet
 
 };
 
