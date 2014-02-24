@@ -518,7 +518,6 @@ module.exports = function(app, passport) {
 
 	// Get devices by owner
 	app.get('/api/owner/gateways/:id/:token', function(req, res) {
-		console.log('searching for gateways');
 		request.get('http://skynet.im/mydevices/' + req.params.id, 
 	  	{qs: {"token": req.params.token}}
 	  , function (error, response, body) {
@@ -538,8 +537,6 @@ module.exports = function(app, passport) {
 			  		devices = ipDevices.devices
 
 		  			if(devices) {
-							console.log('gateways found', devices.length);
-
 							async.times(devices.length, function(n, next){
 
 								request.get('http://skynet.im/devices/' + devices[n]
@@ -561,67 +558,41 @@ module.exports = function(app, passport) {
 
 							}, function(err, gateways) {
 
-								console.log('gateways merged', gateways);
 								gateways = gateways[0]
+									// console.log('gateways plugins check');
 
-								// console.log('connecting to skynet');
-								// console.log(req.params.id);
-								// console.log(req.params.token);
-								// var conn = skynet.createConnection({
-								//   "uuid": req.params.id,
-								//   "token": req.params.token,
-								//   "protocol": "websocket"
-								// });
+								// Lookup plugins on each gateway
+								async.times(gateways.length, function(n, next){									
+						      conn.gatewayConfig({
+						        "uuid": gateways[n].uuid,
+						        "token": gateways[n].token,
+						        "method": "getPlugins"
+						      }, function (plugins) {
+						        gateways[n].plugins = plugins.result;
+										next(error, gateways[n]);
+									});
 
-								// conn.on('notReady', function(data){
-								// 	console.log('skynet authentication failed');
-								// 	console.log('gateways result', gateways);
-								// 	res.json({"gateways": gateways});
-								// });
+						    }, function(err, gateways) {
 
-								// conn.on('ready', function(data){
+									// console.log('gateways subdevices check');
 
-									console.log('gateways plugins check');
-
-									// Lookup plugins on each gateway
+									// Lookup subdevices on each gateway
 									async.times(gateways.length, function(n, next){									
 							      conn.gatewayConfig({
 							        "uuid": gateways[n].uuid,
 							        "token": gateways[n].token,
-							        "method": "getPlugins"
-							      }, function (plugins) {
-							        gateways[n].plugins = plugins.result;
+							        "method": "getSubdevices"
+							      }, function (subdevices) {
+							        gateways[n].subdevices = subdevices.result;
 											next(error, gateways[n]);
 										});
 
 							    }, function(err, gateways) {
-
-										console.log('gateways subdevices check');
-
-										// Lookup subdevices on each gateway
-										async.times(gateways.length, function(n, next){									
-								      conn.gatewayConfig({
-								        "uuid": gateways[n].uuid,
-								        "token": gateways[n].token,
-								        "method": "getSubdevices"
-								      }, function (subdevices) {
-								        gateways[n].subdevices = subdevices.result;
-												next(error, gateways[n]);
-											});
-
-								    }, function(err, gateways) {
-								    	console.log('gateways result', gateways);
-											res.json({"gateways": gateways});
-										});
-
+							    	console.log('gateways result', gateways);
+										res.json({"gateways": gateways});
 									});
 
-							  // }); //skynet
-
-
-								// res.json({"gateways": gateways[0]});
-							// });	
-							
+								});							
 
 						})						
 

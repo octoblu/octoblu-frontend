@@ -425,6 +425,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     } else if($location.$$path == "/tools") {
       $scope.activeTab = 'devtools';
     }
+    
+    $scope.navType = 'pills';
+    // $scope.navType = 'tabs';
 
     // connect to skynet
     var skynetConfig = {
