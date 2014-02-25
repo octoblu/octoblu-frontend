@@ -31,8 +31,19 @@
     "async": "*",
     "skynet": "*"
   },
+  "devDependencies": {
+    "mocha-istanbul": "~0.2.0",
+    "mocha-lcov-reporter": "0.0.1",
+    "chai": "~1.9.0",
+    "mocha": "~1.17.1",
+    "istanbul": "~0.2.4",
+    "coveralls": "~2.7.1"
+  },
   "scripts": {
-    "start": "node server.js"
+    "test": "make test",
+    "start": "node server.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --reporter=mocha-istanbul test/**/*.js",
+    "coveralls": "npm run-script coverage && ./node_modules/.bin/coveralls.js < coverage/lcov.info"
   },
   "engines": {
     "node": ">=0.6"
