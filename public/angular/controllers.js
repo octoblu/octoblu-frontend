@@ -381,16 +381,6 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
   });  
 });
 
-e2eApp.controller('communityController', function($scope, $http, $location) {
-  checkLogin($scope, $http, false, function(){
-    $(".active").removeClass();
-    $("#nav-community").addClass('active');
-    $("#main-nav").show();
-    $("#main-nav-bg").show();
-
-  });  
-});
-
 e2eApp.controller('adminController', function($scope, $http, $location) {
   checkLogin($scope, $http, false, function(){
     $(".active").removeClass();
