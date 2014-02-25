@@ -438,257 +438,275 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       if (e) throw e
 
 
-    // Get user devices
-    ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-      $scope.devices = data.devices;
-        for (var i in $scope.devices) {
-          if($scope.devices[i].type == 'gateway'){
-            $scope.devices.splice(i,1);
-          }
-        }             
-    });
-
-    // Get user gateways
-    ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
-      console.log('gateways', data);
-      $scope.editGatewaySection = false;
-      $scope.gateways = data.gateways;
-    });
-
-    // get api list, if showing api
-    if($scope.activeTab == 'apis') {
-      channelService.getList(function(data) {
-        $scope.channelList = data;
+      // Get user devices
+      ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
+        $scope.devices = data.devices;
+          for (var i in $scope.devices) {
+            if($scope.devices[i].type == 'gateway'){
+              $scope.devices.splice(i,1);
+            }
+          }             
       });
-    }
 
-    $scope.openDetails = function (channel) {
-      // $scope.channel = channel;
-      $location.path( '/apis/' + channel.name );
-    };
+      // Get user gateways
+      ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
+        console.log('gateways', data);
+        $scope.editGatewaySection = false;
+        $scope.gateways = data.gateways;
+      });
 
-    $scope.isActive = function (channel) {
-      if($scope.current_user.api) {
-        for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===channel.name) {
-            return true;
-          }
-        }
+      // get api list, if showing api
+      if($scope.activeTab == 'apis') {
+        channelService.getList(function(data) {
+          $scope.channelList = data;
+        });
       }
 
-      return false;
-    };
+      $scope.openDetails = function (channel) {
+        // $scope.channel = channel;
+        $location.path( '/apis/' + channel.name );
+      };
 
-    $scope.isInactive = function (channel) {
-      if($scope.current_user.api) {
-        for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===channel.name) {
-            return false;
+      $scope.isActive = function (channel) {
+        if($scope.current_user.api) {
+          for(var l = 0; l<$scope.current_user.api.length; l++) {
+            if($scope.current_user.api[l].name===channel.name) {
+              return true;
+            }
           }
         }
+
+        return false;
+      };
+
+      $scope.isInactive = function (channel) {
+        if($scope.current_user.api) {
+          for(var l = 0; l<$scope.current_user.api.length; l++) {
+            if($scope.current_user.api[l].name===channel.name) {
+              return false;
+            }
+          }
+        }
+
+        return true;
+      };
+
+      $scope.getFAName = function (channel) {
+        var prefix = 'fa-';
+        var name = channel.name.toLowerCase();
+        if(name==='stackoverflow') { return prefix+'stack-overflow'; }
+        if(name==='vimeo') { return prefix+'vimeo-square'; }
+        if(name==='tumblr') { return prefix+'tumblr-square'; }
+        if(name==='fitbit') { return prefix+'square'; }
+        if(name==='twilio') { return prefix+'square'; }
+        if(name==='tropo') { return prefix+'square'; }
+        if(name==='rdio') { return prefix+'square'; }
+        if(name==='newyorktimes') { return prefix+'square'; }
+        if(name==='musixmatch') { return prefix+'square'; }
+        if(name==='lastfm') { return prefix+'square'; }
+        if(name==='etsy') { return prefix+'square'; }
+        if(name==='spotify') { return prefix+'square'; }
+        if(name==='delicious') { return prefix+'square'; }
+        if(name==='bitly') { return prefix+'square'; }
+        if(name==='readability') { return prefix+'square'; }
+        return prefix + name;
+      };
+
+      $scope.alert = function(alertContent){
+        alert(JSON.stringify(alertContent));
+      };
+
+      $scope.createDevice = function(){
+
+        if($scope.deviceName){
+
+          // var dupeFound = false;
+          // $scope.duplicateDevice = false;
+          var dupeUuid;
+          for (var i in $scope.devices) {
+            if($scope.devices[i].name == $scope.deviceName){
+              // dupeFound = true;            
+              // $scope.duplicateDevice = true;
+              dupeUuid = $scope.devices[i].uuid;
+              dupeToken = $scope.devices[i].token;
+              dupeIndex = i;
+            }
+          }        
+
+          formData = {};
+          formData.name = $scope.deviceName;
+          formData.keyvals = $scope.keys;
+
+          if(dupeUuid){
+
+            formData.uuid = dupeUuid;
+            formData.token = dupeToken;
+            
+            deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
+              try{
+                  $scope.devices.splice(dupeIndex,1);
+                  data.token = dupeToken;
+                  data.online = false;
+                  $scope.devices.push(data);
+                  $scope.deviceName = "";
+                  $scope.keys = [{}];
+                } catch(e){
+                  $scope.devices = [data];
+                }
+                $scope.addDevice = false;
+            });
+            
+          } else {
+
+            deviceService.createDevice($scope.skynetuuid, formData, function(data) {
+              try{
+                  $scope.devices.push(data);
+                  $scope.deviceName = "";
+                  $scope.keys = [{}];
+                } catch(e){
+                  $scope.devices = [data];
+                }
+                $scope.addDevice = false;
+            });
+
+          }
+        }
+        
+      };
+
+      $scope.editDevice = function( idx ){
+        $scope.addDevice = true;
+        var device_to_edit = $scope.devices[idx];
+        $scope.deviceName = device_to_edit.name;
+
+        // find additional keys to edit
+        var keys = [];
+        for (var key in device_to_edit) {
+          if (device_to_edit.hasOwnProperty(key)) {
+            if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
+              keys.push({"key": key, "value": device_to_edit[key]});
+            }        
+          }
+        }      
+        if(keys.length){
+          $scope.keys = keys;
+        } else {
+          $scope.keys = [{}];
+        }
+        
       }
 
-      return true;
-    };
+      $scope.deleteDevice = function( idx ){
 
-    $scope.getFAName = function (channel) {
-      var prefix = 'fa-';
-      var name = channel.name.toLowerCase();
-      if(name==='stackoverflow') { return prefix+'stack-overflow'; }
-      if(name==='vimeo') { return prefix+'vimeo-square'; }
-      if(name==='tumblr') { return prefix+'tumblr-square'; }
-      if(name==='fitbit') { return prefix+'square'; }
-      if(name==='twilio') { return prefix+'square'; }
-      if(name==='tropo') { return prefix+'square'; }
-      if(name==='rdio') { return prefix+'square'; }
-      if(name==='newyorktimes') { return prefix+'square'; }
-      if(name==='musixmatch') { return prefix+'square'; }
-      if(name==='lastfm') { return prefix+'square'; }
-      if(name==='etsy') { return prefix+'square'; }
-      if(name==='spotify') { return prefix+'square'; }
-      if(name==='delicious') { return prefix+'square'; }
-      if(name==='bitly') { return prefix+'square'; }
-      if(name==='readability') { return prefix+'square'; }
-      return prefix + name;
-    };
+        var device_to_delete = $scope.devices[idx];
+        deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) { 
+          $scope.devices.splice(idx, 1);
+        });
+        
+      };
 
-    $scope.alert = function(alertContent){
-      alert(JSON.stringify(alertContent));
-    };
+      $scope.keys = [{key:'', value:''}];    
+      $scope.addKeyVals = function() {
+        $scope.keys.push( {key:'', value:''} ); 
+      }
+      $scope.removeKeyVals = function(idx) {
+        // $scope.keys.push( {key:'', value:''} ); 
+        $scope.keys.splice(idx,1);
+      }
+      $scope.editGatewayCancel = function() {
+        $scope.editGatewaySection = false; 
+      }
 
-    $scope.createDevice = function(){
+      $scope.editGateway = function( idx ){
+        $scope.editGatewaySection = true;
+        var gateway_to_edit = $scope.gateways[idx];
+        $scope.gatewayName = gateway_to_edit.name;
+        $scope.editGatewayUuid = gateway_to_edit.uuid;
 
-      if($scope.deviceName){
-
-        // var dupeFound = false;
-        // $scope.duplicateDevice = false;
-        var dupeUuid;
-        for (var i in $scope.devices) {
-          if($scope.devices[i].name == $scope.deviceName){
-            // dupeFound = true;            
-            // $scope.duplicateDevice = true;
-            dupeUuid = $scope.devices[i].uuid;
-            dupeToken = $scope.devices[i].token;
-            dupeIndex = i;
+        // find additional keys to edit
+        var keys = [];
+        for (var key in gateway_to_edit) {
+          if (gateway_to_edit.hasOwnProperty(key)) {
+            if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
+              keys.push({"key": key, "value": gateway_to_edit[key]});
+            }        
           }
-        }        
+        }      
+        if(keys.length){
+          $scope.keys = keys;
+        } else {
+          $scope.keys = [{}];
+        }
+        
+      }
 
-        formData = {};
-        formData.name = $scope.deviceName;
-        formData.keyvals = $scope.keys;
+      $scope.updateGateway = function(){
+        $scope.gatewayName = $('#gatewayName').val();
+        if($scope.gatewayName){
 
-        if(dupeUuid){
+          for (var i in $scope.gateways) {
+            if($scope.gateways[i].uuid == $scope.editGatewayUuid){
+              dupeUuid = $scope.gateways[i].uuid;
+              dupeToken = $scope.gateways[i].token;
+              dupeIndex = i;
+            }
+          }  
+
+          formData = {};
+          formData.owner = $scope.skynetuuid;
+          formData.name = $scope.gatewayName;
+          formData.keyvals = $scope.keys;        
 
           formData.uuid = dupeUuid;
           formData.token = dupeToken;
           
           deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
+            console.log(data);
             try{
-                $scope.devices.splice(dupeIndex,1);
+                $scope.gateways.splice(dupeIndex,1);
                 data.token = dupeToken;
-                data.online = false;
-                $scope.devices.push(data);
-                $scope.deviceName = "";
+                $scope.gateways.push(data);
+                $scope.gatewayName = "";
                 $scope.keys = [{}];
               } catch(e){
-                $scope.devices = [data];
+                $scope.gateways = [data];
               }
-              $scope.addDevice = false;
+              $scope.editGatewaySection = false;
           });
-          
+            
+
         } else {
-
-          deviceService.createDevice($scope.skynetuuid, formData, function(data) {
-            try{
-                $scope.devices.push(data);
-                $scope.deviceName = "";
-                $scope.keys = [{}];
-              } catch(e){
-                $scope.devices = [data];
-              }
-              $scope.addDevice = false;
-          });
-
+          $scope.editGatewayUuid        
         }
-      }
-      
-    };
-
-    $scope.editDevice = function( idx ){
-      $scope.addDevice = true;
-      var device_to_edit = $scope.devices[idx];
-      $scope.deviceName = device_to_edit.name;
-
-      // find additional keys to edit
-      var keys = [];
-      for (var key in device_to_edit) {
-        if (device_to_edit.hasOwnProperty(key)) {
-          if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
-            keys.push({"key": key, "value": device_to_edit[key]});
-          }        
-        }
-      }      
-      if(keys.length){
-        $scope.keys = keys;
-      } else {
-        $scope.keys = [{}];
-      }
-      
-    }
-
-    $scope.deleteDevice = function( idx ){
-
-      var device_to_delete = $scope.devices[idx];
-      deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) { 
-        $scope.devices.splice(idx, 1);
-      });
-      
-    };
-
-    $scope.keys = [{key:'', value:''}];    
-    $scope.addKeyVals = function() {
-      $scope.keys.push( {key:'', value:''} ); 
-    }
-    $scope.removeKeyVals = function(idx) {
-      // $scope.keys.push( {key:'', value:''} ); 
-      $scope.keys.splice(idx,1);
-    }
-    $scope.editGatewayCancel = function() {
-      $scope.editGatewaySection = false; 
-    }
-
-    $scope.editGateway = function( idx ){
-      $scope.editGatewaySection = true;
-      var gateway_to_edit = $scope.gateways[idx];
-      $scope.gatewayName = gateway_to_edit.name;
-      $scope.editGatewayUuid = gateway_to_edit.uuid;
-
-      // find additional keys to edit
-      var keys = [];
-      for (var key in gateway_to_edit) {
-        if (gateway_to_edit.hasOwnProperty(key)) {
-          if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
-            keys.push({"key": key, "value": gateway_to_edit[key]});
-          }        
-        }
-      }      
-      if(keys.length){
-        $scope.keys = keys;
-      } else {
-        $scope.keys = [{}];
-      }
-      
-    }
-
-    $scope.updateGateway = function(){
-      $scope.gatewayName = $('#gatewayName').val();
-      if($scope.gatewayName){
-
-        for (var i in $scope.gateways) {
-          if($scope.gateways[i].uuid == $scope.editGatewayUuid){
-            dupeUuid = $scope.gateways[i].uuid;
-            dupeToken = $scope.gateways[i].token;
-            dupeIndex = i;
-          }
-        }  
-
-        formData = {};
-        formData.owner = $scope.skynetuuid;
-        formData.name = $scope.gatewayName;
-        formData.keyvals = $scope.keys;        
-
-        formData.uuid = dupeUuid;
-        formData.token = dupeToken;
         
-        deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
-          console.log(data);
-          try{
-              $scope.gateways.splice(dupeIndex,1);
-              data.token = dupeToken;
-              $scope.gateways.push(data);
-              $scope.gatewayName = "";
-              $scope.keys = [{}];
-            } catch(e){
-              $scope.gateways = [data];
-            }
-            $scope.editGatewaySection = false;
+      };
+
+      $scope.deleteGateway = function( idx ){
+
+        var gateway_to_delete = $scope.gateways[idx];
+        deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) { 
+          $scope.gateways.splice(idx, 1);
         });
-          
+        
+      };
 
-      } else {
-        $scope.editGatewayUuid        
-      }
-      
-    };
+      $scope.deleteSubdevice = function(parent, idx){
+        // alert($scope.gateways[parent].name + '-' + $scope.gateways[parent].plugins[idx].name);
+        // alert($scope.gateways[parent].name + '-' + $scope.gateways[parent].subdevices.value[idx].name);
 
-    $scope.deleteGateway = function( idx ){
+        socket.emit('gatewayConfig', {
+          "uuid": $scope.gateways[parent].uuid,
+          "token": $scope.gateways[parent].token,
+          "method": "deleteSubdevice",
+          // "name": $scope.gateways[parent].plugins[idx].name
+          "name": $scope.gateways[parent].subdevices.value[idx].name
+        }, function (deleteResult) {
+          // gateways[n].plugins = plugins.result;
+          alert('subdevice deleted');
+        });
 
-      var gateway_to_delete = $scope.gateways[idx];
-      deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) { 
-        $scope.gateways.splice(idx, 1);
-      });
-      
-    };
+
+      };    
 
     }); //end skynet.js
 

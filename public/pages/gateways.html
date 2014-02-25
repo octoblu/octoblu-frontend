@@ -64,12 +64,17 @@
             <div class="table-responsive">
               <table class="table table-striped table-hover">
                 <tr>
-                  <th width="50%">Name</th>
-                  <th width="50%">Plugin</th>
+                  <th width="40%">Name</th>
+                  <th width="40%">Plugin</th>
+                  <th width="20%">Action</th>
                 </tr>
                 <tr ng-repeat="subdevice in gateway.subdevices.value">
                   <td>{{subdevice.name}}</td>
                   <td>{{subdevice.type}}</td>
+                  <td>
+                    <!-- <button class="btn btn-inverse" ng-click="editSubdevice($index)">Edit</button> -->
+                    <button class="btn btn-danger" ng-click="deleteSubdevice($parent.$index, $index)">Delete</button>
+                  </td>
                 </tr>
               </table>
             </div>
