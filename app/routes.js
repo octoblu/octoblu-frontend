@@ -334,7 +334,9 @@ module.exports = function(app, passport) {
 		app.get('/api/channels', function(req, res) {
 			console.log('returning channel list');
 
-			Api.find(function (err, apis) {
+			// Api.find({owneruuid: {$exists: false}})
+
+			Api.find({owneruuid: {$exists: false}}, function (err, apis) {
 			  	if (err) {
 			  		res.send(err);
 			  	} else {
@@ -380,7 +382,7 @@ module.exports = function(app, passport) {
 				    	for(var l=0; l<user.api.length; l++) {
 				    		criteria.push({'name': user.api[l].name});
 				    	}
-				    	Api.find({$or: criteria},function(err, apis) {
+				    	Api.find({$or: criteria, owneruuid: {$exists: false}},function(err, apis) {
 				    		if(err) { res.json(err); }
 				    		var results = [];
 			    			for(var a=0; a<apis.length;a++) {
