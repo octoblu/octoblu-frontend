@@ -738,7 +738,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         });
       };    
 
-      $scope.open = function (gateway) {
+      $scope.openNewSubdevice = function (gateway) {
         console.log(gateway);
         $scope.selectedGateway = gateway;       
 
@@ -765,7 +765,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               delete deviceProperty.required;
               return deviceProperty;
              });
-             
+
              $modalInstance.close({
               "name" : subDeviceName,
               "plugin" : plugin.name, 

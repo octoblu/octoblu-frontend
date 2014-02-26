@@ -135,12 +135,14 @@ module.exports = function(app, passport) {
 							gateways.push(myDevices[i]);
 						}
 					}
-					
+					console.log(gateways);
 					request.get('http://skynet.im/devices', 
 				  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
 				  , function (error, response, body) {
 				  		ipDevices = JSON.parse(body);
 				  		devices = ipDevices.devices
+
+					console.log('local gateways',devices);
 
 			  			// if(devices) {
 			  			if(true) {
@@ -156,6 +158,8 @@ module.exports = function(app, passport) {
 											data = JSON.parse(body);
 											console.log(data);
 											var dupeFound = false;
+											console.log('looping', gateways);
+
 											for (var i in gateways) {
 												if(gateways[i].uuid == data.uuid){
 													dupeFound = true;
@@ -168,10 +172,10 @@ module.exports = function(app, passport) {
 									});						  
 
 
-								}, function(err, gateways) {
-
+								}, function(err) {
+									console.log(gateways);
 									console.log('gateways', gateways[0]);
-									gateways = gateways[0];
+									// gateways = gateways[0];
 										// console.log('gateways plugins check');
 	
 				  				if (gateways){
