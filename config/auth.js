@@ -152,8 +152,8 @@ if (development) {
       'callbackURL'    : 'http://octoblu.com/api/auth/Vimeo/callback'
     },
     'foursquare' : {
-      'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
-      'clientSecret' : '3XRB1YRDIP1WYTUXZWZPN5IE5OLXV0GIBQT1VYZYDFMKGWX4',
+      'clientKey'    : 'TWS4TQMSWG20PQPR45ZAWDBKPKKQR0IFR4YN31KCCVFCM5GP',
+      'clientSecret' : 'WBDW3TOO2P4ZRDM1PXGMBXIPKJKZKCNHM0S0BZI3ECF3JJPK',
       'callbackURL'    : 'http://octoblu.com/api/auth/FourSquare/callback'
     },
     'tumblr' : {
