@@ -1,4 +1,4 @@
-e2eApp.controller('communityPostController', function ($scope, $params, $http, $location) {
+e2eApp.controller('communityPostController', function ($scope, $http, $location, $routeParams) {
   checkLogin($scope, $http, false, function(){
     $(".active").removeClass();
     $("#nav-community").addClass('active');
@@ -6,17 +6,17 @@ e2eApp.controller('communityPostController', function ($scope, $params, $http, $
     $("#main-nav-bg").show();
   });
 
-  $scope.slug = $params.slug;
+  $scope.slug = $routeParams.slug;
   $scope.post = {};
 
   $scope.getPost = function () {
-    $http.get('/posts/' + $scope.slug, function (error, post) {
-      if(error) {
-        console.log(error);
-      } else {
+    $http.get('/posts/' + $scope.slug)
+      .success(function (post) {
         $scope.post = post;
-      }
-    });
+      })
+      .error(function (error) {
+        console.log(error);
+      });
   };
 
   $scope.getPost();

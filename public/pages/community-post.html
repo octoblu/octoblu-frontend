@@ -17,7 +17,7 @@
         <div class='post'>
           <h2>
             {{post.title}}
-            <small>Posted {{post.createdAt}}</small>
+            <small>Posted {{post.created_at | date : 'medium'}}</small>
           </h2>
           <div>{{post.content}}</div>
         </div>

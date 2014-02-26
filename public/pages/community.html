@@ -75,8 +75,8 @@
               <td>
                 <a ng-href='{{postUrl(post)}}'>{{post.title}}</a>
               </td>
-              <td>{{post.createdAt}}</td>
-              <td>{{post.updatedAt}}</td>
+              <td>{{post.created_at | date : 'medium'}}</td>
+              <td>{{post.updated_at | date : 'medium'}}</td>
               <td>
                 <span class='badge'>{{post.replies.length || 0}}</span>
               </td>
@@ -92,7 +92,7 @@
             <span class='badge'>{{post.replies.length || 0}}</span>
             {{post.user}} posted
             <strong>{{post.title}}</strong>
-            on {{post.createdAt}}
+            on {{post.created_at | date}}
           </a>
         </div>
 

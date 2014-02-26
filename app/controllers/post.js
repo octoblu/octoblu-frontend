@@ -5,7 +5,7 @@ module.exports = function ( app ) {
     Post.find(function( error, posts ) {
       if(error) {
         console.error(error);
-        response.send(error);
+        response.send({message: error});
       } else {
         response.json(posts);
       }
@@ -24,7 +24,7 @@ module.exports = function ( app ) {
   });
 
   app.get('/posts/:slug', function ( request, response ) {
-    Post.find({slug: request.params.slug}, function ( error, post ) {
+    Post.findOne({slug: request.params.slug}, function ( error, post ) {
       if(error) {
         console.error(error);
         response.json({message: error});

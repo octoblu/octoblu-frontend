@@ -11,7 +11,7 @@ var postSchema = mongoose.Schema({
   content : String
 });
 
-postSchema.plugin(slug('title'));
 postSchema.plugin(timestamps);
+postSchema.plugin(slug(['title', 'created_at']));
 
 module.exports = mongoose.model('Post', postSchema);
