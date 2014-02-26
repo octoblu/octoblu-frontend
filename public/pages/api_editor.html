@@ -61,50 +61,90 @@
       <div class="pull-left">
         <h3>{{channel.name}}</h3>
         <div>
+          <img src="{{channel.logo}}" ng-show="channel.logo" />
+        </div>
+        <div>
           <!-- <button class="btn btn-primary" ng-click="isNew=1">Test</button> -->
           <button class="btn btn-primary" ng-show="!isEdit && !isNew" ng-click="setEditMode()">Edit</button>
           <button class="btn btn-success" ng-show="isEdit || isNew" ng-click="save()">Save</button>
           <button class="btn btn-danger" ng-show="isEdit && !isNew" ng-click="cancelEdit()">Cancel</button>
         </div>
         <br/>
-        <!-- <div>
-        t={{isNew}}
-        </div> -->
 
-        <div class="field">
-          <label for="resource_resourcename">Name</label>
-          <input class="input-xxlarge" size="30" type="text" placeholder="API Name" ng-model="channel.name" />
-        </div>
+        <fieldset ng-show="isEdit || isNew">
 
-        <div class="field">
-          <label for="resource_resourcename">Base URL</label>
-          <input class="input-xxlarge" size="30" type="text" placeholder="API Base URL" ng-model="channel.application.base" />
-        </div>
+          <div class="field">
+            <label for="resource_resourcename">Name</label>
+            <input class="input-xxlarge" size="30" type="text" placeholder="API Name" ng-model="channel.name" />
+          </div>
 
-        <div class="field">
-          <label for="resource_resourcename">Doc URL</label>
-          <input class="input-xxlarge" size="30" type="text" placeholder="API Doc URL" ng-model="channel.application.doc" />
-        </div>
+          <div class="field">
+            <label for="resource_resourcename">Base URL</label>
+            <input class="input-xxlarge" size="30" type="text" placeholder="API Base URL" ng-model="channel.application.base" />
+          </div>
 
-        <div class="field">
-          <label for="resource_resourcename">Image URL</label>
-          <input class="input-xxlarge" size="30" type="text" placeholder="API Image URL" ng-model="channel.logo" />
-        </div>
+          <div class="field">
+            <label for="resource_resourcename">Doc URL</label>
+            <input class="input-xxlarge" size="30" type="text" placeholder="API Doc URL" ng-model="channel.application.doc" />
+          </div>
 
-        <div class="field">
-          <label for="resource_resourcename" style="valign:top">Description</label>
-          <textarea class="input-xxlarge" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" ></textarea>
-        </div>
+          <div class="field">
+            <label for="resource_resourcename">Image URL</label>
+            <input class="input-xxlarge" size="30" type="text" placeholder="API Image URL" ng-model="channel.logo" />
+          </div>
 
-        <div class="field">
-          <label for="resource_resourcename">Private API</label>
-          <input class="input-xxlarge" size="30" type="checkbox" />
-        </div>
+          <div class="field">
+            <label for="resource_resourcename" style="vertical-align:top;">Description</label>
+            <textarea class="input-xxlarge" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" ></textarea>
+          </div>
 
-        <div class="field">
-          <label for="resource_resourcename">Auth Type</label>
-          <select ng-model="channel.auth_strategy" ng-options="a for a in authtypes">
-          </select>
+          <div class="field">
+            <label for="resource_resourcename">Private API</label>
+            <input class="input-xxlarge" type="checkbox" />
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Auth Type</label>
+            <select ng-model="channel.auth_strategy" ng-options="a for a in authtypes">
+            </select>
+          </div>
+
+        </fieldset>
+
+        <div ng-show="!isNew && !isEdit">
+          <div class="field">
+            <label for="resource_resourcename">Name</label>
+            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.name" />
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Base URL</label>
+            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.application.base" />
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Doc URL</label>
+            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.application.doc" />
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Image URL</label>
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename" style="vertical-align:top;">Description</label>
+            <textarea class="input-xxlarge" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" ></textarea>
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Private API</label>
+            <input class="input-xxlarge" type="checkbox" />
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Auth Type</label>
+            <span ng-bind="channel.auth_strategy"></span>
+          </div>
         </div>
 
         <div>

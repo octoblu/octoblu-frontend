@@ -997,7 +997,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 //     (scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
 // }
 
-e2eApp.controller('apieditorController', function($scope, $http, $location, $routeParams, $modal, $log, 
+e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $location, $routeParams, $modal, $log, 
       channelService, userService) {
 
   $scope.skynetStatus = false;
@@ -1009,7 +1009,7 @@ e2eApp.controller('apieditorController', function($scope, $http, $location, $rou
   $scope.isNew = false;
 
   $scope.channel = {
-    owneruuid: '',
+    owner: '',
     auth_strategy: '',
     logo: '',
     name: 'hixxxxxx',
@@ -1024,52 +1024,63 @@ e2eApp.controller('apieditorController', function($scope, $http, $location, $rou
   $scope.has_user_channel = false;
   $scope.custom_tokens = {};
 
-  checkLogin($scope, $http, true, function(){
+  // $scope.isNew = true;
+
+  $scope.setEditMode = function() {$scope.isEdit = true;};
+  $scope.cancelEdit = function() {$scope.isEdit = false;};
+
+  $scope.save = function() {
+    $scope.isEdit = false;
+    if(!$scope.channel) return;
+
+    channelService.save($scope.channel, function(data){
+      $log.info('completed save call............');
+    });
+
+    return;
+  };
+
+  $scope.authorize = function (channel) {
+    //$location.path( '/api/auth/' + channel.name );
+    var loc = '/api/auth/' + channel.name;
+    console.log(loc);
+    location.href = loc;
+  };
+
+  $scope.logo_url = function() {
+    if(!$scope.channel || !$scope.channel['logo-color']) return '';
+
+    return $scope.channel['logo-color'];
+  };
+
+  checkLogin($rootScope, $http, true, function(){
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-    if($routeParams.name=='new') {
-      $scope.isNew = true;
-    } else {
-      channelService.getByName($routeParams.name, function(data) {
-          $scope.isNew = false;
-          $scope.channel = data;
-          $scope.custom_tokens = data.custom_tokens;
+    $scope.$apply(function(){
+      
+      if($routeParams.name=='new') {
+        $scope.isNew = true;
+        $scope.channel.owner = $scope.skynetuuid;
+      } else {
+        channelService.getByName($routeParams.name, function(data) {
+            $scope.isNew = false;
+            $scope.channel = data;
+            $scope.custom_tokens = data.custom_tokens;
 
-          for(var l = 0; l<$scope.current_user.api.length; l++) {
-            if($scope.current_user.api[l].name===$scope.channel.name) {            
-              $scope.user_channel = $scope.current_user.api[l];
+            for(var l = 0; l<$scope.current_user.api.length; l++) {
+              if($scope.current_user.api[l].name===$scope.channel.name) {            
+                $scope.user_channel = $scope.current_user.api[l];
 
-              if($scope.current_user.api[l].custom_tokens)
-                $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
-              $scope.has_user_channel = true;
+                if($scope.current_user.api[l].custom_tokens)
+                  $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+                $scope.has_user_channel = true;
+              }
             }
-          }
-        });
-    }
-
-    $scope.setEditMode = function() {$scope.isEdit = true;};
-    $scope.cancelEdit = function() {$scope.isEdit = false;};
-
-    $scope.save = function() {
-      if(!$scope.channel) return;
-
-      return;
-    };
-
-    $scope.authorize = function (channel) {
-      //$location.path( '/api/auth/' + channel.name );
-      var loc = '/api/auth/' + channel.name;
-      console.log(loc);
-      location.href = loc;
-    };
-
-    $scope.logo_url = function() {
-      if(!$scope.channel || !$scope.channel['logo-color']) return '';
-
-      return $scope.channel['logo-color'];
-    };
+          });
+      }
+    });
 
   });
 
@@ -1332,37 +1343,37 @@ function checkLogin($scope, $http, secured, cb) {
       $scope.user_id = data._id;
       $scope.current_user = data;
 
-      $(".auth").hide();
-      $(".user-menu").show();
-      $(".toggle-nav").show();
-      $(".navbar-brand").attr("href", "/dashboard");
+      // $(".auth").hide();
+      // $(".user-menu").show();
+      // $(".toggle-nav").show();
+      // $(".navbar-brand").attr("href", "/dashboard");
 
       if (data.local) {
-        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
-        $(".user-name").html(data.local.email.toString());
+        // $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
+        // $(".user-name").html(data.local.email.toString());
         $scope.user = data.local.email;
         $scope.skynetuuid = data.local.skynetuuid;
         $scope.skynettoken = data.local.skynettoken;
         token = data.local.skynettoken;          
 
       } else if (data.twitter) {
-        $(".user-name").html('@' + data.twitter.username.toString());
+        // $(".user-name").html('@' + data.twitter.username.toString());
         $scope.user = data.twitter.displayName;
         $scope.skynetuuid = data.twitter.skynetuuid;
         $scope.skynettoken = data.twitter.skynettoken;
         token = data.twitter.skynettoken;
 
       } else if (data.facebook) {                    
-        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
-        $(".user-name").html(data.facebook.name.toString());
+        // $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
+        // $(".user-name").html(data.facebook.name.toString());
         $scope.user = data.facebook.name;
         $scope.skynetuuid = data.facebook.skynetuuid;
         $scope.skynettoken = data.facebook.skynettoken;
         token = data.facebook.skynettoken;
 
       } else if (data.google) {
-        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
-        $(".user-name").html('+' + data.google.name.toString());
+        // $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
+        // $(".user-name").html('+' + data.google.name.toString());
         $scope.user = data.google.name;
         $scope.skynetuuid = data.google.skynetuuid;
         $scope.skynettoken = data.google.skynettoken;

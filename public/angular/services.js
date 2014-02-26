@@ -208,6 +208,19 @@
 
     	};
 
+    	this.save = function(channel, callback) {
+
+    		$http.put('/api/channels/', channel, { cache: true})
+		      .success(function(data) {
+		      	callback(data);
+		      })
+		      .error(function(data) {
+		        console.log('Error: ' + data);
+            	callback({});
+		      });
+
+    	};
+
     };
     channelService.$inject = ['$http'];
     angular.module('e2eApp').service('channelService', channelService);
