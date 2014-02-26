@@ -681,13 +681,16 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       };
 
       $scope.deleteSubdevice = function(parent, idx){
+        var subName = $scope.gateways[parent].subdevices.value[idx].name
+        $scope.gateways[parent].subdevices.value.splice(idx,1)
         socket.emit('gatewayConfig', {
           "uuid": $scope.gateways[parent].uuid,
           "token": $scope.gateways[parent].token,
           "method": "deleteSubdevice",
-          "name": $scope.gateways[parent].subdevices.value[idx].name
+          "name": subName
+          // "name": $scope.gateways[parent].subdevices.value[idx].name
         }, function (deleteResult) {
-          alert('subdevice deleted');
+          // alert('subdevice deleted');
         });
       };    
 
@@ -705,7 +708,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           "options": deviceProperties
         }, function (addResult) {
           // gateways[n].plugins = plugins.result;
-          alert('subdevice added');
+          // alert('subdevice added');
           console.log(addResult);
         });
       };    
@@ -733,7 +736,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           "options": {greetingPrefix: "hello"}
         }, function (addResult) {
           // gateways[n].plugins = plugins.result;
-          alert('subdevice added');
+          // alert('subdevice added');
           console.log(addResult);
         });
       };    
@@ -819,7 +822,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           $scope.plugin = response.plugin; 
           $scope.deviceProperties = response.deviceProperties;
           $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
-          // if(response==='ok') {
+
+          $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
+          // if(response==='ok') { 
           //   $log.info('clicked ok');
         }, function (){
           $log.info('Modal dismissed at: ' + new Date());
