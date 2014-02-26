@@ -61,6 +61,8 @@
         <tabset vertical="false" type="navType">
 
           <tab heading="Subdevices" style="cursor:pointer;">
+            <!-- <button class="btn btn-success pull-right" ng-click="addSubdevice($index)">Add</button> -->
+            <button class="btn btn-success pull-right" ng-click="open(gateway)">Add</button>
             <div class="table-responsive">
               <table class="table table-striped table-hover">
                 <tr>
@@ -81,15 +83,21 @@
           </tab>
 
           <tab heading="Plugins" style="cursor:pointer;">
+            <button class="btn btn-success pull-right" ng-click="addPlugin($index)">Add</button>
             <div class="table-responsive">
               <table class="table table-striped table-hover">
                 <tr>
-                  <th width="50%">Name</th>
-                  <th width="50%">Version</th>
+                  <th width="40%">Name</th>
+                  <th width="40%">Version</th>
+                  <th width="20%">Action</th>
                 </tr>
                 <tr ng-repeat="plugin in gateway.plugins">                  
                   <td>{{plugin.name}}</td>
                   <td>{{plugin.version}}</td>
+                  <td>
+                    <!-- <button class="btn btn-inverse" ng-click="editSubdevice($index)">Edit</button> -->
+                    <button class="btn btn-danger" ng-click="deletePlugin($parent.$index, $index)">Delete</button>
+                  </td>
 
                 </tr>
               </table>
@@ -98,41 +106,38 @@
 
         </tabset>
 
-
-
-
-
       </div>
     </div>
 
-<!--     <div class="table-responsive">
-      <table class="table table-striped table-hover">
-        <tr>
-          <th>Name</th>
-          <th>UUID</th>
-          <th>Online</th>
-          <th>Action</th>
-        </tr>
-
-        <tr ng-repeat="gateway in gateways">
-          
-          <td>
-            {{gateway.name}}
-          </td>
-          <td>{{gateway.uuid}}</td>
-          <td>{{gateway.online}}</td>
-          <td>
-            <a class="btn" href="/gateway?uuid={{gateway.uuid}}">Goto</a>
-            <button class="btn btn-inverse" ng-click="editGateway($index)">Claim/Edit</button>
-            <button class="btn btn-danger" ng-click="deleteGateway($index)">Delete</button>
-            <button class="btn btn-primary" ng-click="getGatewayPlugins($index)">Plugins</button>
-            <button class="btn btn-primary" ng-click="getGatewaySubdevices($index)">Subdevices</button>
-          </td>
-
-
-        </tr>
-      </table>
-    </div>
- -->  
   </div>
+</div>
+
+<div>
+  <script type="text/ng-template" id="subDeviceModal.html">
+      <div class="modal-header">
+          <h3>Add Sub-Device to Gateway: {{selectedGateway.name}}</h3>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="plugin" class="col-sm-2 control-label">Plugin</label>
+          <div class="col-sm-10">
+            <select ng-model="plugin" ng-options="plugin.name for plugin in plugins" class="form-control" id="plugin" ng-change="getSchema(plugin)"></select>            
+          </div>
+        </div>
+        <div ng-show="schema">
+          <br /><br />
+          <input type="text" ng-model="subDeviceName" placeholder="name" class="form-control" required>
+          <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
+            <div ng-if="deviceProperty.type == 'string'">
+              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok(subDeviceName, plugin, deviceProperties)">OK</button>
+          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div>
+  </script>
 </div>

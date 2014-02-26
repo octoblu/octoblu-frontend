@@ -391,7 +391,7 @@ e2eApp.controller('adminController', function($scope, $http, $location) {
   });  
 });
 
-e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, $q, 
+e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, $q, $modal,
       ownerService, deviceService, channelService) {
   $scope.skynetStatus = false;
   $scope.channelList = [];
@@ -681,22 +681,151 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       };
 
       $scope.deleteSubdevice = function(parent, idx){
-        // alert($scope.gateways[parent].name + '-' + $scope.gateways[parent].plugins[idx].name);
-        // alert($scope.gateways[parent].name + '-' + $scope.gateways[parent].subdevices.value[idx].name);
-
         socket.emit('gatewayConfig', {
           "uuid": $scope.gateways[parent].uuid,
           "token": $scope.gateways[parent].token,
           "method": "deleteSubdevice",
-          // "name": $scope.gateways[parent].plugins[idx].name
           "name": $scope.gateways[parent].subdevices.value[idx].name
         }, function (deleteResult) {
-          // gateways[n].plugins = plugins.result;
           alert('subdevice deleted');
         });
-
-
       };    
+
+      $scope.addSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
+
+        socket.emit('gatewayConfig', {
+          "uuid": gateway.uuid,
+          "token": gateway.token,
+          "method": "createSubdevice",
+          // "type": "skynet-greeting",
+          // "name": "mygreeting",
+          // "options": {greetingPrefix: "hello"}
+          "type": pluginName,
+          "name": subDeviceName,
+          "options": deviceProperties
+        }, function (addResult) {
+          // gateways[n].plugins = plugins.result;
+          alert('subdevice added');
+          console.log(addResult);
+        });
+      };    
+
+
+      $scope.deletePlugin = function(parent, idx){
+        socket.emit('gatewayConfig', {
+          "uuid": $scope.gateways[parent].uuid,
+          "token": $scope.gateways[parent].token,
+          "method": "deletePlugin",
+          "name": $scope.gateways[parent].plugins[idx].name
+        }, function (deleteResult) {
+          alert('plugin deleted');
+        });
+      };    
+
+      $scope.addPlugin = function(idx){
+
+        socket.emit('gatewayConfig', {
+          "uuid": $scope.gateways[idx].uuid,
+          "token": $scope.gateways[idx].token,
+          "method": "installPlugin",
+          "type": "skynet-greeting",
+          "name": "mygreeting",
+          "options": {greetingPrefix: "hello"}
+        }, function (addResult) {
+          // gateways[n].plugins = plugins.result;
+          alert('subdevice added');
+          console.log(addResult);
+        });
+      };    
+
+      $scope.open = function (gateway) {
+        console.log(gateway);
+        $scope.selectedGateway = gateway;       
+
+        var modalInstance = $modal.open({
+          templateUrl: 'subDeviceModal.html',
+          scope: $scope,
+          controller: function ($modalInstance) {
+
+            // $scope.deviceProperties = _.
+            console.log($scope);
+            // console.log($scope.$parent);
+            $scope.gatewayName = $scope.selectedGateway.name;
+            $scope.plugins = $scope.selectedGateway.plugins;
+            $scope.ok = function (subDeviceName, plugin, deviceProperties) {
+            console.log("subDeviceName");
+             console.log(subDeviceName);
+              console.log("plugin");
+               console.log(plugin);
+                console.log("deviceProperties");
+                console.log(deviceProperties);
+             var properties = _.map(deviceProperties, function(deviceProperty){
+              delete deviceProperty.$$hashKey;
+              delete deviceProperty.type;
+              delete deviceProperty.required;
+              return deviceProperty;
+             });
+             
+             $modalInstance.close({
+              "name" : subDeviceName,
+              "plugin" : plugin.name, 
+              "deviceProperties" : deviceProperties 
+             });
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+
+            $scope.getSchema = function (plugin){
+
+              $scope.schema = plugin.optionsSchema;
+              console.log($scope.schema); 
+
+              var keys = _.keys($scope.schema.properties);
+              
+              var propertyValues = _.values($scope.schema.properties);
+              console.log('propertyValues');
+              console.log(propertyValues);
+            
+              var deviceProperties = _.map(keys, function(propertyKey){
+                   console.log(propertyKey);
+                   var propertyValue = $scope.schema.properties[propertyKey]; 
+                   console.log(propertyValue); 
+                   var deviceProperty = {}; 
+                   deviceProperty.name = propertyKey; 
+                   deviceProperty.type = propertyValue.type; 
+                   deviceProperty.required = propertyValue.required; 
+                   deviceProperty.value = ""; 
+                   return deviceProperty;
+              }); 
+              console.log(deviceProperties); 
+              $scope.deviceProperties = deviceProperties; 
+            };
+          },
+          resolve: {
+            // gateways: function () {
+            //   return $scope.gateways;
+            // }
+            // deviceProperties : function(){
+            //   var properties = _.each()
+            // }
+          }
+        });
+
+        modalInstance.result.then(function (response) {
+
+          $scope.subDeviceName = response.name;
+          $scope.plugin = response.plugin; 
+          $scope.deviceProperties = response.deviceProperties;
+          $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
+          // if(response==='ok') {
+          //   $log.info('clicked ok');
+        }, function (){
+          $log.info('Modal dismissed at: ' + new Date());
+        });
+
+      }
 
     }); //end skynet.js
 

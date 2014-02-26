@@ -33,45 +33,45 @@ module.exports = function(app, passport) {
     require('./controllers/unlink')(app);
     require('./controllers/post')(app);
 
-	// APIs
-	// Get user
-	app.get('/api/user/:id', function(req, res) {
+		// APIs
+		// Get user
+		app.get('/api/user/:id', function(req, res) {
 
-	    User.findOne({ $or: [
-	    	{"local.skynetuuid" : req.params.id},
-	    	{"twitter.skynetuuid" : req.params.id},
-	    	{"facebook.skynetuuid" : req.params.id},
-	    	{"google.skynetuuid" : req.params.id}
-	    	]
-	    }, function(err, userInfo) {
-	    	// console.log(userInfo);
-	      if (err) {
-	        res.send(err);
-	      } else {
-	      	// not sure why local.password cannot be deleted from user object
-	      	// if (userInfo && userInfo.local){
-		      // 	userInfo.local.password = null;
-		      // 	delete userInfo.local.password;      		
-	      	// }
-	        res.json(userInfo);
-	      }
-	    });
-	});
-
-	// Get devices by owner
-	app.get('/api/owner/devices/:id/:token', function(req, res) {
-
-		request.get('http://skynet.im/mydevices/' + req.params.id, 
-	  	{qs: {"token": req.params.token}}
-	  , function (error, response, body) {
-	  		try{
-					data = JSON.parse(body);
-				} catch(e){
-					data = {};
-				}
-	    	res.json(data);
+		    User.findOne({ $or: [
+		    	{"local.skynetuuid" : req.params.id},
+		    	{"twitter.skynetuuid" : req.params.id},
+		    	{"facebook.skynetuuid" : req.params.id},
+		    	{"google.skynetuuid" : req.params.id}
+		    	]
+		    }, function(err, userInfo) {
+		    	// console.log(userInfo);
+		      if (err) {
+		        res.send(err);
+		      } else {
+		      	// not sure why local.password cannot be deleted from user object
+		      	// if (userInfo && userInfo.local){
+			      // 	userInfo.local.password = null;
+			      // 	delete userInfo.local.password;      		
+		      	// }
+		        res.json(userInfo);
+		      }
+		    });
 		});
-	});
+
+		// Get devices by owner
+		app.get('/api/owner/devices/:id/:token', function(req, res) {
+
+			request.get('http://skynet.im/mydevices/' + req.params.id, 
+		  	{qs: {"token": req.params.token}}
+		  , function (error, response, body) {
+		  		try{
+						data = JSON.parse(body);
+					} catch(e){
+						data = {};
+					}
+		    	res.json(data);
+			});
+		});
 
 		// APIs
 		// Get user
@@ -142,8 +142,14 @@ module.exports = function(app, passport) {
 				  		ipDevices = JSON.parse(body);
 				  		devices = ipDevices.devices
 
-			  			if(devices) {
-								async.times(devices.length, function(n, next){
+			  			// if(devices) {
+			  			if(true) {
+			  				if (devices){
+			  					devicesLength = devices.length;
+			  				} else {
+			  					devicesLength = 0;
+			  				}
+								async.times(devicesLength, function(n, next){
 
 									request.get('http://skynet.im/devices/' + devices[n]
 								  , function (error, response, body) {
@@ -164,16 +170,24 @@ module.exports = function(app, passport) {
 
 								}, function(err, gateways) {
 
-									gateways = gateways[0]
+									console.log('gateways', gateways[0]);
+									gateways = gateways[0];
 										// console.log('gateways plugins check');
+	
+				  				if (gateways){
+				  					gatewaysLength = gateways.length;
+				  				} else {
+				  					gatewaysLength = 0;
+				  				}
 
 									// Lookup plugins on each gateway
-									async.times(gateways.length, function(n, next){									
+									async.times(gatewaysLength, function(n, next){									
 							      conn.gatewayConfig({
 							        "uuid": gateways[n].uuid,
 							        "token": gateways[n].token,
 							        "method": "getPlugins"
 							      }, function (plugins) {
+							      	console.log('plugins:', plugins.result);
 							        gateways[n].plugins = plugins.result;
 											next(error, gateways[n]);
 										});
@@ -189,6 +203,7 @@ module.exports = function(app, passport) {
 								        "token": gateways[n].token,
 								        "method": "getSubdevices"
 								      }, function (subdevices) {
+								      	console.log('subdevices:', subdevices.result);
 								        gateways[n].subdevices = subdevices.result;
 												next(error, gateways[n]);
 											});
