@@ -67,11 +67,22 @@ module.exports = function ( app, passport, config ) {
 
 			    } else {
 
-			    	res.cookie('skynetuuid', data.devices[0], {
-			          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-			          domain: config.domain,
-			          httpOnly: false
-			        });
+			    	// res.cookie('skynetuuid', data.devices[0], {
+			     //      maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+			     //      domain: config.domain,
+			     //      httpOnly: false
+			     //    });
+
+		        res.cookie('skynetuuid', user.facebook.skynetuuid, {
+		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		          domain: config.domain,
+		          httpOnly: false
+		        });		     
+		        res.cookie('skynettoken', user.facebook.skynettoken, {
+		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		          domain: config.domain,
+		          httpOnly: false
+		        });		     
 
 			    	return res.redirect('/dashboard');
 			    }
@@ -148,7 +159,17 @@ module.exports = function ( app, passport, config ) {
 
 
 			    } else {
-		        res.cookie('skynetuuid', data.devices[0], {
+		        // res.cookie('skynetuuid', data.devices[0], {
+		        //   maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		        //   domain: config.domain,
+		        //   httpOnly: false
+		        // });		     
+		        res.cookie('skynetuuid', user.twitter.skynetuuid, {
+		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		          domain: config.domain,
+		          httpOnly: false
+		        });		     
+		        res.cookie('skynettoken', user.twitter.skynettoken, {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 		          domain: config.domain,
 		          httpOnly: false
@@ -198,18 +219,18 @@ module.exports = function ( app, passport, config ) {
 							        user.google.skynettoken = data.token.toString();
 							        user.save(function(err) {
 						            if(!err) {
-						                console.log("user " + data.uuid + " updated ");
-								        res.cookie('skynetuuid', data.uuid, {
-								          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-								          domain: config.domain,
-								          httpOnly: false
-								        });	
-								        res.cookie('skynettoken', data.token, {
-								          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-								          domain: config.domain,
-								          httpOnly: false
-								        });	
-									      return res.redirect('/dashboard');
+					                console.log("user " + data.uuid + " updated ");
+									        res.cookie('skynetuuid', data.uuid, {
+									          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+									          domain: config.domain,
+									          httpOnly: false
+									        });	
+									        res.cookie('skynettoken', data.token, {
+									          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+									          domain: config.domain,
+									          httpOnly: false
+									        });	
+										      return res.redirect('/dashboard');
 
 						            }
 						            else {
@@ -230,7 +251,12 @@ module.exports = function ( app, passport, config ) {
 
 
 			    } else {
-		        res.cookie('skynetuuid', data.devices[0], {
+		        res.cookie('skynetuuid', user.google.skynetuuid, {
+		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+		          domain: config.domain,
+		          httpOnly: false
+		        });		     
+		        res.cookie('skynettoken', user.google.skynettoken, {
 		          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 		          domain: config.domain,
 		          httpOnly: false
