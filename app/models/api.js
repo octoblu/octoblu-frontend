@@ -5,6 +5,7 @@ var bcrypt   = require('bcrypt-nodejs');
 var apiSchema = mongoose.Schema({
 
     name             : String,
+    owner            : String,
     description      : String,
     enabled          : Boolean,
     logo             : String,
