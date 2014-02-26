@@ -452,6 +452,10 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         });
       }
 
+      $scope.openNewApi = function() {
+        $location.path( '/apieditor/new' );
+      };
+
       $scope.openDetails = function (channel) {
         // $scope.channel = channel;
         $location.path( '/apis/' + channel.name );
@@ -855,11 +859,33 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
 });
 
+// function safeApply(scope, fn) {
+//     (scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
+// }
+
 e2eApp.controller('apieditorController', function($scope, $http, $location, $routeParams, $modal, $log, 
       channelService, userService) {
 
   $scope.skynetStatus = false;
-  $scope.channel = {};
+  $scope.authtypes = [
+      'none','simple','custom','oauth'
+    ];
+
+  $scope.isEdit = false;
+  $scope.isNew = false;
+
+  $scope.channel = {
+    owneruuid: '',
+    auth_strategy: '',
+    logo: '',
+    name: 'hixxxxxx',
+    description: ''
+  };
+  $scope.channel.application = {
+    base: '',
+    doc: '',
+    resources: [],
+  };
   $scope.user_channel = {};
   $scope.has_user_channel = false;
   $scope.custom_tokens = {};
@@ -868,67 +894,34 @@ e2eApp.controller('apieditorController', function($scope, $http, $location, $rou
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
-    
-    channelService.getByName($routeParams.name, function(data) {
-          
-        $scope.channel = data;
-        $scope.custom_tokens = data.custom_tokens;
 
-        for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===$scope.channel.name) {            
-            $scope.user_channel = $scope.current_user.api[l];
+    if($routeParams.name=='new') {
+      $scope.isNew = true;
+    } else {
+      channelService.getByName($routeParams.name, function(data) {
+          $scope.isNew = false;
+          $scope.channel = data;
+          $scope.custom_tokens = data.custom_tokens;
 
-            if($scope.current_user.api[l].custom_tokens)
-              $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
-            $scope.has_user_channel = true;
+          for(var l = 0; l<$scope.current_user.api.length; l++) {
+            if($scope.current_user.api[l].name===$scope.channel.name) {            
+              $scope.user_channel = $scope.current_user.api[l];
+
+              if($scope.current_user.api[l].custom_tokens)
+                $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+              $scope.has_user_channel = true;
+            }
           }
-        }
-      });
+        });
+    }
 
-    $scope.editor = function () {
+    $scope.setEditMode = function() {$scope.isEdit = true;};
+    $scope.cancelEdit = function() {$scope.isEdit = false;};
 
-      var modalInstance = $modal.open({
-        templateUrl: 'myModalContent.html',
-        controller: function ($scope, $modalInstance) {
-            
-            $scope.ok = function () {
-              $modalInstance.close('ok');
-            };
-
-            $scope.cancel = function () {
-              $modalInstance.dismiss('cancel');
-            };
-          },
-        resolve: { }
-      });
-
-      modalInstance.result.then(function (response) {
-        if(response==='ok') {
-          $log.info('clicked ok');
-
-          userService.removeConnection($scope.skynetuuid, $scope.channel.name, function(data) {
-
-            $scope.has_user_channel = false;
-
-          });
-
-        };
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
-    };
-    
     $scope.save = function() {
       if(!$scope.channel) return;
 
-      // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
-      //   function(data) {
-      //     console.log('saved');
-      //     $scope.has_user_channel = true;
-      //   });
-
       return;
-
     };
 
     $scope.authorize = function (channel) {
