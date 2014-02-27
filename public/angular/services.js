@@ -181,36 +181,25 @@
     var channelService = function ($http) { 
 
     	this.getList = function(callback) {
-
     		$http.get('/api/channels/', { cache: true})
-		      .success(function(data) {
-		      	callback(data);
-		        
-		      })
+		      .success(function(data) { callback(data); })
 		      .error(function(data) {
 		        console.log('Error: ' + data);
-            callback({});
+            	callback({});
 		      });
+    	};
 
+    	this.getCustomList = function(callback) {
+    		$http.get('/api/customchannels/', { cache: true})
+		      .success(function(data) { callback(data); })
+		      .error(function(data) {
+		        console.log('Error: ' + data);
+            	callback({});
+		      });
     	};
 
     	this.getByName = function(name, callback) {
-
     		$http.get('/api/channels/'+name, { cache: true})
-		      .success(function(data) {
-		      	callback(data);
-		        
-		      })
-		      .error(function(data) {
-		        console.log('Error: ' + data);
-            callback({});
-		      });
-
-    	};
-
-    	this.save = function(channel, callback) {
-
-    		$http.put('/api/channels/', channel, { cache: true})
 		      .success(function(data) {
 		      	callback(data);
 		      })
@@ -218,7 +207,18 @@
 		        console.log('Error: ' + data);
             	callback({});
 		      });
+    	};
 
+    	this.save = function(channel, callback) {
+    		var d = angular.toJson(channel);
+    		$http.put('/api/channels/', d, { cache: true})
+		      .success(function(data) {
+		      	callback(data);
+		      })
+		      .error(function(data) {
+		        console.log('Error: ' + data);
+            	callback({});
+		      });
     	};
 
     };

@@ -79,7 +79,7 @@
 	  
 		  	<ul class="channellist">
  
-			  	<li ng-repeat="channel in channelList | orderBy:'name'">
+			  	<li ng-repeat="channel in customchannelList | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>

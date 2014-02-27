@@ -332,55 +332,63 @@ module.exports = function(app, passport) {
 
 		// List of available API channels
 		app.get('/api/channels', function(req, res) {
-			console.log('returning channel list');
-
-			// Api.find({owneruuid: {$exists: false}})
-
 			Api.find({owner: {$exists: false}}, function (err, apis) {
-			  	if (err) {
-			  		res.send(err);
-			  	} else {
-					res.json(apis);
-				}
+			  	if (err) { res.send(err); } else { res.json(apis); }
 			});
+		});
 
+		app.get('/api/customchannels', function(req, res) {
+			Api.find({owner: {$exists: true}}, function (err, apis) {
+			  	if (err) { res.send(err); } else { res.json(apis); }
+			});
 		});	
 
 		app.put('/api/channels', function(req, res) {
 			console.log('returning channel list');
 
 			var channel = req.body;
-			console.log(channel);
-			res.json({"message":"TODO"});
+			// console.log(channel);
+			// res.json({"message":"TODO"});
+			if(channel['_id']) {
+				var query = {_id: channel['_id']};
+				delete channel['_id'];
+				console.log(channel);
 
-			// Api.find({owner: {$exists: false}}, function (err, apis) {
-			//   	if (err) {
-			//   		res.send(err);
-			//   	} else {
-			// 		res.json(apis);
-			// 	}
-			// });
+				Api.update(query, channel, {upsert: true}, function (err) {
+				  	if (err) {
+				  		console.log('error saving api');
+				  		console.log(err);
+				  		res.send(err);
+				  	} else {
+						res.json({"message":"TODO"});
+					}
+				});
+			} else {
+				var n = new Api(channel);
+				n.save(function (err, n) {
+				  	if (err) {
+				  		console.log('error saving api');
+				  		console.log(err);
+				  		res.send(err);
+				  	} else {
+						res.json(n);
+					}
+				});
+
+			}
 
 		});	
 
 		app.get('/api/channels/:name', function(req, res) {
 			Api.findOne({name: req.params.name}, function (err, api) {
-			  	if (err) {
-			  		res.send(err);
-			  	} else {
-					res.json(api);
-				}
+			  	if (err) { res.send(err); } else { res.json(api); }
 			});
-
 		});
 
 		app.get('/api/user_api/:id/:token', function(req, res) {
 
 			var uuid = req.params.id, 
 				token = req.params.token
-
-			// console.log(uuid);
-			// res.json({});
 
 			User.findOne({ $or: [
 		    	{"local.skynetuuid" : uuid, "local.skynettoken" : token},
@@ -426,9 +434,6 @@ module.exports = function(app, passport) {
 			var key = req.body.key, 
 				token = req.body.token,
 				custom_tokens = req.body.custom_tokens;
-
-			// console.log(custom_tokens);
-			// res.json({});
 
 			User.findOne({ $or: [
 		    	{"local.skynetuuid" : req.params.id},

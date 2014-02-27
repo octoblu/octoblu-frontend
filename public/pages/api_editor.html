@@ -56,13 +56,18 @@
     </div>
     <div class="row col-xs-12">
 
+    <div ng-show="channel.logo" class="pull-right">
+      <img src="{{channel.logo}}" ng-show="channel.logo" />
+      <br/>
+      <br/>
+    </div>
+
     <div xclass="text-center">
 
       <div class="pull-left">
+
         <h3>{{channel.name}}</h3>
-        <div>
-          <img src="{{channel.logo}}" ng-show="channel.logo" />
-        </div>
+
         <div>
           <!-- <button class="btn btn-primary" ng-click="isNew=1">Test</button> -->
           <button class="btn btn-primary" ng-show="!isEdit && !isNew" ng-click="setEditMode()">Edit</button>
@@ -85,7 +90,7 @@
 
           <div class="field">
             <label for="resource_resourcename">Doc URL</label>
-            <input class="input-xxlarge" size="30" type="text" placeholder="API Doc URL" ng-model="channel.application.doc" />
+            <input class="input-xxlarge" size="30" type="text" placeholder="API Doc URL" ng-model="channel.documentation" />
           </div>
 
           <div class="field">
@@ -124,27 +129,25 @@
 
           <div class="field">
             <label for="resource_resourcename">Doc URL</label>
-            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.application.doc" />
+            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.documentation" />
           </div>
+        </div>
 
-          <div class="field">
-            <label for="resource_resourcename">Image URL</label>
-          </div>
+        <div ng-hide="isNew || isEdit">
+          <button class="btn btn-primary" ng-click="">Add Resource</button>
+        </div>
 
-          <div class="field">
-            <label for="resource_resourcename" style="vertical-align:top;">Description</label>
-            <textarea class="input-xxlarge" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" ></textarea>
+        <div ng-repeat="r in channel.application.resources" style="padding-top: 20px">
+          <div>
+            <a href="#" onclick="return false;" ng-hide="showEditResouce(r.path)" ng-click="openEditResource(r)">edit</a>
           </div>
+          <span ng-hide="showEditResouce(r.path)">
+            <a class="btn disabled btn-large btn-success"> GET</a>
+            <b>{{r.path}}</b> - {{channel.application.base}}{{r.path}}
+            <br/>
+            <code>{{r.curl}}</code>
+          </span>
 
-          <div class="field">
-            <label for="resource_resourcename">Private API</label>
-            <input class="input-xxlarge" type="checkbox" />
-          </div>
-
-          <div class="field">
-            <label for="resource_resourcename">Auth Type</label>
-            <span ng-bind="channel.auth_strategy"></span>
-          </div>
         </div>
 
         <div>
@@ -157,3 +160,56 @@
     </div>    
 
 </section>
+
+  <script type="text/ng-template" id="editResource.html">
+      <div class="modal-header">
+          <h3>Edit Resource</h3>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          
+          <div class="field">
+              <label for="resource_resourcename">Display Name</label>
+              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.displayName" />
+            </div>
+
+            <div class="field">
+              <label for="resource_resourcename">Path</label>
+              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.path" />
+            </div>
+            
+            <div class="field">
+              <label for="resource_resourcename">Doc URL</label>
+              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.doc.url" />
+            </div>
+            
+            <div class="field">
+              <label for="resource_resourcename">Doc Text</label>
+              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.doc.t" />
+            </div>
+            
+            <div class="field">
+              <label for="resource_resourcename">CURL</label>
+              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.curl" />
+            </div>
+            
+            <div class="field">
+              <label for="resource_resourcename">Auth Required</label>
+              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.authentication.required" />
+            </div>
+            
+            <div class="field">
+              <label for="resource_resourcename">HTTP Method</label>
+              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.httpMethod" />
+            </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok()">OK</button>
+          <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+      </div>
+  </script>

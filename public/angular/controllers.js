@@ -450,6 +450,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         channelService.getList(function(data) {
           $scope.channelList = data;
         });
+        channelService.getCustomList(function(data) {
+          $scope.customchannelList = data;
+        });
       }
 
       $scope.openNewApi = function() {
@@ -984,9 +987,9 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     };
 
     $scope.logo_url = function() {
-      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+      if(!$scope.channel || !$scope.channel.logo) return '';
 
-      return $scope.channel['logo-color'];
+      return $scope.channel.logo;
     };
 
   });
@@ -1012,29 +1015,30 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
     owner: '',
     auth_strategy: '',
     logo: '',
-    name: 'hixxxxxx',
-    description: ''
+    name: '',
+    description: '',
+    documentation: '',
+    application: {
+      base: '',    
+      resources: [],
+    }
   };
-  $scope.channel.application = {
-    base: '',
-    doc: '',
-    resources: [],
-  };
-  $scope.user_channel = {};
-  $scope.has_user_channel = false;
-  $scope.custom_tokens = {};
-
-  // $scope.isNew = true;
 
   $scope.setEditMode = function() {$scope.isEdit = true;};
   $scope.cancelEdit = function() {$scope.isEdit = false;};
+  $scope.showEditResouce = function(path) {return $scope.editPath===path;};
+  $scope.setEditResource = function(path) {$scope.editPath=path;};
 
   $scope.save = function() {
     $scope.isEdit = false;
     if(!$scope.channel) return;
 
     channelService.save($scope.channel, function(data){
-      $log.info('completed save call............');
+      // $log.info('completed save call............');
+      if(data.length) {
+        $scope.channel = data;
+        $location.path('/apieditor/'+data.name);
+      }
     });
 
     return;
@@ -1048,10 +1052,64 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
   };
 
   $scope.logo_url = function() {
-    if(!$scope.channel || !$scope.channel['logo-color']) return '';
+    if(!$scope.channel || !$scope.channel.logo) return '';
 
-    return $scope.channel['logo-color'];
+    return $scope.channel.logo;
   };
+
+  $scope.openEditResource = function (resource) {
+        console.log(resource);
+        $scope.selectedResource = resource;
+        $scope._backup = angular.copy(resource);
+
+        var modalInstance = $modal.open({
+          templateUrl: 'editResource.html',
+          scope: $scope,
+          controller: function ($modalInstance) {
+            
+            $scope.ok = function (subDeviceName, plugin, deviceProperties) {
+              $modalInstance.dismiss('ok');
+            };
+
+            $scope.cancel = function () {
+              // console.log($scope._backup);
+              // $scope.selectedResource = angular.copy($scope._backup);
+              $scope.selectedResource.path = $scope._backup.path;
+              $scope.selectedResource.displayName = $scope._backup.displayName;
+              $scope.selectedResource.doc.url = $scope._backup.doc.url;
+              $scope.selectedResource.doc.t = $scope._backup.doc.t;
+              $scope.selectedResource.curl = $scope._backup.curl;
+              $scope.selectedResource.authentication.required = $scope._backup.authentication.required;
+              $scope.selectedResource.httpMethod = $scope._backup.httpMethod;
+
+              $modalInstance.dismiss('cancel');
+            };
+
+            $scope.getSchema = function (plugin){
+
+            };
+          },
+          resolve: {
+            // gateways: function () {
+            //   return $scope.gateways;
+            // }
+          }
+        });
+
+        modalInstance.result.then(function (response) {
+            if(response==='ok') { 
+              $log.info('clicked ok');
+            } else if (response==='cancel') {
+              $log.info('clicked cancel');
+              // resource = $scope.selectedResource;
+            }
+          }, 
+          function (){
+            $log.info('Modal dismissed at: ' + new Date());
+            resource = $scope.selectedResource;
+            // console.log($scope.selectedResource);
+          });
+      }
 
   checkLogin($rootScope, $http, true, function(){
     $("#nav-connector").addClass('active');
@@ -1066,18 +1124,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
       } else {
         channelService.getByName($routeParams.name, function(data) {
             $scope.isNew = false;
-            $scope.channel = data;
-            $scope.custom_tokens = data.custom_tokens;
-
-            for(var l = 0; l<$scope.current_user.api.length; l++) {
-              if($scope.current_user.api[l].name===$scope.channel.name) {            
-                $scope.user_channel = $scope.current_user.api[l];
-
-                if($scope.current_user.api[l].custom_tokens)
-                  $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
-                $scope.has_user_channel = true;
-              }
-            }
+            $scope.channel = data;            
           });
       }
     });
@@ -1170,9 +1217,9 @@ e2eApp.controller('apiresourcesController', function($scope, $http, $location, $
     };
 
     $scope.logo_url = function() {
-      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+      if(!$scope.channel || !$scope.channel.logo) return '';
 
-      return $scope.channel['logo-color'];
+      return $scope.channel.logo;
     };
 
   });
@@ -1263,9 +1310,9 @@ e2eApp.controller('apiresourcedetailController', function($scope, $http, $locati
     };
 
     $scope.logo_url = function() {
-      if(!$scope.channel || !$scope.channel['logo-color']) return '';
+      if(!$scope.channel || !$scope.channel.logo) return '';
 
-      return $scope.channel['logo-color'];
+      return $scope.channel.logo;
     };
 
   });
