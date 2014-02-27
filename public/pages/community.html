@@ -71,7 +71,7 @@
           </thead>
           <tbody>
           <tr ng-repeat='post in posts' ng-click='showPost(post)'>
-              <td>{{post.user}}</td>
+              <td>{{post.author.user_id}}</td>
               <td>
                 <a ng-href='{{postUrl(post)}}'>{{post.title}}</a>
               </td>
@@ -90,7 +90,7 @@
         <div class='list-group hidden-md hidden-lg'>
           <a class='list-group-item' ng-href='{{postUrl(post)}}' ng-repeat='post in posts'>
             <span class='badge'>{{post.replies.length || 0}}</span>
-            {{post.user}} posted
+            {{post.author.user_id}} posted
             <strong>{{post.title}}</strong>
             on {{post.created_at | date}}
           </a>
