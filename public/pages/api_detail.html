@@ -49,10 +49,13 @@
 
       <div class="pull-left">
         <img src="{{logo_url()}}" height="100px" /> &nbsp; <h2>{{channel.name}}</h2>
+        <div ng-show="channel.owner">
+          <button class="btn btn-large btn-success" ng-click="editCustom()" >Edit</button>
+        </div>
       </div>
 
       <div class="pull-right" ng-show="isActivated()">
-        <button class="btn btn-large btn-success" ng-click="setDeactivate()" >Active</button>        
+        <button class="btn btn-large btn-success" ng-click="setDeactivate()" >Active</button>
       </div>
 
       <div class="pull-right" ng-show="isOAuth() && !isActivated()">

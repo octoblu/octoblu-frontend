@@ -9,14 +9,13 @@ var apiSchema = mongoose.Schema({
     description      : String,
     enabled          : Boolean,
     logo             : String,
+    logobw           : String,
     auth_strategy    : String, // options: oauth, simple (user enters token), custom (use custom tokens), none (requires no authorization)
     custom_tokens    : [{name: String}],
-    // endpoints        : [{}],
     key             : String,
     secret          : String,
     documentation    : String,
-    base_url         : String
-    // methods          : [ {path: String, action: String, params: [{name: String, type: String, required: Boolean}] ]
+    application     : { base: String, resources: [ ] }
 
 });
 

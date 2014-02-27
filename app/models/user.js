@@ -2,9 +2,12 @@
 var mongoose = require('safe_datejs');
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+var _        = require('lodash-node');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
+    name             : String,
+    username         : String,
 
     local            : {
         email        : String,
