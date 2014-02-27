@@ -932,6 +932,10 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
         }
       });
 
+    $scope.editCustom = function() {
+      $location.path('/apieditor/'+$scope.channel.name);
+    };
+
     $scope.open = function () {
 
       var modalInstance = $modal.open({
