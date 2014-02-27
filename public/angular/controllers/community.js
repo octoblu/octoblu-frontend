@@ -28,6 +28,8 @@ e2eApp.controller('communityController', function($scope, $http, $location) {
   };
 
   $scope.newPost = function () {
+    console.log($scope.current_user);
+    $scope.post.author = {user_id: $scope.user_id};
     $('#new-post-form').modal();
   };
 

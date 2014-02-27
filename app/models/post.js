@@ -8,7 +8,11 @@ var bcrypt     = require('bcrypt-nodejs');
 // define the schema for our post model
 var postSchema = mongoose.Schema({
   title   : String,
-  content : String
+  content : String,
+  author  : {
+    name    : String,
+    user_id : String
+  }
 });
 
 postSchema.plugin(timestamps);
