@@ -1090,6 +1090,15 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
   $scope.showEditResouce = function(path) {return $scope.editPath===path;};
   $scope.setEditResource = function(path) {$scope.editPath=path;};
 
+  $scope.addResource = function() {
+    if(!$scope.channel) return;
+    if(!$scope.channel.application) {$scope.channel.application = {};}
+    if(!$scope.channel.application.resources) {$scope.channel.application.resources = [];}    
+    var newResource = { httpMethod: 'none', doc: {}, authentication: {} };
+    $scope.channel.application.resources.push(newResource);    
+    $scope.openEditResource(newResource);
+  };
+
   $scope.save = function() {
     $scope.isEdit = false;
     if(!$scope.channel) return;
@@ -1119,6 +1128,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
   };
 
   $scope.openEditResource = function (resource) {
+        // console.log(resource);
         console.log(resource);
         $scope.selectedResource = resource;
         $scope._backup = angular.copy(resource);

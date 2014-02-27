@@ -100,12 +100,13 @@
 
           <div class="field">
             <label for="resource_resourcename" style="vertical-align:top;">Description</label>
-            <textarea class="input-xxlarge" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" ></textarea>
+            <textarea class="input-xxlarge" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" >
+            </textarea>
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Private API</label>
-            <input class="input-xxlarge" type="checkbox" />
+            <input class="input-xxlarge" type="checkbox" ng-model="channel.private" ng-true-value="true" ng-false-value="false" />
           </div>
 
           <div class="field">
@@ -134,7 +135,7 @@
         </div>
 
         <div ng-hide="isNew || isEdit">
-          <button class="btn btn-primary" ng-click="">Add Resource</button>
+          <button class="btn btn-primary" ng-click="addResource()">Add Resource</button>
         </div>
 
         <div ng-repeat="r in channel.application.resources" style="padding-top: 20px">
@@ -196,12 +197,13 @@
             
             <div class="field">
               <label for="resource_resourcename">Auth Required</label>
-              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.authentication.required" />
+              <input class="input-xxlarge" type="checkbox" 
+                ng-model="selectedResource.authentication.required" ng-true-value="true" ng-false-value="false" />
             </div>
             
             <div class="field">
               <label for="resource_resourcename">HTTP Method</label>
-              <input class="input-xxlarge" size="30" type="text" ng-model="selectedResource.httpMethod" />
+              <select ng-model="selectedResource.httpMethod" ng-options="a for a in authtypes"></select>
             </div>
 
         </div>
