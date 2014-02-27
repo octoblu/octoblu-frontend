@@ -343,7 +343,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
           // messageService.sendMessage(uuid, $scope.sendText, function(data) {
           //   $scope.messageOutput = data;
           // });
-          // console.log($scope.sendText);
+          console.log($scope.sendText);
           socket.emit('message', {
             "devices": uuid,
             "message": $scope.sendText
@@ -732,21 +732,73 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         });
       };    
 
-      $scope.addPlugin = function(idx){
+      $scope.addPlugin = function(gateway, pluginName){
 
         socket.emit('gatewayConfig', {
-          "uuid": $scope.gateways[idx].uuid,
-          "token": $scope.gateways[idx].token,
+          "uuid": gateway.uuid,
+          "token": gateway.token,
           "method": "installPlugin",
-          "type": "skynet-greeting",
-          "name": "mygreeting",
-          "options": {greetingPrefix: "hello"}
+          "name": pluginName
         }, function (addResult) {
-          // gateways[n].plugins = plugins.result;
-          // alert('subdevice added');
+          // alert('plugin added');
           console.log(addResult);
         });
       };    
+
+      $scope.openNewPlugin = function (gateway) {
+        console.log(gateway);
+        $scope.selectedGateway = gateway;       
+
+        // http://npmsearch.com/query?fl=name,description,homepage&rows=200&sort=rating+desc&q=%22skynet-plugin%22
+        $http({
+            url: "http://npmsearch.com/query",
+            method: "get",
+            params: {
+              q: 'keywords:"skynet-plugin"',
+              // fields: 'name,keywords,rating,description,author,modified,homepage,version,license',
+              fields: 'name',
+              start: 0,
+              size: 100,
+              sort: 'rating:desc'
+            }            
+        }).success(function(data, status, headers, config) {
+          console.log('npm search success',data);
+          $scope.plugins = data.results;
+
+          var modalInstance = $modal.open({
+            templateUrl: 'pluginModal.html',
+            scope: $scope,
+            controller: function ($modalInstance) {
+              $scope.ok = function (plugin) {
+               $modalInstance.close({
+                "plugin" : plugin.name
+               });
+              };
+
+              $scope.cancel = function () {
+                $modalInstance.dismiss('cancel');
+              };
+            }
+          });
+          modalInstance.result.then(function (response) {
+
+            $scope.plugin = response.plugin; 
+            $scope.addPlugin($scope.selectedGateway, response.plugin);
+            $scope.selectedGateway.plugins.push({name: response.plugin})
+
+          }, function (){
+            $log.info('Modal dismissed at: ' + new Date());
+          });
+
+
+        }).error(function(data, status, headers, config) {
+          console.log('npm search failed',data);
+          $scope.status = status;
+          alert("Plugin search failed. Try again in a little while...")
+        });
+
+      }
+
 
       $scope.openNewSubdevice = function (gateway) {
         console.log(gateway);
@@ -776,10 +828,15 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               return deviceProperty;
              });
 
+              var options = {};
+              _.forEach(deviceProperties, function(property){
+                options[property.name] = property.value;
+              });
+
              $modalInstance.close({
               "name" : subDeviceName,
               "plugin" : plugin.name, 
-              "deviceProperties" : deviceProperties 
+              "deviceProperties" : options 
              });
             };
 
@@ -1390,37 +1447,37 @@ function checkLogin($scope, $http, secured, cb) {
       $scope.user_id = data._id;
       $scope.current_user = data;
 
-      // $(".auth").hide();
-      // $(".user-menu").show();
-      // $(".toggle-nav").show();
-      // $(".navbar-brand").attr("href", "/dashboard");
+      $(".auth").hide();
+      $(".user-menu").show();
+      $(".toggle-nav").show();
+      $(".navbar-brand").attr("href", "/dashboard");
 
       if (data.local) {
-        // $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
-        // $(".user-name").html(data.local.email.toString());
+        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
+        $(".user-name").html(data.local.email.toString());
         $scope.user = data.local.email;
         $scope.skynetuuid = data.local.skynetuuid;
         $scope.skynettoken = data.local.skynettoken;
         token = data.local.skynettoken;          
 
       } else if (data.twitter) {
-        // $(".user-name").html('@' + data.twitter.username.toString());
+        $(".user-name").html('@' + data.twitter.username.toString());
         $scope.user = data.twitter.displayName;
         $scope.skynetuuid = data.twitter.skynetuuid;
         $scope.skynettoken = data.twitter.skynettoken;
         token = data.twitter.skynettoken;
 
       } else if (data.facebook) {                    
-        // $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
-        // $(".user-name").html(data.facebook.name.toString());
+        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
+        $(".user-name").html(data.facebook.name.toString());
         $scope.user = data.facebook.name;
         $scope.skynetuuid = data.facebook.skynetuuid;
         $scope.skynettoken = data.facebook.skynettoken;
         token = data.facebook.skynettoken;
 
       } else if (data.google) {
-        // $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
-        // $(".user-name").html('+' + data.google.name.toString());
+        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
+        $(".user-name").html('+' + data.google.name.toString());
         $scope.user = data.google.name;
         $scope.skynetuuid = data.google.skynetuuid;
         $scope.skynettoken = data.google.skynettoken;

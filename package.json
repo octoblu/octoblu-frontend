@@ -29,7 +29,11 @@
     "bcrypt-nodejs": "latest",
     "request": "*",
     "async": "*",
-    "skynet": "*"
+    "skynet": "*",
+    "mongoose-slug": "~1.2.0",
+    "mongoose-timestamps": "0.0.1",
+    "lodash-node": "~2.4.1",
+    "mongoose-pagination": "~1.0.0"
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",
@@ -40,7 +44,7 @@
     "coveralls": "~2.7.1"
   },
   "scripts": {
-    "test": "make test",
+    "test": "NODE_ENV=test make test",
     "start": "node server.js",
     "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --reporter=mocha-istanbul test/**/*.js",
     "coveralls": "npm run-script coverage && ./node_modules/.bin/coveralls.js < coverage/lcov.info"
