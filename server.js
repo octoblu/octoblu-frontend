@@ -3,11 +3,12 @@ var configAuth = require('./config/auth.js');
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || configAuth.port;
+var env      = app.settings.env;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 
-var configDB = require('./config/database.js');
+var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration

@@ -6,10 +6,18 @@ e2eApp.controller('communityController', function($scope, $http, $location) {
     $("#main-nav-bg").show();
   });
 
+  $scope.post  = {};
   $scope.posts = [];
   
+  $scope.postUrl = function (post) {
+    return ('/community/posts/' + post.slug);
+  };
+
+  $scope.showPost = function (post) {
+    $location.path($scope.postUrl(post));
+  };
+
   $scope.getPosts = function () {
-    console.log('getting posts ...');
     $http.get('/posts')
       .success(function (posts) {
         $scope.posts = posts;
@@ -17,6 +25,29 @@ e2eApp.controller('communityController', function($scope, $http, $location) {
       .error(function (error) {
         console.log(error);
       });
+  };
+
+  $scope.newPost = function () {
+    console.log($scope.current_user);
+    $scope.post.author = {user_id: $scope.user_id};
+    $('#new-post-form').modal();
+  };
+
+  $scope.createPost = function () {
+    $http.post('/posts', $scope.post)
+      .success(function (post) {
+        $scope.posts.push(post);
+        $scope.clearPostForm();
+        $('#new-post-form').modal('hide');
+      })
+      .error(function (error) {
+        console.log(error);
+      });
+  };
+
+  $scope.clearPostForm = function () {
+    $scope.creatingPost = false;
+    $scope.post = {};
   };
 
   $scope.getPosts();

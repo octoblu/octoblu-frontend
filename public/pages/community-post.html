@@ -1,0 +1,28 @@
+<section id='content'>
+  <div class='container'>
+    <div class='row' id='content-wrapper'>
+      <div class='col-xs-12' ng-controller='communityPostController'>
+
+        <div class='page-header page-header-with-buttons'>
+          <div class='hidden-sm hidden-xs'>
+            <h1 class='pull-left'>
+              <span>
+                <i class='icon-group'></i>
+                <span>Community</span>              
+              </span>
+            </h1>
+          </div>
+        </div>
+
+        <div class='post'>
+          <h2>
+            {{post.title}}
+            <small>Posted {{post.created_at | date : 'medium'}}</small>
+          </h2>
+          <div>{{post.content}}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

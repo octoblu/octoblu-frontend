@@ -124,6 +124,11 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
       controller  : 'communityController'
     }) 
 
+    .when('/community/posts/:slug', {
+      templateUrl : 'pages/community-post.html',
+      controller  : 'communityPostController'
+    })
+
     .when('/services', {
       templateUrl : 'pages/services.html',
       controller  : 'servicesController'
