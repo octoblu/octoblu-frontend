@@ -307,10 +307,27 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-    // Get user devices
-    ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-      $scope.devices = data.devices;
-    });
+    // Get user devices and gateways
+    // ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
+    //   $scope.devices = data.devices;
+
+    //   // strip out gateways
+    //   for (var i in $scope.devices) {
+    //     if($scope.devices[i].type == 'gateway'){
+    //       $scope.devices.splice(i,1);
+    //     }
+    //   }  
+    //   console.log (data.devices);
+
+      // Get user gateways
+      ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(data) {
+        console.log('Devices and Gateways', data);
+        $scope.devices = data.gateways;
+      });
+
+
+      
+    // });
 
     // connect to skynet
     var skynetConfig = {
@@ -326,6 +343,51 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
       // }, function (data) {
       //   // console.log(data); 
       // });
+
+      $scope.getSubdevices = function (device){
+        if (device.type == 'gateway'){
+          $scope.subdevices = device.subdevices.value;
+        }
+      }
+
+
+      $scope.getSchema = function (device, subdevice){
+        console.log('device', device);
+        console.log('subdevice', subdevice);
+        for (var i in device.plugins) {
+          if(device.plugins[i].name == subdevice.type){
+            $scope.schema = device.plugins[i].messageSchema
+          }
+        }             
+
+        console.log($scope.schema); 
+
+        // var keys = _.keys($scope.schema.properties);
+        
+        // var propertyValues = _.values($scope.schema.properties);
+        // console.log('propertyValues');
+        // console.log(propertyValues);
+      
+        // var deviceProperties = _.map(keys, function(propertyKey){
+        //      console.log(propertyKey);
+        //      var propertyValue = $scope.schema.properties[propertyKey]; 
+        //      console.log(propertyValue); 
+        //      var deviceProperty = {}; 
+        //      deviceProperty.name = propertyKey; 
+        //      deviceProperty.type = propertyValue.type; 
+        //      deviceProperty.required = propertyValue.required; 
+        //      deviceProperty.value = ""; 
+        //      return deviceProperty;
+        // }); 
+        // console.log(deviceProperties); 
+        // $scope.deviceProperties = deviceProperties; 
+      };
+
+
+      socket.on('message', function(channel, message){
+        alert('Message received from ' + channel + ': ' + message);
+      });
+
 
       $scope.sendMessage = function(){
 
@@ -343,7 +405,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
           // messageService.sendMessage(uuid, $scope.sendText, function(data) {
           //   $scope.messageOutput = data;
           // });
-          console.log($scope.sendText);
+          // console.log($scope.sendText);
           socket.emit('message', {
             "devices": uuid,
             "message": $scope.sendText
@@ -438,8 +500,8 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           }             
       });
 
-      // Get user gateways
-      ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, function(data) {
+      // Get user gateways (true param specifies inclusion of devices)
+      ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(data) {        
         console.log('gateways', data);
         $scope.editGatewaySection = false;
         $scope.gateways = data.gateways;

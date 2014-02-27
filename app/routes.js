@@ -58,20 +58,20 @@ module.exports = function(app, passport) {
 		    });
 		});
 
-		// Get devices by owner
-		app.get('/api/owner/devices/:id/:token', function(req, res) {
+		// // Get devices by owner
+		// app.get('/api/owner/devices/:id/:token', function(req, res) {
 
-			request.get('http://skynet.im/mydevices/' + req.params.id, 
-		  	{qs: {"token": req.params.token}}
-		  , function (error, response, body) {
-		  		try{
-						data = JSON.parse(body);
-					} catch(e){
-						data = {};
-					}
-		    	res.json(data);
-			});
-		});
+		// 	request.get('http://skynet.im/mydevices/' + req.params.id, 
+		//   	{qs: {"token": req.params.token}}
+		//   , function (error, response, body) {
+		//   		try{
+		// 				data = JSON.parse(body);
+		// 			} catch(e){
+		// 				data = {};
+		// 			}
+		//     	res.json(data);
+		// 	});
+		// });
 
 		// APIs
 		// Get user
@@ -124,15 +124,22 @@ module.exports = function(app, passport) {
 
 		// Get devices by owner
 		app.get('/api/owner/gateways/:id/:token', function(req, res) {
+			console.log('Return Devices? ', req.query.devices);
 			request.get('http://skynet.im/mydevices/' + req.params.id, 
 		  	{qs: {"token": req.params.token}}
 		  , function (error, response, body) {
 					myDevices = JSON.parse(body);
 					myDevices = myDevices.devices
+					console.log(myDevices);
 					var gateways = []
 					for (var i in myDevices) {
-						if(myDevices[i].type == 'gateway'){
+						if(req.query.devices == 'true'){
 							gateways.push(myDevices[i]);
+						} else {
+							if(myDevices[i].type == 'gateway'){
+								gateways.push(myDevices[i]);
+							}
+
 						}
 					}
 					console.log(gateways);
