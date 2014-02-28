@@ -144,7 +144,7 @@ module.exports = function(app, passport) {
 					}
 					console.log(gateways);
 					request.get('http://skynet.im/devices', 
-				  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
+				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner" : { "$exists" : false } }}
 				  , function (error, response, body) {
 				  		ipDevices = JSON.parse(body);
 				  		devices = ipDevices.devices

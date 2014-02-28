@@ -31,6 +31,9 @@
             <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
           </li>
           <li>
+            <a ng-click="activeTab = 'people'" href="/people">People</a>
+          </li>
+          <li>
             <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
           </li>
         </ul>
@@ -45,6 +48,9 @@
             <div ng-switch-when="apis">
                <ng-include src=" 'pages/apis.html' "></ng-include>
             </div>
+            <div ng-switch-when="people">
+               <ng-include src=" 'pages/people.html' "></ng-include>
+            </div>
             <div ng-switch-when="devtools">
                <ng-include src=" 'pages/devtools.html' "></ng-include>
             </div>
@@ -58,60 +64,49 @@
 
     <div ng-show="channel.logo" class="pull-right">
       <img src="{{channel.logo}}" ng-show="channel.logo" />
-      <br/>
-      <br/>
     </div>
 
     <div xclass="text-center">
-
       <div class="pull-left">
 
         <h3>{{channel.name}}</h3>
-
-        <div>
-          <!-- <button class="btn btn-primary" ng-click="isNew=1">Test</button> -->
-          <button class="btn btn-primary" ng-show="!isEdit && !isNew" ng-click="setEditMode()">Edit</button>
-          <button class="btn btn-success" ng-show="isEdit || isNew" ng-click="save()">Save</button>
-          <button class="btn btn-danger" ng-show="isEdit && !isNew" ng-click="cancelEdit()">Cancel</button>
-        </div>
-        <br/>
 
         <fieldset ng-show="isEdit || isNew">
 
           <div class="field">
             <label for="resource_resourcename">Name</label>
-            <input class="input-xxlarge" size="30" type="text" placeholder="API Name" ng-model="channel.name" />
+            <input class="form-control" type="text" placeholder="API Name" ng-model="channel.name" />
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Base URL</label>
-            <input class="input-xxlarge" size="30" type="text" placeholder="API Base URL" ng-model="channel.application.base" />
+            <input class="form-control" type="text" placeholder="API Base URL" ng-model="channel.application.base" />
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Doc URL</label>
-            <input class="input-xxlarge" size="30" type="text" placeholder="API Doc URL" ng-model="channel.documentation" />
+            <input class="form-control" type="text" placeholder="API Doc URL" ng-model="channel.documentation" />
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Image URL</label>
-            <input class="input-xxlarge" size="30" type="text" placeholder="API Image URL" ng-model="channel.logo" />
+            <input class="form-control" type="text" placeholder="API Image URL" ng-model="channel.logo" />
           </div>
 
           <div class="field">
             <label for="resource_resourcename" style="vertical-align:top;">Description</label>
-            <textarea class="input-xxlarge" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" >
+            <textarea class="form-control" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" >
             </textarea>
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Private API</label>
-            <input class="input-xxlarge" type="checkbox" ng-model="channel.private" ng-true-value="true" ng-false-value="false" />
+            <input class="form-control" type="checkbox" ng-model="channel.private" ng-true-value="true" ng-false-value="false" />
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Auth Type</label>
-            <select ng-model="channel.auth_strategy" ng-options="a for a in authtypes">
+            <select class="form-control" ng-model="channel.auth_strategy" ng-options="a for a in authtypes">
             </select>
           </div>
 
@@ -120,17 +115,17 @@
         <div ng-show="!isNew && !isEdit">
           <div class="field">
             <label for="resource_resourcename">Name</label>
-            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.name" />
+            <span class="form-control" type="text" ng-bind="channel.name" />
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Base URL</label>
-            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.application.base" />
+            <span class="form-control" type="text" ng-bind="channel.application.base" />
           </div>
 
           <div class="field">
             <label for="resource_resourcename">Doc URL</label>
-            <span class="input-xxlarge" size="30" type="text" ng-bind="channel.documentation" />
+            <span class="form-control" type="text" ng-bind="channel.documentation" />
           </div>
         </div>
 
@@ -140,7 +135,7 @@
 
         <div ng-repeat="r in channel.application.resources" style="padding-top: 20px">
           <div>
-            <a href="#" onclick="return false;" ng-hide="showEditResouce(r.path)" ng-click="openEditResource(r)">edit</a>
+            <a href="" onclick="return false;" ng-hide="showEditResouce(r.path)" ng-click="openEditResource(r)">edit</a>
           </div>
           <span ng-hide="showEditResouce(r.path)">
             <a class="btn disabled btn-large btn-success"> GET</a>
@@ -159,6 +154,14 @@
 
     </div>
     </div>    
+
+    <div>
+      <!-- <button class="btn btn-primary" ng-click="isNew=1">Test</button> -->
+      <button class="btn btn-primary" ng-show="!isEdit && !isNew" ng-click="setEditMode()">Edit</button>
+      <button class="btn btn-success" ng-show="isEdit || isNew" ng-click="save()">Save</button>
+      <button class="btn btn-danger" ng-show="isEdit && !isNew" ng-click="cancelEdit()">Cancel</button>
+    </div>
+    <br /><br /><br />
 
 </section>
 
