@@ -19,7 +19,19 @@
             {{post.title}}
             <small>Posted {{post.created_at | date : 'medium'}}</small>
           </h2>
-          <div>{{post.content}}</div>
+          <div ng-bind-html="post.content"></div>
+          <hr />
+          <button class='btn btn-success pull-right' ng-click='{{replyTo(post)}}'>Reply</button>
+        </div>
+
+        <div class='replies clearfix'>
+          <div class='reply' ng-repeat='reply in replies'>
+            <h4>
+              {{reply.title}}
+              <small>Posted {{reply.created_at | date : 'medium'}}</small>
+            </h4>
+            <div>{{reply.content}}</div>
+          </div>
         </div>
 
       </div>
