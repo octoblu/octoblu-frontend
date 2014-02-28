@@ -1,6 +1,6 @@
 // create the module and name it e2eApp
 // var e2eApp = angular.module('e2eApp', ['ngRoute']); 
-var e2eApp = angular.module('e2eApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate']); 
+var e2eApp = angular.module('e2eApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngSanitize']); 
 
 // enabled CORS by removing ajax header
 e2eApp.config(['$httpProvider', function($httpProvider) {
