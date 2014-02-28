@@ -307,27 +307,11 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-    // Get user devices and gateways
-    // ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-    //   $scope.devices = data.devices;
-
-    //   // strip out gateways
-    //   for (var i in $scope.devices) {
-    //     if($scope.devices[i].type == 'gateway'){
-    //       $scope.devices.splice(i,1);
-    //     }
-    //   }  
-    //   console.log (data.devices);
-
-      // Get user gateways
-      ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(data) {
-        console.log('Devices and Gateways', data);
-        $scope.devices = data.gateways;
-      });
-
-
-      
-    // });
+    // Get user gateways
+    ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(data) {
+      console.log('Devices and Gateways', data);
+      $scope.devices = data.gateways;
+    });
 
     // connect to skynet
     var skynetConfig = {
@@ -336,13 +320,6 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
     }    
     skynet(skynetConfig, function (e, socket) {
       if (e) throw e
-
-      // socket.emit('subscribe', {
-      //   "uuid": data.devices[i].uuid,
-      //   "token": data.devices[i].token
-      // }, function (data) {
-      //   // console.log(data); 
-      // });
 
       $scope.getSubdevices = function (device){
         if (device.type == 'gateway'){
@@ -362,25 +339,10 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
 
         console.log($scope.schema); 
 
-        // var keys = _.keys($scope.schema.properties);
-        
-        // var propertyValues = _.values($scope.schema.properties);
-        // console.log('propertyValues');
-        // console.log(propertyValues);
-      
-        // var deviceProperties = _.map(keys, function(propertyKey){
-        //      console.log(propertyKey);
-        //      var propertyValue = $scope.schema.properties[propertyKey]; 
-        //      console.log(propertyValue); 
-        //      var deviceProperty = {}; 
-        //      deviceProperty.name = propertyKey; 
-        //      deviceProperty.type = propertyValue.type; 
-        //      deviceProperty.required = propertyValue.required; 
-        //      deviceProperty.value = ""; 
-        //      return deviceProperty;
-        // }); 
-        // console.log(deviceProperties); 
-        // $scope.deviceProperties = deviceProperties; 
+        // Build JSON Schema Form
+
+
+
       };
 
 
