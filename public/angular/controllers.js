@@ -920,6 +920,106 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
       }
 
+
+      $scope.openEditSubdevice = function (gateway, subdevice) {
+        console.log(gateway);
+        $scope.selectedGateway = gateway;       
+
+        var modalInstance = $modal.open({
+          templateUrl: 'subDeviceModal.html',
+          scope: $scope,
+          controller: function ($modalInstance) {
+
+            // $scope.deviceProperties = _.
+            console.log($scope);
+            // console.log($scope.$parent);
+            $scope.gatewayName = $scope.selectedGateway.name;
+            $scope.plugins = $scope.selectedGateway.plugins;
+            $scope.ok = function (subDeviceName, plugin, deviceProperties) {
+            console.log("subDeviceName");
+             console.log(subDeviceName);
+              console.log("plugin");
+               console.log(plugin);
+                console.log("deviceProperties");
+                console.log(deviceProperties);
+             var properties = _.map(deviceProperties, function(deviceProperty){
+              delete deviceProperty.$$hashKey;
+              delete deviceProperty.type;
+              delete deviceProperty.required;
+              return deviceProperty;
+             });
+
+              var options = {};
+              _.forEach(deviceProperties, function(property){
+                options[property.name] = property.value;
+              });
+
+             $modalInstance.close({
+              "name" : subDeviceName,
+              "plugin" : plugin.name, 
+              "deviceProperties" : options 
+             });
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+
+            $scope.getSchema = function (plugin){
+
+              $scope.schema = plugin.optionsSchema;
+              console.log($scope.schema); 
+
+              var keys = _.keys($scope.schema.properties);
+              
+              var propertyValues = _.values($scope.schema.properties);
+              console.log('propertyValues');
+              console.log(propertyValues);
+            
+              var deviceProperties = _.map(keys, function(propertyKey){
+                   console.log(propertyKey);
+                   var propertyValue = $scope.schema.properties[propertyKey]; 
+                   console.log(propertyValue); 
+                   var deviceProperty = {}; 
+                   deviceProperty.name = propertyKey; 
+                   deviceProperty.type = propertyValue.type; 
+                   deviceProperty.required = propertyValue.required; 
+                   deviceProperty.value = ""; 
+                   return deviceProperty;
+              }); 
+              console.log(deviceProperties); 
+              $scope.deviceProperties = deviceProperties; 
+            };
+          },
+          resolve: {
+            // gateways: function () {
+            //   return $scope.gateways;
+            // }
+            // deviceProperties : function(){
+            //   var properties = _.each()
+            // }
+          }
+        });
+
+        modalInstance.result.then(function (response) {
+
+          $scope.subDeviceName = response.name;
+          $scope.plugin = response.plugin; 
+          $scope.deviceProperties = response.deviceProperties;
+          $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
+
+          $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
+          // if(response==='ok') { 
+          //   $log.info('clicked ok');
+        }, function (){
+          $log.info('Modal dismissed at: ' + new Date());
+        });
+
+      }
+
+
+
+
     }); //end skynet.js
 
   });  
