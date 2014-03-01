@@ -926,7 +926,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         $scope.selectedGateway = gateway;       
 
         var modalInstance = $modal.open({
-          templateUrl: 'subDeviceModal.html',
+          templateUrl: 'editSubDeviceModal.html',
           scope: $scope,
           controller: function ($modalInstance) {
 
