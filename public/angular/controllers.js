@@ -977,15 +977,15 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               console.log(propertyValues);
             
               var deviceProperties = _.map(keys, function(propertyKey){
-                   console.log(propertyKey);
-                   var propertyValue = $scope.schema.properties[propertyKey]; 
-                   console.log(propertyValue); 
-                   var deviceProperty = {}; 
-                   deviceProperty.name = propertyKey; 
-                   deviceProperty.type = propertyValue.type; 
-                   deviceProperty.required = propertyValue.required; 
-                   deviceProperty.value = ""; 
-                   return deviceProperty;
+                 console.log(propertyKey);
+                 var propertyValue = $scope.schema.properties[propertyKey]; 
+                 console.log(propertyValue); 
+                 var deviceProperty = {}; 
+                 deviceProperty.name = propertyKey; 
+                 deviceProperty.type = propertyValue.type; 
+                 deviceProperty.required = propertyValue.required; 
+                 deviceProperty.value = ""; 
+                 return deviceProperty;
               }); 
               console.log(deviceProperties); 
               $scope.deviceProperties = deviceProperties; 

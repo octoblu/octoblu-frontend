@@ -66,20 +66,20 @@
             <th>Subject</th>
             <th>Posted</th>
             <th>Last Updated</th>
-            <th>Replies</th>
+            <!-- <th>Replies</th> -->
             <th>&nbsp;</th>
           </thead>
           <tbody>
           <tr ng-repeat='post in posts' ng-click='showPost(post)'>
-              <td>{{post.author.user_id}}</td>
+              <td>                
+                <img width="23" height="23" alt="{{post.author.name}}" src="{{post.author.user_avatar}}" />
+                {{post.author.user_name}}
+              </td>
               <td>
                 <a ng-href='{{postUrl(post)}}'>{{post.title}}</a>
               </td>
               <td>{{post.created_at | date : 'medium'}}</td>
               <td>{{post.updated_at | date : 'medium'}}</td>
-              <td>
-                <span class='badge'>{{post.replies.length || 0}}</span>
-              </td>
               <td>
                 <a class='btn btn-success' ng-href='{{postUrl(post)}}'>View</a>
               </td>

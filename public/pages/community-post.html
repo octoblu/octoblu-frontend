@@ -16,12 +16,15 @@
 
         <div class='post'>
           <h2>
+            <img width="100" height="100" alt="{{post.author.name}}" src="{{post.author.user_avatar}}" />
+          </h2>
+          <h2>
             {{post.title}}
             <small>Posted {{post.created_at | date : 'medium'}}</small>
           </h2>
           <div ng-bind-html="post.content"></div>
         </div>
-        
+
         <br />
         <div>
           <div id="disqus_thread"></div>
