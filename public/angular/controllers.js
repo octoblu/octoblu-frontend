@@ -1225,17 +1225,18 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
 
   $scope.save = function() {
     $scope.isEdit = false;
+    // console.log($scope.channel);
     if(!$scope.channel) return;
 
     channelService.save($scope.channel, function(data){
       // $log.info('completed save call............');
-      if(data.length) {
+      if(data) {
         $scope.channel = data;
+        $scope.isEdit = true;
         $location.path('/apieditor/'+data.name);
       }
     });
 
-    return;
   };
 
   $scope.authorize = function (channel) {
