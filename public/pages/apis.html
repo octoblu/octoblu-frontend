@@ -55,9 +55,11 @@
 		  	<ul class="channellist">
  
 			  	<li ng-repeat="channel in channelList | filter:isActive | orderBy:'name'">
-				        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
-						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;">
+                <img ng-src="{{channel.logo}}" width="70" height="70"/>
+              </div>
 				</li>
 			  </ul>
 		</div>
@@ -68,9 +70,11 @@
 		  	<ul class="channellist">
  
 			  	<li ng-repeat="channel in channelList | filter:isInactive | orderBy:'name'">
-				        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
-						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;">
+                <img ng-src="{{channel.logo}}" width="70" height="70"/>
+              </div>
 				</li>
 			  </ul>
 		</div>
@@ -81,9 +85,11 @@
 		  	<ul class="channellist">
  
 			  	<li ng-repeat="channel in customchannelList | orderBy:'name'">
-				        <div class="channel_icon-grid-view mod-index-0 pop-over fa fa-square fa-5x"
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
-						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;">
+                  <img ng-src="{{channel.logo}}" width="70" height="70"/>
+              </div>
 				</li>
 			  </ul>
 		</div>

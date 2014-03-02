@@ -338,8 +338,6 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
           if(plugin.name === subdevice.type && plugin.messageSchema){
             $scope.schema = plugin.messageSchema;
             $scope.schema.title = subdevice.name;
-          } else{
-              $scope.schema = undefined;
           }
         }
         console.log($scope.schema); 
