@@ -12,8 +12,9 @@ var postSchema = mongoose.Schema({
   markdownContent : String,
   content         : String,
   author          : {
-    name    : String,
-    user_id : String
+    user_id       : String,
+    user_name     : String,
+    user_avatar   : String
   }
 });
 

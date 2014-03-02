@@ -74,7 +74,7 @@
                   <td>{{subdevice.name}}</td>
                   <td>{{subdevice.type}}</td>
                   <td>
-                    <!-- <button class="btn btn-inverse" ng-click="editSubdevice($index)">Edit</button> -->
+                    <button class="btn btn-inverse" ng-click="openEditSubdevice(gateway, subdevice)">Edit</button>                    
                     <button class="btn btn-danger" ng-click="deleteSubdevice($parent.$index, $index)">Delete</button>
                   </td>
                 </tr>
@@ -95,8 +95,8 @@
                   <td>{{plugin.name}}</td>
                   <td>{{plugin.version}}</td>
                   <td>
-                    <!-- <button class="btn btn-inverse" ng-click="editSubdevice($index)">Edit</button> -->
                     <button class="btn btn-danger" ng-click="deletePlugin($parent.$index, $index)">Delete</button>
+
                   </td>
 
                 </tr>
@@ -112,7 +112,7 @@
   </div>
 </div>
 
-<!-- Subdevice Modal -->
+<!-- Add Subdevice Modal -->
 <div>
   <script type="text/ng-template" id="subDeviceModal.html">
       <div class="modal-header">
@@ -128,10 +128,13 @@
         </div>
         <div ng-show="schema">
           <br /><br />
-          <input type="text" ng-model="subDeviceName" placeholder="name" class="form-control" required>
+          <input type="text" ng-model="subDeviceName" placeholder="name" class="form-control" required><br />
           <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
-            <div ng-if="deviceProperty.type == 'string'">
-              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required">
+            <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
+              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+            </div>
+            <div ng-if="deviceProperty.type == 'boolean'">
+              <input type="checkbox" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
           </div>
         </div>
@@ -142,6 +145,41 @@
       </div>
   </script>
 </div>
+
+<!-- Edit Subdevice Modal -->
+<div>
+  <script type="text/ng-template" id="editSubDeviceModal.html">
+      <div class="modal-header">
+          <h3>Edit Sub-Device on Gateway: {{selectedGateway.name}}</h3>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="plugin" class="col-sm-2 control-label">Plugin</label>
+          <div class="col-sm-10">
+            <input type="text" ng-model="plugin" placeholder="plugin" class="form-control" disabled><br />
+          </div>
+        </div>
+        <div>
+          <br /><br />
+          <input type="text" ng-model="subDeviceName" placeholder="name" class="form-control" required><br />
+          <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
+            <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
+              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+            </div>
+            <div ng-if="deviceProperty.type == 'boolean'">
+              <input type="checkbox" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok(subDeviceName, plugin, deviceProperties)">OK</button>
+          <button class="btn" ng-click="cancel()">Cancel</button>
+      </div>
+  </script>
+</div>
+
 
 <!-- Plugin Modal -->
 <div>

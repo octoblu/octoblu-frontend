@@ -144,7 +144,7 @@ module.exports = function(app, passport) {
 					}
 					console.log(gateways);
 					request.get('http://skynet.im/devices', 
-				  	{qs: {"ipAddress": req.ip, "type":"gateway"}}
+				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner" : { "$exists" : false } }}
 				  , function (error, response, body) {
 				  		ipDevices = JSON.parse(body);
 				  		devices = ipDevices.devices
@@ -344,8 +344,8 @@ module.exports = function(app, passport) {
 			});
 		});
 
-		app.get('/api/customchannels', function(req, res) {
-			Api.find({owner: {$exists: true}}, function (err, apis) {
+		app.get('/api/customchannels/:uuid', function(req, res) {
+			Api.find({owner: req.params.uuid}, function (err, apis) {
 			  	if (err) { res.send(err); } else { res.json(apis); }
 			});
 		});	
