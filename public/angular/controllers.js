@@ -474,7 +474,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         channelService.getList(function(data) {
           $scope.channelList = data;
         });
-        channelService.getCustomList(function(data) {
+        channelService.getCustomList($scope.skynetuuid, function(data) {
           $scope.customchannelList = data;
         });
       }
@@ -1190,7 +1190,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
 
   $scope.skynetStatus = false;
   $scope.authtypes = [
-      'none','simple','custom','oauth'
+      'none','basic','oauth'
     ];
 
   $scope.isEdit = false;
