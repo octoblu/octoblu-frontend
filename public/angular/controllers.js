@@ -398,7 +398,6 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
 
             }
 
-
           socket.emit('message', {
             "devices": uuid,
             "message": $scope.sendText
