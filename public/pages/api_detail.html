@@ -106,7 +106,7 @@
     </div>
     <div class="row col-xs-12">
       <br /><br />
-      <h4><strong>Base URI: {{channel.application.resources.base}}</strong></h4>
+      <h4><strong>Base URI: {{channel.application.base}}</strong></h4>
       <br /><br />
     <div ng-hide="channel.application.resources.resource.length || channel.application.resources.length">No API resources found</div>
     <div class="table-responsive">
@@ -117,7 +117,13 @@
           <td>{{resource.method.doc.$t}}</td>
         </tr>
         <tr ng-repeat="resource in channel.application.resources">
-          <td>{{resource.httpMethod}}</td>
+          <td>
+            <a class="btn disabled btn-large btn-primary" ng-show="resource.httpMethod == 'GET'"> GET</a>
+            <a class="btn disabled btn-large btn-success" ng-show="resource.httpMethod == 'POST'"> POST</a>
+            <a class="btn disabled btn-large btn-inverse" ng-show="resource.httpMethod == 'PUT'"> PUT</a>
+            <a class="btn disabled btn-large btn-danger" ng-show="resource.httpMethod == 'DELETE'"> DELETE</a>
+
+          </td>
           <td>{{resource.path}}</td>
           <td>{{resource.doc.t}}</td>
         </tr>

@@ -1271,8 +1271,19 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
           scope: $scope,
           controller: function ($modalInstance) {
             
-            $scope.ok = function (subDeviceName, plugin, deviceProperties) {
-              $modalInstance.dismiss('ok');
+            $scope.ok = function () {
+              // $scope.channel.application.resources.push($scope.selectedResource);
+              channelService.save($scope.channel, function(data){
+                // $log.info('completed save call............');
+                if(data) {
+                  // $scope.channel = data;
+                  // $scope.isEdit = true;
+                  // $location.path('/apieditor/' + $scope.channel.name);
+                  $modalInstance.dismiss('ok');
+
+                }
+              });              
+
             };
 
             $scope.cancel = function () {

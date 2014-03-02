@@ -120,15 +120,16 @@
         </div>
 
         <div ng-repeat="r in channel.application.resources" style="padding-top: 20px">
+          <span ng-hide="showEditResouce(r.path)">
+            <a class="btn disabled btn-large btn-primary" ng-show="r.httpMethod == 'GET'"> GET</a>
+            <a class="btn disabled btn-large btn-success" ng-show="r.httpMethod == 'POST'"> POST</a>
+            <a class="btn disabled btn-large btn-inverse" ng-show="r.httpMethod == 'PUT'"> PUT</a>
+            <a class="btn disabled btn-large btn-danger" ng-show="r.httpMethod == 'DELETE'"> DELETE</a>
+            <b>{{r.path}}</b> - {{r.doc.t}}
+          </span>
           <div>
             <a href="" onclick="return false;" ng-hide="showEditResouce(r.path)" ng-click="openEditResource(r)">edit</a>
           </div>
-          <span ng-hide="showEditResouce(r.path)">
-            <a class="btn disabled btn-large btn-success"> GET</a>
-            <b>{{r.path}}</b> - {{channel.application.base}}{{r.path}}
-            <br/>
-            <code>{{r.curl}}</code>
-          </span>
 
         </div>
 
@@ -163,10 +164,15 @@
             </div>
 
             <div class="field">
+              <label for="resource_resourcename">HTTP Method</label>
+              <select class="form-control" ng-model="selectedResource.httpMethod" ng-options="a for a in ['GET', 'POST', 'PUT', 'DELETE']"></select>
+            </div>
+
+            <div class="field">
               <label for="resource_resourcename">Path</label>
               <input class="form-control" type="text" ng-model="selectedResource.path" />
             </div>
-            
+
             <div class="field">
               <label for="resource_resourcename">Doc URL</label>
               <input class="form-control" type="text" ng-model="selectedResource.doc.url" />
@@ -188,10 +194,7 @@
                 ng-model="selectedResource.authentication.required" ng-true-value="true" ng-false-value="false" />
             </div>
             
-            <div class="field">
-              <label for="resource_resourcename">HTTP Method</label>
-              <select class="form-control" ng-model="selectedResource.httpMethod" ng-options="a for a in authtypes"></select>
-            </div>
+
 
         </div>
 
