@@ -331,18 +331,29 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
       $scope.getSchema = function (device, subdevice){
         console.log('device', device);
         console.log('subdevice', subdevice);
-        for (var i in device.plugins) {
-          if(device.plugins[i].name == subdevice.type){
-            $scope.schema = device.plugins[i].messageSchema
-          }
-        }             
+        $('#device-msg-editor').jsoneditor('destroy');
 
+        for (var i in device.plugins) {
+          var plugin = device.plugins[i];
+          if(plugin.name === subdevice.type && plugin.messageSchema){
+            $scope.schema = plugin.messageSchema;
+            $scope.schema.title = subdevice.name;
+          } else{
+              $scope.schema = undefined;
+          }
+        }
         console.log($scope.schema); 
 
-        // Build JSON Schema Form
+        if($scope.schema ){
 
+            $('#device-msg-editor').jsoneditor({
+                schema : $scope.schema,
+                theme  : 'bootstrap3',
+                no_additional_properties: true,
+                iconlib : 'bootstrap3'
+            });
 
-
+        }
       };
 
 
@@ -352,8 +363,17 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
 
 
       $scope.sendMessage = function(){
+          /*
+           if schema exists - get the value from the editor, validate the input and send the message if valid
+           otherwise notify the user that there was an error.
 
-        if($scope.sendUuid == undefined || $scope.sendUuid == ""){
+           if no schema exists, they are doing this manually and we check if the UUID field is populated and that
+           there is a message to send.
+           */
+
+        var message;
+
+        if($scope.sendUuid === undefined || $scope.sendUuid == ""){
           if($scope.device){
             var uuid = $scope.device.uuid;
           } else {
@@ -364,43 +384,33 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
         }
 
         if(uuid){
-          // messageService.sendMessage(uuid, $scope.sendText, function(data) {
-          //   $scope.messageOutput = data;
-          // });
-          // console.log($scope.sendText);
+
+            if($scope.schema){
+                var errors = $('#device-msg-editor').jsoneditor('validate');
+                if(errors.length){
+                    alert(errors);
+                } else{
+                   message =  JSON.stringify($('#device-msg-editor').jsoneditor('value'));
+                }
+
+            } else{
+                message = $scope.sendText;
+
+            }
+
+
           socket.emit('message', {
             "devices": uuid,
             "message": $scope.sendText
           }, function(data){
             console.log(data); 
           });     
-          $scope.messageOutput = "Message Sent: " + $scope.sendText;      
+          $scope.messageOutput = "Message Sent: " + message;
 
         }
       }
 
-
     });
-
-    // $scope.sendMessage = function(){
-
-    //   if($scope.sendUuid == undefined || $scope.sendUuid == ""){
-    //     if($scope.device){
-    //       var uuid = $scope.device.uuid;
-    //     } else {
-    //       var uuid = "";
-    //     }
-    //   } else {
-    //     var uuid = $scope.sendUuid;
-    //   }
-
-    //   if(uuid){
-    //     messageService.sendMessage(uuid, $scope.sendText, function(data) {
-    //       $scope.messageOutput = data;
-    //     });
-
-    //   }
-    // }
 
   });  
 });
