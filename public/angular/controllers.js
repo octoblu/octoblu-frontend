@@ -390,7 +390,8 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
                 if(errors.length){
                     alert(errors);
                 } else{
-                   message =  JSON.stringify($('#device-msg-editor').jsoneditor('value'));
+                 message = $('#device-msg-editor').jsoneditor('value');
+                 message.subdevice = $scope.subdevice.name;
                 }
 
             } else{
@@ -400,11 +401,11 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
 
           socket.emit('message', {
             "devices": uuid,
-            "message": $scope.sendText
+            "message": message
           }, function(data){
             console.log(data); 
           });     
-          $scope.messageOutput = "Message Sent: " + message;
+          $scope.messageOutput = "Message Sent: " + JSON.stringify(message);
 
         }
       }
