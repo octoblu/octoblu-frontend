@@ -1292,6 +1292,11 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
           templateUrl: 'editResource.html',
           scope: $scope,
           controller: function ($modalInstance) {
+
+            $scope.addParam = function() {
+              if(!$scope.selectedResource.params) $scope.selectedResource.params = [];
+              $scope.selectedResource.params.push({name: '', style: '', type: 'string', value: '', required: "false"});
+            };
             
             $scope.ok = function () {
               // $scope.channel.application.resources.push($scope.selectedResource);

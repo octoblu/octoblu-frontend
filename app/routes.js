@@ -360,7 +360,8 @@ module.exports = function(app, passport) {
 			// console.log(channel);
 			// res.json({"message":"TODO"});
 			if(channel['_id']) {
-				var query = {_id: channel['_id']};
+				var id = channel['_id'];
+				var query = {_id: id};
 				delete channel['_id'];
 				console.log(channel);
 
@@ -370,7 +371,8 @@ module.exports = function(app, passport) {
 				  		console.log(err);
 				  		res.send(err);
 				  	} else {
-						res.json({"message":"TODO"});
+				  		channel['_id'] = id;
+						res.json(channel);
 					}
 				});
 			} else {
