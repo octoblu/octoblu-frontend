@@ -388,14 +388,26 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
               if(errors.length){
                   alert(errors);
               } else{
-               message = $('#device-msg-editor').jsoneditor('value');
+                console.log($scope.sendText);
+                if ($scope.sendText != ""){
+                  message = $scope.sendText;
+                  if(typeof message == "string"){
+                    message = JSON.parse($scope.sendText);
+                  }
+                } else {
+                  message = $('#device-msg-editor').jsoneditor('value');
+                }
+               
                $scope.subdevicename = $scope.subdevice.name;
               }
 
           } else{
+            message = $scope.sendText;
             try{
-              message = JSON.parse($scope.sendText);
-              message = message.message;
+              if(typeof message == "string"){
+                message = JSON.parse($scope.sendText);
+              }
+              // message = message.message;
               $scope.subdevicename = message.subdevice;
               delete message["subdevice"];
 
