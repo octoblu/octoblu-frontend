@@ -17,10 +17,11 @@ var RdioStrategy     = require('passport-rdio').Strategy
 // load up the user model
 var User       = require('../app/models/user');
 
-// load the auth variables
-var configAuth = require('./auth'); // use this one for testing
 
-module.exports = function(passport) {
+module.exports = function(env, passport) {
+
+// load the auth variables
+var configAuth = require('./auth')(env); // use this one for testing
 
     // =========================================================================
     // passport session setup ==================================================

@@ -4,8 +4,11 @@ module.exports = function(app, passport) {
 	var Api     = require('./models/api');
 
   // Setup config
+
+	// var config = require('../config/auth.js');
+	var env      = app.settings.env;
+	var config = require('../config/auth.js')(env);  
 	var request = require('request');
-	var config = require('../config/auth.js');
 	var async = require('async');
 	var skynet = require('skynet');
 

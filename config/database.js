@@ -1,4 +1,3 @@
-// Added rh for my localbox - Michael Christenson II
 var config = {
   rh: {
     url: 'mongodb://localhost:27017/octoblu-development'
