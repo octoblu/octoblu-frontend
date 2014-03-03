@@ -1293,6 +1293,18 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
               if(!$scope.selectedResource.params) $scope.selectedResource.params = [];
               $scope.selectedResource.params.push({name: '', style: '', type: 'string', value: '', required: "false"});
             };
+            $scope.removeParam = function(index){
+              if(!$scope.selectedResource.params) $scope.selectedResource.params = [];
+              console.log('length = ' + $scope.selectedResource.params.length);
+              //remove all null items
+              for(var l=$scope.selectedResource.params.length-1; l>=0 ;l--) {
+                console.log('index = ' + l);
+                console.log($scope.selectedResource.params[l]==null);
+                if($scope.selectedResource.params[l]==null) $scope.selectedResource.params.splice(l,1);
+              }
+              if(index>=$scope.selectedResource.params.length) return;
+              $scope.selectedResource.params.splice(index,1);
+            };
             
             $scope.ok = function () {
               // $scope.channel.application.resources.push($scope.selectedResource);
