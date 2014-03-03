@@ -115,8 +115,11 @@
           </div>
         </div>
 
-        <div ng-hide="isNew || isEdit">
-          <button class="btn btn-primary" ng-click="addResource()">Add Resource</button>
+        <div style="padding:5px;">
+          <button class="btn btn-inverse" ng-show="!isEdit && !isNew" ng-click="setEditMode()">Edit</button>
+          <button class="btn btn-success" ng-show="isEdit || isNew" ng-click="save()">Save</button>
+          <button class="btn" ng-show="isEdit && !isNew" ng-click="cancelEdit()">Cancel</button>
+          <button class="btn btn-primary" ng-click="addResource()" ng-hide="isNew || isEdit">Add Resource</button>
         </div>
 
         <div class="table-responsive" nh-show="channel.application.resources" style="padding-top: 5px;">
@@ -143,14 +146,6 @@
         <div>&nbsp;</div>
 
       </div>
-
-    <div>
-      <!-- <button class="btn btn-primary" ng-click="isNew=1">Test</button> -->
-      <button class="btn btn-primary" ng-show="!isEdit && !isNew" ng-click="setEditMode()">Edit</button>
-      <button class="btn btn-success" ng-show="isEdit || isNew" ng-click="save()">Save</button>
-      <button class="btn" ng-show="isEdit && !isNew" ng-click="cancelEdit()">Cancel</button>
-    </div>
-    <br /><br /><br />
 
 </section>
 
@@ -211,8 +206,8 @@
               <div class="form-group">
                 <select class="form-control" ng-model="param.style" ng-options="a for a in ['query', 'header', 'body']"></select>
               </div>
-              <div class="form-group">
-                <input type="checkbox" class="form-control" ng-model="param.required" ng-true-value="true" ng-false-value="false">
+              <div class="form-control">
+                <input type="checkbox" class="" ng-model="param.required" ng-true-value="true" ng-false-value="false">
                 <label>Required</label>
               </div>
               &nbsp;&nbsp;
