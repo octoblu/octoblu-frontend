@@ -127,8 +127,10 @@
             <a class="btn disabled btn-large btn-danger" ng-show="r.httpMethod == 'DELETE'"> DELETE</a>
             <b>{{r.path}}</b> - {{r.doc.t}}
           </span>
-          <div>
-            <a href="" onclick="return false;" ng-hide="showEditResouce(r.path)" ng-click="openEditResource(r)">edit</a>
+          <div class="pull-right">
+            <button class="btn btn-large btn-warning" ng-hide="showEditResouce(r.path)" ng-click="openEditResource(r)">edit</button>
+            &nbsp;
+            <button class="btn btn-large btn-danger" ng-hide="showEditResouce(r.path)" ng-click="confirmDeleteResource($index)">delete</button>
           </div>
 
         </div>
@@ -150,81 +152,94 @@
 
 </section>
 
-  <script type="text/ng-template" id="editResource.html">
-      <div class="modal-header">
-          <h3>Edit Resource</h3>
-      </div>
-      <div class="modal-body">
+<script type="text/ng-template" id="editResource.html">
+    <div class="modal-header">
+        <h3>Edit Resource</h3>
+    </div>
+    <div class="modal-body">
 
-        <div class="form-group">
+      <div class="form-group">
+        
+        <div class="field">
+            <label for="resource_resourcename">Display Name</label>
+            <input class="form-control" type="text" ng-model="selectedResource.displayName" />
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">HTTP Method</label>
+            <select class="form-control" ng-model="selectedResource.httpMethod" ng-options="a for a in ['GET', 'POST', 'PUT', 'DELETE']"></select>
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Path</label>
+            <input class="form-control" type="text" ng-model="selectedResource.path" />
+          </div>
+
+          <div class="field">
+            <label for="resource_resourcename">Doc URL</label>
+            <input class="form-control" type="text" ng-model="selectedResource.doc.url" />
+          </div>
           
           <div class="field">
-              <label for="resource_resourcename">Display Name</label>
-              <input class="form-control" type="text" ng-model="selectedResource.displayName" />
-            </div>
-
-            <div class="field">
-              <label for="resource_resourcename">HTTP Method</label>
-              <select class="form-control" ng-model="selectedResource.httpMethod" ng-options="a for a in ['GET', 'POST', 'PUT', 'DELETE']"></select>
-            </div>
-
-            <div class="field">
-              <label for="resource_resourcename">Path</label>
-              <input class="form-control" type="text" ng-model="selectedResource.path" />
-            </div>
-
-            <div class="field">
-              <label for="resource_resourcename">Doc URL</label>
-              <input class="form-control" type="text" ng-model="selectedResource.doc.url" />
-            </div>
-            
-            <div class="field">
-              <label for="resource_resourcename">Doc Text</label>
-              <input class="form-control" type="text" ng-model="selectedResource.doc.t" />
-            </div>
-            
-            <div class="field">
-              <label for="resource_resourcename">CURL</label>
-              <input class="form-control" type="text" ng-model="selectedResource.curl" />
-            </div>
-            
-            <div class="field">
-              <label for="resource_resourcename">Auth Required</label>
-              <input class="form-control" type="checkbox" 
-                ng-model="selectedResource.authentication.required" ng-true-value="true" ng-false-value="false" />
-            </div>
-            
-            <div class="field">
-              <label for="resource_resourcename">Params</label>
-              <a href="" ng-click="addParam()"><i class="icon-plus"></i></a>
-              <div ng-repeat="param in selectedResource.params" class="form-inline">
-                <div class="form-group">
-                  <input class="form-control" type="text" ng-model="param.name" placeholder="name">
-                </div>
-                <div class="form-group">
-                  <select class="form-control" ng-model="param.type" ng-options="a for a in ['string', 'number', 'boolean']"></select>
-                </div>
-                <div class="form-group">
-                  <select class="form-control" ng-model="param.style" ng-options="a for a in ['query', 'header', 'body']"></select>
-                </div>
-                <div class="form-group">
-                  <input type="checkbox" class="form-control" ng-model="param.required" ng-true-value="true" ng-false-value="false">
-                  <label>Required</label>
-                </div>
-                &nbsp;&nbsp;
-                <a href ng-click="removeParam($index)"> <i class="icon-minus"></i></a>
-
+            <label for="resource_resourcename">Doc Text</label>
+            <input class="form-control" type="text" ng-model="selectedResource.doc.t" />
+          </div>
+          
+          <div class="field">
+            <label for="resource_resourcename">CURL</label>
+            <input class="form-control" type="text" ng-model="selectedResource.curl" />
+          </div>
+          
+          <div class="field">
+            <label for="resource_resourcename">Auth Required</label>
+            <input class="form-control" type="checkbox" 
+              ng-model="selectedResource.authentication.required" ng-true-value="true" ng-false-value="false" />
+          </div>
+          
+          <div class="field">
+            <label for="resource_resourcename">Params</label>
+            <a href="" ng-click="addParam()"><i class="icon-plus"></i></a>
+            <div ng-repeat="param in selectedResource.params" class="form-inline">
+              <div class="form-group">
+                <input class="form-control" type="text" ng-model="param.name" placeholder="name">
               </div>
+              <div class="form-group">
+                <select class="form-control" ng-model="param.type" ng-options="a for a in ['string', 'number', 'boolean']"></select>
+              </div>
+              <div class="form-group">
+                <select class="form-control" ng-model="param.style" ng-options="a for a in ['query', 'header', 'body']"></select>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" class="form-control" ng-model="param.required" ng-true-value="true" ng-false-value="false">
+                <label>Required</label>
+              </div>
+              &nbsp;&nbsp;
+              <a href ng-click="removeParam($index)"> <i class="icon-minus"></i></a>
 
             </div>
 
+          </div>
 
-        </div>
 
       </div>
 
-      <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="ok()">OK</button>
-          <button class="btn" ng-click="cancel()">Cancel</button>
-      </div>
-  </script>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+<script type="text/ng-template" id="confirmDeleteResource.html">
+    <div class="modal-header">
+        <h3>Delete Resource?</h3>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to delete this API resource?
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

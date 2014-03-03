@@ -1278,12 +1278,47 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
     return $scope.channel.logo;
   };
 
+  $scope.confirmDeleteResource = function(index) {
+    $scope.selectedResourceIndex = index;
+    var modalInstance = $modal.open({
+          templateUrl: 'confirmDeleteResource.html',
+          scope: $scope,
+          controller: function ($modalInstance) {
+            
+            $scope.ok = function () {
+              if($scope.selectedResourceIndex >= $scope.channel.application.resources.length) {
+               $modalInstance.dismiss('ok');
+               return; 
+              }
+              
+              $scope.channel.application.resources.splice($scope.selectedResourceIndex,1);
+              channelService.save($scope.channel, function(data){
+                if(data) { $modalInstance.dismiss('ok'); }
+              });
+              // $modalInstance.dismiss('ok');
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          }
+        });
+
+        modalInstance.result.then(function (response) {
+            if(response==='ok') { 
+              $log.info('clicked ok');
+            }
+          }, 
+          function (){
+            $log.info('Modal dismissed at: ' + new Date());
+            $scope.selectedResourceIndex = null;
+          });
+
+  };
+
   $scope.openEditResource = function (resource) {
-        // console.log(resource);
-        console.log(resource);
         $scope.selectedResource = resource;
         $scope._backup = angular.copy(resource);
-
         var modalInstance = $modal.open({
           templateUrl: 'editResource.html',
           scope: $scope,
@@ -1349,7 +1384,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
             $log.info('Modal dismissed at: ' + new Date());
             resource = $scope.selectedResource;
           });
-      }
+      };
 
   checkLogin($rootScope, $http, true, function(){
     $("#nav-connector").addClass('active');
