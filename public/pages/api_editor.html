@@ -119,28 +119,32 @@
           <button class="btn btn-primary" ng-click="addResource()">Add Resource</button>
         </div>
 
-        <div ng-repeat="r in channel.application.resources" style="padding-top: 20px">
-          <span ng-hide="showEditResouce(r.path)">
-            <a class="btn disabled btn-large btn-primary" ng-show="r.httpMethod == 'GET'"> GET</a>
-            <a class="btn disabled btn-large btn-success" ng-show="r.httpMethod == 'POST'"> POST</a>
-            <a class="btn disabled btn-large btn-inverse" ng-show="r.httpMethod == 'PUT'"> PUT</a>
-            <a class="btn disabled btn-large btn-danger" ng-show="r.httpMethod == 'DELETE'"> DELETE</a>
-            <b>{{r.path}}</b> - {{r.doc.t}}
-          </span>
-          <div class="pull-right">
-            <button class="btn btn-large btn-warning" ng-hide="showEditResouce(r.path)" ng-click="openEditResource(r)">edit</button>
-            &nbsp;
-            <button class="btn btn-large btn-danger" ng-hide="showEditResouce(r.path)" ng-click="confirmDeleteResource($index)">delete</button>
-          </div>
+        <div class="table-responsive" nh-show="channel.application.resources" style="padding-top: 5px;">
+          <table class="table table-striped table-hover">
+            <tr ng-repeat="resource in channel.application.resources">
+              <td>
+                <a class="btn disabled btn-large btn-primary" ng-show="resource.httpMethod == 'GET'"> GET</a>
+                <a class="btn disabled btn-large btn-success" ng-show="resource.httpMethod == 'POST'"> POST</a>
+                <a class="btn disabled btn-large btn-inverse" ng-show="resource.httpMethod == 'PUT'"> PUT</a>
+                <a class="btn disabled btn-large btn-danger" ng-show="resource.httpMethod == 'DELETE'"> DELETE</a>
 
+              </td>
+              <td>{{resource.path}}</td>
+              <td>{{resource.doc.t}}</td>
+              <td style="text-align:right;">
+                <button class="btn btn-large btn-inverse" ng-hide="showEditResouce(resource.path)" 
+                  ng-click="openEditResource(resource)">edit</button>
+                &nbsp;
+                <button class="btn btn-large btn-danger" ng-hide="showEditResouce(resource.path)" 
+                  ng-click="confirmDeleteResource($index)">delete</button>
+              </td>
+            </tr>
+          </table>
         </div>
 
-        <div>
-        &nbsp;
-        </div>
+        <div>&nbsp;</div>
 
       </div>
-
 
     <div>
       <!-- <button class="btn btn-primary" ng-click="isNew=1">Test</button> -->
