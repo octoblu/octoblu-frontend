@@ -383,22 +383,32 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
 
         if(uuid){
 
-            if($scope.schema){
-                var errors = $('#device-msg-editor').jsoneditor('validate');
-                if(errors.length){
-                    alert(errors);
-                } else{
-                 message = $('#device-msg-editor').jsoneditor('value');
-                 message.subdevice = $scope.subdevice.name;
-                }
+          if($scope.schema){
+              var errors = $('#device-msg-editor').jsoneditor('validate');
+              if(errors.length){
+                  alert(errors);
+              } else{
+               message = $('#device-msg-editor').jsoneditor('value');
+               $scope.subdevicename = $scope.subdevice.name;
+              }
 
-            } else{
-                message = $scope.sendText;
+          } else{
+            try{
+              message = JSON.parse($scope.sendText);
+              message = message.message;
+              $scope.subdevicename = message.subdevice;
+              delete message["subdevice"];
 
+            } catch(e){
+              message = $scope.sendText;
+              $scope.subdevicename = "";
             }
+              
+          }
 
           socket.emit('message', {
             "devices": uuid,
+            "subdevice": $scope.subdevicename,
             "message": message
           }, function(data){
             console.log(data); 
