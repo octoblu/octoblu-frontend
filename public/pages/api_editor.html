@@ -132,11 +132,9 @@
               <td>{{resource.path}}</td>
               <td>{{resource.doc.t}}</td>
               <td style="text-align:right;">
-                <button class="btn btn-large btn-inverse" ng-hide="showEditResouce(resource.path)" 
-                  ng-click="openEditResource(resource)">edit</button>
+                <button class="btn btn-large btn-inverse" ng-click="openEditResource(resource)">edit</button>
                 &nbsp;
-                <button class="btn btn-large btn-danger" ng-hide="showEditResouce(resource.path)" 
-                  ng-click="confirmDeleteResource($index)">delete</button>
+                <button class="btn btn-large btn-danger" ng-click="confirmDeleteResource($index)">delete</button>
               </td>
             </tr>
           </table>
