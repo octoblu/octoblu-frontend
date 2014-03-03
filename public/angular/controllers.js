@@ -397,7 +397,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
                 } else {
                   message = $('#device-msg-editor').jsoneditor('value');
                 }
-               
+                
                $scope.subdevicename = $scope.subdevice.name;
               }
 
