@@ -1211,10 +1211,6 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
 });
 
-// function safeApply(scope, fn) {
-//     (scope.$$phase || scope.$root.$$phase) ? fn() : scope.$apply(fn);
-// }
-
 e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $location, $routeParams, $modal, $log, 
       channelService, userService) {
 
@@ -1303,25 +1299,21 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
               channelService.save($scope.channel, function(data){
                 // $log.info('completed save call............');
                 if(data) {
-                  // $scope.channel = data;
-                  // $scope.isEdit = true;
-                  // $location.path('/apieditor/' + $scope.channel.name);
                   $modalInstance.dismiss('ok');
-
                 }
               });              
 
             };
 
             $scope.cancel = function () {
-              // console.log($scope._backup);
-              // $scope.selectedResource = angular.copy($scope._backup);
               $scope.selectedResource.path = $scope._backup.path;
               $scope.selectedResource.displayName = $scope._backup.displayName;
               $scope.selectedResource.doc.url = $scope._backup.doc.url;
               $scope.selectedResource.doc.t = $scope._backup.doc.t;
               $scope.selectedResource.curl = $scope._backup.curl;
-              $scope.selectedResource.authentication.required = $scope._backup.authentication.required;
+              if($scope._backup.authentication) {
+                $scope.selectedResource.authentication.required = $scope._backup.authentication.required;
+              }
               $scope.selectedResource.httpMethod = $scope._backup.httpMethod;
 
               $modalInstance.dismiss('cancel');
@@ -1330,11 +1322,6 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
             $scope.getSchema = function (plugin){
 
             };
-          },
-          resolve: {
-            // gateways: function () {
-            //   return $scope.gateways;
-            // }
           }
         });
 
@@ -1349,7 +1336,6 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
           function (){
             $log.info('Modal dismissed at: ' + new Date());
             resource = $scope.selectedResource;
-            // console.log($scope.selectedResource);
           });
       }
 
