@@ -388,15 +388,15 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
               if(errors.length){
                   alert(errors);
               } else{
-                console.log($scope.sendText);
-                if ($scope.sendText != ""){
-                  message = $scope.sendText;
-                  if(typeof message == "string"){
-                    message = JSON.parse($scope.sendText);
-                  }
-                } else {
+                // if ($scope.sendText != ""){
+                //   message = $scope.sendText;
+                //   if(typeof message == "string"){
+                //     message = JSON.parse($scope.sendText);
+                //   }
+                // } else {
                   message = $('#device-msg-editor').jsoneditor('value');
-                }
+                 console.log('schema message', message);
+                // }
                 
                $scope.subdevicename = $scope.subdevice.name;
               }
@@ -417,6 +417,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
             }
               
           }
+
 
           socket.emit('message', {
             "devices": uuid,
