@@ -650,10 +650,17 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
       $scope.deleteDevice = function( idx ){
 
-        var device_to_delete = $scope.devices[idx];
-        deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) { 
-          $scope.devices.splice(idx, 1);
-        });
+        confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?', 
+          function() {
+            $log.info('ok clicked');
+            var device_to_delete = $scope.devices[idx];
+            deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) { 
+              $scope.devices.splice(idx, 1);
+            });
+          }, 
+          function() {
+            $log.info('cancel clicked');
+          });
         
       };
 
@@ -735,25 +742,40 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
       $scope.deleteGateway = function( idx ){
 
-        var gateway_to_delete = $scope.gateways[idx];
-        deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) { 
-          $scope.gateways.splice(idx, 1);
-        });
+        confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?', 
+          function() {
+            $log.info('ok clicked');
+            var gateway_to_delete = $scope.gateways[idx];
+            deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) { 
+              $scope.gateways.splice(idx, 1);
+            });
+          }, 
+          function() {
+            $log.info('cancel clicked');
+          });
         
       };
 
       $scope.deleteSubdevice = function(parent, idx){
-        var subName = $scope.gateways[parent].subdevices.value[idx].name
-        $scope.gateways[parent].subdevices.value.splice(idx,1)
-        socket.emit('gatewayConfig', {
-          "uuid": $scope.gateways[parent].uuid,
-          "token": $scope.gateways[parent].token,
-          "method": "deleteSubdevice",
-          "name": subName
-          // "name": $scope.gateways[parent].subdevices.value[idx].name
-        }, function (deleteResult) {
-          // alert('subdevice deleted');
-        });
+        confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?', 
+          function() {
+            $log.info('ok clicked');
+            var subName = $scope.gateways[parent].subdevices.value[idx].name
+            $scope.gateways[parent].subdevices.value.splice(idx,1)
+            socket.emit('gatewayConfig', {
+              "uuid": $scope.gateways[parent].uuid,
+              "token": $scope.gateways[parent].token,
+              "method": "deleteSubdevice",
+              "name": subName
+              // "name": $scope.gateways[parent].subdevices.value[idx].name
+            }, function (deleteResult) {
+              // alert('subdevice deleted');
+            });
+          }, 
+          function() {
+            $log.info('cancel clicked');
+          });
+        
       };    
 
       $scope.addSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
@@ -777,14 +799,22 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
 
       $scope.deletePlugin = function(parent, idx){
-        socket.emit('gatewayConfig', {
-          "uuid": $scope.gateways[parent].uuid,
-          "token": $scope.gateways[parent].token,
-          "method": "deletePlugin",
-          "name": $scope.gateways[parent].plugins[idx].name
-        }, function (deleteResult) {
-          alert('plugin deleted');
-        });
+        confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?', 
+          function() {
+            $log.info('ok clicked');
+            socket.emit('gatewayConfig', {
+              "uuid": $scope.gateways[parent].uuid,
+              "token": $scope.gateways[parent].token,
+              "method": "deletePlugin",
+              "name": $scope.gateways[parent].plugins[idx].name
+            }, function (deleteResult) {
+              alert('plugin deleted');
+            });
+          }, 
+          function() {
+            $log.info('cancel clicked');
+          });
+        
       };    
 
       $scope.addPlugin = function(gateway, pluginName){
@@ -1047,9 +1077,6 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         });
 
       }
-
-
-
 
     }); //end skynet.js
 
@@ -1724,3 +1751,29 @@ function checkLogin($scope, $http, secured, cb) {
   }
 
 }
+
+var confirmModal = function($modal, $scope, $log, title, message, okFN, cancelFN) {    
+  var modalHtml = '<div class="modal-header">';
+  modalHtml += '<h3>' + title + '</h3>';
+  modalHtml += '</div>';
+  modalHtml += '<div class="modal-body">';
+  modalHtml += message;
+  modalHtml += '</div>';
+  modalHtml += '<div class="modal-footer">';
+  modalHtml += '<button class="btn btn-primary" ng-click="ok()">OK</button>';
+  modalHtml += '<button class="btn" ng-click="cancel()">Cancel</button>';
+  modalHtml += '</div>';
+
+  var modalInstance = $modal.open({
+        template: modalHtml, scope: $scope,
+        controller: function ($modalInstance) {
+          $scope.ok = function () { $modalInstance.dismiss('ok'); if(okFN) {okFN();} };
+          $scope.cancel = function () { $modalInstance.dismiss('cancel'); if(cancelFN) {cancelFN();} };
+        }
+      });
+
+      modalInstance.result.then(
+        function (response) { if(response==='ok') { $log.info('clicked ok'); } }, 
+        function () { $log.info('Modal dismissed at: ' + new Date()); }
+      );
+};
