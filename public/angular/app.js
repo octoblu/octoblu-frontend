@@ -28,6 +28,10 @@ e2eApp.config(['$routeProvider', '$locationProvider', '$sceDelegateProvider', fu
       templateUrl : 'pages/home.html',
       controller  : 'mainController'
     })
+    .when('/home2', {
+      templateUrl : 'pages/home2.html',
+      controller  : 'mainController'
+    })
 
     .when('/about', {
       templateUrl : 'pages/about.html',
