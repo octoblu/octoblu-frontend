@@ -784,19 +784,16 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           "uuid": gateway.uuid,
           "token": gateway.token,
           "method": "createSubdevice",
-          // "type": "skynet-greeting",
-          // "name": "mygreeting",
-          // "options": {greetingPrefix: "hello"}
           "type": pluginName,
           "name": subDeviceName,
           "options": deviceProperties
         }, function (addResult) {
-          // gateways[n].plugins = plugins.result;
-          // alert('subdevice added');
           console.log(addResult);
         });
-      };    
+      };
 
+      $scope.updateSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
+      };
 
       $scope.deletePlugin = function(parent, idx){
         confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?', 
@@ -869,6 +866,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
             $scope.plugin = response.plugin; 
             $scope.addPlugin($scope.selectedGateway, response.plugin);
+            if(!$scope.selectedGateway.plugins) $scope.selectedGateway.plugins = [];
             $scope.selectedGateway.plugins.push({name: response.plugin})
 
           }, function (){
@@ -882,11 +880,9 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           alert("Plugin search failed. Try again in a little while...")
         });
 
-      }
-
+      };
 
       $scope.openNewSubdevice = function (gateway) {
-        console.log(gateway);
         $scope.selectedGateway = gateway;       
 
         var modalInstance = $modal.open({
@@ -894,24 +890,18 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           scope: $scope,
           controller: function ($modalInstance) {
 
-            // $scope.deviceProperties = _.
-            console.log($scope);
-            // console.log($scope.$parent);
             $scope.gatewayName = $scope.selectedGateway.name;
             $scope.plugins = $scope.selectedGateway.plugins;
             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
-            console.log("subDeviceName");
-             console.log(subDeviceName);
-              console.log("plugin");
-               console.log(plugin);
-                console.log("deviceProperties");
-                console.log(deviceProperties);
-             var properties = _.map(deviceProperties, function(deviceProperty){
+            
+            console.log("deviceProperties");
+            console.log(deviceProperties);
+            var properties = _.map(deviceProperties, function(deviceProperty){
               delete deviceProperty.$$hashKey;
               delete deviceProperty.type;
               delete deviceProperty.required;
               return deviceProperty;
-             });
+            });
 
               var options = {};
               _.forEach(deviceProperties, function(property){
@@ -930,10 +920,8 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
             };
 
             $scope.getSchema = function (plugin){
-
+              $log.info(plugin);
               $scope.schema = plugin.optionsSchema;
-              console.log($scope.schema); 
-
               var keys = _.keys($scope.schema.properties);
               
               var propertyValues = _.values($scope.schema.properties);
@@ -954,14 +942,6 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               console.log(deviceProperties); 
               $scope.deviceProperties = deviceProperties; 
             };
-          },
-          resolve: {
-            // gateways: function () {
-            //   return $scope.gateways;
-            // }
-            // deviceProperties : function(){
-            //   var properties = _.each()
-            // }
           }
         });
 
@@ -973,42 +953,41 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
 
           $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
-          // if(response==='ok') { 
-          //   $log.info('clicked ok');
+          
         }, function (){
           $log.info('Modal dismissed at: ' + new Date());
         });
 
-      }
+      };
 
 
       $scope.openEditSubdevice = function (gateway, subdevice) {
-        console.log(gateway);
-        $scope.selectedGateway = gateway;       
+        $scope.selectedGateway = gateway;
+        $scope.selectedSubdevice = subdevice;
+        for(var l=0;l<$scope.selectedGateway.plugins.length;l++) {
+          if($scope.selectedGateway.plugins[l].name===subdevice.type) {
+            $scope.selectedPlugin = $scope.selectedGateway.plugins[l];
+            break;
+          }
+        }
+        $scope._backup = angular.copy(subdevice);
 
         var modalInstance = $modal.open({
           templateUrl: 'editSubDeviceModal.html',
           scope: $scope,
           controller: function ($modalInstance) {
-
-            // $scope.deviceProperties = _.
-            console.log($scope);
-            // console.log($scope.$parent);
+            // $log.info($scope.selectedSubdevice);
             $scope.gatewayName = $scope.selectedGateway.name;
             $scope.plugins = $scope.selectedGateway.plugins;
             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
-            console.log("subDeviceName");
-             console.log(subDeviceName);
-              console.log("plugin");
-               console.log(plugin);
-                console.log("deviceProperties");
-                console.log(deviceProperties);
-             var properties = _.map(deviceProperties, function(deviceProperty){
-              delete deviceProperty.$$hashKey;
-              delete deviceProperty.type;
-              delete deviceProperty.required;
-              return deviceProperty;
-             });
+              $scope._backup = false;
+              
+              var properties = _.map(deviceProperties, function(deviceProperty){
+                delete deviceProperty.$$hashKey;
+                delete deviceProperty.type;
+                delete deviceProperty.required;
+                return deviceProperty;
+               });
 
               var options = {};
               _.forEach(deviceProperties, function(property){
@@ -1017,63 +996,56 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
              $modalInstance.close({
               "name" : subDeviceName,
-              "plugin" : plugin.name, 
+              "plugin" : $scope.selectedSubdevice.type, 
               "deviceProperties" : options 
              });
             };
 
-            $scope.cancel = function () {
+            $scope.cancel = function () {              
               $modalInstance.dismiss('cancel');
             };
 
             $scope.getSchema = function (plugin){
-
               $scope.schema = plugin.optionsSchema;
-              console.log($scope.schema); 
-
+              // $log.info($scope.plugins);
               var keys = _.keys($scope.schema.properties);
-              
               var propertyValues = _.values($scope.schema.properties);
-              console.log('propertyValues');
-              console.log(propertyValues);
             
               var deviceProperties = _.map(keys, function(propertyKey){
-                 console.log(propertyKey);
-                 var propertyValue = $scope.schema.properties[propertyKey]; 
-                 console.log(propertyValue); 
-                 var deviceProperty = {}; 
-                 deviceProperty.name = propertyKey; 
-                 deviceProperty.type = propertyValue.type; 
-                 deviceProperty.required = propertyValue.required; 
-                 deviceProperty.value = ""; 
-                 return deviceProperty;
+                   var propertyValue = $scope.schema.properties[propertyKey]; 
+                   var deviceProperty = {}; 
+                   deviceProperty.name = propertyKey; 
+                   deviceProperty.type = propertyValue.type; 
+                   deviceProperty.required = propertyValue.required; 
+                   deviceProperty.value = ""; 
+                   return deviceProperty;
               }); 
-              console.log(deviceProperties); 
               $scope.deviceProperties = deviceProperties; 
             };
-          },
-          resolve: {
-            // gateways: function () {
-            //   return $scope.gateways;
-            // }
-            // deviceProperties : function(){
-            //   var properties = _.each()
-            // }
+
+            $scope.getSchema($scope.selectedPlugin);
           }
         });
 
         modalInstance.result.then(function (response) {
-
           $scope.subDeviceName = response.name;
           $scope.plugin = response.plugin; 
           $scope.deviceProperties = response.deviceProperties;
-          $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
-
-          $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
-          // if(response==='ok') { 
-          //   $log.info('clicked ok');
+          $scope.updateSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
+          // TODO: update the subdevice, not push a new one
+          // $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
+          
         }, function (){
           $log.info('Modal dismissed at: ' + new Date());
+          if($scope._backup) {
+            // $scope.selectedSubdevice.name = $scope._backup.name;
+            for(var l=0; l<=$scope.selectedGateway.subdevices.value.length; l++) {
+              if($scope.selectedGateway.subdevices.value[l] == $scope.selectedSubdevice) {
+                $log.info('found match');
+                $scope.selectedGateway.subdevices.value[l] = $scope._backup;
+              }
+            }
+          }
         });
 
       }
@@ -1394,8 +1366,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
               $modalInstance.dismiss('cancel');
             };
 
-            $scope.getSchema = function (plugin){
-
+            $scope.getSchema = function (plugin) {
             };
           }
         });
