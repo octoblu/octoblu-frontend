@@ -32,7 +32,7 @@ a, a:hover, a:focus {color: #3498db;}
 
 		/* *** SLIDE *** */
 #slide-previous {
-	color: #fff; 
+	color: #fff;
 }
 #slide-next {
 	color: #fff;
@@ -51,10 +51,10 @@ a, a:hover, a:focus {color: #3498db;}
 	color: #3498db;
 }
 .sptext {
-	color: #fff; 
+	color: #fff;
 }
 		/* *** SLIDE END *** */
-		
+
 		/* *** SECTION *** */
 .section {
 	background: url(/assets/decorations/background2.png) #3498db;
@@ -105,7 +105,7 @@ a, a:hover, a:focus {color: #3498db;}
 	background-color: transparent;
 }
 		/* *** TABS END *** */
-		
+
 		/* *** PROGRESS BARS *** */
 .progress {
 	background-color: #c7e9ff;
@@ -115,7 +115,7 @@ a, a:hover, a:focus {color: #3498db;}
 	background-color: #3498db;
 }
 		/* *** PROGRESS BARS END *** */
-		
+
 		/* *** CTA *** */
 .cta-border {
 	border-top: 2px dashed #3498db;
@@ -128,7 +128,7 @@ a, a:hover, a:focus {color: #3498db;}
 	color: #9aa1aa;
 }
 		/* *** CTA END *** */
-		
+
 		/* *** BUTTONS *** */
 .btn-primary {
 	color: #ffffff;
@@ -161,7 +161,7 @@ a, a:hover, a:focus {color: #3498db;}
 	border-color: #3498db;
 }
 		/* *** BUTTONS END *** */
-		
+
 		/* *** FIRST PARALLAX *** */
 .parallax1 {
 	/* copy your image link into the second url space, the first space is the pattern. */
@@ -183,7 +183,7 @@ a, a:hover, a:focus {color: #3498db;}
 	font-size: 14px
 }
 		/* *** FIRST PARALLAX END *** */
-		
+
 		/* *** PRICING TABLES *** */
 .pricing-bg {
 	/*background: url(/assets/images/iot_original_web.jpg) #444;*/
@@ -223,7 +223,7 @@ a, a:hover, a:focus {color: #3498db;}
 	background: #3498db;
 }
 		/* *** PRICING TABLES END *** */
-		
+
 		/* *** ICONS *** */
 .icon-one, .icon-two {
 	color: #3498db;
@@ -232,7 +232,7 @@ a, a:hover, a:focus {color: #3498db;}
 	color: #777;
 }
 		/* *** ICONS *** */
-		
+
 		/* *** SECOND PARALLAX *** */
 .parallax2 {
 	/* copy your image link into the second url space, the first space is the pattern. */
@@ -243,7 +243,7 @@ a, a:hover, a:focus {color: #3498db;}
 	}
 .parallax-quote-icon {color: #3498db;}
 		/* *** SECOND PARALLAX END *** */
-		
+
 		/* *** THIRD PARALLAX *** */
 .parallax3 {
 	/* copy your image link into the second url space, the first space is the pattern. */
@@ -253,7 +253,7 @@ a, a:hover, a:focus {color: #3498db;}
 		color: #fff;
 	}
 		/* *** THIRD PARALLAX END *** */
-		
+
 		/* *** GALLERY *** */
 #gallery-overlay {
  background-color: rgba(0, 0, 0, 0.8);
@@ -269,7 +269,7 @@ a, a:hover, a:focus {color: #3498db;}
  background-color: #333;
 }
 .gallery-description {
- color: #fff; 
+ color: #fff;
 }
 .gallery-icon {
  color: #fff;
@@ -280,7 +280,7 @@ a, a:hover, a:focus {color: #3498db;}
  color: white;
 }
 		/* *** GALLERY END *** */
-		
+
 		/* *** CONTACT FORM *** */
 .form-control {
 	color: #555555;
@@ -288,14 +288,14 @@ a, a:hover, a:focus {color: #3498db;}
 	border: 2px dashed #fff;
 }
 		/* *** CONTACT FORM END *** */
-		
+
 		/* *** FOOTER *** */
 .footer {
 	color: #fff;
 	background: #333;
 }
 .dashed-border {
-	color: #3498db; 
+	color: #3498db;
 	border: 2px dashed #3498db;
 }
 .footer-icon {

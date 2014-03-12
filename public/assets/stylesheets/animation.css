@@ -4,7 +4,7 @@
 	-moz-transition:color 500ms ease-in !important;
 	-o-transition:color 500ms ease-in !important;
 	transition:color 500ms ease-in !important;
-	
+
 	-webkit-transition: background-color 500ms ease-out !important;
 	-moz-transition: background-color 500ms ease-out !important;
 	-o-transition: background-color 500ms ease-out !important;
@@ -67,13 +67,13 @@
 	-moz-transition: opacity 0.5s ease-in-out !important;
 	-ms-transition: opacity 0.5s ease-in-out !important;
 	-o-transition: opacity 0.5s ease-in-out !important;
-	transition: opacity 0.5s ease-in-out !important;	
+	transition: opacity 0.5s ease-in-out !important;
 }
 .team-single:hover > div img {
-	opacity: 0.5;	
+	opacity: 0.5;
 }
 .team-single:hover > .team-social {
-	opacity: 1;	
+	opacity: 1;
 }
 /*FOOTER*/
 .footer-icon, .icon {

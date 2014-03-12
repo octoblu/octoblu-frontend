@@ -11,7 +11,7 @@ function hermesMenu() {
 		var lastLocate = 0;
 		var lastLink = menuLink.eq(0);
 		var scrollClick = false;
-		var memoColor = lastLink.css('color');		
+		var memoColor = lastLink.css('color');
 		//Check Default
 		if(typeof hermesMenuTime === 'undefined'){hermesMenuTime = 500;}
 		if(typeof hermesLinkColor === 'undefined'){hermesLinkColor = '';}
@@ -23,8 +23,8 @@ function hermesMenu() {
 		var sincroScroll = hermesSynchroScroll ;
 		var resizeCheckpoint = hermesResizeCheckpoint;
 		var exceptionClass = hermesExceptionClass;
-		//Utility Variables			
-		var activationArea = menu.height();	
+		//Utility Variables
+		var activationArea = menu.height();
 		var barLeft = lastLink.parent().position().left;
 		var barTop = lastLink.parent().position().top;
 		var barWidth = lastLink.parent().width();
@@ -34,7 +34,7 @@ function hermesMenu() {
 			top: barTop,
 			width: barWidth,
 			height: barHeight
-		});		
+		});
 		//Start Preparation
 		lastLink.css({color: linkColor});
 		// Menu Value Click
@@ -45,15 +45,15 @@ function hermesMenu() {
 				barLeft = current.parent().position().left;
 				barTop = current.parent().position().top;
 				barWidth = current.parent().width();
-				barHeight = current.parent().height();			
+				barHeight = current.parent().height();
 				//Move Bar
 				bar.stop().animate({
 					width: barWidth,
 					height: barHeight,
 					left: barLeft,
-					top: barTop				
+					top: barTop
 				},menuTime, function(){
-					if (linkColor == ''){						
+					if (linkColor == ''){
 						menuLink.not(current).css({color: ''});
 						current.css({color: linkColor});
 					}
@@ -64,7 +64,7 @@ function hermesMenu() {
 				}
 				var linkLocation = current.attr('href');
 				if(linkLocation != '#' && sincroScroll == true && linkLocation.substr(0,1) == '#') {
-					var sectionLocate = $(linkLocation).offset().top-activationArea+1;	
+					var sectionLocate = $(linkLocation).offset().top-activationArea+1;
 					// Launch Animations
 					scrollClick = true;
 					$("html, body").stop().animate({
@@ -76,7 +76,7 @@ function hermesMenu() {
 					});
 					/*Modify Hash - not implemented yet
 					setTimeout(function(){window.location.hash = sectionSelected;},1100);
-					*/				
+					*/
 					lastLocate = sectionLocate;
 				}
 				lastLink = current
@@ -89,11 +89,11 @@ function hermesMenu() {
 		// Barmenu
 		menuLink.each(function() {
 			var current = $(this);
-			$(window).scroll(function() {		
+			$(window).scroll(function() {
 				var windowScroll = $(window).scrollTop();
 				var linkLocation = current.attr('href');
 				if(linkLocation != '#' && sincroScroll == true && linkLocation.substr(0,1) == '#') {
-					var sectionLocate = $(linkLocation).offset().top-activationArea;				
+					var sectionLocate = $(linkLocation).offset().top-activationArea;
 					// Launch Animations
 					if(
 					(windowScroll > sectionLocate && sectionLocate > lastLocate && scrollClick == false)
@@ -111,7 +111,7 @@ function hermesMenu() {
 							left: barLeft,
 							top: barTop
 						},menuTime, function(){
-							if (linkColor == ''){						
+							if (linkColor == ''){
 								menuLink.not(current).css({color: ''});
 								current.css({color: linkColor});
 							}
@@ -146,5 +146,5 @@ function hermesMenu() {
 				},menuTime);
 			}
 		});
-	}//ELSE		
+	}//ELSE
 }//FUNCTION
