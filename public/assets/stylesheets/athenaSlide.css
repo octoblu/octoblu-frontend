@@ -2,13 +2,49 @@
 	width: 100%;
 	height: 700px;
 	padding: 0px;
-	background-image: url(/assets/images/iot_original_web.jpg);
+	/*background-image: url(/assets/images/iot_original_web.jpg);*/
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
 	overflow: hidden;
 }
+.slide1{
+	/*background-image: url(/assets/images/nest.jpg);*/
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/nest.jpg);
+
+	width: 100%;
+	height: 700px;
+	padding: 0px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+.slide2{
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/hue.jpg);
+	width: 100%;
+	height: 700px;
+	padding: 0px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+.slide3{
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/belkin.jpg);
+	width: 100%;
+	height: 700px;
+	padding: 0px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+
 #slidecontent, #slidecommands {
 	width: 100%;
 	height: 100%;
