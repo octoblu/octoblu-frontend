@@ -342,7 +342,7 @@ module.exports = function(app, passport) {
 
 		// List of available API channels
 		app.get('/api/channels', function(req, res) {
-			Api.find({owner: {$exists: false}}, function (err, apis) {
+			Api.find({owner: {$exists: false}, enabled: true}, function (err, apis) {
 			  	if (err) { res.send(err); } else { res.json(apis); }
 			});
 		});

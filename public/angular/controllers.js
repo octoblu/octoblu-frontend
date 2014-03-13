@@ -1229,6 +1229,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
     name: '',
     description: '',
     documentation: '',
+    enabled: true,
     application: {
       base: '',    
       resources: [],
