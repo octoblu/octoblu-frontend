@@ -44,6 +44,31 @@
 	position: relative;
 	overflow: hidden;
 }
+.apis{
+/*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/apis.png);*/
+	background-image: url(/assets/images/apis.jpg);
+	width: 100%;
+	height: 700px;
+	padding: 0px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+.flow{
+/*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/apis.png);*/
+	background-image: url(/assets/images/designer.jpg);
+	width: 100%;
+	height: 550px;
+	padding: 0px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+
 
 #slidecontent, #slidecommands {
 	width: 100%;
@@ -123,7 +148,7 @@
 .msg-ulysses {
 	padding: 10px;
 	padding-left: 15px;
-	padding-right: 15px; 
+	padding-right: 15px;
 	border: 3px dashed;
 }
 #spt-1, #spt-5, #spt-9 {

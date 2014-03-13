@@ -7,7 +7,7 @@
 	left: 0;
 	z-index: 1500;
 	background-color: #000;
-	background-image: url(/assets/images/Parallax2.jpg);
+	background-image: url(../images/Parallax2.jpg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
