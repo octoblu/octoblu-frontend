@@ -1320,9 +1320,13 @@ angular.module('e2eApp')
 
             $scope.editor = function () {
 
+<<<<<<< HEAD
                 var modalInstance = $modal.open({
                     templateUrl: 'myModalContent.html',
                     controller: function ($scope, $modalInstance) {
+=======
+  $scope.skynetStatus = false;
+>>>>>>> caffe57b949be1ef2278b2976d8051da84b9f1c1
 
                         $scope.ok = function () {
                             $modalInstance.close('ok');
