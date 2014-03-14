@@ -166,10 +166,10 @@
           <input type="text" ng-model="selectedSubdevice.name" placeholder="name" class="form-control" required><br />
           <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
             <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
-              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="text" ng-model="selectedSubdevice.options[deviceProperty.name]" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
             <div ng-if="deviceProperty.type == 'boolean'">
-              <input type="checkbox" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="checkbox" ng-model="selectedSubdevice.options[deviceProperty.name]" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
           </div>
         </div>
