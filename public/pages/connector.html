@@ -11,10 +11,10 @@
         </div>
         <ul class="nav nav-tabs">
           <li ng-class="{active: activeTab == 'devices'}" id="devices">
-            <a ng-click="activeTab = 'devices'" href="/devices">Devices</a>
+            <a ng-click="activeTab = 'devices'" href="" ui-sref="connector.devices" ui-sref-active="active">Devices</a>
           </li>
           <li ng-class="{active: activeTab == 'gateways'}">
-            <a ng-click="activeTab = 'gateways'" href="/gateways">Gateways</a>
+            <a ng-click="activeTab = 'gateways'" href="" ui-sref="connector.gateway" ui-sref-active="active">Gateways</a>
           </li>
           <li ng-class="{active: activeTab == 'apis'}">
             <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
@@ -26,24 +26,24 @@
             <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
           </li>
         </ul>
-        <div class="tab-content">
-          <div ng-switch="activeTab">
-            <div ng-switch-when="devices">
-               <ng-include src=" 'pages/devices.html' "></ng-include>
-            </div>
-            <div ng-switch-when="gateways">
-               <ng-include src=" 'pages/gateways.html' "></ng-include>
-            </div>
-            <div ng-switch-when="apis">
-               <ng-include src=" 'pages/apis.html' "></ng-include>
-            </div>
-            <div ng-switch-when="people">
-               <ng-include src=" 'pages/people.html' "></ng-include>
-            </div>
-            <div ng-switch-when="devtools">
-               <ng-include src=" 'pages/devtools.html' "></ng-include>
-            </div>
-          </div>
+        <div class="tab-content" ui-view="">
+          <!--<div ng-switch="activeTab">-->
+            <!--<div ng-switch-when="devices">-->
+               <!--<ng-include src=" 'pages/devices.html' "></ng-include>-->
+            <!--</div>-->
+            <!--<div ng-switch-when="gateways">-->
+               <!--<ng-include src=" 'pages/gateways.html' "></ng-include>-->
+            <!--</div>-->
+            <!--<div ng-switch-when="apis">-->
+               <!--<ng-include src=" 'pages/apis.html' "></ng-include>-->
+            <!--</div>-->
+            <!--<div ng-switch-when="people">-->
+               <!--<ng-include src=" 'pages/people.html' "></ng-include>-->
+            <!--</div>-->
+            <!--<div ng-switch-when="devtools">-->
+               <!--<ng-include src=" 'pages/devtools.html' "></ng-include>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
 
       </div>
