@@ -630,6 +630,22 @@ module.exports = function(app, passport) {
 
 		};
 
+		var getOAuth2InstanceFromConfig = function(configSection) {
+			var OAuth = require('oauth').OAuth;
+
+			var oa = new OAuth(
+				configSection.clientId,
+				configSection.secret,
+				configSection.baseURI,
+				configSection.authTokenURL,
+				configSection.sessionKey,
+				null
+			);
+
+			return oa;
+
+		};
+
 		var handleApiCompleteRedirect = function(res, name, err) {
 			if(!err) {
 	        	return res.redirect('/apis/' + name);

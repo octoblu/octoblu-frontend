@@ -96,20 +96,53 @@
             </select>
           </div>
 
-          <div class="field" ng-show="channel.auth_strategy=='oauth'">
-            <label for="resource_resourcename">Consumer Key</label>
-            <input class="form-control" type="text" placeholder="Consumer Key" ng-model="channel.key" />
-          </div>
+          <!-- oAuth Settings -->
+          <span ng-show="channel.auth_strategy=='oauth'">
+            <h3>oAuth Settings</h3>
+            <br/>
 
-          <div class="field" ng-show="channel.auth_strategy=='oauth'">
-            <label for="resource_resourcename">Consumer Secret</label>
-            <input class="form-control" type="text" placeholder="Consumer Secret" ng-model="channel.secret" />
-          </div>
+            <div class="field">
+              <label for="resource_resourcename">Version</label>
+              <select class="form-control" ng-model="channel.oauth.version" ng-options="a for a in ['1.0', '2.0']">
+              </select>
+            </div>
 
-          <div class="field" ng-show="channel.auth_strategy=='oauth'">
-            <label for="resource_resourcename">Authorize Token URL</label>
-            <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.authTokenURL" />
-          </div>
+            <div class="field" ng-hide="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Consumer Key</label>
+              <input class="form-control" type="text" placeholder="Consumer Key" ng-model="channel.oauth.key" />
+            </div>
+
+            <div class="field" ng-show="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Client Id</label>
+              <input class="form-control" type="text" placeholder="Client Id" ng-model="channel.oauth.clientId" />
+            </div>
+
+            <div class="field">
+              <label for="resource_resourcename">Secret</label>
+              <input class="form-control" type="text" placeholder="Secret" ng-model="channel.oauth.secret" />
+            </div>
+
+            <div class="field" ng-show="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Token Key</label>
+              <input class="form-control" type="text" placeholder="Token Key" ng-model="channel.oauth.sessionKey" />
+            </div>
+
+            <div class="field" ng-hide="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Access Token URL</label>
+              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.accessTokenURL" />
+            </div>
+
+            <div class="field" ng-hide="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Request Token URL</label>
+              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.requestTokenURL" />
+            </div>
+
+            <div class="field">
+              <label for="resource_resourcename">Authorize Token URL</label>
+              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.authTokenURL" />
+            </div>
+            
+          </span>
 
         </fieldset>
 
