@@ -1,11 +1,20 @@
-// create the module and name it e2eApp
-var e2eApp = angular.module('e2eApp', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngSanitize']);
+'use strict';
 
+// create the module and name it e2eApp
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'])
     // enabled CORS by removing ajax header
-e2eApp.config(function($httpProvider) {
+    .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    })
-    .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider) {
+
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            'http://*:*@red.meshines.com:*/**',
+            'http://*:*@designer.octoblu.com:*/**',
+            'http://skynet.im/**',
+            'http://54.203.249.138:8000/**',
+            '**'
+        ]);
+
         $stateProvider
             .state('home', {
                 url: '/',
@@ -44,7 +53,7 @@ e2eApp.config(function($httpProvider) {
             })
             .state('connector.apis', {
                 url: '/apis',
-                templateUrl : 'pages/connector.html',
+                templateUrl : 'pages/apis.html',
                 controller  : 'connectorController'
             })
             .state('connector.apis.detail', {
@@ -54,28 +63,33 @@ e2eApp.config(function($httpProvider) {
             })
             .state('connector.devices', {
                 url: '/devices',
-                templateUrl: 'pages/connector/devices.html',
+                templateUrl: 'pages/devices.html',
                 controller: 'connectorController'
             })
-            .state('connector.channels', {
-                url: '/channels',
-                templateUrl: 'pages/connector/channels.html',
-                controller: 'ChannelController'
+            .state('connector.people', {
+                url: '/people',
+                templateUrl: 'pages/people.html',
+                controller: 'connectorController'
             })
-            .state('connector.channels.detail', {
-                url: '/:name',
-                templateUrl: 'pages/connector/channels_detail.html',
-                controller: 'ChannelController'
-            })
+//            .state('connector.channels', {
+//                url: '/channels',
+//                templateUrl: 'pages/channels.html',
+//                controller: 'ChannelController'
+//            })
+//            .state('connector.channels.detail', {
+//                url: '/:name',
+//                templateUrl: 'pages/connector/channels_detail.html',
+//                controller: 'ChannelController'
+//            })
             .state('connector.gateway', {
                 url: '/gateway',
-                templateUrl: 'pages/gateway.html',
-                controller: 'gatewayController'
+                templateUrl: 'pages/gateways.html',
+                controller: 'connectorController'
             })
             .state('connector.tools', {
                 url: '/tools',
-                templateUrl: 'pages/connector/tools.html',
-                controller: 'ToolController'
+                templateUrl: 'pages/devtools.html',
+                controller: 'connectorController'
             })
             .state('admin', {
                 url: '/admin',
@@ -161,16 +175,8 @@ e2eApp.config(function($httpProvider) {
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise('/');
     })
-    // configure our routes
-    .config(function($locationProvider, $sceDelegateProvider) {
-        $sceDelegateProvider.resourceUrlWhitelist([
-            'self',
-            'http://*:*@red.meshines.com:*/**',
-            'http://*:*@designer.octoblu.com:*/**',
-            'http://skynet.im/**',
-            'http://54.203.249.138:8000/**',
-            '**'
-        ]);
+    .run(function ($rootScope) {
+        //$rootScope.state = $state;
     });

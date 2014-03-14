@@ -10,20 +10,20 @@
           </h1>
         </div>
         <ul class="nav nav-tabs">
-          <li ng-class="{active: activeTab == 'devices'}" id="devices">
-            <a ng-click="activeTab = 'devices'" href="" ui-sref="connector.devices" ui-sref-active="active">Devices</a>
+          <li ng-class="{'active': state.is('connector.devices')}">
+            <a href="" ui-sref="connector.devices">Devices</a>
           </li>
-          <li ng-class="{active: activeTab == 'gateways'}">
-            <a ng-click="activeTab = 'gateways'" href="" ui-sref="connector.gateway" ui-sref-active="active">Gateways</a>
+          <li ng-class="{'active': state.is('connector.gateway')}">
+            <a href="" ui-sref="connector.gateway">Gateways</a>
           </li>
-          <li ng-class="{active: activeTab == 'apis'}">
-            <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
+          <li ng-class="{'active': state.is('connector.apis')}">
+            <a href="" ui-sref="connector.apis">APIs</a>
           </li>
-          <li ng-class="{active: activeTab == 'people'}">
-            <a ng-click="activeTab = 'people'" href="/people">People</a>
+          <li ng-class="{'active': state.is('connector.people')}">
+            <a href="" ui-sref="connector.people">People</a>
           </li>
-          <li ng-class="{active: activeTab == 'devtools'}">
-            <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
+          <li ng-class="{'active': state.is('connector.tools')}">
+            <a href="" ui-sref="connector.tools">Developer Tools</a>
           </li>
         </ul>
         <div class="tab-content" ui-view="">

@@ -2,7 +2,7 @@
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <!-- <html ng-app="scotchTodo"> -->
-<html ng-app="e2eApp">
+<html>
 <head>
   <base href="/" />
 	<!-- META -->
@@ -59,7 +59,7 @@
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
 <!-- <body ng-controller="mainController"> -->
-<body class='contrast-sea-blue'>
+<body class='contrast-sea-blue' ng-app="e2eApp">
 
 
 
@@ -69,7 +69,7 @@
       <a class='navbar-brand' href='/'>
 			OCTOBLU
 			</a>
-      <a class='toggle-nav btn pull-left' href='' style="display:none">
+      <a class='toggle-nav btn pull-left' href=''>
         <i class='icon-reorder'></i>
       </a>
 
@@ -77,7 +77,7 @@
 
 				<li class="auth"><!-- <a href="/login"><i class="fa fa-lock"></i> Sign In/Up</a> --></li>
 
-        <li class='dropdown dark user-menu' style="display:none">
+        <li class='dropdown dark user-menu'>
           <a class='dropdown-toggle' data-toggle='dropdown' href="#">
             <span class='avatar'></span>
             <span class='user-name'></span>
@@ -112,54 +112,54 @@
 	<!-- MAIN CONTENT AND INJECTED VIEWS -->
 	<div id="main">
 
-    <div id='main-nav-bg' style="display:none;"></div>
-      <nav id='main-nav' style="display:none;">
+    <div id='main-nav-bg'></div>
+      <nav id='main-nav'>
         <div class='navigation'>
 
           <ul class='nav nav-stacked'>
-            <li id="nav-dashboard" class='active'>
-              <a href='/dashboard'>
+            <li id="nav-dashboard">
+              <a href="" ui-sref="dashboard">
                 <i class='icon-dashboard'></i>
                 <span>Dashboard</span>
               </a>
             </li>
 
-            <li id="nav-connector" class="">
-              <a class='' href='/connector'>
+            <li id="nav-connector">
+              <a class='' href="" ui-sref="connector">
                 <i class='icon-code-fork'></i>
                 <span>Connector</span>
               </a>
             </li>
 
             <li id="nav-designer" class=''>
-              <a href="/designer"><i class='icon-edit'></i>
+              <a href="" ui-sref="designer"><i class='icon-edit'></i>
                 <span>Designer</span>
               </a>
             </li>
 
             <li id="nav-controller" class=''>
-              <a href='/controller'>
+              <a href="" ui-sref="controller">
                 <i class='icon-cogs'></i>
                 <span>Controller</span>
               </a>
             </li>
 
             <li id="nav-analyzer" class='' >
-              <a href='/analyzer'>
+              <a href="" ui-sref="analyzer">
                 <i class='icon-bar-chart'></i>
                 <span>Analyzer</span>
               </a>
             </li>
 
             <li id="nav-community" class=''>
-              <a href='/community'>
+              <a href="" ui-sref="community">
                 <i class='icon-group'></i>
                 <span>Community</span>
               </a>
             </li>
 
             <li id="nav-admin" class=''>
-              <a href='/admin'>
+              <a href="" ui-sref="admin">
                 <i class='icon-lock'></i>
                 <span>Admin</span>
               </a>
@@ -175,28 +175,25 @@
               </a>
               <ul class='nav nav-stacked' ng-class="navCollapsed && 'in'">
                 <li class=''>
-                  <a href='/docs'>
+                  <a href="" ui-sref="docs">
                     <i class='icon-cogs'></i>
                     <span>API Docs</span>
                   </a>
                 </li>
                 <li class=''>
-                  <a href='/pricing'>
+                  <a href="" ui-sref="pricing">
                     <i class='icon-table'></i>
                     <span>Pricing tables</span>
                   </a>
                 </li>
                 <li class=''>
-                  <a href='/faqs'>
+                  <a href="" ui-sref="faqs">
                     <i class='icon-bullhorn'></i>
                     <span>FAQ</span>
                   </a>
                 </li>
               </ul>
             </li>
-
-
-
           </ul>
         </div>
       </div>
@@ -205,41 +202,41 @@
 
 	</div>
 
-  <script src="http://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
-  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
-  <script src="/assets/javascripts/plugins/jquery_ui_touch_punch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
-  <script src="/assets/javascripts/jquery/jquery.cookie.js"></script>
-  <script src="/assets/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
+    <!-- build:js scripts/plugins.js -->
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/plugins/jquery_ui_touch_punch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/jquery/jquery.cookie.js"></script>
+    <script src="assets/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!-- endbuild -->
 
+    <!-- build:js scripts/modules.js -->
+    <script src="assets/javascripts/angular-ui-router.min.js"></script>
+    <script src="assets/javascripts/plugins/modernizr/modernizr.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/canvasjs.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/plugins/retina/retina.js" type="text/javascript"></script>
+    <script src="assets/javascripts/theme.js" type="text/javascript"></script>
+    <script src="assets/javascripts/plugins/validate/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="assets/javascripts/plugins/validate/additional-methods.js" type="text/javascript"></script>
+    <script src="assets/javascripts/jquery.jsoneditor.js" type="text/javascript"></script>
+    <script src="assets/javascripts/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <!-- endbuild -->
 
-  <script src="/assets/javascripts/plugins/modernizr/modernizr.min.js" type="text/javascript"></script>
-  <script src="/assets/javascripts/plugins/retina/retina.js" type="text/javascript"></script>
-  <script src="/assets/javascripts/theme.js" type="text/javascript"></script>
-
-  <script src="/assets/javascripts/plugins/validate/jquery.validate.min.js" type="text/javascript"></script>
-  <script src="/assets/javascripts/plugins/validate/additional-methods.js" type="text/javascript"></script>
-  <script src="/assets/javascripts/jquery.jsoneditor.js" type="text/javascript"></script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-sanitize.js"></script>
-
-  <script src="/assets/javascripts/angular-ui-router.min.js"></script>
-  <script src="/assets/javascripts/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	<script src="/angular/app.js"></script>
-  <script src="/angular/services.js"></script>
-  <script src="/angular/controllers.js"></script>
-  <script src="/angular/controllers/community.js"></script>
-  <script src="/angular/controllers/community-post.js"></script>
-  <script src="/angular/directives.js"></script>
-
-  <script src="/assets/javascripts/athenaSlide.js"></script>
-  <script src="/assets/javascripts/underscore.js"></script>
-  <script type="text/javascript" src="/assets/javascripts/canvasjs.min.js"></script>
-
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="angular/app.js"></script>
+    <script src="angular/services.js"></script>
+    <script src="angular/controllers.js"></script>
+    <script src="angular/controllers/community.js"></script>
+    <script src="angular/controllers/community-post.js"></script>
+    <script src="angular/directives.js"></script>
+    <script src="assets/javascripts/athenaSlide.js"></script>
+    <script src="assets/javascripts/underscore.js"></script>
+    <!-- endbuild -->
 <!--
   <script>
     var socket;
