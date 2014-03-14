@@ -1,11 +1,20 @@
-e2eApp.controller('mainController', function($scope, $location) {
+e2eApp.controller('mainController', function($scope, $location, $anchorScroll) {
   $("#main-nav").hide();
   user = $.cookie("skynetuuid");
   if(user != undefined ){
     window.location.href = "/dashboard";
-  } else {  
+  } else {
     $scope.message = 'Home page content pending.';
   }
+
+  $scope.gotoApis = function (){
+    // set the location.hash to the id of
+    // the element you wish to scroll to.
+    $location.hash('apis');
+
+    // call $anchorScroll()
+    $anchorScroll();
+  };
 
   $(document).ready(function () {
     /*SLIDE*/
@@ -29,130 +38,17 @@ e2eApp.controller('mainController', function($scope, $location) {
     });
   });
 
- $(window).load(function () {
-   /*GALLERY*/
-   apolloGallery(
-     /*gallery-opened*/
-     apolloGalleryOverlayId = 'gallery-overlay',
-     apolloGalleryDestinationId = 'gallery-destination',
-     apolloGalleryPreviousId = 'gallery-previous',
-     apolloGalleryNextId = 'gallery-next',
-     apolloGalleryCloseId = 'gallery-close',
-     apolloGalleryMoreId = 'gallery-more',
-     apolloGalleryLoadingId = 'gallery-loading',
-     /*gallery-menu*/
-     apolloGalleryMenuId = 'isotope_filters',
-     /*gallery-closed*/
-     apolloGalleryId = 'isotope_container',
-     apolloGalleryItemsClasses = 'gallery-item',
-     apolloGalleryCoverClasses = 'gallery-cover',
-     apolloGalleryDescriptionClasses = 'gallery-description',      
-     apolloGalleryExpandClasses = 'gallery-expand',
-     apolloGalleryDestinationTextClass = 'gallery-text'
-   );
-   /*MAIN MENU*/
-   hermesMenu(
-     hermesMenuId = 'mainmenu',
-     hermesBarId = 'mainmenubar',
-     hermesSynchroScroll = true,
-     hermesExceptionClass = 'nobar'
-   );
-   /*ACCORDION MENU*/
-   hermesMenu(
-     hermesMenuId = 'navtabs_menu',
-     hermesBarId = 'navtabs_menubar',      
-     hermesSynchroScroll = false,
-     hermesLinkColor = 'white'
-   );
-   /*GALLERY MENU*/
-   hermesMenu(
-     hermesMenuId = 'isotope_filters',
-     hermesBarId = 'isotope_filtersbar',     
-     hermesSynchroScroll = false,
-     hermesLinkColor = 'white'
-   );
-   /*ISOTOPE*/
-   if ($('#isotope_container').length){
-     var $container = $('#isotope_container');
-     $container.isotope({
-        duration: 750,
-        easing: 'linear',
-        queue: false,
-        layoutMode : 'masonry'
-     });
-   }
-   $('#isotope_filters a').click(function(){
-     //DYNAMIC MENU LABEL
-     var selector = $(this).attr('data-filter');
-     $container.isotope({ filter: selector });
-     return false;
-   });
-   /*CLASS TICKET*/
-   var t_current = $('.ticket');
-   var t_number = t_current.length;
-   var t_counter = 0;
-   $('.ticket-button').click(function(){
-     current = $(this);
-     if (current.hasClass('ticket-right')) {
-       t_current.eq(t_counter).stop().fadeOut(300);
-       if (t_counter < t_number-1) {
-         t_counter++;
-       }
-       else {
-         t_counter = 0;
-       }
-       t_current.eq(t_counter).stop().delay(300).fadeIn(300);
-     }
-     else {
-       t_current.eq(t_counter).stop().fadeOut(300);
-       if (t_counter < t_number-1) {
-         t_counter--;
-       }
-       else {
-         t_counter = t_number-1;
-       }
-       t_current.eq(t_counter).stop().delay(300).fadeIn(300);
-     }
-
-   });
-   $(window).resize(function() {
-     if($(window).width() > 992) {
-     t_current.css({display: ''});
-     }
-     else {
-     t_current.css({display: ''});
-     t_current.eq(0).show();
-     }
-     t_counter = 0;
-   });
-   /*SKILLS*/
-   $('#skills').find('.progress-bar').css({width: 0});
-   var s_windowHeight = $(window).height()*0.5;
-   var s_target = $('#skills').offset().top;
-   $(window).scroll(function(){
-     var s_scrollHeight = $(window).scrollTop()+s_windowHeight;
-     if (s_scrollHeight > s_target) {
-       $('#skills').find('.progress-bar').each(function() {
-         var current = $(this);
-         var s_final = current.data('final');
-         current.stop().animate({width: s_final+'%'},1000);
-       });
-     }
-   });
-
- });//END LOAD
-
 });
 
 e2eApp.controller('aboutController', function($scope, $http) {
   $scope.message = 'About page content pending.';
-  checkLogin($scope, $http, false, function(){});  
+  checkLogin($scope, $http, false, function(){});
 
 });
 
 e2eApp.controller('contactController', function($scope, $http) {
   $scope.message = 'Contact page content pending.';
-  checkLogin($scope, $http, false, function(){});  
+  checkLogin($scope, $http, false, function(){});
 
 });
 
@@ -175,7 +71,7 @@ e2eApp.controller('profileController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-  });  
+  });
 });
 
 e2eApp.controller('servicesController', function($scope, $http, $location) {
@@ -184,7 +80,7 @@ e2eApp.controller('servicesController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-  });  
+  });
 });
 
 e2eApp.controller('docsController', function($scope, $http, $location) {
@@ -194,7 +90,7 @@ e2eApp.controller('docsController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-  });  
+  });
 });
 
 e2eApp.controller('faqsController', function($scope, $http, $location) {
@@ -204,7 +100,7 @@ e2eApp.controller('faqsController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-  });  
+  });
 });
 
 e2eApp.controller('pricingController', function($scope, $http, $location) {
@@ -214,7 +110,7 @@ e2eApp.controller('pricingController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-  });  
+  });
 });
 
 e2eApp.controller('dashboardController', function($scope, $http, $location, ownerService) {
@@ -233,14 +129,14 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
     var skynetConfig = {
       "uuid": $scope.skynetuuid,
       "token": $scope.skynettoken
-    }    
+    }
     skynet(skynetConfig, function (e, socket) {
       if (e) throw e
 
       // Get user's devices
       ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
         $scope.devices = data.devices;
- 
+
         // Subscribe to user's devices messages and events
         if(data.devices) {
           for (var i = 0; i < data.devices.length; i++) {
@@ -248,13 +144,13 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
               "uuid": data.devices[i].uuid,
               "token": data.devices[i].token
             }, function (data) {
-              // console.log(data); 
+              // console.log(data);
             });
 
             // Setup dashboard arrays for devices
-            dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid }); 
+            dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid });
             deviceData[data.devices[i].uuid] = 0;
-  
+
           }
 
         }
@@ -263,9 +159,9 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
         chart = new CanvasJS.Chart("chartContainer", {
             theme: "theme2",//theme1
             title:{
-                text: "Real-time Device Activity"              
+                text: "Real-time Device Activity"
            },
-            data: [              
+            data: [
               {
                   // Change type to "column", bar", "splineArea", "area", "spline", "pie",etc.
                   type: "splineArea",
@@ -279,11 +175,11 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
       });
 
       socket.on('message', function(channel, message){
-        
+
         if($scope.skynetuuid == channel){
           alert(JSON.stringify(message));
         }
-        
+
         console.log('message received', channel, message);
         deviceData[channel] = deviceData[channel] + 1;
         for (var i = 0; i < dataPoints.length; i++) {
@@ -297,7 +193,7 @@ e2eApp.controller('dashboardController', function($scope, $http, $location, owne
       });
     });
 
-  });  
+  });
 });
 
 e2eApp.controller('controllerController', function($scope, $http, $location, ownerService, messageService) {
@@ -317,7 +213,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
     var skynetConfig = {
       "uuid": $scope.skynetuuid,
       "token": $scope.skynettoken
-    }    
+    }
     skynet(skynetConfig, function (e, socket) {
       if (e) throw e
 
@@ -340,7 +236,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
             $scope.schema.title = subdevice.name;
           }
         }
-        console.log($scope.schema); 
+        console.log($scope.schema);
 
         if($scope.schema ){
 
@@ -397,7 +293,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
                   message = $('#device-msg-editor').jsoneditor('value');
                  console.log('schema message', message);
                 // }
-                
+
                $scope.subdevicename = $scope.subdevice.name;
               }
 
@@ -415,7 +311,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
               message = $scope.sendText;
               $scope.subdevicename = "";
             }
-              
+
           }
 
 
@@ -424,8 +320,8 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
             "subdevice": $scope.subdevicename,
             "message": message
           }, function(data){
-            console.log(data); 
-          });     
+            console.log(data);
+          });
           $scope.messageOutput = "Message Sent: " + JSON.stringify(message);
 
         }
@@ -433,7 +329,7 @@ e2eApp.controller('controllerController', function($scope, $http, $location, own
 
     });
 
-  });  
+  });
 });
 
 e2eApp.controller('adminController', function($scope, $http, $location) {
@@ -443,7 +339,7 @@ e2eApp.controller('adminController', function($scope, $http, $location) {
     $("#main-nav").show();
     $("#main-nav-bg").show();
 
-  });  
+  });
 });
 
 e2eApp.controller('connectorController', function($scope, $http, $location, $modal, $log, $q, $modal,
@@ -457,7 +353,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
-    
+
     if($location.$$path == "/connector" || $location.$$path == "/devices") {
       $scope.activeTab = 'devices';
       $("#devices").addClass('active');
@@ -470,7 +366,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     } else if($location.$$path == "/tools") {
       $scope.activeTab = 'devtools';
     }
-    
+
     $scope.navType = 'pills';
     // $scope.navType = 'tabs';
 
@@ -478,7 +374,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
     var skynetConfig = {
       "uuid": $scope.skynetuuid,
       "token": $scope.skynettoken
-    }    
+    }
     skynet(skynetConfig, function (e, socket) {
       if (e) throw e
 
@@ -490,11 +386,11 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
             if($scope.devices[i].type == 'gateway'){
               $scope.devices.splice(i,1);
             }
-          }             
+          }
       });
 
       // Get user gateways (true param specifies inclusion of devices)
-      ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(data) {        
+      ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(data) {
         console.log('gateways', data);
         $scope.editGatewaySection = false;
         $scope.gateways = data.gateways;
@@ -580,13 +476,13 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           var dupeUuid;
           for (var i in $scope.devices) {
             if($scope.devices[i].name == $scope.deviceName){
-              // dupeFound = true;            
+              // dupeFound = true;
               // $scope.duplicateDevice = true;
               dupeUuid = $scope.devices[i].uuid;
               dupeToken = $scope.devices[i].token;
               dupeIndex = i;
             }
-          }        
+          }
 
           formData = {};
           formData.name = $scope.deviceName;
@@ -596,7 +492,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
             formData.uuid = dupeUuid;
             formData.token = dupeToken;
-            
+
             deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
               try{
                   $scope.devices.splice(dupeIndex,1);
@@ -610,7 +506,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
                 }
                 $scope.addDevice = false;
             });
-            
+
           } else {
 
             deviceService.createDevice($scope.skynetuuid, formData, function(data) {
@@ -626,7 +522,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
           }
         }
-        
+
       };
 
       $scope.editDevice = function( idx ){
@@ -640,43 +536,43 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           if (device_to_edit.hasOwnProperty(key)) {
             if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
               keys.push({"key": key, "value": device_to_edit[key]});
-            }        
+            }
           }
-        }      
+        }
         if(keys.length){
           $scope.keys = keys;
         } else {
           $scope.keys = [{}];
         }
-        
+
       }
 
       $scope.deleteDevice = function( idx ){
 
-        confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?', 
+        confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?',
           function() {
             $log.info('ok clicked');
             var device_to_delete = $scope.devices[idx];
-            deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) { 
+            deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) {
               $scope.devices.splice(idx, 1);
             });
-          }, 
+          },
           function() {
             $log.info('cancel clicked');
           });
-        
+
       };
 
-      $scope.keys = [{key:'', value:''}];    
+      $scope.keys = [{key:'', value:''}];
       $scope.addKeyVals = function() {
-        $scope.keys.push( {key:'', value:''} ); 
+        $scope.keys.push( {key:'', value:''} );
       }
       $scope.removeKeyVals = function(idx) {
-        // $scope.keys.push( {key:'', value:''} ); 
+        // $scope.keys.push( {key:'', value:''} );
         $scope.keys.splice(idx,1);
       }
       $scope.editGatewayCancel = function() {
-        $scope.editGatewaySection = false; 
+        $scope.editGatewaySection = false;
       }
 
       $scope.editGateway = function( idx ){
@@ -691,15 +587,15 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           if (gateway_to_edit.hasOwnProperty(key)) {
             if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
               keys.push({"key": key, "value": gateway_to_edit[key]});
-            }        
+            }
           }
-        }      
+        }
         if(keys.length){
           $scope.keys = keys;
         } else {
           $scope.keys = [{}];
         }
-        
+
       }
 
       $scope.updateGateway = function(){
@@ -712,16 +608,16 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               dupeToken = $scope.gateways[i].token;
               dupeIndex = i;
             }
-          }  
+          }
 
           formData = {};
           formData.owner = $scope.skynetuuid;
           formData.name = $scope.gatewayName;
-          formData.keyvals = $scope.keys;        
+          formData.keyvals = $scope.keys;
 
           formData.uuid = dupeUuid;
           formData.token = dupeToken;
-          
+
           deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
             console.log(data);
             try{
@@ -735,32 +631,32 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               }
               $scope.editGatewaySection = false;
           });
-            
+
 
         } else {
-          $scope.editGatewayUuid        
+          $scope.editGatewayUuid
         }
-        
+
       };
 
       $scope.deleteGateway = function( idx ){
 
-        confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?', 
+        confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?',
           function() {
             $log.info('ok clicked');
             var gateway_to_delete = $scope.gateways[idx];
-            deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) { 
+            deviceService.deleteDevice(gateway_to_delete.uuid, gateway_to_delete.token, function(data) {
               $scope.gateways.splice(idx, 1);
             });
-          }, 
+          },
           function() {
             $log.info('cancel clicked');
           });
-        
+
       };
 
       $scope.deleteSubdevice = function(parent, idx){
-        confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?', 
+        confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
           function() {
             $log.info('ok clicked');
             var subName = $scope.gateways[parent].subdevices.value[idx].name
@@ -774,12 +670,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
             }, function (deleteResult) {
               // alert('subdevice deleted');
             });
-          }, 
+          },
           function() {
             $log.info('cancel clicked');
           });
-        
-      };    
+
+      };
 
       $scope.addSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
 
@@ -799,7 +695,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       };
 
       $scope.deletePlugin = function(parent, idx){
-        confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?', 
+        confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
           function() {
             $log.info('ok clicked');
             socket.emit('gatewayConfig', {
@@ -810,12 +706,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
             }, function (deleteResult) {
               alert('plugin deleted');
             });
-          }, 
+          },
           function() {
             $log.info('cancel clicked');
           });
-        
-      };    
+
+      };
 
       $scope.addPlugin = function(gateway, pluginName){
 
@@ -828,11 +724,11 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           // alert('plugin added');
           console.log(addResult);
         });
-      };    
+      };
 
       $scope.openNewPlugin = function (gateway) {
         console.log(gateway);
-        $scope.selectedGateway = gateway;       
+        $scope.selectedGateway = gateway;
 
         // http://npmsearch.com/query?fl=name,description,homepage&rows=200&sort=rating+desc&q=%22skynet-plugin%22
         $http({
@@ -845,7 +741,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               start: 0,
               size: 100,
               sort: 'rating:desc'
-            }            
+            }
         }).success(function(data, status, headers, config) {
           console.log('npm search success',data);
           $scope.plugins = data.results;
@@ -867,7 +763,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
           });
           modalInstance.result.then(function (response) {
 
-            $scope.plugin = response.plugin; 
+            $scope.plugin = response.plugin;
             $scope.addPlugin($scope.selectedGateway, response.plugin);
             if(!$scope.selectedGateway.plugins) $scope.selectedGateway.plugins = [];
             $scope.selectedGateway.plugins.push({name: response.plugin})
@@ -886,7 +782,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
       };
 
       $scope.openNewSubdevice = function (gateway) {
-        $scope.selectedGateway = gateway;       
+        $scope.selectedGateway = gateway;
 
         var modalInstance = $modal.open({
           templateUrl: 'subDeviceModal.html',
@@ -896,7 +792,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
             $scope.gatewayName = $scope.selectedGateway.name;
             $scope.plugins = $scope.selectedGateway.plugins;
             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
-            
+
             console.log("deviceProperties");
             console.log(deviceProperties);
             var properties = _.map(deviceProperties, function(deviceProperty){
@@ -913,8 +809,8 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
              $modalInstance.close({
               "name" : subDeviceName,
-              "plugin" : plugin.name, 
-              "deviceProperties" : options 
+              "plugin" : plugin.name,
+              "deviceProperties" : options
              });
             };
 
@@ -926,24 +822,24 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               $log.info(plugin);
               $scope.schema = plugin.optionsSchema;
               var keys = _.keys($scope.schema.properties);
-              
+
               var propertyValues = _.values($scope.schema.properties);
               console.log('propertyValues');
               console.log(propertyValues);
-            
+
               var deviceProperties = _.map(keys, function(propertyKey){
                    console.log(propertyKey);
-                   var propertyValue = $scope.schema.properties[propertyKey]; 
-                   console.log(propertyValue); 
-                   var deviceProperty = {}; 
-                   deviceProperty.name = propertyKey; 
-                   deviceProperty.type = propertyValue.type; 
-                   deviceProperty.required = propertyValue.required; 
-                   deviceProperty.value = ""; 
+                   var propertyValue = $scope.schema.properties[propertyKey];
+                   console.log(propertyValue);
+                   var deviceProperty = {};
+                   deviceProperty.name = propertyKey;
+                   deviceProperty.type = propertyValue.type;
+                   deviceProperty.required = propertyValue.required;
+                   deviceProperty.value = "";
                    return deviceProperty;
-              }); 
-              console.log(deviceProperties); 
-              $scope.deviceProperties = deviceProperties; 
+              });
+              console.log(deviceProperties);
+              $scope.deviceProperties = deviceProperties;
             };
           }
         });
@@ -951,12 +847,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
         modalInstance.result.then(function (response) {
 
           $scope.subDeviceName = response.name;
-          $scope.plugin = response.plugin; 
+          $scope.plugin = response.plugin;
           $scope.deviceProperties = response.deviceProperties;
           $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
 
           $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
-          
+
         }, function (){
           $log.info('Modal dismissed at: ' + new Date());
         });
@@ -984,7 +880,7 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
             $scope.plugins = $scope.selectedGateway.plugins;
             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
               $scope._backup = false;
-              
+
               var properties = _.map(deviceProperties, function(deviceProperty){
                 delete deviceProperty.$$hashKey;
                 delete deviceProperty.type;
@@ -999,12 +895,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
              $modalInstance.close({
               "name" : subDeviceName,
-              "plugin" : $scope.selectedSubdevice.type, 
-              "deviceProperties" : options 
+              "plugin" : $scope.selectedSubdevice.type,
+              "deviceProperties" : options
              });
             };
 
-            $scope.cancel = function () {              
+            $scope.cancel = function () {
               $modalInstance.dismiss('cancel');
             };
 
@@ -1013,17 +909,17 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
               // $log.info($scope.plugins);
               var keys = _.keys($scope.schema.properties);
               var propertyValues = _.values($scope.schema.properties);
-            
+
               var deviceProperties = _.map(keys, function(propertyKey){
-                   var propertyValue = $scope.schema.properties[propertyKey]; 
-                   var deviceProperty = {}; 
-                   deviceProperty.name = propertyKey; 
-                   deviceProperty.type = propertyValue.type; 
-                   deviceProperty.required = propertyValue.required; 
-                   deviceProperty.value = ""; 
+                   var propertyValue = $scope.schema.properties[propertyKey];
+                   var deviceProperty = {};
+                   deviceProperty.name = propertyKey;
+                   deviceProperty.type = propertyValue.type;
+                   deviceProperty.required = propertyValue.required;
+                   deviceProperty.value = "";
                    return deviceProperty;
-              }); 
-              $scope.deviceProperties = deviceProperties; 
+              });
+              $scope.deviceProperties = deviceProperties;
             };
 
             $scope.getSchema($scope.selectedPlugin);
@@ -1032,12 +928,12 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
         modalInstance.result.then(function (response) {
           $scope.subDeviceName = response.name;
-          $scope.plugin = response.plugin; 
+          $scope.plugin = response.plugin;
           $scope.deviceProperties = response.deviceProperties;
           $scope.updateSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
           // TODO: update the subdevice, not push a new one
           // $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
-          
+
         }, function (){
           $log.info('Modal dismissed at: ' + new Date());
           if($scope._backup) {
@@ -1055,11 +951,11 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
     }); //end skynet.js
 
-  });  
+  });
 
 });
 
-e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $modal, $log, 
+e2eApp.controller('apiController', function($scope, $http, $location, $routeParams, $modal, $log,
       channelService, userService) {
 
   $scope.skynetStatus = false;
@@ -1072,14 +968,14 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
-    
+
     channelService.getByName($routeParams.name, function(data) {
-          
+
         $scope.channel = data;
         $scope.custom_tokens = data.custom_tokens;
 
         for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===$scope.channel.name) {            
+          if($scope.current_user.api[l].name===$scope.channel.name) {
             $scope.user_channel = $scope.current_user.api[l];
 
             if($scope.current_user.api[l].custom_tokens)
@@ -1098,7 +994,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
         controller: function ($scope, $modalInstance) {
-            
+
             $scope.ok = function () {
               $modalInstance.close('ok');
             };
@@ -1132,7 +1028,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
         return;
       }
 
-      $scope.has_user_channel = false;      
+      $scope.has_user_channel = false;
     };
 
     $scope.isActivated = function() {
@@ -1181,9 +1077,9 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
         return true;
       }
 
-      return false;      
+      return false;
     }
-    
+
     $scope.save = function() {
       if(!$scope.channel) return;
 
@@ -1214,7 +1110,7 @@ e2eApp.controller('apiController', function($scope, $http, $location, $routePara
 
 });
 
-e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $location, $routeParams, $modal, $log, 
+e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $location, $routeParams, $modal, $log,
       channelService, userService) {
 
   $scope.skynetStatus = false;
@@ -1234,7 +1130,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
     documentation: '',
     enabled: true,
     application: {
-      base: '',    
+      base: '',
       resources: [],
     }
   };
@@ -1247,9 +1143,9 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
   $scope.addResource = function() {
     if(!$scope.channel) return;
     if(!$scope.channel.application) {$scope.channel.application = {};}
-    if(!$scope.channel.application.resources) {$scope.channel.application.resources = [];}    
+    if(!$scope.channel.application.resources) {$scope.channel.application.resources = [];}
     var newResource = { httpMethod: 'none', doc: {}, authentication: {} };
-    $scope.channel.application.resources.push(newResource);    
+    $scope.channel.application.resources.push(newResource);
     $scope.openEditResource(newResource);
   };
 
@@ -1288,13 +1184,13 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
           templateUrl: 'confirmDeleteResource.html',
           scope: $scope,
           controller: function ($modalInstance) {
-            
+
             $scope.ok = function () {
               if($scope.selectedResourceIndex >= $scope.channel.application.resources.length) {
                $modalInstance.dismiss('ok');
-               return; 
+               return;
               }
-              
+
               $scope.channel.application.resources.splice($scope.selectedResourceIndex,1);
               channelService.save($scope.channel, function(data){
                 if(data) { $modalInstance.dismiss('ok'); }
@@ -1309,10 +1205,10 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
         });
 
         modalInstance.result.then(function (response) {
-            if(response==='ok') { 
+            if(response==='ok') {
               $log.info('clicked ok');
             }
-          }, 
+          },
           function (){
             $log.info('Modal dismissed at: ' + new Date());
             $scope.selectedResourceIndex = null;
@@ -1344,7 +1240,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
               if(index>=$scope.selectedResource.params.length) return;
               $scope.selectedResource.params.splice(index,1);
             };
-            
+
             $scope.ok = function () {
               // $scope.channel.application.resources.push($scope.selectedResource);
               channelService.save($scope.channel, function(data){
@@ -1352,7 +1248,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
                 if(data) {
                   $modalInstance.dismiss('ok');
                 }
-              });              
+              });
 
             };
 
@@ -1376,13 +1272,13 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
         });
 
         modalInstance.result.then(function (response) {
-            if(response==='ok') { 
+            if(response==='ok') {
               $log.info('clicked ok');
             } else if (response==='cancel') {
               $log.info('clicked cancel');
               // resource = $scope.selectedResource;
             }
-          }, 
+          },
           function (){
             $log.info('Modal dismissed at: ' + new Date());
             resource = $scope.selectedResource;
@@ -1395,14 +1291,14 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
     $("#main-nav-bg").show();
 
     $scope.$apply(function(){
-      
+
       if($routeParams.name=='new') {
         $scope.isNew = true;
         $scope.channel.owner = $scope.skynetuuid;
       } else {
         channelService.getByName($routeParams.name, function(data) {
             $scope.isNew = false;
-            $scope.channel = data;            
+            $scope.channel = data;
           });
       }
     });
@@ -1411,7 +1307,7 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
 
 });
 
-e2eApp.controller('apiresourcesController', function($scope, $http, $location, $routeParams, $modal, $log, 
+e2eApp.controller('apiresourcesController', function($scope, $http, $location, $routeParams, $modal, $log,
       channelService, userService) {
 
   $scope.skynetStatus = false;
@@ -1424,14 +1320,14 @@ e2eApp.controller('apiresourcesController', function($scope, $http, $location, $
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
-    
+
     channelService.getByName($routeParams.name, function(data) {
-          
+
         $scope.channel = data;
         $scope.custom_tokens = data.custom_tokens;
 
         for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===$scope.channel.name) {            
+          if($scope.current_user.api[l].name===$scope.channel.name) {
             $scope.user_channel = $scope.current_user.api[l];
 
             if($scope.current_user.api[l].custom_tokens)
@@ -1446,7 +1342,7 @@ e2eApp.controller('apiresourcesController', function($scope, $http, $location, $
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
         controller: function ($scope, $modalInstance) {
-            
+
             $scope.ok = function () {
               $modalInstance.close('ok');
             };
@@ -1473,7 +1369,7 @@ e2eApp.controller('apiresourcesController', function($scope, $http, $location, $
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-    
+
     $scope.save = function() {
       if(!$scope.channel) return;
 
@@ -1504,7 +1400,7 @@ e2eApp.controller('apiresourcesController', function($scope, $http, $location, $
 
 });
 
-e2eApp.controller('apiresourcedetailController', function($scope, $http, $location, $routeParams, $modal, $log, 
+e2eApp.controller('apiresourcedetailController', function($scope, $http, $location, $routeParams, $modal, $log,
       channelService, userService) {
 
   $scope.skynetStatus = false;
@@ -1517,14 +1413,14 @@ e2eApp.controller('apiresourcedetailController', function($scope, $http, $locati
     $("#nav-connector").addClass('active');
     $("#main-nav").show();
     $("#main-nav-bg").show();
-    
+
     channelService.getByName($routeParams.name, function(data) {
-          
+
         $scope.channel = data;
         $scope.custom_tokens = data.custom_tokens;
 
         for(var l = 0; l<$scope.current_user.api.length; l++) {
-          if($scope.current_user.api[l].name===$scope.channel.name) {            
+          if($scope.current_user.api[l].name===$scope.channel.name) {
             $scope.user_channel = $scope.current_user.api[l];
 
             if($scope.current_user.api[l].custom_tokens)
@@ -1539,7 +1435,7 @@ e2eApp.controller('apiresourcedetailController', function($scope, $http, $locati
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
         controller: function ($scope, $modalInstance) {
-            
+
             $scope.ok = function () {
               $modalInstance.close('ok');
             };
@@ -1566,7 +1462,7 @@ e2eApp.controller('apiresourcedetailController', function($scope, $http, $locati
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-    
+
     $scope.save = function() {
       if(!$scope.channel) return;
 
@@ -1618,7 +1514,7 @@ e2eApp.controller('designerController', function($scope, $http, $location, nodeR
 
     });
 
-  });  
+  });
 
 });
 
@@ -1647,7 +1543,7 @@ e2eApp.controller('gatewayController', function($scope, $http, $location, device
       } catch(e){
         $scope.gatewayFrame = "";
       }
-    });    
+    });
 
   });
 });
@@ -1659,7 +1555,7 @@ function checkLogin($scope, $http, secured, cb) {
     if (secured){
       window.location.href = "/login";
     }
-      
+
   } else {
 
     var userService = angular.injector(['e2eApp', 'ng']).get('userService');
@@ -1679,7 +1575,7 @@ function checkLogin($scope, $http, secured, cb) {
         $scope.user = data.local.email;
         $scope.skynetuuid = data.local.skynetuuid;
         $scope.skynettoken = data.local.skynettoken;
-        token = data.local.skynettoken;          
+        token = data.local.skynettoken;
 
       } else if (data.twitter) {
         $(".user-name").html('@' + data.twitter.username.toString());
@@ -1688,7 +1584,7 @@ function checkLogin($scope, $http, secured, cb) {
         $scope.skynettoken = data.twitter.skynettoken;
         token = data.twitter.skynettoken;
 
-      } else if (data.facebook) {                    
+      } else if (data.facebook) {
         $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
         $(".user-name").html(data.facebook.name.toString());
         $scope.user = data.facebook.name;
@@ -1722,12 +1618,12 @@ function checkLogin($scope, $http, secured, cb) {
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-2483685-30', 'octoblu.com');
-    ga('send', 'pageview');    
+    ga('send', 'pageview');
   }
 
 }
 
-var confirmModal = function($modal, $scope, $log, title, message, okFN, cancelFN) {    
+var confirmModal = function($modal, $scope, $log, title, message, okFN, cancelFN) {
   var modalHtml = '<div class="modal-header">';
   modalHtml += '<h3>' + title + '</h3>';
   modalHtml += '</div>';
@@ -1748,7 +1644,7 @@ var confirmModal = function($modal, $scope, $log, title, message, okFN, cancelFN
       });
 
       modalInstance.result.then(
-        function (response) { if(response==='ok') { $log.info('clicked ok'); } }, 
+        function (response) { if(response==='ok') { $log.info('clicked ok'); } },
         function () { $log.info('Modal dismissed at: ' + new Date()); }
       );
 };
