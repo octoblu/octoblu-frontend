@@ -207,7 +207,7 @@ angular.module('e2eApp')
 
                 $scope.getSubdevices = function (device){
                     if (device.type == 'gateway'){
-                        $scope.subdevices = device.subdevices.value;
+                        $scope.subdevices = device.subdevices;
                     }
                 }
 
@@ -385,7 +385,7 @@ angular.module('e2eApp')
                 });
 
                 // get api list, if showing api
-                if($scope.activeTab == 'apis') {
+                if($state.is('connector.apis')) {
                     channelService.getActive($scope.skynetuuid,function(data) {
                         $scope.activeChannels = data;
                     });
@@ -647,14 +647,14 @@ angular.module('e2eApp')
                     confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
                         function() {
                             $log.info('ok clicked');
-                            var subName = $scope.gateways[parent].subdevices.value[idx].name
-                            $scope.gateways[parent].subdevices.value.splice(idx,1)
+                            var subName = $scope.gateways[parent].subdevices[idx].name
+                            $scope.gateways[parent].subdevices.splice(idx,1)
                             socket.emit('gatewayConfig', {
                                 "uuid": $scope.gateways[parent].uuid,
                                 "token": $scope.gateways[parent].token,
                                 "method": "deleteSubdevice",
                                 "name": subName
-                                // "name": $scope.gateways[parent].subdevices.value[idx].name
+                                // "name": $scope.gateways[parent].subdevices[idx].name
                             }, function (deleteResult) {
                                 // alert('subdevice deleted');
                             });
@@ -839,7 +839,7 @@ angular.module('e2eApp')
                         $scope.deviceProperties = response.deviceProperties;
                         $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
 
-                        $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
+                        $scope.selectedGateway.subdevices.push({name: response.name, type: response.plugin, options: response.deviceProperties})
 
                     }, function (){
                         $log.info('Modal dismissed at: ' + new Date());
@@ -920,16 +920,16 @@ angular.module('e2eApp')
                         $scope.deviceProperties = response.deviceProperties;
                         $scope.updateSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
                         // TODO: update the subdevice, not push a new one
-                        // $scope.selectedGateway.subdevices.value.push({name: response.name, type: response.plugin, options: response.deviceProperties})
+                        // $scope.selectedGateway.subdevices.push({name: response.name, type: response.plugin, options: response.deviceProperties})
 
                     }, function (){
                         $log.info('Modal dismissed at: ' + new Date());
                         if($scope._backup) {
                             // $scope.selectedSubdevice.name = $scope._backup.name;
-                            for(var l=0; l<=$scope.selectedGateway.subdevices.value.length; l++) {
-                                if($scope.selectedGateway.subdevices.value[l] == $scope.selectedSubdevice) {
+                            for(var l=0; l<=$scope.selectedGateway.subdevices.length; l++) {
+                                if($scope.selectedGateway.subdevices[l] == $scope.selectedSubdevice) {
                                     $log.info('found match');
-                                    $scope.selectedGateway.subdevices.value[l] = $scope._backup;
+                                    $scope.selectedGateway.subdevices[l] = $scope._backup;
                                 }
                             }
                         }
