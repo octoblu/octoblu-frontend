@@ -385,7 +385,7 @@ angular.module('e2eApp')
                 });
 
                 // get api list, if showing api
-                if($state.is('connector.apis')) {
+                if($state.is('connector.apis.index')) {
                     channelService.getActive($scope.skynetuuid,function(data) {
                         $scope.activeChannels = data;
                     });
@@ -398,12 +398,12 @@ angular.module('e2eApp')
                 }
 
                 $scope.openNewApi = function() {
-                    $location.path( '/apieditor/new' );
+                    $state.go('connector.apis.editor', { name: 'new' });
                 };
 
                 $scope.openDetails = function (channel) {
                     // $scope.channel = channel;
-                    $location.path( '/apis/' + channel.name );
+                    $state.go('connector.apis.detail', { name: channel.name });
                 };
 
                 $scope.isActive = function (channel) {
@@ -942,7 +942,7 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiController', function($scope, $http, $location, $routeParams, $modal, $log,
+    .controller('apiController', function($scope, $http, $location, $stateParams, $modal, $log, $state,
                                           channelService, userService) {
 
         $scope.skynetStatus = false;
@@ -952,11 +952,11 @@ angular.module('e2eApp')
         $scope.custom_tokens = {};
 
         checkLogin($scope, $http, true, function(){
-            $("#nav-connector").addClass('active');
-            $("#main-nav").show();
-            $("#main-nav-bg").show();
+//            $("#nav-connector").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
 
-            channelService.getByName($routeParams.name, function(data) {
+            channelService.getByName($stateParams.name, function(data) {
 
                 $scope.channel = data;
                 $scope.custom_tokens = data.custom_tokens;
@@ -973,7 +973,7 @@ angular.module('e2eApp')
             });
 
             $scope.editCustom = function() {
-                $location.path('/apieditor/'+$scope.channel.name);
+                $state.go('connector.apis.editor', { name: $scope.channel.name });
             };
 
             $scope.open = function () {
@@ -1096,14 +1096,10 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apieditorController', function($rootScope, $scope, $http, $location, $routeParams, $modal, $log,
+    .controller('apieditorController', function($rootScope, $scope, $http, $location, $stateParams, $modal, $log, $state,
                                                 channelService, userService) {
 
         $scope.skynetStatus = false;
-        $scope.authtypes = [
-            'none','basic','oauth'
-        ];
-
         $scope.isEdit = false;
         $scope.isNew = false;
 
@@ -1145,7 +1141,7 @@ angular.module('e2eApp')
                 if(data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
-                    $location.path('/apieditor/'+data.name);
+                    $state.go('connector.apis.editor', { name: data.name });
                 }
             });
 
@@ -1272,27 +1268,27 @@ angular.module('e2eApp')
         };
 
         checkLogin($rootScope, $http, true, function(){
-            $("#nav-connector").addClass('active');
-            $("#main-nav").show();
-            $("#main-nav-bg").show();
+//            $("#nav-connector").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
 
-            $scope.$apply(function(){
+//            $scope.$apply(function(){
 
-                if($routeParams.name=='new') {
+                if($stateParams.name == 'new') {
                     $scope.isNew = true;
                     $scope.channel.owner = $scope.skynetuuid;
                 } else {
-                    channelService.getByName($routeParams.name, function(data) {
+                    channelService.getByName($stateParams.name, function(data) {
                         $scope.isNew = false;
                         $scope.channel = data;
                     });
                 }
-            });
+//            });
 
         });
 
     })
-    .controller('apiresourcesController', function($scope, $http, $location, $routeParams, $modal, $log,
+    .controller('apiresourcesController', function($scope, $http, $location, $stateParams, $modal, $log,
                                                    channelService, userService) {
 
         $scope.skynetStatus = false;
@@ -1306,7 +1302,7 @@ angular.module('e2eApp')
             $("#main-nav").show();
             $("#main-nav-bg").show();
 
-            channelService.getByName($routeParams.name, function(data) {
+            channelService.getByName($stateParams.name, function(data) {
 
                 $scope.channel = data;
                 $scope.custom_tokens = data.custom_tokens;
@@ -1384,7 +1380,7 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiresourcedetailController', function($scope, $http, $location, $routeParams, $modal, $log,
+    .controller('apiresourcedetailController', function($scope, $http, $location, $stateParams, $modal, $log,
                                                         channelService, userService) {
 
         $scope.skynetStatus = false;
@@ -1398,7 +1394,7 @@ angular.module('e2eApp')
             $("#main-nav").show();
             $("#main-nav-bg").show();
 
-            channelService.getByName($routeParams.name, function(data) {
+            channelService.getByName($stateParams.name, function(data) {
 
                 $scope.channel = data;
                 $scope.custom_tokens = data.custom_tokens;

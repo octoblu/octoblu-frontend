@@ -1,5 +1,5 @@
 angular.module('e2eApp')
-    .controller('communityPostController', function ($scope, $http, $location, $routeParams) {
+    .controller('communityPostController', function ($scope, $http, $location, $stateParams) {
         checkLogin($scope, $http, false, function(){
             $(".active").removeClass();
             $("#nav-community").addClass('active');
@@ -7,7 +7,7 @@ angular.module('e2eApp')
             $("#main-nav-bg").show();
         });
 
-        $scope.slug = $routeParams.slug;
+        $scope.slug = $stateParams.slug;
         $scope.post = {};
 
         $scope.getPost = function () {

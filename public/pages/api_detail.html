@@ -1,49 +1,4 @@
-<section id='content'>
-  <div class='container'>
-    <div class='row' id='content-wrapper'>
-      <div class='col-xs-12'>
-        
-        <div class='page-header page-header-with-buttons'>
-          <h1 class='pull-left'>
-            <i class='icon-code-fork'></i>
-            <span>Connector</span>              
-          </h1>
-        </div>
-        <ul class="nav nav-tabs">
-          <li id="devices">
-            <a ng-click="activeTab = 'devices'" href="/devices">Devices</a>
-          </li>
-          <li>
-            <a ng-click="activeTab = 'gateways'" href="/gateways">Gateways</a>
-          </li>
-          <li class="active">
-            <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
-          </li>
-          <li>
-            <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div ng-switch="activeTab">
-            <div ng-switch-when="devices">
-               <ng-include src=" 'pages/devices.html' "></ng-include>
-            </div>
-            <div ng-switch-when="gateways">
-               <ng-include src=" 'pages/gateways.html' "></ng-include>
-            </div>
-            <div ng-switch-when="apis">
-               <ng-include src=" 'pages/apis.html' "></ng-include>
-            </div>
-            <div ng-switch-when="devtools">
-               <ng-include src=" 'pages/devtools.html' "></ng-include>
-            </div>
-          </div>
-        </div>
 
-      </div>
-
-    </div>
-    <div class="row col-xs-12">
 
     <div class="text-center">
 
@@ -131,9 +86,7 @@
     </div>
 
 
-    </div>
 
-</section>
 
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-body">

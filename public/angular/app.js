@@ -52,14 +52,34 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                 controller: 'connectorController'
             })
             .state('connector.apis', {
+                abstract: true,
                 url: '/apis',
+                template: '<ui-view />'
+            })
+            .state('connector.apis.index', {
+                url: '',
                 templateUrl : 'pages/apis.html',
                 controller  : 'connectorController'
             })
             .state('connector.apis.detail', {
-                url: '/apis/:name',
+                url: '/:name',
                 templateUrl : 'pages/api_detail.html',
                 controller  : 'apiController'
+            })
+            .state('connector.apis.editor', {
+                url: '/apieditor/:name',
+                templateUrl: 'pages/api_editor.html',
+                controller: 'apieditorController'
+            })
+            .state('connector.apis.resources', {
+                url: '/resources',
+                templateUrl: 'pages/api_resources.html',
+                controller: 'apiresourcesController'
+            })
+            .state('connector.apis.resources.detail', {
+                url: '/:apiname',
+                templateUrl: 'pages/api_resource_details.html',
+                controller: 'apiresourcesController'
             })
             .state('connector.devices', {
                 url: '/devices',
@@ -105,21 +125,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                 url: '/docs',
                 templateUrl: 'pages/docs.html',
                 controller: 'docsController'
-            })
-            .state('apieditor', {
-                url: '/apieditor/:name',
-                templateUrl: 'pages/api_editor.html',
-                controller: 'apieditorController'
-            })
-            .state('apieditor.resources', {
-                url: '/resources',
-                templateUrl: 'pages/api_resources.html',
-                controller: 'apiresourcesController'
-            })
-            .state('apieditor.resources.detail', {
-                url: '/:apiname',
-                templateUrl: 'pages/api_resource_details.html',
-                controller: 'apiresourcesController'
             })
             .state('controller', {
                 url: '/controller',
