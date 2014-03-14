@@ -96,6 +96,16 @@
             </select>
           </div>
 
+          <div class="field" ng-show="channel.auth_strategy=='oauth'">
+            <label for="resource_resourcename">Consumer Key</label>
+            <input class="form-control" type="text" placeholder="Consumer Key" ng-model="channel.key" />
+          </div>
+
+          <div class="field" ng-show="channel.auth_strategy=='oauth'">
+            <label for="resource_resourcename">Consumer Secret</label>
+            <input class="form-control" type="text" placeholder="Consumer Secret" ng-model="channel.secret" />
+          </div>
+
         </fieldset>
 
         <div ng-show="!isNew && !isEdit">
