@@ -106,6 +106,11 @@
             <input class="form-control" type="text" placeholder="Consumer Secret" ng-model="channel.secret" />
           </div>
 
+          <div class="field" ng-show="channel.auth_strategy=='oauth'">
+            <label for="resource_resourcename">Authorize Token URL</label>
+            <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.authTokenURL" />
+          </div>
+
         </fieldset>
 
         <div ng-show="!isNew && !isEdit">
