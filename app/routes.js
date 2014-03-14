@@ -630,20 +630,39 @@ module.exports = function(app, passport) {
 
 		};
 
-		var getOAuth2InstanceFromConfig = function(configSection) {
-			var OAuth = require('oauth').OAuth;
+		var getCustomApiOAuthInstance = function(api) {
+			var OAuth = require('OAuth');
+			if(api.auth_strategry!="oauth" && !api.oauth) {return null;}
 
-			var oa = new OAuth(
-				configSection.clientId,
-				configSection.secret,
-				configSection.baseURI,
-				configSection.authTokenURL,
-				configSection.sessionKey,
-				null
-			);
+			if(api.oauth.version=="1.0") {
+				var oa = new new OAuth.OAuth(
+					api.oauth.requestTokenURL,
+					api.oauth.accessTokenURL,
+					api.oauth.key,
+					api.oauth.secret,
+					api.oauth.version,
+					getOAuthCallbackUrl(api.name),
+					"HMAC-SHA1"
+				);
 
-			return oa;
+				return oa;
+			}
 
+			// should be oauth2 at this point..
+			var OAuth2 = OAuth.OAuth2;    
+			var oauth2 = new OAuth2(
+				api.oauth.clientId,
+				api.oauth.secret, 
+				api.base, 
+				api.oauth.authTokenURL,
+				api.oauth.authTokenPath, 
+				null);
+			
+			retrun oauth2;
+		};
+
+		var getOAuthCallbackUrl = function(apiName) {
+			return '/api/auth/'+apiName+'/customcallback';
 		};
 
 		var handleApiCompleteRedirect = function(res, name, err) {
