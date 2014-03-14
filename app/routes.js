@@ -362,12 +362,10 @@ module.exports = function(app, passport) {
 			    	if(!user || !user.api) { 
 			    		res.json(404, {'result': 'not found'} ); 
 			    	} else {
-			    		console.log(user);
 				    	for(var l=0; l<user.api.length; l++) {
-				    		criteria.push({'name': user.api[l].name});
+				    		criteria.push(user.api[l].name);
 				    	}
-				    	console.log(criteria);
-				    	Api.find({$or: criteria, enabled: true}, function(err, apis) {
+				    	Api.find({name: {$in: criteria}, enabled: true}, function(err, apis) {
 				    		if(err) { res.json(err); }
 				    		else { res.json(apis); }
 				    	});
@@ -378,7 +376,7 @@ module.exports = function(app, passport) {
 
 		// List of active API channels
 		app.get('/api/channels/:uuid/available', function(req, res) {
-			var uuid = req.params.id;
+			var uuid = req.params.uuid;
 			User.findOne({ $or: [
 		    	{"local.skynetuuid" : uuid},
 		    	{"twitter.skynetuuid" : uuid},
@@ -392,9 +390,10 @@ module.exports = function(app, passport) {
 			    		res.json(404, {'result': 'not found'} ); 
 			    	} else {
 				    	for(var l=0; l<user.api.length; l++) {
-				    		criteria.push({'name': user.api[l].name});
+				    		criteria.push(user.api[l].name);
 				    	}
-				    	Api.find({$nin: criteria, owner: {$exists: false}, enabled: true}, function(err, apis) {
+				    	console.log(criteria);
+				    	Api.find({name: {$nin: criteria}, owner: {$exists: false}, enabled: true}, function(err, apis) {
 				    		if(err) { res.json(err); }
 				    		else { res.json(apis); }
 				    	});
