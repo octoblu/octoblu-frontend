@@ -502,8 +502,11 @@ e2eApp.controller('connectorController', function($scope, $http, $location, $mod
 
       // get api list, if showing api
       if($scope.activeTab == 'apis') {
-        channelService.getList(function(data) {
-          $scope.channelList = data;
+        channelService.getActive($scope.skynetuuid,function(data) {
+          $scope.activeChannels = data;
+        });
+        channelService.getAvailable($scope.skynetuuid,function(data) {
+          $scope.availableChannels = data;
         });
         channelService.getCustomList($scope.skynetuuid, function(data) {
           $scope.customchannelList = data;

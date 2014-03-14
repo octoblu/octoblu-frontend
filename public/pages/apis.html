@@ -54,7 +54,7 @@
 	  
 		  	<ul class="channellist">
  
-			  	<li ng-repeat="channel in channelList | filter:isActive | orderBy:'name'">
+			  	<li ng-repeat="channel in activeChannels | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;">
@@ -69,7 +69,7 @@
 	  
 		  	<ul class="channellist">
  
-			  	<li ng-repeat="channel in channelList | filter:isInactive | orderBy:'name'">
+			  	<li ng-repeat="channel in availableChannels | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
