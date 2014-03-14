@@ -1114,9 +1114,6 @@ e2eApp.controller('apieditorController', function($rootScope, $scope, $http, $lo
       channelService, userService) {
 
   $scope.skynetStatus = false;
-  $scope.authtypes = [
-      'none','basic','oauth'
-    ];
 
   $scope.isEdit = false;
   $scope.isNew = false;

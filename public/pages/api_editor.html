@@ -92,7 +92,7 @@
 
           <div class="field">
             <label for="resource_resourcename">Auth Type</label>
-            <select class="form-control" ng-model="channel.auth_strategy" ng-options="a for a in authtypes">
+            <select class="form-control" ng-model="channel.auth_strategy" ng-options="a for a in ['none','basic','oauth']">
             </select>
           </div>
 
