@@ -630,18 +630,18 @@ module.exports = function(app, passport) {
 
 		};
 
-		var getCustomApiOAuthInstance = function(api) {
+		var getCustomApiOAuthInstance = function(req, api) {
 			var OAuth = require('OAuth');
 			if(api.auth_strategry!="oauth" && !api.oauth) {return null;}
 
 			if(api.oauth.version=="1.0") {
-				var oa = new new OAuth.OAuth(
+				var oa = new OAuth.OAuth(
 					api.oauth.requestTokenURL,
 					api.oauth.accessTokenURL,
 					api.oauth.key,
 					api.oauth.secret,
 					api.oauth.version,
-					getOAuthCallbackUrl(api.name),
+					getOAuthCallbackUrl(req, api.name),
 					"HMAC-SHA1"
 				);
 
@@ -657,12 +657,12 @@ module.exports = function(app, passport) {
 				api.oauth.authTokenURL,
 				api.oauth.authTokenPath, 
 				null);
-			
-			retrun oauth2;
+
+			return oauth2;
 		};
 
-		var getOAuthCallbackUrl = function(apiName) {
-			return '/api/auth/'+apiName+'/customcallback';
+		var getOAuthCallbackUrl = function(req, apiName) {
+			return req.protocol + '://' + req.headers.host + '/api/auth/'+apiName+'/callback/custom';
 		};
 
 		var handleApiCompleteRedirect = function(res, name, err) {
@@ -738,14 +738,99 @@ module.exports = function(app, passport) {
 		};
 
 		// use custom OAuth handling with Etsy; re-use for others. I hope.
-		app.get('/api/auth/Etsy', function(req, res){
-			handleCustomOAuthRequest(req, res, 'Etsy');
+		// app.get('/api/auth/Etsy', function(req, res){
+		// 	handleCustomOAuthRequest(req, res, 'Etsy');
+		// });
+		// app.get('/api/auth/Etsy/callback', function(req, res, next){
+		// 	if (req.session.oauth) {
+		// 		handleCustomOAuthCallback(req, res, 'Etsy');
+		// 	} else
+		// 		next(new Error("you're not supposed to be here."))
+		// });
+
+
+		// working on custom oauth handling here.....
+		app.get('/api/auth/:name/custom', function(req, res) {
+
+			Api.findOne({name: req.params.name}, function (err, api) {
+
+				var oa = getCustomApiOAuthInstance(req, api);
+				if(api.oauth.version=="2.0") {
+
+				} else {
+
+					oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+						if (error) {
+							console.log(error);
+							res.send("yeah no. didn't work.")
+						}
+						else {
+							req.session.oauth = {};
+							req.session.oauth.token = oauth_token;
+							req.session.oauth.token_secret = oauth_token_secret;
+							console.log(req.session.oauth);
+							
+							var callbackURL = getOAuthCallbackUrl(req, api.name);
+							console.log(callbackURL);
+							var authURL = api.oauth.authTokenURL + '?oauth_token=' 
+								+ oauth_token + '&oauth_consumer_key=' + api.oauth.key
+								+ '&callback=' + callbackURL;
+							res.redirect(authURL);
+						}
+					});
+
+				}
+			  	
+			});
+			
 		});
-		app.get('/api/auth/Etsy/callback', function(req, res, next){
-			if (req.session.oauth) {
-				handleCustomOAuthCallback(req, res, 'Etsy');
-			} else
-				next(new Error("you're not supposed to be here."))
+		app.get('/api/auth/:name/callback/custom', function(req, res) {
+			// handle oauth response.... 
+			var name = req.params.name;
+			req.session.oauth.verifier = req.query.oauth_verifier;
+			var oauth = req.session.oauth;
+
+			Api.findOne({name: req.params.name}, function (err, api) {
+				if (err) {
+					console.log(error);
+					res.redirect(500, '/apis/' + api.name);
+				} else if(api.oauth.version=="2.0") {
+					var oa = getCustomApiOAuthInstance(req, api);
+
+				} else {
+					var oa = getCustomApiOAuthInstance(req, api);
+					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
+						function(error, oauth_access_token, oauth_access_token_secret, results){
+							if (error){
+								console.log(error);
+								res.redirect(500, '/apis/' + name);
+							} else {
+								User.findOne({ $or: [
+							    	{"local.skynetuuid" : req.cookies.skynetuuid},
+							    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
+							    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
+							    	{"google.skynetuuid" : req.cookies.skynetuuid}
+							    	]
+							    	}, function(err, user) {
+								    if(!err) {
+								    	user.addOrUpdateApiByName(name, 'oauth', null, 
+								    		oauth_access_token, oauth_access_token_secret, null, null);
+							        	user.save(function(err) {
+							        		console.log('saved oauth token');
+							        		return handleApiCompleteRedirect(res, name, err);
+								        });
+								    } else { 
+								    	console.log('error saving oauth token');
+								    	res.redirect('/apis/' + name);
+								    }
+								});
+								
+							}
+						}
+					);
+				}
+			});
+			
 		});
 
 		app.get('/api/auth/LinkedIn',
