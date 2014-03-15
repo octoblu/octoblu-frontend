@@ -138,13 +138,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             })
             .state('community', {
                 url: '/community',
-                templateUrl : 'pages/community.html',
-                controller  : 'communityController'
-            })
-            .state('community.posts', {
-                url: '/community/posts/:slug',
-                templateUrl : 'pages/community-post.html',
-                controller  : 'communityPostController'
+                templateUrl : 'pages/community.html'
             })
             .state('services', {
                 url: '/services',
