@@ -119,7 +119,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             .state('analyzer', {
                 url: '/analyzer',
                 templateUrl: 'pages/analyzer.html',
-                controller: 'AnalyzerController'
+                controller: 'analyzerController'
             })
             .state('docs', {
                 url: '/docs',
