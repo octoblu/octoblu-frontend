@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
 
 	// var config = require('../config/auth.js');
 	var env      = app.settings.env;
-	var config = require('../config/auth.js')(env);  
+	var config = require('../config/auth.js')(env);
 	var request = require('request');
 	var async = require('async');
 	var skynet = require('skynet');
@@ -27,14 +27,13 @@ module.exports = function(app, passport) {
   // Attach additional routes
 	conn.on('ready', function(data){
 		console.log('SkyNet authentication: success');
-    
+
 	  // Initialize Controllers
     require('./controllers/cors')(app);
     require('./controllers/session')(app, passport, config);
     require('./controllers/oauth')(app, passport, config);
     require('./controllers/connect')(app, passport, config);
     require('./controllers/unlink')(app);
-    require('./controllers/post')(app);
 
 		// APIs
 		// Get user
@@ -54,7 +53,7 @@ module.exports = function(app, passport) {
 		      	// not sure why local.password cannot be deleted from user object
 		      	// if (userInfo && userInfo.local){
 			      // 	userInfo.local.password = null;
-			      // 	delete userInfo.local.password;      		
+			      // 	delete userInfo.local.password;
 		      	// }
 		        res.json(userInfo);
 		      }
@@ -64,7 +63,7 @@ module.exports = function(app, passport) {
 		// // Get devices by owner
 		// app.get('/api/owner/devices/:id/:token', function(req, res) {
 
-		// 	request.get('http://skynet.im/mydevices/' + req.params.id, 
+		// 	request.get('http://skynet.im/mydevices/' + req.params.id,
 		//   	{qs: {"token": req.params.token}}
 		//   , function (error, response, body) {
 		//   		try{
@@ -94,7 +93,7 @@ module.exports = function(app, passport) {
 		      	// not sure why local.password cannot be deleted from user object
 		      	// if (userInfo && userInfo.local){
 			      // 	userInfo.local.password = null;
-			      // 	delete userInfo.local.password;      		
+			      // 	delete userInfo.local.password;
 		      	// }
 		        res.json(userInfo);
 		      }
@@ -104,14 +103,14 @@ module.exports = function(app, passport) {
 		// Get devices by owner
 		app.get('/api/owner/devices/:id/:token', function(req, res) {
 
-			// request.get('http://skynet.im/devices', 
+			// request.get('http://skynet.im/devices',
 		 //  	{qs: {"owner": req.params.id}}
 		 //  , function (error, response, body) {
 			// 		data = JSON.parse(body);
 		 //    	res.json(data);
 			// });
 
-			request.get('http://skynet.im/mydevices/' + req.params.id, 
+			request.get('http://skynet.im/mydevices/' + req.params.id,
 		  	{qs: {"token": req.params.token}}
 		  , function (error, response, body) {
 		  		try{
@@ -128,7 +127,7 @@ module.exports = function(app, passport) {
 		// Get devices by owner
 		app.get('/api/owner/gateways/:id/:token', function(req, res) {
 			console.log('Return Devices? ', req.query.devices);
-			request.get('http://skynet.im/mydevices/' + req.params.id, 
+			request.get('http://skynet.im/mydevices/' + req.params.id,
 		  	{qs: {"token": req.params.token}}
 		  , function (error, response, body) {
 					myDevices = JSON.parse(body);
@@ -146,7 +145,7 @@ module.exports = function(app, passport) {
 						}
 					}
 					console.log(gateways);
-					request.get('http://skynet.im/devices', 
+					request.get('http://skynet.im/devices',
 				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner" : { "$exists" : false } }}
 				  , function (error, response, body) {
 				  		ipDevices = JSON.parse(body);
@@ -174,12 +173,12 @@ module.exports = function(app, passport) {
 												if(gateways[i].uuid == data.uuid){
 													dupeFound = true;
 												}
-											}										
+											}
 											if(!dupeFound){
 												gateways.push(data);
 											}
-											next(error, gateways);		    	
-									});						  
+											next(error, gateways);
+									});
 
 
 								}, function(err) {
@@ -187,7 +186,7 @@ module.exports = function(app, passport) {
 									console.log('gateways', gateways[0]);
 									// gateways = gateways[0];
 										// console.log('gateways plugins check');
-	
+
 				  				if (gateways){
 				  					gatewaysLength = gateways.length;
 				  				} else {
@@ -195,7 +194,7 @@ module.exports = function(app, passport) {
 				  				}
 
 									// Lookup plugins on each gateway
-									async.times(gatewaysLength, function(n, next){									
+									async.times(gatewaysLength, function(n, next){
 							      conn.gatewayConfig({
 							        "uuid": gateways[n].uuid,
 							        "token": gateways[n].token,
@@ -211,7 +210,7 @@ module.exports = function(app, passport) {
 										// console.log('gateways subdevices check');
 
 										// Lookup subdevices on each gateway
-										async.times(gateways.length, function(n, next){									
+										async.times(gateways.length, function(n, next){
 								      conn.gatewayConfig({
 								        "uuid": gateways[n].uuid,
 								        "token": gateways[n].token,
@@ -227,15 +226,15 @@ module.exports = function(app, passport) {
 											res.json({"gateways": gateways});
 										});
 
-									});							
+									});
 
-							})						
+							})
 
 
 						} else {
 							res.json({"gateways": gateways});
 						}
-					});				
+					});
 
 			});
 
@@ -246,12 +245,12 @@ module.exports = function(app, passport) {
 		// Get nodered port
 		app.get('/api/redport/:uuid/:token', function(req, res) {
 			// curl -X PUT http://red.meshines.com:4444/red/aaa?token=bbb
-			request.put('http://designer.octoblu.com:4444/red/' + req.params.uuid, 
+			request.put('http://designer.octoblu.com:4444/red/' + req.params.uuid,
 		  	{qs: {"token": req.params.token}}
 		  , function (error, response, body) {
 					// console.log(body);
 		    	res.json(body);
-			});	    		
+			});
 		});
 
 		// Get device info from Skynet
@@ -263,7 +262,7 @@ module.exports = function(app, passport) {
 		    	res.json(data);
 			});
 
-		});	
+		});
 
 
 		// Register device with Skynet
@@ -287,7 +286,7 @@ module.exports = function(app, passport) {
 		    	res.json(data);
 			});
 
-		});	
+		});
 
 		// Update device with Skynet
 		app.put('/api/devices/:id', function(req, res) {
@@ -304,33 +303,33 @@ module.exports = function(app, passport) {
 			  deviceData[obj[i]["key"]] = obj[i]["value"];
 			}
 
-			request.put('http://skynet.im/devices/' + req.body.uuid, 
+			request.put('http://skynet.im/devices/' + req.body.uuid,
 		  	{form: deviceData}
 		  , function (error, response, body) {
 					data = JSON.parse(body);
 		    	res.json(data);
 			});
 
-		});	
+		});
 
 		// Remove device with Skynet
 		app.del('/api/devices/:id/:token', function(req, res) {
 
-			request.del('http://skynet.im/devices/' + req.params.id, 
+			request.del('http://skynet.im/devices/' + req.params.id,
 		  	{form: {"token": req.params.token}}
 		  , function (error, response, body) {
 					data = JSON.parse(body);
 		    	res.json(data);
 			});
 
-		});	
+		});
 
 
 		// Register device with Skynet
 		app.post('/api/message', function(req, res) {
 			console.log({"devices": req.body.uuid, "message": {"text": req.body.message}});
 
-			request.post('http://skynet.im/messages', 
+			request.post('http://skynet.im/messages',
 		  	{form: {"devices": req.body.uuid, "message": req.body.message}}
 		  , function (error, response, body) {
 		  		console.log(body);
@@ -338,7 +337,7 @@ module.exports = function(app, passport) {
 		    	res.json(data);
 			});
 
-		});	
+		});
 
 		// List of all API channels
 		app.get('/api/channels', function(req, res) {
@@ -357,10 +356,10 @@ module.exports = function(app, passport) {
 		    	{"google.skynetuuid" : uuid}
 		    	]
 		    	}, function(err, user) {
-		    	if(err) { res.json(err); } else {			    	
+		    	if(err) { res.json(err); } else {
 			    	var criteria = [];
-			    	if(!user || !user.api) { 
-			    		res.json(404, {'result': 'not found'} ); 
+			    	if(!user || !user.api) {
+			    		res.json(404, {'result': 'not found'} );
 			    	} else {
 				    	for(var l=0; l<user.api.length; l++) {
 				    		criteria.push(user.api[l].name);
@@ -384,10 +383,10 @@ module.exports = function(app, passport) {
 		    	{"google.skynetuuid" : uuid}
 		    	]
 		    	}, function(err, user) {
-		    	if(err) { res.json(err); } else {			    	
+		    	if(err) { res.json(err); } else {
 			    	var criteria = [];
-			    	if(!user || !user.api) { 
-			    		res.json(404, {'result': 'not found'} ); 
+			    	if(!user || !user.api) {
+			    		res.json(404, {'result': 'not found'} );
 			    	} else {
 				    	for(var l=0; l<user.api.length; l++) {
 				    		criteria.push(user.api[l].name);
@@ -406,7 +405,7 @@ module.exports = function(app, passport) {
 			Api.find({owner: req.params.uuid, enabled: true}, function (err, apis) {
 			  	if (err) { res.send(err); } else { res.json(apis); }
 			});
-		});	
+		});
 
 		app.put('/api/channels', function(req, res) {
 			console.log('returning channel list');
@@ -444,7 +443,7 @@ module.exports = function(app, passport) {
 
 			}
 
-		});	
+		});
 
 		app.get('/api/channels/:name', function(req, res) {
 			Api.findOne({name: req.params.name}, function (err, api) {
@@ -454,7 +453,7 @@ module.exports = function(app, passport) {
 
 		app.get('/api/user_api/:id/:token', function(req, res) {
 
-			var uuid = req.params.id, 
+			var uuid = req.params.id,
 				token = req.params.token
 
 			User.findOne({ $or: [
@@ -465,10 +464,10 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 		    	if(err) { res.json(err); } else {
-			    	
+
 			    	var criteria = [];
-			    	if(!user || !user.api) { 
-			    		res.json(404, {'result': 'not found'} ); 
+			    	if(!user || !user.api) {
+			    		res.json(404, {'result': 'not found'} );
 			    	} else {
 
 				    	for(var l=0; l<user.api.length; l++) {
@@ -498,7 +497,7 @@ module.exports = function(app, passport) {
 
 		app.put('/api/user/:id/channel/:name', function(req, res) {
 
-			var key = req.body.key, 
+			var key = req.body.key,
 				token = req.body.token,
 				custom_tokens = req.body.custom_tokens;
 
@@ -529,7 +528,7 @@ module.exports = function(app, passport) {
 		});
 
 		app.delete('/api/user/:id/channel/:name', function(req, res) {
-			
+
 			User.findOne({ $or: [
 		    	{"local.skynetuuid" : req.params.id},
 		    	{"twitter.skynetuuid" : req.params.id},
@@ -539,10 +538,10 @@ module.exports = function(app, passport) {
 		    	}, function(err, user) {
 			    if(!err) {
 
-			    	var found = false, 
+			    	var found = false,
 			    		name = req.params.name;
 			    	if(user.api) {
-			    		for(var i = user.api.length-1; i >= 0; i--) {  
+			    		for(var i = user.api.length-1; i >= 0; i--) {
 			    			if(user.api[i].name === name) {
 			    				user.api.splice(i,1);
 					        	found = true;
@@ -670,8 +669,8 @@ module.exports = function(app, passport) {
 					console.log('oauth.token: ' + req.session.oauth.token);
 					req.session.oauth.token_secret = oauth_token_secret;
 					console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
-					
-					var authURL = config.etsy.authorizationURL + '?oauth_token=' 
+
+					var authURL = config.etsy.authorizationURL + '?oauth_token='
 						+ oauth_token + '&oauth_consumer_key=' + config.etsy.consumerKey
 						+ '&callback=' + config.etsy.callbackURL;
 					res.redirect(authURL);
@@ -685,7 +684,7 @@ module.exports = function(app, passport) {
 
 			var oa = getOAuthInstanceFromConfig(config[name.toLowerCase()]);
 
-			oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
+			oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
 				function(error, oauth_access_token, oauth_access_token_secret, results){
 					if (error){
 						console.log(error);
@@ -701,18 +700,18 @@ module.exports = function(app, passport) {
 					    	]
 					    	}, function(err, user) {
 						    if(!err) {
-						    	user.addOrUpdateApiByName(name, 'oauth', null, 
+						    	user.addOrUpdateApiByName(name, 'oauth', null,
 						    		oauth_access_token, oauth_access_token_secret, null, null);
 					        	user.save(function(err) {
 					        		console.log('saved oauth token');
 					        		return handleApiCompleteRedirect(res, name, err);
 						        });
-						    } else { 
+						    } else {
 						    	console.log('error saving oauth token');
 						    	res.redirect('/apis/' + name);
 						    }
 						});
-						
+
 					}
 				}
 			);
@@ -731,55 +730,55 @@ module.exports = function(app, passport) {
 
 		app.get('/api/auth/LinkedIn',
 	  	  passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/LinkedIn/callback', 
+		app.get('/api/auth/LinkedIn/callback',
 			function(req, res, next) { handleOauth1('LinkedIn', req, res, next); });
 
 		app.get('/api/auth/Readability',
 	  	  passport.authorize('readability', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/Readability/callback', 
+		app.get('/api/auth/Readability/callback',
 			function(req, res, next) { handleOauth1('Readability', req, res, next); });
 
 		app.get('/api/auth/StackOverflow',
 	  	  passport.authorize('stackexchange', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/StackOverflow/callback', 
+		app.get('/api/auth/StackOverflow/callback',
 			function(req, res, next) { handleOauth1('StackOverflow', req, res, next); });
 
 		app.get('/api/auth/Bitly',
 	  	  passport.authorize('bitly', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/Bitly/callback', 
+		app.get('/api/auth/Bitly/callback',
 			function(req, res, next) { handleOauth1('Bitly', req, res, next); });
 
 		app.get('/api/auth/Vimeo',
 	  	  passport.authorize('vimeo', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/Vimeo/callback', 
+		app.get('/api/auth/Vimeo/callback',
 			function(req, res, next) { handleOauth1('Vimeo', req, res, next); });
 
 		app.get('/api/auth/FourSquare',
 	  	  passport.authorize('foursquare', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/FourSquare/callback', 
+		app.get('/api/auth/FourSquare/callback',
 			function(req, res, next) { handleOauth1('FourSquare', req, res, next); });
 
 		app.get('/api/auth/Tumblr',
 	  	  passport.authorize('tumblr', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/Tumblr/callback', 
+		app.get('/api/auth/Tumblr/callback',
 			function(req, res, next) { handleOauth1('Tumblr', req, res, next); });
 
 		app.get('/api/auth/FitBit',
 	  	  passport.authorize('fitbit', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/FitBit/callback', 
+		app.get('/api/auth/FitBit/callback',
 			function(req, res, next) { handleOauth1('FitBit', req, res, next); });
 
 		app.get('/api/auth/Rdio',
 	  	  passport.authorize('rdio', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-		app.get('/api/auth/Rdio/callback', 
+		app.get('/api/auth/Rdio/callback',
 			function(req, res, next) { handleOauth1('Rdio', req, res, next); });
 
 		app.get('/api/auth/LastFM', function(req, res) {
 			var api_url = config.lastfm.base_url + '?api_key=' + config.lastfm.consumerKey;
 			return res.redirect(api_url);
 		});
-		app.get('/api/auth/LastFM/callback', 
-			function(req, res, next) { 
+		app.get('/api/auth/LastFM/callback',
+			function(req, res, next) {
 				// perform custom handling here....
 				var token = req.param('token')
 
@@ -805,8 +804,8 @@ module.exports = function(app, passport) {
 			api_url += '&redirect_uri=' + config.delicious.callbackURL;
 			return res.redirect(api_url);
 		});
-		app.get('/api/auth/Delicious/callback', 
-			function(req, res, next) { 
+		app.get('/api/auth/Delicious/callback',
+			function(req, res, next) {
 				// perform custom handling here....
 				var token = req.param('code')
 
