@@ -392,9 +392,9 @@ angular.module('e2eApp')
                     channelService.getAvailable($scope.skynetuuid,function(data) {
                         $scope.availableChannels = data;
                     });
-                    channelService.getCustomList($scope.skynetuuid, function(data) {
-                        $scope.customchannelList = data;
-                    });
+                    // channelService.getCustomList($scope.skynetuuid, function(data) {
+                    //     $scope.customchannelList = data;
+                    // });
                 }
 
                 $scope.openNewApi = function() {
