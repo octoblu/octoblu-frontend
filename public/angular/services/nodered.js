@@ -1,3 +1,18 @@
-/**
- * Created by koshin on 3/16/14.
- */
+angular.module('e2eApp')
+.service('nodeRedService', function ($http) {
+
+    this.getPort = function(uuid, token, callback) {
+
+        $http.get('/api/redport/' + uuid + '/' + token)
+            .success(function(data) {
+                callback(data);
+
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+                callback({});
+            });
+
+    };
+
+})
