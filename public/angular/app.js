@@ -48,49 +48,55 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             })
             .state('connector', {
                 url: '/connector',
-                templateUrl: 'pages/connector.html',
+                templateUrl: 'pages/index.html',
                 controller: 'connectorController'
             })
-            .state('connector.apis', {
+            .state('connector.channels', {
                 abstract: true,
                 url: '/apis',
                 template: '<ui-view />'
-            })
-            .state('connector.apis.index', {
-                url: '',
-                templateUrl : 'pages/apis.html',
-                controller  : 'connectorController'
-            })
-            .state('connector.apis.detail', {
-                url: '/:name',
-                templateUrl : 'pages/api_detail.html',
-                controller  : 'apiController'
-            })
-            .state('connector.apis.editor', {
-                url: '/apieditor/:name',
-                templateUrl: 'pages/api_editor.html',
-                controller: 'apieditorController'
-            })
-            .state('connector.apis.resources', {
-                url: '/resources',
-                templateUrl: 'pages/api_resources.html',
-                controller: 'apiresourcesController'
-            })
-            .state('connector.apis.resources.detail', {
-                url: '/:apiname',
-                templateUrl: 'pages/api_resource_details.html',
-                controller: 'apiresourcesController'
             })
             .state('connector.devices', {
                 url: '/devices',
                 templateUrl: 'pages/devices.html',
                 controller: 'connectorController'
             })
-            .state('connector.people', {
-                url: '/people',
-                templateUrl: 'pages/people.html',
-                controller: 'connectorController'
+            .state('connector.channels.index', {
+                url: '',
+                templateUrl : 'pages/channels/index.html',
+                controller  : 'connectorController'
             })
+            .state('connector.channels.detail', {
+                url: '/:name',
+                templateUrl : 'pages/channels/detail.html',
+                controller  : 'apiController'
+            })
+            .state('connector.channels.editor', {
+                url: '/editor/:name',
+                templateUrl: 'pages/channels/editor.html',
+                controller: 'apieditorController'
+            })
+            .state('connector.channels.resources', {
+                url: '/resources',
+                templateUrl: 'pages/channels/resources/index.html',
+                controller: 'apiresourcesController'
+            })
+            .state('connector.channels.resources.detail', {
+                url: '/:apiname',
+                templateUrl: 'pages/channels/resources/detail.html',
+                controller: 'apiresourcesController'
+            })
+            .state('connector.advanced', {
+                url: '/advanced',
+                templateUrl: 'pages/channels/advanced/index.html',
+                controller: 'apiresourcesController'
+            })
+
+//            .state('connector.people', {
+//                url: '/people',
+//                templateUrl: 'pages/people.html',
+//                controller: 'connectorController'
+//            })
 //            .state('connector.channels', {
 //                url: '/channels',
 //                templateUrl: 'pages/channels.html',
