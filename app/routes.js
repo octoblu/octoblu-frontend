@@ -737,15 +737,15 @@ module.exports = function(app, passport) {
 		};
 
 		// use custom OAuth handling with Etsy; re-use for others. I hope.
-		// app.get('/api/auth/Etsy', function(req, res){
-		// 	handleCustomOAuthRequest(req, res, 'Etsy');
-		// });
-		// app.get('/api/auth/Etsy/callback', function(req, res, next){
-		// 	if (req.session.oauth) {
-		// 		handleCustomOAuthCallback(req, res, 'Etsy');
-		// 	} else
-		// 		next(new Error("you're not supposed to be here."))
-		// });
+		app.get('/api/auth/Etsy', function(req, res){
+			handleCustomOAuthRequest(req, res, 'Etsy');
+		});
+		app.get('/api/auth/Etsy/callback', function(req, res, next){
+			if (req.session.oauth) {
+				handleCustomOAuthCallback(req, res, 'Etsy');
+			} else
+				next(new Error("you're not supposed to be here."))
+		});
 
 
 		// working on custom oauth handling here.....
