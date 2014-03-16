@@ -753,11 +753,23 @@ module.exports = function(app, passport) {
 
 			Api.findOne({name: req.params.name}, function (err, api) {
 
-				var oa = getCustomApiOAuthInstance(req, api);
 				if(api.oauth.version=="2.0") {
+					var OAuth2 = require('simple-oauth2')({
+					  clientID: api.oauth.clientId,
+					  clientSecret: api.oauth.secret,
+					  site: 'https://github.com/login',
+					  tokenPath: '/oauth/access_token'
+					});
+					// Authorization uri definition
+					var authorization_uri = OAuth2.AuthCode.authorizeURL({
+					  redirect_uri: getOAuthCallbackUrl(req, api.name),
+					  scope: 'notifications',
+					  state: '3(#0/!~'
+					});
+					res.redirect(authorization_uri);
 
 				} else {
-
+					var oa = getCustomApiOAuthInstance(req, api);
 					oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
 						if (error) {
 							console.log(error);
