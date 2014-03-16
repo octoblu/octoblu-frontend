@@ -755,8 +755,8 @@ module.exports = function(app, passport) {
 
 				if(api.oauth.version=="2.0") {
 					var OAuth2 = require('simple-oauth2')({
-					  clientID: api.oauth.clientId,
-					  clientSecret: api.oauth.secret,
+					  clientID: 'affb37b61d8e598c8ac4', //api.oauth.clientId,
+					  clientSecret: 'bd816507013bafa38571e94d9a1ef66fe7a19660', //api.oauth.secret,
 					  site: 'https://github.com/login',
 					  tokenPath: '/oauth/access_token'
 					});
@@ -798,17 +798,35 @@ module.exports = function(app, passport) {
 		app.get('/api/auth/:name/callback/custom', function(req, res) {
 			// handle oauth response.... 
 			var name = req.params.name;
-			req.session.oauth.verifier = req.query.oauth_verifier;
-			var oauth = req.session.oauth;
 
 			Api.findOne({name: req.params.name}, function (err, api) {
 				if (err) {
 					console.log(error);
 					res.redirect(500, '/apis/' + api.name);
 				} else if(api.oauth.version=="2.0") {
-					var oa = getCustomApiOAuthInstance(req, api);
+					var OAuth2 = require('simple-oauth2')({
+					  clientID: 'affb37b61d8e598c8ac4', //api.oauth.clientId,
+					  clientSecret: 'bd816507013bafa38571e94d9a1ef66fe7a19660', //api.oauth.secret,
+					  site: 'https://github.com/login',
+					  tokenPath: '/oauth/access_token'
+					});
+					var code = req.query.code; 
+					console.log('callback: '+code);
+					OAuth2.AuthCode.getToken({
+						code: code,
+						redirect_uri: getOAuthCallbackUrl(req, api.name)
+						}, function(error, result) {
+							console.log(result);
+						    if (error) { console.log('Access Token Error', error); }
+						    else {
+							    token = OAuth2.AccessToken.create(result);
+							    console.log('token='+token);
+							}
+						  });
 
 				} else {
+					req.session.oauth.verifier = req.query.oauth_verifier;
+					var oauth = req.session.oauth;
 					var oa = getCustomApiOAuthInstance(req, api);
 					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
 						function(error, oauth_access_token, oauth_access_token_secret, results){
