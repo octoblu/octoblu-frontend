@@ -1149,9 +1149,11 @@ angular.module('e2eApp')
 
         $scope.authorize = function (channel) {
             //$location.path( '/api/auth/' + channel.name );
-            var loc = '/api/auth/' + channel.name;
-            console.log(loc);
-            location.href = loc;
+            // if(channel.oauth && channel.oauth.version) {
+            //   location.href = '/api/auth/' + channel.name + '/custom';
+            // } else {
+              location.href = '/api/auth/' + channel.name;
+            // }
         };
 
         $scope.logo_url = function() {
