@@ -1,5 +1,5 @@
 angular.module('e2eApp')
-    .controller('mainController', function($scope, $location, $anchorScroll) {
+    .controller('mainController', function($scope, $location, $anchorScroll, $modal, channelService) {
         $("#main-nav").hide();
         user = $.cookie("skynetuuid");
         if(user != undefined ){
@@ -7,6 +7,10 @@ angular.module('e2eApp')
         } else {
             $scope.message = 'Home page content pending.';
         }
+
+        channelService.getList(function(data) {
+            $scope.availableChannels = data;
+        });
 
         $scope.gotoApis = function (){
             // set the location.hash to the id of
@@ -38,6 +42,19 @@ angular.module('e2eApp')
                 );
             });
         });
+
+        $scope.watchVideo = function() {
+          var modalInstance = $modal.open({
+            templateUrl: 'watchVideo.html',
+            scope: $scope,
+            controller: function ($modalInstance) {
+                $scope.cancel = function () {
+                    $modalInstance.dismiss('cancel');
+                };
+            }
+          });
+        };
+
 
     })
     .controller('aboutController', function($scope, $http, $injector, $location) {
@@ -328,8 +345,7 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('connectorController', function($scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,
-                                                ownerService, deviceService, channelService) {
+    .controller('connectorController', function($scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
@@ -954,7 +970,7 @@ angular.module('e2eApp')
                 "uuid": $scope.skynetuuid,
                 "token": $scope.skynettoken
             };
-            
+
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e;
 
@@ -1128,7 +1144,7 @@ angular.module('e2eApp')
             };
 
             $scope.authorize = function (channel) {
-              if(channel.owner || channel.useCustom) { 
+              if(channel.owner || channel.useCustom) {
                 var loc = '/api/auth/' + channel.name + '/custom';
               } else {
                 var loc = '/api/auth/' + channel.name;
