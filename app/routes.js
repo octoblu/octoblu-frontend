@@ -648,16 +648,14 @@ module.exports = function(app, passport) {
 			}
 
 			// should be oauth2 at this point..
-			var OAuth2 = OAuth.OAuth2;    
-			var oauth2 = new OAuth2(
-				api.oauth.clientId,
-				api.oauth.secret, 
-				api.base, 
-				api.oauth.authTokenURL,
-				api.oauth.authTokenPath, 
-				null);
+			var OAuth2 = require('simple-oauth2')({
+			  clientID: api.oauth.clientId,
+			  clientSecret: api.oauth.secret,
+			  site: api.oauth.baseURL,
+			  tokenPath: api.oauth.authTokenPath
+			});
 
-			return oauth2;
+			return OAuth2;
 		};
 
 		var getOAuthCallbackUrl = function(req, apiName) {
@@ -666,10 +664,10 @@ module.exports = function(app, passport) {
 
 		var handleApiCompleteRedirect = function(res, name, err) {
 			if(!err) {
-	        	return res.redirect('/apis/' + name);
+	        	return res.redirect('/connector/apis/'+name);
 	    	} else {
 	        	console.log("Error: " + err);
-				return res.redirect('/apis/' + name);
+				return res.redirect('/connector/apis/'+name);
 	    	}
 		}
 
@@ -685,9 +683,9 @@ module.exports = function(app, passport) {
 
 					req.session.oauth = {};
 					req.session.oauth.token = oauth_token;
-					console.log('oauth.token: ' + req.session.oauth.token);
+					// console.log('oauth.token: ' + req.session.oauth.token);
 					req.session.oauth.token_secret = oauth_token_secret;
-					console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
+					// console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
 
 					var authURL = config.etsy.authorizationURL + '?oauth_token='
 						+ oauth_token + '&oauth_consumer_key=' + config.etsy.consumerKey
@@ -707,9 +705,8 @@ module.exports = function(app, passport) {
 				function(error, oauth_access_token, oauth_access_token_secret, results){
 					if (error){
 						console.log(error);
-
 						// res.send("yeah something broke.");
-						res.redirect(500, '/apis/' + name);
+						res.redirect(500, '/connector/apis/' + name);
 					} else {
 						User.findOne({ $or: [
 					    	{"local.skynetuuid" : req.cookies.skynetuuid},
@@ -727,7 +724,7 @@ module.exports = function(app, passport) {
 						        });
 						    } else {
 						    	console.log('error saving oauth token');
-						    	res.redirect('/apis/' + name);
+						    	res.redirect('/connector/apis/'+name);
 						    }
 						});
 
@@ -754,13 +751,7 @@ module.exports = function(app, passport) {
 			Api.findOne({name: req.params.name}, function (err, api) {
 
 				if(api.oauth.version=="2.0") {
-					var OAuth2 = require('simple-oauth2')({
-					  clientID: 'affb37b61d8e598c8ac4', //api.oauth.clientId,
-					  clientSecret: 'bd816507013bafa38571e94d9a1ef66fe7a19660', //api.oauth.secret,
-					  site: 'https://github.com/login',
-					  tokenPath: '/oauth/access_token'
-					});
-					// Authorization uri definition
+					var OAuth2 = getCustomApiOAuthInstance(req, api);
 					var authorization_uri = OAuth2.AuthCode.authorizeURL({
 					  redirect_uri: getOAuthCallbackUrl(req, api.name),
 					  scope: 'notifications',
@@ -782,7 +773,6 @@ module.exports = function(app, passport) {
 							console.log(req.session.oauth);
 							
 							var callbackURL = getOAuthCallbackUrl(req, api.name);
-							console.log(callbackURL);
 							var authURL = api.oauth.authTokenURL + '?oauth_token=' 
 								+ oauth_token + '&oauth_consumer_key=' + api.oauth.key
 								+ '&callback=' + callbackURL;
@@ -804,23 +794,39 @@ module.exports = function(app, passport) {
 					console.log(error);
 					res.redirect(500, '/apis/' + api.name);
 				} else if(api.oauth.version=="2.0") {
-					var OAuth2 = require('simple-oauth2')({
-					  clientID: 'affb37b61d8e598c8ac4', //api.oauth.clientId,
-					  clientSecret: 'bd816507013bafa38571e94d9a1ef66fe7a19660', //api.oauth.secret,
-					  site: 'https://github.com/login',
-					  tokenPath: '/oauth/access_token'
-					});
+					var OAuth2 = getCustomApiOAuthInstance(req, api);
 					var code = req.query.code; 
-					console.log('callback: '+code);
+
 					OAuth2.AuthCode.getToken({
 						code: code,
 						redirect_uri: getOAuthCallbackUrl(req, api.name)
 						}, function(error, result) {
-							console.log(result);
-						    if (error) { console.log('Access Token Error', error); }
-						    else {
-							    token = OAuth2.AccessToken.create(result);
-							    console.log('token='+token);
+							var token = result;
+						    if (error) { 
+						    	console.log('Access Token Error', error); 
+						    	res.redirect('/connector/apis/'+api.name);
+						    } else {
+								// token = OAuth2.AccessToken.create(result).token;
+							    // console.log('token='+token);
+							    // res.redirect('/connector/apis/'+api.name);
+							    User.findOne({ $or: [
+							    	{"local.skynetuuid" : req.cookies.skynetuuid},
+							    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
+							    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
+							    	{"google.skynetuuid" : req.cookies.skynetuuid}
+							    	]
+							    	}, function(err, user) {
+								    if(!err) {
+								    	user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+							        	user.save(function(err) {
+							        		console.log('saved oauth token');
+							        		res.redirect('/connector/apis/'+name);
+								        });
+								    } else {
+								    	console.log('error saving oauth token');
+								    	res.redirect('/connector/apis/'+name);
+								    }
+								});
 							}
 						  });
 
