@@ -629,20 +629,39 @@ module.exports = function(app, passport) {
 
 		};
 
-		var getOAuth2InstanceFromConfig = function(configSection) {
-			var OAuth = require('oauth').OAuth;
+		var getCustomApiOAuthInstance = function(req, api) {
+			var OAuth = require('OAuth');
+			if(api.auth_strategry!="oauth" && !api.oauth) {return null;}
 
-			var oa = new OAuth(
-				configSection.clientId,
-				configSection.secret,
-				configSection.baseURI,
-				configSection.authTokenURL,
-				configSection.sessionKey,
-				null
-			);
+			if(api.oauth.version=="1.0") {
+				var oa = new OAuth.OAuth(
+					api.oauth.requestTokenURL,
+					api.oauth.accessTokenURL,
+					api.oauth.key,
+					api.oauth.secret,
+					api.oauth.version,
+					getOAuthCallbackUrl(req, api.name),
+					"HMAC-SHA1"
+				);
 
-			return oa;
+				return oa;
+			}
 
+			// should be oauth2 at this point..
+			var OAuth2 = OAuth.OAuth2;    
+			var oauth2 = new OAuth2(
+				api.oauth.clientId,
+				api.oauth.secret, 
+				api.base, 
+				api.oauth.authTokenURL,
+				api.oauth.authTokenPath, 
+				null);
+
+			return oauth2;
+		};
+
+		var getOAuthCallbackUrl = function(req, apiName) {
+			return req.protocol + '://' + req.headers.host + '/api/auth/'+apiName+'/callback/custom';
 		};
 
 		var handleApiCompleteRedirect = function(res, name, err) {
@@ -726,6 +745,121 @@ module.exports = function(app, passport) {
 				handleCustomOAuthCallback(req, res, 'Etsy');
 			} else
 				next(new Error("you're not supposed to be here."))
+		});
+
+
+		// working on custom oauth handling here.....
+		app.get('/api/auth/:name/custom', function(req, res) {
+
+			Api.findOne({name: req.params.name}, function (err, api) {
+
+				if(api.oauth.version=="2.0") {
+					var OAuth2 = require('simple-oauth2')({
+					  clientID: 'affb37b61d8e598c8ac4', //api.oauth.clientId,
+					  clientSecret: 'bd816507013bafa38571e94d9a1ef66fe7a19660', //api.oauth.secret,
+					  site: 'https://github.com/login',
+					  tokenPath: '/oauth/access_token'
+					});
+					// Authorization uri definition
+					var authorization_uri = OAuth2.AuthCode.authorizeURL({
+					  redirect_uri: getOAuthCallbackUrl(req, api.name),
+					  scope: 'notifications',
+					  state: '3(#0/!~'
+					});
+					res.redirect(authorization_uri);
+
+				} else {
+					var oa = getCustomApiOAuthInstance(req, api);
+					oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+						if (error) {
+							console.log(error);
+							res.send("yeah no. didn't work.")
+						}
+						else {
+							req.session.oauth = {};
+							req.session.oauth.token = oauth_token;
+							req.session.oauth.token_secret = oauth_token_secret;
+							console.log(req.session.oauth);
+							
+							var callbackURL = getOAuthCallbackUrl(req, api.name);
+							console.log(callbackURL);
+							var authURL = api.oauth.authTokenURL + '?oauth_token=' 
+								+ oauth_token + '&oauth_consumer_key=' + api.oauth.key
+								+ '&callback=' + callbackURL;
+							res.redirect(authURL);
+						}
+					});
+
+				}
+			  	
+			});
+			
+		});
+		app.get('/api/auth/:name/callback/custom', function(req, res) {
+			// handle oauth response.... 
+			var name = req.params.name;
+
+			Api.findOne({name: req.params.name}, function (err, api) {
+				if (err) {
+					console.log(error);
+					res.redirect(500, '/apis/' + api.name);
+				} else if(api.oauth.version=="2.0") {
+					var OAuth2 = require('simple-oauth2')({
+					  clientID: 'affb37b61d8e598c8ac4', //api.oauth.clientId,
+					  clientSecret: 'bd816507013bafa38571e94d9a1ef66fe7a19660', //api.oauth.secret,
+					  site: 'https://github.com/login',
+					  tokenPath: '/oauth/access_token'
+					});
+					var code = req.query.code; 
+					console.log('callback: '+code);
+					OAuth2.AuthCode.getToken({
+						code: code,
+						redirect_uri: getOAuthCallbackUrl(req, api.name)
+						}, function(error, result) {
+							console.log(result);
+						    if (error) { console.log('Access Token Error', error); }
+						    else {
+							    token = OAuth2.AccessToken.create(result);
+							    console.log('token='+token);
+							}
+						  });
+
+				} else {
+					req.session.oauth.verifier = req.query.oauth_verifier;
+					var oauth = req.session.oauth;
+					var oa = getCustomApiOAuthInstance(req, api);
+					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
+						function(error, oauth_access_token, oauth_access_token_secret, results){
+							if (error){
+								console.log(error);
+								res.redirect(500, '/apis/' + name);
+							} else {
+								User.findOne({ $or: [
+							    	{"local.skynetuuid" : req.cookies.skynetuuid},
+							    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
+							    	{"facebook.skynetuuid" : req.cookies.skynetuuid},
+							    	{"google.skynetuuid" : req.cookies.skynetuuid}
+							    	]
+							    	}, function(err, user) {
+								    if(!err) {
+								    	user.addOrUpdateApiByName(name, 'oauth', null, 
+								    		oauth_access_token, oauth_access_token_secret, null, null);
+							        	user.save(function(err) {
+							        		console.log('saved oauth token');
+							        		return handleApiCompleteRedirect(res, name, err);
+								        });
+								    } else { 
+								    	console.log('error saving oauth token');
+								    	res.redirect('/apis/' + name);
+								    }
+								});
+								
+							}
+						}
+					);
+				}
+			});
+			
 		});
 
 		app.get('/api/auth/LinkedIn',

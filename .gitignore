@@ -5,3 +5,4 @@ node_modules
 npm-*.log
 coverage
 .idea
+*.iml
