@@ -173,7 +173,7 @@
                 <span>Resources</span>
                 <i class='icon-angle-down angle-down'></i>
               </a>
-              <ul class='nav nav-stacked' ng-class="'in': !navCollapsed">
+              <ul class='nav nav-stacked' ng-class="{'in': navCollapsed && !navCollapsed}">
                 <li ng-class="{'active': $state.includes('docs')}">
                   <a href="" ui-sref="docs">
                     <i class='icon-cogs'></i>
