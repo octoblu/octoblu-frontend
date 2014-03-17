@@ -40,14 +40,14 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('aboutController', function($scope, $http) {
+    .controller('aboutController', function($scope, $http, $injector, $location) {
         $scope.message = 'About page content pending.';
-        checkLogin($scope, $http, false, function(){});
+        checkLogin($scope, $http, $injector, false, function(){});
     })
 
-    .controller('contactController', function($scope, $http) {
+    .controller('contactController', function($scope, $http, $injector, $location) {
         $scope.message = 'Contact page content pending.';
-        checkLogin($scope, $http, false, function(){});
+        checkLogin($scope, $http, $injector, false, function(){});
 
     })
     .controller('signupController', function($scope, $location) {
@@ -60,24 +60,24 @@ angular.module('e2eApp')
             window.location.href = "/dashboard";
         }
     })
-    .controller('profileController', function($scope, $http, $location) {
-        checkLogin($scope, $http, false, function(){
+    .controller('profileController', function($scope, $http, $injector, $location) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#main-nav").show();
 //    $("#main-nav-bg").show();
 
         });
     })
-    .controller('servicesController', function($scope, $http, $location) {
-        checkLogin($scope, $http, false, function(){
+    .controller('servicesController', function($scope, $http, $injector, $location) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#main-nav").show();
 //    $("#main-nav-bg").show();
 
         });
     })
-    .controller('docsController', function($scope, $http, $location) {
-        checkLogin($scope, $http, false, function(){
+    .controller('docsController', function($scope, $http, $injector, $location) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#nav-resources").addClass('active');
 //    $("#main-nav").show();
@@ -85,8 +85,8 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('faqsController', function($scope, $http, $location) {
-        checkLogin($scope, $http, false, function(){
+    .controller('faqsController', function($scope, $http, $injector, $location) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#nav-resources").addClass('active');
 //    $("#main-nav").show();
@@ -94,17 +94,17 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('pricingController', function($scope, $http, $location) {
-        checkLogin($scope, $http, false, function(){
+    .controller('pricingController', function($scope, $http, $injector, $location) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#nav-resources").addClass('active');
 //    $("#main-nav").show();
 //    $("#main-nav-bg").show();
         });
     })
-    .controller('dashboardController', function($scope, $http, $location, ownerService) {
+    .controller('dashboardController', function($scope, $http, $injector, $location, ownerService) {
         $scope.message = 'Contact page content pending.';
-        checkLogin($scope, $http, false, function(){
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#nav-dashboard").addClass('active');
 //    $("#main-nav").show();
@@ -184,8 +184,8 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('controllerController', function($scope, $http, $location, ownerService, messageService) {
-        checkLogin($scope, $http, false, function(){
+    .controller('controllerController', function($scope, $http, $injector, $location, ownerService, messageService) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#nav-controller").addClass('active');
 //    $("#main-nav").show();
@@ -319,8 +319,8 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('adminController', function($scope, $http, $location) {
-        checkLogin($scope, $http, false, function(){
+    .controller('adminController', function($scope, $http, $injector, $location) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#nav-admin").addClass('active');
 //    $("#main-nav").show();
@@ -328,15 +328,13 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('connectorController', function($scope, $http, $location, $modal, $log, $q, $modal, $state,
+    .controller('connectorController', function($scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,
                                                 ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
 
-        $scope.state = $state;
-
-        checkLogin($scope, $http, true, function(){
+        checkLogin($scope, $http, $injector, true, function(){
 //    $(".active").removeClass();
 //    $("#nav-connector").addClass('active');
 //    $("#main-nav").show();
@@ -942,14 +940,13 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('devtoolsController', function($scope, $http, $location, $modal, $log, $q, $modal, $state,
+    .controller('devtoolsController', function($scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,
                                                 ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
-        $scope.state = $state;
 
-        checkLogin($scope, $http, true, function(){
+        checkLogin($scope, $http, $injector, true, function(){
             $scope.navType = 'pills';
 
             // connect to skynet
@@ -992,7 +989,7 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiController', function($scope, $http, $location, $stateParams, $modal, $log, $state,
+    .controller('apiController', function($scope, $http, $injector, $location, $stateParams, $modal, $log, $state,
                                           channelService, userService) {
 
         $scope.skynetStatus = false;
@@ -1001,7 +998,7 @@ angular.module('e2eApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        checkLogin($scope, $http, true, function(){
+        checkLogin($scope, $http, $injector, true, function(){
 //            $("#nav-connector").addClass('active');
 //            $("#main-nav").show();
 //            $("#main-nav-bg").show();
@@ -1149,7 +1146,7 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apieditorController', function($rootScope, $scope, $http, $location, $stateParams, $modal, $log, $state,
+    .controller('apieditorController', function($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state,
                                                 channelService, userService) {
 
         $scope.skynetStatus = false;
@@ -1322,7 +1319,7 @@ angular.module('e2eApp')
                 });
         };
 
-        checkLogin($rootScope, $http, true, function(){
+        checkLogin($rootScope, $http, $injector, true, function(){
 //            $("#nav-connector").addClass('active');
 //            $("#main-nav").show();
 //            $("#main-nav-bg").show();
@@ -1343,7 +1340,7 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiresourcesController', function($scope, $http, $location, $stateParams, $modal, $log,
+    .controller('apiresourcesController', function($scope, $http, $injector, $location, $stateParams, $modal, $log,
                                                    channelService, userService) {
 
         $scope.skynetStatus = false;
@@ -1352,7 +1349,7 @@ angular.module('e2eApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        checkLogin($scope, $http, true, function(){
+        checkLogin($scope, $http, $injector, true, function(){
             $("#nav-connector").addClass('active');
             $("#main-nav").show();
             $("#main-nav-bg").show();
@@ -1436,7 +1433,7 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiresourcedetailController', function($scope, $http, $location, $stateParams, $modal, $log,
+    .controller('apiresourcedetailController', function($scope, $http, $injector, $location, $stateParams, $modal, $log,
                                                         channelService, userService) {
 
         $scope.skynetStatus = false;
@@ -1445,7 +1442,7 @@ angular.module('e2eApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        checkLogin($scope, $http, true, function(){
+        checkLogin($scope, $http, $injector, true, function(){
             $("#nav-connector").addClass('active');
             $("#main-nav").show();
             $("#main-nav-bg").show();
@@ -1528,9 +1525,9 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('designerController', function($scope, $http, $location, nodeRedService) {
+    .controller('designerController', function($scope, $http, $injector, $location, nodeRedService) {
 
-        checkLogin($scope, $http, true, function(){
+        checkLogin($scope, $http, $injector, true, function(){
 //    $(".active").removeClass();
 //    $("#nav-designer").addClass('active');
 //    $("#main-nav").show();
@@ -1551,8 +1548,8 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('analyzerController', function($scope, $http, $location) {
-        checkLogin($scope, $http, true, function(){
+    .controller('analyzerController', function($scope, $http, $injector, $location) {
+        checkLogin($scope, $http, $injector, true, function(){
 //    $(".active").removeClass();
 //    $("#nav-analyzer").addClass('active');
 //    $("#main-nav").show();
@@ -1562,8 +1559,8 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('gatewayController', function($scope, $http, $location, deviceService) {
-        checkLogin($scope, $http, false, function(){
+    .controller('gatewayController', function($scope, $http, $injector, $location, deviceService) {
+        checkLogin($scope, $http, $injector, false, function(){
 //    $(".active").removeClass();
 //    $("#nav-connector").addClass('active');
 //    $("#main-nav").show();
@@ -1580,7 +1577,7 @@ angular.module('e2eApp')
         });
     });
 
-function checkLogin($scope, $http, secured, cb) {
+function checkLogin($scope, $http, $injector, secured, cb) {
     //googleAnalytics();
     user = $.cookie("skynetuuid");
     if(user == undefined || user == null){
@@ -1590,7 +1587,7 @@ function checkLogin($scope, $http, secured, cb) {
 
     } else {
 
-        var userService = angular.injector(['e2eApp', 'ng']).get('userService');
+        var userService = $injector.get('userService');
         userService.getUser(user, function(data) {
 
             $scope.user_id = data._id;

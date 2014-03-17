@@ -176,6 +176,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
         // For any unmatched url, redirect to /
         $urlRouterProvider.otherwise('/');
     })
-    .run(function ($rootScope) {
-        //$rootScope.state = $state;
+    .run(function ($rootScope, $state, $stateParams) {
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
     });
