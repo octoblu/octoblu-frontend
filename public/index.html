@@ -32,7 +32,7 @@
   <link href="/assets/stylesheets/animation.css" rel="stylesheet">
   <link href="/assets/stylesheets/font-awesome.min.css" rel="stylesheet" >
   <link href="/assets/stylesheets/athenaSlide.css" rel="stylesheet">
-  <link rel="shortcut icon" href="images/favicon.png">
+<!--   <link rel="shortcut icon" href="images/favicon.png"> -->
 
   <script src="http://skynet.im/js/skynet.js"></script>
 
@@ -117,34 +117,41 @@
         <div class='navigation'>
 
           <ul class='nav nav-stacked'>
-            <li id="nav-dashboard">
+            <li id="nav-dashboard" ng-class="{'active': $state.includes('dashboard')}">
               <a href="" ui-sref="dashboard">
                 <i class='icon-dashboard'></i>
                 <span>Dashboard</span>
               </a>
             </li>
 
-            <li id="nav-connector">
+            <li id="nav-connector" ng-class="{'active': $state.includes('connector')}">
               <a class='' href="" ui-sref="connector.devices">
                 <i class='icon-code-fork'></i>
                 <span>Connector</span>
               </a>
             </li>
 
-            <li id="nav-designer" class=''>
+            <li id="nav-designer" ng-class="{'active': $state.includes('designer')}">
               <a href="" ui-sref="designer"><i class='icon-edit'></i>
                 <span>Designer</span>
               </a>
             </li>
 
-            <li id="nav-analyzer" class='' >
+            <li id="nav-controller" ng-class="{'active': $state.includes('controller')}">
+              <a href="" ui-sref="controller">
+                <i class='icon-cogs'></i>
+                <span>Controller</span>
+              </a>
+            </li>
+
+            <li id="nav-analyzer" ng-class="{'active': $state.includes('analyzer')}">
               <a href="" ui-sref="analyzer">
                 <i class='icon-bar-chart'></i>
                 <span>Analyzer</span>
               </a>
             </li>
 
-            <li id="nav-community" class=''>
+            <li id="nav-community" ng-class="{'active': $state.includes('community')}">
               <a href="" ui-sref="community">
                 <i class='icon-group'></i>
                 <span>Community</span>
@@ -160,26 +167,26 @@
 
 
 
-            <li id="nav-resources" class=''>
-              <a class='dropdown-collapse ' href="" g-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <li id="nav-resources">
+              <a class='dropdown-collapse' href="" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
                 <i class='icon-book'></i>
                 <span>Resources</span>
                 <i class='icon-angle-down angle-down'></i>
               </a>
-              <ul class='nav nav-stacked' ng-class="navCollapsed && 'in'">
-                <li class=''>
+              <ul class='nav nav-stacked' ng-class="'in': !navCollapsed">
+                <li ng-class="{'active': $state.includes('docs')}">
                   <a href="" ui-sref="docs">
                     <i class='icon-cogs'></i>
                     <span>API Docs</span>
                   </a>
                 </li>
-                <li class=''>
+                <li ng-class="{'active': $state.includes('pricing')}">
                   <a href="" ui-sref="pricing">
                     <i class='icon-table'></i>
                     <span>Pricing tables</span>
                   </a>
                 </li>
-                <li class=''>
+                <li ng-class="{'active': $state.includes('faqs')}">
                   <a href="" ui-sref="faqs">
                     <i class='icon-bullhorn'></i>
                     <span>FAQ</span>

@@ -63,52 +63,47 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             })
             .state('connector.channels.index', {
                 url: '',
-                templateUrl : 'pages/channels/index.html',
+                templateUrl : 'pages/connector/channels/index.html',
                 controller  : 'connectorController'
             })
             .state('connector.channels.detail', {
                 url: '/:name',
-                templateUrl : 'pages/channels/detail.html',
+                templateUrl : 'pages/connector/channels/detail.html',
                 controller  : 'apiController'
             })
             .state('connector.channels.editor', {
                 url: '/editor/:name',
-                templateUrl: 'pages/channels/editor.html',
+                templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apieditorController'
             })
             .state('connector.channels.resources', {
                 url: '/resources',
-                templateUrl: 'pages/channels/resources/index.html',
+                templateUrl: 'pages/connector/channels/resources/index.html',
                 controller: 'apiresourcesController'
             })
             .state('connector.channels.resources.detail', {
                 url: '/:apiname',
-                templateUrl: 'pages/channels/resources/detail.html',
+                templateUrl: 'pages/connector/channels/resources/detail.html',
                 controller: 'apiresourcesController'
             })
             .state('connector.advanced', {
-                abstract: true,
                 url: '/advanced',
-                template: '<ui-view />'
-            })
-            .state('connector.advanced.index', {
-                url: '',
-                templateUrl: 'pages/channels/advanced/index.html',
+                templateUrl: 'pages/connector/advanced/index.html',
                 controller: 'connectorAdvancedController'
             })
             .state('connector.advanced.devices', {
                 url: '/smartdevices',
-                templateUrl: 'pages/channels/advanced/devices.html',
+                templateUrl: 'pages/connector/advanced/devices.html',
                 controller: 'connectorAdvancedController'
             })
             .state('connector.advanced.channels', {
                 url: '/custom_channels',
-                templateUrl: 'pages/channels/advanced/channels.html',
+                templateUrl: 'pages/connector/advanced/channels.html',
                 controller: 'connectorAdvancedController'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
-                templateUrl: 'pages/channels/advanced/messaging.html',
+                templateUrl: 'pages/connector/advanced/messaging.html',
                 controller: 'controllerAdvancedController'
             })
 //            .state('connector.people', {
@@ -201,6 +196,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
         // For any unmatched url, redirect to /
         $urlRouterProvider.otherwise('/');
     })
-    .run(function ($rootScope) {
-        //$rootScope.state = $state;
+    .run(function ($rootScope, $state, $stateParams) {
+        $rootScope.$state = $state;
+        $rootScope.$stateParams = $stateParams;
     });

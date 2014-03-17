@@ -5,7 +5,7 @@ function athenaSlide() {
 		var slideId = athenaSlideId;
 		var slide = $('#'+slideId);
 		var slideWorks = slide.find('.slide');
-		var slideNumber = slideWorks.length;	
+		var slideNumber = slideWorks.length;
 		//Check Default
 		if(typeof athenaSlideMode === 'undefined'){athenaSlideMode = 'sliding';}
 		if(typeof athenaSlideTime === 'undefined'){athenaSlideTime = 500;}
@@ -27,11 +27,11 @@ function athenaSlide() {
 		//Start Preparation
 		slideWorks.eq(0).css({zIndex: 1});
 		if (slideMode == 'sliding') {
-			slideWorks.children().css({left: 100+'%', top: 100+'%', opacity: 1});		
+			slideWorks.children().css({left: 100+'%', top: 100+'%', opacity: 1});
 			slideWorks.eq(0).children().css({left: 0, top: 0, opacity: 1});
 		}
 		else if (slideMode == 'fading') {
-			slideWorks.children().css({left: 0, top: 0, opacity: 0});		
+			slideWorks.children().css({left: 0, top: 0, opacity: 0});
 			slideWorks.eq(0).children().css({left: 0, top: 0, opacity: 1});
 		}
 		var previousButton = $('#'+athenaPreviousButtonId);
@@ -73,7 +73,7 @@ function athenaSlide() {
 			if (autoStartLoop == true) {
 				stopLoop();
 				startLoop();
-			}			
+			}
 		});
 		dotButton.click(function(e){
 			e.preventDefault();
@@ -98,7 +98,7 @@ function athenaSlide() {
 			}
 			else if(slideSelect < 0) {
 				slideSelect = slideSelect*(-1)
-				for (i=0; i<slideSelect; i++) {			
+				for (i=0; i<slideSelect; i++) {
 					slideOut = slideWorks.eq(slideCounter);
 					if(slideCounter > 0) {slideCounter--;}
 					else {slideCounter = slideNumber-1;}
@@ -123,11 +123,11 @@ function athenaSlide() {
 		stopButton.click(function(e){
 			e.preventDefault();
 			stopLoop();
-		});	
+		});
 		//Animations
 		function slidePrevious() {
 			//SETUP
-			slideWorks.css({zIndex: 0});	
+			slideWorks.css({zIndex: 0});
 			slideIn.css({zIndex: 2});
 			slideOut.css({zIndex: 1});
 			//ANIMATIONS
@@ -137,18 +137,18 @@ function athenaSlide() {
 				var slideDirLeft;
 				var slideDirTop;
 				if (currentDir =='left') {slideDirLeft = -100+"%"; slideDirTop = 0+'%';}
-				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}				
+				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}
 				else if (currentDir =='top') {slideDirLeft = 0+"%"; slideDirTop = -100+'%';}
 				else if (currentDir =='bottom') {slideDirLeft = 0+"%"; slideDirTop = 100+'%';}
 				current.stop().animate({left: slideDirLeft, top: slideDirTop, opacity: 0},slideTime,slideEffect);
-			});		
+			});
 			slideIn.children().each(function(e){
 				var current = $(this);
 				var currentDir = current.data('in');
 				var slideDirLeft;
 				var slideDirTop;
 				if (currentDir =='left') {slideDirLeft = -100+"%"; slideDirTop = 0+'%';}
-				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}				
+				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}
 				else if (currentDir =='top') {slideDirLeft = 0+"%"; slideDirTop = -100+'%';}
 				else if (currentDir =='bottom') {slideDirLeft = 0+"%"; slideDirTop = 100+'%';}
 				current.css({left: slideDirLeft, top: slideDirTop});
@@ -159,7 +159,7 @@ function athenaSlide() {
 		}
 		function slideNext() {
 			//SETUP
-			slideWorks.css({zIndex: 0});	
+			slideWorks.css({zIndex: 0});
 			slideIn.css({zIndex: 2});
 			slideOut.css({zIndex: 1});
 			//ANIMATIONS
@@ -169,19 +169,19 @@ function athenaSlide() {
 				var slideDirLeft;
 				var slideDirTop;
 				if (currentDir =='left') {slideDirLeft = -100+"%"; slideDirTop = 0+'%';}
-				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}				
+				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}
 				else if (currentDir =='top') {slideDirLeft = 0+"%"; slideDirTop = -100+'%';}
 				else if (currentDir =='bottom') {slideDirLeft = 0+"%"; slideDirTop = 100+'%';}
 				current.stop().animate({left: slideDirLeft, top: slideDirTop, opacity: 0},slideTime,slideEffect);
 			});
-			/**/		
+			/**/
 			slideIn.children().each(function(e){
 				var current = $(this);
 				var currentDir = current.data('in');
 				var slideDirLeft;
 				var slideDirTop;
 				if (currentDir =='left') {slideDirLeft = -100+"%"; slideDirTop = 0+'%';}
-				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}				
+				else if (currentDir =='right') {slideDirLeft = 100+"%"; slideDirTop = 0+'%';}
 				else if (currentDir =='top') {slideDirLeft = 0+"%"; slideDirTop = -100+'%';}
 				else if (currentDir =='bottom') {slideDirLeft = 0+"%"; slideDirTop = 100+'%';}
 				current.css({left: slideDirLeft, top: slideDirTop});
@@ -211,7 +211,7 @@ function athenaSlide() {
 		}
 		function fadeNext() {
 			//SETUP
-			slideWorks.css({zIndex: 0});	
+			slideWorks.css({zIndex: 0});
 			slideIn.css({zIndex: 2});
 			slideOut.css({zIndex: 1});
 			//ANIMATIONS
@@ -219,7 +219,7 @@ function athenaSlide() {
 				var current = $(this);
 				current.animate({opacity: 0},slideTime,slideEffect);
 			});
-			/**/		
+			/**/
 			slideIn.children().each(function(e){
 				var current = $(this);
 				current.css({opacity: 0});
@@ -237,7 +237,7 @@ function athenaSlide() {
 		function stopLoop(){
 			clearTimeout(slideLoop)
 		}
-		if (autoStartLoop == true) {			
+		if (autoStartLoop == true) {
 			startLoop();
 		}
 	}
