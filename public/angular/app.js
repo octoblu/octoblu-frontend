@@ -104,7 +104,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             .state('connector.advanced.messaging', {
                 url: '/messaging',
                 templateUrl: 'pages/connector/advanced/messaging.html',
-                controller: 'controllerAdvancedController'
+                controller: 'connectorAdvancedController'
             })
 //            .state('connector.people', {
 //                url: '/people',
