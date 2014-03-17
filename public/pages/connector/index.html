@@ -1,0 +1,30 @@
+<section id='content'>
+    <div class='container'>
+        <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+
+                <div class='page-header page-header-with-buttons'>
+                    <h1 class='pull-left'>
+                        <i class='icon-code-fork'></i>
+                        <span>Connector</span>
+                    </h1>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li ng-class="{'active': $state.includes('connector.devices')}">
+                        <a href="" ui-sref="connector.devices">Devices</a>
+                    </li>
+                    <li ng-class="{'active': $state.includes('connector.channels')}">
+                        <a href="" ui-sref="connector.channels.index">Channels</a>
+                    </li>
+                    <li ng-class="{'active': $state.includes('connector.advanced')}">
+                        <a href="" ui-sref="connector.advanced">Advanced</a>
+                    </li>
+                </ul>
+                <div class="tab-content" ui-view="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

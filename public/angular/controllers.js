@@ -399,7 +399,7 @@ angular.module('e2eApp')
                 });
 
                 // get api list, if showing api
-                if($state.is('connector.apis.index')) {
+                if($state.is('connector.channels.index')) {
                     channelService.getActive($scope.skynetuuid,function(data) {
                         $scope.activeChannels = data;
                     });
@@ -412,12 +412,12 @@ angular.module('e2eApp')
                 }
 
                 $scope.openNewApi = function() {
-                    $state.go('connector.apis.editor', { name: 'new' });
+                    $state.go('connector.channels.editor', { name: 'new' });
                 };
 
                 $scope.openDetails = function (channel) {
                     // $scope.channel = channel;
-                    $state.go('connector.apis.detail', { name: channel.name });
+                    $state.go('connector.channels.detail', { name: channel.name });
                 };
 
                 $scope.isActive = function (channel) {
@@ -979,8 +979,8 @@ angular.module('e2eApp')
                   $scope.customchannelList = data;
                 });
 
-                $scope.openNewApi = function() { $state.go('connector.apis.editor', { name: 'new' }); };
-                $scope.openDetails = function (channel) { $state.go('connector.apis.detail', { name: channel.name }); };
+                $scope.openNewApi = function() { $state.go('connector.channels.editor', { name: 'new' }); };
+                $scope.openDetails = function (channel) { $state.go('connector.channels.detail', { name: channel.name }); };
 
                 $scope.isActive = function (channel) {
                     if($scope.current_user.api) {
@@ -1036,7 +1036,7 @@ angular.module('e2eApp')
             });
 
             $scope.editCustom = function() {
-                $state.go('connector.apis.editor', { name: $scope.channel.name });
+                $state.go('connector.channels.editor', { name: $scope.channel.name });
             };
 
             $scope.open = function () {
@@ -1207,7 +1207,7 @@ angular.module('e2eApp')
                 if(data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
-                    $state.go('connector.apis.editor', { name: data.name });
+                    $state.go('connector.channels.editor', { name: data.name });
                 }
             });
 
