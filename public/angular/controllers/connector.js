@@ -56,7 +56,7 @@ angular.module('e2eApp')
                 });
 
                 // get api list, if showing api
-                if($state.is('connector.apis.index')) {
+                if($state.is('connector.channels.index')) {
                     channelService.getActive($scope.skynetuuid,function(data) {
                         $scope.activeChannels = data;
                     });
@@ -69,12 +69,12 @@ angular.module('e2eApp')
                 }
 
                 $scope.openNewApi = function() {
-                    $state.go('connector.apis.editor', { name: 'new' });
+                    $state.go('connector.channels.editor', { name: 'new' });
                 };
 
                 $scope.openDetails = function (channel) {
                     // $scope.channel = channel;
-                    $state.go('connector.apis.detail', { name: channel.name });
+                    $state.go('connector.channels.detail', { name: channel.name });
                 };
 
                 $scope.isActive = function (channel) {

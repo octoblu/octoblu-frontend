@@ -48,18 +48,18 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             })
             .state('connector', {
                 url: '/connector',
-                templateUrl: 'pages/index.html',
+                templateUrl: 'pages/connector/index.html',
+                controller: 'connectorController'
+            })
+            .state('connector.devices', {
+                url: '/devices',
+                templateUrl: 'pages/connector/devices/index.html',
                 controller: 'connectorController'
             })
             .state('connector.channels', {
                 abstract: true,
-                url: '/apis',
+                url: '/channels',
                 template: '<ui-view />'
-            })
-            .state('connector.devices', {
-                url: '/devices',
-                templateUrl: 'pages/devices.html',
-                controller: 'connectorController'
             })
             .state('connector.channels.index', {
                 url: '',
@@ -87,11 +87,30 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                 controller: 'apiresourcesController'
             })
             .state('connector.advanced', {
+                abstract: true,
                 url: '/advanced',
-                templateUrl: 'pages/channels/advanced/index.html',
-                controller: 'apiresourcesController'
+                template: '<ui-view />'
             })
-
+            .state('connector.advanced.index', {
+                url: '',
+                templateUrl: 'pages/channels/advanced/index.html',
+                controller: 'connectorAdvancedController'
+            })
+            .state('connector.advanced.devices', {
+                url: '/smartdevices',
+                templateUrl: 'pages/channels/advanced/devices.html',
+                controller: 'connectorAdvancedController'
+            })
+            .state('connector.advanced.channels', {
+                url: '/custom_channels',
+                templateUrl: 'pages/channels/advanced/channels.html',
+                controller: 'connectorAdvancedController'
+            })
+            .state('connector.advanced.messaging', {
+                url: '/messaging',
+                templateUrl: 'pages/channels/advanced/messaging.html',
+                controller: 'controllerAdvancedController'
+            })
 //            .state('connector.people', {
 //                url: '/people',
 //                templateUrl: 'pages/people.html',
@@ -107,16 +126,16 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
 //                templateUrl: 'pages/connector/channels_detail.html',
 //                controller: 'ChannelController'
 //            })
-            .state('connector.gateway', {
-                url: '/gateway',
-                templateUrl: 'pages/gateways.html',
-                controller: 'connectorController'
-            })
-            .state('connector.tools', {
-                url: '/tools',
-                templateUrl: 'pages/devtools.html',
-                controller: 'connectorController'
-            })
+//            .state('connector.gateway', {
+//                url: '/gateway',
+//                templateUrl: 'pages/gateways.html',
+//                controller: 'connectorController'
+//            })
+//            .state('connector.tools', {
+//                url: '/tools',
+//                templateUrl: 'pages/devtools.html',
+//                controller: 'connectorController'
+//            })
             .state('admin', {
                 url: '/admin',
                 templateUrl: 'pages/admin.html',
@@ -132,11 +151,11 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                 templateUrl: 'pages/docs.html',
                 controller: 'docsController'
             })
-            .state('controller', {
-                url: '/controller',
-                templateUrl: 'pages/controller.html',
-                controller: 'controllerController'
-            })
+//            .state('controller', {
+//                url: '/controller',
+//                templateUrl: 'pages/controller.html',
+//                controller: 'controllerController'
+//            })
             .state('designer', {
                 url: '/designer',
                 templateUrl: 'pages/designer.html',

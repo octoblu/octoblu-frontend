@@ -1,40 +1,20 @@
-<section id='content'>
-    <div class='container'>
-        <div class='row' id='content-wrapper'>
-            <div class='col-xs-12'>
-
-                <div class='page-header page-header-with-buttons'>
-                    <h1 class='pull-left'>
-                        <i class='icon-code-fork'></i>
-                        <span>Connector - Advanced</span>
-                    </h1>
-                </div>
-                <ul class="nav nav-tabs">
-                    <li ng-class="{'active': state.is('connector.advanced.devices')}">
-                        <a href="" ui-sref="connector.advanced.devices">Smart Devices</a>
-                    </li>
-                    <li ng-class="{'active': state.is('connector.advanced.channels')}">
-                        <a href="" ui-sref="connector.apis.index">Custom Channels</a>
-                    </li>
-                    <!-- Advanced Tab-->
-                    <li ng-class="{'active': state.is('connector.advanced.messaging')}">
-                        <a href="" ui-sref="connector.advanced.index">Device Messaging</a>
-                    </li>
-                    <!--<li ng-class="{'active': state.is('connector.gateway')}">-->
-                    <!--<a href="" ui-sref="connector.gateway">Gateways</a>-->
-                    <!--</li>-->
-                    <!--<li ng-class="{'active': state.is('connector.tools')}">-->
-                    <!--<a href="" ui-sref="connector.tools">Developer Tools</a>-->
-                    <!--</li>-->
-                    <!--<li ng-class="{'active': state.is('connector.people')}">-->
-                    <!--<a href="" ui-sref="connector.people">People</a>-->
-                    <!--</li>-->
-
-                </ul>
-                <div class="tab-content" ui-view="">
-                </div>
-
-            </div>
-        </div>
+    <div class='page-header page-header-with-buttons'>
+        <h1 class='pull-left'>
+            <i class='icon-code-fork'></i>
+            <span>Connector - Advanced</span>
+        </h1>
     </div>
-</section>
+    <ul class="nav nav-tabs">
+        <li ng-class="{'active': state.is('connector.advanced.devices')}">
+            <a href="" ui-sref="connector.advanced.devices">Smart Devices</a>
+        </li>
+        <li ng-class="{'active': state.is('connector.advanced.channels')}">
+            <a href="" ui-sref="connector.advanced.channels">Custom Channels</a>
+        </li>
+        <!-- Advanced Tab-->
+        <li ng-class="{'active': state.is('connector.advanced.messaging')}">
+            <a href="" ui-sref="connector.advanced.messaging">Device Messaging</a>
+        </li>
+    </ul>
+    <div class="tab-content" ui-view="">
+    </div>
