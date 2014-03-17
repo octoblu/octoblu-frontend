@@ -942,6 +942,56 @@ angular.module('e2eApp')
         });
 
     })
+    .controller('devtoolsController', function($scope, $http, $location, $modal, $log, $q, $modal, $state,
+                                                ownerService, deviceService, channelService) {
+        $scope.skynetStatus = false;
+        $scope.channelList = [];
+        $scope.predicate = 'name';
+        $scope.state = $state;
+
+        checkLogin($scope, $http, true, function(){
+            $scope.navType = 'pills';
+
+            // connect to skynet
+            var skynetConfig = {
+                "uuid": $scope.skynetuuid,
+                "token": $scope.skynettoken
+            };
+            
+            skynet(skynetConfig, function (e, socket) {
+                if (e) throw e;
+
+                channelService.getCustomList($scope.skynetuuid, function(data) {
+                  $log.info(data);
+                  $scope.customchannelList = data;
+                });
+
+                $scope.openNewApi = function() { $state.go('connector.apis.editor', { name: 'new' }); };
+                $scope.openDetails = function (channel) { $state.go('connector.apis.detail', { name: channel.name }); };
+
+                $scope.isActive = function (channel) {
+                    if($scope.current_user.api) {
+                        for(var l = 0; l<$scope.current_user.api.length; l++) {
+                            if($scope.current_user.api[l].name===channel.name) {return true;}
+                        }
+                    }
+                    return false;
+                };
+
+                $scope.isInactive = function (channel) {
+                    if($scope.current_user.api) {
+                        for(var l = 0; l<$scope.current_user.api.length; l++) {
+                            if($scope.current_user.api[l].name===channel.name) {return false;}
+                        }
+                    }
+                    return true;
+                };
+
+            }); //end skynet.js
+
+        });
+
+    })
     .controller('apiController', function($scope, $http, $location, $stateParams, $modal, $log, $state,
                                           channelService, userService) {
 

@@ -109,7 +109,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             .state('connector.tools', {
                 url: '/tools',
                 templateUrl: 'pages/devtools.html',
-                controller: 'connectorController'
+                controller: 'devtoolsController'
             })
             .state('admin', {
                 url: '/admin',
