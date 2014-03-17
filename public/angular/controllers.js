@@ -34,7 +34,7 @@ angular.module('e2eApp')
                     athenaSlideDelay = 500,
                     athenaSlideEffect = 'swing',
                     athenaAutoStartLoop = true,
-                    athenaLoopTime = 5000
+                    athenaLoopTime = 10000
                 );
             });
         });

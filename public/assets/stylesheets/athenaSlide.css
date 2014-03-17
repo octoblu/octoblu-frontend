@@ -11,7 +11,8 @@
 }
 .slide1{
 	/*background-image: url(/assets/images/nest.jpg);*/
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/nest.jpg);
+/*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/nest.jpg);*/
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/ioe.jpg);
 
 	width: 100%;
 	height: 700px;
@@ -23,7 +24,7 @@
 	overflow: hidden;
 }
 .slide2{
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/hue.jpg);
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/smartthings.png);
 	width: 100%;
 	height: 700px;
 	padding: 0px;
@@ -34,7 +35,32 @@
 	overflow: hidden;
 }
 .slide3{
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/belkin.jpg);
+/*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/belkin.jpg);*/
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/apis.jpg);
+	width: 100%;
+	height: 700px;
+	padding: 0px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+.slide4{
+/*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/belkin.jpg);*/
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/designer.jpg);
+	width: 100%;
+	height: 700px;
+	padding: 0px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+.slide5{
+/*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/belkin.jpg);*/
+	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/bigdata.png);
 	width: 100%;
 	height: 700px;
 	padding: 0px;
