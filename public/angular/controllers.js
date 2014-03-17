@@ -1131,10 +1131,13 @@ angular.module('e2eApp')
             };
 
             $scope.authorize = function (channel) {
-                //$location.path( '/api/auth/' + channel.name );
+              if(channel.owner || channel.useCustom) { 
+                var loc = '/api/auth/' + channel.name + '/custom';
+              } else {
                 var loc = '/api/auth/' + channel.name;
-                console.log(loc);
-                location.href = loc;
+              }
+              // $log.info(loc);
+              location.href = loc;
             };
 
             $scope.logo_url = function() {

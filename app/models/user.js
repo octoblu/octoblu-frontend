@@ -58,12 +58,12 @@ userSchema.methods.findApiByName = function(name) {
 
 userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secret, verifier, custom_tokens) {
     if(this.api==null && this.api==nil) {this.api = [];}
-
     var today = new Date();
     var jsToday = today.AsDateJs();
     
     for(var l = 0; l < this.api.length; l++) {
         if(this.api[l].name === name) {
+            console.log('updating existing');
             this.api[l].key = key;
             this.api[l].authtype = type;
             this.api[l].token = token;
@@ -78,8 +78,10 @@ userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secre
     // at this point the match wasn't found, so add it..
     item = {name: name, authtype:type, key: key, token: token, secret: secret, 
         verifier: verifier, custom_tokens: custom_tokens, updated: jsToday};
+    
+    console.log('adding');
+    console.log(item);
     this.api.push(item);
-
 };
 
 // generating a hash
