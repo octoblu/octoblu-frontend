@@ -200,7 +200,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
-
         $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
             googleAnalytics();
 
