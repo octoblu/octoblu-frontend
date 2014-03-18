@@ -1,1 +1,7 @@
-<p>New Devices Page</p>
+<div ng-if="gateways.length == 0" class="well">
+    <h2>No Hubs Found</h2>
+    <p>
+        You currently have no Hubs added to your account. Add a new Hub.
+    </p>
+   <button class="btn btn-primary" ng-click="addNewHub()"><i class="fa fa-home fa-lg"></i>Add Hub</button>
+</div>
