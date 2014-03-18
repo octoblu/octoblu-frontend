@@ -2,6 +2,7 @@ module.exports = function(app, passport) {
   // Import models
 	var User    = require('./models/user');
 	var Api     = require('./models/api');
+  var Device  = require('./models/device');
 
   // Setup config
 
@@ -346,7 +347,14 @@ module.exports = function(app, passport) {
 			});
 		});
 
-		// List of active API channels
+    // List of all Smart Devices
+    app.get('/api/smartdevices', function(req, res) {
+      Device.find({enabled: true}, function (err, apis) {
+          if (err) { res.send(err); } else { res.json(apis); }
+      });
+    });
+
+// List of active API channels
 		app.get('/api/channels/:uuid/active', function(req, res) {
 			var uuid = req.params.uuid;
 			User.findOne({ $or: [

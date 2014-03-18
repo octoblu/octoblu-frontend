@@ -27,6 +27,15 @@ angular.module('e2eApp')
                 });
         };
 
+        this.getSmartDevices = function(callback) {
+            $http.get('/api/smartdevices/', { cache: true})
+                .success(function(data) { callback(data); })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                    callback({});
+                });
+        };
+
         this.getCustomList = function(uuid, callback) {
             $http.get('/api/customchannels/' + uuid, { cache: true})
                 .success(function(data) { callback(data); })

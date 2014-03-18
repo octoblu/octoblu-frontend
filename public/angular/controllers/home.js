@@ -10,8 +10,12 @@ angular.module('e2eApp')
             $scope.message = 'Home page content pending.';
         }
 
-        channelService.getList(function(data) {
-            $scope.availableChannels = data;
+        channelService.getList(function(channelData) {
+          channelService.getSmartDevices(function(deviceData) {
+              // $scope.availableChannels = channelData;
+              // $scope.availableDevices = deviceData;
+              $scope.availableChannels = channelData.concat(deviceData);
+          });
         });
 
         $scope.gotoApis = function (){
@@ -25,24 +29,31 @@ angular.module('e2eApp')
 
         $(document).ready(function () {
             /*SLIDE*/
-            $(document).ready(function () {
-                athenaSlide(
-                    athenaSlideId = 'slidecontent',
-                    athenaPreviousButtonId = 'slide-previous',
-                    athenaNextButtonId = 'slide-next',
-                    athenaDotButtonClass = 'slide-dot',
-                    athenaDotActiveClass = 'slide-active',
-                    athenaPlayButtonId = 'slide-play',
-                    athenaStopButtonId = 'slide-stop',
-                    /**MORE OPTIONS**/
-                    athenaSlideMode = 'sliding',
-                    athenaSlideTime = 500,
-                    athenaSlideDelay = 500,
-                    athenaSlideEffect = 'swing',
-                    athenaAutoStartLoop = true,
-                    athenaLoopTime = 10000
-                );
-            });
+            athenaSlide(
+                athenaSlideId = 'slidecontent',
+                athenaPreviousButtonId = 'slide-previous',
+                athenaNextButtonId = 'slide-next',
+                athenaDotButtonClass = 'slide-dot',
+                athenaDotActiveClass = 'slide-active',
+                athenaPlayButtonId = 'slide-play',
+                athenaStopButtonId = 'slide-stop',
+                /**MORE OPTIONS**/
+                athenaSlideMode = 'sliding',
+                athenaSlideTime = 500,
+                athenaSlideDelay = 500,
+                athenaSlideEffect = 'swing',
+                athenaAutoStartLoop = true,
+                athenaLoopTime = 10000
+            );
+
+            // var $container = $('#container');
+            // // init
+            // $container.isotope({
+            //   // options
+            //   itemSelector: '.item',
+            //   layoutMode: 'fitRows'
+            // });
+
         });
 
         $scope.watchVideo = function() {
