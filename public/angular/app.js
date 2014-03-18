@@ -1,7 +1,7 @@
 'use strict';
 
 // create the module and name it e2eApp
-angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'angular-google-analytics'])
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'angular-google-analytics'])
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -109,6 +109,11 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                 url: '/custom_channels',
                 templateUrl: 'pages/connector/advanced/channels.html',
                 controller: 'connectorAdvancedController'
+            })
+            .state('connector.advanced.gateways', {
+                url: '/gateways',
+                templateUrl: 'pages/connector/advanced/gateways.html',
+                controller: 'connectorController'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
