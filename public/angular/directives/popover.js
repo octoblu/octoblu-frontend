@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('e2eApp')
     .directive('popOver', function($http) {
         return {

@@ -19,12 +19,12 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             .state('home', {
                 url: '/',
                 templateUrl: 'pages/home.html',
-                controller: 'mainController'
+                controller: 'homeController'
             })
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
-                controller: 'mainController'
+                controller: 'homeController'
             })
             .state('about', {
                 url: '/about',
@@ -200,13 +200,16 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
+        // TODO: Replace with proper authorization service object and eliminate checkLogin.
+        $rootScope.authorization = { isAuthenticated: false };
+
         $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
             googleAnalytics();
 
             var user = $.cookie("skynetuuid");
 
             if (user == undefined || user == null) {
-                if (secured){
+                if (secured) {
                     window.location.href = "/login";
                 }
             } else {
@@ -215,12 +218,8 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                     var token;
 
                     $scope.user_id = data._id;
-                    $scope.current_user = data;
-
-                    $(".auth").hide();
-                    $(".user-menu").show();
-                    $(".toggle-nav").show();
-                    $(".navbar-brand").attr("href", "/dashboard");
+                    $scope.current_user = data
+                    $rootScope.authorization.isAuthenticated = true;
 
                     if (data.local) {
                         $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
@@ -253,7 +252,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                         // $scope.user = data.local.email;
                         $scope.skynetuuid = user;
                     }
-                    // window.location.href = "/dashboard";
+
                     cb();
                 });
             }
