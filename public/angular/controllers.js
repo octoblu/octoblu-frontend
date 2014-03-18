@@ -57,15 +57,14 @@ angular.module('e2eApp')
 
 
     })
-    .controller('aboutController', function($scope, $http, $injector, $location) {
+    .controller('aboutController', function($rootScope, $scope, $http, $injector, $location) {
         $scope.message = 'About page content pending.';
-        checkLogin($scope, $http, $injector, false, function(){});
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){});
     })
 
-    .controller('contactController', function($scope, $http, $injector, $location) {
+    .controller('contactController', function($rootScope, $scope, $http, $injector, $location) {
         $scope.message = 'Contact page content pending.';
-        checkLogin($scope, $http, $injector, false, function(){});
-
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){});
     })
     .controller('signupController', function($scope, $location) {
     })
@@ -77,55 +76,51 @@ angular.module('e2eApp')
             window.location.href = "/dashboard";
         }
     })
-    .controller('profileController', function($scope, $http, $injector, $location) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
-
+    .controller('profileController', function ($rootScope, $scope, $http, $injector) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
         });
     })
-    .controller('servicesController', function($scope, $http, $injector, $location) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
-
+    .controller('servicesController', function ($rootScope, $scope, $http, $injector) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
         });
     })
-    .controller('docsController', function($scope, $http, $injector, $location) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#nav-resources").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
-
+    .controller('docsController', function ($rootScope, $scope, $http, $injector) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#nav-resources").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
         });
     })
-    .controller('faqsController', function($scope, $http, $injector, $location) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#nav-resources").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
-
+    .controller('faqsController', function ($rootScope, $scope, $http, $injector) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#nav-resources").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
         });
     })
-    .controller('pricingController', function($scope, $http, $injector, $location) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#nav-resources").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
+    .controller('pricingController', function ($rootScope, $scope, $http, $injector) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#nav-resources").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
         });
     })
-    .controller('dashboardController', function($scope, $http, $injector, $location, ownerService) {
+    .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location, ownerService) {
         $scope.message = 'Contact page content pending.';
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#nav-dashboard").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#nav-dashboard").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
 
             var dataPoints = [];
             var deviceData = [];
@@ -201,12 +196,12 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('controllerController', function($scope, $http, $injector, $location, ownerService, messageService) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#nav-controller").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
+    .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, ownerService, messageService) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#nav-controller").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
 
             // Get user gateways
             ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(data) {
@@ -336,38 +331,37 @@ angular.module('e2eApp')
 
         });
     })
-    .controller('adminController', function($scope, $http, $injector, $location) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#nav-admin").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
-
+    .controller('adminController', function($rootScope, $scope, $http, $injector) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#nav-admin").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
         });
     })
-    .controller('connectorController', function($scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,ownerService, deviceService, channelService) {
+    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
 
-        checkLogin($scope, $http, $injector, true, function(){
-//    $(".active").removeClass();
-//    $("#nav-connector").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
+        $rootScope.checkLogin($scope, $http, $injector, true, function () {
+//            $(".active").removeClass();
+//            $("#nav-connector").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
 //
-//    if($location.$$path == "/connector" || $location.$$path == "/devices") {
-//      $scope.activeTab = 'devices';
-//      $("#devices").addClass('active');
-//    } else if($location.$$path == "/gateways") {
-//      $scope.activeTab = 'gateways';
-//    } else if($location.$$path == "/apis") {
-//      $scope.activeTab = 'apis';
-//    } else if($location.$$path == "/people") {
-//      $scope.activeTab = 'people';
-//    } else if($location.$$path == "/tools") {
-//      $scope.activeTab = 'devtools';
-//    }
+//            if($location.$$path == "/connector" || $location.$$path == "/devices") {
+//              $scope.activeTab = 'devices';
+//              $("#devices").addClass('active');
+//            } else if($location.$$path == "/gateways") {
+//              $scope.activeTab = 'gateways';
+//            } else if($location.$$path == "/apis") {
+//              $scope.activeTab = 'apis';
+//            } else if($location.$$path == "/people") {
+//              $scope.activeTab = 'people';
+//            } else if($location.$$path == "/tools") {
+//              $scope.activeTab = 'devtools';
+//            }
 
             $scope.navType = 'pills';
             // $scope.navType = 'tabs';
@@ -551,7 +545,7 @@ angular.module('e2eApp')
 
                 $scope.deleteDevice = function( idx ){
 
-                    confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?',
+                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?',
                         function() {
                             $log.info('ok clicked');
                             var device_to_delete = $scope.devices[idx];
@@ -643,7 +637,7 @@ angular.module('e2eApp')
 
                 $scope.deleteGateway = function( idx ){
 
-                    confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?',
+                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?',
                         function() {
                             $log.info('ok clicked');
                             var gateway_to_delete = $scope.gateways[idx];
@@ -658,7 +652,7 @@ angular.module('e2eApp')
                 };
 
                 $scope.deleteSubdevice = function(parent, idx){
-                    confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
+                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
                         function() {
                             $log.info('ok clicked');
                             var subName = $scope.gateways[parent].subdevices[idx].name
@@ -697,7 +691,7 @@ angular.module('e2eApp')
                 };
 
                 $scope.deletePlugin = function(parent, idx){
-                    confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
+                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
                         function() {
                             $log.info('ok clicked');
                             socket.emit('gatewayConfig', {
@@ -956,13 +950,13 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('devtoolsController', function($scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,
+    .controller('devtoolsController', function ($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $modal, $state,
                                                 ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
 
-        checkLogin($scope, $http, $injector, true, function(){
+        $rootScope.checkLogin($scope, $http, $injector, true, function () {
             $scope.navType = 'pills';
 
             // connect to skynet
@@ -1005,8 +999,8 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiController', function($scope, $http, $injector, $location, $stateParams, $modal, $log, $state,
-                                          channelService, userService) {
+    .controller('apiController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state,
+                                           channelService, userService) {
 
         $scope.skynetStatus = false;
         $scope.channel = {};
@@ -1014,7 +1008,7 @@ angular.module('e2eApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        checkLogin($scope, $http, $injector, true, function(){
+        $rootScope.checkLogin($scope, $http, $injector, true, function(){
 //            $("#nav-connector").addClass('active');
 //            $("#main-nav").show();
 //            $("#main-nav-bg").show();
@@ -1335,7 +1329,7 @@ angular.module('e2eApp')
                 });
         };
 
-        checkLogin($rootScope, $http, $injector, true, function(){
+        $rootScope.checkLogin($rootScope, $http, $injector, true, function(){
 //            $("#nav-connector").addClass('active');
 //            $("#main-nav").show();
 //            $("#main-nav-bg").show();
@@ -1356,16 +1350,15 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiresourcesController', function($scope, $http, $injector, $location, $stateParams, $modal, $log,
-                                                   channelService, userService) {
-
+    .controller('apiresourcesController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log,
+                                                    channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
         $scope.user_channel = {};
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        checkLogin($scope, $http, $injector, true, function(){
+        $rootScope.checkLogin($scope, $http, $injector, true, function(){
             $("#nav-connector").addClass('active');
             $("#main-nav").show();
             $("#main-nav-bg").show();
@@ -1449,8 +1442,8 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiresourcedetailController', function($scope, $http, $injector, $location, $stateParams, $modal, $log,
-                                                        channelService, userService) {
+    .controller('apiresourcedetailController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log,
+                                                         channelService, userService) {
 
         $scope.skynetStatus = false;
         $scope.channel = {};
@@ -1458,7 +1451,7 @@ angular.module('e2eApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        checkLogin($scope, $http, $injector, true, function(){
+        $rootScope.checkLogin($scope, $http, $injector, true, function(){
             $("#nav-connector").addClass('active');
             $("#main-nav").show();
             $("#main-nav-bg").show();
@@ -1541,9 +1534,8 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('designerController', function($scope, $http, $injector, $location, nodeRedService) {
-
-        checkLogin($scope, $http, $injector, true, function(){
+    .controller('designerController', function($rootScope, $scope, $http, $injector, $location, nodeRedService) {
+        $rootScope.checkLogin($scope, $http, $injector, true, function () {
 //    $(".active").removeClass();
 //    $("#nav-designer").addClass('active');
 //    $("#main-nav").show();
@@ -1564,132 +1556,29 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('analyzerController', function($scope, $http, $injector, $location) {
-        checkLogin($scope, $http, $injector, true, function(){
-//    $(".active").removeClass();
-//    $("#nav-analyzer").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
+    .controller('analyzerController', function ($rootScope, $scope, $http, $injector) {
+        $rootScope.checkLogin($scope, $http, $injector, true, function(){
+//            $(".active").removeClass();
+//            $("#nav-analyzer").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
 
             $scope.splunkFrame = "http://54.203.249.138:8000?output=embed";
-
         });
     })
-    .controller('gatewayController', function($scope, $http, $injector, $location, deviceService) {
-        checkLogin($scope, $http, $injector, false, function(){
-//    $(".active").removeClass();
-//    $("#nav-connector").addClass('active');
-//    $("#main-nav").show();
-//    $("#main-nav-bg").show();
+    .controller('gatewayController', function ($rootScope, $scope, $http, $injector, $location, deviceService) {
+        $rootScope.checkLogin($scope, $http, $injector, false, function(){
+//            $(".active").removeClass();
+//            $("#nav-connector").addClass('active');
+//            $("#main-nav").show();
+//            $("#main-nav-bg").show();
 
             deviceService.getDevice($location.search().uuid, function(data) {
-                try{
+                try {
                     $scope.gatewayFrame = "http://" + data.localhost + ":" + data.port;
-                } catch(e){
+                } catch(e) {
                     $scope.gatewayFrame = "";
                 }
             });
-
         });
     });
-
-function checkLogin($scope, $http, $injector, secured, cb) {
-    //googleAnalytics();
-    user = $.cookie("skynetuuid");
-    if(user == undefined || user == null){
-        if (secured){
-            window.location.href = "/login";
-        }
-
-    } else {
-
-        var userService = $injector.get('userService');
-        userService.getUser(user, function(data) {
-
-            $scope.user_id = data._id;
-            $scope.current_user = data;
-
-            $(".auth").hide();
-            $(".user-menu").show();
-            $(".toggle-nav").show();
-            $(".navbar-brand").attr("href", "/dashboard");
-
-            if (data.local) {
-                $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
-                $(".user-name").html(data.local.email.toString());
-                $scope.user = data.local.email;
-                $scope.skynetuuid = data.local.skynetuuid;
-                $scope.skynettoken = data.local.skynettoken;
-                token = data.local.skynettoken;
-
-            } else if (data.twitter) {
-                $(".user-name").html('@' + data.twitter.username.toString());
-                $scope.user = data.twitter.displayName;
-                $scope.skynetuuid = data.twitter.skynetuuid;
-                $scope.skynettoken = data.twitter.skynettoken;
-                token = data.twitter.skynettoken;
-
-            } else if (data.facebook) {
-                $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
-                $(".user-name").html(data.facebook.name.toString());
-                $scope.user = data.facebook.name;
-                $scope.skynetuuid = data.facebook.skynetuuid;
-                $scope.skynettoken = data.facebook.skynettoken;
-                token = data.facebook.skynettoken;
-
-            } else if (data.google) {
-                $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
-                $(".user-name").html('+' + data.google.name.toString());
-                $scope.user = data.google.name;
-                $scope.skynetuuid = data.google.skynetuuid;
-                $scope.skynettoken = data.google.skynettoken;
-                token = data.google.skynettoken;
-
-            } else {
-                // $scope.user = data.local.email;
-                $scope.skynetuuid = user;
-            }
-            // window.location.href = "/dashboard";
-            cb();
-
-        });
-
-    }
-
-//  function googleAnalytics(){
-//    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-//    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-//    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-//    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-//
-//    ga('create', 'UA-2483685-30', 'octoblu.com');
-//    ga('send', 'pageview');
-//  }
-
-}
-
-var confirmModal = function($modal, $scope, $log, title, message, okFN, cancelFN) {
-    var modalHtml = '<div class="modal-header">';
-    modalHtml += '<h3>' + title + '</h3>';
-    modalHtml += '</div>';
-    modalHtml += '<div class="modal-body">';
-    modalHtml += message;
-    modalHtml += '</div>';
-    modalHtml += '<div class="modal-footer">';
-    modalHtml += '<button class="btn btn-primary" ng-click="ok()">OK</button>';
-    modalHtml += '<button class="btn" ng-click="cancel()">Cancel</button>';
-    modalHtml += '</div>';
-
-    var modalInstance = $modal.open({
-        template: modalHtml, scope: $scope,
-        controller: function ($modalInstance) {
-            $scope.ok = function () { $modalInstance.dismiss('ok'); if(okFN) {okFN();} };
-            $scope.cancel = function () { $modalInstance.dismiss('cancel'); if(cancelFN) {cancelFN();} };
-        }
-    });
-
-    modalInstance.result.then(
-        function (response) { if(response==='ok') { $log.info('clicked ok'); } },
-        function () { $log.info('Modal dismissed at: ' + new Date()); }
-    );
-};
