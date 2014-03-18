@@ -1,9 +1,9 @@
 'use strict';
 
 // create the module and name it e2eApp
-angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'])
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'angular-google-analytics'])
     // enabled CORS by removing ajax header
-    .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+    .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
         $sceDelegateProvider.resourceUrlWhitelist([
@@ -14,6 +14,15 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             'http://54.203.249.138:8000/**',
             '**'
         ]);
+
+        // initial configuration - https://github.com/revolunet/angular-google-analytics
+        AnalyticsProvider.setAccount('UA-2483685-30');
+        //Optional set domain (Use 'none' for testing on localhost)
+        AnalyticsProvider.setDomainName('octoblu.com');
+        // Use analytics.js instead of ga.js
+        AnalyticsProvider.useAnalytics(true);
+        // change page event name
+        AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
         $stateProvider
             .state('home', {
@@ -204,8 +213,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
         $rootScope.authorization = { isAuthenticated: false };
 
         $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
-            googleAnalytics();
-
             var user = $.cookie("skynetuuid");
 
             if (user == undefined || user == null) {
@@ -255,16 +262,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
 
                     cb();
                 });
-            }
-
-            function googleAnalytics() {
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-2483685-30', 'octoblu.com');
-                ga('send', 'pageview');
             }
         };
 
