@@ -199,4 +199,100 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
     .run(function ($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+
+
+        $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
+            googleAnalytics();
+
+            var user = $.cookie("skynetuuid");
+
+            if (user == undefined || user == null) {
+                if (secured){
+                    window.location.href = "/login";
+                }
+            } else {
+                var userService = $injector.get('userService');
+                userService.getUser(user, function(data) {
+                    var token;
+
+                    $scope.user_id = data._id;
+                    $scope.current_user = data;
+
+                    $(".auth").hide();
+                    $(".user-menu").show();
+                    $(".toggle-nav").show();
+                    $(".navbar-brand").attr("href", "/dashboard");
+
+                    if (data.local) {
+                        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
+                        $(".user-name").html(data.local.email.toString());
+                        $scope.user = data.local.email;
+                        $scope.skynetuuid = data.local.skynetuuid;
+                        $scope.skynettoken = data.local.skynettoken;
+                        token = data.local.skynettoken;
+                    } else if (data.twitter) {
+                        $(".user-name").html('@' + data.twitter.username.toString());
+                        $scope.user = data.twitter.displayName;
+                        $scope.skynetuuid = data.twitter.skynetuuid;
+                        $scope.skynettoken = data.twitter.skynettoken;
+                        token = data.twitter.skynettoken;
+                    } else if (data.facebook) {
+                        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
+                        $(".user-name").html(data.facebook.name.toString());
+                        $scope.user = data.facebook.name;
+                        $scope.skynetuuid = data.facebook.skynetuuid;
+                        $scope.skynettoken = data.facebook.skynettoken;
+                        token = data.facebook.skynettoken;
+                    } else if (data.google) {
+                        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
+                        $(".user-name").html('+' + data.google.name.toString());
+                        $scope.user = data.google.name;
+                        $scope.skynetuuid = data.google.skynetuuid;
+                        $scope.skynettoken = data.google.skynettoken;
+                        token = data.google.skynettoken;
+                    } else {
+                        // $scope.user = data.local.email;
+                        $scope.skynetuuid = user;
+                    }
+                    // window.location.href = "/dashboard";
+                    cb();
+                });
+            }
+
+            function googleAnalytics() {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-2483685-30', 'octoblu.com');
+                ga('send', 'pageview');
+            }
+        };
+
+        $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
+            var modalHtml = '<div class="modal-header">';
+            modalHtml += '<h3>' + title + '</h3>';
+            modalHtml += '</div>';
+            modalHtml += '<div class="modal-body">';
+            modalHtml += message;
+            modalHtml += '</div>';
+            modalHtml += '<div class="modal-footer">';
+            modalHtml += '<button class="btn btn-primary" ng-click="ok()">OK</button>';
+            modalHtml += '<button class="btn" ng-click="cancel()">Cancel</button>';
+            modalHtml += '</div>';
+
+            var modalInstance = $modal.open({
+                template: modalHtml, scope: $scope,
+                controller: function ($modalInstance) {
+                    $scope.ok = function () { $modalInstance.dismiss('ok'); if(okFN) {okFN();} };
+                    $scope.cancel = function () { $modalInstance.dismiss('cancel'); if(cancelFN) {cancelFN();} };
+                }
+            });
+
+            modalInstance.result.then(
+                function (response) { if(response==='ok') { $log.info('clicked ok'); } },
+                function () { $log.info('Modal dismissed at: ' + new Date()); }
+            );
+        };
     });
