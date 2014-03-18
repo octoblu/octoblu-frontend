@@ -8,23 +8,6 @@ angular.module('e2eApp')
         $scope.predicate = 'name';
 
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
-//            $(".active").removeClass();
-//            $("#nav-connector").addClass('active');
-//            $("#main-nav").show();
-//            $("#main-nav-bg").show();
-//
-//            if($location.$$path == "/connector" || $location.$$path == "/devices") {
-//              $scope.activeTab = 'devices';
-//              $("#devices").addClass('active');
-//            } else if($location.$$path == "/gateways") {
-//              $scope.activeTab = 'gateways';
-//            } else if($location.$$path == "/apis") {
-//              $scope.activeTab = 'apis';
-//            } else if($location.$$path == "/people") {
-//              $scope.activeTab = 'people';
-//            } else if($location.$$path == "/tools") {
-//              $scope.activeTab = 'devtools';
-//            }
 
             $scope.navType = 'pills';
             // $scope.navType = 'tabs';

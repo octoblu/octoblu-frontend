@@ -74,17 +74,17 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             .state('connector.channels.editor', {
                 url: '/editor/:name',
                 templateUrl: 'pages/connector/channels/editor.html',
-                controller: 'apieditorController'
+                controller: 'apiEditorController'
             })
             .state('connector.channels.resources', {
                 url: '/resources',
                 templateUrl: 'pages/connector/channels/resources/index.html',
-                controller: 'apiresourcesController'
+                controller: 'apiResourcesController'
             })
             .state('connector.channels.resources.detail', {
                 url: '/:apiname',
                 templateUrl: 'pages/connector/channels/resources/detail.html',
-                controller: 'apiresourcesController'
+                controller: 'apiResourcesController'
             })
             .state('connector.advanced', {
                 url: '/advanced',

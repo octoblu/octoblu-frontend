@@ -1,12 +1,11 @@
 //'use strict';
 
 angular.module('e2eApp')
-    .controller('homeController', function($scope, $location, $anchorScroll, $modal, channelService) {
-        $("#main-nav").hide();
+    .controller('homeController', function($rootScope, $scope, $http, $injector, $state, $location, $anchorScroll, $modal, channelService) {
+        var user = $.cookie("skynetuuid");
 
-        user = $.cookie("skynetuuid");
-        if(user != undefined ){
-            window.location.href = "/dashboard";
+        if (user != undefined) {
+            $state.go('dashboard');
         } else {
             $scope.message = 'Home page content pending.';
         }

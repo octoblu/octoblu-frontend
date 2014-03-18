@@ -10,9 +10,6 @@ angular.module('e2eApp')
         $scope.custom_tokens = {};
 
         $rootScope.checkLogin($scope, $http, $injector, true, function(){
-//            $("#nav-connector").addClass('active');
-//            $("#main-nav").show();
-//            $("#main-nav-bg").show();
 
             channelService.getByName($stateParams.name, function(data) {
 
@@ -327,9 +324,6 @@ angular.module('e2eApp')
         };
 
         $rootScope.checkLogin($rootScope, $http, $injector, true, function(){
-//            $("#nav-connector").addClass('active');
-//            $("#main-nav").show();
-//            $("#main-nav-bg").show();
 
 //            $scope.$apply(function(){
 
