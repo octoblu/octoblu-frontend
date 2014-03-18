@@ -1,9 +1,9 @@
 'use strict';
 
 // create the module and name it e2eApp
-angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'])
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'angular-google-analytics'])
     // enabled CORS by removing ajax header
-    .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+    .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
         $sceDelegateProvider.resourceUrlWhitelist([
@@ -15,16 +15,25 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             '**'
         ]);
 
+        // initial configuration - https://github.com/revolunet/angular-google-analytics
+        AnalyticsProvider.setAccount('UA-2483685-30');
+        //Optional set domain (Use 'none' for testing on localhost)
+        AnalyticsProvider.setDomainName('octoblu.com');
+        // Use analytics.js instead of ga.js
+        AnalyticsProvider.useAnalytics(true);
+        // change page event name
+        AnalyticsProvider.setPageEvent('$stateChangeSuccess');
+
         $stateProvider
             .state('home', {
                 url: '/',
                 templateUrl: 'pages/home.html',
-                controller: 'mainController'
+                controller: 'homeController'
             })
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
-                controller: 'mainController'
+                controller: 'homeController'
             })
             .state('about', {
                 url: '/about',
@@ -74,17 +83,17 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             .state('connector.channels.editor', {
                 url: '/editor/:name',
                 templateUrl: 'pages/connector/channels/editor.html',
-                controller: 'apieditorController'
+                controller: 'apiEditorController'
             })
             .state('connector.channels.resources', {
                 url: '/resources',
                 templateUrl: 'pages/connector/channels/resources/index.html',
-                controller: 'apiresourcesController'
+                controller: 'apiResourcesController'
             })
             .state('connector.channels.resources.detail', {
                 url: '/:apiname',
                 templateUrl: 'pages/connector/channels/resources/detail.html',
-                controller: 'apiresourcesController'
+                controller: 'apiResourcesController'
             })
             .state('connector.advanced', {
                 url: '/advanced',
@@ -199,4 +208,86 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
     .run(function ($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+
+        // TODO: Replace with proper authorization service object and eliminate checkLogin.
+        $rootScope.authorization = { isAuthenticated: false };
+
+        $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
+            var user = $.cookie("skynetuuid");
+
+            if (user == undefined || user == null) {
+                if (secured) {
+                    window.location.href = "/login";
+                }
+            } else {
+                var userService = $injector.get('userService');
+                userService.getUser(user, function(data) {
+                    var token;
+
+                    $scope.user_id = data._id;
+                    $scope.current_user = data
+                    $rootScope.authorization.isAuthenticated = true;
+
+                    if (data.local) {
+                        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
+                        $(".user-name").html(data.local.email.toString());
+                        $scope.user = data.local.email;
+                        $scope.skynetuuid = data.local.skynetuuid;
+                        $scope.skynettoken = data.local.skynettoken;
+                        token = data.local.skynettoken;
+                    } else if (data.twitter) {
+                        $(".user-name").html('@' + data.twitter.username.toString());
+                        $scope.user = data.twitter.displayName;
+                        $scope.skynetuuid = data.twitter.skynetuuid;
+                        $scope.skynettoken = data.twitter.skynettoken;
+                        token = data.twitter.skynettoken;
+                    } else if (data.facebook) {
+                        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
+                        $(".user-name").html(data.facebook.name.toString());
+                        $scope.user = data.facebook.name;
+                        $scope.skynetuuid = data.facebook.skynetuuid;
+                        $scope.skynettoken = data.facebook.skynettoken;
+                        token = data.facebook.skynettoken;
+                    } else if (data.google) {
+                        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
+                        $(".user-name").html('+' + data.google.name.toString());
+                        $scope.user = data.google.name;
+                        $scope.skynetuuid = data.google.skynetuuid;
+                        $scope.skynettoken = data.google.skynettoken;
+                        token = data.google.skynettoken;
+                    } else {
+                        // $scope.user = data.local.email;
+                        $scope.skynetuuid = user;
+                    }
+
+                    cb();
+                });
+            }
+        };
+
+        $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
+            var modalHtml = '<div class="modal-header">';
+            modalHtml += '<h3>' + title + '</h3>';
+            modalHtml += '</div>';
+            modalHtml += '<div class="modal-body">';
+            modalHtml += message;
+            modalHtml += '</div>';
+            modalHtml += '<div class="modal-footer">';
+            modalHtml += '<button class="btn btn-primary" ng-click="ok()">OK</button>';
+            modalHtml += '<button class="btn" ng-click="cancel()">Cancel</button>';
+            modalHtml += '</div>';
+
+            var modalInstance = $modal.open({
+                template: modalHtml, scope: $scope,
+                controller: function ($modalInstance) {
+                    $scope.ok = function () { $modalInstance.dismiss('ok'); if(okFN) {okFN();} };
+                    $scope.cancel = function () { $modalInstance.dismiss('cancel'); if(cancelFN) {cancelFN();} };
+                }
+            });
+
+            modalInstance.result.then(
+                function (response) { if(response==='ok') { $log.info('clicked ok'); } },
+                function () { $log.info('Modal dismissed at: ' + new Date()); }
+            );
+        };
     });

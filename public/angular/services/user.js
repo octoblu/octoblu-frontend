@@ -1,7 +1,7 @@
 angular.module('e2eApp')
     .service('userService', function ($http) {
-        this.getUser = function(uuid, callback) {
 
+        this.getUser = function(user, callback) {
             $http.get('/api/user/' + user)
                 .success(function(data) {
                     callback(data);
