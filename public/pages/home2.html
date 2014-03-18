@@ -1,4 +1,28 @@
-
+<style>
+   .divScroll {
+       overflow:scroll;
+       height: auto;
+       max-width: 100%;
+   }
+   .scrollWrapper {
+       overflow: visible;
+       height: auto;
+       width: 100%;
+   }
+   .divScroll ul {
+     list-style-type: none;
+   }
+   .divScroll ul li {
+     display:-moz-inline-stack;
+   display:inline-block;
+   zoom: 1;
+   *display: inline;
+   padding: 10px;
+   height: auto;
+     width: auto;
+     vertical-align: top;
+   }
+</style>
 
 <!-- ****************************************** SLIDE ****************************************** -->
 
@@ -187,25 +211,22 @@
 </div>
 
 <div id="apis" class="section">
-<h3 class="section-height" style="color:white;">TOTAL AUTOMATION</h3>
+  <h3 class="section-height" style="color:white;">TOTAL AUTOMATION</h3>
 </div>
-
-<div class="apisx">
-  <div class="container">
-    <div class="row col-xs-12 col-sm-12 text-center">
-
-<!--       <ul class="channellist"> -->
-        <span ng-repeat="channel in availableChannels | orderBy:'name'">
-              <div class="channel_icon-grid-view mod-index-0 pop-over"
-                  ng-class="{'activechannel': isActive(channel)}"
-              data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)">
-              <img ng-src="{{channel.logo}}" width="100" height="100"/>
-            </div>
-        </span>
-<!--       </ul> -->
+<h3>Available Channels & Smart Devices:</h3>
+<div class="divScroll">
+  <div class="scrollWrapper">
+    <ul class="channellist">
+      <li ng-repeat="channel in availableChannels | orderBy:'name'">
+            <div class="channel_icon-grid-view mod-index-0 pop-over"
+                ng-class="{'activechannel': isActive(channel)}"
+            data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)">
+            <img ng-src="{{channel.logo}}" width="100" height="100"/>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
 
 <div class="apisx">
   <div class="container">
@@ -233,7 +254,7 @@
 <div class="parallax1" style="position: relative;">
 <div class="parallax-inner1">
 <div class="container"><!--Container-->
-<div class="row margin-top-30"><!--Row-->
+<div class="row "><!--Row-->
   <div class="ticket-button ticket-left"><i class="fa fa-chevron-left fa-lg"></i></div>
   <div class="ticket-button ticket-right"><i class="fa fa-chevron-right fa-lg"></i></div>
     <!--ICON 1-->
