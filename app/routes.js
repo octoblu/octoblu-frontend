@@ -770,7 +770,6 @@ module.exports = function(app, passport) {
 							req.session.oauth = {};
 							req.session.oauth.token = oauth_token;
 							req.session.oauth.token_secret = oauth_token_secret;
-							console.log(req.session.oauth);
 							
 							var callbackURL = getOAuthCallbackUrl(req, api.name);
 							var authURL = api.oauth.authTokenURL + '?oauth_token=' 
@@ -833,6 +832,7 @@ module.exports = function(app, passport) {
 				} else {
 					req.session.oauth.verifier = req.query.oauth_verifier;
 					var oauth = req.session.oauth;
+					
 					var oa = getCustomApiOAuthInstance(req, api);
 					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
 						function(error, oauth_access_token, oauth_access_token_secret, results){
