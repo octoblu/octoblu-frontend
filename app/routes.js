@@ -474,12 +474,16 @@ module.exports = function(app, passport) {
 
                         //Set proper name
                         if(user.local){
+                            userResults.type = 'local';
                             userResults.name = user.local.email.toString();
                         }else if(user.twitter){
+                            userResults.type = 'twitter';
                             userResults.name = user.twitter.username.toString();
                         }else if(user.facebook){
+                            userResults.type = 'facebook';
                             userResults.name = user.facebook.name.toString();
                         }else if(user.google){
+                            userResults.type = 'google';
                             userResults.name = user.google.name.toString();
                         }
 
