@@ -202,13 +202,45 @@ module.exports = function(app, passport) {
 							        "method": "getPlugins"
 							      }, function (plugins) {
 							      	console.log('plugins:', plugins.result);
-							        gateways[n].plugins = plugins.result;
+                      gateways[n].plugins = plugins.result;
 											next(error, gateways[n]);
 										});
 
 							    }, function(err, gateways) {
 
-										// console.log('gateways subdevices check');
+
+
+                    // // Lookup plugins on each gateway
+                    // async.times(gatewaysLength, function(n, next){
+                    //   conn.gatewayConfig({
+                    //     "uuid": gateways[n].uuid,
+                    //     "token": gateways[n].token,
+                    //     "method": "getPlugins"
+                    //   }, function (plugins) {
+                    //     console.log('plugins:', plugins.result);
+                    //
+                    //     // Get default options for each plugin
+                    //     for (var p in plugins) {
+                    //       conn.gatewayConfig({
+                    //         "uuid": gateways[n].uuid,
+                    //         "token": gateways[n].token,
+                    //         "method": "getDefaultOptions",
+                    //         "name": p.name
+                    //       }, function (pluginOptions) {
+                    //         console.log('plugin options:', pluginOptions);
+                    //         gateways[n].plugins.options = pluginOptions;
+                    //         next(error, gateways[n]);
+                    //       });
+                    //     }
+                    //
+                    //     gateways[n].plugins = plugins.result;
+                    //     next(error, gateways[n]);
+                    //   });
+                    //
+                    // }, function(err, gateways) {
+
+
+                    // console.log('gateways subdevices check');
 
 										// Lookup subdevices on each gateway
 										async.times(gateways.length, function(n, next){
