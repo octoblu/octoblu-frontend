@@ -1,26 +1,90 @@
 <section id='content'>
-  <div class='container'>
-    <div class='row' id='content-wrapper'>
-      <div class='col-xs-12'>
-        
-        <div class='page-header page-header-with-buttons'>
-          <h1 class='pull-left'>
-            <i class='icon-dashboard'></i>
-            <span>Dashboard - {{user}}</span>              
-          </h1>
+    <div class='container'>
+        <div class="row" id="content-wrapper">
+            <div class="col-xs-12">
+                <div class='page-header page-header-with-buttons'>
+                    <h1 class='pull-left'>
+                        <i class='icon-dashboard'></i>
+                        <span>Dashboard - {{user}}</span>
+                    </h1>
+                </div>
+                <div style="margin-bottom: 30px;"><strong>Your UUID is:</strong> {{skynetuuid}}</div>
+                <div class='row'>
+                    <div class="col-sm-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Devices</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3>Test</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Monthly Messages</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="chartContainer" style="height: 300px; width:100%;"></div>
+                                <br />
+                                <div class='box-content box-statistic'>
+                                    <h3 class='title text-primary'><a href="" ui-sref="connector.devices">{{devices.length}}</a></h3>
+                                    <small>Devices</small>
+                                    <div class='text-primary icon-lightbulb align-right'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Active Channels</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Basic panel example
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Price Tier</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Basic panel example
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Panel title</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Basic panel example
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Panel title</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Basic panel example
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div><br /><br />
-
-
-        <div id="chartContainer" style="height: 300px; width:100%;"></div>
-        <br />
-        <div class='box-content box-statistic'>
-          <h3 class='title text-primary'><a href="" ui-sref="connector.devices">{{devices.length}}</a></h3>
-          <small>Devices</small>
-          <div class='text-primary icon-lightbulb align-right'></div>
-        </div>
-
-      </div>
     </div>
-  </div>
 </section>
+
