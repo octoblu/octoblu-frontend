@@ -8,7 +8,7 @@ var _        = require('lodash-node');
 var userSchema = mongoose.Schema({
     name             : String,
     username         : String,
-
+    admin            : Boolean,
     local            : {
         email        : String,
         password     : String,
@@ -60,7 +60,7 @@ userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secre
     if(this.api==null && this.api==nil) {this.api = [];}
     var today = new Date();
     var jsToday = today.AsDateJs();
-    
+
     for(var l = 0; l < this.api.length; l++) {
         if(this.api[l].name === name) {
             console.log('updating existing');
@@ -76,9 +76,9 @@ userSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secre
     }
 
     // at this point the match wasn't found, so add it..
-    item = {name: name, authtype:type, key: key, token: token, secret: secret, 
+    item = {name: name, authtype:type, key: key, token: token, secret: secret,
         verifier: verifier, custom_tokens: custom_tokens, updated: jsToday};
-    
+
     console.log('adding');
     console.log(item);
     this.api.push(item);
