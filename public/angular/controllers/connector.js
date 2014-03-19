@@ -33,7 +33,6 @@ angular.module('e2eApp')
 
                 // Get user gateways (true param specifies inclusion of devices)
                 ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(data) {
-                    console.log('gateways', data);
                     $scope.editGatewaySection = false;
                     $scope.gateways = data.gateways;
                 });
@@ -41,14 +40,12 @@ angular.module('e2eApp')
                 // get api list, if showing api
                 if($state.is('connector.channels.index')) {
                     channelService.getActive($scope.skynetuuid,function(data) {
+                        console.log(data);
                         $scope.activeChannels = data;
                     });
                     channelService.getAvailable($scope.skynetuuid,function(data) {
                         $scope.availableChannels = data;
                     });
-                    // channelService.getCustomList($scope.skynetuuid, function(data) {
-                    //     $scope.customchannelList = data;
-                    // });
                 }
 
                 $scope.openNewApi = function() {
