@@ -10,19 +10,19 @@
           </h1>
         </div>
         <ul class="nav nav-tabs">
-          <li ng-class="{'active': state.is('connector.devices')}">
+          <li ng-class="{'active': $state.includes('connector.devices')}">
             <a href="" ui-sref="connector.devices">Devices</a>
           </li>
-          <li ng-class="{'active': state.is('connector.gateway')}">
+          <li ng-class="{'active': $state.includes('connector.gateway')}">
             <a href="" ui-sref="connector.gateway">Gateways</a>
           </li>
-          <li ng-class="{'active': state.is('connector.apis')}">
+          <li ng-class="{'active': $state.includes('connector.apis')}">
             <a href="" ui-sref="connector.apis.index">APIs</a>
           </li>
-          <li ng-class="{'active': state.is('connector.people')}">
+          <li ng-class="{'active': $state.includes('connector.people')}">
             <a href="" ui-sref="connector.people">People</a>
           </li>
-          <li ng-class="{'active': state.is('connector.tools')}">
+          <li ng-class="{'active': $state.includes('connector.tools')}">
             <a href="" ui-sref="connector.tools">Developer Tools</a>
           </li>
         </ul>

@@ -1,0 +1,63 @@
+<style>
+    .divScroll {
+        /*overflow:scroll;*/
+        height: auto;
+        max-width: 100%;
+    }
+    .scrollWrapper {
+        overflow: visible;
+        height: auto;
+        width: 100%;
+    }
+    .divScroll ul {
+        list-style-type: none;
+    }
+    .divScroll ul li {
+        display:-moz-inline-stack;
+        display:inline-block;
+        zoom: 1;
+        *display: inline;
+        padding: 10px;
+        height: auto;
+        width: auto;
+        vertical-align: top;
+    }
+</style>
+
+<button class="btn btn-success pull-right" ng-click="openNewApi()">Add</button>
+
+ <div class="divScroll">
+ 	<div class="scrollWrapper">
+
+ 		<div>
+			<h3><i class='icon-ok'></i> Active</h3>
+	  
+		  	<ul class="channellist">
+ 
+			  	<li ng-repeat="channel in activeChannels | orderBy:'name'">
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
+				            ng-class="{'activechannel': isActive(channel)}"
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;">
+                <img ng-src="{{channel.logo}}" width="70" height="70"/>
+              </div>
+				</li>
+			  </ul>
+		</div>
+
+		<div>
+			<h3><i class='icon-off'></i> Available</h3>
+	  
+		  	<ul class="channellist">
+ 
+			  	<li ng-repeat="channel in availableChannels | orderBy:'name'">
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
+				            ng-class="{'activechannel': isActive(channel)}"
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
+                <a disabled><img ng-src="{{channel.logo}}" width="70" height="70"/></a>
+              </div>
+				</li>
+			  </ul>
+		</div>
+		<div data-ui-view=""></div>
+ 	</div>
+</div>

@@ -183,7 +183,7 @@ module.exports = function(app, passport) {
 
 								}, function(err) {
 									console.log(gateways);
-									console.log('gateways', gateways[0]);
+									console.log('==>gateways', gateways);
 									// gateways = gateways[0];
 										// console.log('gateways plugins check');
 
@@ -216,7 +216,7 @@ module.exports = function(app, passport) {
 								        "token": gateways[n].token,
 								        "method": "getSubdevices"
 								      }, function (subdevices) {
-								      	console.log('subdevices:', subdevices.result);
+								      	console.log('==>subdevices:', subdevices.result);
 								        gateways[n].subdevices = subdevices.result;
 												next(error, gateways[n]);
 											});
@@ -279,7 +279,7 @@ module.exports = function(app, passport) {
 			  deviceData[obj[i]["key"]] = obj[i]["value"];
 			}
 
-			request.post('http://skynet.im/devices', 
+			request.post('http://skynet.im/devices',
 		  	{form: deviceData}
 		  , function (error, response, body) {
 					data = JSON.parse(body);
@@ -770,9 +770,8 @@ module.exports = function(app, passport) {
 							req.session.oauth = {};
 							req.session.oauth.token = oauth_token;
 							req.session.oauth.token_secret = oauth_token_secret;
-							
 							var callbackURL = getOAuthCallbackUrl(req, api.name);
-							var authURL = api.oauth.authTokenURL + '?oauth_token=' 
+							var authURL = api.oauth.authTokenURL + '?oauth_token='
 								+ oauth_token + '&oauth_consumer_key=' + api.oauth.key
 								+ '&callback=' + callbackURL;
 							res.redirect(authURL);
@@ -780,12 +779,12 @@ module.exports = function(app, passport) {
 					});
 
 				}
-			  	
+
 			});
-			
+
 		});
 		app.get('/api/auth/:name/callback/custom', function(req, res) {
-			// handle oauth response.... 
+			// handle oauth response....
 			var name = req.params.name;
 
 			Api.findOne({name: req.params.name}, function (err, api) {
@@ -794,15 +793,15 @@ module.exports = function(app, passport) {
 					res.redirect(500, '/apis/' + api.name);
 				} else if(api.oauth.version=="2.0") {
 					var OAuth2 = getCustomApiOAuthInstance(req, api);
-					var code = req.query.code; 
+					var code = req.query.code;
 
 					OAuth2.AuthCode.getToken({
 						code: code,
 						redirect_uri: getOAuthCallbackUrl(req, api.name)
 						}, function(error, result) {
 							var token = result;
-						    if (error) { 
-						    	console.log('Access Token Error', error); 
+						    if (error) {
+						    	console.log('Access Token Error', error);
 						    	res.redirect('/connector/apis/'+api.name);
 						    } else {
 								// token = OAuth2.AccessToken.create(result).token;
@@ -834,7 +833,7 @@ module.exports = function(app, passport) {
 					var oauth = req.session.oauth;
 					
 					var oa = getCustomApiOAuthInstance(req, api);
-					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier, 
+					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
 						function(error, oauth_access_token, oauth_access_token_secret, results){
 							if (error){
 								console.log(error);
@@ -848,24 +847,24 @@ module.exports = function(app, passport) {
 							    	]
 							    	}, function(err, user) {
 								    if(!err) {
-								    	user.addOrUpdateApiByName(name, 'oauth', null, 
+								    	user.addOrUpdateApiByName(name, 'oauth', null,
 								    		oauth_access_token, oauth_access_token_secret, null, null);
 							        	user.save(function(err) {
 							        		console.log('saved oauth token');
 							        		return handleApiCompleteRedirect(res, name, err);
 								        });
-								    } else { 
+								    } else {
 								    	console.log('error saving oauth token');
 								    	res.redirect('/apis/' + name);
 								    }
 								});
-								
+
 							}
 						}
 					);
 				}
 			});
-			
+
 		});
 
 		app.get('/api/auth/LinkedIn',
