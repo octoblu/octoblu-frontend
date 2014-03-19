@@ -128,6 +128,7 @@ module.exports = function(app, passport) {
 		// Get devices by owner
 		app.get('/api/owner/gateways/:id/:token', function(req, res) {
 			console.log('Return Devices? ', req.query.devices);
+      console.log('ip address ', req.ip)
 			request.get('http://skynet.im/mydevices/' + req.params.id,
 		  	{qs: {"token": req.params.token}}
 		  , function (error, response, body) {
@@ -145,14 +146,14 @@ module.exports = function(app, passport) {
 
 						}
 					}
-					console.log(gateways);
+					console.log('My Devices ', gateways);
 					request.get('http://skynet.im/devices',
-				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner" : { "$exists" : false } }}
+				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner": null }}
 				  , function (error, response, body) {
 				  		ipDevices = JSON.parse(body);
 				  		devices = ipDevices.devices
 
-					console.log('local gateways',devices);
+					    console.log('local gateways',devices);
 
 			  			// if(devices) {
 			  			if(true) {
