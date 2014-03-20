@@ -1,7 +1,7 @@
 'use strict';
 
 // create the module and name it e2eApp
-angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'angular-google-analytics', 'elasticsearch'])
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'angular-google-analytics'])
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -63,7 +63,12 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
             .state('connector.devices', {
                 url: '/devices',
                 templateUrl: 'pages/connector/devices/index.html',
-                controller: 'connectorController'
+                controller: 'DeviceController'
+            })
+            .state('connector.devices.wizard', {
+                templateUrl: 'pages/connector/devices/wizard/index.html',
+                controller: 'DeviceWizardController',
+
             })
             .state('connector.channels', {
                 abstract: true,
