@@ -682,9 +682,9 @@ module.exports = function(app, passport) {
 			  clientID: api.oauth.clientId,
 			  clientSecret: api.oauth.secret,
 			  site: api.oauth.baseURL,
+			  authorizationPath: api.oauth.authTokenPath,
 			  tokenPath: api.oauth.authTokenPath
 			});
-
 			return OAuth2;
 		};
 
@@ -784,9 +784,11 @@ module.exports = function(app, passport) {
 					var OAuth2 = getCustomApiOAuthInstance(req, api);
 					var authorization_uri = OAuth2.AuthCode.authorizeURL({
 					  redirect_uri: getOAuthCallbackUrl(req, api.name),
-					  scope: 'notifications',
+					  scope: '',
 					  state: '3(#0/!~'
 					});
+					console.log(api.oauth.authTokenPath);
+					console.log('redirect to: '+authorization_uri);
 					res.redirect(authorization_uri);
 
 				} else {
@@ -824,6 +826,7 @@ module.exports = function(app, passport) {
 				} else if(api.oauth.version=="2.0") {
 					var OAuth2 = getCustomApiOAuthInstance(req, api);
 					var code = req.query.code;
+					console.log('code: '+code);
 
 					OAuth2.AuthCode.getToken({
 						code: code,
