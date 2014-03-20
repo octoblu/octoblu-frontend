@@ -24,16 +24,14 @@
     }
 </style>
 
-<button class="btn btn-success pull-right" ng-click="openNewApi()">Add</button>
-
  <div class="divScroll">
  	<div class="scrollWrapper">
 
  		<div>
 			<h3><i class='icon-ok'></i> Active</h3>
-	  
+
 		  	<ul class="channellist">
- 
+
 			  	<li ng-repeat="channel in activeChannels | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
@@ -46,9 +44,9 @@
 
 		<div>
 			<h3><i class='icon-off'></i> Available</h3>
-	  
+
 		  	<ul class="channellist">
- 
+
 			  	<li ng-repeat="channel in availableChannels | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"

@@ -85,11 +85,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 templateUrl : 'pages/connector/channels/detail.html',
                 controller  : 'apiController'
             })
-            .state('connector.channels.editor', {
-                url: '/editor/:name',
-                templateUrl: 'pages/connector/channels/editor.html',
-                controller: 'apiEditorController'
-            })
             .state('connector.channels.resources', {
                 url: '/resources',
                 templateUrl: 'pages/connector/channels/resources/index.html',
@@ -115,6 +110,12 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 templateUrl: 'pages/connector/advanced/channels.html',
                 controller: 'connectorAdvancedController'
             })
+            .state('connector.advanced.channels.editor', {
+                url: '/editor/:name',
+                templateUrl: 'pages/connector/channels/editor.html',
+                controller: 'apiEditorController'
+            })
+
             .state('connector.advanced.gateways', {
                 url: '/gateways',
                 templateUrl: 'pages/connector/advanced/gateways.html',
@@ -123,7 +124,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
             .state('connector.advanced.messaging', {
                 url: '/messaging',
                 templateUrl: 'pages/connector/advanced/messaging.html',
-                controller: 'connectorAdvancedController'
+                controller: 'controllerController'
             })
 //            .state('connector.people', {
 //                url: '/people',

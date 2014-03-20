@@ -12,7 +12,7 @@ module.exports = function(app, passport) {
 	var request = require('request');
 	var async = require('async');
 	var skynet = require('skynet');
-  
+
 	console.log('Connecting to SkyNet...');
 	// Generic UUID / Token for SkyNet API calls
 	var conn = skynet.createConnection({
@@ -154,7 +154,7 @@ module.exports = function(app, passport) {
 		  , function (error, response, body) {
 					myDevices = JSON.parse(body);
 					myDevices = myDevices.devices
-					console.log(myDevices);
+					console.log('myDevices', myDevices);
 					var gateways = []
 					for (var i in myDevices) {
 						if(req.query.devices == 'true'){
@@ -170,6 +170,7 @@ module.exports = function(app, passport) {
 					request.get('http://skynet.im/devices',
 				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner": null }}
 				  , function (error, response, body) {
+              console.log(body);
 				  		ipDevices = JSON.parse(body);
 				  		devices = ipDevices.devices
 

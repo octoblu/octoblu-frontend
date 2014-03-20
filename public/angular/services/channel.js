@@ -31,7 +31,7 @@ angular.module('e2eApp')
             $http.get('/api/smartdevices/', { cache: true})
                 .success(function(data) { callback(data); })
                 .error(function(data) {
-                    console.log('Error: ' + data);
+                    console.log('Error: ', data);
                     callback({});
                 });
         };
