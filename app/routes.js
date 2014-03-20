@@ -12,8 +12,7 @@ module.exports = function(app, passport) {
 	var request = require('request');
 	var async = require('async');
 	var skynet = require('skynet');
-  var elastic = require('elasticsearch');
-
+  
 	console.log('Connecting to SkyNet...');
 	// Generic UUID / Token for SkyNet API calls
 	var conn = skynet.createConnection({
