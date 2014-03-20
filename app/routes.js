@@ -452,7 +452,6 @@ module.exports = function(app, passport) {
 		});
 
 		app.get('/api/user_api/:id/:token', function(req, res) {
-
 			var uuid = req.params.id,
 				token = req.params.token
 
@@ -464,7 +463,6 @@ module.exports = function(app, passport) {
 		    	]
 		    	}, function(err, user) {
 		    	if(err) { res.json(err); } else {
-
 			    	var criteria = [];
 			    	if(!user || !user.api) {
 			    		res.json(404, {'result': 'not found'} );
@@ -473,9 +471,9 @@ module.exports = function(app, passport) {
                         var userResults = {};
 
                         //Set proper name
-                        if(user.local){
+                        if(user.local && user.local.length){
                             userResults.type = 'local';
-                            userResults.name = user.local.email.toString();
+                            userResults.name = user.local.username.toString();
                         }else if(user.twitter){
                             userResults.type = 'twitter';
                             userResults.name = user.twitter.username.toString();
@@ -490,23 +488,32 @@ module.exports = function(app, passport) {
                         //Admin results
                         userResults.admin = user.admin || false;
 
+                        if(!user.api.length){
+                            res.json({
+                                results: [],
+                                user : userResults
+                            });
+                            return;
+                        }
 				    	for(var l=0; l<user.api.length; l++) {
 				    		criteria.push({'name': user.api[l].name});
 				    	}
 				    	Api.find({$or: criteria, owner: {$exists: false}, enabled: true},function(err, apis) {
 				    		if(err) { res.json(err); }
 				    		var results = [];
-			    			for(var a=0; a<apis.length;a++) {
-			    				var api = apis[a];
-			    				var newApi = {};
-			    				for(var l=0; l<user.api.length; l++) {
-			    					if(user.api[l].name===api.name) {
-			    						newApi.usersettings = user.api[l];
-			    						newApi.wadl = apis[a];
-								    	results.push(newApi);
-			    					}
-						    	}
-			    			}
+                            if(apis){
+    			    			for(var a=0; a<apis.length;a++) {
+    			    				var api = apis[a];
+    			    				var newApi = {};
+    			    				for(var l=0; l<user.api.length; l++) {
+    			    					if(user.api[l].name===api.name) {
+    			    						newApi.usersettings = user.api[l];
+    			    						newApi.wadl = apis[a];
+    								    	results.push(newApi);
+    			    					}
+    						    	}
+    			    			}
+                            }
 			    			res.json({
                                 results: results,
                                 user : userResults
