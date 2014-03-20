@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('e2eApp')
-    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,
-                                                ownerService, deviceService, channelService) {
+    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';

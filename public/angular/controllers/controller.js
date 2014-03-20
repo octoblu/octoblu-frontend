@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('e2eApp')
-    .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location,
-                                                  ownerService, messageService) {
+    .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, ownerService, messageService) {
         $rootScope.checkLogin($scope, $http, $injector, false, function(){
             // Get user gateways
             ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(data) {
