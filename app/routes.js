@@ -470,6 +470,26 @@ module.exports = function(app, passport) {
 			    		res.json(404, {'result': 'not found'} );
 			    	} else {
 
+                        var userResults = {};
+
+                        //Set proper name
+                        if(user.local){
+                            userResults.type = 'local';
+                            userResults.name = user.local.email.toString();
+                        }else if(user.twitter){
+                            userResults.type = 'twitter';
+                            userResults.name = user.twitter.username.toString();
+                        }else if(user.facebook){
+                            userResults.type = 'facebook';
+                            userResults.name = user.facebook.name.toString();
+                        }else if(user.google){
+                            userResults.type = 'google';
+                            userResults.name = user.google.name.toString();
+                        }
+
+                        //Admin results
+                        userResults.admin = user.admin || false;
+
 				    	for(var l=0; l<user.api.length; l++) {
 				    		criteria.push({'name': user.api[l].name});
 				    	}
@@ -487,7 +507,10 @@ module.exports = function(app, passport) {
 			    					}
 						    	}
 			    			}
-			    			res.json({results: results });
+			    			res.json({
+                                results: results,
+                                user : userResults
+                            });
 				    	});
 				    }
 					}
@@ -831,7 +854,7 @@ module.exports = function(app, passport) {
 				} else {
 					req.session.oauth.verifier = req.query.oauth_verifier;
 					var oauth = req.session.oauth;
-					
+
 					var oa = getCustomApiOAuthInstance(req, api);
 					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
 						function(error, oauth_access_token, oauth_access_token_secret, results){

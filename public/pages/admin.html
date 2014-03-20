@@ -2,14 +2,27 @@
   <div class='container'>
     <div class='row' id='content-wrapper'>
       <div class='col-xs-12'>
-        
+
         <div class='page-header page-header-with-buttons'>
           <h1 class='pull-left'>
             <i class='icon-lock'></i>
-            <span>Admin - {{user}}</span>              
-          </h1>        
+            <span>Admin - {{user}}</span>
+          </h1>
         </div>
-      
+
+        <div class="row" ng-show="current_user.admin">
+            <div class="col-sm-3 box">
+                <div class="box-content">
+                    <a href="http://blog.octoblu.com/ghost" title="Octoblu Blog Admin" class="btn btn-primary"><i class='icon-comments'></i>  Go to Blog Admin</a>
+                </div>
+            </div>
+            <div class="col-sm-3 box">
+                <div class="box-content">
+                    <a href="http://forum.octoblu.com/admin" title="Octoblu Forum Admin" class="btn btn-primary"><i class='icon-group'></i>  Go to Forum Admin</a>
+                </div>
+            </div>
+        </div>
+
       </div>
     </div>
   </div>
