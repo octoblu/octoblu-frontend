@@ -664,10 +664,10 @@ module.exports = function(app, passport) {
 
 		var handleApiCompleteRedirect = function(res, name, err) {
 			if(!err) {
-	        	return res.redirect('/connector/apis/'+name);
+	        	return res.redirect('/connector/channels/'+name);
 	    	} else {
 	        	console.log("Error: " + err);
-				return res.redirect('/connector/apis/'+name);
+				return res.redirect('/connector/channels/'+name);
 	    	}
 		}
 
@@ -706,7 +706,7 @@ module.exports = function(app, passport) {
 					if (error){
 						console.log(error);
 						// res.send("yeah something broke.");
-						res.redirect(500, '/connector/apis/' + name);
+						res.redirect(500, '/connector/channels/' + name);
 					} else {
 						User.findOne({ $or: [
 					    	{"local.skynetuuid" : req.cookies.skynetuuid},
@@ -724,7 +724,7 @@ module.exports = function(app, passport) {
 						        });
 						    } else {
 						    	console.log('error saving oauth token');
-						    	res.redirect('/connector/apis/'+name);
+						    	res.redirect('/connector/channels/'+name);
 						    }
 						});
 
@@ -802,11 +802,11 @@ module.exports = function(app, passport) {
 							var token = result;
 						    if (error) {
 						    	console.log('Access Token Error', error);
-						    	res.redirect('/connector/apis/'+api.name);
+						    	res.redirect('/connector/channels/'+api.name);
 						    } else {
 								// token = OAuth2.AccessToken.create(result).token;
 							    // console.log('token='+token);
-							    // res.redirect('/connector/apis/'+api.name);
+							    // res.redirect('/connector/channels/'+api.name);
 							    User.findOne({ $or: [
 							    	{"local.skynetuuid" : req.cookies.skynetuuid},
 							    	{"twitter.skynetuuid" : req.cookies.skynetuuid},
@@ -817,12 +817,12 @@ module.exports = function(app, passport) {
 								    if(!err) {
 								    	user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
 							        	user.save(function(err) {
-							        		console.log('saved oauth token');
-							        		res.redirect('/connector/apis/'+name);
+							        		console.log('saved oauth token: '+name);
+							        		res.redirect('/connector/channels/'+name);
 								        });
 								    } else {
 								    	console.log('error saving oauth token');
-								    	res.redirect('/connector/apis/'+name);
+								    	res.redirect('/connector/channels/'+name);
 								    }
 								});
 							}
@@ -850,7 +850,7 @@ module.exports = function(app, passport) {
 								    	user.addOrUpdateApiByName(name, 'oauth', null,
 								    		oauth_access_token, oauth_access_token_secret, null, null);
 							        	user.save(function(err) {
-							        		console.log('saved oauth token');
+							        		console.log('saved oauth token: ' + name);
 							        		return handleApiCompleteRedirect(res, name, err);
 								        });
 								    } else {
