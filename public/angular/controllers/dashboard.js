@@ -4,8 +4,7 @@ angular.module('e2eApp')
     .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location, ownerService) {
         $scope.message = 'Contact page content pending.';
 
-        $rootScope.checkLogin($scope, $http, $injector, false, function(){
-
+        $rootScope.checkLogin($scope, $http, $injector, false, function () {
             var dataPoints = [];
             var deviceData = [];
             var chart;
@@ -43,8 +42,8 @@ angular.module('e2eApp')
                     // http://canvasjs.com/ << TODO: pucharse $299
                     chart = new CanvasJS.Chart("chartContainer", {
                         theme: "theme2",//theme1
-                        title:{
-                            text: "Real-time Device Activity"
+                        title: {
+                            //text: "Real-time Device Activity"
                         },
                         data: [
                             {
