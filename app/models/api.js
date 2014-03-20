@@ -18,7 +18,6 @@ var apiSchema = mongoose.Schema({
         secret           : String,
         accessTokenURL   : String,
         requestTokenURL  : String,
-        accessTokenURL   : String,
         authTokenURL     : String,
         version          : String,
         baseURL          : String,
