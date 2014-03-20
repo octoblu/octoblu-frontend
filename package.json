@@ -35,8 +35,7 @@
     "mongoose-timestamps": "0.0.1",
     "lodash-node": "~2.4.1",
     "mongoose-pagination": "~1.0.0",
-    "marked": "*",
-    "elasticsearch": "*"
+    "marked": "*"
 
   },
   "devDependencies": {
