@@ -12,6 +12,7 @@ module.exports = function(app, passport) {
 	var request = require('request');
 	var async = require('async');
 	var skynet = require('skynet');
+  var elastic = require('elasticsearch');
 
 	console.log('Connecting to SkyNet...');
 	// Generic UUID / Token for SkyNet API calls
@@ -124,6 +125,26 @@ module.exports = function(app, passport) {
 
 
 		});
+
+
+    // // Get elastic query
+    // app.get('/api/elastic/query/:query', function(req, res) {
+    //
+    //   elastic.search({
+    //     index: 'log',
+    //     q: req.params.query
+    //   }, function (error, response) {
+    //     console.log('error', error);
+    //     console.log('response', response);
+    //     try{
+    //       data = JSON.parse(response);
+    //     } catch(e){
+    //       data = {};
+    //     }
+    //     res.json(data);
+    //   });
+    //
+    // });
 
 		// Get devices by owner
 		app.get('/api/owner/gateways/:id/:token', function(req, res) {
