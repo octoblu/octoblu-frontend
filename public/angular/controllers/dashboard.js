@@ -11,44 +11,43 @@ angular.module('e2eApp')
 
             // connect to skynet
             var skynetConfig = {
-                "uuid": $scope.skynetuuid,
-                "token": $scope.skynettoken
-            }
+                'uuid': $scope.skynetuuid,
+                'token': $scope.skynettoken
+            };
+
             skynet(skynetConfig, function (e, socket) {
-                if (e) throw e
+                if (e) throw e;
 
                 // Get user's devices
-                ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
+                ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function (data) {
                     $scope.devices = data.devices;
 
                     // Subscribe to user's devices messages and events
-                    if(data.devices) {
-                        for (var i = 0; i < data.devices.length; i++) {
+                    if (data.devices) {
+                        _.each(data.devices, function (device) {
                             socket.emit('subscribe', {
-                                "uuid": data.devices[i].uuid,
-                                "token": data.devices[i].token
+                                'uuid': device.uuid,
+                                'token': device.token
                             }, function (data) {
                                 // console.log(data);
                             });
 
                             // Setup dashboard arrays for devices
-                            dataPoints.push({label: data.devices[i].name, y: 0, uuid: data.devices[i].uuid });
-                            deviceData[data.devices[i].uuid] = 0;
-
-                        }
-
+                            dataPoints.push({label: device.name, y: 0, uuid: device.uuid });
+                            deviceData[device.uuid] = 0;
+                        });
                     }
 
                     // http://canvasjs.com/ << TODO: pucharse $299
-                    chart = new CanvasJS.Chart("chartContainer", {
-                        theme: "theme2",//theme1
+                    chart = new CanvasJS.Chart('chartContainer', {
+                        theme: 'theme2',//theme1
                         title: {
-                            //text: "Real-time Device Activity"
+                            //text: 'Real-time Device Activity'
                         },
                         data: [
                             {
-                                // Change type to "column", bar", "splineArea", "area", "spline", "pie",etc.
-                                type: "splineArea",
+                                // Change type to 'column', bar', 'splineArea', 'area', 'spline', 'pie',etc.
+                                type: 'splineArea',
                                 dataPoints: dataPoints
                             }
                         ]
