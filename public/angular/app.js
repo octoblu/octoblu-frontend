@@ -1,7 +1,7 @@
 'use strict';
 
 // create the module and name it e2eApp
-angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router', 'angular-google-analytics'])
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'angular-google-analytics', 'elasticsearch'])
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -63,7 +63,12 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
             .state('connector.devices', {
                 url: '/devices',
                 templateUrl: 'pages/connector/devices/index.html',
-                controller: 'connectorController'
+                controller: 'DeviceController'
+            })
+            .state('connector.devices.wizard', {
+                templateUrl: 'pages/connector/devices/wizard/index.html',
+                controller: 'DeviceWizardController',
+
             })
             .state('connector.channels', {
                 abstract: true,
@@ -79,11 +84,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                 url: '/:name',
                 templateUrl : 'pages/connector/channels/detail.html',
                 controller  : 'apiController'
-            })
-            .state('connector.channels.editor', {
-                url: '/editor/:name',
-                templateUrl: 'pages/connector/channels/editor.html',
-                controller: 'apiEditorController'
             })
             .state('connector.channels.resources', {
                 url: '/resources',
@@ -110,10 +110,21 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ui.router'
                 templateUrl: 'pages/connector/advanced/channels.html',
                 controller: 'connectorAdvancedController'
             })
+            .state('connector.advanced.channels.editor', {
+                url: '/editor/:name',
+                templateUrl: 'pages/connector/channels/editor.html',
+                controller: 'apiEditorController'
+            })
+
+            .state('connector.advanced.gateways', {
+                url: '/gateways',
+                templateUrl: 'pages/connector/advanced/gateways.html',
+                controller: 'connectorController'
+            })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
                 templateUrl: 'pages/connector/advanced/messaging.html',
-                controller: 'connectorAdvancedController'
+                controller: 'controllerController'
             })
 //            .state('connector.people', {
 //                url: '/people',

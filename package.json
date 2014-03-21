@@ -36,6 +36,7 @@
     "lodash-node": "~2.4.1",
     "mongoose-pagination": "~1.0.0",
     "marked": "*"
+
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",

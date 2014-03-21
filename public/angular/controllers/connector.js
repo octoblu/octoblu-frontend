@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('e2eApp')
-    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,
-                                                ownerService, deviceService, channelService) {
+    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
@@ -48,9 +47,6 @@ angular.module('e2eApp')
                     });
                 }
 
-                $scope.openNewApi = function() {
-                    $state.go('connector.channels.editor', { name: 'new' });
-                };
 
                 $scope.openDetails = function (channel) {
                     // $scope.channel = channel;
@@ -594,5 +590,9 @@ angular.module('e2eApp')
     })
     .controller('connectorAdvancedController', function($scope, $http, $location, $modal, $log, $q, $state,
                                                 ownerService, deviceService, channelService) {
+
+      $scope.openNewApi = function() {
+          $state.go('connector.advanced.channels.editor', { name: 'new' });
+      };
 
     });

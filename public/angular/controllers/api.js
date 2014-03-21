@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('e2eApp')
-    .controller('apiController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state,
-                                           channelService, userService) {
+    .controller('apiController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
         $scope.user_channel = {};
@@ -151,8 +150,7 @@ angular.module('e2eApp')
         });
 
     })
-    .controller('apiEditorController', function($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state,
-                                                channelService, userService) {
+    .controller('apiEditorController', function($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.isEdit = false;
         $scope.isNew = false;
@@ -195,7 +193,7 @@ angular.module('e2eApp')
                 if(data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
-                    $state.go('connector.channels.editor', { name: data.name });
+                    $state.go('connector.advanced.channels.editor', { name: data.name });
                 }
             });
 

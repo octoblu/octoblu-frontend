@@ -2,6 +2,7 @@ module.exports = function(app, passport) {
   // Import models
 	var User    = require('./models/user');
 	var Api     = require('./models/api');
+  var Device  = require('./models/device');
 
   // Setup config
 
@@ -124,15 +125,36 @@ module.exports = function(app, passport) {
 
 		});
 
+
+    // // Get elastic query
+    // app.get('/api/elastic/query/:query', function(req, res) {
+    //
+    //   elastic.search({
+    //     index: 'log',
+    //     q: req.params.query
+    //   }, function (error, response) {
+    //     console.log('error', error);
+    //     console.log('response', response);
+    //     try{
+    //       data = JSON.parse(response);
+    //     } catch(e){
+    //       data = {};
+    //     }
+    //     res.json(data);
+    //   });
+    //
+    // });
+
 		// Get devices by owner
 		app.get('/api/owner/gateways/:id/:token', function(req, res) {
 			console.log('Return Devices? ', req.query.devices);
+      console.log('ip address ', req.ip)
 			request.get('http://skynet.im/mydevices/' + req.params.id,
 		  	{qs: {"token": req.params.token}}
 		  , function (error, response, body) {
 					myDevices = JSON.parse(body);
 					myDevices = myDevices.devices
-					console.log(myDevices);
+					console.log('myDevices', myDevices);
 					var gateways = []
 					for (var i in myDevices) {
 						if(req.query.devices == 'true'){
@@ -144,14 +166,15 @@ module.exports = function(app, passport) {
 
 						}
 					}
-					console.log(gateways);
+					console.log('My Devices ', gateways);
 					request.get('http://skynet.im/devices',
-				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner" : { "$exists" : false } }}
+				  	{qs: {"ipAddress": req.ip, "type":"gateway", "owner": null }}
 				  , function (error, response, body) {
+              console.log(body);
 				  		ipDevices = JSON.parse(body);
 				  		devices = ipDevices.devices
 
-					console.log('local gateways',devices);
+					    console.log('local gateways',devices);
 
 			  			// if(devices) {
 			  			if(true) {
@@ -201,13 +224,45 @@ module.exports = function(app, passport) {
 							        "method": "getPlugins"
 							      }, function (plugins) {
 							      	console.log('plugins:', plugins.result);
-							        gateways[n].plugins = plugins.result;
+                      gateways[n].plugins = plugins.result;
 											next(error, gateways[n]);
 										});
 
 							    }, function(err, gateways) {
 
-										// console.log('gateways subdevices check');
+
+
+                    // // Lookup plugins on each gateway
+                    // async.times(gatewaysLength, function(n, next){
+                    //   conn.gatewayConfig({
+                    //     "uuid": gateways[n].uuid,
+                    //     "token": gateways[n].token,
+                    //     "method": "getPlugins"
+                    //   }, function (plugins) {
+                    //     console.log('plugins:', plugins.result);
+                    //
+                    //     // Get default options for each plugin
+                    //     for (var p in plugins) {
+                    //       conn.gatewayConfig({
+                    //         "uuid": gateways[n].uuid,
+                    //         "token": gateways[n].token,
+                    //         "method": "getDefaultOptions",
+                    //         "name": p.name
+                    //       }, function (pluginOptions) {
+                    //         console.log('plugin options:', pluginOptions);
+                    //         gateways[n].plugins.options = pluginOptions;
+                    //         next(error, gateways[n]);
+                    //       });
+                    //     }
+                    //
+                    //     gateways[n].plugins = plugins.result;
+                    //     next(error, gateways[n]);
+                    //   });
+                    //
+                    // }, function(err, gateways) {
+
+
+                    // console.log('gateways subdevices check');
 
 										// Lookup subdevices on each gateway
 										async.times(gateways.length, function(n, next){
@@ -346,7 +401,14 @@ module.exports = function(app, passport) {
 			});
 		});
 
-		// List of active API channels
+    // List of all Smart Devices
+    app.get('/api/smartdevices', function(req, res) {
+      Device.find({enabled: true}, function (err, apis) {
+          if (err) { res.send(err); } else { res.json(apis); }
+      });
+    });
+
+// List of active API channels
 		app.get('/api/channels/:uuid/active', function(req, res) {
 			var uuid = req.params.uuid;
 			User.findOne({ $or: [
