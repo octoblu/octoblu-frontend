@@ -678,13 +678,23 @@ module.exports = function(app, passport) {
 			}
 
 			// should be oauth2 at this point..
-			var OAuth2 = require('simple-oauth2')({
-			  clientID: api.oauth.clientId,
-			  clientSecret: api.oauth.secret,
-			  site: api.oauth.baseURL,
-			  authorizationPath: api.oauth.authTokenPath,
-			  tokenPath: api.oauth.authTokenPath
-			});
+			var OAuth2;
+			if(api.name=='Dropbox') {
+				OAuth2 = require('simple-oauth2')({
+				  clientID: api.oauth.clientId,
+				  clientSecret: api.oauth.secret,
+				  site: api.oauth.baseURL,
+				  authorizationPath: api.oauth.authTokenPath,
+				  tokenPath: api.oauth.accessTokenPath
+				});
+			} else {
+				OAuth2 = require('simple-oauth2')({
+				  clientID: api.oauth.clientId,
+				  clientSecret: api.oauth.secret,
+				  site: api.oauth.baseURL,
+				  tokenPath: api.oauth.authTokenPath
+				});
+			}
 			return OAuth2;
 		};
 
@@ -787,7 +797,6 @@ module.exports = function(app, passport) {
 					  scope: '',
 					  state: '3(#0/!~'
 					});
-					console.log(api.oauth.authTokenPath);
 					console.log('redirect to: '+authorization_uri);
 					res.redirect(authorization_uri);
 
