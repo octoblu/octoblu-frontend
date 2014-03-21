@@ -5,3 +5,21 @@
     </p>
    <button class="btn btn-primary" ng-click="addNewHub()"><i class="fa fa-home fa-lg"></i>Add Hub</button>
 </div>
+<div class="row">
+    <div class="divScroll">
+        <div class="scrollWrapper">
+            <div>
+                <h3><i class='icon-off'></i> Available Devices</h3>
+                <ul class="channellist">
+                    <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
+                        <div class="channel_icon-grid-view mod-index-0 pop-over"
+                             data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
+                            <a disabled><img ng-src="{{smartDevice.logo}}" width="70" height="70"/></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -11,6 +11,7 @@ angular.module('e2eApp')
             host: elasticSearchConfig.host + ':' + elasticSearchConfig.port
         });
 
+
         this.search = function (queryText, callback) {
             service.client.search({
                 q: queryText,

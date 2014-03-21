@@ -20,19 +20,21 @@ angular.module('e2eApp')
 
         this.getAvailable = function(uuid, callback) {
             $http.get('/api/channels/'+uuid+'/available', { cache: false})
-                .success(function(data) { callback(data); })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                    callback({});
+                .success(function(data) { callback(null, data); })
+                .error(function(error) {
+                    console.log('Error: ' + error);
+                    callback(error, null);
                 });
         };
 
         this.getSmartDevices = function(callback) {
-            $http.get('/api/smartdevices/', { cache: true})
-                .success(function(data) { callback(data); })
-                .error(function(data) {
-                    console.log('Error: ', data);
-                    callback({});
+            $http.get('/api/smartdevices/', { cache: false})
+                .success(function(data) {
+                    callback(null, data);
+                })
+                .error(function(error) {
+                    console.log('Error: ', error);
+                    callback( error, null );
                 });
         };
 

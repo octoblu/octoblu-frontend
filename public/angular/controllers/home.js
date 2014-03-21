@@ -11,7 +11,10 @@ angular.module('e2eApp')
         }
 
         channelService.getList(function(channelData) {
-          channelService.getSmartDevices(function(deviceData) {
+          channelService.getSmartDevices(function(error, deviceData) {
+              if(error){
+                  console.log('error: ' + error);
+              }
               // $scope.availableChannels = channelData;
               // $scope.availableDevices = deviceData;
               $scope.availableChannels = channelData.concat(deviceData);

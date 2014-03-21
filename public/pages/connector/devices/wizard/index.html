@@ -1,26 +1,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Add a new Hub</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-home fa-2x"></i>Add a new Hub</h4>
             </div>
             <div class="modal-body">
                 <div ng-if="currentState.name === 'instructions'">
-                    <h2>Instructions</h2>
+                    <h3>Instructions</h3>
 
                 </div>
                 <div ng-if="currentState.name === 'find-hub'">
-                    <h2>Find Hub</h2>
+                    <h3>Find Hub</h3>
 
                 </div>
                 <div ng-if="currentState.name === 'edit-hub'">
-                    <h2>Edit Hub</h2>
+                    <h3>Edit Hub</h3>
 
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
-                <button type="button" id="wizard-previous-btn" class="btn btn-success" ng-click="previous(currentState)">Previous</button>
-                <button id="wizard-next-btn" type="button" class="btn btn-success" ng-click="next(currentState)">Next</button>
+                <button type="button" id="wizard-cancel-btn" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()"><i class="fa fa-times"></i>&nbsp;&nbsp;Close</button>
+                <button type="button" id="wizard-previous-btn" class="btn btn-default" ng-click="previous(currentState)"><i class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;Previous</button>
+                <button id="wizard-next-btn" type="button" class="btn btn-default" ng-click="next(currentState)">Next&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i></button>
+                <button id="wizard-finish-btn" type="button" class="btn btn-success" disabled="disabled"><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</button>
             </div>
         </div>
 

@@ -1,5 +1,5 @@
 angular.module('e2eApp')
-    .controller('DeviceController', function ($rootScope, $scope, $state,  $http, $cookies, $modal, userService, ownerService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $state,  $http, $cookies, $modal, channelService, userService, ownerService ) {
         var ownerId = $cookies.skynetuuid;
         var token = $cookies.skynettoken;
         //check if they are authenticated, if they arent signed in route them to login
@@ -10,12 +10,19 @@ angular.module('e2eApp')
 
       $scope.gateways = [];
 
+        channelService.getSmartDevices(function(error, data){
+             if(error){
+                 console.log('Error: ' + error);
+             }
+            $scope.smartDevices = data;
+        });
+
       $scope.addNewHub = function(){
           console.log('clicking add new hub');
           var modalInstance =  $modal.open({
               templateUrl: 'pages/connector/devices/wizard/index.html',
               backdrop : 'static',
-              scope : this,
+              scope : $scope,
               keyboard : false,
               controller: 'DeviceWizardController',
               resolve: {
