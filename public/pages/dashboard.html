@@ -1,26 +1,115 @@
-<section id='content'>
-  <div class='container'>
-    <div class='row' id='content-wrapper'>
-      <div class='col-xs-12'>
-        
-        <div class='page-header page-header-with-buttons'>
-          <h1 class='pull-left'>
-            <i class='icon-dashboard'></i>
-            <span>Dashboard - {{user}}</span>              
-          </h1>
+<style type="text/css">
+    .dashboard-panel {
+        text-align: center;
+    }
+
+    .dashboard-panel h1 {
+        text-decoration: inherit;
+        color: inherit;
+        margin-bottom: 20px;
+    }
+</style>
+
+<section id="content">
+    <div class="container">
+        <div class="row" id="content-wrapper">
+            <div class="col-xs-12">
+                <div class="page-header page-header-with-buttons">
+                    <h1 class="pull-left">
+                        <i class="icon-dashboard"></i>
+                        <span>Dashboard - {{user}}</span>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!--<div class="pull-right" style="margin-top: -5px;">-->
+                            <!--<button class="btn btn-sm btn-default">Upgrade Plan</button>-->
+                        <!--</div>-->
+                        <div style="margin-bottom: 30px;">
+                            <strong>Your UUID is:</strong> {{skynetuuid}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Devices</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="" ui-sref="connector.devices">
+                                <div class="panel-body">
+                                    <div ng-switch="!!devices ? devices.length : 0" >
+                                        <h1>
+                                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                                            <div ng-switch-default>{{devices.length}}</div>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Active Channels</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="" ui-sref="connector.channels.index">
+                                <div class="panel-body">
+                                    <div ng-switch="!!channels ? channels.length : 0" >
+                                        <h1>
+                                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                                            <div ng-switch-default>{{channels.length}}</div>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Monthly Messages</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="" ui-sref="connector.devices">
+                                <div class="panel-body">
+                                    <div ng-switch="!!events ? events.total : -1" >
+                                        <h1>
+                                            <div ng-switch-when="-1"><i class="fa fa-cog fa-spin"></i></div>
+                                            <div ng-switch-default>{{events.total}}</div>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row">-->
+                    <!--<div class="col-sm-11">-->
+                        <!--<div>Subscription - Unlimited:</div>-->
+                        <!--<div class="progress progress-striped">-->
+                            <!--<div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">-->
+                                <!--<span class="sr-only">20% Complete</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row col-sm-1" style="margin-top: 15px;">-->
+                        <!--<button class="btn btn-sm btn-default">Upgrade</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="row">
+                    <div class="col-sm-12 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Real-time Device Activity</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="text-align: left;">
+                                <div id="chartContainer" style="height: 300px; width:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div><br /><br />
-
-
-        <div id="chartContainer" style="height: 300px; width:100%;"></div>
-        <br />
-        <div class='box-content box-statistic'>
-          <h3 class='title text-primary'><a href="" ui-sref="connector.devices">{{devices.length}}</a></h3>
-          <small>Devices</small>
-          <div class='text-primary icon-lightbulb align-right'></div>
-        </div>
-
-      </div>
     </div>
-  </div>
 </section>
+

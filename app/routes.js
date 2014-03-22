@@ -1,3 +1,5 @@
+var apiUser = require('./controllers/user');
+
 module.exports = function(app, passport) {
   // Import models
 	var User    = require('./models/user');
@@ -100,6 +102,8 @@ module.exports = function(app, passport) {
 		      }
 		    });
 		});
+
+        app.get('/api/user/:id/events', apiUser.eventCount);
 
 		// Get devices by owner
 		app.get('/api/owner/devices/:id/:token', function(req, res) {

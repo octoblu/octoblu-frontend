@@ -1,5 +1,15 @@
 angular.module('e2eApp')
     .service('userService', function ($http) {
+        this.getEvents = function(uuid, callback) {
+            $http.get('/api/user/' + uuid + '/events')
+                .success(function(data) {
+                    callback(data);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                    callback({});
+                });
+        };
 
         this.getUser = function(user, callback) {
             $http.get('/api/user/' + user)
