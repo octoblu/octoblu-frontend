@@ -11,7 +11,7 @@ exports.eventCount = function (req, res) {
         .find({
             owner: req.params.id,
             eventCode: {
-                $gte: 200,
+                $gte: 300,
                 $lt: 400
             },
             timestamp: {
@@ -36,7 +36,7 @@ exports.eventCount = function (req, res) {
 //            },
 //            cond: {
 //                owner: req.params.id,
-//                eventCode: { $gte: 200, $lt: 400 },
+//                eventCode: { $gte: 300, $lt: 400 },
 //                timestamp:  {
 //                    $gte: ISODate(''),
 //                    $lt: new Date().toISOString()
