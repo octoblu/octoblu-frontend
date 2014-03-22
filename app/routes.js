@@ -535,18 +535,27 @@ module.exports = function(app, passport) {
 			    	} else {
 
                         var userResults = {};
-
-                        //Set proper name
+                        userResults.prefix = '';
+                        userResults.avatar = false;
+                        userResults.email = '';
+                        
+                        //Set standardized user info
                         if(user.local && user.local.length){
+                            userResults.avatar = 'http://avatars.io/email/' + user.local.email.toString();
+                            userResults.email = user.local.email.toString();
                             userResults.type = 'local';
                             userResults.name = user.local.username.toString();
                         }else if(user.twitter){
+                            userResults.prefix = '@';
                             userResults.type = 'twitter';
                             userResults.name = user.twitter.username.toString();
                         }else if(user.facebook){
+                            userResults.avatar = 'https://graph.facebook.com/' + user.facebook.id.toString();
                             userResults.type = 'facebook';
                             userResults.name = user.facebook.name.toString();
                         }else if(user.google){
+                            userResults.prefix = '+';
+                            userResults.avatar = 'https://plus.google.com/s2/photos/profile/' + user.google.id.toString();
                             userResults.type = 'google';
                             userResults.name = user.google.name.toString();
                         }
