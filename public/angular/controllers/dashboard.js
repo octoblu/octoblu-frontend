@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('e2eApp')
-    .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location, ownerService) {
+    .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location, ownerService, channelService, userService) {
         $scope.message = 'Contact page content pending.';
 
         $rootScope.checkLogin($scope, $http, $injector, false, function () {
@@ -14,6 +14,14 @@ angular.module('e2eApp')
                 'uuid': $scope.skynetuuid,
                 'token': $scope.skynettoken
             };
+
+            channelService.getActive($scope.skynetuuid, function (data) {
+                $scope.channels = data;
+            });
+
+            userService.getEvents($scope.skynetuuid, function (data) {
+                $scope.events = data;
+            });
 
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e;

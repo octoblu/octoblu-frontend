@@ -39,8 +39,27 @@
                             <a href="" ui-sref="connector.devices">
                                 <div class="panel-body">
                                     <div ng-switch="!!devices ? devices.length : 0" >
-                                        <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
-                                        <div ng-switch-default><h1>{{devices.length}}</h1></div>
+                                        <h1>
+                                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                                            <div ng-switch-default>{{devices.length}}</div>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Active Channels</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="" ui-sref="connector.channels.index">
+                                <div class="panel-body">
+                                    <div ng-switch="!!channels ? channels.length : 0" >
+                                        <h1>
+                                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                                            <div ng-switch-default>{{channels.length}}</div>
+                                        </h1>
                                     </div>
                                 </div>
                             </a>
@@ -53,24 +72,11 @@
                         <div class="panel panel-default">
                             <a href="" ui-sref="connector.devices">
                                 <div class="panel-body">
-                                    <div ng-switch="!!devices ? devices.length : 0" >
-                                        <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
-                                        <div ng-switch-default><h1>{{devices.length}}</h1></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 dashboard-panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Active Channels</h3>
-                        </div>
-                        <div class="panel panel-default">
-                            <a href="" ui-sref="connector.devices">
-                                <div class="panel-body">
-                                    <div ng-switch="!!devices ? devices.length : 0" >
-                                        <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
-                                        <div ng-switch-default><h1>{{devices.length}}</h1></div>
+                                    <div ng-switch="!!events ? events.total : -1" >
+                                        <h1>
+                                            <div ng-switch-when="-1"><i class="fa fa-cog fa-spin"></i></div>
+                                            <div ng-switch-default>{{events.total}}</div>
+                                        </h1>
                                     </div>
                                 </div>
                             </a>

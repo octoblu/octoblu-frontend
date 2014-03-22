@@ -1,3 +1,5 @@
+var apiUser = require('./controllers/user');
+
 module.exports = function(app, passport) {
   // Import models
 	var User    = require('./models/user');
@@ -99,6 +101,8 @@ module.exports = function(app, passport) {
 		      }
 		    });
 		});
+
+        app.get('/api/user/:id/events', apiUser.eventCount);
 
 		// Get devices by owner
 		app.get('/api/owner/devices/:id/:token', function(req, res) {
@@ -831,7 +835,7 @@ module.exports = function(app, passport) {
 				} else {
 					req.session.oauth.verifier = req.query.oauth_verifier;
 					var oauth = req.session.oauth;
-					
+
 					var oa = getCustomApiOAuthInstance(req, api);
 					oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
 						function(error, oauth_access_token, oauth_access_token_secret, results){

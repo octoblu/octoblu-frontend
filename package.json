@@ -7,8 +7,10 @@
   "dependencies": {
     "express": "~3.4.4",
     "mongoose": "~3.8.1",
+    "mongojs": "~0.10.1",
     "safe_datejs": "~0.0.1",
     "oauth": "~0.9.11",
+    "moment": "~2.5.1",
     "simple-oauth2": "~0.1.9",
     "passport": "~0.1.17",
     "passport-http-oauth": "~0.1.3",
