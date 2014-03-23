@@ -154,11 +154,9 @@ module.exports = function (app) {
 //                res.json(data);
 //            });
 //    });
-
     app.get('/api/user_api/:id/:token', function(req, res) {
         var uuid = req.params.id,
             token = req.params.token;
-
         User.findOne({ $or: [
             {"local.skynetuuid" : uuid, "local.skynettoken" : token},
             {"twitter.skynetuuid" : uuid, "twitter.skynettoken" : token},
@@ -176,22 +174,31 @@ module.exports = function (app) {
                     userResults.prefix = '';
                     userResults.avatar = false;
                     userResults.email = '';
-
+                    //Fix for obj.length since that was returning the length of non-exist values.
+                    var checkLength = function(obj){
+                        var i = 0;
+                        for(var x in obj){
+                            if(obj[x] && obj.hasOwnProperty(x) && typeof obj[x] !== 'function'){
+                                i++;
+                            }
+                        }
+                        return i;
+                    };
                     //Set standardized user info
-                    if(user.local && _.size(user.local)){
+                    if(user.local && checkLength(user.local)){
                         userResults.email = user.local.email || '';
                         userResults.avatar = 'http://avatars.io/email/' + userResults.email;
                         userResults.type = 'local';
                         userResults.name = user.local.username || '';
-                    }else if(user.twitter && _.size(user.twitter)){
+                    }else if(user.twitter && checkLength(user.twitter)){
                         userResults.prefix = '@';
                         userResults.type = 'twitter';
                         userResults.name = user.twitter.username || '';
-                    }else if(user.facebook && _.size(user.facebook)){
+                    }else if(user.facebook && checkLength(user.facebook)){
                         userResults.avatar = 'https://graph.facebook.com/' + user.facebook.id;
                         userResults.type = 'facebook';
                         userResults.name = user.facebook.name;
-                    }else if(user.google && _.size(user.google)){
+                    }else if(user.google && checkLength(user.google)){
                         userResults.prefix = '+';
                         userResults.avatar = 'https://plus.google.com/s2/photos/profile/' + user.google.id;
                         userResults.type = 'google';
