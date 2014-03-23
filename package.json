@@ -12,18 +12,14 @@
     "lodash-node": "~2.4.1",
     "marked": "*",
     "mongoose": "~3.8.1",
-<<<<<<< HEAD
     "mongoose-pagination": "~1.0.0",
     "mongoose-slug": "~1.2.0",
     "mongoose-timestamps": "0.0.1",
     "oauth": "~0.9.11",
-=======
     "mongojs": "~0.10.1",
     "safe_datejs": "~0.0.1",
-    "oauth": "~0.9.11",
     "moment": "~2.5.1",
     "simple-oauth2": "~0.1.9",
->>>>>>> remotes/origin/develop
     "passport": "~0.1.17",
     "passport-bitly": "~0.1.0",
     "passport-facebook": "~1.0.2",
@@ -42,19 +38,9 @@
     "passport-vimeo": "~0.1.2",
     "request": "*",
     "rest": "^1.0.3",
-    "safe_datejs": "~0.0.1",
-    "simple-oauth2": "~0.1.9",
     "skynet": "*",
-<<<<<<< HEAD
-    "when": "^3.0.1"
-=======
-    "mongoose-slug": "~1.2.0",
-    "mongoose-timestamps": "0.0.1",
-    "lodash-node": "~2.4.1",
-    "mongoose-pagination": "~1.0.0",
-    "marked": "*",
+    "when": "^3.0.1",
     "underscore": "~1.6.0"
->>>>>>> remotes/origin/develop
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",
