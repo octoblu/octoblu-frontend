@@ -3,6 +3,7 @@
 var moment = require('moment'),
     events = require('../lib/skynetdb').collection('events'),
     mongoose = require('mongoose'),
+    _ = require('underscore'),
     Api = mongoose.model('Api'),
     User = mongoose.model('User');
 
@@ -156,7 +157,7 @@ module.exports = function (app) {
 
     app.get('/api/user_api/:id/:token', function(req, res) {
         var uuid = req.params.id,
-            token = req.params.token
+            token = req.params.token;
 
         User.findOne({ $or: [
             {"local.skynetuuid" : uuid, "local.skynettoken" : token},
@@ -177,24 +178,24 @@ module.exports = function (app) {
                     userResults.email = '';
 
                     //Set standardized user info
-                    if(user.local && user.local.length){
-                        userResults.avatar = 'http://avatars.io/email/' + user.local.email.toString();
-                        userResults.email = user.local.email.toString();
+                    if(user.local && _.size(user.local)){
+                        userResults.email = user.local.email || '';
+                        userResults.avatar = 'http://avatars.io/email/' + userResults.email;
                         userResults.type = 'local';
-                        userResults.name = user.local.username.toString();
-                    }else if(user.twitter){
+                        userResults.name = user.local.username || '';
+                    }else if(user.twitter && _.size(user.twitter)){
                         userResults.prefix = '@';
                         userResults.type = 'twitter';
-                        userResults.name = user.twitter.username.toString();
-                    }else if(user.facebook){
-                        userResults.avatar = 'https://graph.facebook.com/' + user.facebook.id.toString();
+                        userResults.name = user.twitter.username || '';
+                    }else if(user.facebook && _.size(user.facebook)){
+                        userResults.avatar = 'https://graph.facebook.com/' + user.facebook.id;
                         userResults.type = 'facebook';
-                        userResults.name = user.facebook.name.toString();
-                    }else if(user.google){
+                        userResults.name = user.facebook.name;
+                    }else if(user.google && _.size(user.google)){
                         userResults.prefix = '+';
-                        userResults.avatar = 'https://plus.google.com/s2/photos/profile/' + user.google.id.toString();
+                        userResults.avatar = 'https://plus.google.com/s2/photos/profile/' + user.google.id;
                         userResults.type = 'google';
-                        userResults.name = user.google.name.toString();
+                        userResults.name = user.google.name || '';
                     }
 
                     //Admin results
