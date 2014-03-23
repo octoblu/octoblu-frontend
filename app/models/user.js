@@ -1,7 +1,8 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
+var mongoose = require('mongoose'),
+    bcrypt = require('bcrypt-nodejs'),
+    moment = require('moment');
 
 // define the schema for our user model
 var UserSchema = mongoose.Schema({
@@ -72,8 +73,8 @@ UserSchema.methods.findApiByName = function(name) {
 
 UserSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secret, verifier, custom_tokens) {
     if (this.api == null && this.api == nil) { this.api = [];}
-    var today = new Date();
-    var jsToday = today.AsDateJs();
+
+    var isoDate = moment().format();
 
     for (var l = 0; l < this.api.length; l++) {
         if (this.api[l].name === name) {
@@ -83,7 +84,7 @@ UserSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secre
             this.api[l].token = token;
             this.api[l].secret = secret;
             this.api[l].verifier = verifier;
-            this.api[l].updated = jsToday;
+            this.api[l].updated = isoDate;
             this.api[l].custom_tokens = custom_tokens;
 
             return;
@@ -99,7 +100,7 @@ UserSchema.methods.addOrUpdateApiByName = function(name, type, key, token, secre
         secret: secret,
         verifier: verifier,
         custom_tokens: custom_tokens,
-        updated: jsToday
+        updated: isoDate
     };
 
     console.log('adding');

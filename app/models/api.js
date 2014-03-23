@@ -27,6 +27,9 @@ var ApiSchema = mongoose.Schema({
     application: { base: String, resources: [] }
 });
 
+ApiSchema.index({ name: 1 });
+ApiSchema.index({ name: 1, enabled: 1 });
+
 mongoose.model('Api', ApiSchema);
 
 module.exports = ApiSchema;

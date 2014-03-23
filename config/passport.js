@@ -15,8 +15,7 @@ var FitBitStrategy = require('passport-fitbit').Strategy
 var RdioStrategy     = require('passport-rdio').Strategy
 
 // load up the user model
-var User       = require('../app/models/user');
-
+var mongoose = require('mongoose');
 
 module.exports = function(env, passport) {
 
@@ -36,6 +35,8 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
+        var User = mongoose.model('User');
+
         User.findById(id, function(err, user) {
             done(err, user);
         });
@@ -51,6 +52,8 @@ var configAuth = require('./auth')(env); // use this one for testing
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
+        var User = mongoose.model('User');
+
         // asynchronous
         process.nextTick(function() {
             User.findOne({ 'local.email' :  email }, function(err, user) {
@@ -93,6 +96,7 @@ var configAuth = require('./auth')(env); // use this one for testing
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
+        var User = mongoose.model('User');
 
         // asynchronous
         process.nextTick(function() {
@@ -151,6 +155,7 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     },
     function(req, token, refreshToken, profile, done) {
+        var User = mongoose.model('User');
 
         // asynchronous
         process.nextTick(function() {
@@ -227,6 +232,7 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     },
     function(req, token, tokenSecret, profile, done) {
+        var User = mongoose.model('User');
 
         // asynchronous
         process.nextTick(function() {
@@ -302,6 +308,7 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     },
     function(req, token, refreshToken, profile, done) {
+        var User = mongoose.model('User');
 
         // asynchronous
         process.nextTick(function() {
