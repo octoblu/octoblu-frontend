@@ -1,6 +1,7 @@
 'use strict';
 
-var moment = require('moment'),
+var _ = require('underscore'),
+    moment = require('moment'),
     events = require('../lib/skynetdb').collection('events'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
@@ -129,30 +130,57 @@ module.exports = function (app) {
             });
     });
 
-//    app.get('/api/user/:id/events/graph', function (req, res) {
-//        events
-//            .group({
-//                keyf: function (doc) {
-//                    var date = new Date(doc.timestamp);
-//                    var dateKey = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + '';
-//                    return { 'day': dateKey };
-//                },
-//                cond: {
-//                    owner: req.params.id,
-//                    eventCode: { $gte: 300, $lt: 400 },
-//                    timestamp:  {
-//                        $gte: ISODate(''),
-//                        $lt: new Date().toISOString()
-//                    }
-//                },
-//                initial: { count: 0 },
-//                reduce: function (obj, prev) {
-//                    prev.count++;
-//                }
-//            }, function (err, data) {
-//                res.json(data);
-//            });
-//    });
+    app.get('/api/user/:id/events/graph', function (req, res) {
+        var baseDate = moment();
+        var startDate = moment({ year: baseDate.year(), month: baseDate.month(), date: 1 });
+        var endDate = moment(startDate).add('months', 1).date(0);
+
+        events
+            .group({
+                keyf: function (doc) {
+                    var date = new Date(doc.timestamp);
+                    var dateKey =  date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+                    return { 'date': dateKey };
+                },
+                cond: {
+                    owner: req.params.id,
+                    //eventCode: { $gte: 300, $lt: 400 },
+                    timestamp:  {
+                        $gte: startDate.format(),
+                        $lt: endDate.format()
+                    }
+                },
+                initial: { count: 0 },
+                reduce: function (curr, result) {
+                    result.count++;
+
+                    if (!result[curr.eventCode]) {
+                        result[curr.eventCode] = 0;
+                    }
+
+                    result[curr.eventCode]++;
+                }
+            }, function (err, data) {
+                var curDate = moment();
+                var output = {};
+
+
+                res.json(_.map(_.range(1, endDate.date() + 1), function (day) {
+                    var curDate = moment({ year: baseDate.year(), month: baseDate.month(), day: day });
+
+                    var item = _.findWhere(data, { date: curDate.format('YYYY-MM-DD') });
+
+                    if (!item) {
+                        item = {
+                            date: curDate.format('YYYY-MM-DD'),
+                            total: 0
+                        };
+                    }
+
+                    return _.extend(item, { day: curDate.format('M/D') });
+                }));
+            });
+    });
 
     app.get('/api/user_api/:id/:token', function(req, res) {
         var uuid = req.params.id,
