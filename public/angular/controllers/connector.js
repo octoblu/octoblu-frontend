@@ -31,7 +31,10 @@ angular.module('e2eApp')
                 });
 
                 // Get user gateways (true param specifies inclusion of devices)
-                ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(data) {
+                ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(error, data) {
+                    if(error){
+                        console.log('Error'  + error);
+                    }
                     $scope.editGatewaySection = false;
                     $scope.gateways = data.gateways;
                 });

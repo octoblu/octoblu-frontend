@@ -66,9 +66,40 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 controller: 'DeviceController'
             })
             .state('connector.devices.wizard', {
-                templateUrl: 'pages/connector/devices/wizard/index.html',
-                controller: 'DeviceWizardController',
 
+                controller: 'DeviceWizardController',
+                url : '/wizard',
+                onEnter: function($stateParams, $state, $modal) {
+                    $modal.open({
+                        templateUrl: "pages/connector/devices/wizard/index.html",
+                        resolve: {
+                        },
+                        controller: 'DeviceWizardController'
+                    }).result.then(function (result) {
+                            if (result) {
+                                return $state.transitionTo("connector.devices");
+                            }
+                        });
+                }
+            })
+            .state('connector.devices.wizard.instructions', {
+                controller : 'DeviceWizardController',
+                onEnter: function(){
+
+                },
+                onExit : function(){
+
+                }
+            })
+            .state('connector.devices.wizard.findhub', {
+                controller : 'DeviceWizardController',
+                templateUrl : '/pages/connector/devices/wizard/find-hub.html',
+                onEnter: function(){
+
+                },
+                onExit : function(){
+
+                }
             })
             .state('connector.channels', {
                 abstract: true,

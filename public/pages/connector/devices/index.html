@@ -1,9 +1,16 @@
-<div ng-if="gateways.length == 0" class="well">
-    <h2>No Hubs Found</h2>
-    <p>
-        You currently have no Hubs added to your account. Add a new Hub.
-    </p>
-   <button class="btn btn-primary" ng-click="addNewHub()"><i class="fa fa-home fa-lg"></i>Add Hub</button>
+
+<div ng-if="claimedGateways.length == 0" class="row">
+    <div class="well">
+        <h2>No Hubs Found</h2>
+        <p>
+            You currently have no Hubs added to your account. Add a new Hub.
+        </p>
+        <a class="btn btn-primary" ui-sref="connector.devices.wizard"><i class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Add Hub</a>
+    </div>
+</div>
+
+<div ng-if="claimedGateways.length &gt; 0" class="row">
+
 </div>
 <div class="row">
     <div class="divScroll">

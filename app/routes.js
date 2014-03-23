@@ -124,7 +124,17 @@ module.exports = function(app, passport) {
 
 
 		});
-
+        /**
+         *
+         * P - Find all the Gateways that you own
+         * P - Find all the unclaimed Gateways that are on your network
+         * For Each(Gateway){
+         *     find the plugins for the gateway
+         *     find the subdevices for the gateway
+         * }
+         *
+         * combine the list of gateways [owned and claimed] and return them
+         */
 
     // // Get elastic query
     // app.get('/api/elastic/query/:query', function(req, res) {
@@ -153,7 +163,7 @@ module.exports = function(app, passport) {
 		  	{qs: {"token": req.params.token}}
 		  , function (error, response, body) {
 					myDevices = JSON.parse(body);
-					myDevices = myDevices.devices
+					myDevices = myDevices.devices;
 					console.log('myDevices', myDevices);
 					var gateways = [] ;
 					for (var i in myDevices) {

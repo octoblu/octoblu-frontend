@@ -4,7 +4,10 @@ angular.module('e2eApp')
     .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, ownerService, messageService) {
         $rootScope.checkLogin($scope, $http, $injector, false, function(){
             // Get user gateways
-            ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(data) {
+            ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(error, data) {
+                if(error) {
+                    console.log('Error' + error);
+                }
                 console.log('Devices and Gateways', data);
                 $scope.devices = data.gateways;
             });
