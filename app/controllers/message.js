@@ -10,7 +10,7 @@ module.exports = function (app) {
             {form: {"devices": req.body.uuid, "message": req.body.message}}
             , function (error, response, body) {
                 console.log(body);
-                data = JSON.parse(body);
+                var data = JSON.parse(body);
                 res.json(data);
             });
 

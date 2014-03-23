@@ -175,7 +175,7 @@ module.exports = function (app, passport, config) {
                     {qs: {'email': user.facebook.email}}
                     , function (error, response, body) {
                         console.log(body);
-                        data = JSON.parse(body);
+                        var data = JSON.parse(body);
                         if(data.error){
 
                             // Add user to Skynet
@@ -184,7 +184,7 @@ module.exports = function (app, passport, config) {
                                 , function (error, response, body) {
                                     if(response.statusCode == 200){
 
-                                        data = JSON.parse(body);
+                                        var data = JSON.parse(body);
                                         User.findOne({_id: user._id}, function(err, user) {
                                             if(!err) {
                                                 user.facebook.skynetuuid = data.uuid.toString();
@@ -264,7 +264,7 @@ module.exports = function (app, passport, config) {
                     {qs: {'email': user.twitter.username + '@twitter'}}
                     , function (error, response, body) {
                         console.log(body);
-                        data = JSON.parse(body);
+                        var data = JSON.parse(body);
                         if(data.error){
 
                             // Add user to Skynet
@@ -273,7 +273,7 @@ module.exports = function (app, passport, config) {
                                 , function (error, response, body) {
                                     if(response.statusCode == 200){
 
-                                        data = JSON.parse(body);
+                                        var data = JSON.parse(body);
                                         User.findOne({_id: user._id}, function(err, user) {
                                             if(!err) {
                                                 user.twitter.skynetuuid = data.uuid.toString();
@@ -356,7 +356,7 @@ module.exports = function (app, passport, config) {
                                 , function (error, response, body) {
                                     if(response.statusCode == 200){
 
-                                        data = JSON.parse(body);
+                                        var data = JSON.parse(body);
                                         User.findOne({_id: user._id}, function(err, user) {
                                             if(!err) {
                                                 user.google.skynetuuid = data.uuid.toString();

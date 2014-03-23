@@ -15,7 +15,7 @@ module.exports = function (app) {
 //            console.log('response', response);
 //
 //            try {
-//                data = JSON.parse(response);
+//                var data = JSON.parse(response);
 //            } catch(e){
 //            }
 //

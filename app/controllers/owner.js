@@ -9,7 +9,7 @@ module.exports = function (app, conn) {
         // request.get('http://skynet.im/devices',
         //  	{qs: {'owner': req.params.id}}
         //  , function (error, response, body) {
-        // 		data = JSON.parse(body);
+        // 		var data = JSON.parse(body);
         //    	res.json(data);
         // });
 
@@ -69,7 +69,7 @@ module.exports = function (app, conn) {
                             async.times(devicesLength, function(n, next){
                                 request.get('http://skynet.im/devices/' + devices[n]
                                     , function (error, response, body) {
-                                        data = JSON.parse(body);
+                                        var data = JSON.parse(body);
                                         console.log(data);
                                         var dupeFound = false;
                                         console.log('looping', gateways);

@@ -8,7 +8,7 @@ module.exports = function (app) {
 
         request.get('http://skynet.im/devices/' + req.params.id
             , function (error, response, body) {
-                data = JSON.parse(body);
+                var data = JSON.parse(body);
                 res.json(data);
             });
 
@@ -31,7 +31,7 @@ module.exports = function (app) {
         request.post('http://skynet.im/devices',
             {form: deviceData}
             , function (error, response, body) {
-                data = JSON.parse(body);
+                var data = JSON.parse(body);
                 res.json(data);
             });
 
@@ -55,7 +55,7 @@ module.exports = function (app) {
         request.put('http://skynet.im/devices/' + req.body.uuid,
             {form: deviceData}
             , function (error, response, body) {
-                data = JSON.parse(body);
+                var data = JSON.parse(body);
                 res.json(data);
             });
 
@@ -67,7 +67,7 @@ module.exports = function (app) {
         request.del('http://skynet.im/devices/' + req.params.id,
             {form: {"token": req.params.token}}
             , function (error, response, body) {
-                data = JSON.parse(body);
+                var data = JSON.parse(body);
                 res.json(data);
             });
 

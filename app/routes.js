@@ -21,11 +21,6 @@ module.exports = function(app, passport) {
     conn.on('ready', function(data){
         console.log('SkyNet authentication: success');
 
-        // Initialize Models
-        require('./models/api');
-        require('./models/device');
-        require('./models/user');
-
         // Initialize Controllers
         require('./controllers/auth')(app, passport, config);
         require('./controllers/channel')(app);
