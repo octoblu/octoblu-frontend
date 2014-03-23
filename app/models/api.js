@@ -1,8 +1,9 @@
+'use strict';
+
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
 
 // define the schema for our user model
-var apiSchema = mongoose.Schema({
+var ApiSchema = mongoose.Schema({
 
     name             : String,
     owner            : String,
@@ -24,10 +25,13 @@ var apiSchema = mongoose.Schema({
         accessTokenPath  : String,
         authTokenPath    : String
     },
-    documentation    : String,
-    application      : { base: String, resources: [ ] }
-
+    documentation: String,
+    application: { base: String, resources: [] }
 });
 
-// create the model for users and expose it to our app
-module.exports = mongoose.model('Api', apiSchema);
+ApiSchema.index({ name: 1 });
+ApiSchema.index({ name: 1, enabled: 1 });
+
+mongoose.model('Api', ApiSchema);
+
+module.exports = ApiSchema;

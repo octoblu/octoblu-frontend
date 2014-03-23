@@ -15,8 +15,8 @@ var FitBitStrategy = require('passport-fitbit').Strategy
 var RdioStrategy     = require('passport-rdio').Strategy
 
 // load up the user model
-var User       = require('../app/models/user');
-
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
 module.exports = function(env, passport) {
 
@@ -93,7 +93,6 @@ var configAuth = require('./auth')(env); // use this one for testing
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     function(req, email, password, done) {
-
         // asynchronous
         process.nextTick(function() {
             // check if the user is already logged ina
@@ -151,7 +150,6 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     },
     function(req, token, refreshToken, profile, done) {
-
         // asynchronous
         process.nextTick(function() {
 
@@ -227,7 +225,6 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     },
     function(req, token, tokenSecret, profile, done) {
-
         // asynchronous
         process.nextTick(function() {
 
@@ -302,7 +299,6 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     },
     function(req, token, refreshToken, profile, done) {
-
         // asynchronous
         process.nextTick(function() {
 
