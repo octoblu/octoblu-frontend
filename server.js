@@ -12,6 +12,11 @@ var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
 skynetdb.connect(configDB.skynetUrl);
 
+// Initialize Models
+require('./app/models/api');
+require('./app/models/device');
+require('./app/models/user');
+
 require('./config/passport')(env, passport); // pass passport for configuration
 
 app.configure(function() {
