@@ -1,4 +1,7 @@
-var User = require('../models/user');
+'use strict';
+
+var mongoose = require('mongoose'),
+    User = mongoose.model('User');
 
 module.exports = function ( app, passport, config ) {
 	app.get('/logout', function(req, res) {
@@ -34,7 +37,6 @@ module.exports = function ( app, passport, config ) {
 
 	  })(req, res, next);
 	});		
-
 
 	app.post('/signup', function(req, res, next) {
 	  passport.authenticate('local-signup', function(err, user, info) {

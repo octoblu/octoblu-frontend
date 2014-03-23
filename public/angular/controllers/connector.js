@@ -315,7 +315,7 @@ angular.module('e2eApp')
                 };
 
                 $scope.addSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
-
+                    console.log('add device properties ', deviceProperties);
                     socket.emit('gatewayConfig', {
                         "uuid": gateway.uuid,
                         "token": gateway.token,
@@ -329,6 +329,17 @@ angular.module('e2eApp')
                 };
 
                 $scope.updateSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
+                  console.log('updating device properties ', deviceProperties);
+                  socket.emit('gatewayConfig', {
+                      "uuid": gateway.uuid,
+                      "token": gateway.token,
+                      "method": "updateSubdevice",
+                      "type": pluginName,
+                      "name": subDeviceName,
+                      "options": deviceProperties
+                  }, function (updateResult) {
+                      console.log(updateResult);
+                  });
                 };
 
                 $scope.deletePlugin = function(parent, idx){
@@ -430,7 +441,6 @@ angular.module('e2eApp')
                             $scope.plugins = $scope.selectedGateway.plugins;
                             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
 
-                                console.log("deviceProperties");
                                 console.log(deviceProperties);
                                 var properties = _.map(deviceProperties, function(deviceProperty){
                                     delete deviceProperty.$$hashKey;
@@ -482,7 +492,7 @@ angular.module('e2eApp')
                     });
 
                     modalInstance.result.then(function (response) {
-
+                        console.log(response);
                         $scope.subDeviceName = response.name;
                         $scope.plugin = response.plugin;
                         $scope.deviceProperties = response.deviceProperties;
@@ -498,6 +508,7 @@ angular.module('e2eApp')
 
 
                 $scope.openEditSubdevice = function (gateway, subdevice) {
+                    console.log(subdevice);
                     $scope.selectedGateway = gateway;
                     $scope.selectedSubdevice = subdevice;
                     for(var l=0;l<$scope.selectedGateway.plugins.length;l++) {
@@ -515,9 +526,20 @@ angular.module('e2eApp')
                             // $log.info($scope.selectedSubdevice);
                             $scope.gatewayName = $scope.selectedGateway.name;
                             $scope.plugins = $scope.selectedGateway.plugins;
+                            console.log(subdevice.options);
+                            var devicePairs = _.pairs(subdevice.options);
+                            $scope.deviceProperties2 = _.map(devicePairs, function(devicePair){
+                              return {
+                                "name" : devicePair[0],
+                                 "type" : 'string',
+                                 "required": true,
+                                 "value" : devicePair[1]
+                              }
+                            });
+                            console.log($scope.deviceProperties2);
                             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
                                 $scope._backup = false;
-
+                                console.log(deviceProperties);
                                 var properties = _.map(deviceProperties, function(deviceProperty){
                                     delete deviceProperty.$$hashKey;
                                     delete deviceProperty.type;
@@ -529,7 +551,7 @@ angular.module('e2eApp')
                                 _.forEach(deviceProperties, function(property){
                                     options[property.name] = property.value;
                                 });
-
+                                console.log('update', options);
                                 $modalInstance.close({
                                     "name" : subDeviceName,
                                     "plugin" : $scope.selectedSubdevice.type,

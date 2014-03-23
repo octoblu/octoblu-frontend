@@ -3,18 +3,15 @@
 angular.module('e2eApp')
     .controller('analyzerController',function ($rootScope, $scope, $http, $injector, $cookies, elasticService) {
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
-            var skynetUUID = $cookies.skynetuuid;
-            var skynetToken = $cookies.skynettoken;
-
-            console.log(skynetUUID);
-            console.log(skynetToken);
 
             $scope.search = function () {
+              $scope.results="searching...";
                 if ($scope.searchText !== undefined) {
-                    elasticService.search($scope.searchText, function (error, response) {
+                    elasticService.search($scope.searchText, $scope.skynetuuid, function (error, response) {
                         if (error) {
                             console.log(error);
                         } else {
+                          console.log(response);
                             $scope.results = response;
                         }
 
@@ -22,11 +19,10 @@ angular.module('e2eApp')
 
 
                 } else {
-                    //TODO - display a modal error
+                    $scope.results="";
 
                 }
 
             };
         });
     });
-

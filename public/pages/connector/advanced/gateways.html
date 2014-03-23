@@ -7,7 +7,7 @@
     <div class='box-header'>
       <div class='title pull-left'>
         <i class='icon-exchange'></i>
-        Gateways
+        Hubs
       </div>
       <div class='pull-right'>
 <!--         <button ng-click="editGateway = true" class="btn btn-primary" ng-hide="editGateway">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="col-sm-12" ng-show="editGatewaySection">
-      <h3>Edit Gateway</h3>
+      <h3>Edit Hubs</h3>
       <input class="form-control" name="gatewayName" ng-model="gatewayName" placeholder="Gateway Name (required)" ng-value="gatewayName" required id="gatewayName">
       <br />
       <div ng-repeat="key in keys" class="form-inline">
@@ -40,7 +40,7 @@
       <br /><br />
     </div>
 
-    <div ng-hide="gateways.length">No gateways found</div>
+    <div ng-hide="gateways.length">No Hubs found</div>
     <div class="panel panel-primary" ng-repeat="gateway in gateways">
       <div class="panel-heading">
         <h3 class="panel-title">
@@ -117,7 +117,7 @@
 <div>
   <script type="text/ng-template" id="subDeviceModal.html">
       <div class="modal-header">
-          <h3>Add Sub-Device to Gateway: {{selectedGateway.name}}</h3>
+          <h3>Add Sub-Device to Hub: {{selectedGateway.name}}</h3>
       </div>
       <div class="modal-body">
 
@@ -132,10 +132,10 @@
           <input type="text" ng-model="subDeviceName" placeholder="name" class="form-control" required><br />
           <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
             <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
-              <input type="text" ng-model="deviceProperty" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
             <div ng-if="deviceProperty.type == 'boolean'">
-              <input type="checkbox" ng-model="deviceProperty" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="checkbox" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@
 <div>
   <script type="text/ng-template" id="editSubDeviceModal.html">
       <div class="modal-header">
-          <h3>Edit Sub-Device on Gateway: {{selectedGateway.name}}</h3>
+          <h3>Edit Sub-Device on Hub: {{selectedGateway.name}}</h3>
       </div>
       <div class="modal-body">
 
@@ -164,18 +164,18 @@
         <div>
           <br /><br />
           <input type="text" ng-model="selectedSubdevice.name" placeholder="name" class="form-control" required><br />
-          <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
+          <div class="form-group" ng-repeat="deviceProperty in deviceProperties2">
             <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
-              <input type="text" ng-model="selectedSubdevice.options[deviceProperty.name]" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
             <div ng-if="deviceProperty.type == 'boolean'">
-              <input type="checkbox" ng-model="selectedSubdevice.options[deviceProperty.name]" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="checkbox" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="ok(subDeviceName, plugin, deviceProperties)">OK</button>
+          <button class="btn btn-primary" ng-click="ok(subDeviceName, plugin, deviceProperties2)">OK</button>
           <button class="btn" ng-click="cancel()">Cancel</button>
       </div>
   </script>
@@ -186,7 +186,7 @@
 <div>
   <script type="text/ng-template" id="pluginModal.html">
       <div class="modal-header">
-          <h3>Add Plugin to Gateway: {{selectedGateway.name}}</h3>
+          <h3>Add Plugin to Hub: {{selectedGateway.name}}</h3>
       </div>
       <div class="modal-body">
 
