@@ -161,10 +161,6 @@ module.exports = function (app) {
                     result[curr.eventCode]++;
                 }
             }, function (err, data) {
-                var curDate = moment();
-                var output = {};
-
-
                 res.json(_.map(_.range(1, endDate.date() + 1), function (day) {
                     var curDate = moment({ year: baseDate.year(), month: baseDate.month(), day: day });
 
