@@ -38,7 +38,8 @@
     "lodash-node": "~2.4.1",
     "mongoose-pagination": "~1.0.0",
     "marked": "*",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "cors": "*"
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",
