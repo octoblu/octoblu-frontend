@@ -59,7 +59,7 @@ module.exports = function (app, passport, config) {
     };
 
     var getCustomApiOAuthInstance = function(req, api) {
-        var OAuth = require('OAuth');
+        var OAuth = require('oauth');
         if(api.auth_strategry!='oauth' && !api.oauth) {return null;}
 
         if(api.oauth.version=='1.0') {
