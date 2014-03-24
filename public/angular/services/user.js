@@ -12,7 +12,7 @@ angular.module('e2eApp')
                                         'must': [
                                             {
                                                 'query_string': {
-                                                    'query': 'uuid:("' + uuid + '")'
+                                                    'query': '(fromUuid.owner = "' + uuid + '" OR toUuid.owner = "' + uuid + '")'
                                                 }
                                             },
 //                                            {
