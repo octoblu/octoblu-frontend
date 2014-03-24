@@ -62,7 +62,7 @@ angular.module('e2eApp')
             function(event, toState, toParams, fromState, fromParams){
                 event.preventDefault();
                 if(toState.name === 'connector.devices.wizard'){
-                    if($scope.availableHubs.length == 0){
+                    if($scope.availableHubs === undefined || $scope.availableHubs.length == 0){
                         $state.transitionTo($scope.wizardStates.instructions);
                     } else {
                         $state.transitionTo($scope.wizardStates.findhubs);

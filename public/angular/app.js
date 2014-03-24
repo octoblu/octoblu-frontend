@@ -71,7 +71,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 onEnter: function($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: "pages/connector/devices/wizard/index.html",
-                        controller: 'DeviceWizardController',
+                        controller: 'DeviceWizardController'
 //                        resolve :{
 //                            availableHubs : function($cookies, $resource){
 //                                var hubs = [];
