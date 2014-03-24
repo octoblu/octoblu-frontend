@@ -13,7 +13,7 @@
         <button class="btn btn-large btn-success" ng-click="setDeactivate()" >Active</button>
       </div>
 
-      <div class="pull-right" ng-show="isOAuth() && !isActivated()">
+      <div class="pull-right" ng-show="(isOAuth() || isNoAuth()) && !isActivated()">
         <button class="btn btn-large btn-primary" ng-click="authorize(channel)">Authenticate</button>
       </div>
 

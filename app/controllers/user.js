@@ -63,6 +63,38 @@ module.exports = function (app) {
 
     });
 
+    app.put('/api/user/:id/activate/:name', function(req, res) {
+
+        var key = req.body.key,
+            token = req.body.token,
+            custom_tokens = req.body.custom_tokens;
+
+        User.findOne({ $or: [
+            {'local.skynetuuid' : req.params.id},
+            {'twitter.skynetuuid' : req.params.id},
+            {'facebook.skynetuuid' : req.params.id},
+            {'google.skynetuuid' : req.params.id}
+        ]
+        }, function(err, user) {
+            if(!err) {
+                user.addOrUpdateApiByName(req.params.name, 'none', null, null, null, null, null);
+                user.save(function(err) {
+                    if(!err) {
+                        console.log(user);
+                        res.json(user);
+
+                    } else {
+                        console.log('Error: ' + err);
+                        res.json(user);
+                    }
+                });
+            } else {
+                res.json(err);
+            }
+        });
+
+    });
+
     app.delete('/api/user/:id/channel/:name', function(req, res) {
 
         User.findOne({ $or: [

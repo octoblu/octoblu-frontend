@@ -23,6 +23,18 @@ angular.module('e2eApp')
 
         };
 
+        this.activateNoAuthChannel = function(user, apiName, callback) {
+            $http.put('/api/user/' + user + '/activate/' + apiName)
+                .success(function(data) {
+                    callback(data);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                    callback({});
+                });
+
+        };
+
         this.saveConnection = function(uuid, name, key, token, custom_tokens, callback) {
 
             $http.put('/api/user/' + uuid+ '/channel/' + name, {key: key, token: token, custom_tokens: custom_tokens})
