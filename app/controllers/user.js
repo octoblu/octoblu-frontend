@@ -107,76 +107,127 @@ module.exports = function (app) {
 
     });
 
-    app.get('/api/user/:id/events', function (req, res) {
-        var curDate = moment();
-        var startDate = moment({ year: curDate.year(), month: curDate.month(), date: 1 });
-
-        events
-            .find({
-                owner: req.params.id,
-                eventCode: {
-                    $gte: 300,
-                    $lt: 400
-                },
-                timestamp: {
-                    $gte: startDate.format(),
-                    $lt: curDate.format()
-                }
-            })
-            .count(function (err, count) {
-                res.json({
-                    total: count
-                });
-            });
-    });
-
-    app.get('/api/user/:id/events/graph', function (req, res) {
-        var baseDate = moment();
-        var startDate = moment({ year: baseDate.year(), month: baseDate.month(), date: 1 });
-        var endDate = moment(startDate).add('months', 1).date(0);
-
-        events
-            .group({
-                keyf: function (doc) {
-                    var date = new Date(doc.timestamp);
-                    var dateKey =  date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-                    return { 'date': dateKey };
-                },
-                cond: {
-                    owner: req.params.id,
-                    //eventCode: { $gte: 300, $lt: 400 },
-                    timestamp:  {
-                        $gte: startDate.format(),
-                        $lt: endDate.format()
-                    }
-                },
-                initial: { count: 0 },
-                reduce: function (curr, result) {
-                    result.count++;
-
-                    if (!result[curr.eventCode]) {
-                        result[curr.eventCode] = 0;
-                    }
-
-                    result[curr.eventCode]++;
-                }
-            }, function (err, data) {
-                res.json(_.map(_.range(1, endDate.date() + 1), function (day) {
-                    var curDate = moment({ year: baseDate.year(), month: baseDate.month(), day: day });
-
-                    var item = _.findWhere(data, { date: curDate.format('YYYY-MM-DD') });
-
-                    if (!item) {
-                        item = {
-                            date: curDate.format('YYYY-MM-DD'),
-                            total: 0
-                        };
-                    }
-
-                    return _.extend(item, { day: curDate.format('M/D') });
-                }));
-            });
-    });
+//    app.get('/api/user/:id/events/total', function (req, res) {
+//        var curDate = moment();
+//        var startDate = moment({ year: curDate.year(), month: curDate.month(), day: curDate.date() }).add('days', -30);
+//
+//        // TODO: REMOVE THIS HACK
+//        req.params.id = '5d6e9c91-820e-11e3-a399-f5b85b6b9fd0';
+//
+//        events
+//            .find({
+//                owner: req.params.id,
+//                //eventCode: { $gte: 300, $lt: 400 },
+//                timestamp: {
+//                    $gte: startDate.format(),
+//                    $lt: curDate.format()
+//                }
+//            })
+//            .count(function (err, count) {
+//                res.json({
+//                    total: count
+//                });
+//            });
+//    });
+//
+//    app.get('/api/user/:id/events/graph', function (req, res) {
+//        var curDate = moment();
+//        var startDate = moment({ year: curDate.year(), month: curDate.month(), day: curDate.date() }).add('days', -30);
+//
+//        // TODO: REMOVE THIS HACK
+//        req.params.id = '5d6e9c91-820e-11e3-a399-f5b85b6b9fd0';
+//
+//        events
+//            .group({
+//                keyf: function (doc) {
+//                    var date = new Date(doc.timestamp);
+//                    var dateKey =  date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+//                    return { 'date': dateKey };
+//                },
+//                cond: {
+//                    owner: req.params.id,
+//                    //eventCode: { $gte: 300, $lt: 400 },
+//                    timestamp:  {
+//                        $gte: startDate.format(),
+//                        $lt: curDate.format()
+//                    }
+//                },
+//                initial: { total: 0 },
+//                reduce: function (curr, result) {
+//                    result.total++;
+//
+//                    if (!result[curr.eventCode]) {
+//                        result[curr.eventCode] = 0;
+//                    }
+//
+//                    result[curr.eventCode]++;
+//                }
+//            }, function (err, data) {
+//                //Line chart data should be sent as an array of series objects.
+////                return [
+////                    {
+////                        values: [{x: 123, y: 23343}],      //values - represents the array of {x,y} data points
+////                        key: 'Sine Wave', //key  - the name of the series.
+////                        color: '#ff7f0e'  //color - optional: choose your own line color.
+////                    },
+////                    {
+////                        values: cos,
+////                        key: 'Cosine Wave',
+////                        color: '#2ca02c'
+////                    },
+////                    {
+////                        values: sin2,
+////                        key: 'Another sine wave',
+////                        color: '#7777ff',
+////                        area: true      //area - set to true if you want this line to turn into a filled area chart.
+////                    }
+////                ];
+//
+//                var group = [];
+//
+//                // Target JSON structure
+//                //  [
+//                //      {
+//                //          values: [{ x: 123, y: 345 }],
+//                //          key: 'Sine Wave', //key  - the name of the series.
+//                //      },
+//                //  ]
+//
+////                _.each(_.range(1, endDate.date() + 1), function (day) {
+////                    var curDate = moment({ year: baseDate.year(), month: baseDate.month(), day: day });
+////                    var groupItem = _.findWhere(group, { key: 'This Type Of Message', value: '500' });
+////                    var dataItem = _.findWhere(data, { date: curDate.format('YYYY-MM-DD') });
+////
+////                    if (!groupItem) {
+////                        groupItem = { key: '3/1', values: [] };
+////                        group.push(groupItem);
+////                    }
+////
+////                    if (dataItem) {
+////                        groupItem.values.push({ x: '3/1', y: 123 });
+////                    }
+////                });
+//
+//
+////                res.json(_.map(_.range(startDate.dayOfYear(), curDate.dayOfYear()), function (day) {
+////                    var curDate = moment({ year: curDate.year(), month: curDate.month(), day: day });
+////
+////                    var item = _.findWhere(data, { date: curDate.format('YYYY-MM-DD') });
+////
+////
+////
+////                    if (!item) {
+////                        item = {
+////                            date: curDate.format('YYYY-MM-DD'),
+////                            total: 0
+////                        };
+////                    }
+////
+////                    return _.extend(item, { day: curDate.format('M/D') });
+////                }));
+//                res.json(null);
+//            });
+//    });
 
     app.get('/api/user_api/:id/:token', function(req, res) {
         var uuid = req.params.id,

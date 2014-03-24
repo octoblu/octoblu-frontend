@@ -19,9 +19,30 @@ angular.module('e2eApp')
                 $scope.channels = data;
             });
 
-            userService.getEvents($scope.skynetuuid, function (data) {
-                $scope.events = data;
+            $scope.eventsTitle = '30 days';
+
+            userService.getEventsGraph($scope.skynetuuid, 'now-30d/d', 'day', function (data) {
+                $scope.events = data
             });
+
+//            $scope.toggleInterval = function () {
+//                if (!$scope.events || $scope.events.facets.times.interval === 'month') {
+//                    userService.getEventsGraph($scope.skynetuuid, 'now-30d/d', 'day', function (data) {
+//                        $scope.events = data
+//                        $scope.events.hits.title = '30 days';
+//                    });
+//                } else if ($scope.events.facets.times.interval === 'day') {
+//                    userService.getEventsGraph($scope.skynetuuid, 'now-4w/w', 'week', function (data) {
+//                        $scope.events = data
+//                        $scope.events.hits.title = '4 weeks';
+//                    });
+//                } else {
+//                    userService.getEventsGraph($scope.skynetuuid, 'now-12M/M', 'month', function (data) {
+//                        $scope.events = data
+//                        $scope.events.hits.title = '1 year';
+//                    });
+//                }
+//            };
 
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e;
