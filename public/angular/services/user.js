@@ -46,8 +46,7 @@ angular.module('e2eApp')
                         },
                         'types': {
                             'terms': {
-                                'field': 'eventCode',
-                                'size': 2
+                                'field': 'eventCode'
                             }
                         }
                     }
@@ -68,9 +67,9 @@ angular.module('e2eApp')
                                 })
                             }
                         ],
-                        types: _.map(data.facets.terms, function (item) {
+                        types: _.map(data.facets.types.terms, function (item) {
                             return {
-                                label: item.time,
+                                label: item.term,
                                 value: item.count
                             };
                         })
