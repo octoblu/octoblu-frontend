@@ -1,7 +1,7 @@
 'use strict';
 
 // create the module and name it e2eApp
-angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'angular-google-analytics', 'elasticsearch'])
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -66,15 +66,25 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 controller: 'DeviceController'
             })
             .state('connector.devices.wizard', {
+                url :'/wizard',
 
-                controller: 'DeviceWizardController',
-                url : '/wizard',
                 onEnter: function($stateParams, $state, $modal) {
                     $modal.open({
                         templateUrl: "pages/connector/devices/wizard/index.html",
-                        resolve: {
-                        },
-                        controller: 'DeviceWizardController'
+                        controller: 'DeviceWizardController',
+//                        resolve :{
+//                            availableHubs : function($cookies, $resource){
+//                                var hubs = [];
+//                                $resource('/api/owner/gateways/' + $cookies.skynetuuid + '/' + $cookies.skynettoken).get(function(data){
+//                                    hubs = _.filter(data.gateways, function(gateway){
+//                                        return gateway.owner === undefined;
+//                                    });
+//                                });
+//
+//                                return hubs;
+//                            }
+//                        }
+
                     }).result.then(function (result) {
                             if (result) {
                                 return $state.transitionTo("connector.devices");
@@ -83,6 +93,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 }
             })
             .state('connector.devices.wizard.instructions', {
+                url : '/instructions',
                 controller : 'DeviceWizardController',
                 onEnter: function(){
 
@@ -92,8 +103,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 }
             })
             .state('connector.devices.wizard.findhub', {
-                controller : 'DeviceWizardController',
-                templateUrl : '/pages/connector/devices/wizard/find-hub.html',
+                url: '/findhub',
                 onEnter: function(){
 
                 },

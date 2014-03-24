@@ -25,92 +25,73 @@ angular.module('e2eApp')
              }
             $scope.smartDevices = data;
         });
-
-//      $scope.addNewHub = function(){
-//          console.log('clicking add new hub');
-//          var modalInstance =  $modal.open({
-//              templateUrl: 'pages/connector/devices/wizard/index.html',
-//              backdrop : 'static',
-//              scope : $scope,
-//              keyboard : false,
-//              controller: 'DeviceWizardController',
-//              resolve: {
-//                  }
-//              });
-//
-//
-//
-//      };
-
-
-
     } )
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state, $modalInstance, ownerService  )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state, $modalInstance,  ownerService )
 
     {
-        var ownerId = $cookies.skynetuuid;
-        var token = $cookies.skynettoken;
 
-        ownerService.getGateways(ownerId, token, false, function(error, data){
+        ownerService.getGateways($cookies.skynetuuid, $cookies.skynettoken, false, function(error, data){
             if(error || data.gateways === undefined ){
                 console.log(error);
-                $scope.availableGateways = [];
+                $scope.availableHubs = [];
             } else{
-                $scope.availableGateways = _.filter(data.gateways, function(gateway){
-                    return gateway.owner === undefined;
+                $scope.availableHubs = _.filter(data.gateways, function(gateway){
+                    return ! gateway.hasOwnProperty("owner");
                 });
+                console.log($scope.availableHubs);
             }
         });
 
-//        $scope.states = [
-//
-//            {
-//                "name" : "instructions",
-//                "title" : "Install Instructions",
-//                "valid" : true
-//            } ,
-//
-//            {
-//                "name" : "find-hub",
-//                "title" : "Locate Available Hubs",
-//                "valid": false
-//            },
-//            {
-//                "name" : "edit-hub",
-//                "title" : "Edit Claimed Hub",
-//                "valid" : false
-//            }
-//        ] ;
-//
-//        $scope.currentState = $scope.states[0];
+        $scope.isopen = false;
 
-        $scope.next = function(){
-//           var stateIndex =  _.indexOf($scope.states, state);
-//           if(stateIndex == $scope.states.length - 1){
-//               $("wizard-next-btn").attr('disabled', true);
-//           } else {
-//               $("wizard-next-btn").attr('disabled', false);
-//               $scope.currentState = $scope.states[stateIndex + 1];
-//           }
+        $scope.wizardStates = {
+            instructions : 'connector.devices.wizard.instructions',
+            findhubs : 'connector.devices.wizard.findhub'
         };
 
-        $scope.previous = function(state){
-//            var stateIndex =  _.indexOf($scope.states, state);
-//            if(stateIndex == 0){
-//                $("wizard-previous-btn").attr('disabled', true);
-//            } else {
-//                $('wizard-previous-btn').attr('disabled', false);
-//                $scope.currentState = $scope.states[stateIndex - 1];
-//            }
+        $rootScope.$on('$stateChangeStart',
+            function(event, toState, toParams, fromState, fromParams){
+                console.log(toState);
+                console.log(fromState);
+               //event.preventDefault();
+                // transitionTo() promise will be rejected with
+                // a 'transition prevented' error
+            });
+        //If we have first opened the wizard then we check if there are available
+        $rootScope.$on('$stateChangeSuccess',
+            function(event, toState, toParams, fromState, fromParams){
+                event.preventDefault();
+                if(toState.name === 'connector.devices.wizard'){
+                    if($scope.availableHubs.length == 0){
+                        $state.transitionTo($scope.wizardStates.instructions);
+                    } else {
+                        $state.transitionTo($scope.wizardStates.findhubs);
+                    }
+                 }
+            });
+
+        $scope.next = function(){
+            if($state.is($scope.wizardStates.instructions)){
+                $state.transitionTo($scope.wizardStates.findhubs);
+            }
+        };
+
+//        $scope.on('$stateChangeStart', function());
+
+        $scope.previous = function(){
+            if($state.is($scope.wizardStates.findhubs)){
+                $state.transitionTo($scope.wizardStates.instructions);
+            }
+
         };
 
         $scope.ok = function () {
-            //
             $modalInstance.close($scope.selected.item);
         };
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
+            $state.transitionTo('connector.devices');
         };
 
 })
