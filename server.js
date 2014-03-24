@@ -1,5 +1,6 @@
 var express  = require('express');
 var app      = express();
+var cors     = require('cors');
 var env      = app.settings.env;
 var configAuth = require('./config/auth.js')(env);
 var port     = process.env.PORT || configAuth.port;
@@ -36,6 +37,8 @@ app.configure(function() {
     app.use(passport.initialize());
     app.use(passport.session()); // persistent login sessions
     app.use(flash()); // use connect-flash for flash messages stored in session
+
+    app.use(cors());
 
 });
 

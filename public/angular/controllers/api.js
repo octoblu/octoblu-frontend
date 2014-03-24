@@ -64,7 +64,7 @@ angular.module('e2eApp')
             };
 
             $scope.setDeactivate = function() {
-                if($scope.isOAuth()) {
+                if($scope.isOAuth() || $scope.isNoAuth()) {
                     $scope.open();
                     return;
                 }
@@ -132,13 +132,19 @@ angular.module('e2eApp')
             };
 
             $scope.authorize = function (channel) {
-                if(channel.owner || channel.useCustom) {
+                if(channel.auth_strategy==='none') {
+                    userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function(data){
+                        $scope.current_user = data;
+                        $scope.has_user_channel = true;
+                        return;
+                    });
+                } else if(channel.owner || channel.useCustom) {
                     var loc = '/api/auth/' + channel.name + '/custom';
+                    location.href = loc;
                 } else {
                     var loc = '/api/auth/' + channel.name;
+                    location.href = loc;
                 }
-                // $log.info(loc);
-                location.href = loc;
             };
 
             $scope.logo_url = function() {

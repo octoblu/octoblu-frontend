@@ -1,6 +1,7 @@
 'use strict';
 
-var moment = require('moment'),
+var _ = require('underscore'),
+    moment = require('moment'),
     events = require('../lib/skynetdb').collection('events'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
@@ -62,6 +63,38 @@ module.exports = function (app) {
 
     });
 
+    app.put('/api/user/:id/activate/:name', function(req, res) {
+
+        var key = req.body.key,
+            token = req.body.token,
+            custom_tokens = req.body.custom_tokens;
+
+        User.findOne({ $or: [
+            {'local.skynetuuid' : req.params.id},
+            {'twitter.skynetuuid' : req.params.id},
+            {'facebook.skynetuuid' : req.params.id},
+            {'google.skynetuuid' : req.params.id}
+        ]
+        }, function(err, user) {
+            if(!err) {
+                user.addOrUpdateApiByName(req.params.name, 'none', null, null, null, null, null);
+                user.save(function(err) {
+                    if(!err) {
+                        console.log(user);
+                        res.json(user);
+
+                    } else {
+                        console.log('Error: ' + err);
+                        res.json(user);
+                    }
+                });
+            } else {
+                res.json(err);
+            }
+        });
+
+    });
+
     app.delete('/api/user/:id/channel/:name', function(req, res) {
 
         User.findOne({ $or: [
@@ -106,57 +139,9 @@ module.exports = function (app) {
 
     });
 
-    app.get('/api/user/:id/events', function (req, res) {
-        var curDate = moment();
-        var startDate = moment({ year: curDate.year(), month: curDate.month(), date: 1 });
-
-        events
-            .find({
-                owner: req.params.id,
-                eventCode: {
-                    $gte: 300,
-                    $lt: 400
-                },
-                timestamp: {
-                    $gte: startDate.format(),
-                    $lt: curDate.format()
-                }
-            })
-            .count(function (err, count) {
-                res.json({
-                    total: count
-                });
-            });
-    });
-
-//    app.get('/api/user/:id/events/graph', function (req, res) {
-//        events
-//            .group({
-//                keyf: function (doc) {
-//                    var date = new Date(doc.timestamp);
-//                    var dateKey = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + '';
-//                    return { 'day': dateKey };
-//                },
-//                cond: {
-//                    owner: req.params.id,
-//                    eventCode: { $gte: 300, $lt: 400 },
-//                    timestamp:  {
-//                        $gte: ISODate(''),
-//                        $lt: new Date().toISOString()
-//                    }
-//                },
-//                initial: { count: 0 },
-//                reduce: function (obj, prev) {
-//                    prev.count++;
-//                }
-//            }, function (err, data) {
-//                res.json(data);
-//            });
-//    });
-
     app.get('/api/user_api/:id/:token', function(req, res) {
         var uuid = req.params.id,
-            token = req.params.token
+            token = req.params.token;
 
         User.findOne({ $or: [
             {"local.skynetuuid" : uuid, "local.skynettoken" : token},
@@ -175,26 +160,35 @@ module.exports = function (app) {
                     userResults.prefix = '';
                     userResults.avatar = false;
                     userResults.email = '';
-
+                    //Fix for obj.length since that was returning the length of non-exist values.
+                    var checkLength = function(obj){
+                        var i = 0;
+                        for(var x in obj){
+                            if(obj[x] && obj.hasOwnProperty(x) && typeof obj[x] !== 'function'){
+                                i++;
+                            }
+                        }
+                        return i;
+                    };
                     //Set standardized user info
-                    if(user.local && user.local.length){
-                        userResults.avatar = 'http://avatars.io/email/' + user.local.email.toString();
-                        userResults.email = user.local.email.toString();
+                    if(user.local && checkLength(user.local)){
+                        userResults.email = user.local.email || '';
+                        userResults.avatar = 'http://avatars.io/email/' + userResults.email;
                         userResults.type = 'local';
-                        userResults.name = user.local.username.toString();
-                    }else if(user.twitter){
+                        userResults.name = user.local.username || '';
+                    }else if(user.twitter && checkLength(user.twitter)){
                         userResults.prefix = '@';
                         userResults.type = 'twitter';
-                        userResults.name = user.twitter.username.toString();
-                    }else if(user.facebook){
-                        userResults.avatar = 'https://graph.facebook.com/' + user.facebook.id.toString();
+                        userResults.name = user.twitter.username || '';
+                    }else if(user.facebook && checkLength(user.facebook)){
+                        userResults.avatar = 'https://graph.facebook.com/' + user.facebook.id;
                         userResults.type = 'facebook';
-                        userResults.name = user.facebook.name.toString();
-                    }else if(user.google){
+                        userResults.name = user.facebook.name;
+                    }else if(user.google && checkLength(user.google)){
                         userResults.prefix = '+';
-                        userResults.avatar = 'https://plus.google.com/s2/photos/profile/' + user.google.id.toString();
+                        userResults.avatar = 'https://plus.google.com/s2/photos/profile/' + user.google.id;
                         userResults.type = 'google';
-                        userResults.name = user.google.name.toString();
+                        userResults.name = user.google.name || '';
                     }
 
                     //Admin results

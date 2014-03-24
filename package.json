@@ -21,11 +21,6 @@
     "moment": "~2.5.1",
     "simple-oauth2": "~0.1.9",
     "passport": "~0.1.17",
-    "passport-bitly": "~0.1.0",
-    "passport-facebook": "~1.0.2",
-    "passport-fitbit": "~0.1.2",
-    "passport-foursquare": "~0.1.3",
-    "passport-google-oauth": "~0.1.5",
     "passport-http-oauth": "~0.1.3",
     "passport-linkedin": "~0.1.3",
     "passport-local": "~0.1.6",
@@ -41,6 +36,13 @@
     "skynet": "*",
     "when": "^3.0.1",
     "underscore": "~1.6.0"
+    "mongoose-slug": "~1.2.0",
+    "mongoose-timestamps": "0.0.1",
+    "lodash-node": "~2.4.1",
+    "mongoose-pagination": "~1.0.0",
+    "marked": "*",
+    "underscore": "~1.6.0",
+    "cors": "*"
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",
