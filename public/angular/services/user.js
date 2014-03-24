@@ -1,36 +1,6 @@
 angular.module('e2eApp')
     .service('userService', function ($http, elasticService) {
-//        this.getEventsTotal = function (uuid, callback) {
-//            elasticService.searchAdvanced(
-//                {
-//                    "size" : 0,
-//                    'query': {
-//                        'filtered': {
-//                            'filter': {
-//                                'query': {
-//                                    'bool': {
-//                                        'must': [
-//                                            { 'match': { 'uuid': uuid } },
-//                                            //{ 'range': { 'eventCode': { gte: 300, lt: 400 } } },
-//                                            { 'range': { 'timestamp': { 'from': 'now-30d/d', 'to': 'now' } } }
-//                                        ]
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                },
-//                uuid,
-//                function (error, response) {
-//                    if (error) { return console.log(error); }
-//
-//                    // format output for graph.
-//                    callback({ total: response.hits.total });
-//                }
-//            );
-//        };
-
-        this.getEventsGraph = function (uuid, from, interval, callback) {
+        this.getMessageGraph = function (uuid, from, interval, callback) {
             elasticService.searchAdvanced(
                 {
                     'size': 0,
@@ -40,9 +10,27 @@ angular.module('e2eApp')
                                 'query': {
                                     'bool': {
                                         'must': [
-                                            { 'match': { 'uuid': uuid } },
-                                            //{ 'range': { 'eventCode': { gte: 300, lt: 400 } } },
-                                            { 'range': { 'timestamp': { 'from': from, 'to': 'now' } } }
+                                            {
+                                                'query_string': {
+                                                    'query': 'uuid:("' + uuid + '")'
+                                                }
+                                            },
+//                                            {
+//                                                'range': {
+//                                                    'eventCode': {
+//                                                        gte: 300,
+//                                                        lt: 400
+//                                                    }
+//                                                }
+//                                            },
+                                            {
+                                                'range': {
+                                                    'timestamp': {
+                                                        'from': from,
+                                                        'to': 'now'
+                                                    }
+                                                }
+                                            }
                                         ]
                                     }
                                 }
@@ -50,16 +38,16 @@ angular.module('e2eApp')
                         }
                     },
                     'facets': {
-                        'types': {
-                            'terms': {
-                                'field': 'eventCode',
-                                'size': 3
-                            }
-                        },
                         'times': {
                             'date_histogram': {
                                 'field': 'timestamp',
                                 'interval': interval
+                            }
+                        },
+                        'types': {
+                            'terms': {
+                                'field': 'eventCode',
+                                'size': 2
                             }
                         }
                     }

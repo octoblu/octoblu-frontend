@@ -22,9 +22,7 @@ angular.module('e2eApp')
                 showYAxis: '@'
             },
             link: function (scope, element, attr) {
-                attr.axisXLabel = attr.axisXLabel || 'Time';
-                attr.axisXFormat = attr.axisXFormat || ',';
-                attr.axisYLabel = attr.axisYLabel || 'Events';
+                attr.axisXFormat = attr.axisXFormat || '';
                 attr.axisYFormat = attr.axisYFormat || ',';
                 attr.interpolate = attr.interpolate || 'cardinal';
                 attr.showLegend = attr.showLegend || 'true';
@@ -34,7 +32,6 @@ angular.module('e2eApp')
                 /*These lines are all chart setup.  Pick and choose which chart features you want to utilize. */
                 nv.addGraph(function () {
                     var chart = nv.models.lineChart()
-                        .margin({left: 100})  //Adjust chart margins to give the x-axis some breathing room.
                         .useInteractiveGuideline(true)  //We want nice looking tooltips and a guideline!
                         .transitionDuration(350)  //how fast do you want the lines to transition?
                         .showLegend(attr.showLegend === 'true')       //Show the legend, allowing users to turn on/off line series.
@@ -43,9 +40,11 @@ angular.module('e2eApp')
                         .interpolate(attr.interpolate);
 
                     // Chart x-axis settings
-                    chart.xAxis
-                        .axisLabel(attr.axisXLabel)
-                        .tickFormat(function (d) {
+                    if (attr.axisXLabel) {
+                        chart.xAxis.axisLabel(attr.axisXLabel);
+                    }
+
+                    chart.xAxis.tickFormat(function (d) {
                             if (attr.axisXType && attr.axisXType === 'date') {
                                 return d3.time.format(attr.axisXFormat)(new Date(d));
                             }
@@ -54,9 +53,12 @@ angular.module('e2eApp')
                         });
 
                     // Chart y-axis settings
-                    chart.yAxis
-                        .axisLabel(attr.axisYLabel)
-                        .tickFormat(function (d) {
+                    if (attr.axisYLabel) {
+                        chart.margin({left: 100})  // Adjust chart margins to give the y-axis some breathing room.
+                        chart.yAxis.axisLabel(attr.axisYLabel);
+                    }
+
+                    chart.yAxis.tickFormat(function (d) {
                             if (attr.axisYType && attr.axisYType === 'date') {
                                 return d3.time.format(attr.axisYFormat)(new Date(d));
                             }
