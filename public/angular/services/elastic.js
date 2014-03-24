@@ -11,12 +11,20 @@ angular.module('e2eApp')
         });
 
         this.search = function (queryText, ownerUuid, callback) {
-
             service.client.search({
                 index: '_all',
                 size: 10,
                 q: queryText + ', owner,' + ownerUuid
 
+            }, function (error, response) {
+                callback(error, response);
+            });
+        };
+
+        this.searchAdvanced = function (queryObject, callback) {
+            service.client.search({
+                index: '_all',
+                body: queryObject
             }, function (error, response) {
                 callback(error, response);
             });

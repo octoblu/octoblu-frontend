@@ -1,9 +1,9 @@
 'use strict';
 
-var moment = require('moment'),
+var _ = require('underscore'),
+    moment = require('moment'),
     events = require('../lib/skynetdb').collection('events'),
     mongoose = require('mongoose'),
-    _ = require('underscore'),
     Api = mongoose.model('Api'),
     User = mongoose.model('User');
 
@@ -139,56 +139,10 @@ module.exports = function (app) {
 
     });
 
-    app.get('/api/user/:id/events', function (req, res) {
-        var curDate = moment();
-        var startDate = moment({ year: curDate.year(), month: curDate.month(), date: 1 });
-
-        events
-            .find({
-                owner: req.params.id,
-                eventCode: {
-                    $gte: 300,
-                    $lt: 400
-                },
-                timestamp: {
-                    $gte: startDate.format(),
-                    $lt: curDate.format()
-                }
-            })
-            .count(function (err, count) {
-                res.json({
-                    total: count
-                });
-            });
-    });
-
-//    app.get('/api/user/:id/events/graph', function (req, res) {
-//        events
-//            .group({
-//                keyf: function (doc) {
-//                    var date = new Date(doc.timestamp);
-//                    var dateKey = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + '';
-//                    return { 'day': dateKey };
-//                },
-//                cond: {
-//                    owner: req.params.id,
-//                    eventCode: { $gte: 300, $lt: 400 },
-//                    timestamp:  {
-//                        $gte: ISODate(''),
-//                        $lt: new Date().toISOString()
-//                    }
-//                },
-//                initial: { count: 0 },
-//                reduce: function (obj, prev) {
-//                    prev.count++;
-//                }
-//            }, function (err, data) {
-//                res.json(data);
-//            });
-//    });
     app.get('/api/user_api/:id/:token', function(req, res) {
         var uuid = req.params.id,
             token = req.params.token;
+
         User.findOne({ $or: [
             {"local.skynetuuid" : uuid, "local.skynettoken" : token},
             {"twitter.skynetuuid" : uuid, "twitter.skynettoken" : token},
