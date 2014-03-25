@@ -372,3 +372,9 @@ max-width: 100%;
     width: auto;
     vertical-align: top;
 }
+
+.wizard-dialog {
+    position: fixed !important;
+    left: 25% !important;
+    top: 10% !important;
+}

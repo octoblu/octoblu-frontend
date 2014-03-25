@@ -66,44 +66,31 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 controller: 'DeviceController'
             })
             .state('connector.devices.wizard', {
-                url :'/wizard',
+                url : '/wizard',
+                abstract : true,
+                templateUrl : 'pages/connector/devices/wizard/index.html',
+                controller: 'DeviceWizardController'
 
-                onEnter: function($stateParams, $state, $modal) {
-                    $modal.open({
-                        templateUrl: "pages/connector/devices/wizard/index.html",
-                        controller: 'DeviceWizardController'
-//                        resolve :{
-//                            availableHubs : function($cookies, $resource){
-//                                var hubs = [];
-//                                $resource('/api/owner/gateways/' + $cookies.skynetuuid + '/' + $cookies.skynettoken).get(function(data){
-//                                    hubs = _.filter(data.gateways, function(gateway){
-//                                        return gateway.owner === undefined;
-//                                    });
-//                                });
-//
-//                                return hubs;
-//                            }
-//                        }
 
-                    }).result.then(function (result) {
-                            if (result) {
-                                return $state.transitionTo("connector.devices");
-                            }
-                        });
-                }
             })
             .state('connector.devices.wizard.instructions', {
-                url : '/instructions',
+                url: '/instructions',
                 controller : 'DeviceWizardController',
-                onEnter: function(){
-
-                },
+                templateUrl : 'pages/connector/devices/wizard/instructions.html',
+//                onEnter: function($stateParams, $state, availableGateways ) {
+//                    console.log('entering instructions');
+////                    if(availableGateways && availableGateways.length > 0 ){
+////                        $state.go('connector.devices.wizard.findhub');
+////                    }
+//                },
                 onExit : function(){
 
                 }
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
+                controller : 'DeviceWizardController',
+                templateUrl : 'pages/connector/devices/wizard/find-hub.html',
                 onEnter: function(){
 
                 },
@@ -167,31 +154,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 templateUrl: 'pages/connector/advanced/messaging.html',
                 controller: 'controllerController'
             })
-//            .state('connector.people', {
-//                url: '/people',
-//                templateUrl: 'pages/people.html',
-//                controller: 'connectorController'
-//            })
-//            .state('connector.channels', {
-//                url: '/channels',
-//                templateUrl: 'pages/channels.html',
-//                controller: 'ChannelController'
-//            })
-//            .state('connector.channels.detail', {
-//                url: '/:name',
-//                templateUrl: 'pages/connector/channels_detail.html',
-//                controller: 'ChannelController'
-//            })
-//            .state('connector.gateway', {
-//                url: '/gateway',
-//                templateUrl: 'pages/gateways.html',
-//                controller: 'connectorController'
-//            })
-//            .state('connector.tools', {
-//                url: '/tools',
-//                templateUrl: 'pages/devtools.html',
-//                controller: 'connectorController'
-//            })
             .state('admin', {
                 url: '/admin',
                 templateUrl: 'pages/admin.html',
@@ -207,11 +169,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 templateUrl: 'pages/docs.html',
                 controller: 'docsController'
             })
-//            .state('controller', {
-//                url: '/controller',
-//                templateUrl: 'pages/controller.html',
-//                controller: 'controllerController'
-//            })
             .state('designer', {
                 url: '/designer',
                 templateUrl: 'pages/designer.html',
@@ -255,7 +212,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise('/');
+//        $urlRouterProvider.otherwise('/');
     })
     .run(function ($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;

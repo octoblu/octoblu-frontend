@@ -8,6 +8,9 @@ angular.module('e2eApp')
              $state.go('login');
         }
 
+      $scope.addHub = function(){
+            console.log('clicking Add Hub');
+        };
       ownerService.getGateways(ownerId, token, false, function(error, data){
             if(error || data.gateways === undefined ){
                 console.log(error);
@@ -25,74 +28,38 @@ angular.module('e2eApp')
              }
             $scope.smartDevices = data;
         });
+
     } )
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state, $modalInstance,  ownerService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state , GatewayService )
 
     {
-
-        ownerService.getGateways($cookies.skynetuuid, $cookies.skynettoken, false, function(error, data){
-            if(error || data.gateways === undefined ){
-                console.log(error);
-                $scope.availableHubs = [];
-            } else{
-                $scope.availableHubs = _.filter(data.gateways, function(gateway){
-                    return ! gateway.hasOwnProperty("owner");
-                });
-                console.log($scope.availableHubs);
-            }
-        });
-
-        $scope.isopen = false;
-
         $scope.wizardStates = {
-            instructions : 'connector.devices.wizard.instructions',
-            findhubs : 'connector.devices.wizard.findhub'
-        };
-
-        $rootScope.$on('$stateChangeStart',
-            function(event, toState, toParams, fromState, fromParams){
-                console.log(toState);
-                console.log(fromState);
-               //event.preventDefault();
-                // transitionTo() promise will be rejected with
-                // a 'transition prevented' error
-            });
-        //If we have first opened the wizard then we check if there are available
-        $rootScope.$on('$stateChangeSuccess',
-            function(event, toState, toParams, fromState, fromParams){
-                event.preventDefault();
-                if(toState.name === 'connector.devices.wizard'){
-                    if($scope.availableHubs === undefined || $scope.availableHubs.length == 0){
-                        $state.transitionTo($scope.wizardStates.instructions);
-                    } else {
-                        $state.transitionTo($scope.wizardStates.findhubs);
-                    }
-                 }
-            });
-
-        $scope.next = function(){
-            if($state.is($scope.wizardStates.instructions)){
-                $state.transitionTo($scope.wizardStates.findhubs);
+            instructions: {
+                name: 'instructions',
+                id: 'connector.devices.wizard.instructions',
+                title: 'Install a new Hub'
+            },
+            findhub: {
+                name: 'findhub',
+                id: 'connector.devices.wizard.findhub',
+                title: 'Add Available Hub'
             }
+        }
+
+
+        $scope.availableGateways = GatewayService.available();
+        $scope.getNextState = function( ){
+            return $scope.wizardStates.findhub.id;
         };
 
-//        $scope.on('$stateChangeStart', function());
-
-        $scope.previous = function(){
-            if($state.is($scope.wizardStates.findhubs)){
-                $state.transitionTo($scope.wizardStates.instructions);
-            }
+        $scope.canProceed = function(){
 
         };
 
-        $scope.ok = function () {
-            $modalInstance.close($scope.selected.item);
+        $scope.getPreviousState = function(){
+            return $scope.wizardStates.instructions.id;
         };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-            $state.transitionTo('connector.devices');
-        };
+        $scope.isopen = false;
 
 })
     .controller('SubDeviceController',  function ($rootScope, $scope, $http, $injector, ownerService )
