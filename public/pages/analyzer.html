@@ -10,14 +10,12 @@
                     </h1>
                 </div>
                 <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div><br /><br />
-
-                <div class="pull-left"><strong>Search:</strong></div>
-                <br/><br/>
+                <br/>
 
                 <div class="input-group">
-                    <input type="text" class="form-control" ng-model="searchText" placeholder="Search">
+                    <input type="text" class="form-control" ng-model="searchText" placeholder="Search" autofocus>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="search()">
+                            <button class="btn btn-default" type="button" ng-click="search(1)">
                                 <span class="glyphicon glyphicon-search">Find</span>
                             </button>
                         </span>
@@ -30,15 +28,19 @@
                     <div class="panel-heading">Results
                       <p class="pull-right"> hits: {{ results.hits.total }}</p>
                     </div>
+                    <input type="checkbox" ng-model="checked"> pretty print?
                     <div class="panel-body">
-
                       <table class="table table-striped table-hover">
                           <tr ng-repeat="result in results.hits.hits" ng-class="rowClass(result)">
-                              <td>{{ result }}</td>
+                              <td ng-hide="checked">{{ result }}</td>
+                              <td ng-show="checked"><pre>{{ result | json }}</pre></td>
                           </tr>
                       </table>
                     </div>
                 </div>
+
+                <pager total-items="totalItems" page="currentPage" ng-show="results"></pager>
+
             </div>
         </div>
     </div>

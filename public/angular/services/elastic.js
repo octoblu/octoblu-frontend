@@ -10,11 +10,16 @@ angular.module('e2eApp')
             host: elasticSearchConfig.host + ':' + elasticSearchConfig.port
         });
 
-        this.search = function (queryText, ownerUuid, callback) {
+        this.search = function (queryText, ownerUuid, page, callback) {
+            fromPage = (page * 10) / 10
             service.client.search({
                 index: '_all',
                 size: 10,
-                q: queryText + ', owner,' + ownerUuid
+                from: fromPage,
+                q: queryText + ', owner:' + ownerUuid
+                // q: 'type:drone AND owner:' + ownerUuid
+                // q: queryText + ' AND uuid:' + ownerUuid
+                // q: queryText
 
             }, function (error, response) {
                 callback(error, response);
