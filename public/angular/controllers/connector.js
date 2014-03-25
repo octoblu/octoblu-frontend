@@ -536,6 +536,7 @@ angular.module('e2eApp')
                             console.log($scope.deviceProperties2);
                             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
                                 $scope._backup = false;
+                                console.log($scope.selectedSubdevice.name);
                                 console.log(deviceProperties);
                                 var properties = _.map(deviceProperties, function(deviceProperty){
                                     delete deviceProperty.$$hashKey;
@@ -550,8 +551,8 @@ angular.module('e2eApp')
                                 });
                                 console.log('update', options);
                                 $modalInstance.close({
-                                    "name" : subDeviceName,
-                                    "plugin" : $scope.selectedSubdevice.type,
+                                    "subDeviceName" : $scope.selectedSubdevice.name,
+                                    "plugin" : subdevice.type,
                                     "deviceProperties" : options
                                 });
                             };
@@ -583,10 +584,11 @@ angular.module('e2eApp')
                     });
 
                     modalInstance.result.then(function (response) {
-                        $scope.subDeviceName = response.name;
+                      console.log(response);
+                        $scope.subDeviceName = response.subDeviceName;
                         $scope.plugin = response.plugin;
                         $scope.deviceProperties = response.deviceProperties;
-                        $scope.updateSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
+                        $scope.updateSubdevice($scope.selectedGateway, response.plugin, response.subDeviceName, response.deviceProperties);
                         // TODO: update the subdevice, not push a new one
                         // $scope.selectedGateway.subdevices.push({name: response.name, type: response.plugin, options: response.deviceProperties})
 
