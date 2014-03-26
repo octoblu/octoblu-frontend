@@ -445,14 +445,15 @@ module.exports = function (app, passport, config) {
         Api.findOne({name: req.params.name}, function (err, api) {
 
             if(api.oauth.version=='2.0') {
-                if(api.name==='Dropbox') {
+                if(api.name==='Dropbox' || api.oauth.isManual) {
+                    console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
                     res.cookie('csrf', csrfToken);
                     res.redirect(url.format({
-                        protocol: 'https',
-                        hostname: 'www.dropbox.com',
-                        pathname: '1/oauth2/authorize',
+                        protocol: api.oauth.protocol,
+                        hostname: api.oauth.host,
+                        pathname: api.oauth.authTokenPath,
                         query: {
                             client_id: api.oauth.clientId,
                             response_type: 'code',
@@ -504,7 +505,8 @@ module.exports = function (app, passport, config) {
                 console.log(error);
                 res.redirect(500, '/apis/' + api.name);
             } else if(api.oauth.version=='2.0') {
-                if(api.name==='Dropbox') {
+                if(api.name==='Dropbox' || api.oauth.isManual) {
+                    console.log('handling manual callback');
                     if (req.query.error) {
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
@@ -513,10 +515,10 @@ module.exports = function (app, passport, config) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
                     // exchange access code for bearer token
-                    request.post('https://api.dropbox.com/1/oauth2/token', {
+                    request.post(api.oauth.accessTokenURL, {
                         form: {
                             code: req.query.code,
-                            grant_type: 'authorization_code',
+                            grant_type: api.oauth.grant_type,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
                         },
                         auth: {

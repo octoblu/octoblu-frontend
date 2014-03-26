@@ -23,7 +23,13 @@ var ApiSchema = mongoose.Schema({
         version          : String,
         baseURL          : String,
         accessTokenPath  : String,
-        authTokenPath    : String
+        authTokenPath    : String,
+        isManual         : Boolean,
+        host             : String,
+        protocol         : String,
+        grant_type       : String,
+        authExtraQuery   : String,
+        scope            : String
     },
     documentation: String,
     application: { base: String, resources: [] }
