@@ -3,9 +3,25 @@
 var request = require('request'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
+    crypto = require('crypto'),
+    url = require('url'),
     User = mongoose.model('User');
 
 module.exports = function (app, passport, config) {
+
+    var generateCSRFToken = function() {
+        return crypto.randomBytes(18).toString('base64')
+        .replace(/\//g, '-').replace(/\+/g, '_');
+    }
+
+    var generateRedirectURI = function(req) {
+        return url.format({
+            protocol: req.protocol,
+            host: req.headers.host,
+            pathname: app.path() + '/callback'
+        });
+    }
+
     var handleOauth1 = function (name, req, res, next) {
         var token = req.param('oauth_token'),
             verifier = req.param('oauth_verifier');
@@ -429,13 +445,32 @@ module.exports = function (app, passport, config) {
         Api.findOne({name: req.params.name}, function (err, api) {
 
             if(api.oauth.version=='2.0') {
-                var OAuth2 = getCustomApiOAuthInstance(req, api);
-                var authorization_uri = OAuth2.AuthCode.authorizeURL({
-                    redirect_uri: getOAuthCallbackUrl(req, api.name),
-                    scope: 'notifications',
-                    state: '3(#0/!~'
-                });
-                res.redirect(authorization_uri);
+                if(api.name==='Dropbox' || api.oauth.isManual) {
+                    console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
+                    // manually handle oauth...
+                    var csrfToken = generateCSRFToken();
+                    res.cookie('csrf', csrfToken);
+                    res.redirect(url.format({
+                        protocol: api.oauth.protocol,
+                        hostname: api.oauth.host,
+                        pathname: api.oauth.authTokenPath,
+                        query: {
+                            client_id: api.oauth.clientId,
+                            response_type: 'code',
+                            state: csrfToken,
+                            redirect_uri: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
+                        }
+                    }));
+
+                } else {
+                    var OAuth2 = getCustomApiOAuthInstance(req, api);
+                    var authorization_uri = OAuth2.AuthCode.authorizeURL({
+                        redirect_uri: getOAuthCallbackUrl(req, api.name),
+                        scope: 'notifications',
+                        state: '3(#0/!~'
+                    });
+                    res.redirect(authorization_uri);
+                }
 
             } else {
                 var oa = getCustomApiOAuthInstance(req, api);
@@ -470,41 +505,99 @@ module.exports = function (app, passport, config) {
                 console.log(error);
                 res.redirect(500, '/apis/' + api.name);
             } else if(api.oauth.version=='2.0') {
-                var OAuth2 = getCustomApiOAuthInstance(req, api);
-                var code = req.query.code;
-
-                OAuth2.AuthCode.getToken({
-                    code: code,
-                    redirect_uri: getOAuthCallbackUrl(req, api.name)
-                }, function(error, result) {
-                    var token = result;
-                    if (error) {
-                        console.log('Access Token Error', error);
-                        res.redirect('/connector/channels/'+api.name);
-                    } else {
-                        // token = OAuth2.AccessToken.create(result).token;
-                        // console.log('token='+token);
-                        // res.redirect('/connector/channels/'+api.name);
-                        User.findOne({ $or: [
-                            {'local.skynetuuid' : req.cookies.skynetuuid},
-                            {'twitter.skynetuuid' : req.cookies.skynetuuid},
-                            {'facebook.skynetuuid' : req.cookies.skynetuuid},
-                            {'google.skynetuuid' : req.cookies.skynetuuid}
-                        ]
-                        }, function(err, user) {
-                            if(!err) {
-                                user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
-                                user.save(function(err) {
-                                    console.log('saved oauth token: '+name);
-                                    res.redirect('/connector/channels/'+name);
-                                });
-                            } else {
-                                console.log('error saving oauth token');
-                                res.redirect('/connector/channels/'+name);
-                            }
-                        });
+                if(api.name==='Dropbox' || api.oauth.isManual) {
+                    console.log('handling manual callback');
+                    if (req.query.error) {
+                        console.log('error position 1');
+                        return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
-                });
+                    // check CSRF token
+                    if (req.query.state !== req.cookies.csrf) {
+                        return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
+                    }
+                    
+                    var form = {
+                            code: req.query.code,
+                            grant_type: api.oauth.grant_type,
+                            redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
+                        };
+                    if(api.name==='Box') {
+                        form.client_id = api.oauth.clientId;
+                        form.client_secret = api.oauth.secret;
+                    }
+
+                    // exchange access code for bearer token
+                    request.post(api.oauth.accessTokenURL, {
+                        form: form,
+                        auth: {
+                            user: api.oauth.clientId,
+                            pass: api.oauth.secret                            
+                        }
+                        }, function (error, response, body) {
+                            console.log(body);
+                            var data = JSON.parse(body);
+
+                            if (data.error) {
+                                console.log('error position 2');
+                                return res.send('ERROR: ' + data.error);
+                            }
+
+                            // extract bearer token
+                            var token = data.access_token;
+
+                            User.findOne({ $or: [
+                                {'local.skynetuuid' : req.cookies.skynetuuid},
+                                {'twitter.skynetuuid' : req.cookies.skynetuuid},
+                                {'facebook.skynetuuid' : req.cookies.skynetuuid},
+                                {'google.skynetuuid' : req.cookies.skynetuuid}
+                            ]
+                            }, function(err, user) {
+                                if(!err) {
+                                    user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                                    user.save(function(err) {
+                                        console.log('saved oauth token: '+name);
+                                        res.redirect('/connector/channels/'+name);
+                                    });
+                                } else {
+                                    console.log('error saving oauth token');
+                                    res.redirect('/connector/channels/'+name);
+                                }
+                            });
+                    });
+                } else {
+                    var OAuth2 = getCustomApiOAuthInstance(req, api);
+                    var code = req.query.code;
+
+                    OAuth2.AuthCode.getToken({
+                        code: code,
+                        redirect_uri: getOAuthCallbackUrl(req, api.name)
+                    }, function(error, result) {
+                        var token = result;
+                        if (error) {
+                            console.log('Access Token Error', error);
+                            res.redirect('/connector/channels/'+api.name);
+                        } else {
+                            User.findOne({ $or: [
+                                {'local.skynetuuid' : req.cookies.skynetuuid},
+                                {'twitter.skynetuuid' : req.cookies.skynetuuid},
+                                {'facebook.skynetuuid' : req.cookies.skynetuuid},
+                                {'google.skynetuuid' : req.cookies.skynetuuid}
+                            ]
+                            }, function(err, user) {
+                                if(!err) {
+                                    user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                                    user.save(function(err) {
+                                        console.log('saved oauth token: '+name);
+                                        res.redirect('/connector/channels/'+name);
+                                    });
+                                } else {
+                                    console.log('error saving oauth token');
+                                    res.redirect('/connector/channels/'+name);
+                                }
+                            });
+                        }
+                    });
+                }
 
             } else {
                 req.session.oauth.verifier = req.query.oauth_verifier;
