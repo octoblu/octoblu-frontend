@@ -508,27 +508,37 @@ module.exports = function (app, passport, config) {
                 if(api.name==='Dropbox' || api.oauth.isManual) {
                     console.log('handling manual callback');
                     if (req.query.error) {
+                        console.log('error position 1');
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
                     // check CSRF token
                     if (req.query.state !== req.cookies.csrf) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
-                    // exchange access code for bearer token
-                    request.post(api.oauth.accessTokenURL, {
-                        form: {
+                    
+                    var form = {
                             code: req.query.code,
                             grant_type: api.oauth.grant_type,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
-                        },
+                        };
+                    if(api.name==='Box') {
+                        form.client_id = api.oauth.clientId;
+                        form.client_secret = api.oauth.secret;
+                    }
+
+                    // exchange access code for bearer token
+                    request.post(api.oauth.accessTokenURL, {
+                        form: form,
                         auth: {
                             user: api.oauth.clientId,
-                            pass: api.oauth.secret
+                            pass: api.oauth.secret                            
                         }
                         }, function (error, response, body) {
+                            console.log(body);
                             var data = JSON.parse(body);
 
                             if (data.error) {
+                                console.log('error position 2');
                                 return res.send('ERROR: ' + data.error);
                             }
 
@@ -553,13 +563,6 @@ module.exports = function (app, passport, config) {
                                     res.redirect('/connector/channels/'+name);
                                 }
                             });
-
-                            // use the bearer token to make API calls
-                            // request.get('https://api.dropbox.com/1/account/info', {
-                            //     headers: { Authorization: 'Bearer ' + token }
-                            //     }, function (error, response, body) {
-                            //         res.send('Logged in successfully as ' + JSON.parse(body).display_name + '.');
-                            // });
                     });
                 } else {
                     var OAuth2 = getCustomApiOAuthInstance(req, api);
@@ -574,9 +577,6 @@ module.exports = function (app, passport, config) {
                             console.log('Access Token Error', error);
                             res.redirect('/connector/channels/'+api.name);
                         } else {
-                            // token = OAuth2.AccessToken.create(result).token;
-                            // console.log('token='+token);
-                            // res.redirect('/connector/channels/'+api.name);
                             User.findOne({ $or: [
                                 {'local.skynetuuid' : req.cookies.skynetuuid},
                                 {'twitter.skynetuuid' : req.cookies.skynetuuid},
