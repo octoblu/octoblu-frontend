@@ -75,21 +75,13 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
-                controller : 'DeviceWizardController',
                 templateUrl : 'pages/connector/devices/wizard/instructions.html',
-//                onEnter: function($stateParams, $state, availableGateways ) {
-//                    console.log('entering instructions');
-////                    if(availableGateways && availableGateways.length > 0 ){
-////                        $state.go('connector.devices.wizard.findhub');
-////                    }
-//                },
                 onExit : function(){
 
                 }
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
-                controller : 'DeviceWizardController',
                 templateUrl : 'pages/connector/devices/wizard/find-hub.html',
                 onEnter: function(){
 

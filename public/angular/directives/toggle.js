@@ -5,31 +5,65 @@ angular.module('e2eApp')
         return {
             restrict: 'E',
             replace: true,
-            template: '<input type="checkbox" checked data-on-color="success" data-off-color="danger">',
+
             scope: {
-                value: '@',
+                state: '@',
+                size : '@',
                 onText: '@',
                 offText: '@',
-                onClass:'@',
-                offClass:'@',
-                label : '@'
+                onColor:'@',
+                offColor:'@',
+                label : '@',
+                readOnly : '@',
+                value: '@',
+                ngModel: '='
             },
+            template: '<input type="checkbox">',
             link: function (scope, element, attr) {
 
-                $(element).bootstrapSwitch();
-                attr.value = attr.value || 'false';
+
+                attr.state = attr.state || false;
                 attr.onText = attr.onText || 'ON';
                 attr.offText = attr.offText || 'OFF';
-                attr.onClass = attr.onClass || 'success';
-                attr.offClass = attr.offClass || 'danger';
+                attr.onColor = attr.onColor || 'success';
+                attr.offColor = attr.offColor|| 'danger';
+                attr.size = attr.size || '';
                 attr.label = attr.label || '';
+                attr.readOnly = attr.readOnly || false;
 
-                if( attr.value ){
-                    $(element).attr('checked', 'checked');
+
+                if( attr.state ){
+                    $(element).attr('checked', '');
                 } else{
-                    $(element).attr('checked', null );
+                    $(element).removeAttr('checked');
                 }
 
+
+                $(element).bootstrapSwitch('size', attr.size);
+                $(element).bootstrapSwitch('onText', attr.onText);
+                $(element).bootstrapSwitch('onColor', attr.onColor);
+                $(element).bootstrapSwitch('offText', attr.offText);
+                $(element).bootstrapSwitch('offColor', attr.offText);
+                $(element).bootstrapSwitch('animate', true);
+                if(attr.readOnly){
+                    $(element).bootstrapSwitch('readOnly', attr.readOnly);
+                }
+
+                if(attr.label && attr.label.length > 0){
+                    $(element).attr('data-label-text', attr.label);
+                }
+
+//                $(element).bootstrapSwitch('state', attr.state);
+
+              attr.$observe('state', function(val){
+                  if(val){
+                      console.log('value' + val);
+                      $(element).attr('checked', '' );
+                  } else {
+                      $(element).removeAttr('checked');
+                  }
+
+              });
             }
         }
     });

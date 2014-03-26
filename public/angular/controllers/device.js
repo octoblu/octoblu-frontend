@@ -7,7 +7,7 @@ angular.module('e2eApp')
         if( ownerId === undefined || token === undefined ){
              $state.go('login');
         }
-
+      $scope.hubName = '';
       $scope.addHub = function(){
             console.log('clicking Add Hub');
         };
@@ -33,6 +33,9 @@ angular.module('e2eApp')
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state , GatewayService )
 
     {
+        $scope.isopen = false;
+//        $scope.hubName = undefined;
+
         $scope.wizardStates = {
             instructions: {
                 name: 'instructions',
@@ -46,8 +49,15 @@ angular.module('e2eApp')
             }
         }
 
+        $scope.availableGateways = [];
+        GatewayService.get(function(data){
+            if(data.gateways){
+                $scope.availableGateways = _.filter(data.gateways, function(gateway){
+                   return gateway.owner === undefined;
+                });
+            }
+        });
 
-        $scope.availableGateways = GatewayService.available();
         $scope.getNextState = function( ){
             return $scope.wizardStates.findhub.id;
         };
@@ -59,9 +69,23 @@ angular.module('e2eApp')
         $scope.getPreviousState = function(){
             return $scope.wizardStates.instructions.id;
         };
-        $scope.isopen = false;
 
-})
+        $scope.checkFinish = function(name, hub){
+            console.log('checkFinish');
+            if(name && name.trim().length > 0 && hub ){
+              if($('#wizard-finish-btn').attr('disabled')){
+                  $('#wizard-finish-btn').removeAttr('disabled');
+              }
+            } else {
+                $('#wizard-finish-btn').attr('disabled', 'disabled');
+            }
+        };
+
+
+        $scope.toggleOpen = function(){
+            $scope.isopen = ! $scope.isopen;
+        }
+    })
     .controller('SubDeviceController',  function ($rootScope, $scope, $http, $injector, ownerService )
     {
 

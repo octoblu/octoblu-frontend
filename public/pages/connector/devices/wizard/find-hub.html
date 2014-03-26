@@ -14,21 +14,21 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">ID</label>
                     <div class="col-sm-10">
-                        <select  class="form-control" ng-model="selectedHub" ng-required="!selectedHub" ng-options="g.ipAddress + '( ' +  g.uuid  + ' )' for g in availableHubs">
+                        <select  class="form-control" ng-change="checkFinish(hubName, selectedHub)" ng-model="selectedHub" ng-required="!selectedHub" ng-options="g.ipAddress + '( ' +  g.uuid  + ' )' for g in availableGateways">
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-required="!hubName" ng-model="hubName">
+                        <input type="text" class="form-control" ng-model="hubName" ng-change="checkFinish(hubName, selectedHub)">
                     </div>
                 </div>
                 <div class="form-group">
                     <accordion>
                         <accordion-group>
                             <accordion-heading>
-                                Details <span class="glyphicon pull-right"  ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></span>
+                                Details <span class="glyphicon pull-right"  ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}" ng-click="toggleOpen()"></span>
                             </accordion-heading>
                             <ul class="list-group">
                                 <li class="list-group-item">Channel <span class="label label-primary pull-right">{{selectedHub.channel}}</span></li>
@@ -36,16 +36,13 @@
                                 <li class="list-group-item">Token <span class="label label-primary pull-right">{{selectedHub.token}}</span></li>
                                 <li class="list-group-item">IP Address <span class="label label-primary pull-right">{{selectedHub.ipAddress}}</span></li>
                                 <li class="list-group-item">Localhost <span class="label label-primary pull-right">{{selectedHub.localhost}}</span></li>
-                                <li class="list-group-item">Online <span class="label label-primary pull-right">{{selectedHub.online}}</span></li>
+                                <li class="list-group-item">Online <toggle-switch label="ONLINE" readOnly="true" state="{{selectedHub.online}}"></toggle-switch></li>
                             </ul>
 
                         </accordion-group>
                     </accordion>
                 </div>
             </form>
-        </div>
-        <div class="panel-footer">
-
         </div>
     </div>
 </div>
