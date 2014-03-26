@@ -163,7 +163,7 @@
         </div>
         <div>
           <br /><br />
-          <input type="text" ng-model="selectedSubdevice.name" placeholder="name" class="form-control" required><br />
+          <input type="text" ng-model="selectedSubdevice.name" placeholder="name" class="form-control" disabled><br />
           <div class="form-group" ng-repeat="deviceProperty in deviceProperties2">
             <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
               <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
@@ -175,7 +175,7 @@
         </div>
       </div>
       <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="ok(subDeviceName, plugin, deviceProperties2)">OK</button>
+          <button class="btn btn-primary" ng-click="ok(deviceProperties2)">OK</button>
           <button class="btn" ng-click="cancel()">Cancel</button>
       </div>
   </script>

@@ -534,9 +534,8 @@ angular.module('e2eApp')
                               }
                             });
                             console.log($scope.deviceProperties2);
-                            $scope.ok = function (subDeviceName, plugin, deviceProperties) {
+                            $scope.ok = function (deviceProperties) {
                                 $scope._backup = false;
-                                console.log($scope.selectedSubdevice.name);
                                 console.log(deviceProperties);
                                 var properties = _.map(deviceProperties, function(deviceProperty){
                                     delete deviceProperty.$$hashKey;
