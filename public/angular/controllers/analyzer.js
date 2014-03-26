@@ -14,20 +14,17 @@ angular.module('e2eApp')
             $scope.search = function (currentPage) {
               $scope.results="searching...";
                 if ($scope.searchText !== undefined) {
-                    elasticService.search($scope.searchText, $scope.skynetuuid, currentPage, function (error, response) {
+                    elasticService.search($scope.searchText, $scope.skynetuuid, currentPage, $scope.eventCode, function (error, response) {
                         if (error) {
                             console.log(error);
                         } else {
-                          console.log(response);
                           $scope.results = response;
 
                           $scope.totalItems = response.hits.total;
                           $scope.maxSize = 10;
 
                         }
-
                     });
-
 
                 } else {
                     $scope.results="";
@@ -35,6 +32,10 @@ angular.module('e2eApp')
                 }
 
             };
+
+            elasticService.getEvents("", function(data) {
+                $scope.events = data;
+            });
 
             $scope.setPage = function (pageNo) {
               $scope.currentPage = pageNo;

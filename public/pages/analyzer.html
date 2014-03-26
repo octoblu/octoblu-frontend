@@ -12,16 +12,32 @@
                 <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div><br /><br />
                 <br/>
 
+            <div class="container-fluid">
+              <div class="row">
                 <div class="input-group">
-                    <input type="text" class="form-control" ng-model="searchText" placeholder="Search" autofocus>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="search(1)">
-                                <span class="glyphicon glyphicon-search">Find</span>
-                            </button>
-                        </span>
+                  <form class="form-inline col-md-12" role="form">
+                    <div class="form-group col-md-8">
+                      <input type="text" class="form-control" ng-model="searchText" placeholder="Search" autofocus>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <select class="form-control" ng-model="eventCode">
+                          <option value="">All Event Codes</option>
+                          <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" ng-click="search(1)">
+                              <span class="glyphicon glyphicon-search"> Find</span>
+                          </button>
+                      </span>
+                    </div>
+                  </form>
                 </div>
-                <br/>
-                <br/>
+              </div>
+            </div>
+            <br/>
+            <br/>
 
                 <div class="panel panel-info" ng-show="results">
                     <!-- Default panel contents -->

@@ -3,20 +3,23 @@ angular.module('e2eApp')
        host: '54.213.111.71',
        port: '9200'
     })
-    .service('elasticService', function (elasticSearchConfig, esFactory) {
+    .service('elasticService', function (elasticSearchConfig, esFactory, $http) {
         var service = this;
         this.config = elasticSearchConfig;
         this.client = esFactory({
             host: elasticSearchConfig.host + ':' + elasticSearchConfig.port
         });
 
-        this.search = function (queryText, ownerUuid, page, callback) {
-            fromPage = (page * 10) / 10
+        this.search = function (queryText, ownerUuid, page, eventCode, callback) {
+            fromPage = (page * 10) / 10;
+            if(eventCode){
+              eventCode = ', _type:' + eventCode;
+            }
             service.client.search({
                 index: '_all',
                 size: 10,
                 from: fromPage,
-                q: queryText + ', owner:' + ownerUuid
+                q: queryText + ', owner:' + ownerUuid + ' ' + eventCode
                 // q: 'type:drone AND owner:' + ownerUuid
                 // q: queryText + ' AND uuid:' + ownerUuid
                 // q: queryText
@@ -34,4 +37,19 @@ angular.module('e2eApp')
                 callback(error, response);
             });
         };
+
+        this.getEvents = function(test, callback) {
+
+            $http.get('/api/events/')
+                .success(function(data) {
+                  // console.log(data);
+                    callback(data);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                    callback({});
+                });
+
+        };
+
     });
