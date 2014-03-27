@@ -450,16 +450,21 @@ module.exports = function (app, passport, config) {
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
                     res.cookie('csrf', csrfToken);
-                    res.redirect(url.format({
-                        protocol: api.oauth.protocol,
-                        hostname: api.oauth.host,
-                        pathname: api.oauth.authTokenPath,
-                        query: {
+                    var query = {
                             client_id: api.oauth.clientId,
                             response_type: 'code',
                             state: csrfToken,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
-                        }
+                        };
+                    if(api.name==='GoogleDrive') {
+                        query.scope = api.oauth.scope;
+                    }
+                    
+                    res.redirect(url.format({
+                        protocol: api.oauth.protocol,
+                        hostname: api.oauth.host,
+                        pathname: api.oauth.authTokenPath,
+                        query: query
                     }));
 
                 } else {
@@ -512,7 +517,7 @@ module.exports = function (app, passport, config) {
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
                     // check CSRF token
-                    if (req.query.state !== req.cookies.csrf) {
+                    if (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf)<0 ) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
                     
@@ -521,7 +526,7 @@ module.exports = function (app, passport, config) {
                             grant_type: api.oauth.grant_type,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
                         };
-                    if(api.name==='Box') {
+                    if(api.name==='Box' || api.name==='GoogleDrive') {
                         form.client_id = api.oauth.clientId;
                         form.client_secret = api.oauth.secret;
                     }
