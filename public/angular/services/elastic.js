@@ -13,13 +13,13 @@ angular.module('e2eApp')
         this.search = function (queryText, ownerUuid, page, eventCode, callback) {
             fromPage = (page * 10) / 10;
             if(eventCode){
-              eventCode = ', _type:' + eventCode;
+              eventCode = ' , _type:' + eventCode;
             }
             service.client.search({
                 index: '_all',
                 size: 10,
                 from: fromPage,
-                q: queryText + ', owner:' + ownerUuid + ' ' + eventCode
+                q: queryText + ', owner:' + ownerUuid + eventCode
                 // q: 'type:drone AND owner:' + ownerUuid
                 // q: queryText + ' AND uuid:' + ownerUuid
                 // q: queryText

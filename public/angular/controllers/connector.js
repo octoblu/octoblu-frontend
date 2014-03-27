@@ -102,7 +102,12 @@ angular.module('e2eApp')
                     alert(JSON.stringify(alertContent));
                 };
 
-                $scope.createDevice = function () {
+                // $scope.addDevice = function(){
+                //   $scope.deviceName = "";l
+                //   $scope.keys = [];
+                // }
+
+                $scope.createDevice = function ($scope) {
                     if($scope.deviceName){
                         // var dupeFound = false;
                         // $scope.duplicateDevice = false;
@@ -123,7 +128,6 @@ angular.module('e2eApp')
                         formData.keyvals = $scope.keys;
 
                         if(dupeUuid){
-
                             formData.uuid = dupeUuid;
                             formData.token = dupeToken;
 
@@ -142,7 +146,6 @@ angular.module('e2eApp')
                             });
 
                         } else {
-
                             deviceService.createDevice($scope.skynetuuid, formData, function(data) {
                                 try{
                                     $scope.devices.push(data);
