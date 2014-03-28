@@ -33,19 +33,6 @@ angular.module('e2eApp')
     {
 
 
-      $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-          console.log(toState);
-          console.log(fromState);
-      });
-
-      $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-          console.log(toState);
-          console.log(fromState);
-
-      });
-
-
-
         $scope.isopen = false;
         $scope.wizardStates = {
             instructions: {
@@ -74,11 +61,6 @@ angular.module('e2eApp')
         };
 
         $scope.getPreviousState = function( ){
-            if($state.is('connector.devices.wizard.findhub')){
-                return $scope.wizardStates.instructions.id;
-            } else if($state.is('connector.devices.wizard.finished')){
-                return $scope.wizardStates.findhub.id;
-            }
             return $scope.wizardStates.instructions.id;
         };
 
@@ -137,11 +119,13 @@ angular.module('e2eApp')
 
                };
 
-                 $http.put('/api/devices/' + hub.uuid, hubData)
+                 $http.put('/api/devices/' + $cookies.skynetuuid , hubData)
                      .success(function(data){
                          console.log('success');
                          console.log('Data returned ' + data);
-                     $scope.go('connector.devices') ;
+                     $state.go('connector.devices', {}, {
+                         reload : true
+                     }) ;
 
                 })
                  .error(function(data){
