@@ -3,7 +3,7 @@
 angular.module('e2eApp')
     .directive('toggleSwitch', function () {
         return {
-            restrict: 'E',
+            restrict: 'AE',
             replace: true,
 
             scope: {
@@ -66,15 +66,6 @@ angular.module('e2eApp')
 
               attr.$observe('state', function(val){
                   $(element).bootstrapSwitch('state', val);
-//                 if(val){
-//                     $(element).parent('div.bootstrap-switch.bootstrap-switch-wrapper').removeClass('bootstrap-switch-off');
-//                     $(element).parent('div.bootstrap-switch.bootstrap-switch-wrapper').addClass('bootstrap-switch-on');
-//                     $(element).attr('checked', 'checked');
-//                 } else {
-//                     $(element).parent('.bootstrap-switch.bootstrap-switch-wrapper').addClass('bootstrap-switch-off');
-//                     $(element).parent('.bootstrap-switch.bootstrap-switch-wrapper').removeClass('bootstrap-switch-on');
-//                     $(element).removeAttr('checked');
-//                 }
               });
             }
         }

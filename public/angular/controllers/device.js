@@ -7,10 +7,8 @@ angular.module('e2eApp')
         if( ownerId === undefined || token === undefined ){
              $state.go('login');
         }
-      $scope.hubName = '';
-      $scope.addHub = function(){
-            console.log('clicking Add Hub');
-        };
+
+
       ownerService.getGateways(ownerId, token, false, function(error, data){
             if(error || data.gateways === undefined ){
                 console.log(error);
@@ -30,12 +28,25 @@ angular.module('e2eApp')
         });
 
     } )
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state , GatewayService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http, GatewayService )
 
     {
-        $scope.isopen = false;
-//        $scope.hubName = undefined;
 
+
+      $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+          console.log(toState);
+          console.log(fromState);
+      });
+
+      $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+          console.log(toState);
+          console.log(fromState);
+
+      });
+
+
+
+        $scope.isopen = false;
         $scope.wizardStates = {
             instructions: {
                 name: 'instructions',
@@ -58,33 +69,92 @@ angular.module('e2eApp')
             }
         });
 
-        $scope.getNextState = function( ){
+        $scope.getNextState = function(){
             return $scope.wizardStates.findhub.id;
         };
 
-        $scope.canProceed = function(){
-
-        };
-
-        $scope.getPreviousState = function(){
+        $scope.getPreviousState = function( ){
+            if($state.is('connector.devices.wizard.findhub')){
+                return $scope.wizardStates.instructions.id;
+            } else if($state.is('connector.devices.wizard.finished')){
+                return $scope.wizardStates.findhub.id;
+            }
             return $scope.wizardStates.instructions.id;
         };
 
-        $scope.checkFinish = function(name, hub){
+        $scope.canClaim = function(name, hub){
             console.log('checkFinish');
             if(name && name.trim().length > 0 && hub ){
-              if($('#wizard-finish-btn').attr('disabled')){
-                  $('#wizard-finish-btn').removeAttr('disabled');
-              }
-            } else {
-                $('#wizard-finish-btn').attr('disabled', 'disabled');
+                return true;
             }
+            return false;
+        };
+        //Function to enable or disable the Finish and Claim Hub buttons
+        $scope.checkClaim = function(name, hub){
+            if($scope.canClaim(name, hub)){
+                $('#wizard-finish-btn').removeAttr('disabled');
+                $('#wizard-claim-btn').removeAttr('disabled');
+            } else {
+                $('#wizard-finish-btn').attr('disabled');
+                $('#wizard-claim-btn').attr('disabled');
+            }
+        }
+
+        //Notify the parent scope that a new hub has been selected
+        $scope.notifyHubSelected = function(hub){
+            console.log('hub selected notifying parent scope');
+            $scope.$emit('hubSelected', hub);
         };
 
+        //Notify the parent scope that the hub name has been changed
+        $scope.notifyHubNameChanged = function(name){
+            console.log('name changed notifying parent scope');
+            $scope.$emit('hubNameChanged', name);
+        }
+
+        //event handler for updating the hubName selected in the child scope
+        $scope.$on('hubNameChanged', function(event, name){
+
+            $scope.hubName = name;
+        });
+
+        //event handler for updating the hub selected in the child scope.
+        $scope.$on('hubSelected', function(event, hub){
+
+            $scope.selectedHub = hub;
+        });
+
+        $scope.saveHub = function(hub, hubName){
+           if(hub && hubName && hubName.trim().length > 0 ){
+
+               var hubData =
+               {
+                   uuid : hub.uuid,
+                   token : hub.token,
+                   owner : $cookies.skynetuuid,
+                   name  : hubName,
+                   keyvals : []
+
+               };
+
+                 $http.put('/api/devices/' + hub.uuid, hubData)
+                     .success(function(data){
+                         console.log('success');
+                         console.log('Data returned ' + data);
+                     $scope.go('connector.devices') ;
+
+                })
+                 .error(function(data){
+                         console.log('error');
+                         console.log(data);
+                 } );
+
+           }
+        } ;
 
         $scope.toggleOpen = function(){
             $scope.isopen = ! $scope.isopen;
-        }
+        };
     })
     .controller('SubDeviceController',  function ($rootScope, $scope, $http, $injector, ownerService )
     {
