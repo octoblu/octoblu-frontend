@@ -178,6 +178,16 @@ module.exports = function (app, passport, config) {
         );
     };
 
+    var parseHashResponse = function(body) {
+        var ar1 = body.split('&');
+        var result = {};
+        for(var l = 0; l<ar1.length; l++) {
+            var pair = ar1[l].split('=');
+            result[pair[0]] = pair[1];
+        }
+        return result;
+    };
+
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback', function(req, res, next) {
         passport.authenticate('facebook', function(err, user, info) {
@@ -237,16 +247,7 @@ module.exports = function (app, passport, config) {
                                     }
                                 }
                             )
-
-
                         } else {
-
-                            // res.cookie('skynetuuid', data.devices[0], {
-                            //      maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                            //      domain: config.domain,
-                            //      httpOnly: false
-                            //    });
-
                             res.cookie('skynetuuid', user.facebook.skynetuuid, {
                                 maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
                                 domain: config.domain,
@@ -526,7 +527,7 @@ module.exports = function (app, passport, config) {
                             grant_type: api.oauth.grant_type,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
                         };
-                    if(api.name==='Box' || api.name==='GoogleDrive') {
+                    if(api.name==='Box' || api.name==='GoogleDrive' || api.name=='Facebook') {
                         form.client_id = api.oauth.clientId;
                         form.client_secret = api.oauth.secret;
                     }
@@ -540,7 +541,12 @@ module.exports = function (app, passport, config) {
                         }
                         }, function (error, response, body) {
                             console.log(body);
-                            var data = JSON.parse(body);
+                            var data;
+                            if(api.name==='Facebook') {
+                                data = parseHashResponse(body);
+                            } else {
+                                data = JSON.parse(body);
+                            }
 
                             if (data.error) {
                                 console.log('error position 2');
