@@ -27,6 +27,9 @@ angular.module('e2eApp')
             $scope.smartDevices = data;
         });
 
+      $scope.addSmartDevices = function(smartDevice){
+        console.log('adding a new smart device' + smartDevice);
+      }
     } )
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http, GatewayService )
 

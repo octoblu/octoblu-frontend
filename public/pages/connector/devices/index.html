@@ -1,29 +1,113 @@
+<style>
+    .online-indicator {
+        background-image: url('assets/images/online_indicator.png');
+        height: 16px !important;
+        width: 16px !important;
 
+    }
+
+    .offline-indicator {
+        background-image: url('assets/images/offline_indicator.png');
+        height: 16px !important;
+        width: 16px !important;
+    }
+
+    .hub-panel {
+        border: 1px solid #dddddd;
+        border-radius: 3em / 3em;
+        padding: 2% 20px 2% 20px;
+        margin-left: 2%;
+    }
+</style>
+<h2 style="margin-left: 20px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs</h2>
 <div ng-if="claimedGateways.length == 0" class="row">
     <div class="well">
-        <h2>No Hubs Found</h2>
+        <h3>No Hubs Found</h3>
+
         <p>
             You currently have no Hubs added to your account. Add a new Hub.
         </p>
-        <a class="btn btn-primary" href="" ui-sref="connector.devices.wizard.instructions" ng-click="addHub()"><i class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Add Hub</a>
+        <a class="btn btn-primary" href="" ui-sref="connector.devices.wizard.instructions" ng-click="addHub()"><i
+                class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Add Hub</a>
     </div>
-        <div class="divScroll" >
-            <div class="scrollWrapper">
-                <h3 style="margin-left: 20px;"><i class='icon-off'></i> Available Devices</h3>
-                <ul class="channellist">
-                    <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
-                        <div class="channel_icon-grid-view mod-index-0 pop-over"
-                             data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
-                            <a disabled><img ng-src="{{smartDevice.logo}}" width="70" height="70"/></a>
-                        </div>
+
+</div>
+<ul class="media-list">
+    <li id="hub-{{g.uuid}}" class="media hub-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
+        <div class="btn-group pull-right" style="padding-left: 0px;">
+            <a class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="10" tooltip-placement="left"><i
+                    class="fa fa-times"></i>Delete</a>
+        </div>
+        <a class="pull-left" href="#">
+            <img class="media-object img-thumbnail" src="assets/images/network_hub.png" alt="hub-logo">
+        </a>
+
+        <div class="media-body col-sm-4" style="padding-left: 0; padding-right: 0;">
+            <div class="input-group media-heading">
+                <input type="text" class="form-control" disabled="disabled" ng-model="g.name" value="{{g.name}}" class="media-heading" ng-disabled="true">
+                 <span class="input-group-btn" tooltip="Edit hub name" tooltip-placement="bottom" tooltip-popup-delay="5" >
+                    <button type="button" class="btn btn-default"><i class="fa fa-edit"    ></i></button>
+                </span>
+            </div>
+
+            <table class="table table-condensed table-bordered">
+                <tr>
+                    <td class="table-heading"><strong>UUID</strong></td>
+                    <td><span class="label label-primary">{{g.uuid}}</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Token</strong></td>
+                    <td><span class="label label-primary">{{g.token}}</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Online</strong></td>
+                    <td><span class="label" ng-class="{'label-success' : g.online, 'label-danger': !g.online}">{{g.online}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-6 clearfix">
+            <h4 class="col-sm-12">{{g.name}} <small>Devices</small></h4>
+            <div class="col-sm-12 subdevice-panel">
+                <div class="media subdevice-entry pull-left" ng-repeat="s in g.subdevices">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-thumbnail" height="32px" width="32px" src="assets/images/network_hub.png" alt="hub-logo">
+                    </a>
+                    <div class="media-body">
+                        <span tooltip="Device name" tooltip-placement="right" tooltip-popup-delay="5"><small>{{s.name}}</small></span>
+                        <br />
+                        <span tooltip="Device Type" tooltip-placement="right" tooltip-popup-delay="5"><small>{{s.type}}</small></span>
+
+                    </div>
+                </div>
+                <ul class="pager col-sm-12">
+                    <li class="previous">
+                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-chevron-left"></i></a>
+                    </li>
+                    <li class="next">
+                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-chevron-right"></i></a>
                     </li>
                 </ul>
             </div>
+
         </div>
+
+
+    </li>
+</ul>
+<div class="divScroll">
+    <div class="scrollWrapper">
+        <h2 style="margin-left: 20px;"><i class='icon-off'></i> Available Devices</h2>
+            <ul class="channellist">
+                <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
+                    <div class="channel_icon-grid-view mod-index-0 pop-over"
+                         data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto"
+                         ng-class="{'unavailable':claimedGateways.length === 0}">
+                        <a ng-disabled="{{claimedGateways.length === 0}}" ng-click="addSmartDevice(smartDevice)"><img
+                                ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70"/></a>
+                    </div>
+                </li>
+            </ul>
     </div>
-<div ng-if="claimedGateways.length > 0" class="row">
-    <div ng-repeat="g in claimedGateways" ></div>
-
 </div>
-
 <div ui-view></div>

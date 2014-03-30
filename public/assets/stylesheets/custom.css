@@ -378,3 +378,9 @@ max-width: 100%;
     left: 25% !important;
     top: 10% !important;
 }
+
+.unavailable {
+    cursor:pointer !important;
+    opacity: 0.3 !important;
+    filter: alpha(opacity=30) !important;
+}
