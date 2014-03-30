@@ -17,6 +17,7 @@ skynetdb.connect(configDB.skynetUrl);
 require('./app/models/api');
 require('./app/models/device');
 require('./app/models/user');
+require('./app/models/event');
 
 require('./config/passport')(env, passport); // pass passport for configuration
 

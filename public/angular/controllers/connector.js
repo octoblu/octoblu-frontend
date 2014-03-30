@@ -105,7 +105,12 @@ angular.module('e2eApp')
                     alert(JSON.stringify(alertContent));
                 };
 
-                $scope.createDevice = function () {
+                // $scope.addDevice = function(){
+                //   $scope.deviceName = "";l
+                //   $scope.keys = [];
+                // }
+
+                $scope.createDevice = function ($scope) {
                     if($scope.deviceName){
                         // var dupeFound = false;
                         // $scope.duplicateDevice = false;
@@ -126,7 +131,6 @@ angular.module('e2eApp')
                         formData.keyvals = $scope.keys;
 
                         if(dupeUuid){
-
                             formData.uuid = dupeUuid;
                             formData.token = dupeToken;
 
@@ -145,7 +149,6 @@ angular.module('e2eApp')
                             });
 
                         } else {
-
                             deviceService.createDevice($scope.skynetuuid, formData, function(data) {
                                 try{
                                     $scope.devices.push(data);
@@ -537,7 +540,7 @@ angular.module('e2eApp')
                               }
                             });
                             console.log($scope.deviceProperties2);
-                            $scope.ok = function (subDeviceName, plugin, deviceProperties) {
+                            $scope.ok = function (deviceProperties) {
                                 $scope._backup = false;
                                 console.log(deviceProperties);
                                 var properties = _.map(deviceProperties, function(deviceProperty){
@@ -553,8 +556,8 @@ angular.module('e2eApp')
                                 });
                                 console.log('update', options);
                                 $modalInstance.close({
-                                    "name" : subDeviceName,
-                                    "plugin" : $scope.selectedSubdevice.type,
+                                    "subDeviceName" : $scope.selectedSubdevice.name,
+                                    "plugin" : subdevice.type,
                                     "deviceProperties" : options
                                 });
                             };
@@ -586,10 +589,11 @@ angular.module('e2eApp')
                     });
 
                     modalInstance.result.then(function (response) {
-                        $scope.subDeviceName = response.name;
+                      console.log(response);
+                        $scope.subDeviceName = response.subDeviceName;
                         $scope.plugin = response.plugin;
                         $scope.deviceProperties = response.deviceProperties;
-                        $scope.updateSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
+                        $scope.updateSubdevice($scope.selectedGateway, response.plugin, response.subDeviceName, response.deviceProperties);
                         // TODO: update the subdevice, not push a new one
                         // $scope.selectedGateway.subdevices.push({name: response.name, type: response.plugin, options: response.deviceProperties})
 

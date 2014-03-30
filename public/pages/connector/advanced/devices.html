@@ -28,7 +28,7 @@
 
             <div class="col-sm-12" ng-show="addDevice">
                 <h3>Add/Edit Device</h3>
-                <form name="myForm">
+                <!form name="myForm">
                     <input class="form-control" name="deviceName" ng-model="deviceName" placeholder="Device Name (required)" ng-value="deviceName" required>
                     <!-- <span ng-show="duplicateDevice" style="color:red;">Device name already exists.</span> -->
                     <br />
@@ -46,9 +46,9 @@
                     </div>
 
                     <br />
-                    <button class="btn" ng-click="createDevice()">Submit</button>
+                    <button class="btn" ng-click="createDevice(this)">Submit</button>
                     <br /><br />
-                </form>
+                <!/form>
             </div>
 
 

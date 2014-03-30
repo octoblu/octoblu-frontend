@@ -1,25 +1,16 @@
 'use strict';
 
-//var elastic = require('elastic');
+var mongoose = require('mongoose'),
+    Event = mongoose.model('Event');
 
 module.exports = function (app) {
-//    // Get elastic query
-//    app.get('/api/elastic/query/:query', function (req, res) {
-//        elastic.search({
-//            index: 'log',
-//            q: req.params.query
-//        }, function (error, response) {
-//            var data = {};
-//
-//            console.log('error', error);
-//            console.log('response', response);
-//
-//            try {
-//                var data = JSON.parse(response);
-//            } catch(e){
-//            }
-//
-//            res.json(data);
-//        });
-//    });
+
+  app.get('/api/events', function (req, res) {
+
+    Event.find({}, function (err, events) {
+      if (err) { res.send(err); } else { res.json(events); }
+    });
+
+  });
+
 };
