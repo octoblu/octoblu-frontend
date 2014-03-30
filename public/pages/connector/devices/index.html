@@ -57,7 +57,10 @@
                 </tr>
                 <tr>
                     <td><strong>Token</strong></td>
-                    <td><span class="label label-primary">{{g.token}}</span></td>
+                    <td>
+                      <a ng-click="moreInfo = true" ng-hide="moreInfo" href="">********************************</a>
+                      <input type="text" ng-show="moreInfo" value="{{g.token}}" size="40">
+                    </td>
                 </tr>
                 <tr>
                     <td><strong>Online</strong></td>
