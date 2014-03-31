@@ -4,13 +4,13 @@
        <li ng-repeat="subdevice in hub.subdevices" class="list-group-item" style="min-height: 90px !important;">
            <img class="img-thumbnail pull-left" src="assets/images/robots/robot5.png"  height="48px" width="48px"/>
           <div class="col-sm-8">
-              <span class="label label-primary">Name</span>  {{subdevice.name}}
+              <strong style="padding-right: 1em;">Name:</strong><span class="" >{{subdevice.name}}</span>
               <br>
-              <span class="label label-primary">Type</span>  {{subdevice.type}}
+              <strong style="padding-right: 1em;" >Type:&nbsp;&nbsp;</strong><span class="">{{subdevice.type}}</span>
           </div>
           <div class="btn-group pull-right">
-              <a class="btn btn-danger"><i class="fa fa-times"></i></a>
-              <a class="btn btn-inverse"><i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger" ng-click="deleteSubdevice(subdevice, hub)"><i class="fa fa-times"></i></a>
+              <a class="btn btn-inverse" ng-click="editSubdevice(subdevice, hub)"><i class="fa fa-edit"></i></a>
           </div>
 
        </li>

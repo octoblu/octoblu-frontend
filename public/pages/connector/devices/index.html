@@ -25,7 +25,9 @@
         padding: 5px 5px 5px 5px;
     }
 </style>
-<h2 style="margin-left: 20px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs</h2>
+<h2 style="margin-left: 20px; margin-bottom: 30px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs<a class="btn btn-primary pull-right" href="" ui-sref="connector.devices.wizard.instructions" ng-click="addHub()"><i
+        class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Add Hub</a></h2>
+
 <div ng-if="claimedGateways.length == 0" class="row">
     <div class="well">
         <h3>No Hubs Found</h3>
@@ -33,8 +35,7 @@
         <p>
             You currently have no Hubs added to your account. Add a new Hub.
         </p>
-        <a class="btn btn-primary" href="" ui-sref="connector.devices.wizard.instructions" ng-click="addHub()"><i
-                class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Add Hub</a>
+
     </div>
 
 </div>
