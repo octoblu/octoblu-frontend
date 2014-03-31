@@ -18,6 +18,12 @@
         padding: 2% 20px 2% 20px;
         margin-left: 2%;
     }
+
+    .subdevice-item {
+        min-height: 142px !important;
+        min-width:  142px !important;
+        padding: 5px 5px 5px 5px;
+    }
 </style>
 <h2 style="margin-left: 20px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs</h2>
 <div ng-if="claimedGateways.length == 0" class="row">
@@ -66,33 +72,9 @@
                 </tr>
             </table>
         </div>
-        <div class="col-sm-6 clearfix">
-            <h4 class="col-sm-12">{{g.name}} <small>Devices</small></h4>
-            <div class="col-sm-12 subdevice-panel">
-                <div class="media subdevice-entry pull-left" ng-repeat="s in g.subdevices">
-                    <a class="pull-left" href="#">
-                        <img class="media-object img-thumbnail" height="32px" width="32px" src="assets/images/network_hub.png" alt="hub-logo">
-                    </a>
-                    <div class="media-body">
-                        <span tooltip="Device name" tooltip-placement="right" tooltip-popup-delay="5"><small>{{s.name}}</small></span>
-                        <br />
-                        <span tooltip="Device Type" tooltip-placement="right" tooltip-popup-delay="5"><small>{{s.type}}</small></span>
-
-                    </div>
-                </div>
-                <ul class="pager col-sm-12">
-                    <li class="previous">
-                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-chevron-left"></i></a>
-                    </li>
-                    <li class="next">
-                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-chevron-right"></i></a>
-                    </li>
-                </ul>
-            </div>
-
+        <div class="col-sm-6">
+            <device-carousel hub="g"></device-carousel>
         </div>
-
-
     </li>
 </ul>
 <div class="divScroll">
