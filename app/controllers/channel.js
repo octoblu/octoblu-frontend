@@ -43,6 +43,7 @@ module.exports = function (app) {
                 { application: 0, custom_tokens: 0 },
                 function(err, apis) {
                     if(err) { return res.json(err); }
+                    console.log('==apis', apis);
                     res.json(apis);
                 }
             );
