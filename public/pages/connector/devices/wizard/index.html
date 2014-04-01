@@ -1,50 +1,21 @@
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Add a new Hub</h4>
-            </div>
-            <div class="modal-body">
-                <div ng-if="currentState.name === 'instructions'">
-                    <h2>Instructions</h2>
+<div class="modal-dialog wizard-dialog">
+   <div class="modal-content">
+       <div class="modal-header">
+           <a type="button" class="close"  data-dismiss="modal" ui-sref="connector.devices" aria-hidden="true">&times;</a>
+           <h4 class="modal-title" id="myModalLabel"><i class="fa fa-home fa-2x"></i>&nbsp;&nbsp;Add a new Hub</h4>
+       </div>
+       <div ui-view class="modal-body">
+       </div>
+       <div class="modal-footer">
+           <a type="button" id="wizard-cancel-btn" class="btn btn-danger" data-dismiss="modal" ui-sref="connector.devices"><i class="fa fa-times"></i>&nbsp;&nbsp;Close</a>
+           <a type="button" id="wizard-previous-btn" class="btn btn-default"  ui-sref="{{getPreviousState()}}"><i class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;Previous</a>
+           <a type="button" id="wizard-next-btn" class="btn btn-default" ui-sref="{{getNextState()}}">Next&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
 
-                </div>
-                <div ng-if="currentState.name === 'find-hub'">
-                    <h2>Find Hub</h2>
+           <a  ng-show="$state.is('connector.devices.wizard.findhub')" type="button" id="wizard-finish-btn"  class="btn btn-success" ng-disabled="{{!canClaim(hubName, selectedHub)}}" ng-click="saveHub(selectedHub, hubName)" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</a>
+           <a  ng-show="$state.is('connector.devices.wizard.finished')" type="button"  class="btn btn-success"  ui-sref="connector.devices" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</a>
+       </div>
+   </div>
+</div>
 
-                </div>
-                <div ng-if="currentState.name === 'edit-hub'">
-                    <h2>Edit Hub</h2>
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
-                <button type="button" id="wizard-previous-btn" class="btn btn-success" ng-click="previous(currentState)">Previous</button>
-                <button id="wizard-next-btn" type="button" class="btn btn-success" ng-click="next(currentState)">Next</button>
-            </div>
-        </div>
-
-<!--<div ng-controller="ModalDemoCtrl">-->
-    <!--<script type="text/ng-template" id="deviceWizardModal.html">-->
-        <!--<div class="modal-header">-->
-            <!--<h3>I'm a modal!</h3>-->
-        <!--</div>-->
-        <!--<div class="modal-body">-->
-            <!--<ul>-->
-                <!--<li ng-repeat="item in items">-->
-                    <!--<a ng-click="selected.item = item">{{ item }}</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-            <!--Selected: <b>{{ selected.item }}</b>-->
-        <!--</div>-->
-        <!--<div class="modal-footer">-->
-            <!--<button class="btn btn-primary" ng-click="ok()">OK</button>-->
-            <!--<button class="btn btn-warning" ng-click="cancel()">Cancel</button>-->
-        <!--</div>-->
-    <!--</script>-->
-
-    <!--<button class="btn btn-default" ng-click="open()">Open me!</button>-->
-    <!--<div ng-show="selected">Selection from a modal: {{ selected }}</div>-->
-<!--</div>-->
 
 

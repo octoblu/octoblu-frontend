@@ -347,3 +347,40 @@ a, a:hover, a:focus {color: #3498db;}
 .pricing-table:hover > .caption li {
 	border-color: rgba(255,255,255,0.5);
 }
+
+/** **/
+.divScroll {
+overflow:scroll;
+height: auto;
+max-width: 100%;
+}
+.scrollWrapper {
+    overflow: visible;
+    height: auto;
+    width: 100%;
+}
+.divScroll ul {
+    list-style-type: none;
+}
+.divScroll ul li {
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom: 1;
+    *display: inline;
+    padding: 10px;
+    height: auto;
+    width: auto;
+    vertical-align: top;
+}
+
+.wizard-dialog {
+    position: fixed !important;
+    left: 25% !important;
+    top: 10% !important;
+}
+
+.unavailable {
+    cursor:pointer !important;
+    opacity: 0.3 !important;
+    filter: alpha(opacity=30) !important;
+}

@@ -1,7 +1,7 @@
 'use strict';
 
 // create the module and name it e2eApp
-angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'angular-google-analytics', 'elasticsearch'])
+angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -66,9 +66,29 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 controller: 'DeviceController'
             })
             .state('connector.devices.wizard', {
-                templateUrl: 'pages/connector/devices/wizard/index.html',
-                controller: 'DeviceWizardController',
+                url : '/wizard',
+                abstract : true,
+                templateUrl : 'pages/connector/devices/wizard/index.html',
+                controller: 'DeviceWizardController'
 
+
+            })
+            .state('connector.devices.wizard.instructions', {
+                url: '/instructions',
+                templateUrl : 'pages/connector/devices/wizard/instructions.html',
+                onExit : function(){
+
+                }
+            })
+            .state('connector.devices.wizard.findhub', {
+                url: '/findhub',
+                templateUrl : 'pages/connector/devices/wizard/find-hub.html',
+                onEnter: function(){
+
+                },
+                onExit : function(){
+
+                }
             })
             .state('connector.channels', {
                 abstract: true,
@@ -126,31 +146,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 templateUrl: 'pages/connector/advanced/messaging.html',
                 controller: 'controllerController'
             })
-//            .state('connector.people', {
-//                url: '/people',
-//                templateUrl: 'pages/people.html',
-//                controller: 'connectorController'
-//            })
-//            .state('connector.channels', {
-//                url: '/channels',
-//                templateUrl: 'pages/channels.html',
-//                controller: 'ChannelController'
-//            })
-//            .state('connector.channels.detail', {
-//                url: '/:name',
-//                templateUrl: 'pages/connector/channels_detail.html',
-//                controller: 'ChannelController'
-//            })
-//            .state('connector.gateway', {
-//                url: '/gateway',
-//                templateUrl: 'pages/gateways.html',
-//                controller: 'connectorController'
-//            })
-//            .state('connector.tools', {
-//                url: '/tools',
-//                templateUrl: 'pages/devtools.html',
-//                controller: 'connectorController'
-//            })
             .state('admin', {
                 url: '/admin',
                 templateUrl: 'pages/admin.html',
@@ -166,11 +161,6 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 templateUrl: 'pages/docs.html',
                 controller: 'docsController'
             })
-//            .state('controller', {
-//                url: '/controller',
-//                templateUrl: 'pages/controller.html',
-//                controller: 'controllerController'
-//            })
             .state('designer', {
                 url: '/designer',
                 templateUrl: 'pages/designer.html',
@@ -214,7 +204,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise('/');
+//        $urlRouterProvider.otherwise('/');
     })
     .run(function ($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;

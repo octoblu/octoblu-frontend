@@ -22,11 +22,11 @@ angular.module('e2eApp')
                     devices: includeDevices
                 }
             }).success(function(data) {
-                callback(data);
+                callback(null, data);
             })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                    callback({});
+                .error(function(error) {
+                    console.log('Error: ' + error);
+                    callback(error, null);
                 });
 
         };
