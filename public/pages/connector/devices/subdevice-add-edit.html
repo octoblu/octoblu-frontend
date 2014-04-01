@@ -11,6 +11,17 @@
                 <select class="form-control" ng-options="h.name for h in hubs" ng-model="selectedHub"></select>
             </div>
         </div>
+        <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
+            <div ng-if="deviceProperty.type == 'string'">
+                <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+            </div>
+            <div ng-if="deviceProperty.type == 'number'">
+                <input type="number" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+            </div>
+            <div ng-if="deviceProperty.type == 'boolean'">
+                <input type="checkbox" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+            </div>
+        </div>
     </form>
 </div>
 <div class="modal-footer">

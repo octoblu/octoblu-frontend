@@ -85,8 +85,8 @@
                 <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
                     <div class="channel_icon-grid-view mod-index-0 pop-over"
                          data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto"
-                         ng-class="{'unavailable':claimedGateways.length === 0}">
-                        <a ng-disabled="{{claimedGateways.length === 0}}" ng-click="addSmartDevice(smartDevice)"><img
+                         ng-class="{'unavailable':!smartDevice.enabled}">
+                        <a ng-disabled="{{! smartDevice.enabled}}" ng-click="addSmartDevice(smartDevice)"><img
                                 ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70"/></a>
                     </div>
                 </li>
