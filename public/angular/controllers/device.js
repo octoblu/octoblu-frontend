@@ -27,10 +27,70 @@ angular.module('e2eApp')
             $scope.smartDevices = data;
         });
 
-      $scope.addSmartDevices = function(smartDevice){
-        console.log('adding a new smart device' + smartDevice);
+      $scope.addSmartDevice = function(smartDevice){
+
+        if(smartDevice.enabled){
+            var subdeviceModal = $modal.open({
+                templateUrl : 'pages/connector/devices/subdevice-add-edit.html',
+//            scope : $scope,
+                controller : 'SubDeviceController',
+                backdrop : true,
+                resolve : {
+                    mode : function(){
+                        return 'ADD';
+                    },
+                    hubs : function(){
+                        return $scope.claimedGateways;
+                    },
+                    smartDevice : function(){
+                        return smartDevice;
+                    }
+                }
+
+            });
+
+            subdeviceModal.result.then(function(smartDevice, selectedHub){
+                //TODO - save the results of selected Hub and smart device
+                //$state.go('connector.devices');
+            }, function(){
+
+            });
+        }
+
+
+
       }
     } )
+    .controller('SubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice )
+{
+    $scope.hubs = hubs;
+    $scope.mode = mode;
+    $scope.smartDevice = smartDevice;
+
+    $scope.plugins = $scope.hubs[0].plugins;
+
+    $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
+
+    var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
+
+    var deviceProperties = _.map(keys, function(propertyKey){
+        var propertyValue = $scope.devicePlugin.optionsSchema.properties[propertyKey];
+        var deviceProperty = {};
+        deviceProperty.name = propertyKey;
+        deviceProperty.type = propertyValue.type;
+        deviceProperty.required = propertyValue.required;
+        deviceProperty.value = "";
+        return deviceProperty;
+    });
+    $scope.deviceProperties = deviceProperties;
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+    $scope.save = function(selectedHub){
+        $modalInstance.close(selectedHub, $scope.smartDevice);
+    }
+})
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http, GatewayService )
 
     {
@@ -143,7 +203,4 @@ angular.module('e2eApp')
             $scope.isopen = ! $scope.isopen;
         };
     })
-    .controller('SubDeviceController',  function ($rootScope, $scope, $http, $injector, ownerService )
-    {
-
-    });
+  ;

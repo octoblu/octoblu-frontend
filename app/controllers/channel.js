@@ -18,7 +18,7 @@ module.exports = function (app) {
     // List of all Smart Devices
     // TODO: rename to match naming convention
     app.get('/api/smartdevices', function(req, res) {
-        Device.find({enabled: true}, function (err, apis) {
+        Device.find({}, function (err, apis) {
             if (err) { res.send(err); } else { res.json(apis); }
         });
     });
