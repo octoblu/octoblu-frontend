@@ -307,7 +307,7 @@ angular.module('e2eApp')
                                 "name": subName
                                 // "name": $scope.gateways[parent].subdevices[idx].name
                             }, function (deleteResult) {
-                                alert(JSON.stringify(deleteResult));
+                                // alert(JSON.stringify(deleteResult));
                             });
                         },
                         function() {
