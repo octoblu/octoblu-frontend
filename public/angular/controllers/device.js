@@ -4,7 +4,7 @@ angular.module('e2eApp')
         var ownerId = $cookies.skynetuuid;
         var token = $cookies.skynettoken;
 
-        var socket = $rootScope.skynetSocket;
+        $scope.socket = $rootScope.skynetSocket;
         //check if they are authenticated, if they arent signed in route them to login
         //TODO this will be handled by route checking at the root scope level. Should be changed then.
         if( ownerId === undefined || token === undefined ){
@@ -83,14 +83,17 @@ angular.module('e2eApp')
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
                 function() {
                     $log.info('ok clicked');
-                    socket.emit('gatewayConfig', {
+                    $rootScope.skynetSocket.emit('gatewayConfig', {
                         "uuid": hub.uuid,
                         "token": hub.token,
                         "method": "deleteSubdevice",
                         "name": subdevice.name
                         // "name": $scope.gateways[parent].subdevices[idx].name
                     }, function (deleteResult) {
+                        if(deleteResult.result === 'ok'){
+                            hub.subdevices = _.without(hub.subdevices, subdevice);
 
+                        }
 
                     });
                 },
