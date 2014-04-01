@@ -1,14 +1,30 @@
 angular.module('e2eApp')
-    .controller('DeviceController', function ($rootScope, $scope, $state,  $http, $cookies, $modal, channelService, userService, ownerService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $log, $state,  $http, $cookies, $modal, channelService, ownerService, deviceService ) {
+
         var ownerId = $cookies.skynetuuid;
         var token = $cookies.skynettoken;
+
+        var socket = $rootScope.skynetSocket;
         //check if they are authenticated, if they arent signed in route them to login
         //TODO this will be handled by route checking at the root scope level. Should be changed then.
         if( ownerId === undefined || token === undefined ){
              $state.go('login');
         }
 
+      $scope.deleteHub = function(hub){
+          $rootScope.confirmModal($modal, $scope, $log, 'Delete Hub ' + hub.name ,'Are you sure you want to delete this Hub?',
+              function() {
+                  $log.info('ok clicked');
+                  deviceService.deleteDevice(hub.uuid, hub.token, function( data ) {
+                      var claimedGateways = $scope.claimedGateways;
+                      $scope.claimedGateways = _.without(claimedGateways, hub);
+                  });
+              },
+              function() {
+                  $log.info('cancel clicked');
+              });
 
+      };
       ownerService.getGateways(ownerId, token, false, function(error, data){
             if(error || data.gateways === undefined ){
                 console.log(error);
@@ -28,7 +44,6 @@ angular.module('e2eApp')
         });
 
       $scope.addSmartDevice = function(smartDevice){
-
         if(smartDevice.enabled){
             var subdeviceModal = $modal.open({
                 templateUrl : 'pages/connector/devices/subdevice-add-edit.html',
@@ -56,10 +71,36 @@ angular.module('e2eApp')
 
             });
         }
-
-
-
       }
+
+        $scope.editSubDevice = function(subdevice, hub){
+
+        }
+
+        $scope.deleteSubDevice = function(subdevice, hub){
+            $rootScope.confirmModal($modal, $scope, $log,
+                    'Delete Subdevice' + subdevice.name ,
+                    'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
+                function() {
+                    $log.info('ok clicked');
+                    socket.emit('gatewayConfig', {
+                        "uuid": hub.uuid,
+                        "token": hub.token,
+                        "method": "deleteSubdevice",
+                        "name": subdevice.name
+                        // "name": $scope.gateways[parent].subdevices[idx].name
+                    }, function (deleteResult) {
+
+
+                    });
+                },
+                function() {
+                    $log.info('cancel clicked');
+                });
+        }
+
+
+
     } )
     .controller('SubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice )
 {
@@ -91,7 +132,7 @@ angular.module('e2eApp')
         $modalInstance.close(selectedHub, $scope.smartDevice);
     }
 })
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http, GatewayService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , deviceService )
 
     {
 

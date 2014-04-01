@@ -206,7 +206,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
         // For any unmatched url, redirect to /
 //        $urlRouterProvider.otherwise('/');
     })
-    .run(function ($rootScope, $state, $stateParams) {
+    .run(function ($rootScope, $state, $stateParams, $cookies) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
@@ -261,6 +261,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                         $scope.skynetuuid = user;
                     }
 
+
                     cb();
                 });
             }
@@ -290,5 +291,20 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 function (response) { if(response==='ok') { $log.info('clicked ok'); } },
                 function () { $log.info('Modal dismissed at: ' + new Date()); }
             );
+            //They have logged in so create a skynetClient
+            if($rootScope.authorization.isAuthenticated && $cookies.skynetuuid && $cookies.skynettoken){
+
+                $rootScope.skynetClient = skynet({
+                    'uuid' : $cookies.skynetuuid,
+                    'token' : $cookies.skynettoken
+                }, function(e, socket){
+                   if( e ){
+                       console.log(e.toString());
+                   } else{
+                       $rootScope.skynetSocket = socket;
+                   }
+                });
+
+            }
         };
     });
