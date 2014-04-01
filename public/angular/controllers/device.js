@@ -46,9 +46,9 @@ angular.module('e2eApp')
       $scope.addSmartDevice = function(smartDevice){
         if(smartDevice.enabled){
             var subdeviceModal = $modal.open({
-                templateUrl : 'pages/connector/devices/subdevice-add-edit.html',
+                templateUrl : 'pages/connector/devices/subdevice/add.html',
 //            scope : $scope,
-                controller : 'SubDeviceController',
+                controller : 'AddSubDeviceController',
                 backdrop : true,
                 resolve : {
                     mode : function(){
@@ -60,6 +60,7 @@ angular.module('e2eApp')
                     smartDevice : function(){
                         return smartDevice;
                     }
+
                 }
 
             });
@@ -74,6 +75,35 @@ angular.module('e2eApp')
       }
 
         $scope.editSubDevice = function(subdevice, hub){
+            var subdeviceModal = $modal.open({
+                templateUrl : 'pages/connector/devices/subdevice/edit.html',
+                controller : 'EditSubDeviceController',
+                scope : $scope,
+                backdrop : true,
+                resolve : {
+                    mode : function(){
+                        return 'EDIT';
+                    },
+
+                    subdevice : function(){
+                        return subdevice;
+                    },
+
+                    hub : function(){
+                        return hub;
+                    },
+                    smartDevices : function(){
+                        return $scope.smartDevices;
+                    },
+                    plugins : function(){
+                        return hub.plugins;
+                    }
+
+                }
+
+            });
+
+
 
         }
 
@@ -102,39 +132,20 @@ angular.module('e2eApp')
                 });
         }
 
+        $scope.getSubDeviceLogo = function(subdevice){
+            var smartDevice = _.findWhere($scope.smartDevices, {
+                plugin : subdevice.type
+            });
+
+            if(smartDevice){
+                return smartDevice.logo;
+            }
+            return 'assets/images/robots/robot5.png';
+        };
 
 
     } )
-    .controller('SubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice )
-{
-    $scope.hubs = hubs;
-    $scope.mode = mode;
-    $scope.smartDevice = smartDevice;
 
-    $scope.plugins = $scope.hubs[0].plugins;
-
-    $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
-
-    var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
-
-    var deviceProperties = _.map(keys, function(propertyKey){
-        var propertyValue = $scope.devicePlugin.optionsSchema.properties[propertyKey];
-        var deviceProperty = {};
-        deviceProperty.name = propertyKey;
-        deviceProperty.type = propertyValue.type;
-        deviceProperty.required = propertyValue.required;
-        deviceProperty.value = "";
-        return deviceProperty;
-    });
-    $scope.deviceProperties = deviceProperties;
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-    $scope.save = function(selectedHub){
-        $modalInstance.close(selectedHub, $scope.smartDevice);
-    }
-})
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , deviceService )
 
     {
