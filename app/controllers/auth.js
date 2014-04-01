@@ -457,7 +457,7 @@ module.exports = function (app, passport, config) {
                             state: csrfToken,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
                         };
-                    if(api.name==='GoogleDrive') {
+                    if(api.name==='GoogleDrive' || api.oauth.scope.length > 0) {
                         query.scope = api.oauth.scope;
                     }
                     
