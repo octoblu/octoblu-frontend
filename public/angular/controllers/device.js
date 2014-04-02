@@ -77,7 +77,7 @@ angular.module('e2eApp')
                     console.log(addResult);
                 });
 
-                selectedHub.subdevices.push({
+                result.hub.subdevices.push({
                     name : result.name,
                     type : result.device.plugin,
                     options : result.options
