@@ -47,7 +47,7 @@ angular.module('e2eApp')
         if(smartDevice.enabled){
             var subdeviceModal = $modal.open({
                 templateUrl : 'pages/connector/devices/subdevice/add.html',
-//            scope : $scope,
+            scope : $scope,
                 controller : 'AddSubDeviceController',
                 backdrop : true,
                 resolve : {
@@ -65,9 +65,23 @@ angular.module('e2eApp')
 
             });
 
-            subdeviceModal.result.then(function(smartDevice, selectedHub){
-                //TODO - save the results of selected Hub and smart device
-                //$state.go('connector.devices');
+            subdeviceModal.result.then(function(subDeviceName, selectedHub, smartDevice, deviceOptions){
+                $scope.socket.emit('gatewayConfig', {
+                    "uuid": selectedHub.uuid,
+                    "token": selectedHub.token,
+                    "method": "createSubdevice",
+                    "type": smartDevice.plugin,
+                    "name": subDeviceName,
+                    "options": deviceOptions
+                }, function (addResult) {
+                    console.log(addResult);
+                });
+
+                selectedHub.subdevices.push({
+                    name : subDeviceName,
+                    type : smartDevice.plugin,
+                    options : deviceOptions
+                });
             }, function(){
 
             });
@@ -103,7 +117,21 @@ angular.module('e2eApp')
 
             });
 
+            subdeviceModal.result.then(function(subDevice, Hub, deviceOptions){
+                $scope.socket.emit('gatewayConfig', {
+                    "uuid": Hub.uuid,
+                    "token": Hub.token,
+                    "method": "updateSubdevice",
+                    "type": subDevice.type,
+                    "name": subDevice.name,
+                    "options": deviceOptions
+                }, function (updateResult) {
+                    console.log(updateResult);
+                });
+                subdevice.options = deviceOptions;
+            }, function(){
 
+            });
 
         }
 

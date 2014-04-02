@@ -4,7 +4,7 @@
     <h3 class="modal-title text-center" style="padding-bottom: 1em;" id="myModalLabel">{{mode}} {{subdevice.name}}</h3>
 </div>
 <div class="modal-body">
-    <form class="form-horizontal" name="editSubDeviceForm" role="form" ng-submit="save(editSubDeviceForm.$invalid)">
+    <form class="form-horizontal" name="editSubDeviceForm" role="form">
         <div class="form-group">
             <label class="col-sm-2 control-label">Hub</label>
             <div class="col-sm-10">
@@ -32,5 +32,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
-    <button type="submit" class="btn btn-primary">Save changes</button>
+    <button type="submit" class="btn btn-primary" ng-click="ok(subdevice, hub, deviceProperties)">Save changes</button>
 </div>
