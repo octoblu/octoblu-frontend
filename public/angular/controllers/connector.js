@@ -41,8 +41,7 @@ angular.module('e2eApp')
 
                 // get api list, if showing api
                 if($state.is('connector.channels.index')) {
-                    channelService.getActive($scope.skynetuuid,function(error, data) {
-                        console.log(data);
+                    channelService.getActive($scope.skynetuuid,function(data) {
                         $scope.activeChannels = data;
                     });
                     channelService.getAvailable($scope.skynetuuid,function(error, data) {
