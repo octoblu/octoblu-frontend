@@ -47,7 +47,7 @@ angular.module('e2eApp')
         if(smartDevice.enabled){
             var subdeviceModal = $modal.open({
                 templateUrl : 'pages/connector/devices/subdevice/add.html',
-            scope : $scope,
+//            scope : $scope,
                 controller : 'AddSubDeviceController',
                 backdrop : true,
                 resolve : {
@@ -65,14 +65,14 @@ angular.module('e2eApp')
 
             });
 
-            subdeviceModal.result.then(function(subDeviceName, selectedHub, smartDevice, deviceOptions){
+            subdeviceModal.result.then(function( result){
                     $rootScope.skynetSocket.emit('gatewayConfig', {
-                    "uuid": selectedHub.uuid,
-                    "token": selectedHub.token,
+                    "uuid": result.hub.uuid,
+                    "token": result.hub.token,
                     "method": "createSubdevice",
-                    "type": smartDevice.plugin,
-                    "name": subDeviceName,
-                    "options": deviceOptions
+                    "type": result.device.plugin,
+                    "name": result.name,
+                    "options": result.options
                 }, function (addResult) {
                     console.log(addResult);
                 });
@@ -92,7 +92,7 @@ angular.module('e2eApp')
             var subDeviceModal = $modal.open({
                 templateUrl : 'pages/connector/devices/subdevice/edit.html',
                 controller : 'EditSubDeviceController',
-                scope : $scope,
+//                scope : $scope,
                 backdrop : true,
                 resolve : {
                     mode : function(){

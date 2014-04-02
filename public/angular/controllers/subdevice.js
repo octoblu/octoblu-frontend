@@ -85,7 +85,13 @@ angular.module('e2eApp')
                     return option;
                 });
 
-                $modalInstance.close(subDeviceName, selectedHub, smartDevice,  deviceOptions);
+                $modalInstance.close(
+                    {
+                        name : subDeviceName,
+                        hub : selectedHub,
+                        device : smartDevice,
+                        options : deviceOptions
+                    });
             } else{
                 $scope.validationErrors = errors;
             }

@@ -291,20 +291,22 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 function (response) { if(response==='ok') { $log.info('clicked ok'); } },
                 function () { $log.info('Modal dismissed at: ' + new Date()); }
             );
-            //They have logged in so create a skynetClient
-            if($rootScope.authorization.isAuthenticated && $cookies.skynetuuid && $cookies.skynettoken){
 
-                $rootScope.skynetClient = skynet({
-                    'uuid' : $cookies.skynetuuid,
-                    'token' : $cookies.skynettoken
-                }, function(e, socket){
-                   if( e ){
-                       console.log(e.toString());
-                   } else{
-                       $rootScope.skynetSocket = socket;
-                   }
-                });
-
-            }
         };
+
+        //They have logged in so create a skynetClient
+        if($rootScope.authorization.isAuthenticated && $cookies.skynetuuid && $cookies.skynettoken){
+
+            $rootScope.skynetClient = skynet({
+                'uuid' : $cookies.skynetuuid,
+                'token' : $cookies.skynettoken
+            }, function(e, socket){
+                if( e ){
+                    console.log(e.toString());
+                } else{
+                    $rootScope.skynetSocket = socket;
+                }
+            });
+
+        }
     });
