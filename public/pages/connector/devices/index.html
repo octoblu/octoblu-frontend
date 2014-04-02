@@ -41,12 +41,9 @@
 </div>
 <ul class="media-list">
     <li id="hub-{{g.uuid}}" class="media hub-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
-        <div class="btn-group pull-right" style="padding-left: 0px;">
-            <a class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="10" tooltip-placement="left"><i
-                    class="fa fa-times"></i>Delete</a>
-        </div>
+
         <a class="pull-left" href="#">
-            <img class="media-object img-thumbnail" src="assets/images/network_hub.png" alt="hub-logo">
+            <img class="media-object img-thumbnail" ng-src="assets/images/network_hub.png" alt="hub-logo">
         </a>
 
         <div class="media-body col-sm-4" style="padding-left: 0; padding-right: 0;">
@@ -75,9 +72,13 @@
                     </td>
                 </tr>
             </table>
+            <div class="btn-group col-sm-12" style="padding-left: 0px;">
+                <a class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="10" tooltip-placement="right" ng-click="deleteHub(g)"><i
+                        class="fa fa-times"></i>Delete</a>
+            </div>
         </div>
         <div class="col-sm-6">
-            <device-carousel hub="g"></device-carousel>
+            <device-carousel hub="g" delete-sub-device="deleteSubDevice"></device-carousel>
         </div>
     </li>
 </ul>

@@ -1,14 +1,30 @@
 angular.module('e2eApp')
-    .controller('DeviceController', function ($rootScope, $scope, $state,  $http, $cookies, $modal, channelService, userService, ownerService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $log, $state,  $http, $cookies, $modal, channelService, ownerService, deviceService ) {
+
         var ownerId = $cookies.skynetuuid;
         var token = $cookies.skynettoken;
+
+        $scope.socket = $rootScope.skynetSocket;
         //check if they are authenticated, if they arent signed in route them to login
         //TODO this will be handled by route checking at the root scope level. Should be changed then.
         if( ownerId === undefined || token === undefined ){
              $state.go('login');
         }
 
+      $scope.deleteHub = function(hub){
+          $rootScope.confirmModal($modal, $scope, $log, 'Delete Hub ' + hub.name ,'Are you sure you want to delete this Hub?',
+              function() {
+                  $log.info('ok clicked');
+                  deviceService.deleteDevice(hub.uuid, hub.token, function( data ) {
+                      var claimedGateways = $scope.claimedGateways;
+                      $scope.claimedGateways = _.without(claimedGateways, hub);
+                  });
+              },
+              function() {
+                  $log.info('cancel clicked');
+              });
 
+      };
       ownerService.getGateways(ownerId, token, false, function(error, data){
             if(error || data.gateways === undefined ){
                 console.log(error);
@@ -27,13 +43,12 @@ angular.module('e2eApp')
             $scope.smartDevices = data;
         });
 
-      $scope.addSmartDevice = function(smartDevice){
-
+      $scope.addSmartDevice = function(smartDevice, rootScope){
         if(smartDevice.enabled){
             var subdeviceModal = $modal.open({
-                templateUrl : 'pages/connector/devices/subdevice-add-edit.html',
+                templateUrl : 'pages/connector/devices/subdevice/add.html',
 //            scope : $scope,
-                controller : 'SubDeviceController',
+                controller : 'AddSubDeviceController',
                 backdrop : true,
                 resolve : {
                     mode : function(){
@@ -45,53 +60,121 @@ angular.module('e2eApp')
                     smartDevice : function(){
                         return smartDevice;
                     }
+
                 }
 
             });
 
-            subdeviceModal.result.then(function(smartDevice, selectedHub){
-                //TODO - save the results of selected Hub and smart device
-                //$state.go('connector.devices');
+            subdeviceModal.result.then(function( result){
+                    $rootScope.skynetSocket.emit('gatewayConfig', {
+                    "uuid": result.hub.uuid,
+                    "token": result.hub.token,
+                    "method": "createSubdevice",
+                    "type": result.device.plugin,
+                    "name": result.name,
+                    "options": result.options
+                }, function (addResult) {
+                    console.log(addResult);
+                });
+
+                selectedHub.subdevices.push({
+                    name : subDeviceName,
+                    type : smartDevice.plugin,
+                    options : deviceOptions
+                });
             }, function(){
 
             });
         }
-
-
-
       }
+
+        $scope.editSubDevice = function(subdevice, hub){
+            var subDeviceModal = $modal.open({
+                templateUrl : 'pages/connector/devices/subdevice/edit.html',
+                controller : 'EditSubDeviceController',
+//                scope : $scope,
+                backdrop : true,
+                resolve : {
+                    mode : function(){
+                        return 'EDIT';
+                    },
+
+                    subdevice : function(){
+                        return subdevice;
+                    },
+
+                    hub : function(){
+                        return hub;
+                    },
+                    smartDevices : function(){
+                        return $scope.smartDevices;
+                    },
+                    plugins : function(){
+                        return hub.plugins;
+                    }
+
+                }
+
+            });
+
+            subDeviceModal.result.then(function( options){
+                $rootScope.skynetSocket.emit('gatewayConfig', {
+                    "uuid": hub.uuid,
+                    "token": hub.token,
+                    "method": "updateSubdevice",
+                    "type": subdevice.type,
+                    "name": subdevice.name,
+                    "options": options
+                }, function (updateResult) {
+                    console.log(updateResult);
+                });
+                subdevice.options = options;
+            }, function(){
+
+            });
+
+        }
+
+        $scope.deleteSubDevice = function(subdevice, hub){
+            $rootScope.confirmModal($modal, $scope, $log,
+                    'Delete Subdevice' + subdevice.name ,
+                    'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
+                function() {
+                    $log.info('ok clicked');
+                    $rootScope.skynetSocket.emit('gatewayConfig', {
+                        "uuid": hub.uuid,
+                        "token": hub.token,
+                        "method": "deleteSubdevice",
+                        "name": subdevice.name
+                        // "name": $scope.gateways[parent].subdevices[idx].name
+                    }, function (deleteResult) {
+                        if(deleteResult.result === 'ok'){
+                            hub.subdevices = _.without(hub.subdevices, subdevice);
+
+                        }
+
+                    });
+                },
+                function() {
+                    $log.info('cancel clicked');
+                });
+        }
+
+        $scope.getSubDeviceLogo = function(subdevice){
+            var smartDevice = _.findWhere($scope.smartDevices, {
+                plugin : subdevice.type
+            });
+
+            if(smartDevice){
+                return smartDevice.logo;
+            }
+            return 'assets/images/robots/robot5.png';
+        };
+
+
     } )
-    .controller('SubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice )
-{
-    $scope.hubs = hubs;
-    $scope.mode = mode;
-    $scope.smartDevice = smartDevice;
 
-    $scope.plugins = $scope.hubs[0].plugins;
-
-    $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
-
-    var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
-
-    var deviceProperties = _.map(keys, function(propertyKey){
-        var propertyValue = $scope.devicePlugin.optionsSchema.properties[propertyKey];
-        var deviceProperty = {};
-        deviceProperty.name = propertyKey;
-        deviceProperty.type = propertyValue.type;
-        deviceProperty.required = propertyValue.required;
-        deviceProperty.value = "";
-        return deviceProperty;
-    });
-    $scope.deviceProperties = deviceProperties;
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-    $scope.save = function(selectedHub){
-        $modalInstance.close(selectedHub, $scope.smartDevice);
-    }
-})
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http, GatewayService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , deviceService, GatewayService )
 
     {
 

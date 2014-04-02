@@ -5,28 +5,20 @@ angular.module('e2eApp')
         return {
             restrict: 'AE',
             replace: true,
+            transclude : true,
             scope : {
-                hub : '=' ,
-                selectSubDevice : '&',
-                editSubDevice : '&',
-                deleteSubDevice : '&'
+                hub : '='
 
             },
-            controller : 'DeviceCarouselController',
             templateUrl: 'pages/directives/device-carousel.html',
-            link: function (scope, element, attr, DeviceCarouselController ) {
-//                scope.$watch('hub' , function(newValue){
-//                  if(newValue){
-//                      $(element).owlCarousel({
-//                          items : 2,
-////                          lazyLoad : true,
-//                          navigation : true
-//                      });
-//                  }
-//                });
+            controller : 'DeviceController',
+            link: function (scope, element, attr, DeviceController){
+
+
             }
         }
     })
     .controller('DeviceCarouselController' , function($rootScope, $scope, $state){
+
 
     });
