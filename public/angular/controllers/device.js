@@ -78,9 +78,9 @@ angular.module('e2eApp')
                 });
 
                 selectedHub.subdevices.push({
-                    name : subDeviceName,
-                    type : smartDevice.plugin,
-                    options : deviceOptions
+                    name : result.name,
+                    type : result.device.plugin,
+                    options : result.options
                 });
             }, function(){
 
