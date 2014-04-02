@@ -451,16 +451,31 @@ module.exports = function (app, passport, config) {
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
                     res.cookie('csrf', csrfToken);
-                    var query = {
+                    var query;
+                    if(api.oauth.useOAuthParams) {
+                        query = {
+                            oauth_consumer_key: api.oauth.clientId,
+                            response_type: 'code',
+                            oauth_signature: csrfToken,
+                            oauth_signature_method: 'HMAC-SHA1',
+                            oauth_timestamp: '',
+                            oauth_nonce: '',
+                            oauth_callback: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
+                        };
+                    } else {
+                        query = {
                             client_id: api.oauth.clientId,
                             response_type: 'code',
                             state: csrfToken,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
                         };
+                    }
+
                     if(api.oauth.scope.length > 0) {
                         query.scope = api.oauth.scope;
                     }
                     
+                    console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath, query);
                     res.redirect(url.format({
                         protocol: api.oauth.protocol,
                         hostname: api.oauth.host,

@@ -40,17 +40,17 @@
 
 </div>
 <ul class="media-list">
-    <li id="hub-{{g.uuid}}" class="media hub-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
+    <li id="{{g.uuid}}" class="media hub-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
 
         <a class="pull-left" href="#">
-            <img class="media-object img-thumbnail" ng-src="assets/images/network_hub.png" alt="hub-logo">
+            <img class="media-object img-thumbnail" src="/assets/images/network_hub.png" alt="hub-logo">
         </a>
 
         <div class="media-body col-sm-4" style="padding-left: 0; padding-right: 0;">
             <div class="input-group media-heading">
-                <input type="text" class="form-control" disabled="disabled" ng-model="g.name" value="{{g.name}}" class="media-heading" ng-disabled="true">
+                <input type="text" class="form-control" name="hub-name" readonly="readonly" disabled="disabled" ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)">
                  <span class="input-group-btn" tooltip="Edit hub name" tooltip-placement="bottom" tooltip-popup-delay="5" >
-                    <button type="button" class="btn btn-default"><i class="fa fa-edit"    ></i></button>
+                    <button type="button" class="btn btn-default"  ng-model="g.isNameEditable" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleNameEditable(g)"><i class="fa fa-edit"    ></i></button>
                 </span>
             </div>
 
