@@ -26,9 +26,66 @@ angular.module('e2eApp')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-        $scope.save = function(selectedHub){
-            $modalInstance.close(selectedHub, $scope.smartDevice);
+
+        $scope.validate = function(){
+            var errors = [];
+
+            if($scope.deviceName === undefined || $scope.deviceName.length === 0){
+                errors.push(
+                    {
+                        type : 'danger',
+                        summary : 'Device Name Required',
+                        msg : 'Device Name is required. Please enter a device name.'
+                    }
+                )
+            }
+            var duplicateSubDevice = _.findWhere($scope.selectedHub.subdevices, {'name' : $scope.deviceName });
+            if(duplicateSubDevice){
+                errors.push({
+                    type : 'danger',
+                    summary : 'Duplicate sub-device name: ' + $scope.deviceName,
+                    msg : $scope.selectedHub.name + ' already has a sub-device with name = ' + $scope.deviceName
+                });
+
+                var devicePropertiesWithErrors =  _.find( $scope.deviceProperties, function(deviceProperty){
+                    if(deviceProperty.required && deviceProperty.value.length === 0){
+                        return deviceProperty;
+                    }
+                }) ;
+
+                if(devicePropertiesWithErrors){
+                   var optionsErrors =  _.map(devicePropertiesWithErrors, function(deviceProperty){
+                        var error = {
+                            type : 'danger',
+                            summary : 'Device Option Required',
+                            msg : deviceProperty.name + 'is required'
+                        }
+                    });
+                    errors = errors.concat(optionsErrors);
+                }
+            }
+            return errors;
+        } ;
+
+        $scope.addSubDevice = function() {
+            var validationErrors = $scope.validate();
+            if(validationErrors.length === 0 ){
+                console.log('add device properties ', deviceProperties);
+                $rootScope.skynetSocket.emit('gatewayConfig', {
+                    "uuid": $scope.selectedHub.uuid,
+                    "token": $scope.selectedHub.token,
+                    "method": "createSubdevice",
+                    "type": $scope.smartDevice.plugin,
+                    "name": $scope.deviceName,
+                    "options": deviceOptions
+                }, function (addResult) {
+                    console.log(addResult);
+                });
+            } else{
+                $scope.validationErrors = validationErrors;
+            }
         }
+
     })
     .controller('EditSubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hub, subdevice, plugins, smartDevices )
     {
@@ -61,21 +118,20 @@ angular.module('e2eApp')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-        $scope.save = function(valid){
-            console.log('valid ' + valid)
-
-            if(valid){
-                var deviceOptions = _.map($scope.deviceProperties, function(deviceProperty){
-                    var option =  {};
-                    option[deviceProperty.name] = deviceProperty.value;
-                    return option;
-                })  ;
-            }
+        $scope.save = function(){
 
 
-
-
-
+            console.log('add device properties ', deviceProperties);
+            socket.emit('gatewayConfig', {
+                "uuid": gateway.uuid,
+                "token": gateway.token,
+                "method": "createSubdevice",
+                "type": pluginName,
+                "name": subDeviceName,
+                "options": deviceProperties
+            }, function (addResult) {
+                console.log(addResult);
+            });
 
         }
     });
