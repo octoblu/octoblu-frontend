@@ -446,7 +446,7 @@ module.exports = function (app, passport, config) {
         Api.findOne({name: req.params.name}, function (err, api) {
 
             if(api.oauth.version=='2.0') {
-                if(api.name==='Dropbox' || api.oauth.isManual) {
+                if(api.oauth.isManual) {
                     console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
@@ -457,7 +457,7 @@ module.exports = function (app, passport, config) {
                             state: csrfToken,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
                         };
-                    if(api.name==='GoogleDrive') {
+                    if(api.oauth.scope.length > 0) {
                         query.scope = api.oauth.scope;
                     }
                     
@@ -511,7 +511,7 @@ module.exports = function (app, passport, config) {
                 console.log(error);
                 res.redirect(500, '/apis/' + api.name);
             } else if(api.oauth.version=='2.0') {
-                if(api.name==='Dropbox' || api.oauth.isManual) {
+                if(api.oauth.isManual) {
                     console.log('handling manual callback');
                     if (req.query.error) {
                         console.log('error position 1');
