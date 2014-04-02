@@ -79,7 +79,6 @@ angular.module('e2eApp')
         $scope.addSubDevice = function(subDeviceName, selectedHub, smartDevice, deviceProperties) {
             var errors = this.validate(subDeviceName, selectedHub, deviceProperties);
             if( errors.length === 0 ){
-                console.log('add device properties ', deviceProperties);
                 var deviceOptions = _.map(deviceProperties, function(deviceProperty){
                     var option = {};
                     option[deviceProperty.name] = deviceProperty.value;
@@ -124,7 +123,7 @@ angular.module('e2eApp')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-        $scope.ok = function(subDevice, Hub, deviceProperties){
+        $scope.ok = function(deviceProperties){
 
             var deviceOptions = _.map(deviceProperties, function(deviceProperty){
                 var option = {};
@@ -132,8 +131,7 @@ angular.module('e2eApp')
                 return option;
             });
 
-            console.log('add device properties ', deviceProperties);
-           $modalInstance.close(subDevice, Hub, deviceOptions);
+           $modalInstance.close(deviceOptions);
         }
     });
 
