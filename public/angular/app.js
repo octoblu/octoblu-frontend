@@ -295,18 +295,19 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
         };
 
         //They have logged in so create a skynetClient
-        if($rootScope.authorization.isAuthenticated && $cookies.skynetuuid && $cookies.skynettoken){
+        if( $cookies.skynetuuid && $cookies.skynettoken){
 
-            $rootScope.skynetClient = skynet({
-                'uuid' : $cookies.skynetuuid,
-                'token' : $cookies.skynettoken
-            }, function(e, socket){
-                if( e ){
-                    console.log(e.toString());
-                } else{
-                    $rootScope.skynetSocket = socket;
-                }
-            });
-
+            if($rootScope.skynetClient === undefined ){
+                $rootScope.skynetClient = skynet({
+                    'uuid' : $cookies.skynetuuid,
+                    'token' : $cookies.skynettoken
+                }, function(e, socket){
+                    if( e ){
+                        console.log(e.toString());
+                    } else{
+                        $rootScope.skynetSocket = socket;
+                    }
+                });
+            }
         }
     });
