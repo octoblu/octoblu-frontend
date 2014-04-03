@@ -34,6 +34,7 @@ module.exports = function(app, passport) {
         require('./controllers/session')(app, passport, config);
         require('./controllers/unlink')(app);
         require('./controllers/user')(app);
+        require('./controllers/designer')(app);
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {
