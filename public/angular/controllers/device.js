@@ -231,7 +231,7 @@ angular.module('e2eApp')
 
     } )
 
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , deviceService, GatewayService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  deviceService, GatewayService )
 
     {
 
