@@ -228,12 +228,22 @@ module.exports = function (app, passport, config) {
                                                             domain: config.domain,
                                                             httpOnly: false
                                                         });
-                                                        return res.redirect('/dashboard');
+                                                        // Check for deep link redirect based on referrer in querystring
+                                                        if(req.session.redirect){
+                                                          return res.redirect(req.session.redirect);
+                                                        } else {
+                                                          return res.redirect('/dashboard');
+                                                        }
 
                                                     }
                                                     else {
                                                         console.log('Error: ' + err);
-                                                        return res.redirect('/dashboard');
+                                                        // Check for deep link redirect based on referrer in querystring
+                                                        if(req.session.redirect){
+                                                          return res.redirect(req.session.redirect);
+                                                        } else {
+                                                          return res.redirect('/dashboard');
+                                                        }
 
                                                     }
                                                 });
@@ -243,7 +253,12 @@ module.exports = function (app, passport, config) {
                                     } else {
                                         console.log('error: '+ response.statusCode);
                                         console.log(error);
-                                        return res.redirect('/dashboard');
+                                        // Check for deep link redirect based on referrer in querystring
+                                        if(req.session.redirect){
+                                          return res.redirect(req.session.redirect);
+                                        } else {
+                                          return res.redirect('/dashboard');
+                                        }
                                     }
                                 }
                             )
@@ -259,7 +274,12 @@ module.exports = function (app, passport, config) {
                                 httpOnly: false
                             });
 
-                            return res.redirect('/dashboard');
+                            // Check for deep link redirect based on referrer in querystring
+                            if(req.session.redirect){
+                              return res.redirect(req.session.redirect);
+                            } else {
+                              return res.redirect('/dashboard');
+                            }
                         }
                     });
             });
@@ -308,12 +328,22 @@ module.exports = function (app, passport, config) {
                                                             domain: config.domain,
                                                             httpOnly: false
                                                         });
-                                                        return res.redirect('/dashboard');
+                                                        // Check for deep link redirect based on referrer in querystring
+                                                        if(req.session.redirect){
+                                                          return res.redirect(req.session.redirect);
+                                                        } else {
+                                                          return res.redirect('/dashboard');
+                                                        }
 
                                                     }
                                                     else {
                                                         console.log('Error: ' + err);
-                                                        return res.redirect('/dashboard');
+                                                        // Check for deep link redirect based on referrer in querystring
+                                                        if(req.session.redirect){
+                                                          return res.redirect(req.session.redirect);
+                                                        } else {
+                                                          return res.redirect('/dashboard');
+                                                        }
                                                     }
                                                 });
                                             }
@@ -322,7 +352,12 @@ module.exports = function (app, passport, config) {
                                     } else {
                                         console.log('error: '+ response.statusCode);
                                         console.log(error);
-                                        return res.redirect('/dashboard');
+                                        // Check for deep link redirect based on referrer in querystring
+                                        if(req.session.redirect){
+                                          return res.redirect(req.session.redirect);
+                                        } else {
+                                          return res.redirect('/dashboard');
+                                        }
                                     }
                                 }
                             )
@@ -343,7 +378,12 @@ module.exports = function (app, passport, config) {
                                 httpOnly: false
                             });
 
-                            return res.redirect('/dashboard');
+                            // Check for deep link redirect based on referrer in querystring
+                            if(req.session.redirect){
+                              return res.redirect(req.session.redirect);
+                            } else {
+                              return res.redirect('/dashboard');
+                            }
                         }
                     });
             });
@@ -391,12 +431,22 @@ module.exports = function (app, passport, config) {
                                                             domain: config.domain,
                                                             httpOnly: false
                                                         });
-                                                        return res.redirect('/dashboard');
+                                                        // Check for deep link redirect based on referrer in querystring
+                                                        if(req.session.redirect){
+                                                          return res.redirect(req.session.redirect);
+                                                        } else {
+                                                          return res.redirect('/dashboard');
+                                                        }
 
                                                     }
                                                     else {
                                                         console.log('Error: ' + err);
-                                                        return res.redirect('/dashboard');
+                                                        // Check for deep link redirect based on referrer in querystring
+                                                        if(req.session.redirect){
+                                                          return res.redirect(req.session.redirect);
+                                                        } else {
+                                                          return res.redirect('/dashboard');
+                                                        }
                                                     }
                                                 });
                                             }
@@ -405,7 +455,12 @@ module.exports = function (app, passport, config) {
                                     } else {
                                         console.log('error: '+ response.statusCode);
                                         console.log(error);
-                                        return res.redirect('/dashboard');
+                                        // Check for deep link redirect based on referrer in querystring
+                                        if(req.session.redirect){
+                                          return res.redirect(req.session.redirect);
+                                        } else {
+                                          return res.redirect('/dashboard');
+                                        }
                                     }
                                 }
                             )
@@ -421,7 +476,12 @@ module.exports = function (app, passport, config) {
                                 httpOnly: false
                             });
 
-                            return res.redirect('/dashboard');
+                            // Check for deep link redirect based on referrer in querystring
+                            if(req.session.redirect){
+                              return res.redirect(req.session.redirect);
+                            } else {
+                              return res.redirect('/dashboard');
+                            }
                         }
                     });
             });
@@ -474,7 +534,7 @@ module.exports = function (app, passport, config) {
                     if(api.oauth.scope.length > 0) {
                         query.scope = api.oauth.scope;
                     }
-                    
+
                     console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath, query);
                     res.redirect(url.format({
                         protocol: api.oauth.protocol,
@@ -536,7 +596,7 @@ module.exports = function (app, passport, config) {
                     if (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf)<0 ) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
-                    
+
                     var form = {
                             code: req.query.code,
                             grant_type: api.oauth.grant_type,
@@ -552,7 +612,7 @@ module.exports = function (app, passport, config) {
                         form: form,
                         auth: {
                             user: api.oauth.clientId,
-                            pass: api.oauth.secret                            
+                            pass: api.oauth.secret
                         }
                         }, function (error, response, body) {
                             console.log(body);
