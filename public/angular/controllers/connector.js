@@ -483,24 +483,27 @@ angular.module('e2eApp')
                                     "method": "getDefaultOptions",
                                     "name": plugin.name
                                 }, function (defaults) {
-//                                     TODO: defaults are not returning - factor into object below
+//                                     TODO: defaults are not returning - factor into object
                                     console.log('config:', defaults);
 
-                                    var deviceProperties = _.map(keys, function(propertyKey){
-                                        console.log(propertyKey);
-                                        var propertyValue = $scope.schema.properties[propertyKey];
-                                        console.log(propertyValue);
-                                        var deviceProperty = {};
-                                        deviceProperty.name = propertyKey;
-                                        deviceProperty.type = propertyValue.type;
-                                        deviceProperty.required = propertyValue.required;
-                                        deviceProperty.value = "";
-                                        return deviceProperty;
-                                    });
-                                    console.log(deviceProperties);
-                                    $scope.deviceProperties = deviceProperties;
 
                                 });
+
+                                var deviceProperties = _.map(keys, function(propertyKey){
+                                    console.log(propertyKey);
+                                    var propertyValue = $scope.schema.properties[propertyKey];
+                                    console.log(propertyValue);
+                                    var deviceProperty = {};
+                                    deviceProperty.name = propertyKey;
+                                    deviceProperty.type = propertyValue.type;
+                                    deviceProperty.required = propertyValue.required;
+                                    deviceProperty.value = "";
+                                    return deviceProperty;
+                                });
+                                console.log(deviceProperties);
+                                $scope.deviceProperties = deviceProperties;
+
+
 
                             };
                         }
