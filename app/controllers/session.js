@@ -57,9 +57,10 @@ module.exports = function ( app, passport, config ) {
 		    request.post('http://skynet.im/devices',
 		    	{form: {"type":"user", "email": user.local.email}}
 			  , function (error, response, body) {
+			  		// console.log(response.statusCode, body);
 			      if(response.statusCode == 200){
 
-			      	data = JSON.parse(body);
+			      	var data = JSON.parse(body);
 
 			        User.update({_id: user._id},
 			        	{local: {email: user.local.email, password: user.local.password, skynetuuid: data.uuid, skynettoken: data.token}}
