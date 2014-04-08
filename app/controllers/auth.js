@@ -230,7 +230,7 @@ module.exports = function (app, passport, config) {
                                                         });
                                                         // Check for deep link redirect based on referrer in querystring
                                                         if(req.session.redirect){
-                                                          return res.redirect(req.session.redirect);
+                                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                                         } else {
                                                           return res.redirect('/dashboard');
                                                         }
@@ -240,7 +240,7 @@ module.exports = function (app, passport, config) {
                                                         console.log('Error: ' + err);
                                                         // Check for deep link redirect based on referrer in querystring
                                                         if(req.session.redirect){
-                                                          return res.redirect(req.session.redirect);
+                                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                                         } else {
                                                           return res.redirect('/dashboard');
                                                         }
@@ -255,7 +255,7 @@ module.exports = function (app, passport, config) {
                                         console.log(error);
                                         // Check for deep link redirect based on referrer in querystring
                                         if(req.session.redirect){
-                                          return res.redirect(req.session.redirect);
+                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                         } else {
                                           return res.redirect('/dashboard');
                                         }
@@ -276,7 +276,7 @@ module.exports = function (app, passport, config) {
 
                             // Check for deep link redirect based on referrer in querystring
                             if(req.session.redirect){
-                              return res.redirect(req.session.redirect);
+                              return res.redirect(req.session.redirect + '?uuid=' + user.facebook.skynetuuid + '&token=' + user.facebook.skynettoken);
                             } else {
                               return res.redirect('/dashboard');
                             }
@@ -330,7 +330,7 @@ module.exports = function (app, passport, config) {
                                                         });
                                                         // Check for deep link redirect based on referrer in querystring
                                                         if(req.session.redirect){
-                                                          return res.redirect(req.session.redirect);
+                                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                                         } else {
                                                           return res.redirect('/dashboard');
                                                         }
@@ -340,7 +340,7 @@ module.exports = function (app, passport, config) {
                                                         console.log('Error: ' + err);
                                                         // Check for deep link redirect based on referrer in querystring
                                                         if(req.session.redirect){
-                                                          return res.redirect(req.session.redirect);
+                                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                                         } else {
                                                           return res.redirect('/dashboard');
                                                         }
@@ -354,7 +354,7 @@ module.exports = function (app, passport, config) {
                                         console.log(error);
                                         // Check for deep link redirect based on referrer in querystring
                                         if(req.session.redirect){
-                                          return res.redirect(req.session.redirect);
+                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                         } else {
                                           return res.redirect('/dashboard');
                                         }
@@ -380,7 +380,7 @@ module.exports = function (app, passport, config) {
 
                             // Check for deep link redirect based on referrer in querystring
                             if(req.session.redirect){
-                              return res.redirect(req.session.redirect);
+                              return res.redirect(req.session.redirect + '?uuid=' + user.twitter.skynetuuid + '&token=' + user.twitter.skynettoken);
                             } else {
                               return res.redirect('/dashboard');
                             }
@@ -433,7 +433,7 @@ module.exports = function (app, passport, config) {
                                                         });
                                                         // Check for deep link redirect based on referrer in querystring
                                                         if(req.session.redirect){
-                                                          return res.redirect(req.session.redirect);
+                                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                                         } else {
                                                           return res.redirect('/dashboard');
                                                         }
@@ -443,7 +443,7 @@ module.exports = function (app, passport, config) {
                                                         console.log('Error: ' + err);
                                                         // Check for deep link redirect based on referrer in querystring
                                                         if(req.session.redirect){
-                                                          return res.redirect(req.session.redirect);
+                                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                                         } else {
                                                           return res.redirect('/dashboard');
                                                         }
@@ -457,7 +457,7 @@ module.exports = function (app, passport, config) {
                                         console.log(error);
                                         // Check for deep link redirect based on referrer in querystring
                                         if(req.session.redirect){
-                                          return res.redirect(req.session.redirect);
+                                          return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
                                         } else {
                                           return res.redirect('/dashboard');
                                         }
@@ -478,7 +478,7 @@ module.exports = function (app, passport, config) {
 
                             // Check for deep link redirect based on referrer in querystring
                             if(req.session.redirect){
-                              return res.redirect(req.session.redirect);
+                              return res.redirect(req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken);
                             } else {
                               return res.redirect('/dashboard');
                             }

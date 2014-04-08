@@ -33,7 +33,7 @@ module.exports = function ( app, passport, config ) {
 
         // Check for deep link redirect based on referrer in querystring
         if(req.session.redirect){
-          return res.redirect(req.session.redirect);
+          return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
         } else {
           return res.redirect('/dashboard');
         }
