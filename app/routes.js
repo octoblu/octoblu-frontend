@@ -36,6 +36,13 @@ module.exports = function(app, passport) {
         require('./controllers/user')(app);
         require('./controllers/designer')(app);
 
+        // Check for deeplink redirect > http://localhost:8080/login?referrer=http:%2F%2Flocalhost%2Fauth.js
+        app.get('/login', function(req, res) {
+          // console.log(req.query.referrer);
+          req.session.redirect = req.query.referrer;
+          res.sendfile('./public/index.html');
+        });
+
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {
             res.sendfile('./public/index.html');

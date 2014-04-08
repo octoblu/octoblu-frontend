@@ -11,7 +11,64 @@ angular.module('e2eApp')
              $state.go('login');
         }
 
-      $scope.deleteHub = function(hub){
+        $scope.saveHubName = function(hub){
+
+            var errors = $scope.validateName(hub);
+            if(errors.length > 0 ){
+                hub.validationErrors = errors;
+            } else {
+                var hubData = {
+                    uuid : hub.uuid,
+                    owner : hub.owner,
+                    name : hub.name,
+                    token : hub.token,
+                    keyvals : [{}]
+                }
+
+                deviceService.updateDevice(hub.owner, hubData, function( data ){
+                    console.log(JSON.stringify(data));
+
+                } ) ;
+                hub.isNameEditable = false;
+            }
+        };
+
+        $scope.toggleNameEditable = function( hub ){
+            var elementSelector = '#' + hub.uuid;
+            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
+            if(hub.isNameEditable){
+                hubNameField.removeAttr('disabled');
+                hubNameField.removeAttr('readonly');
+            } else{
+                hubNameField.attr('readonly', 'readonly');
+                hubNameField.attr('disabled', 'disabled');
+            }
+        };
+
+        $scope.validateName = function(hub){
+            var errors = [];
+            if(hub.name === undefined || hub.name.length === 0){
+                errors.push(
+                    {
+                        type : 'danger',
+                        summary : 'Missing Name',
+                        msg : 'Hub Name is required. Please enter a valid name for Hub.'
+                    }
+                )
+            }
+            var duplicateHubs = _.findWhere(hub.subdevices, {'name' : hub.name });
+
+            if(duplicateHubs && duplicateHubs.count > 1){
+                errors.push({
+                    type: 'danger',
+                    summary: 'Duplicate Hub Name',
+                    msg: 'Please enter a unique name for the Hub'
+                });
+            }
+            return errors;
+        };
+
+        $scope.deleteHub = function(hub){
           $rootScope.confirmModal($modal, $scope, $log, 'Delete Hub ' + hub.name ,'Are you sure you want to delete this Hub?',
               function() {
                   $log.info('ok clicked');
@@ -174,7 +231,7 @@ angular.module('e2eApp')
 
     } )
 
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , deviceService, GatewayService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  deviceService, GatewayService )
 
     {
 

@@ -37,7 +37,6 @@ angular.module('e2eApp')
             if(subDeviceName === undefined || subDeviceName.length === 0){
                 errors.push(
                     {
-                        id : idIndex,
                         type : 'danger',
                         summary : 'Device Name Required',
                         msg : 'Device Name is required. Please enter a device name.'
