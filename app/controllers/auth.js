@@ -9,6 +9,13 @@ var request = require('request'),
 
 module.exports = function (app, passport, config) {
 
+    var getApiHashCode = function(clientSecret, requestCode) {
+        var toHash = clientSecret + "|" + requestCode
+        return crypto.createHash("sha256")
+          .update(toHash)
+          .digest("hex");
+    }
+
     var generateCSRFToken = function() {
         return crypto.randomBytes(18).toString('base64')
         .replace(/\//g, '-').replace(/\+/g, '_');
@@ -606,8 +613,15 @@ module.exports = function (app, passport, config) {
                         form.client_id = api.oauth.clientId;
                         form.client_secret = api.oauth.secret;
                     }
+                    if(api.name==='Smartsheet') {
+                        form.client_id = api.oauth.clientId;
+                        // form.grant_type = "refresh_token";
+                        form.hash = getApiHashCode(api.oauth.secret, req.query.code);
+                    }
 
                     // exchange access code for bearer token
+                    console.log(api.oauth.accessTokenURL);
+                    console.log(form);
                     request.post(api.oauth.accessTokenURL, {
                         form: form,
                         auth: {
@@ -615,6 +629,7 @@ module.exports = function (app, passport, config) {
                             pass: api.oauth.secret
                         }
                         }, function (error, response, body) {
+                            console.log(error);
                             console.log(body);
                             var data;
                             if(api.name==='Facebook') {
@@ -639,11 +654,13 @@ module.exports = function (app, passport, config) {
                             ]
                             }, function(err, user) {
                                 if(!err) {
-                                    user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
-                                    user.save(function(err) {
-                                        console.log('saved oauth token: '+name);
-                                        res.redirect('/connector/channels/'+name);
-                                    });
+                                    if(token) {
+                                        user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                                        user.save(function(err) {
+                                            console.log('saved oauth token: '+name);
+                                            res.redirect('/connector/channels/'+name);
+                                        });
+                                    }
                                 } else {
                                     console.log('error saving oauth token');
                                     res.redirect('/connector/channels/'+name);
