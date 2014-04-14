@@ -8,31 +8,6 @@ angular.module('e2eApp')
         $scope.selectedHub = $scope.hubs[0];
         $scope.plugins = $scope.hubs[0].plugins;
 
-
-        // Get default options
-        $rootScope.skynetSocket.emit('gatewayConfig', {
-            "uuid": $scope.selectedHub.uuid,
-            "token": $scope.selectedHub.token,
-            "method": "getDefaultOptions",
-            "name": plugin.name
-        }, function (defaults) {
-            // TODO: defaults are not returning - factor into object
-            console.log('config:', defaults);
-            console.log($scope.deviceProperties);
-            _.each(defaults.result, function(value, key){
-                for (var i in $scope.deviceProperties) {
-                    if($scope.deviceProperties[i].name == key){
-                        // $scope.deviceProperties[i].value = value;
-                        $scope.$apply(function () {
-                            $scope.deviceProperties[i].value = value;
-                        });
-                    }
-                }
-            });
-        });
-
-
-
         $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
 
         var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
