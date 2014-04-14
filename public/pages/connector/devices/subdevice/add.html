@@ -10,7 +10,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Hub</label>
             <div class="col-sm-10">
-                <select class="form-control" ng-options="h.name for h in hubs" required="required" ng-model="selectedHub"></select>
+                <select class="form-control" ng-options="h.name for h in hubs" required="required" ng-model="selectedHub" ng-change="getDefaults(selectedHub)"></select>
             </div>
 
         </div>
