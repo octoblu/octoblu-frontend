@@ -309,5 +309,5 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                     }
                 });
             }
-        }  f
+        }
     });
