@@ -22,6 +22,10 @@
        height: 200px;
 
    }
+
+   .device-panel {
+       margin-bottom: 15px !important;
+   }
     .device-carousel-item {
         min-height: 142px !important;
         min-width: 142px !important;
@@ -44,8 +48,8 @@
     </div>
 
 </div>
-<div class="row" ng-repeat="g in claimedGateways | orderBy: 'name'">
-    <div id="{{g.uuid}}" class="col-sm-2">
+<div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
+    <div id="{{g.uuid}}" class="col-sm-3">
         <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" alt="hub-logo" height="64px" width="64px">
         <input type="text" class="form-control col-sm-12" name="hub-name" readonly="readonly" disabled="disabled"
                ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)">
