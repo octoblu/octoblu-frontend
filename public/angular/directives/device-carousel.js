@@ -18,9 +18,12 @@ angular.module('e2eApp')
 
                         scope.owl.owlCarousel({
 
-//                            pagination: false,
+                            items : 4,
+                            itemsDesktop : [1000,4],
+                            itemsDesktopSmall : [900,3],
+                            itemsTablet: [600,1],
+                            itemsMobile : false,
                             navigation: true
-//                            autoHeight : true
                         });
                      }
 
@@ -30,14 +33,16 @@ angular.module('e2eApp')
 
                     _.each(scope.hub.subdevices, function (subdevice, index) {
 
-                        var deviceItemHTML =   '<div class="item device-carousel-item">' +
+                        var deviceItemHTML =   '<div class="device-carousel-item">' +
+                            '<div class="center-block">' +
                             '<img  tooltip="' + subdevice.name + '" tooltip-popup-delay="5" tooltip-placement="top" src="{{getSubDeviceLogo(hub.subdevices[' + index + '])}}" height="110px" width="110px" />' +
+                            '</div>'+
                             '<div class="btn-group btn-group-justified" style="width: auto; margin-top: 15px;" >' +
                                 '<div class="btn-group">' +
-                                    '<button class="btn btn-inverse btn-xs"  tooltip="Edit Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="editSubDevice(hub.subdevices[' + index + '], hub)"><i class="fa fa-edit"></i></button>'+
+                                    '<button class="btn btn-inverse"  tooltip="Edit Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="editSubDevice(hub.subdevices[' + index + '], hub)"><i class="fa fa-edit"></i></button>'+
                                 '</div>' +
                                 '<div class="btn-group btn-group">' +
-                                    '<button class="btn btn-danger btn-xs"  tooltip="Delete Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="deleteSubDevice(hub.subdevices[' + index + '], hub)" ><i class="fa fa-times"></i></button>'+
+                                    '<button class="btn btn-danger"  tooltip="Delete Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="deleteSubDevice(hub.subdevices[' + index + '], hub)" ><i class="fa fa-times"></i></button>'+
                                 '</div>' +
                             '</div>' +
                             '</div>';
