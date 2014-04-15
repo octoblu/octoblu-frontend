@@ -30,6 +30,7 @@ module.exports = function (app, passport, config) {
     }
 
     var handleOauth1 = function (name, req, res, next) {
+        console.log(req);
         var token = req.param('oauth_token'),
             verifier = req.param('oauth_verifier');
 
@@ -609,7 +610,7 @@ module.exports = function (app, passport, config) {
                             grant_type: api.oauth.grant_type,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
                         };
-                    if(api.name==='Box' || api.name==='GoogleDrive' || api.name=='Facebook') {
+                    if(api.oauth.accessTokenIncludeClientInfo || api.name==='Box' || api.name==='GoogleDrive' || api.name=='Facebook') {
                         form.client_id = api.oauth.clientId;
                         form.client_secret = api.oauth.secret;
                     }
@@ -620,8 +621,6 @@ module.exports = function (app, passport, config) {
                     }
 
                     // exchange access code for bearer token
-                    console.log(api.oauth.accessTokenURL);
-                    console.log(form);
                     request.post(api.oauth.accessTokenURL, {
                         form: form,
                         auth: {
@@ -765,11 +764,6 @@ module.exports = function (app, passport, config) {
         passport.authorize('vimeo', { scope: ['r_basicprofile', 'r_emailaddress'] }));
     app.get('/api/auth/Vimeo/callback',
         function(req, res, next) { handleOauth1('Vimeo', req, res, next); });
-
-    app.get('/api/auth/FourSquare',
-        passport.authorize('foursquare', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/FourSquare/callback',
-        function(req, res, next) { handleOauth1('FourSquare', req, res, next); });
 
     app.get('/api/auth/Tumblr',
         passport.authorize('tumblr', { scope: ['r_basicprofile', 'r_emailaddress'] }));

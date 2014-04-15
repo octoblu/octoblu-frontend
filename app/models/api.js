@@ -30,7 +30,8 @@ var ApiSchema = mongoose.Schema({
         grant_type       : String,
         authExtraQuery   : String,
         scope            : String,
-        useOAuthParams   : Boolean
+        useOAuthParams   : Boolean,
+        accessTokenIncludeClientInfo : Boolean
     },
     documentation: String,
     application: { base: String, resources: [] }
