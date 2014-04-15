@@ -476,19 +476,6 @@ angular.module('e2eApp')
                                 console.log('propertyValues');
                                 console.log(propertyValues);
 
-                                // Get default options
-                                socket.emit('gatewayConfig', {
-                                    "uuid": $scope.selectedGateway.uuid,
-                                    "token": $scope.selectedGateway.token,
-                                    "method": "getDefaultOptions",
-                                    "name": plugin.name
-                                }, function (defaults) {
-//                                     TODO: defaults are not returning - factor into object
-                                    console.log('config:', defaults);
-
-
-                                });
-
                                 var deviceProperties = _.map(keys, function(propertyKey){
                                     console.log(propertyKey);
                                     var propertyValue = $scope.schema.properties[propertyKey];
@@ -503,7 +490,27 @@ angular.module('e2eApp')
                                 console.log(deviceProperties);
                                 $scope.deviceProperties = deviceProperties;
 
-
+                                // Get default options
+                                socket.emit('gatewayConfig', {
+                                    "uuid": $scope.selectedGateway.uuid,
+                                    "token": $scope.selectedGateway.token,
+                                    "method": "getDefaultOptions",
+                                    "name": plugin.name
+                                }, function (defaults) {
+                                    // TODO: defaults are not returning - factor into object
+                                    console.log('config:', defaults);
+                                    console.log($scope.deviceProperties);
+                                    _.each(defaults.result, function(value, key){
+                                      for (var i in $scope.deviceProperties) {
+                                        if($scope.deviceProperties[i].name == key){
+                                          // $scope.deviceProperties[i].value = value;
+                                          $scope.$apply(function () {
+                                              $scope.deviceProperties[i].value = value;
+                                          });
+                                        }
+                                      }
+                                    });
+                                });
 
                             };
                         }

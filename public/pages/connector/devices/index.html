@@ -18,14 +18,42 @@
         padding: 2% 20px 2% 20px;
         margin-left: 2%;
     }
+   .subdevice-panel {
+       border: 1px solid #dddddd;
+       border-radius: 3em / 3em;
+       padding: 2% 20px 2% 20px;
+       /*margin-left: 2%;*/
 
-    .subdevice-item {
-        min-height: 142px !important;
-        min-width:  142px !important;
-        padding: 5px 5px 5px 5px;
+   }
+
+   .device-panel {
+       margin-bottom: 15px !important;
+   }
+    .device-carousel-item {
+
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 120px;
     }
+    .owl-item {
+
+
+        padding: 5px 5px 5px 5px;
+        width: 120px;
+    }
+
+    .channel_icon-grid-view {
+      cursor:pointer;
+    }
+    .thumbnail { height: 280px !important; }
+    .btn-droppable { width: 180px; height: 30px; padding-left: 4px; }
+    .btn-draggable { width: 160px; }
+    .emage { height: 215px; }
+
 </style>
-<h2 style="margin-left: 20px; margin-bottom: 30px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs<a class="btn btn-primary pull-right" href="" ui-sref="connector.devices.wizard.instructions" ng-click="addHub()"><i
+<h2 style="margin-left: 20px; margin-bottom: 30px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs<a
+        class="btn btn-primary pull-right" href="" ui-sref="connector.devices.wizard.instructions"
+        ng-click="addHub()"><i
         class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Add Hub</a></h2>
 
 <div ng-if="claimedGateways.length == 0" class="row">
@@ -39,72 +67,75 @@
     </div>
 
 </div>
-<ul class="media-list">
-    <li id="{{g.uuid}}" class="media hub-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
 
-        <a class="pull-left" href="#">
-            <img class="media-object img-thumbnail" src="/assets/images/network_hub.png" alt="hub-logo">
-        </a>
+<div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
+    <div id="{{g.uuid}}" class="col-sm-2">
+        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" alt="{{g.name}}" height="64px" width="64px" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}">
 
-        <div class="media-body col-sm-4" style="padding-left: 0; padding-right: 0;">
-            <div class="input-group media-heading">
-                <span class="input-group-btn" tooltip="View Hub Details" tooltip-placement="bottom" tooltip-popup-delay="5">
-                    <button type="button" class="btn btn-default" ng-model="g.showDetails" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
-                        <i class="fa" ng-class="{'fa-eye-slash' : g.showDetails, 'fa-eye' : !g.showDetails}"></i>
-                    </button>
-                </span>
-                <input type="text" class="form-control" name="hub-name" readonly="readonly" disabled="disabled" ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)">
-                 <span class="input-group-btn" tooltip="Edit hub name" tooltip-placement="bottom" tooltip-popup-delay="5" >
-                    <button type="button" class="btn btn-default"  ng-model="g.isNameEditable" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleNameEditable(g)"><i class="fa fa-edit"    ></i></button>
-                </span>
+<!-- <div class="btn btn-droppable" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}"> -->
+
+        <input type="text" class="form-control col-sm-12" name="hub-name" readonly="readonly" disabled="disabled"
+               ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)">
+
+        <div collapse="!g.showDetails" class="col-sm-12 " style="padding-left: 0; padding-right: 0;">
+            <table class="table table-condensed table-bordered">
+                <tr>
+                    <td class="table-heading"><strong>UUID</strong></td>
+                    <td><span class="label label-primary">{{g.uuid}}</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Token</strong></td>
+                    <td>
+                        <a ng-click="moreInfo = true" ng-hide="moreInfo" href="">********************************</a>
+                        <input type="text" ng-show="moreInfo" value="{{g.token}}" size="40">
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Online</strong></td>
+                    <td><span class="label" ng-class="{'label-success' : g.online, 'label-danger': !g.online}">{{g.online}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="btn-group btn-group-justified">
+            <div class="btn-group">
+                <button tooltip="View Hub Details" tooltip-placement="bottom"
+                        tooltip-popup-delay="5" type="button" class="btn btn-default" ng-model="g.showDetails" btn-checkbox
+                        btn-checkbox-true="true" btn-checkbox-false="false">
+                    <i class="fa" style="padding-right: 5px;" ng-class="{'fa-info-circle' : g.showDetails, 'fa-info' : !g.showDetails}"></i>Info
+                </button>
             </div>
-            <div class="col-sm-12" style="padding-left: 0; padding-right: 0;">
-                <div collapse="!g.showDetails" class="col-sm-12 " style="padding-left: 0; padding-right: 0;">
-                    <table class="table table-condensed table-bordered">
-                        <tr>
-                            <td class="table-heading"><strong>UUID</strong></td>
-                            <td><span class="label label-primary">{{g.uuid}}</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Token</strong></td>
-                            <td>
-                                <a ng-click="moreInfo = true" ng-hide="moreInfo" href="">********************************</a>
-                                <input type="text" ng-show="moreInfo" value="{{g.token}}" size="40">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Online</strong></td>
-                            <td><span class="label" ng-class="{'label-success' : g.online, 'label-danger': !g.online}">{{g.online}}</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-            </div>
-
-            <div class="btn-group col-sm-12" style="padding-left: 0px;">
-                <a class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="10" tooltip-placement="right" ng-click="deleteHub(g)"><i
-                        class="fa fa-times"></i>Delete</a>
+            <div  class="btn-group">
+                <button  type="button" class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="5" tooltip-placement="bottom" ng-click="deleteHub(g)" style="padding-right: 5px;">
+                    <i class="fa fa-times" style=""></i>Delete
+                </button>
             </div>
         </div>
-        <div class="col-sm-6">
-            <device-carousel hub="g" delete-sub-device="deleteSubDevice"></device-carousel>
-        </div>
-    </li>
-</ul>
-<div class="divScroll">
-    <div class="scrollWrapper">
-        <h2 style="margin-left: 20px;"><i class='icon-off'></i> Available Devices</h2>
-            <ul class="channellist">
-                <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
-                    <div class="channel_icon-grid-view mod-index-0 pop-over"
-                         data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto"
-                         ng-class="{'unavailable':!smartDevice.enabled}">
-                        <a ng-disabled="{{! smartDevice.enabled}}" ng-click="addSmartDevice(smartDevice)"><img
-                                ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70"/></a>
-                    </div>
-                </li>
-            </ul>
+    </div>
+    <div class="col-sm-10">
+      <device-carousel hub="g"></device-carousel>
+
     </div>
 </div>
+<div class="divScroll">
+    <div class="scrollWrapper">
+        <h2 style="margin-left: 20px;"><i class='icon-off'></i> Add New Device</h2>
+        <ul class="channellist">
+            <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
+
+                <div class="channel_icon-grid-view mod-index-0 pop-over"
+                     data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto"
+                     ng-class="{'unavailable':!smartDevice.enabled}">
+                    <a ng-disabled="{{! smartDevice.enabled}}" ng-click="addSmartDevice(smartDevice)"><img
+                        ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70" data-drag="{{smartDevice.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="smartDevice" jqyoui-draggable="{index: {{$index}},placeholder:'keep',animate:true, onStart:'startCallback(smartDevice, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"/></a>
+
+              </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
 <div ui-view></div>

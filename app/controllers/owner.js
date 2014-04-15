@@ -113,7 +113,7 @@ module.exports = function (app, conn) {
     // Get devices by owner
     app.get('/api/owner/gateways/:id/:token', function(req, res) {
         console.log('Return Devices? ', req.query.devices);
-        console.log('ip address ', req.ip)
+        console.log('ip address ', req.ip) ;
         request.get('http://skynet.im/mydevices/' + req.params.id,
             {qs: {'token': req.params.token}},
             function (error, response, body) {
