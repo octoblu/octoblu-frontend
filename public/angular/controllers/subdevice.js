@@ -1,11 +1,16 @@
 angular.module('e2eApp')
-    .controller('AddSubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice )
+    .controller('AddSubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice, selectedHub )
     {
         $scope.hubs = hubs;
         $scope.mode = mode;
         $scope.smartDevice = smartDevice;
 
-        $scope.selectedHub = $scope.hubs[0];
+        if (selectedHub){
+          $scope.selectedHub = selectedHub
+        } else {
+          $scope.selectedHub = $scope.hubs[0];
+
+        }
         $scope.plugins = $scope.hubs[0].plugins;
 
         $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});

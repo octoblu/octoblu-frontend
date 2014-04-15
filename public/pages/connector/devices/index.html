@@ -70,7 +70,7 @@
 
 <div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
     <div id="{{g.uuid}}" class="col-sm-2">
-        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" alt="{{g.name}}" height="64px" width="64px" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}">
+        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" height="64px" width="64px" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}" data-jqyoui-options={{g}}>
 
 <!-- <div class="btn btn-droppable" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}"> -->
 
@@ -128,7 +128,7 @@
                      data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto"
                      ng-class="{'unavailable':!smartDevice.enabled}">
                     <a ng-disabled="{{! smartDevice.enabled}}" ng-click="addSmartDevice(smartDevice)"><img
-                        ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70" data-drag="{{smartDevice.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="smartDevice" jqyoui-draggable="{index: {{$index}},placeholder:'keep',animate:true, onStart:'startCallback(smartDevice, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"/></a>
+                        ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70" data-drag="{{smartDevice.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="smartDevice" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true, onStart:'startCallback(smartDevice, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}"/></a>
 
               </div>
             </li>
