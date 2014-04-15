@@ -6,15 +6,21 @@ angular.module('e2eApp')
         $scope.smartDevice = smartDevice;
 
         if (selectedHub){
-          $scope.selectedHub = selectedHub
+          selectedHub = JSON.parse(selectedHub);
+          for (var i in hubs) {
+            console.log(hubs[i]);
+            if (hubs[i].uuid == selectedHub.uuid){
+              $scope.selectedHub = hubs[i];
+              $scope.plugins = hubs[i].plugins;
+            }
+          }
+
         } else {
           $scope.selectedHub = $scope.hubs[0];
-
+          $scope.plugins = $scope.hubs[0].plugins;
         }
-        $scope.plugins = $scope.hubs[0].plugins;
-
+        
         $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
-
         var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
 
         var deviceProperties = _.map(keys, function(propertyKey){

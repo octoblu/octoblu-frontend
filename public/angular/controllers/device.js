@@ -256,8 +256,8 @@ angular.module('e2eApp')
           console.log('ui', ui);
           console.log('hey, you dumped me :-(' , $scope.draggedTitle);
           console.log('subdevice', $scope.draggedObject);
-          console.log('hub', event.srcElement.alt);
-          $scope.addSmartDevice($scope.draggedObject, event.srcElement.alt);
+          console.log('hub', event.target.dataset.jqyouiOptions);
+          $scope.addSmartDevice($scope.draggedObject, event.target.dataset.jqyouiOptions);
         };
 
         $scope.overCallback = function(event, ui) {
