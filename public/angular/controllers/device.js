@@ -104,7 +104,7 @@ angular.module('e2eApp')
             $scope.smartDevices = data;
         });
 
-      $scope.addSmartDevice = function(smartDevice, rootScope){
+      $scope.addSmartDevice = function(smartDevice, hub, rootScope){
         if(smartDevice.enabled){
             var subdeviceModal = $modal.open({
                 templateUrl : 'pages/connector/devices/subdevice/add.html',
@@ -251,7 +251,8 @@ angular.module('e2eApp')
           console.log('ui', ui);
           console.log('hey, you dumped me :-(' , $scope.draggedTitle);
           console.log('subdevice', $scope.draggedObject);
-          $scope.addSmartDevice($scope.draggedObject);
+          console.log('hub', event.srcElement.alt);
+          $scope.addSmartDevice($scope.draggedObject, event.srcElement.alt);
         };
 
         $scope.overCallback = function(event, ui) {
