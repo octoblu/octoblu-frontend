@@ -104,19 +104,6 @@ angular.module('e2eApp')
             $scope.smartDevices = data;
         });
 
-
-  $scope.images = [{'thumb': '1.png'},{'thumb': '2.png'},{'thumb': '3.png'},{'thumb': '4.png'}]
-  $scope.list1 = [];
-  angular.forEach($scope.images, function(val, key) {
-    $scope.list1.push({});
-  });
-  $scope.list2 = [
-    { 'title': 'KnockoutJS', 'drag': true },
-    { 'title': 'EmberJS', 'drag': true },
-    { 'title': 'BackboneJS', 'drag': true },
-    { 'title': 'AngularJS', 'drag': true }
-  ];
-
       $scope.addSmartDevice = function(smartDevice, rootScope){
         if(smartDevice.enabled){
             var subdeviceModal = $modal.open({
@@ -263,8 +250,8 @@ angular.module('e2eApp')
           console.log('event', event);
           console.log('ui', ui);
           console.log('hey, you dumped me :-(' , $scope.draggedTitle);
-          $scope.addSmartDevice($scope.draggedObject);
           console.log('subdevice', $scope.draggedObject);
+          $scope.addSmartDevice($scope.draggedObject);
         };
 
         $scope.overCallback = function(event, ui) {
