@@ -99,7 +99,9 @@ angular.module('e2eApp')
              }
             // Added to support drag and drop
             for (var i = 0; i < data.length; i++) {
+              if (data[i].enabled){
                 data[i].drag = true;
+              }
             }
             $scope.smartDevices = data;
         });
@@ -120,6 +122,9 @@ angular.module('e2eApp')
                     },
                     smartDevice : function(){
                         return smartDevice;
+                    },
+                    selectedHub: function(){
+                      return hub;
                     }
 
                 }
