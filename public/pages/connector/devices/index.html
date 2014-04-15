@@ -31,6 +31,14 @@
         min-width: 142px !important;
         padding: 5px 5px 5px 5px;
     }
+    .channel_icon-grid-view {
+      cursor:pointer;
+    }
+    .thumbnail { height: 280px !important; }
+    .btn-droppable { width: 180px; height: 30px; padding-left: 4px; }
+    .btn-draggable { width: 160px; }
+    .emage { height: 215px; }
+
 </style>
 <h2 style="margin-left: 20px; margin-bottom: 30px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs<a
         class="btn btn-primary pull-right" href="" ui-sref="connector.devices.wizard.instructions"
@@ -48,9 +56,13 @@
     </div>
 
 </div>
+
 <div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
     <div id="{{g.uuid}}" class="col-sm-3">
-        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" alt="hub-logo" height="64px" width="64px">
+        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" alt="{{g.name}}" height="64px" width="64px" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}">
+
+<!-- <div class="btn btn-droppable" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}"> -->
+
         <input type="text" class="form-control col-sm-12" name="hub-name" readonly="readonly" disabled="disabled"
                ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)">
 
@@ -110,15 +122,19 @@
         <h2 style="margin-left: 20px;"><i class='icon-off'></i> Add New Device</h2>
         <ul class="channellist">
             <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
+
                 <div class="channel_icon-grid-view mod-index-0 pop-over"
                      data-original-title="{{smartDevice.name}} - {{smartDevice.description}}" data-placement="auto"
-                     ng-class="{'unavailable':!smartDevice.enabled}" style="cursor:pointer;">
+                     ng-class="{'unavailable':!smartDevice.enabled}">
                     <a ng-disabled="{{! smartDevice.enabled}}" ng-click="addSmartDevice(smartDevice)"><img
-                        ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70"/></a>
+                        ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70" data-drag="{{smartDevice.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="smartDevice" jqyoui-draggable="{index: {{$index}},placeholder:'keep',animate:true, onStart:'startCallback(smartDevice, $index)', onStop: 'stopCallback', onDrag: 'dragCallback'}" style="z-index:9999;"/></a>
 
               </div>
             </li>
         </ul>
     </div>
 </div>
+
+
+
 <div ui-view></div>

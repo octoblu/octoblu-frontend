@@ -1,5 +1,5 @@
 angular.module('e2eApp')
-    .controller('DeviceController', function ($rootScope, $scope, $log, $state,  $http, $cookies, $modal, channelService, ownerService, deviceService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $log, $state,  $http, $cookies, $modal, $timeout, channelService, ownerService, deviceService ) {
 
         var ownerId = $cookies.skynetuuid;
         var token = $cookies.skynettoken;
@@ -97,8 +97,25 @@ angular.module('e2eApp')
              if(error){
                  console.log('Error: ' + error);
              }
+            // Added to support drag and drop
+            for (var i = 0; i < data.length; i++) {
+                data[i].drag = true;
+            }
             $scope.smartDevices = data;
         });
+
+
+  $scope.images = [{'thumb': '1.png'},{'thumb': '2.png'},{'thumb': '3.png'},{'thumb': '4.png'}]
+  $scope.list1 = [];
+  angular.forEach($scope.images, function(val, key) {
+    $scope.list1.push({});
+  });
+  $scope.list2 = [
+    { 'title': 'KnockoutJS', 'drag': true },
+    { 'title': 'EmberJS', 'drag': true },
+    { 'title': 'BackboneJS', 'drag': true },
+    { 'title': 'AngularJS', 'drag': true }
+  ];
 
       $scope.addSmartDevice = function(smartDevice, rootScope){
         if(smartDevice.enabled){
@@ -228,6 +245,35 @@ angular.module('e2eApp')
             return 'assets/images/robots/robot5.png';
         };
 
+        $scope.startCallback = function(event, ui, title) {
+          console.log('You started draggin: ' + title.description);
+          $scope.draggedTitle = title.description;
+          $scope.draggedObject = title;
+        };
+
+        $scope.stopCallback = function(event, ui) {
+          console.log('Why did you stop draggin me?');
+        };
+
+        $scope.dragCallback = function(event, ui) {
+          console.log('hey, look I`m flying');
+        };
+
+        $scope.dropCallback = function(event, ui) {
+          console.log('event', event);
+          console.log('ui', ui);
+          console.log('hey, you dumped me :-(' , $scope.draggedTitle);
+          $scope.addSmartDevice($scope.draggedObject);
+          console.log('subdevice', $scope.draggedObject);
+        };
+
+        $scope.overCallback = function(event, ui) {
+          console.log('Look, I`m over you');
+        };
+
+        $scope.outCallback = function(event, ui) {
+          console.log('I`m not, hehe');
+        };
 
     } )
 
@@ -342,5 +388,6 @@ angular.module('e2eApp')
         $scope.toggleOpen = function(){
             $scope.isopen = ! $scope.isopen;
         };
+
     })
   ;
