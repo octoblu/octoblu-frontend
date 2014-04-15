@@ -145,7 +145,7 @@ angular.module('e2eApp')
         }
       }
 
-        $scope.editSubDevice = function(subdevice, hub){
+        this.editSubDevice = function(subdevice, hub){
             var subDeviceModal = $modal.open({
                 templateUrl : 'pages/connector/devices/subdevice/edit.html',
                 controller : 'EditSubDeviceController',
@@ -192,7 +192,7 @@ angular.module('e2eApp')
 
         }
 
-        $scope.deleteSubDevice = function(subdevice, hub){
+        this.deleteSubDevice = function(subdevice, hub){
             $rootScope.confirmModal($modal, $scope, $log,
                     'Delete Subdevice' + subdevice.name ,
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
@@ -217,7 +217,7 @@ angular.module('e2eApp')
                 });
         }
 
-        $scope.getSubDeviceLogo = function(subdevice){
+        this.getSubDeviceLogo = function(subdevice){
             var smartDevice = _.findWhere($scope.smartDevices, {
                 plugin : subdevice.type
             });

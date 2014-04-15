@@ -19,17 +19,26 @@
         margin-left: 2%;
     }
    .subdevice-panel {
-       height: 200px;
+       /*border: 1px solid #dddddd;*/
+       /*border-radius: 3em / 3em;*/
+       padding: 10% 20px 10% 20px;
+       /*margin-left: 2%;*/
 
    }
 
    .device-panel {
        margin-bottom: 15px !important;
+
    }
     .device-carousel-item {
-        min-height: 142px !important;
-        min-width: 142px !important;
+        /*border: 1px solid #dddddd;*/
         padding: 5px 5px 5px 5px;
+        width: 120px;
+        height:  150px;
+        margin-left: 20px;
+        margin-right : 20px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 </style>
 <h2 style="margin-left: 20px; margin-bottom: 30px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs<a
@@ -40,17 +49,15 @@
 <div ng-if="claimedGateways.length == 0" class="row">
     <div class="well">
         <h3>No Hubs Found</h3>
-
         <p>
             You currently have no Hubs added to your account. Add a new Hub.
         </p>
-
     </div>
 
 </div>
 <div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
     <div id="{{g.uuid}}" class="col-sm-3">
-        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" alt="hub-logo" height="64px" width="64px">
+        <img class="col-sm-12" src="/assets/images/network_hub.png" alt="hub-logo">
         <input type="text" class="form-control col-sm-12" name="hub-name" readonly="readonly" disabled="disabled"
                ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)">
 
@@ -83,16 +90,6 @@
                     <i class="fa" style="padding-right: 5px;" ng-class="{'fa-info-circle' : g.showDetails, 'fa-info' : !g.showDetails}"></i>Info
                 </button>
             </div>
-
-            <div class="btn-group">
-
-                <button type="button" tooltip="Edit Hub Name" tooltip-placement="bottom" tooltip-popup-delay="5"
-                        class="btn btn-default"  ng-model="g.isNameEditable" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleNameEditable(g)">
-                    <i class="fa fa-edit" style="padding-right: 5px;"></i>Edit
-                </button>
-
-            </div>
-
             <div  class="btn-group">
                 <button  type="button" class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="5" tooltip-placement="bottom" ng-click="deleteHub(g)" style="padding-right: 5px;">
                     <i class="fa fa-times" style=""></i>Delete
