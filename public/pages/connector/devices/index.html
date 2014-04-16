@@ -21,7 +21,7 @@
    .subdevice-panel {
        border: 1px solid #dddddd;
        border-radius: 3em / 3em;
-       padding: 2% 20px 2% 20px;
+       padding: 0% 20px 0% 20px;
        /*margin-left: 2%;*/
 
    }
@@ -71,12 +71,17 @@
 <div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
     <div id="{{g.uuid}}" class="col-sm-2">
         <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" height="64px" width="64px" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}" data-jqyoui-options={{g}}>
-
-<!-- <div class="btn btn-droppable" data-drop="true" ng-model='list1' jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}"> -->
-
+    <div class="input-group col-sm-12">
+          <span class="input-group-btn">
+          <button type="button" tooltip="Edit Hub Name" tooltip-placement="bottom" tooltip-popup-delay="5"
+                  class="btn btn-default"  ng-model="g.isNameEditable" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-change="toggleNameEditable(g)">
+              <i class="fa fa-edit" style="padding-right: 5px;"></i>
+          </button>
+      </span>
         <input type="text" class="form-control col-sm-12" name="hub-name" readonly="readonly" disabled="disabled"
                ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)">
 
+    </div>
         <div collapse="!g.showDetails" class="col-sm-12 " style="padding-left: 0; padding-right: 0;">
             <table class="table table-condensed table-bordered">
                 <tr>

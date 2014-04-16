@@ -7,6 +7,7 @@ angular.module('e2eApp')
 
         if (selectedHub){
           selectedHub = JSON.parse(selectedHub);
+            //select with underscore
           for (var i in hubs) {
             console.log(hubs[i]);
             if (hubs[i].uuid == selectedHub.uuid){
@@ -34,36 +35,57 @@ angular.module('e2eApp')
         });
         $scope.deviceProperties = deviceProperties;
 
-        // connect to skynet
-        var skynetConfig = {
-            "uuid": $scope.skynetuuid,
-            "token": $scope.skynettoken
-        }
-        skynet(skynetConfig, function (e, socket) {
-          if (e) throw e;
+//        // connect to skynet
+//        var skynetConfig = {
+//            "uuid": $scope.skynetuuid,
+//            "token": $scope.skynettoken
+//        }
 
-          // Get default options
-          socket.emit('gatewayConfig', {
-              "uuid": $scope.hubs[0].uuid,
-              "token": $scope.hubs[0].token,
-              "method": "getDefaultOptions",
-              "name": smartDevice.plugin
-          }, function (defaults) {
-              // TODO: defaults are not returning - factor into object
-              console.log('config:', defaults);
-              console.log($scope.deviceProperties);
-              _.each(defaults.result, function(value, key){
+        $rootScope.skynetSocket.emit('gatewayConfig', {
+            "uuid": $scope.hubs[0].uuid,
+            "token": $scope.hubs[0].token,
+            "method": "getDefaultOptions",
+            "name": smartDevice.plugin
+        }, function (defaults) {
+            // TODO: defaults are not returning - factor into object
+            console.log('config:', defaults);
+            console.log($scope.deviceProperties);
+            _.each(defaults.result, function(value, key){
                 for (var i in $scope.deviceProperties) {
-                  if($scope.deviceProperties[i].name == key){
-                    // $scope.deviceProperties[i].value = value;
-                    $scope.$apply(function () {
-                        $scope.deviceProperties[i].value = value;
-                    });
-                  }
+                    if($scope.deviceProperties[i].name == key){
+                        // $scope.deviceProperties[i].value = value;
+                        $scope.$apply(function () {
+                            $scope.deviceProperties[i].value = value;
+                        });
+                    }
                 }
-              });
-          });
+            });
         });
+//        skynet(skynetConfig, function (e, socket) {
+//          if (e) throw e;
+//
+//          // Get default options
+//          socket.emit('gatewayConfig', {
+//              "uuid": $scope.hubs[0].uuid,
+//              "token": $scope.hubs[0].token,
+//              "method": "getDefaultOptions",
+//              "name": smartDevice.plugin
+//          }, function (defaults) {
+//              // TODO: defaults are not returning - factor into object
+//              console.log('config:', defaults);
+//              console.log($scope.deviceProperties);
+//              _.each(defaults.result, function(value, key){
+//                for (var i in $scope.deviceProperties) {
+//                  if($scope.deviceProperties[i].name == key){
+//                    // $scope.deviceProperties[i].value = value;
+//                    $scope.$apply(function () {
+//                        $scope.deviceProperties[i].value = value;
+//                    });
+//                  }
+//                }
+//              });
+//          });
+//        });
 
 
         $scope.getDefaults = function(hub){

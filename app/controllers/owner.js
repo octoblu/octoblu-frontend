@@ -120,7 +120,7 @@ module.exports = function (app, conn) {
                 var myDevices = JSON.parse(body);
                 myDevices = myDevices.devices;
                 console.log('myDevices', myDevices);
-                var gateways = []
+                var gateways = []  ;
                 for (var i in myDevices) {
                     if(req.query.devices == 'true'){
                         gateways.push(myDevices[i]);
