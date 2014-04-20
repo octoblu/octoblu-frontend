@@ -518,6 +518,9 @@ module.exports = function (app, passport, config) {
                     console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
+                    var timestamp = (new Date()).getTime();
+                    var nonce = (new Date()).getTime() * 1000;
+
                     res.cookie('csrf', csrfToken);
                     var query;
                     if(api.oauth.useOAuthParams) {
@@ -526,8 +529,8 @@ module.exports = function (app, passport, config) {
                             response_type: 'code',
                             oauth_signature: csrfToken,
                             oauth_signature_method: 'HMAC-SHA1',
-                            oauth_timestamp: '',
-                            oauth_nonce: '',
+                            oauth_timestamp: timestamp,
+                            oauth_nonce: nonce,
                             oauth_callback: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
                         };
                     } else {
