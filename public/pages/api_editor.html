@@ -71,21 +71,26 @@
             </div>
 
             <div class="field" ng-show="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Token Key</label>
-              <input class="form-control" type="text" placeholder="Token Key" ng-model="channel.oauth.sessionKey" />
+              <label for="resource_resourcename">Base URL</label>
+              <input class="form-control" type="text" placeholder="Base URL" ng-model="channel.oauth.baseURL" />
+            </div>
+
+            <div class="field" ng-show="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Token Path</label>
+              <input class="form-control" type="text" placeholder="Token Path" ng-model="channel.oauth.authTokenPath" />
             </div>
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_resourcename">Access Token URL</label>
-              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.accessTokenURL" />
+              <input class="form-control" type="text" placeholder="Access Token URL" ng-model="channel.oauth.accessTokenURL" />
             </div>
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_resourcename">Request Token URL</label>
-              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.requestTokenURL" />
+              <input class="form-control" type="text" placeholder="Request Token URL" ng-model="channel.oauth.requestTokenURL" />
             </div>
 
-            <div class="field">
+            <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_resourcename">Authorize Token URL</label>
               <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.authTokenURL" />
             </div>

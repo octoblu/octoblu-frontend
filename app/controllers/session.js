@@ -1,4 +1,8 @@
-var User = require('../models/user');
+'use strict';
+
+var mongoose = require('mongoose'),
+	request = require('request'),
+    User = mongoose.model('User');
 
 module.exports = function ( app, passport, config ) {
 	app.get('/logout', function(req, res) {
@@ -21,20 +25,26 @@ module.exports = function ( app, passport, config ) {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           domain: config.domain,
           httpOnly: false
-        });	
+        });
         res.cookie('skynettoken', user.local.skynettoken, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           domain: config.domain,
           httpOnly: false
-        });	
+        });
 
- 	      console.log('redirecting');
-	      return res.redirect('/dashboard');
+        // Check for deep link redirect based on referrer in querystring
+        if(req.session.redirect){
+          return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
+        } else {
+          return res.redirect('/dashboard');
+        }
+
+ 	     //  console.log('redirecting');
+	      // return res.redirect('/dashboard');
 	    });
 
 	  })(req, res, next);
-	});		
-
+	});
 
 	app.post('/signup', function(req, res, next) {
 	  passport.authenticate('local-signup', function(err, user, info) {
@@ -44,14 +54,15 @@ module.exports = function ( app, passport, config ) {
 	      if (err) { return next(err); }
 
         // Add user to Skynet
-		    request.post('http://skynet.im/devices', 
+		    request.post('http://skynet.im/devices',
 		    	{form: {"type":"user", "email": user.local.email}}
 			  , function (error, response, body) {
+			  		// console.log(response.statusCode, body);
 			      if(response.statusCode == 200){
 
-			      	data = JSON.parse(body);
+			      	var data = JSON.parse(body);
 
-			        User.update({_id: user._id}, 
+			        User.update({_id: user._id},
 			        	{local: {email: user.local.email, password: user.local.password, skynetuuid: data.uuid, skynettoken: data.token}}
 			        , function(err){
 								if(!err) {
@@ -60,12 +71,12 @@ module.exports = function ( app, passport, config ) {
 				          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 				          domain: config.domain,
 				          httpOnly: false
-				        });	
+				        });
 				        res.cookie('skynettoken', data.token, {
 				          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
 				          domain: config.domain,
 				          httpOnly: false
-				        });	
+				        });
 
 					      return res.redirect('/dashboard');
 
@@ -88,5 +99,5 @@ module.exports = function ( app, passport, config ) {
 
 	    });
 	  })(req, res, next);
-	});		
+	});
 };

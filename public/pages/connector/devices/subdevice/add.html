@@ -1,0 +1,45 @@
+<div class="modal-header" >
+    <img src="{{smartDevice.logo}}" class="img-rounded pull-left" height="48px" width="48px">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title text-center" style="padding-bottom: 1em;" id="myModalLabel">{{mode}} {{smartDevice.name}}</h3>
+</div>
+<div class="modal-body">
+
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Hub</label>
+            <div class="col-sm-10">
+                <select class="form-control" ng-options="h.name for h in hubs" required="required" ng-model="selectedHub" ng-change="getDefaults(selectedHub)"></select>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" name="name"  ng-model="subDeviceName" placeholder="Name" class="form-control" required="required">
+            </div>
+        </div>
+        <div class="form-group"  ng-repeat="deviceProperty in deviceProperties">
+            <div ng-if="deviceProperty.type == 'string'">
+                <input type="text" name="{{deviceProperty.name}}" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="{{deviceProperty.required}}">
+            </div>
+            <div ng-if="deviceProperty.type == 'number'">
+                <input type="number" name="{{deviceProperty.name}}" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="{{deviceProperty.required}}">
+            </div>
+            <div ng-if="deviceProperty.type == 'boolean'">
+                <input type="checkbox" name="{{deviceProperty.name}}" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="{{deviceProperty.required}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <alert ng-repeat="validationError in validationErrors" type="validationError.type" close="closeAlert(validationError)">
+                <strong>{{validationError.summary}}</strong> <br />
+                {{validationError.msg}}
+            </alert>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-primary" ng-disabled="{{validationErrors.length > 0}}" ng-click="addSubDevice(subDeviceName, selectedHub, smartDevice, deviceProperties)">Save changes</button>
+</div>
