@@ -21,7 +21,7 @@ var apiSchema = mongoose.Schema({
         accessTokenURL   : String,
         authTokenURL     : String,
         version          : String,
-        authTokenURL       : String
+        authTokenPath    : String
     },
     documentation    : String,
     application      : { base: String, resources: [ ] }
