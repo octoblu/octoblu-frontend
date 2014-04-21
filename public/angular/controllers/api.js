@@ -122,7 +122,8 @@ angular.module('e2eApp')
             $scope.save = function() {
                 if(!$scope.channel) return;
 
-                userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
+                userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.user_channel.key, 
+                    $scope.user_channel.token, $scope.custom_tokens,
                     function(data) {
                         console.log('saved');
                         $scope.has_user_channel = true;
