@@ -39,10 +39,10 @@ angular.module('e2eApp')
                             '</div>'+
                             '<div class="btn-group btn-group-justified" style="width: auto; margin-top: 15px;" >' +
                                 '<div class="btn-group">' +
-                                    '<button class="btn btn-inverse"  tooltip="Edit Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="editSubDevice(hub.subdevices[' + index + '], hub)"><i class="fa fa-edit"></i></button>'+
+                                    '<button class="btn btn-inverse"  tooltip="Edit" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="editSubDevice(hub.subdevices[' + index + '], hub)"><i class="fa fa-edit"></i></button>'+
                                 '</div>' +
                                 '<div class="btn-group btn-group">' +
-                                    '<button class="btn btn-danger"  tooltip="Delete Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="deleteSubDevice(hub.subdevices[' + index + '], hub)" ><i class="fa fa-times"></i></button>'+
+                                    '<button class="btn btn-danger"  tooltip="Delete" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="deleteSubDevice(hub.subdevices[' + index + '], hub)" ><i class="fa fa-times"></i></button>'+
                                 '</div>' +
                             '</div>' +
                             '</div>';
