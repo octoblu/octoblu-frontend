@@ -259,24 +259,19 @@ angular.module('e2eApp')
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
                 function() {
                     $log.info('ok clicked');
-                    $rootScope.skynetSocket.emit('gatewayConfig', {
-                        "uuid": hub.uuid,
-                        "token": hub.token,
-                        "method": "deleteSubdevice",
-                        "name": subdevice.name
-                        // "name": $scope.gateways[parent].subdevices[idx].name
-                    }, function (deleteResult) {
-                        if(deleteResult.result === 'ok'){
-                            hub.subdevices = _.without(hub.subdevices, subdevice);
-
-                        }
-
-                    });
-                },
-                function() {
-                    $log.info('cancel clicked');
+                        $rootScope.skynetSocket.emit('gatewayConfig', {
+                            "uuid": hub.uuid,
+                            "token": hub.token,
+                            "method": "deleteSubdevice",
+                            "name": subdevice.name
+                        },
+                        function (deleteResult) {
+                            if(deleteResult.result === 'ok'){
+                                hub.subdevices = _.without(hub.subdevices, subdevice);
+                            }
+                        });
                 });
-        }
+        };
 
         this.getSubDeviceLogo = function(subdevice){
             var smartDevice = _.findWhere($scope.smartDevices, {

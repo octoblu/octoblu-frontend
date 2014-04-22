@@ -72,7 +72,7 @@ angular.module('e2eApp')
                 scope.deleteSubDevice = function(subdevice, hub){
                     var subDeviceIndex =  _.indexOf(hub.subdevices, subdevice);
                     DeviceController.deleteSubDevice(subdevice, hub);
-                    scope.owl.data('owlCarousel').removeItem(subDeviceIndex);
+//                    scope.owl.data('owlCarousel').removeItem(subDeviceIndex);
 
                 }
                 scope.$on('$destroy', function() {
