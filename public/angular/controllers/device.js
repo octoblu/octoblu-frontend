@@ -12,6 +12,9 @@ angular.module('e2eApp')
         }
 
         $scope.saveHubName = function(hub){
+            var elementSelector = '#' + hub.uuid;
+            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
+            hubNameField.attr('readonly' , 'readonly');
 
             var errors = $scope.validateName(hub);
             if(errors.length > 0 ){
@@ -36,13 +39,7 @@ angular.module('e2eApp')
         $scope.toggleNameEditable = function( hub ){
             var elementSelector = '#' + hub.uuid;
             var hubNameField = $(elementSelector).find('input[name="hub-name"]');
-            if(hub.isNameEditable){
-                hubNameField.removeAttr('disabled');
-                hubNameField.removeAttr('readonly');
-            } else{
-                hubNameField.attr('readonly', 'readonly');
-                hubNameField.attr('disabled', 'disabled');
-            }
+            hubNameField.removeAttr('readonly');
         };
 
         $scope.validateName = function(hub){
