@@ -1,11 +1,10 @@
 angular.module('e2eApp')
-    .controller('DeviceController', function ($rootScope, $scope, $log, $state,  $http, $cookies, $modal, $timeout, channelService, ownerService, deviceService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, channelService, ownerService, deviceService ) {
 
         var ownerId = $cookies.skynetuuid;
         var token = $cookies.skynettoken;
 
         $scope.socket = $rootScope.skynetSocket;
-        //check if they are authenticated, if they arent signed in route them to login
         //TODO this will be handled by route checking at the root scope level. Should be changed then.
         if( ownerId === undefined || token === undefined ){
              $state.go('login');
@@ -79,6 +78,24 @@ angular.module('e2eApp')
               });
 
       };
+
+      this.getClaimedGateways = function(){
+          var claimedGateways = [];
+          ownerService.getGateways(ownerId, token, false, function(error, data){
+              if(error || data.gateways === undefined ){
+                  console.log(error);
+                  claimedGateways = [];
+              } else{
+                  claimedGateways = _.filter(data.gateways, function(gateway){
+                      return gateway.owner === ownerId;
+                  });
+              }
+
+          });
+          return claimedGateways;
+      };
+
+
       ownerService.getGateways(ownerId, token, false, function(error, data){
             if(error || data.gateways === undefined ){
                 console.log(error);
@@ -103,59 +120,99 @@ angular.module('e2eApp')
             $scope.smartDevices = data;
         });
 
-      $scope.addSmartDevice = function(smartDevice, hub, rootScope){
-        if(smartDevice.enabled){
-            var subdeviceModal = $modal.open({
-                templateUrl : 'pages/connector/devices/subdevice/add.html',
-//            scope : $scope,
-                controller : 'AddSubDeviceController',
-                backdrop : true,
-                resolve : {
-                    mode : function(){
-                        return 'ADD';
-                    },
-                    hubs : function(){
-                        return $scope.claimedGateways;
-                    },
-                    smartDevice : function(){
-                        return smartDevice;
-                    },
-                    selectedHub: function(){
-                      return hub;
-                    }
+      $scope.addSmartDevice = function(smartDevice ){
+          var installedhubs;
+          if (smartDevice.enabled) {
 
-                }
+              var hubsMissingPlugin = _.filter($scope.claimedGateways, function (hub) {
+                  var plugin = _.findWhere(hub.plugins, {'name': smartDevice.plugin });
+                  return plugin === undefined || plugin === null;
+              });
 
-            });
+              //They need to be installed so we are going to create an array of promises that we will resolve
+              //after all the hubs have the missing plugin installed.
+              var installedhubs = undefined;
+              if (hubsMissingPlugin) {
+                  //Iterate over each hub and install
+                  var promises = hubsMissingPlugin.map(function (hub) {
+                      var deferred = $q.defer();
+                      $rootScope.skynetSocket.emit('gatewayConfig', {
+                          "uuid": hub.uuid,
+                          "token": hub.token,
+                          "method": "installPlugin",
+                          "name": smartDevice.plugin
+                      }, function (data) {
+                          console.log(JSON.stringify(data));
+                          return deferred.resolve(data);
+                      });
+                      return deferred.promise;
+                  });
+                  installedhubs = $q.all(promises).then(function(data){
+                      console.log(JSON.stringify(data));
+                     $scope.claimedGateways = getClaimedGateways();
+                  });
 
-            subdeviceModal.result.then(function( result){
-                    $rootScope.skynetSocket.emit('gatewayConfig', {
-                    "uuid": result.hub.uuid,
-                    "token": result.hub.token,
-                    "method": "createSubdevice",
-                    "type": result.device.plugin,
-                    "name": result.name,
-                    "options": result.options
-                }, function (addResult) {
-                    console.log(addResult);
-                });
 
-                result.hub.subdevices.push({
-                    name : result.name,
-                    type : result.device.plugin,
-                    options : result.options
-                });
-            }, function(){
+              }
+              var subdeviceModal = $modal.open({
+                  templateUrl: 'pages/connector/devices/subdevice/add.html',
+                  controller: 'AddSubDeviceController',
+                  backdrop: true,
+                  resolve: {
+                      mode: function () {
+                          return 'ADD';
+                      },
+                      hubs: function () {
+                          return $scope.claimedGateways;
+                      },
+                      smartDevice: function () {
+                          return smartDevice;
+                      },
+                      selectedHub : function(){
+                         return null;
+                      },
+                      installedHubs: function () {
+                          return installedhubs;
+                      }
+                  }
 
-            });
-        }
+              });
+
+              subdeviceModal.result.then(function (result) {
+                  $rootScope.skynetSocket.emit('gatewayConfig', {
+                      "uuid": result.hub.uuid,
+                      "token": result.hub.token,
+                      "method": "createSubdevice",
+                      "type": result.device.plugin,
+                      "name": result.name,
+                      "options": result.options
+                  }, function (addResult) {
+                      console.log(addResult);
+                  });
+
+                  result.hub.subdevices.push({
+                      name: result.name,
+                      type: result.device.plugin,
+                      options: result.options
+                  });
+              }, function () {
+
+              });
+          }
       }
 
         this.editSubDevice = function(subdevice, hub){
+
+            /*
+              TODO
+             * Check if the sub device is installed for the current hub
+             * install the sub device refresh the current device to get the list of updated plugins installed
+             * pass the installed plugin for the sub-device to the modal to the modal
+             *
+             */
             var subDeviceModal = $modal.open({
                 templateUrl : 'pages/connector/devices/subdevice/edit.html',
                 controller : 'EditSubDeviceController',
-//                scope : $scope,
                 backdrop : true,
                 resolve : {
                     mode : function(){
@@ -175,9 +232,7 @@ angular.module('e2eApp')
                     plugins : function(){
                         return hub.plugins;
                     }
-
                 }
-
             });
 
             subDeviceModal.result.then(function( options){

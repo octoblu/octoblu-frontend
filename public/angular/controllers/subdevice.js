@@ -1,5 +1,5 @@
 angular.module('e2eApp')
-    .controller('AddSubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice, selectedHub )
+    .controller('AddSubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice, selectedHub,  installedHubs )
     {
         $scope.hubs = hubs;
         $scope.mode = mode;
@@ -7,14 +7,10 @@ angular.module('e2eApp')
 
         if (selectedHub){
           selectedHub = JSON.parse(selectedHub);
-            //select with underscore
-          for (var i in hubs) {
-            console.log(hubs[i]);
-            if (hubs[i].uuid == selectedHub.uuid){
-              $scope.selectedHub = hubs[i];
-              $scope.plugins = hubs[i].plugins;
-            }
-          }
+
+            $scope.selectedHub = _.findWhere(hubs, {
+                'uuid' : selectedHub.uuid
+            });
 
         } else {
           $scope.selectedHub = $scope.hubs[0];
@@ -35,11 +31,6 @@ angular.module('e2eApp')
         });
         $scope.deviceProperties = deviceProperties;
 
-//        // connect to skynet
-//        var skynetConfig = {
-//            "uuid": $scope.skynetuuid,
-//            "token": $scope.skynettoken
-//        }
 
         $rootScope.skynetSocket.emit('gatewayConfig', {
             "uuid": $scope.hubs[0].uuid,
@@ -51,77 +42,39 @@ angular.module('e2eApp')
             console.log('config:', defaults);
             console.log($scope.deviceProperties);
             _.each(defaults.result, function(value, key){
-                for (var i in $scope.deviceProperties) {
-                    if($scope.deviceProperties[i].name == key){
-                        // $scope.deviceProperties[i].value = value;
-                        $scope.$apply(function () {
-                            $scope.deviceProperties[i].value = value;
-                        });
-                    }
+
+                var deviceProperty = _.findWhere($scope.deviceProperties, {
+                    'name' : key
+                } );
+
+                if( deviceProperty ) {
+                    $scope.$apply(function(){
+                        deviceProperty.value = value;
+                    });
                 }
             });
         });
-//        skynet(skynetConfig, function (e, socket) {
-//          if (e) throw e;
-//
-//          // Get default options
-//          socket.emit('gatewayConfig', {
-//              "uuid": $scope.hubs[0].uuid,
-//              "token": $scope.hubs[0].token,
-//              "method": "getDefaultOptions",
-//              "name": smartDevice.plugin
-//          }, function (defaults) {
-//              // TODO: defaults are not returning - factor into object
-//              console.log('config:', defaults);
-//              console.log($scope.deviceProperties);
-//              _.each(defaults.result, function(value, key){
-//                for (var i in $scope.deviceProperties) {
-//                  if($scope.deviceProperties[i].name == key){
-//                    // $scope.deviceProperties[i].value = value;
-//                    $scope.$apply(function () {
-//                        $scope.deviceProperties[i].value = value;
-//                    });
-//                  }
-//                }
-//              });
-//          });
-//        });
-
 
         $scope.getDefaults = function(hub){
 
-          // connect to skynet
-          var skynetConfig = {
-              "uuid": $scope.skynetuuid,
-              "token": $scope.skynettoken
-          }
-          skynet(skynetConfig, function (e, socket) {
-            if (e) throw e;
-
-            // Get default options
-            socket.emit('gatewayConfig', {
+           $rootScope.skynetSocket.emit('gatewayConfig', {
                 "uuid": hub.uuid,
                 "token": hub.token,
                 "method": "getDefaultOptions",
                 "name": smartDevice.plugin
             }, function (defaults) {
-                // TODO: defaults are not returning - factor into object
-                console.log('config:', defaults);
-                console.log($scope.deviceProperties);
-                _.each(defaults.result, function(value, key){
-                  for (var i in $scope.deviceProperties) {
-                    if($scope.deviceProperties[i].name == key){
-                      // $scope.deviceProperties[i].value = value;
-                      $scope.$apply(function () {
-                          $scope.deviceProperties[i].value = value;
-                      });
-                    }
-                  }
-                });
+               _.each(defaults.result, function(value, key){
+                   var deviceProperty = _.findWhere($scope.deviceProperties, {
+                       'name' : key
+                   } );
+
+                   if( deviceProperty ) {
+                       $scope.$apply(function(){
+                           deviceProperty.value = value;
+                       });
+                   }
+               });
             });
-
-          });
-
         };
 
 
