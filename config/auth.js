@@ -56,11 +56,6 @@ var config = {
       'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
       'callbackURL'    : 'http://localhost:8080/api/auth/Tumblr/callback'
     },
-    'fitbit' : {
-      'consumerKey'    : '2757456acad54cdabf6414926303421d',
-      'consumerSecret' : 'a3648d726d0e4ea091fe2d40ecc1b55b',
-      'callbackURL'    : 'http://localhost:8080/api/auth/FitBit/callback'
-    },
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
       'consumerSecret' : 'E5EbEc5vdf',
@@ -157,11 +152,6 @@ var config = {
       'consumerKey'    : 'XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb',
       'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
       'callbackURL'    : 'http://octoblu.com/api/auth/Tumblr/callback'
-    },
-    'fitbit' : {
-      'consumerKey'    : '2757456acad54cdabf6414926303421d',
-      'consumerSecret' : 'a3648d726d0e4ea091fe2d40ecc1b55b',
-      'callbackURL'    : 'http://octoblu.com/api/auth/FitBit/callback'
     },
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
