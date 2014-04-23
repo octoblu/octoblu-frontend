@@ -5,7 +5,6 @@ var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var LinkedInStrategy = require('passport-linkedin').Strategy
 
-var ReadabilityStrategy = require('passport-readability').Strategy
 var StackExchangeStrategy = require('passport-stackexchange').Strategy
 var BitlyStrategy = require('passport-bitly').Strategy
 var VimeoStrategy = require('passport-vimeo').Strategy
@@ -370,17 +369,6 @@ var configAuth = require('./auth')(env); // use this one for testing
       },
       function(req, token, tokenSecret, profile, done) {
         console.log('handling linkedin response with passport');
-      }
-    ));
-
-    passport.use(new ReadabilityStrategy({
-        consumerKey     : configAuth.readability.consumerKey,
-        consumerSecret  : configAuth.readability.consumerSecret,
-        callbackURL     : configAuth.readability.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling readability response with passport');
       }
     ));
 

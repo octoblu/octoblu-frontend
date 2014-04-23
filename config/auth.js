@@ -24,11 +24,6 @@ var config = {
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
-    'readability' : {
-      'consumerKey'    : 'rebootd',
-      'consumerSecret' : 'gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
-    },
     'stackexchange' : {
       'clientId'       : '2619',
       'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
@@ -120,11 +115,6 @@ var config = {
       'consumerKey'    : '75athujre0gp76',
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://octoblu.com/api/auth/LinkedIn/callback'
-    },
-    'readability' : {
-      'consumerKey'    : 'rebootd',
-      'consumerSecret' : 'gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF',
-      'callbackURL'    : 'http://octoblu.com/api/auth/Readability/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',

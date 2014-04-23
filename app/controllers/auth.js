@@ -747,11 +747,6 @@ module.exports = function (app, passport, config) {
     app.get('/api/auth/LinkedIn/callback',
         function(req, res, next) { handleOauth1('LinkedIn', req, res, next); });
 
-    app.get('/api/auth/Readability',
-        passport.authorize('readability', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/Readability/callback',
-        function(req, res, next) { handleOauth1('Readability', req, res, next); });
-
     app.get('/api/auth/StackOverflow',
         passport.authorize('stackexchange', { scope: ['r_basicprofile', 'r_emailaddress'] }));
     app.get('/api/auth/StackOverflow/callback',
