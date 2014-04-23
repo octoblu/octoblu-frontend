@@ -14,13 +14,13 @@ angular.module('e2eApp')
               $scope.selectedHub = hubs[i];
               $scope.plugins = hubs[i].plugins;
             }
-          }
+          } 
 
         } else {
           $scope.selectedHub = $scope.hubs[0];
           $scope.plugins = $scope.hubs[0].plugins;
         }
-        
+
         $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
         var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
 
