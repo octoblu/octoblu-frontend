@@ -30,7 +30,6 @@ module.exports = function (app, passport, config) {
     }
 
     var handleOauth1 = function (name, req, res, next) {
-        console.log(req);
         var token = req.param('oauth_token'),
             verifier = req.param('oauth_verifier');
 
@@ -772,16 +771,6 @@ module.exports = function (app, passport, config) {
         passport.authorize('tumblr', { scope: ['r_basicprofile', 'r_emailaddress'] }));
     app.get('/api/auth/Tumblr/callback',
         function(req, res, next) { handleOauth1('Tumblr', req, res, next); });
-
-    app.get('/api/auth/FitBit',
-        passport.authorize('fitbit', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/FitBit/callback',
-        function(req, res, next) { handleOauth1('FitBit', req, res, next); });
-
-    app.get('/api/auth/Rdio',
-        passport.authorize('rdio', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/Rdio/callback',
-        function(req, res, next) { handleOauth1('Rdio', req, res, next); });
 
     app.get('/api/auth/LastFM', function(req, res) {
         var api_url = config.lastfm.base_url + '?api_key=' + config.lastfm.consumerKey;
