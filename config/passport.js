@@ -442,17 +442,6 @@ var configAuth = require('./auth')(env); // use this one for testing
       }
     ));
 
-    passport.use(new FitBitStrategy({
-        consumerKey     : configAuth.fitbit.consumerKey,
-        consumerSecret  : configAuth.fitbit.consumerSecret,
-        callbackURL     : configAuth.fitbit.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling fitbit response with passport');
-      }
-    ));
-
     passport.use(new RdioStrategy({
         consumerKey     : configAuth.rdio.consumerKey,
         consumerSecret  : configAuth.rdio.consumerSecret,
