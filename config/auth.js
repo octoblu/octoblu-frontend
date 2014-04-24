@@ -24,11 +24,6 @@ var config = {
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
     },
-    'readability' : {
-      'consumerKey'    : 'rebootd',
-      'consumerSecret' : 'gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Readability/callback'
-    },
     'stackexchange' : {
       'clientId'       : '2619',
       'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
@@ -39,12 +34,6 @@ var config = {
       'clientId'       : '1c55f213d790c4b5efc3ab67520d71926daf33fe',
       'clientSecret'    : 'e07a564eca8414628833830ea3c42800f16aef98',
       'callbackURL'    : 'http://localhost:8080/api/auth/Bitly/callback'
-    },
-    'vimeo' : {
-      'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
-      'consumerSecret'   : 'dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8',
-      'token'          : 'adcfb27faab26a4f06eb20750f628b86',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Vimeo/callback'
     },
     'foursquare' : {
       'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
@@ -75,15 +64,6 @@ var config = {
     },
     'musixmatch' : {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
-    },
-    'etsy' : {
-      'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token', 
-      'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token', 
-      'authorizationURL'  : 'https://www.etsy.com/oauth/signin', 
-      'oauthVersion'      : '1.0',
-      'consumerKey'       : '43pie9547p1iea83gz1hp052',
-      'consumerSecret'    : "2txz2d6qok", 
-      'callbackURL'      : 'http://localhost:8080/api/auth/Etsy/callback',
     },
     'port' : 8080,
     'domain': null
@@ -121,11 +101,6 @@ var config = {
       'consumerSecret' : 'hwApG57HKsQrBYAL',
       'callbackURL'    : 'http://octoblu.com/api/auth/LinkedIn/callback'
     },
-    'readability' : {
-      'consumerKey'    : 'rebootd',
-      'consumerSecret' : 'gDeFYD5BXbzrPvv36NbS7DmCAWRurzRF',
-      'callbackURL'    : 'http://octoblu.com/api/auth/Readability/callback'
-    },
     'stackexchange' : {
       'clientId'       : '2619',
       'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
@@ -137,21 +112,10 @@ var config = {
       'clientSecret'    : 'e07a564eca8414628833830ea3c42800f16aef98',
       'callbackURL'    : 'http://octoblu.com/api/auth/Bitly/callback'
     },
-    'vimeo' : {
-      'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
-      'consumerSecret'   : 'dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8',
-      'token'          : 'adcfb27faab26a4f06eb20750f628b86',
-      'callbackURL'    : 'http://octoblu.com/api/auth/Vimeo/callback'
-    },
     'foursquare' : {
       'clientKey'    : 'TWS4TQMSWG20PQPR45ZAWDBKPKKQR0IFR4YN31KCCVFCM5GP',
       'clientSecret' : 'WBDW3TOO2P4ZRDM1PXGMBXIPKJKZKCNHM0S0BZI3ECF3JJPK',
       'callbackURL'    : 'http://octoblu.com/api/auth/FourSquare/callback'
-    },
-    'tumblr' : {
-      'consumerKey'    : 'XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb',
-      'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
-      'callbackURL'    : 'http://octoblu.com/api/auth/Tumblr/callback'
     },
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
@@ -172,15 +136,6 @@ var config = {
     },
     'musixmatch' : {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
-    },
-    'etsy' : {
-      'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token', 
-      'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token', 
-      'authorizationURL'  : 'https://www.etsy.com/oauth/signin', 
-      'oauthVersion'      : '1.0',
-      'consumerKey'       : '43pie9547p1iea83gz1hp052',
-      'consumerSecret'    : "2txz2d6qok", 
-      'callbackURL'      : 'http://octoblu.com/api/auth/Etsy/callback',
     },
     'port' : 80,
     'domain': '.octoblu.com'

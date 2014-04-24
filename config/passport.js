@@ -5,10 +5,8 @@ var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var LinkedInStrategy = require('passport-linkedin').Strategy
 
-var ReadabilityStrategy = require('passport-readability').Strategy
 var StackExchangeStrategy = require('passport-stackexchange').Strategy
 var BitlyStrategy = require('passport-bitly').Strategy
-var VimeoStrategy = require('passport-vimeo').Strategy
 var FourSquareStrategy = require('passport-foursquare').Strategy
 var TumblrStrategy = require('passport-tumblr').Strategy
 var FitBitStrategy = require('passport-fitbit').Strategy
@@ -373,17 +371,6 @@ var configAuth = require('./auth')(env); // use this one for testing
       }
     ));
 
-    passport.use(new ReadabilityStrategy({
-        consumerKey     : configAuth.readability.consumerKey,
-        consumerSecret  : configAuth.readability.consumerSecret,
-        callbackURL     : configAuth.readability.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling readability response with passport');
-      }
-    ));
-
     passport.use(new StackExchangeStrategy({
         clientID        : configAuth.stackexchange.clientId,
         key             : configAuth.stackexchange.clientKey,
@@ -405,17 +392,6 @@ var configAuth = require('./auth')(env); // use this one for testing
       },
       function(req, token, tokenSecret, profile, done) {
         console.log('handling bitly response with passport');
-      }
-    ));
-
-    passport.use(new VimeoStrategy({
-        consumerKey     : configAuth.vimeo.consumerKey,
-        consumerSecret  : configAuth.vimeo.consumerSecret,
-        callbackURL     : configAuth.vimeo.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling vimeo response with passport');
       }
     ));
 
