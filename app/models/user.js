@@ -55,12 +55,10 @@ var UserSchema = mongoose.Schema({
             value: String
         }]
     }],
-    friends: [{
-        uuid: String
-    }],
     groups: [{
         uuid: String,
         name: String,
+        type: String,
         members: [{
             uuid: String
         }],
