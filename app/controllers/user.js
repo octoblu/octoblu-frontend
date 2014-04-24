@@ -254,7 +254,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST -d "name=family" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
+  // curl -X POST -d "name=family&type=operators" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
   app.post('/api/user/:id/groups', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -270,6 +270,7 @@ module.exports = function (app) {
             if (userInfo.groups == undefined){
               userInfo.groups = [];
             };
+            console.log(userInfo.groups);
             // if(_.contains(userInfo.groups, req.params.name)){
             //   res.json({error:"Group already exists"});
             // } else {
@@ -277,9 +278,10 @@ module.exports = function (app) {
             //   // res.json({groups:userInfo.groups});
             // };
             var newUuid = uuid.v1();
-            userInfo.groups.push({uuid: newUuid, name: req.body.name});
+            var group = {uuid: newUuid, name: req.body.name, type: req.body.type, members: [], devices: []};
+            userInfo.groups.push(group);
             console.log(userInfo.groups);
-            userInfo.save(function(err) {
+            userInfo.save(function(err, data, numberAffected) {
               if(!err) {
                 console.log(userInfo);
                 res.json({groups:userInfo.groups});
@@ -293,6 +295,7 @@ module.exports = function (app) {
       });
   });
 
+  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/76893990-cbe9-11e3-897a-b94740070267
   app.delete('/api/user/:id/groups/:uuid', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -305,7 +308,7 @@ module.exports = function (app) {
           if (err) {
             res.send(err);
           } else {
-
+            var groupFound = false;
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
                   userInfo.groups.splice(i,1);
@@ -319,39 +322,334 @@ module.exports = function (app) {
                       res.json(err);
                     }
                   });
+                  groupFound = true;
                   break;
                }
+            }
+
+            if(!groupFound){
+              res.json(404, {'group': 'not found'});
             }
 
           }
       });
   });
 
+  // curl -X PUT -d "name=family&type=operators" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3
+  app.put('/api/user/:id/groups/:uuid', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          // console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+            var groupFound = false;
+            for (var i=0; i < userInfo.groups.length; i++) {
+               if (userInfo.groups[i].uuid == req.params.uuid) {
+                 console.log(userInfo.groups[i]);
+                  if (req.body.name){
+                    userInfo.groups[i].name = req.body.name;
+                  }
+                  if (req.body.type){
+                    userInfo.groups[i].type = req.body.type;
+                  }
+                  userInfo.save(function(err, data, updated) {
+                    if(!err) {
+                      console.log(data);
+                      res.json({group: data.groups[i]});
+
+                    } else {
+                      console.log('Error: ' + err);
+                      res.json(err);
+                    }
+                  });
+                  groupFound = true;
+                  break;
+               }
+            }
+
+            if(!groupFound){
+              res.json(404, {'group': 'not found'});
+            }
+
+          }
+      });
+  });
+
+  // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3
+  app.get('/api/user/:id/groups/:uuid', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+        // console.log(userInfo);
+        if (err) {
+          res.send(err);
+        } else {
+          var groupFound = false;
+          for (var i=0; i < userInfo.groups.length; i++) {
+              if (userInfo.groups[i].uuid == req.params.uuid) {
+                  res.json({group:userInfo.groups[i]});
+              };
+              groupFound = true;
+              break;
+           }
+
+          }
+
+          if(!groupFound){
+            res.json(404, {'group': 'not found'});
+          }
+
+      });
+  });
+
 
   // GET POST PUT DELETE /groups/:uuid/members
-  // GET POST PUT DELETE /groups/:uuid/devices
+  // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/members
+  app.get('/api/user/:id/groups/:uuid/members', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+        // console.log(userInfo);
+        if (err) {
+          res.send(err);
+        } else {
+          var groupFound = false;
+          for (var i=0; i < userInfo.groups.length; i++) {
+              if (userInfo.groups[i].uuid == req.params.uuid) {
+                  res.json({members: userInfo.groups[i].members});
+              };
+              groupFound = true;
+              break;
+           }
 
-  // // Get user group
-  // app.get('/api/groups/:id', function (req, res) {
-  //     User.findOne({ $or: [
-  //         {'local.skynetuuid' : req.params.id},
-  //         {'twitter.skynetuuid' : req.params.id},
-  //         {'facebook.skynetuuid' : req.params.id},
-  //         {'google.skynetuuid' : req.params.id}
-  //     ]
-  //     }, function(err, userInfo) {
-  //         // console.log(userInfo);
-  //         if (err) {
-  //             res.send(err);
-  //         } else {
-  //             // not sure why local.password cannot be deleted from user object
-  //             // if (userInfo && userInfo.local){
-  //             // 	userInfo.local.password = null;
-  //             // 	delete userInfo.local.password;
-  //             // }
-  //             res.json(userInfo);
-  //         }
-  //     });
-  // });
+          }
+
+          if(!groupFound){
+            res.json(404, {'group': 'not found'});
+          }
+
+      });
+  });
+
+  // curl -X POST -d "uuid=123" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/members
+  app.post('/api/user/:id/groups/:uuid/members', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          // console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+
+            var groupFound = false;
+            for (var i=0; i < userInfo.groups.length; i++) {
+               if (userInfo.groups[i].uuid == req.params.uuid) {
+                  userInfo.groups[i].members.push({uuid: req.body.uuid});
+                  userInfo.save(function(err, data, affected) {
+                    if(!err) {
+                      console.log(userInfo);
+                      res.json({members: data.groups[i].members});
+
+                    } else {
+                      console.log('Error: ' + err);
+                      res.json(err);
+                    }
+                  });
+                  groupFound = true;
+                  break;
+               }
+            }
+
+            if(!groupFound){
+              res.json(404, {'group': 'not found'});
+            }
+
+          }
+      });
+  });
+
+  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/members/123
+  app.delete('/api/user/:id/groups/:uuid/members/:user', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          // console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+            var memberFound = false;
+            for (var i=0; i < userInfo.groups.length; i++) {
+               if (userInfo.groups[i].uuid == req.params.uuid) {
+
+                for (var j=0; j < userInfo.groups[i].members.length; j++) {
+                   if (userInfo.groups[j].members[j].uuid == req.params.user) {
+
+                      userInfo.groups[j].members.splice(j,1);
+                      userInfo.save(function(err, data, affected) {
+                        if(!err) {
+                          console.log(userInfo);
+                          res.json({members: data.groups[i].members});
+
+                        } else {
+                          console.log('Error: ' + err);
+                          res.json(err);
+                        }
+                      });
+                      memberFound = true;
+                      break;
+                    }
+                  }
+               }
+            }
+
+            if(!memberFound){
+              res.json(404, {'member': 'not found'});
+            }
+
+          }
+      });
+  });
+
+  // GET POST PUT DELETE /groups/:uuid/devices
+  // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/devices
+  app.get('/api/user/:id/groups/:uuid/devices', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+        // console.log(userInfo);
+        if (err) {
+          res.send(err);
+        } else {
+          var groupFound = false;
+          for (var i=0; i < userInfo.groups.length; i++) {
+              if (userInfo.groups[i].uuid == req.params.uuid) {
+                  res.json({devices: userInfo.groups[i].devices});
+              };
+              groupFound = true;
+              break;
+           }
+
+          }
+
+          if(!groupFound){
+            res.json(404, {'group': 'not found'});
+          }
+
+      });
+  });
+
+  // curl -X POST -d "uuid=123" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/devices
+  app.post('/api/user/:id/groups/:uuid/devices', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          // console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+
+            var groupFound = false;
+            for (var i=0; i < userInfo.groups.length; i++) {
+               if (userInfo.groups[i].uuid == req.params.uuid) {
+                  userInfo.groups[i].devices.push({uuid: req.body.uuid});
+                  userInfo.save(function(err, data, affected) {
+                    if(!err) {
+                      console.log(userInfo);
+                      res.json({devices: data.groups[i].devices});
+
+                    } else {
+                      console.log('Error: ' + err);
+                      res.json(err);
+                    }
+                  });
+                  groupFound = true;
+                  break;
+               }
+            }
+
+            if(!groupFound){
+              res.json(404, {'group': 'not found'});
+            }
+
+          }
+      });
+  });
+
+  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/devices/123
+  app.delete('/api/user/:id/groups/:uuid/devices/:user', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          // console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+            var memberFound = false;
+            for (var i=0; i < userInfo.groups.length; i++) {
+               if (userInfo.groups[i].uuid == req.params.uuid) {
+
+                for (var j=0; j < userInfo.groups[i].devices.length; j++) {
+                   if (userInfo.groups[j].devices[j].uuid == req.params.user) {
+
+                      userInfo.groups[j].devices.splice(j,1);
+                      userInfo.save(function(err, data, affected) {
+                        if(!err) {
+                          console.log(userInfo);
+                          res.json({devices: data.groups[i].devices});
+
+                        } else {
+                          console.log('Error: ' + err);
+                          res.json(err);
+                        }
+                      });
+                      memberFound = true;
+                      break;
+                    }
+                  }
+               }
+            }
+
+            if(!memberFound){
+              res.json(404, {'devices': 'not found'});
+            }
+
+          }
+      });
+  });
+
 
 };
