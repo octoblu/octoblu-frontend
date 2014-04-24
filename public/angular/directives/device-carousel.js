@@ -71,70 +71,24 @@ angular.module('e2eApp')
 
                 scope.deleteSubDevice = function(subdevice, hub){
                     var subDeviceIndex =  _.indexOf(hub.subdevices, subdevice);
-                    DeviceController.deleteSubDevice(subdevice, hub);
+                     DeviceController.deleteSubDevice(subdevice, hub);
 //                    scope.owl.data('owlCarousel').removeItem(subDeviceIndex);
 
-                }
+                };
+
                 scope.$on('$destroy', function() {
                     scope.owl.data('owlCarousel').destroy();
                     scope.owl = undefined;
                 });
+
+
+                scope.$watchcollection('hub.subdevices' , function(newSubdevices, oldSubdevices){
+                    //TODO
+                    console.log('new subdevices');
+                    console.log(JSON.stringify(newSubdevices));
+                    console.log('old subdevices');
+                    console.log(JSON.stringify(oldSubdevices));
+                });
             }
-
-
         }
-    })
-    .controller('DeviceCarouselController' , function($rootScope, $scope, $state){
-
-
-
-
     });
-
-//'use strict';
-//
-//angular.module('partyfindApp')
-//    .directive('mapCarousel', function ($timeout) {
-//        return {
-//            restrict: 'E',
-//            replace: true,
-//            scope: {
-//                ngModel: '='
-//            },
-//            template:
-//                '<div class="owl-carousel owl-theme"></div>',
-//            link: function (scope, element, attrs) {
-//                scope.$watch('ngModel', function (current, old) {
-//                    if (!scope.owl) {
-//                        scope.owl = $(element);
-//
-//                        scope.owl.owlCarousel({
-//                            pagination: false,
-//                            navigation: false,
-//                            autoHeight : true
-//                        });
-//                    }
-//
-//                    _.each(scope.owl.data('owlCarousel').$userItems, function () {
-//                        scope.owl.data('owlCarousel').removeItem();
-//                    });
-//
-//                    _.each(scope.ngModel, function (model) {
-//                        scope.owl.data('owlCarousel').addItem(
-//                                '<div class="item">' +
-//                                '   <a href="' + model.data.link + '" target="_blank">' +
-//                                '       <img src="' + model.data.images.low_resolution.url + '">' +
-//                                '   </a>' +
-//                                '   <span class="caption">' +
-//                                '   <a href="' + model.data.link + '" target="_blank">' +
-//                                '       ' + model.data.user.username + ' @ ' + moment(model.created).format('LT') +
-//                                '   </a><br />' +
-//                                '       ' + model.data.caption.text +
-//                                '   </span>' +
-//                                '</div>'
-//                        );
-//                    });
-//                }, true);
-//            }
-//        };
-//    });
