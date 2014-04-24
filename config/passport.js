@@ -360,17 +360,6 @@ var configAuth = require('./auth')(env); // use this one for testing
 
     }));
 
-    passport.use(new LinkedInStrategy({
-        consumerKey     : configAuth.linkedIn.consumerKey,
-        consumerSecret  : configAuth.linkedIn.consumerSecret,
-        callbackURL     : configAuth.linkedIn.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling linkedin response with passport');
-      }
-    ));
-
     passport.use(new StackExchangeStrategy({
         clientID        : configAuth.stackexchange.clientId,
         key             : configAuth.stackexchange.clientKey,
