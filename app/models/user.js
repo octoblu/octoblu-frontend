@@ -54,6 +54,19 @@ var UserSchema = mongoose.Schema({
             name: String,
             value: String
         }]
+    }],
+    friends: [{
+        uuid: String
+    }],
+    groups: [{
+        uuid: String,
+        name: String,
+        members: [{
+            uuid: String
+        }],
+        devices: [{
+            uuid: String
+        }]
     }]
 
 });

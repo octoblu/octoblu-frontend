@@ -235,6 +235,7 @@ module.exports = function (app) {
 
 
   // GET POST PUT DELETE /groups
+  // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
   app.get('/api/user/:id/groups', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -243,7 +244,7 @@ module.exports = function (app) {
           {'google.skynetuuid' : req.params.id}
       ]
       }, function(err, userInfo) {
-          // console.log(userInfo);
+          console.log(userInfo);
           if (err) {
             res.send(err);
           } else {
@@ -253,6 +254,7 @@ module.exports = function (app) {
       });
   });
 
+  // curl -X POST -d "name=family" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
   app.post('/api/user/:id/groups', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -275,7 +277,8 @@ module.exports = function (app) {
             //   // res.json({groups:userInfo.groups});
             // };
             var newUuid = uuid.v1();
-            userInfo.groups.push({uuid: newUuid, name: req.params.name});
+            userInfo.groups.push({uuid: newUuid, name: req.body.name});
+            console.log(userInfo.groups);
             userInfo.save(function(err) {
               if(!err) {
                 console.log(userInfo);
