@@ -758,11 +758,6 @@ module.exports = function (app, passport, config) {
     app.get('/api/auth/Bitly/callback',
         function(req, res, next) { handleOauth1('Bitly', req, res, next); });
 
-    app.get('/api/auth/Vimeo',
-        passport.authorize('vimeo', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/Vimeo/callback',
-        function(req, res, next) { handleOauth1('Vimeo', req, res, next); });
-
     app.get('/api/auth/LastFM', function(req, res) {
         var api_url = config.lastfm.base_url + '?api_key=' + config.lastfm.consumerKey;
         return res.redirect(api_url);

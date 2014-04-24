@@ -35,12 +35,6 @@ var config = {
       'clientSecret'    : 'e07a564eca8414628833830ea3c42800f16aef98',
       'callbackURL'    : 'http://localhost:8080/api/auth/Bitly/callback'
     },
-    'vimeo' : {
-      'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
-      'consumerSecret'   : 'dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8',
-      'token'          : 'adcfb27faab26a4f06eb20750f628b86',
-      'callbackURL'    : 'http://localhost:8080/api/auth/Vimeo/callback'
-    },
     'foursquare' : {
       'clientKey'    : '0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB',
       'clientSecret' : '3XRB1YRDIP1WYTUXZWZPN5IE5OLXV0GIBQT1VYZYDFMKGWX4',
@@ -126,12 +120,6 @@ var config = {
       'clientId'       : '1c55f213d790c4b5efc3ab67520d71926daf33fe',
       'clientSecret'    : 'e07a564eca8414628833830ea3c42800f16aef98',
       'callbackURL'    : 'http://octoblu.com/api/auth/Bitly/callback'
-    },
-    'vimeo' : {
-      'consumerKey'       : '450b10e7d2abf68021beb0c7a584175c93064729',
-      'consumerSecret'   : 'dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8',
-      'token'          : 'adcfb27faab26a4f06eb20750f628b86',
-      'callbackURL'    : 'http://octoblu.com/api/auth/Vimeo/callback'
     },
     'foursquare' : {
       'clientKey'    : 'TWS4TQMSWG20PQPR45ZAWDBKPKKQR0IFR4YN31KCCVFCM5GP',
