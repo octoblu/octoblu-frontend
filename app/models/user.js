@@ -54,6 +54,17 @@ var UserSchema = mongoose.Schema({
             name: String,
             value: String
         }]
+    }],
+    groups: [{
+        uuid: String,
+        name: String,
+        type: String,
+        members: [{
+            uuid: String
+        }],
+        devices: [{
+            uuid: String
+        }]
     }]
 
 });

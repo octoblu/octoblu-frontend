@@ -41,7 +41,9 @@
     "mongoose-pagination": "~1.0.0",
     "marked": "*",
     "underscore": "~1.6.0",
-    "cors": "*"
+    "cors": "*",
+    "node-uuid": "*"
+
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",

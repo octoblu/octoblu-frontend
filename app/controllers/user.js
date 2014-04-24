@@ -7,6 +7,8 @@ var _ = require('underscore'),
     Api = mongoose.model('Api'),
     User = mongoose.model('User');
 
+var uuid = require('node-uuid');
+
 module.exports = function (app) {
     // Get user
     app.get('/api/user/:id', function (req, res) {
@@ -230,4 +232,126 @@ module.exports = function (app) {
         });
 
     });
+
+
+  // GET POST PUT DELETE /groups
+  // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
+  app.get('/api/user/:id/groups', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+
+            res.json({groups:userInfo.groups});
+          }
+      });
+  });
+
+  // curl -X POST -d "name=family" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
+  app.post('/api/user/:id/groups', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          // console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+            if (userInfo.groups == undefined){
+              userInfo.groups = [];
+            };
+            // if(_.contains(userInfo.groups, req.params.name)){
+            //   res.json({error:"Group already exists"});
+            // } else {
+            //   var newUuid = uuid.v1();
+            //   // res.json({groups:userInfo.groups});
+            // };
+            var newUuid = uuid.v1();
+            userInfo.groups.push({uuid: newUuid, name: req.body.name});
+            console.log(userInfo.groups);
+            userInfo.save(function(err) {
+              if(!err) {
+                console.log(userInfo);
+                res.json({groups:userInfo.groups});
+
+              } else {
+                console.log('Error: ' + err);
+                res.json(err);
+              }
+            });
+          }
+      });
+  });
+
+  app.delete('/api/user/:id/groups/:uuid', function (req, res) {
+      User.findOne({ $or: [
+          {'local.skynetuuid' : req.params.id},
+          {'twitter.skynetuuid' : req.params.id},
+          {'facebook.skynetuuid' : req.params.id},
+          {'google.skynetuuid' : req.params.id}
+      ]
+      }, function(err, userInfo) {
+          // console.log(userInfo);
+          if (err) {
+            res.send(err);
+          } else {
+
+            for (var i=0; i < userInfo.groups.length; i++) {
+               if (userInfo.groups[i].uuid == req.params.uuid) {
+                  userInfo.groups.splice(i,1);
+                  userInfo.save(function(err) {
+                    if(!err) {
+                      console.log(userInfo);
+                      res.json({groups:userInfo.groups});
+
+                    } else {
+                      console.log('Error: ' + err);
+                      res.json(err);
+                    }
+                  });
+                  break;
+               }
+            }
+
+          }
+      });
+  });
+
+
+  // GET POST PUT DELETE /groups/:uuid/members
+  // GET POST PUT DELETE /groups/:uuid/devices
+
+  // // Get user group
+  // app.get('/api/groups/:id', function (req, res) {
+  //     User.findOne({ $or: [
+  //         {'local.skynetuuid' : req.params.id},
+  //         {'twitter.skynetuuid' : req.params.id},
+  //         {'facebook.skynetuuid' : req.params.id},
+  //         {'google.skynetuuid' : req.params.id}
+  //     ]
+  //     }, function(err, userInfo) {
+  //         // console.log(userInfo);
+  //         if (err) {
+  //             res.send(err);
+  //         } else {
+  //             // not sure why local.password cannot be deleted from user object
+  //             // if (userInfo && userInfo.local){
+  //             // 	userInfo.local.password = null;
+  //             // 	delete userInfo.local.password;
+  //             // }
+  //             res.json(userInfo);
+  //         }
+  //     });
+  // });
+
 };
