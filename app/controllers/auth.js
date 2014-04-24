@@ -81,12 +81,19 @@ module.exports = function (app, passport, config) {
         return oa;
     };
 
-    var getCustomApiOAuthInstance = function(req, api) {
-        var OAuth = require('oauth');
+    var getOAuthInstance = function(req, api) {
         if(api.auth_strategry!='oauth' && !api.oauth) {return null;}
 
         if(api.oauth.version=='1.0') {
-            var oa = new OAuth.OAuth(
+            return getOauth1Instance(req, api);
+        }
+
+        // should be oauth2 at this point..
+        return getOauth2Instance(api);
+    };
+
+    var getOauth1Instance = function(req, api) {
+        return new require('oauth').OAuth(
                 api.oauth.requestTokenURL,
                 api.oauth.accessTokenURL,
                 api.oauth.key,
@@ -95,20 +102,16 @@ module.exports = function (app, passport, config) {
                 getOAuthCallbackUrl(req, api.name),
                 'HMAC-SHA1'
             );
+    }
 
-            return oa;
-        }
-
-        // should be oauth2 at this point..
-        var OAuth2 = require('simple-oauth2')({
+    var getOauth2Instance = function(api) {
+        return require('simple-oauth2')({
             clientID: api.oauth.clientId,
             clientSecret: api.oauth.secret,
             site: api.oauth.baseURL,
             tokenPath: api.oauth.authTokenPath
         });
-
-        return OAuth2;
-    };
+    }
 
     var getOAuthCallbackUrl = function(req, apiName) {
         return req.protocol + '://' + req.headers.host + '/api/auth/'+apiName+'/callback/custom';
@@ -518,17 +521,19 @@ module.exports = function (app, passport, config) {
                     }));
 
                 } else {
-                    var OAuth2 = getCustomApiOAuthInstance(req, api);
-                    var authorization_uri = OAuth2.AuthCode.authorizeURL({
+                    var oauth2 = getOauth2Instance(api);
+                    var authorization_uri = oauth2.AuthCode.authorizeURL({
                         redirect_uri: getOAuthCallbackUrl(req, api.name),
                         scope: 'notifications',
                         state: '3(#0/!~'
                     });
+                    console.log(api.oauth);
+                    console.log('oauth2 redirect: '+authorization_uri);
                     res.redirect(authorization_uri);
                 }
 
             } else {
-                var oa = getCustomApiOAuthInstance(req, api);
+                var oa = getOAuthInstance(req, api);
                 oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
                     if (error) {
                         console.log(error);
@@ -634,7 +639,7 @@ module.exports = function (app, passport, config) {
                             });
                     });
                 } else {
-                    var OAuth2 = getCustomApiOAuthInstance(req, api);
+                    var OAuth2 = getOAuthInstance(req, api);
                     var code = req.query.code;
 
                     OAuth2.AuthCode.getToken({
@@ -672,7 +677,7 @@ module.exports = function (app, passport, config) {
                 req.session.oauth.verifier = req.query.oauth_verifier;
                 var oauth = req.session.oauth;
 
-                var oa = getCustomApiOAuthInstance(req, api);
+                var oa = getOAuthInstance(req, api);
                 oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
                     function(error, oauth_access_token, oauth_access_token_secret, results){
                         if (error){
@@ -706,11 +711,6 @@ module.exports = function (app, passport, config) {
         });
 
     });
-
-    app.get('/api/auth/LinkedIn',
-        passport.authorize('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/LinkedIn/callback',
-        function(req, res, next) { handleOauth1('LinkedIn', req, res, next); });
 
     app.get('/api/auth/StackOverflow',
         passport.authorize('stackexchange', { scope: ['r_basicprofile', 'r_emailaddress'] }));

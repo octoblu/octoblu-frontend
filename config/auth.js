@@ -19,11 +19,6 @@ var config = {
       'clientSecret'  : 'VE5h4f7DAh4Z5jQgscPFVIZk',
       'callbackURL'   : 'http://localhost:8080/auth/google/callback'
     },
-    'linkedIn' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://localhost:8080/api/auth/LinkedIn/callback'
-    },
     'stackexchange' : {
       'clientId'       : '2619',
       'clientKey'    : 'je)EAcFS8nB0JYVrAJ0zWw((',
@@ -95,11 +90,6 @@ var config = {
       'clientID'    : '369178117909-psv35jjicbu961aj4ups6h5s2mb08j6m.apps.googleusercontent.com',
       'clientSecret'  : 'bgqPgsEjZC_F65rKDxp7PwRQ',
       'callbackURL'   : 'http://octoblu.com/auth/google/callback'
-    },
-    'linkedIn' : {
-      'consumerKey'    : '75athujre0gp76',
-      'consumerSecret' : 'hwApG57HKsQrBYAL',
-      'callbackURL'    : 'http://octoblu.com/api/auth/LinkedIn/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
