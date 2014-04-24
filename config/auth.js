@@ -138,11 +138,6 @@ var config = {
       'clientSecret' : 'WBDW3TOO2P4ZRDM1PXGMBXIPKJKZKCNHM0S0BZI3ECF3JJPK',
       'callbackURL'    : 'http://octoblu.com/api/auth/FourSquare/callback'
     },
-    'tumblr' : {
-      'consumerKey'    : 'XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb',
-      'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
-      'callbackURL'    : 'http://octoblu.com/api/auth/Tumblr/callback'
-    },
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
       'consumerSecret' : 'E5EbEc5vdf',

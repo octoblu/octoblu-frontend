@@ -578,6 +578,7 @@ module.exports = function (app, passport, config) {
                         var authURL = api.oauth.authTokenURL + '?oauth_token='
                             + oauth_token + '&oauth_consumer_key=' + api.oauth.key
                             + '&callback=' + callbackURL;
+                        console.log(authURL);
                         res.redirect(authURL);
                     }
                 });
@@ -761,11 +762,6 @@ module.exports = function (app, passport, config) {
         passport.authorize('vimeo', { scope: ['r_basicprofile', 'r_emailaddress'] }));
     app.get('/api/auth/Vimeo/callback',
         function(req, res, next) { handleOauth1('Vimeo', req, res, next); });
-
-    app.get('/api/auth/Tumblr',
-        passport.authorize('tumblr', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/Tumblr/callback',
-        function(req, res, next) { handleOauth1('Tumblr', req, res, next); });
 
     app.get('/api/auth/LastFM', function(req, res) {
         var api_url = config.lastfm.base_url + '?api_key=' + config.lastfm.consumerKey;
