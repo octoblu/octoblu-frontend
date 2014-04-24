@@ -123,30 +123,6 @@ module.exports = function (app, passport, config) {
         }
     }
 
-    var handleCustomOAuthRequest = function(req, res, name) {
-        var oa = getOAuthInstanceFromConfig(config[name.toLowerCase()]);
-
-        oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
-            if (error) {
-                console.log(error);
-                res.send('yeah no. didn\'t work.')
-            }
-            else {
-
-                req.session.oauth = {};
-                req.session.oauth.token = oauth_token;
-                // console.log('oauth.token: ' + req.session.oauth.token);
-                req.session.oauth.token_secret = oauth_token_secret;
-                // console.log('oauth.token_secret: ' + req.session.oauth.token_secret);
-
-                var authURL = config.etsy.authorizationURL + '?oauth_token='
-                    + oauth_token + '&oauth_consumer_key=' + config.etsy.consumerKey
-                    + '&callback=' + config.etsy.callbackURL;
-                res.redirect(authURL);
-            }
-        });
-    };
-
     var handleCustomOAuthCallback = function(req, res, name) {
         req.session.oauth.verifier = req.query.oauth_verifier;
         var oauth = req.session.oauth;
@@ -494,18 +470,6 @@ module.exports = function (app, passport, config) {
             });
         })(req, res, next);
     });
-
-    // use custom OAuth handling with Etsy; re-use for others. I hope.
-    app.get('/api/auth/Etsy', function (req, res) {
-        handleCustomOAuthRequest(req, res, 'Etsy');
-    });
-    app.get('/api/auth/Etsy/callback', function (req, res, next) {
-        if (req.session.oauth) {
-            handleCustomOAuthCallback(req, res, 'Etsy');
-        } else
-            next(new Error('you\'re not supposed to be here.'))
-    });
-
 
     // working on custom oauth handling here.....
     app.get('/api/auth/:name/custom', function(req, res) {

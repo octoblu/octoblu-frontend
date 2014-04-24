@@ -65,15 +65,6 @@ var config = {
     'musixmatch' : {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
     },
-    'etsy' : {
-      'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token', 
-      'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token', 
-      'authorizationURL'  : 'https://www.etsy.com/oauth/signin', 
-      'oauthVersion'      : '1.0',
-      'consumerKey'       : '43pie9547p1iea83gz1hp052',
-      'consumerSecret'    : "2txz2d6qok", 
-      'callbackURL'      : 'http://localhost:8080/api/auth/Etsy/callback',
-    },
     'port' : 8080,
     'domain': null
 
@@ -145,15 +136,6 @@ var config = {
     },
     'musixmatch' : {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
-    },
-    'etsy' : {
-      'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token', 
-      'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token', 
-      'authorizationURL'  : 'https://www.etsy.com/oauth/signin', 
-      'oauthVersion'      : '1.0',
-      'consumerKey'       : '43pie9547p1iea83gz1hp052',
-      'consumerSecret'    : "2txz2d6qok", 
-      'callbackURL'      : 'http://octoblu.com/api/auth/Etsy/callback',
     },
     'port' : 80,
     'domain': '.octoblu.com'
