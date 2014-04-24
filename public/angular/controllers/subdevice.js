@@ -6,17 +6,17 @@ angular.module('e2eApp')
         $scope.smartDevice = smartDevice;
 
         if (selectedHub){
-          selectedHub = JSON.parse(selectedHub);
+            selectedHub = JSON.parse(selectedHub);
 
             $scope.selectedHub = _.findWhere(hubs, {
                 'uuid' : selectedHub.uuid
             });
 
         } else {
-          $scope.selectedHub = $scope.hubs[0];
-          $scope.plugins = $scope.hubs[0].plugins;
+            $scope.selectedHub = $scope.hubs[0];
+            $scope.plugins = $scope.hubs[0].plugins;
         }
-        
+
         $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
         var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
 
@@ -57,23 +57,23 @@ angular.module('e2eApp')
 
         $scope.getDefaults = function(hub){
 
-           $rootScope.skynetSocket.emit('gatewayConfig', {
+            $rootScope.skynetSocket.emit('gatewayConfig', {
                 "uuid": hub.uuid,
                 "token": hub.token,
                 "method": "getDefaultOptions",
                 "name": smartDevice.plugin
             }, function (defaults) {
-               _.each(defaults.result, function(value, key){
-                   var deviceProperty = _.findWhere($scope.deviceProperties, {
-                       'name' : key
-                   } );
+                _.each(defaults.result, function(value, key){
+                    var deviceProperty = _.findWhere($scope.deviceProperties, {
+                        'name' : key
+                    } );
 
-                   if( deviceProperty ) {
-                       $scope.$apply(function(){
-                           deviceProperty.value = value;
-                       });
-                   }
-               });
+                    if( deviceProperty ) {
+                        $scope.$apply(function(){
+                            deviceProperty.value = value;
+                        });
+                    }
+                });
             });
         };
 
@@ -117,8 +117,8 @@ angular.module('e2eApp')
                 }) ;
 
                 if(devicePropertiesWithErrors){
-                   var optionsErrors =  _.map(devicePropertiesWithErrors, function(deviceProperty){
-                       return {
+                    var optionsErrors =  _.map(devicePropertiesWithErrors, function(deviceProperty){
+                        return {
                             type : 'danger',
                             summary : 'Device Option Required',
                             msg : deviceProperty.name + 'is required'
@@ -191,6 +191,6 @@ angular.module('e2eApp')
                 return option;
             });
 
-           $modalInstance.close(deviceOptions);
+            $modalInstance.close(deviceOptions);
         }
     });
