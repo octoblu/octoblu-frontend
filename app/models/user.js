@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
-    moment = require('moment');
+    moment = require('moment'),
+    groupSchema = require('./group');
 
 // define the schema for our user model
 var UserSchema = mongoose.Schema({
@@ -55,17 +56,7 @@ var UserSchema = mongoose.Schema({
             value: String
         }]
     }],
-    groups: [{
-        uuid: String,
-        name: String,
-        type: String,
-        members: [{
-            uuid: String
-        }],
-        devices: [{
-            uuid: String
-        }]
-    }]
+    groups: [groupSchema]
 
 });
 
