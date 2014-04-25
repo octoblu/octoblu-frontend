@@ -32,7 +32,10 @@ var ApiSchema = mongoose.Schema({
         scope            : String,
         useOAuthParams   : Boolean,
         accessTokenIncludeClientInfo : Boolean,
-        tokenMethod     : String
+        tokenMethod     : String,
+        passTokenInQuery: Boolean,
+        tokenQueryParam: String,
+        checkCSRFOnCallback: Boolean
     },
     documentation: String,
     application: { base: String, resources: [] }
