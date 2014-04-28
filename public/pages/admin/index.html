@@ -34,9 +34,16 @@
                     <h1 class="col-xs-12 col-sm-12 col-md-11 col-lg-11" style="margin-top: 25px;">
                         <i class='fa fa-lock'></i>
                         <span>Admin</span>
-                        <button type="button" class="btn btn-success btn-lg pull-right" ng-click="sendInvitation()" style="margin-top: 0px;">
-                            <i class="fa fa-users" style="margin-right: 10px"></i>Invite
-                        </button>
+                        <form class="form-inline pull-right" role="form" ng-controller="invitationController" style="margin-top: 0px;">
+                            <div class="form-group">
+                                <label class="sr-only" for="recipientEmail">Email address</label>
+                                <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail" placeholder="Enter email">
+                            </div>
+                            <button type="button" class="btn btn-success btn-lg" ng-click="send()" style="margin-top: 0px;">
+                                <i class="fa fa-users" style="margin-right: 10px"></i>Invite
+                            </button>
+                        </form>
+
                     </h1>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ui-view=""></div>
