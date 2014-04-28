@@ -137,8 +137,8 @@
                             <span>Community</span>
                         </a>
                     </li>
-                    <li id="nav-admin">
-                        <a href="" ui-sref="admin">
+                    <li id="nav-admin" ng-class="{'active': $state.includes('admin')}">
+                        <a href="" ui-sref="admin.groups"  >
                             <i class="icon-lock"></i>
                             <span>Admin</span>
                         </a>
