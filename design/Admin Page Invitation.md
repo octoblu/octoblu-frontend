@@ -9,7 +9,7 @@ Invitation
   	}
   from : UUID
   group : UUID
-  status : [ PENDING, ACCEPTED, IGNORED]
+  status : [ PENDING, ACCEPTED]
   sent : DateTime
   completed : DateTime
   
