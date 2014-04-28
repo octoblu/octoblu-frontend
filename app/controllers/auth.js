@@ -582,13 +582,15 @@ module.exports = function (app, passport, config) {
                             grant_type: api.oauth.grant_type,
                             redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
                         };
+                    if(api.name==='Bitly') {
+                        delete form.grant_type;
+                    }
                     if(api.oauth.accessTokenIncludeClientInfo || api.name==='Box' || api.name==='GoogleDrive' || api.name=='Facebook') {
                         form.client_id = api.oauth.clientId;
                         form.client_secret = api.oauth.secret;
                     }
                     if(api.name==='Smartsheet') {
                         form.client_id = api.oauth.clientId;
-                        // form.grant_type = "refresh_token";
                         form.hash = getApiHashCode(api.oauth.secret, req.query.code);
                     }                    
 
@@ -596,6 +598,8 @@ module.exports = function (app, passport, config) {
                         user: api.oauth.clientId,
                         pass: api.oauth.secret
                     };
+
+                    if(api.name==='Bitly') auth = null;
 
                     // exchange access code for bearer token
                     console.log(api.oauth.accessTokenURL, form);
@@ -614,7 +618,7 @@ module.exports = function (app, passport, config) {
                                 return res.send('ERROR: ' + body);
                             }
 
-                            if(api.name==='Facebook') {
+                            if(api.name==='Facebook' || api.name==='Bitly') {
                                 data = parseHashResponse(body);
                             } else {
                                 data = JSON.parse(body);
@@ -650,8 +654,10 @@ module.exports = function (app, passport, config) {
                             });
                     });
                 } else {
-                    var OAuth2 = getOAuthInstance(req, api);
+                    var OAuth2 = getOauth2Instance(api);
+                    // var OAuth2 = getOAuthInstance(req, api);
                     var code = req.query.code;
+                    console.log('oauth2 lib getting token...');
 
                     OAuth2.AuthCode.getToken({
                         code: code,
