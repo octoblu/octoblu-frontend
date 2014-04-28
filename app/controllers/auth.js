@@ -573,7 +573,7 @@ module.exports = function (app, passport, config) {
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
                     // check CSRF token
-                    if (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf)<0 ) {
+                    if (api.oauth.checkCSRFOnCallback && (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf)<0) ) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
 
@@ -590,19 +590,30 @@ module.exports = function (app, passport, config) {
                         form.client_id = api.oauth.clientId;
                         // form.grant_type = "refresh_token";
                         form.hash = getApiHashCode(api.oauth.secret, req.query.code);
-                    }
+                    }                    
+
+                    var auth = {
+                        user: api.oauth.clientId,
+                        pass: api.oauth.secret
+                    };
 
                     // exchange access code for bearer token
+                    console.log(api.oauth.accessTokenURL, form);
                     request.post(api.oauth.accessTokenURL, {
                         form: form,
-                        auth: {
-                            user: api.oauth.clientId,
-                            pass: api.oauth.secret
-                        }
+                        auth: auth
                         }, function (error, response, body) {
-                            console.log(error);
-                            console.log(body);
+                            console.log(response.statusCode);
                             var data;
+
+                            if(response.statusCode!='200') {
+                                console.log(body);
+                                return res.send('ERROR: HTTP Status ' + response.statusCode);
+
+                            } else if (body=='INVALID_LOGIN') {
+                                return res.send('ERROR: ' + body);
+                            }
+
                             if(api.name==='Facebook') {
                                 data = parseHashResponse(body);
                             } else {
