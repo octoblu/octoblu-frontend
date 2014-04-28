@@ -9,6 +9,6 @@ var EventSchema = mongoose.Schema({
     description: String
 });
 
-mongoose.model('Event', EventSchema);
+mongoose.Model('Event', EventSchema);
 
 module.exports = EventSchema;
