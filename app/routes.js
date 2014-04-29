@@ -35,6 +35,7 @@ module.exports = function(app, passport) {
         require('./controllers/unlink')(app);
         require('./controllers/user')(app);
         require('./controllers/designer')(app);
+        require('./controllers/invitation')(app);
 
         // Check for deeplink redirect > http://localhost:8080/login?referrer=http:%2F%2Flocalhost%2Fauth.js
         app.get('/login', function(req, res) {

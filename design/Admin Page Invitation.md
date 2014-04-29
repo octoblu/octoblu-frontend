@@ -2,16 +2,16 @@
 
 ##Entities
 
-Invitation
-  	Recipient : {
-  		email : [email]
+	Invitation
+	Recipient : {
+		email : [email]
 		uuid : [UUID]
-  	}
-  from : UUID
-  group : UUID
-  status : [ PENDING, ACCEPTED]
-  sent : DateTime
-  completed : DateTime
+	}
+	from : UUID
+	group : UUID //the UUID of the group that the recipient will be added to
+	status : [ PENDING, ACCEPTED]
+	sent : DateTime
+	completed : DateTime
   
 
 ### Data Storage
@@ -19,38 +19,49 @@ Create a new collection from invitations this should be separate from the existi
 
 ### Backend Routes
 
-/user/:id/:token/invitations GET
-    response : [
-	  Invitations or empty list
+*Find All Invitations
 	
-	]
+	/api/user/:id/:token/invitations GET
+	response : Array of Invitations or Empty List
+
+*Find All Invitations sent by the user	
+
+	/api/user/:id/:token/invitations/sent
+
+
+*Find all Invitations received by the user
+
+	/api/user/:id/:token/invitations/received
  
-/user/:id/:token/invitations PUT
-   data :{
-	   
+ 
+*Add an Invitation
+ 
+	/api/user/:id/:token/invitation PUT
+	data :{ 
       recipient : {
 	    email : [emailAddress]
 	  }
 	  group : {
 	    uuid : [UUID]
 	  }
-   }
-   
-   response : {
-     Recipient {
-	 
+	}
+	
+	response : {
+     recipient : {
+	   email : [email]
+	   uuid:[UUID]
 	 }
 	 from : UUID
 	 group: UUID
 	 STATUS : [PENDING, COMPLETE ] 
 	 sent : DateTime
 	 completed : DateTime   
-   }
+	}
 
- ##### GET /user/:id/:token/invitations/
+*Delete an Invitation
 
- get the list of all the invitations sent and received by the user
+	/api/user/:id/:token/invitations/:invitationId DEL
+	Response : HTTP Response Status codes
 
- ##### DEL /user/:id/:token/invitations/:invitationId
- Remove the invitation
+
 
