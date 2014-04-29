@@ -3,7 +3,8 @@
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     moment = require('moment'),
-    groupSchema = require('./group');
+    groupSchema = require('./group'),
+    invitationSchema = require('./invitation');
 
 // define the schema for our user model
 var UserSchema = mongoose.Schema({
@@ -57,6 +58,7 @@ var UserSchema = mongoose.Schema({
         }]
     }],
     groups: [groupSchema]
+
 
 });
 
