@@ -23,6 +23,8 @@ var invitationController = {
      */
     getAllInvitations : function(req, res){
 
+
+
     },
     /*
      Sent Invitations
