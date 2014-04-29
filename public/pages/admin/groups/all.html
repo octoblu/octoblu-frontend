@@ -5,16 +5,29 @@
                 <i class="fa fa-user" style="margin-right: 5px;"></i>People
             </h4>
         </div>
-        <div class="panel-body"></div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li data-ng-repeat="person in people" class="list-group-item">
+                    <i class="fa fa-user"></i>
+                    {{person.google.name}}
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="panel panel-primary col-xs-12 col-sm-12 col-md-5 col-lg-5 col-md-offset-1 col-lg-offset-1" style="padding-left: 0px; padding-right: 0px;">
         <div class="panel-heading">
             <h4 class="panel-title text-center">
                <i class="fa fa-hdd-o"></i> Devices
             </h4>
-
         </div>
-        <div class="panel-body"></div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="device in devices">
+                    <i class="fa fa-hdd-o"></i>
+                    {{device.name}} ({{device.type}})
+                </li>
+            </ul>
+        </div>
     </div>
 
 </div>
