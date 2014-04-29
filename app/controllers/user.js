@@ -33,6 +33,26 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/api/user/:id/api/:name', function (req, res) {
+        User.findOne({ $or: [
+            {'local.skynetuuid' : req.params.id},
+            {'twitter.skynetuuid' : req.params.id},
+            {'facebook.skynetuuid' : req.params.id},
+            {'google.skynetuuid' : req.params.id}
+        ]
+        }, function(err, userInfo) {
+            if (err) {
+                res.send(err);
+            } else {
+              console.log('finding the selected api');
+              var apiSettings = userInfo.api.filter(function (resource) {
+                return resource.name === req.params.name;
+              })[0];
+              res.json(apiSettings);
+            }
+        });
+    });
+
     app.put('/api/user/:id/channel/:name', function(req, res) {
 
         var key = req.body.key,
