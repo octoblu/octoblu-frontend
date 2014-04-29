@@ -42,8 +42,9 @@
     "marked": "*",
     "underscore": "~1.6.0",
     "cors": "*",
-    "node-uuid": "*"
-
+    "node-uuid": "*",
+    "mocha": "^1.18.2",
+    "q": "^1.0.1"
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",

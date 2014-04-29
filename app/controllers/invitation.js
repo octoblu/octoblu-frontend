@@ -1,3 +1,7 @@
+/*
+  File : invitation.js
+  provides the REST API for create, read, update and delete  operations for invitations sent by the User.
+ */
 var _ = require('lodash'),
     moment = require('moment'),
     mongoose = require('mongoose'),
@@ -6,64 +10,88 @@ var _ = require('lodash'),
     Invitation = mongoose.model('Invitation');
 
 
+var invitationController = {
 
-module.exports = function (app) {
     /*
      All Invitations
+     VERB - GET
      Find all the invitations that have been sent or received by the user
-
      URL - /api/user/:id/:token/invitations
      Parameters
      * id - The users UUID
      * token - The users token
      */
-    app.get('/api/user/:id/:token/invitations' , function(req, res){
+    getAllInvitations : function(req, res){
 
-    });
-
+    },
     /*
-       Sent Invitations
-       Find all the invitations that have been sent by the user
-
-       URL - /api/user/:id/:token/invitations/sent
-       Parameters
-       * id - The users UUID
-       * token - The users token
+     Sent Invitations
+     Find all the invitations that have been sent by the user
+     VERB - GET
+     URL - /api/user/:id/:token/invitations/sent
+     Parameters
+     * id - The users UUID
+     * token - The users token
      */
-    app.get('/api/user/:id/:token/invitations/sent' , function(req, res){
+    getInvitationsSent : function(req, res){
 
-    });
+    },
 
     /*
      Received Invitations
      Find all the invitations that have been sent by the user
-
+     VERB GET
      URL - /api/user/:id/:token/invitations/received
      Parameters
      * id - The users UUID
      * token - The users token
      */
-    app.get('/api/user/:id/:token/invitations/received' , function(req, res){
+    getInvitationsReceived : function(req, res){
 
-    });
+    },
 
     /*
      Find an Invitation with a specific Invitation Id
-
+     VERB GET
      URL - /api/user/:id/:token/invitation/:invitationId
      Parameters
      * id - The users UUID
      * token - The users token
      */
-    app.get('/api/user/:id/:token/invitation/:invitationId', function(req,res ){
+    getInvitationById : function(req, res){
 
-    });
+    },
 
-    app.put('/api/user/:id/:token/invitation' , function(req, res){
+    /*
+     send a new invitation
+     VERB - PUT
+     URL - /api/user/:id/:token/invitation/
+     Parameters
+     * id - The users UUID
+     * token - The users token
+     */
+    sendInvitation : function(req, res){
 
-    });
+    },
 
-    app.delete('/api/user/:id/:token/invitations/:invitationId', function(req, res){
+    /*
+     delete an invitation
+     VERB - DELETE
+     URL - /api/user/:id/:token/invitation/:invitationId
+     Parameters
+     * id - The users UUID
+     * token - The users token
+     */
+    deleteInvitation : function(req, res){
 
-    });
-}
+    }
+};
+
+module.exports = function (app) {
+    app.get('/api/user/:id/:token/invitations' , invitationController.getAllInvitations );
+    app.get('/api/user/:id/:token/invitations/sent' ,  invitationController.getInvitationsSent );
+    app.get('/api/user/:id/:token/invitations/received' , invitationController.getInvitationsReceived );
+    app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById );
+    app.put('/api/user/:id/:token/invitation' , invitationController.sendInvitation );
+    app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation );
+};

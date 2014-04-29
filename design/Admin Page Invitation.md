@@ -1,12 +1,12 @@
-#Admin Page Invitation Design
+# Admin Page Invitation Design
 
 ##Entities
 
 	Invitation
-	Recipient : {
+	    Recipient : {
 		email : [email]
 		uuid : [UUID]
-	}
+	    }
 	from : UUID
 	group : UUID //the UUID of the group that the recipient will be added to
 	status : [ PENDING, ACCEPTED]
@@ -14,10 +14,10 @@
 	completed : DateTime
   
 
-### Data Storage
+## Data Storage
 Create a new collection from invitations this should be separate from the existing invitations.
 
-### Backend Routes
+## Backend Routes
 
 *Find All Invitations
 	
@@ -62,6 +62,10 @@ Create a new collection from invitations this should be separate from the existi
 
 	/api/user/:id/:token/invitations/:invitationId DEL
 	Response : HTTP Response Status codes
+	{
+	  SUCCESS : [TRUE or FALSE]
+	  MESSAGE : [Will be populated if SUCCESS is false. Will contain the error message
+	}
 
 
 
