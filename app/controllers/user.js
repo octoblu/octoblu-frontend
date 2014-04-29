@@ -281,6 +281,8 @@ module.exports = function (app) {
             var group = {uuid: newUuid, name: req.body.name, type: req.body.type, members: [], devices: []};
             userInfo.groups.push(group);
             console.log(userInfo.groups);
+            userInfo.markModified('groups');
+
             userInfo.save(function(err, data, numberAffected) {
               if(!err) {
                 console.log(userInfo);
@@ -312,6 +314,8 @@ module.exports = function (app) {
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
                   userInfo.groups.splice(i,1);
+                  userInfo.markModified('groups');
+
                   userInfo.save(function(err) {
                     if(!err) {
                       console.log(userInfo);
@@ -358,6 +362,8 @@ module.exports = function (app) {
                   if (req.body.type){
                     userInfo.groups[i].type = req.body.type;
                   }
+                  userInfo.markModified('groups');
+
                   userInfo.save(function(err, data, updated) {
                     if(!err) {
                       console.log(data);
@@ -398,9 +404,9 @@ module.exports = function (app) {
           for (var i=0; i < userInfo.groups.length; i++) {
               if (userInfo.groups[i].uuid == req.params.uuid) {
                   res.json({group:userInfo.groups[i]});
+                  groupFound = true;
+                  break;
               };
-              groupFound = true;
-              break;
            }
 
           }
@@ -431,9 +437,9 @@ module.exports = function (app) {
           for (var i=0; i < userInfo.groups.length; i++) {
               if (userInfo.groups[i].uuid == req.params.uuid) {
                   res.json({members: userInfo.groups[i].members});
+                  groupFound = true;
+                  break;
               };
-              groupFound = true;
-              break;
            }
 
           }
@@ -463,6 +469,8 @@ module.exports = function (app) {
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
                   userInfo.groups[i].members.push({uuid: req.body.uuid});
+                  userInfo.markModified('groups');
+
                   userInfo.save(function(err, data, affected) {
                     if(!err) {
                       console.log(userInfo);
@@ -507,6 +515,8 @@ module.exports = function (app) {
                    if (userInfo.groups[j].members[j].uuid == req.params.user) {
 
                       userInfo.groups[j].members.splice(j,1);
+                      userInfo.markModified('groups');
+
                       userInfo.save(function(err, data, affected) {
                         if(!err) {
                           console.log(userInfo);
@@ -542,7 +552,7 @@ module.exports = function (app) {
           {'google.skynetuuid' : req.params.id}
       ]
       }, function(err, userInfo) {
-        // console.log(userInfo);
+        console.log(userInfo);
         if (err) {
           res.send(err);
         } else {
@@ -550,9 +560,9 @@ module.exports = function (app) {
           for (var i=0; i < userInfo.groups.length; i++) {
               if (userInfo.groups[i].uuid == req.params.uuid) {
                   res.json({devices: userInfo.groups[i].devices});
+                  groupFound = true;
+                  break;
               };
-              groupFound = true;
-              break;
            }
 
           }
@@ -573,7 +583,7 @@ module.exports = function (app) {
           {'google.skynetuuid' : req.params.id}
       ]
       }, function(err, userInfo) {
-          // console.log(userInfo);
+          console.log(userInfo);
           if (err) {
             res.send(err);
           } else {
@@ -582,7 +592,9 @@ module.exports = function (app) {
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
                   userInfo.groups[i].devices.push({uuid: req.body.uuid});
+                  userInfo.markModified('groups');
                   userInfo.save(function(err, data, affected) {
+                    console.log(affected);
                     if(!err) {
                       console.log(userInfo);
                       res.json({devices: data.groups[i].devices});
@@ -626,6 +638,8 @@ module.exports = function (app) {
                    if (userInfo.groups[j].devices[j].uuid == req.params.user) {
 
                       userInfo.groups[j].devices.splice(j,1);
+                      userInfo.markModified('groups');
+
                       userInfo.save(function(err, data, affected) {
                         if(!err) {
                           console.log(userInfo);
