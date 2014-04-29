@@ -13,16 +13,19 @@ Invitation
   sent : DateTime
   completed : DateTime
   
-  
+
+### Data Storage
+Create a new collection from invitations this should be separate from the existing invitations.
+
 ### Backend Routes
 
-/user/:id/invitations GET
+/user/:id/:token/invitations GET
     response : [
 	  Invitations or empty list
 	
 	]
  
-/user/:id/invitations PUT 
+/user/:id/:token/invitations PUT
    data :{
 	   
       recipient : {
@@ -44,9 +47,10 @@ Invitation
 	 completed : DateTime   
    }
 
- ##### GET /user/:id/invitations/:invitationId
+ ##### GET /user/:id/:token/invitations/
 
  get the list of all the invitations sent and received by the user
 
- ##### DEL /user/:id/invitations/:invitationId
+ ##### DEL /user/:id/:token/invitations/:invitationId
+ Remove the invitation
 
