@@ -20,5 +20,3 @@ var InvitationSchema = mongoose.Schema({
     });
 
 mongoose.model('Invitation', InvitationSchema);
-
-module.exports = InvitationSchema;
