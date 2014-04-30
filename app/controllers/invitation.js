@@ -1,6 +1,8 @@
 /*
   File : invitation.js
   provides the REST API for create, read, update and delete  operations for invitations sent by the User.
+
+  TODO - Create function for finding User info and return the
  */
 var _ = require('lodash'),
     moment = require('moment'),
@@ -227,7 +229,7 @@ var invitationController = {
 
 
                 if(!err) {
-                    return res.JSON(404, []);
+                    return res.JSON(404, {});
                 } else {
                     Invitation.findById(invitationId , function(err, invitation ){
                         if( err ){
