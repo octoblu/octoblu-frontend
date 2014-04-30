@@ -79,13 +79,7 @@ var config = {
       'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
       'callbackURL'     : 'http://octoblu.com/auth/twitter/callback'
     },
-    // // Meshines
-    // 'googleAuth' : {
-    //   'clientID'    : '541059729530-bbt3n8qh5s8c8m5dm7dh6gojiqqrfrbg.apps.googleusercontent.com',
-    //   'clientSecret'  : 'SVTqhJ7RtsK6zqRcKUZrjxM6',
-    //   'callbackURL'   : 'http://octoblu.com/auth/google/callback'
-    // },
-    // Octoblu
+
     'googleAuth' : {
       'clientID'    : '369178117909-psv35jjicbu961aj4ups6h5s2mb08j6m.apps.googleusercontent.com',
       'clientSecret'  : 'bgqPgsEjZC_F65rKDxp7PwRQ',
@@ -107,6 +101,13 @@ var config = {
       'clientSecret' : 'WBDW3TOO2P4ZRDM1PXGMBXIPKJKZKCNHM0S0BZI3ECF3JJPK',
       'callbackURL'    : 'http://octoblu.com/api/auth/FourSquare/callback'
     },
+    
+    'tumblr' : {
+      'consumerKey'    : 'XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb',
+      'consumerSecret' : '1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs',
+      'callbackURL'    : 'http://octoblu.com/api/auth/Tumblr/callback'
+    },
+
     'rdio' : {
       'consumerKey'    : '8xrf6qedwvp2m5zmwrrhbb2j',
       'consumerSecret' : 'E5EbEc5vdf',
@@ -225,12 +226,12 @@ module.exports = function (environment) {
 //       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
 //     },
 //     'etsy' : {
-//       'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token', 
-//       'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token', 
-//       'authorizationURL'  : 'https://www.etsy.com/oauth/signin', 
+//       'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token',
+//       'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token',
+//       'authorizationURL'  : 'https://www.etsy.com/oauth/signin',
 //       'oauthVersion'      : '1.0',
 //       'consumerKey'       : '43pie9547p1iea83gz1hp052',
-//       'consumerSecret'    : "2txz2d6qok", 
+//       'consumerSecret'    : "2txz2d6qok",
 //       'callbackURL'      : 'http://localhost:8080/api/auth/Etsy/callback',
 //     },
 //     'port' : 8080,
@@ -327,12 +328,12 @@ module.exports = function (environment) {
 //       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
 //     },
 //     'etsy' : {
-//       'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token', 
-//       'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token', 
-//       'authorizationURL'  : 'https://www.etsy.com/oauth/signin', 
+//       'accessTokenURL'    : 'https://openapi.etsy.com/v2/oauth/access_token',
+//       'requestTokenURL'   : 'https://openapi.etsy.com/v2/oauth/request_token',
+//       'authorizationURL'  : 'https://www.etsy.com/oauth/signin',
 //       'oauthVersion'      : '1.0',
 //       'consumerKey'       : '43pie9547p1iea83gz1hp052',
-//       'consumerSecret'    : "2txz2d6qok", 
+//       'consumerSecret'    : "2txz2d6qok",
 //       'callbackURL'      : 'http://octoblu.com/api/auth/Etsy/callback',
 //     },
 //     'port' : 80,
