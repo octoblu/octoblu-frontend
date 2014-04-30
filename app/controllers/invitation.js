@@ -22,10 +22,45 @@ var invitationController = {
      * token - The users token
      */
     getAllInvitations : function(req, res){
+        /*
+          PPP
+
+          if(UUID | Token combo are valid)
+
+         */
+
+        if( req.params.id && req.params.token ){
+            var uuid = req.params.id;
+            var token = req.params.token;
+
+            User.findOne({ $or: [
+                {'local.skynetuuid' : req.params.id},
+                {'twitter.skynetuuid' : req.params.id},
+                {'facebook.skynetuuid' : req.params.id},
+                {'google.skynetuuid' : req.params.id}
+            ]
+            }, function(err, user) {
+
+                if(!err) {
+
+                } else {
+
+
+                }
+            });
 
 
 
+        } else {
+            //
+            res.json(400,
+            {
+               success : false,
+               'error' : 'Missing required parameters'
+            });
+        }
     },
+
     /*
      Sent Invitations
      Find all the invitations that have been sent by the user
