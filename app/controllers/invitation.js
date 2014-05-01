@@ -13,6 +13,68 @@ var _ = require('lodash'),
 
 var invitationController = {
 
+
+    findInvitations : function(req, res, searchParams ){
+        if(req.params.id && req.params.token ) {
+
+            var uuid = req.params.id;
+            var token = req.params.token;
+
+            User.findOne({ $or: [
+                {
+                    'local.skynetuuid': uuid,
+                    'local.skynettoken': token
+                },
+                {
+                    'twitter.skynetuuid': uuid,
+                    'twitter.skynettoken': token
+                },
+                {
+                    'facebook.skynetuuid': uuid,
+                    'facebook.skynettoken': token
+                },
+                {
+                    'google.skynetuuid': uuid,
+                    'google.skynettoken': token
+                }
+            ]
+            },  function(err, user){
+                if(err){
+                 return res.json(500, [err])
+                }
+                //build the search query for invitations. Check to see if we want to
+                //check for sent or received invitations.
+                var queryParams = {};
+                if(searchParams.sent){
+                    queryParams.from = user.uuid;
+                }
+
+                if(searchParams.received){
+                    var email = user.local.email || user.google.email || user.facebook.email;
+                    queryParams.$or = [];
+                    queryParams.push({
+                      'recipient.uuid' : user.uuid
+                    });
+                    queryParams.push({
+                        'recipient.email' : email
+                    });
+                }
+
+                Invitation.find(queryParams,  function(err, invitations ){
+                        if(err){
+                            return res.json(500 , [err]);
+                        }
+                        return res.json(200, invitations );
+                });
+            });
+
+        } else {
+           return res.json(400, [{
+               error : 'one or more required parameters is missing'
+           }]);
+        }
+
+    },
     /*
      All Invitations
      VERB - GET
@@ -23,56 +85,12 @@ var invitationController = {
      * token - The users token
      */
     getAllInvitations : function(req, res){
+        var searchParams = {
+            sent : true,
+            received : true
+        };
+        return this.findInvitations(req, res, searchParams )
 
-        if( req.params.id && req.params.token ){
-            
-            var uuid = req.params.id; 
-            var token = req.params.token; 
-
-            User.findOne({ $or: [
-                {
-                    'local.skynetuuid' : uuid,
-                    'local.skynettoken' : token
-                },
-                {
-                    'twitter.skynetuuid' : uuid,
-                    'twitter.skynettoken' : token
-                },
-                {
-                    'facebook.skynetuuid' : uuid,
-                    'facebook.skynettoken' : token
-                },
-                {
-                    'google.skynetuuid' : uuid,
-                    'google.skynettoken' : token
-                }
-            ]
-            }, function(err, user) {
-
-
-                if(!err) {
-                   return res.JSON(404, []);
-                } else {
-
-                    var email = user.local.email || user.google.email || user.facebook.email;
-                    Invitation.find({
-                        from : uuid,
-                        $or : [
-                            { 'recipient.uuid' : uuid },
-                            { 'recipient.email' : email }
-                        ]
-
-                    },  function(err, invitations ){
-                        if(err){
-                           return res.json(500 , []);
-                        }
-                        return res.json(200, invitations );
-                    });
-                }
-            });
-        } else {
-            return res.json(400, []);
-        }
     },
 
     /*
@@ -85,52 +103,10 @@ var invitationController = {
      * token - The users token
      */
     getInvitationsSent : function(req, res){
-        if( req.params.id && req.params.token ){
-
-            var uuid = req.params.id;
-            var token = req.params.token;
-
-            User.findOne({ $or: [
-                {
-                    'local.skynetuuid' : uuid,
-                    'local.skynettoken' : token
-                },
-                {
-                    'twitter.skynetuuid' : uuid,
-                    'twitter.skynettoken' : token
-                },
-                {
-                    'facebook.skynetuuid' : uuid,
-                    'facebook.skynettoken' : token
-                },
-                {
-                    'google.skynetuuid' : uuid,
-                    'google.skynettoken' : token
-                }
-            ]
-            }, function(err, user) {
-
-
-                if(!err) {
-
-                    return res.JSON(404, []);
-
-                } else {
-                    Invitation.find({
-                        from : uuid
-                    },
-                    function(err, invitations ){
-                        if(err){
-                            return res.json(500 , []);
-                        }
-                        return res.json(200, invitations );
-                    });
-                }
-            });
-        } else {
-            return res.json(400, []);
-        }
-
+        var searchParams = {
+            sent : true
+        };
+        return this.findInvitations(req, res, searchParams );
     },
 
     /*
@@ -143,54 +119,10 @@ var invitationController = {
      * token - The users token
      */
     getInvitationsReceived : function(req, res){
-        if( req.params.id && req.params.token ){
-
-            var uuid = req.params.id;
-            var token = req.params.token;
-            User.findOne({ $or: [
-                {
-                    'local.skynetuuid' : uuid,
-                    'local.skynettoken' : token
-                },
-                {
-                    'twitter.skynetuuid' : uuid,
-                    'twitter.skynettoken' : token
-                },
-                {
-                    'facebook.skynetuuid' : uuid,
-                    'facebook.skynettoken' : token
-                },
-                {
-                    'google.skynetuuid' : uuid,
-                    'google.skynettoken' : token
-                }
-            ]
-            }, function(err, user) {
-
-
-                if(!err) {
-                    return res.JSON(404, []);
-                } else {
-
-                    var email = user.local.email || user.google.email || user.facebook.email;
-                    Invitation.find({
-                        $or : [
-                            { 'recipient.uuid' : uuid },
-                            { 'recipient.email' : email }
-                        ]
-
-                    },  function(err, invitations ){
-                        if(err){
-                            return res.json(500 , []);
-                        }
-                        return res.json(200, invitations );
-                    });
-                }
-            });
-        } else {
-            return res.json(400, []);
-        }
-
+        var searchParams = {
+            received : true
+        };
+        return this.findInvitations(req, res, searchParams );
     },
 
     /*
@@ -226,21 +158,21 @@ var invitationController = {
                 }
             ]
             }, function(err, user) {
-
-
                 if(!err) {
-                    return res.JSON(404, {});
+                    return res.JSON(404, err);
                 } else {
                     Invitation.findById(invitationId , function(err, invitation ){
                         if( err ){
-                            res.json(500,err);
+                            res.json(500, err);
                         }
                         res.json(200, invitation );
                     } );
                 }
             });
         } else {
-            return res.json(400, {});
+            return res.json(400, {
+                error : 'One or more required parameters is missing'
+            });
         }
 
     },
@@ -254,6 +186,7 @@ var invitationController = {
      * token - The users token
      */
     sendInvitation : function(req, res){
+
 
     },
 
