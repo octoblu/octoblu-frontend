@@ -1,6 +1,6 @@
 angular.module('e2eApp')
     .constant('elasticSearchConfig', {
-       host: '54.213.111.71',
+       host: '54.187.66.141',
        port: '9200'
     })
     .service('elasticService', function (elasticSearchConfig, esFactory, $http) {
