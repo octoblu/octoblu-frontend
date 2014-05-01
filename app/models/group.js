@@ -12,10 +12,6 @@ var GroupSchema = mongoose.Schema({
       message: Boolean,
       configure: Boolean
     },
-    members: [{
-        uuid: String
-    }],
-    devices: [{
-        uuid: String
-    }]
+    members: [String],
+    devices: [String]
 });

@@ -5,7 +5,8 @@ var _ = require('underscore'),
     events = require('../lib/skynetdb').collection('events'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    request = require('request');
 
 var uuid = require('node-uuid');
 
@@ -539,7 +540,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST -H 'Content-Type:application/json' -d '{"uuid":"123"}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members
+  // curl -X POST -H 'Content-Type:application/json' -d '{"uuid":"123", devices:[{"uuid":"123", "token":"abc"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members
   app.post('/api/user/:id/groups/:uuid/members', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -548,7 +549,6 @@ module.exports = function (app) {
           {'google.skynetuuid' : req.params.id}
       ]
       }, function(err, userInfo) {
-          // console.log(userInfo);
           if (err) {
             res.send(err);
           } else {
@@ -556,15 +556,52 @@ module.exports = function (app) {
             var groupFound = false;
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
-
                   try {
                     var data = JSON.parse(req.body);
                   } catch (e){
                     var data = req.body;
                   }
 
-                  userInfo.groups[i].members.push({uuid: data.uuid});
+                  userInfo.groups[i].members.push(data.uuid);
                   userInfo.markModified('groups');
+
+                  // Setup perminssion arrays
+                  if (userInfo.groups[i].permissions.discover){
+                    var viewPerms = userInfo.groups[i].members;
+                  } else {
+                    var viewPerms = [];
+                  }
+
+                  if (userInfo.groups[i].permissions.message){
+                    var sendPerms = userInfo.groups[i].members;
+                  } else {
+                    var sendPerms = [];
+                  }
+
+                  if (userInfo.groups[i].permissions.configure){
+                    var updatePerms = userInfo.groups[i].members;
+                  } else {
+                    var updatePerms = [];
+                  }
+
+                  if (data.devices){
+                    for (var device=0; i < data.devices.length; device++) {
+                      // Update Skynet device permissions
+                      request.put('http://skynet.im/devices/' + data.devices[device].uuid,
+                          {form: {
+                            'token': data.devices[device].token,
+                            'viewPermissions': viewPerms,
+                            'sendPermissions': sendPerms,
+                            'updatePermissions': updatePerms
+                          }}
+                          , function (error, response, body) {
+                              if(response.statusCode == 200){
+                                console.log(body);
+                              }
+                          }
+                      );
+                    };
+                  };
 
                   userInfo.save(function(err, data, affected) {
                     if(!err) {
@@ -606,26 +643,49 @@ module.exports = function (app) {
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
 
-                for (var j=0; j < userInfo.groups[i].members.length; j++) {
-                   if (userInfo.groups[i].members[j].uuid == req.params.user) {
+                // for (var j=0; j < userInfo.groups[i].members.length; j++) {
+                //    if (userInfo.groups[i].members[j].uuid == req.params.user) {
+                //
+                //       userInfo.groups[i].members.splice(j,1);
+                //       userInfo.markModified('groups');
+                //
+                //       userInfo.save(function(err, data, affected) {
+                //         if(!err) {
+                //           console.log(userInfo.groups[i]);
+                //           res.json({'member': 'deleted' });
+                //
+                //         } else {
+                //           console.log('Error: ' + err);
+                //           res.json(err);
+                //         }
+                //       });
+                //       memberFound = true;
+                //       break;
+                //     }
+                //   }
 
-                      userInfo.groups[i].members.splice(j,1);
-                      userInfo.markModified('groups');
+                var j = userInfo.groups[i].members.indexOf(req.params.user);
+                console.log(j);
+                if (!j){
+                  userInfo.groups[i].members.splice(j,1);
+                  userInfo.markModified('groups');
 
-                      userInfo.save(function(err, data, affected) {
-                        if(!err) {
-                          console.log(userInfo.groups[i]);
-                          res.json({'member': 'deleted' });
+                  userInfo.save(function(err, data, affected) {
+                    if(!err) {
+                      console.log(userInfo);
+                      res.json({'member': 'deleted'});
 
-                        } else {
-                          console.log('Error: ' + err);
-                          res.json(err);
-                        }
-                      });
-                      memberFound = true;
-                      break;
+                    } else {
+                      console.log('Error: ' + err);
+                      res.json(err);
                     }
-                  }
+                  });
+                  memberFound = true;
+                  break;
+
+                }
+
+
                }
             }
 
@@ -693,7 +753,7 @@ module.exports = function (app) {
                     var data = req.body;
                   }
 
-                  userInfo.groups[i].devices.push({uuid: data.uuid});
+                  userInfo.groups[i].devices.push(data.uuid);
                   userInfo.markModified('groups');
                   userInfo.save(function(err, data, affected) {
                     console.log(affected);
@@ -736,31 +796,31 @@ module.exports = function (app) {
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
 
-                for (var j=0; j < userInfo.groups[i].devices.length; j++) {
-                   if (userInfo.groups[i].devices[j].uuid == req.params.user) {
+                  var j = userInfo.groups[i].devices.indexOf(req.params.user);
+                  console.log(j);
+                  if (!j){
+                    userInfo.groups[i].devices.splice(j,1);
+                    userInfo.markModified('groups');
 
-                      userInfo.groups[i].devices.splice(j,1);
-                      userInfo.markModified('groups');
+                    userInfo.save(function(err, data, affected) {
+                      if(!err) {
+                        console.log(userInfo);
+                        res.json({'devices': 'deleted'});
 
-                      userInfo.save(function(err, data, affected) {
-                        if(!err) {
-                          console.log(userInfo);
-                          res.json({'devices': 'deleted'});
+                      } else {
+                        console.log('Error: ' + err);
+                        res.json(err);
+                      }
+                    });
+                    memberFound = true;
+                    break;
 
-                        } else {
-                          console.log('Error: ' + err);
-                          res.json(err);
-                        }
-                      });
-                      memberFound = true;
-                      break;
-                    }
                   }
                }
             }
 
             if(!memberFound){
-              res.json(404, {'devices': 'not found'});
+              res.json(404, {'device': 'not found'});
             }
 
           }
