@@ -1,19 +1,26 @@
 /*
   File : invitation.js
-  provides the REST API for create, read, update and delete  operations for invitations sent by the User.
-
-  TODO - Create function for finding User info and return the
+  provides the REST API for finding, creating, deleting, sending and receiving invitations to Groups from Octoblu
+  users
  */
 var _ = require('lodash'),
+
     moment = require('moment'),
     mongoose = require('mongoose'),
+    InvitationSchema = require('../models/invitation'),
     User = mongoose.model('User'),
-    Invitation = mongoose.model('Invitation');
+    Invitation = mongoose.model('Invitation', InvitationSchema);
 
 
 var invitationController = {
 
-
+    /**
+     *
+     * @param req
+     * @param res
+     * @param searchParams
+     * @returns {*}
+     */
     findInvitations : function(req, res, searchParams ){
         if(req.params.id && req.params.token ) {
 
@@ -75,14 +82,11 @@ var invitationController = {
         }
 
     },
-    /*
-     All Invitations
-     VERB - GET
-     Find all the invitations that have been sent or received by the user
-     URL - /api/user/:id/:token/invitations
-     Parameters
-     * id - The users UUID
-     * token - The users token
+    /**
+     *
+     * @param req
+     * @param res
+     * @returns {*}
      */
     getAllInvitations : function(req, res){
         var searchParams = {
@@ -92,15 +96,11 @@ var invitationController = {
         return this.findInvitations(req, res, searchParams )
 
     },
-
-    /*
-     Sent Invitations
-     Find all the invitations that have been sent by the user
-     VERB - GET
-     URL - /api/user/:id/:token/invitations/sent
-     Parameters
-     * id - The users UUID
-     * token - The users token
+    /**
+     *
+     * @param req
+     * @param res
+     * @returns {*}
      */
     getInvitationsSent : function(req, res){
         var searchParams = {
@@ -109,14 +109,11 @@ var invitationController = {
         return this.findInvitations(req, res, searchParams );
     },
 
-    /*
-     Received Invitations
-     Find all the invitations that have been sent by the user
-     VERB GET
-     URL - /api/user/:id/:token/invitations/received
-     Parameters
-     * id - The users UUID
-     * token - The users token
+    /**
+     *
+     * @param req
+     * @param res
+     * @returns {*}
      */
     getInvitationsReceived : function(req, res){
         var searchParams = {
@@ -125,13 +122,11 @@ var invitationController = {
         return this.findInvitations(req, res, searchParams );
     },
 
-    /*
-     Find an Invitation with a specific Invitation Id
-     VERB GET
-     URL - /api/user/:id/:token/invitation/:invitationId
-     Parameters
-     * id - The users UUID
-     * token - The users token
+    /**
+     *
+     * @param req
+     * @param res
+     * @returns {*}
      */
     getInvitationById : function(req, res){
         if( req.params.id && req.params.token && req.params.invitationId ){
@@ -174,31 +169,110 @@ var invitationController = {
                 error : 'One or more required parameters is missing'
             });
         }
-
     },
 
-    /*
-     send a new invitation
-     VERB - PUT
-     URL - /api/user/:id/:token/invitation/
-     Parameters
-     * id - The users UUID
-     * token - The users token
+    /**
+     *
+     * @param req
+     * @param res
+     * @returns {*}
      */
     sendInvitation : function(req, res){
+        if( req.params.id && req.params.token ){
 
+            var uuid = req.params.id;
+            var token = req.params.token;
+
+            User.findOne({ $or: [
+                {
+                    'local.skynetuuid' : uuid,
+                    'local.skynettoken' : token
+                },
+                {
+                    'twitter.skynetuuid' : uuid,
+                    'twitter.skynettoken' : token
+                },
+                {
+                    'facebook.skynetuuid' : uuid,
+                    'facebook.skynettoken' : token
+                },
+                {
+                    'google.skynetuuid' : uuid,
+                    'google.skynettoken' : token
+                }
+            ]
+            }, function(err, user) {
+                if(!err) {
+                    return res.JSON(404, err);
+                } else {
+                    /**
+                     * PPP:
+                     * Send the
+                     */
+                }
+            });
+        } else {
+            return res.json(400, {
+                error : 'One or more required parameters is missing'
+            });
+        }
+    },
+
+    /**
+     *
+     * @param req
+     * @param res
+     */
+    acceptInvitation : function (req, res){
 
     },
 
-    /*
-     delete an invitation
-     VERB - DELETE
-     URL - /api/user/:id/:token/invitation/:invitationId
-     Parameters
-     * id - The users UUID
-     * token - The users token
+    /**
+     *
+     * @param req
+     * @param res
      */
     deleteInvitation : function(req, res){
+        if( req.params.id && req.params.token && req.params.invitationId ){
+
+            var uuid = req.params.id;
+            var token = req.params.token;
+            var invitationId = req.params.invitationId;
+            User.findOne({ $or: [
+                {
+                    'local.skynetuuid' : uuid,
+                    'local.skynettoken' : token
+                },
+                {
+                    'twitter.skynetuuid' : uuid,
+                    'twitter.skynettoken' : token
+                },
+                {
+                    'facebook.skynetuuid' : uuid,
+                    'facebook.skynettoken' : token
+                },
+                {
+                    'google.skynetuuid' : uuid,
+                    'google.skynettoken' : token
+                }
+            ]
+            }, function(err, user) {
+                if(!err) {
+                    return res.JSON(404, err);
+                } else {
+                    Invitation.findById(invitationId , function(err, invitation ){
+                        if( err ){
+                            res.json(500, err);
+                        }
+                        res.json(200, invitation );
+                    } );
+                }
+            });
+        } else {
+            return res.json(400, {
+                error : 'One or more required parameters is missing'
+            });
+        }
 
     }
 };
@@ -210,4 +284,5 @@ module.exports = function (app) {
     app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById );
     app.put('/api/user/:id/:token/invitation' , invitationController.sendInvitation );
     app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation );
+    app.get('/api/user/:id/:token/invitation/:invitationId/accept', invitationController.acceptInvitation );
 };

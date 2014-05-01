@@ -157,7 +157,7 @@ angular.module('e2eApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap'
                 templateUrl: 'pages/admin/groups/all.html',
                 controller: 'adminController'
             })
-            .state('admin.groups.detail.', {
+            .state('admin.groups.detail', {
                 url: '/:groupId',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminController'

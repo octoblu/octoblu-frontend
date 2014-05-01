@@ -1,16 +1,20 @@
 'use strict';
 
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 // define the schema for our user model
 var GroupSchema = mongoose.Schema({
     uuid: String,
     name: String,
-    type: String,
-    permissions: {
-      discover: Boolean,
-      message: Boolean,
-      configure: Boolean
+    type: {
+        type: String,
+        default : 'Default',
+        enum : ['Default', 'Operators']
+    },
+    permissions : {
+        discover : Boolean,
+        configure : Boolean,
+        message : Boolean
     },
     members: [{
         uuid: String
@@ -19,3 +23,5 @@ var GroupSchema = mongoose.Schema({
         uuid: String
     }]
 });
+
+mongoose.exports = GroupSchema;

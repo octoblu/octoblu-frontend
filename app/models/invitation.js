@@ -10,13 +10,16 @@ var InvitationSchema = mongoose.Schema({
    },
    from : String,
    group : String,
-   status : String,
+   status : {
+       type : String,
+       default : 'PENDING',
+       enum : ['PENDING' , 'ACCEPTED' ]
+   },
    sent : Date,
    completed : Date
 },
+{
+    collection : 'invitation'
+});
 
-    {
-        collection : 'invitation'
-    });
-
-mongoose.model('Invitation', InvitationSchema);
+module.exports = InvitationSchema;

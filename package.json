@@ -9,7 +9,7 @@
     "bcrypt-nodejs": "latest",
     "connect-flash": "~0.1.1",
     "express": "~3.4.4",
-    "mongoose": "~3.8.1",
+    "mongoose": "~3.8.8",
     "oauth": "~0.9.11",
     "mongojs": "~0.10.1",
     "safe_datejs": "~0.0.1",
@@ -46,7 +46,8 @@
     "mocha": "^1.18.2",
     "q": "^1.0.1",
     "lodash": "^2.4.1",
-    "should": "^3.3.1"
+    "should": "^3.3.1",
+    "nodemailer": "^0.6.3"
   },
   "devDependencies": {
     "mocha-istanbul": "~0.2.0",
