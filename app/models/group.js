@@ -16,12 +16,8 @@ var GroupSchema = mongoose.Schema({
         configure : Boolean,
         message : Boolean
     },
-    members: [{
-        uuid: String
-    }],
-    devices: [{
-        uuid: String
-    }]
+    members: [String],
+    devices: [String]
 });
 
 mongoose.exports = GroupSchema;
