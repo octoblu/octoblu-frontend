@@ -274,7 +274,9 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST -d "name=family&type=operators&discover=true&message=true&configure=false" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
+
+  // curl -X POST -H 'Content-Type:application/json' -d '{"name":"family","type":"operators","permissions":{"discover":true,"message":true,"configure":false}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
+
   app.post('/api/user/:id/groups', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -290,35 +292,47 @@ module.exports = function (app) {
             if (userInfo.groups == undefined){
               userInfo.groups = [];
             };
-            console.log(userInfo.groups);
+            // console.log(userInfo.groups);
             // if(_.contains(userInfo.groups, req.params.name)){
             //   res.json({error:"Group already exists"});
             // } else {
             //   var newUuid = uuid.v1();
             //   // res.json({groups:userInfo.groups});
             // };
-            var newUuid = uuid.v1();
 
-            if (req.body.discover == "true"){
-              var discover = true;
+            var newUuid = uuid.v1();
+            try {
+              var data = JSON.parse(req.body);
+            } catch (e){
+              var data = req.body;
+            }
+
+            if (data.permissions){
+              if (data.permissions.discover){
+                var discover = true;
+              } else {
+                var discover = false;
+              }
+              if (data.permissions.message){
+                var message = true;
+              } else {
+                var message = false;
+              }
+              if (data.permissions.configure){
+                var configure = true;
+              } else {
+                var configure = false;
+              }
             } else {
               var discover = false;
-            }
-            if (req.body.message == "true"){
-              var message = true;
-            } else {
               var message = false;
-            }
-            if (req.body.configure == "true"){
-              var configure = true;
-            } else {
               var configure = false;
             }
 
             var group = {
               uuid: newUuid,
-              name: req.body.name,
-              type: req.body.type,
+              name: data.name,
+              type: data.type,
               permissions: {
                 discover: discover,
                 message: message,
@@ -387,7 +401,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X PUT -d "name=family&type=operators&configure=true" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/41dd6610-d159-11e3-90d4-070d96a1c46f
+  // curl -X PUT -H 'Content-Type:application/json' -d '{"name":"family","type":"operators","permissions":{"configure":true}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715
   app.put('/api/user/:id/groups/:uuid', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -404,28 +418,36 @@ module.exports = function (app) {
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
                  console.log(userInfo.groups[i]);
-                  if (req.body.name){
-                    userInfo.groups[i].name = req.body.name;
+                  try {
+                    var data = JSON.parse(req.body);
+                  } catch (e){
+                    var data = req.body;
                   }
 
-                  if (req.body.type){
-                    userInfo.groups[i].type = req.body.type;
+                  if (data.name){
+                    userInfo.groups[i].name = data.name;
                   }
 
-                  if (req.body.discover == "true"){
-                    userInfo.groups[i].permissions.discover = true
-                  } else if (req.body.discover == "false"){
-                    userInfo.groups[i].permissions.discover = false
+                  if (data.type){
+                    userInfo.groups[i].type = data.type;
                   }
-                  if (req.body.message == "true"){
-                    userInfo.groups[i].permissions.message = true
-                  } else if (req.body.message == "false"){
-                    userInfo.groups[i].permissions.message = false
-                  }
-                  if (req.body.configure == "true"){
-                    userInfo.groups[i].permissions.configure = true
-                  } else if (req.body.configure == "false"){
-                    userInfo.groups[i].permissions.configure = false
+
+                  if(data.permissions){
+                    if (data.permissions.discover == true){
+                      userInfo.groups[i].permissions.discover = true
+                    } else if (data.permissions.discover == false){
+                      userInfo.groups[i].permissions.discover = false
+                    }
+                    if (data.permissions.message == true){
+                      userInfo.groups[i].permissions.message = true
+                    } else if (data.permissions.message == false){
+                      userInfo.groups[i].permissions.message = false
+                    }
+                    if (data.permissions.configure == true){
+                      userInfo.groups[i].permissions.configure = true
+                    } else if (data.permissions.configure == false){
+                      userInfo.groups[i].permissions.configure = false
+                    }
                   }
 
                   userInfo.markModified('groups');
@@ -517,7 +539,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST -d "uuid=123" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/members
+  // curl -X POST -H 'Content-Type:application/json' -d '{"uuid":"123"}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members
   app.post('/api/user/:id/groups/:uuid/members', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -534,7 +556,14 @@ module.exports = function (app) {
             var groupFound = false;
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
-                  userInfo.groups[i].members.push({uuid: req.body.uuid});
+
+                  try {
+                    var data = JSON.parse(req.body);
+                  } catch (e){
+                    var data = req.body;
+                  }
+
+                  userInfo.groups[i].members.push({uuid: data.uuid});
                   userInfo.markModified('groups');
 
                   userInfo.save(function(err, data, affected) {
@@ -560,7 +589,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/members/123
+  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members/123
   app.delete('/api/user/:id/groups/:uuid/members/:user', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -578,15 +607,15 @@ module.exports = function (app) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
 
                 for (var j=0; j < userInfo.groups[i].members.length; j++) {
-                   if (userInfo.groups[j].members[j].uuid == req.params.user) {
+                   if (userInfo.groups[i].members[j].uuid == req.params.user) {
 
-                      userInfo.groups[j].members.splice(j,1);
+                      userInfo.groups[i].members.splice(j,1);
                       userInfo.markModified('groups');
 
                       userInfo.save(function(err, data, affected) {
                         if(!err) {
-                          console.log(userInfo);
-                          res.json({members: data.groups[i].members});
+                          console.log(userInfo.groups[i]);
+                          res.json({'member': 'deleted' });
 
                         } else {
                           console.log('Error: ' + err);
@@ -640,7 +669,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST -d "uuid=123" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/devices
+  // curl -X POST  -H 'Content-Type:application/json' -d '{"uuid":"123"}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/devices
   app.post('/api/user/:id/groups/:uuid/devices', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -657,7 +686,14 @@ module.exports = function (app) {
             var groupFound = false;
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
-                  userInfo.groups[i].devices.push({uuid: req.body.uuid});
+
+                  try {
+                    var data = JSON.parse(req.body);
+                  } catch (e){
+                    var data = req.body;
+                  }
+
+                  userInfo.groups[i].devices.push({uuid: data.uuid});
                   userInfo.markModified('groups');
                   userInfo.save(function(err, data, affected) {
                     console.log(affected);
@@ -701,15 +737,15 @@ module.exports = function (app) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
 
                 for (var j=0; j < userInfo.groups[i].devices.length; j++) {
-                   if (userInfo.groups[j].devices[j].uuid == req.params.user) {
+                   if (userInfo.groups[i].devices[j].uuid == req.params.user) {
 
-                      userInfo.groups[j].devices.splice(j,1);
+                      userInfo.groups[i].devices.splice(j,1);
                       userInfo.markModified('groups');
 
                       userInfo.save(function(err, data, affected) {
                         if(!err) {
                           console.log(userInfo);
-                          res.json({devices: data.groups[i].devices});
+                          res.json({'devices': 'deleted'});
 
                         } else {
                           console.log('Error: ' + err);
