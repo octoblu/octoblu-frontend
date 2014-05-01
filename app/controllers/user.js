@@ -274,7 +274,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST -d "name=family&type=operators" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
+  // curl -X POST -d "name=family&type=operators&discover=true&message=true&configure=false" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
   app.post('/api/user/:id/groups', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -298,7 +298,35 @@ module.exports = function (app) {
             //   // res.json({groups:userInfo.groups});
             // };
             var newUuid = uuid.v1();
-            var group = {uuid: newUuid, name: req.body.name, type: req.body.type, members: [], devices: []};
+
+            if (req.body.discover == "true"){
+              var discover = true;
+            } else {
+              var discover = false;
+            }
+            if (req.body.message == "true"){
+              var message = true;
+            } else {
+              var message = false;
+            }
+            if (req.body.configure == "true"){
+              var configure = true;
+            } else {
+              var configure = false;
+            }
+
+            var group = {
+              uuid: newUuid,
+              name: req.body.name,
+              type: req.body.type,
+              permissions: {
+                discover: discover,
+                message: message,
+                configure: configure
+              },
+              members: [],
+              devices: []
+            };
             userInfo.groups.push(group);
             console.log(userInfo.groups);
             userInfo.markModified('groups');
@@ -359,7 +387,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X PUT -d "name=family&type=operators" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3
+  // curl -X PUT -d "name=family&type=operators&configure=true" http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/41dd6610-d159-11e3-90d4-070d96a1c46f
   app.put('/api/user/:id/groups/:uuid', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -379,9 +407,27 @@ module.exports = function (app) {
                   if (req.body.name){
                     userInfo.groups[i].name = req.body.name;
                   }
+
                   if (req.body.type){
                     userInfo.groups[i].type = req.body.type;
                   }
+
+                  if (req.body.discover == "true"){
+                    userInfo.groups[i].permissions.discover = true
+                  } else if (req.body.discover == "false"){
+                    userInfo.groups[i].permissions.discover = false
+                  }
+                  if (req.body.message == "true"){
+                    userInfo.groups[i].permissions.message = true
+                  } else if (req.body.message == "false"){
+                    userInfo.groups[i].permissions.message = false
+                  }
+                  if (req.body.configure == "true"){
+                    userInfo.groups[i].permissions.configure = true
+                  } else if (req.body.configure == "false"){
+                    userInfo.groups[i].permissions.configure = false
+                  }
+
                   userInfo.markModified('groups');
 
                   userInfo.save(function(err, data, updated) {
