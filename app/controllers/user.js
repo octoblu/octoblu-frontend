@@ -360,7 +360,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/76893990-cbe9-11e3-897a-b94740070267
+  // curl -X DELETE -H 'Content-Type:application/json' -d '{"devices":[{"uuid":"26cc6770-b9eb-11e3-a3c6-0b41aaf824e3", "token":"g9ydhs699d9ozuxrwgrt1ov52gap2e29"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/76893990-cbe9-11e3-897a-b94740070267
   app.delete('/api/user/:id/groups/:uuid', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -376,6 +376,14 @@ module.exports = function (app) {
             var groupFound = false;
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
+
+                  try {
+                    var reqdata = JSON.parse(req.body);
+                  } catch (e){
+                    var reqdata = req.body;
+                  }
+                  updateSkyNetPermissions(reqdata.devices, [""], {"discover": false, "message": false, "configure": false });
+
                   userInfo.groups.splice(i,1);
                   userInfo.markModified('groups');
 
