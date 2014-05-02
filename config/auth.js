@@ -67,6 +67,10 @@ var config = {
                  'password' : 'hacktheplanet1'
             }
 
+        },
+
+        invitation : {
+            templateUrl : '/template/invitation.jade'
         }
     },
     'port' : 8080,

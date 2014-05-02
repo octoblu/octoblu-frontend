@@ -241,11 +241,7 @@ var invitationController = {
                   };
                })
                .then(function ( invite ){
-                   /*
-                      Generate the e-mail template and return the
-                      results along with sender and invitation for outgoing message.
 
-                    */
 
                })
                .then(function( outgoingMessage ){
