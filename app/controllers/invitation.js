@@ -232,6 +232,9 @@ var invitationController = {
                    inviteData.recipient = {};
                    inviteData.recipient.email = email;
                    inviteData.from = uuid;
+                   inviteData.status = 'PENDING';
+                   inviteData.sent = moment.utc();
+
                   if(recipient){
                       var recipient_uuid = recipient.local.skynetuuid || recipient.google.skynetuuid || recipient.facebook.skynetuuid || recipient.twitter.skynetuuid;
                       inviteData.recipient.uuid = recipient_uuid;
