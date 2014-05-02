@@ -207,9 +207,13 @@ var invitationController = {
             ]
             }).exec();
 
+           //1. Find the user with the give UUID and Token
+           //2. Check if the recipient is already an existing octoblu user
+           //3. Create a new invitation
+           //4. send an outgoing email to the recipient email
+           //return the invitation to the user.
            userPromise
                .then(function(user){
-
                  return {
                      sender: user,
                      recipient: User.findOne({
@@ -241,20 +245,44 @@ var invitationController = {
                   };
                })
                .then(function ( invite ){
-
-
+                   var invitationTemplatePath = process.cwd() + config.email.invitation.templateUrl;
+                   var invitationUrl = req.protocol + "://" + req.header('host') + '/invitation/' + invite.invitation._id + '/accept';
+                   var options = {
+                       pretty : true,
+                       sender : invite.sender,
+                       invitationUrl : invitationUrl
+                   };
+                   invite.messageHtml = jade.renderFile( invitationTemplatePath ,options );
+                   return invite;
                })
-               .then(function( outgoingMessage ){
+               .then(function( outboundMessage ) {
+                   var smtpTransport = nodemailer.createTransport("SMTP",{
+                       service: "Gmail",
+                       auth: {
+                           user: config.email.SMTP.Gmail.username,
+                           pass: config.email.SMTP.Gmail.password
+                       }
+                   });
 
+                   var mailOptions = {
+                       from : 'Octoblu <' + config.email.SMTP.Gmail.username + '>',
+                       to: outboundMessage.invitation.recipient.email,
+                       subject : 'Invitation to share devices on Octoblu from ' + outboundMessage.sender.name,
+                       html : outboundMessage.messageHtml
+                   };
 
+                   smtpTransport.sendMail(mailOptions, function(error){
+                       if(error){
+                          reject(error);
+                       }
+                       res.send(200, outboundMessage.invitation );
+                   });
                },function(error){
                    return  res.json(500, {
                        'success' : false,
                        'error' : error
                    });
                });
-
-
         } else {
             return res.json(400, {
                 error : 'One or more required parameters is missing'
@@ -331,5 +359,5 @@ module.exports = function (app, config) {
     app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById );
     app.put('/api/user/:id/:token/invitation/send' , invitationController.sendInvitation);
     app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation );
-    app.get('/api/user/invitation/:invitationId/accept', invitationController.acceptInvitation );
+    app.get('/api/invitation/:invitationId/accept', invitationController.acceptInvitation );
 };
