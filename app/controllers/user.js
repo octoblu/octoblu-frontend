@@ -402,7 +402,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X PUT -H 'Content-Type:application/json' -d '{"name":"family","type":"operators","permissions":{"configure":true}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715
+  // curl -X PUT -H 'Content-Type:application/json' -d '{"name":"family","type":"operators","permissions":{"configure":true}, "devices":[{"uuid":"26cc6770-b9eb-11e3-a3c6-0b41aaf824e3", "token":"g9ydhs699d9ozuxrwgrt1ov52gap2e29"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715
   app.put('/api/user/:id/groups/:uuid', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -453,6 +453,14 @@ module.exports = function (app) {
 
                   userInfo.markModified('groups');
 
+                  try {
+                    var reqdata = JSON.parse(req.body);
+                  } catch (e){
+                    var reqdata = req.body;
+                  }
+                  updateSkyNetPermissions(reqdata.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+
+
                   userInfo.save(function(err, data, updated) {
                     if(!err) {
                       console.log(data);
@@ -498,11 +506,11 @@ module.exports = function (app) {
               };
            }
 
-          }
+        }
 
-          if(!groupFound){
-            res.json(404, {'group': 'not found'});
-          }
+        if(!groupFound){
+          res.json(404, {'group': 'not found'});
+        }
 
       });
   });
@@ -540,7 +548,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST -H 'Content-Type:application/json' -d '{"uuid":"123", devices:[{"uuid":"123", "token":"abc"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members
+  // curl -X POST -H 'Content-Type:application/json' -d '{"uuid":"5d6e9c91-820e-11e3-a399-f5b85b6b9fd0", "devices":[{"uuid":"26cc6770-b9eb-11e3-a3c6-0b41aaf824e3", "token":"g9ydhs699d9ozuxrwgrt1ov52gap2e29"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members
   app.post('/api/user/:id/groups/:uuid/members', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -565,43 +573,7 @@ module.exports = function (app) {
                   userInfo.groups[i].members.push(data.uuid);
                   userInfo.markModified('groups');
 
-                  // Setup perminssion arrays
-                  if (userInfo.groups[i].permissions.discover){
-                    var viewPerms = userInfo.groups[i].members;
-                  } else {
-                    var viewPerms = [];
-                  }
-
-                  if (userInfo.groups[i].permissions.message){
-                    var sendPerms = userInfo.groups[i].members;
-                  } else {
-                    var sendPerms = [];
-                  }
-
-                  if (userInfo.groups[i].permissions.configure){
-                    var updatePerms = userInfo.groups[i].members;
-                  } else {
-                    var updatePerms = [];
-                  }
-
-                  if (data.devices){
-                    for (var device=0; i < data.devices.length; device++) {
-                      // Update Skynet device permissions
-                      request.put('http://skynet.im/devices/' + data.devices[device].uuid,
-                          {form: {
-                            'token': data.devices[device].token,
-                            'viewPermissions': viewPerms,
-                            'sendPermissions': sendPerms,
-                            'updatePermissions': updatePerms
-                          }}
-                          , function (error, response, body) {
-                              if(response.statusCode == 200){
-                                console.log(body);
-                              }
-                          }
-                      );
-                    };
-                  };
+                  updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
 
                   userInfo.save(function(err, data, affected) {
                     if(!err) {
@@ -626,7 +598,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members/123
+  // curl -X DELETE -H 'Content-Type:application/json' -d '{"devices":[{"uuid":"26cc6770-b9eb-11e3-a3c6-0b41aaf824e3", "token":"g9ydhs699d9ozuxrwgrt1ov52gap2e29"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members/111
   app.delete('/api/user/:id/groups/:uuid/members/:user', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -635,7 +607,6 @@ module.exports = function (app) {
           {'google.skynetuuid' : req.params.id}
       ]
       }, function(err, userInfo) {
-          // console.log(userInfo);
           if (err) {
             res.send(err);
           } else {
@@ -643,32 +614,21 @@ module.exports = function (app) {
             for (var i=0; i < userInfo.groups.length; i++) {
                if (userInfo.groups[i].uuid == req.params.uuid) {
 
-                // for (var j=0; j < userInfo.groups[i].members.length; j++) {
-                //    if (userInfo.groups[i].members[j].uuid == req.params.user) {
-                //
-                //       userInfo.groups[i].members.splice(j,1);
-                //       userInfo.markModified('groups');
-                //
-                //       userInfo.save(function(err, data, affected) {
-                //         if(!err) {
-                //           console.log(userInfo.groups[i]);
-                //           res.json({'member': 'deleted' });
-                //
-                //         } else {
-                //           console.log('Error: ' + err);
-                //           res.json(err);
-                //         }
-                //       });
-                //       memberFound = true;
-                //       break;
-                //     }
-                //   }
-
                 var j = userInfo.groups[i].members.indexOf(req.params.user);
                 console.log(j);
-                if (!j){
+                if (j>=0){
+
+                  try {
+                    var data = JSON.parse(req.body);
+                  } catch (e){
+                    var data = req.body;
+                  }
+                  console.log('DATA->', data);
+
                   userInfo.groups[i].members.splice(j,1);
                   userInfo.markModified('groups');
+
+                  updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
 
                   userInfo.save(function(err, data, affected) {
                     if(!err) {
@@ -729,7 +689,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X POST  -H 'Content-Type:application/json' -d '{"uuid":"123"}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/devices
+  // curl -X POST  -H 'Content-Type:application/json' -d '{"uuid":"123", "devices":[{"uuid":"26cc6770-b9eb-11e3-a3c6-0b41aaf824e3", "token":"g9ydhs699d9ozuxrwgrt1ov52gap2e29"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/devices
   app.post('/api/user/:id/groups/:uuid/devices', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -755,6 +715,9 @@ module.exports = function (app) {
 
                   userInfo.groups[i].devices.push(data.uuid);
                   userInfo.markModified('groups');
+
+                  updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+
                   userInfo.save(function(err, data, affected) {
                     console.log(affected);
                     if(!err) {
@@ -779,7 +742,7 @@ module.exports = function (app) {
       });
   });
 
-  // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/devices/123
+  // curl -X DELETE -H 'Content-Type:application/json' -d '{"devices":[{"uuid":"26cc6770-b9eb-11e3-a3c6-0b41aaf824e3", "token":"g9ydhs699d9ozuxrwgrt1ov52gap2e29"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/devices/123
   app.delete('/api/user/:id/groups/:uuid/devices/:user', function (req, res) {
       User.findOne({ $or: [
           {'local.skynetuuid' : req.params.id},
@@ -788,7 +751,6 @@ module.exports = function (app) {
           {'google.skynetuuid' : req.params.id}
       ]
       }, function(err, userInfo) {
-          // console.log(userInfo);
           if (err) {
             res.send(err);
           } else {
@@ -798,9 +760,18 @@ module.exports = function (app) {
 
                   var j = userInfo.groups[i].devices.indexOf(req.params.user);
                   console.log(j);
-                  if (!j){
+                  if (j>=0){
+
+                    try {
+                      var data = JSON.parse(req.body);
+                    } catch (e){
+                      var data = req.body;
+                    }
+
                     userInfo.groups[i].devices.splice(j,1);
                     userInfo.markModified('groups');
+
+                    updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
 
                     userInfo.save(function(err, data, affected) {
                       if(!err) {
@@ -826,6 +797,51 @@ module.exports = function (app) {
           }
       });
   });
+
+  function updateSkyNetPermissions(devices, members, permissions){
+
+    // Setup permissions arrays
+    if (permissions.discover){
+      var viewPerms = members;
+    } else {
+      var viewPerms = [""];
+    }
+
+    if (permissions.message){
+      var sendPerms = members;
+    } else {
+      var sendPerms = [""];
+    }
+
+    if (permissions.configure){
+      var updatePerms = members;
+    } else {
+      var updatePerms = [""];
+    }
+
+    if (devices){
+      for (var device=0; device < devices.length; device++) {
+        // Update Skynet device permissions
+        request.put('http://skynet.im/devices/' + devices[device].uuid,
+            {form: {
+              'token': devices[device].token,
+              'viewPermissions': viewPerms,
+              'sendPermissions': sendPerms,
+              'updatePermissions': updatePerms
+            }}
+            , function (error, response, body) {
+                if(response.statusCode == 200){
+                  // console.log(response);
+                  // console.log(body);
+
+                }
+            }
+        );
+      };
+    };
+
+
+  };
 
 
 };
