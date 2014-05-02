@@ -210,8 +210,9 @@ var invitationController = {
            //1. Find the user with the give UUID and Token
            //2. Check if the recipient is already an existing octoblu user
            //3. Create a new invitation
-           //4. send an outgoing email to the recipient email
-           //return the invitation to the user.
+           //4. Generate an HTML template for the invitation
+           //5. send an outgoing email to the recipient email  with the HTML template generated in the previous step
+           //and return the invitation to the user.
            userPromise
                .then(function(user){
                  return {
@@ -226,6 +227,7 @@ var invitationController = {
                  }
                  })
                .then(function(users){
+
                   var sender = users.sender;
                   var recipient = users.recipient;
                   var inviteData = {};
@@ -239,6 +241,7 @@ var invitationController = {
                       var recipient_uuid = recipient.local.skynetuuid || recipient.google.skynetuuid || recipient.facebook.skynetuuid || recipient.twitter.skynetuuid;
                       inviteData.recipient.uuid = recipient_uuid;
                   }
+
                   var invitation = new Invitation(inviteData);
                   invitation.save();
                   return {
@@ -248,6 +251,7 @@ var invitationController = {
                   };
                })
                .then(function ( invite ){
+
                    var invitationTemplatePath = process.cwd() + config.email.invitation.templateUrl;
                    var invitationUrl = req.protocol + "://" + req.header('host') + '/invitation/' + invite.invitation._id + '/accept';
                    var options = {
@@ -259,6 +263,7 @@ var invitationController = {
                    return invite;
                })
                .then(function( outboundMessage ) {
+
                    var smtpTransport = nodemailer.createTransport("SMTP",{
                        service: "Gmail",
                        auth: {
