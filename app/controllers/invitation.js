@@ -4,16 +4,17 @@
   users
  */
 var _ = require('lodash'),
-
     moment = require('moment'),
+    jade = require('jade'),
+    fs = require('fs'),
     mongoose = require('mongoose'),
+    nodemailer = require('nodemailer'),
     InvitationSchema = require('../models/invitation'),
     User = mongoose.model('User'),
     Invitation = mongoose.model('Invitation', InvitationSchema);
 
 
 var invitationController = {
-
     /**
      *
      * @param req
@@ -177,13 +178,16 @@ var invitationController = {
      * @param res
      * @returns {*}
      */
-    sendInvitation : function(req, res){
+    sendInvitation : function(req, res ){
+
         if( req.params.id && req.params.token ){
 
             var uuid = req.params.id;
             var token = req.params.token;
+            var email = req.body.email;
+            var config = this.config;
 
-            User.findOne({ $or: [
+           var userPromise =  User.findOne({ $or: [
                 {
                     'local.skynetuuid' : uuid,
                     'local.skynettoken' : token
@@ -201,16 +205,60 @@ var invitationController = {
                     'google.skynettoken' : token
                 }
             ]
-            }, function(err, user) {
-                if(!err) {
-                    return res.JSON(404, err);
-                } else {
-                    /**
-                     * PPP:
-                     * Send the
-                     */
-                }
-            });
+            }).exec();
+
+           userPromise
+               .then(function(user){
+
+                 return {
+                     sender: user,
+                     recipient: User.findOne({
+                         $or: [
+                             { 'local.email': email },
+                             {'google.email': email },
+                             {'facebook.email': email }
+                         ]
+                     }).exec().fulfill()
+                 }
+                 })
+               .then(function(users){
+                  var sender = users.sender;
+                  var recipient = users.recipient;
+                  var inviteData = {};
+                   inviteData.recipient = {};
+                   inviteData.recipient.email = email;
+                   inviteData.from = uuid;
+                  if(recipient){
+                      var recipient_uuid = recipient.local.skynetuuid || recipient.google.skynetuuid || recipient.facebook.skynetuuid || recipient.twitter.skynetuuid;
+                      inviteData.recipient.uuid = recipient_uuid;
+                  }
+                  var invitation = new Invitation(inviteData);
+                  invitation.save();
+                  return {
+                      sender : sender,
+                      recipient : recipient,
+                      invitation : invitation
+                  };
+               })
+               .then(function ( invite ){
+                   /*
+                      Generate the e-mail template and return the
+                      results along with sender and invitation for outgoing message.
+
+                    */
+
+               })
+               .then(function( outgoingMessage ){
+
+
+               },function(error){
+                   return  res.json(500, {
+                       'success' : false,
+                       'error' : error
+                   });
+               });
+
+
         } else {
             return res.json(400, {
                 error : 'One or more required parameters is missing'
@@ -260,7 +308,7 @@ var invitationController = {
                 if(!err) {
                     return res.JSON(404, err);
                 } else {
-                    Invitation.findById(invitationId , function(err, invitation ){
+                    Invitation.findByIdAndRemove(invitationId , function(err, invitation ){
                         if( err ){
                             res.json(500, err);
                         }
@@ -277,12 +325,15 @@ var invitationController = {
     }
 };
 
-module.exports = function (app) {
+module.exports = function (app, config) {
+
+    //set the configuration for the controller
+    invitationController.config = config;
     app.get('/api/user/:id/:token/invitations' , invitationController.getAllInvitations );
     app.get('/api/user/:id/:token/invitations/sent' ,  invitationController.getInvitationsSent );
     app.get('/api/user/:id/:token/invitations/received' , invitationController.getInvitationsReceived );
     app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById );
-    app.put('/api/user/:id/:token/invitation' , invitationController.sendInvitation );
+    app.put('/api/user/:id/:token/invitation/send' , invitationController.sendInvitation);
     app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation );
-    app.get('/api/user/:id/:token/invitation/:invitationId/accept', invitationController.acceptInvitation );
+    app.get('/api/user/invitation/:invitationId/accept', invitationController.acceptInvitation );
 };

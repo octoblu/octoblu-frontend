@@ -34,7 +34,7 @@ Create a new collection from invitations this should be separate from the existi
 	/api/user/:id/:token/invitations/received
  
  
-*Add an Invitation
+*Send an Invitation
  
 	/api/user/:id/:token/invitation PUT
 	data :{ 
@@ -68,4 +68,4 @@ Create a new collection from invitations this should be separate from the existi
 	}
 
 
-
+*

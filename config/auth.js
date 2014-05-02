@@ -61,7 +61,13 @@ var config = {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
     },
     email : {
+        'SMTP' : {
+            'Gmail' :{
+                'user' : 'octoblu@skynet.im',
+                 'password' : 'hacktheplanet1'
+            }
 
+        }
     },
     'port' : 8080,
     'domain': null
@@ -130,6 +136,16 @@ var config = {
     'musixmatch' : {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
     },
+      email : {
+          'SMTP' : {
+              'Gmail' :{
+                  'user' : 'octoblu@skynet.im',
+                  'password' : 'hacktheplanet1'
+              }
+
+          }
+      },
+
     'port' : 80,
     'domain': '.octoblu.com'
 
