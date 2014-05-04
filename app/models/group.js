@@ -4,12 +4,13 @@ var mongoose = require('mongoose');
 
 // define the schema for our user model
 var GroupSchema = mongoose.Schema({
-    uuid: String,
+    uuid: {type : String, required : true },
     name: String,
     type: {
         type: String,
         default : 'Default',
-        enum : ['Default', 'Operators']
+        enum : ['Default', 'Operators'],
+        required : true
     },
     permissions : {
         discover : Boolean,

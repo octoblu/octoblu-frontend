@@ -122,6 +122,16 @@ UserSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+//Convenience method for getting the Skynet UUID
+UserSchema.virtual('skynetuuid').get(function(){
+    return this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
+});
+
+//Convenience method for getting the Skynet Token
+UserSchema.virtual('skynettoken').get(function(){
+    return this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
+});
+
 mongoose.model('User', UserSchema);
 
 module.exports = UserSchema;

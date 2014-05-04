@@ -7,9 +7,12 @@ var _ = require('lodash'),
     moment = require('moment'),
     jade = require('jade'),
     fs = require('fs'),
+    uuid = require('node-uuid'),
     mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
     InvitationSchema = require('../models/invitation'),
+    GroupSchema = require('../models/group'),
+    Group = mongoose.model('Group', GroupSchema),
     User = mongoose.model('User'),
     Invitation = mongoose.model('Invitation', InvitationSchema);
 
@@ -223,7 +226,7 @@ var invitationController = {
                              {'google.email': email },
                              {'facebook.email': email }
                          ]
-                     }).exec().fulfill()
+                     }).exec()
                  }
                  })
                .then(function(users){
@@ -303,8 +306,74 @@ var invitationController = {
      * @param req
      * @param res
      */
-    acceptInvitation : function (req, res){
+    acceptInvitation : function (req, res, next){
 
+     var invitePromise = Invitation.findById(req.params.id).exec();
+     invitePromise.then(function(invitation){
+        var user = User.findOne({ $or: [
+            {
+                'local.skynetuuid' : invitation.from
+            },
+            {
+                'twitter.skynetuuid' : invitation.from
+            },
+            {
+                'facebook.skynetuuid' :  invitation.from
+            },
+            {
+                'google.skynetuuid' : invitation.from
+            }
+        ]
+        }).exec();
+        return { 'invitation' : invitation, 'user' : user};
+     })
+     .then(function(result){
+
+         var sender = result.user;
+         var recipient = req.user;
+         var invitation = result.invitation;
+
+         var operatorGroupIndex = _.findIndex(sender.groups, {'type' : 'Operators'});
+         //The user does not have an invitation group, create one
+         if(operatorGroupIndex < 0){
+             var operatorGroup = new Group({
+                 'uuid' : uuid.v1(),
+                 'type' : 'Operators',
+                 'members' : [recipient.skynetuuid]
+             });
+             sender.push(operatorGroup);
+         } else {
+            /*
+              Check if the recipient is already a member of the group, if they are then
+             */
+            var operatorGroup = sender.groups[operatorGroupIndex];
+             var isNotGroupMember = _.findIndex(operatorGroup.members, recipient.skynetuuid ) < 0;
+
+             if( isNotGroupMember ){
+                operatorGroup.members.push(recipient.skynetuuid);
+             }
+         }
+        //Update the senders User info with new group details
+        sender.save(function(err, sender){
+            if(err){
+                reject(error);
+            }
+        });
+
+        invitation.completed = moment.utc();
+        //Update the completed datetime on the invitation and save it.
+        invitation.save(function(err){
+            if(err){
+                reject(err);
+            }
+        });
+        return invitation;
+     })
+     .then(function(invitation){
+             next();
+     }, function(error){
+         next(error);
+     });
     },
 
     /**
@@ -357,15 +426,21 @@ var invitationController = {
     }
 };
 
-module.exports = function (app, config) {
+module.exports = function (app, passport, config) {
 
     //set the configuration for the controller
     invitationController.config = config;
-    app.get('/api/user/:id/:token/invitations' , invitationController.getAllInvitations );
-    app.get('/api/user/:id/:token/invitations/sent' ,  invitationController.getInvitationsSent );
-    app.get('/api/user/:id/:token/invitations/received' , invitationController.getInvitationsReceived );
-    app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById );
-    app.put('/api/user/:id/:token/invitation/send' , invitationController.sendInvitation);
-    app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation );
-    app.get('/api/invitation/:invitationId/accept', invitationController.acceptInvitation );
+    app.get('/api/user/:id/:token/invitations' , passport.authorize('local-login'), invitationController.getAllInvitations );
+    app.get('/api/user/:id/:token/invitations/sent' , passport.authorize('local-login'), invitationController.getInvitationsSent );
+    app.get('/api/user/:id/:token/invitations/received' , passport.authorize('local-login'), invitationController.getInvitationsReceived );
+    app.get('/api/user/:id/:token/invitation/:invitationId', passport.authorize('local-login'), invitationController.getInvitationById );
+    app.put('/api/user/:id/:token/invitation/send' , passport.authorize('local-login'), invitationController.sendInvitation);
+    app.delete('/api/user/:id/:token/invitations/:invitationId', passport.authorize('local-login'), invitationController.deleteInvitation );
+    app.get('/api/invitation/:id/accept', passport.authorize('local-login'), invitationController.acceptInvitation, function(err,  req, res){
+        if(err){
+            console.log(err);
+        }
+        res.redirect('/dashboard')
+
+    } );
 };
