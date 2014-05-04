@@ -34,6 +34,7 @@ module.exports = function(app, passport) {
         require('./controllers/session')(app, passport, config);
         require('./controllers/unlink')(app);
         require('./controllers/user')(app);
+        require('./controllers/group')(app);
         require('./controllers/designer')(app);
         require('./controllers/invitation')(app, passport, config);
 
