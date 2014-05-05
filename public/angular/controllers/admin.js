@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function($rootScope, $scope, $cookies, $state, ownerService ) {
+    .controller('adminController', function($rootScope, $scope, $cookies, $state, ownerService, userService, GroupService ) {
 
     })
     .controller('adminGroupDetailController', function($rootScope, $scope, $cookies) {
