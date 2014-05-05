@@ -141,14 +141,19 @@ var config = {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
     },
       email : {
-          'SMTP' : {
-              'Gmail' :{
-                  'user' : 'octoblu@skynet.im',
-                  'password' : 'hacktheplanet1'
+          'SMTP': {
+              'Gmail': {
+                  'user': 'octoblu@skynet.im',
+                  'password': 'hacktheplanet1'
               }
 
+          },
+
+          invitation: {
+              templateUrl: '/template/invitation.jade'
           }
       },
+
 
     'port' : 80,
     'domain': '.octoblu.com'
