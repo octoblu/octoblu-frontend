@@ -39,9 +39,15 @@ module.exports = function(app, passport) {
         // Check for deeplink redirect > http://localhost:8080/login?referrer=http:%2F%2Flocalhost%2Fauth.js
         app.get('/login', function(req, res) {
           // console.log(req.query.referrer);
-          req.session.redirect = req.query.referrer;
-          res.sendfile('./public/index.html');
+            // Check for deep link redirect based on referrer in querystring
+            if(req.session.redirect){
+                return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
+            } else {          
+                req.session.redirect = req.query.referrer;
+                res.sendfile('./public/index.html');
+            }
         });
+
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {
