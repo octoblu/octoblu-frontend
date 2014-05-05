@@ -40,9 +40,9 @@ module.exports = function(app, passport) {
         app.get('/login', function(req, res) {
           // console.log(req.query.referrer);
             // Check for deep link redirect based on referrer in querystring
-            if(req.session.redirect){
-                return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-            } else {          
+            if(req.query.referrer && req.query.referrer.length){
+                return res.redirect(req.query.referrer + '?uuid=' + data.uuid + '&token=' + data.token);
+            } else {
                 req.session.redirect = req.query.referrer;
                 res.sendfile('./public/index.html');
             }
