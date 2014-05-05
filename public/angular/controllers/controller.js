@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, ownerService, messageService) {
         $rootScope.checkLogin($scope, $http, $injector, false, function(){
             // Get user gateways

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('adminController', function($rootScope, $scope, $cookies, $state, ownerService ) {
 
     })

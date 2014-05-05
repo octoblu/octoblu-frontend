@@ -1,4 +1,4 @@
-angular.module('e2eApp').
+angular.module('octobluApp').
     factory('PluginService' , function($cookies, $resource){
         // http://npmsearch.com/query?fl=name,description,homepage&rows=200&sort=rating+desc&q=%22skynet-plugin%22
         return $resource('http://npmsearch.com/query?fl=:fl&rows=:rows&sort=:sort&q=:q',

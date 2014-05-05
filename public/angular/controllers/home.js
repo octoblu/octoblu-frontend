@@ -1,6 +1,6 @@
 //'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('homeController', function($rootScope, $scope, $http, $injector, $state, $location, $anchorScroll, $modal, channelService) {
         var user = $.cookie("skynetuuid");
 

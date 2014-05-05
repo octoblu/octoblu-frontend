@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .directive('toggleSwitch', function () {
         return {
             restrict: 'AE',

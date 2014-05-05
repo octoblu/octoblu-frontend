@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location, ownerService, channelService, userService) {
         $scope.message = 'Contact page content pending.';
 

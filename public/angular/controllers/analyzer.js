@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('analyzerController',function ($rootScope, $scope, $http, $injector, $cookies, elasticService) {
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
 

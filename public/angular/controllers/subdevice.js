@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('AddSubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice, selectedHub )
     {
         $scope.hubs = hubs;

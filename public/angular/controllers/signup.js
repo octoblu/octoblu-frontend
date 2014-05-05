@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('signupController', function($scope, $location) {
     });

@@ -63,5 +63,5 @@ var MockService = function() {
 
 };
 
-angular.module('e2eApp').service('mockService', MockService);
+angular.module('octobluApp').service('mockService', MockService);
 

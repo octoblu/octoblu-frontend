@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .service('userService', function ($http, elasticService) {
         this.getMessageGraph = function (uuid, from, interval, callback) {
             elasticService.searchAdvanced(

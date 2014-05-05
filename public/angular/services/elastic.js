@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .constant('elasticSearchConfig', {
        host: '54.187.66.141',
        port: '9200'

@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .service('channelService', function ($http) {
         this.getList = function(callback) {
             $http.get('/api/channels/', { cache: true})

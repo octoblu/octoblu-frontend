@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .directive('devicePropertyEditor', function () {
         return {
             restrict: 'A',

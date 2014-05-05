@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
