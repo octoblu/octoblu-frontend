@@ -433,7 +433,7 @@ module.exports = function (app, passport, config) {
     app.get('/api/user/:id/:token/invitations/sent' , passport.authorize('local-login'), invitationController.getInvitationsSent );
     app.get('/api/user/:id/:token/invitations/received' , passport.authorize('local-login'), invitationController.getInvitationsReceived );
     app.get('/api/user/:id/:token/invitation/:invitationId', passport.authorize('local-login'), invitationController.getInvitationById );
-    app.put('/api/user/:id/:token/invitation/send' , passport.authorize('local-login'), invitationController.sendInvitation);
+    app.put('/api/user/:id/:token/invitation/send', invitationController.sendInvitation);
     app.delete('/api/user/:id/:token/invitations/:invitationId', passport.authorize('local-login'), invitationController.deleteInvitation );
     app.get('/api/invitation/:id/accept', passport.authorize('local-login'), invitationController.acceptInvitation, function(err,  req, res){
         if(err){

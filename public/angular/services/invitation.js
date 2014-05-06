@@ -8,15 +8,17 @@ angular.module('octobluApp')
          */
         this.sendInvitation = function(user, recipientEmail ){
             var deferredInvitation = $q.defer();
-            $http.put('/api/user/:id/:token/invitation/send',
+            if(! user ){
+                deferredInvitation.reject({
+                    'error' : 'User info is missing'
+                })
+            }
+            var sendUrl = '/api/user/' + user.uuid + '/' + user.token + '/invitation/send';
+            $http.put(sendUrl,
                 {
                     'email' : recipientEmail
                 },
                 {
-                    params : {
-                        'uuid' : user.uuid,
-                        'token' : user.token
-                    },
                     cache : false
                 }
             ).success(function(invitation){

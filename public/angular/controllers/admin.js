@@ -7,7 +7,7 @@ angular.module('octobluApp')
     .controller('adminGroupDetailController', function($rootScope, $scope, $cookies) {
 
     })
-    .controller('invitationController', function($rootscope, $cookies, $scope, InvitationService ) {
+    .controller('invitationController', function($rootScope, $cookies, $scope, InvitationService ) {
         //Send the invitation
         $scope.recipientEmail = '';
 

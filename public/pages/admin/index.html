@@ -50,10 +50,10 @@
                               style="margin-top: 0px;">
                             <div class="form-group">
                                 <label class="sr-only" for="recipientEmail">Email address</label>
-                                <input type="email" class="form-control" id="recipientEmail" ng-model="e0d24088-c56c-44c8-935d-28eee67de701"
+                                <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail"
                                        placeholder="Enter email">
                             </div>
-                            <button type="button" class="btn btn-success btn-lg" ng-click="send()"
+                            <button type="button" class="btn btn-success btn-lg" ng-disabled="form.$invalid" ng-click="send()"
                                     style="margin-top: 0px;">
                                 <i class="fa fa-users" style="margin-right: 10px"></i>Invite
                             </button>
