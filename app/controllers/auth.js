@@ -93,7 +93,8 @@ module.exports = function (app, passport, config) {
     };
 
     var getOauth1Instance = function(req, api) {
-        return new require('oauth').OAuth(
+        var OAuth = require('oauth');
+        return new OAuth.OAuth(
                 api.oauth.requestTokenURL,
                 api.oauth.accessTokenURL,
                 api.oauth.key,
@@ -512,7 +513,13 @@ module.exports = function (app, passport, config) {
                         query.scope = api.oauth.scope;
                     }
 
-                    console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath, query);
+                    var redirectURL = url.format({
+                        protocol: api.oauth.protocol,
+                        hostname: api.oauth.host,
+                        pathname: api.oauth.authTokenPath,
+                        query: query
+                    });
+                    console.log(redirectURL);
                     res.redirect(url.format({
                         protocol: api.oauth.protocol,
                         hostname: api.oauth.host,
@@ -524,7 +531,7 @@ module.exports = function (app, passport, config) {
                     var oauth2 = getOauth2Instance(api);
                     var authorization_uri = oauth2.AuthCode.authorizeURL({
                         redirect_uri: getOAuthCallbackUrl(req, api.name),
-                        scope: 'notifications',
+                        scope: api.oauth.scope || 'notifications',
                         state: '3(#0/!~'
                     });
                     console.log(api.oauth);
