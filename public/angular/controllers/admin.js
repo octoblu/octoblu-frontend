@@ -19,8 +19,14 @@ angular.module('octobluApp')
             }, $scope.recipientEmail );
 
             invitationPromise.then(function(invitation){
+                /*
+                   Display a successful notification to the user. Use a notification, not a modal
+                 */
 
             }, function(result){
+                /*
+                 *Display an error notification to the user
+                 */
 
             });
 

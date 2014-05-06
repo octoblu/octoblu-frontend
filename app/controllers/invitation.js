@@ -57,14 +57,14 @@ var invitationController = {
                 //check for sent or received invitations.
                 var queryParams = {};
                 if(searchParams.sent){
-                    queryParams.from = user.uuid;
+                    queryParams.from = user.skynetuuid;
                 }
 
                 if(searchParams.received){
                     var email = user.local.email || user.google.email || user.facebook.email;
                     queryParams.$or = [];
                     queryParams.push({
-                      'recipient.uuid' : user.uuid
+                      'recipient.uuid' : user.skynetuuid
                     });
                     queryParams.push({
                         'recipient.email' : email
@@ -241,8 +241,7 @@ var invitationController = {
                    inviteData.sent = moment.utc();
 
                   if(recipient){
-                      var recipient_uuid = recipient.local.skynetuuid || recipient.google.skynetuuid || recipient.facebook.skynetuuid || recipient.twitter.skynetuuid;
-                      inviteData.recipient.uuid = recipient_uuid;
+                      inviteData.recipient.uuid = recipient.skynetuuid;
                   }
 
                   var invitation = new Invitation(inviteData);
