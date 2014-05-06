@@ -429,12 +429,12 @@ module.exports = function (app, passport, config) {
 
     //set the configuration for the controller
     invitationController.config = config;
-    app.get('/api/user/:id/:token/invitations' , passport.authorize('local-login'), invitationController.getAllInvitations );
-    app.get('/api/user/:id/:token/invitations/sent' , passport.authorize('local-login'), invitationController.getInvitationsSent );
-    app.get('/api/user/:id/:token/invitations/received' , passport.authorize('local-login'), invitationController.getInvitationsReceived );
-    app.get('/api/user/:id/:token/invitation/:invitationId', passport.authorize('local-login'), invitationController.getInvitationById );
+    app.get('/api/user/:id/:token/invitations' , invitationController.getAllInvitations );
+    app.get('/api/user/:id/:token/invitations/sent' ,invitationController.getInvitationsSent );
+    app.get('/api/user/:id/:token/invitations/received' ,  invitationController.getInvitationsReceived );
+    app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById );
     app.put('/api/user/:id/:token/invitation/send', invitationController.sendInvitation);
-    app.delete('/api/user/:id/:token/invitations/:invitationId', passport.authorize('local-login'), invitationController.deleteInvitation );
+    app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation );
     app.get('/api/invitation/:id/accept', passport.authorize('local-login'), invitationController.acceptInvitation, function(err,  req, res){
         if(err){
             console.log(err);
