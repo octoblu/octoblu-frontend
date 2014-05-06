@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .factory('GroupService' , function($cookies, $q, $resource ){
+    .service('GroupService' , function($cookies, $q, $resource ){
 
         /**
           this gets All the People that the
