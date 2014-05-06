@@ -779,6 +779,7 @@ module.exports = function (app) {
                     userInfo.groups[i].devices.splice(j,1);
                     userInfo.markModified('groups');
 
+                    // TODO: THIS IS WRONG. DEVICE MEMBERS NEED TO BE REMOVED
                     updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
 
                     userInfo.save(function(err, data, affected) {
@@ -806,50 +807,150 @@ module.exports = function (app) {
       });
   });
 
-  function updateSkyNetPermissions(devices, members, permissions){
+  // function updateSkyNetPermissions(devices, members, permissions){
 
-    // Setup permissions arrays
-    if (permissions.discover){
-      var viewPerms = members;
-    } else {
-      var viewPerms = [""];
-    }
+  //   // Setup permissions arrays
+  //   if (permissions.discover){
+  //     var viewPerms = members;
+  //   } else {
+  //     var viewPerms = [""];
+  //   }
 
-    if (permissions.message){
-      var sendPerms = members;
-    } else {
-      var sendPerms = [""];
-    }
+  //   if (permissions.message){
+  //     var sendPerms = members;
+  //   } else {
+  //     var sendPerms = [""];
+  //   }
 
-    if (permissions.configure){
-      var updatePerms = members;
-    } else {
-      var updatePerms = [""];
-    }
+  //   if (permissions.configure){
+  //     var updatePerms = members;
+  //   } else {
+  //     var updatePerms = [""];
+  //   }
 
-    if (devices){
-      for (var device=0; device < devices.length; device++) {
-        // Update Skynet device permissions
-        request.put('http://skynet.im/devices/' + devices[device].uuid,
-            {form: {
-              'token': devices[device].token,
-              'viewPermissions': viewPerms,
-              'sendPermissions': sendPerms,
-              'updatePermissions': updatePerms
-            }}
-            , function (error, response, body) {
-                if(response.statusCode == 200){
-                  // console.log(response);
-                  // console.log(body);
+  //   if (devices){
+  //     for (var device=0; device < devices.length; device++) {
+  //       // Update Skynet device permissions
+  //       request.put('http://skynet.im/devices/' + devices[device].uuid,
+  //           {form: {
+  //             'token': devices[device].token,
+  //             'viewPermissions': viewPerms,
+  //             'sendPermissions': sendPerms,
+  //             'updatePermissions': updatePerms
+  //           }}
+  //           , function (error, response, body) {
+  //               if(response.statusCode == 200){
+  //                 // console.log(response);
+  //                 // console.log(body);
+  //               }
+  //           }
+  //       );
+  //     };
+  //   };
 
-                }
-            }
-        );
-      };
+  function reconcileSkyNetPermissions(currentGroup, user, devices){
+    
+    var commonGroups = _.filter(_.without(user.groups, currentGroup), function(group, index){
+      var commonDevices = _.intersection(currentGroup.devices, group.devices);
+      return commonDevices !== undefined && commonDevices.length > 0; 
+    }); 
+
+    if( commonGroups && commonGroups.length > 0 ){
+
+      var groupPermissions =  _.each(commonGroups, function(group){
+        var members = _.intersection(currentGroup.members, group.members);
+        var devices = _.intersection(currentGroup.devices, group.devices);
+        permission = {};
+        permission.discover =  currentGroup.permission.discover || group.permission.discover;
+        permission.message = currentGroup.permission.message || group.permission.message;
+        permssion.configure = currentGroup.permission.configure || group.permission.configure;
+
+        return {
+            'group'  : group,
+            'members' : members,
+            'devices' : devices,
+            'permission' : permission
+        }
+
+      });
+        return permissionResult;
     };
 
+    for ( deviceUUID in group.devices ){
 
-  };
+      var otherGroupsContainingDevice = _.find(groupPermissions, function(groupPermission){
+        var deviceIndex = _.indexOf(groupPermission.group.devices, deviceUUID );
+        return deviceIndex >= 0;
+      });
+
+      //Do the merge get all the members that you have in common with each group
+      //Write the permissions to skynet
+
+      if(otherGroupsContainingDevice ){
+        
+        var uniqueMembers = _.reduceRight(otherGroupsContainingDevice , function( currentMembers, groupPermission, index) {
+          currentMembers = _.uniq(_.union(groupPermission.group.members, currentMembers));
+          return currentMembers;
+        }, currentGroup.members);
+
+         var mergedPermission = _.reduce(otherGroupsContainingDevice, function(currentPermission, groupPermission, index ){
+            currentPermission.discover || groupPermission.permission.discover;
+            currentPermission.configure || groupPermission.permission.configure;
+            currentPermission.message || groupPermission.permission.message;
+            return currentPermission;
+          }, currentPermission.permission);
+
+         var viewPermissions = [];
+         var updatePermissions = [];
+         var sendPermissions = [];
+
+         if(mergedPermission.discover){
+            viewPermissions = uniqueMembers; 
+         }
+         
+
+         if(mergedPermission.configure){
+          updatePermissions = uniqueMembers;
+         }
+
+
+         if(mergedPermission.message){
+          sendPermissions = uniqueMembers;
+         }
+         /*
+         write the array lists to skynet permissions for the current device. 
+         */
+          request.put('http://skynet.im/devices/' + devices[device].uuid,
+            {form: {
+              'token': devices[device].token,
+              'viewPermissions': viewPermissions,
+              'sendPermissions': sendPermissions,
+              'updatePermissions': updatePermissions
+            }}
+            , function (error, response, body) {
+              if(response.statusCode == 200){
+                console.log(response);
+                console.log(body);
+              }
+            }
+          );
+
+
+      } else {
+        /**
+          write all the current group members with the current group permissions to skynet
+
+        **/
+      }
+      
+ 
+    }
+    
+      /**
+        write the skynet permissions with the view update and send permission arrays. 
+      **/
+
+  }
 
 
 };
