@@ -8,6 +8,7 @@ angular.module('octobluApp')
          */
         this.sendInvitation = function(user, recipient ){
 
+
         };
 
         /**
