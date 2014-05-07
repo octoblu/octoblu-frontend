@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('octobluApp')
+angular.module('e2eApp')
     .directive('deviceCarousel', function ($compile) {
         return {
             restrict: 'AE',
@@ -39,10 +39,10 @@ angular.module('octobluApp')
                             '</div>'+
                             '<div class="btn-group btn-group-justified" style="width: auto; margin-top: 15px;" >' +
                                 '<div class="btn-group">' +
-                                    '<button class="btn btn-inverse"  tooltip="Edit Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="editSubDevice(hub.subdevices[' + index + '], hub)"><i class="fa fa-edit"></i></button>'+
+                                    '<button class="btn btn-inverse"  tooltip="Edit" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="editSubDevice(hub.subdevices[' + index + '], hub)"><i class="fa fa-edit"></i></button>'+
                                 '</div>' +
                                 '<div class="btn-group btn-group">' +
-                                    '<button class="btn btn-danger"  tooltip="Delete Device" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="deleteSubDevice(hub.subdevices[' + index + '], hub)" ><i class="fa fa-times"></i></button>'+
+                                    '<button class="btn btn-danger"  tooltip="Delete" tooltip-popup-delay="5" tooltip-placement="bottom" type="button" ng-click="deleteSubDevice(hub.subdevices[' + index + '], hub)" ><i class="fa fa-times"></i></button>'+
                                 '</div>' +
                             '</div>' +
                             '</div>';
@@ -71,22 +71,24 @@ angular.module('octobluApp')
 
                 scope.deleteSubDevice = function(subdevice, hub){
                     var subDeviceIndex =  _.indexOf(hub.subdevices, subdevice);
-                    DeviceController.deleteSubDevice(subdevice, hub);
-                    scope.owl.data('owlCarousel').removeItem(subDeviceIndex);
+                     DeviceController.deleteSubDevice(subdevice, hub);
+//                    scope.owl.data('owlCarousel').removeItem(subDeviceIndex);
 
-                }
+                };
+
                 scope.$on('$destroy', function() {
                     scope.owl.data('owlCarousel').destroy();
                     scope.owl = undefined;
                 });
+
+
+                scope.$watchcollection('hub.subdevices' , function(newSubdevices, oldSubdevices){
+                    //TODO
+                    console.log('new subdevices');
+                    console.log(JSON.stringify(newSubdevices));
+                    console.log('old subdevices');
+                    console.log(JSON.stringify(oldSubdevices));
+                });
             }
-
-
         }
-    })
-    .controller('DeviceCarouselController' , function($rootScope, $scope, $state){
-
-
-
-
     });

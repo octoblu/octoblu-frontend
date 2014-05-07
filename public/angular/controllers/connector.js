@@ -379,14 +379,11 @@ angular.module('octobluApp')
                 $scope.openNewPlugin = function (gateway) {
                     console.log(gateway);
                     $scope.selectedGateway = gateway;
-
-                    // http://npmsearch.com/query?fl=name,description,homepage&rows=200&sort=rating+desc&q=%22skynet-plugin%22
                     $http({
                         url: "http://npmsearch.com/query",
                         method: "get",
                         params: {
                             q: 'keywords:"skynet-plugin"',
-                            // fields: 'name,keywords,rating,description,author,modified,homepage,version,license',
                             fields: 'name',
                             start: 0,
                             size: 100,
