@@ -581,7 +581,8 @@ module.exports = function (app) {
                   userInfo.groups[i].members.push(data.uuid);
                   userInfo.markModified('groups');
 
-                  updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+                  // updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+                  reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
 
                   userInfo.save(function(err, data, affected) {
                     if(!err) {
@@ -724,7 +725,9 @@ module.exports = function (app) {
                   userInfo.groups[i].devices.push(data.uuid);
                   userInfo.markModified('groups');
 
-                  updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+                  // updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+                  reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
+
 
                   userInfo.save(function(err, data, affected) {
                     console.log(affected);
@@ -850,10 +853,17 @@ module.exports = function (app) {
 
   function reconcileSkyNetPermissions(currentGroup, user, devices){
     
+    console.log('currentGroup', currentGroup);
+    console.log('user', user);
+    console.log('devices', devices);
+
     var commonGroups = _.filter(_.without(user.groups, currentGroup), function(group, index){
       var commonDevices = _.intersection(currentGroup.devices, group.devices);
       return commonDevices !== undefined && commonDevices.length > 0; 
     }); 
+
+    console.log('COMMON GROUPS', commonGroups);
+    // console.log('COMMON DEVICES', commonDevices);
 
     if( commonGroups && commonGroups.length > 0 ){
 
@@ -873,21 +883,24 @@ module.exports = function (app) {
         }
 
       });
-        return permissionResult;
+
+        return permissionResult;        
     };
 
-    for ( deviceUUID in group.devices ){
+    console.log('DEVICES', currentGroup);
+    for ( uuid in currentGroup.devices ){
 
       var otherGroupsContainingDevice = _.find(groupPermissions, function(groupPermission){
-        var deviceIndex = _.indexOf(groupPermission.group.devices, deviceUUID );
+        var deviceIndex = _.indexOf(groupPermission.group.devices, uuid );
         return deviceIndex >= 0;
       });
 
       //Do the merge get all the members that you have in common with each group
       //Write the permissions to skynet
+      console.log('otherGroupsContainingDevice', otherGroupsContainingDevice);
 
       if(otherGroupsContainingDevice ){
-        
+
         var uniqueMembers = _.reduceRight(otherGroupsContainingDevice , function( currentMembers, groupPermission, index) {
           currentMembers = _.uniq(_.union(groupPermission.group.members, currentMembers));
           return currentMembers;
@@ -920,6 +933,12 @@ module.exports = function (app) {
          /*
          write the array lists to skynet permissions for the current device. 
          */
+          for (device in devices){
+            if (devices[device].uuid == deviceUUID ){
+              break;
+            }
+          }
+          console.log('writing to skynet', devices[device].uuid);
           request.put('http://skynet.im/devices/' + devices[device].uuid,
             {form: {
               'token': devices[device].token,
