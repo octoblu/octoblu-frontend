@@ -188,7 +188,11 @@ var invitationController = {
             var uuid = req.params.id;
             var token = req.params.token;
             var email = req.body.email;
-            var config = this.config;
+            var config = invitationController.config;
+
+            var user;
+            var recipient;
+
 
            var userPromise =  User.findOne({ $or: [
                 {
@@ -216,23 +220,22 @@ var invitationController = {
            //4. Generate an HTML template for the invitation
            //5. send an outgoing email to the recipient email  with the HTML template generated in the previous step
            //and return the invitation to the user.
+
+
            userPromise
-               .then(function(user){
-                 return {
-                     sender: user,
-                     recipient: User.findOne({
+               .then(function(usr){
+                 user = usr;
+                 return User.findOne({
                          $or: [
                              { 'local.email': email },
                              {'google.email': email },
                              {'facebook.email': email }
                          ]
-                     }).exec()
-                 }
+                     }).exec();
                  })
-               .then(function(users){
+               .then(function( recipient ){
 
-                  var sender = users.sender;
-                  var recipient = users.recipient;
+                  var sender = user;
                   var inviteData = {};
                    inviteData.recipient = {};
                    inviteData.recipient.email = email;
