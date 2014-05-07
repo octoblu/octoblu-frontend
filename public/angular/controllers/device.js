@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, channelService, ownerService, deviceService ) {
 
         var ownerId = $cookies.skynetuuid;
