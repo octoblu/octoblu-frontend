@@ -382,7 +382,8 @@ module.exports = function (app) {
                   } catch (e){
                     var reqdata = req.body;
                   }
-                  updateSkyNetPermissions(reqdata.devices, [""], {"discover": false, "message": false, "configure": false });
+
+                  reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
 
                   userInfo.groups.splice(i,1);
                   userInfo.markModified('groups');
@@ -466,8 +467,8 @@ module.exports = function (app) {
                   } catch (e){
                     var reqdata = req.body;
                   }
-                  updateSkyNetPermissions(reqdata.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
 
+                  reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
 
                   userInfo.save(function(err, data, updated) {
                     if(!err) {
@@ -581,7 +582,6 @@ module.exports = function (app) {
                   userInfo.groups[i].members.push(data.uuid);
                   userInfo.markModified('groups');
 
-                  // updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
                   reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
 
                   userInfo.save(function(err, data, affected) {
@@ -637,7 +637,7 @@ module.exports = function (app) {
                   userInfo.groups[i].members.splice(j,1);
                   userInfo.markModified('groups');
 
-                  updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+                  reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
 
                   userInfo.save(function(err, data, affected) {
                     if(!err) {
@@ -653,7 +653,6 @@ module.exports = function (app) {
                   break;
 
                 }
-
 
                }
             }
@@ -725,9 +724,7 @@ module.exports = function (app) {
                   userInfo.groups[i].devices.push(data.uuid);
                   userInfo.markModified('groups');
 
-                  // updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
                   reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
-
 
                   userInfo.save(function(err, data, affected) {
                     console.log(affected);
@@ -782,8 +779,7 @@ module.exports = function (app) {
                     userInfo.groups[i].devices.splice(j,1);
                     userInfo.markModified('groups');
 
-                    // TODO: THIS IS WRONG. DEVICE MEMBERS NEED TO BE REMOVED
-                    updateSkyNetPermissions(data.devices, userInfo.groups[i].members, userInfo.groups[i].permissions);
+                    reconcileSkyNetPermissions(userInfo.groups[i], userInfo, data.devices);
 
                     userInfo.save(function(err, data, affected) {
                       if(!err) {
@@ -809,47 +805,6 @@ module.exports = function (app) {
           }
       });
   });
-
-  // function updateSkyNetPermissions(devices, members, permissions){
-
-  //   // Setup permissions arrays
-  //   if (permissions.discover){
-  //     var viewPerms = members;
-  //   } else {
-  //     var viewPerms = [""];
-  //   }
-
-  //   if (permissions.message){
-  //     var sendPerms = members;
-  //   } else {
-  //     var sendPerms = [""];
-  //   }
-
-  //   if (permissions.configure){
-  //     var updatePerms = members;
-  //   } else {
-  //     var updatePerms = [""];
-  //   }
-
-  //   if (devices){
-  //     for (var device=0; device < devices.length; device++) {
-  //       // Update Skynet device permissions
-  //       request.put('http://skynet.im/devices/' + devices[device].uuid,
-  //           {form: {
-  //             'token': devices[device].token,
-  //             'viewPermissions': viewPerms,
-  //             'sendPermissions': sendPerms,
-  //             'updatePermissions': updatePerms
-  //           }}
-  //           , function (error, response, body) {
-  //               if(response.statusCode == 200){
-  //                 // console.log(response);
-  //                 // console.log(body);
-  //               }
-  //           }
-  //       );
-  //     };
-  //   };
 
   function reconcileSkyNetPermissions(currentGroup, user, devices){
     
