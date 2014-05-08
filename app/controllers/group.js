@@ -58,11 +58,11 @@ var groupController = {
 
                 if( error ) {
                     console.log(JSON.stringify(error));
-                    res.json(400, error);
+                    return res.json(400, error);
                 }
                 //Throw an exception
                 if( ! user ){
-                  reject({
+                  return res.json(400, {
                       'error' : 'Invalid user'
                   });
                 }
@@ -77,23 +77,27 @@ var groupController = {
                    return res.json(400, {'error' : 'group already exists'});
                 }
 
-                var group = new Group({
-                    'name' : name,
-                    'uuid' : uuid.v1(),
-                    'type' : 'default',
-                    'permissions' : permissions
-                });
 
-                user.groups.push(group);
+                var group_uuid = uuid.v1();
+
+                var addedGroup = {
+                    'name' : name,
+                    'uuid' : group_uuid,
+                    'type' : 'default',
+                    'permissions' : permissions,
+                    'members' :[],
+                    'devices' : []
+                };
+
+                user.groups.push(addedGroup);
                 user.markModified('groups');
                 user.save(function(error, userInfo){
                     if(error){
                         console.log(JSON.stringify(error));
                         //Don't return the error object back to the client.
-                        res.json(500, 'Internal Server Error');
+                        return res.json(500, 'Internal Server Error');
                     }
-                    var addedGroup = userInfo.groups.id(group._id);
-                    res.json(200, addedGroup );
+                    return res.json(200, addedGroup );
                 });
             });
 
