@@ -859,36 +859,47 @@ module.exports = function (app) {
 
     var commonGroups = _.filter(_.without(user.groups, currentGroup), function(group, index){
       var commonDevices = _.intersection(currentGroup.devices, group.devices);
+      console.log('COMMON DEVICES', commonDevices);
+
       return commonDevices !== undefined && commonDevices.length > 0; 
     }); 
 
     console.log('COMMON GROUPS', commonGroups);
-    // console.log('COMMON DEVICES', commonDevices);
 
     if( commonGroups && commonGroups.length > 0 ){
 
       var groupPermissions =  _.each(commonGroups, function(group){
         var members = _.intersection(currentGroup.members, group.members);
-        var devices = _.intersection(currentGroup.devices, group.devices);
-        permission = {};
-        permission.discover =  currentGroup.permission.discover || group.permission.discover;
-        permission.message = currentGroup.permission.message || group.permission.message;
-        permssion.configure = currentGroup.permission.configure || group.permission.configure;
+        var commonDevices = _.intersection(currentGroup.devices, group.devices);
+        var permission = {};
+        if (currentGroup.permissions){
+          permission.discover = currentGroup.permissions.discover || group.permission.discover;
+          permission.message = currentGroup.permissions.message || group.permission.message;
+          permssion.configure = currentGroup.permissions.configure || group.permission.configure;          
+        } else {
+          // TODO: not sure about this...
+          permission.discover = false;
+          permission.message = false;
+          permission.configure = false;
+        }
 
         return {
             'group'  : group,
             'members' : members,
-            'devices' : devices,
+            'commonDevices' : commonDevices,
             'permission' : permission
         }
 
       });
 
-        return permissionResult;        
+      // return permissionResult;        
     };
-
+    console.log('GROUP PERMISSIONS', groupPermissions);
     console.log('DEVICES', currentGroup);
-    for ( uuid in currentGroup.devices ){
+    // for ( uuid in currentGroup.devices ){
+    for (var i = 0; i < currentGroup.devices.length; i++) {
+      uuid = currentGroup.devices[i];
+      console.log("UUID in Current Group", uuid);
 
       var otherGroupsContainingDevice = _.find(groupPermissions, function(groupPermission){
         var deviceIndex = _.indexOf(groupPermission.group.devices, uuid );
@@ -934,32 +945,66 @@ module.exports = function (app) {
          write the array lists to skynet permissions for the current device. 
          */
           for (device in devices){
-            if (devices[device].uuid == deviceUUID ){
-              break;
+            if (devices[device].uuid == uuid ){
+              console.log('writing to skynet', devices[device]);
+              request.put('http://skynet.im/devices/' + devices[device].uuid,
+                {form: {
+                  'token': devices[device].token,
+                  'viewWhitelist': viewPermissions,
+                  'sendWhitelist': sendPermissions,
+                  'updateWhitelist': updatePermissions
+                }}
+                , function (error, response, body) {
+                  if(response.statusCode == 200){
+                    console.log(response);
+                    console.log(body);
+                  }
+                }
+              );
             }
           }
-          console.log('writing to skynet', devices[device].uuid);
-          request.put('http://skynet.im/devices/' + devices[device].uuid,
-            {form: {
-              'token': devices[device].token,
-              'viewPermissions': viewPermissions,
-              'sendPermissions': sendPermissions,
-              'updatePermissions': updatePermissions
-            }}
-            , function (error, response, body) {
-              if(response.statusCode == 200){
-                console.log(response);
-                console.log(body);
-              }
-            }
-          );
 
 
       } else {
         /**
           write all the current group members with the current group permissions to skynet
-
         **/
+        var viewPermissions = [];
+        var updatePermissions = [];
+        var sendPermissions = [];
+
+        if(currentGroup.permissions && currentGroup.permissions.discover){
+          viewPermissions = currentGroup.members; 
+        } else {
+          viewPermissions = [""];
+        }
+
+        if(currentGroup.permissions && currentGroup.permissions.message){
+          sendPermissions = currentGroup.members;
+        } else {
+          sendPermissions = [""];
+        }
+
+        if(currentGroup.permissions && currentGroup.permissions.configure){
+          updatePermissions = currentGroup.members;
+        } else {
+          updatePermissions = [""];
+        }
+
+        for (var device=0; device < devices.length; device++) {
+          if (devices[device].uuid = uuid){
+            console.log('writing to skynet', devices[device]);
+            request.put('http://skynet.im/devices/' + devices[device].uuid + '?token=' + devices[device].token,
+              {form: {
+                'token': devices[device].token,
+                'viewWhitelist': viewPermissions,
+                'sendWhitelist': sendPermissions,
+                'updateWhitelist': updatePermissions
+              }}
+            )
+            // break;
+          }
+        }
       }
       
  
