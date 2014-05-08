@@ -8,8 +8,8 @@ var GroupSchema = mongoose.Schema({
     name: String,
     type: {
         type: String,
-        default : 'Default',
-        enum : ['Default', 'Operators'],
+        default : 'default',
+        enum : ['default', 'operators'],
         required : true
     },
     permissions : {

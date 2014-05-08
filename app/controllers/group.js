@@ -1,9 +1,106 @@
 var _ = require('underscore'),
     moment = require('moment'),
     mongoose = require('mongoose'),
+    GroupSchema = require('../models/group'),
+    Group = mongoose.model('Group', GroupSchema),
     User = mongoose.model('User'),
     request = require('request'),
     uuid = require('node-uuid');
+
+var groupController = {
+
+
+    /**
+     * Adds a new default group for the user with the given UUID and TOKEN
+     * the following properties need to be set on the body
+     * @url  /api/user/:id/:token/groups
+     * @verb POST
+     * - name : The name of the new group. The name should not match an existing user group [required]
+     * - permissions [optional] - The permissions settings for the group. Valid permissions properties are
+     * ['discover', 'configure' and 'update']. Each permission property can be set with a flag indicating whether
+     * the permission is enabled (true) or disabled (false).
+     * @returns {*}
+     */
+    addGroup : function( req, res ){
+
+        var name = req.body.name;
+        //set
+        var permissions = req.body.permissions || {configure : false, discover : true, update : false};
+        //Check if the name and permissions are set
+        if( ! name ){
+         return res.json(400, {
+                'error' : 'Missing required parameter: name'
+            });
+        }
+
+        var skynetuuid = req.params.id;
+        var skynettoken = req.params.token;
+
+        User.findOne({ $or: [
+            {
+                'local.skynetuuid': skynetuuid,
+                'local.skynettoken': skynettoken
+            },
+            {
+                'twitter.skynetuuid': skynetuuid,
+                'twitter.skynettoken': skynettoken
+            },
+            {
+                'facebook.skynetuuid': skynetuuid,
+                'facebook.skynettoken': skynettoken
+            },
+            {
+                'google.skynetuuid': skynetuuid,
+                'google.skynettoken': skynettoken
+            }
+        ]
+        }, function(error, user){
+
+                if( error ) {
+                    console.log(JSON.stringify(error));
+                    res.json(400, error);
+                }
+                //Throw an exception
+                if( ! user ){
+                  reject({
+                      'error' : 'Invalid user'
+                  });
+                }
+
+                if(! user.groups ){
+                    user.groups = [];
+                }
+
+                var existingGroup = _.findWhere(user.groups, { 'name' : name});
+
+                if(existingGroup ) {
+                   return res.json(400, {'error' : 'group already exists'});
+                }
+
+                var group = new Group({
+                    'name' : name,
+                    'uuid' : uuid.v1(),
+                    'type' : 'default',
+                    'permissions' : permissions
+                });
+
+                user.groups.push(group);
+                user.markModified('groups');
+                user.save(function(error, userInfo){
+                    if(error){
+                        console.log(JSON.stringify(error));
+                        //Don't return the error object back to the client.
+                        res.json(500, 'Internal Server Error');
+                    }
+                    var addedGroup = userInfo.groups.id(group._id);
+                    res.json(200, addedGroup );
+                });
+            });
+
+    }
+};
+
+
 
 module.exports = function(app){
     // GET POST PUT DELETE /groups
@@ -20,96 +117,14 @@ module.exports = function(app){
             if (err) {
                 res.send(err);
             } else {
-
                 res.json({groups:userInfo.groups});
             }
         });
     });
 
+// curl -X POST -H 'Content-Type:application/json' -d '{"name":"family","permissions":{"discover":true,"message":true,"configure":false}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
 
-// curl -X POST -H 'Content-Type:application/json' -d '{"name":"family","type":"operators","permissions":{"discover":true,"message":true,"configure":false}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
-
-    app.post('/api/user/:id/groups', function (req, res) {
-        User.findOne({ $or: [
-            {'local.skynetuuid' : req.params.id},
-            {'twitter.skynetuuid' : req.params.id},
-            {'facebook.skynetuuid' : req.params.id},
-            {'google.skynetuuid' : req.params.id}
-        ]
-        }, function(err, userInfo) {
-            // console.log(userInfo);
-            if (err) {
-                res.send(err);
-            } else {
-                if (userInfo.groups == undefined){
-                    userInfo.groups = [];
-                };
-                // console.log(userInfo.groups);
-                // if(_.contains(userInfo.groups, req.params.name)){
-                //   res.json({error:"Group already exists"});
-                // } else {
-                //   var newUuid = uuid.v1();
-                //   // res.json({groups:userInfo.groups});
-                // };
-
-                var newUuid = uuid.v1();
-                try {
-                    var data = JSON.parse(req.body);
-                } catch (e){
-                    var data = req.body;
-                }
-
-                if (data.permissions){
-                    if (data.permissions.discover){
-                        var discover = true;
-                    } else {
-                        var discover = false;
-                    }
-                    if (data.permissions.message){
-                        var message = true;
-                    } else {
-                        var message = false;
-                    }
-                    if (data.permissions.configure){
-                        var configure = true;
-                    } else {
-                        var configure = false;
-                    }
-                } else {
-                    var discover = false;
-                    var message = false;
-                    var configure = false;
-                }
-
-                var group = {
-                    uuid: newUuid,
-                    name: data.name,
-                    type: data.type,
-                    permissions: {
-                        discover: discover,
-                        message: message,
-                        configure: configure
-                    },
-                    members: [],
-                    devices: []
-                };
-                userInfo.groups.push(group);
-                console.log(userInfo.groups);
-                userInfo.markModified('groups');
-
-                userInfo.save(function(err, data, numberAffected) {
-                    if(!err) {
-                        console.log(userInfo);
-                        res.json({groups:userInfo.groups});
-
-                    } else {
-                        console.log('Error: ' + err);
-                        res.json(err);
-                    }
-                });
-            }
-        });
-    });
+    app.post('/api/user/:id/:token/groups', groupController.addGroup );
 
 // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/76893990-cbe9-11e3-897a-b94740070267
     app.delete('/api/user/:id/groups/:uuid', function (req, res) {

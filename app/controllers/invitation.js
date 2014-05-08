@@ -11,8 +11,7 @@ var _ = require('lodash'),
     mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
     InvitationSchema = require('../models/invitation'),
-    GroupSchema = require('../models/group'),
-    Group = mongoose.model('Group', GroupSchema),
+    Group = mongoose.model('Group'),
     User = mongoose.model('User'),
     Invitation = mongoose.model('Invitation', InvitationSchema);
 

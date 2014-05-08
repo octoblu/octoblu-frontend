@@ -45,19 +45,6 @@
                     <h1 class="col-xs-12 col-sm-12 col-md-11 col-lg-11" style="margin-top: 25px;">
                         <i class='fa fa-lock'></i>
                         <span>Admin</span>
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle sr-only" type="button" id="invitationDropDownBtn" data-toggle="dropdown">
-                                Dropdown
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="invitationDropDown">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                            </ul>
-                        </div>
                         <form class="form-inline pull-right" role="form" ng-controller="invitationController"
                               style="margin-top: 0px;">
                             <div class="form-group">
@@ -84,10 +71,10 @@
                         <form class="form-inline pull-right" role="form">
                             <div class="form-group">
                                 <label class="sr-only" for="add-group-name">Email address</label>
-                                <input type="text" required="required" ng-model="newGroupName" class="form-control" id="add-group-name"
-                                       placeholder="Enter a Group Name">
+                                <input type="text" ng-model="groupName" name="groupName" class="form-control" id="add-group-name"
+                                       placeholder="Enter a Group Name" required>
                             </div>
-                            <button type="button" ng-submit="addGroup()" class="btn btn-default"><i class="fa fa-plus"></i>Add Group</button>
+                            <button type="button" ng-click="addGroup()" class="btn btn-default"><i class="fa fa-plus"></i>Add Group</button>
                         </form>
                     </div>
                     <h3 class="text-center text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12">Groups</h3>
