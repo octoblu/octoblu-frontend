@@ -5,11 +5,17 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User');
 
 module.exports = function ( app, passport, config ) {
+
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.clearCookie('skynetuuid', {domain: config.domain});
 		res.clearCookie('skynettoken', {domain: config.domain});
-		res.redirect('/');
+		// Check for deeplink redirect > http://localhost:8080/logout?referrer=http:%2F%2Flocalhost%2Fauth.js
+		if(req.query.referrer && req.query.referrer.length){
+			return res.redirect(req.query.referrer);
+		} else {
+			res.redirect('/');
+		}
 	});
 
 	app.post('/login', function(req, res, next) {

@@ -12,8 +12,22 @@
 
             <div class="container-fluid">
               <div class="row">
+                <h2>Stream Live Data</h2>
                 <div class="input-group">
-                  <form class="form-inline col-md-12" role="form">
+                  <form class="form-inline col-md-12">
+                  <div class="form-group col-md-8">
+                  <select ng-model="device" ng-options="device.name for device in devices" class="form-control"></select>            
+                </div>
+                </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row">
+                <h2>Search Analytics</h2>
+                <div class="input-group">
+                  <form class="form-inline col-md-12">
                     <div class="form-group col-md-8">
                       <input type="text" class="form-control" ng-model="searchText" placeholder="Search" autofocus>
                     </div>

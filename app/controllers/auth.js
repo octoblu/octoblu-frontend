@@ -6,6 +6,9 @@ var request = require('request'),
     crypto = require('crypto'),
     url = require('url'),
     User = mongoose.model('User');
+    
+// Using MongoJS on SkyNet database queries to avoid schemas
+var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
 
@@ -19,14 +22,6 @@ module.exports = function (app, passport, config) {
     var generateCSRFToken = function() {
         return crypto.randomBytes(18).toString('base64')
         .replace(/\//g, '-').replace(/\+/g, '_');
-    }
-
-    var generateRedirectURI = function(req) {
-        return url.format({
-            protocol: req.protocol,
-            host: req.headers.host,
-            pathname: app.path() + '/callback'
-        });
     }
 
     var handleOauth1 = function (name, req, res, next) {
@@ -48,52 +43,9 @@ module.exports = function (app, passport, config) {
         });
     };
 
-    var saveOAuthInfo = function(name, uuid, key, token, secret, verifier) {
-        User.findOne({ $or: [
-            {'local.skynetuuid' : uuid},
-            {'twitter.skynetuuid' : uuid},
-            {'facebook.skynetuuid' : uuid},
-            {'google.skynetuuid' : uuid}
-        ]
-        }, function(err, user) {
-            if(!err) {
-                user.addOrUpdateApiByName(name, 'oauth', key, token, secret, null, verifier, null);
-                user.save(function(err) {
-                    return true;
-                });
-            } else { return false; }
-        });
-    };
-
-    var getOAuthInstanceFromConfig = function(configSection) {
-        var OAuth = require('oauth').OAuth;
-
-        var oa = new OAuth(
-            configSection.requestTokenURL,
-            configSection.accessTokenURL,
-            configSection.consumerKey,
-            configSection.consumerSecret,
-            configSection.oauthVersion,
-            configSection.callbackURL,
-            'HMAC-SHA1'
-        );
-
-        return oa;
-    };
-
-    var getOAuthInstance = function(req, api) {
-        if(api.auth_strategry!='oauth' && !api.oauth) {return null;}
-
-        if(api.oauth.version=='1.0') {
-            return getOauth1Instance(req, api);
-        }
-
-        // should be oauth2 at this point..
-        return getOauth2Instance(api);
-    };
-
     var getOauth1Instance = function(req, api) {
-        return new require('oauth').OAuth(
+        var OAuth = require('oauth');
+        return new OAuth.OAuth(
                 api.oauth.requestTokenURL,
                 api.oauth.accessTokenURL,
                 api.oauth.key,
@@ -126,44 +78,6 @@ module.exports = function (app, passport, config) {
         }
     }
 
-    var handleCustomOAuthCallback = function(req, res, name) {
-        req.session.oauth.verifier = req.query.oauth_verifier;
-        var oauth = req.session.oauth;
-
-        var oa = getOAuthInstanceFromConfig(config[name.toLowerCase()]);
-
-        oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
-            function(error, oauth_access_token, oauth_access_token_secret, results){
-                if (error){
-                    console.log(error);
-                    // res.send('yeah something broke.');
-                    res.redirect(500, '/connector/channels/' + name);
-                } else {
-                    User.findOne({ $or: [
-                        {'local.skynetuuid' : req.cookies.skynetuuid},
-                        {'twitter.skynetuuid' : req.cookies.skynetuuid},
-                        {'facebook.skynetuuid' : req.cookies.skynetuuid},
-                        {'google.skynetuuid' : req.cookies.skynetuuid}
-                    ]
-                    }, function(err, user) {
-                        if(!err) {
-                            user.addOrUpdateApiByName(name, 'oauth', null,
-                                oauth_access_token, oauth_access_token_secret, null, null);
-                            user.save(function(err) {
-                                console.log('saved oauth token');
-                                return handleApiCompleteRedirect(res, name, err);
-                            });
-                        } else {
-                            console.log('error saving oauth token');
-                            res.redirect('/connector/channels/'+name);
-                        }
-                    });
-
-                }
-            }
-        );
-    };
-
     var parseHashResponse = function(body) {
         var ar1 = body.split('&');
         var result = {};
@@ -183,14 +97,25 @@ module.exports = function (app, passport, config) {
                 if (err) { return next(err); }
 
                 // Check if user exists in Skynet
-                request.get('http://skynet.im/devices',
-                    {qs: {'email': user.facebook.email}}
-                    , function (error, response, body) {
+                skynetdb.find({
+                  email: user.facebook.email
+                }, function(error, body) {
+                    console.log('MONGOJS ERROR', error);
+                    console.log('MONGOJS BODY', body);
+
+                // request.get('http://skynet.im/devices',
+                //     {qs: {'email': user.facebook.email}}
+                //     , function (error, response, body) {
+
                         console.log(body);
-                        var data = JSON.parse(body);
+                        try{
+                            var data = JSON.parse(body);
+                        } catch(e){
+                            var data = body;
+                        }
                         if(data.error){
 
-                            // Add user to Skynet
+                            // Add user to Skynet                            
                             request.post('http://skynet.im/devices',
                                 {form: {'type':'user', 'email': user.facebook.email}}
                                 , function (error, response, body) {
@@ -283,11 +208,21 @@ module.exports = function (app, passport, config) {
                 console.log(info);
 
                 // Check if user exists in Skynet
-                request.get('http://skynet.im/devices',
-                    {qs: {'email': user.twitter.username + '@twitter'}}
-                    , function (error, response, body) {
+                skynetdb.find({
+                  email: user.twitter.username + '@twitter'
+                }, function(error, body) {
+                    console.log('MONGOJS ERROR', error);
+                    console.log('MONGOJS BODY', body);
+
+                // request.get('http://skynet.im/devices',
+                //     {qs: {'email': user.twitter.username + '@twitter'}}
+                //     , function (error, response, body) {
                         console.log(body);
-                        var data = JSON.parse(body);
+                        try{
+                            var data = JSON.parse(body);
+                        } catch(e){
+                            var data = body;
+                        }
                         if(data.error){
 
                             // Add user to Skynet
@@ -387,10 +322,20 @@ module.exports = function (app, passport, config) {
                 console.log(info);
 
                 // Check if user exists in Skynet
-                request.get('http://skynet.im/devices',
-                    {qs: {'email': user.google.email}}
-                    , function (error, response, body) {
-                        var data = JSON.parse(body);
+                skynetdb.find({
+                  email: user.google.email
+                }, function(error, body) {
+                    console.log('MONGOJS ERROR', error);
+                    console.log('MONGOJS BODY', body);
+
+                // request.get('http://skynet.im/devices',
+                //     {qs: {'email': user.google.email}}
+                //     , function (error, response, body) {
+                        try{
+                            var data = JSON.parse(body);
+                        } catch(e){
+                            var data = body;
+                        }
                         if(data.error){
 
                             // Add user to Skynet
@@ -497,14 +442,14 @@ module.exports = function (app, passport, config) {
                             oauth_signature_method: 'HMAC-SHA1',
                             oauth_timestamp: timestamp,
                             oauth_nonce: nonce,
-                            oauth_callback: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
+                            oauth_callback: getOAuthCallbackUrl(req, api.name) 
                         };
                     } else {
                         query = {
                             client_id: api.oauth.clientId,
                             response_type: 'code',
                             state: csrfToken,
-                            redirect_uri: getOAuthCallbackUrl(req, api.name) // generateRedirectURI(req)
+                            redirect_uri: getOAuthCallbackUrl(req, api.name) 
                         };
                     }
 
@@ -512,7 +457,13 @@ module.exports = function (app, passport, config) {
                         query.scope = api.oauth.scope;
                     }
 
-                    console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath, query);
+                    var redirectURL = url.format({
+                        protocol: api.oauth.protocol,
+                        hostname: api.oauth.host,
+                        pathname: api.oauth.authTokenPath,
+                        query: query
+                    });
+                    console.log(redirectURL);
                     res.redirect(url.format({
                         protocol: api.oauth.protocol,
                         hostname: api.oauth.host,
@@ -524,7 +475,7 @@ module.exports = function (app, passport, config) {
                     var oauth2 = getOauth2Instance(api);
                     var authorization_uri = oauth2.AuthCode.authorizeURL({
                         redirect_uri: getOAuthCallbackUrl(req, api.name),
-                        scope: 'notifications',
+                        scope: api.oauth.scope,
                         state: '3(#0/!~'
                     });
                     console.log(api.oauth);
@@ -533,7 +484,8 @@ module.exports = function (app, passport, config) {
                 }
 
             } else {
-                var oa = getOAuthInstance(req, api);
+                // oauth 1.0..
+                var oa = getOauth1Instance(req, api);
                 oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
                     if (error) {
                         console.log(error);
@@ -580,7 +532,7 @@ module.exports = function (app, passport, config) {
                     var form = {
                             code: req.query.code,
                             grant_type: api.oauth.grant_type,
-                            redirect_uri: getOAuthCallbackUrl(req, api.name) //generateRedirectURI(req)
+                            redirect_uri: getOAuthCallbackUrl(req, api.name) 
                         };
                     if(api.name==='Bitly') {
                         delete form.grant_type;
@@ -655,7 +607,6 @@ module.exports = function (app, passport, config) {
                     });
                 } else {
                     var OAuth2 = getOauth2Instance(api);
-                    // var OAuth2 = getOAuthInstance(req, api);
                     var code = req.query.code;
                     console.log('oauth2 lib getting token...');
 
@@ -691,10 +642,11 @@ module.exports = function (app, passport, config) {
                 }
 
             } else {
+                // oauth 1.0 here
                 req.session.oauth.verifier = req.query.oauth_verifier;
                 var oauth = req.session.oauth;
 
-                var oa = getOAuthInstance(req, api);
+                var oa = getOauth1Instance(req, api);
                 oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
                     function(error, oauth_access_token, oauth_access_token_secret, results){
                         if (error){

@@ -121,7 +121,7 @@ angular.module('octobluApp')
                         socket.emit('message', {
                             "devices": uuid,
                             "subdevice": $scope.subdevicename,
-                            "message": message
+                            "payload": message
                         }, function(data){
                             console.log(data);
                         });

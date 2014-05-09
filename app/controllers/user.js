@@ -45,11 +45,11 @@ module.exports = function (app) {
             if (err) {
                 res.send(err);
             } else {
-              console.log('finding the selected api');
-              var apiSettings = userInfo.api.filter(function (resource) {
-                return resource.name === req.params.name;
-              })[0];
-              res.json(apiSettings);
+                console.log('finding the selected api');
+                var apiSettings = userInfo.api.filter(function (resource) {
+                    return resource.name === req.params.name;
+                })[0];
+                res.json(apiSettings);
             }
         });
     });
