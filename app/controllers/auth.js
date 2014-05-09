@@ -40,17 +40,6 @@ module.exports = function (app, passport, config) {
         });
     };
 
-    var getOAuthInstance = function(req, api) {
-        if(api.auth_strategry!='oauth' && !api.oauth) {return null;}
-
-        if(api.oauth.version=='1.0') {
-            return getOauth1Instance(req, api);
-        }
-
-        // should be oauth2 at this point..
-        return getOauth2Instance(api);
-    };
-
     var getOauth1Instance = function(req, api) {
         var OAuth = require('oauth');
         return new OAuth.OAuth(
@@ -461,7 +450,8 @@ module.exports = function (app, passport, config) {
                 }
 
             } else {
-                var oa = getOAuthInstance(req, api);
+                // oauth 1.0..
+                var oa = getOauth1Instance(req, api);
                 oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
                     if (error) {
                         console.log(error);
@@ -583,7 +573,6 @@ module.exports = function (app, passport, config) {
                     });
                 } else {
                     var OAuth2 = getOauth2Instance(api);
-                    // var OAuth2 = getOAuthInstance(req, api);
                     var code = req.query.code;
                     console.log('oauth2 lib getting token...');
 
@@ -619,10 +608,11 @@ module.exports = function (app, passport, config) {
                 }
 
             } else {
+                // oauth 1.0 here
                 req.session.oauth.verifier = req.query.oauth_verifier;
                 var oauth = req.session.oauth;
 
-                var oa = getOAuthInstance(req, api);
+                var oa = getOauth1Instance(req, api);
                 oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
                     function(error, oauth_access_token, oauth_access_token_secret, results){
                         if (error){
