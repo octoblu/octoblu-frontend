@@ -149,9 +149,9 @@ angular.module('octobluApp')
          * @param group_uuid
          * @returns {defer.promise|*}
          */
-        this.getGroup = function(uuid, token, group_uuid ){
+        this.getGroup = function(uuid, group_uuid ){
             var defer = $q.defer();
-            if(! (uuid && token) ){
+            if(! (uuid) ){
                 defer.reject({
                     'error' : 'Missing uuid and/or token'
                 });
@@ -163,7 +163,7 @@ angular.module('octobluApp')
                 });
             }
 
-            var url = '/api/user/' + uuid + '/' + token + '/groups/' + group_uuid;
+            var url = '/api/user/' + uuid + '/groups/' + group_uuid;
             $http.get(url)
                 .success(function(group){
                     defer.resolve(group);

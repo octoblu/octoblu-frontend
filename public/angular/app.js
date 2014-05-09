@@ -66,27 +66,27 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'DeviceController'
             })
             .state('connector.devices.wizard', {
-                url : '/wizard',
-                abstract : true,
-                templateUrl : 'pages/connector/devices/wizard/index.html',
+                url: '/wizard',
+                abstract: true,
+                templateUrl: 'pages/connector/devices/wizard/index.html',
                 controller: 'DeviceWizardController'
 
 
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
-                templateUrl : 'pages/connector/devices/wizard/instructions.html',
-                onExit : function(){
+                templateUrl: 'pages/connector/devices/wizard/instructions.html',
+                onExit: function () {
 
                 }
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
-                templateUrl : 'pages/connector/devices/wizard/find-hub.html',
-                onEnter: function(){
+                templateUrl: 'pages/connector/devices/wizard/find-hub.html',
+                onEnter: function () {
 
                 },
-                onExit : function(){
+                onExit: function () {
 
                 }
             })
@@ -97,13 +97,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.channels.index', {
                 url: '',
-                templateUrl : 'pages/connector/channels/index.html',
-                controller  : 'connectorController'
+                templateUrl: 'pages/connector/channels/index.html',
+                controller: 'connectorController'
             })
             .state('connector.channels.detail', {
                 url: '/:name',
-                templateUrl : 'pages/connector/channels/detail.html',
-                controller  : 'apiController'
+                templateUrl: 'pages/connector/channels/detail.html',
+                controller: 'apiController'
             })
             .state('connector.channels.resources', {
                 url: '/resources',
@@ -147,26 +147,31 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'controllerController'
             })
             .state('admin', {
-                abstract : true,
+                abstract: true,
                 url: '/admin',
                 templateUrl: 'pages/admin/index.html',
-                controller: 'adminController'
+                controller: 'adminController',
+                resolve: {
+                    currentUser: function (userService) {
+                        return userService.getCurrentUser();
+                    }
+                }
             })
             .state('admin.all', {
                 url: '/groups',
-                parent : 'admin',
+                parent: 'admin',
                 templateUrl: 'pages/admin/groups/all.html',
                 controller: 'adminController'
             })
             .state('admin.detail', {
-                parent : 'admin',
+                parent: 'admin',
                 url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',
-                onEnter : function(){
+                onEnter: function () {
                     console.log('Entering admin groups detail');
                 },
-                onExit : function(){
+                onExit: function () {
 
                 }
             })
@@ -187,7 +192,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('community', {
                 url: '/community',
-                templateUrl : 'pages/community.html'
+                templateUrl: 'pages/community.html'
             })
             .state('services', {
                 url: '/services',
@@ -241,7 +246,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 }
             } else {
                 var userService = $injector.get('userService');
-                userService.getUser(user, function(data) {
+                userService.getUser(user, function (data) {
                     var token;
 
                     $scope.user_id = data._id;
@@ -249,7 +254,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     $rootScope.authorization.isAuthenticated = true;
 
                     if (data.local) {
-                        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />' );
+                        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />');
                         $(".user-name").html(data.local.email.toString());
                         $scope.user = data.local.email;
                         $scope.skynetuuid = data.local.skynetuuid;
@@ -262,14 +267,14 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         $scope.skynettoken = data.twitter.skynettoken;
                         token = data.twitter.skynettoken;
                     } else if (data.facebook) {
-                        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />' );
+                        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />');
                         $(".user-name").html(data.facebook.name.toString());
                         $scope.user = data.facebook.name;
                         $scope.skynetuuid = data.facebook.skynetuuid;
                         $scope.skynettoken = data.facebook.skynettoken;
                         token = data.facebook.skynettoken;
                     } else if (data.google) {
-                        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />' );
+                        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />');
                         $(".user-name").html('+' + data.google.name.toString());
                         $scope.user = data.google.name;
                         $scope.skynetuuid = data.google.skynetuuid;
@@ -301,29 +306,45 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             var modalInstance = $modal.open({
                 template: modalHtml, scope: $scope,
                 controller: function ($modalInstance) {
-                    $scope.ok = function () { $modalInstance.dismiss('ok'); if(okFN) {okFN();} };
-                    $scope.cancel = function () { $modalInstance.dismiss('cancel'); if(cancelFN) {cancelFN();} };
+                    $scope.ok = function () {
+                        $modalInstance.dismiss('ok');
+                        if (okFN) {
+                            okFN();
+                        }
+                    };
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                        if (cancelFN) {
+                            cancelFN();
+                        }
+                    };
                 }
             });
 
             modalInstance.result.then(
-                function (response) { if(response==='ok') { $log.info('clicked ok'); } },
-                function () { $log.info('Modal dismissed at: ' + new Date()); }
+                function (response) {
+                    if (response === 'ok') {
+                        $log.info('clicked ok');
+                    }
+                },
+                function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                }
             );
 
         };
 
         //They have logged in so create a skynetClient
-        if( $cookies.skynetuuid && $cookies.skynettoken){
+        if ($cookies.skynetuuid && $cookies.skynettoken) {
 
-            if($rootScope.skynetClient === undefined ){
+            if ($rootScope.skynetClient === undefined) {
                 $rootScope.skynetClient = skynet({
-                    'uuid' : $cookies.skynetuuid,
-                    'token' : $cookies.skynettoken
-                }, function(e, socket){
-                    if( e ){
+                    'uuid': $cookies.skynetuuid,
+                    'token': $cookies.skynettoken
+                }, function (e, socket) {
+                    if (e) {
                         console.log(e.toString());
-                    } else{
+                    } else {
                         $rootScope.skynetSocket = socket;
                     }
                 });
