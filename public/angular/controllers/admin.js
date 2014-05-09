@@ -35,6 +35,11 @@ angular.module('octobluApp')
             }
         };
 
+        $scope.deleteGroup = function(group){
+
+
+        };
+
         $scope.getDeviceImageUrl = function(device){
             if(device && device.type === 'gateway' ){
                 return '/assets/images/network_hub.png';

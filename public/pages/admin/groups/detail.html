@@ -1,0 +1,51 @@
+    <h2 class="text-center col-xs-12 col-sm-12 col-md-10 col-lg-10">Detail</h2>
+    <div class="panel purple-border col-xs-12 col-sm-12 col-md-4 col-lg-4 group-info-panel people-panel">
+        <div class="panel-heading purple-background">
+            <h3 class="title text-center">
+                <i class="fa fa-user fa-lg" style="margin-right: 5px;"></i>People
+            </h3>
+        </div>
+        <div class="panel-body group-info-panel-body ">
+            <ul class="list-group">
+                <li data-ng-repeat="member in group.members" class="list-group-item">
+                    <i class="fa fa-user"></i>
+                    {{member.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel panel-default col-xs-12 col-sm-12 col-md-2 col-lg-2 group-info-panel permissions-panel">
+        <div class="panel-heading">
+            <h3 class="title text-center">
+                <i class="fa fa-lock fa-lg" style="margin-right: 5px;"></i>Permissions
+            </h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+
+                </li>
+                <li class="list-group-item">
+
+                </li>
+                <li class="list-group-item">
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel grass-green-border col-xs-12 col-sm-12 col-md-4 col-lg-4 group-info-panel device-panel">
+        <div class="panel-heading grass-green-background">
+            <h3 class="title text-center">
+                <i class="fa fa-hdd-o fa-lg"></i> Devices
+            </h3>
+        </div>
+        <div class="panel-body group-info-panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="device in group.devices" style="min-height: 50px;">
+                    <img src="{{getDeviceImageUrl(device)}}" class="pull-left" style="height: 32px; width: 32px; margin-right: 20px;">
+                    <div style="">{{device.name}}</div>
+                </li>
+            </ul>
+        </div>
+    </div>

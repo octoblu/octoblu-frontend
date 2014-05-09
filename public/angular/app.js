@@ -152,15 +152,23 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/admin/index.html',
                 controller: 'adminController'
             })
-            .state('admin.groups', {
+            .state('admin.all', {
                 url: '/groups',
+                parent : 'admin',
                 templateUrl: 'pages/admin/groups/all.html',
                 controller: 'adminController'
             })
-            .state('admin.groups.detail', {
-                url: '/:groupId',
+            .state('admin.detail', {
+                parent : 'admin',
+                url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
-                controller: 'adminController'
+                controller: 'adminGroupDetailController',
+                onEnter : function(){
+                    console.log('Entering admin groups detail');
+                },
+                onExit : function(){
+
+                }
             })
             .state('analyzer', {
                 url: '/analyzer',
