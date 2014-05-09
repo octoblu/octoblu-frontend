@@ -827,10 +827,10 @@ module.exports = function (app) {
         var members = _.intersection(currentGroup.members, group.members);
         var commonDevices = _.intersection(currentGroup.devices, group.devices);
         var permission = {};
-        if (currentGroup.permissions){
-          permission.discover = currentGroup.permissions.discover || group.permission.discover;
-          permission.message = currentGroup.permissions.message || group.permission.message;
-          permssion.configure = currentGroup.permissions.configure || group.permission.configure;          
+        if (currentGroup.permissions && group.permissions){
+          permission.discover = currentGroup.permissions.discover || group.permissions.discover;
+          permission.message = currentGroup.permissions.message || group.permissions.message;
+          permission.configure = currentGroup.permissions.configure || group.permissions.configure;          
         } else {
           // TODO: not sure about this...
           permission.discover = false;
@@ -842,7 +842,7 @@ module.exports = function (app) {
             'group'  : group,
             'members' : members,
             'commonDevices' : commonDevices,
-            'permission' : permission
+            'permissions' : permission
         }
 
       });
@@ -857,27 +857,31 @@ module.exports = function (app) {
       console.log("UUID in Current Group", uuid);
 
       var otherGroupsContainingDevice = _.find(groupPermissions, function(groupPermission){
-        var deviceIndex = _.indexOf(groupPermission.group.devices, uuid );
+        console.log('OTHER GROUP PERMISSIONS', groupPermission);
+        var deviceIndex = _.indexOf(groupPermission.devices, uuid );
         return deviceIndex >= 0;
       });
-
       //Do the merge get all the members that you have in common with each group
       //Write the permissions to skynet
+      var otherGroupsContainingDevice = [otherGroupsContainingDevice];
       console.log('otherGroupsContainingDevice', otherGroupsContainingDevice);
 
       if(otherGroupsContainingDevice ){
 
         var uniqueMembers = _.reduceRight(otherGroupsContainingDevice , function( currentMembers, groupPermission, index) {
-          currentMembers = _.uniq(_.union(groupPermission.group.members, currentMembers));
+          currentMembers = _.uniq(_.union(groupPermission.members, currentMembers));
+          console.log('groupPermission', groupPermission);
+          console.log('currentMembers', currentMembers);
           return currentMembers;
         }, currentGroup.members);
 
          var mergedPermission = _.reduce(otherGroupsContainingDevice, function(currentPermission, groupPermission, index ){
-            currentPermission.discover || groupPermission.permission.discover;
-            currentPermission.configure || groupPermission.permission.configure;
-            currentPermission.message || groupPermission.permission.message;
+            currentPermission.discover || groupPermission.permissions.discover;
+            currentPermission.configure || groupPermission.permissions.configure;
+            currentPermission.message || groupPermission.permissions.message;
             return currentPermission;
-          }, currentPermission.permission);
+          // }, currentPermission.permissions);
+          }, currentGroup.permissions);
 
          var viewPermissions = [];
          var updatePermissions = [];
@@ -901,19 +905,19 @@ module.exports = function (app) {
          */
           for (device in devices){
             if (devices[device].uuid == uuid ){
-              console.log('writing to skynet', devices[device]);
-              request.put('http://skynet.im/devices/' + devices[device].uuid,
+              console.log('writing to skynet', devices[device], viewPermissions, sendPermissions, updatePermissions);
+              request.put('http://skynet.im/devices/' + devices[device].uuid + '?token=' + devices[device].token,
                 {form: {
-                  'token': devices[device].token,
                   'viewWhitelist': viewPermissions,
                   'sendWhitelist': sendPermissions,
                   'updateWhitelist': updatePermissions
                 }}
                 , function (error, response, body) {
-                  if(response.statusCode == 200){
+                  // if(response.statusCode == 200){
+                    console.log(error);
                     console.log(response);
                     console.log(body);
-                  }
+                  // }
                 }
               );
             }
@@ -948,14 +952,20 @@ module.exports = function (app) {
 
         for (var device=0; device < devices.length; device++) {
           if (devices[device].uuid = uuid){
-            console.log('writing to skynet', devices[device]);
+            console.log('writing to skynet', devices[device], viewPermissions, sendPermissions, updatePermissions);
             request.put('http://skynet.im/devices/' + devices[device].uuid + '?token=' + devices[device].token,
               {form: {
-                'token': devices[device].token,
                 'viewWhitelist': viewPermissions,
                 'sendWhitelist': sendPermissions,
                 'updateWhitelist': updatePermissions
               }}
+              , function (error, response, body) {
+                // if(response.statusCode == 200){
+                  console.log(error);
+                  console.log(response);
+                  console.log(body);
+                // }
+              }
             )
             // break;
           }
