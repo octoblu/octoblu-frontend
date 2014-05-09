@@ -531,7 +531,7 @@ module.exports = function (app, passport, config) {
                     var oauth2 = getOauth2Instance(api);
                     var authorization_uri = oauth2.AuthCode.authorizeURL({
                         redirect_uri: getOAuthCallbackUrl(req, api.name),
-                        scope: api.oauth.scope || 'notifications',
+                        scope: api.oauth.scope,
                         state: '3(#0/!~'
                     });
                     console.log(api.oauth);
