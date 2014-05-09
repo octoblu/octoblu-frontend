@@ -41,11 +41,13 @@ module.exports = function(app, passport) {
           // console.log(req.query.referrer);
             // Check for deep link redirect based on referrer in querystring
             if(req.query.referrer && req.query.referrer.length){
-                return res.redirect(req.query.referrer + '?uuid=' + data.uuid + '&token=' + data.token);
-            } else {
+                if(req.cookies.skynetuuid && req.cookies.skynettoken){
+                    return res.redirect(req.query.referrer + '?uuid=' + req.cookies.skynetuuid + '&token=' + req.cookies.skynettoken);
+                }
                 req.session.redirect = req.query.referrer;
-                res.sendfile('./public/index.html');
             }
+
+            res.sendfile('./public/index.html');
         });
 
 
