@@ -2,12 +2,10 @@
 [![Dependency Status](https://david-dm.org/nostalgiaz/bootstrap-switch.svg?theme=shields.io)](https://david-dm.org/nostalgiaz/bootstrap-switch)
 [![devDependency Status](https://david-dm.org/nostalgiaz/bootstrap-switch/dev-status.svg?theme=shields.io)](https://david-dm.org/nostalgiaz/bootstrap-switch#info=devDependencies)
 [![NPM Version](http://img.shields.io/npm/v/bootstrap-switch.svg)](https://www.npmjs.org/)
+[![Gittip nostalgiaz](http://img.shields.io/gittip/nostalgiaz.svg)](https://www.gittip.com/nostalgiaz)
 [![Gittip LostCrew](http://img.shields.io/gittip/LostCrew.svg)](https://www.gittip.com/LostCrew)
 
 Turn checkboxes and radio buttons in toggle switches.
-
-**Version 3 is almost ready and features a entire API redesign and source rewriting. Knowing that, your help would be decisive to ship it within days. Give the branch `3.0` a try and post any bugs you might encounter or improvements you would like to integrate in the final release.
-With heart, many thanks.**
 
 ## Demo and Documentation
 http://www.bootstrap-switch.org
@@ -42,6 +40,17 @@ Enjoy.
 ## Less
 
 If you want to use your bootstrap variables, include `bootstrap-switch.less` in your compilation stack. You can even choose among Bootstrap versions 2.3.2 or 3.*.* compatible source.
+
+## AngularJs
+Two custom directives are available:
+- [angular-bootstrap-switch](https://github.com/frapontillo/angular-bootstrap-switch)
+- [angular-toggle-switch](https://github.com/JumpLink/angular-toggle-switch)
+
+## KnockoutJs
+A Knockout binding handler is available [here](https://github.com/pauloortins/knockout-bootstrap-switch)
+
+## NuGet
+A NuGet package is available [here](https://github.com/blachniet/bootstrap-switch-nuget)
 
 ## Supported browsers
 

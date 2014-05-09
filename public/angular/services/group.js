@@ -143,6 +143,38 @@ angular.module('octobluApp')
         };
 
         /**
+         * Gets the group for the user
+         * @param uuid
+         * @param token
+         * @param group_uuid
+         * @returns {defer.promise|*}
+         */
+        this.getGroup = function(uuid, token, group_uuid ){
+            var defer = $q.defer();
+            if(! (uuid && token) ){
+                defer.reject({
+                    'error' : 'Missing uuid and/or token'
+                });
+            }
+
+            if(! group_uuid ){
+                defer.reject({
+                    'error' : 'Missing required parameter: group uuid'
+                });
+            }
+
+            var url = '/api/user/' + uuid + '/' + token + '/groups/' + group_uuid;
+            $http.get(url)
+                .success(function(group){
+                    defer.resolve(group);
+                })
+                .error(function(result){
+                    defer.reject(result);
+                });
+            return defer.promise;
+        };
+
+        /**
          *
          * @param newMember
          * @param user

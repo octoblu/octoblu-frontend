@@ -17,6 +17,7 @@ angular.module('octobluApp')
                 disabled : '@',
                 readOnly : '@',
                 value: '@',
+                'class' : '@',
                 ngModel: '='
             },
             template: '<input type="checkbox" >',
@@ -63,6 +64,7 @@ angular.module('octobluApp')
                 }
 
                 $(element).bootstrapSwitch();
+
 
               attr.$observe('state', function(val){
                   $(element).bootstrapSwitch('state', val);

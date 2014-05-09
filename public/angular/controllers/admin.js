@@ -48,7 +48,11 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('adminGroupDetailController', function($rootScope, $scope, $cookies, ownerService, userService,  GroupService) {
+    .controller('adminGroupDetailController', function($rootScope, $scope, $stateParams, $state, $cookies, ownerService, userService,  GroupService) {
+
+        var userPromise = $scope.userPromise;
+        $scope.groupPromise = GroupService.getGroup($cookies.skynetuuid, $cookies.skynettoken, $stateParams.uuid );
+
 
     })
     .controller('invitationController', function($rootScope, $cookies, $scope, InvitationService ) {
