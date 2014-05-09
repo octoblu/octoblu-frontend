@@ -1,8 +1,19 @@
 'use strict';
 
 angular.module('e2eApp')
-    .controller('analyzerController',function ($rootScope, $scope, $http, $injector, $cookies, elasticService) {
+    .controller('analyzerController',function ($rootScope, $scope, $http, $injector, $cookies, elasticService, ownerService) {
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
+
+            // Get user devices
+            ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
+                $scope.devices = data.devices;
+                for (var i in $scope.devices) {
+                    if($scope.devices[i].type == 'gateway'){
+                        $scope.devices.splice(i,1);
+                    }
+                }
+            });
+
 
             $scope.currentPage = 1;
 

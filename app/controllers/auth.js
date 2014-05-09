@@ -6,6 +6,9 @@ var request = require('request'),
     crypto = require('crypto'),
     url = require('url'),
     User = mongoose.model('User');
+    
+// Using MongoJS on SkyNet database queries to avoid schemas
+var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
 
@@ -94,14 +97,25 @@ module.exports = function (app, passport, config) {
                 if (err) { return next(err); }
 
                 // Check if user exists in Skynet
-                request.get('http://skynet.im/devices',
-                    {qs: {'email': user.facebook.email}}
-                    , function (error, response, body) {
+                skynetdb.find({
+                  email: user.facebook.email
+                }, function(error, body) {
+                    console.log('MONGOJS ERROR', error);
+                    console.log('MONGOJS BODY', body);
+
+                // request.get('http://skynet.im/devices',
+                //     {qs: {'email': user.facebook.email}}
+                //     , function (error, response, body) {
+
                         console.log(body);
-                        var data = JSON.parse(body);
+                        try{
+                            var data = JSON.parse(body);
+                        } catch(e){
+                            var data = body;
+                        }
                         if(data.error){
 
-                            // Add user to Skynet
+                            // Add user to Skynet                            
                             request.post('http://skynet.im/devices',
                                 {form: {'type':'user', 'email': user.facebook.email}}
                                 , function (error, response, body) {
@@ -194,11 +208,21 @@ module.exports = function (app, passport, config) {
                 console.log(info);
 
                 // Check if user exists in Skynet
-                request.get('http://skynet.im/devices',
-                    {qs: {'email': user.twitter.username + '@twitter'}}
-                    , function (error, response, body) {
+                skynetdb.find({
+                  email: user.twitter.username + '@twitter'
+                }, function(error, body) {
+                    console.log('MONGOJS ERROR', error);
+                    console.log('MONGOJS BODY', body);
+
+                // request.get('http://skynet.im/devices',
+                //     {qs: {'email': user.twitter.username + '@twitter'}}
+                //     , function (error, response, body) {
                         console.log(body);
-                        var data = JSON.parse(body);
+                        try{
+                            var data = JSON.parse(body);
+                        } catch(e){
+                            var data = body;
+                        }
                         if(data.error){
 
                             // Add user to Skynet
@@ -298,10 +322,20 @@ module.exports = function (app, passport, config) {
                 console.log(info);
 
                 // Check if user exists in Skynet
-                request.get('http://skynet.im/devices',
-                    {qs: {'email': user.google.email}}
-                    , function (error, response, body) {
-                        var data = JSON.parse(body);
+                skynetdb.find({
+                  email: user.google.email
+                }, function(error, body) {
+                    console.log('MONGOJS ERROR', error);
+                    console.log('MONGOJS BODY', body);
+
+                // request.get('http://skynet.im/devices',
+                //     {qs: {'email': user.google.email}}
+                //     , function (error, response, body) {
+                        try{
+                            var data = JSON.parse(body);
+                        } catch(e){
+                            var data = body;
+                        }
                         if(data.error){
 
                             // Add user to Skynet
