@@ -59,8 +59,8 @@ module.exports = function ( app, passport, config ) {
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
 
-        // Add user to Skynet
-		    request.post('http://skynet.im/devices',
+        // Add user to Skynet'
+		    request.post( req.protocol + '://' + app.locals.skynetUrl + '/devices',
 		    	{form: {"type":"user", "email": user.local.email}}
 			  , function (error, response, body) {
 			  		// console.log(response.statusCode, body);

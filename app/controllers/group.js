@@ -357,7 +357,7 @@ module.exports = function(app){
                         if (data.devices){
                             for (var device=0; i < data.devices.length; device++) {
                                 // Update Skynet device permissions
-                                request.put('http://skynet.im/devices/' + data.devices[device].uuid,
+                                request.put(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + data.devices[device].uuid,
                                     {form: {
                                         'token': data.devices[device].token,
                                         'viewPermissions': viewPerms,

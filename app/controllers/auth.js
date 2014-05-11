@@ -12,17 +12,18 @@ var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
 
+
     var getApiHashCode = function(clientSecret, requestCode) {
         var toHash = clientSecret + "|" + requestCode
         return crypto.createHash("sha256")
           .update(toHash)
           .digest("hex");
-    }
+    };
 
     var generateCSRFToken = function() {
         return crypto.randomBytes(18).toString('base64')
         .replace(/\//g, '-').replace(/\+/g, '_');
-    }
+    };
 
     var handleOauth1 = function (name, req, res, next) {
         var token = req.param('oauth_token'),
@@ -115,8 +116,8 @@ module.exports = function (app, passport, config) {
                         }
                         if(data.error){
 
-                            // Add user to Skynet                            
-                            request.post('http://skynet.im/devices',
+                            // Add user to Skynet
+                            request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
                                 {form: {'type':'user', 'email': user.facebook.email}}
                                 , function (error, response, body) {
                                     if(response.statusCode == 200){
@@ -226,7 +227,7 @@ module.exports = function (app, passport, config) {
                         if(data.error){
 
                             // Add user to Skynet
-                            request.post('http://skynet.im/devices',
+                            request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
                                 {form: {'type':'user', 'email': user.twitter.username + '@twitter'}}
                                 , function (error, response, body) {
                                     if(response.statusCode == 200){
@@ -339,7 +340,7 @@ module.exports = function (app, passport, config) {
                         if(data.error){
 
                             // Add user to Skynet
-                            request.post('http://skynet.im/devices',
+                            request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
                                 {form: {'type':'user', 'email': user.google.email}}
                                 , function (error, response, body) {
                                     if(response.statusCode == 200){

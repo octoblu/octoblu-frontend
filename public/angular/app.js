@@ -2,6 +2,10 @@
 
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngDragDrop'])
+    .constant('skynetConfig', {
+        'host' : '127.0.0.1', //change to the skynet.im instance
+        'port' : '3000'
+    })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -230,7 +234,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // For any unmatched url, redirect to /
 //        $urlRouterProvider.otherwise('/');
     })
-    .run(function ($rootScope, $state, $stateParams, $cookies) {
+    .run(function ($rootScope, $state, $stateParams, $cookies, skynetConfig) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
@@ -339,6 +343,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             if ($rootScope.skynetClient === undefined) {
                 $rootScope.skynetClient = skynet({
+                    'host' : skynetConfig.host,
+                    'port' : skynetConfig.port,
                     'uuid': $cookies.skynetuuid,
                     'token': $cookies.skynettoken
                 }, function (e, socket) {
