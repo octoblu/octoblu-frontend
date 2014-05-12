@@ -194,6 +194,7 @@ angular.module('octobluApp')
                         function() {
                             $log.info('ok clicked');
                             var device_to_delete = $scope.devices[idx];
+                            console.log(device_to_delete);
                             deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) {
                                 $scope.devices.splice(idx, 1);
                             });

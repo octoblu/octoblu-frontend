@@ -10,6 +10,7 @@ module.exports = function (app) {
         request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
         {qs: {'token': req.query.token }}
         , function (error, response, body) {
+                console.log("DEVICES", body);
                 var data = JSON.parse(body);
                 res.json(data);
             });
@@ -31,7 +32,7 @@ module.exports = function (app) {
             deviceData[obj[i]["key"]] = obj[i]["value"];
         }
 
-        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices' ,
+        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices' + req.params.id ,
             {form: deviceData}
             , function (error, response, body) {
                 var data = JSON.parse(body);
@@ -55,7 +56,7 @@ module.exports = function (app) {
             deviceData[obj[i]["key"]] = obj[i]["value"];
         }
 
-        request.put(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.body.uuid,
+        request.put(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.body.uuid+ '?token=' + deviceData.token,
             {form: deviceData}
             , function (error, response, body) {
                 var data = JSON.parse(body);
@@ -68,7 +69,7 @@ module.exports = function (app) {
     app.delete('/api/devices/:id/:token', function(req, res) {
 
         request.del(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
-            {form: {"token": req.params.token}}
+            {qs: {"token": req.params.token}}
             , function (error, response, body) {
                 var data = JSON.parse(body);
                 res.json(data);
