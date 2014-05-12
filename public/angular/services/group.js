@@ -139,13 +139,6 @@ angular.module('octobluApp')
             return defer.promise;
         };
 
-
-        this.deleteGroup = function( owner, group ){
-            var defer = $q.defer();
-
-            return defer.promise;
-        };
-
         /**
          * Gets the group for the user
          * @param uuid
@@ -173,17 +166,26 @@ angular.module('octobluApp')
                     'ob_skynetuuid' : uuid,
                     'ob_skynettoken' : token
                 }
+            }).success(function(group){
+                defer.resolve(group);
             })
-                .success(function(group){
-                    defer.resolve(group);
-                })
-                .error(function(result){
-                    defer.reject(result);
-                });
+            .error(function(result){
+                defer.reject(result);
+            });
+
             return defer.promise;
         };
 
-
+        /**
+         * Makes a rest call to delete the Group
+         *
+         * @param uuid - the Group owner uuid
+         * @param token - the Group owner token
+         * @param group_uuid - The uuid of the group
+         * @returns {defer.promise|*} a promise
+         * that will contain the deleted group if successful
+         * or an error.
+         */
         this.deleteGroup = function(uuid, token, group_uuid ){
             var defer = $q.defer();
             if( ! uuid || ! token || ! group_uuid ){
@@ -191,19 +193,19 @@ angular.module('octobluApp')
                     'error' : 'missing required parameters'
                 });
             } else {
-                var url = '/api/group/' + group_uuid;
+                var url = '/api/groups/' + group_uuid;
                 $http.delete(url , {
                     headers : {
                         'ob_skynetuuid' : uuid,
                         'ob_skynettoken' : token
                     }
+                }).success(function(group){
+                    defer.resolve(group);
+                }).error(function(result){
+                    defer.reject(result);
                 });
-
             }
-
-
             return defer.promise;
-
         };
 
         /**

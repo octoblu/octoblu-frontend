@@ -1,4 +1,4 @@
-var _ = require('underscore'),
+var _ = require('lodash'),
     moment = require('moment'),
     mongoose = require('mongoose'),
     GroupSchema = require('../models/group'),
@@ -255,29 +255,27 @@ var groupController = {
             if (err) {
                 res.send(err);
             } else {
-                var groupFound = false;
-                for (var i=0; i < userInfo.groups.length; i++) {
-                    if (userInfo.groups[i].uuid == req.params.uuid) {
-                        userInfo.groups.splice(i,1);
-                        userInfo.markModified('groups');
 
-                        userInfo.save(function(err) {
-                            if(!err) {
-                                console.log(userInfo);
-                                res.json({groups:userInfo.groups});
-
-                            } else {
-                                console.log('Error: ' + err);
-                                res.json(err);
-                            }
-                        });
-                        groupFound = true;
-                        break;
-                    }
-                }
-
-                if(!groupFound){
-                    res.json(404, {'group': 'not found'});
+                var group = _.findWhere(userInfo.groups, {
+                    'uuid' : req.params.uuid
+                });
+                //Find the group
+                if( group ){
+                    var groups = _.without(userInfo.groups, group );
+                    userInfo.groups = groups;
+                    userInfo.markModified('groups');
+                    userInfo.save(function(err){
+                        if( err ){
+                         return res.json(500, {
+                                'error' : 'Server Error : Could not delete group '
+                            });
+                        }
+                        return res.json(200, group );
+                    });
+                } else {
+                    res.json(404, {
+                        'error' : 'Group not found'
+                    });
                 }
 
             }
