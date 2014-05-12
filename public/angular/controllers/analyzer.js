@@ -55,17 +55,28 @@ angular.module('octobluApp')
             // SETUP CHART
             // http://smoothiecharts.org/tutorial.html
 
-            var line1 = new TimeSeries();
-            var line2 = new TimeSeries();
+            // var line1 = new TimeSeries();
+            // var line2 = new TimeSeries();
 
             // setInterval(function() {
             //   line1.append(new Date().getTime(), Math.random()*100);
             //   line2.append(new Date().getTime(), Math.random()*100);
             // }, 1000);
 
+            // for(var i =0; i < 10; i++){
+            //   var this['line' + i] = new TimeSeries();
+            // }
+
+            var line = [];
+            for(var i =0; i < 10; i++){
+              line[i] = new TimeSeries();
+            }            
+
+
+
             var smoothie = new SmoothieChart({ grid: { strokeStyle: 'rgb(125, 0, 0)', fillStyle: 'rgb(60, 0, 0)', lineWidth: 1, millisPerLine: 250, verticalSections: 6 } });
-            smoothie.addTimeSeries(line1, { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 3 });
-            smoothie.addTimeSeries(line2, { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 3 });
+            smoothie.addTimeSeries(line[1], { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 3 });
+            smoothie.addTimeSeries(line[2], { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 3 });
 
             smoothie.streamTo(document.getElementById("mycanvas"), 1000);
 
@@ -107,17 +118,20 @@ angular.module('octobluApp')
                   var sensorData = message.payload;
                   delete sensorData.uuid;
                   delete sensorData.ipAddress;
+                  delete sensorData.api;
+
+                  console.log(sensorData);
 
                   var index = 0
                   for (var property in sensorData) {
                       if (sensorData.hasOwnProperty(property)) {
                         index = index + 1
-                        console.log('+' + sensorData[property].trim() + '+');
+                        console.log('+' + sensorData[property] + '+');
                         if (sensorData[property] != undefined){
                           if (index == 1){
-                            line1.append(new Date().getTime(), sensorData[property].trim()*1);  
+                            line[index].append(new Date().getTime(), sensorData[property] *1);  
                           } else if (index == 2){
-                            line2.append(new Date().getTime(), sensorData[property].trim()*1);  
+                            line[index].append(new Date().getTime(), sensorData[property] *1);  
                           }
                           
                         }
