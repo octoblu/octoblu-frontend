@@ -50,52 +50,54 @@ module.exports = function (app, conn) {
                     res.send(401, 'Unauthorized: Invalid UUID or Token');
                 } else {
 
-                    request.get('http://skynet.im/devices',
-                        {qs: {'ipAddress': req.ip, 'type': 'gateway', 'owner': null }, json: true},
-                        function (error, response, body) {
-                            if (error) {
-                                res.send(404, error);
-                            } else {
-                                if (body.error) {
-                                    res.send(404, error);
-                                } else {
-                                    var deviceIds = body.devices;
-                                    var hubs = [];
-                                    async.times(deviceIds.length, function (n, next) {
-                                        request.get('http://skynet.im/devices/' + deviceIds[n],{json: true}
-                                            , function (error, response, body) {
-                                                  var hub = body;
-//                                                  hubs.push(body);
-                                                  console.log(body);
-                                                  next(error, hub);
-//                                                var data = JSON.parse(body);
-//                                                console.log(data);
-//                                                hubs.push(data);
-//                                                next(error, hubs);
-                                            });
-                                    }, function(error, hubs){
-                                        if(error){
-                                            res.send(404, error);
-                                        }
-                                        res.send(200, hubs);
-                                    });
-                                }
-                            }
-                        }
-                    );
+
+
+//                    request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices',
+//                        {qs: {'ipAddress': req.ip, 'type': 'gateway', 'owner': null }, json: true},
+//                        function (error, response, body) {
+//                            if (error) {
+//                                res.send(404, error);
+//                            } else {
+//                                if (body.error) {
+//                                    res.send(404, error);
+//                                } else {
+//                                    var deviceIds = body.devices;
+//                                    var hubs = [];
+//                                    async.times(deviceIds.length, function (n, next) {
+//                                        request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + deviceIds[n],{json: true}
+//                                            , function (error, response, body) {
+//                                                  var hub = body;
+////                                                  hubs.push(body);
+//                                                  console.log(body);
+//                                                  next(error, hub);
+////                                                var data = JSON.parse(body);
+////                                                console.log(data);
+////                                                hubs.push(data);
+////                                                next(error, hubs);
+//                                            });
+//                                    }, function(error, hubs){
+//                                        if(error){
+//                                            res.send(404, error);
+//                                        }
+//                                        res.send(200, hubs);
+//                                    });
+//                                }
+//                            }
+//                        }
+//                    );
                 }
             });
     });
 
     app.get('/api/owner/devices/:id/:token', function (req, res) {
-        // request.get('http://skynet.im/devices',
+        // request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices',
         //  	{qs: {'owner': req.params.id}}
         //  , function (error, response, body) {
         // 		var data = JSON.parse(body);
         //    	res.json(data);
         // });
 
-        request.get('http://skynet.im/mydevices/' + req.params.id,
+        request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices/' + req.params.id,
             { qs: { 'token': req.params.token } },
             function (error, response, body) {
                 var data = {};
@@ -114,7 +116,7 @@ module.exports = function (app, conn) {
     app.get('/api/owner/gateways/:id/:token', function(req, res) {
         console.log('Return Devices? ', req.query.devices);
         console.log('ip address ', req.ip) ;
-        request.get('http://skynet.im/mydevices/' + req.params.id,
+        request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices/' + req.params.id,
             {qs: {'token': req.params.token}},
             function (error, response, body) {
                 var myDevices = JSON.parse(body);
@@ -132,7 +134,7 @@ module.exports = function (app, conn) {
                     }
                 }
                 console.log('My Devices ', gateways);
-                request.get('http://skynet.im/devices',
+                request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices',
                     {qs: {'ipAddress': req.ip, 'type':'gateway', 'owner': null }},
                     function (error, response, body) {
                         console.log(body);
@@ -150,7 +152,7 @@ module.exports = function (app, conn) {
                             }
 
                             async.times(devicesLength, function(n, next){
-                                request.get('http://skynet.im/devices/' + devices[n]
+                                request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + devices[n]
                                     , function (error, response, body) {
                                         var data = JSON.parse(body);
                                         console.log(data);

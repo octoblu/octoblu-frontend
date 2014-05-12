@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .directive('nvd3PieChart', function () {
         return {
             restrict: 'A',

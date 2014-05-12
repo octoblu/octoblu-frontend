@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .controller('designerController', function($rootScope, $scope, $http, $injector, $location, nodeRedService) {
 
         $scope.getSessionFlow = function () {

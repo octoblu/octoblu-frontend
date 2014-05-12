@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
 .service('nodeRedService', function ($http) {
 
     this.getPort = function(uuid, token, callback) {

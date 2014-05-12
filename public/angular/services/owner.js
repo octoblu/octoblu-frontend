@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .service('ownerService', function ($http) {
         this.getDevices = function(uuid, token, callback) {
 

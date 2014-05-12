@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('e2eApp')
+angular.module('octobluApp')
     .directive('toggleSwitch', function () {
         return {
             restrict: 'AE',
@@ -17,6 +17,7 @@ angular.module('e2eApp')
                 disabled : '@',
                 readOnly : '@',
                 value: '@',
+                'class' : '@',
                 ngModel: '='
             },
             template: '<input type="checkbox" >',
@@ -63,6 +64,7 @@ angular.module('e2eApp')
                 }
 
                 $(element).bootstrapSwitch();
+
 
               attr.$observe('state', function(val){
                   $(element).bootstrapSwitch('state', val);

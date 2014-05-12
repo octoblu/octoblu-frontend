@@ -4,12 +4,17 @@ module.exports = function(app, passport) {
     var config = require('../config/auth')(env);
     var skynet = require('skynet');
 
+    //set the skynetUrl
+    app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
+
     console.log('Connecting to SkyNet...');
 
     // Generic UUID / Token for SkyNet API calls
     var conn = skynet.createConnection({
         "uuid": "9b47c2f1-9d9b-11e3-a443-ab1cdce04787",
         "token": "pxdq6kdnf74iy66rhuvdw9h5d2f0f6r",
+        'server' : config.skynet.host,
+        'port'   : config.skynet.port ,
         "protocol": "websocket"
     });
 
@@ -34,7 +39,9 @@ module.exports = function(app, passport) {
         require('./controllers/session')(app, passport, config);
         require('./controllers/unlink')(app);
         require('./controllers/user')(app);
+        require('./controllers/group')(app);
         require('./controllers/designer')(app);
+        require('./controllers/invitation')(app, passport, config);
 
         // Check for deeplink redirect > http://localhost:8080/login?referrer=http:%2F%2Flocalhost%2Fauth.js
         app.get('/login', function(req, res) {

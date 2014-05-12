@@ -1,4 +1,4 @@
-angular.module('e2eApp')
+angular.module('octobluApp')
     .service('messageService', function ($http) {
         // TODO: Send via websockets so it adds fromUUID (your uuid)
         this.sendMessage = function(uuid, text, callback) {
