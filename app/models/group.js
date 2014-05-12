@@ -17,8 +17,18 @@ var GroupSchema = mongoose.Schema({
         configure : Boolean,
         message : Boolean
     },
-    members: [String],
-    devices: [String]
+    members: [{
+        name : String,
+        skynetuuid : String,
+        imageUrl : String
+    }],
+    devices: [{
+        name : String,
+        skynetuuid : String,
+        type : String,
+        imageUrl : String
+
+    }]
 });
 
 mongoose.exports = GroupSchema;
