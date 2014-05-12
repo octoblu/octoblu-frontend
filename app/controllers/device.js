@@ -7,7 +7,7 @@ module.exports = function (app) {
     // Get device info from Skynet
     app.get('/api/devices/:id', function(req, res) {
 
-        request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.ipAddress,
+        request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
         {qs: {'token': req.cookies.skynettoken }}
         , function (error, response, body) {
                 var data = JSON.parse(body);
@@ -65,7 +65,7 @@ module.exports = function (app) {
     });
 
     // Remove device with Skynet
-    app.del('/api/devices/:id/:token', function(req, res) {
+    app.delete('/api/devices/:id/:token', function(req, res) {
 
         request.del(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
             {form: {"token": req.params.token}}
