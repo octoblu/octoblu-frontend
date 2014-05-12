@@ -93,22 +93,22 @@ var groupController = {
         }, function (err, userInfo) {
             // console.log(userInfo);
             if (err) {
-                res.send(err);
+               return res.json(400 , {
+                    'error' : 'unauthorized'
+                });
             } else {
-                var groupFound = false;
-                for (var i = 0; i < userInfo.groups.length; i++) {
-                    if (userInfo.groups[i].uuid == req.params.uuid) {
-                        res.json({group: userInfo.groups[i]});
-                        groupFound = true;
-                        break;
-                    }
-                    ;
+
+                var group = _.findWhere(userInfo.groups, {
+                    'uuid' : req.params.uuid
+                });
+
+                if( group ){
+                    return res.json(group);
+                } else {
+                    return res.json(400 , {
+                        'error' : 'Group not found'
+                    });
                 }
-
-            }
-
-            if (!groupFound) {
-                res.json(404, {'group': 'not found'});
             }
 
         });

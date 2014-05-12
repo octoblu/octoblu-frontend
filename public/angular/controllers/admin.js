@@ -55,13 +55,11 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('adminGroupDetailController', function (currentUser, $scope, $stateParams, $cookies, GroupService) {
-        var currentGroup = _.findWhere(currentUser.groups, { uuid: $stateParams.uuid });
-        if (currentGroup) {
-            GroupService.getGroup(currentUser.skynetuuid, currentGroup.uuid).then(function(group){
-                console.log(group);
-            });
-        }
+    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser, currentGroup,  GroupService) {
+        $scope.group = currentGroup;
+//        $scope.user = currentUser;
+
+
     })
     .controller('invitationController', function ($rootScope, $cookies, $scope, InvitationService) {
         //Send the invitation

@@ -18,7 +18,7 @@
     .permissions-panel .panel-body li {
         border-style: none;
         padding-left: 15px;
-        padding-right: 0px;
+        padding-right: 15px;
     }
 
     .permissions-panel .permission-title {
@@ -29,8 +29,13 @@
     }
 
 
-    .people-panel .panel-heading .title, .device-panel .panel-heading .title {
+    .people-panel .panel-heading .title,.device-panel .panel-heading .title, .people-panel .panel-heading .title {
         color: #ffffff !important;
+    }
+
+    .people-panel .panel-heading .title >  a:hover, .device-panel .panel-heading .title > a:hover {
+        cursor: hand !important;
+        border: 1px solid;
     }
 
     .group-info-panel-body {

@@ -146,7 +146,7 @@ angular.module('octobluApp')
          * @param group_uuid
          * @returns {defer.promise|*}
          */
-        this.getGroup = function(uuid, group_uuid ){
+        this.getGroup = function(uuid, token, group_uuid ){
             var defer = $q.defer();
             if(! (uuid) ){
                 defer.reject({

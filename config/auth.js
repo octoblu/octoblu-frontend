@@ -80,7 +80,7 @@ var config = {
       },
 
     'port' : 8080,
-    'domain':  'localhost'
+    'domain': null
 
   },
   test: {
