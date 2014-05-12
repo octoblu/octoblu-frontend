@@ -8,7 +8,7 @@ module.exports = function (app) {
     app.get('/api/devices/:id', function(req, res) {
 
         request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
-        {qs: {'token': req.cookies.skynettoken }}
+        {qs: {'token': req.query.token }}
         , function (error, response, body) {
                 var data = JSON.parse(body);
                 res.json(data);
