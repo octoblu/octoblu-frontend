@@ -14,6 +14,8 @@ angular.module('octobluApp')
 
             // connect to skynet
             var skynetConfig = {
+                'host': 'http://skynet.im',
+                'port': 80,
                 "uuid": $scope.skynetuuid,
                 "token": $scope.skynettoken
             }
