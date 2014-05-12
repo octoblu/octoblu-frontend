@@ -16,11 +16,33 @@ var groupController = {
      */
     getGroups : function(req, res){
 
+        var skynetuuid = req.headers.ob_skynetuuid;
+        var skynettoken = req.headers.ob_skynettoken;
+
+        if( ! skynetuuid || ! skynettoken){
+            res.json(401, {
+                'error' : 'unauthorized'
+            });
+        }
+
+
         User.findOne({ $or: [
-            {'local.skynetuuid' : req.params.id},
-            {'twitter.skynetuuid' : req.params.id},
-            {'facebook.skynetuuid' : req.params.id},
-            {'google.skynetuuid' : req.params.id}
+            {
+                'local.skynetuuid': skynetuuid,
+                'local.skynettoken': skynettoken
+            },
+            {
+                'twitter.skynetuuid': skynetuuid,
+                'twitter.skynettoken': skynettoken
+            },
+            {
+                'facebook.skynetuuid': skynetuuid,
+                'facebook.skynettoken': skynettoken
+            },
+            {
+                'google.skynetuuid': skynetuuid,
+                'google.skynettoken': skynettoken
+            }
         ]
         }, function(err, userInfo) {
             console.log(userInfo);
@@ -39,11 +61,34 @@ var groupController = {
      * @param res
      */
     getGroupById : function(req, res) {
+
+        var skynetuuid = req.headers.ob_skynetuuid;
+        var skynettoken = req.headers.ob_skynettoken;
+
+        if( ! skynetuuid || ! skynettoken){
+            res.json(401, {
+                'error' : 'unauthorized'
+            });
+        }
+
+
         User.findOne({ $or: [
-            {'local.skynetuuid': req.params.id},
-            {'twitter.skynetuuid': req.params.id},
-            {'facebook.skynetuuid': req.params.id},
-            {'google.skynetuuid': req.params.id}
+            {
+                'local.skynetuuid': skynetuuid,
+                'local.skynettoken': skynettoken
+            },
+            {
+                'twitter.skynetuuid': skynetuuid,
+                'twitter.skynettoken': skynettoken
+            },
+            {
+                'facebook.skynetuuid': skynetuuid,
+                'facebook.skynettoken': skynettoken
+            },
+            {
+                'google.skynetuuid': skynetuuid,
+                'google.skynettoken': skynettoken
+            }
         ]
         }, function (err, userInfo) {
             // console.log(userInfo);
@@ -85,7 +130,7 @@ var groupController = {
 
     var name = req.body.name;
     //set
-    var permissions = req.body.permissions || {configure: false, discover: true, update: false};
+    var permissions = req.body.permissions || {configure: true, discover: true, update: true};
     //Check if the name and permissions are set
     if (!name) {
         return res.json(400, {
@@ -93,8 +138,14 @@ var groupController = {
         });
     }
 
-    var skynetuuid = req.params.id;
-    var skynettoken = req.params.token;
+    var skynetuuid = req.headers.ob_skynetuuid;
+    var skynettoken = req.headers.ob_skynettoken;
+
+    if( ! skynetuuid || ! skynettoken){
+        res.json(401, {
+            'error' : 'unauthorized'
+        });
+    }
 
     User.findOne({ $or: [
         {
@@ -171,11 +222,33 @@ var groupController = {
      */
     deleteGroup : function( req, res ){
 
+        var skynetuuid = req.headers.ob_skynetuuid;
+        var skynettoken = req.headers.ob_skynettoken;
+
+        if( ! skynetuuid || ! skynettoken){
+            res.json(401, {
+                'error' : 'unauthorized'
+            });
+        }
+
+
         User.findOne({ $or: [
-            {'local.skynetuuid' : req.params.id},
-            {'twitter.skynetuuid' : req.params.id},
-            {'facebook.skynetuuid' : req.params.id},
-            {'google.skynetuuid' : req.params.id}
+            {
+                'local.skynetuuid': skynetuuid,
+                'local.skynettoken': skynettoken
+            },
+            {
+                'twitter.skynetuuid': skynetuuid,
+                'twitter.skynettoken': skynettoken
+            },
+            {
+                'facebook.skynetuuid': skynetuuid,
+                'facebook.skynettoken': skynettoken
+            },
+            {
+                'google.skynetuuid': skynetuuid,
+                'google.skynettoken': skynettoken
+            }
         ]
         }, function(err, userInfo) {
             // console.log(userInfo);
@@ -393,27 +466,8 @@ var groupController = {
 
 
 module.exports = function(app){
-    // GET POST PUT DELETE /groups
-// curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
-    app.get('/api/groups', groupController.getGroups
-//
-//        function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
-//        ]
-//        }, function(err, userInfo) {
-//            console.log(userInfo);
-//            if (err) {
-//                res.send(err);
-//            } else {
-//                res.json({groups:userInfo.groups});
-//            }
-//        });
-//    }
-);
+
+    app.get('/api/groups', groupController.getGroups );
 
 // curl -X POST -H 'Content-Type:application/json' -d '{"name":"family","permissions":{"discover":true,"message":true,"configure":false}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
 
@@ -423,125 +477,19 @@ module.exports = function(app){
     app.delete('/api/groups/:uuid', groupController.deleteGroup );
 
 // curl -X PUT -H 'Content-Type:application/json' -d '{"name":"family","type":"operators","permissions":{"configure":true}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715
-    app.put('/api/groups/:uuid', groupController.updateGroup
-
-//        function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
-//        ]
-//        }, function(err, userInfo) {
-//            // console.log(userInfo);
-//            if (err) {
-//                res.send(err);
-//            } else {
-//                var groupFound = false;
-//                for (var i=0; i < userInfo.groups.length; i++) {
-//                    if (userInfo.groups[i].uuid == req.params.uuid) {
-//                        console.log(userInfo.groups[i]);
-//                        try {
-//                            var data = JSON.parse(req.body);
-//                        } catch (e){
-//                            var data = req.body;
-//                        }
-//
-//                        if (data.name){
-//                            userInfo.groups[i].name = data.name;
-//                        }
-//
-//                        if (data.type){
-//                            userInfo.groups[i].type = data.type;
-//                        }
-//
-//                        if(data.permissions){
-//                            if (data.permissions.discover == true){
-//                                userInfo.groups[i].permissions.discover = true
-//                            } else if (data.permissions.discover == false){
-//                                userInfo.groups[i].permissions.discover = false
-//                            }
-//                            if (data.permissions.message == true){
-//                                userInfo.groups[i].permissions.message = true
-//                            } else if (data.permissions.message == false){
-//                                userInfo.groups[i].permissions.message = false
-//                            }
-//                            if (data.permissions.configure == true){
-//                                userInfo.groups[i].permissions.configure = true
-//                            } else if (data.permissions.configure == false){
-//                                userInfo.groups[i].permissions.configure = false
-//                            }
-//                        }
-//
-//                        userInfo.markModified('groups');
-//
-//                        userInfo.save(function(err, data, updated) {
-//                            if(!err) {
-//                                console.log(data);
-//                                res.json({group: data.groups[i]});
-//
-//                            } else {
-//                                console.log('Error: ' + err);
-//                                res.json(err);
-//                            }
-//                        });
-//                        groupFound = true;
-//                        break;
-//                    }
-//                }
-//
-//                if(!groupFound){
-//                    res.json(404, {'group': 'not found'});
-//                }
-//
-//            }
-//        });
-//    }
-    );
+    app.put('/api/groups/:uuid', groupController.updateGroup );
 
 // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3
     app.get('/api/groups/:uuid', groupController.getGroupById );
 
 
-// GET POST PUT DELETE /groups/:uuid/members
-// curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/members
-//    app.get('/api/user/:id/groups/:uuid/members', function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
-//        ]
-//        }, function(err, userInfo) {
-//            // console.log(userInfo);
-//            if (err) {
-//                res.send(err);
-//            } else {
-//                var groupFound = false;
-//                for (var i=0; i < userInfo.groups.length; i++) {
-//                    if (userInfo.groups[i].uuid == req.params.uuid) {
-//                        res.json({members: userInfo.groups[i].members});
-//                        groupFound = true;
-//                        break;
-//                    };
-//                }
-//
-//            }
-//
-//            if(!groupFound){
-//                res.json(404, {'group': 'not found'});
-//            }
-//
-//        });
-//    });
-
 // curl -X POST -H 'Content-Type:application/json' -d '{"uuid":"123", devices:[{"uuid":"123", "token":"abc"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members
 //    app.post('/api/user/:id/groups/:uuid/members', function (req, res) {
 //        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
+//            {'local.skynetuuid' : skynetuuid},
+//            {'twitter.skynetuuid' : skynetuuid},
+//            {'facebook.skynetuuid' : skynetuuid},
+//            {'google.skynetuuid' : skynetuuid}
 //        ]
 //        }, function(err, userInfo) {
 //            if (err) {
@@ -624,10 +572,10 @@ module.exports = function(app){
 // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members/123
 //    app.delete('/api/user/:id/groups/:uuid/members/:user', function (req, res) {
 //        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
+//            {'local.skynetuuid' : skynetuuid},
+//            {'twitter.skynetuuid' : skynetuuid},
+//            {'facebook.skynetuuid' : skynetuuid},
+//            {'google.skynetuuid' : skynetuuid}
 //        ]
 //        }, function(err, userInfo) {
 //            // console.log(userInfo);
@@ -696,10 +644,10 @@ module.exports = function(app){
 // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/devices
 //    app.get('/api/user/:id/groups/:uuid/devices', function (req, res) {
 //        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
+//            {'local.skynetuuid' : skynetuuid},
+//            {'twitter.skynetuuid' : skynetuuid},
+//            {'facebook.skynetuuid' : skynetuuid},
+//            {'google.skynetuuid' : skynetuuid}
 //        ]
 //        }, function(err, userInfo) {
 //            console.log(userInfo);
@@ -728,10 +676,10 @@ module.exports = function(app){
 //    app.post('/api/user/:id/groups/:uuid/devices',
 //        function (req, res) {
 //        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
+//            {'local.skynetuuid' : skynetuuid},
+//            {'twitter.skynetuuid' : skynetuuid},
+//            {'facebook.skynetuuid' : skynetuuid},
+//            {'google.skynetuuid' : skynetuuid}
 //        ]
 //        }, function(err, userInfo) {
 //            console.log(userInfo);
@@ -780,10 +728,10 @@ module.exports = function(app){
 //    app.delete('/api/user/:id/groups/:uuid/devices/:user',
 //        function (req, res) {
 //        User.findOne({ $or: [
-//            {'local.skynetuuid' : req.params.id},
-//            {'twitter.skynetuuid' : req.params.id},
-//            {'facebook.skynetuuid' : req.params.id},
-//            {'google.skynetuuid' : req.params.id}
+//            {'local.skynetuuid' : skynetuuid},
+//            {'twitter.skynetuuid' : skynetuuid},
+//            {'facebook.skynetuuid' : skynetuuid},
+//            {'google.skynetuuid' : skynetuuid}
 //        ]
 //        }, function(err, userInfo) {
 //            // console.log(userInfo);
