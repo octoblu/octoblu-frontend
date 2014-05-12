@@ -134,8 +134,8 @@ module.exports = function (app, conn) {
                     }
                 }
                 console.log('My Devices ', gateways);
-                request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-                    {qs: {'ipAddress': req.ip, 'type':'gateway', 'owner': null }},
+                request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.cookies.skynetuuid,
+                    {qs: {'ipAddress': req.ip, 'type':'gateway', 'owner': null, 'token': req.cookies.skynettoken }},
                     function (error, response, body) {
                         console.log(body);
                         var ipDevices = JSON.parse(body);

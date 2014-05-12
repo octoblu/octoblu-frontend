@@ -7,8 +7,9 @@ module.exports = function (app) {
     // Get device info from Skynet
     app.get('/api/devices/:id', function(req, res) {
 
-        request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id
-            , function (error, response, body) {
+        request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.ipAddress,
+        {qs: {'token': req.cookies.skynettoken }}
+        , function (error, response, body) {
                 var data = JSON.parse(body);
                 res.json(data);
             });
