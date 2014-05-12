@@ -116,7 +116,7 @@ angular.module('octobluApp')
                     });
                 }
 
-                var url = '/api/user/' + uuid + '/' + token + '/groups';
+                var url = '/api/groups';
                 //Create the new group with the data
                 //If no permissions have been set, use default permissions
                 var groupData = {
@@ -124,13 +124,17 @@ angular.module('octobluApp')
                     'permissions' : permissions || {'discover' : true, 'configure' : false, update : 'false'}
                 };
 
-                $http.post(url, groupData)
-                    .success(function(group){
+                $http.post(url, groupData, {
+                    headers : {
+                       'ob_skynetuuid' : uuid,
+                        'ob_skynettoken' : token
+                    }
+                }).success(function(group){
                         defer.resolve(group);
-                    })
-                    .error(function(result){
+                })
+                .error(function(result){
                         defer.reject(result);
-                    })
+                })
             }
             return defer.promise;
         };
@@ -163,8 +167,13 @@ angular.module('octobluApp')
                 });
             }
 
-            var url = '/api/user/' + uuid + '/groups/' + group_uuid;
-            $http.get(url)
+            var url = '/api/groups/' + group_uuid;
+            $http.get(url, {
+                headers : {
+                    'ob_skynetuuid' : uuid,
+                    'ob_skynettoken' : token
+                }
+            })
                 .success(function(group){
                     defer.resolve(group);
                 })
@@ -172,6 +181,29 @@ angular.module('octobluApp')
                     defer.reject(result);
                 });
             return defer.promise;
+        };
+
+
+        this.deleteGroup = function(uuid, token, group_uuid ){
+            var defer = $q.defer();
+            if( ! uuid || ! token || ! group_uuid ){
+                defer.reject({
+                    'error' : 'missing required parameters'
+                });
+            } else {
+                var url = '/api/group/' + group_uuid;
+                $http.delete(url , {
+                    headers : {
+                        'ob_skynetuuid' : uuid,
+                        'ob_skynettoken' : token
+                    }
+                });
+
+            }
+
+
+            return defer.promise;
+
         };
 
         /**

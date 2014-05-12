@@ -21,6 +21,7 @@ angular.module('octobluApp')
         };
 
         $scope.deleteGroup = function (group) {
+            GroupService.del
 
 
         };
