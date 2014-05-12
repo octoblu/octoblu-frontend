@@ -408,7 +408,7 @@ angular.module('octobluApp')
 
                };
 
-                 $http.put('/api/devices/' + $cookies.skynetuuid , hubData)
+                 $http.put('/api/devices/' + $cookies.skynetuuid + '?token=' + $cookies.skynettoken , hubData)
                      .success(function(data){
                          console.log('success');
                          console.log('Data returned ' + data);

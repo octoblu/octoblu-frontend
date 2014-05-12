@@ -31,8 +31,7 @@ module.exports = function (app) {
         for (var i in obj) {
             deviceData[obj[i]["key"]] = obj[i]["value"];
         }
-
-        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices' + req.params.id ,
+        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
             {form: deviceData}
             , function (error, response, body) {
                 var data = JSON.parse(body);
