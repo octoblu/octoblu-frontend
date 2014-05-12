@@ -23,12 +23,12 @@ function skynet (config, cb) {
 
   var authenticate = function() {
 
-//      var socket = io.connect(config.host, {
-//          port: config.port
-//      });
-      var socket = io.connect('localhost', {
-           port: 3000
-      });
+     var socket = io.connect(config.host, {
+         port: config.port
+     });
+      // var socket = io.connect('localhost', {
+      //      port: 3000
+      // });
 
       socket.on('connect', function(){
           socket.on('identify', function(data){

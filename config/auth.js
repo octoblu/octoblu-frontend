@@ -73,13 +73,14 @@ var config = {
             templateUrl : '/template/invitation.jade'
         }
     },
-    'skynet' : {
-        'host' : '127.0.0.1',
-        'port' : 3000
-    },
+      'skynet' : {
+          'host' : 'skynet.im',
+           'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
+          'port' : 80
+      },
 
     'port' : 8080,
-    'domain':  'htto://localhost'
+    'domain':  'http://localhost'
 
   },
   test: {
@@ -162,7 +163,7 @@ var config = {
       'skynet' : {
           'host' : 'skynet.im',
            'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
-          'port' : 3000
+          'port' : 80
       },
     'port' : 80,
     'domain': '*.octoblu.com'
