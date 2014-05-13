@@ -70,7 +70,7 @@ var config = {
         },
 
         invitation : {
-            templateUrl : '/template/invitation.jade'
+            templateUrl : '/templates/invitation.jade'
         }
     },
       'skynet' : {
@@ -156,7 +156,7 @@ var config = {
           },
 
           invitation: {
-              templateUrl: '/template/invitation.jade'
+              templateUrl: '/templates/invitation.jade'
           }
       },
 

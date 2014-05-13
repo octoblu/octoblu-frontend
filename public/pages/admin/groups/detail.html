@@ -14,6 +14,7 @@
                 <li data-ng-repeat="member in group.members" class="list-group-item">
                     <i class="fa fa-user"></i>
                     {{member.name}}
+                    <a class="caret" ng-click="removeDeviceFromGroup(device)">X</a>
                 </li>
             </ul>
         </div>
@@ -71,8 +72,9 @@
         <div class="panel-body group-info-panel-body">
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="device in group.devices" style="min-height: 50px;">
-                    <img src="{{getDeviceImageUrl(device)}}" class="pull-left" style="height: 32px; width: 32px; margin-right: 20px;">
-                    <div style="">{{device.name}}</div>
+                    <img src="{{device.imageUrl}}" class="pull-left" style="height: 32px; width: 32px; margin-right: 20px;">
+                    <span>{{device.name}}</span>
+                    <a class="caret" ng-click="removeDeviceFromGroup(device)">X</a>
                 </li>
             </ul>
         </div>

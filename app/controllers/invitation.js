@@ -271,13 +271,12 @@ var invitationController = {
                    var smtpTransport = nodemailer.createTransport("SMTP",{
                        service: "Gmail",
                        auth: {
-                           user: config.email.SMTP.Gmail.username,
+                           user: config.email.SMTP.Gmail.user,
                            pass: config.email.SMTP.Gmail.password
                        }
                    });
 
                    var mailOptions = {
-                       from : 'Octoblu <' + config.email.SMTP.Gmail.username + '>',
                        to: outboundMessage.invitation.recipient.email,
                        subject : 'Invitation to share devices on Octoblu from ' + outboundMessage.sender.name,
                        html : outboundMessage.messageHtml
@@ -285,7 +284,7 @@ var invitationController = {
 
                    smtpTransport.sendMail(mailOptions, function(error){
                        if(error){
-                          reject(error);
+                          res.json(400, {'error' : 'Invitation email could not be sent'});
                        }
                        res.send(200, outboundMessage.invitation );
                    });
