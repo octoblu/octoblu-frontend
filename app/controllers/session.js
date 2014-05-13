@@ -10,6 +10,7 @@ module.exports = function ( app, passport, config ) {
 		req.logout();
 		res.clearCookie('skynetuuid', {domain: config.domain});
 		res.clearCookie('skynettoken', {domain: config.domain});
+        delete req.session.user;
 		// Check for deeplink redirect > http://localhost:8080/logout?referrer=http:%2F%2Flocalhost%2Fauth.js
 		if(req.query.referrer && req.query.referrer.length){
 			return res.redirect(req.query.referrer);
@@ -20,6 +21,7 @@ module.exports = function ( app, passport, config ) {
 
 	app.post('/login', function(req, res, next) {
 		console.log('login post');
+        delete req.session.user;
 	  passport.authenticate('local-login', function(err, user, info) {
 	  	console.log(user);
 	    if (err) { return next(err); }
@@ -27,6 +29,7 @@ module.exports = function ( app, passport, config ) {
 	    req.logIn(user, function(err) {
 	      if (err) { return next(err); }
 	      console.log(user.local.skynetuuid);
+        req.session.user = user;
 	    res.cookie('skynetuuid', user.local.skynetuuid, {
           maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
           domain: config.domain,
@@ -53,6 +56,7 @@ module.exports = function ( app, passport, config ) {
 	});
 
 	app.post('/signup', function(req, res, next) {
+        delete req.session.user;
 	  passport.authenticate('local-signup', function(err, user, info) {
 	    if (err) { return next(err); }
 	    if (!user) { return res.redirect('/login'); }
@@ -83,7 +87,7 @@ module.exports = function ( app, passport, config ) {
 				          domain: config.domain,
 				          httpOnly: false
 				        });
-
+                        req.session.user = user;
 					      return res.redirect('/dashboard');
 
 		            }

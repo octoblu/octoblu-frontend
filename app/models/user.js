@@ -140,6 +140,12 @@ UserSchema.virtual('skynettoken').get(function () {
     return this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
 });
 
+//Convenience method for getting the Skynet Token
+UserSchema.virtual('email').get(function () {
+    return this.local.email || this.google.email || this.facebook.email;
+});
+
+
 UserSchema.statics.findBySkynetUUID = function( skynetuuid ){
   return this.findOne({ $or: [
       {
