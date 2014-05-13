@@ -257,7 +257,7 @@ var invitationController = {
                .then(function ( invite ){
 
                    var invitationTemplatePath = process.cwd() + config.email.invitation.templateUrl;
-                   var invitationUrl = req.protocol + "://" + req.header('host') + '/invitation/' + invite.invitation._id + '/accept';
+                   var invitationUrl = req.protocol + "://" + req.header('host') + '/api/invitation/' + invite.invitation._id + '/accept';
                    var options = {
                        pretty : true,
                        sender : invite.sender,
@@ -307,72 +307,33 @@ var invitationController = {
      * @param res
      */
     acceptInvitation : function (req, res, next){
-
-     var invitePromise = Invitation.findById(req.params.id).exec();
-     invitePromise.then(function(invitation){
-        var user = User.findOne({ $or: [
-            {
-                'local.skynetuuid' : invitation.from
-            },
-            {
-                'twitter.skynetuuid' : invitation.from
-            },
-            {
-                'facebook.skynetuuid' :  invitation.from
-            },
-            {
-                'google.skynetuuid' : invitation.from
-            }
-        ]
-        }).exec();
-        return { 'invitation' : invitation, 'user' : user};
-     })
-     .then(function(result){
-
-         var sender = result.user;
-         var recipient = req.user;
-         var invitation = result.invitation;
-
-         var operatorGroupIndex = _.findIndex(sender.groups, {'type' : 'Operators'});
-         //The user does not have an invitation group, create one
-         if(operatorGroupIndex < 0){
-             var operatorGroup = new Group({
-                 'uuid' : uuid.v1(),
-                 'type' : 'Operators',
-                 'members' : [recipient.skynetuuid]
-             });
-             sender.push(operatorGroup);
+     var invitation, sender, recipient;
+     Invitation.findById(req.params.id).exec().then(function(inv) {
+         invitation = inv;
+         if(invitation.status === 'ACCEPTED'){
+             res.redirect('/dashboard');
          } else {
-            /*
-              Check if the recipient is already a member of the group, if they are then
-             */
-            var operatorGroup = sender.groups[operatorGroupIndex];
-             var isNotGroupMember = _.findIndex(operatorGroup.members, recipient.skynetuuid ) < 0;
-
-             if( isNotGroupMember ){
-                operatorGroup.members.push(recipient.skynetuuid);
-             }
+             return User.findBySkynetUUID(invitation.from)
          }
-        //Update the senders User info with new group details
-        sender.save(function(err, sender){
-            if(err){
-                reject(error);
-            }
-        });
+     }).then(function(snd){
+         sender = snd;
+         return User.findBySkynetUUID(invitation.recipient.uuid)
+     }).then(function(rcp){
+         recipient = rcp;
+         var operatorGroup = _.findWhere(sender.groups, {'type' : 'operators'});
+         if(!operatorGroup) {
+             operatorGroup = {'uuid': uuid.v1(), 'type': 'operators', members: []};
+             sender.groups.push(operatorGroup);
+         }
 
-        invitation.completed = moment.utc();
-        //Update the completed datetime on the invitation and save it.
-        invitation.save(function(err){
-            if(err){
-                reject(err);
-            }
-        });
-        return invitation;
-     })
-     .then(function(invitation){
-             next();
-     }, function(error){
-         next(error);
+         //We are seeing if the recipient is already part of the operators group
+         if (!_.findWhere(operatorGroup.members, {'uuid': recipient.skynetuuid })) {
+             operatorGroup.members.push({uuid: recipient.skynetuuid, name : recipient.name });
+         }
+
+         sender.save(function(err, sender){
+             res.redirect('/dashboard');
+         });
      });
     },
 
@@ -436,7 +397,7 @@ module.exports = function (app, passport, config) {
     app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById );
     app.put('/api/user/:id/:token/invitation/send', invitationController.sendInvitation);
     app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation );
-    app.get('/api/invitation/:id/accept', passport.authorize('local-login'), invitationController.acceptInvitation, function(err,  req, res){
+    app.get('/api/invitation/:id/accept', /*passport.authorize('local-login'),*/ invitationController.acceptInvitation, function(err,  req, res){
         if(err){
             console.log(err);
         }

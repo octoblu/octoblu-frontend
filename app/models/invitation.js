@@ -13,7 +13,8 @@ var InvitationSchema = mongoose.Schema({
    status : {
        type : String,
        default : 'PENDING',
-       enum : ['PENDING' , 'ACCEPTED' ]
+       enum : ['PENDING' , 'ACCEPTED' ],
+       required : true
    },
    sent : Date,
    completed : Date

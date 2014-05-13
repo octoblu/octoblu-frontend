@@ -140,6 +140,64 @@ UserSchema.virtual('skynettoken').get(function () {
     return this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
 });
 
+UserSchema.statics.findBySkynetUUID = function( skynetuuid ){
+  return this.findOne({ $or: [
+      {
+          'local.skynetuuid' : skynetuuid
+      },
+      {
+          'twitter.skynetuuid' : skynetuuid
+      },
+      {
+          'facebook.skynetuuid' :  skynetuuid
+      },
+      {
+          'google.skynetuuid' : skynetuuid
+      }
+  ]
+  }).exec();
+};
+
+UserSchema.statics.findByEmail = function( email){
+    return this.findOne({ $or: [
+        {
+            'local.email' : email
+        },
+        {
+            'twitter.email' : email
+        },
+        {
+            'facebook.email' :  email
+        },
+        {
+            'google.email' : email
+        }
+    ]
+    }).exec();
+};
+
+UserSchema.statics.findBySkynetUUIDAndToken = function( skynetuuid, skynettoken){
+    return this.findOne({ $or: [
+        {
+            'local.skynetuuid' : skynetuuid,
+            'local.skynettoken' : skynettoken
+        },
+        {
+            'twitter.skynetuuid' : skynetuuid,
+            'twitter.skynettoken' : skynettoken
+        },
+        {
+            'facebook.skynetuuid' :  skynetuuid,
+            'facebook.skynettoken' :  skynettoken
+        },
+        {
+            'google.skynetuuid' : skynetuuid,
+            'google.skynettoken' : skynettoken
+        }
+    ]
+    }).exec();
+};
+
 mongoose.model('User', UserSchema);
 
 module.exports = UserSchema;

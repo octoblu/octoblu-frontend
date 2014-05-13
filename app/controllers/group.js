@@ -71,47 +71,66 @@ var groupController = {
             });
         }
 
+        var userPromise = User.findBySkynetUUIDAndToken(skynetuuid, skynettoken);
+        userPromise.then(function(user){
+            var group = _.findWhere(user.groups, {
+                'uuid' : req.params.uuid
+            });
 
-        User.findOne({ $or: [
-            {
-                'local.skynetuuid': skynetuuid,
-                'local.skynettoken': skynettoken
-            },
-            {
-                'twitter.skynetuuid': skynetuuid,
-                'twitter.skynettoken': skynettoken
-            },
-            {
-                'facebook.skynetuuid': skynetuuid,
-                'facebook.skynettoken': skynettoken
-            },
-            {
-                'google.skynetuuid': skynetuuid,
-                'google.skynettoken': skynettoken
-            }
-        ]
-        }, function (err, userInfo) {
-            // console.log(userInfo);
-            if (err) {
-               return res.json(400 , {
-                    'error' : 'unauthorized'
-                });
+            if( group ){
+               res.json(group);
             } else {
-
-                var group = _.findWhere(userInfo.groups, {
-                    'uuid' : req.params.uuid
+                res.json(400 , {
+                    'error' : 'Group not found'
                 });
-
-                if( group ){
-                    return res.json(group);
-                } else {
-                    return res.json(400 , {
-                        'error' : 'Group not found'
-                    });
-                }
             }
 
+        }, function(error){
+            res.json(400 , {
+                'error' : 'unauthorized'
+            });
         });
+
+//        User.findOne({ $or: [
+//            {
+//                'local.skynetuuid': skynetuuid,
+//                'local.skynettoken': skynettoken
+//            },
+//            {
+//                'twitter.skynetuuid': skynetuuid,
+//                'twitter.skynettoken': skynettoken
+//            },
+//            {
+//                'facebook.skynetuuid': skynetuuid,
+//                'facebook.skynettoken': skynettoken
+//            },
+//            {
+//                'google.skynetuuid': skynetuuid,
+//                'google.skynettoken': skynettoken
+//            }
+//        ]
+//        }, function (err, userInfo) {
+//            // console.log(userInfo);
+//            if (err) {
+//               return res.json(400 , {
+//                    'error' : 'unauthorized'
+//                });
+//            } else {
+//
+//                var group = _.findWhere(userInfo.groups, {
+//                    'uuid' : req.params.uuid
+//                });
+//
+//                if( group ){
+//                    return res.json(group);
+//                } else {
+//                    return res.json(400 , {
+//                        'error' : 'Group not found'
+//                    });
+//                }
+//            }
+//
+//        });
     },
 
     /**
