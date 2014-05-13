@@ -116,12 +116,13 @@ module.exports = function (app, conn) {
     app.get('/api/owner/gateways/:id/:token', function(req, res) {
         console.log('Return Devices? ', req.query.devices);
         console.log('ip address ', req.ip) ;
+
         request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices/' + req.params.id,
             {qs: {'token': req.params.token}},
             function (error, response, body) {
                 var myDevices = JSON.parse(body);
                 myDevices = myDevices.devices;
-                console.log('myDevices', myDevices);
+                // console.log('myDevices', myDevices);
                 var gateways = []  ;
                 for (var i in myDevices) {
                     if(req.query.devices == 'true'){
@@ -148,28 +149,31 @@ module.exports = function (app, conn) {
                             var devicesLength = 0;
 
                             if (devices){
-                                devicesLength = devices.length;
+                                // devicesLength = devices.length;
+                                for (var i = 0; i < devices.length; i++) {
+                                    gateways.push(devices[i]);
+                                }
                             }
 
-                            async.times(devicesLength, function(n, next){
-                                request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + devices[n]
-                                    , function (error, response, body) {
-                                        var data = JSON.parse(body);
-                                        console.log(data);
-                                        var dupeFound = false;
-                                        console.log('looping', gateways);
+                            // async.times(devicesLength, function(n, next){
+                            //     request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + devices[n]
+                            //         , function (error, response, body) {
+                            //             var data = JSON.parse(body);
+                            //             console.log(data);
+                            //             var dupeFound = false;
+                            //             console.log('looping', gateways);
 
-                                        for (var i in gateways) {
-                                            if(gateways[i].uuid == data.uuid){
-                                                dupeFound = true;
-                                            }
-                                        }
-                                        if(!dupeFound){
-                                            gateways.push(data);
-                                        }
-                                        next(error, gateways);
-                                    });
-                            }, function(err) {
+                            //             for (var i in gateways) {
+                            //                 if(gateways[i].uuid == data.uuid){
+                            //                     dupeFound = true;
+                            //                 }
+                            //             }
+                            //             if(!dupeFound){
+                            //                 gateways.push(data);
+                            //             }
+                            //             next(error, gateways);
+                            //         });
+                            // }, function(err) {
                                 console.log(gateways);
                                 console.log('==>gateways', gateways);
                                 // gateways = gateways[0];
@@ -182,6 +186,8 @@ module.exports = function (app, conn) {
 
                                 // Lookup plugins on each gateway
                                 async.times(gatewaysLength, function(n, next){
+                                    console.log(gateways[n].uuid);
+                                    console.log(gateways[n].token);
                                     conn.gatewayConfig({
                                         'uuid': gateways[n].uuid,
                                         'token': gateways[n].token,
@@ -241,7 +247,7 @@ module.exports = function (app, conn) {
                                         res.json({'gateways': gateways});
                                     });
                                 });
-                            })
+                            // })
                         } else {
                             res.json({'gateways': gateways});
                         }
