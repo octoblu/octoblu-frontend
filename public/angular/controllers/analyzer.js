@@ -55,17 +55,27 @@ angular.module('octobluApp')
             // SETUP CHART
             // http://smoothiecharts.org/tutorial.html
 
-            var line1 = new TimeSeries();
-            var line2 = new TimeSeries();
+            // var line1 = new TimeSeries();
+            // var line2 = new TimeSeries();
 
             // setInterval(function() {
             //   line1.append(new Date().getTime(), Math.random()*100);
             //   line2.append(new Date().getTime(), Math.random()*100);
             // }, 1000);
 
+            // Initialize up to 10 lines for charting
+            var line = [];
+            for(var i =0; i < 10; i++){
+              line[i] = new TimeSeries();
+            }            
+
+            // TODO: dynamically select better colors
             var smoothie = new SmoothieChart({ grid: { strokeStyle: 'rgb(125, 0, 0)', fillStyle: 'rgb(60, 0, 0)', lineWidth: 1, millisPerLine: 250, verticalSections: 6 } });
-            smoothie.addTimeSeries(line1, { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 3 });
-            smoothie.addTimeSeries(line2, { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 3 });
+            // smoothie.addTimeSeries(line[1], { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 3 });
+            // smoothie.addTimeSeries(line[2], { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 3 });
+            for(var i =0; i < 10; i++){
+              smoothie.addTimeSeries(line[i], { strokeStyle: 'rgb(0, ' + 255 + ', 0)', fillStyle: 'rgba(0, ' + 255 + ', 0, 0.4)', lineWidth: 3 });
+            }            
 
             smoothie.streamTo(document.getElementById("mycanvas"), 1000);
 
@@ -77,27 +87,45 @@ angular.module('octobluApp')
                 'token': $scope.skynettoken
             };
 
+            var sensorGrid = [];
+
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e;
 
-                // Get user's devices
-                ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function (data) {
-                    $scope.devices = data.devices;
+                $scope.sensorListen = function (sensor){
+                  console.log('sensor listen', sensor);
 
-                   // Subscribe to user's devices messages and events
-                   if (data.devices) {
-                       _.each(data.devices, function (device) {
-                           socket.emit('subscribe', {
-                               'uuid': device.uuid,
-                               'token': device.token
-                           }, function (data) {
-                               // console.log(data);
-                           });
+                  sensorGrid = [];
 
-                       });
-                   }
+                  // unsubscribe from other devices
+                  ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function (data) {
 
-                });
+                     // Subscribe to user's devices messages and events
+                     if (data.devices) {
+                         _.each(data.devices, function (device) {
+                             socket.emit('unsubscribe', {
+                                 'uuid': device.uuid
+                             }, function (data) {
+                                 // console.log(data);
+                             });
+
+                         });
+                     }
+
+                    // subscribe to new device selected for chart
+                     socket.emit('subscribe', {
+                         'uuid': sensor.uuid,
+                         'token': sensor.token
+                     }, function (data) {
+                         // console.log(data);
+                     });
+
+
+                  });
+
+
+
+                }
 
                 socket.on('message', function (message) {
                   // plot data
@@ -107,19 +135,26 @@ angular.module('octobluApp')
                   var sensorData = message.payload;
                   delete sensorData.uuid;
                   delete sensorData.ipAddress;
+                  delete sensorData.api;
 
-                  var index = 0
+                  console.log(sensorData);
+
                   for (var property in sensorData) {
                       if (sensorData.hasOwnProperty(property)) {
-                        index = index + 1
-                        console.log('+' + sensorData[property].trim() + '+');
+                        if (sensorGrid.indexOf(property) == -1){
+                          sensorGrid.push(property);
+                        }
+                        console.log('+' + sensorData[property] + '+');
+                        $("#legend").html(JSON.stringify(sensorData));
                         if (sensorData[property] != undefined){
-                          if (index == 1){
-                            line1.append(new Date().getTime(), sensorData[property].trim()*1);  
-                          } else if (index == 2){
-                            line2.append(new Date().getTime(), sensorData[property].trim()*1);  
+
+                          for (var i in sensorGrid) {
+                            if (property == sensorGrid[i]){
+                              line[i].append(new Date().getTime(), sensorData[property] *1);  
+                            }
+
                           }
-                          
+
                         }
                       }
                   }
