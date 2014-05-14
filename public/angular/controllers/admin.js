@@ -56,8 +56,9 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser, currentGroup,  GroupService) {
+    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser, currentGroup, allDevices,  GroupService) {
         $scope.group = currentGroup;
+        $scope.allDevices = allDevices;
 //        $scope.user = currentUser;
 
 
