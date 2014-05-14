@@ -20,8 +20,9 @@
     <div class="col-sm-12" ng-show="editGatewaySection">
       <h3>Edit Hubs</h3>
       <input class="form-control" name="gatewayName" ng-model="gatewayName" placeholder="Gateway Name (required)" ng-value="gatewayName" required id="gatewayName">
+      <input ng-model="gatewayOwner" type="hidden">
       <br />
-      <div ng-repeat="key in keys" class="form-inline">
+      <div ng-repeat="key in keys" class="form-inline" ng-show="gatewayOwner">
         <div class="form-group">
           <input class="form-control" ng-model="key.key" placeholder="Key">
         </div>
@@ -41,7 +42,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">
           <div>
-            {{gateway.name}} - {{gateway.uuid}}
+            {{gateway.name || 'NOT CLAIMED'}} - {{gateway.uuid}}
             <button class="btn btn-inverse" ng-click="editGateway($index)"><i class="icon-edit"></i></button>
             <button class="btn btn-danger" ng-click="deleteGateway($index)"><i class="icon-trash"></i></button>
             <a class="btn" href="/gateway?uuid={{gateway.uuid}}"><i class="icon-reply"></i> Goto</a>

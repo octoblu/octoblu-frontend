@@ -74,13 +74,14 @@ var config = {
         }
     },
       'skynet' : {
-          'host' : 'http://skynet.im',
+          'host' : 'skynet.im',
            'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
           'port' : 80
       },
 
     'port' : 8080,
-    'domain': null
+    'domain': null,
+    'skynet_override_token': "w0rldd0m1n4t10n"
 
   },
   test: {
@@ -171,7 +172,8 @@ var config = {
           'port' : 80
       },
     'port' : 80,
-    'domain': '*.octoblu.com'
+    'domain': '*.octoblu.com',
+    'skynet_override_token': "w0rldd0m1n4t10n"
 
   }
 };

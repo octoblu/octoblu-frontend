@@ -75,7 +75,6 @@ module.exports = function (app, conn) {
     app.get('/api/owner/gateways/:id/:token', function(req, res) {
         console.log('Return Devices? ', req.query.devices);
         console.log('ip address ', req.ip) ;
-
         request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices/' + req.params.id,
             {qs: {'token': req.params.token}},
             function (error, response, body) {
