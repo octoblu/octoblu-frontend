@@ -5,6 +5,8 @@ angular.module('octobluApp')
         $scope.groupName = undefined;
         $scope.errors = [];
         $scope.user = currentUser;
+        $scope.operatorGroup = _.findWhere($scope.user.groups, {"type" : "operators"});
+
         $scope.ownedDevices = allDevices;
 
         $scope.addGroup = function () {
@@ -59,6 +61,7 @@ angular.module('octobluApp')
     .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser, currentGroup, allDevices,  GroupService) {
         $scope.group = currentGroup;
         $scope.allDevices = allDevices;
+        $scope.operators = _.findWhere($scope.user.groups, {'type' : 'operators'});
 
 
         $scope.isDeviceInGroup = function(device){

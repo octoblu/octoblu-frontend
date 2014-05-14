@@ -4,12 +4,15 @@
             <h3 class="title text-center">
                 <i class="fa fa-user fa-lg" style="margin-right: 5px;"></i>People
                 <span class="dropdown pull-right">
-                     <a href class="dropdown-toggle" style="color: #ffffff;">
-                         <i class="fa fa-plus fa-lg"></i><span class="caret"></span>
-                    </a>
-                      <ul class="dropdown-menu">
-                          <li ng-repeat="member in operators">
-                              {{member.email}} <button type="button" class="btn btn-xs btn-default pull-right" ng-click="addMemberToGroup(member)">Add</button>
+                   <a href class="dropdown-toggle" style="color: #ffffff;">
+                       <i class="fa fa-plus fa-lg"></i><span class="caret"></span>
+                   </a>
+                      <ul class="dropdown-menu dropdown-menu-left  list-group" role="menu">
+                          <li class="list-group-item" ng-repeat="member in operatorGroup.members | orderBy:'name'" tooltip="Add to Group"  tooltip-placement="right"
+                              tooltip-popup-delay="5" >
+                              <a ng-disabled="{{isMemberInGroup(member)}}"  ng-click="addMemberToGroup(member)">
+                                  {{member.name}}
+                              </a>
                           </li>
                       </ul>
                 </span>
@@ -18,10 +21,13 @@
         </div>
         <div class="panel-body group-info-panel-body ">
             <ul class="list-group">
-                <li data-ng-repeat="member in group.members" class="list-group-item">
-                    <i class="fa fa-user"></i>
-                    {{member.email}}
-                    <a class="caret" ng-click="removeDeviceFromGroup(device)">X</a>
+                <li class="list-group-item" ng-repeat="member in group.members | orderBy:'name'" style="min-height: 50px;">
+                 <span class="fa-stack fa-2x">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-user fa-inverse fa-stack-1x"></i>
+                 </span>
+                    <span>{{member.name}}</span>
+                    <a class="btn btn-danger pull-right" ng-click="removeMemberFromGroup(member)"><i class="fa fa-trash-o"></i></a>
                 </li>
             </ul>
         </div>
@@ -88,10 +94,13 @@
         </div>
         <div class="panel-body group-info-panel-body">
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="device in group.devices" style="min-height: 50px;">
-                    <img src="{{device.imageUrl}}" class="pull-left" style="height: 32px; width: 32px; margin-right: 20px;">
-                    <span>{{device.name}}</span>
-                    <a class="caret" ng-click="removeDeviceFromGroup(device)">X</a>
+                <li class="list-group-item" ng-repeat="device in group.devices | orderBy:'name'" style="min-height: 50px;">
+                 <span class="fa-stack fa-2x">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-hdd-o fa-stack-1x"></i>
+                 </span>
+                 <span>{{device.name}}</span>
+                 <a class="btn btn-danger pull-right" ng-click="removeDeviceFromGroup(device)"><i class="fa fa-trash-o"></i></a>
                 </li>
             </ul>
         </div>
