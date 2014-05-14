@@ -158,6 +158,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 resolve: {
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
+                    },
+                    allDevices: function(currentUser, GroupService){
+                        return GroupService.getAllDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 }
             })

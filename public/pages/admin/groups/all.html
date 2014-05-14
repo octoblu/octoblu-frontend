@@ -22,9 +22,11 @@
         </div>
         <div class="panel-body group-info-panel-body">
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="device in user.ownedDevices" style="min-height: 50px;">
-                       <img src="{{getDeviceImageUrl(device)}}" class="pull-left" style="height: 32px; width: 32px; margin-right: 20px;">
-                   <div style="">{{device.name}}</div>
+                <li class="list-group-item" ng-repeat="device in ownedDevices | orderBy:'name'" style="min-height: 50px;">
+                 <span class="fa-stack fa-2x">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-hdd-o fa-stack-1x"></i>
+                 </span>{{device.name}}
                 </li>
             </ul>
         </div>

@@ -195,26 +195,7 @@ var invitationController = {
             var recipient;
 
 
-            var userPromise = User.findOne({ $or: [
-                {
-                    'local.skynetuuid': uuid,
-                    'local.skynettoken': token
-                },
-                {
-                    'twitter.skynetuuid': uuid,
-                    'twitter.skynettoken': token
-                },
-                {
-                    'facebook.skynetuuid': uuid,
-                    'facebook.skynettoken': token
-                },
-                {
-                    'google.skynetuuid': uuid,
-                    'google.skynettoken': token
-                }
-            ]
-            }).exec();
-
+            var userPromise = User.statics.findBySkynetUUIDAndToken( uuid, token );
             //1. Find the user with the give UUID and Token
             //2. Check if the recipient is already an existing octoblu user
             //3. Create a new invitation
@@ -409,18 +390,12 @@ module.exports = function (app, passport, config) {
     app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById);
     app.put('/api/user/:id/:token/invitation/send', invitationController.sendInvitation);
     app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation);
-    app.get('/api/invitation/:id/accept', requireAuthorized, invitationController.acceptInvitation, function (err, req, res) {
-        if (err) {
-            console.log(err);
-        }
-        res.redirect('/dashboard')
-
-    });
-
+    app.get('/api/invitation/:id/accept', requireAuthorized, invitationController.acceptInvitation );
+//
     function requireAuthorized(req, res, next) {
         if (!req.session.user || !req.session.user.id) {
             req.session.redirect = req.url;
-            res.redirect('/signup');
+            res.redirect('/login');
         } else {
             next();
         }

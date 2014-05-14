@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function ( $rootScope, $scope, $modal, $log,  $cookies, currentUser, GroupService) {
+    .controller('adminController', function ( $rootScope, $scope, $modal, $log,  $cookies, currentUser, allDevices, GroupService) {
         $scope.groupName = undefined;
         $scope.errors = [];
         $scope.user = currentUser;
+        $scope.ownedDevices = allDevices;
 
         $scope.addGroup = function () {
 

@@ -74,9 +74,9 @@ var config = {
         }
     },
       'skynet' : {
-          'host' : 'skynet.im',
+          'host' : '127.0.0.1',
            'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
-          'port' : 80
+          'port' : 3000
       },
 
     'port' : 8080,
@@ -149,7 +149,7 @@ var config = {
       'callbackURL'    : 'http://octoblu.com/api/auth/Delicious/callback'
     },
     'musixmatch' : {
-      'base_url'       : 'http://api.musixmatch.com/ws/1.1/',
+      'base_url'       : 'http://api.musixmatch.com/ws/1.1/'
     },
       email : {
           'SMTP': {

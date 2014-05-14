@@ -50,52 +50,11 @@ module.exports = function (app, conn) {
                     res.send(401, 'Unauthorized: Invalid UUID or Token');
                 } else {
 
-
-
-//                    request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-//                        {qs: {'ipAddress': req.ip, 'type': 'gateway', 'owner': null }, json: true},
-//                        function (error, response, body) {
-//                            if (error) {
-//                                res.send(404, error);
-//                            } else {
-//                                if (body.error) {
-//                                    res.send(404, error);
-//                                } else {
-//                                    var deviceIds = body.devices;
-//                                    var hubs = [];
-//                                    async.times(deviceIds.length, function (n, next) {
-//                                        request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + deviceIds[n],{json: true}
-//                                            , function (error, response, body) {
-//                                                  var hub = body;
-////                                                  hubs.push(body);
-//                                                  console.log(body);
-//                                                  next(error, hub);
-////                                                var data = JSON.parse(body);
-////                                                console.log(data);
-////                                                hubs.push(data);
-////                                                next(error, hubs);
-//                                            });
-//                                    }, function(error, hubs){
-//                                        if(error){
-//                                            res.send(404, error);
-//                                        }
-//                                        res.send(200, hubs);
-//                                    });
-//                                }
-//                            }
-//                        }
-//                    );
                 }
             });
     });
 
     app.get('/api/owner/devices/:id/:token', function (req, res) {
-        // request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-        //  	{qs: {'owner': req.params.id}}
-        //  , function (error, response, body) {
-        // 		var data = JSON.parse(body);
-        //    	res.json(data);
-        // });
 
         request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices/' + req.params.id,
             { qs: { 'token': req.params.token } },

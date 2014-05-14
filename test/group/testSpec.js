@@ -5,9 +5,8 @@ var _ = require('lodash'),
     UserSchema = require('/app/models/user'),
     User = mongoose.model('User'),
     rest = require('rest'),
-    client = rest.wrap(mime),
     mime = require('rest/interceptor/mime'),
-
+    client = rest.wrap(mime),
     uuid = require('node-uuid');
 
 
