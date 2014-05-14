@@ -293,6 +293,7 @@ var invitationController = {
         var invitation, sender, recipient;
         Invitation.findById(req.params.id).exec().then(function (inv) {
             invitation = inv;
+            console.log('inv',inv);
             if (invitation.status === 'ACCEPTED') {
                 res.redirect('/dashboard');
             } else {
@@ -300,6 +301,7 @@ var invitationController = {
             }
         }).then(function (snd) {
             sender = snd;
+            console.log('snd',snd)
             if (invitation.recipient.uuid) {
                 return User.findBySkynetUUID(invitation.recipient.uuid);
             }
@@ -308,22 +310,33 @@ var invitationController = {
             }
         }).then(function (rcp) {
             recipient = rcp;
+            console.log('rcp',rcp);
 
-            if (!recipient || recipient._id !== req.session.user._id) {
+            // if (!recipient || recipient._id !== req.session.user._id) {
+            if (!recipient || recipient.skynetuuid !== req.cookies.skynetuuid) {
+                console.log('redirecting', recipient.skynetuuid, req.cookies.skynetuuid);
                 res.redirect('/signup');
             } else {
+                console.log('here');
                 var operatorGroup = _.findWhere(sender.groups, {'type': 'operators'});
+                console.log('operatorGroup', operatorGroup);
                 if (!operatorGroup) {
                     operatorGroup = {'uuid': uuid.v1(), 'type': 'operators', members: []};
                     sender.groups.push(operatorGroup);
                 }
 
+console.log('here2');
                 //We are seeing if the recipient is already part of the operators group
                 if (!_.findWhere(operatorGroup.members, {'uuid': recipient.skynetuuid })) {
                     operatorGroup.members.push({uuid: recipient.skynetuuid, name: recipient.name });
                 }
+console.log('here3');
+console.log('final operatorGroup', operatorGroup);
+console.log('sender', sender);
+                sender.markModified('groups');
 
                 sender.save(function (err, sender) {
+                    console.log('SAVED', sender);
                     res.redirect('/dashboard');
                 });
             }
@@ -393,7 +406,8 @@ module.exports = function (app, passport, config) {
     app.get('/api/invitation/:id/accept', requireAuthorized, invitationController.acceptInvitation );
 //
     function requireAuthorized(req, res, next) {
-        if (!req.session.user || !req.session.user.id) {
+        // if (!req.session.user || !req.session.user.id) {
+        if (!req.cookies.skynetuuid && !req.cookies.skynettoken) {
             req.session.redirect = req.url;
             res.redirect('/login');
         } else {
