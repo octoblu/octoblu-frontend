@@ -145,7 +145,7 @@ var groupController = {
      * @returns {*}
      */
     addGroup : function( req, res ) {
-
+    console.log(req);
 
     var name = req.body.name;
     //set
@@ -207,13 +207,19 @@ var groupController = {
             return res.json(400, {'error': 'group already exists'});
         }
 
+        if(req.body.type){
+            var groupType = req.body.type;
+        } else {
+            var groupType = 'default';
+        }
+
 
         var group_uuid = uuid.v1();
 
         var addedGroup = {
             'name': name,
             'uuid': group_uuid,
-            'type': 'default',
+            'type': groupType,
             'permissions': permissions,
             'members': [],
             'devices': []
