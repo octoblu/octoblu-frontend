@@ -82,7 +82,7 @@
                          <i class="fa fa-plus fa-lg"></i><span class="caret"></span>
                      </a>
                       <ul class="dropdown-menu  list-group" role="menu">
-                          <li class="list-group-item" ng-repeat="device in allDevices| orderBy:'name'" tooltip="{{device.uuid}}"  tooltip-placement="right"
+                          <li class="list-group-item" ng-repeat="device in ownedDevices| orderBy:'name'" tooltip="{{device.uuid}}"  tooltip-placement="right"
                               tooltip-popup-delay="5" >
                               <a ng-disabled="{{isDeviceInGroup(device)}}"  ng-click="addDeviceToGroup(device)">
                                {{device.name}}

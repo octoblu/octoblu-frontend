@@ -60,8 +60,6 @@ angular.module('octobluApp')
     })
     .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser, currentGroup, allDevices,  GroupService) {
         $scope.group = currentGroup;
-        $scope.allDevices = allDevices;
-        $scope.operators = _.findWhere($scope.user.groups, {'type' : 'operators'});
 
 
         $scope.isDeviceInGroup = function(device){
