@@ -19,12 +19,13 @@ var GroupSchema = mongoose.Schema({
     },
     members: [{
         name : String,
-        skynetuuid : String,
+        email : String,
+        uuid : String,
         imageUrl : String
     }],
     devices: [{
         name : String,
-        skynetuuid : String,
+        uuid : String,
         type : String,
         imageUrl : String
 

@@ -59,6 +59,60 @@ angular.module('octobluApp')
     .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser, currentGroup, allDevices,  GroupService) {
         $scope.group = currentGroup;
         $scope.allDevices = allDevices;
+
+
+        $scope.isDeviceInGroup = function(device){
+            var deviceIndex =  _.indexOf($scope.group.devices, { 'uuid' : device.uuid});
+            return deviceIndex >= 0;
+        }
+
+        $scope.isMemberInGroup = function(member){
+            var memberIndex =  _.indexOf($scope.group.members, { 'uuid': member.uuid});
+            return memberIndex >= 0;
+
+        };
+
+        $scope.$watch('group', function(oldValue, newValue){
+            if( newValue ){
+                
+                
+            }
+
+        });
+
+        $scope.addMemberToGroup = function(member){
+            var existingMember =  _.findWhere($scope.group.members, {'uuid' : member.uuid });
+            if( ! existingMember ) {
+              $scope.group.members.push(member);
+            }
+        };
+
+        $scope.removeMemberFromGroup = function(member){
+            var existingMember =  _.findWhere($scope.group.members, {'uuid' : member.uuid });
+            if( existingMember ){
+                var members = _.without($scope.group.members, existingMember);
+                $scope.group.members = members;
+            }
+        };
+
+        $scope.addDeviceToGroup = function(device){
+           var existingDevice =  _.findWhere($scope.group.devices, {'uuid' : device.uuid });
+            if( ! existingDevice ){
+                $scope.group.devices.push({
+                    'name' : device.name,
+                    'uuid' : device.uuid,
+                    'type' : device.type || 'custom'
+                }); 
+            }
+        };
+
+        $scope.removeDeviceFromGroup = function( device ){
+            var existingDevice =  _.findWhere($scope.group.devices, {'uuid' : device.uuid });
+            if( existingDevice ){
+                var devices = _.without($scope.group.devices, existingDevice);
+                $scope.group.devices = devices; 
+            }
+        };
 //        $scope.user = currentUser;
 
 
@@ -75,6 +129,7 @@ angular.module('octobluApp')
             }, $scope.recipientEmail);
 
             invitationPromise.then(function (invitation) {
+
                 /*
                  TODO Display a successful notification to the user. Use a notification, not a modal
                  */

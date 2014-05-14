@@ -20,7 +20,7 @@
             <ul class="list-group">
                 <li data-ng-repeat="member in group.members" class="list-group-item">
                     <i class="fa fa-user"></i>
-                    {{member.name}}
+                    {{member.email}}
                     <a class="caret" ng-click="removeDeviceFromGroup(device)">X</a>
                 </li>
             </ul>
@@ -61,8 +61,8 @@
                     </span>
                     <span class="permission-title">Message</span>
                     <div class="pull-right">
-                    <toggle-switch class="pull-right" ng-model="group.permission.message" on-text="YES" off-text="NO" on-color="success" off-color="default"></toggle-switch>
-                        </div>
+                        <toggle-switch class="pull-right" ng-model="group.permission.configure" on-text="YES" off-text="NO" on-color="success" off-color="default"></toggle-switch>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -78,8 +78,8 @@
                       <ul class="dropdown-menu  list-group" role="menu">
                           <li class="list-group-item" ng-repeat="device in allDevices| orderBy:'name'" tooltip="{{device.uuid}}"  tooltip-placement="right"
                               tooltip-popup-delay="5" >
-                              <a role="menuitem" class="dropdown-menu-left">
-                               <input type="checkbox"> {{device.name}}
+                              <a ng-disabled="{{isDeviceInGroup(device)}}"  ng-click="addDeviceToGroup(device)">
+                               {{device.name}}
                               </a>
                           </li>
                       </ul>
