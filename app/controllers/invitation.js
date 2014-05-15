@@ -1,8 +1,3 @@
-/*
- File : invitation.js
- provides the REST API for finding, creating, deleting, sending and receiving invitations to Groups from Octoblu
- users
- */
 var _ = require('lodash'),
     moment = require('moment'),
     jade = require('jade'),
@@ -11,9 +6,14 @@ var _ = require('lodash'),
     mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
     InvitationSchema = require('../models/invitation'),
-    Group = mongoose.model('Group'),
     User = mongoose.model('User'),
+    Group = mongoose.model('Group'),
     Invitation = mongoose.model('Invitation', InvitationSchema);
+/*
+ File : invitation.js
+ provides the REST API for finding, creating, deleting, sending and receiving invitations to Groups from Octoblu
+ users
+ */
 
 
 var invitationController = {
@@ -191,9 +191,8 @@ var invitationController = {
             var email = req.body.email;
             var config = invitationController.config;
 
-            var user;
+            var sender;
             var recipient;
-
 
             var userPromise = User.findBySkynetUUIDAndToken( uuid, token );
             //1. Find the user with the give UUID and Token
@@ -206,7 +205,7 @@ var invitationController = {
 
             userPromise
                 .then(function (usr) {
-                    user = usr;
+                    sender = usr;
                     return User.findOne({
                         $or: [
                             { 'local.email': email },
@@ -215,9 +214,8 @@ var invitationController = {
                         ]
                     }).exec();
                 })
-                .then(function (recipient) {
-
-                    var sender = user;
+                .then(function (rcp) {
+                    recipient = rcp;
                     var inviteData = {};
                     inviteData.recipient = {};
                     inviteData.recipient.email = email;
@@ -225,31 +223,24 @@ var invitationController = {
                     inviteData.status = 'PENDING';
                     inviteData.sent = moment.utc();
 
-                    if (recipient) {
+                    if (rcp) {
                         inviteData.recipient.uuid = recipient.skynetuuid;
                     }
 
                     var invitation = new Invitation(inviteData);
                     invitation.save();
-                    return {
-                        sender: sender,
-                        recipient: recipient,
-                        invitation: invitation
-                    };
+
                 })
                 .then(function (invite) {
 
                     var invitationTemplatePath = process.cwd() + config.email.invitation.templateUrl;
-                    var invitationUrl = req.protocol + "://" + req.header('host') + '/api/invitation/' + invite.invitation._id + '/accept';
+                    var invitationUrl = req.protocol + "://" + req.header('host') + '/api/invitation/' + invite._id + '/accept';
                     var options = {
                         pretty: true,
-                        sender: invite.sender,
+                        sender: sender,
                         invitationUrl: invitationUrl
                     };
-                    invite.messageHtml = jade.renderFile(invitationTemplatePath, options);
-                    return invite;
-                })
-                .then(function (outboundMessage) {
+                    var messageHtml = jade.renderFile(invitationTemplatePath, options);
 
                     var smtpTransport = nodemailer.createTransport("SMTP", {
                         service: "Gmail",
@@ -260,23 +251,24 @@ var invitationController = {
                     });
 
                     var mailOptions = {
-                        to: outboundMessage.invitation.recipient.email,
-                        subject: 'Invitation to share devices on Octoblu from ' + outboundMessage.sender.name,
-                        html: outboundMessage.messageHtml
+                        to: invite.recipient.email,
+                        subject: 'Invitation to share devices on Octoblu from ' + sender.displayName,
+                        html: messageHtml
                     };
 
                     smtpTransport.sendMail(mailOptions, function (error) {
                         if (error) {
                             res.json(400, {'error': 'Invitation email could not be sent'});
                         }
-                        res.send(200, outboundMessage.invitation);
+                        res.send(200, invite);
                     });
-                }, function (error) {
-                    return  res.json(500, {
+                }, function(error){
+                    res.json(500, {
                         'success': false,
                         'error': error
                     });
                 });
+
         } else {
             return res.json(400, {
                 error: 'One or more required parameters is missing'
@@ -317,29 +309,40 @@ var invitationController = {
                 console.log('redirecting', recipient.skynetuuid, req.cookies.skynetuuid);
                 res.redirect('/signup');
             } else {
+
                 console.log('here');
                 var operatorGroup = _.findWhere(sender.groups, {'type': 'operators'});
                 console.log('operatorGroup', operatorGroup);
+
                 if (!operatorGroup) {
                     operatorGroup = {'uuid': uuid.v1(), 'type': 'operators', members: []};
                     sender.groups.push(operatorGroup);
+
                 }
 
-console.log('here2');
-                //We are seeing if the recipient is already part of the operators group
-                if (!_.findWhere(operatorGroup.members, {'uuid': recipient.skynetuuid })) {
-                    operatorGroup.members.push({uuid: recipient.skynetuuid, name: recipient.name });
+                var existingMember = _.findWhere(operatorGroup.members, {'uuid': recipient.skynetuuid });
+                //We are seeing if the recipient is already part of the operators group. If the member is
+                //already part of the
+                if (! existingMember ) {
+                    operatorGroup.members.push({uuid: recipient.skynetuuid, name: recipient.displayName });
+                    invitation.accepted = moment.utc();
+                    invitation.status = "ACCEPTED";
+                    invitation.save();
+                    sender.markModified('groups');
+                    sender.save();
+                } else {
+                    //Make sure
+                    if(invitation.status === "PENDING"){
+                        invitation.status = "ACCEPTED";
+                        invitation.accepted = moment.utc();
+                        invitation.save();
+                    }
                 }
-console.log('here3');
-console.log('final operatorGroup', operatorGroup);
-console.log('sender', sender);
-                sender.markModified('groups');
-
-                sender.save(function (err, sender) {
-                    console.log('SAVED', sender);
-                    res.redirect('/dashboard');
-                });
             }
+            res.redirect('/dashboard');
+        }, function(error){
+            console.log(JSON.stringify(error));
+            res.send(500, {'error' : 'Could not accept invitation'});
         });
     },
 

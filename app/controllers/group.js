@@ -353,6 +353,9 @@ var groupController = {
             var otherGroupsContainingDevice = [otherGroupsContainingDevice];
             console.log('otherGroupsContainingDevice', otherGroupsContainingDevice);
 
+            //TODO include the other devices as members when writing permissions.
+
+
             if(otherGroupsContainingDevice ){
 
                 var uniqueMembers = _.reduceRight(otherGroupsContainingDevice , function( currentMembers, groupPermission, index) {

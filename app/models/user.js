@@ -145,6 +145,10 @@ UserSchema.virtual('email').get(function () {
     return this.local.email || this.google.email || this.facebook.email;
 });
 
+UserSchema.virtual('displayName').get(function(){
+
+    return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
+});
 
 UserSchema.statics.findBySkynetUUID = function( skynetuuid ){
   return this.findOne({ $or: [
