@@ -229,7 +229,7 @@ var invitationController = {
 
                     var invitation = new Invitation(inviteData);
                     invitation.save();
-
+                    return invitation;
                 })
                 .then(function (invite) {
 
