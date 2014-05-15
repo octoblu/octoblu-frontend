@@ -195,7 +195,7 @@ var invitationController = {
             var recipient;
 
 
-            var userPromise = User.statics.findBySkynetUUIDAndToken( uuid, token );
+            var userPromise = User.findBySkynetUUIDAndToken( uuid, token );
             //1. Find the user with the give UUID and Token
             //2. Check if the recipient is already an existing octoblu user
             //3. Create a new invitation
