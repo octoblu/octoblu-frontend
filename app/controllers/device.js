@@ -2,7 +2,7 @@
 
 var request = require('request');
 
-module.exports = function (app) {
+module.exports = function (app, passport, config) {
 
     // Get device info from Skynet
     app.get('/api/devices/:id', function(req, res) {
@@ -75,4 +75,19 @@ module.exports = function (app) {
             });
 
     });
+
+    // Update device with Skynet
+    app.put('/api/claimdevice/:uuid', function(req, res) {
+        console.log('skynet_override_token', config.skynet_override_token);
+        request.put(req.protocol + '://' + app.locals.skynetUrl + '/claimdevice/' + req.params.uuid + '?token=' + req.query.token + '&overrideIp=' + req.ip,
+            {
+                form: req.body, 
+                headers: {'Skynet_override_token': config.skynet_override_token}
+            }, function (error, response, body) {
+                var data = JSON.parse(body);
+                res.json(data);
+            });
+
+    });
+
 };

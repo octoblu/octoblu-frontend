@@ -221,6 +221,7 @@ angular.module('octobluApp')
                     $scope.editGatewaySection = true;
                     var gateway_to_edit = $scope.gateways[idx];
                     $scope.gatewayName = gateway_to_edit.name;
+                    $scope.gatewayOwner = gateway_to_edit.owner;
                     $scope.editGatewayUuid = gateway_to_edit.uuid;
 
                     // find additional keys to edit
@@ -242,6 +243,7 @@ angular.module('octobluApp')
 
                 $scope.updateGateway = function(){
                     $scope.gatewayName = $('#gatewayName').val();
+                    var gatewayOwner = $('#gatewayOwner').val();
 
                     if($scope.gatewayName){
                         var dupeUuid, dupeToken, dupeIndex;
@@ -262,7 +264,7 @@ angular.module('octobluApp')
                         formData.uuid = dupeUuid;
                         formData.token = dupeToken;
 
-                        deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
+                        deviceService.updateDevice($scope.skynetuuid, formData, gatewayOwner, function(data) {
                             console.log(data);
                             try{
                                 $scope.gateways.splice(dupeIndex,1);

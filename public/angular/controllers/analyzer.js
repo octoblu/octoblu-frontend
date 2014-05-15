@@ -114,8 +114,8 @@ angular.module('octobluApp')
 
                     // subscribe to new device selected for chart
                      socket.emit('subscribe', {
-                         'uuid': sensor.uuid,
-                         'token': sensor.token
+                         'uuid': sensor.uuid
+                         // 'token': sensor.token
                      }, function (data) {
                          // console.log(data);
                      });
