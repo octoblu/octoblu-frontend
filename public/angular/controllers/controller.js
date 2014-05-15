@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, ownerService, messageService) {
+    .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, skynetConfig, ownerService, messageService) {
         $rootScope.checkLogin($scope, $http, $injector, false, function(){
             // Get user gateways
             ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(error, data) {
@@ -12,13 +12,7 @@ angular.module('octobluApp')
                 $scope.devices = data.gateways;
             });
 
-            // connect to skynet
-            var skynetConfig = {
-                'host': 'skynet.im',
-                'port':80, 
-                "uuid": $scope.skynetuuid,
-                "token": $scope.skynettoken
-            }
+
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e
 

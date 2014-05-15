@@ -10,13 +10,6 @@ angular.module('octobluApp')
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
             $scope.navType = 'pills';
 
-            // connect to skynet
-            var skynetConfig = {
-                'host': 'skynet.im',
-                'port' : 80,
-                "uuid": $scope.skynetuuid,
-                "token": $scope.skynettoken
-            };
 
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('analyzerController',function ($rootScope, $scope, $http, $injector, $cookies, elasticService, ownerService) {
+    .controller('analyzerController',function ($rootScope, $scope, $http, $injector, $cookies, skynetConfig, elasticService, ownerService) {
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
 
             // Get user devices
@@ -79,13 +79,6 @@ angular.module('octobluApp')
 
             smoothie.streamTo(document.getElementById("mycanvas"), 1000);
 
-            // connect to skynet
-            var skynetConfig = {
-                'host': 'skynet.im',
-                'port': 80,
-                'uuid': $scope.skynetuuid,
-                'token': $scope.skynettoken
-            };
 
             var sensorGrid = [];
 

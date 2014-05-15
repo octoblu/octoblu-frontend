@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,ownerService, deviceService, channelService) {
+    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,skynetConfig, ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
@@ -11,13 +11,6 @@ angular.module('octobluApp')
             $scope.navType = 'pills';
             // $scope.navType = 'tabs';
 
-            // connect to skynet
-            var skynetConfig = {
-                'host': 'skynet.im',
-                'port':80,
-                "uuid": $scope.skynetuuid,
-                "token": $scope.skynettoken
-            }
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e
 

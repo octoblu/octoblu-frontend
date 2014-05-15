@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location, ownerService, channelService, userService) {
+    .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location, skynetConfig,  ownerService, channelService, userService) {
         $scope.message = 'Contact page content pending.';
 
         $rootScope.checkLogin($scope, $http, $injector, false, function () {
@@ -9,13 +9,6 @@ angular.module('octobluApp')
             var deviceData = [];
             var chart;
 
-            // connect to skynet
-            var skynetConfig = {
-                'host': 'skynet.im',
-                'port':80,
-                'uuid': $scope.skynetuuid,
-                'token': $scope.skynettoken
-            };
 
             channelService.getActive($scope.skynetuuid, function (data) {
                 $scope.channels = data;
