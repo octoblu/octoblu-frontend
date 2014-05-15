@@ -277,7 +277,7 @@ var invitationController = {
     },
 
     /**
-     *
+     * acceptInvitation
      * @param req
      * @param res
      */
