@@ -172,7 +172,7 @@ var config = {
           'port' : 80
       },
     'port' : 80,
-    'domain': '*.octoblu.com',
+    'domain': '.octoblu.com',
     'skynet_override_token': "w0rldd0m1n4t10n"
 
   }
