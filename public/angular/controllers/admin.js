@@ -9,6 +9,13 @@ angular.module('octobluApp')
 
         $scope.ownedDevices = allDevices;
 
+        $scope.$on('groupUpdated', function(event, updatedGroup){
+           var existingGroup =  _.findWhere($scope.user.groups, {uuid : updatedGroup.uuid});
+           var groupIndex = _.indexOf($scope.user.groups, existingGroup );
+           $scope.user.groups[groupIndex] = updatedGroup;
+
+        });
+
         $scope.addGroup = function () {
 
             if ($scope.groupName) {
@@ -155,11 +162,8 @@ angular.module('octobluApp')
             var groupPromise = GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, groupData);
             groupPromise.then(function (group) {
                 if (group) {
-                    var groupIndex = _.indexOf($scope.user.groups, {"uuid": group.uuid });
-                    if (groupIndex >= 0) {
-                        $scope.user.groups[groupIndex] = group;
-                        $scope.group = group;
-                    }
+                   $scope.group = group;
+                   $scope.$emit('groupUpdated',  group );
                 }
             }, function (result) {
                 console.log(JSON.stringify(result));
