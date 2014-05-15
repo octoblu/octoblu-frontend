@@ -25,34 +25,14 @@ var groupController = {
             });
         }
 
+        var userPromise = User.findBySkynetUUIDAndToken(skynetuuid, skynettoken);
+        userPromise.then(function(user){
 
-        User.findOne({ $or: [
-            {
-                'local.skynetuuid': skynetuuid,
-                'local.skynettoken': skynettoken
-            },
-            {
-                'twitter.skynetuuid': skynetuuid,
-                'twitter.skynettoken': skynettoken
-            },
-            {
-                'facebook.skynetuuid': skynetuuid,
-                'facebook.skynettoken': skynettoken
-            },
-            {
-                'google.skynetuuid': skynetuuid,
-                'google.skynettoken': skynettoken
-            }
-        ]
-        }, function(err, userInfo) {
-            console.log(userInfo);
-            if (err) {
-                res.send(err);
-            } else {
-                res.json({groups:userInfo.groups});
-            }
+            res.json(200, user.groups );
+        }, function(error){
+            res.send(400, "Error");
+            console.log(JSON.stringify(error));
         });
-
     },
 
     /**
@@ -90,47 +70,6 @@ var groupController = {
                 'error' : 'unauthorized'
             });
         });
-
-//        User.findOne({ $or: [
-//            {
-//                'local.skynetuuid': skynetuuid,
-//                'local.skynettoken': skynettoken
-//            },
-//            {
-//                'twitter.skynetuuid': skynetuuid,
-//                'twitter.skynettoken': skynettoken
-//            },
-//            {
-//                'facebook.skynetuuid': skynetuuid,
-//                'facebook.skynettoken': skynettoken
-//            },
-//            {
-//                'google.skynetuuid': skynetuuid,
-//                'google.skynettoken': skynettoken
-//            }
-//        ]
-//        }, function (err, userInfo) {
-//            // console.log(userInfo);
-//            if (err) {
-//               return res.json(400 , {
-//                    'error' : 'unauthorized'
-//                });
-//            } else {
-//
-//                var group = _.findWhere(userInfo.groups, {
-//                    'uuid' : req.params.uuid
-//                });
-//
-//                if( group ){
-//                    return res.json(group);
-//                } else {
-//                    return res.json(400 , {
-//                        'error' : 'Group not found'
-//                    });
-//                }
-//            }
-//
-//        });
     },
 
     /**
@@ -308,6 +247,50 @@ var groupController = {
     },
 
     updateGroup : function(req, res){
+        var skynetuuid = req.headers.ob_skynetuuid;
+        var skynettoken = req.headers.ob_skynettoken;
+
+        if( ! skynetuuid || ! skynettoken){
+            res.json(401, {
+                'error' : 'unauthorized'
+            });
+        }
+
+        var userPromise = User.findBySkynetUUIDAndToken(skynetuuid, skynettoken);
+        userPromise.then(function(user){
+
+            var groupIndex = _.findIndex(user.groups, {'uuid' : req.params.uuid });
+            var groupExists = groupIndex >= 0;
+            if( ! groupExists ){
+                res.send(400 , {"error" : "Group does not exist"});
+            }
+
+            if(! req.body.group ){
+                res.send(400, {"error" : "missing group parameter"});
+            }
+            var updatedGroup = req.body.group;
+
+            if( ! updatedGroup.members || ! updatedGroup.permissions || ! updatedGroup.devices ){
+                res.send(400, {"error" : "missing group fields [permissions, members, devices]"});
+            }
+
+            user.groups[groupIndex].members = updatedGroup.members;
+            user.groups[groupIndex].devices = updatedGroup.devices;
+            user.groups[groupIndex].permissions = updatedGroup.permissions;
+            user.groups[groupIndex].name = updatedGroup.name || user.groups[groupIndex].name;
+
+            user.markModified('groups');
+            user.save(function(err, usr){
+                if(err){
+                    console.log(JSON.stringify(err));
+                    res.send(400, {"error": "could not update"});
+                }
+                res.json(200, usr.groups[groupIndex] );
+            });
+
+        }, function(error){
+
+        });
 
     },
 
@@ -490,10 +473,11 @@ var groupController = {
 
 module.exports = function(app){
 
+    groupController.skynetUrl = app.locals.skynetUrl;
+
     app.get('/api/groups', groupController.getGroups );
 
 // curl -X POST -H 'Content-Type:application/json' -d '{"name":"family","permissions":{"discover":true,"message":true,"configure":false}}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups
-
     app.post('/api/groups', groupController.addGroup );
 
 // curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/76893990-cbe9-11e3-897a-b94740070267
@@ -504,298 +488,6 @@ module.exports = function(app){
 
 // curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3
     app.get('/api/groups/:uuid', groupController.getGroupById );
-
-
-// curl -X POST -H 'Content-Type:application/json' -d '{"uuid":"123", devices:[{"uuid":"123", "token":"abc"}]}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members
-//    app.post('/api/user/:id/groups/:uuid/members', function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : skynetuuid},
-//            {'twitter.skynetuuid' : skynetuuid},
-//            {'facebook.skynetuuid' : skynetuuid},
-//            {'google.skynetuuid' : skynetuuid}
-//        ]
-//        }, function(err, userInfo) {
-//            if (err) {
-//                res.send(err);
-//            } else {
-//
-//                var groupFound = false;
-//                for (var i=0; i < userInfo.groups.length; i++) {
-//                    if (userInfo.groups[i].uuid == req.params.uuid) {
-//                        try {
-//                            var data = JSON.parse(req.body);
-//                        } catch (e){
-//                            var data = req.body;
-//                        }
-//
-//                        userInfo.groups[i].members.push(data.uuid);
-//                        userInfo.markModified('groups');
-//
-//                        // Setup perminssion arrays
-//                        if (userInfo.groups[i].permissions.discover){
-//                            var viewPerms = userInfo.groups[i].members;
-//                        } else {
-//                            var viewPerms = [];
-//                        }
-//
-//                        if (userInfo.groups[i].permissions.message){
-//                            var sendPerms = userInfo.groups[i].members;
-//                        } else {
-//                            var sendPerms = [];
-//                        }
-//
-//                        if (userInfo.groups[i].permissions.configure){
-//                            var updatePerms = userInfo.groups[i].members;
-//                        } else {
-//                            var updatePerms = [];
-//                        }
-//
-//                        if (data.devices){
-//                            for (var device=0; i < data.devices.length; device++) {
-//                                // Update Skynet device permissions
-//                                request.put(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + data.devices[device].uuid,
-//                                    {form: {
-//                                        'token': data.devices[device].token,
-//                                        'viewPermissions': viewPerms,
-//                                        'sendPermissions': sendPerms,
-//                                        'updatePermissions': updatePerms
-//                                    }}
-//                                    , function (error, response, body) {
-//                                        if(response.statusCode == 200){
-//                                            console.log(body);
-//                                        }
-//                                    }
-//                                );
-//                            };
-//                        };
-//
-//                        userInfo.save(function(err, data, affected) {
-//                            if(!err) {
-//                                console.log(userInfo);
-//                                res.json({members: data.groups[i].members});
-//
-//                            } else {
-//                                console.log('Error: ' + err);
-//                                res.json(err);
-//                            }
-//                        });
-//                        groupFound = true;
-//                        break;
-//                    }
-//                }
-//
-//                if(!groupFound){
-//                    res.json(404, {'group': 'not found'});
-//                }
-//
-//            }
-//        });
-//    });
-
-// curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/b6f1f200-d15d-11e3-9327-03d1d0e5e715/members/123
-//    app.delete('/api/user/:id/groups/:uuid/members/:user', function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : skynetuuid},
-//            {'twitter.skynetuuid' : skynetuuid},
-//            {'facebook.skynetuuid' : skynetuuid},
-//            {'google.skynetuuid' : skynetuuid}
-//        ]
-//        }, function(err, userInfo) {
-//            // console.log(userInfo);
-//            if (err) {
-//                res.send(err);
-//            } else {
-//                var memberFound = false;
-//                for (var i=0; i < userInfo.groups.length; i++) {
-//                    if (userInfo.groups[i].uuid == req.params.uuid) {
-//
-//                        // for (var j=0; j < userInfo.groups[i].members.length; j++) {
-//                        //    if (userInfo.groups[i].members[j].uuid == req.params.user) {
-//                        //
-//                        //       userInfo.groups[i].members.splice(j,1);
-//                        //       userInfo.markModified('groups');
-//                        //
-//                        //       userInfo.save(function(err, data, affected) {
-//                        //         if(!err) {
-//                        //           console.log(userInfo.groups[i]);
-//                        //           res.json({'member': 'deleted' });
-//                        //
-//                        //         } else {
-//                        //           console.log('Error: ' + err);
-//                        //           res.json(err);
-//                        //         }
-//                        //       });
-//                        //       memberFound = true;
-//                        //       break;
-//                        //     }
-//                        //   }
-//
-//                        var j = userInfo.groups[i].members.indexOf(req.params.user);
-//                        console.log(j);
-//                        if (!j){
-//                            userInfo.groups[i].members.splice(j,1);
-//                            userInfo.markModified('groups');
-//
-//                            userInfo.save(function(err, data, affected) {
-//                                if(!err) {
-//                                    console.log(userInfo);
-//                                    res.json({'member': 'deleted'});
-//
-//                                } else {
-//                                    console.log('Error: ' + err);
-//                                    res.json(err);
-//                                }
-//                            });
-//                            memberFound = true;
-//                            break;
-//
-//                        }
-//
-//
-//                    }
-//                }
-//
-//                if(!memberFound){
-//                    res.json(404, {'member': 'not found'});
-//                }
-//
-//            }
-//        });
-//    });
-
-// GET POST PUT DELETE /groups/:uuid/devices
-// curl http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/devices
-//    app.get('/api/user/:id/groups/:uuid/devices', function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : skynetuuid},
-//            {'twitter.skynetuuid' : skynetuuid},
-//            {'facebook.skynetuuid' : skynetuuid},
-//            {'google.skynetuuid' : skynetuuid}
-//        ]
-//        }, function(err, userInfo) {
-//            console.log(userInfo);
-//            if (err) {
-//                res.send(err);
-//            } else {
-//                var groupFound = false;
-//                for (var i=0; i < userInfo.groups.length; i++) {
-//                    if (userInfo.groups[i].uuid == req.params.uuid) {
-//                        res.json({devices: userInfo.groups[i].devices});
-//                        groupFound = true;
-//                        break;
-//                    };
-//                }
-//
-//            }
-//
-//            if(!groupFound){
-//                res.json(404, {'group': 'not found'});
-//            }
-//
-//        });
-//    });
-
-// curl -X POST  -H 'Content-Type:application/json' -d '{"uuid":"123"}' http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/2b3f13e0-cbff-11e3-b829-9b73ed50a879/devices
-//    app.post('/api/user/:id/groups/:uuid/devices',
-//        function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : skynetuuid},
-//            {'twitter.skynetuuid' : skynetuuid},
-//            {'facebook.skynetuuid' : skynetuuid},
-//            {'google.skynetuuid' : skynetuuid}
-//        ]
-//        }, function(err, userInfo) {
-//            console.log(userInfo);
-//            if (err) {
-//                res.send(err);
-//            } else {
-//
-//                var groupFound = false;
-//                for (var i=0; i < userInfo.groups.length; i++) {
-//                    if (userInfo.groups[i].uuid == req.params.uuid) {
-//
-//                        try {
-//                            var data = JSON.parse(req.body);
-//                        } catch (e){
-//                            var data = req.body;
-//                        }
-//
-//                        userInfo.groups[i].devices.push(data.uuid);
-//                        userInfo.markModified('groups');
-//                        userInfo.save(function(err, data, affected) {
-//                            console.log(affected);
-//                            if(!err) {
-//                                console.log(userInfo);
-//                                res.json({devices: data.groups[i].devices});
-//
-//                            } else {
-//                                console.log('Error: ' + err);
-//                                res.json(err);
-//                            }
-//                        });
-//                        groupFound = true;
-//                        break;
-//                    }
-//                }
-//
-//                if(!groupFound){
-//                    res.json(404, {'group': 'not found'});
-//                }
-//
-//            }
-//        });
-//    }
-//    );
-
-// curl -X DELETE http://localhost:8080/api/user/5d6e9c91-820e-11e3-a399-f5b85b6b9fd0/groups/590ae120-cbf8-11e3-b558-afc0266c35f3/devices/123
-//    app.delete('/api/user/:id/groups/:uuid/devices/:user',
-//        function (req, res) {
-//        User.findOne({ $or: [
-//            {'local.skynetuuid' : skynetuuid},
-//            {'twitter.skynetuuid' : skynetuuid},
-//            {'facebook.skynetuuid' : skynetuuid},
-//            {'google.skynetuuid' : skynetuuid}
-//        ]
-//        }, function(err, userInfo) {
-//            // console.log(userInfo);
-//            if (err) {
-//                res.send(err);
-//            } else {
-//                var memberFound = false;
-//                for (var i=0; i < userInfo.groups.length; i++) {
-//                    if (userInfo.groups[i].uuid == req.params.uuid) {
-//
-//                        var j = userInfo.groups[i].devices.indexOf(req.params.user);
-//                        console.log(j);
-//                        if (!j){
-//                            userInfo.groups[i].devices.splice(j,1);
-//                            userInfo.markModified('groups');
-//
-//                            userInfo.save(function(err, data, affected) {
-//                                if(!err) {
-//                                    console.log(userInfo);
-//                                    res.json({'devices': 'deleted'});
-//
-//                                } else {
-//                                    console.log('Error: ' + err);
-//                                    res.json(err);
-//                                }
-//                            });
-//                            memberFound = true;
-//                            break;
-//
-//                        }
-//                    }
-//                }
-//
-//                if(!memberFound){
-//                    res.json(404, {'device': 'not found'});
-//                }
-//
-//            }
-//        });
-//    }
-//    );
 
 };
 

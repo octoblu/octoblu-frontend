@@ -5,7 +5,8 @@ angular.module('octobluApp')
         return {
             restrict: 'AE',
             replace: true,
-
+            require : '?ngModel',
+            transclude : true,
             scope: {
                 state: '@',
                 size : '@',
@@ -18,10 +19,11 @@ angular.module('octobluApp')
                 readOnly : '@',
                 value: '@',
                 'class' : '@',
-                ngModel: '='
+                model: '@'
             },
-            template: '<input type="checkbox" >',
-            link: function (scope, element, attr) {
+            template: '<input ng-model="{{model}}" type="checkbox" >',
+
+            link: function (scope, element, attr, ngModel) {
 
 
                 attr.state = attr.state || false;
@@ -33,6 +35,9 @@ angular.module('octobluApp')
                 attr.label = attr.label || '';
                 attr.readOnly = attr.readOnly || false;
                 attr.disabled = attr.disabled || false;
+
+                ngModel.$name = attr.model;
+                ngModel.$modelValue = attr.state;
 
                 $(element).attr('data-on-text', attr.onText);
                 $(element).attr('data-on-color', attr.onColor);
@@ -63,12 +68,27 @@ angular.module('octobluApp')
                     $(element).attr('data-label-text', attr.label);
                 }
 
-                $(element).bootstrapSwitch();
+                $(element).bootstrapSwitch({
+
+                    onSwitchChange : function(event, state){
+
+                       var element = angular.element(this);
+                       if(state){
+                           element.attr('checked' , 'checked');
+                       } else {
+                           element.removeAttr('checked');
+                       }
+                       var scope = element.scope();
+//                       scope.$apply(function(scope){
+//                           ngModel.$modelValue = state;
+//                           ngModel.$dirty = true;
+//                           ngModel.$render();
+//                       });
+
+                    }
+                });
 
 
-              attr.$observe('state', function(val){
-                  $(element).bootstrapSwitch('state', val);
-              });
             }
         }
     });

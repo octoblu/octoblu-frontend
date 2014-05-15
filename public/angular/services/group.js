@@ -121,7 +121,7 @@ angular.module('octobluApp')
                 //If no permissions have been set, use default permissions
                 var groupData = {
                     'name' : name,
-                    'permissions' : permissions || {'discover' : true, 'configure' : false, update : 'false'}
+                    'permissions' : permissions || {'discover' : true, configure : false, message : true}
                 };
 
                 $http.post(url, groupData, {
@@ -209,15 +209,38 @@ angular.module('octobluApp')
         };
 
         /**
+         * HTTP VERB : PUT
          *
-         * @param newMember
-         * @param user
-         * @param group
-         * @returns {defer.promise|*}
+         * updateGroup saves the modified group
+         * @param uuid - the owner UUID
+         * @param token - the owner token
+         * @param updatedGroup - the modified group
+         * @returns {defer.promise|*} a promise that will eventually
+         * be the modified group on success or error if the group could not be saved
+         * successfully
          */
-        this.addMembersToGroup = function(members , user, group){
-            var defer = $q.defer();
+        this.updateGroup = function(uuid, token, updatedGroup ){
 
+            var defer = $q.defer();
+            if( ! uuid || ! token || ! updatedGroup){
+                defer.reject({
+                    'error' : 'missing required parameters'
+                });
+            } else {
+                var url = '/api/groups/' + updatedGroup.uuid;
+                $http.put(url, {
+                    "group" : updatedGroup
+                }, {
+                    headers : {
+                    'ob_skynetuuid' : uuid,
+                    'ob_skynettoken' : token
+                }
+            }).success(function(group){
+                    defer.resolve(group)
+                }).error(function(result){
+                    defer.reject(result);
+                });
+            }
             return defer.promise;
         }
 
