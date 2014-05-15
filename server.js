@@ -34,7 +34,8 @@ app.configure(function() {
     // app.set('view engine', 'jade'); // set up jade for templating
 
     // required for passport
-    app.use(express.session({ secret: 'e2em2miotskynet' })); // session secret
+    app.use(express.session({ secret: 'e2em2miotskynet',
+        cookie: { domain: configAuth.domain} })); // session secret
     app.use(passport.initialize());
     app.use(passport.session()); // persistent login sessions
     app.use(flash()); // use connect-flash for flash messages stored in session
