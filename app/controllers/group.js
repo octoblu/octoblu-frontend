@@ -396,11 +396,14 @@ var groupController = {
                 for (device in devices){
                     if (devices[device].uuid == uuid ){
                         console.log('writing to skynet', devices[device], viewPermissions, sendPermissions, updatePermissions);
-                        request.put('http://skynet.im/devices/' + devices[device].uuid + '?token=' + devices[device].token,
+                        request.put('http://skynet.im/devices/' + devices[device].uuid,
                             {form: {
                                 'viewWhitelist': viewPermissions,
                                 'sendWhitelist': sendPermissions,
                                 'updateWhitelist': updatePermissions
+                            },headers: {
+                                'skynet_auth_uuid': devices[device].uuid,
+                                'skynet_auth_token': devices[device].token
                             }}
                             , function (error, response, body) {
                                 // if(response.statusCode == 200){
@@ -443,11 +446,14 @@ var groupController = {
                 for (var device=0; device < devices.length; device++) {
                     if (devices[device].uuid = uuid){
                         console.log('writing to skynet', devices[device], viewPermissions, sendPermissions, updatePermissions);
-                        request.put('http://skynet.im/devices/' + devices[device].uuid + '?token=' + devices[device].token,
+                        request.put('http://skynet.im/devices/' + devices[device].uuid,
                             {form: {
                                 'viewWhitelist': viewPermissions,
                                 'sendWhitelist': sendPermissions,
                                 'updateWhitelist': updatePermissions
+                            },headers: {
+                                'skynet_auth_uuid': devices[device].uuid,
+                                'skynet_auth_token': devices[device].token
                             }}
                             , function (error, response, body) {
                                 // if(response.statusCode == 200){

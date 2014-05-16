@@ -8,7 +8,11 @@ module.exports = function (app, passport, config) {
     app.get('/api/devices/:id', function(req, res) {
 
         request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
-        {qs: {'token': req.query.token }}
+        {
+            headers: {
+                'skynet_auth_uuid': req.params.id,
+                'skynet_auth_token': req.query.token
+            }}
         , function (error, response, body) {
                 console.log("DEVICES", body);
                 var data = JSON.parse(body);
@@ -55,8 +59,12 @@ module.exports = function (app, passport, config) {
             deviceData[obj[i]["key"]] = obj[i]["value"];
         }
 
-        request.put(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.body.uuid+ '?token=' + deviceData.token,
-            {form: deviceData}
+        request.put(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.body.uuid,
+            {form: deviceData,
+            headers: {
+                'skynet_auth_uuid': req.body.uuid,
+                'skynet_auth_token': req.body.token
+            }}
             , function (error, response, body) {
                 var data = JSON.parse(body);
                 res.json(data);
@@ -68,7 +76,10 @@ module.exports = function (app, passport, config) {
     app.delete('/api/devices/:id/:token', function(req, res) {
 
         request.del(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
-            {qs: {"token": req.params.token}}
+            {headers: {
+                'skynet_auth_uuid': req.params.id,
+                'skynet_auth_token': req.query.token
+            }}
             , function (error, response, body) {
                 var data = JSON.parse(body);
                 res.json(data);
@@ -79,10 +90,13 @@ module.exports = function (app, passport, config) {
     // Update device with Skynet
     app.put('/api/claimdevice/:uuid', function(req, res) {
         // console.log('skynet_override_token', config.skynet_override_token);
-        request.put(req.protocol + '://' + app.locals.skynetUrl + '/claimdevice/' + req.params.uuid + '?token=' + req.query.token + '&overrideIp=' + req.ip,
+        request.put(req.protocol + '://' + app.locals.skynetUrl + '/claimdevice/' + '?overrideIp=' + req.ip,
             {
                 form: req.body, 
-                headers: {'Skynet_override_token': config.skynet_override_token}
+                headers: {'Skynet_override_token': config.skynet_override_token, 
+                'skynet_auth_uuid': req.params.uuid,
+                'skynet_auth_token': req.query.token}
+                ,
             }, function (error, response, body) {
                 var data = JSON.parse(body);
                 res.json(data);
