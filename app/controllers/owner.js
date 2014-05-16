@@ -56,9 +56,12 @@ module.exports = function (app, conn) {
 
     app.get('/api/owner/devices/:id/:token', function (req, res) {
 
-        request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices/' + req.params.id,
-            { qs: { 'token': req.params.token } },
-            function (error, response, body) {
+        request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices',
+            {  headers: {
+                'skynet_auth_uuid': req.params.id,
+                'skynet_auth_token': req.params.token
+            }
+        }, function (error, response, body) {
                 var data = {};
 
                 try {
@@ -75,9 +78,12 @@ module.exports = function (app, conn) {
     app.get('/api/owner/gateways/:id/:token', function(req, res) {
         console.log('Return Devices? ', req.query.devices);
         console.log('ip address ', req.ip) ;
-        request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices/' + req.params.id,
-            {qs: {'token': req.params.token}},
-            function (error, response, body) {
+        request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices',
+            {  headers: {
+                'skynet_auth_uuid': req.params.id,
+                'skynet_auth_token': req.params.token
+            }
+        }, function (error, response, body) {
                 var myDevices = JSON.parse(body);
                 myDevices = myDevices.devices;
                 // console.log('myDevices', myDevices);
@@ -93,8 +99,12 @@ module.exports = function (app, conn) {
                     }
                 }
                 console.log('My Devices ', gateways);
-                request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.cookies.skynetuuid,
-                    {qs: {'ipAddress': req.ip, 'type':'gateway', 'owner': null, 'token': req.cookies.skynettoken }},
+                request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices',
+                    {qs: {'ipAddress': req.ip, 'type':'gateway', 'owner': null },
+                    headers: {
+                        'skynet_auth_uuid': req.params.id,
+                        'skynet_auth_token': req.params.token
+                    }},
                     function (error, response, body) {
                         console.log(body);
                         var ipDevices = JSON.parse(body);

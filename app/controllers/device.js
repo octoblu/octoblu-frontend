@@ -78,7 +78,7 @@ module.exports = function (app, passport, config) {
 
     // Update device with Skynet
     app.put('/api/claimdevice/:uuid', function(req, res) {
-        console.log('skynet_override_token', config.skynet_override_token);
+        // console.log('skynet_override_token', config.skynet_override_token);
         request.put(req.protocol + '://' + app.locals.skynetUrl + '/claimdevice/' + req.params.uuid + '?token=' + req.query.token + '&overrideIp=' + req.ip,
             {
                 form: req.body, 
