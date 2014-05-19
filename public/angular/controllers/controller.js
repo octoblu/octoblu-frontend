@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, skynetConfig, ownerService, messageService) {
+    .controller('controllerController', function ($rootScope, $scope, $http, $injector, $location, $cookies, skynetConfig, ownerService, messageService) {
         $rootScope.checkLogin($scope, $http, $injector, false, function(){
             // Get user gateways
             ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, true, function(error, data) {
@@ -66,6 +66,14 @@ angular.module('octobluApp')
 
                     var message;
 
+                    if($scope.fromDevice){
+                        var fromDeviceUuid = $scope.fromDevice.uuid
+                        var fromDeviceToken = $scope.fromDevice.token
+                    } else {
+                        var fromDeviceUuid = $cookies.skynetuuid
+                        var fromDeviceToken = $cookies.skynettoken 
+                    }
+
                     if($scope.sendUuid === undefined || $scope.sendUuid == ""){
                         if($scope.device){
                             var uuid = $scope.device.uuid;
@@ -113,15 +121,25 @@ angular.module('octobluApp')
 
                         }
 
+                        var newMessage = {};
+                        newMessage.subdevice = $scope.subdevicename;
+                        newMessage.payload = message;
 
-                        socket.emit('message', {
-                            "devices": uuid,
-                            "subdevice": $scope.subdevicename,
-                            "payload": message
-                        }, function(data){
-                            console.log(data);
+                        // socket.emit('message', {
+                        //     "devices": uuid,
+                        //     "subdevice": $scope.subdevicename,
+                        //     "payload": message
+                        // }, function(data){
+                        //     console.log(data);
+                        // });
+
+                        messageService.sendMessage(fromDeviceUuid, fromDeviceToken, uuid, newMessage, function(data) {
+
+                            $scope.messageOutput = "Message Sent: " + JSON.stringify(data);
+
                         });
-                        $scope.messageOutput = "Message Sent: " + JSON.stringify(message);
+
+                        // $scope.messageOutput = "Message Sent: " + JSON.stringify(message);
 
                     }
                 }

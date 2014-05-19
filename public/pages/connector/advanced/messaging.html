@@ -2,7 +2,11 @@
         <h2><i class='icon-magic'></i> Message Devices</h2><br />
 
         <div class="form-inline">
-            Select Device or Enter UUID:<br /><br />
+            FROM: <br /><br />
+            <select ng-model="fromDevice" ng-options="device.name for device in devices" class="form-control" id="fromDevice"></select>
+            <br /><br />
+
+            TO:<br /><br />
             <div class="form-group">
                 <!-- <select ng-model="device" ng-options="device.name for device in devices" class="form-control"></select> -->
                 <select ng-model="device" ng-options="device.name for device in devices" class="form-control" id="device" ng-change="getSubdevices(device)"></select>
@@ -10,7 +14,7 @@
             </div>
             <div class="form-group"> OR </div>
             <div class="form-group">
-                <input size="40" ng-model="sendUuid" class="form-control" placeholder="UUID">
+                <input size="40" ng-model="sendUuid" class="form-control" placeholder="UUID"> * = broadcast
             </div>
             <br /><br />
 

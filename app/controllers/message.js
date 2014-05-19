@@ -4,14 +4,15 @@ var request = require('request');
 
 module.exports = function (app) {
     app.post('/api/message', function(req, res) {
-        console.log({"devices": req.body.uuid, "message": {"text": req.body.message}});
+        console.log({"fromUuid": req.body.fromUuid, "fromToken": req.body.fromToken, "to": req.body.toUuid, "message": req.body.message});
 
         request.post(req.protocol + '://' + app.locals.skynetUrl +'/messages',
-            {form: {"devices": req.body.uuid, 
-                "message": req.body.message}
+            {form: {"devices": req.body.toUuid, 
+                "subdevice": req.body.message.subdevice,
+                "payload": req.body.message.payload}
             , headers: {
-                'skynet_auth_uuid': req.body.uuid,
-                'skynet_auth_token': req.query.uuid
+                'skynet_auth_uuid': req.body.fromUuid,
+                'skynet_auth_token': req.body.fromToken
             }}
             , function (error, response, body) {
                 console.log(body);

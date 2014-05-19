@@ -2,10 +2,10 @@
 
 angular.module('octobluApp')
     .controller('designerController', function($rootScope, $scope, $http, $injector, $location, nodeRedService) {
-
         $scope.getSessionFlow = function () {
             $http({method: 'GET', url: '/api/get/flow'})
             .success(function(data, status, headers, config) {
+                console.log(data);
                 if(data.flow){
                     var win = angular.element('#designerFrame')[0];
                     win.onload = function(){

@@ -14,6 +14,7 @@ module.exports = function (app) {
 
     app.get('/api/get/flow', function(req, res) {
         var flow = req.session.flow;
+        console.log('FLOW', flow);
         if(flow){
             req.session.flow = null;
             res.json({ flow : flow });
