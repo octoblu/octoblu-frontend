@@ -45,8 +45,13 @@ module.exports = function (app, config, conn) {
                     'method': 'configurationDetails'
                 }, function (data) {
                      console.log(JSON.stringify(data));
-                     device.subdevices = data.result.subdevices || [];
-                     device.plugins = data.result.plugins || [];
+                     if(data.result){
+                         device.subdevices = data.result.subdevices || [];
+                         device.plugins = data.result.plugins || [];                        
+                     } else {
+                         device.subdevices = [];
+                         device.plugins = [];
+                     }
                      next(null, device);
                 });
             };
