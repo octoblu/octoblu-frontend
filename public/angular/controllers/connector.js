@@ -18,7 +18,7 @@ angular.module('octobluApp')
 
                 // Get user devices
                 ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-                    $scope.devices = data.devices;
+                    $scope.devices = data;
                     for (var i in $scope.devices) {
                         if($scope.devices[i].type == 'gateway'){
                             $scope.devices.splice(i,1);

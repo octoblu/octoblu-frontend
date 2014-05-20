@@ -15,6 +15,10 @@ angular.module('octobluApp')
             });
 
 
+            //TODO - change individual socket calls to use socket connection attached to $rootScope.
+            skynetConfig.skynetuuid = $scope.skynetuuid;
+            skynetConfig.skynettoken = $scope.skynettoken;
+
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e
 

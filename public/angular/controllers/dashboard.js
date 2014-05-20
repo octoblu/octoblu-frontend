@@ -18,6 +18,10 @@ angular.module('octobluApp')
                 $scope.messages = data
             });
 
+
+            skynetConfig.uuid = $scope.skynetuuid;
+            skynetConfig.token = $scope.skynettoken;
+
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e;
 

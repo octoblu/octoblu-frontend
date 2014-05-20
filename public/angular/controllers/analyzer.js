@@ -6,7 +6,7 @@ angular.module('octobluApp')
 
             // Get user devices
             ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-                $scope.devices = data.devices;
+                $scope.devices = data;
                 for (var i in $scope.devices) {
                     if($scope.devices[i].type == 'gateway'){
                         $scope.devices.splice(i,1);
@@ -82,6 +82,10 @@ angular.module('octobluApp')
 
             var sensorGrid = [];
 
+            skynetConfig.uuid = $scope.skynetuuid;
+            skynetConfig.token = $scope.skynettoken;
+
+
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e;
 
@@ -94,8 +98,8 @@ angular.module('octobluApp')
                   ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function (data) {
 
                      // Subscribe to user's devices messages and events
-                     if (data.devices) {
-                         _.each(data.devices, function (device) {
+                     if (data) {
+                         _.each(data, function (device) {
                              socket.emit('unsubscribe', {
                                  'uuid': device.uuid
                              }, function (data) {

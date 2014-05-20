@@ -286,8 +286,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // TODO: Replace with proper authorization service object and eliminate checkLogin.
         $rootScope.authorization = { isAuthenticated: false };
 
+        //TODO - remove all calls to checkLogin, create an authorization Service
         $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
-            var user = $.cookie("skynetuuid");
+            var user = $cookies.skynetuuid;
 
             if (user == undefined || user == null) {
                 if (secured) {

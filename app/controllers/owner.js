@@ -10,8 +10,6 @@ var async = require('async'),
     when = require('when'),
     mime = require('rest/interceptor/mime'),
     errorCode = require('rest/interceptor/errorCode'),
-    nodefn = require('when/node'),
-    sequence = require('when/sequence'),
     callbacks = require('when/callbacks'),
     client = rest.wrap(mime).wrap(errorCode);
 
@@ -140,7 +138,7 @@ module.exports = function (app, config, conn) {
                 }).then(function(result){
                     return res.send(result.entity);
             }, function(errorResult){
-                return res.send(errorResult.status.code, errorResult.status.text);
+                return res.send(errorResult.status.code, []);
             });
 
         }, function(error){
@@ -197,25 +195,6 @@ module.exports = function (app, config, conn) {
                                 }
                             }
 
-                            // async.times(devicesLength, function(n, next){
-                            //     request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + devices[n]
-                            //         , function (error, response, body) {
-                            //             var data = JSON.parse(body);
-                            //             console.log(data);
-                            //             var dupeFound = false;
-                            //             console.log('looping', gateways);
-
-                            //             for (var i in gateways) {
-                            //                 if(gateways[i].uuid == data.uuid){
-                            //                     dupeFound = true;
-                            //                 }
-                            //             }
-                            //             if(!dupeFound){
-                            //                 gateways.push(data);
-                            //             }
-                            //             next(error, gateways);
-                            //         });
-                            // }, function(err) {
                                 console.log(gateways);
                                 console.log('==>gateways', gateways);
                                 // gateways = gateways[0];
@@ -241,38 +220,6 @@ module.exports = function (app, config, conn) {
                                     });
 
                                 }, function(err, gateways) {
-                                    // // Lookup plugins on each gateway
-                                    // async.times(gatewaysLength, function(n, next){
-                                    //   conn.gatewayConfig({
-                                    //     'uuid': gateways[n].uuid,
-                                    //     'token': gateways[n].token,
-                                    //     'method': 'getPlugins'
-                                    //   }, function (plugins) {
-                                    //     console.log('plugins:', plugins.result);
-                                    //
-                                    //     // Get default options for each plugin
-                                    //     for (var p in plugins) {
-                                    //       conn.gatewayConfig({
-                                    //         'uuid': gateways[n].uuid,
-                                    //         'token': gateways[n].token,
-                                    //         'method': 'getDefaultOptions',
-                                    //         'name': p.name
-                                    //       }, function (pluginOptions) {
-                                    //         console.log('plugin options:', pluginOptions);
-                                    //         gateways[n].plugins.options = pluginOptions;
-                                    //         next(error, gateways[n]);
-                                    //       });
-                                    //     }
-                                    //
-                                    //     gateways[n].plugins = plugins.result;
-                                    //     next(error, gateways[n]);
-                                    //   });
-                                    //
-                                    // }, function(err, gateways) {
-
-                                    // console.log('gateways subdevices check');
-
-                                    // Lookup subdevices on each gateway
                                     async.times(gateways.length, function(n, next){
                                         conn.gatewayConfig({
                                             'uuid': gateways[n].uuid,
