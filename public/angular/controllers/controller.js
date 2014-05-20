@@ -10,6 +10,8 @@ angular.module('octobluApp')
                 }
                 console.log('Devices and Gateways', data);
                 $scope.devices = data.gateways;
+                data.gateways.unshift({name:"me", uuid: $scope.skynetuuid, token: $scope.skynettoken});
+                $scope.devicesPlusMe = data.gateways;
             });
 
 
