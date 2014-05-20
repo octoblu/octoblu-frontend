@@ -81,9 +81,11 @@ angular.module('octobluApp')
           $rootScope.confirmModal($modal, $scope, $log, 'Delete Hub ' + hub.name ,'Are you sure you want to delete this Hub?',
               function() {
                   $log.info('ok clicked');
-                  deviceService.deleteDevice(hub.uuid, hub.token, function( data ) {
-                      var claimedGateways = $scope.claimedGateways;
-                      $scope.claimedGateways = _.without(claimedGateways, hub);
+                  deviceService.deleteDevice(hub.uuid, { skynetuuid : currentUser.skynetuuid, skynettoken : currentUser.skynettoken }, function( error, data ) {
+                      if(! error){
+                          var claimedGateways = $scope.claimedGateways;
+                          $scope.claimedGateways = _.without(claimedGateways, hub);
+                      }
                   });
               },
               function() {
@@ -214,11 +216,20 @@ angular.module('octobluApp')
 
     } )
 
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser, unclaimedGateways, deviceService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser,  deviceService )
 
     {
+        $scope.availableGateways;
 
-        $scope.availableGateways = unclaimedGateways;
+        deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken)
+            .then(function(data){
+                $scope.availableGateways = data;
+                $scope.$apply();
+        }, function(error){
+                console.log(error);
+                $scope.availableGateways = [];
+                $scope.$apply();
+        });
 
         $scope.isopen = false;
         $scope.user = currentUser;
@@ -236,7 +247,7 @@ angular.module('octobluApp')
             }
         };
 
-        $scope.availableGateways = unclaimedGateways;
+
 
 
         $scope.getNextState = function(){

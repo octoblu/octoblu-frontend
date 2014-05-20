@@ -73,11 +73,14 @@ module.exports = function (app, passport, config) {
     });
 
     // Remove device with Skynet
-    app.delete('/api/devices/:id/:token', function(req, res) {
+    app.delete('/api/devices/:id', function(req, res) {
 
+        if( ! req.query.uuid || ! req.query.token) {
+            res.send(400, {"error" : "missing required query parameters [uuid, token"});
+        }
         request.del(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
             {headers: {
-                'skynet_auth_uuid': req.params.id,
+                'skynet_auth_uuid': req.query.uuid,
                 'skynet_auth_token': req.query.token
             }}
             , function (error, response, body) {

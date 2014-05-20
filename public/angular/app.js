@@ -94,11 +94,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 abstract: true,
                 templateUrl: 'pages/connector/devices/wizard/index.html',
                 controller: 'DeviceWizardController',
-                resolve : {
-                    unclaimedGateways : function(currentUser, deviceService){
-                        return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken, { type : "gateway"});
-                    }
-                },
                 onEnter : function(){
 //                    console.log('Entering device wizard state. ');
                 },

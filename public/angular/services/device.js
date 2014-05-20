@@ -48,13 +48,6 @@ angular.module('octobluApp')
                 uuid : deviceUUID,
                 name : name
             });
-
-//            .success(function (data) {
-//                defer.resolve(data);
-//            })
-//            .error(function (data) {
-//                defer.reject(data);
-//            });
             return defer.promise.then(promise);
         };
 
@@ -123,15 +116,21 @@ angular.module('octobluApp')
 
         };
 
-        this.deleteDevice = function (uuid, token, callback) {
+        /**
+         * deleteDevice - deletes a device with the given UUID
+         * @param deviceUUID - the device UUID
+         * @param owner - the device owner
+         * @param callback
+         */
+        this.deleteDevice = function (deviceUUID, owner, callback) {
 
-            $http.delete('/api/devices/' + uuid + '/' + token)
+            $http.delete('/api/devices/' + deviceUUID + '?uuid=' + owner.skynetuuid + '&token=' + owner.skynettoken)
                 .success(function (data) {
-                    callback(data);
+                    callback(null, data);
                 })
-                .error(function (data) {
-                    console.log('Error: ' + data);
-                    callback({});
+                .error(function (error){
+                    console.log('Error: ' + error);
+                    callback( data, null );
                 });
 
         };
@@ -176,7 +175,7 @@ angular.module('octobluApp')
                     defer.resolve(devices);
                 })
                 .error(function (data) {
-                    defer.reject(data);
+                    defer.reject([]);
                 });
             return defer.promise;
         };
