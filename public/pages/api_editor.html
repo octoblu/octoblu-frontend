@@ -1,55 +1,3 @@
-<section id='content'>
-  <div class='container'>
-    <div class='row' id='content-wrapper'>
-      <div class='col-xs-12'>
-        
-        <div class='page-header page-header-with-buttons'>
-          <h1 class='pull-left'>
-            <i class='icon-code-fork'></i>
-            <span>Connector</span>              
-          </h1>
-        </div>
-        <ul class="nav nav-tabs">
-          <li id="devices">
-            <a ng-click="activeTab = 'devices'" href="/devices">Devices</a>
-          </li>
-          <li>
-            <a ng-click="activeTab = 'gateways'" href="/gateways">Gateways</a>
-          </li>
-          <li class="active">
-            <a ng-click="activeTab = 'apis'" href="/apis">APIs</a>
-          </li>
-          <li>
-            <a ng-click="activeTab = 'people'" href="/people">People</a>
-          </li>
-          <li>
-            <a ng-click="activeTab = 'devtools'" href="/tools">Developer Tools</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div ng-switch="activeTab">
-            <div ng-switch-when="devices">
-               <ng-include src=" 'pages/devices.html' "></ng-include>
-            </div>
-            <div ng-switch-when="gateways">
-               <ng-include src=" 'pages/gateways.html' "></ng-include>
-            </div>
-            <div ng-switch-when="apis">
-               <ng-include src=" 'pages/apis.html' "></ng-include>
-            </div>
-            <div ng-switch-when="people">
-               <ng-include src=" 'pages/people.html' "></ng-include>
-            </div>
-            <div ng-switch-when="devtools">
-               <ng-include src=" 'pages/devtools.html' "></ng-include>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="row col-xs-12">
 
       <div ng-show="channel.logo">
         <img ng-src="{{channel.logo}}" ng-show="channel.logo" width="100" height="100"/>
@@ -123,21 +71,26 @@
             </div>
 
             <div class="field" ng-show="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Token Key</label>
-              <input class="form-control" type="text" placeholder="Token Key" ng-model="channel.oauth.sessionKey" />
+              <label for="resource_resourcename">Base URL</label>
+              <input class="form-control" type="text" placeholder="Base URL" ng-model="channel.oauth.baseURL" />
+            </div>
+
+            <div class="field" ng-show="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Token Path</label>
+              <input class="form-control" type="text" placeholder="Token Path" ng-model="channel.oauth.authTokenPath" />
             </div>
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_resourcename">Access Token URL</label>
-              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.accessTokenURL" />
+              <input class="form-control" type="text" placeholder="Access Token URL" ng-model="channel.oauth.accessTokenURL" />
             </div>
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_resourcename">Request Token URL</label>
-              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.requestTokenURL" />
+              <input class="form-control" type="text" placeholder="Request Token URL" ng-model="channel.oauth.requestTokenURL" />
             </div>
 
-            <div class="field">
+            <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_resourcename">Authorize Token URL</label>
               <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.authTokenURL" />
             </div>
@@ -192,10 +145,6 @@
         </div>
 
         <div>&nbsp;</div>
-
-      </div>
-
-</section>
 
 <script type="text/ng-template" id="editResource.html">
     <div class="modal-header">

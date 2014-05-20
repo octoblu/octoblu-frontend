@@ -13,16 +13,16 @@
 <!--         <button ng-click="editGateway = true" class="btn btn-primary" ng-hide="editGateway">
           <i class="icon-chevron-down"></i> Add Device
         </button>
- -->        
+ -->
         <button ng-click="editGatewayCancel()" class="btn btn-primary" ng-show="editGatewaySection">
           <i class="icon-chevron-up"></i> Cancel
         </button>
 
-      </div>      
+      </div>
     </div>
 
     <div class="col-sm-12" ng-show="editGatewaySection">
-      <h3>Edit Gateway</h3>   
+      <h3>Edit Gateway</h3>
       <input class="form-control" name="gatewayName" ng-model="gatewayName" placeholder="Gateway Name (required)" ng-value="gatewayName" required id="gatewayName">
       <br />
       <div ng-repeat="key in keys" class="form-inline">
@@ -36,8 +36,8 @@
         <a href ng-click="addKeyVals()"> <i class="icon-plus"></i></a>
       </div>
       <br />
-      <button class="btn" ng-click="updateGateway()">Submit</button>  
-      <br /><br />            
+      <button class="btn" ng-click="updateGateway()">Submit</button>
+      <br /><br />
     </div>
 
     <div ng-hide="gateways.length">No gateways found</div>
@@ -71,11 +71,11 @@
                   <th width="40%">Plugin</th>
                   <th width="20%">Action</th>
                 </tr>
-                <tr ng-repeat="subdevice in gateway.subdevices.value">
+                <tr ng-repeat="subdevice in gateway.subdevices">
                   <td>{{subdevice.name}}</td>
                   <td>{{subdevice.type}}</td>
                   <td>
-                    <button class="btn btn-inverse" ng-click="openEditSubdevice(gateway, subdevice)">Edit</button>                    
+                    <button class="btn btn-inverse" ng-click="openEditSubdevice(gateway, subdevice)">Edit</button>
                     <button class="btn btn-danger" ng-click="deleteSubdevice($parent.$index, $index)">Delete</button>
                   </td>
                 </tr>
@@ -92,7 +92,7 @@
                   <th width="40%">Version</th>
                   <th width="20%">Action</th>
                 </tr>
-                <tr ng-repeat="plugin in gateway.plugins">                  
+                <tr ng-repeat="plugin in gateway.plugins">
                   <td>{{plugin.name}}</td>
                   <td>{{plugin.version}}</td>
                   <td>
@@ -124,7 +124,7 @@
         <div class="form-group">
           <label for="plugin" class="col-sm-2 control-label">Plugin</label>
           <div class="col-sm-10">
-            <select ng-model="plugin" ng-options="plugin.name for plugin in plugins" class="form-control" id="plugin" ng-change="getSchema(plugin)"></select>            
+            <select ng-model="plugin" ng-options="plugin.name for plugin in plugins" class="form-control" id="plugin" ng-change="getSchema(plugin)"></select>
           </div>
         </div>
         <div ng-show="schema">
@@ -132,10 +132,10 @@
           <input type="text" ng-model="subDeviceName" placeholder="name" class="form-control" required><br />
           <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
             <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
-              <input type="text" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="text" ng-model="deviceProperty" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
             <div ng-if="deviceProperty.type == 'boolean'">
-              <input type="checkbox" ng-model="deviceProperty.value" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
+              <input type="checkbox" ng-model="deviceProperty" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
             </div>
           </div>
         </div>
@@ -163,7 +163,7 @@
         </div>
         <div>
           <br /><br />
-          <input type="text" ng-model="selectedSubdevice.name" placeholder="name" class="form-control" required><br />
+          <input type="text" ng-model="selectedSubdevice.name" placeholder="name" class="form-control" disabled><br />
           <div class="form-group" ng-repeat="deviceProperty in deviceProperties">
             <div ng-if="deviceProperty.type == 'string' || deviceProperty.type == 'number'">
               <input type="text" ng-model="selectedSubdevice.options[deviceProperty.name]" placeholder="{{deviceProperty.name}}" class="form-control" ng-required="deviceProperty.required"><!br />
@@ -175,7 +175,7 @@
         </div>
       </div>
       <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="ok(subDeviceName, plugin, deviceProperties)">OK</button>
+          <button class="btn btn-primary" ng-click="ok(selectedSubdevice.name, plugin, deviceProperties)">OK</button>
           <button class="btn" ng-click="cancel()">Cancel</button>
       </div>
   </script>
@@ -193,7 +193,7 @@
         <div class="form-group">
           <label for="plugin" class="col-sm-2 control-label">Plugins</label>
           <div class="col-sm-10">
-            <select ng-model="plugin" ng-options="plugin.name for plugin in plugins" class="form-control" id="plugin" ng-change="getSchema(plugin)"></select>            
+            <select ng-model="plugin" ng-options="plugin.name for plugin in plugins" class="form-control" id="plugin" ng-change="getSchema(plugin)"></select>
           </div>
         </div>
       </div>
@@ -203,4 +203,3 @@
       </div>
   </script>
 </div>
-

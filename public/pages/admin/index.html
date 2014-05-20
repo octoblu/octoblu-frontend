@@ -1,0 +1,156 @@
+<style>
+    .group-info-panel {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+ 
+    @media(min-width: 992px){
+        .permissions-panel {
+           margin : 75px 55px 0 55px;
+
+        }
+    }
+
+    .permissions-panel .panel-body {
+        padding: 0;
+    }
+
+    .permissions-panel .panel-body li {
+        border-style: none;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .permissions-panel .permission-title {
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: right;
+        min-width: 50px;
+    }
+
+
+    .people-panel .panel-heading .title,.device-panel .panel-heading .title, .people-panel .panel-heading .title {
+        color: #ffffff !important;
+    }
+
+    .people-panel .panel-heading .title >  a:hover, .device-panel .panel-heading .title > a:hover {
+        cursor: hand !important;
+        border: 1px solid;
+    }
+
+    .group-info-panel-body {
+        max-height: 280px !important;
+        min-height: 280px !important;
+        overflow-y: scroll;
+    }
+
+    .group-summary {
+        border: 1px solid #D6D6D6;
+        border-radius: 3em / 3em;
+        padding: 2% 20px 2% 20px;
+        padding: 20px 2% 20px 2%;
+        padding: 20px 2% 20px 2%;
+    }
+
+    .group-summary-panel {
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-right: 15px;
+    }
+
+    .group-summary-panel-heading  a.bg-primary:hover,
+    {
+        cursor: hand !important;
+        text-decoration: underline !important;
+        background-color: #428bca !important;
+        color: #ffffff !important;
+    }
+
+    .group-summary-panel-body {
+    }
+
+    .group-summary-panel-body ul {
+        list-style: none;
+        margin-bottom: 0px;
+        padding-left: 0px;
+    }
+
+
+    .admin-group {
+
+    }
+</style>
+
+<section id="content">
+    <div class="container">
+        <div class="row" id="content-wrapper">
+            <div class="col-xs-12">
+                <div class='page-header'>
+                    <h1 class="col-xs-12 col-sm-12 col-md-11 col-lg-11" style="margin-top: 25px;">
+                        <i class='fa fa-lock'></i>
+                        <span>Admin</span>
+                        <form class="form-inline pull-right" role="form" ng-controller="invitationController"
+                              style="margin-top: 0px;">
+                            <div class="form-group">
+                                <label class="sr-only" for="recipientEmail">Email address</label>
+                                <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail"
+                                       placeholder="Enter email">
+                            </div>
+                            <button type="button" class="btn btn-default btn-lg" ng-disabled="form.$invalid" ng-click="send()"
+                                    style="margin-top: 0px;">
+                                <i class="fa fa-users" style="margin-right: 10px"></i>Invite
+                            </button>
+                        </form>
+
+                    </h1>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ui-view=""></div>
+
+                <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 group-summary">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <a class="pull-left btn btn-default" ui-sref="admin.all"><i
+                                class="fa fa-th-large"></i>All</a>
+
+                        <form class="form-inline pull-right" role="form">
+                            <div class="form-group">
+                                <label class="sr-only" for="add-group-name">Email address</label>
+                                <input type="text" ng-model="groupName" name="groupName" class="form-control" id="add-group-name"
+                                       placeholder="Enter a Group Name" required>
+                            </div>
+                            <button type="button" ng-click="addGroup()" class="btn btn-default"><i class="fa fa-plus"></i>Add Group</button>
+                        </form>
+                    </div>
+                    <h3 class="text-center text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12">Groups</h3>
+                    <div data-ng-repeat="group in user.groups | filter:{type:'default'} |  orderBy:'name'"
+                         class="panel panel-primary col-xs-12 col-sm-12 col-md-2 col-lg-2 group-summary-panel">
+                        <div class="panel-heading group-summary-panel-heading">
+                            <h4>
+                            <i class="fa fa-users"></i>
+                            <a ui-sref="admin.detail({ 'uuid' : group.uuid })" class="bg-primary">{{group.name}}</a>
+                            <a class=" pull-right bg-primary" tooltip="Delete {{group.name}}" tooltip-placement="top"
+                               tooltip-popup-delay="5" ng-click="deleteGroup(group)">
+                                    <i class="fa fa-trash-o fa-lg"></i>
+                            </a>
+
+                            </h4>
+
+                        </div>
+                        <div class="panel-body group-summary-panel-body">
+                            <ul>
+                                <li>
+                                    <i class="fa fa-user" style="margin-right: 10px;"></i>People <span
+                                        class="label label-info pull-right">{{group.members.length}}</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Devices<span
+                                        class="label label-success pull-right">{{group.devices.length}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

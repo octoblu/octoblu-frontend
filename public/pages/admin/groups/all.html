@@ -1,0 +1,38 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel  col-xs-12 col-sm-5 col-md-5 col-lg-5 group-info-panel purple-border people-panel">
+        <div class="panel-heading purple-background">
+            <h3 class="title text-center">
+                <i class="fa fa-user fa-lg" style="margin-right: 5px;"></i>People
+            </h3>
+        </div>
+        <div class="panel-body group-info-panel-body">
+            <ul class="list-group">
+                <li data-ng-repeat="member in operatorGroup.members | orderBy:'name'" class="list-group-item">
+                   <span class="fa-stack fa-2x">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-user fa-inverse fa-stack-1x"></i>
+                 </span>
+                    {{member.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel  group-info-panel col-xs-12 col-sm-5 col-md-5 col-lg-5 col-md-offset-1 col-lg-offset-1 grass-green-border device-panel">
+        <div class="panel-heading grass-green-background">
+            <h3 class="title text-center">
+               <i class="fa fa-hdd-o fa-lg"></i> Devices
+            </h3>
+        </div>
+        <div class="panel-body group-info-panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="device in ownedDevices | orderBy:'name'" style="min-height: 50px;">
+                 <span class="fa-stack fa-2x">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-hdd-o fa-stack-1x"></i>
+                 </span>{{device.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

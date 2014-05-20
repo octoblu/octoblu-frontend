@@ -1,0 +1,18 @@
+<button class="btn btn-success pull-right" ng-click="openNewApi()">Add</button>
+
+<h3><i class='icon-edit'></i> Custom </h3>
+
+<ul class="channellist">
+
+    <li ng-repeat="channel in customchannelList | orderBy:'name'">
+        <div class="channel_icon-grid-view mod-index-0 pop-over"
+             ng-class="{'activechannel': isActive(channel)}"
+             data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
+            <img ng-src="{{channel.logo}}" width="70" height="70"/>
+        </div>
+    </li>
+</ul>
+
+<div ui-view>
+</div>
+</div>

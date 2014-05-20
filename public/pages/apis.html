@@ -28,67 +28,34 @@
     }
 </style>
 
-<!-- <div class='row'>
-  <div class='col-sm-12 box'>
-    <div class="text-center">
-	  <ul class="channellist">
- 
-	  	<li ng-repeat="channel in channelList | orderBy:'name'">
-		        <div class="channel_icon-grid-view mod-index-0 pop-over fa {{getFAName(channel)}} fa-5x"
-		            ng-class="{'activechannel': isActive(channel)}"
-				  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;"></div>
-		</li>
-	  </ul>
-	</div>
-  </div>
-</div> -->
-
-
-<button class="btn btn-success pull-right" ng-click="openNewApi()">Add</button>
-
  <div class="divScroll">
  	<div class="scrollWrapper">
 
  		<div>
 			<h3><i class='icon-ok'></i> Active</h3>
-	  
+
 		  	<ul class="channellist">
- 
+
 			  	<li ng-repeat="channel in activeChannels | orderBy:'name'">
-				        <div class="channel_icon-grid-view mod-index-0 pop-over"
+			        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;">
-                <img ng-src="{{channel.logo}}" width="70" height="70"/>
-              </div>
+		                <img ng-src="{{channel.logo}}" width="70" height="70" alt="{{channel.name}}"/>
+		            </div>
 				</li>
 			  </ul>
 		</div>
 
 		<div>
 			<h3><i class='icon-off'></i> Available</h3>
-	  
+
 		  	<ul class="channellist">
- 
+
 			  	<li ng-repeat="channel in availableChannels | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
                 <a disabled><img ng-src="{{channel.logo}}" width="70" height="70"/></a>
-              </div>
-				</li>
-			  </ul>
-		</div>
-		
-		<div>
-			<h3><i class='icon-edit'></i> Custom </h3>
-	  
-		  	<ul class="channellist">
- 
-			  	<li ng-repeat="channel in customchannelList | orderBy:'name'">
-				        <div class="channel_icon-grid-view mod-index-0 pop-over"
-				            ng-class="{'activechannel': isActive(channel)}"
-						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
-                  <img ng-src="{{channel.logo}}" width="70" height="70"/>
               </div>
 				</li>
 			  </ul>

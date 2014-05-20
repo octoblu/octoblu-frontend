@@ -1,6 +1,31 @@
 <div>
   <div class="pull-left"><strong>Your UUID is:</strong> {{skynetuuid}}</div>
 </div><br /><br />
+<style>
+    .divScroll {
+        overflow:scroll;
+        height: auto;
+        max-width: 100%;
+    }
+    .scrollWrapper {
+        overflow: visible;
+        height: auto;
+        width: 100%;
+    }
+    .divScroll ul {
+    	list-style-type: none;
+    }
+    .divScroll ul li {
+    	display:-moz-inline-stack;
+		display:inline-block;
+		zoom: 1;
+		*display: inline;
+		padding: 10px;
+		height: auto;
+    	width: auto;
+    	vertical-align: top;
+    }
+</style>
 
 <div class='row'>
   <div class='col-sm-12 box'>
@@ -13,4 +38,25 @@
   </div>
 </div>
 
-<p class="text-center"><img src="assets/images/robots/robot1.png" width="200"></p>
+<button class="btn btn-success pull-right" ng-click="openNewApi()">Add</button>
+
+ <div class="divScroll">
+ 	<div class="scrollWrapper">
+
+		<div>
+			<h3><i class='icon-edit'></i> Custom </h3>
+	  
+		  	<ul class="channellist">
+ 
+			  	<li ng-repeat="channel in customchannelList | orderBy:'name'">
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
+				            ng-class="{'activechannel': isActive(channel)}"
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
+                  <img ng-src="{{channel.logo}}" width="70" height="70"/>
+              </div>
+				</li>
+			  </ul>
+		</div>
+
+ 	</div>
+</div>

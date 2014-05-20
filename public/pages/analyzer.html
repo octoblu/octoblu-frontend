@@ -1,12 +1,85 @@
 <section id='content'>
-  <div class='container'>
-    <br /><br />    
-    <iframe  width="100%" height="1000" src="http://54.203.249.138:8000?output=embed" id="splunkFrame"></iframe>
-  </div>
+    <div class='container'>
+        <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
+
+                <div class='page-header page-header-with-buttons'>
+                    <h1 class='pull-left'>
+                        <i class='icon-bar-chart'></i>
+                        <span>Analyzer</span>
+                    </h1>
+                </div>
+
+            <div class="container-fluid">
+              <div class="row">
+                <h2>Live Streaming Data</h2>
+                <div class="input-group">
+                  <form class="form-inline col-md-12">
+                  <div class="form-group col-md-12">
+
+                  <div class="form-group">
+                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select>                      
+                  </div>
+                  <br /><br />
+
+                  <canvas id="mycanvas" width="400" height="100"></canvas>
+
+                  <div id="legend"></div>
+
+                  </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row">
+                <h2>Search Analytics</h2>
+                <div class="input-group">
+                  <form class="form-inline col-md-12">
+                    <div class="form-group col-md-8">
+                      <input type="text" class="form-control" ng-model="searchText" placeholder="Search" autofocus>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <select class="form-control" ng-model="eventCode">
+                          <option value="">All Event Codes</option>
+                          <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" ng-click="search(1)">
+                              <span class="glyphicon glyphicon-search"> Find</span>
+                          </button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <br/>
+
+                <div class="panel panel-info" ng-show="results">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Results
+                      <p class="pull-right"> hits: {{ results.hits.total }}</p>
+                    </div>
+                    <input type="checkbox" ng-model="checked"> pretty print?
+                    <div class="panel-body">
+                      <table class="table table-striped table-hover">
+                          <tr ng-repeat="result in results.hits.hits" ng-class="rowClass(result)">
+                              <td ng-hide="checked">{{ result }}</td>
+                              <td ng-show="checked"><pre>{{ result | json }}</pre></td>
+                          </tr>
+                      </table>
+                    </div>
+                </div>
+
+                <pager total-items="totalItems" page="currentPage" ng-show="results"></pager>
+
+            </div>
+        </div>
+    </div>
 </section>
-<script>
-// $('#splunkFrame').attr('height',$("body").height()-50)
-// window.onresize = function(event) {
-//   $('#splunkFrame').attr('height',$("body").height()-50);
-// }
-</script>
