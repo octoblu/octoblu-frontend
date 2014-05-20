@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .service('ownerService', function ($q, $http) {
         this.getDevices = function(uuid, token, callback) {
 
-            $http.get('/api/owner/devices/' + uuid + '/' + token)
+            $http.get('/api/owner/' + uuid + '/' + token + '/devices')
                 .success(function(data) {
                     callback(data);
                 })
