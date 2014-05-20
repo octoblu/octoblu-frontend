@@ -27,8 +27,8 @@ angular.module('octobluApp')
 
                 // Get user's devices
                 ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function (data) {
-                    $scope.devices = data.devices;
-
+                    $scope.devices = data;
+                    console.log(data);
 //                    // Subscribe to user's devices messages and events
 //                    if (data.devices) {
 //                        _.each(data.devices, function (device) {
