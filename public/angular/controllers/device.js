@@ -6,22 +6,22 @@ angular.module('octobluApp')
 
         $scope.smartDevices = smartDevices;
         $scope.gateways = claimedGateways;
-        $scope.$on('editSubDevice', function(){
-            console.log('hit editsubdevice');
-        });
 
-        $scope.$on('getSubDeviceLogo', function(){
-            console.log('hit getSubDeviceLogo');
-        });
-
-        $scope.$on('deleteSubDevice', function(){
-            console.log('hit deleteSubDevice');
-        });
 //        $scope.socket = $rootScope.skynetSocket;
         //TODO this will be handled by route checking at the root scope level. Should be changed then.
         if( ownerId === undefined || token === undefined ){
              $state.go('login');
         }
+
+        //Event handlers to detect edit and delete subdevice calls  from the device carousel directive
+        //TODO - this may need to be refactored into a more elegant solution
+        $scope.$on('editSubDevice', function(event, subdevice, hub){
+            $scope.editSubDevice(subdevice, hub);
+        });
+
+        $scope.$on('deleteSubDevice', function(event, subdevice, hub){
+            $scope.deleteSubDevice(subdevice, hub);
+        });
 
         $scope.saveHubName = function(hub){
             var elementSelector = '#' + hub.uuid;
@@ -93,39 +93,8 @@ angular.module('octobluApp')
       };
 
       $scope.addSmartDevice = function(smartDevice ){
-          var installedhubs;
           if (smartDevice.enabled) {
 
-              var hubsMissingPlugin = _.filter($scope.claimedGateways, function (hub) {
-                  var plugin = _.findWhere(hub.plugins, {'name': smartDevice.plugin });
-                  return plugin === undefined || plugin === null;
-              });
-
-              //They need to be installed so we are going to create an array of promises that we will resolve
-              //after all the hubs have the missing plugin installed.
-              var installedhubs = undefined;
-              if (hubsMissingPlugin) {
-                  //Iterate over each hub and install
-                  var promises = hubsMissingPlugin.map(function (hub) {
-                      var deferred = $q.defer();
-                      $rootScope.skynetSocket.emit('gatewayConfig', {
-                          "uuid": hub.uuid,
-                          "token": hub.token,
-                          "method": "installPlugin",
-                          "name": smartDevice.plugin
-                      }, function (data) {
-                          console.log(JSON.stringify(data));
-                          return deferred.resolve(data);
-                      });
-                      return deferred.promise;
-                  });
-                  installedhubs = $q.all(promises).then(function(data){
-                      console.log(JSON.stringify(data));
-                     $scope.claimedGateways = getClaimedGateways();
-                  });
-
-
-              }
               var subdeviceModal = $modal.open({
                   templateUrl: 'pages/connector/devices/subdevice/add.html',
                   controller: 'AddSubDeviceController',
@@ -135,16 +104,13 @@ angular.module('octobluApp')
                           return 'ADD';
                       },
                       hubs: function () {
-                          return $scope.claimedGateways;
+                          return $scope.gateways;
                       },
                       smartDevice: function () {
                           return smartDevice;
                       },
                       selectedHub : function(){
                          return null;
-                      },
-                      installedHubs: function () {
-                          return installedhubs;
                       }
                   }
 
@@ -173,7 +139,7 @@ angular.module('octobluApp')
           }
       }
 
-        this.editSubDevice = function(subdevice, hub){
+        $scope.editSubDevice = function(subdevice, hub){
 
             /*
               TODO
@@ -225,7 +191,7 @@ angular.module('octobluApp')
 
         }
 
-        this.deleteSubDevice = function(subdevice, hub){
+        $scope.deleteSubDevice = function(subdevice, hub){
             $rootScope.confirmModal($modal, $scope, $log,
                     'Delete Subdevice' + subdevice.name ,
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
@@ -245,47 +211,6 @@ angular.module('octobluApp')
                 });
         };
 
-        this.getSubDeviceLogo = function(subdevice){
-            var smartDevice = _.findWhere($scope.smartDevices, {
-                plugin : subdevice.type
-            });
-
-            if(smartDevice){
-                return smartDevice.logo;
-            }
-            return 'assets/images/robots/robot5.png';
-        };
-//
-//        $scope.startCallback = function(event, ui, title) {
-//          console.log('You started draggin: ' + title.description);
-//          $scope.draggedTitle = title.description;
-//          $scope.draggedObject = title;
-//        };
-//
-//        $scope.stopCallback = function(event, ui) {
-//          console.log('Why did you stop draggin me?');
-//        };
-//
-//        $scope.dragCallback = function(event, ui) {
-//          console.log('hey, look I`m flying');
-//        };
-//
-//        $scope.dropCallback = function(event, ui) {
-//          console.log('event', event);
-//          console.log('ui', ui);
-//          console.log('hey, you dumped me :-(' , $scope.draggedTitle);
-//          console.log('subdevice', $scope.draggedObject);
-//          console.log('hub', event.target.dataset.jqyouiOptions);
-//          $scope.addSmartDevice($scope.draggedObject, event.target.dataset.jqyouiOptions);
-//        };
-//
-//        $scope.overCallback = function(event, ui) {
-//          console.log('Look, I`m over you');
-//        };
-//
-//        $scope.outCallback = function(event, ui) {
-//          console.log('I`m not, hehe');
-//        };
 
     } )
 

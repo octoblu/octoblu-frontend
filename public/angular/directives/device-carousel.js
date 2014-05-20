@@ -5,8 +5,10 @@ angular.module('octobluApp')
         return {
             restrict: 'AE',
             replace: true,
+            transclude : true,
             scope : {
-                hub : '='
+                hub : '=',
+                smartDevices : '='
             },
             template: '<div class="owl-carousel owl-theme subdevice-panel"></div>',
             link: function (scope, element, attr){
@@ -59,20 +61,25 @@ angular.module('octobluApp')
                 }) ;
 
                 scope.editSubDevice = function(subdevice, hub){
-                     scope.$emit('editSubDevice');
+                     scope.$emit('editSubDevice', subdevice, hub);
 //                   return DeviceController.editSubDevice(subdevice, hub);
                 } ;
 
 
                scope.getSubDeviceLogo = function(subdevice){
-                   scope.$emit('getSubDeviceLogo');
-//                 return DeviceController.getSubDeviceLogo(subdevice);
+                       var smartDevice = _.findWhere(scope.smartDevices, {
+                           plugin : subdevice.type
+                       });
+
+                       if(smartDevice){
+                           return smartDevice.logo;
+                       }
+                       return '/assets/images/robots/robot5.png';
                };
 
 
                 scope.deleteSubDevice = function(subdevice, hub){
-                    scope.$emit('deleteSubDevice');
-//                     DeviceController.deleteSubDevice(subdevice, hub);
+                    scope.$emit('deleteSubDevice', subdevice, hub);
                 };
 
                 scope.$on('$destroy', function() {

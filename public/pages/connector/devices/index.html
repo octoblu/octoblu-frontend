@@ -82,7 +82,7 @@
 
 <div class="row device-panel" ng-repeat="g in gateways | orderBy: 'name'">
     <div id="{{g.uuid}}" class="col-sm-2">
-        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" height="64px" width="64px" data-drop="true" jqyoui-droppable="{index: {{$index}}, onDrop:'dropCallback',onOver: 'overCallback', onOut: 'outCallback'}" data-jqyoui-options={{g}}>
+        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" height="64px" width="64px">
     <div class="input-group col-sm-12">
         <input type="text" class="form-control col-sm-12" name="hub-name" readonly="readonly"
                ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)" ng-focus="toggleNameEditable(g)">
@@ -122,7 +122,7 @@
         </div>
     </div>
     <div class="col-sm-10">
-      <device-carousel hub="g"></device-carousel>
+      <device-carousel hub="g" smart-devices="smartDevices"></device-carousel>
 
     </div>
 </div>

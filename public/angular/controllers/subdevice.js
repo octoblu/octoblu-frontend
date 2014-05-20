@@ -1,80 +1,45 @@
 angular.module('octobluApp')
-    .controller('AddSubDeviceController',  function ($rootScope, $scope, $modalInstance, mode, hubs, smartDevice, selectedHub,  installedHubs )
+    .controller('AddSubDeviceController',  function ($rootScope, $scope, $q,  $modalInstance, PluginService,  mode, hubs, smartDevice )
     {
-        $scope.hubs = hubs;
+        $scope.hubs = hubs || [];
         $scope.mode = mode;
         $scope.smartDevice = smartDevice;
+        $scope.deviceProperties;
+        $scope.selectedHub = $scope.hubs[0];
 
-        if (selectedHub){
-            selectedHub = JSON.parse(selectedHub);
 
-            $scope.selectedHub = _.findWhere(hubs, {
-                'uuid' : selectedHub.uuid
-            });
+        if($scope.selectedHub){
+            var installedPlugin = _.findWhere($scope.selectedHub.plugins, { name : smartDevice.plugin });
+            if( installedPlugin ){
 
-        } else {
-            $scope.selectedHub = $scope.hubs[0];
-            $scope.plugins = $scope.hubs[0].plugins;
+                var optionsProperties = installedPlugin.optionsSchema.properties || {};
+                $scope.deviceProperties = _.chain(_.pairs(optionsProperties))
+                    .map(function(optionsPair){
+                        var deviceProperty = {
+                            name : optionsPair[0],
+                            required : optionsPair[1].required || false,
+                            type : optionsPair[1].type || "String",
+                            value : ""
+                        };
+                        return deviceProperty;
+                }).value();
+
+            }
+
         }
 
-        $scope.devicePlugin = _.findWhere($scope.plugins, {name: smartDevice.plugin});
-        var keys = _.keys($scope.devicePlugin.optionsSchema.properties);
 
-        var deviceProperties = _.map(keys, function(propertyKey){
-            var propertyValue = $scope.devicePlugin.optionsSchema.properties[propertyKey];
-            var deviceProperty = {};
-            deviceProperty.name = propertyKey;
-            deviceProperty.type = propertyValue.type;
-            deviceProperty.required = propertyValue.required;
-            deviceProperty.value = "";
-            return deviceProperty;
-        });
-        $scope.deviceProperties = deviceProperties;
-
-
-        $rootScope.skynetSocket.emit('gatewayConfig', {
-            "uuid": $scope.hubs[0].uuid,
-            "token": $scope.hubs[0].token,
-            "method": "getDefaultOptions",
-            "name": smartDevice.plugin
-        }, function (defaults) {
-            // TODO: defaults are not returning - factor into object
-            console.log('config:', defaults);
-            console.log($scope.deviceProperties);
-            _.each(defaults.result, function(value, key){
-
-                var deviceProperty = _.findWhere($scope.deviceProperties, {
-                    'name' : key
-                } );
-
-                if( deviceProperty ) {
-                    $scope.$apply(function(){
-                        deviceProperty.value = value;
-                    });
-                }
-            });
-        });
 
         $scope.getDefaults = function(hub){
 
-            $rootScope.skynetSocket.emit('gatewayConfig', {
-                "uuid": hub.uuid,
-                "token": hub.token,
-                "method": "getDefaultOptions",
-                "name": smartDevice.plugin
-            }, function (defaults) {
-                _.each(defaults.result, function(value, key){
-                    var deviceProperty = _.findWhere($scope.deviceProperties, {
-                        'name' : key
-                    } );
+//            PluginService.getDefaultOptions(hub, smartDevice.plugin)
+//                .then(function(result){
+//                    console.log(JSON.stringify(result));
+//                }, function(error){
+//
+//                });
 
-                    if( deviceProperty ) {
-                        $scope.$apply(function(){
-                            deviceProperty.value = value;
-                        });
-                    }
-                });
-            });
+
         };
 
 

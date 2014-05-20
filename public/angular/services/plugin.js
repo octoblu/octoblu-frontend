@@ -1,22 +1,45 @@
 angular.module('octobluApp').
-    factory('PluginService' , function($cookies, $resource){
-        return $resource('http://npmsearch.com/query',
-          null,
-            {
-                'skynetPlugins' :
-                {
-                    method : 'GET',
-                    params :
-                    {
-                        q: 'keywords:"skynet-plugin"',
-                        fields: 'name',
-                        start: 0,
-                        size: 100,
-                        sort: 'rating:desc'
-                    },
-                    isArray : false
-                }
-            }
-        );
+    service('PluginService' , function($q, $rootScope, skynetConfig){
+
+        this.getDefaultOptions = function(hub, pluginName){
+            var defer = $q.defer();
+            $rootScope.skynetSocket.emit('gatewayConfig', {
+                "uuid": hub.uuid,
+                "token": hub.token,
+                "method": "getDefaultOptions",
+                "name": pluginName
+            }, function (defaults) {
+                defer.resolve(defaults);
+            });
+            return defer.promise;
+        };
+
+        this.getAllPlugins = function(hub){
+            var defer = $q.defer();
+            $rootScope.skynetSocket.emit('gatewayConfig', {
+                "uuid": hub.uuid,
+                "token": hub.token,
+                "method": "getPlugins"
+            }, function (defaults) {
+                defer.resolve(defaults);
+            });
+            return defer.promise;
+
+        };
+
+        this.installPlugin = function(hub, pluginName){
+            var defer = $q.defer();
+            $rootScope.skynetSocket.emit('gatewayConfig', {
+                "uuid": hub.uuid,
+                "token": hub.token,
+                "method": "installPlugin",
+                "name" : pluginName
+            }, function (defaults) {
+                defer.resolve(defaults);
+            });
+            return defer.promise;
+
+        }
+
     });
 

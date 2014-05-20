@@ -1,15 +1,15 @@
 <div class="subdevice-panel">
    <ul class="list-group col-sm-12" ng-scroll-viewport style="height: 200px; overflow-y: scroll;">
        <li ng-repeat="subdevice in hub.subdevices" class="list-group-item" style="min-height: 90px !important;">
-           <img class="img-thumbnail pull-left" src="{{getSubDeviceLogo(subdevice)}}"  height="48px" width="48px"/>
+           <img class="img-thumbnail pull-left" src={{getSubDeviceLogo(subdevice)}}  height="48px" width="48px"/>
           <div class="col-sm-8">
               <strong style="padding-right: 1em;">Name:</strong><span class="" >{{subdevice.name}}</span>
               <br>
               <strong style="padding-right: 1em;" >Type:&nbsp;&nbsp;</strong><span class="">{{subdevice.type}}</span>
           </div>
           <div class="btn-group pull-right">
-              <a class="btn btn-danger" ng-click="deleteSubDevice(subdevice, hub)"><i class="fa fa-times"></i></a>
-              <a class="btn btn-inverse" ng-click="editSubDevice(subdevice, hub)"><i class="fa fa-edit"></i></a>
+              <a class="btn btn-danger" ng-click="delete(subdevice, hub)"><i class="fa fa-times"></i></a>
+              <a class="btn btn-inverse" ng-click="edit(subdevice, hub)"><i class="fa fa-edit"></i></a>
           </div>
 
        </li>
