@@ -25,14 +25,16 @@ Groups in octoblu allow users to manage access to their devices. A user can have
 3. Message
 
 ## 3. Rest Endpoints
-
-### 3.1 Requred Header Fields
-
 1. /api/groups - _GET_    - Get all groups for the current user
 2. /api/groups - _PUT_   Update an existing group
 3. /api/groups - _POST_   Add a new group
 4. /api/groups/:uuid -  _GET_
 5. /api/groups/:uuid - _DELETE_
+
+### 3.1 Requred Header Fields
+* ob_skynetuuid
+* ob_skynettoken
+
 
 
 

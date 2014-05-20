@@ -10,7 +10,8 @@ angular.module('octobluApp')
 
             $scope.navType = 'pills';
             // $scope.navType = 'tabs';
-
+            skynetConfig.uuid = $scope.skynetuuid;
+            skynetConfig.token = $scope.skynettoken;
             skynet(skynetConfig, function (e, socket) {
                 if (e) throw e
 

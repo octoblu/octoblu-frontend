@@ -9,8 +9,7 @@ angular.module('octobluApp')
                 hub : '='
             },
             template: '<div class="owl-carousel owl-theme subdevice-panel"></div>',
-            controller : 'DeviceController',
-            link: function (scope, element, attr, DeviceController){
+            link: function (scope, element, attr){
 
                 scope.$watch('hub', function(current, old){
                      if(! scope.owl ){
@@ -60,20 +59,20 @@ angular.module('octobluApp')
                 }) ;
 
                 scope.editSubDevice = function(subdevice, hub){
-                   return DeviceController.editSubDevice(subdevice, hub);
+                     scope.$emit('editSubDevice');
+//                   return DeviceController.editSubDevice(subdevice, hub);
                 } ;
 
 
                scope.getSubDeviceLogo = function(subdevice){
-                 return DeviceController.getSubDeviceLogo(subdevice);
+                   scope.$emit('getSubDeviceLogo');
+//                 return DeviceController.getSubDeviceLogo(subdevice);
                };
 
 
                 scope.deleteSubDevice = function(subdevice, hub){
-                    var subDeviceIndex =  _.indexOf(hub.subdevices, subdevice);
-                     DeviceController.deleteSubDevice(subdevice, hub);
-//                    scope.owl.data('owlCarousel').removeItem(subDeviceIndex);
-
+                    scope.$emit('deleteSubDevice');
+//                     DeviceController.deleteSubDevice(subdevice, hub);
                 };
 
                 scope.$on('$destroy', function() {
@@ -82,7 +81,7 @@ angular.module('octobluApp')
                 });
 
 
-                scope.$watchcollection('hub.subdevices' , function(newSubdevices, oldSubdevices){
+                scope.$watchCollection('hub.subdevices' , function(newSubdevices, oldSubdevices){
                     //TODO
                     console.log('new subdevices');
                     console.log(JSON.stringify(newSubdevices));

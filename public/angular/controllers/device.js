@@ -1,10 +1,23 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, channelService, ownerService, deviceService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, currentUser, claimedGateways, smartDevices, ownerService, deviceService ) {
 
         var ownerId = $cookies.skynetuuid;
         var token = $cookies.skynettoken;
 
-        $scope.socket = $rootScope.skynetSocket;
+        $scope.smartDevices = smartDevices;
+        $scope.gateways = claimedGateways;
+        $scope.$on('editSubDevice', function(){
+            console.log('hit editsubdevice');
+        });
+
+        $scope.$on('getSubDeviceLogo', function(){
+            console.log('hit getSubDeviceLogo');
+        });
+
+        $scope.$on('deleteSubDevice', function(){
+            console.log('hit deleteSubDevice');
+        });
+//        $scope.socket = $rootScope.skynetSocket;
         //TODO this will be handled by route checking at the root scope level. Should be changed then.
         if( ownerId === undefined || token === undefined ){
              $state.go('login');
@@ -78,47 +91,6 @@ angular.module('octobluApp')
               });
 
       };
-
-      this.getClaimedGateways = function(){
-          var claimedGateways = [];
-          ownerService.getGateways(ownerId, token, false, function(error, data){
-              if(error || data.gateways === undefined ){
-                  console.log(error);
-                  claimedGateways = [];
-              } else{
-                  claimedGateways = _.filter(data.gateways, function(gateway){
-                      return gateway.owner === ownerId;
-                  });
-              }
-
-          });
-          return claimedGateways;
-      };
-
-
-      ownerService.getGateways(ownerId, token, false, function(error, data){
-            if(error || data.gateways === undefined ){
-                console.log(error);
-                $scope.claimedGateways = [];
-            } else{
-                $scope.claimedGateways = _.filter(data.gateways, function(gateway){
-                    return gateway.owner === ownerId;
-                });
-            }
-      });
-
-        channelService.getSmartDevices(function(error, data){
-             if(error){
-                 console.log('Error: ' + error);
-             }
-            // Added to support drag and drop
-            for (var i = 0; i < data.length; i++) {
-              if (data[i].enabled){
-                data[i].drag = true;
-              }
-            }
-            $scope.smartDevices = data;
-        });
 
       $scope.addSmartDevice = function(smartDevice ){
           var installedhubs;
@@ -283,46 +255,49 @@ angular.module('octobluApp')
             }
             return 'assets/images/robots/robot5.png';
         };
-
-        $scope.startCallback = function(event, ui, title) {
-          console.log('You started draggin: ' + title.description);
-          $scope.draggedTitle = title.description;
-          $scope.draggedObject = title;
-        };
-
-        $scope.stopCallback = function(event, ui) {
-          console.log('Why did you stop draggin me?');
-        };
-
-        $scope.dragCallback = function(event, ui) {
-          console.log('hey, look I`m flying');
-        };
-
-        $scope.dropCallback = function(event, ui) {
-          console.log('event', event);
-          console.log('ui', ui);
-          console.log('hey, you dumped me :-(' , $scope.draggedTitle);
-          console.log('subdevice', $scope.draggedObject);
-          console.log('hub', event.target.dataset.jqyouiOptions);
-          $scope.addSmartDevice($scope.draggedObject, event.target.dataset.jqyouiOptions);
-        };
-
-        $scope.overCallback = function(event, ui) {
-          console.log('Look, I`m over you');
-        };
-
-        $scope.outCallback = function(event, ui) {
-          console.log('I`m not, hehe');
-        };
+//
+//        $scope.startCallback = function(event, ui, title) {
+//          console.log('You started draggin: ' + title.description);
+//          $scope.draggedTitle = title.description;
+//          $scope.draggedObject = title;
+//        };
+//
+//        $scope.stopCallback = function(event, ui) {
+//          console.log('Why did you stop draggin me?');
+//        };
+//
+//        $scope.dragCallback = function(event, ui) {
+//          console.log('hey, look I`m flying');
+//        };
+//
+//        $scope.dropCallback = function(event, ui) {
+//          console.log('event', event);
+//          console.log('ui', ui);
+//          console.log('hey, you dumped me :-(' , $scope.draggedTitle);
+//          console.log('subdevice', $scope.draggedObject);
+//          console.log('hub', event.target.dataset.jqyouiOptions);
+//          $scope.addSmartDevice($scope.draggedObject, event.target.dataset.jqyouiOptions);
+//        };
+//
+//        $scope.overCallback = function(event, ui) {
+//          console.log('Look, I`m over you');
+//        };
+//
+//        $scope.outCallback = function(event, ui) {
+//          console.log('I`m not, hehe');
+//        };
 
     } )
 
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  deviceService, GatewayService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser, unclaimedGateways, deviceService )
 
     {
 
+        $scope.availableGateways = unclaimedGateways;
 
         $scope.isopen = false;
+        $scope.user = currentUser;
+
         $scope.wizardStates = {
             instructions: {
                 name: 'instructions',
@@ -334,16 +309,10 @@ angular.module('octobluApp')
                 id: 'connector.devices.wizard.findhub',
                 title: 'Add Available Hub'
             }
-        }
+        };
 
-        $scope.availableGateways = [];
-        GatewayService.get(function(data){
-            if(data.gateways){
-                $scope.availableGateways = _.filter(data.gateways, function(gateway){
-                   return gateway.owner === undefined;
-                });
-            }
-        });
+        $scope.availableGateways = unclaimedGateways;
+
 
         $scope.getNextState = function(){
             return $scope.wizardStates.findhub.id;
@@ -354,7 +323,7 @@ angular.module('octobluApp')
         };
 
         $scope.canClaim = function(name, hub){
-            console.log('checkFinish');
+//            console.log('checkFinish');
             if(name && name.trim().length > 0 && hub ){
                 return true;
             }
@@ -379,7 +348,6 @@ angular.module('octobluApp')
 
         //Notify the parent scope that the hub name has been changed
         $scope.notifyHubNameChanged = function(name){
-            console.log('name changed notifying parent scope');
             $scope.$emit('hubNameChanged', name);
         }
 
@@ -398,29 +366,18 @@ angular.module('octobluApp')
         $scope.saveHub = function(hub, hubName){
            if(hub && hubName && hubName.trim().length > 0 ){
 
-               var hubData =
-               {
-                   uuid : hub.uuid,
-                   token : hub.token,
-                   owner : $cookies.skynetuuid,
-                   name  : hubName,
-                   keyvals : []
+              var devicePromise =  deviceService
+                  .claimDevice(hub.uuid,
+                  {
+                      skynetuuid : currentUser.skynetuuid,
+                      skynettoken : currentUser.skynettoken
+                  },
+                  hubName );
 
-               };
-
-                 $http.put('/api/devices/' + $cookies.skynetuuid + '?token=' + $cookies.skynettoken , hubData)
-                     .success(function(data){
-                         console.log('success');
-                         console.log('Data returned ' + data);
-                     $state.go('connector.devices', {}, {
-                         reload : true
-                     }) ;
-
-                })
-                 .error(function(data){
-                         console.log('error');
-                         console.log(data);
-                 } );
+               devicePromise.then(function(result){
+                   $state.go('connector.devices', {}, {reload: true});
+               }, function(error){
+               });
 
            }
         } ;

@@ -1,10 +1,10 @@
 'use strict';
-
+//TODO - remove checkLogin function
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngDragDrop'])
     .constant('skynetConfig', {
-        'host' : 'skynet.im', //change to the skynet.im instance
-        'port' : '80'
+        'host' : '127.0.0.1', //change to the skynet.im instance
+        'port' : '3000'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -32,7 +32,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('home', {
                 url: '/',
                 templateUrl: 'pages/home.html',
-                controller: 'homeController'
+                controller: 'homeController',
+                channelsAndDevices : function(channelService){
+                    return channelService.getAllChannelsAndSmartDevices();
+                }
             })
             .state('home2', {
                 url: '/home2',
@@ -67,22 +70,55 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector.devices', {
                 url: '/devices',
                 templateUrl: 'pages/connector/devices/index.html',
-                controller: 'DeviceController'
+                controller: 'DeviceController',
+                resolve : {
+                    currentUser : function(userService){
+                       return userService.getCurrentUser();
+                    },
+                    smartDevices: function (channelService) {
+                        return channelService.getSmartDevices();
+                    },
+                    claimedGateways : function(currentUser,  ownerService ){
+                        return ownerService.getClaimedGateways({skynetuuid : currentUser.skynetuuid, skynettoken: currentUser.skynettoken});
+                    }
+                },
+                onEnter : function(){
+//                    console.log('Entering devices state');
+                },
+                onExit : function(){
+//                    console.log('leaving devices state');
+                }
             })
             .state('connector.devices.wizard', {
                 url: '/wizard',
                 abstract: true,
                 templateUrl: 'pages/connector/devices/wizard/index.html',
-                controller: 'DeviceWizardController'
+                controller: 'DeviceWizardController',
+                resolve : {
+                    unclaimedGateways : function(currentUser, deviceService){
+                        return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken, { type : "gateway"});
+                    }
+                },
+                onEnter : function(){
+//                    console.log('Entering device wizard state. ');
+                },
+                onExit : function(){
+//                    console.log('Exiting device wizard state. ');
+                }
+
 
 
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
                 templateUrl: 'pages/connector/devices/wizard/instructions.html',
-                onExit: function () {
-
+                onEnter : function(){
+           //         console.log('Entering device wizard instructions state. ');
+                },
+                onExit : function(){
+         //           console.log('Exiting device wizard instructions state. ');
                 }
+
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
@@ -182,7 +218,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
                 },
                 onEnter: function () {
-                    console.log('Entering admin groups detail');
+//                    console.log('Entering admin groups detail');
                 },
                 onExit: function () {
 
@@ -263,7 +299,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     var token;
 
                     $scope.user_id = data._id;
-                    $scope.current_user = data
+                    $scope.current_user = data;
                     $rootScope.authorization.isAuthenticated = true;
 
                     if (data.local) {

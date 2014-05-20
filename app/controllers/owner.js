@@ -5,17 +5,100 @@ var async = require('async'),
     request = require('request'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    _ = require('underscore'),
+    _ = require('lodash'),
     rest = require('rest'),
     when = require('when'),
-    callbacks = require('when/callbacks'),
-    nodefn = require('when/node'),
     mime = require('rest/interceptor/mime'),
-    entity = require('rest/interceptor/entity'),
-    errorCode = require('rest/interceptor/errorCode');
+    errorCode = require('rest/interceptor/errorCode'),
+    nodefn = require('when/node'),
+    sequence = require('when/sequence'),
+    callbacks = require('when/callbacks'),
+    client = rest.wrap(mime).wrap(errorCode);
 
-module.exports = function (app, conn) {
+module.exports = function (app, config, conn) {
 
+    //TODO - clean up APIs
+    app.get('/api/owner/:id/:token/gateways', function(req, res){
+
+        var ownedDevices;
+
+        client({
+            method : 'GET',
+            path : req.protocol + "://" + app.locals.skynetUrl + "/mydevices",
+            headers : {
+                "skynet_auth_uuid" : req.params.id,
+                "skynet_auth_token" : req.params.token
+            }
+        })
+        .then(function(result){
+
+            var devices = _.filter(result.entity.devices, { type : "gateway"}) || [];
+            return devices;
+        })
+        .then(function(devices){
+            ownedDevices = devices;
+
+            var getConfigDetailsForDevice = function(device, next){
+                conn.gatewayConfig({
+                    'uuid': device.uuid,
+                    'token': device.token,
+                    'method': 'configurationDetails'
+                }, function (data) {
+                     console.log(JSON.stringify(data));
+                     device.subdevices = data.result.subdevices || [];
+                     device.plugins = data.result.plugins || [];
+                     next(null, device);
+                });
+            };
+
+
+            async.mapSeries(ownedDevices, getConfigDetailsForDevice, function(error, devices ){
+                console.log(JSON.stringify(devices));
+                res.send(devices);
+            });
+        })
+        .catch(function(errorResult){
+            res.send(errorResult.status.code, errorResult.status.text);
+        });
+
+
+
+    });
+
+    app.get('/api/owner/:id/:token/devices', function(req, res){
+        if (!req.params.id || !req.params.token ) {
+            res.send(400, 'missing or invalid parameters');
+        }
+
+        User.findBySkynetUUIDAndToken(req.params.id, req.params.token)
+            .then(function(user){
+                if(! user ){
+                   var error = {"error" : "Unauthorized. User not found"};
+                   throw error;
+                }
+
+                client({
+                    method : 'GET',
+                    path : req.protocol + "://" + app.locals.skynetUrl + "/mydevices",
+                    params : {
+                        "ipAddress" : req.ip
+                    },
+                    headers : {
+                        "skynet_auth_uuid" : req.params.id,
+                        "skynet_auth_token" : req.params.token
+                    }
+                }).then(function(result){
+                    var devices = result.entity.devices || [];
+                    res.send(devices);
+                }, function(errorResult){
+                    res.send(errorResult.status.code, errorResult.status.text);
+                });
+
+
+        }, function(error){
+               res.send(500, error);
+        });
+    });
     //GET
     //Parameters
     //    id - The owner UUID   [required]
@@ -24,55 +107,41 @@ module.exports = function (app, conn) {
     //    includeSubDevices - flag on whether to include subdevices [optional - default is true]
     //Find any unclaimed devices with the given type that are on the owner's network
     //returns JSON array containing the devices
-    app.get('/api/owner/:id/:token/devices/:type/unclaimed', function (req, res) {
+    app.get('/api/owner/:id/:token/devices/unclaimed', function (req, res) {
 
-        if (!req.params.id || !req.params.token || !req.params.type) {
+        if (!req.params.id || !req.params.token ) {
             res.send(400, 'missing or invalid parameters');
         }
-
-        var uuid = req.params.id;
-        var token = req.params.token;
-        var ip = req.ip;
-        User = mongoose.model('User');
-        User.findOne(
-            { $or: [
-                {"local.skynetuuid": uuid, "local.skynettoken": token},
-                {"twitter.skynetuuid": uuid, "twitter.skynettoken": token},
-                {"facebook.skynetuuid": uuid, "facebook.skynettoken": token},
-                {"google.skynetuuid": uuid, "google.skynettoken": token}
-            ]
-            },
-            function (err, userInfo) {
-                if (err) {
-                    res.send(500, err);
+        User.findBySkynetUUIDAndToken(req.params.id, req.params.token)
+            .then(function(user){
+                if( ! user ){
+                    var error = {"error" : "Unauthorized", "status_code" : 401};
+                    throw error;
                 }
-                if (!userInfo) {
-                    res.send(401, 'Unauthorized: Invalid UUID or Token');
-                } else {
 
-                }
+                client({
+                    method : 'GET',
+                    path : req.protocol + "://" + app.locals.skynetUrl + "/devices",
+                    params : {
+                        "ipAddress" : req.ip,
+                        "type" : "gateway",
+                        "owner" : null
+                    },
+                    headers : {
+                        "skynet_auth_uuid" : req.params.id,
+                        "skynet_auth_token" : req.params.token,
+                        "skynet_override_token" : config.skynet_override_token
+                    }
+                }).then(function(result){
+                    return res.send(result.entity);
+            }, function(errorResult){
+                return res.send(errorResult.status.code, errorResult.status.text);
             });
+
+        }, function(error){
+            return res.send(error.status_code, error);
+        });
     });
-
-    app.get('/api/owner/devices/:id/:token', function (req, res) {
-
-        request.get(req.protocol + '://' + app.locals.skynetUrl + '/mydevices',
-            {  headers: {
-                'skynet_auth_uuid': req.params.id,
-                'skynet_auth_token': req.params.token
-            }
-        }, function (error, response, body) {
-                var data = {};
-
-                try {
-                    data = JSON.parse(body);
-                } catch (e) {
-                }
-
-                res.json(data);
-            });
-    });
-
 
     // Get devices by owner
     app.get('/api/owner/gateways/:id/:token', function(req, res) {

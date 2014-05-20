@@ -58,13 +58,9 @@ angular.module('octobluApp')
         this.getAllDevices = function(uuid, token){
             var defer = $q.defer();
             if( uuid && token ){
-                $http.get('/api/owner/devices/' + uuid + '/' + token)
+                $http.get('/api/owner/' + uuid + '/' + token + "/devices")
                     .success(function(data) {
-                        if( data.devices ){
-                            defer.resolve(data.devices);
-                        } else {
-                            defer.resolve([]);
-                        }
+                       defer.resolve(data);
                     })
                     .error(function(error) {
                        defer.reject(error);
