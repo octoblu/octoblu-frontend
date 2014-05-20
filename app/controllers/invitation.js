@@ -293,7 +293,7 @@ var invitationController = {
             }
         }).then(function (snd) {
             sender = snd;
-            console.log('snd',snd)
+            console.log('snd',snd);
             if (invitation.recipient.uuid) {
                 return User.findBySkynetUUID(invitation.recipient.uuid);
             }
@@ -306,13 +306,10 @@ var invitationController = {
 
             // if (!recipient || recipient._id !== req.session.user._id) {
             if (!recipient || recipient.skynetuuid !== req.cookies.skynetuuid) {
-                console.log('redirecting', recipient.skynetuuid, req.cookies.skynetuuid);
                 res.redirect('/signup');
             } else {
 
-                console.log('here');
                 var operatorGroup = _.findWhere(sender.groups, {'type': 'operators'});
-                console.log('operatorGroup', operatorGroup);
 
                 if (!operatorGroup) {
                     operatorGroup = {'uuid': uuid.v1(), 'type': 'operators', members: []};
