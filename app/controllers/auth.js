@@ -487,16 +487,30 @@ module.exports = function (app, passport, config) {
             } else {
                 // oauth 1.0..
                 var oa = getOauth1Instance(req, api);
+                // var OAuth = require('oauth');
+                // var oa = new OAuth.OAuth(
+                //     "https://sandbox.evernote.com/oauth",
+                //     "https://sandbox.evernote.com/oauth",
+                //     "joshcoffman-4144",
+                //     "e3d037e41811b07e",
+                //     "1.0",
+                //     getOAuthCallbackUrl(req, api.name),
+                //     'HMAC-SHA1'
+                // );
                 oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
                     if (error) {
                         console.log(error);
                         res.send('yeah no. didn\'t work.')
                     }
                     else {
+                        console.log(error, oauth_token, oauth_token_secret, results);
                         req.session.oauth = {};
                         req.session.oauth.token = oauth_token;
                         req.session.oauth.token_secret = oauth_token_secret;
                         var callbackURL = getOAuthCallbackUrl(req, api.name);
+                        // var authURL = 'https://sandbox.evernote.com/OAuth.action' + '?oauth_token='
+                        //     + oauth_token + '&oauth_consumer_key=' + api.oauth.key
+                        //     + '&callback=' + callbackURL;
                         var authURL = api.oauth.authTokenURL + '?oauth_token='
                             + oauth_token + '&oauth_consumer_key=' + api.oauth.key
                             + '&callback=' + callbackURL;
@@ -553,6 +567,10 @@ module.exports = function (app, passport, config) {
                     };
 
                     if(api.name==='Bitly') auth = null;
+                    if(api.name === 'Paypal') {
+                        delete form.redirect_uri;
+                        delete form.code;
+                    }
 
                     // exchange access code for bearer token
                     console.log(api.oauth.accessTokenURL, form);
@@ -644,15 +662,26 @@ module.exports = function (app, passport, config) {
 
             } else {
                 // oauth 1.0 here
+                console.log('oauth 1.0 callback');
                 req.session.oauth.verifier = req.query.oauth_verifier;
                 var oauth = req.session.oauth;
 
                 var oa = getOauth1Instance(req, api);
+                // var OAuth = require('oauth');
+                // var oa = new OAuth.OAuth(
+                //     "https://sandbox.evernote.com/oauth",
+                //     "https://sandbox.evernote.com/oauth",
+                //     "joshcoffman-4144",
+                //     "e3d037e41811b07e",
+                //     "1.0",
+                //     getOAuthCallbackUrl(req, api.name),
+                //     'HMAC-SHA1'
+                // );
                 oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
                     function(error, oauth_access_token, oauth_access_token_secret, results){
                         if (error){
                             console.log(error);
-                            res.redirect(500, '/apis/' + name);
+                            res.redirect(500, '/connector/channels/' + name);
                         } else {
                             User.findOne({ $or: [
                                 {'local.skynetuuid' : req.cookies.skynetuuid},
@@ -670,7 +699,7 @@ module.exports = function (app, passport, config) {
                                     });
                                 } else {
                                     console.log('error saving oauth token');
-                                    res.redirect('/apis/' + name);
+                                    res.redirect('/connector/channels/' + name);
                                 }
                             });
 
