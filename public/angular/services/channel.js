@@ -36,6 +36,7 @@ angular.module('octobluApp')
             var defer = $q.defer();
             $http.get('/api/channels/', { cache: true})
                 .success(function(data) {
+                  // console.log('ALLCHANNELS', data);
                     defer.resolve(data);
                 })
                 .error(function(error) {
@@ -68,17 +69,31 @@ angular.module('octobluApp')
          * getSmartDevices gets the smart devices that Octoblu supports
          * @returns {defer.promise|*} a promise that will eventually resolve to an array of smart devices
          */
-        this.getSmartDevices = function() {
+          this.getSmartDevices = function(callback) {
             var defer = $q.defer();
-            $http.get('/api/smartdevices/', { cache: false})
+            $http.get('/api/smartdevices')
                 .success(function(data) {
                      defer.resolve(data);
+                    //  callback(null, data);
                 })
                 .error(function(error) {
                    defer.reject(error);
+                  //  callback(error);
                 });
             return defer.promise;
         };
+
+        this.getSmartDevicesHomePage = function(callback) {
+          var defer = $q.defer();
+          $http.get('/api/smartdevices')
+              .success(function(data) {
+                   callback(null, data);
+              })
+              .error(function(error) {
+                 callback(error);
+              });
+        };
+
 
         this.getCustomList = function(uuid, callback) {
             $http.get('/api/customchannels/' + uuid, { cache: true})
