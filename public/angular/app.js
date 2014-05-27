@@ -28,15 +28,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // change page event name
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-        // var channelService = $injector.get('channelService');
-
         $stateProvider
             .state('home', {
                 url: '/',
-                // templateUrl: 'pages/home.html',
                 templateUrl: 'pages/home2.html',
                 controller: 'homeController'
-              
+
+
             })
             .state('home2', {
                 url: '/home2',

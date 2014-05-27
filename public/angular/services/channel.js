@@ -71,7 +71,7 @@ angular.module('octobluApp')
          */
           this.getSmartDevices = function(callback) {
             var defer = $q.defer();
-            $http.get('/api/smartdevices', { cache: false})
+            $http.get('/api/smartdevices')
                 .success(function(data) {
                      defer.resolve(data);
                     //  callback(null, data);
