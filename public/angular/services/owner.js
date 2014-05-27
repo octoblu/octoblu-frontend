@@ -54,7 +54,7 @@ angular.module('octobluApp')
                     defer.resolve(data);
                 })
                 .error(function (data) {
-                    defer.reject(data);
+                    defer.resolve(data);
                 });
             return defer.promise;
         };

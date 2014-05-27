@@ -5,7 +5,7 @@ angular.module('octobluApp')
         var token = $cookies.skynettoken;
 
         $scope.smartDevices = smartDevices;
-        $scope.gateways = claimedGateways;
+        $scope.claimedGateways = claimedGateways;
 
 //        $scope.socket = $rootScope.skynetSocket;
         //TODO this will be handled by route checking at the root scope level. Should be changed then.
