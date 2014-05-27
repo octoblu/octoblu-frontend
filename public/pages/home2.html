@@ -1,31 +1,5 @@
 <style>
 
-   .divScroll {
-       overflow:scroll;
-       height: auto;
-       max-width: 100%;
-   }
-   .scrollWrapper {
-       overflow: visible;
-       height: auto;
-       width: 100%;
-   }
-   .divScroll ul {
-     list-style-type: none;
-   }
-   .divScroll ul li {
-     display:-moz-inline-stack;
-     display:inline-block;
-     zoom: 1;
-     *display: inline;
-     padding: 10px;
-     height: auto;
-     width: auto;
-     vertical-align: top;
-   }
-/*  .item { width: 25%; }
-  .item.w2 { width: 50%; }*/
-
 .container{
   padding-left:0px;
   padding-right:0px;
@@ -39,73 +13,6 @@ html, body {
 	margin:0;
 	overflow-x:hidden;
 }
-
-.skrollable {
-	/*
-	 * First-level skrollables are positioned relative to window
-	 */
-	position:fixed;
-
-	/*
-	 * Skrollables by default have a z-index of 100 in order to make it easy to position elements in front/back without changing each skrollable
-	 */
-	z-index:100;
-}
-
-.skrollr-mobile .skrollable {
-	/*
-		May cause issues on Android default browser (see #331 on GitHub).
-	*/
-	position:absolute;
-}
-
-.skrollable .skrollable {
-	/*
-	 * Second-level skrollables are positioned relative their parent skrollable
-	 */
-	position:absolute;
-}
-
-.skrollable .skrollable .skrollable {
-	/*
-	 * Third-level (and below) skrollables are positioned static
-	 */
-	position:static;
-}
-
-#transform {
-	width:70%;
-	left:50%;
-	top:20%;
-	margin-left:-35%;
-	text-align:center;
-	font-size:150%;
-
-	.transform-origin(50%, 50%);
-}
-
-#properties {
-	width:100%;
-	height:100%;
-	padding-top:10%;
-	text-align:center;
-
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-#easing_wrapper {
-	width:100%;
-	height:100%;
-}
-
-#easing {
-	top:10%;
-	width:50%;
-	z-index:101;
-}
-
 
 </style>
 
@@ -158,9 +65,9 @@ html, body {
       <!-- -->
       <div class="slide-panel" data-in="right" data-out="right">
         <div id="spt-4" class="sptext">
-          <a type="button" class="btn btn-default-header btn-lg cta-button" href="/login">
-            <i class="fa fa-chevron-right btn-margin-icon"></i><b>Sign Up Now</b>
-          </a>
+          <!-- <a type="button" class="btn btn-default-header btn-lg cta-button disabled" href="/login">
+            <i class="fa fa-chevron-right btn-margin-icon disabled"></i><b>Sign Up Now</b>
+          </a> -->
         </div>
       </div>
     </div>
@@ -168,18 +75,18 @@ html, body {
       <!-- <img src="/assets/images/hue.jpg" width="100%"> -->
 
       <div class="slide-panel" data-in="top" data-out="top">
-        <div id="spt-5" class="sptext">
+        <div id="spt-1" class="sptext">
           <span class="msg-welcome">Connect & Control </span>
-          <span class="msg-ulysses">Smart Devices</span>
+          <span class="msg-ulysses">Devices</span>
         </div>
       </div>
       <div class="slide-panel" data-in="bottom" data-out="bottom">
-        <div id="spt-6" class="sptext">
+        <div id="spt-2" class="sptext">
           Our Automation Hub allows you to connect devices <u>with & without</u> IP addresses
         </div>
       </div>
       <div class="slide-panel" data-in="left" data-out="left">
-        <div id="spt-7" class="sptext">
+        <div id="spt-3" class="sptext">
           <a type="button" class="btn btn-default-header btn-lg" ng-click="watchVideo()">
                 <b>Watch Video</b>
           </a>
@@ -187,10 +94,10 @@ html, body {
       </div>
       <!-- -->
       <div class="slide-panel" data-in="right" data-out="right">
-        <div id="spt-8" class="sptext">
-          <a type="button" class="btn btn-default-header btn-lg cta-button" href="/login">
+        <div id="spt-4" class="sptext">
+          <!-- <a type="button" class="btn btn-default-header btn-lg cta-button disabled" href="/login">
             <i class="fa fa-chevron-right btn-margin-icon"></i><b>Sign Up Now</b>
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
@@ -198,20 +105,20 @@ html, body {
       <!-- <img src="/assets/images/belkin.jpg" width="100%"> -->
 
       <div class="slide-panel" data-in="top" data-out="top">
-        <div id="spt-5" class="sptext">
+        <div id="spt-1" class="sptext">
           <!-- <img src="/assets/images/ipad-presentation.png"> -->
           <span class="msg-welcome">Integrate  </span>
           <span class="msg-ulysses">Channels</span>
-          <span class="msg-welcome">with Smart Devices </span>
+          <span class="msg-welcome">with Devices </span>
         </div>
       </div>
       <div class="slide-panel" data-in="bottom" data-out="bottom">
-        <div id="spt-6" class="sptext">
+        <div id="spt-2" class="sptext">
           New Systems & APIs being added daily!
         </div>
       </div>
       <div class="slide-panel" data-in="left" data-out="left">
-        <div id="spt-7" class="sptext">
+        <div id="spt-3" class="sptext">
           <a type="button" class="btn btn-default-header btn-lg" ng-click="watchVideo()">
                 <b>Watch Video</b>
           </a>
@@ -219,10 +126,10 @@ html, body {
       </div>
       <!-- -->
       <div class="slide-panel" data-in="right" data-out="right">
-        <div id="spt-8" class="sptext">
-          <a type="button" class="btn btn-default-header btn-lg cta-button" href="/login">
+        <div id="spt-4" class="sptext">
+          <!-- <a type="button" class="btn btn-default-header btn-lg cta-button disabled" href="/login">
             <i class="fa fa-chevron-right btn-margin-icon"></i><b>Sign Up Now</b>
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
@@ -252,9 +159,9 @@ html, body {
       <!-- -->
       <div class="slide-panel" data-in="right" data-out="right">
         <div id="spt-8" class="sptext">
-          <a type="button" class="btn btn-default-header btn-lg cta-button" href="/login">
+          <!-- <a type="button" class="btn btn-default-header btn-lg cta-button disabled" href="/login">
             <i class="fa fa-chevron-right btn-margin-icon"></i><b>Sign Up Now</b>
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
@@ -265,8 +172,8 @@ html, body {
       <div class="slide-panel" data-in="top" data-out="top">
         <div id="spt-5" class="sptext">
           <!-- <img src="/assets/images/ipad-presentation.png"> -->
-          <span class="msg-welcome">Big Data & </span>
-          <span class="msg-ulysses">Artificial Intelligence</span>
+          <span class="msg-welcome">BigData &</span>
+          <span class="msg-ulysses">AI</span>
         </div>
       </div>
       <div class="slide-panel" data-in="bottom" data-out="bottom">
@@ -284,9 +191,9 @@ html, body {
       <!-- -->
       <div class="slide-panel" data-in="right" data-out="right">
         <div id="spt-8" class="sptext">
-          <a type="button" class="btn btn-default-header btn-lg cta-button" href="/login">
+          <!-- <a type="button" class="btn btn-default-header btn-lg cta-button disabled" href="/login">
             <i class="fa fa-chevron-right btn-margin-icon"></i><b>Sign Up Now</b>
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
@@ -306,84 +213,17 @@ html, body {
     <div class="scrollWrapper">
       <ul class="channellist">
         <li ng-repeat="channel in availableChannels | orderBy:'name'" class="item">
-              <div class="channel_icon-grid-view mod-index-0 pop-over"
+            <div class="channel_icon-grid-view mod-index-0 pop-over"
                   ng-class="{'activechannel': isActive(channel)}"
               data-original-title="{{channel.name}}">
               <img ng-src="{{channel.logo}}" width="100" height="100"/>
             </div>
-          </li>
-        </ul>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
 
-
-<!--
-<div id="transform" data-500="transform:scale(0) rotate(0deg);" data-1000="transform:scale(1) rotate(1440deg);opacity:1;" data-1600="" data-1700="transform:scale(5) rotate(3240deg);opacity:0;" class="skrollable skrollable-between" style="-webkit-transform: scale(1) rotate(1440deg); opacity: 1;">
-		<h2>transform</h2>
-		<p>scale, skew and rotate the sh** out of any element</p>
-</div>
-
-	<div id="properties" data-1700="top:100%;" data-2200="top:0%;" data-3000="display:block;" data-3700="top:-100%;display:none;">
-		<h2>all numeric properties</h2>
-		<p>width, height, padding, font-size, z-index, blah blah blah</p>
-	</div> -->
-
-
-<div class="container">
-  <div class="row" style="height:600px">
-
-  </div>
-</div>
-</div>
-
-<div id="easing_wrapper" data-0="display:none;" data-700="display:block;" data-4000="top:0%;" data-4000="top:-100%;">
-		<div id="easing" data-500="left:100%" data-1200="left:25%;">
-			<h2><img ng-src="{{availableChannels[3].logo}}" width="100" height="100"/></h2>
-<!-- 			<p>123</p> -->
-    </div>
-    <div id="easing" data-500="left:0%" data-1200="left:75%;">
-      <h2><img ng-src="{{availableChannels[2].logo}}" width="100" height="100"/></h2>
-<!--       <p>123</p> -->
-    </div>
-</div>
-
-<!--
-	<div id="easing_wrapper" data-0="display:none;" data-3900="display:block;" data-4900="background:rgba(0, 0, 0, 0);color[swing]:rgb(0,0,0);" data-5900="background:rgba(0,0,0,1);color:rgb(255,255,255);" data-10000="top:0%;" data-12000="top:-100%;">
-		<div id="easing" data-3900="left:100%" data-4600="left:25%;">
-			<h2>easing?</h2>
-			<p>sure.</p>
-			<p>let me dim the <span data-3900="" data-4900="color[swing]:rgb(0,0,0);" data-5900="color:rgb(255,255,0);">lights</span> for this one...</p>
-			<p data-5900="opacity:0;font-size:100%;" data-6500="opacity:1;font-size:150%;">you can set easings for each property and define own easing functions</p>
-		</div>
-
-		<div class="drop" data-6500="left:15%;bottom:100%;" data-9500="bottom:0%;">linear</div>
-		<div class="drop" data-6500="left:25%;bottom[quadratic]:100%;" data-9500="bottom:0%;">quadratic</div>
-		<div class="drop" data-6500="left:35%;bottom[cubic]:100%;" data-9500="bottom:0%;">cubic</div>
-		<div class="drop" data-6500="left:45%;bottom[swing]:100%;" data-9500="bottom:0%;">swing</div>
-		<div class="drop" data-6500="left:55%;bottom[WTF]:100%;" data-9500="bottom:0%;">WTF</div>
-		<div class="drop" data-6500="left:65%;bottom[inverted]:100%;" data-9500="bottom:0%;">inverted</div>
-		<div class="drop" data-6500="left:75%;bottom[bounce]:100%;" data-9500="bottom:0%;">bounce</div>
-	</div> -->
-
-
-<!-- <div class="apisx">
-  <div class="container">
-    <div class="row">
-
-
-    </div>
-  </div>
-</div> -->
-
-<!-- <div id="flow" class="section">
-<h3 class="section-height" style="color:white;">USING OUR SIMPLE DRAG AND DROP DESIGNER</h3>
-</div> -->
-
-<!-- <div class="flowx"></div>
-<div class="container margin-top-50">
-</div> -->
 
 <div id="services" class="section-dark">
 <h3 class="section-height" style="color:white;">SERVICES</h3>
@@ -450,7 +290,7 @@ html, body {
         </div>
         <div class="cta-content-button">
           <div class="s-a" data-effect="fromright" data-delay="200"><!--Animation-->
-          <a type="button" class="btn btn-primary btn-lg cta-button" href="/login"><i class="fa fa-chevron-right btn-margin-icon"></i><b>Sign Up Now</b></a>
+          <a type="button" class="btn btn-primary btn-lg cta-button disabled" href="/login"><i class="fa fa-chevron-right btn-margin-icon"></i><b>Sign Up Now</b></a>
           </div><!--Animation End-->
         </div>
       </div>
@@ -515,7 +355,7 @@ html, body {
     <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-0 text-center margin-top-60">
       <div class="team-single">
         <div class="team-social">
-          <a href="https://github.com/skynetim/gateway"><i class="fa fa-github-alt fa-3x team-social-icon"></i></a>
+          <a href="https://github.com/skynetim/hub"><i class="fa fa-github-alt fa-3x team-social-icon"></i></a>
         </div>
         <div class="s-a" data-effect="onlyfade" data-delay="200"><!--Animation-->
           <img src="http://theaviationist.com/wp-content/uploads/2013/03/Skynet.jpg" alt="..." width="80%" class="img-circle img-border">
@@ -574,7 +414,7 @@ html, body {
           <li>Proin gravida</li>
           <li>Aenean sollicitudin</li>
           <li>Nec sagittis sem nibh</li>
-          <a href="/login" class="btn btn-primary btn-lg" role="button">Sign Up Now</a>
+          <a href="/login" class="btn btn-primary btn-lg disabled" role="button">Sign Up Now</a>
         </div>
       </div>
     </div><!--Animation End-->
@@ -590,7 +430,7 @@ html, body {
           <li>Proin gravida</li>
           <li>Aenean sollicitudin</li>
           <li>Nec sagittis sem nibh</li>
-          <a href="/login" class="btn btn-primary btn-lg" role="button">Sign Up Now</a>
+          <a href="/login" class="btn btn-primary btn-lg disabled" role="button">Sign Up Now</a>
         </div>
       </div>
     </div><!--Animation End-->
@@ -606,7 +446,7 @@ html, body {
           <li>Proin gravida</li>
           <li>Aenean sollicitudin</li>
           <li>Nec sagittis sem nibh</li>
-          <a href="/login" class="btn btn-primary btn-lg" role="button">Sign Up Now</a>
+          <a href="/login" class="btn btn-primary btn-lg disabled" role="button">Sign Up Now</a>
         </div>
       </div>
     </div><!--Animation End-->
@@ -712,7 +552,7 @@ html, body {
 
 <div class="footer">
   <div class="footer-content">
-    <h3 class="section-height"><span class="dashed-border">FOLLOW US</span> USING THE SOCIAL YOU LIKE</h3>
+    <h3 class="section-height"><span class="dashed-border">FOLLOW US ON THESE SOCIAL NETWORKS</span></h3>
     <div class="margin-top-30">
       <a href="http://facebook.com/octoblu" class="footer-icon"><i class="fa fa-facebook fa-2x"></i></a>
       <a href="http://twitter.com/octoblu" class="footer-icon"><i class="fa fa-twitter fa-2x"></i></a>

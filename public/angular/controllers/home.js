@@ -1,7 +1,7 @@
 //'use strict';
 
 angular.module('octobluApp')
-    .controller('homeController', function($rootScope,  $scope, $cookies,  $http, $injector, $state, $location, $anchorScroll, $modal, channelsAndDevices) {
+    .controller('homeController', function($rootScope,  $scope, $cookies,  $http, $injector, $state, $location, $anchorScroll, $modal, channelService) {
         var user = $cookies.skynetuuid;
 
         if (user != undefined) {
@@ -10,18 +10,18 @@ angular.module('octobluApp')
             $scope.message = 'Home page content pending.';
         }
 
-        $scope.availableChannels = channelsAndDevices;
+        // $scope.availableChannels = channelsAndDevices;
 
-//        channelService.getList(function(channelData) {
-//          channelService.getSmartDevices(function(error, deviceData) {
-//              if(error){
-//                  console.log('error: ' + error);
-//              }
-//              // $scope.availableChannels = channelData;
-//              // $scope.availableDevices = deviceData;
-//              $scope.availableChannels = channelData.concat(deviceData);
-//          });
-//        });
+       channelService.getList(function(channelData) {
+         channelService.getSmartDevicesHomePage(function(error, deviceData) {
+             if(error){
+                 console.log('error: ' + error);
+             }
+            //  $scope.availableChannels = channelData;
+             // $scope.availableDevices = deviceData;
+             $scope.availableChannels = channelData.concat(deviceData);
+         });
+       });
 
         $scope.gotoApis = function (){
             // set the location.hash to the id of
