@@ -32,23 +32,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('home', {
                 url: '/',
                 templateUrl: 'pages/home.html',
-                controller: 'homeController',
-                resolve :{
-                    channelsAndDevices : function(channelService){
-                        return channelService.getAllChannelsAndSmartDevices();
-                    }
-                }
+                controller: 'homeController'
 
             })
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
-                controller: 'homeController',
-                resolve : {
-                    channelsAndDevices : function(channelService){
-                        return channelService.getAllChannelsAndSmartDevices();
-                    }
-                }
+                controller: 'homeController'
             })
             .state('about', {
                 url: '/about',
