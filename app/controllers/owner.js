@@ -98,7 +98,9 @@ module.exports = function (app, config, conn) {
                     var devices = result.entity.devices || [];
                     res.send(devices);
                 }, function(errorResult){
-                    res.send(errorResult.status.code, errorResult.status.text);
+                    console.log(errorResult.status.code);
+                    console.log(errorResult.entity);
+                    res.send(200, []);
                 });
 
 
