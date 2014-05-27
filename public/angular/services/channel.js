@@ -34,7 +34,7 @@ angular.module('octobluApp')
          */
         this.getAllChannels = function(){
             var defer = $q.defer();
-            $http.get('/api/channels/', { cache: true})
+            $http.get('/api/channels', { cache: true})
                 .success(function(data) {
                   // console.log('ALLCHANNELS', data);
                     defer.resolve(data);
@@ -71,7 +71,7 @@ angular.module('octobluApp')
          */
           this.getSmartDevices = function(callback) {
             var defer = $q.defer();
-            $http.get('/api/smartdevices')
+            $http.get('/api/smartdevices', { cache: false})
                 .success(function(data) {
                      defer.resolve(data);
                     //  callback(null, data);
