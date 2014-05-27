@@ -82,9 +82,7 @@ var config = {
       },
 
     'port' : 8080,
-    'domain': null,
-    'skynet_override_token': "w0rldd0m1n4t10n"
-
+    'domain': null
   },
   test: {
 
@@ -174,9 +172,7 @@ var config = {
           'port' : 80
       },
     'port' : 80,
-    'domain': '.octoblu.com',
-    'skynet_override_token': "w0rldd0m1n4t10n"
-
+    'domain': '.octoblu.com'
   }
 };
 
