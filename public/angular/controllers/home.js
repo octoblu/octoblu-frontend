@@ -10,7 +10,7 @@ angular.module('octobluApp')
             $scope.message = 'Home page content pending.';
         }
 
-        // $scope.availableChannels = channelsAndDevices;
+         $scope.availableChannels = channelsAndDevices;
 
 //       channelService.getList(function(channelData) {
 //         channelService.getSmartDevicesHomePage(function(error, deviceData) {
