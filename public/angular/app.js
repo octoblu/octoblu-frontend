@@ -37,7 +37,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/home2.html',
                 controller: 'homeController'
                 // channelsAndDevices : function(channelService){
-                //     return channelService.getAllChannelsAndSmartDevices();
+                //     return channelService.getSmartDevicesHomePage();
                 // }
             })
             .state('home2', {
