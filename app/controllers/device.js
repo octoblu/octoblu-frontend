@@ -96,7 +96,7 @@ module.exports = function (app, passport, config) {
         request.put(req.protocol + '://' + app.locals.skynetUrl + '/claimdevice/' + req.body.uuid + '?overrideIp=' + req.ip,
             {
                 form: req.body, 
-                headers: {'Skynet_override_token': config.skynet_override_token, 
+                headers: {'Skynet_override_token': config.skynet.override_token,
                 'skynet_auth_uuid': req.params.uuid,
                 'skynet_auth_token': req.query.token}
                 ,

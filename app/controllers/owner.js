@@ -139,7 +139,7 @@ module.exports = function (app, config, conn) {
                     headers : {
                         "skynet_auth_uuid" : req.params.id,
                         "skynet_auth_token" : req.params.token,
-                        "skynet_override_token" : config.skynet_override_token
+                        "skynet_override_token" : config.skynet.override_token
                     }
                 }).then(function(result){
                     return res.send(result.entity);
