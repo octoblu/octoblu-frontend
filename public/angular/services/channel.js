@@ -34,7 +34,7 @@ angular.module('octobluApp')
          */
         this.getAllChannels = function(){
             var defer = $q.defer();
-            $http.get('/api/channels/', { cache: true})
+            $http.get('/api/channels', { cache: true})
                 .success(function(data) {
                   // console.log('ALLCHANNELS', data);
                     defer.resolve(data);

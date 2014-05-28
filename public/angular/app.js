@@ -28,25 +28,17 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // change page event name
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-        // var channelService = $injector.get('channelService');
-
         $stateProvider
             .state('home', {
                 url: '/',
-                // templateUrl: 'pages/home.html',
-                templateUrl: 'pages/home2.html',
+                templateUrl: 'pages/home.html',
                 controller: 'homeController'
-                // channelsAndDevices : function(channelService){
-                //     return channelService.getSmartDevicesHomePage();
-                // }
+
             })
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
                 controller: 'homeController'
-                // channelsAndDevices : function(channelService){
-                //     return channelService.getAllChannelsAndSmartDevices();
-                // }
             })
             .state('about', {
                 url: '/about',
