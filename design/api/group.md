@@ -16,7 +16,7 @@ Groups in octoblu allow users to manage access to their devices. A user can have
 * uuid
 * type
 * permissions
-* members
+* Link to Resource Permissions
 * devices
 
 ## 2. Permissions
