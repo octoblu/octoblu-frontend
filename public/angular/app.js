@@ -34,12 +34,16 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/home2.html',
                 controller: 'homeController'
 
-
             })
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
                 controller: 'homeController'
+            })
+            .state('terms', {
+                url: '/terms',
+                templateUrl: 'pages/terms.html',
+                controller: 'termsController'
             })
             .state('about', {
                 url: '/about',

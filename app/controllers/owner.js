@@ -61,7 +61,11 @@ module.exports = function (app, config, conn) {
             });
         })
         .catch(function(errorResult){
-            res.send(errorResult.status.code, errorResult.status.text);
+            //Log the error from skynet but send an empty array list to the user.
+            console.log("Result Skynet : ");
+            console.log(errorResult.status.code);
+            console.log(errorResult.status.text);
+            res.send(200, []);
         });
 
 
@@ -94,7 +98,9 @@ module.exports = function (app, config, conn) {
                     var devices = result.entity.devices || [];
                     res.send(devices);
                 }, function(errorResult){
-                    res.send(errorResult.status.code, errorResult.status.text);
+                    console.log(errorResult.status.code);
+                    console.log(errorResult.entity);
+                    res.send(200, []);
                 });
 
 
@@ -133,7 +139,7 @@ module.exports = function (app, config, conn) {
                     headers : {
                         "skynet_auth_uuid" : req.params.id,
                         "skynet_auth_token" : req.params.token,
-                        "skynet_override_token" : config.skynet_override_token
+                        "skynet_override_token" : config.skynet.override_token
                     }
                 }).then(function(result){
                     return res.send(result.entity);
