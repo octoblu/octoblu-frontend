@@ -1,0 +1,26 @@
+{
+  "name": "octoblu",
+  "version": "0.2.2-alpha",
+  "homepage": "https://github.com/skynetim/octoblu",
+  "description": "Octoblu is a device automation platform built on top of Skynet.im",
+  "appPath": "public",
+  "keywords": [
+    "octoblu",
+    "skynet",
+    "IoT",
+    "automation"
+  ],
+  "authors": [
+    "Octoblu Inc"
+  ],
+  "license": "commercial",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/lib",
+    "test",
+    "tests",
+    "design"
+  ]
+}
