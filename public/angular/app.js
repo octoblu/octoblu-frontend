@@ -31,7 +31,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'pages/home2.html',
+                templateUrl: 'pages/home.html',
                 controller: 'homeController'
 
             })

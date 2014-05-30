@@ -74,9 +74,9 @@ var config = {
         }
     },
       'skynet' : {
-          'host' : 'skynet.im',
-          'port' : 80,
-           'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff'
+          'host' : '127.0.0.1',
+           'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
+          'port' : 3000
       },
 
     'port' : 8080,
