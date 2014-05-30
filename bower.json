@@ -31,16 +31,25 @@
     "angular-cookies": "~1.2.16",
     "angular-resource": "~1.2.16",
     "jquery-ui": "~1.10.4",
-    "angular-ui-router": "~0.2.10",
     "modernizr": "~2.8.2",
     "bootstrap": "~3.1.1",
     "fontawesome": "Font-Awesome#4.1.0",
+    "angular-ui-router": "~0.2.10",
     "angular-ui-bootstrap": "~0.11.0",
     "angular-ui-utils": "~0.1.1",
     "underscore": "~1.6.0",
     "d3": "~3.4.8",
     "nvd3": "~1.1.15-beta",
     "jquery-migrate": "~1.2.1",
-    "bootstrap-switch": "~3.0.1"
+    "bootstrap-switch": "~3.0.1",
+    "angular-bootstrap": "~0.11.0",
+    "json-editor": "~0.6.11",
+    "elastic.js": "~1.1.1",
+    "elasticsearch": "~2.2.0",
+    "smoothie": "https://github.com/joewalnes/smoothie.git",
+    "skrollr": "~0.6.25",
+    "isotope": "~2.0.0",
+    "angular-google-analytics": "~0.0.2",
+    "jquery-mobile": "~1.4.2"
   }
 }
