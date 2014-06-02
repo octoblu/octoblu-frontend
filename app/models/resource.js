@@ -3,21 +3,18 @@
 var mongoose = require('mongoose');
 // define the schema for our user model
 
-var ResourcePropertySchema = mongoose.Schema({
-    name :  {type : String, required : true },
-    value : {type : mongoose.Schema.Types.Mixed, required : true}
-});
-
 var ResourceSchema = mongoose.Schema({
-    uuid: {type : String, required : true },
     name: {type: String, required: true },
+    skynetuuid: {type : String, required : true },
+    skynettoken: {type : String, required : true },
+    owner: {type : String },
     type: {
         type: String,
         default : 'device',
         enum : ['user', 'device', 'group'],
         required : true
     },
-    properties: [ResourcePropertySchema]
+    properties: mongoose.Schema.Types.Mixed
 });
 
 mongoose.exports = ResourceSchema;
