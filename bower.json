@@ -30,6 +30,7 @@
     "angular-sanitize": "~1.2.16",
     "angular-cookies": "~1.2.16",
     "angular-resource": "~1.2.16",
+    "angular-mocks": "~1.2.16",
     "jquery-ui": "~1.10.4",
     "modernizr": "~2.8.2",
     "bootstrap": "~3.1.1",
