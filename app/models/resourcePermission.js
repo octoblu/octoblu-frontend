@@ -13,7 +13,6 @@ var ResourcePermissionSchema = mongoose.Schema({
 });
 
 
-
 mongoose.model('ResourcePermission', ResourcePermissionSchema );
 
 

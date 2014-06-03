@@ -8,6 +8,7 @@ var ResourceSchema = mongoose.Schema({
     skynetuuid: {type : String, required : true },
     skynettoken: {type : String, required : true },
     owner: {type : String },
+    parent : { type : String },
     type: {
         type: String,
         default : 'device',
