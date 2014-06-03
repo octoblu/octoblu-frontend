@@ -105,7 +105,7 @@ var groupController = {
                     var resourcePermission = new ResourcePermission({
                         grantedBy: user.skynetuuid,
                         source : dbSourceGroup.resource.uuid,
-                        target: dbSourceGroup.resource.uuid
+                        target: dbTargetGroup.resource.uuid
                     });
 
                     resourcePermission.save(function(err, dbResourcePermission){
