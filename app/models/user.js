@@ -57,10 +57,7 @@ var UserSchema = mongoose.Schema({
                     }
                 ]
             }
-        ],
-        groups: [groupSchema]
-
-
+        ]
     },
     { toObject: {virtuals: true}, toJSON: {virtuals: true} });
 
@@ -129,6 +126,7 @@ UserSchema.methods.validPassword = function (password) {
 };
 
 //Convenience method for getting the Skynet UUID
+//TODO: replace this with resource.uuid
 UserSchema.virtual('skynetuuid').get(function () {
     return this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
 });
@@ -205,7 +203,5 @@ UserSchema.statics.findBySkynetUUIDAndToken = function( skynetuuid, skynettoken)
     ]
     }).exec();
 };
-
-mongoose.model('User', UserSchema);
 
 module.exports = UserSchema;

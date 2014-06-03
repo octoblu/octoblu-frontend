@@ -11,6 +11,4 @@ var DeviceSchema = mongoose.Schema({
     enabled: Boolean
 });
 
-mongoose.model('Device', DeviceSchema);
-
 module.exports = DeviceSchema;

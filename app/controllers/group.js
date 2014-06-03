@@ -61,8 +61,10 @@ var groupController = {
         var user = req.user;
         console.log(req.body);
         var newGroup = new Group({
-            owner: user._id,
-            name: req.body.name
+            name: req.body.name,
+            resource : {
+                owner: user.skynetuuid
+            }
         });
 
         newGroup.save(function (err, dbGroup) {
@@ -70,7 +72,53 @@ var groupController = {
                 res.send(400, err);
                 return;
             }
-            res.send(dbGroup);
+            var sourceGroup = new Group({
+                name: dbGroup.name + '.source',
+                type: 'permissions',
+                resource : {
+                    owner: dbGroup.resource.owner,
+                    parent: dbGroup.resource.uuid
+                }
+            });
+
+            var targetGroup = new Group({
+                name: dbGroup.name + '.target',
+                type: 'permissions',
+                resource : {
+                    owner: dbGroup.resource.owner,
+                    parent: dbGroup.resource.uuid
+                }
+            });
+
+            sourceGroup.save(function(err, dbSourceGroup){
+                if(err){
+                    res.send(400, err);
+                    return;
+                }
+
+                targetGroup.save(function(err, dbTargetGroup){
+                    if(err) {
+                        res.send(400, err);
+                        return;
+                    }
+
+                    var resourcePermission = new ResourcePermission({
+                        grantedBy: user.skynetuuid,
+                        source : dbSourceGroup.resource.uuid,
+                        target: dbSourceGroup.resource.uuid
+                    });
+
+                    resourcePermission.save(function(err, dbResourcePermission){
+                        if(err) {
+                            res.send(400, err);
+                            return;
+                        }
+
+                        res.send(200, dbGroup );
+                    });
+                });
+            });
+
         });
 
     },

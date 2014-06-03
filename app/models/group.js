@@ -1,16 +1,15 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var ResourceSchema = require('./resource');
+var ResourceMixin = require('./mixins/resource');
 var _ = require('lodash');
-var ResourcePermission = require('./resourcePermission');
+var ResourcePermission = mongoose.model('ResourcePermission');
 var uuid = require('node-uuid');
-// define the schema for our user model
+
 var GroupSchema = mongoose.Schema({
     uuid: {type: String, required: true, index: true, default: uuid.v1()},
     name: String,
-    owner: {type: String, required: true, index: true },
-    resource: ResourceSchema,
+    resource: ResourceMixin,
     type: {
         type: String,
         default: 'default',
@@ -46,8 +45,10 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
 
     }).then(function (permissionsGroups) {
         if (!permissionsGroups) {
-            //Create the source and target permissions groups that will
-            //hold all the sources and targets.
+            throw {
+                error: 'Permission groups not found'
+            };
+
         } else {
             sourcePermissionGroup = _.findWhere(permissionsGroups, {
                 name: group.name + '.sources'
@@ -65,7 +66,10 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
         }
     }).then(function (resourcePermission) {
         if (!resourcePermission) {
-            //Create the ResourcePermission and add the references to the source and target Groups
+            throw {
+                error: 'Resource permission not found'
+            };
+
         } else {
             resourcePermission.source = sourcePermissionGroup;
             resourcePermission.target = targetPermissionGroup;
@@ -74,7 +78,11 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
     });
 };
 
+GroupSchema.post('init', function (doc) {
+    doc.resource.uuid = doc.uuid;
+    doc.resource.type = 'group';
+});
 
 GroupSchema.index({owner: 1, name: 1}, {unique: true});
-mongoose.model('Group', GroupSchema);
-mongoose.exports = GroupSchema;
+
+module.exports = GroupSchema;

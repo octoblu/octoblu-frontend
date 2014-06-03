@@ -14,10 +14,10 @@ mongoose.connect(configDB.url); // connect to our database
 skynetdb.connect(configDB.skynetUrl);
 
 // Initialize Models
-require('./app/models/api');
-require('./app/models/device');
-require('./app/models/user');
-require('./app/models/event');
+
+//moved all the models initialization into here, because otherwise when we include the schema twice,
+//mongoose blows up because the model is duplicated.
+require('./initializeModels.js');
 
 require('./config/passport')(env, passport); // pass passport for configuration
 

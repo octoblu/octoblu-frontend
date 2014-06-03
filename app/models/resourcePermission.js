@@ -1,20 +1,20 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var PermissionSchema = require('./permission');
 // define the schema for our user model
 
 
 var ResourcePermissionSchema = mongoose.Schema({
-    grantedBy : { type : String, required : true, index : true },
-    source : {type : String, required : true , index : true },
-    target : {type : String, required : true, index: true },
-    permission : {type: PermissionSchema, required : true }
+    grantedBy: { type: String, required: true, index: true },
+    source: {type: String, required: true, index: true },
+    target: {type: String, required: true, index: true },
+    permission: {type: Object, required: true, default: {
+        configure: false,
+        discover: true,
+        'message.send': false,
+        'message.receive': false
+    } }
 });
 
-
-mongoose.model('ResourcePermission', ResourcePermissionSchema );
-
-
-mongoose.exports = ResourcePermissionSchema;
+module.exports = ResourcePermissionSchema;
 

@@ -5,10 +5,9 @@ var _ = require('lodash'),
     uuid = require('node-uuid'),
     mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
-    InvitationSchema = require('../models/invitation'),
+    Invitation = mongoose.model('Invitation'),
     User = mongoose.model('User'),
-    Group = mongoose.model('Group'),
-    Invitation = mongoose.model('Invitation', InvitationSchema);
+    Group = mongoose.model('Group');
 /*
  File : invitation.js
  provides the REST API for finding, creating, deleting, sending and receiving invitations to Groups from Octoblu
