@@ -11,8 +11,10 @@ var ResourcePermissionSchema = mongoose.Schema({
     permission: {type: Object, required: true, default: {
         configure: false,
         discover: true,
-        'message.send': false,
-        'message.receive': false
+        message: {
+            send : false,
+            receive : false
+        }
     } }
 });
 
