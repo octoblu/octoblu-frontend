@@ -5,7 +5,7 @@ var uuid = require('node-uuid');
 
 // define the schema for our user model
 var ResourceMixin = {
-    uuid: {type : String, index : true, required: true, default: uuid.v1() },
+    uuid: {type : String, index : true, required: true, default: uuid.v1, unique: true },
     owner: {type : String, index : true },
     parent : { type : String, index : true },
     type: {

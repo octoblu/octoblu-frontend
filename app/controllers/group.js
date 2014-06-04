@@ -118,9 +118,7 @@ var groupController = {
                     });
                 });
             });
-
         });
-
     },
 
     /**
@@ -130,15 +128,23 @@ var groupController = {
      */
     //TODO: delete permission groups as well
     deleteGroup: function (req, res) {
-        var user = req.user;
+        var user = req.user, group;
         Group.findOneAndRemove({
             uuid: req.params.uuid,
-            'resource.owner': user._id
-        }).exec().then(function (group) {
-            res.send(200, group);
-        }, function (error) {
-            res.send(400, error);
-        });
+            'resource.owner': user.skynetuuid
+        }).exec().then(function (dbGroup) {
+                group = dbGroup;
+                //remove the subgroups as well.
+                if (group && group.resource && group.resource.uuid) {
+                    return Group.find({'resource.parent': group.resource.uuid}).remove().exec();
+                }
+            })
+            .then(function (subgroups) {
+                res.send({group: group, subgroups: subgroups});
+            })
+            .then(null, function (error) {
+                res.send(400, error);
+            });
 //
     },
 
@@ -161,8 +167,8 @@ var groupController = {
             });
             //<Model>.update doesn't run pre-commit hooks. So we can't use it for
             //resources.
-            dbGroup.save(function(err, dbGroup){
-                if(err){
+            dbGroup.save(function (err, dbGroup) {
+                if (err) {
                     res.send(400, err);
                     return;
                 }

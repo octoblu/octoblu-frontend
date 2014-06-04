@@ -8,7 +8,7 @@ var uuid = require('node-uuid');
 
 
 var GroupSchema = new mongoose.Schema({
-    uuid: {type: String, required: true, index: true, default: uuid.v1()},
+    uuid: {type: String, required: true, index: true, default: uuid.v1},
     name: String,
     resource: ResourceMixin,
     type: {
@@ -34,6 +34,13 @@ function enforceDefaults(doc){
     doc.resource.type = 'group';
     //Apparently, mongoose doesn't do doc validation on arrays of schemas.
     doc.members = doc.members || [];
+
+    //If someone was lazy and put a whole object in, just pull the resource out.
+    _.each(doc.members, function(member){
+        if(member && member.resource){
+            member = member.resource;
+        }
+    });
 }
 
 //going into the database
