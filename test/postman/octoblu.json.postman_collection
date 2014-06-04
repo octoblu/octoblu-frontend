@@ -34,7 +34,9 @@
 			"description": "",
 			"order": [
 				"d4ab3b57-d843-96ee-6e7a-dc4f81bc89a9",
-				"1672233f-da21-d754-1fa5-fc8f640171cc"
+				"1672233f-da21-d754-1fa5-fc8f640171cc",
+				"6e998372-8b08-0aae-74b2-986cd5757ed4",
+				"72c3abe1-a740-4f2c-624e-f7a1966961d4"
 			],
 			"collection_name": "octoblu",
 			"collection_id": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818"
@@ -45,21 +47,15 @@
 	"requests": [
 		{
 			"id": "08f170e8-2266-7221-6f18-dfeadca30d31",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
-			"url": "http://localhost:8080/api/groups/4dfc6190-eb7a-11e3-8124-771a0fd385d3",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
+			"url": "http://localhost:8080/api/groups/e729c100-eb93-11e3-84e9-a120c45dc947",
 			"pathVariables": {},
 			"method": "PUT",
-			"data": [
-				{
-					"key": "name",
-					"value": "Resistance",
-					"type": "text"
-				}
-			],
-			"dataMode": "urlencoded",
+			"data": "{\n\t\"name\": \"Resistance\",\n\t\"members\": [ \n    \t{\n\t    \t\"uuid\": \"1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\",\n\t         \"blah\" : \"qqqq\",\n\t\t    \"type\": \"user\"\n\t\t}\n    ],\n\t\"type\": \"default\",\n  \t\"uuid\": \"e729c100-eb93-11e3-84e9-a120c45dc947\"\n}",
+			"dataMode": "raw",
 			"version": 2,
 			"tests": "",
-			"time": 1401839677248,
+			"time": 1401871608216,
 			"name": "Update Group",
 			"description": "",
 			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
@@ -68,20 +64,14 @@
 		{
 			"id": "1672233f-da21-d754-1fa5-fc8f640171cc",
 			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
-			"url": "http://localhost:8080/api/groups/8000d5d0-eb7b-11e3-a50b-2177d80e366f/permissions",
+			"url": "http://localhost:8080/api/groups/9119f5b0-eb9c-11e3-8f0d-bf594ab79942/permissions",
 			"pathVariables": {},
 			"method": "GET",
-			"data": [
-				{
-					"key": "name",
-					"value": "test",
-					"type": "text"
-				}
-			],
+			"data": [],
 			"dataMode": "params",
 			"version": 2,
 			"tests": "",
-			"time": 1401840229557,
+			"time": 1401855585575,
 			"name": "Get Group Permissions",
 			"description": "",
 			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
@@ -107,79 +97,102 @@
 			"synced": false
 		},
 		{
-			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
 			"id": "385c0de0-7197-ef15-89a0-c84949081be0",
-			"name": "Get All Groups",
-			"description": "",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups",
-			"method": "GET",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
-			"data": [
-				{
-					"key": "name",
-					"value": "Resistance",
-					"type": "text"
-				}
-			],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"responses": [],
-			"version": 2,
-			"synced": false
-		},
-		{
-			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
-			"id": "72182914-3c64-a958-a32e-c5a5d404a89f",
-			"name": "Delete Group By UUID",
-			"description": "",
-			"url": "http://localhost:8080/api/groups/a3b39460-eaa7-11e3-8bce-17f1887de55f",
-			"method": "DELETE",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
-			"data": [
-				{
-					"key": "name",
-					"value": "Resistance",
-					"type": "text"
-				}
-			],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"responses": [],
-			"version": 2,
-			"synced": false
-		},
-		{
-			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
-			"id": "9b4a9dc0-310c-1588-ee35-fb15385ffb01",
-			"name": "Create New Group",
-			"description": "",
-			"url": "http://localhost:8080/api/groups",
-			"method": "POST",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
-			"data": [
-				{
-					"key": "name",
-					"value": "Enemies",
-					"type": "text"
-				}
-			],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"responses": [],
-			"version": 2,
-			"synced": false
-		},
-		{
-			"id": "c43d4de2-6759-ed70-2440-be74600fc3c9",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
-			"url": "http://localhost:8080/api/groups/4d10a630-eb73-11e3-aa46-2d7bd4d384ea",
 			"pathVariables": {},
 			"method": "GET",
 			"data": [],
 			"dataMode": "params",
 			"version": 2,
 			"tests": "",
-			"time": 1401836769186,
+			"time": 1401871618129,
+			"name": "Get All Groups",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "6e998372-8b08-0aae-74b2-986cd5757ed4",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/permissions/9119f5b0-eb9c-11e3-8f0d-bf594ab79942",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"name": "Get Permissions by Id",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1401855367231,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"synced": false
+		},
+		{
+			"id": "72182914-3c64-a958-a32e-c5a5d404a89f",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/groups/e729c100-eb93-11e3-84e9-a120c45dc947",
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1401852346016,
+			"name": "Delete Group By UUID",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "72c3abe1-a740-4f2c-624e-f7a1966961d4",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
+			"url": "http://localhost:8080/api/permissions/aff11ec0-ec3a-11e3-8bee-0f1dd2143c9e",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": "{\n  \"source\":{\n    \"type\" : \"user\",\n    \"uuid\" : \"1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\"\n  },\n  \"permissions\" : {\n  \t\"configure\" : true, \n  \t\"discover\" : false, \n  \t\"message_send\" : false, \n \t\"message_receive\" : true\n  }\n}",
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"time": 1401924373740,
+			"name": "Update Resource Permission",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "9b4a9dc0-310c-1588-ee35-fb15385ffb01",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
+			"url": "http://localhost:8080/api/groups",
+			"pathVariables": {},
+			"method": "POST",
+			"data": "{\n  \"name\" : \"Friends\"\n}",
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"time": 1401851773305,
+			"name": "Create New Group",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "c43d4de2-6759-ed70-2440-be74600fc3c9",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/groups/e729c100-eb93-11e3-84e9-a120c45dc947",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1401851999889,
 			"name": "Get Group By UUID",
 			"description": "",
 			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",

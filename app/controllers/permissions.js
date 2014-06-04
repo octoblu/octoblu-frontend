@@ -48,30 +48,25 @@ var permissionsController = {
     updateResourcePermission: function (req, res) {
 
         var user = req.user;
-//        ResourcePermission
-
-        Group.findOne({
-            uuid: req.params.uuid,
+        ResourcePermission.findOne({
+            'resource.uuid' : req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
-        }).exec().then(function (dbGroup) {
-            dbGroup.set({
-                name: group.name,
-                members: group.members
+        }).exec().then(function (rscPermission) {
+
+            rscPermission.set({
+                source : req.body.source,
+                target : req.body.target,
+                permissions : req.body.permissions
             });
-            //<Model>.update doesn't run pre-commit hooks. So we can't use it for
-            //resources.
-            dbGroup.save(function (err, dbGroup) {
-                if (err) {
+
+            rscPermission.save(function(err, rscPerm){
+                if(err){
                     res.send(400, err);
                     return;
                 }
-                res.send(dbGroup);
+                res.send(200, rscPerm);
             });
         });
-
-
-
-
     },
 
     /**
