@@ -24,7 +24,7 @@
     "mocha": "^1.17.1",
     "moment": "^2.5.1",
     "mongojs": "^0.10.1",
-    "mongoose": "~3.8.8",
+    "mongoose": "~3.8.12",
     "mongoose-pagination": "~1.0.0",
     "mongoose-slug": "^1.2.0",
     "mongoose-timestamps": "0.0.1",

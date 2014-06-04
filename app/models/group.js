@@ -6,7 +6,19 @@ var _ = require('lodash');
 var ResourcePermission = mongoose.model('ResourcePermission');
 var uuid = require('node-uuid');
 
-var GroupSchema = mongoose.Schema({
+//This should mirror the ResourceMixin a bit.
+//We need it to figure out where to pull the members from (users, devices, etc)
+var GroupMember = new mongoose.Schema({
+    uuid: {type: String, index: true, required: true},
+    type: {
+        type: String,
+        enum: ['user', 'device', 'group'],
+        required: true,
+        index: true
+    }
+});
+
+var GroupSchema = new mongoose.Schema({
     uuid: {type: String, required: true, index: true, default: uuid.v1()},
     name: String,
     resource: ResourceMixin,
@@ -16,20 +28,47 @@ var GroupSchema = mongoose.Schema({
         enum: ['default', 'operators', 'permissions'],
         required: true
     },
-    members: {type: Array, default: []}
+    members: {type: [GroupMember], default: []}
 });
 GroupSchema.statics.updateProperties = ['name', 'members'];
+
+GroupSchema.statics.permissionsSuffix = {
+    sources: '_sources',
+    targets: '_targets'
+};
+
+//enforcing resource-related stuff (wip)
+
+function enforceDefaults(doc){
+    doc.resource = doc.resource || {};
+    doc.resource.uuid = doc.uuid;
+    doc.resource.type = 'group';
+    //Apparently, mongoose doesn't do doc validation on arrays of schemas.
+    doc.members = doc.members || [];
+}
+
+//going into the database
+GroupSchema.pre('validate', function (next) {
+    enforceDefaults(this);
+    next();
+});
+
+//coming out of the database
+GroupSchema.post('init', function(doc){
+    enforceDefaults(doc);
+});
+
 /**
  *
  * @param groupUUID
  * @param ownerUUID
  */
 GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
-    var Group = this, group, sourcePermissionGroup, targetPermissionGroup;
+    var Group = this, group, sourcePermissionsGroup, targetPermissionsGroup;
 
     return Group.findOne({
         uuid: groupUUID,
-        owner: ownerUUID
+        'resource.owner': ownerUUID
     }).exec().then(function (dbGroup) {
         if (!dbGroup) {
             throw {
@@ -39,7 +78,7 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
         group = dbGroup;
         return Group.find({
             type: 'permissions',
-            owner: ownerUUID,
+            'resource.owner': ownerUUID,
             'resource.parent': groupUUID
         }).exec();
 
@@ -50,19 +89,19 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
             };
 
         } else {
-            sourcePermissionGroup = _.findWhere(permissionsGroups, {
-                name: group.name + '.sources'
+            sourcePermissionsGroup = _.findWhere(permissionsGroups, {
+                name: group.uuid + Group.permissionsSuffix.sources
             });
 
-            targetPermissionGroup = _.findWhere(permissionsGroups, {
-                name: group.name + '.targets'
+            targetPermissionsGroup = _.findWhere(permissionsGroups, {
+                name: group.uuid + Group.permissionsSuffix.targets
             });
 
             return ResourcePermission.findOne({
                 'grantedBy': ownerUUID,
-                'source': sourcePermissionGroup.uuid,
-                'target': targetPermissionGroup.uuid
-            }).exec().lean();
+                'source': sourcePermissionsGroup.resource.uuid,
+                'target': targetPermissionsGroup.resource.uuid
+            }).lean().exec();
         }
     }).then(function (resourcePermission) {
         if (!resourcePermission) {
@@ -71,17 +110,12 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
             };
 
         } else {
-            resourcePermission.source = sourcePermissionGroup;
-            resourcePermission.target = targetPermissionGroup;
+            resourcePermission.source = sourcePermissionsGroup;
+            resourcePermission.target = targetPermissionsGroup;
         }
         return resourcePermission;
     });
 };
-
-GroupSchema.post('init', function (doc) {
-    doc.resource.uuid = doc.uuid;
-    doc.resource.type = 'group';
-});
 
 GroupSchema.index({owner: 1, name: 1}, {unique: true});
 

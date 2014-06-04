@@ -10,7 +10,6 @@ var ResourceMixin = {
     parent : { type : String, index : true },
     type: {
         type: String,
-        default : 'device',
         enum : ['user', 'device', 'group'],
         required : true,
         index : true

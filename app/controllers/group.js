@@ -5,9 +5,9 @@ var _ = require('lodash'),
     ResourcePermission = mongoose.model('ResourcePermission'),
     request = require('request'),
     uuid = require('node-uuid'),
-    isAuthenticated = require('./controller-middleware').isAuthenticated ;
+    isAuthenticated = require('./controller-middleware').isAuthenticated;
 
-
+//Look in /test folder for postman api dump.
 var groupController = {
 
     /**
@@ -16,13 +16,14 @@ var groupController = {
      * @param res
      */
     getGroups: function (req, res) {
-
+        var groupType = req.query.type || 'default';
         var user = req.user;
         Group.find({
-            owner : user._id
-        }).exec().then(function(groups){
+            'resource.owner': user.skynetuuid,
+            type: groupType
+        }).exec().then(function (groups) {
             res.send(200, groups);
-        }, function(error){
+        }, function (error) {
             res.send(400, error);
         });
 
@@ -37,11 +38,11 @@ var groupController = {
 
         var user = req.user;
         Group.findOne({
-            uuid : req.params.uuid,
-            owner : user._id
-        }).exec().then(function(group){
-          res.send(200, group);
-        }, function(error){
+            uuid: req.params.uuid,
+            'resource.owner': user.skynetuuid
+        }).exec().then(function (group) {
+            res.send(200, group);
+        }, function (error) {
             res.send(400, error);
         });
     },
@@ -62,7 +63,7 @@ var groupController = {
         console.log(req.body);
         var newGroup = new Group({
             name: req.body.name,
-            resource : {
+            resource: {
                 owner: user.skynetuuid
             }
         });
@@ -73,48 +74,48 @@ var groupController = {
                 return;
             }
             var sourceGroup = new Group({
-                name: dbGroup.name + '.source',
+                name: dbGroup.uuid + Group.permissionsSuffix.sources,
                 type: 'permissions',
-                resource : {
+                resource: {
                     owner: dbGroup.resource.owner,
                     parent: dbGroup.resource.uuid
                 }
             });
 
             var targetGroup = new Group({
-                name: dbGroup.name + '.target',
+                name: dbGroup.uuid + Group.permissionsSuffix.targets,
                 type: 'permissions',
-                resource : {
+                resource: {
                     owner: dbGroup.resource.owner,
                     parent: dbGroup.resource.uuid
                 }
             });
 
-            sourceGroup.save(function(err, dbSourceGroup){
-                if(err){
+            sourceGroup.save(function (err, dbSourceGroup) {
+                if (err) {
                     res.send(400, err);
                     return;
                 }
 
-                targetGroup.save(function(err, dbTargetGroup){
-                    if(err) {
+                targetGroup.save(function (err, dbTargetGroup) {
+                    if (err) {
                         res.send(400, err);
                         return;
                     }
 
                     var resourcePermission = new ResourcePermission({
                         grantedBy: user.skynetuuid,
-                        source : dbSourceGroup.resource.uuid,
+                        source: dbSourceGroup.resource.uuid,
                         target: dbTargetGroup.resource.uuid
                     });
 
-                    resourcePermission.save(function(err, dbResourcePermission){
-                        if(err) {
+                    resourcePermission.save(function (err, dbResourcePermission) {
+                        if (err) {
                             res.send(400, err);
                             return;
                         }
 
-                        res.send(200, dbGroup );
+                        res.send(200, dbGroup);
                     });
                 });
             });
@@ -128,14 +129,15 @@ var groupController = {
      * @param req
      * @param res
      */
+    //TODO: delete permission groups as well
     deleteGroup: function (req, res) {
         var user = req.user;
         Group.findOneAndRemove({
-            uuid : req.params.uuid,
-            owner : user._id
-        }).exec().then(function(group){
+            uuid: req.params.uuid,
+            'resource.owner': user._id
+        }).exec().then(function (group) {
             res.send(200, group);
-        }, function(error){
+        }, function (error) {
             res.send(400, error);
         });
 //
@@ -146,17 +148,27 @@ var groupController = {
      * @param req
      * @param res
      */
-    updateGroup : function(req, res){
-        var group = req.body;
-        Group.update({ uuid: req.params.uuid },{
-            name: group.name,
-            members: group.members
-        }).exec().then(function(numUpdated) {
-            return Group.findOne({ uuid: req.params.uuid}).exec();
-        }).then(function(group){
-            res.send(group);
-        }).then(null, function(error){
-            res.send(400, error);
+    updateGroup: function (req, res) {
+        var group = req.body,
+            user = req.user;
+
+        Group.findOne({
+            uuid: req.params.uuid,
+            'resource.owner': user.skynetuuid
+        }).exec().then(function (dbGroup) {
+            dbGroup.set({
+                name: group.name,
+                members: group.members
+            });
+            //<Model>.update doesn't run pre-commit hooks. So we can't use it for
+            //resources.
+            dbGroup.save(function(err, dbGroup){
+                if(err){
+                    res.send(400, err);
+                    return;
+                }
+                res.send(dbGroup);
+            });
         });
     },
 
@@ -165,17 +177,17 @@ var groupController = {
      * @param req
      * @param res
      */
-    getResourcePermissions : function(req, res){
+    getResourcePermissions: function (req, res) {
         var user = req.user;
 
-        Group.findResourcePermission(req.params.uuid, user.skynetuuid )
-            .then(function(resourcePermission){
-               if( ! resourcePermission ) {
-                   throw {'error' : 'Resource Permission not found for Group'};
-               }
-               res.send(200, resourcePermission);
-            }, function(error){
-               res.send(400, error);
+        Group.findResourcePermission(req.params.uuid, user.skynetuuid)
+            .then(function (resourcePermission) {
+                if (!resourcePermission) {
+                    throw {'error': 'Resource Permission not found for Group'};
+                }
+                res.send(200, resourcePermission);
+            }, function (error) {
+                res.send(400, error);
             });
     },
 
@@ -184,7 +196,7 @@ var groupController = {
      * @param req
      * @param res
      */
-    createResourcePermission : function(req, res){
+    createResourcePermission: function (req, res) {
 
     },
     /**
@@ -192,7 +204,7 @@ var groupController = {
      * @param req
      * @param res
      */
-    updateResourcePermission : function(req, res){
+    updateResourcePermission: function (req, res) {
 
     },
 
@@ -201,7 +213,7 @@ var groupController = {
      * @param req
      * @param res
      */
-    deleteResourcePermission : function(req, res){
+    deleteResourcePermission: function (req, res) {
 
 
     }
@@ -229,8 +241,6 @@ module.exports = function (app) {
     app.put('/api/groups/:uuid/permissions', isAuthenticated, groupController.updateResourcePermission);
 
     app.delete('/api/groups/:uuid/permissions', isAuthenticated, groupController.deleteResourcePermission);
-
-
 
 };
 
