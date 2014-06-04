@@ -2370,7 +2370,7 @@ body {
       .box .box-header.sea-blue-background .actions .btn-link {
         color: white; }
         .box .box-header.sea-blue-background .actions .btn-link:hover {
-          color: #0163ac !important;
+          color: #0066ff !important;
           background-color: white; }
     .box .box-header.banana-background {
       color: white; }
@@ -2994,7 +2994,7 @@ body {
   background-color: #5daf2b !important; }
 
 .event-sea-blue .fc-event-inner, .label-sea-blue .fc-event-inner {
-  background-color: #0163ac !important; }
+  background-color: #0066ff !important; }
 
 .event-banana .fc-event-inner, .label-banana .fc-event-inner {
   background-color: #fcd052 !important; }
@@ -3335,11 +3335,11 @@ body {
     padding: 10px 15px;
     display: block; }
 .accordion.accordion-sea-blue .panel {
-  border-color: #0163ac; }
+  border-color: #0066ff; }
   .accordion.accordion-sea-blue .panel > .panel-heading + .panel-collapse .panel-body {
-    border-top: 2px solid #0163ac; }
+    border-top: 2px solid #0066ff; }
 .accordion.accordion-sea-blue .panel-heading {
-  background-color: #0163ac;
+  background-color: #0066ff;
   padding: 0; }
   .accordion.accordion-sea-blue .panel-heading .accordion-toggle {
     color: white;
@@ -3415,7 +3415,7 @@ body {
   .tabs-right .nav-tabs-simple > .active > a.grass-green-border, .tabs-right .nav-tabs-simple > .active > a:hover.grass-green-border, .tabs-right .nav-tabs-simple > .active > a:focus.grass-green-border {
     border-left-color: #5daf2b !important; }
   .tabs-right .nav-tabs-simple > .active > a.sea-blue-border, .tabs-right .nav-tabs-simple > .active > a:hover.sea-blue-border, .tabs-right .nav-tabs-simple > .active > a:focus.sea-blue-border {
-    border-left-color: #0163ac !important; }
+    border-left-color: #0066ff !important; }
   .tabs-right .nav-tabs-simple > .active > a.banana-border, .tabs-right .nav-tabs-simple > .active > a:hover.banana-border, .tabs-right .nav-tabs-simple > .active > a:focus.banana-border {
     border-left-color: #fcd052 !important; }
   .tabs-right .nav-tabs-simple > .active > a.dark-orange-border, .tabs-right .nav-tabs-simple > .active > a:hover.dark-orange-border, .tabs-right .nav-tabs-simple > .active > a:focus.dark-orange-border {
@@ -3453,7 +3453,7 @@ body {
   .tabs-left .nav-tabs-simple > .active > a.grass-green-border, .tabs-left .nav-tabs-simple > .active > a:hover.grass-green-border, .tabs-left .nav-tabs-simple > .active > a:focus.grass-green-border {
     border-right-color: #5daf2b !important; }
   .tabs-left .nav-tabs-simple > .active > a.sea-blue-border, .tabs-left .nav-tabs-simple > .active > a:hover.sea-blue-border, .tabs-left .nav-tabs-simple > .active > a:focus.sea-blue-border {
-    border-right-color: #0163ac !important; }
+    border-right-color: #0066ff !important; }
   .tabs-left .nav-tabs-simple > .active > a.banana-border, .tabs-left .nav-tabs-simple > .active > a:hover.banana-border, .tabs-left .nav-tabs-simple > .active > a:focus.banana-border {
     border-right-color: #fcd052 !important; }
   .tabs-left .nav-tabs-simple > .active > a.dark-orange-border, .tabs-left .nav-tabs-simple > .active > a:hover.dark-orange-border, .tabs-left .nav-tabs-simple > .active > a:focus.dark-orange-border {
@@ -3491,7 +3491,7 @@ body {
   .tabs-below .nav-tabs-simple > .active > a.grass-green-border, .tabs-below .nav-tabs-simple > .active > a:hover.grass-green-border, .tabs-below .nav-tabs-simple > .active > a:focus.grass-green-border {
     border-top-color: #5daf2b !important; }
   .tabs-below .nav-tabs-simple > .active > a.sea-blue-border, .tabs-below .nav-tabs-simple > .active > a:hover.sea-blue-border, .tabs-below .nav-tabs-simple > .active > a:focus.sea-blue-border {
-    border-top-color: #0163ac !important; }
+    border-top-color: #0066ff !important; }
   .tabs-below .nav-tabs-simple > .active > a.banana-border, .tabs-below .nav-tabs-simple > .active > a:hover.banana-border, .tabs-below .nav-tabs-simple > .active > a:focus.banana-border {
     border-top-color: #fcd052 !important; }
   .tabs-below .nav-tabs-simple > .active > a.dark-orange-border, .tabs-below .nav-tabs-simple > .active > a:hover.dark-orange-border, .tabs-below .nav-tabs-simple > .active > a:focus.dark-orange-border {
@@ -3529,7 +3529,7 @@ body {
   .nav-tabs-simple > .active > a.grass-green-border, .nav-tabs-simple > .active > a:hover.grass-green-border, .nav-tabs-simple > .active > a:focus.grass-green-border {
     border-bottom-color: #5daf2b !important; }
   .nav-tabs-simple > .active > a.sea-blue-border, .nav-tabs-simple > .active > a:hover.sea-blue-border, .nav-tabs-simple > .active > a:focus.sea-blue-border {
-    border-bottom-color: #0163ac !important; }
+    border-bottom-color: #0066ff !important; }
   .nav-tabs-simple > .active > a.banana-border, .nav-tabs-simple > .active > a:hover.banana-border, .nav-tabs-simple > .active > a:focus.banana-border {
     border-bottom-color: #fcd052 !important; }
   .nav-tabs-simple > .active > a.dark-orange-border, .nav-tabs-simple > .active > a:hover.dark-orange-border, .nav-tabs-simple > .active > a:focus.dark-orange-border {
@@ -4678,13 +4678,13 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
   border-color: #5daf2b !important; }
 
 .text-sea-blue {
-  color: #0163ac !important; }
+  color: #0066ff !important; }
 
 .sea-blue-background {
-  background-color: #0163ac !important; }
+  background-color: #0066ff !important; }
 
 .sea-blue-border {
-  border-color: #0163ac !important; }
+  border-color: #0066ff !important; }
 
 .text-banana {
   color: #fcd052 !important; }
