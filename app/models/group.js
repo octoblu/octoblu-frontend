@@ -37,7 +37,7 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
 
     return Group.findOne({
         uuid: groupUUID,
-        'resource.owner': ownerUUID
+        'resource.owner.uuid': ownerUUID
     }).exec().then(function (dbGroup) {
         if (!dbGroup) {
             throw {
@@ -47,8 +47,8 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
         group = dbGroup;
         return Group.find({
             type: 'permissions',
-            'resource.owner': ownerUUID,
-            'resource.parent': groupUUID
+            'resource.owner.uuid': ownerUUID,
+            'resource.parent.uuid': groupUUID
         }).exec();
 
     }).then(function (permissionsGroups) {
@@ -67,9 +67,9 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
             });
 
             return ResourcePermission.findOne({
-                'grantedBy': ownerUUID,
-                'source': sourcePermissionsGroup.resource.uuid,
-                'target': targetPermissionsGroup.resource.uuid
+                'resource.owner.uuid' : ownerUUID,
+                'source.uuid': sourcePermissionsGroup.resource.uuid,
+                'target.uuid': targetPermissionsGroup.resource.uuid
             }).lean().exec();
         }
     }).then(function (resourcePermission) {

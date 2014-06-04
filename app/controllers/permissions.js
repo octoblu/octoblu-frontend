@@ -48,7 +48,7 @@ var permissionsController = {
     updateResourcePermission: function (req, res) {
 
         var user = req.user;
-        ResourcePermission
+//        ResourcePermission
 
         Group.findOne({
             uuid: req.params.uuid,

@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 var ResourceType = {
     type: String,
-    enum: ['user', 'device', 'group', 'permission'],
+    enum: ['user', 'device', 'group', 'permission', 'resource-permission'],
     index: true
 };
 

@@ -38,7 +38,7 @@ var groupController = {
         var user = req.user;
         Group.findOne({
             uuid: req.params.uuid,
-            'resource.owner': user.resource.uuid
+            'resource.owner.uuid': user.resource.uuid
         }).exec().then(function (group) {
             res.send(200, group);
         }, function (error) {
