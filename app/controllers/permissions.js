@@ -15,16 +15,19 @@ var permissionsController = {
         var user = req.user;
         ResourcePermission.findOne({
             uuid: req.params.uuid,
-            grantedBy: user.skynetuuid
-        }).exec().then(function (group) {
-            res.send(200, group);
+            'resource.owner.uuid' : user.resource.uuid
+        }).exec().then(function (rscPermission) {
+            res.send(200, rscPermission);
         }, function (error) {
             res.send(400, error);
         });
     },
 
     /**
-     *
+     * inputs :
+     *   - owner : the resource that owns the permission
+     *   - source: the resource that will be granted permission to the target
+     *   - target: the target resource
      * @param req
      * @param res
      */
@@ -33,10 +36,41 @@ var permissionsController = {
     },
     /**
      *
+     * inputs:
+     *  - resourcePermision:
+     *  object containing the updated resource permission
+     *  fields in resource permission that can be updated:
+     *    - source, target, permission
+     *  unmodifiable fields: grantedBy
      * @param req
      * @param res
      */
     updateResourcePermission: function (req, res) {
+
+        var user = req.user;
+        ResourcePermission
+
+        Group.findOne({
+            uuid: req.params.uuid,
+            'resource.owner.uuid': user.resource.uuid
+        }).exec().then(function (dbGroup) {
+            dbGroup.set({
+                name: group.name,
+                members: group.members
+            });
+            //<Model>.update doesn't run pre-commit hooks. So we can't use it for
+            //resources.
+            dbGroup.save(function (err, dbGroup) {
+                if (err) {
+                    res.send(400, err);
+                    return;
+                }
+                res.send(dbGroup);
+            });
+        });
+
+
+
 
     },
 
@@ -47,6 +81,15 @@ var permissionsController = {
      */
     deleteResourcePermission: function (req, res) {
 
+
+    },
+
+    /**
+     *
+     * @param req
+     * @param res
+     */
+    getResourcePermissions : function(req, res){
 
     }
 };
@@ -59,6 +102,7 @@ module.exports = function (app) {
 //    app.get('/api/permissions/source/:uuid', isAuthenticated, permissionsController.getResourceSourcePermissions);
 //    app.get('/api/permissions/target/:uuid', isAuthenticated, permissionsController.getResourceTargetPermissions);
     app.get('/api/permissions/:uuid', isAuthenticated, permissionsController.getResourcePermissionsById);
+    app.put('/api/permissions/:uuid', isAuthenticated, permissionsController.updateResourcePermission);
 //
 //    app.post('/api/permissions/:uuid/permissions', isAuthenticated, permissionsController.createResourcePermission);
 //

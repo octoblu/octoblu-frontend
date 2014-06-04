@@ -1,14 +1,13 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Resource = require('./mixins/resource');
-// define the schema for our user model
-
+    Resource = require('./mixins/resource'),
+    uuid = require('node-uuid');
 
 var ResourcePermissionSchema = new mongoose.Schema({
     //Yep, a resource permission is also a resource. Just makes queries easier.
     //Plus, we might want to have crud permissions on these eventually. Who knows?
-    resource: Resource.Resource,
+    uuid: {type: String, required: true, index: true, default: uuid.v1},
     grantedBy: Resource.ResourceId,
     source: Resource.ResourceId,
     target: Resource.ResourceId,
@@ -20,21 +19,7 @@ var ResourcePermissionSchema = new mongoose.Schema({
     } }
 });
 
-function enforceDefaults(doc){
-    doc.resource = doc.resource || {};
-    doc.resource.type = 'permission';
-}
-
-//going into the database
-ResourcePermissionSchema.pre('validate', function (next) {
-    enforceDefaults(this);
-    next();
-});
-//
-////coming out of the database
-ResourcePermissionSchema.post('init', function(doc){
-    enforceDefaults(doc);
-});
+Resource.makeResource({schema: ResourcePermissionSchema, type: 'resource-permission', uuidProperty: 'uuid'});
 
 module.exports = ResourcePermissionSchema;
 

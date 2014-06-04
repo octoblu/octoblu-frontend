@@ -59,28 +59,27 @@ function makeResource(options) {
         schema.post('init', function (doc) {
             enforceDefaults(doc, uuidProperty, type);
         });
-
-        schema.virtual('resourceId').get(function () {
-            return {
-                uuid: this.resource.uuid,
-                type: this.resource.type
-            };
-        });
-
-        schema.virtual('resource.owner.resourceId').get(function () {
-            return {
-                uuid: this.resource.owner.uuid,
-                type: this.resource.owner.type
-            };
-        });
-
-        schema.virtual('resource.parent.resourceId').get(function () {
-            return {
-                uuid: this.resource.parent.uuid,
-                type: this.resource.parent.type
-            };
-        });
     }
+    schema.virtual('resourceId').get(function () {
+        return {
+            uuid: this.resource.uuid,
+            type: this.resource.type
+        };
+    });
+
+    schema.virtual('resource.owner.resourceId').get(function () {
+        return {
+            uuid: this.resource.owner.uuid,
+            type: this.resource.owner.type
+        };
+    });
+
+    schema.virtual('resource.parent.resourceId').get(function () {
+        return {
+            uuid: this.resource.parent.uuid,
+            type: this.resource.parent.type
+        };
+    });
 }
 
 module.exports = {

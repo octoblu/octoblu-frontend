@@ -44,8 +44,7 @@ xdescribe("Delete Group", function() {
 //        expect(true).toBe(true);
     });
 
-    xit("if the group is a default group and is owned by the user, the child permission groups (source and target) should" +
-        " be deleted too", function(){
+    xit("if the group is a default group and is owned by the user, the child permission groups (source and target) should be deleted too", function(){
 
     });
 
@@ -60,15 +59,12 @@ xdescribe("Update Group", function() {
     });
 
     xit("should return an error if the user does NOT own the Group", function() {
-//        expect(true).toBe(true);
     });
 
     xit("should return an error if the UUID is invalid", function() {
-//        expect(true).toBe(true);
     });
 
     xit("should update the  if the user owns the group and the UUID is valid", function() {
-//        expect(true).toBe(true);
     });
 
     xit("should not update the name if the group is a permissions group", function(){

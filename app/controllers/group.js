@@ -63,8 +63,7 @@ var groupController = {
         var newGroup = new Group({
             name: req.body.name,
             resource: {
-                owner: user.resourceId,
-                type: 'group'
+                owner: user.resourceId
             }
         });
 
@@ -78,7 +77,6 @@ var groupController = {
                 type: 'permissions',
                 resource: {
                     owner: dbGroup.resource.owner.resourceId,
-                    type: 'group',
                     parent: dbGroup.resourceId
                 }
             });
@@ -88,7 +86,6 @@ var groupController = {
                 type: 'permissions',
                 resource: {
                     owner: dbGroup.resource.owner.resourceId,
-                    type: 'group',
                     parent: dbGroup.resourceId
                 }
             });
@@ -108,7 +105,6 @@ var groupController = {
                     var resourcePermission = new ResourcePermission({
                         resource: {
                             owner: dbGroup.resource.owner.resourceId,
-                            type: 'permission'
                         },
                         grantedBy: user.resourceId,
                         source: dbSourceGroup.resourceId,
@@ -199,33 +195,6 @@ var groupController = {
             }, function (error) {
                 res.send(400, error);
             });
-    },
-
-    /**
-     *
-     * @param req
-     * @param res
-     */
-    createResourcePermission: function (req, res) {
-
-    },
-    /**
-     *
-     * @param req
-     * @param res
-     */
-    updateResourcePermission: function (req, res) {
-
-    },
-
-    /**
-     *
-     * @param req
-     * @param res
-     */
-    deleteResourcePermission: function (req, res) {
-
-
     }
 };
 
@@ -245,12 +214,6 @@ module.exports = function (app) {
     app.get('/api/groups/:uuid', isAuthenticated, groupController.getGroupById);
 
     app.get('/api/groups/:uuid/permissions', isAuthenticated, groupController.getResourcePermissions);
-
-    app.post('/api/groups/:uuid/permissions', isAuthenticated, groupController.createResourcePermission);
-
-    app.put('/api/groups/:uuid/permissions', isAuthenticated, groupController.updateResourcePermission);
-
-    app.delete('/api/groups/:uuid/permissions', isAuthenticated, groupController.deleteResourcePermission);
 
 };
 
