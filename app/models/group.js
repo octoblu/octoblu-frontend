@@ -6,17 +6,6 @@ var _ = require('lodash');
 var ResourcePermission = mongoose.model('ResourcePermission');
 var uuid = require('node-uuid');
 
-//This should mirror the ResourceMixin a bit.
-//We need it to figure out where to pull the members from (users, devices, etc)
-var GroupMember = new mongoose.Schema({
-    uuid: {type: String, index: true, required: true},
-    type: {
-        type: String,
-        enum: ['user', 'device', 'group'],
-        required: true,
-        index: true
-    }
-});
 
 var GroupSchema = new mongoose.Schema({
     uuid: {type: String, required: true, index: true, default: uuid.v1()},
@@ -28,7 +17,7 @@ var GroupSchema = new mongoose.Schema({
         enum: ['default', 'operators', 'permissions'],
         required: true
     },
-    members: {type: [GroupMember], default: []}
+    members: {type: [ResourceMixin], default: []}
 });
 GroupSchema.statics.updateProperties = ['name', 'members'];
 
@@ -52,8 +41,8 @@ GroupSchema.pre('validate', function (next) {
     enforceDefaults(this);
     next();
 });
-
-//coming out of the database
+//
+////coming out of the database
 GroupSchema.post('init', function(doc){
     enforceDefaults(doc);
 });

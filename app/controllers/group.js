@@ -26,7 +26,6 @@ var groupController = {
         }, function (error) {
             res.send(400, error);
         });
-
     },
 
     /**
