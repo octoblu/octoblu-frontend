@@ -1223,13 +1223,13 @@
   border-color: #5daf2b; }
 
 .contrast-sea-blue header .navbar {
-  background-color: #0066ff; }
+  background-color: #d0d0d0; }
   .contrast-sea-blue header .navbar .toggle-nav {
-    background-color: #0066ff; }
+    background-color: #d0d0d0; }
     .contrast-sea-blue header .navbar .toggle-nav:active, .contrast-sea-blue header .navbar .toggle-nav.active, .contrast-sea-blue header .navbar .toggle-nav:hover {
       background-color: #014679; }
   .contrast-sea-blue header .navbar .navbar-form button {
-    color: #0066ff; }
+    color: #d0d0d0; }
     .contrast-sea-blue header .navbar .navbar-form button:hover {
       color: #001a2d; }
   .contrast-sea-blue header .navbar .navbar-form input {
@@ -1274,73 +1274,73 @@
     .contrast-sea-blue header .navbar > .nav > li.dark > a:hover > a, .contrast-sea-blue header .navbar > .nav > li.dark > a:active > a, .contrast-sea-blue header .navbar > .nav > li.dark > a:focus > a {
       background-color: #013760; }
   .contrast-sea-blue header .navbar .widget .dropdown-menu > li.widget-footer a:hover {
-    background-color: #0066ff; }
+    background-color: #d0d0d0; }
 .contrast-sea-blue header .navbar .nav li .label {
-  color: #0066ff; }
+  color: #d0d0d0; }
 .contrast-sea-blue .nav .caret, .contrast-sea-blue .nav a:hover .caret {
-  border-top-color: #0066ff;
-  border-bottom-color: #0066ff; }
+  border-top-color: #d0d0d0;
+  border-bottom-color: #d0d0d0; }
 .contrast-sea-blue code {
   background-color: #dbe8f1;
   color: #1670b2; }
 .contrast-sea-blue #main-nav .navigation > .nav > li > a.in [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li > a.in [class*=" icon-"] {
-  color: #0066ff; }
+  color: #d0d0d0; }
 .contrast-sea-blue #main-nav .navigation > .nav > li:hover > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li:hover > a [class*=" icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li:focus > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li:focus > a [class*=" icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li.active > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li.active > a [class*=" icon-"] {
-  color: #0066ff !important; }
+  color: #d0d0d0 !important; }
 .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li.active > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li.active > a [class*=" icon-"] {
-  color: #0066ff; }
+  color: #d0d0d0; }
 .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:hover [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:hover [class*=" icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:focus [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:focus [class*=" icon-"] {
-  color: #0066ff; }
+  color: #d0d0d0; }
 .contrast-sea-blue .box .box-header.contrast-background .actions .btn-link:hover {
-  color: #0066ff !important; }
+  color: #d0d0d0 !important; }
 .contrast-sea-blue.contrast-background, .contrast-sea-blue .contrast-background {
-  background: #0066ff !important; }
+  background: #d0d0d0 !important; }
 .contrast-sea-blue .text-contrast, .contrast-sea-blue .contrast {
-  color: #0066ff !important; }
+  color: #d0d0d0 !important; }
 .contrast-sea-blue .contrast-border {
-  border-color: #0066ff !important; }
+  border-color: #d0d0d0 !important; }
 .contrast-sea-blue .accordion.accordion-contrast .accordion-group {
-  border-color: #0066ff;
+  border-color: #d0d0d0;
   border-bottom-color: #159afe; }
 .contrast-sea-blue .accordion.accordion-contrast .accordion-heading .accordion-toggle {
   color: white;
-  background-color: #0066ff; }
+  background-color: #d0d0d0; }
 .contrast-sea-blue .box-quick-link.contrast-background a:active .header {
   background: #014679; }
 .contrast-sea-blue .box-quick-link.contrast-background:hover .header {
   background: #015493; }
 .contrast-sea-blue .box-statistic.contrast-background .title, .contrast-sea-blue .box-statistic.contrast-background small, .contrast-sea-blue .box-statistic.contrast-background [class*="icon-"] {
-  color: #0066ff !important; }
+  color: #d0d0d0 !important; }
 .contrast-sea-blue .breadcrumb li:first-child > a:hover {
-  color: #0066ff !important; }
+  color: #d0d0d0 !important; }
 .contrast-sea-blue h1 [class^="icon-"] {
-  color: #0066ff; }
+  color: #d0d0d0; }
 .contrast-sea-blue .dropdown-menu > .active > a, .contrast-sea-blue .dropdown-menu > .active > a:hover, .contrast-sea-blue .dropdown-menu > .active > a:focus, .contrast-sea-blue .dropdown-menu > li > a:hover, .contrast-sea-blue .dropdown-menu > li > a:focus, .contrast-sea-blue .dropdown-submenu:hover > a, .contrast-sea-blue .dropdown-submenu:focus > a {
-  background-color: #0066ff !important; }
+  background-color: #d0d0d0 !important; }
 .contrast-sea-blue .box .box-header .actions .btn-link:hover {
-  color: #0066ff; }
+  color: #d0d0d0; }
 .contrast-sea-blue .fuelux .wizard ul li.active {
-  background-color: #0066ff; }
+  background-color: #d0d0d0; }
 .contrast-sea-blue .fc-event .fc-event-inner {
-  border-color: #0066ff;
-  background-color: #0066ff; }
+  border-color: #d0d0d0;
+  background-color: #d0d0d0; }
 .contrast-sea-blue .contrast-caret {
-  border-top-color: #0066ff !important;
-  border-bottom-color: #0066ff !important; }
+  border-top-color: #d0d0d0 !important;
+  border-bottom-color: #d0d0d0 !important; }
 .contrast-sea-blue .select2-results .select2-highlighted {
-  background: #0066ff; }
+  background: #d0d0d0; }
 .contrast-sea-blue .daterangepicker .ranges li.active, .contrast-sea-blue .daterangepicker .ranges li:hover {
-  background: #0066ff; }
+  background: #d0d0d0; }
 .contrast-sea-blue .daterangepicker td.active, .contrast-sea-blue .daterangepicker td.active:hover {
-  background: #0066ff; }
+  background: #d0d0d0; }
 .contrast-sea-blue .datepicker td span.active:hover, .contrast-sea-blue .datepicker td span.active:hover:hover, .contrast-sea-blue .datepicker td span.active.disabled:hover, .contrast-sea-blue .datepicker td span.active.disabled:hover:hover, .contrast-sea-blue .datepicker td span.active:active, .contrast-sea-blue .datepicker td span.active:hover:active, .contrast-sea-blue .datepicker td span.active.disabled:active, .contrast-sea-blue .datepicker td span.active.disabled:hover:active, .contrast-sea-blue .datepicker td span.active.active, .contrast-sea-blue .datepicker td span.active:hover.active, .contrast-sea-blue .datepicker td span.active.disabled.active, .contrast-sea-blue .datepicker td span.active.disabled:hover.active, .contrast-sea-blue .datepicker td span.active.disabled, .contrast-sea-blue .datepicker td span.active:hover.disabled, .contrast-sea-blue .datepicker td span.active.disabled.disabled, .contrast-sea-blue .datepicker td span.active.disabled:hover.disabled, .contrast-sea-blue .datepicker td span.active[disabled], .contrast-sea-blue .datepicker td span.active:hover[disabled], .contrast-sea-blue .datepicker td span.active.disabled[disabled], .contrast-sea-blue .datepicker td span.active.disabled:hover[disabled], .contrast-sea-blue .datepicker td.active:hover, .contrast-sea-blue .datepicker td.active:hover:hover, .contrast-sea-blue .datepicker td.active.disabled:hover, .contrast-sea-blue .datepicker td.active.disabled:hover:hover, .contrast-sea-blue .datepicker td.active:active, .contrast-sea-blue .datepicker td.active:hover:active, .contrast-sea-blue .datepicker td.active.disabled:active, .contrast-sea-blue .datepicker td.active.disabled:hover:active, .contrast-sea-blue .datepicker td.active.active, .contrast-sea-blue .datepicker td.active:hover.active, .contrast-sea-blue .datepicker td.active.disabled.active, .contrast-sea-blue .datepicker td.active.disabled:hover.active, .contrast-sea-blue .datepicker td.active.disabled, .contrast-sea-blue .datepicker td.active:hover.disabled, .contrast-sea-blue .datepicker td.active.disabled.disabled, .contrast-sea-blue .datepicker td.active.disabled:hover.disabled, .contrast-sea-blue .datepicker td.active[disabled], .contrast-sea-blue .datepicker td.active:hover[disabled], .contrast-sea-blue .datepicker td.active.disabled[disabled], .contrast-sea-blue .datepicker td.active.disabled:hover[disabled] {
-  background: #0066ff; }
+  background: #d0d0d0; }
 .contrast-sea-blue .dropdown-menu > .active > a, .contrast-sea-blue .dropdown-menu > .active > a:hover, .contrast-sea-blue .dropdown-menu > .active > a:focus {
-  background: #0066ff; }
+  background: #d0d0d0; }
 .contrast-sea-blue .dd-handle:hover {
-  color: #0066ff; }
+  color: #d0d0d0; }
 .contrast-sea-blue .dd-placeholder {
-  border-color: #0066ff; }
+  border-color: #d0d0d0; }
 
 .contrast-banana header .navbar {
   background-color: #fcd052; }
