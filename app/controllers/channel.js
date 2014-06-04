@@ -8,6 +8,14 @@ var _ = require('underscore'),
     User = mongoose.model('User');
 
 module.exports = function (app) {
+
+    // List of all API channels
+    app.get('/api/channels', function(req, res) {
+        Api.find({owner: {$exists: false}, enabled: true}, function (err, apis) {
+            if (err) { res.send(err); } else { res.json(apis); }
+        });
+    });
+
     // authorization check:
 //    app.get('/api/*', function(req,res,next) {
 //
@@ -23,12 +31,6 @@ module.exports = function (app) {
 //        next();
 //    });
 
-    // List of all API channels
-    app.get('/api/channels', function(req, res) {
-        Api.find({owner: {$exists: false}, enabled: true}, function (err, apis) {
-            if (err) { res.send(err); } else { res.json(apis); }
-        });
-    });
 
     // List of all Smart Devices
     // TODO: rename to match naming convention
