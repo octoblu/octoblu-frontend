@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 // define the schema for our user model
-var InvitationSchema = mongoose.Schema({
+var InvitationSchema = new mongoose.Schema({
    recipient : {
        email : String,
        uuid : String

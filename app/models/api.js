@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 // define the schema for our user model
-var ApiSchema = mongoose.Schema({
+var ApiSchema = new mongoose.Schema({
 
     name             : String,
     owner            : String,

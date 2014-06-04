@@ -2,9 +2,10 @@
 
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
+    Resource = require('./mixins/resource'),
     moment = require('moment');
 // define the schema for our user model
-var UserSchema = mongoose.Schema({
+var UserSchema = new mongoose.Schema({
         name: String,
         username: String,
         admin: Boolean,
@@ -60,6 +61,8 @@ var UserSchema = mongoose.Schema({
         ]
     },
     { toObject: {virtuals: true}, toJSON: {virtuals: true} });
+
+Resource.makeResource({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid'});
 
 // find api connection by name
 UserSchema.methods.findApiByName = function (name) {
@@ -141,64 +144,64 @@ UserSchema.virtual('email').get(function () {
     return this.local.email || this.google.email || this.facebook.email;
 });
 
-UserSchema.virtual('displayName').get(function(){
+UserSchema.virtual('displayName').get(function () {
 
     return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
 });
 
-UserSchema.statics.findBySkynetUUID = function( skynetuuid ){
-  return this.findOne({ $or: [
-      {
-          'local.skynetuuid' : skynetuuid
-      },
-      {
-          'twitter.skynetuuid' : skynetuuid
-      },
-      {
-          'facebook.skynetuuid' :  skynetuuid
-      },
-      {
-          'google.skynetuuid' : skynetuuid
-      }
-  ]
-  }).exec();
-};
-
-UserSchema.statics.findByEmail = function( email){
+UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
     return this.findOne({ $or: [
         {
-            'local.email' : email
+            'local.skynetuuid': skynetuuid
         },
         {
-            'twitter.email' : email
+            'twitter.skynetuuid': skynetuuid
         },
         {
-            'facebook.email' :  email
+            'facebook.skynetuuid': skynetuuid
         },
         {
-            'google.email' : email
+            'google.skynetuuid': skynetuuid
         }
     ]
     }).exec();
 };
 
-UserSchema.statics.findBySkynetUUIDAndToken = function( skynetuuid, skynettoken){
+UserSchema.statics.findByEmail = function (email) {
     return this.findOne({ $or: [
         {
-            'local.skynetuuid' : skynetuuid,
-            'local.skynettoken' : skynettoken
+            'local.email': email
         },
         {
-            'twitter.skynetuuid' : skynetuuid,
-            'twitter.skynettoken' : skynettoken
+            'twitter.email': email
         },
         {
-            'facebook.skynetuuid' :  skynetuuid,
-            'facebook.skynettoken' :  skynettoken
+            'facebook.email': email
         },
         {
-            'google.skynetuuid' : skynetuuid,
-            'google.skynettoken' : skynettoken
+            'google.email': email
+        }
+    ]
+    }).exec();
+};
+
+UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
+    return this.findOne({ $or: [
+        {
+            'local.skynetuuid': skynetuuid,
+            'local.skynettoken': skynettoken
+        },
+        {
+            'twitter.skynetuuid': skynetuuid,
+            'twitter.skynettoken': skynettoken
+        },
+        {
+            'facebook.skynetuuid': skynetuuid,
+            'facebook.skynettoken': skynettoken
+        },
+        {
+            'google.skynetuuid': skynetuuid,
+            'google.skynettoken': skynettoken
         }
     ]
     }).exec();

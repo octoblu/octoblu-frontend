@@ -19,7 +19,7 @@ var groupController = {
         var groupType = req.query.type || 'default';
         var user = req.user;
         Group.find({
-            'resource.owner': user.skynetuuid,
+            'resource.owner.uuid': user.resource.uuid,
             type: groupType
         }).exec().then(function (groups) {
             res.send(200, groups);
@@ -38,7 +38,7 @@ var groupController = {
         var user = req.user;
         Group.findOne({
             uuid: req.params.uuid,
-            'resource.owner': user.skynetuuid
+            'resource.owner': user.resource.uuid
         }).exec().then(function (group) {
             res.send(200, group);
         }, function (error) {
@@ -63,7 +63,8 @@ var groupController = {
         var newGroup = new Group({
             name: req.body.name,
             resource: {
-                owner: user.skynetuuid
+                owner: user.resourceId,
+                type: 'group'
             }
         });
 
@@ -76,8 +77,9 @@ var groupController = {
                 name: dbGroup.uuid + Group.permissionsSuffix.sources,
                 type: 'permissions',
                 resource: {
-                    owner: dbGroup.resource.owner,
-                    parent: dbGroup.resource.uuid
+                    owner: dbGroup.resource.owner.resourceId,
+                    type: 'group',
+                    parent: dbGroup.resourceId
                 }
             });
 
@@ -85,8 +87,9 @@ var groupController = {
                 name: dbGroup.uuid + Group.permissionsSuffix.targets,
                 type: 'permissions',
                 resource: {
-                    owner: dbGroup.resource.owner,
-                    parent: dbGroup.resource.uuid
+                    owner: dbGroup.resource.owner.resourceId,
+                    type: 'group',
+                    parent: dbGroup.resourceId
                 }
             });
 
@@ -103,9 +106,13 @@ var groupController = {
                     }
 
                     var resourcePermission = new ResourcePermission({
-                        grantedBy: user.skynetuuid,
-                        source: dbSourceGroup.resource.uuid,
-                        target: dbTargetGroup.resource.uuid
+                        resource: {
+                            owner: dbGroup.resource.owner.resourceId,
+                            type: 'permission'
+                        },
+                        grantedBy: user.resourceId,
+                        source: dbSourceGroup.resourceId,
+                        target: dbTargetGroup.resourceId
                     });
 
                     resourcePermission.save(function (err, dbResourcePermission) {
@@ -131,13 +138,11 @@ var groupController = {
         var user = req.user, group;
         Group.findOneAndRemove({
             uuid: req.params.uuid,
-            'resource.owner': user.skynetuuid
-        }).exec().then(function (dbGroup) {
+            'resource.owner.uuid': user.uuid
+        }).exec()
+            .then(function (dbGroup) {
                 group = dbGroup;
-                //remove the subgroups as well.
-                if (group && group.resource && group.resource.uuid) {
-                    return Group.find({'resource.parent': group.resource.uuid}).remove().exec();
-                }
+                return Group.find({'resource.parent.uuid': group.resource.uuid}).remove().exec();
             })
             .then(function (subgroups) {
                 res.send({group: group, subgroups: subgroups});
@@ -159,7 +164,7 @@ var groupController = {
 
         Group.findOne({
             uuid: req.params.uuid,
-            'resource.owner': user.skynetuuid
+            'resource.owner.uuid': user.resource.uuid
         }).exec().then(function (dbGroup) {
             dbGroup.set({
                 name: group.name,
@@ -185,7 +190,7 @@ var groupController = {
     getResourcePermissions: function (req, res) {
         var user = req.user;
 
-        Group.findResourcePermission(req.params.uuid, user.skynetuuid)
+        Group.findResourcePermission(req.params.uuid, user.resource.uuid)
             .then(function (resourcePermission) {
                 if (!resourcePermission) {
                     throw {'error': 'Resource Permission not found for Group'};
