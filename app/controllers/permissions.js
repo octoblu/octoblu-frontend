@@ -32,7 +32,25 @@ var permissionsController = {
      * @param res
      */
     createResourcePermission: function (req, res) {
+        var user = req.user;
+        var resourcePermission = new ResourcePermission({
+            source : req.body.source,
+            target : req.body.target,
+            permission : req.body.permission,
+            resource: {
+                type : 'permission',
+                owner: user.resourceId
+            }
+        });
 
+        resourcePermission.save(function(error, rscPermission){
+           if(error){
+               console.log(error);
+               res.send(500, error);
+               return;
+           }
+           res.send(200, rscPermission);
+        });
     },
     /**
      *
@@ -70,21 +88,62 @@ var permissionsController = {
     },
 
     /**
-     *
+     * Find the resource permission with the given UUID and remove it 
+     * if the user owns it. 
+     * 
+     * TODO - This may need to be modified if we introduce the concept of roles to 
+     * see if the user owns the ResourcePermission or if the user has admin / super user
+     * privileges. 
      * @param req
      * @param res
      */
     deleteResourcePermission: function (req, res) {
-
-
+        var user = req.user;
+        ResourcePermission.findOneAndRemove({
+            uuid: req.params.uuid,
+            'resource.owner.uuid': user.resource.uuid
+        })
+        .exec()
+        .then(function (rscPermission) {
+            if( ! rscPermission) {
+                res.send(400, {
+                    'error' : 'could not find ResourcePermission'
+                });
+                return;
+            }
+           //TODO reconcile skynet permissions
+        }, function(error){
+            if(error){
+                console.log(error);
+                res.send(400, error);
+            }
+        });
     },
 
     /**
+     * getResourcePermission finds all the ResourcePermissions
+     * that the user has granted as an owner.
      *
+     * TODO - This may need to be updated in the future to also include the list
+     * of resource permissions that you can see by role
      * @param req
      * @param res
      */
     getResourcePermissions : function(req, res){
+        var user = req.user;
+        ResourcePermission.find({
+            'resource.owner.uuid' : user.resource.uuid
+        }, function(error, resourcePermissions ){
+            if(error){
+                console.log(error); 
+                res.send(400, error); 
+                return;
+            }
+            res.send(200, resourcePermissions); 
+        }); 
+    },
+
+    reconcileSkynetPermissions: function(resourcePermission, user){
 
     }
 };
@@ -93,17 +152,11 @@ var permissionsController = {
 module.exports = function (app) {
 
     permissionsController.skynetUrl = app.locals.skynetUrl;
-
-//    app.get('/api/permissions/source/:uuid', isAuthenticated, permissionsController.getResourceSourcePermissions);
-//    app.get('/api/permissions/target/:uuid', isAuthenticated, permissionsController.getResourceTargetPermissions);
+    app.get('/api/permissions', isAuthenticated, permissionsController.getResourcePermissions);
     app.get('/api/permissions/:uuid', isAuthenticated, permissionsController.getResourcePermissionsById);
+    app.delete('/api/permissions/:uuid', isAuthenticated, permissionsController.deleteResourcePermission);
     app.put('/api/permissions/:uuid', isAuthenticated, permissionsController.updateResourcePermission);
-//
-//    app.post('/api/permissions/:uuid/permissions', isAuthenticated, permissionsController.createResourcePermission);
-//
-//    app.put('/api/permissions/:uuid/permissions', isAuthenticated, permissionsController.updateResourcePermission);
-//
-//    app.delete('/api/permissions/:uuid/permissions', isAuthenticated, permissionsController.deleteResourcePermission);
+    app.post('/api/permissions', isAuthenticated, permissionsController.createResourcePermission);
 
 };
 

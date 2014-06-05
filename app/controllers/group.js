@@ -134,7 +134,7 @@ var groupController = {
         var user = req.user, group;
         Group.findOneAndRemove({
             uuid: req.params.uuid,
-            'resource.owner.uuid': user.uuid
+            'resource.owner.uuid': user.resource.uuid
         }).exec()
             .then(function (dbGroup) {
                 group = dbGroup;
