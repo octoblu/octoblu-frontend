@@ -16,22 +16,6 @@ module.exports = function (app) {
         });
     });
 
-    // authorization check:
-    app.get('/api/*', function(req,res,next) {
-
-        if(req.cookies.skynetuuid && req.cookies.skynettoken) {
-            next();
-            return;
-        }
-        // console.log('headers', req.headers);
-        // console.log('query', req.query);
-        // console.log(req.params.id);
-        console.log('access denied');
-        return res.json(403, { 'message': 'not authorized' });
-        next();
-    });
-
-
     // List of all Smart Devices
     // TODO: rename to match naming convention
     app.get('/api/smartdevices', function(req, res) {
@@ -39,6 +23,23 @@ module.exports = function (app) {
             if (err) { res.send(err); } else { res.json(apis); }
         });
     });
+
+
+    // // authorization check:
+    // app.get('/api/*', function(req,res,next) {
+    //
+    //     if(req.cookies.skynetuuid && req.cookies.skynettoken) {
+    //         next();
+    //         return;
+    //     }
+    //     // console.log('headers', req.headers);
+    //     // console.log('query', req.query);
+    //     // console.log(req.params.id);
+    //     console.log('access denied');
+    //     return res.json(403, { 'message': 'not authorized' });
+    //     next();
+    // });
+
 
     // List of active API channels
     app.get('/api/channels/:uuid/active', function(req, res) {
