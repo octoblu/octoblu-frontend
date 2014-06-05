@@ -1,7 +1,12 @@
 'use strict';
-
-var request = require('request');
-var request = require('request');
+var _ = require('lodash'),
+    rest = require('rest'),
+    when = require('when'),
+    mime = require('rest/interceptor/mime'),
+    errorCode = require('rest/interceptor/errorCode'),
+    callbacks = require('when/callbacks'),
+    client = rest.wrap(mime).wrap(errorCode);
+    var request = require('request');
 
 module.exports = function (app, passport, config) {
 

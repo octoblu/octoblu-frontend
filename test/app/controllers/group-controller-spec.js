@@ -1,6 +1,5 @@
 var mongoose = require('mongoose'),
     jasmine = require('jasmine-core'),
-    User = mongoose.model('User'),
     _ = require('lodash'),
     rest = require('rest'),
     when = require('when'),
