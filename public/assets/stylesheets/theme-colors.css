@@ -1268,9 +1268,9 @@
     .contrast-sea-blue header .navbar > .nav > li.medium > a:hover > a, .contrast-sea-blue header .navbar > .nav > li.medium > a:active > a, .contrast-sea-blue header .navbar > .nav > li.medium > a:focus > a {
       background-color: #01406f; }
   .contrast-sea-blue header .navbar > .nav > li.dark > a {
-    background: #013c69; }
+    background: #f0f0f0; }
     .contrast-sea-blue header .navbar > .nav > li.dark > a .label {
-      color: #013c69; }
+      color: #f0f0f0; }
     .contrast-sea-blue header .navbar > .nav > li.dark > a:hover > a, .contrast-sea-blue header .navbar > .nav > li.dark > a:active > a, .contrast-sea-blue header .navbar > .nav > li.dark > a:focus > a {
       background-color: #013760; }
   .contrast-sea-blue header .navbar .widget .dropdown-menu > li.widget-footer a:hover {
@@ -1284,13 +1284,13 @@
   background-color: #dbe8f1;
   color: #1670b2; }
 .contrast-sea-blue #main-nav .navigation > .nav > li > a.in [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li > a.in [class*=" icon-"] {
-  color: #f0f0f0; }
+  color: #013c69; }
 .contrast-sea-blue #main-nav .navigation > .nav > li:hover > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li:hover > a [class*=" icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li:focus > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li:focus > a [class*=" icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li.active > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li.active > a [class*=" icon-"] {
-  color: #f0f0f0 !important; }
+  color: #013c69 !important; }
 .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li.active > a [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li.active > a [class*=" icon-"] {
-  color: #f0f0f0; }
+  color: #013c69; }
 .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:hover [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:hover [class*=" icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:focus [class^="icon-"], .contrast-sea-blue #main-nav .navigation > .nav > li .nav > li > a:focus [class*=" icon-"] {
-  color: #f0f0f0; }
+  color: #013c69; }
 .contrast-sea-blue .box .box-header.contrast-background .actions .btn-link:hover {
   color: #f0f0f0 !important; }
 .contrast-sea-blue.contrast-background, .contrast-sea-blue .contrast-background {
@@ -1314,7 +1314,7 @@
 .contrast-sea-blue .breadcrumb li:first-child > a:hover {
   color: #f0f0f0 !important; }
 .contrast-sea-blue h1 [class^="icon-"] {
-  color: #f0f0f0; }
+  color: #013c69; }
 .contrast-sea-blue .dropdown-menu > .active > a, .contrast-sea-blue .dropdown-menu > .active > a:hover, .contrast-sea-blue .dropdown-menu > .active > a:focus, .contrast-sea-blue .dropdown-menu > li > a:hover, .contrast-sea-blue .dropdown-menu > li > a:focus, .contrast-sea-blue .dropdown-submenu:hover > a, .contrast-sea-blue .dropdown-submenu:focus > a {
   background-color: #f0f0f0 !important; }
 .contrast-sea-blue .box .box-header .actions .btn-link:hover {
