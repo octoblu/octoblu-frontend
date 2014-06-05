@@ -12,7 +12,7 @@
 .slide1{
 	/*background-image: url(/assets/images/nest.jpg);*/
 /*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/nest.jpg);*/
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/ioe.jpg);
+	background-image: url(/assets/decorations/pattern-black.png), url(/assets/images/ioe.jpg);
 
 	width: 100%;
 	height: 700px;
@@ -24,7 +24,7 @@
 	overflow: hidden;
 }
 .slide2{
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/smartthings.png);
+	background-image: url(/assets/decorations/pattern-black.png), url(/assets/images/smartthings.png);
 	width: 100%;
 	height: 700px;
 	padding: 0px;
@@ -60,7 +60,7 @@
 }
 .slide5{
 /*	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/belkin.jpg);*/
-	background-image: url(/assets/decorations/pattern-extra-black.png), url(/assets/images/bigdata.png);
+	background-image: url(/assets/decorations/pattern-black.png), url(/assets/images/bigdata.png);
 	width: 100%;
 	height: 700px;
 	padding: 0px;
