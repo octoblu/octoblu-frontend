@@ -1,51 +1,5 @@
 angular.module('octobluApp')
-    .service('GroupService' , function($cookies, $q, $http, userService ){
-
-        /**
-         * getAllPeople returns a promise of the members of the users Operators group
-         *
-         * @param user
-         * @returns {defer.promise|*}
-         */
-        this.getAllPeople  = function( user ){
-            var defer = $q.defer();
-            var operatorsGroup = _.findWhere(user.groups, { 'type' : 'Operators'});
-            if( operatorsGroup ){
-                $http.get('/api/group/' + operatorsGroup.uuid + '/members')
-                    .success(function(members){
-                       defer.resolve(members);
-                    })
-                    .error(function(error){
-                        defer.reject(error);
-                    });
-            } else {
-                defer.resolve([]);
-            }
-            return defer.promise;
-        };
-
-        /**
-         * Gets the user info for a groups members.
-         * @param group
-         * @returns {defer.promise|*}
-         */
-        this.getGroupMembers = function(group){
-
-            var defer = $q.defer();
-            if( group ){
-                $http.get('/api/group/' + group.uuid + '/members')
-                    .success(function(members){
-                        defer.resolve(members);
-                    })
-                    .error(function(error){
-                        defer.reject(error);
-                    });
-            } else {
-                defer.resolve([]);
-            }
-            return defer.promise;
-
-        };
+    .service('GroupService' , function($cookies, $q, $http ){
 
         /**
          * Get a promise of the list of devices that belong to the owner.
@@ -90,7 +44,7 @@ angular.module('octobluApp')
          *             permissions : [permissions value]
          *          }
          */
-        this.addGroup = function( name, uuid, token, permissions ){
+        this.addGroup = function( name, uuid, token ){
 
             var defer = $q.defer();
 
@@ -116,8 +70,7 @@ angular.module('octobluApp')
                 //Create the new group with the data
                 //If no permissions have been set, use default permissions
                 var groupData = {
-                    'name' : name,
-                    'permissions' : permissions || {'discover' : true, configure : false, message : true}
+                    'name' : name
                 };
 
                 $http.post(url, groupData, {
@@ -130,7 +83,7 @@ angular.module('octobluApp')
                 })
                 .error(function(result){
                         defer.reject(result);
-                })
+                });
             }
             return defer.promise;
         };
@@ -238,7 +191,60 @@ angular.module('octobluApp')
                 });
             }
             return defer.promise;
-        }
+        };
 
+        this.getResourcePermission = function(groupUUID, currentUser){
+            var defer = $q.defer();
+            if( ! groupUUID || ! currentUser ){
+                defer.reject({
+                    'error' : 'missing required parameters'
+                });
+            } else {
+
+                var url = '/api/groups/' + groupUUID + '/permissions';
+                $http.get(url, {
+                    headers : {
+                        'ob_skynetuuid' : currentUser.skynetuuid,
+                        'ob_skynettoken' : currentUser.skynettoken
+                    }
+                }).success(function(group){
+                    defer.resolve(group)
+                }).error(function(result){
+                    defer.reject(result);
+                });
+            }
+            return defer.promise;
+        };
+
+        /**
+         *
+         */
+        this.getAllGroups = function(uuid, token, type ){
+            var defer = $q.defer();
+            if( ! uuid || ! token ){
+                defer.reject({
+                    'error' : 'missing required parameters'
+                });
+            } else {
+
+                var url = '/api/groups';
+
+                if( type ){
+                    url = url + '?type=' + type;
+                }
+
+                $http.get(url, {
+                    headers : {
+                        'ob_skynetuuid' : uuid,
+                        'ob_skynettoken' : token
+                    }
+                }).success(function(group){
+                    defer.resolve(group)
+                }).error(function(result){
+                    defer.reject(result);
+                });
+            }
+            return defer.promise;
+        };
     });
 

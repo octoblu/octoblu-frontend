@@ -7,12 +7,12 @@
         </div>
         <div class="panel-body group-info-panel-body">
             <ul class="list-group">
-                <li data-ng-repeat="member in operatorGroup.members | orderBy:'name'" class="list-group-item">
+                <li data-ng-repeat="member in operatorsGroup.members | orderBy:'name'" class="list-group-item">
                    <span class="fa-stack fa-2x">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-user fa-inverse fa-stack-1x"></i>
                  </span>
-                    {{member.name}}
+                    {{member.uuid}}
                 </li>
             </ul>
         </div>

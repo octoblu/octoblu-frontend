@@ -16,12 +16,14 @@ var groupController = {
      * @param res
      */
     getGroups: function (req, res) {
-        var groupType = req.query.type || 'default';
         var user = req.user;
-        Group.find({
-            'resource.owner.uuid': user.resource.uuid,
-            type: groupType
-        }).exec().then(function (groups) {
+        var queryOptions = {
+            'resource.owner.uuid': user.resource.uuid
+        };
+        if(req.query.type){
+            queryOptions.type = req.query.type;
+        }
+        Group.find(queryOptions).exec().then(function (groups) {
             res.send(200, groups);
         }, function (error) {
             res.send(400, error);

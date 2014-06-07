@@ -5,7 +5,18 @@ angular.module('octobluApp')
         $scope.groupName = undefined;
         $scope.errors = [];
         $scope.user = currentUser;
-        $scope.operatorGroup = _.findWhere($scope.user.groups, {"type": "operators"});
+
+       GroupService.getAllGroups(currentUser.skynetuuid, currentUser.skynettoken)
+           .then(function(groups){
+            $scope.allGroups = groups;
+            $scope.operatorsGroup = _.findWhere(groups, {'type' : 'operators'});
+       }, function(error){
+           console.log(error);
+           $scope.allGroups = [];
+
+       });
+
+//        $scope.operatorGroup = _.findWhere($scope.user.groups, {"type": "operators"});
 
         $scope.ownedDevices = allDevices;
 
@@ -56,6 +67,16 @@ angular.module('octobluApp')
 
         };
 
+        $scope.getUsersInGroup = function(group){
+            var users = _.find(group.members, { 'type' : 'user'}) || [];
+            return users;
+        };
+
+        $scope.getDevicesInGroup = function(group){
+            var devices = _.find(group.members, { 'type' : 'device'}) || []; 
+            return devices; 
+        };
+        
         $scope.getDeviceImageUrl = function (device) {
             if (device && device.type === 'gateway') {
                 return '/assets/images/network_hub.png';

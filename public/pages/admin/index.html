@@ -122,7 +122,7 @@
                         </form>
                     </div>
                     <h3 class="text-center text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12">Groups</h3>
-                    <div data-ng-repeat="group in user.groups | filter:{type:'default'} |  orderBy:'name'"
+                    <div data-ng-repeat="group in allGroups | filter:{type:'default'} |  orderBy:'name'"
                          class="panel panel-primary col-xs-12 col-sm-12 col-md-2 col-lg-2 group-summary-panel">
                         <div class="panel-heading group-summary-panel-heading">
                             <h4>
@@ -140,11 +140,11 @@
                             <ul>
                                 <li>
                                     <i class="fa fa-user" style="margin-right: 10px;"></i>People <span
-                                        class="label label-info pull-right">{{group.members.length}}</span>
+                                        class="label label-info pull-right">{{getUsersInGroup(group).length}}</span>
                                 </li>
                                 <li>
                                     <i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Devices<span
-                                        class="label label-success pull-right">{{group.devices.length}}</span>
+                                        class="label label-success pull-right">{{getDevicesInGroup(group).length}}</span>
                                 </li>
                             </ul>
                         </div>
