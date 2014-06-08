@@ -48,7 +48,7 @@ function makeResourceObject( options ){
     if(options.includeProperties){
        resource =  _.pick(_.cloneDeep(model), options.includeProperties);
     }
-    var resourceObject = {
+    return  {
         uuid : model[uuidProperty],
         type : type || 'device' ,
         owner : {
@@ -57,7 +57,6 @@ function makeResourceObject( options ){
         },
         resource : resource
     };
-    return resourceObject;
 }
 
 function makeResourceModel(options) {
