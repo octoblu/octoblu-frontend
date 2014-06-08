@@ -19,7 +19,7 @@ var ResourcePermissionSchema = new mongoose.Schema({
     } }
 });
 
-Resource.makeResource({schema: ResourcePermissionSchema, type: 'resource-permission', uuidProperty: 'uuid'});
+Resource.makeResourceModel({schema: ResourcePermissionSchema, type: 'resource-permission', uuidProperty: 'uuid'});
 
 module.exports = ResourcePermissionSchema;
 

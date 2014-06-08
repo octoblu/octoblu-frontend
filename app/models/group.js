@@ -25,7 +25,7 @@ GroupSchema.statics.permissionsSuffix = {
     targets: '_targets'
 };
 
-Resource.makeResource({schema: GroupSchema, type: 'group', uuidProperty: 'uuid'});
+Resource.makeResourceModel({schema: GroupSchema, type: 'group', uuidProperty: 'uuid'});
 
 /**
  *

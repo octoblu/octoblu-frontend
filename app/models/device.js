@@ -12,6 +12,6 @@ var DeviceSchema = new mongoose.Schema({
     enabled: Boolean
 });
 
-Resource.makeResource({schema: DeviceSchema, type: 'device'});
+Resource.makeResourceModel({schema: DeviceSchema, type: 'device'});
 
 module.exports = DeviceSchema;

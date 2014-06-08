@@ -41,7 +41,26 @@ function enforceDefaults(doc, uuidProperty, type) {
     }
 }
 
-function makeResource(options) {
+function makeResourceObject( options ){
+
+    var type = options.type, model = options.model, uuidProperty = options.uuidProperty;
+    var resource = _.cloneDeep(model);
+    if(options.includeProperties){
+       resource =  _.pick(_.cloneDeep(model), options.includeProperties);
+    }
+    var resourceObject = {
+        uuid : model[uuidProperty],
+        type : type || 'device' ,
+        owner : {
+            uuid :  model.owner,
+            type : options.ownerType
+        },
+        resource : resource
+    };
+    return resourceObject;
+}
+
+function makeResourceModel(options) {
     var schema = options.schema,
         type = options.type,
         uuidProperty = options.uuidProperty;
@@ -82,9 +101,11 @@ function makeResource(options) {
     });
 }
 
+
 module.exports = {
     Resource: Resource,
     ResourceType: ResourceType,
     ResourceId: ResourceId,
-    makeResource: makeResource
+    makeResourceModel: makeResourceModel,
+    makeResourceObject : makeResourceObject
 };
