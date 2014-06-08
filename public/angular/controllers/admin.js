@@ -204,7 +204,7 @@ angular.module('octobluApp')
                 $scope.targetPermissionsGroup.members.push(resource);
                 var existingGroupMember = _.findWhere($scope.group.members, resource);
                 if( ! existingGroupMember){
-                    $scope.group.members.push();
+                    $scope.group.members.push(resource);
                 }
             }
         };
@@ -215,7 +215,7 @@ angular.module('octobluApp')
                 $scope.sourcePermissionsGroup.members.push(resource);
                 var existingGroupMember = _.findWhere($scope.group.members, resource);
                 if( ! existingGroupMember){
-                    $scope.group.members.push();
+                    $scope.group.members.push(resource);
                 }
             }
         };
