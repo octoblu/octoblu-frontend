@@ -105,7 +105,7 @@ module.exports = function (app, passport, config) {
                 headers: {'Skynet_override_token': config.skynet.override_token,
                 'skynet_auth_uuid': req.params.uuid,
                 'skynet_auth_token': req.query.token}
-                ,
+
             }, function (error, response, body) {
                 var data = JSON.parse(body);
                 res.json(data);
