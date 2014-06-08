@@ -31,13 +31,18 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'pages/home2.html',
+                templateUrl: 'pages/home3.html',
                 controller: 'homeController'
 
             })
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
+                controller: 'homeController'
+            })
+            .state('home3', {
+                url: '/home3',
+                templateUrl: 'pages/home3.html',
                 controller: 'homeController'
             })
             .state('terms', {
