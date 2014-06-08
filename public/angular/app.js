@@ -209,12 +209,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',
-                resolve : {
-                    currentGroup : function($stateParams, currentUser, GroupService ){
-                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, $stateParams.uuid );
-                    }
-
-                },
                 onEnter: function () {
 //                    console.log('Entering admin groups detail');
                 },

@@ -16,8 +16,6 @@ angular.module('octobluApp')
 
        });
 
-//        $scope.operatorGroup = _.findWhere($scope.user.groups, {"type": "operators"});
-
         $scope.ownedDevices = allDevices;
 
         $scope.$on('groupUpdated', function(event, updatedGroup){
@@ -85,112 +83,124 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser, currentGroup, allDevices, GroupService) {
-        $scope.group = currentGroup;
+    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, currentUser,  GroupService) {
 
+        GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, $stateParams.uuid)
+        .then(function(group){
+
+                $scope.group = group;
+        }, function(error){
+                $scope.group  = undefined;
+        });
+
+        GroupService.getResourcePermission($stateParams.uuid, currentUser).then(function(grpResourcePermission){
+            $scope.resourcePermission = grpResourcePermission;
+        }, function(error){
+            $scope.resourcePermission = {};
+        });
 
         $scope.isDeviceInGroup = function (device) {
-            var deviceIndex = _.indexOf($scope.group.devices, { 'uuid': device.uuid});
-            return deviceIndex >= 0;
-        }
+//            var deviceIndex = _.indexOf($scope.group.devices, { 'uuid': device.uuid});
+//            return deviceIndex >= 0;
+        };
 
         $scope.isMemberInGroup = function (member) {
-            var memberIndex = _.indexOf($scope.group.members, { 'uuid': member.uuid});
-            return memberIndex >= 0;
+//            var memberIndex = _.indexOf($scope.group.members, { 'uuid': member.uuid});
+//            return memberIndex >= 0;
         };
 
 
         $scope.addMemberToGroup = function (member) {
-            var existingMember = _.findWhere($scope.group.members, {'uuid': member.uuid });
-            if (!existingMember) {
-                $scope.group.members.push(member);
-            }
+//            var existingMember = _.findWhere($scope.group.members, {'uuid': member.uuid });
+//            if (!existingMember) {
+//                $scope.group.members.push(member);
+//            }
         };
 
         $scope.removeMemberFromGroup = function (member) {
-            var existingMember = _.findWhere($scope.group.members, {'uuid': member.uuid });
-            if (existingMember) {
-                var members = _.without($scope.group.members, existingMember);
-                $scope.group.members = members;
-            }
+//            var existingMember = _.findWhere($scope.group.members, {'uuid': member.uuid });
+//            if (existingMember) {
+//                var members = _.without($scope.group.members, existingMember);
+//                $scope.group.members = members;
+//            }
         };
 
         $scope.addDeviceToGroup = function (device) {
-            var existingDevice = _.findWhere($scope.group.devices, {'uuid': device.uuid });
-            if (!existingDevice) {
-                $scope.group.devices.push({
-                    'name': device.name,
-                    'uuid': device.uuid,
-                    'type': device.type || 'custom'
-                });
-            }
+//            var existingDevice = _.findWhere($scope.group.devices, {'uuid': device.uuid });
+//            if (!existingDevice) {
+//                $scope.group.devices.push({
+//                    'name': device.name,
+//                    'uuid': device.uuid,
+//                    'type': device.type || 'custom'
+//                });
+//            }
         };
 
         $scope.removeDeviceFromGroup = function (device) {
-            var existingDevice = _.findWhere($scope.group.devices, {'uuid': device.uuid });
-            if (existingDevice) {
-                var devices = _.without($scope.group.devices, existingDevice);
-                $scope.group.devices = devices;
-            }
+//            var existingDevice = _.findWhere($scope.group.devices, {'uuid': device.uuid });
+//            if (existingDevice) {
+//                var devices = _.without($scope.group.devices, existingDevice);
+//                $scope.group.devices = devices;
+//            }
         };
 
         //Check if there are any changes to the group members, devices or permissions,
         //if there are, persist them.
-        $scope.$watchCollection('group.members', function (newMembers, oldMembers) {
-            console.log(JSON.stringify(newMembers));
-            console.log(JSON.stringify(oldMembers));
-            if (newMembers.length !== oldMembers.length) {
-                $scope.saveGroup($scope.group);
-            }
-        });
+//        $scope.$watchCollection('group.members', function (newMembers, oldMembers) {
+//            console.log(JSON.stringify(newMembers));
+//            console.log(JSON.stringify(oldMembers));
+//            if (newMembers.length !== oldMembers.length) {
+//                $scope.saveGroup($scope.group);
+//            }
+//        });
 
-        $scope.$watch('group.permissions', function (newPermissions, oldPermissions) {
-            console.log(JSON.stringify(newPermissions));
-            console.log(JSON.stringify(oldPermissions));
-            if( (newPermissions.configure !== oldPermissions.configure) ||
-                (newPermissions.update !== oldPermissions.update) ||
-                ( newPermissions.message !== oldPermissions.message)){
-                $scope.saveGroup($scope.group);
-            }
-        }, true);
+//        $scope.$watch('group.permissions', function (newPermissions, oldPermissions) {
+//            console.log(JSON.stringify(newPermissions));
+//            console.log(JSON.stringify(oldPermissions));
+//            if( (newPermissions.configure !== oldPermissions.configure) ||
+//                (newPermissions.update !== oldPermissions.update) ||
+//                ( newPermissions.message !== oldPermissions.message)){
+//                $scope.saveGroup($scope.group);
+//            }
+//        }, true);
 
-        $scope.$watchCollection('group.devices', function (newDevices, oldDevices) {
-            console.log(JSON.stringify(newDevices));
-            console.log(JSON.stringify(oldDevices));
-//          if(newDevices && oldDevices
-            if (newDevices.length !== oldDevices.length) {
-                $scope.saveGroup($scope.group);
-            }
-        });
+//        $scope.$watchCollection('group.devices', function (newDevices, oldDevices) {
+//            console.log(JSON.stringify(newDevices));
+//            console.log(JSON.stringify(oldDevices));
+////          if(newDevices && oldDevices
+//            if (newDevices.length !== oldDevices.length) {
+//                $scope.saveGroup($scope.group);
+//            }
+//        });
 
-        $scope.saveGroup = function(updatedGroup){
-            var members = _.map(updatedGroup.members, function (member) {
-                return { "uuid": member.uuid, "email": member.email, "name": member.name};
-            });
-
-            var devices = _.map(updatedGroup.devices, function (device) {
-                return { "uuid": device.uuid, "type": device.type || "custom", "name": device.name };
-            });
-            var groupData = {
-                "uuid": updatedGroup.uuid,
-                "name": updatedGroup.name,
-                "type": updatedGroup.type,
-                "permissions": updatedGroup.permissions ,
-                "devices": devices,
-                "members": members
-            };
-
-            var groupPromise = GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, groupData);
-            groupPromise.then(function (group) {
-                if (group) {
-                   $scope.group = group;
-                   $scope.$emit('groupUpdated',  group );
-                }
-            }, function (result) {
-                console.log(JSON.stringify(result));
-            });
-
-        };
+//        $scope.saveGroup = function(updatedGroup){
+//            var members = _.map(updatedGroup.members, function (member) {
+//                return { "uuid": member.uuid, "email": member.email, "name": member.name};
+//            });
+//
+//            var devices = _.map(updatedGroup.devices, function (device) {
+//                return { "uuid": device.uuid, "type": device.type || "custom", "name": device.name };
+//            });
+//            var groupData = {
+//                "uuid": updatedGroup.uuid,
+//                "name": updatedGroup.name,
+//                "type": updatedGroup.type,
+//                "permissions": updatedGroup.permissions ,
+//                "devices": devices,
+//                "members": members
+//            };
+//
+//            var groupPromise = GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, groupData);
+//            groupPromise.then(function (group) {
+//                if (group) {
+//                   $scope.group = group;
+//                   $scope.$emit('groupUpdated',  group );
+//                }
+//            }, function (result) {
+//                console.log(JSON.stringify(result));
+//            });
+//
+//        };
     })
     .controller('invitationController', function ($rootScope, $cookies, $scope, InvitationService) {
         //Send the invitation
