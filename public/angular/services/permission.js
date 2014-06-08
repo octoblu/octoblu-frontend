@@ -25,6 +25,15 @@ angular.module('octobluApp').
                     }
 
                 },
+                'add' : {
+                    method: 'POST',
+                    url : 'api/permissions',
+                    isArray: false,
+                    headers: {
+                        'ob_skynetuuid': '@ownerUUID',
+                        'ob_skynettoken': '@ownerToken'
+                    }
+                },
                 'getGroupResourcePermission': {
                     method: 'PUT',
                     url: '/api/group/:uuid/permissions',
