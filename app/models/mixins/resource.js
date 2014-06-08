@@ -47,6 +47,7 @@ function makeResourceObject( options ){
     var resource = _.cloneDeep(model);
     if(options.includeProperties){
        resource =  _.pick(_.cloneDeep(model), options.includeProperties);
+       resource.type = type;
     }
     return  {
         uuid : model[uuidProperty],

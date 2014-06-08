@@ -8,6 +8,7 @@ var async = require('async'),
     _ = require('lodash'),
     rest = require('rest'),
     when = require('when'),
+    Resource = require('../models/mixins/resource'),
     mime = require('rest/interceptor/mime'),
     errorCode = require('rest/interceptor/errorCode'),
     callbacks = require('when/callbacks'),
@@ -30,13 +31,22 @@ module.exports = function (app, config, conn) {
         })
         .then(function(result){
 
-            var devices = _.filter(result.entity.devices, { type : "gateway"}) || [];
-            return devices;
+                var devices = _.map(result.entity.devices, function(device){
+                    return Resource.makeResourceObject({
+                        model : device,
+                        type : 'device',
+                        uuidProperty : 'uuid',
+                        ownerType : currentUser.resource.type,
+                        includeProperties : ['uuid', 'token', 'name']
+                    });
+                }) || [];
+            return _.filter(devices, { type : "gateway"}) || [];
         })
         .then(function(devices){
             ownedDevices = devices;
 
             var getConfigDetailsForDevice = function(device, next){
+
                 conn.gatewayConfig({
                     'uuid': device.uuid,
                     'token': device.token,
@@ -77,8 +87,10 @@ module.exports = function (app, config, conn) {
             res.send(400, 'missing or invalid parameters');
         }
 
+        var currentUser;
         User.findBySkynetUUIDAndToken(req.params.id, req.params.token)
             .then(function(user){
+                currentUser = user;
                 if(! user ){
                    var error = {"error" : "Unauthorized. User not found"};
                    throw error;
@@ -95,7 +107,15 @@ module.exports = function (app, config, conn) {
                         "skynet_auth_token" : req.params.token
                     }
                 }).then(function(result){
-                    var devices = result.entity.devices || [];
+                    var devices = _.map(result.entity.devices, function(device){
+                        return Resource.makeResourceObject({
+                            model : device,
+                            type : 'device',
+                            uuidProperty : 'uuid',
+                            ownerType : currentUser.resource.type,
+                            includeProperties : ['uuid', 'token', 'name']
+                        });
+                    }) || [];
 
                     res.send(devices);
                 }, function(errorResult){
@@ -143,7 +163,17 @@ module.exports = function (app, config, conn) {
                         "skynet_override_token" : config.skynet.override_token
                     }
                 }).then(function(result){
-                    return res.send(result.entity);
+
+                    var devices = _.map(result.entity, function(device){
+                        return Resource.makeResourceObject({
+                            model : device,
+                            type : 'device',
+                            uuidProperty : 'uuid',
+                            ownerType : currentUser.resource.type,
+                            includeProperties : ['uuid', 'token', 'name']
+                        });
+                    }) || [];
+                    return res.send(devices);
             }, function(errorResult){
                 return res.send(errorResult.status.code, []);
             });
@@ -163,8 +193,17 @@ module.exports = function (app, config, conn) {
                 'skynet_auth_token': req.params.token
             }
         }, function (error, response, body) {
-                var myDevices = JSON.parse(body);
-                myDevices = myDevices.devices;
+
+
+                var myDevices = _.map(JSON.parse(body).devices, function(device){
+                    return Resource.makeResourceObject({
+                        model : device,
+                        type : 'device',
+                        uuidProperty : 'uuid',
+                        ownerType : currentUser.resource.type,
+                        includeProperties : ['uuid', 'token', 'name']
+                    });
+                }) || [];
                 // console.log('myDevices', myDevices);
                 var gateways = []  ;
                 for (var i in myDevices) {
