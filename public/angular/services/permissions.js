@@ -7,7 +7,7 @@ angular.module('octobluApp').
                         'ob_skynetuuid': uuid,
                         'ob_skynettoken': token
                     }
-                }).then(function(res){
+                }).then(function (res) {
                     return res.data;
                 });
             },
@@ -20,7 +20,7 @@ angular.module('octobluApp').
                         'ob_skynetuuid': uuid,
                         'ob_skynettoken': token
                     }
-                }).then(function(res){
+                }).then(function (res) {
                     return res.data;
                 });
             },
@@ -31,21 +31,25 @@ angular.module('octobluApp').
                         'ob_skynetuuid': uuid,
                         'ob_skynettoken': token
                     }
-                }).then(function(res){
+                }).then(function (res) {
                     return res.data;
                 });
             },
-            delete: function (uuid, token, resourcePermissionUUID) {
-                return $http({method: 'DELETE', url: '/api/permissions/' + resourcePermissionUUID,
-                    headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
-                    }
-                }).then(function(res){
-                    return res.data;
-                });
+
+            delete: function (uuid, token, resourceUUID) {
+                return $http(
+                    {method: 'DELETE',
+                        url: '/api/permissions/' + resourceUUID,
+                        headers: {
+                            'ob_skynetuuid': uuid,
+                            'ob_skynettoken': token
+                        }
+                    }).then(function (res) {
+                        return res.data;
+                    });
             },
-            update: function(uuid, token, permission){
+
+            update: function (uuid, token, permission) {
                 return $http({method: 'PUT',
                     url: '/api/permissions/' + permission.resource.uuid,
                     data: permission,
@@ -53,7 +57,7 @@ angular.module('octobluApp').
                         'ob_skynetuuid': uuid,
                         'ob_skynettoken': token
                     }
-                }).then(function(res){
+                }).then(function (res) {
                     return res.data;
                 });
             }

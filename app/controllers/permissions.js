@@ -107,12 +107,11 @@ var permissionsController = {
         .exec()
         .then(function (rscPermission) {
             if( ! rscPermission) {
-                res.send(400, {
-                    'error' : 'could not find ResourcePermission'
-                });
+                res.send(400, {'error' : 'could not find ResourcePermission'});
                 return;
             }
-           //TODO reconcile skynet permissions
+            res.send(rscPermission);
+            //TODO reconcile skynet permissions
         }, function(error){
             if(error){
                 console.log(error);

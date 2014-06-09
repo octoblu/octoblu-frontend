@@ -213,9 +213,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'adminGroupDetailController',
                 resolve: {
                     resourcePermission : function(allGroupResourcePermissions, $stateParams){
-                        return _.findWhere($scope.allGroupResourcePermissions, {uuid: $stateParams.uuid});
+                        return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
                     },
-                    sourcePermissionGroup: function (resourcePermission, GroupService, currentUser, $stateParams) {
+                    sourcePermissionGroup: function (resourcePermission, GroupService, currentUser) {
                         return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.source.uuid);
                     },
                     targetPermissionGroup: function (resourcePermission, GroupService, currentUser) {
