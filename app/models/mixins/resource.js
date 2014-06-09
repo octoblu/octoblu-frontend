@@ -21,7 +21,7 @@ var ResourceId = {
 var Resource =
     _.extend({
         owner: ResourceId,
-        parent: ResourceId,
+        parent: ResourceId
     }, _.cloneDeep(ResourceId));
 
 //Extra constraints for resources
