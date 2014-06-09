@@ -177,9 +177,9 @@ angular.module('octobluApp')
                 });
             } else {
                 var url = '/api/groups/' + updatedGroup.uuid;
-                $http.put(url, {
-                    "group" : updatedGroup
-                }, {
+                $http.put(url,
+                    updatedGroup,
+                    {
                     headers : {
                     'ob_skynetuuid' : uuid,
                     'ob_skynettoken' : token

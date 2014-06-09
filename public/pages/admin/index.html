@@ -82,6 +82,8 @@
 </style>
 
 <section id="content">
+    Hi!!!
+    {{allDevices.length}}
     <div class="container">
         <div class="row" id="content-wrapper">
             <div class="col-xs-12">
@@ -138,13 +140,14 @@
                         </div>
                         <div class="panel-body group-summary-panel-body">
                             <ul>
+                                <li>{{controller}}</li>
                                 <li>
                                     <i class="fa fa-user" style="margin-right: 10px;"></i>People <span
-                                        class="label label-info pull-right">{{getUsersInGroup(group).length}}</span>
+                                        class="label label-info pull-right">{{(group.members | filter: {'type': 'device'}).length }}</span>
                                 </li>
                                 <li>
                                     <i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Devices<span
-                                        class="label label-success pull-right">{{getDevicesInGroup(group).length}}</span>
+                                        class="label label-success pull-right">{{(group.members | filter: {'type': 'user'}).length }}</span>
                                 </li>
                             </ul>
                         </div>

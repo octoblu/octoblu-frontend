@@ -22,7 +22,7 @@
                  </span>
                 <span>{{resource.properties.name}}</span>
                 <a class="btn btn-danger pull-right"
-                   ng-click="removeResourceFromGroup(sourcePermissionsGroup, resource)"><i
+                   ng-click="removeResourceFromSourcePermissionsGroup(resource)"><i
                         class="fa fa-trash-o"></i></a>
             </li>
         </ul>
@@ -37,7 +37,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li ng-repeat="resource in allResources">
-                    <a href="#" ng-click="addResourceToGroup(sourcePermissionsGroup, resource)">
+                    <a href ng-click="addResourceToSourcePermissionsGroup(resource)">
                         <i class="fa fa-fw"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                         {{resource.properties.name}}
@@ -142,7 +142,7 @@
                  </span>
                 <span>{{resource.properties.name}}</span>
                 <a class="btn btn-danger pull-right"
-                   ng-click="removeResourceFromGroup(targetPermissionsGroup, resource)"><i
+                   ng-click="removeResourceFromTargetPermissionsGroup(targetPermissionsGroup, resource)"><i
                         class="fa fa-trash-o"></i></a>
             </li>
         </ul>
@@ -157,7 +157,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li ng-repeat="resource in allResources">
-                    <a href="#" ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
+                    <a href ng-click="addResourceToTargetPermissionsGroup(targetPermissionsGroup, resource)">
                         <i class="fa fa-fw"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                         {{resource.properties.name}}

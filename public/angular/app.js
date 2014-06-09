@@ -202,7 +202,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/groups',
                 parent: 'admin',
                 templateUrl: 'pages/admin/groups/all.html',
-                controller: 'adminController'
+                controller: function($scope){
+                    console.log('this is admin.all');
+                    console.log($scope.getUsersInGroup);
+                }
             })
             .state('admin.detail', {
                 parent: 'admin',
