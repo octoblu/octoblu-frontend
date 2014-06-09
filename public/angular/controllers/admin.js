@@ -31,7 +31,7 @@ angular.module('octobluApp')
                         resourcePermission.target = targetGroup.resource;
                         return PermissionsService.update(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission);
                     })
-                    .then(function(updatedResourcePermission){
+                    .then(function (updatedResourcePermission) {
                         angular.copy(updatedResourcePermission, resourcePermission);
                     });
             }
@@ -42,9 +42,9 @@ angular.module('octobluApp')
                 'Confirm Delete Group', 'Are you sure you want to delete ' + resourcePermission.name + ' group?',
                 function () {
                     PermissionsService.delete(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.resource.uuid)
-                        .then(function(){
-                            var index=$scope.allGroupResourcePermissions.indexOf(resourcePermission);
-                            $scope.allGroupResourcePermissions.splice(index,1);
+                        .then(function () {
+                            var index = $scope.allGroupResourcePermissions.indexOf(resourcePermission);
+                            $scope.allGroupResourcePermissions.splice(index, 1);
                         });
                 });
         };
@@ -56,72 +56,69 @@ angular.module('octobluApp')
             return '/assets/images/robot8.png';
         };
     })
-    .controller('adminGroupDetailController', function ($scope, PermissionsService, $stateParams, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup) {
+    .controller('adminGroupDetailController', function ($scope, PermissionsService, GroupService, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup) {
         $scope.resourcePermission = resourcePermission;
         $scope.sourcePermissionsGroup = sourcePermissionsGroup;
         $scope.targetPermissionsGroup = targetPermissionsGroup;
 
-        $scope.$watch('resourcePermission.permissions', function (newValue, oldValue) {
-            if (newValue && oldValue && !angular.equals(newValue, oldValue)) {
-                PermissionsService.update(
-                    $scope.user.skynetuuid,
-                    $scope.user.skynettoken,
-                    $scope.resourcePermission
-                ).then(function (updatedResourcePermission) {
-                        console.log('resource permission saved');
-                        console.log(updatedResourcePermission);
-                        angular.copy(updatedResourcePermission, $scope.resourcePermission);
-                    }, function (error) {
-                        console.log('error saving resource permission');
-                        console.log(error);
+        $scope.$watch('resourcePermission.permissions', _.debounce(
+            function (newValue, oldValue) {
+                $scope.$apply(function () {
+                    if (!angular.equals(newValue, oldValue)) {
+                        PermissionsService.update(
+                            $scope.user.skynetuuid,
+                            $scope.user.skynettoken,
+                            $scope.resourcePermission
+                        ).then(function (updatedResourcePermission) {
+                                console.log('resource permission saved');
+                            }, function (error) {
+                                console.log('error saving resource permission');
+                                console.log(error);
+                            });
+                    }
+                });
+            }, 1000), true);
 
-                    });
-            }
-        }, true);
 
+        $scope.$watch('sourcePermissionsGroup',
+            _.debounce(function (newValue, oldValue) {
+                $scope.$apply(function () {
+                    console.log('sourcePermissionsGroup updated');
+                    GroupService.updateGroup($scope.user.skynetuuid,
+                        $scope.user.skynettoken,
+                        $scope.sourcePermissionsGroup)
+                        .then(function (updatedGroup) {
+                            console.log('sourcePermissionsGroup has been saved');
+                        }, function (error) {
+                            console.log(error);
+                        });
+                });
+            }, 1000), true);
 
-        $scope.$watchCollection('sourcePermissionsGroup.members', function (newValue, oldValue, scope) {
-            console.log('sourcePermissionsGroup changed');
-//            if (newValue && oldValue) {
-//                console.log('sourcePermissionsGroup udpated');
-//                if (newValue.length != oldValue.length) {
-//                    var groupPromise = GroupService.updateGroup(scope.user.skynetuuid, scope.user.skynettoken, scope.sourcePermissionsGroup);
-//
-//                    groupPromise.then(function (updatedGroup) {
-//                        scope.sourcePermissionsGroup = updatedGroup;
-//                        console.log('sourcePermissionsGroup has been saved');
-//
-//                    }, function (error) {
-//
-//                    });
-//                }
-//            }
-        }, true);
-
-        $scope.$watchCollection('targetPermissionsGroup.members', function (newValue, oldValue) {
-            console.log('targetPermissionsGroup changed');
-//            if (newValue && oldValue) {
-//                if (newValue.length != oldValue.length) {
-//                    var groupPromise = GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, $scope.targetPermissionsGroup);
-//                    groupPromise.then(function (updatedGroup) {
-//                        $scope.targetPermissionsGroup = updatedGroup;
-//                    }, function (error) {
-//
-//                    });
-//                }
-//            }
-        }, true);
+        $scope.$watch('targetPermissionsGroup',
+            _.debounce(function (newValue, oldValue) {
+                $scope.$apply(function () {
+                    console.log('targetPermissionsGroup changed');
+                    GroupService.updateGroup($scope.user.skynetuuid,
+                        $scope.user.skynettoken,
+                        $scope.targetPermissionsGroup)
+                        .then(function (updatedGroup) {
+                        }, function (error) {
+                            console.log(error);
+                        });
+                });
+            }, 1000), true);
 
         $scope.removeResourceFromGroup = function (group, resource) {
-                group.members = _.filter(group.members, function(member){
-                    return member.uuid !== resource.uuid;
-                });
+            group.members = _.filter(group.members, function (member) {
+                return member.uuid !== resource.uuid;
+            });
         };
 
         $scope.addResourceToGroup = function (group, resource) {
-            var resourcePermissionIndex = _.findWhere(group.members, {uuid: resource.uuid});
+            var resourcePermission = _.findWhere(group.members, {uuid: resource.uuid});
 
-            if (!resourcePermissionIndex) {
+            if (!resourcePermission) {
                 group.members.push(resource);
             }
         };
