@@ -12,6 +12,7 @@ var ResourceType = {
 //These will mainly be used as "pointers", because we need more than the uuid to identify a resource.
 var ResourceId = {
     uuid: {type: String, index: true },
+    properties: mongoose.Schema.Types.Mixed,
     type: ResourceType
 };
 
@@ -21,7 +22,6 @@ var Resource =
     _.extend({
         owner: ResourceId,
         parent: ResourceId,
-        properties: mongoose.Schema.Types.Mixed
     }, _.cloneDeep(ResourceId));
 
 //Extra constraints for resources

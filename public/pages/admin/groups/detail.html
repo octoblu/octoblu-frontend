@@ -17,7 +17,7 @@
                 style="min-height: 50px;">
                  <span class="fa-stack fa-2x">
                         <i class="fa fa-square-o fa-stack-2x"></i>
-                        <i class="fa fa-inverse fa-stack-1x"
+                        <i class="fa fa-stack-1x"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                  </span>
                 <span>{{resource.properties.name}}</span>
@@ -142,7 +142,7 @@
                  </span>
                 <span>{{resource.properties.name}}</span>
                 <a class="btn btn-danger pull-right"
-                   ng-click="removeResourceFromTargetPermissionsGroup(targetPermissionsGroup, resource)"><i
+                   ng-click="removeResourceFromTargetPermissionsGroup(resource)"><i
                         class="fa fa-trash-o"></i></a>
             </li>
         </ul>
@@ -156,8 +156,8 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li ng-repeat="resource in allResources">
-                    <a href ng-click="addResourceToTargetPermissionsGroup(targetPermissionsGroup, resource)">
+                <li ng-repeat="resource in allResources | filter : {type : 'device'}">
+                    <a href ng-click="addResourceToTargetPermissionsGroup(resource)">
                         <i class="fa fa-fw"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                         {{resource.properties.name}}

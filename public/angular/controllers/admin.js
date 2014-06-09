@@ -20,19 +20,11 @@ angular.module('octobluApp')
 
         $scope.ownedDevices = allDevices;
 
-        $scope.$on('groupUpdated', function(event, updatedGroup){
-           var scope = event.targetScope;
-           var existingGroup =  _.findWhere(scope.allGroups, {uuid : updatedGroup.uuid});
-           var groupIndex = _.indexOf(scope.allGroups, existingGroup );
-           $scope.allGroups[groupIndex] = updatedGroup;
-           event.preventDefault();
-        });
-
         $scope.addGroup = function () {
 
             if ($scope.groupName) {
                 GroupService.addGroup($scope.groupName, $cookies.skynetuuid, $cookies.skynettoken)
-                    .then(function (group) {x
+                    .then(function (group) {
                         $scope.allGroups.push(group);
                         $scope.groupName = '';
                     },
@@ -83,34 +75,29 @@ angular.module('octobluApp')
         $http.defaults.headers.common['ob_skynetuuid'] = currentUser.skynetuuid;
         $http.defaults.headers.common['ob_skynettoken'] = currentUser.skynettoken;
 
-        $scope.$watch('allGroups', function(groups){
-            if(groups && groups.length > 0){
-                $scope.sourcePermissionsGroup = _.findWhere(groups, {
-                    'type' : 'permissions',
-                    'name' : $scope.group.uuid + '_sources'
-                });
+        GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.source.uuid)
+            .then(function(sourceGroup){
+                $scope.sourcePermissionsGroup = sourceGroup;
+            });
 
-                $scope.targetPermissionsGroup = _.findWhere(groups, {
-                    'type' : 'permissions',
-                    'name' : $scope.group.uuid + '_targets'
-                });
-            }
-        }, true);
+        GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid)
+            .then(function(targetGroup){
+                $scope.targetPermissionsGroup = targetGroup;
+            });
 
-        $scope.$watchCollection('group.members', function(newValue, oldValue, scope){
+
+        $scope.$watchCollection('group.members', function(newValue, oldValue){
             if(newValue && oldValue ){
                 console.log('group udpated');
                 if(newValue.length != oldValue.length ){
-                    var group = GroupService.updateGroup(scope.user.skynetuuid, scope.user.skynettoken, scope.group);
+                    var groupPromise = GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, $scope.group);
 
-                    group.$promise.then(function(updatedGroup){
-                        scope.group = updatedGroup;
-                        scope.$emit('groupUpdated', updatedGroup);
-                        console.log('group');
+                    groupPromise.then(function(updatedGroup){
+                        $scope.group = updatedGroup;
+                        var oldGroup = _.findWhere($scope.allGroups, {uuid : updatedGroup.uuid});
+                        oldGroup.members = updatedGroup.members;
                     }, function(error){
                     });
-
-
                 }
             }
         }, true);
@@ -151,7 +138,6 @@ angular.module('octobluApp')
 
                         groupPromise.then(function(updatedGroup){
                             scope.sourcePermissionsGroup = updatedGroup;
-                            scope.$emit('groupUpdated', updatedGroup);
                             console.log('sourcePermissionsGroup has been saved');
 
                         }, function(error){
@@ -162,15 +148,13 @@ angular.module('octobluApp')
             }
         }, true);
 
-        $scope.$watchCollection('targetPermissionsGroup.members', function(newValue, oldValue, scope){
+        $scope.$watchCollection('targetPermissionsGroup.members', function(newValue, oldValue){
 
             if(newValue && oldValue ){
                 if(newValue.length != oldValue.length ){
-                    var groupPromise =  GroupService.updateGroup(scope.user.skynetuuid, scope.user.skynettoken, scope.targetPermissionsGroup);
+                    var groupPromise =  GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, $scope.targetPermissionsGroup);
                     groupPromise.then(function(updatedGroup){
-                        scope.targetPermissionsGroup = updatedGroup;
-                        console.log('sourcePermissionsGroup has been saved');
-                        scope.$emit('groupUpdated', updatedGroup);
+                        $scope.targetPermissionsGroup = updatedGroup;
                     }, function(error){
 
                         });
@@ -192,7 +176,9 @@ angular.module('octobluApp')
                 var existingTargetGroupMember = _.findWhere($scope.targetPermissionsGroup.members, {uuid : resource.uuid });
                 //If the resource is not in the target group, you should remove it from the parent group
                 if( ! existingTargetGroupMember){
-                    _.without($scope.group.members, _.findWhere($scope.group.members, { uuid : resource.uuid }) );
+                    $scope.group.members =
+                        _.without($scope.group.members, _.findWhere($scope.group.members, { uuid : resource.uuid }) );
+
                 }
             }
         };
@@ -200,8 +186,8 @@ angular.module('octobluApp')
         $scope.removeResourceFromTargetPermissionsGroup = function (resource) {
             var existingTargetPermissionsResource = _.findWhere($scope.targetPermissionsGroup.members, {uuid : resource.uuid });
             if( existingTargetPermissionsResource ){
-                $scope.sourcePermissionsGroup.members = _.without($scope.sourcePermissionsGroup.members,
-                    _.findWhere($scope.sourcePermissionsGroup.members,
+                $scope.targetPermissionsGroup.members = _.without($scope.targetPermissionsGroup.members,
+                    _.findWhere($scope.targetPermissionsGroup.members,
                         { uuid : resource.uuid }));
                 var existingSourcePermissionsGroupMember = _.findWhere($scope.sourcePermissionsGroup.members, {uuid: resource.uuid});
                 //If the resource is not in the source permissions group, you should remove it from members list in the parent group
@@ -216,6 +202,7 @@ angular.module('octobluApp')
 
         $scope.addResourceToTargetPermissionsGroup = function (resource) {
             var existingPermissionsResource = _.findWhere($scope.targetPermissionsGroup.members, {uuid: resource.uuid});
+            console.log(resource);
             if( ! existingPermissionsResource ){
                 $scope.targetPermissionsGroup.members.push(resource);
                 var existingGroupMember = _.findWhere($scope.group.members, {uuid: resource.uuid});
