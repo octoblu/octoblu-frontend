@@ -135,32 +135,6 @@ angular.module('octobluApp')
 
         };
         /**
-         * Gets the claimed devices for the owner with the given
-         * @param uuid - the uuid of the device owner
-         * @param token = the token of the device owner
-         * @param options
-         * object containing the fields to filter for i.e "type" : "gateway"
-         * @returns {defer.promise|*}
-         */
-        this.getClaimedDevices = function (uuid, token, options) {
-            var defer = $q.defer();
-            // /api/owner/:id/:token/devices/unclaimed
-            $http.get('/api/owner/' + uuid + '/' + token + '/devices', { cache: false })
-                .success(function (data) {
-                    defer.resolve(data);
-//                    if (options) {
-//                        var filteredDevices = _.findWhere(data, options) || [];
-//                        defer.resolve(filteredDevices);
-//                    } else {
-//                        defer.resolve(data);
-//                    }
-                })
-                .error(function (data) {
-                    defer.reject(data);
-                });
-            return defer.promise;
-        };
-        /**
          *
          * @param uuid
          * @param token
