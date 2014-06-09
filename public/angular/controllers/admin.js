@@ -1,23 +1,10 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function ($rootScope, $scope, $modal, $log, $cookies, currentUser, allDevices, GroupService, PermissionsService) {
-        $scope.controller = 'admin';
-        $scope.errors = [];
+    .controller('adminController', function (allGroupResourcePermissions, $rootScope, $scope, $modal, $log, $cookies, currentUser, allDevices, GroupService, PermissionsService) {
         $scope.user = currentUser;
         $scope.allDevices = allDevices;
-
-        GroupService.getAllGroups(currentUser.skynetuuid, currentUser.skynettoken)
-            .then(function (groups) {
-                $scope.operatorsGroup = _.findWhere(groups, {'type': 'operators'}) || {};
-                $scope.groupIndex = _.indexBy(groups, 'uuid');
-                $scope.allResources = _.union(_.pluck($scope.allDevices, 'resource'), $scope.operatorsGroup.members);
-        });
-
-        PermissionsService.allGroupPermissions(currentUser.skynetuuid, currentUser.skynettoken).then(function (groupResourcePermissions) {
-            $scope.groupResourcePermissions = groupResourcePermissions;
-        });
-
+        $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
 
         $scope.addResourcePermission = function () {
@@ -46,13 +33,6 @@ angular.module('octobluApp')
             }
         };
 
-        $scope.getUserCount = function(resourcePermission){
-            return 1;
-        };
-        $scope.getDeviceCount = function(resourcePermission){
-            return 2;
-        };
-
         $scope.deleteResourcePermission = function (resourcePermission) {
             $rootScope.confirmModal($modal, $scope, $log,
                 'Confirm Delete Group', 'Are you sure you want to delete ' + resourcePermission.name + ' group?',
@@ -68,58 +48,20 @@ angular.module('octobluApp')
             return '/assets/images/robot8.png';
         };
     })
-    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, $http, currentUser, currentGroup, resourcePermission, GroupService, PermissionService) {
-        $scope.controller = 'detail';
-        $scope.user = currentUser;
-        $scope.group = currentGroup;
+    .controller('adminGroupDetailController', function ($scope, PermissionsService, $stateParams, resourcePermission, sourcePermissionGroup, targetPermissionGroup) {
         $scope.resourcePermission = resourcePermission;
+        $scope.sourcePermissionGroup = sourcePermissionGroup;
+        $scope.targetPermissionGroup = targetPermissionGroup;
 
-        $http.defaults.headers.common['ob_skynetuuid'] = currentUser.skynetuuid;
-        $http.defaults.headers.common['ob_skynettoken'] = currentUser.skynettoken;
-
-        GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.source.uuid)
-            .then(function (sourceGroup) {
-                $scope.sourcePermissionsGroup = sourceGroup;
-            });
-
-        GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid)
-            .then(function (targetGroup) {
-                $scope.targetPermissionsGroup = targetGroup;
-            });
-
-
-        $scope.$watchCollection('group.members', function (newValue, oldValue) {
-            if (newValue && oldValue) {
-                console.log('group udpated');
-                if (newValue.length != oldValue.length) {
-                    var groupPromise = GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, $scope.group);
-
-                    groupPromise.then(function (updatedGroup) {
-                        $scope.group = updatedGroup;
-                        var oldGroup = _.findWhere($scope.allGroups, {uuid: updatedGroup.uuid});
-                        oldGroup.members = updatedGroup.members;
-                    }, function (error) {
-                    });
-                }
-            }
-        }, true);
+        $http.defaults.headers.common.ob_skynetuuid = currentUser.skynetuuid;
+        $http.defaults.headers.common.ob_skynettoken = currentUser.skynettoken;
 
         $scope.$watch('resourcePermission.permissions', function (newValue, oldValue, scope) {
             if (newValue && oldValue) {
-                console.log('resourcePermission.permissions updated');
                 var resourcePermission = scope.resourcePermission;
-                PermissionService.update(
-                    {
-                        uuid: resourcePermission.uuid
-                    },
-                    {
-                        uuid: newValue.uuid,
-                        resource: resourcePermission.resource,
-                        permissions: resourcePermission.permissions,
-                        source: {uuid: resourcePermission.source.resource.uuid, type: resourcePermission.source.resource.type},
-                        target: {uuid: resourcePermission.target.resource.uuid, type: resourcePermission.target.resource.type},
-                        grantedBy: resourcePermission.grantedBy
-                    }
+                PermissionsService.update(
+                    { uuid: resourcePermission.uuid},
+                    {permissions: resourcePermission.permissions}
                 ).$promise.then(function (updatedResourcePermission) {
                         console.log('resource permission saved');
                         console.log(updatedResourcePermission);
@@ -145,13 +87,11 @@ angular.module('octobluApp')
                     }, function (error) {
 
                     });
-
                 }
             }
         }, true);
 
         $scope.$watchCollection('targetPermissionsGroup.members', function (newValue, oldValue) {
-
             if (newValue && oldValue) {
                 if (newValue.length != oldValue.length) {
                     var groupPromise = GroupService.updateGroup($scope.user.skynetuuid, $scope.user.skynettoken, $scope.targetPermissionsGroup);
@@ -227,7 +167,6 @@ angular.module('octobluApp')
 
     })
     .controller('invitationController', function ($rootScope, $cookies, $scope, userService, InvitationService) {
-
         //Send the invitation
         $scope.recipientEmail = '';
 
