@@ -11,7 +11,7 @@ var ResourcePermissionSchema = new mongoose.Schema({
     grantedBy: Resource.ResourceId,
     source: Resource.ResourceId,
     target: Resource.ResourceId,
-    permission: {type: Object, required: true, default: {
+    permissions: {type: Object, required: true, default: {
         configure: false,
         discover: true,
         message_send: false,

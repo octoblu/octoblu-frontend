@@ -6,8 +6,7 @@ var mongoose = require('mongoose'),
 
 var ResourceType = {
     type: String,
-    enum: ['user', 'device', 'group', 'permission', 'resource-permission'],
-    index: true
+    enum: ['user', 'device', 'group', 'permission', 'resource-permission']
 };
 
 //These will mainly be used as "pointers", because we need more than the uuid to identify a resource.

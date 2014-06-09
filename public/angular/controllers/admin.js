@@ -23,10 +23,11 @@ angular.module('octobluApp')
         $scope.ownedDevices = allDevices;
 
         $scope.$on('groupUpdated', function(event, updatedGroup){
-           var existingGroup =  _.findWhere($scope.allGroups, {uuid : updatedGroup.uuid});
-           var groupIndex = _.indexOf($scope.allGroups, existingGroup );
+           var scope = event.targetScope;
+           var existingGroup =  _.findWhere(scope.allGroups, {uuid : updatedGroup.uuid});
+           var groupIndex = _.indexOf(scope.allGroups, existingGroup );
            $scope.allGroups[groupIndex] = updatedGroup;
-
+           event.preventDefault();
         });
 
         $scope.addGroup = function () {
@@ -34,7 +35,6 @@ angular.module('octobluApp')
             if ($scope.groupName) {
                 GroupService.addGroup($scope.groupName, $cookies.skynetuuid, $cookies.skynettoken)
                     .then(function (group) {
-                        $scope.allGroups = $scope.allGroups || [];
                         $scope.allGroups.push(group);
                         $scope.groupName = '';
                     },
@@ -87,31 +87,14 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, $http, currentUser, currentGroup, GroupService, PermissionService) {
+    .controller('adminGroupDetailController', function ($scope, $stateParams, $cookies, $http, currentUser, currentGroup, resourcePermission, GroupService, PermissionService) {
 
         $scope.user = currentUser;
         $scope.group = currentGroup;
+        $scope.resourcePermission = resourcePermission;
 
         $http.defaults.headers.common['ob_skynetuuid'] = currentUser.skynetuuid;
         $http.defaults.headers.common['ob_skynettoken'] = currentUser.skynettoken;
-
-
-        GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, $stateParams.uuid)
-            .then(function(group){
-                $scope.group = group;
-
-            }, function(error){
-                $scope.group  = undefined;
-            });
-
-        GroupService.getResourcePermission($stateParams.uuid, currentUser).then(function(grpResourcePermission){
-            $scope.resourcePermission = grpResourcePermission;
-        }, function(error){
-            $scope.resourcePermission = {};
-        });
-
-
-
 
         $scope.$on('groupsRetrieved', function(event, allGroups, operatorsGroup, resources){
             $scope.allGroups = allGroups;
@@ -139,6 +122,7 @@ angular.module('octobluApp')
                     var groupPromise = GroupService.updateGroup(scope.user.skynetuuid, scope.user.skynettoken, scope.group);
 
                     groupPromise.then(function(updatedGroup){
+                        scope.group = updatedGroup;
                         scope.$emit('groupUpdated', updatedGroup);
                         console.log('group');
                     }, function(error){
@@ -149,8 +133,8 @@ angular.module('octobluApp')
             }
         }, true);
 
-        $scope.$watch('resourcePermission', function(newValue, oldValue, scope){
-            console.log('resourecePermission udpated');
+        $scope.$watch('resourcePermission.permissions', function(newValue, oldValue, scope){
+            console.log('resourcePermission.permissions updated');
             if(newValue && oldValue){
                 var resourcePermission = scope.resourcePermission;
                 PermissionService.update(
@@ -160,12 +144,12 @@ angular.module('octobluApp')
                     {
                         uuid : newValue.uuid,
                         resource : resourcePermission.resource,
-                        permission : resourcePermission.permission,
-                        source :   {uuid : scope.targetPermissionsGroup.resource.uuid, type:  scope.targetPermissionsGroup.resource.type},
-                        target :   {uuid : scope.targetPermissionsGroup.resource.uuid, type:  scope.targetPermissionsGroup.resource.type},
+                        permissions : resourcePermission.permissions,
+                        source : {uuid : resourcePermission.source.resource.uuid, type : resourcePermission.source.resource.type},
+                        target : {uuid : resourcePermission.target.resource.uuid, type : resourcePermission.target.resource.type},
                         grantedBy : resourcePermission.grantedBy
                     }
-                ).then(function(updatedResourcePermission){
+                ).$promise.then(function(updatedResourcePermission){
                         console.log('resource permission saved');
                         console.log(updatedResourcePermission);
                     }, function(error){
@@ -184,6 +168,7 @@ angular.module('octobluApp')
                     var groupPromise = GroupService.updateGroup(scope.user.skynetuuid, scope.user.skynettoken, scope.sourcePermissionsGroup);
 
                         groupPromise.then(function(updatedGroup){
+                            scope.sourcePermissionsGroup = updatedGroup;
                             scope.$emit('groupUpdated', updatedGroup);
                             console.log('sourcePermissionsGroup has been saved');
 
@@ -201,6 +186,7 @@ angular.module('octobluApp')
                 if(newValue.length != oldValue.length ){
                     var groupPromise =  GroupService.updateGroup(scope.user.skynetuuid, scope.user.skynettoken, scope.targetPermissionsGroup);
                     groupPromise.then(function(updatedGroup){
+                        scope.targetPermissionsGroup = updatedGroup;
                         console.log('sourcePermissionsGroup has been saved');
                         scope.$emit('groupUpdated', updatedGroup);
                     }, function(error){

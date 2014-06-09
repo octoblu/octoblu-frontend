@@ -52,7 +52,7 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
         }).exec();
 
     }).then(function (permissionsGroups) {
-        if (!permissionsGroups) {
+        if (! permissionsGroups) {
             throw {
                 error: 'Permission groups not found'
             };
