@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService) {
+    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService) {
         $scope.user = currentUser;
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
@@ -38,7 +38,7 @@ angular.module('octobluApp')
         };
 
         $scope.deleteResourcePermission = function (resourcePermission) {
-            $rootScope.confirmModal($modal, $scope, $log,
+            $scope.confirmModal($modal, $scope, $log,
                 'Confirm Delete Group', 'Are you sure you want to delete ' + resourcePermission.name + ' group?',
                 function () {
                     PermissionsService.delete(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.resource.uuid)
@@ -46,6 +46,12 @@ angular.module('octobluApp')
                             var index = $scope.allGroupResourcePermissions.indexOf(resourcePermission);
                             $scope.allGroupResourcePermissions.splice(index, 1);
                         });
+                    //We don't delete the permission groups right now. This leaves orphaned groups, but no big deal.
+                    //They can't do anything.
+//                    if(resourcePermission.target){
+//                        GroupService.delete(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid)
+//
+//                    }
                 });
         };
 
@@ -61,10 +67,10 @@ angular.module('octobluApp')
         $scope.sourcePermissionsGroup = sourcePermissionsGroup;
         $scope.targetPermissionsGroup = targetPermissionsGroup;
 
-        $scope.$watch('resourcePermission.permissions', _.debounce(
+        $scope.$watch('resourcePermission', _.debounce(
             function (newValue, oldValue) {
-                $scope.$apply(function () {
-                    if (!angular.equals(newValue, oldValue)) {
+                if (!angular.equals(newValue, oldValue)) {
+                    $scope.$apply(function () {
                         PermissionsService.update(
                             $scope.user.skynetuuid,
                             $scope.user.skynettoken,
@@ -75,38 +81,43 @@ angular.module('octobluApp')
                                 console.log('error saving resource permission');
                                 console.log(error);
                             });
-                    }
-                });
+                    });
+                }
             }, 1000), true);
 
 
         $scope.$watch('sourcePermissionsGroup',
             _.debounce(function (newValue, oldValue) {
-                $scope.$apply(function () {
-                    console.log('sourcePermissionsGroup updated');
-                    GroupService.updateGroup($scope.user.skynetuuid,
-                        $scope.user.skynettoken,
-                        $scope.sourcePermissionsGroup)
-                        .then(function (updatedGroup) {
-                            console.log('sourcePermissionsGroup has been saved');
-                        }, function (error) {
-                            console.log(error);
-                        });
-                });
+                if (!angular.equals(newValue, oldValue)) {
+                    $scope.$apply(function () {
+                        console.log('sourcePermissionsGroup updated');
+                        GroupService.updateGroup($scope.user.skynetuuid,
+                            $scope.user.skynettoken,
+                            $scope.sourcePermissionsGroup)
+                            .then(function (updatedGroup) {
+                                updateResourceTotals();
+                            }, function (error) {
+                                console.log(error);
+                            });
+                    });
+                }
             }, 1000), true);
 
         $scope.$watch('targetPermissionsGroup',
             _.debounce(function (newValue, oldValue) {
-                $scope.$apply(function () {
-                    console.log('targetPermissionsGroup changed');
-                    GroupService.updateGroup($scope.user.skynetuuid,
-                        $scope.user.skynettoken,
-                        $scope.targetPermissionsGroup)
-                        .then(function (updatedGroup) {
-                        }, function (error) {
-                            console.log(error);
-                        });
-                });
+                if (!angular.equals(newValue, oldValue)) {
+                    $scope.$apply(function () {
+                        console.log('targetPermissionsGroup changed');
+                        GroupService.updateGroup($scope.user.skynetuuid,
+                            $scope.user.skynettoken,
+                            $scope.targetPermissionsGroup)
+                            .then(function (updatedGroup) {
+                                updateResourceTotals();
+                            }, function (error) {
+                                console.log(error);
+                            });
+                    });
+                }
             }, 1000), true);
 
         $scope.removeResourceFromGroup = function (group, resource) {
@@ -123,8 +134,27 @@ angular.module('octobluApp')
             }
         };
 
+        function updateResourceTotals() {
+            var resource = $scope.resourcePermission.resource;
+            resource.properties = resource.properties || {};
+            resource.properties.resourceCounts = {};
+            var resourceCounts = resource.properties.resourceCounts;
+
+            _.chain($scope.sourcePermissionsGroup.members)
+                .union($scope.targetPermissionsGroup.members)
+                .uniq(function (resource) {
+                    return resource.uuid;
+                })
+                .groupBy('type')
+                .pairs()
+                .each(function (pair) {
+                    var type = pair[0], count = pair[1].length;
+                    resourceCounts[type] = count;
+                });
+        }
+
     })
-    .controller('invitationController', function ($rootScope, $cookies, $scope, userService, InvitationService) {
+    .controller('invitationController', function ($scope, userService, InvitationService) {
         //Send the invitation
         $scope.recipientEmail = '';
 

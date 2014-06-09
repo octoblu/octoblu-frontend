@@ -142,11 +142,11 @@
                                 <li>{{controller}}</li>
                                 <li>
                                     <i class="fa fa-user" style="margin-right: 10px;"></i>People <span
-                                        class="label label-info pull-right">{{resourcePermission.resource.properties.userCount || 0}}</span>
+                                        class="label label-info pull-right">{{resourcePermission.resource.properties.resourceCounts.user || 0}}</span>
                                 </li>
                                 <li>
                                     <i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Devices<span
-                                        class="label label-success pull-right">{{resourcePermission.resource.properties.deviceCount || 0}}</span>
+                                        class="label label-success pull-right">{{resourcePermission.resource.properties.resourceCounts.device || 0}}</span>
                                 </li>
                             </ul>
                         </div>

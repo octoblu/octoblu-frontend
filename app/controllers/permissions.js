@@ -75,7 +75,8 @@ var permissionsController = {
             rscPermission.set({
                 source : req.body.source,
                 target : req.body.target,
-                permissions : req.body.permissions
+                permissions : req.body.permissions,
+                'resource.properties' : req.body.resource.properties
             });
 
             rscPermission.save(function(err, rscPerm){
