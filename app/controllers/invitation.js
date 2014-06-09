@@ -193,7 +193,7 @@ var invitationController = {
             var sender;
             var recipient;
 
-            var userPromise = User.findBySkynetUUIDAndToken( uuid, token );
+            var userPromise = User.findBySkynetUUIDAndToken(uuid, token);
             //1. Find the user with the give UUID and Token
             //2. Check if the recipient is already an existing octoblu user
             //3. Create a new invitation
@@ -261,7 +261,7 @@ var invitationController = {
                         }
                         res.send(200, invite);
                     });
-                }, function(error){
+                }, function (error) {
                     res.json(500, {
                         'success': false,
                         'error': error
@@ -284,7 +284,7 @@ var invitationController = {
         var invitation, sender, recipient;
         Invitation.findById(req.params.id).exec().then(function (inv) {
             invitation = inv;
-            console.log('inv',inv);
+            console.log('inv', inv);
             if (invitation.status === 'ACCEPTED') {
                 res.redirect('/dashboard');
             } else {
@@ -292,7 +292,7 @@ var invitationController = {
             }
         }).then(function (snd) {
             sender = snd;
-            console.log('snd',snd);
+            console.log('snd', snd);
             if (invitation.recipient.uuid) {
                 return User.findBySkynetUUID(invitation.recipient.uuid);
             }
@@ -300,97 +300,100 @@ var invitationController = {
                 return User.findByEmail(invitation.recipient.email);
             }
         }).then(function (rcp) {
-            recipient = rcp;
-            console.log('rcp',rcp);
+                recipient = rcp;
+                console.log('rcp', rcp);
 
-            // if (!recipient || recipient._id !== req.session.user._id) {
-            if (!recipient || recipient.skynetuuid !== req.cookies.skynetuuid) {
-                res.redirect('/signup');
-            } else {
-
-                var operatorGroup = _.findWhere(sender.groups, {'type': 'operators'});
-
-                if (!operatorGroup) {
-                    operatorGroup = {'uuid': uuid.v1(), 'type': 'operators', members: []};
-                    sender.groups.push(operatorGroup);
-
-                }
-
-                var existingMember = _.findWhere(operatorGroup.members, {'uuid': recipient.skynetuuid });
-                //We are seeing if the recipient is already part of the operators group. If the member is
-                //already part of the
-                if (! existingMember ) {
-                    operatorGroup.members.push({uuid: recipient.skynetuuid, name: recipient.displayName });
-                    invitation.accepted = moment.utc();
-                    invitation.status = "ACCEPTED";
-                    invitation.save();
-                    sender.markModified('groups');
-                    sender.save();
+                // if (!recipient || recipient._id !== req.session.user._id) {
+                if (!recipient || recipient.skynetuuid !== req.cookies.skynetuuid) {
+                    res.redirect('/signup');
+                    return;
                 } else {
-                    //Make sure
-                    if(invitation.status === "PENDING"){
-                        invitation.status = "ACCEPTED";
-                        invitation.accepted = moment.utc();
-                        invitation.save();
-                    }
+                    return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid }).exec()
+                        .then(function (operatorGroup) {
+                            operatorGroup = operatorGroup ||
+                                new Group({
+                                    name: 'operators',
+                                    'type': 'operators',
+                                    resource: {
+                                        owner: user.resourceId
+                                    }
+                                });
+
+                            var existingMember = _.findWhere(operatorGroup.members, {'uuid': recipient.resource.uuid });
+                            //We are seeing if the recipient is already part of the operators group. If the member is
+                            //already part of the
+                            if (!existingMember) {
+                                operatorGroup.members.push(recipient.resourceId);
+                                invitation.accepted = moment.utc();
+                                invitation.status = "ACCEPTED";
+                                invitation.save();
+                                operatorGroup.save();
+                            } else {
+                                //Make sure
+                                if (invitation.status === "PENDING") {
+                                    invitation.status = "ACCEPTED";
+                                    invitation.accepted = moment.utc();
+                                    invitation.save();
+                                }
+                            }
+                            res.redirect('/dashboard');
+                        });
                 }
             }
-            res.redirect('/dashboard');
-        }, function(error){
-            console.log(JSON.stringify(error));
-            res.send(500, {'error' : 'Could not accept invitation'});
-        });
+        )
+
     },
 
-    /**
-     *
-     * @param req
-     * @param res
-     */
-    deleteInvitation: function (req, res) {
-        if (req.params.id && req.params.token && req.params.invitationId) {
+/**
+ *
+ * @param req
+ * @param res
+ */
+deleteInvitation: function (req, res) {
+    if (req.params.id && req.params.token && req.params.invitationId) {
 
-            var uuid = req.params.id;
-            var token = req.params.token;
-            var invitationId = req.params.invitationId;
-            User.findOne({ $or: [
-                {
-                    'local.skynetuuid': uuid,
-                    'local.skynettoken': token
-                },
-                {
-                    'twitter.skynetuuid': uuid,
-                    'twitter.skynettoken': token
-                },
-                {
-                    'facebook.skynetuuid': uuid,
-                    'facebook.skynettoken': token
-                },
-                {
-                    'google.skynetuuid': uuid,
-                    'google.skynettoken': token
-                }
-            ]
-            }, function (err, user) {
-                if (!err) {
-                    return res.JSON(404, err);
-                } else {
-                    Invitation.findByIdAndRemove(invitationId, function (err, invitation) {
-                        if (err) {
-                            res.json(500, err);
-                        }
-                        res.json(200, invitation);
-                    });
-                }
-            });
-        } else {
-            return res.json(400, {
-                error: 'One or more required parameters is missing'
-            });
-        }
-
+        var uuid = req.params.id;
+        var token = req.params.token;
+        var invitationId = req.params.invitationId;
+        User.findOne({ $or: [
+            {
+                'local.skynetuuid': uuid,
+                'local.skynettoken': token
+            },
+            {
+                'twitter.skynetuuid': uuid,
+                'twitter.skynettoken': token
+            },
+            {
+                'facebook.skynetuuid': uuid,
+                'facebook.skynettoken': token
+            },
+            {
+                'google.skynetuuid': uuid,
+                'google.skynettoken': token
+            }
+        ]
+        }, function (err, user) {
+            if (!err) {
+                return res.JSON(404, err);
+            } else {
+                Invitation.findByIdAndRemove(invitationId, function (err, invitation) {
+                    if (err) {
+                        res.json(500, err);
+                    }
+                    res.json(200, invitation);
+                });
+            }
+        });
+    } else {
+        return res.json(400, {
+            error: 'One or more required parameters is missing'
+        });
     }
-};
+
+}
+}
+;
 
 module.exports = function (app, passport, config) {
 
@@ -402,7 +405,7 @@ module.exports = function (app, passport, config) {
     app.get('/api/user/:id/:token/invitation/:invitationId', invitationController.getInvitationById);
     app.put('/api/user/:id/:token/invitation/send', invitationController.sendInvitation);
     app.delete('/api/user/:id/:token/invitations/:invitationId', invitationController.deleteInvitation);
-    app.get('/api/invitation/:id/accept', requireAuthorized, invitationController.acceptInvitation );
+    app.get('/api/invitation/:id/accept', requireAuthorized, invitationController.acceptInvitation);
 //
     function requireAuthorized(req, res, next) {
         // if (!req.session.user || !req.session.user.id) {

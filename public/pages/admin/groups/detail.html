@@ -15,7 +15,7 @@
             class="list-group">
             <li class="list-group-item" ng-repeat="resource in sourcePermissionsGroup.members | orderBy:'name'"
                 style="min-height: 50px;">
-                 <span class="fa-stack fa-2x">
+                 <span class="fa-stack fa-2x resource-icon">
                         <i class="fa fa-square-o fa-stack-2x"></i>
                         <i class="fa fa-stack-1x"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
@@ -135,7 +135,7 @@
             class="list-group">
             <li class="list-group-item" ng-repeat="resource in targetPermissionsGroup.members | orderBy:'name'"
                 style="min-height: 50px;">
-                 <span class="fa-stack fa-2x">
+                 <span class="fa-stack fa-2x resource-icon">
                         <i class="fa fa-square-o fa-stack-2x"></i>
                         <i class="fa  fa-stack-1x"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>

@@ -12,7 +12,7 @@
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-user fa-inverse fa-stack-1x"></i>
                  </span>
-                    {{resource.properties.name}}
+                    {{resource.properties.name || resource.properties.displayName || resource.properties.email}}
                 </li>
             </ul>
         </div>

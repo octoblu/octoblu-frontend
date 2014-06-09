@@ -30,13 +30,20 @@ Resource.uuid.default = uuid.v1;
 Resource.uuid.unique = true;
 Resource.type.required = true;
 
-function enforceDefaults(doc, uuidProperty, type) {
+function enforceDefaults(doc, uuidProperty, type, properties) {
     //convention to sync ids to resources.
     if (uuidProperty && doc.get(uuidProperty)) {
         doc.resource.uuid = doc.get(uuidProperty);
     }
     if (type) {
         doc.resource.type = type;
+    }
+
+    if(properties) {
+        doc.resource.properties = {};
+        _.each(properties, function(property){
+            doc.resource.properties[property] = doc[property];
+        });
     }
 }
 
@@ -61,40 +68,44 @@ function makeResourceObject( options ){
 function makeResourceModel(options) {
     var schema = options.schema,
         type = options.type,
+        properties = options.properties,
         uuidProperty = options.uuidProperty;
 
     schema.add({resource: Resource});
 
-    if (type || uuidProperty) {
+    if (type || uuidProperty || properties) {
         //going into the database
         schema.pre('validate', function (next) {
-            enforceDefaults(this, uuidProperty, type);
+            enforceDefaults(this, uuidProperty, type, properties);
             next();
         });
 
         //coming out of the database
         schema.post('init', function (doc) {
-            enforceDefaults(doc, uuidProperty, type);
+            enforceDefaults(doc, uuidProperty, type, properties);
         });
     }
     schema.virtual('resourceId').get(function () {
         return {
             uuid: this.resource.uuid,
-            type: this.resource.type
+            type: this.resource.type,
+            properties: this.resource.properties
         };
     });
 
     schema.virtual('resource.owner.resourceId').get(function () {
         return {
             uuid: this.resource.owner.uuid,
-            type: this.resource.owner.type
+            type: this.resource.owner.type,
+            properties: this.resource.owner.properties
         };
     });
 
     schema.virtual('resource.parent.resourceId').get(function () {
         return {
             uuid: this.resource.parent.uuid,
-            type: this.resource.parent.type
+            type: this.resource.parent.type,
+            properties: this.resource.parent.properties
         };
     });
 }
