@@ -1,56 +1,62 @@
 angular.module('octobluApp').
-    service('PermissionService' , function($resource){
-
-
-        return $resource(
-            '/api/permissions/:uuid',
-            { uuid : '@uuid'}
-             ,
-            {
-                getPermissionByUUID: {
-                    method: 'GET',
-                    url: '/api/permissions',
-                    isArray: true,
-                    params : {
-                        uuid : '@uuid'
+    service('PermissionsService', function ($http, $q) {
+        return {
+            all: function (uuid, token) {
+                return $http.get('/api/permissions', {
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
                     }
-                },
-                all: {
-                    method: 'GET',
+                }).then(function(res){
+                    return res.data;
+                });
+            },
+
+            add: function (uuid, token, permission) {
+                return $http({method: 'POST',
                     url: '/api/permissions',
-                    isArray: true
-                },
-                update: {
-                    method: 'PUT',
-                    isArray: false,
-                    params : {
-                        uuid : '@uuid'
+                    data: permission,
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
                     }
-                },
-                add: {
-                    method: 'POST',
-                    url : 'api/permissions',
-                    params : {
-                        uuid : '@uuid'
-                    },
-                    isArray: false
-                },
-                'getGroupResourcePermission': {
-                    method: 'PUT',
-                    url: '/api/group/:uuid/permissions',
-                    params : {
-                        uuid : '@uuid'
-                    },
-                    isArray: false
-                },
-                'remove': {
-                    'method': 'DELETE',
-                    params : {
-                        uuid : '@uuid'
-                    },
-                    isArray: false
-                }
+                }).then(function(res){
+                    return res.data;
+                });
+            },
+
+            allGroupPermissions: function (uuid, token) {
+                return $http({method: 'GET', url: '/api/permissions/groups',
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
+                    }
+                }).then(function(res){
+                    return res.data;
+                });
+            },
+            delete: function (uuid, token, resourcePermissionUUID) {
+                return $http({method: 'DELETE', url: '/api/permissions/' + resourcePermissionUUID,
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
+                    }
+                }).then(function(res){
+                    return res.data;
+                });
+            },
+            update: function(uuid, token, permission){
+                return $http({method: 'PUT',
+                    url: '/api/permissions/' + permission.resource.uuid,
+                    data: permission,
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
+                    }
+                }).then(function(res){
+                    return res.data;
+                });
             }
-        );
-
-    });
+        }
+    })
+;

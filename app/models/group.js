@@ -13,7 +13,7 @@ var GroupSchema = new mongoose.Schema({
     type: {
         type: String,
         default: 'default',
-        enum: ['default', 'operators', 'permissions'],
+        enum: ['default', 'operators'],
         required: true
     },
     members: {type: [Resource.ResourceId], default: []}

@@ -8,6 +8,7 @@ var ResourcePermissionSchema = new mongoose.Schema({
     //Yep, a resource permission is also a resource. Just makes queries easier.
     //Plus, we might want to have crud permissions on these eventually. Who knows?
     uuid: {type: String, required: true, index: true, default: uuid.v1},
+    name: String,
     grantedBy: Resource.ResourceId,
     source: Resource.ResourceId,
     target: Resource.ResourceId,

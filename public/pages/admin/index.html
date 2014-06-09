@@ -117,21 +117,21 @@
                         <form class="form-inline pull-right" role="form">
                             <div class="form-group">
                                 <label class="sr-only" for="add-group-name">Email address</label>
-                                <input type="text" ng-model="groupName" name="groupName" class="form-control" id="add-group-name"
+                                <input type="text" ng-model="resourcePermissionName" name="groupName" class="form-control" id="add-group-name"
                                        placeholder="Enter a Group Name" required>
                             </div>
-                            <button type="button" ng-click="addGroup()" class="btn btn-default"><i class="fa fa-plus"></i>Add Group</button>
+                            <button type="button" ng-click="addResourcePermission()" class="btn btn-default"><i class="fa fa-plus"></i>Add Group</button>
                         </form>
                     </div>
                     <h3 class="text-center text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12">Groups</h3>
-                    <div data-ng-repeat="group in allGroups | filter:{type:'default'} |  orderBy:'name'"
+                    <div data-ng-repeat="resourcePermission in groupResourcePermissions | orderBy:'name'"
                          class="panel panel-primary col-xs-12 col-sm-12 col-md-2 col-lg-2 group-summary-panel">
                         <div class="panel-heading group-summary-panel-heading">
                             <h4>
                             <i class="fa fa-users"></i>
-                            <a ui-sref="admin.detail({ 'uuid' : group.uuid })" class="bg-primary">{{group.name}}</a>
-                            <a class=" pull-right bg-primary" tooltip="Delete {{group.name}}" tooltip-placement="top"
-                               tooltip-popup-delay="5" ng-click="deleteGroup(group)">
+                            <a ui-sref="admin.detail({ 'uuid' : resourcePermission.uuid })" class="bg-primary">{{resourcePermission.name}}</a>
+                            <a href class="pull-right bg-primary" tooltip="Delete {{resourcePermission.name}}" tooltip-placement="top"
+                               tooltip-popup-delay="5" ng-click="deleteResourcePermission(resourcePermission)">
                                     <i class="fa fa-trash-o fa-lg"></i>
                             </a>
 
@@ -143,11 +143,11 @@
                                 <li>{{controller}}</li>
                                 <li>
                                     <i class="fa fa-user" style="margin-right: 10px;"></i>People <span
-                                        class="label label-info pull-right">{{(group.members | filter: {'type': 'user'}).length }}</span>
+                                        class="label label-info pull-right">{{getUserCount(resourcePermission)}}</span>
                                 </li>
                                 <li>
                                     <i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Devices<span
-                                        class="label label-success pull-right">{{(group.members | filter: {'type': 'device'}).length }}</span>
+                                        class="label label-success pull-right">{{getDeviceCount(resourcePermission)}}</span>
                                 </li>
                             </ul>
                         </div>
