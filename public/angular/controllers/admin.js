@@ -6,7 +6,10 @@ angular.module('octobluApp')
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
-
+        GroupService.getOperatorsGroup(currentUser.skynetuuid, currentUser.skynettoken)
+            .then(function(operatorsGroup){
+                $scope.operatorsGroup = operatorsGroup;
+            });
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
                 var resourcePermission;

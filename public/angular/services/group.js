@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .service('GroupService' , function($cookies, $q, $http ){
+    .service('GroupService', function ($cookies, $q, $http) {
 
         /**
          * Get a promise of the list of devices that belong to the owner.
@@ -9,19 +9,19 @@ angular.module('octobluApp')
          * if the owner owns no devices, or an error if there is an
          * error returned from the API call.
          */
-        this.getAllDevices = function(uuid, token){
+        this.getAllDevices = function (uuid, token) {
             var defer = $q.defer();
-            if( uuid && token ){
+            if (uuid && token) {
                 $http.get('/api/owner/' + uuid + '/' + token + "/devices")
-                    .success(function(data) {
-                       defer.resolve(data);
+                    .success(function (data) {
+                        defer.resolve(data);
                     })
-                    .error(function(error) {
-                       defer.reject(error);
+                    .error(function (error) {
+                        defer.reject(error);
                     });
             } else {
                 defer.reject({
-                    'error' : 'Owner is null or undefined'
+                    'error': 'Owner is null or undefined'
                 });
             }
             return defer.promise;
@@ -44,25 +44,25 @@ angular.module('octobluApp')
          *             permissions : [permissions value]
          *          }
          */
-        this.addGroup = function( name, uuid, token ){
+        this.addGroup = function (name, uuid, token) {
 
             var defer = $q.defer();
 
-            if(! (uuid && token) ){
+            if (!(uuid && token)) {
                 defer.reject({
-                    'error' : 'Missing uuid and/or token'
+                    'error': 'Missing uuid and/or token'
                 });
             }
 
-            if( ! name ){
+            if (!name) {
                 defer.reject({
-                    'error' : 'Name is required'
+                    'error': 'Name is required'
                 });
             } else {
 
-                if(name.trim().length === 0){
+                if (name.trim().length === 0) {
                     defer.reject({
-                        'error' : 'Name cannot be blank'
+                        'error': 'Name cannot be blank'
                     });
                 }
 
@@ -70,20 +70,20 @@ angular.module('octobluApp')
                 //Create the new group with the data
                 //If no permissions have been set, use default permissions
                 var groupData = {
-                    'name' : name
+                    'name': name
                 };
 
                 $http.post(url, groupData, {
-                    headers : {
-                       'ob_skynetuuid' : uuid,
-                        'ob_skynettoken' : token
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
                     }
-                }).success(function(group){
-                        defer.resolve(group);
+                }).success(function (group) {
+                    defer.resolve(group);
                 })
-                .error(function(result){
+                    .error(function (result) {
                         defer.reject(result);
-                });
+                    });
             }
             return defer.promise;
         };
@@ -95,32 +95,32 @@ angular.module('octobluApp')
          * @param group_uuid
          * @returns {defer.promise|*}
          */
-        this.getGroup = function(uuid, token, group_uuid ){
+        this.getGroup = function (uuid, token, group_uuid) {
             var defer = $q.defer();
-            if(! (uuid) ){
+            if (!(uuid)) {
                 defer.reject({
-                    'error' : 'Missing uuid and/or token'
+                    'error': 'Missing uuid and/or token'
                 });
             }
 
-            if(! group_uuid ){
+            if (!group_uuid) {
                 defer.reject({
-                    'error' : 'Missing required parameter: group uuid'
+                    'error': 'Missing required parameter: group uuid'
                 });
             }
 
             var url = '/api/groups/' + group_uuid;
             $http.get(url, {
-                headers : {
-                    'ob_skynetuuid' : uuid,
-                    'ob_skynettoken' : token
+                headers: {
+                    'ob_skynetuuid': uuid,
+                    'ob_skynettoken': token
                 }
-            }).success(function(group){
+            }).success(function (group) {
                 defer.resolve(group);
             })
-            .error(function(result){
-                defer.reject(result);
-            });
+                .error(function (result) {
+                    defer.reject(result);
+                });
 
             return defer.promise;
         };
@@ -135,22 +135,22 @@ angular.module('octobluApp')
          * that will contain the deleted group if successful
          * or an error.
          */
-        this.deleteGroup = function(uuid, token, group_uuid ){
+        this.deleteGroup = function (uuid, token, group_uuid) {
             var defer = $q.defer();
-            if( ! uuid || ! token || ! group_uuid ){
+            if (!uuid || !token || !group_uuid) {
                 defer.reject({
-                    'error' : 'missing required parameters'
+                    'error': 'missing required parameters'
                 });
             } else {
                 var url = '/api/groups/' + group_uuid;
-                $http.delete(url , {
-                    headers : {
-                        'ob_skynetuuid' : uuid,
-                        'ob_skynettoken' : token
+                $http.delete(url, {
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
                     }
-                }).success(function(group){
+                }).success(function (group) {
                     defer.resolve(group);
-                }).error(function(result){
+                }).error(function (result) {
                     defer.reject(result);
                 });
             }
@@ -168,79 +168,64 @@ angular.module('octobluApp')
          * be the modified group on success or error if the group could not be saved
          * successfully
          */
-        this.updateGroup = function(uuid, token, updatedGroup ){
+        this.updateGroup = function (uuid, token, updatedGroup) {
 
             var defer = $q.defer();
-            if( ! uuid || ! token || ! updatedGroup){
+            if (!uuid || !token || !updatedGroup) {
                 defer.reject({
-                    'error' : 'missing required parameters'
+                    'error': 'missing required parameters'
                 });
             } else {
                 var url = '/api/groups/' + updatedGroup.uuid;
                 $http.put(url,
                     updatedGroup,
                     {
-                    headers : {
-                    'ob_skynetuuid' : uuid,
-                    'ob_skynettoken' : token
+                        headers: {
+                            'ob_skynetuuid': uuid,
+                            'ob_skynettoken': token
+                        }
+                    }).success(function (result) {
+                        defer.resolve(result)
+                    }).error(function (result) {
+                        defer.reject(result);
+                    });
+            }
+            return defer.promise;
+        };
+
+        this.getOperatorsGroup = function (uuid, token) {
+            return $http.get('/api/groups/operators', {
+                headers: {
+                    'ob_skynetuuid': uuid,
+                    'ob_skynettoken': token
                 }
-            }).success(function(result){
-                    defer.resolve(result)
-                }).error(function(result){
-                    defer.reject(result);
-                });
-            }
-            return defer.promise;
+            }).then(function (res) {
+                return res.data;
+            });
         };
 
-        this.getResourcePermission = function(groupUUID, currentUser){
+        this.getAllGroups = function (uuid, token, type) {
             var defer = $q.defer();
-            if( ! groupUUID || ! currentUser ){
+            if (!uuid || !token) {
                 defer.reject({
-                    'error' : 'missing required parameters'
-                });
-            } else {
-
-                var url = '/api/groups/' + groupUUID + '/permissions';
-                $http.get(url, {
-                    headers : {
-                        'ob_skynetuuid' : currentUser.skynetuuid,
-                        'ob_skynettoken' : currentUser.skynettoken
-                    }
-                }).success(function(group){
-                    defer.resolve(group)
-                }).error(function(result){
-                    defer.reject(result);
-                });
-            }
-            return defer.promise;
-        };
-
-        /**
-         *
-         */
-        this.getAllGroups = function(uuid, token, type ){
-            var defer = $q.defer();
-            if( ! uuid || ! token ){
-                defer.reject({
-                    'error' : 'missing required parameters'
+                    'error': 'missing required parameters'
                 });
             } else {
 
                 var url = '/api/groups';
 
-                if( type ){
+                if (type) {
                     url = url + '?type=' + type;
                 }
 
                 $http.get(url, {
-                    headers : {
-                        'ob_skynetuuid' : uuid,
-                        'ob_skynettoken' : token
+                    headers: {
+                        'ob_skynetuuid': uuid,
+                        'ob_skynettoken': token
                     }
-                }).success(function(group){
+                }).success(function (group) {
                     defer.resolve(group)
-                }).error(function(result){
+                }).error(function (result) {
                     defer.reject(result);
                 });
             }

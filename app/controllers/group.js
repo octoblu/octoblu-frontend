@@ -92,6 +92,10 @@ var groupController = {
         }).exec()
             .then(function (dbGroup) {
                 group = dbGroup;
+                if(!dbGroup) {
+                    res.send(400, {error: 'group not found'});
+                    return;
+                }
                 return Group.find({'resource.parent.uuid': group.resource.uuid}).remove().exec();
             })
             .then(function (subgroups) {
@@ -115,6 +119,10 @@ var groupController = {
             uuid: req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
         }).exec().then(function (dbGroup) {
+            if(!dbGroup) {
+                res.send(400, {error: 'group not found'});
+                return;
+            }
             dbGroup.set({
                 name: group.name,
                 members: group.members
@@ -130,6 +138,23 @@ var groupController = {
             });
         });
     },
+    getOperatorsGroup: function (req, res) {
+        Group.findOne({
+            'resource.owner.uuid': req.user.resource.uuid,
+            type: 'operators'
+        }).exec().then(
+            function (dbGroup) {
+                if(!dbGroup) {
+                    res.send(400, {error: 'group not found'});
+                    return;
+                }
+                res.send(dbGroup);
+            },
+            function (err) {
+                res.send(400, err);
+            }
+        );
+    }
 };
 
 
@@ -141,10 +166,11 @@ module.exports = function (app) {
 
     app.post('/api/groups', isAuthenticated, groupController.addGroup);
 
+    app.get('/api/groups/operators', isAuthenticated, groupController.getOperatorsGroup);
+
     app.delete('/api/groups/:uuid', isAuthenticated, groupController.deleteGroup);
 
     app.put('/api/groups/:uuid', isAuthenticated, groupController.updateGroup);
-
     app.get('/api/groups/:uuid', isAuthenticated, groupController.getGroupById);
 };
 
