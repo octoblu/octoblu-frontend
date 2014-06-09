@@ -9,7 +9,7 @@
         <p class="lead text-muted"
            ng-if="sourcePermissionsGroup.members.length == 0 || !sourcePermissionsGroup.members || !sourcePermissionsGroup">
             You have no resources as <i class="fa fa-bullhorn" style="margin-right: 5px;"></i>sources.
-            <br />Add them using the &OpenCurlyQuote;<i class="fa fa-plus"></i>&CloseCurlyQuote; button
+            <br/>Add them using the &OpenCurlyQuote;<i class="fa fa-plus"></i>&CloseCurlyQuote; button
         </p>
         <ul ng-if="!(sourcePermissionsGroup.members.length == 0) && sourcePermissionsGroup.members && sourcePermissionsGroup"
             class="list-group">
@@ -20,9 +20,9 @@
                         <i class="fa fa-stack-1x"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                  </span>
-                <span>{{resource.properties.name}}</span>
+                <span>{{resource.name || resource.displayName || resource.properties.name}}</span>
                 <a class="btn btn-danger pull-right"
-                   ng-click="removeResourceFromSourcePermissionsGroup(resource)"><i
+                   ng-click="removeResourceFromGroup(sourcePermissionsGroup, resource)"><i
                         class="fa fa-trash-o"></i></a>
             </li>
         </ul>
@@ -37,10 +37,10 @@
             </button>
             <ul class="dropdown-menu">
                 <li ng-repeat="resource in allResources">
-                    <a href ng-click="addResourceToSourcePermissionsGroup(resource)">
+                    <a href ng-click="addResourceToGroup(sourcePermissionsGroup, resource)">
                         <i class="fa fa-fw"
-                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
-                        {{resource.properties.name}}
+                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type === 'device'}"></i>
+                        {{resource.name || resource.displayName || resource.properties.name}}
                     </a>
                 </li>
             </ul>
@@ -129,7 +129,8 @@
     <div class="panel-body group-info-panel-body ">
         <p class="lead text-muted"
            ng-if="targetPermissionsGroup.members.length == 0 || !targetPermissionsGroup.members || !targetPermissionsGroup">
-            You have no resources as <i class="fa fa-crosshairs" style="margin-right: 5px;"></i>targets.<br /> Add them using the &OpenCurlyQuote;<i class="fa fa-plus"></i>&CloseCurlyQuote; button
+            You have no resources as <i class="fa fa-crosshairs" style="margin-right: 5px;"></i>targets.<br/> Add them
+            using the &OpenCurlyQuote;<i class="fa fa-plus"></i>&CloseCurlyQuote; button
         </p>
         <ul ng-if="!(targetPermissionsGroup.members.length == 0) && targetPermissionsGroup.members && targetPermissionsGroup"
             class="list-group">
@@ -142,8 +143,8 @@
                  </span>
                 <span>{{resource.properties.name}}</span>
                 <a class="btn btn-danger pull-right"
-                   ng-click="removeResourceFromTargetPermissionsGroup(resource)"><i
-                        class="fa fa-trash-o"></i></a>
+                   ng-click="removeResourceFromGroup(targetPermissionsGroup, resource)">
+                    <i class="fa fa-trash-o"></i></a>
             </li>
         </ul>
     </div>
@@ -157,7 +158,7 @@
             </button>
             <ul class="dropdown-menu">
                 <li ng-repeat="resource in allResources | filter : {type : 'device'}">
-                    <a href ng-click="addResourceToTargetPermissionsGroup(resource)">
+                    <a href ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
                         <i class="fa fa-fw"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                         {{resource.properties.name}}

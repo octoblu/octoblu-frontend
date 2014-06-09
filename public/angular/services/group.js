@@ -10,21 +10,10 @@ angular.module('octobluApp')
          * error returned from the API call.
          */
         this.getAllDevices = function (uuid, token) {
-            var defer = $q.defer();
-            if (uuid && token) {
-                $http.get('/api/owner/' + uuid + '/' + token + "/devices")
-                    .success(function (data) {
-                        defer.resolve(data);
-                    })
-                    .error(function (error) {
-                        defer.reject(error);
-                    });
-            } else {
-                defer.reject({
-                    'error': 'Owner is null or undefined'
+            return $http.get('/api/owner/' + uuid + '/' + token + "/devices")
+                .then(function (res) {
+                    return res.data;
                 });
-            }
-            return defer.promise;
         };
 
 

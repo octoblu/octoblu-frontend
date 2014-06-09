@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $rootScope, $scope, $modal, $log, $cookies, currentUser, allDevices, GroupService, PermissionsService) {
+    .controller('adminController', function (allGroupResourcePermissions, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService) {
         $scope.user = currentUser;
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
-        GroupService.getOperatorsGroup(currentUser.skynetuuid, currentUser.skynettoken)
-            .then(function(operatorsGroup){
-                $scope.operatorsGroup = operatorsGroup;
-            });
+        $scope.operatorsGroup = operatorsGroup;
+        $scope.allResources = _.union(operatorsGroup.members,
+            _.pluck(allDevices, 'resource'));
+
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
                 var resourcePermission;
@@ -56,10 +56,10 @@ angular.module('octobluApp')
             return '/assets/images/robot8.png';
         };
     })
-    .controller('adminGroupDetailController', function ($scope, PermissionsService, $stateParams, resourcePermission, sourcePermissionGroup, targetPermissionGroup) {
+    .controller('adminGroupDetailController', function ($scope, PermissionsService, $stateParams, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup) {
         $scope.resourcePermission = resourcePermission;
-        $scope.sourcePermissionGroup = sourcePermissionGroup;
-        $scope.targetPermissionGroup = targetPermissionGroup;
+        $scope.sourcePermissionsGroup = sourcePermissionsGroup;
+        $scope.targetPermissionsGroup = targetPermissionsGroup;
 
         $scope.$watch('resourcePermission.permissions', function (newValue, oldValue) {
             if (newValue && oldValue && !angular.equals(newValue, oldValue)) {
@@ -112,63 +112,17 @@ angular.module('octobluApp')
 //            }
         }, true);
 
-        /*
-         removeResourceFromSourcePermissionsGroup
-         check if the resource
-         */
-        $scope.removeResourceFromSourcePermissionsGroup = function (resource) {
-            var existingSourcePermissionsResource = _.findWhere($scope.sourcePermissionsGroup.members, {uuid: resource.uuid });
-            if (existingSourcePermissionsResource) {
-                $scope.sourcePermissionsGroup.members = _.without($scope.sourcePermissionsGroup.members,
-                    _.findWhere($scope.sourcePermissionsGroup.members,
-                        { uuid: resource.uuid }));
-                var existingTargetGroupMember = _.findWhere($scope.targetPermissionsGroup.members, {uuid: resource.uuid });
-                //If the resource is not in the target group, you should remove it from the parent group
-                if (!existingTargetGroupMember) {
-                    $scope.group.members =
-                        _.without($scope.group.members, _.findWhere($scope.group.members, { uuid: resource.uuid }));
-
-                }
-            }
+        $scope.removeResourceFromGroup = function (group, resource) {
+                group.members = _.filter(group.members, function(member){
+                    return member.uuid !== resource.uuid;
+                });
         };
 
-        $scope.removeResourceFromTargetPermissionsGroup = function (resource) {
-            var existingTargetPermissionsResource = _.findWhere($scope.targetPermissionsGroup.members, {uuid: resource.uuid });
-            if (existingTargetPermissionsResource) {
-                $scope.targetPermissionsGroup.members = _.without($scope.targetPermissionsGroup.members,
-                    _.findWhere($scope.targetPermissionsGroup.members,
-                        { uuid: resource.uuid }));
-                var existingSourcePermissionsGroupMember = _.findWhere($scope.sourcePermissionsGroup.members, {uuid: resource.uuid});
-                //If the resource is not in the source permissions group, you should remove it from members list in the parent group
-                if (!existingSourcePermissionsGroupMember) {
-                    $scope.group.members = _.without($scope.group.members,
-                        _.findWhere($scope.group.members,
-                            { uuid: resource.uuid })
-                    );
-                }
-            }
-        };
+        $scope.addResourceToGroup = function (group, resource) {
+            var resourcePermissionIndex = _.findWhere(group.members, {uuid: resource.uuid});
 
-        $scope.addResourceToTargetPermissionsGroup = function (resource) {
-            var existingPermissionsResource = _.findWhere($scope.targetPermissionsGroup.members, {uuid: resource.uuid});
-            console.log(resource);
-            if (!existingPermissionsResource) {
-                $scope.targetPermissionsGroup.members.push(resource);
-                var existingGroupMember = _.findWhere($scope.group.members, {uuid: resource.uuid});
-                if (!existingGroupMember) {
-                    $scope.group.members.push(resource);
-                }
-            }
-        };
-
-        $scope.addResourceToSourcePermissionsGroup = function (resource) {
-            var existingPermissionsResource = _.findWhere($scope.sourcePermissionsGroup.members, {uuid: resource.uuid});
-            if (!existingPermissionsResource) {
-                $scope.sourcePermissionsGroup.members.push(resource);
-                var existingGroupMember = _.findWhere($scope.group.members, {uuid: resource.uuid});
-                if (!existingGroupMember) {
-                    $scope.group.members.push(resource);
-                }
+            if (!resourcePermissionIndex) {
+                group.members.push(resource);
             }
         };
 

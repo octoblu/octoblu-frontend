@@ -190,6 +190,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/admin/index.html',
                 controller: 'adminController',
                 resolve: {
+                    operatorsGroup : function(GroupService, currentUser){
+                        return GroupService.getOperatorsGroup(currentUser.skynetuuid, currentUser.skynettoken)
+                    },
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
@@ -215,10 +218,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     resourcePermission : function(allGroupResourcePermissions, $stateParams){
                         return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
                     },
-                    sourcePermissionGroup: function (resourcePermission, GroupService, currentUser) {
+                    sourcePermissionsGroup: function (resourcePermission, GroupService, currentUser) {
                         return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.source.uuid);
                     },
-                    targetPermissionGroup: function (resourcePermission, GroupService, currentUser) {
+                    targetPermissionsGroup: function (resourcePermission, GroupService, currentUser) {
                         return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid);
                     }
                 }
