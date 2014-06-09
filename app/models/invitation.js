@@ -18,9 +18,6 @@ var InvitationSchema = new mongoose.Schema({
    },
    sent : Date,
    completed : Date
-},
-{
-    collection : 'invitation'
 });
 
 module.exports = InvitationSchema;

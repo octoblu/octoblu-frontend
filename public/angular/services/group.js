@@ -184,8 +184,8 @@ angular.module('octobluApp')
                     'ob_skynetuuid' : uuid,
                     'ob_skynettoken' : token
                 }
-            }).success(function(group){
-                    defer.resolve(group)
+            }).success(function(result){
+                    defer.resolve(result)
                 }).error(function(result){
                     defer.reject(result);
                 });

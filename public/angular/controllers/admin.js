@@ -41,13 +41,10 @@ angular.module('octobluApp')
                 'Confirm Delete Group', 'Are you sure you want to delete ' + group.name + ' group?',
                 function () {
                     var groupPromise = GroupService.deleteGroup($scope.user.skynetuuid, $scope.user.skynettoken, group.uuid);
-                    groupPromise.then(function (deletedGroup) {
-                        //filter the deleted group out of the list and set the user.groups
-                        var groups = _.filter($scope.allGroups, function (group) {
-                            return group.uuid != deletedGroup.uuid;
-                        });
+                    groupPromise.then(function (result) {
+                        return GroupService.getAllGroups($scope.user.skynetuuid, $scope.user.skynettoken);
+                    }).then(function(groups){
                         $scope.allGroups = groups;
-
                     }, function (result) {
                         console.log(JSON.stringify(result));
                     });
@@ -224,7 +221,8 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('invitationController', function ($rootScope, $cookies, $scope, InvitationService) {
+    .controller('invitationController', function ($rootScope, $cookies, $scope, userService, InvitationService) {
+
         //Send the invitation
         $scope.recipientEmail = '';
 
@@ -236,18 +234,14 @@ angular.module('octobluApp')
             }, $scope.recipientEmail);
 
             invitationPromise.then(function (invitation) {
+                $scope.recipientEmail = '';
 
-                /*
-                 TODO Display a successful notification to the user. Use a notification, not a modal
-                 */
 
             }, function (result) {
                 /*
                  *TODO - Display an error notification to the user
                  */
-
             });
-
         };
 
     });
