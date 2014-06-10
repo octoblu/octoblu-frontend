@@ -8,7 +8,8 @@
     <!-- META -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta content="text/html;charset=utf-8" http-equiv="content-type">
-    <meta content="Meshines" name="description">
+    <meta name="description" content="Octoblu - Internet of Everything!">
+    <meta name="author" content="Octoblu">
     <link href="assets/images/meta_icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="assets/images/meta_icons/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
     <link href="assets/images/meta_icons/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
@@ -16,8 +17,9 @@
     <link href="assets/images/meta_icons/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114">
     <link href="assets/images/meta_icons/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144">
 
-    <title>Octoblu</title>
+    <title>Octoblu - Internet of Everything!</title>
 
+    <!-- SCROLLS -->
     <!-- SCROLLS -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
     <!-- <link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen"> -->
@@ -38,14 +40,19 @@
     <!--   <link rel="shortcut icon" href="images/favicon.png"> -->
 
     <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">    
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+    <!--   <link rel="shortcut icon" href="images/favicon.png"> -->
+
+    <link href="/assets/stylesheets/main.css" rel="stylesheet">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
     <script src="assets/javascripts/skynet.js"></script>
 
     <style type="text/css">
         .reveal-animation.ng-enter {
-            -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
-            animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+            -webkit-animation: enter_sequence 1s linear; 
+            animation: enter_sequence 1s linear; 
         }
         @-webkit-keyframes enter_sequence {
             from { opacity:0; }
@@ -63,12 +70,46 @@
     </style>
 </head>
 <body class="contrast-sea-blue" ng-app="octobluApp">
-    <header>
+
+    <!-- NAVBAR -->
+    <div class="navbar navbar-fixed-top" ng-hide="authorization.isAuthenticated">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav2">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div id="brand">
+                <a href="#top" class="navbar-brand">
+                    <img src="assets/images/octoblu.png" alt="Octoblu Logo" />
+                    <h1 class="hide">Parallax HTML One-Page Template</h1>
+                </a>
+                </div>
+            </div>
+            <nav class="navbar-collapse collapse" id="main-nav2" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#top">HOME</a></li>
+                    <li><a href="#about">ABOUT US</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#works">OUR WORKS</a></li>
+                    <li><a href="#team">TEAM</a></li>
+                    <li><a href="#contact">CONTACT US</a></li>
+                    <!-- <li><a href="/login">SIGN UP</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- END NAVBAR -->
+
+
+    <header ng-show="authorization.isAuthenticated">
         <nav class="navbar navbar-default navbar-fixed-top">
             <a class="navbar-brand" href="" ui-sref="home">
                 <img src="/assets/images/octoblu.png" height="50px"/>
             </a>
-            <a class="toggle-nav btn pull-left" href="" ng-show="authorization.isAuthenticated">
+            <a class="toggle-nav btn pull-left" href="">
                 <i class="icon-reorder"></i>
             </a>
             <ul class="nav" ng-show="authorization.isAuthenticated">
