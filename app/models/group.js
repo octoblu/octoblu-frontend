@@ -88,8 +88,9 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
 
 GroupSchema.statics.findGroupsContainingResource = function (ownerUUID, resourceUUID) {
     var Group = mongoose.model('Group');
+    var groupResourceQuery = resourceUUID  instanceof Array ? {$in: resourceUUID} : resourceUUID;
     return Group.find({
-        'members.uuid': resourceUUID,
+        'members.uuid': groupResourceQuery,
         'resource.owner.uuid' : ownerUUID
     }).exec();
 };

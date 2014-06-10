@@ -158,14 +158,14 @@ var permissionsController = {
             });
     },
     getPermissionsByTarget: function (req, res) {
-        ResourcePermission.findPermissionsOnTarget(req.user.resource.uuid, req.params.uuid)
+        ResourcePermission.getFlattenedPermissionsByTarget(req.user.resource.uuid, req.params.uuid)
             .then(function(permissions){
                 res.send(permissions);
             },
             function(err){
                 res.send(400, err);
             }
-        )
+        );
     },
     getPermissionsBySource: function (req, res) {
         ResourcePermission.findPermissionsOnSource(req.user.resource.uuid, req.params.uuid)
