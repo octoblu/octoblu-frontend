@@ -220,7 +220,7 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('DeviceEditController', function($rootScope, $scope, $state, $stateParams, currentUser){
+    .controller('DeviceDetailController', function($rootScope, $scope, $state, $stateParams, currentUser){
 
     })
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser,  deviceService )
