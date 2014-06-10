@@ -118,6 +118,11 @@
                     <i class="fa" style="padding-right: 5px;" ng-class="{'fa-info-circle' : g.showDetails, 'fa-info' : !g.showDetails}"></i>Info
                 </button>
             </div>
+            <div class="btn-group">
+                <a href ui-sref="connector.devices.edit({uuid : g.uuid})" class="btn btn-inverse">
+                    <i class="fa fa-edit" style="margin-right: 5px;"></i> Edit
+                </a>
+            </div>
             <div  class="btn-group">
                 <button  type="button" class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="5" tooltip-placement="bottom" ng-click="deleteHub(g)" style="padding-right: 5px;">
                     <i class="fa fa-times" style=""></i>Delete
@@ -126,13 +131,7 @@
         </div>
     </div>
     <div class="col-sm-10">
-      <device-carousel hub="g" smart-devices="smartDevices"></device-carousel>
-
-    </div>
-</div>
-<h2 style="margin-left: 20px; margin-bottom: 30px;"><i class='fa fa-hdd-o'>&nbsp;&nbsp;</i>Smart Devices</h2>
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <!--<device-carousel hub="g" smart-devices="smartDevices"></device-carousel>-->
 
     </div>
 </div>
