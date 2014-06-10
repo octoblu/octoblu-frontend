@@ -14,6 +14,21 @@ angular.module('octobluApp')
 
         };
 
+        this.getMyDevices = function(uuid, token ) {
+
+            var defer = $q.defer();
+
+            $http.get('/api/owner/' + uuid + '/' + token + '/devices')
+                .success(function(data) {
+                    defer.resolve(data);
+                })
+                .error(function(data) {
+                    defer.reject(data);
+                });
+            return defer.promise;
+
+        };
+
         this.getGateways = function(uuid, token, includeDevices, callback) {
             // $http.get('/api/owner/gateways/' + uuid + '/' + token)
            return $http({
@@ -54,7 +69,7 @@ angular.module('octobluApp')
                     defer.resolve(data);
                 })
                 .error(function (data) {
-                    defer.resolve(data);
+                    defer.reject(data);
                 });
             return defer.promise;
         };
