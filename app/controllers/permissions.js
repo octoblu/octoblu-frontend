@@ -15,7 +15,7 @@ var permissionsController = {
         var user = req.user;
         ResourcePermission.findOne({
             uuid: req.params.uuid,
-            'resource.owner.uuid' : user.resource.uuid
+            'resource.owner.uuid': user.resource.uuid
         }).exec().then(function (rscPermission) {
             res.send(200, rscPermission);
         }, function (error) {
@@ -34,23 +34,23 @@ var permissionsController = {
     createResourcePermission: function (req, res) {
         var user = req.user;
         var resourcePermission = new ResourcePermission({
-            source : req.body.source,
-            target : req.body.target,
-            permission : req.body.permission,
+            source: req.body.source,
+            target: req.body.target,
+            permission: req.body.permission,
             name: req.body.name,
             resource: {
-                type : 'permission',
+                type: 'permission',
                 owner: user.resourceId
             }
         });
 
-        resourcePermission.save(function(error, rscPermission){
-           if(error){
-               console.log(error);
-               res.send(500, error);
-               return;
-           }
-           res.send(200, rscPermission);
+        resourcePermission.save(function (error, rscPermission) {
+            if (error) {
+                console.log(error);
+                res.send(500, error);
+                return;
+            }
+            res.send(200, rscPermission);
         });
     },
     /**
@@ -68,19 +68,19 @@ var permissionsController = {
 
         var user = req.user;
         ResourcePermission.findOne({
-            'resource.uuid' : req.params.uuid,
+            'resource.uuid': req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
         }).exec().then(function (rscPermission) {
 
             rscPermission.set({
-                source : req.body.source,
-                target : req.body.target,
-                permissions : req.body.permissions,
-                'resource.properties' : req.body.resource.properties
+                source: req.body.source,
+                target: req.body.target,
+                permissions: req.body.permissions,
+                'resource.properties': req.body.resource.properties
             });
 
-            rscPermission.save(function(err, rscPerm){
-                if(err){
+            rscPermission.save(function (err, rscPerm) {
+                if (err) {
                     res.send(400, err);
                     return;
                 }
@@ -105,20 +105,20 @@ var permissionsController = {
             uuid: req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
         })
-        .exec()
-        .then(function (rscPermission) {
-            if( ! rscPermission) {
-                res.send(400, {'error' : 'could not find ResourcePermission'});
-                return;
-            }
-            res.send(rscPermission);
-            //TODO reconcile skynet permissions
-        }, function(error){
-            if(error){
-                console.log(error);
-                res.send(400, error);
-            }
-        });
+            .exec()
+            .then(function (rscPermission) {
+                if (!rscPermission) {
+                    res.send(400, {'error': 'could not find ResourcePermission'});
+                    return;
+                }
+                res.send(rscPermission);
+                //TODO reconcile skynet permissions
+            }, function (error) {
+                if (error) {
+                    console.log(error);
+                    res.send(400, error);
+                }
+            });
     },
 
     /**
@@ -130,12 +130,12 @@ var permissionsController = {
      * @param req
      * @param res
      */
-    getResourcePermissions : function(req, res){
+    getResourcePermissions: function (req, res) {
         var user = req.user;
         ResourcePermission.find({
-            'resource.owner.uuid' : user.resource.uuid
-        }, function(error, resourcePermissions ){
-            if(error){
+            'resource.owner.uuid': user.resource.uuid
+        }, function (error, resourcePermissions) {
+            if (error) {
                 console.log(error);
                 res.send(400, error);
                 return;
@@ -149,13 +149,33 @@ var permissionsController = {
             'resource.owner.uuid': req.user.resource.uuid,
             'source.type': 'group',
             'target.type': 'group',
-            'resource.parent' : undefined
+            'resource.parent': undefined
         }).exec()
             .then(function (permissions) {
                 res.send(permissions);
             }, function (err) {
                 res.send(400, err);
             });
+    },
+    getPermissionsByTarget: function (req, res) {
+        ResourcePermission.findPermissionsOnTarget(req.user.resource.uuid, req.params.uuid)
+            .then(function(permissions){
+                res.send(permissions);
+            },
+            function(err){
+                res.send(400, err);
+            }
+        )
+    },
+    getPermissionsBySource: function (req, res) {
+        ResourcePermission.findPermissionsOnSource(req.user.resource.uuid, req.params.uuid)
+            .then(function(permissions){
+                res.send(permissions);
+            },
+            function(err){
+                res.send(400, err);
+            }
+        )
     }
 };
 
@@ -167,6 +187,9 @@ module.exports = function (app) {
     app.get('/api/permissions/groups', isAuthenticated, permissionsController.getGroupResourcePermissions);
 
     app.get('/api/permissions/:uuid', isAuthenticated, permissionsController.getResourcePermissionsById);
+    app.get('/api/permissions/target/:uuid', isAuthenticated, permissionsController.getPermissionsByTarget);
+    app.get('/api/permissions/source/:uuid', isAuthenticated, permissionsController.getPermissionsBySource);
+
     app.delete('/api/permissions/:uuid', isAuthenticated, permissionsController.deleteResourcePermission);
     app.put('/api/permissions/:uuid', isAuthenticated, permissionsController.updateResourcePermission);
     app.post('/api/permissions', isAuthenticated, permissionsController.createResourcePermission);

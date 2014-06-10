@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose'),
     Resource = require('./mixins/resource'),
+    _ = require('lodash'),
     uuid = require('node-uuid');
 
 var ResourcePermissionSchema = new mongoose.Schema({
@@ -23,14 +24,56 @@ var ResourcePermissionSchema = new mongoose.Schema({
 Resource.makeResourceModel({schema: ResourcePermissionSchema, type: 'resource-permission', uuidProperty: 'uuid'});
 
 //Create a list of permission/resource pairs that show exactly which resource can affect me.
-ResourcePermissionSchema.statics.compilePermissions = function(resourceUUID){
-    var Group = mongoose.model('group');
-    return Group.find({
-        members : {
-            $elemMatch : {
-                'resource.uuid' : resourceUUID
-            }
-        }
+ResourcePermissionSchema.statics.compilePermissions = function(ownerUUID, resourceUUID){
+
+};
+
+ResourcePermissionSchema.statics.findPermissionsOnTarget = function(ownerUUID, targetUUID){
+    var targetUUIDs = [targetUUID];
+    var Group = mongoose.model('Group'),
+        ResourcePermission = mongoose.model('ResourcePermission');
+
+    return Group.findGroupsContainingResource(ownerUUID, targetUUID)
+        .then(function(groups){
+            var groupUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
+            targetUUIDs = targetUUIDs.concat(groupUUIDs);
+            return ResourcePermission.findByTarget(ownerUUID, targetUUIDs);
+        });
+};
+
+ResourcePermissionSchema.statics.findByTarget = function(ownerUUID, targetUUIDs){
+    var ResourcePermission = mongoose.model('ResourcePermission'),
+        targetQuery = targetUUIDs;
+    if(targetUUIDs instanceof Array) {
+        targetQuery = {$in: targetUUIDs};
+    }
+    return ResourcePermission.find({
+        'resource.owner.uuid' : ownerUUID,
+        'target.uuid' : targetQuery
+    }).exec();
+};
+ResourcePermissionSchema.statics.findPermissionsOnSource = function(ownerUUID, sourceUUID){
+    var sourceUUIDs = [sourceUUID];
+    var Group = mongoose.model('Group'),
+        ResourcePermission = mongoose.model('ResourcePermission');
+
+    return Group.findGroupsContainingResource(ownerUUID, sourceUUID)
+        .then(function(groups){
+            var groupUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
+            sourceUUIDs = sourceUUIDs.concat(groupUUIDs);
+            return ResourcePermission.findBySource(ownerUUID, sourceUUIDs);
+        });
+};
+
+ResourcePermissionSchema.statics.findBySource = function(ownerUUID, sourceUUIDs){
+    var ResourcePermission = mongoose.model('ResourcePermission'),
+        sourceQuery = sourceUUIDs;
+    if(sourceUUIDs instanceof Array) {
+        sourceQuery = {$in: sourceUUIDs};
+    }
+    return ResourcePermission.find({
+        'resource.owner.uuid' : ownerUUID,
+        'source.uuid' : sourceQuery
     }).exec();
 };
 
