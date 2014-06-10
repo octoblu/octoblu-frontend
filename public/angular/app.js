@@ -97,7 +97,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 }
             })
             .state('connector.devices.index', {
-                url: '/devices',
+                url: '/',
                 templateUrl: 'pages/connector/devices/index.html',
                 controller: 'DeviceController',
 
