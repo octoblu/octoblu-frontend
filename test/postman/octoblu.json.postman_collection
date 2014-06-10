@@ -13,7 +13,8 @@
 				"72182914-3c64-a958-a32e-c5a5d404a89f",
 				"385c0de0-7197-ef15-89a0-c84949081be0",
 				"c43d4de2-6759-ed70-2440-be74600fc3c9",
-				"08f170e8-2266-7221-6f18-dfeadca30d31"
+				"08f170e8-2266-7221-6f18-dfeadca30d31",
+				"24cb7ca8-ddea-1e6b-716b-af061ae5e492"
 			],
 			"collection_name": "octoblu",
 			"collection_id": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818"
@@ -36,7 +37,9 @@
 				"d4ab3b57-d843-96ee-6e7a-dc4f81bc89a9",
 				"1672233f-da21-d754-1fa5-fc8f640171cc",
 				"6e998372-8b08-0aae-74b2-986cd5757ed4",
-				"72c3abe1-a740-4f2c-624e-f7a1966961d4"
+				"20d1a5ec-5b92-5e95-42fd-a73c1469096a",
+				"922e418b-8b6d-2193-a493-2a0f4692470c",
+				"e1c7cdf5-3bc8-5835-2fc0-705806a83cfb"
 			],
 			"collection_name": "octoblu",
 			"collection_id": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818"
@@ -97,6 +100,40 @@
 			"synced": false
 		},
 		{
+			"id": "20d1a5ec-5b92-5e95-42fd-a73c1469096a",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/permissions/target/189f7a70-dad9-11e3-ab55-7f33030fd096",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1402432804699,
+			"name": "Get Permissions by Target",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "24cb7ca8-ddea-1e6b-716b-af061ae5e492",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/groups/contain/189f7a70-dad9-11e3-ab55-7f33030fd096",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1402439705053,
+			"name": "Groups Containing Resource",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
+			"synced": false
+		},
+		{
 			"id": "385c0de0-7197-ef15-89a0-c84949081be0",
 			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups",
@@ -149,17 +186,17 @@
 			"synced": false
 		},
 		{
-			"id": "72c3abe1-a740-4f2c-624e-f7a1966961d4",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
-			"url": "http://localhost:8080/api/permissions/aff11ec0-ec3a-11e3-8bee-0f1dd2143c9e",
+			"id": "922e418b-8b6d-2193-a493-2a0f4692470c",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/permissions/source/a381e8a1-c00b-11e3-887f-2fb56b40c627",
 			"pathVariables": {},
-			"method": "PUT",
-			"data": "{\n  \"source\":{\n    \"type\" : \"user\",\n    \"uuid\" : \"1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\"\n  },\n  \"permissions\" : {\n  \t\"configure\" : true, \n  \t\"discover\" : false, \n  \t\"message_send\" : false, \n \t\"message_receive\" : true\n  }\n}",
-			"dataMode": "raw",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
 			"version": 2,
 			"tests": "",
-			"time": 1401924373740,
-			"name": "Update Resource Permission",
+			"time": 1402433086637,
+			"name": "Get Permissions by Source",
 			"description": "",
 			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
 			"responses": [],
@@ -185,14 +222,14 @@
 		{
 			"id": "c43d4de2-6759-ed70-2440-be74600fc3c9",
 			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
-			"url": "http://localhost:8080/api/groups/e729c100-eb93-11e3-84e9-a120c45dc947",
+			"url": "http://localhost:8080/api/groups/1cdc8f40-f0cf-11e3-a1a3-6997a9c57c30",
 			"pathVariables": {},
 			"method": "GET",
 			"data": [],
 			"dataMode": "params",
 			"version": 2,
 			"tests": "",
-			"time": 1401851999889,
+			"time": 1402437775712,
 			"name": "Get Group By UUID",
 			"description": "",
 			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
@@ -215,6 +252,23 @@
 			"responses": [],
 			"tests": "",
 			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"synced": false
+		},
+		{
+			"id": "e1c7cdf5-3bc8-5835-2fc0-705806a83cfb",
+			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/permissions/target/189f7a70-dad9-11e3-ab55-7f33030fd096/flat",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1402436889602,
+			"name": "Get Flattened Permissions by Target",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
 			"synced": false
 		}
 	]
