@@ -77,8 +77,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.devices', {
                 url: '/devices',
-                templateUrl: 'pages/connector/devices/index.html',
-                controller: 'DeviceController',
+                template : '<ui-view></ui-view>',
                 resolve: {
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
@@ -97,6 +96,29 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 //                    console.log('leaving devices state');
                 }
             })
+            .state('connector.devices.index', {
+                url: '/devices',
+                templateUrl: 'pages/connector/devices/index.html',
+                controller: 'DeviceController',
+
+                onEnter: function () {
+//                    console.log('Entering devices state');
+                },
+                onExit: function () {
+//                    console.log('leaving devices state');
+                }
+            })
+            .state('connector.devices.edit', {
+                url: '/edit/:uuid',
+                templateUrl: 'pages/connector/devices/edit.html',
+                controller: 'DeviceEditController',
+                onEnter: function () {
+//                    console.log('Entering devices state');
+                },
+                onExit: function () {
+//                    console.log('leaving devices state');
+                }
+            })
             .state('connector.devices.wizard', {
                 url: '/wizard',
                 abstract: true,
@@ -108,8 +130,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 onExit: function () {
 //                    console.log('Exiting device wizard state. ');
                 }
-
-
 
             })
             .state('connector.devices.wizard.instructions', {
