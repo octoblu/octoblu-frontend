@@ -154,6 +154,17 @@ var groupController = {
                 res.send(400, err);
             }
         );
+    },
+
+    getGroupsContainingResource : function(req, res){
+        Group.findGroupsContainingResource(req.user.resource.uuid, req.params.uuid)
+            .then(function(groups){
+                res.send(groups);
+            },
+            function(err){
+                res.send(err);
+            }
+        );
     }
 };
 
@@ -167,6 +178,8 @@ module.exports = function (app) {
     app.post('/api/groups', isAuthenticated, groupController.addGroup);
 
     app.get('/api/groups/operators', isAuthenticated, groupController.getOperatorsGroup);
+
+    app.get('/api/groups/contains/:type/:uuid', isAuthenticated, groupController.getGroupsContainingResource);
 
     app.delete('/api/groups/:uuid', isAuthenticated, groupController.deleteGroup);
 

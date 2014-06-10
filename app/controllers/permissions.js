@@ -156,10 +156,6 @@ var permissionsController = {
             }, function (err) {
                 res.send(400, err);
             });
-    },
-
-    reconcileSkynetPermissions: function(resourcePermission, user){
-
     }
 };
 

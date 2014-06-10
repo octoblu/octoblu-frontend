@@ -22,5 +22,17 @@ var ResourcePermissionSchema = new mongoose.Schema({
 
 Resource.makeResourceModel({schema: ResourcePermissionSchema, type: 'resource-permission', uuidProperty: 'uuid'});
 
+//Create a list of permission/resource pairs that show exactly which resource can affect me.
+ResourcePermissionSchema.statics.compilePermissions = function(resourceUUID){
+    var Group = mongoose.model('group');
+    return Group.find({
+        members : {
+            $elemMatch : {
+                'resource.uuid' : resourceUUID
+            }
+        }
+    }).exec();
+};
+
 module.exports = ResourcePermissionSchema;
 

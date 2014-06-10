@@ -9,14 +9,14 @@ var uuid = require('node-uuid');
 
 var GroupSchema = new mongoose.Schema({
     uuid: {type: String, required: true, index: true, default: uuid.v1},
-    name: String,
+    name: {type: String, index: true},
     type: {
         type: String,
         default: 'default',
         enum: ['default', 'operators'],
         required: true
     },
-    members: {type: [Resource.ResourceId], default: []}
+    members: {type: [Resource.ResourceId], default: [], index: true}
 });
 GroupSchema.statics.updateProperties = ['name', 'members'];
 
@@ -52,7 +52,7 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
         }).exec();
 
     }).then(function (permissionsGroups) {
-        if (! permissionsGroups) {
+        if (!permissionsGroups) {
             throw {
                 error: 'Permission groups not found'
             };
@@ -67,7 +67,7 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
             });
 
             return ResourcePermission.findOne({
-                'resource.owner.uuid' : ownerUUID,
+                'resource.owner.uuid': ownerUUID,
                 'source.uuid': sourcePermissionsGroup.resource.uuid,
                 'target.uuid': targetPermissionsGroup.resource.uuid
             }).lean().exec();
@@ -84,6 +84,14 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
         }
         return resourcePermission;
     });
+};
+
+GroupSchema.statics.findGroupsContainingResource = function (ownerUUID, resourceUUID) {
+    var Group = mongoose.model('Group');
+    return Group.find({
+        'members.uuid': resourceUUID,
+        'resource.owner.uuid' : ownerUUID
+    }).exec();
 };
 
 GroupSchema.index({'resource.owner.uuid': 1, name: 1}, {unique: true});
