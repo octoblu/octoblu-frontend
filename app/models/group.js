@@ -90,8 +90,7 @@ GroupSchema.statics.findGroupsContainingResource = function (ownerUUID, resource
     var Group = mongoose.model('Group');
     var groupResourceQuery = resourceUUID  instanceof Array ? {$in: resourceUUID} : resourceUUID;
     return Group.find({
-        'members.uuid': groupResourceQuery,
-        'resource.owner.uuid' : ownerUUID
+        'members.uuid': groupResourceQuery
     }).exec();
 };
 

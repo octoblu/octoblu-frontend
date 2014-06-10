@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
     Resource = require('./mixins/resource'),
     _ = require('lodash'),
+    Q = require('q'),
     uuid = require('node-uuid');
 
 var ResourcePermissionSchema = new mongoose.Schema({
@@ -45,30 +46,45 @@ ResourcePermissionSchema.statics.getFlattenedPermissionsByTarget = function (own
     var targetUUIDs = [targetUUID];
     var Group = mongoose.model('Group'),
         ResourcePermission = mongoose.model('ResourcePermission'),
-        groups;
+        groups,
+        flatPermissions;
 
     return Group.findGroupsContainingResource(ownerUUID, targetUUID)
         .then(function (dbGroups) {
-            groups = _.indexBy(dbGroups, 'uuid');
-            var groupUUIDs = _.keys(groups);
+            groups = dbGroups;
+            var groupUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
             targetUUIDs = targetUUIDs.concat(groupUUIDs);
             return ResourcePermission.findByTarget(ownerUUID, targetUUIDs);
         })
         .then(function (permissions) {
-            var groupPermissions = _.chain(_.filter(permissions, function (permission) {
+            var groupPermissions = _.filter(permissions, function (permission) {
                 return permission.source.type === 'group';
+            });
+            flatPermissions = _.without(permissions, groupPermissions);
+
+            return Q.all(_.map(groupPermissions, function (permission) {
+                return Group.findOne({'resource.uuid': permission.source.uuid}).exec()
+                    .then(function (group) {
+                        if (group) {
+                            return {
+                                permission: permission.toObject(),
+                                group: group.toObject()
+                            };
+                        }
+                    });
             }));
-            return groupPermissions
+        })
+        .then(function (groupPermissionArray) {
+            return _.chain(groupPermissionArray)
                 .map(function (groupPermission) {
-                    return _.map(
-                        groups[groupPermission.source.uuid].members, function (member) {
-                            var materializedPermission = _.clone(groupPermission);
-                            materializedPermission.source = member;
-                            return materializedPermission;
-                        });
-                }).flatten()
-                .union(permissions)
-                .without(groupPermissions)
+                    return _.map(groupPermission.group.members, function (member) {
+                        var flatPermission = _.clone(groupPermission.permission);
+                        flatPermission.source = member;
+                        return flatPermission;
+                    })
+                })
+                .flatten()
+                .union(flatPermissions)
                 .value();
         });
 };

@@ -179,7 +179,7 @@ module.exports = function (app) {
 
     app.get('/api/groups/operators', isAuthenticated, groupController.getOperatorsGroup);
 
-    app.get('/api/groups/contains/:type/:uuid', isAuthenticated, groupController.getGroupsContainingResource);
+    app.get('/api/groups/contain/:uuid', isAuthenticated, groupController.getGroupsContainingResource);
 
     app.delete('/api/groups/:uuid', isAuthenticated, groupController.deleteGroup);
 
