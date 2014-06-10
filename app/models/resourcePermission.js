@@ -42,7 +42,7 @@ ResourcePermissionSchema.statics.findPermissionsOnTarget = function (ownerUUID, 
         });
 };
 
-ResourcePermissionSchema.statics.getFlattenedPermissionsByTarget = function (ownerUUID, targetUUID) {
+ResourcePermissionSchema.statics.findFlattenedPermissionsByTarget = function (ownerUUID, targetUUID) {
     var targetUUIDs = [targetUUID];
     var Group = mongoose.model('Group'),
         ResourcePermission = mongoose.model('ResourcePermission'),
@@ -86,6 +86,41 @@ ResourcePermissionSchema.statics.getFlattenedPermissionsByTarget = function (own
                 .flatten()
                 .union(flatPermissions)
                 .value();
+        });
+};
+
+ResourcePermissionSchema.statics.findCompiledPermissionsByTarget = function (ownerUUID, targetUUID) {
+    var ResourcePermission = mongoose.model('ResourcePermission');
+    return ResourcePermission.findFlattenedPermissionsByTarget(ownerUUID, targetUUID)
+        .then(function (flatPermissions) {
+            flatPermissions = _.chain(flatPermissions);
+
+            return flatPermissions
+                .groupBy(function (permission) {
+                    return permission.source.uuid;
+                })
+                .pairs()
+                .map(function (pair) {
+                    var permissions = pair[1];
+                    return _.reduce(permissions, function (compiledPermission, permission) {
+                        if (!compiledPermission) {
+                            return permission;
+                        }
+
+                        if(!(compiledPermission.name instanceof Array)){
+                            compiledPermission.name = [compiledPermission.name];
+                        }
+
+                        if (permission.name)
+                            compiledPermission.name.push(permission.name);
+                        _.each(_.keys(permission.permissions), function (permissionName) {
+                            compiledPermission.permissions[permissionName] =
+                                compiledPermission.permissions[permissionName] || permission.permissions[permissionName];
+                        });
+
+                        return compiledPermission;
+                    });
+                }).value();
         });
 };
 
