@@ -60,7 +60,7 @@ ResourcePermissionSchema.statics.getFlattenedPermissionsByTarget = function (own
             var groupPermissions = _.filter(permissions, function (permission) {
                 return permission.source.type === 'group';
             });
-            flatPermissions = _.without(permissions, groupPermissions);
+            flatPermissions = _.xor(permissions, groupPermissions);
 
             return Q.all(_.map(groupPermissions, function (permission) {
                 return Group.findOne({'resource.uuid': permission.source.uuid}).exec()
