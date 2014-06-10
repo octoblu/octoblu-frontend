@@ -51,7 +51,6 @@
     "angular-google-analytics": "~0.0.2",
     "jquery-mobile": "~1.4.2",
     "requirejs": "~2.1.13",
-    "owl.carousel": "*",
     "nvd3": "~1.1.15-beta",
     "jquery.scrollTo": "~1.4.12",
     "jquery.parallax": "~1.1.3",
