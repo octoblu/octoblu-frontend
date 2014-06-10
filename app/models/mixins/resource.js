@@ -26,6 +26,7 @@ var Resource =
 
 //Extra constraints for resources
 Resource.uuid.required = true;
+Resource.properties.default = {};
 Resource.uuid.default = uuid.v1;
 Resource.uuid.unique = true;
 Resource.type.required = true;
@@ -39,8 +40,9 @@ function enforceDefaults(doc, uuidProperty, type, properties) {
         doc.resource.type = type;
     }
 
+    doc.resource.properties = doc.resource.properties || {};
+
     if(properties) {
-        doc.resource.properties = {};
         _.each(properties, function(property){
             doc.resource.properties[property] = doc[property];
         });

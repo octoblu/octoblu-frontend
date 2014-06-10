@@ -20,7 +20,7 @@ var groupController = {
         var queryOptions = {
             'resource.owner.uuid': user.resource.uuid
         };
-        if(req.query.type){
+        if (req.query.type) {
             queryOptions.type = req.query.type;
         }
         Group.find(queryOptions).exec().then(function (groups) {
@@ -74,55 +74,7 @@ var groupController = {
                 res.send(400, err);
                 return;
             }
-            var sourceGroup = new Group({
-                name: dbGroup.uuid + Group.permissionsSuffix.sources,
-                type: 'permissions',
-                resource: {
-                    owner: dbGroup.resource.owner.resourceId,
-                    parent: dbGroup.resourceId
-                }
-            });
-
-            var targetGroup = new Group({
-                name: dbGroup.uuid + Group.permissionsSuffix.targets,
-                type: 'permissions',
-                resource: {
-                    owner: dbGroup.resource.owner.resourceId,
-                    parent: dbGroup.resourceId
-                }
-            });
-
-            sourceGroup.save(function (err, dbSourceGroup) {
-                if (err) {
-                    res.send(400, err);
-                    return;
-                }
-
-                targetGroup.save(function (err, dbTargetGroup) {
-                    if (err) {
-                        res.send(400, err);
-                        return;
-                    }
-
-                    var resourcePermission = new ResourcePermission({
-                        resource: {
-                            owner: dbGroup.resource.owner.resourceId,
-                        },
-                        grantedBy: user.resourceId,
-                        source: dbSourceGroup.resourceId,
-                        target: dbTargetGroup.resourceId
-                    });
-
-                    resourcePermission.save(function (err, dbResourcePermission) {
-                        if (err) {
-                            res.send(400, err);
-                            return;
-                        }
-
-                        res.send(200, dbGroup);
-                    });
-                });
-            });
+            res.send(dbGroup);
         });
     },
 
@@ -140,6 +92,10 @@ var groupController = {
         }).exec()
             .then(function (dbGroup) {
                 group = dbGroup;
+                if(!dbGroup) {
+                    res.send(400, {error: 'group not found'});
+                    return;
+                }
                 return Group.find({'resource.parent.uuid': group.resource.uuid}).remove().exec();
             })
             .then(function (subgroups) {
@@ -148,7 +104,6 @@ var groupController = {
             .then(null, function (error) {
                 res.send(400, error);
             });
-//
     },
 
     /**
@@ -164,6 +119,10 @@ var groupController = {
             uuid: req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
         }).exec().then(function (dbGroup) {
+            if(!dbGroup) {
+                res.send(400, {error: 'group not found'});
+                return;
+            }
             dbGroup.set({
                 name: group.name,
                 members: group.members
@@ -179,24 +138,22 @@ var groupController = {
             });
         });
     },
-
-    /**
-     *
-     * @param req
-     * @param res
-     */
-    getResourcePermissions: function (req, res) {
-        var user = req.user;
-
-        Group.findResourcePermission(req.params.uuid, user.resource.uuid)
-            .then(function (resourcePermission) {
-                if (!resourcePermission) {
-                    throw {'error': 'Resource Permission not found for Group'};
+    getOperatorsGroup: function (req, res) {
+        Group.findOne({
+            'resource.owner.uuid': req.user.resource.uuid,
+            type: 'operators'
+        }).exec().then(
+            function (dbGroup) {
+                if(!dbGroup) {
+                    res.send(400, {error: 'group not found'});
+                    return;
                 }
-                res.send(200, resourcePermission);
-            }, function (error) {
-                res.send(400, error);
-            });
+                res.send(dbGroup);
+            },
+            function (err) {
+                res.send(400, err);
+            }
+        );
     }
 };
 
@@ -209,14 +166,12 @@ module.exports = function (app) {
 
     app.post('/api/groups', isAuthenticated, groupController.addGroup);
 
+    app.get('/api/groups/operators', isAuthenticated, groupController.getOperatorsGroup);
+
     app.delete('/api/groups/:uuid', isAuthenticated, groupController.deleteGroup);
 
     app.put('/api/groups/:uuid', isAuthenticated, groupController.updateGroup);
-
     app.get('/api/groups/:uuid', isAuthenticated, groupController.getGroupById);
-
-    app.get('/api/groups/:uuid/permissions', isAuthenticated, groupController.getResourcePermissions);
-
 };
 
 

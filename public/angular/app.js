@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host' : '127.0.0.1', //change to the skynet.im instance
-        'port' : '3000'
+        'host': '127.0.0.1', //change to the skynet.im instance
+        'port': '3000'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -74,21 +74,21 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/devices',
                 templateUrl: 'pages/connector/devices/index.html',
                 controller: 'DeviceController',
-                resolve : {
-                    currentUser : function(userService){
-                       return userService.getCurrentUser();
+                resolve: {
+                    currentUser: function (userService) {
+                        return userService.getCurrentUser();
                     },
                     smartDevices: function (channelService) {
                         return channelService.getSmartDevices();
                     },
-                    claimedGateways : function(currentUser,  ownerService ){
-                        return ownerService.getClaimedGateways({skynetuuid : currentUser.skynetuuid, skynettoken: currentUser.skynettoken});
+                    claimedGateways: function (currentUser, ownerService) {
+                        return ownerService.getClaimedGateways({skynetuuid: currentUser.skynetuuid, skynettoken: currentUser.skynettoken});
                     }
                 },
-                onEnter : function(){
+                onEnter: function () {
 //                    console.log('Entering devices state');
                 },
-                onExit : function(){
+                onExit: function () {
 //                    console.log('leaving devices state');
                 }
             })
@@ -97,10 +97,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 abstract: true,
                 templateUrl: 'pages/connector/devices/wizard/index.html',
                 controller: 'DeviceWizardController',
-                onEnter : function(){
+                onEnter: function () {
 //                    console.log('Entering device wizard state. ');
                 },
-                onExit : function(){
+                onExit: function () {
 //                    console.log('Exiting device wizard state. ');
                 }
 
@@ -110,11 +110,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
                 templateUrl: 'pages/connector/devices/wizard/instructions.html',
-                onEnter : function(){
-           //         console.log('Entering device wizard instructions state. ');
+                onEnter: function () {
+                    //         console.log('Entering device wizard instructions state. ');
                 },
-                onExit : function(){
-         //           console.log('Exiting device wizard instructions state. ');
+                onExit: function () {
+                    //           console.log('Exiting device wizard instructions state. ');
                 }
 
             })
@@ -190,11 +190,17 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/admin/index.html',
                 controller: 'adminController',
                 resolve: {
+                    operatorsGroup : function(GroupService, currentUser){
+                        return GroupService.getOperatorsGroup(currentUser.skynetuuid, currentUser.skynettoken)
+                    },
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
-                    allDevices: function(currentUser, GroupService){
+                    allDevices: function (currentUser, GroupService) {
                         return GroupService.getAllDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    },
+                    allGroupResourcePermissions: function (currentUser, PermissionsService) {
+                        return PermissionsService.allGroupPermissions(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 }
             })
@@ -208,20 +214,16 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',
-                resolve : {
-                    currentGroup : function($stateParams, currentUser, GroupService){
-                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, $stateParams.uuid);
+                resolve: {
+                    resourcePermission : function(allGroupResourcePermissions, $stateParams){
+                        return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
                     },
-
-                     resourcePermission : function($stateParams, currentUser, GroupService){
-                         return GroupService.getResourcePermission($stateParams.uuid, currentUser );
-                     }
-                },
-                onEnter: function () {
-//                    console.log('Entering admin groups detail');
-                },
-                onExit: function () {
-
+                    sourcePermissionsGroup: function (resourcePermission, GroupService, currentUser) {
+                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.source.uuid);
+                    },
+                    targetPermissionsGroup: function (resourcePermission, GroupService, currentUser) {
+                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid);
+                    }
                 }
             })
             .state('analyzer', {
@@ -389,8 +391,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             if ($rootScope.skynetClient === undefined) {
                 $rootScope.skynetClient = skynet({
-                    'host' : skynetConfig.host,
-                    'port' : skynetConfig.port,
+                    'host': skynetConfig.host,
+                    'port': skynetConfig.port,
                     'uuid': $cookies.skynetuuid,
                     'token': $cookies.skynettoken
                 }, function (e, socket) {
