@@ -115,16 +115,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/:uuid',
                 templateUrl: 'pages/connector/devices/detail/index.html',
                 controller: 'DeviceDetailController',
-                resolve :{
-                    device : function($stateParmas, currentUser, deviceService){
-
-                    }
-                },
                 onEnter: function () {
-//                    console.log('Entering devices state');
+                    console.log('Entering devices state');
                 },
                 onExit: function () {
-//                    console.log('leaving devices state');
+                    console.log('leaving devices state');
                 }
             })
             .state('connector.devices.wizard', {

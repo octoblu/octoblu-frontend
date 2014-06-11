@@ -48,11 +48,32 @@ angular.module('octobluApp').
                         return res.data;
                     });
             },
-
             update: function (uuid, token, permission) {
                 return $http({method: 'PUT',
                     url: '/api/permissions/' + permission.resource.uuid,
                     data: permission,
+                    headers: {
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
+                    }
+                }).then(function (res) {
+                    return res.data;
+                });
+            },
+            allSourcePermissions : function(uuid, token, resourceUUID) {
+                return $http({method: 'GET',
+                    url: '/api/permissions/source/' + resourceUUID + '/compiled',
+                    headers: {
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
+                    }
+                }).then(function (res) {
+                    return res.data;
+                });
+            },
+            allTargetPermissions : function(uuid, token, resourceUUID) {
+                return $http({method: 'GET',
+                    url: '/api/permissions/target/' + resourceUUID + '/compiled',
                     headers: {
                         'skynet_auth_uuid': uuid,
                         'skynet_auth_token': token

@@ -1,3 +1,47 @@
 <div class="row">
-    <h1 style="margin-left: 15px;"><i class="fa fa-hdd-o" style="margin-right: 10px;"></i>Details</h1>
+    <h1 style="margin-left: 15px;"><i class="fa fa-hdd-o"></i>Details</h1>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2>{{device.name}}</h2>
+        <ul class="list-group col-xs-3">
+            <li class="list-group-item">
+                <label>UUID</label>
+                <span class="label label-default pull-right">{{device.uuid}}</span>
+            </li>
+            <li class="list-group-item">
+                <label>Online</label>
+
+                <div class="btn-group pull-right">
+                    <label ng-class="{'btn' : true, 'btn-success' : device.online, 'btn-default': !device.online, 'disabled': true}"
+                           ng-model="device.online"
+                           btn-radio=true value="YES" uncheckable>Yes</label>
+                    <label ng-model="device.online"
+                           ng-class="{'btn' : true, 'btn-danger' : !device.online, 'btn-default': device.online, 'disabled': true}"
+                           btn-radio=false value="NO" uncheckable>No</label>
+                </div>
+
+            </li>
+        </ul>
+        <section class="col-xs-12">
+            <h3>Permissions</h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Discover</th>
+                    <th>Configure</th>
+                    <th>Send Msg</th>
+                    <th>Receive Msg</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="permission in targetPermissions">
+                    <td>{{permission.source.properties.name}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+    </div>
 </div>

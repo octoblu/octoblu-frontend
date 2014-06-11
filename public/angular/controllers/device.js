@@ -220,8 +220,19 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('DeviceDetailController', function($rootScope, $scope, $state, $stateParams, currentUser){
-
+    .controller('DeviceDetailController', function($scope, $state, $stateParams, currentUser, myDevices, PermissionsService){
+        $scope.device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
+        PermissionsService
+            .allSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.sourcePermissions = permissions;
+            });
+         PermissionsService
+            .allTargetPermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.targetPermissions = permissions;
+            });
+        console.log($scope.device);
     })
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser,  deviceService )
 
