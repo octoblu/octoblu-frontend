@@ -64,8 +64,8 @@ angular.module('octobluApp')
 
                 $http.post(url, groupData, {
                     headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
                     }
                 }).success(function (group) {
                     defer.resolve(group);
@@ -101,8 +101,8 @@ angular.module('octobluApp')
             var url = '/api/groups/' + group_uuid;
             $http.get(url, {
                 headers: {
-                    'ob_skynetuuid': uuid,
-                    'ob_skynettoken': token
+                    'skynet_auth_uuid': uuid,
+                    'skynet_auth_token': token
                 }
             }).success(function (group) {
                 defer.resolve(group);
@@ -134,8 +134,8 @@ angular.module('octobluApp')
                 var url = '/api/groups/' + group_uuid;
                 $http.delete(url, {
                     headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
                     }
                 }).success(function (group) {
                     defer.resolve(group);
@@ -170,8 +170,8 @@ angular.module('octobluApp')
                     updatedGroup,
                     {
                         headers: {
-                            'ob_skynetuuid': uuid,
-                            'ob_skynettoken': token
+                            'skynet_auth_uuid': uuid,
+                            'skynet_auth_token': token
                         }
                     }).success(function (result) {
                         defer.resolve(result)
@@ -185,8 +185,8 @@ angular.module('octobluApp')
         this.getOperatorsGroup = function (uuid, token) {
             return $http.get('/api/groups/operators', {
                 headers: {
-                    'ob_skynetuuid': uuid,
-                    'ob_skynettoken': token
+                    'skynet_auth_uuid': uuid,
+                    'skynet_auth_token': token
                 }
             }).then(function (res) {
                 return res.data;
@@ -209,8 +209,8 @@ angular.module('octobluApp')
 
                 $http.get(url, {
                     headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
                     }
                 }).success(function (group) {
                     defer.resolve(group)
