@@ -36,10 +36,10 @@
                 </thead>
                 <tr ng-repeat="permission in targetPermissions">
                     <td>{{permission.source.properties.name}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{permission.permissions.discover}}</td>
+                    <td>{{permission.permissions.configure}}</td>
+                    <td>{{permission.permissions.message_send}}</td>
+                    <td>{{permission.permissions.message_receive}}</td>
                 </tr>
             </table>
         </section>
