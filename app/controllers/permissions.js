@@ -198,6 +198,27 @@ var permissionsController = {
                 res.send(400, err);
             }
         )
+    },
+    getFlattenedPermissionsBySource: function (req, res) {
+        ResourcePermission.findFlattenedPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'source')
+            .then(function(permissions){
+                res.send(permissions);
+            },
+            function(err){
+                res.send(400, err);
+            }
+        );
+    },
+
+    getCompiledPermissionsBySource: function (req, res) {
+        ResourcePermission.findCompiledPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'source')
+            .then(function(permissions){
+                res.send(permissions);
+            },
+            function(err){
+                res.send(400, err);
+            }
+        );
     }
 };
 
@@ -213,6 +234,8 @@ module.exports = function (app) {
     app.get('/api/permissions/target/:uuid/flat', isAuthenticated, permissionsController.getFlattenedPermissionsByTarget);
     app.get('/api/permissions/target/:uuid/compiled', isAuthenticated, permissionsController.getCompiledPermissionsByTarget);
     app.get('/api/permissions/source/:uuid', isAuthenticated, permissionsController.getPermissionsBySource);
+    app.get('/api/permissions/source/:uuid/flat', isAuthenticated, permissionsController.getFlattenedPermissionsBySource);
+    app.get('/api/permissions/source/:uuid/compiled', isAuthenticated, permissionsController.getCompiledPermissionsBySource);
 
     app.delete('/api/permissions/:uuid', isAuthenticated, permissionsController.deleteResourcePermission);
     app.put('/api/permissions/:uuid', isAuthenticated, permissionsController.updateResourcePermission);
