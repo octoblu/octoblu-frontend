@@ -4,8 +4,8 @@ angular.module('octobluApp').
             all: function (uuid, token) {
                 return $http.get('/api/permissions', {
                     headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
                     }
                 }).then(function (res) {
                     return res.data;
@@ -17,8 +17,8 @@ angular.module('octobluApp').
                     url: '/api/permissions',
                     data: permission,
                     headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
                     }
                 }).then(function (res) {
                     return res.data;
@@ -28,8 +28,8 @@ angular.module('octobluApp').
             allGroupPermissions: function (uuid, token) {
                 return $http({method: 'GET', url: '/api/permissions/groups',
                     headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
                     }
                 }).then(function (res) {
                     return res.data;
@@ -41,8 +41,8 @@ angular.module('octobluApp').
                     {method: 'DELETE',
                         url: '/api/permissions/' + resourceUUID,
                         headers: {
-                            'ob_skynetuuid': uuid,
-                            'ob_skynettoken': token
+                            'skynet_auth_uuid': uuid,
+                            'skynet_auth_token': token
                         }
                     }).then(function (res) {
                         return res.data;
@@ -54,8 +54,8 @@ angular.module('octobluApp').
                     url: '/api/permissions/' + permission.resource.uuid,
                     data: permission,
                     headers: {
-                        'ob_skynetuuid': uuid,
-                        'ob_skynettoken': token
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
                     }
                 }).then(function (res) {
                     return res.data;

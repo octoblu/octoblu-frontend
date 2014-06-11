@@ -87,6 +87,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     },
                     claimedGateways: function (currentUser, ownerService) {
                         return ownerService.getClaimedGateways({skynetuuid: currentUser.skynetuuid, skynettoken: currentUser.skynettoken});
+                    },
+                    myDevices : function(currentUser, ownerService){
+                        return ownerService.getMyDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 },
                 onEnter: function () {
@@ -101,6 +104,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/devices/index.html',
                 controller: 'DeviceController',
 
+                resolve :{
+                    device : function($stateParams, currentUser, deviceService ){
+                       return deviceService.getDevice($stateParams.uuid, currentUser.skynetuuid, currentUser.skynettoken);
+                    }
+                },
                 onEnter: function () {
 //                    console.log('Entering devices state');
                 },

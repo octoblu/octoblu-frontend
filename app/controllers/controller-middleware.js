@@ -5,8 +5,8 @@ var _ = require('lodash'),
 module.exports = {
 
     isAuthenticated: function (req, res, next) {
-        var skynetuuid = req.headers.ob_skynetuuid;
-        var skynettoken = req.headers.ob_skynettoken;
+        var skynetuuid = req.headers.skynet_auth_uuid;
+        var skynettoken = req.headers.skynet_auth_token;
 
         if (!skynetuuid || !skynettoken) {
             res.json(401, {

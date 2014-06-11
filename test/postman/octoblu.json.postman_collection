@@ -50,7 +50,7 @@
 	"requests": [
 		{
 			"id": "08f170e8-2266-7221-6f18-dfeadca30d31",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
 			"url": "http://localhost:8080/api/groups/e729c100-eb93-11e3-84e9-a120c45dc947",
 			"pathVariables": {},
 			"method": "PUT",
@@ -66,7 +66,7 @@
 		},
 		{
 			"id": "1672233f-da21-d754-1fa5-fc8f640171cc",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups/9119f5b0-eb9c-11e3-8f0d-bf594ab79942/permissions",
 			"pathVariables": {},
 			"method": "GET",
@@ -101,7 +101,7 @@
 		},
 		{
 			"id": "20d1a5ec-5b92-5e95-42fd-a73c1469096a",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/permissions/target/189f7a70-dad9-11e3-ab55-7f33030fd096",
 			"pathVariables": {},
 			"method": "GET",
@@ -118,7 +118,7 @@
 		},
 		{
 			"id": "24cb7ca8-ddea-1e6b-716b-af061ae5e492",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups/contain/189f7a70-dad9-11e3-ab55-7f33030fd096",
 			"pathVariables": {},
 			"method": "GET",
@@ -135,7 +135,7 @@
 		},
 		{
 			"id": "385c0de0-7197-ef15-89a0-c84949081be0",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups",
 			"pathVariables": {},
 			"method": "GET",
@@ -152,7 +152,7 @@
 		},
 		{
 			"id": "6e998372-8b08-0aae-74b2-986cd5757ed4",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/permissions/9119f5b0-eb9c-11e3-8f0d-bf594ab79942",
 			"pathVariables": {},
 			"method": "GET",
@@ -170,7 +170,7 @@
 		},
 		{
 			"id": "72182914-3c64-a958-a32e-c5a5d404a89f",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups/e729c100-eb93-11e3-84e9-a120c45dc947",
 			"pathVariables": {},
 			"method": "DELETE",
@@ -187,7 +187,7 @@
 		},
 		{
 			"id": "922e418b-8b6d-2193-a493-2a0f4692470c",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/permissions/source/a381e8a1-c00b-11e3-887f-2fb56b40c627",
 			"pathVariables": {},
 			"method": "GET",
@@ -204,7 +204,7 @@
 		},
 		{
 			"id": "9b4a9dc0-310c-1588-ee35-fb15385ffb01",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",
 			"url": "http://localhost:8080/api/groups",
 			"pathVariables": {},
 			"method": "POST",
@@ -221,7 +221,7 @@
 		},
 		{
 			"id": "c43d4de2-6759-ed70-2440-be74600fc3c9",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups/1cdc8f40-f0cf-11e3-a1a3-6997a9c57c30",
 			"pathVariables": {},
 			"method": "GET",
@@ -238,7 +238,7 @@
 		},
 		{
 			"id": "d4ab3b57-d843-96ee-6e7a-dc4f81bc89a9",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/groups?type=permissions",
 			"pathVariables": {},
 			"method": "GET",
@@ -256,7 +256,7 @@
 		},
 		{
 			"id": "e1c7cdf5-3bc8-5835-2fc0-705806a83cfb",
-			"headers": "ob_skynetuuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nob_skynettoken: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
 			"url": "http://localhost:8080/api/permissions/target/189f7a70-dad9-11e3-ab55-7f33030fd096/flat",
 			"pathVariables": {},
 			"method": "GET",
