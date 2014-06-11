@@ -24,7 +24,7 @@
         </ul>
         <section class="col-xs-12">
             <h3>Permissions</h3>
-            <table class="table table-bordered">
+            <table class="table">
                 <thead>
                 <tr>
                     <th></th>
@@ -36,10 +36,46 @@
                 </thead>
                 <tr ng-repeat="permission in targetPermissions">
                     <td>{{permission.source.properties.name}}</td>
-                    <td>{{permission.permissions.discover}}</td>
-                    <td>{{permission.permissions.configure}}</td>
-                    <td>{{permission.permissions.message_send}}</td>
-                    <td>{{permission.permissions.message_receive}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.discover, 'btn-default': !permission.permissions.discover, 'disabled': true}"
+                                   ng-model="permission.permissions.discover"
+                                   btn-radio=true value="YES" uncheckable>Yes</label>
+                            <label ng-model="permission.permissions.discover"
+                                   ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.discover, 'btn-default': permission.permissions.discover, 'disabled': true}"
+                                   btn-radio=false value="NO" uncheckable>No</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.configure, 'btn-default': !permission.permissions.configure, 'disabled': true}"
+                                   ng-model="permission.permissions.configure"
+                                   btn-radio=true value="YES" uncheckable>Yes</label>
+                            <label ng-model="permission.permissions.configure"
+                                   ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.configure, 'btn-default': permission.permissions.configure, 'disabled': true}"
+                                   btn-radio=false value="NO" uncheckable>No</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.message_send, 'btn-default': !permission.permissions.message_send, 'disabled': true}"
+                                   ng-model="permission.permissions.message_send"
+                                   btn-radio=true value="YES" uncheckable>Yes</label>
+                            <label ng-model="permission.permissions.message_send"
+                                   ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.message_send, 'btn-default': permission.permissions.message_send, 'disabled': true}"
+                                   btn-radio=false value="NO" uncheckable>No</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.message_receive, 'btn-default': !permission.permissions.message_receive, 'disabled': true}"
+                                   ng-model="permission.permissions.message_receive"
+                                   btn-radio=true value="YES" uncheckable>Yes</label>
+                            <label ng-model="permission.permissions.message_receive"
+                                   ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.message_receive, 'btn-default': permission.permissions.message_receive, 'disabled': true}"
+                                   btn-radio=false value="NO" uncheckable>No</label>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </section>
