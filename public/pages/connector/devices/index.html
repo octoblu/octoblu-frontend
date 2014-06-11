@@ -93,28 +93,27 @@
                ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)" ng-focus="toggleNameEditable(g)">
 
     </div>
-        <div collapse="!g.showDetails" class="col-sm-12 " style="padding-left: 0; padding-right: 0;">
-            <ul class="list-group hub-details" style="margin-bottom: 0px;">
-                <li class="list-group-item list-group-item-default" tooltip="UUID" tooltip-placement="right"
-                    tooltip-popup-delay="5" >
-                  <span class="label label-default">{{g.uuid}}</span>
-                </li>
-                <li class="list-group-item" tooltip="Token" tooltip-placement="right" tooltip-popup-delay="5">
-                    <span class="label label-default">{{g.token}}</span>
-                </li>
-                <li class="list-group-item list-group-item-default" tooltip="Online" tooltip-placement="right"
-                    tooltip-popup-delay="5">
-                    <span class="label" ng-class="{'label-success' : g.online, 'label-danger': !g.online}">{{g.online}}</span>
-                </li>
-            </ul>
+        <!--<div collapse="!g.showDetails" class="col-sm-12 " style="padding-left: 0; padding-right: 0;">-->
+            <!--<ul class="list-group hub-details" style="margin-bottom: 0px;">-->
+                <!--<li class="list-group-item list-group-item-default" tooltip="UUID" tooltip-placement="right"-->
+                    <!--tooltip-popup-delay="5" >-->
+                  <!--<span class="label label-default">{{g.uuid}}</span>-->
+                <!--</li>-->
+                <!--<li class="list-group-item" tooltip="Token" tooltip-placement="right" tooltip-popup-delay="5">-->
+                    <!--<span class="label label-default">{{g.token}}</span>-->
+                <!--</li>-->
+                <!--<li class="list-group-item list-group-item-default" tooltip="Online" tooltip-placement="right"-->
+                    <!--tooltip-popup-delay="5">-->
+                    <!--<span class="label" ng-class="{'label-success' : g.online, 'label-danger': !g.online}">{{g.online}}</span>-->
+                <!--</li>-->
+            <!--</ul>-->
 
-        </div>
+        <!--</div>-->
 
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
                 <a href ui-sref="connector.devices.detail({uuid: g.uuid})" tooltip="View Device Details" tooltip-placement="bottom"
-                        tooltip-popup-delay="5" type="button" class="btn btn-default" ng-model="g.showDetails" btn-checkbox
-                        btn-checkbox-true="true" btn-checkbox-false="false">
+                        tooltip-popup-delay="5"  class="btn btn-default">
                     <i class="fa fa-th-list" style="padding-right: 5px;" ></i>Info
                 </a>
             </div>

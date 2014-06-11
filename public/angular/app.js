@@ -77,8 +77,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.devices', {
                 url: '/devices',
-                templateUrl: 'pages/connector/devices/index.html',
-                controller: 'DeviceController',
+                abstract : true,
+                template: '<ui-view></ui-view>',
                 resolve: {
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
@@ -93,6 +93,17 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return ownerService.getMyDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 },
+                onEnter: function () {
+//                    console.log('Entering devices state');
+                },
+                onExit: function () {
+//                    console.log('leaving devices state');
+                }
+            })
+            .state('connector.devices.all', {
+                url : '',
+                controller : 'DeviceController',
+                templateUrl: 'pages/connector/devices/index.html',
                 onEnter: function () {
 //                    console.log('Entering devices state');
                 },

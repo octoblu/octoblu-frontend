@@ -318,7 +318,7 @@ angular.module('octobluApp')
                   hubName );
 
                devicePromise.then(function(result){
-                   $state.go('connector.devices', {}, {reload: true});
+                   $state.go('connector.devices.all', {}, {reload: true});
                }, function(error){
                });
 
