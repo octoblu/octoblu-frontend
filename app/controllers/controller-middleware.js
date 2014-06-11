@@ -8,7 +8,7 @@ module.exports = {
         var skynetuuid = req.headers.skynet_auth_uuid;
         var skynettoken = req.headers.skynet_auth_token;
 
-        if (!skynetuuid || !skynettoken) {
+        if (! skynetuuid || ! skynettoken) {
             res.json(401, {
                 'error': 'unauthorized'
             });

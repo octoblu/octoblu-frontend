@@ -209,8 +209,8 @@ angular.module('octobluApp')
 
                 $http.get(url, {
                     headers: {
-                        'skynet_auth_uuid': uuid,
-                        'skynet_auth_token': token
+                        skynet_auth_uuid: uuid,
+                        skynet_auth_token: token
                     }
                 }).success(function (group) {
                     defer.resolve(group)

@@ -51,7 +51,7 @@ function enforceDefaults(doc, uuidProperty, type, properties) {
 
 function makeResourceObject( options ){
 
-    var type = options.type, model = options.model, uuidProperty = options.uuidProperty;
+    var model = options.model, uuidProperty = options.uuidProperty;
     var resourceObject = _.cloneDeep(model);
     resourceObject.resource = {};
 
@@ -61,8 +61,9 @@ function makeResourceObject( options ){
         resourceObject.resource.properties = _.cloneDeep(model);
     }
 
+    resourceObject.type = model.type || options.type || 'device';
     resourceObject.resource.uuid = model[uuidProperty];
-    resourceObject.resource.type = type || 'device';
+    resourceObject.resource.type = model.type || options.type || 'device';
     resourceObject.resource.owner = { uuid : model.owner, type : options.ownerType};
     return resourceObject;
 }
