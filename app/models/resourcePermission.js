@@ -102,7 +102,7 @@ ResourcePermissionSchema.statics.findCompiledPermissionsByTarget = function (own
                 .pairs()
                 .map(function (pair) {
                     var permissions = pair[1];
-                    return _.reduce(permissions, function (compiledPermission, permission) {
+                    var compiled =  _.reduce(permissions, function (compiledPermission, permission) {
                         if (!compiledPermission) {
                             return permission;
                         }
@@ -113,13 +113,14 @@ ResourcePermissionSchema.statics.findCompiledPermissionsByTarget = function (own
 
                         if (permission.name)
                             compiledPermission.name.push(permission.name);
-                        _.each(_.keys(permission.permissions), function (permissionName) {
+                        _.each( _.keys(permission.permissions), function (permissionName) {
                             compiledPermission.permissions[permissionName] =
                                 compiledPermission.permissions[permissionName] || permission.permissions[permissionName];
                         });
 
                         return compiledPermission;
-                    });
+                    }, _.cloneDeep(permissions.pop()));
+                    return compiled;
                 }).value();
         });
 };
