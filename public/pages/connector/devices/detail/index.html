@@ -33,7 +33,35 @@
                     <div ng-include="'/pages/connector/devices/detail/device-source-permissions.html'" ></div>
                 </tab>
                 <tab heading="Groups">
+                     <ul class="list-group">
+                       <div class="panel panel-default col-xs-6">
+                           <div class="panel-heading">
+                               Access Groups
+                           </div>
+                           <div class="panel-body">
+                               <ul class="list-group">
+                                   <li class="list-group-item" ng-repeat="group in targetGroups | orderBy: group.name">
+                                       <a href ui-sref="admin.detail({uuid : group.uuid})">{{group.name}}</a>
+                                   </li>
 
+                               </ul>
+                           </div>
+                       </div>
+                       <div class="panel panel-default col-xs-6">
+                           <div class="panel-heading">
+                               Control Groups
+                           </div>
+                           <div class="panel-body">
+                               <ul class="list-group">
+                                   <li class="list-group-item" ng-repeat="group in sourceGroups | orderBy: group.name">
+                                      <a href ui-sref="admin.detail({uuid : group.uuid})">{{group.name}}</a>
+                                   </li>
+
+                               </ul>
+
+                           </div>
+                       </div>
+                     </ul>
                 </tab>
             </tabset>
 

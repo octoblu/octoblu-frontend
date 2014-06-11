@@ -81,6 +81,28 @@ angular.module('octobluApp').
                 }).then(function (res) {
                     return res.data;
                 });
+            },
+            flatSourcePermissions : function(uuid, token, resourceUUID) {
+                return $http({method: 'GET',
+                    url: '/api/permissions/source/' + resourceUUID + '/flat',
+                    headers: {
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
+                    }
+                }).then(function (res) {
+                    return res.data;
+                });
+            },
+            flatTargetPermissions : function(uuid, token, resourceUUID) {
+                return $http({method: 'GET',
+                    url: '/api/permissions/target/' + resourceUUID + '/flat',
+                    headers: {
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
+                    }
+                }).then(function (res) {
+                    return res.data;
+                });
             }
         }
     })

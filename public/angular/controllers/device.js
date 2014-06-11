@@ -227,11 +227,27 @@ angular.module('octobluApp')
             .then(function(permissions){
                 $scope.sourcePermissions = permissions;
             });
-         PermissionsService
+        PermissionsService
+            .flatSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.sourceGroups = _.uniq(permissions, function(permission){
+                    return permission.uuid;
+                });
+            });
+
+        PermissionsService
+            .flatTargetPermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.targetGroups = _.uniq(permissions, function(permission){
+                    return permission.uuid;
+                });
+             });
+
+        PermissionsService
             .allTargetPermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
             .then(function(permissions){
                 $scope.targetPermissions = permissions;
-            });
+             });
         console.log($scope.device);
     })
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser,  deviceService )
