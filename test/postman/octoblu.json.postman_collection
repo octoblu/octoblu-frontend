@@ -39,7 +39,8 @@
 				"6e998372-8b08-0aae-74b2-986cd5757ed4",
 				"20d1a5ec-5b92-5e95-42fd-a73c1469096a",
 				"922e418b-8b6d-2193-a493-2a0f4692470c",
-				"e1c7cdf5-3bc8-5835-2fc0-705806a83cfb"
+				"e1c7cdf5-3bc8-5835-2fc0-705806a83cfb",
+				"0002c6a5-0785-f3c8-d8e0-90d80650bcb3"
 			],
 			"collection_name": "octoblu",
 			"collection_id": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818"
@@ -48,6 +49,23 @@
 	"timestamp": 1399571003392,
 	"synced": false,
 	"requests": [
+		{
+			"id": "0002c6a5-0785-f3c8-d8e0-90d80650bcb3",
+			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\n",
+			"url": "http://localhost:8080/api/permissions/target/21c53ea1-dad9-11e3-ab55-7f33030fd096/compiled",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1402446477257,
+			"name": "Get Compiled Permissions by Target",
+			"description": "",
+			"collectionId": "d10a05b8-6d01-95f9-00bd-dc6e07e2e818",
+			"responses": [],
+			"synced": false
+		},
 		{
 			"id": "08f170e8-2266-7221-6f18-dfeadca30d31",
 			"headers": "skynet_auth_uuid: 1a30cad1-dac3-11e3-b4a5-3b1cb50ca061\nskynet_auth_token: 0lkfxvl45jxt21emifinpxil8wnopqfr\nContent-Type: application/json\n",

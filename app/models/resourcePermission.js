@@ -47,6 +47,7 @@ ResourcePermissionSchema.statics.findFlattenedPermissionsOnResource = function (
         ResourcePermission = mongoose.model('ResourcePermission'),
         groups,
         otherDirection = permissionDirection === 'source' ? 'target' : 'source',
+        resourceUUIDs = resourceUUIDs instanceof Array ? resourceUUIDs : [resourceUUIDs],
         flatPermissions;
 
     return Group.findGroupsContainingResource(ownerUUID, resourceUUIDs)
