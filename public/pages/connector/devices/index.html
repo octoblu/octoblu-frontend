@@ -57,6 +57,11 @@
     .channel_icon-grid-view {
       cursor:pointer;
     }
+
+    .smart-device-panel {
+
+    }
+
     .thumbnail { height: 280px !important; }
     .btn-droppable { width: 180px; height: 30px; padding-left: 4px; }
     .btn-draggable { width: 160px; }
@@ -80,7 +85,7 @@
 
 </div>
 
-<div class="row device-panel" ng-repeat="g in gateways | orderBy: 'name'">
+<div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
     <div id="{{g.uuid}}" class="col-sm-2">
         <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" height="64px" width="64px">
     <div class="input-group col-sm-12">
@@ -94,8 +99,7 @@
                     tooltip-popup-delay="5" >
                   <span class="label label-default">{{g.uuid}}</span>
                 </li>
-                <li class="list-group-item" tooltip="Token" tooltip-placement="right"
-                    tooltip-popup-delay="5">
+                <li class="list-group-item" tooltip="Token" tooltip-placement="right" tooltip-popup-delay="5">
                     <span class="label label-default">{{g.token}}</span>
                 </li>
                 <li class="list-group-item list-group-item-default" tooltip="Online" tooltip-placement="right"
@@ -108,11 +112,11 @@
 
         <div class="btn-group btn-group-justified">
             <div class="btn-group">
-                <button tooltip="View Hub Details" tooltip-placement="bottom"
+                <a href ui-sref="connector.devices.detail({uuid: g.uuid})" tooltip="View Device Details" tooltip-placement="bottom"
                         tooltip-popup-delay="5" type="button" class="btn btn-default" ng-model="g.showDetails" btn-checkbox
                         btn-checkbox-true="true" btn-checkbox-false="false">
-                    <i class="fa" style="padding-right: 5px;" ng-class="{'fa-info-circle' : g.showDetails, 'fa-info' : !g.showDetails}"></i>Info
-                </button>
+                    <i class="fa fa-th-list" style="padding-right: 5px;" ></i>Info
+                </a>
             </div>
             <div  class="btn-group">
                 <button  type="button" class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="5" tooltip-placement="bottom" ng-click="deleteHub(g)" style="padding-right: 5px;">
@@ -120,10 +124,6 @@
                 </button>
             </div>
         </div>
-    </div>
-    <div class="col-sm-10">
-      <device-carousel hub="g" smart-devices="smartDevices"></device-carousel>
-
     </div>
 </div>
 <div class="divScroll">
@@ -143,4 +143,3 @@
         </ul>
     </div>
 </div>
-<div ui-view></div>

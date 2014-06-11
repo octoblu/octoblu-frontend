@@ -10,23 +10,6 @@ angular.module('octobluApp')
         };
 
         /**
-         * getAllChannelsAndSmartDevices - Gets the combined list of channels and smartDevices;
-         * @returns {defer.promise|*}
-         */
-        this.getAllChannelsAndSmartDevices = function(){
-            var defer = $q.defer();
-            $q.all([this.getAllChannels(), this.getSmartDevices()])
-                .then(function(values){
-                    console.log(JSON.stringify(values));
-                    defer.resolve(_.flatten(values));
-                }).catch(function(error){
-                    console.log(JSON.stringify(error));
-                   defer.reject(error);
-                });
-            return defer.promise;
-        }
-
-        /**
          * Returns all channels available in the system
          * VERB - GET
          * /api/channels/

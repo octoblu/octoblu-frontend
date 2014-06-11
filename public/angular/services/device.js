@@ -1,14 +1,24 @@
 angular.module('octobluApp')
     .service('deviceService', function ($q, $http, $cookies) {
-        this.getDevice = function (uuid, token, callback) {
-            $http.get('/api/devices/' + uuid + '?token=' + token)
-                .success(function (data) {
-                    callback(data);
-                })
-                .error(function (data) {
-                    console.log('Error: ' + data);
-                    callback({});
-                });
+        this.getDevice = function (deviceUUID, userUUID, userToken) {
+            var defer = $q.defer();
+            if( ! deviceUUID || ! userUUID || ! userToken ){
+                defer.reject("missing required parameter");
+            }
+
+            var url = '/api/devices/' + deviceUUID;
+
+            $http.get(url, {
+                headers: {
+                    'skynet_auth_uuid': userUUID,
+                    'skynet_auth_token': userToken
+                }
+            }).success(function (device) {
+                defer.resolve(device);
+            }).error(function (result) {
+                defer.reject(result);
+            });
+            return defer.promise;
 
         };
 
@@ -44,11 +54,15 @@ angular.module('octobluApp')
                 defer.reject("Name is required");
             }
 
-           var promise =  $http.put('/api/claimdevice/' + owner.skynetuuid + '?token=' + owner.skynettoken, {
-                uuid : deviceUUID,
-                name : name
-            });
-            return defer.promise.then(promise);
+           $http.put('/api/devices/' + deviceUUID + '/claim', {
+               name : name,
+               owner : owner.skynetuuid
+           }).success(function(data){
+               defer.resolve(data);
+           }).error(function(error){
+               defer.reject(error);
+           });
+            return defer.promise;
         };
 
         /**
@@ -133,32 +147,6 @@ angular.module('octobluApp')
                     callback( data, null );
                 });
 
-        };
-        /**
-         * Gets the claimed devices for the owner with the given
-         * @param uuid - the uuid of the device owner
-         * @param token = the token of the device owner
-         * @param options
-         * object containing the fields to filter for i.e "type" : "gateway"
-         * @returns {defer.promise|*}
-         */
-        this.getClaimedDevices = function (uuid, token, options) {
-            var defer = $q.defer();
-            // /api/owner/:id/:token/devices/unclaimed
-            $http.get('/api/owner/' + uuid + '/' + token + '/devices', { cache: false })
-                .success(function (data) {
-                    defer.resolve(data);
-//                    if (options) {
-//                        var filteredDevices = _.findWhere(data, options) || [];
-//                        defer.resolve(filteredDevices);
-//                    } else {
-//                        defer.resolve(data);
-//                    }
-                })
-                .error(function (data) {
-                    defer.reject(data);
-                });
-            return defer.promise;
         };
         /**
          *

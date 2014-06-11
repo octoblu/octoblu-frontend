@@ -16,7 +16,7 @@ Groups in octoblu allow users to manage access to their devices. A user can have
 * uuid
 * type
 * permissions
-* members
+* Link to Resource Permissions
 * devices
 
 ## 2. Permissions
@@ -32,8 +32,8 @@ Groups in octoblu allow users to manage access to their devices. A user can have
 5. /api/groups/:uuid - _DELETE_
 
 ### 3.1 Requred Header Fields
-* ob_skynetuuid
-* ob_skynettoken
+* skynet_auth_uuid
+* skynet_auth_token
 
 
 

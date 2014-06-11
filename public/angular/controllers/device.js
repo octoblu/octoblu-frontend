@@ -1,17 +1,17 @@
 angular.module('octobluApp')
     .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, currentUser, claimedGateways, smartDevices, ownerService, deviceService ) {
 
-        var ownerId = $cookies.skynetuuid;
-        var token = $cookies.skynettoken;
+//        var ownerId = $cookies.skynetuuid;
+//        var token = $cookies.skynettoken;
 
         $scope.smartDevices = smartDevices;
         $scope.claimedGateways = claimedGateways;
 
 //        $scope.socket = $rootScope.skynetSocket;
-        //TODO this will be handled by route checking at the root scope level. Should be changed then.
-        if( ownerId === undefined || token === undefined ){
-             $state.go('login');
-        }
+//        //TODO this will be handled by route checking at the root scope level. Should be changed then.
+//        if( ownerId === undefined || token === undefined ){
+//             $state.go('login');
+//        }
 
         //Event handlers to detect edit and delete subdevice calls  from the device carousel directive
         //TODO - this may need to be refactored into a more elegant solution
@@ -141,10 +141,16 @@ angular.module('octobluApp')
           }
       }
 
+
+
+
+    } )
+    .controller('DeviceEditController', function ($rootScope, $cookies, $scope,  $state , $stateParams, $http,  currentUser,  deviceService ){
+
         $scope.editSubDevice = function(subdevice, hub){
 
             /*
-              TODO
+             TODO
              * Check if the sub device is installed for the current hub
              * install the sub device refresh the current device to get the list of updated plugins installed
              * pass the installed plugin for the sub-device to the modal to the modal
@@ -199,7 +205,7 @@ angular.module('octobluApp')
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
                 function() {
                     $log.info('ok clicked');
-                        $rootScope.skynetSocket.emit('gatewayConfig', {
+                    $rootScope.skynetSocket.emit('gatewayConfig', {
                             "uuid": hub.uuid,
                             "token": hub.token,
                             "method": "deleteSubdevice",
@@ -213,9 +219,10 @@ angular.module('octobluApp')
                 });
         };
 
+    })
+    .controller('DeviceDetailController', function($rootScope, $scope, $state, $stateParams, currentUser){
 
-    } )
-
+    })
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser,  deviceService )
 
     {

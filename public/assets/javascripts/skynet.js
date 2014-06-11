@@ -1,7 +1,7 @@
 function skynet (config, cb) {
   if (!cb && typeof config === 'function') {
-    cb = config
-    config = {}
+    cb = config;
+    config = {};
   }
 
   function loadScript(url, callback)

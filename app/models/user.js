@@ -2,11 +2,10 @@
 
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
-    moment = require('moment'),
-    groupSchema = require('./group');
-
+    Resource = require('./mixins/resource'),
+    moment = require('moment');
 // define the schema for our user model
-var UserSchema = mongoose.Schema({
+var UserSchema = new mongoose.Schema({
         name: String,
         username: String,
         admin: Boolean,
@@ -59,12 +58,11 @@ var UserSchema = mongoose.Schema({
                     }
                 ]
             }
-        ],
-        groups: [groupSchema]
-
-
+        ]
     },
     { toObject: {virtuals: true}, toJSON: {virtuals: true} });
+
+Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties : ['displayName', 'email']});
 
 // find api connection by name
 UserSchema.methods.findApiByName = function (name) {
@@ -131,6 +129,7 @@ UserSchema.methods.validPassword = function (password) {
 };
 
 //Convenience method for getting the Skynet UUID
+//TODO: replace this with resource.uuid
 UserSchema.virtual('skynetuuid').get(function () {
     return this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
 });
@@ -145,69 +144,67 @@ UserSchema.virtual('email').get(function () {
     return this.local.email || this.google.email || this.facebook.email;
 });
 
-UserSchema.virtual('displayName').get(function(){
+UserSchema.virtual('displayName').get(function () {
 
     return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
 });
 
-UserSchema.statics.findBySkynetUUID = function( skynetuuid ){
-  return this.findOne({ $or: [
-      {
-          'local.skynetuuid' : skynetuuid
-      },
-      {
-          'twitter.skynetuuid' : skynetuuid
-      },
-      {
-          'facebook.skynetuuid' :  skynetuuid
-      },
-      {
-          'google.skynetuuid' : skynetuuid
-      }
-  ]
-  }).exec();
-};
-
-UserSchema.statics.findByEmail = function( email){
+UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
     return this.findOne({ $or: [
         {
-            'local.email' : email
+            'local.skynetuuid': skynetuuid
         },
         {
-            'twitter.email' : email
+            'twitter.skynetuuid': skynetuuid
         },
         {
-            'facebook.email' :  email
+            'facebook.skynetuuid': skynetuuid
         },
         {
-            'google.email' : email
+            'google.skynetuuid': skynetuuid
         }
     ]
     }).exec();
 };
 
-UserSchema.statics.findBySkynetUUIDAndToken = function( skynetuuid, skynettoken){
+UserSchema.statics.findByEmail = function (email) {
     return this.findOne({ $or: [
         {
-            'local.skynetuuid' : skynetuuid,
-            'local.skynettoken' : skynettoken
+            'local.email': email
         },
         {
-            'twitter.skynetuuid' : skynetuuid,
-            'twitter.skynettoken' : skynettoken
+            'twitter.email': email
         },
         {
-            'facebook.skynetuuid' :  skynetuuid,
-            'facebook.skynettoken' :  skynettoken
+            'facebook.email': email
         },
         {
-            'google.skynetuuid' : skynetuuid,
-            'google.skynettoken' : skynettoken
+            'google.email': email
         }
     ]
     }).exec();
 };
 
-mongoose.model('User', UserSchema);
+UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
+    return this.findOne({ $or: [
+        {
+            'local.skynetuuid': skynetuuid,
+            'local.skynettoken': skynettoken
+        },
+        {
+            'twitter.skynetuuid': skynetuuid,
+            'twitter.skynettoken': skynettoken
+        },
+        {
+            'facebook.skynetuuid': skynetuuid,
+            'facebook.skynettoken': skynettoken
+        },
+        {
+            'google.skynetuuid': skynetuuid,
+            'google.skynettoken': skynettoken
+        }
+    ]
+    }).exec();
+};
 
 module.exports = UserSchema;

@@ -74,15 +74,13 @@ var config = {
         }
     },
       'skynet' : {
-          'host' : '127.0.0.1',
+          'host' : process.env.SKYNET_HOST || 'skynet.im',
            'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
-          'port' : 3000
+          'port' : process.env.SKYNET_PORT || 80
       },
 
     'port' : 8080,
-    'domain': null,
-    'skynet_override_token': "w0rldd0m1n4t10n"
-
+    'domain': null
   },
   test: {
 
@@ -167,14 +165,12 @@ var config = {
       },
 
       'skynet' : {
-          'host' : 'skynet.im',
+           'host' : process.env.SKYNET_HOST || 'skynet.im',
            'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
-          'port' : 80
+           'port' : process.env.SKYNET_PORT || 80
       },
     'port' : 80,
-    'domain': '.octoblu.com',
-    'skynet_override_token': "w0rldd0m1n4t10n"
-
+    'domain': '.octoblu.com'
   }
 };
 

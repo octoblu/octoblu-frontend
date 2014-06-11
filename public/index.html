@@ -8,7 +8,8 @@
     <!-- META -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta content="text/html;charset=utf-8" http-equiv="content-type">
-    <meta content="Meshines" name="description">
+    <meta name="description" content="Octoblu - Internet of Everything!">
+    <meta name="author" content="Octoblu">
     <link href="assets/images/meta_icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="assets/images/meta_icons/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
     <link href="assets/images/meta_icons/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
@@ -16,33 +17,28 @@
     <link href="assets/images/meta_icons/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114">
     <link href="assets/images/meta_icons/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144">
 
-    <title>Octoblu</title>
+    <title>Octoblu - Internet of Everything!</title>
 
     <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <!-- <link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/main.css" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,700' rel='stylesheet' type='text/css'>
     <link href="assets/stylesheets/light-theme.css" media="all" id="color-settings-body-color" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/theme-colors.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/stylesheets/bootstrap-switch/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/demo.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/stylesheets/erosIntro.css" rel="stylesheet" media="screen">
-    <link href="assets/stylesheets/style.css" rel="stylesheet" media="screen">
-    <link href="assets/stylesheets/custom.css" rel="stylesheet">
     <link href="assets/stylesheets/animation.css" rel="stylesheet">
-    <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet" >
-    <link href="assets/stylesheets/athenaSlide.css" rel="stylesheet">
-    <link href="assets/javascripts/nvd3/nv.d3.min.css" rel="stylesheet">
-    <link href="assets/javascripts/owl.carousel/owl.carousel.css" rel="stylesheet">
-    <link href="assets/javascripts/owl.carousel/owl.theme.css" rel="stylesheet">
-    <!--   <link rel="shortcut icon" href="images/favicon.png"> -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.css" type="text/css">
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.css" type="text/css">
+    <link href="lib/nvd3/nv.d3.css" rel="stylesheet">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
     <script src="assets/javascripts/skynet.js"></script>
 
     <style type="text/css">
         .reveal-animation.ng-enter {
-            -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
-            animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+            -webkit-animation: enter_sequence 1s linear;
+            animation: enter_sequence 1s linear;
         }
         @-webkit-keyframes enter_sequence {
             from { opacity:0; }
@@ -53,19 +49,53 @@
             to { opacity:1; }
         }
         @media (min-width: 1200px) {
-            .container {
+            .full-screen {
                 width: 100%;
             }
         }
     </style>
 </head>
 <body class="contrast-sea-blue" ng-app="octobluApp">
-    <header>
+
+    <!-- NAVBAR -->
+    <div class="navbar navbar-fixed-top" ng-hide="authorization.isAuthenticated">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav2">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div id="brand">
+                <a href="#top" class="navbar-brand">
+                    <img src="assets/images/octoblu.png" alt="Octoblu Logo" />
+                    <h1 class="hide">Parallax HTML One-Page Template</h1>
+                </a>
+                </div>
+            </div>
+            <nav class="navbar-collapse collapse" id="main-nav2" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#top">HOME</a></li>
+                    <li><a href="#about">ABOUT US</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#works">OUR WORKS</a></li>
+                    <li><a href="#team">TEAM</a></li>
+                    <li><a href="#contact">CONTACT US</a></li>
+                    <!-- <li><a href="/login">SIGN UP</a></li> -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- END NAVBAR -->
+
+
+    <header ng-show="authorization.isAuthenticated">
         <nav class="navbar navbar-default navbar-fixed-top">
             <a class="navbar-brand" href="" ui-sref="home">
-                OCTOBLU
+                <img src="/assets/images/octoblu.png" height="50px"/>
             </a>
-            <a class="toggle-nav btn pull-left" href="" ng-show="authorization.isAuthenticated">
+            <a class="toggle-nav btn pull-left" href="">
                 <i class="icon-reorder"></i>
             </a>
             <ul class="nav" ng-show="authorization.isAuthenticated">
@@ -183,52 +213,56 @@
     <footer></footer>
 
     <!-- build:js scripts/plugins.js -->
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/jquery_ui_touch_punch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/jquery/jquery.cookie.js"></script>
-    <script src="assets/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-cookies.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="assets/javascripts/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-    <script src="assets/javascripts/athenaSlide.js"></script>
-    <script src="assets/javascripts/underscore.js"></script>
-    <script src="assets/javascripts/d3/d3.min.js"></script>
-    <script src="assets/javascripts/nvd3/nv.d3.min.js"></script>
-    <script src="assets/javascripts/owl.carousel/owl.carousel.min.js"></script>
-
+    <script src="lib/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="lib/jquery-ui/ui/jquery-ui.js" type="text/javascript"></script>
+    <script src="lib/requirejs/require.js" type="text/javascript"></script>
+    <script src="lib/jquery-mobile/js/requirejs.config.js" type="text/javascript"></script>
+    <script src="lib/jquery-mobile/js/jquery.mobile.init.js" type="text/javascript"></script>
+    <script src="lib/jquery-mobile/js/jquery.mobile.define.js" type="text/javascript"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/d3/d3.js"></script>
+    <script src="lib/nvd3/nv.d3.js"></script>
     <!-- endbuild -->
 
     <!-- build:js scripts/modules.js -->
-    <script src="assets/javascripts/angular-ui-router.min.js"></script>
-    <script src="assets/javascripts/angular-ui-utils/ui-utils.min.js"></script>
-    <script src="assets/javascripts/angular-google-analytics.js"></script>
-    <script src="assets/javascripts/plugins/modernizr/modernizr.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/canvasjs.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/retina/retina.js" type="text/javascript"></script>
-    <script src="assets/javascripts/theme.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/validate/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/validate/additional-methods.js" type="text/javascript"></script>
-    <script src="assets/javascripts/jsoneditor/jsoneditor.js" type="text/javascript"></script>
-    <script src="assets/javascripts/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
-    <script src="assets/javascripts/isotope.js"></script>
-    <script src="assets/javascripts/skroller.js"></script>
-    <script src="assets/javascripts/elastic.min.js"></script>
-    <script src="assets/javascripts/elasticsearch.angular.js"></script>
-    <script src="assets/javascripts/angular-dragdrop.min.js"></script>
-    <script src="assets/javascripts/smoothie.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/angular-ui-utils/ui-utils.js"></script>
+    <script src="lib/angular-google-analytics/src/angular-google-analytics.js"></script>
+    <script src="lib/modernizr/modernizr.js" type="text/javascript"></script>
+    <script src="lib/json-editor/dist/jsoneditor.js" type="text/javascript"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="lib/isotope/dist/isotope.pkgd.js"></script>
+    <script src="lib/skrollr/dist/skrollr.min.js"></script>
+    <script src="lib/elastic.js/dist/elastic.js"></script>
+    <script src="lib/elasticsearch/elasticsearch.angular.js"></script>
+    <script src="lib/smoothie/smoothie.js"></script>
+    <script src="lib/jquery.scrollTo/jquery.scrollTo.js"></script>
+    <script src="lib/jquery.localScroll/jquery.localScroll.js"></script>
+    <script src="lib/jquery-easing/jquery.easing.js"></script>
+    <script src="lib/jquery.parallax/jquery.parallax.js"></script>
+    <script src="assets/javascripts/google-map.js"></script>
+    <script src="lib/twitter-fetcher/twitterFetcher_v10_min.js"></script>
+    <script src="lib/imagesloaded/imagesloaded.pkgd.js"></script>
+    <script src="lib/flexslider/jquery.flexslider.js"></script>
+    <script src="lib/jpreloader/js/jpreloader.js"></script>
+    <script src="lib/jquery.videoBG/jquery.videoBG.js"></script>
+    <script src="lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    <script src="lib/WOW/dist/wow.js"></script>
+    <script src="assets/javascripts/loop.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="angular/app.js"></script>
     <script src="angular/services/user.js"></script>
     <script src="angular/services/owner.js"></script>
-    <script src="angular/services/gateway.js"></script>
     <script src="angular/services/device.js"></script>
     <script src="angular/services/channel.js"></script>
     <script src="angular/services/nodered.js"></script>
@@ -237,6 +271,7 @@
     <script src="angular/services/elastic.js"></script>
     <script src="angular/services/plugin.js"></script>
     <script src="angular/services/invitation.js"></script>
+    <script src="angular/services/permissions.js"></script>
     <script src="angular/directives/nvd3-line-chart.js"></script>
     <script src="angular/directives/nvd3-pie-chart.js"></script>
     <script src="angular/directives/popover.js"></script>
@@ -256,7 +291,6 @@
     <script src="angular/controllers/devtools.js"></script>
     <script src="angular/controllers/docs.js"></script>
     <script src="angular/controllers/faqs.js"></script>
-    <script src="angular/controllers/gateway.js"></script>
     <script src="angular/controllers/home.js"></script>
     <script src="angular/controllers/login.js"></script>
     <script src="angular/controllers/pricing.js"></script>
@@ -264,36 +298,5 @@
     <script src="angular/controllers/services.js"></script>
     <script src="angular/controllers/signup.js"></script>
     <!-- endbuild -->
-
-    <!--
-      <script>
-        var socket;
-        if($.cookie('skynetuuid') && $.cookie('skynettoken')){
-          // connect to skynet
-          var skynetConfig = {
-            "uuid": $.cookie('skynetuuid'),
-            "token": $.cookie('skynettoken')
-          }
-          skynet(skynetConfig, function (e, skysocket) {
-            if (e) throw e;
-            socket = skysocket;
-          });
-
-        }
-      </script>
-    -->
-
-    <!--<script type="text/javascript">-->
-        <!--/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */-->
-        <!--var disqus_shortname = 'octoblu'; // required: replace example with your forum shortname-->
-
-        <!--/* * * DON'T EDIT BELOW THIS LINE * * */-->
-        <!--(function () {-->
-            <!--var s = document.createElement('script'); s.async = true;-->
-            <!--s.type = 'text/javascript';-->
-            <!--s.src = '//' + disqus_shortname + '.disqus.com/count.js';-->
-            <!--(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);-->
-        <!--}());-->
-    <!--</script>-->
 </body>
 </html>

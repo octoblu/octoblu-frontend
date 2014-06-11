@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 // define the schema for our user model
-var ApiSchema = mongoose.Schema({
+var ApiSchema = new mongoose.Schema({
 
     name             : String,
     owner            : String,
@@ -43,7 +43,5 @@ var ApiSchema = mongoose.Schema({
 
 ApiSchema.index({ name: 1 });
 ApiSchema.index({ name: 1, enabled: 1 });
-
-mongoose.model('Api', ApiSchema);
 
 module.exports = ApiSchema;
