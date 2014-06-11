@@ -158,7 +158,7 @@ var permissionsController = {
             });
     },
     getPermissionsByTarget: function (req, res) {
-        ResourcePermission.findPermissionsOnTarget(req.user.resource.uuid, req.params.uuid)
+        ResourcePermission.findPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'target')
             .then(function(permissions){
                 res.send(permissions);
             },
@@ -169,7 +169,7 @@ var permissionsController = {
     },
 
     getFlattenedPermissionsByTarget: function (req, res) {
-        ResourcePermission.findFlattenedPermissionsByTarget(req.user.resource.uuid, req.params.uuid)
+        ResourcePermission.findFlattenedPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'target')
             .then(function(permissions){
                 res.send(permissions);
             },
@@ -180,7 +180,7 @@ var permissionsController = {
     },
 
     getCompiledPermissionsByTarget: function (req, res) {
-        ResourcePermission.findCompiledPermissionsByTarget(req.user.resource.uuid, req.params.uuid)
+        ResourcePermission.findCompiledPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'target')
             .then(function(permissions){
                 res.send(permissions);
             },
@@ -190,7 +190,7 @@ var permissionsController = {
         );
     },
     getPermissionsBySource: function (req, res) {
-        ResourcePermission.findPermissionsOnSource(req.user.resource.uuid, req.params.uuid)
+        ResourcePermission.findPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'source')
             .then(function(permissions){
                 res.send(permissions);
             },

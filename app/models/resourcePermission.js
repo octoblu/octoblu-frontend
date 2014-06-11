@@ -29,41 +29,41 @@ ResourcePermissionSchema.statics.compilePermissions = function (ownerUUID, resou
 
 };
 
-ResourcePermissionSchema.statics.findPermissionsOnTarget = function (ownerUUID, targetUUID) {
-    var targetUUIDs = [targetUUID];
+ResourcePermissionSchema.statics.findPermissionsOnResource = function (ownerUUID, resourceUUID, permissionDirection) {
+    var resourceUUIDs = [resourceUUID];
     var Group = mongoose.model('Group'),
         ResourcePermission = mongoose.model('ResourcePermission');
 
-    return Group.findGroupsContainingResource(ownerUUID, targetUUID)
+    return Group.findGroupsContainingResource(ownerUUID, resourceUUID)
         .then(function (groups) {
             var groupUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
-            targetUUIDs = targetUUIDs.concat(groupUUIDs);
-            return ResourcePermission.findByTarget(ownerUUID, targetUUIDs);
+            resourceUUIDs = resourceUUIDs.concat(groupUUIDs);
+            return ResourcePermission.findByResource(ownerUUID, resourceUUIDs, permissionDirection);
         });
 };
 
-ResourcePermissionSchema.statics.findFlattenedPermissionsByTarget = function (ownerUUID, targetUUID) {
-    var targetUUIDs = [targetUUID];
+ResourcePermissionSchema.statics.findFlattenedPermissionsOnResource = function (ownerUUID, resourceUUIDs, permissionDirection) {
     var Group = mongoose.model('Group'),
         ResourcePermission = mongoose.model('ResourcePermission'),
         groups,
+        otherDirection = permissionDirection === 'source' ? 'target' : 'source',
         flatPermissions;
 
-    return Group.findGroupsContainingResource(ownerUUID, targetUUID)
+    return Group.findGroupsContainingResource(ownerUUID, resourceUUIDs)
         .then(function (dbGroups) {
             groups = dbGroups;
             var groupUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
-            targetUUIDs = targetUUIDs.concat(groupUUIDs);
-            return ResourcePermission.findByTarget(ownerUUID, targetUUIDs);
+            resourceUUIDs = resourceUUIDs.concat(groupUUIDs);
+            return ResourcePermission.findByResource(ownerUUID, resourceUUIDs, permissionDirection);
         })
         .then(function (permissions) {
             var groupPermissions = _.filter(permissions, function (permission) {
-                return permission.source.type === 'group';
+                return permission[otherDirection].type === 'group';
             });
             flatPermissions = _.xor(permissions, groupPermissions);
 
             return Q.all(_.map(groupPermissions, function (permission) {
-                return Group.findOne({'resource.uuid': permission.source.uuid}).exec()
+                return Group.findOne({'resource.uuid': permission[otherDirection].uuid}).exec()
                     .then(function (group) {
                         if (group) {
                             return {
@@ -79,7 +79,7 @@ ResourcePermissionSchema.statics.findFlattenedPermissionsByTarget = function (ow
                 .map(function (groupPermission) {
                     return _.map(groupPermission.group.members, function (member) {
                         var flatPermission = _.clone(groupPermission.permission);
-                        flatPermission.source = member;
+                        flatPermission[otherDirection] = member;
                         return flatPermission;
                     })
                 })
@@ -89,15 +89,17 @@ ResourcePermissionSchema.statics.findFlattenedPermissionsByTarget = function (ow
         });
 };
 
-ResourcePermissionSchema.statics.findCompiledPermissionsByTarget = function (ownerUUID, targetUUID) {
-    var ResourcePermission = mongoose.model('ResourcePermission');
-    return ResourcePermission.findFlattenedPermissionsByTarget(ownerUUID, targetUUID)
+ResourcePermissionSchema.statics.findCompiledPermissionsOnResource = function (ownerUUID, resourceUUID, permissionDirection) {
+    var ResourcePermission = mongoose.model('ResourcePermission'),
+        otherDirection = permissionDirection === 'source' ? 'target' : 'source';
+
+    return ResourcePermission.findFlattenedPermissionsOnResource(ownerUUID, resourceUUID, permissionDirection)
         .then(function (flatPermissions) {
             flatPermissions = _.chain(flatPermissions);
 
             return flatPermissions
                 .groupBy(function (permission) {
-                    return permission.source.uuid;
+                    return permission[otherDirection].uuid;
                 })
                 .pairs()
                 .map(function (pair) {
@@ -125,41 +127,18 @@ ResourcePermissionSchema.statics.findCompiledPermissionsByTarget = function (own
         });
 };
 
-ResourcePermissionSchema.statics.findByTarget = function (ownerUUID, targetUUIDs) {
+ResourcePermissionSchema.statics.findByResource = function (ownerUUID, resourceUUIDs, permissionDirection) {
     var ResourcePermission = mongoose.model('ResourcePermission'),
-        targetQuery = targetUUIDs;
-    if (targetUUIDs instanceof Array) {
-        targetQuery = {$in: targetUUIDs};
+        query = {},
+        resourceQuery = resourceUUIDs;
+    if (resourceUUIDs instanceof Array) {
+        resourceQuery = {$in: resourceUUIDs};
     }
-    return ResourcePermission.find({
-        'resource.owner.uuid': ownerUUID,
-        'target.uuid': targetQuery
-    }).exec();
-};
-ResourcePermissionSchema.statics.findPermissionsOnSource = function (ownerUUID, sourceUUID) {
-    var sourceUUIDs = [sourceUUID];
-    var Group = mongoose.model('Group'),
-        ResourcePermission = mongoose.model('ResourcePermission');
 
-    return Group.findGroupsContainingResource(ownerUUID, sourceUUID)
-        .then(function (groups) {
-            var groupUUIDs = _.pluck(_.pluck(groups, 'resource'), 'uuid');
-            sourceUUIDs = sourceUUIDs.concat(groupUUIDs);
-            return ResourcePermission.findBySource(ownerUUID, sourceUUIDs);
-        });
-};
+    query[permissionDirection + '.uuid'] = resourceQuery;
+    query['resource.owner.uuid'] = ownerUUID;
 
-ResourcePermissionSchema.statics.findBySource = function (ownerUUID, sourceUUIDs) {
-    var ResourcePermission = mongoose.model('ResourcePermission'),
-        sourceQuery = sourceUUIDs;
-    if (sourceUUIDs instanceof Array) {
-        sourceQuery = {$in: sourceUUIDs};
-    }
-    return ResourcePermission.find({
-        'resource.owner.uuid': ownerUUID,
-        'source.uuid': sourceQuery
-    }).exec();
+    return ResourcePermission.find(query).exec();
 };
-
 module.exports = ResourcePermissionSchema;
 
