@@ -43,9 +43,9 @@
 						<div class="col-lg-9 col-lg-offset-3">
 							<h3>Leap frog your competition today!</h3>
 							<ul>
-							<li>Octoblu is a service for managing realtime connections and communications across different systems, people, and physical devices.</li>
-<li>The service allows you to connect, design, control, and analyze the overall flow of information.</li>
-<li>Octoblu simplifies management of complicated and numerous activities in one platform.</li>
+								<li>Octoblu is a service for managing realtime connections and communications across different systems, people, and physical devices.</li>
+								<li>The service allows you to connect, design, control, and analyze the overall flow of information.</li>
+								<li>Octoblu simplifies management of complicated and numerous activities in one platform.</li>
 							</ul>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
   <div class="divScroll">
     <div class="scrollWrapper">
       <ul class="channellist">
-        <li ng-repeat="channel in availableChannels | orderBy:'name'" class="item">
+        <li ng-repeat="channel in availableChannels | orderBy:'name'" class="item" style="list-style-type:none">
             <div class="channel_icon-grid-view mod-index-0 pop-over"
                   ng-class="{'activechannel': isActive(channel)}"
               data-original-title="{{channel.name}}">
@@ -473,3 +473,18 @@ Get started automating your personal life and business now!</p>
 	<div class="back-to-top" id="top-button">
 		<a href="#top"><i class="fa fa-chevron-up"></i></a>
 	</div>
+
+<script>
+setTimeout(function(){
+  //   Isotope
+  var container = document.querySelector('#container');
+  // init
+  var iso = new Isotope( container, {
+    // options
+    itemSelector: '.item',
+    layoutMode: 'fitRows'
+  });
+
+},3000);
+
+</script>

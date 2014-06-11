@@ -83,7 +83,11 @@ var twitterFetcher = function () {
             f = 0;
             e = document.getElementById(u);
             for (g = "<ul>"; f < d;) g += "<li>" + c[f] + "</li>", f++;
-            e.innerHTML = g + "</ul>";
+            try {
+                e.innerHTML = g + "</ul>";
+            } catch(e){
+                console.log(e);
+            }
             p = !1;
             0 < h.length && (twitterFetcher.fetch(h[0].id, h[0].domId, h[0].maxTweets, h[0].enableLinks, h[0].showUser, h[0].showTime, h[0].dateFunction), h.splice(0, 1))
         }

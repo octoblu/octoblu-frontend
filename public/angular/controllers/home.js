@@ -20,6 +20,7 @@ angular.module('octobluApp')
 //              $scope.availableChannels = channelData;
               $scope.availableDevices = deviceData;
              $scope.availableChannels = channelData.concat(deviceData);
+             console.log('CHANNELS->',$scope.availableChannels)
          });
        });
 
