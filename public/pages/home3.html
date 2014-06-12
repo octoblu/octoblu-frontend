@@ -54,25 +54,27 @@
 		</div>
 		<!-- END ABOUT -->
 
-<h3>Available Channels & Smart Devices:</h3>
-<br /><br />
-<div id="container" class="isotope">
-  <div class="divScroll">
-    <div class="scrollWrapper">
-      <ul class="channellist">
-        <li ng-repeat="channel in availableChannels | orderBy:'name'" class="item" style="list-style-type:none">
-            <div class="channel_icon-grid-view mod-index-0 pop-over"
-                  ng-class="{'activechannel': isActive(channel)}"
-              data-original-title="{{channel.name}}">
-              <img ng-src="{{channel.logo}}" width="100" height="100"/>
-            </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<br /><br /><br />
+		<div id="aboutx" class="section about">
+			<div class="container">
+				<div class="section-heading">
+					<h2>Available Channels & Smart Devices</h2>
+					<p>Connect Everything to Everything</p>
+					<hr />
+				</div>
 
+				<div class="section-content">
+					<div class="row">
+				    <div ng-repeat="channel in availableChannels | orderBy:'name'" class="col-md-1 col-xs-3" style="list-style-type:none">
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
+				              ng-class="{'activechannel': isActive(channel)}"
+				          data-original-title="{{channel.name}}">
+				          <img ng-src="{{channel.logo}}" style="height:100px; width:100px;"/>
+				        </div>
+				    </div>
+				  </div>
+				</div>
+				<br /><br /><br />
+		</div>
 
 		<!-- SERVICES -->
 		<div id="services" class="section darker services" >
@@ -361,7 +363,7 @@ Get started automating your personal life and business now!</p>
 		<!-- END TEAM -->
 
 		<!-- TESTIMONIAL -->
-		<div id="testimonial" class="section testimonial parallax">
+		<div id="testimonial" class="section testimonial">
 			<div class="container">
 				<div class="flexslider">
 					<ul class="slides">
@@ -474,17 +476,3 @@ Get started automating your personal life and business now!</p>
 		<a href="#top"><i class="fa fa-chevron-up"></i></a>
 	</div>
 
-<script>
-setTimeout(function(){
-  //   Isotope
-  var container = document.querySelector('#container');
-  // init
-  var iso = new Isotope( container, {
-    // options
-    itemSelector: '.item',
-    layoutMode: 'fitRows'
-  });
-
-},3000);
-
-</script>

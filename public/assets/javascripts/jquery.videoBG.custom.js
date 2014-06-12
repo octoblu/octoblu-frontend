@@ -86,7 +86,7 @@
 		}
 		
 		// add it all to the container
-		container.html(wrap);
+		// container.html(wrap);
 		container.append(video);
 		
 		return video.find("video")[0];

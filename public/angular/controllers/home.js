@@ -17,10 +17,8 @@ angular.module('octobluApp')
              if(error){
                  console.log('error: ' + error);
              }
-//              $scope.availableChannels = channelData;
               $scope.availableDevices = deviceData;
              $scope.availableChannels = channelData.concat(deviceData);
-             console.log('CHANNELS->',$scope.availableChannels)
          });
        });
 
@@ -34,23 +32,7 @@ angular.module('octobluApp')
         };
 
         $(document).ready(function () {
-            /*SLIDE*/
-            // athenaSlide(
-            //     athenaSlideId = 'slidecontent',
-            //     athenaPreviousButtonId = 'slide-previous',
-            //     athenaNextButtonId = 'slide-next',
-            //     athenaDotButtonClass = 'slide-dot',
-            //     athenaDotActiveClass = 'slide-active',
-            //     athenaPlayButtonId = 'slide-play',
-            //     athenaStopButtonId = 'slide-stop',
-            //     /**MORE OPTIONS**/
-            //     athenaSlideMode = 'sliding',
-            //     athenaSlideTime = 500,
-            //     athenaSlideDelay = 500,
-            //     athenaSlideEffect = 'swing',
-            //     athenaAutoStartLoop = true,
-            //     athenaLoopTime = 10000
-            // );
+
 
             /*-----------------------------/
             /* HERO UNIT FULLSCREEN VIDEO
@@ -109,6 +91,85 @@ angular.module('octobluApp')
             }
 
             /*----------------------/
+            /* MAIN NAVIGATION
+            /*---------------------*/
+
+            $(window).on('scroll', function(){
+                if( $(window).width() > 1024 ) {
+                    if( $(document).scrollTop() > 150 ) {
+                        $('.navbar').addClass('navbar-light');
+
+                    }else {
+                        $('.navbar').removeClass('navbar-light');
+                    }
+                }
+            });
+
+            function toggleNavbar() {
+                if( ($(window).width() > 1024) && ($(document).scrollTop() <= 150) ) {
+                    $(".navbar").removeClass("navbar-light");
+                } else {
+                    $(".navbar").addClass("navbar-light");
+                }
+            }
+
+            toggleNavbar();
+
+            $(window).resize( function() {
+                toggleNavbar();
+            });
+
+
+
+            // hide collapsible menu
+            $('.navbar-nav li a').click( function() {
+                if($(this).parents('.navbar-collapse.collapse').hasClass('in')) {
+                    $('#main-nav2').collapse('hide');
+                }
+            });
+
+            $('#main-nav2').localScroll({
+                duration: 1000,
+                easing: 'easeInOutExpo'
+            });
+
+            $('.hero-buttons').localScroll({
+                duration: 1000,
+                easing: 'easeInOutExpo'
+            });
+
+
+            /*----------------------/
+            /* WORKS
+            /*---------------------*/
+
+
+            var $container = $('.work-item-list');
+
+            new imagesLoaded( $container, function() {
+             $container.isotope({
+                 itemSelector: '.work-item'
+             });
+            });
+
+            $(window).smartresize( function() {
+             $container.isotope('reLayout');
+            });
+
+            $('.work-item-filters a').click( function(e) {
+
+                var selector = $(this).attr('data-filter');
+                $container.isotope({
+                 filter: selector
+                });
+
+                $('.work-item-filters a').removeClass('active');
+                $(this).addClass('active');
+
+                return false;
+            });            
+
+            /*----------------------/
             /* TESTIMONIAL
             /*---------------------*/
 
@@ -118,6 +179,122 @@ angular.module('octobluApp')
                 pauseOnAction: false
             });
 
+            /*----------------------/
+            /* TWITTER STREAM
+            /*---------------------*/
+
+            /*
+            * ### HOW TO CREATE A VALID ID TO USE: ###
+            * Go to www.twitter.com and sign in as normal, go to your settings page.
+            * Go to "Widgets" on the left hand side.
+            * Create a new widget for what you need eg "user timeline" or "search" etc.
+            * Feel free to check "exclude replies" if you dont want replies in results.
+            * Now go back to settings page, and then go back to widgets page, you should
+            * see the widget you just created. Click edit.
+            * Now look at the URL in your web browser, you will see a long number like this:
+            * 345735908357048478
+            * Use this as your ID below instead!
+            */
+            /**
+            * How to use fetch function:
+            * @param {string} Your Twitter widget ID.
+            * @param {string} The ID of the DOM element you want to write results to.
+            * @param {int} Optional - the maximum number of tweets you want returned. Must
+            *     be a number between 1 and 20.
+            * @param {boolean} Optional - set true if you want urls and hashtags to be hyperlinked!
+            * @param {boolean} Optional - Set false if you dont want user photo /
+            *     name for tweet to show.
+            * @param {boolean} Optional - Set false if you dont want time of tweet
+            *     to show.
+            * @param {function/string} Optional - A function you can specify to format
+            *     tweet date/time however you like. This function takes a JavaScript date
+            *     as a parameter and returns a String representation of that date.
+            *     Alternatively you may specify the string 'default' to leave it with
+            *     Twitter's default renderings.
+            */
+
+            twitterFetcher.fetch( '474676149037965312', 'tweet', 1, true, false, true, 'default');
+
+            /*----------------------/
+            /* SCROLL TO TOP
+            /*---------------------*/
+
+            if( $(window).width() > 992 ) {
+                $(window).scroll( function() {
+                    if( $(this).scrollTop() > 300 ) {
+                        $('.back-to-top').fadeIn();
+                    } else {
+                        $('.back-to-top').fadeOut();
+                    }
+                });
+
+                $('.back-to-top').click( function(e) {
+                    e.preventDefault();
+
+                    $('body, html').animate({
+                        scrollTop: 0,
+                    }, 800, 'easeInOutExpo');
+                });
+            }
+
+
+
+
+            var originalTitle, currentItem;
+
+            $('.media-popup').magnificPopup({
+                type: 'image',
+                callbacks: {
+                    beforeOpen: function() {
+
+                        // modify item title to include description
+                        currentItem = $(this.items)[this.index];
+                        originalTitle = currentItem.title;
+                        currentItem.title = '<h3>' + originalTitle + '</h3>' + '<p>' + $(currentItem).parents('.work-item').find('img').attr('alt') + '</p>';
+
+                        // adding animation
+                        this.st.mainClass = 'mfp-fade';
+                    },
+                    close: function() {
+                        currentItem.title = originalTitle;
+                    },
+                }
+
+            });
+
+            /*----------------------/
+            /* CALL TO ACTION
+            /*---------------------*/
+
+            if( $(window).width() > 1024 ) {
+                wow = new WOW({
+                    animateClass: 'animated'
+                });
+
+                wow.init();
+            } else {
+                $('.wow').attr('class', '');
+            }
+
+            /*----------------------/
+            /* TOOLTIP
+            /*---------------------*/
+
+            if( $(window).width() > 1024 ) {
+                $('body').tooltip({
+                    selector: "[data-toggle=tooltip]",
+                    container: "body"
+                });
+            }
+
+            // init scrollspy except on Opera, it doesn't work because body has 100% height
+            if ( !navigator.userAgent.match("Opera/") ) {
+                $('body').scrollspy({
+                    target: '#main-nav2'
+                });
+            }else {
+                $('#main-nav2 .nav li').removeClass('active');
+            }
 
 
         });

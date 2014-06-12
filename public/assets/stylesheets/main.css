@@ -4687,7 +4687,7 @@ img.mfp-img {
 .work-item-list li {
   padding: 0;
   float: left;
-  overflow: hidden;
+  /*overflow: hidden;*/
   position: relative;
 }
 .work-item-list li img {
@@ -4998,9 +4998,11 @@ img.mfp-img {
 }
 /* ------------------ TESTIMONIAL ------------------ */
 .testimonial {
-  background-image: url('../images/sky.jpg?1394021998');
+  background-image: url('../images/sky.jpg');
   text-align: center;
   color: #fff;
+  background-size:   cover;       
+  background-repeat: no-repeat;  
 }
 .testimonial .testimonial-text {
   margin-bottom: 30px;
