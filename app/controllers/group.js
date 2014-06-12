@@ -9,7 +9,6 @@ var _ = require('lodash'),
 
 //Look in /test folder for postman api dump.
 var groupController = {
-
     /**
      *
      * @param req
@@ -36,7 +35,6 @@ var groupController = {
      * @param res
      */
     getGroupById: function (req, res) {
-
         var user = req.user;
         Group.findOne({
             uuid: req.params.uuid,
@@ -68,7 +66,6 @@ var groupController = {
                 owner: user.resourceId
             }
         });
-
         newGroup.save(function (err, dbGroup) {
             if (err) {
                 res.send(400, err);
@@ -83,7 +80,6 @@ var groupController = {
      * @param req
      * @param res
      */
-    //TODO: delete permission groups as well
     deleteGroup: function (req, res) {
         var user = req.user, group;
         Group.findOneAndRemove({
@@ -92,7 +88,7 @@ var groupController = {
         }).exec()
             .then(function (dbGroup) {
                 group = dbGroup;
-                if(!dbGroup) {
+                if (!dbGroup) {
                     res.send(400, {error: 'group not found'});
                     return;
                 }
@@ -120,7 +116,7 @@ var groupController = {
             uuid: req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
         }).exec().then(function (dbGroup) {
-            if(!dbGroup) {
+            if (!dbGroup) {
                 res.send(400, {error: 'group not found'});
                 return;
             }
@@ -136,19 +132,17 @@ var groupController = {
                     return;
                 }
                 res.send(dbGroup);
-                ResourcePermission.updateSkynetPermissions(req.user.resource,
-                    dbGroup.members,
-                    skynetUrl);
             });
         });
     },
+
     getOperatorsGroup: function (req, res) {
         Group.findOne({
             'resource.owner.uuid': req.user.resource.uuid,
             type: 'operators'
         }).exec().then(
             function (dbGroup) {
-                if(!dbGroup) {
+                if (!dbGroup) {
                     res.send(400, {error: 'group not found'});
                     return;
                 }
@@ -160,12 +154,12 @@ var groupController = {
         );
     },
 
-    getGroupsContainingResource : function(req, res){
+    getGroupsContainingResource: function (req, res) {
         Group.findGroupsContainingResource(req.user.resource.uuid, req.params.uuid)
-            .then(function(groups){
+            .then(function (groups) {
                 res.send(groups);
             },
-            function(err){
+            function (err) {
                 res.send(err);
             }
         );

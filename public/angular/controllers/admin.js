@@ -67,59 +67,6 @@ angular.module('octobluApp')
         $scope.sourcePermissionsGroup = sourcePermissionsGroup;
         $scope.targetPermissionsGroup = targetPermissionsGroup;
 
-        $scope.$watch('resourcePermission', _.debounce(
-            function (newValue, oldValue) {
-                if (!angular.equals(newValue, oldValue)) {
-                    $scope.$apply(function () {
-                        PermissionsService.update(
-                            $scope.user.skynetuuid,
-                            $scope.user.skynettoken,
-                            $scope.resourcePermission
-                        ).then(function (updatedResourcePermission) {
-                                console.log('resource permission saved');
-                            }, function (error) {
-                                console.log('error saving resource permission');
-                                console.log(error);
-                            });
-                    });
-                }
-            }, 1000), true);
-
-
-        $scope.$watch('sourcePermissionsGroup',
-            _.debounce(function (newValue, oldValue) {
-                if (!angular.equals(newValue, oldValue)) {
-                    $scope.$apply(function () {
-                        console.log('sourcePermissionsGroup updated');
-                        GroupService.updateGroup($scope.user.skynetuuid,
-                            $scope.user.skynettoken,
-                            $scope.sourcePermissionsGroup)
-                            .then(function (updatedGroup) {
-                                updateResourceTotals();
-                            }, function (error) {
-                                console.log(error);
-                            });
-                    });
-                }
-            }, 1000), true);
-
-        $scope.$watch('targetPermissionsGroup',
-            _.debounce(function (newValue, oldValue) {
-                if (!angular.equals(newValue, oldValue)) {
-                    $scope.$apply(function () {
-                        console.log('targetPermissionsGroup changed');
-                        GroupService.updateGroup($scope.user.skynetuuid,
-                            $scope.user.skynettoken,
-                            $scope.targetPermissionsGroup)
-                            .then(function (updatedGroup) {
-                                updateResourceTotals();
-                            }, function (error) {
-                                console.log(error);
-                            });
-                    });
-                }
-            }, 1000), true);
-
         $scope.removeResourceFromGroup = function (group, resource) {
             group.members = _.filter(group.members, function (member) {
                 return member.uuid !== resource.uuid;
@@ -132,6 +79,23 @@ angular.module('octobluApp')
             if (!resourcePermission) {
                 group.members.push(resource);
             }
+        };
+
+        $scope.save = function () {
+            updateResourceTotals();
+            PermissionsService.update(
+                $scope.user.skynetuuid,
+                $scope.user.skynettoken,
+                { resourcePermission: $scope.resourcePermission,
+                    targetGroup: $scope.targetPermissionsGroup,
+                    sourceGroup: $scope.sourcePermissionsGroup }
+            ).then(function (whitelists) {
+                    console.log('whitelists');
+                    console.log(whitelists)
+                }, function (error) {
+                    console.log('error saving resource permission');
+                    console.log(error);
+                });
         };
 
         function updateResourceTotals() {
@@ -152,7 +116,6 @@ angular.module('octobluApp')
                     resourceCounts[type] = count;
                 });
         }
-
     })
     .controller('invitationController', function ($scope, userService, InvitationService) {
         //Send the invitation
@@ -175,5 +138,4 @@ angular.module('octobluApp')
                  */
             });
         };
-
     });
