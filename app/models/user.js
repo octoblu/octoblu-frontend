@@ -62,7 +62,7 @@ var UserSchema = new mongoose.Schema({
     },
     { toObject: {virtuals: true}, toJSON: {virtuals: true} });
 
-Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties : ['displayName', 'email']});
+Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties : ['displayName', 'email', 'skynettoken']});
 
 // find api connection by name
 UserSchema.methods.findApiByName = function (name) {

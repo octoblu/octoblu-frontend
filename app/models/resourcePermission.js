@@ -4,7 +4,11 @@ var mongoose = require('mongoose'),
     Resource = require('./mixins/resource'),
     _ = require('lodash'),
     Q = require('q'),
-    uuid = require('node-uuid');
+    uuid = require('node-uuid'),
+    rest = require('rest'),
+    mime = require('rest/interceptor/mime'),
+    errorCode = require('rest/interceptor/errorCode'),
+    client = rest.wrap(mime).wrap(errorCode);
 
 var ResourcePermissionSchema = new mongoose.Schema({
     //Yep, a resource permission is also a resource. Just makes queries easier.
@@ -105,18 +109,18 @@ ResourcePermissionSchema.statics.findCompiledPermissionsOnResource = function (o
                 .pairs()
                 .map(function (pair) {
                     var permissions = pair[1];
-                    var compiled =  _.reduce(permissions, function (compiledPermission, permission) {
+                    var compiled = _.reduce(permissions, function (compiledPermission, permission) {
                         if (!compiledPermission) {
                             return permission;
                         }
 
-                        if(!(compiledPermission.name instanceof Array)){
+                        if (!(compiledPermission.name instanceof Array)) {
                             compiledPermission.name = [compiledPermission.name];
                         }
 
                         if (permission.name)
                             compiledPermission.name.push(permission.name);
-                        _.each( _.keys(permission.permissions), function (permissionName) {
+                        _.each(_.keys(permission.permissions), function (permissionName) {
                             compiledPermission.permissions[permissionName] =
                                 compiledPermission.permissions[permissionName] || permission.permissions[permissionName];
                         });
@@ -140,6 +144,66 @@ ResourcePermissionSchema.statics.findByResource = function (ownerUUID, resourceU
     query['resource.owner.uuid'] = ownerUUID;
 
     return ResourcePermission.find(query).exec();
+};
+
+ResourcePermissionSchema.statics.updateSkynetPermissions = function (ownerResource, resources, skynetUrl) {
+    var ResourcePermission = mongoose.model('ResourcePermission');
+    return Q.all(
+        _.compact(_.map(resources, function (resource) {
+            if (resource.type !== 'user') {
+                return ResourcePermission.findCompiledPermissionsOnResource(ownerResource.uuid, resource.uuid, 'target')
+                    .then(function (permissions) {
+                        return ResourcePermission.formatSkynetPermissions(permissions);
+                    })
+                    .then(function (permissions) {
+                        var deviceProperties = {
+                            viewWhitelist: permissions.viewWhitelist,
+                            updateWhitelist: permissions.updateWhitelist,
+                            sendWhitelist: permissions.sendWhitelist,
+                            receiveWhitelist: permissions.receiveWhitelist
+                        };
+
+                        return client({
+                            method: 'PUT',
+                            path: skynetUrl + '/devices/' + resource.uuid,
+                            entity: deviceProperties,
+                            headers: {
+                                skynet_auth_uuid: ownerResource.uuid,
+                                skynet_auth_token: ownerResource.properties.skynettoken,
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                    });
+            }
+        })))
+        .then(function (result) {
+            console.log('worked.');
+        }, function (err) {
+            console.log('didn\'t work: ' + err);
+        });
+};
+
+ResourcePermissionSchema.statics.formatSkynetPermissions = function (permissions) {
+
+    var viewWhitelist = _.filter(permissions, function (permission) {
+        return permission.permissions.discover;
+    });
+    var updateWhitelist = _.filter(permissions, function (permission) {
+        return permission.permissions.configure;
+    });
+    var sendWhitelist = _.filter(permissions, function (permission) {
+        return permission.permissions.message_send;
+    });
+    var receiveWhitelist = _.filter(permissions, function (permission) {
+        return permission.permissions.message_receive;
+    });
+
+    return {
+        viewWhitelist: _.pluck(_.pluck(viewWhitelist, 'source'), 'uuid'),
+        updateWhitelist: _.pluck(_.pluck(updateWhitelist, 'source'),'uuid'),
+        sendWhitelist: _.pluck(_.pluck(sendWhitelist, 'source'), 'uuid'),
+        receiveWhitelist: _.pluck(_.pluck(receiveWhitelist, 'source'), 'uuid')
+    };
 };
 module.exports = ResourcePermissionSchema;
 
