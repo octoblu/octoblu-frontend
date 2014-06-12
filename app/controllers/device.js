@@ -33,7 +33,6 @@ var deviceController = {
                 console.log(errorResult.status.text);
                 res.send(200, []);
             });
-
     },
 
     getDeviceByUUID: function (req, res) {
@@ -101,7 +100,6 @@ var deviceController = {
             .catch(function (error) {
                 res.send(400, error);
             });
-
     },
 
     updateDevice: function (req, res) {
