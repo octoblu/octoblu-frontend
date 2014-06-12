@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService) {
+    .controller('adminController', function (allGroupResourcePermissions, $state, $log, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService) {
         $scope.user = currentUser;
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
@@ -12,8 +12,7 @@ angular.module('octobluApp')
 
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
-                var resourcePermission;
-
+                var resourcePermission, sourceGroup;
                 PermissionsService.add(currentUser.skynetuuid, currentUser.skynettoken, { name: $scope.resourcePermissionName })
                     .then(function (newResourcePermission) {
                         resourcePermission = newResourcePermission;
@@ -23,13 +22,18 @@ angular.module('octobluApp')
                     .then(function (resourcePermission) {
                         return GroupService.addGroup(resourcePermission.resource.uuid + '_sources', currentUser.skynetuuid, currentUser.skynettoken);
                     })
-                    .then(function (sourceGroup) {
+                    .then(function (srcGroup) {
+                        sourceGroup = srcGroup;
                         resourcePermission.source = sourceGroup.resource;
                         return GroupService.addGroup(resourcePermission.resource.uuid + '_targets', currentUser.skynetuuid, currentUser.skynettoken);
                     })
                     .then(function (targetGroup) {
                         resourcePermission.target = targetGroup.resource;
-                        return PermissionsService.update(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission);
+                        return PermissionsService.update(currentUser.skynetuuid,
+                            currentUser.skynettoken,
+                            { resourcePermission: resourcePermission,
+                                targetGroup: targetGroup,
+                                sourceGroup: sourceGroup });
                     })
                     .then(function (updatedResourcePermission) {
                         angular.copy(updatedResourcePermission, resourcePermission);
@@ -45,13 +49,8 @@ angular.module('octobluApp')
                         .then(function () {
                             var index = $scope.allGroupResourcePermissions.indexOf(resourcePermission);
                             $scope.allGroupResourcePermissions.splice(index, 1);
+                            $state.go('admin.all');
                         });
-                    //We don't delete the permission groups right now. This leaves orphaned groups, but no big deal.
-                    //They can't do anything.
-//                    if(resourcePermission.target){
-//                        GroupService.delete(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid)
-//
-//                    }
                 });
         };
 

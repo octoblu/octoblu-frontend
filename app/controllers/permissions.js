@@ -91,44 +91,48 @@ var permissionsController = {
                     if (err) {
                         throw {error: err};
                     }
-                    Group.findOne({
-                        'resource.owner.uuid': user.resource.uuid,
-                        'resource.uuid': rscPerm.target.uuid
-                    }).exec()
-                        .then(function (group) {
-                            members = targetGroup.members;
-                            if (group) {
-                                members = _.uniq(_.union(members, targetGroup.members), function (member) {
-                                    return member.uuid
-                                });
+                    if(rscPerm.target) {
+                        Group.findOne({
+                            'resource.owner.uuid': user.resource.uuid,
+                            'resource.uuid': rscPerm.target.uuid
+                        }).exec()
+                            .then(function (group) {
+                                members = targetGroup.members;
+                                if (group) {
+                                    members = _.uniq(_.union(members, targetGroup.members), function (member) {
+                                        return member.uuid
+                                    });
+                                }
+                                return Q.all([
+                                    Group.update({
+                                        uuid: targetGroup.uuid,
+                                        'resource.owner.uuid': user.resource.uuid
+                                    }, {
+                                        members: targetGroup.members,
+                                        name: targetGroup.name
+                                    }).exec(),
+                                    Group.update({
+                                        uuid: sourceGroup.uuid,
+                                        'resource.owner.uuid': user.resource.uuid
+                                    }, {
+                                        members: sourceGroup.members,
+                                        name: sourceGroup.name
+                                    }).exec()]);
+                            })
+                            .then(function () {
+                                return ResourcePermission.updateSkynetPermissions(user.resource,
+                                    members, skynetUrl);
+                            })
+                            .then(function () {
+                                res.send(rscPerm);
+                            },
+                            function (err) {
+                                res.send(400, err);
                             }
-                            return Q.all([
-                                Group.update({
-                                    uuid: targetGroup.uuid,
-                                    'resource.owner.uuid': user.resource.uuid
-                                }, {
-                                    members: targetGroup.members,
-                                    name: targetGroup.name
-                                }).exec(),
-                                Group.update({
-                                    uuid: sourceGroup.uuid,
-                                    'resource.owner.uuid': user.resource.uuid
-                                }, {
-                                    members: sourceGroup.members,
-                                    name: sourceGroup.name
-                                }).exec()]);
-                        })
-                        .then(function () {
-                            return ResourcePermission.updateSkynetPermissions(user.resource,
-                                members, skynetUrl);
-                        })
-                        .then(function () {
-                            res.send(compiledPermissions);
-                        },
-                        function (err) {
-                            res.send(400, err);
-                        }
-                    );
+                        );
+                    } else {
+                        res.send(rscPerm);
+                    }
                 });
             });
     },
@@ -174,9 +178,9 @@ var permissionsController = {
                         'resource.owner.uuid': user.resource.uuid
                     }).exec(),
                     ResourcePermission.findOneAndRemove({
-                        uuid: permission.resource.uuid,
+                        'resource.uuid': permission.resource.uuid,
                         'resource.owner.uuid': user.resource.uuid
-                    })
+                    }).exec()
                 ]);
             })
             .then(function () {
