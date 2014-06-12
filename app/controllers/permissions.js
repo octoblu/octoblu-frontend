@@ -144,24 +144,52 @@ var permissionsController = {
      * @param res
      */
     deleteResourcePermission: function (req, res) {
-        var user = req.user;
-        ResourcePermission.findOneAndRemove({
-            uuid: req.params.uuid,
-            'resource.owner.uuid': user.resource.uuid
-        })
-            .exec()
-            .then(function (rscPermission) {
-                if (!rscPermission) {
-                    res.send(400, {'error': 'could not find ResourcePermission'});
-                    return;
-                }
-                res.send(rscPermission);
-            }, function (error) {
-                if (error) {
-                    console.log(error);
-                    res.send(400, error);
-                }
-            });
+        var user = req.user,
+            skynetUrl = req.protocol + '://' + permissionsController.skynetUrl,
+            permissionUUID = req.params.uuid,
+            permission,
+            members;
+        ResourcePermission.findOne({
+            'resource.owner.uuid': user.resource.uuid,
+            'resource.uuid': permissionUUID
+        }).exec()
+            .then(function (dbPermission) {
+                permission = dbPermission;
+            })
+            .then(function () {
+                return Group.findOne({
+                    'resource.owner.uuid': user.resource.uuid,
+                    'resource.uuid': permission.target.uuid
+                }).exec()
+            })
+            .then(function (group) {
+                members = group.members;
+                return Q.all([
+                    Group.findOneAndRemove({
+                        uuid: permission.target.uuid,
+                        'resource.owner.uuid': user.resource.uuid
+                    }).exec(),
+                    Group.findOneAndRemove({
+                        uuid: permission.source.uuid,
+                        'resource.owner.uuid': user.resource.uuid
+                    }).exec(),
+                    ResourcePermission.findOneAndRemove({
+                        uuid: permission.resource.uuid,
+                        'resource.owner.uuid': user.resource.uuid
+                    })
+                ]);
+            })
+            .then(function () {
+                return ResourcePermission.updateSkynetPermissions(user.resource,
+                    members, skynetUrl);
+            })
+            .then(function (compiledPermissions) {
+                res.send(compiledPermissions);
+            },
+            function (err) {
+                res.send(400, err);
+            }
+        );
     },
 
     /**
