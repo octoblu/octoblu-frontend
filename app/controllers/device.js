@@ -181,10 +181,10 @@ var deviceController = {
         var keywords = 'keywords:' + (req.query.keywords || '\"skynet-plugin\"');
         client({
             method: 'GET',
-            path: 'htto://npmsearch.com/query',
+            path: 'http://npmsearch.com/query',
             params: {
                 q: keywords,
-                fields: 'name',
+                fields: 'name,author,description,repository,homepage,dependencies',
                 start: 0,
                 size: 100,
                 sort: 'rating:desc'
