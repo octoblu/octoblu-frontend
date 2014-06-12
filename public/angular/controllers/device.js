@@ -1,92 +1,83 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, currentUser, claimedGateways, smartDevices, ownerService, deviceService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, currentUser, myDevices, smartDevices, deviceService ) {
 
-//        var ownerId = $cookies.skynetuuid;
-//        var token = $cookies.skynettoken;
-
+        $scope.user = currentUser;
         $scope.smartDevices = smartDevices;
-        $scope.claimedGateways = claimedGateways;
+        $scope.devices = myDevices;
 
-//        $scope.socket = $rootScope.skynetSocket;
-//        //TODO this will be handled by route checking at the root scope level. Should be changed then.
-//        if( ownerId === undefined || token === undefined ){
-//             $state.go('login');
-//        }
-
-        //Event handlers to detect edit and delete subdevice calls  from the device carousel directive
         //TODO - this may need to be refactored into a more elegant solution
-        $scope.$on('editSubDevice', function(event, subdevice, hub){
-            $scope.editSubDevice(subdevice, hub);
-        });
+//        $scope.$on('editSubDevice', function(event, subdevice, hub){
+//            $scope.editSubDevice(subdevice, hub);
+//        });
 
-        $scope.$on('deleteSubDevice', function(event, subdevice, hub){
-            $scope.deleteSubDevice(subdevice, hub);
-        });
+//        $scope.$on('deleteSubDevice', function(event, subdevice, hub){
+//            $scope.deleteSubDevice(subdevice, hub);
+//        });
 
-        $scope.saveHubName = function(hub){
-            var elementSelector = '#' + hub.uuid;
-            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
-            hubNameField.attr('readonly' , 'readonly');
+//        $scope.saveHubName = function(hub){
+//            var elementSelector = '#' + hub.uuid;
+//            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
+//            hubNameField.attr('readonly' , 'readonly');
+//
+//            var errors = $scope.validateName(hub);
+//            if(errors.length > 0 ){
+//                hub.validationErrors = errors;
+//            } else {
+//                var hubData = {
+//                    uuid : hub.uuid,
+//                    owner : hub.owner,
+//                    name : hub.name,
+//                    token : hub.token,
+//                    keyvals : [{}]
+//                }
+//
+//                deviceService.updateDevice(hub.owner, hubData, function( data ){
+//                    console.log(JSON.stringify(data));
+//
+//                } ) ;
+//                hub.isNameEditable = false;
+//            }
+//        };
 
-            var errors = $scope.validateName(hub);
-            if(errors.length > 0 ){
-                hub.validationErrors = errors;
-            } else {
-                var hubData = {
-                    uuid : hub.uuid,
-                    owner : hub.owner,
-                    name : hub.name,
-                    token : hub.token,
-                    keyvals : [{}]
-                }
+//        $scope.toggleNameEditable = function( hub ){
+//            var elementSelector = '#' + hub.uuid;
+//            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
+//            hubNameField.removeAttr('readonly');
+//        };
 
-                deviceService.updateDevice(hub.owner, hubData, function( data ){
-                    console.log(JSON.stringify(data));
+//        $scope.validateName = function(hub){
+//            var errors = [];
+//            if(hub.name === undefined || hub.name.length === 0){
+//                errors.push(
+//                    {
+//                        type : 'danger',
+//                        summary : 'Missing Name',
+//                        msg : 'Hub Name is required. Please enter a valid name for Hub.'
+//                    }
+//                )
+//            }
+//            var duplicateHubs = _.findWhere(hub.subdevices, {'name' : hub.name });
+//
+//            if(duplicateHubs && duplicateHubs.count > 1){
+//                errors.push({
+//                    type: 'danger',
+//                    summary: 'Duplicate Hub Name',
+//                    msg: 'Please enter a unique name for the Hub'
+//                });
+//            }
+//            return errors;
+//        };
 
-                } ) ;
-                hub.isNameEditable = false;
-            }
-        };
-
-        $scope.toggleNameEditable = function( hub ){
-            var elementSelector = '#' + hub.uuid;
-            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
-            hubNameField.removeAttr('readonly');
-        };
-
-        $scope.validateName = function(hub){
-            var errors = [];
-            if(hub.name === undefined || hub.name.length === 0){
-                errors.push(
-                    {
-                        type : 'danger',
-                        summary : 'Missing Name',
-                        msg : 'Hub Name is required. Please enter a valid name for Hub.'
-                    }
-                )
-            }
-            var duplicateHubs = _.findWhere(hub.subdevices, {'name' : hub.name });
-
-            if(duplicateHubs && duplicateHubs.count > 1){
-                errors.push({
-                    type: 'danger',
-                    summary: 'Duplicate Hub Name',
-                    msg: 'Please enter a unique name for the Hub'
-                });
-            }
-            return errors;
-        };
-
-        $scope.deleteHub = function(hub){
+        $scope.deleteDevice = function(device){
           $rootScope.confirmModal($modal, $scope, $log, 'Delete Hub ' + hub.name ,'Are you sure you want to delete this Hub?',
               function() {
-                  $log.info('ok clicked');
-                  deviceService.deleteDevice(hub.uuid, { skynetuuid : currentUser.skynetuuid, skynettoken : currentUser.skynettoken }, function( error, data ) {
-                      if(! error){
-                          var claimedGateways = $scope.claimedGateways;
-                          $scope.claimedGateways = _.without(claimedGateways, hub);
-                      }
-                  });
+                  deviceService.deleteDevice(device.uuid, currentUser.skynetuuid, currentUser.skynettoken)
+                      .then(function(deletedDevice){
+                          if(deletedDevice){
+                              $scope.devices =  _.without($scope.devices, device );
+                          }
+                      }, function(error){
+                  }); 
               },
               function() {
                   $log.info('cancel clicked');
@@ -105,14 +96,13 @@ angular.module('octobluApp')
                       mode: function () {
                           return 'ADD';
                       },
-                      hubs: function () {
-                          return $scope.gateways;
-                      },
+                      hubs : function(){
+                         return _.filter($scope.devices, function(device){
+                             return device.type === 'gateway';
+                         } ) ;
+                      }, 
                       smartDevice: function () {
                           return smartDevice;
-                      },
-                      selectedHub : function(){
-                         return null;
                       }
                   }
 

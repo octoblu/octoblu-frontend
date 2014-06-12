@@ -1,21 +1,6 @@
 angular.module('octobluApp')
     .service('GroupService', function ($cookies, $q, $http) {
 
-        /**
-         * Get a promise of the list of devices that belong to the owner.
-         * @param owner
-         * @returns {defer.promise|*} A promise that will resolve
-         * to the list of devices owned by the owner, an empty list
-         * if the owner owns no devices, or an error if there is an
-         * error returned from the API call.
-         */
-        this.getAllDevices = function (uuid, token) {
-            return $http.get('/api/owner/' + uuid + '/' + token + "/devices")
-                .then(function (res) {
-                    return res.data;
-                });
-        };
-
 
         /**
          * addGroup
