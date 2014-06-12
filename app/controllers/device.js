@@ -4,6 +4,26 @@ var request = require('request');
 
 module.exports = function (app, passport, config) {
 
+    // Search NPM for SkyNet plugins
+    app.get('/api/devices/plugins'), function(req,res){
+
+        request.get('http://npmsearch.com/query', {
+            qs: {
+                q: 'keywords:"skynet-plugin"',
+                fields: 'name',
+                start: 0,
+                size: 100,
+                sort: 'rating:desc'
+            }
+        },  function (error, response, body) {
+                console.log('RESPONSE', response);
+                console.log("DEVICES", body);
+                var data = JSON.parse(body);
+                res.json(data);
+        });
+
+    }
+
     // Get device info from Skynet
     app.get('/api/devices/:id', function(req, res) {
 

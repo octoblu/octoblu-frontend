@@ -21,7 +21,7 @@ var groupController = {
 
         if( ! skynetuuid || ! skynettoken){
             res.json(401, {
-                'error' : 'unauthorized'
+                'error' : 'unauthorized - getGroups'
             });
         }
 
