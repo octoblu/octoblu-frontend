@@ -86,9 +86,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     smartDevices: function (channelService) {
                         return channelService.getSmartDevices();
                     },
-                    claimedGateways: function (currentUser, ownerService) {
-                        return ownerService.getClaimedGateways({skynetuuid: currentUser.skynetuuid, skynettoken: currentUser.skynettoken});
-                    },
                     myDevices : function(currentUser, ownerService){
                         return ownerService.getMyDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
@@ -224,8 +221,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
-                    allDevices: function (currentUser, GroupService) {
-                        return GroupService.getAllDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    allDevices: function (currentUser, deviceService) {
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     },
                     allGroupResourcePermissions: function (currentUser, PermissionsService) {
                         return PermissionsService.allGroupPermissions(currentUser.skynetuuid, currentUser.skynettoken);
