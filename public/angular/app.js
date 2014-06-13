@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host' : 'skynet.im', //change to the skynet.im instance
-        'port' : '80'
+        'host': '127.0.0.1', //change to the skynet.im instance
+        'port': '3000'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -89,35 +89,17 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector.devices', {
                 url: '/devices',
                 abstract : true,
-                template: '<ui-view></ui-view>',
-                onEnter: function () {
-//                    console.log('Entering devices state');
-                },
-                onExit: function () {
-//                    console.log('leaving devices state');
-                }
+                template: '<ui-view></ui-view>'
             })
             .state('connector.devices.all', {
                 url : '',
                 controller : 'DeviceController',
-                templateUrl: 'pages/connector/devices/index.html',
-                onEnter: function () {
-//                    console.log('Entering devices state');
-                },
-                onExit: function () {
-//                    console.log('leaving devices state');
-                }
+                templateUrl: 'pages/connector/devices/index.html'
             })
             .state('connector.devices.detail', {
                 url: '/:uuid',
                 templateUrl: 'pages/connector/devices/detail/index.html',
-                controller: 'DeviceDetailController',
-                onEnter: function () {
-                    console.log('Entering devices state');
-                },
-                onExit: function () {
-                    console.log('leaving devices state');
-                }
+                controller: 'DeviceDetailController'
             })
             .state('connector.devices.wizard', {
                 url: '/wizard',
@@ -129,16 +111,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
 
-                },
-                onEnter: function () {
-//                    console.log('Entering device wizard state. ');
-                },
-                onExit : function(){
-//                    console.log('Exiting device wizard state. ');
                 }
-
-
-
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
@@ -239,11 +212,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('admin.all', {
                 url: '/groups',
-                parent: 'admin',
-                templateUrl: 'pages/admin/groups/all.html'
+                templateUrl: 'pages/admin/groups/all.html',
             })
             .state('admin.detail', {
-                parent: 'admin',
                 url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',
@@ -315,9 +286,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 //        $urlRouterProvider.otherwise('/');
     })
     .run(function ($rootScope, $state, $stateParams, $cookies, skynetConfig) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-
         // TODO: Replace with proper authorization service object and eliminate checkLogin.
         $rootScope.authorization = { isAuthenticated: false };
 
@@ -418,23 +386,4 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             );
 
         };
-
-        //They have logged in so create a skynetClient
-        if ($cookies.skynetuuid && $cookies.skynettoken) {
-
-            if ($rootScope.skynetClient === undefined) {
-                $rootScope.skynetClient = skynet({
-                    'host': skynetConfig.host,
-                    'port': skynetConfig.port,
-                    'uuid': $cookies.skynetuuid,
-                    'token': $cookies.skynettoken
-                }, function (e, socket) {
-                    if (e) {
-                        console.log(e.toString());
-                    } else {
-                        $rootScope.skynetSocket = socket;
-                    }
-                });
-            }
-        }
     });

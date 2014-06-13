@@ -147,7 +147,7 @@ ResourcePermissionSchema.statics.findByResource = function (ownerUUID, resourceU
 };
 
 ResourcePermissionSchema.statics.updateSkynetPermissions = function (ownerResource, resources, skynetUrl) {
-    var ResourcePermission = mongoose.model('ResourcePermission');
+    var ResourcePermission = mongoose.model('ResourcePermission'), deviceProperties;
     return Q.all(
         _.compact(_.map(resources, function (resource) {
             if (resource.type !== 'user') {
@@ -156,7 +156,7 @@ ResourcePermissionSchema.statics.updateSkynetPermissions = function (ownerResour
                         return ResourcePermission.formatSkynetPermissions(permissions);
                     })
                     .then(function (permissions) {
-                        var deviceProperties = {
+                        deviceProperties = {
                             viewWhitelist: permissions.viewWhitelist,
                             updateWhitelist: permissions.updateWhitelist,
                             sendWhitelist: permissions.sendWhitelist,
@@ -176,10 +176,8 @@ ResourcePermissionSchema.statics.updateSkynetPermissions = function (ownerResour
                     });
             }
         })))
-        .then(function (result) {
-            console.log('worked.');
-        }, function (err) {
-            console.log('didn\'t work: ' + err);
+        .then(function () {
+            return deviceProperties;
         });
 };
 
@@ -200,7 +198,7 @@ ResourcePermissionSchema.statics.formatSkynetPermissions = function (permissions
 
     return {
         viewWhitelist: _.pluck(_.pluck(viewWhitelist, 'source'), 'uuid'),
-        updateWhitelist: _.pluck(_.pluck(updateWhitelist, 'source'),'uuid'),
+        updateWhitelist: _.pluck(_.pluck(updateWhitelist, 'source'), 'uuid'),
         sendWhitelist: _.pluck(_.pluck(sendWhitelist, 'source'), 'uuid'),
         receiveWhitelist: _.pluck(_.pluck(receiveWhitelist, 'source'), 'uuid')
     };

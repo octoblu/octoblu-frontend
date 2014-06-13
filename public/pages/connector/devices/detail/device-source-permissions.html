@@ -9,7 +9,9 @@
     </tr>
     </thead>
     <tr ng-repeat="permission in sourcePermissions  track by permission.target.uuid ">
-        <td>{{permission.target.properties.name}}</td>
+        <td title="via {{permission.name}}">
+            {{permission.target.properties.name || permission.target.properties.displayName || permission.target.properties.email}}
+        </td>
         <td>
             <div class="btn-group">
                 <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.discover, 'btn-default': !permission.permissions.discover, 'disabled': true}"

@@ -48,10 +48,10 @@ angular.module('octobluApp').
                         return res.data;
                     });
             },
-            update: function (uuid, token, permission) {
+            update: function (uuid, token, permissionGroupTriple) {
                 return $http({method: 'PUT',
-                    url: '/api/permissions/' + permission.resource.uuid,
-                    data: permission,
+                    url: '/api/permissions/' + permissionGroupTriple.resourcePermission.resource.uuid,
+                    data: permissionGroupTriple,
                     headers: {
                         'skynet_auth_uuid': uuid,
                         'skynet_auth_token': token
