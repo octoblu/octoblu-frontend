@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host' : 'skynet.im', //change to the skynet.im instance
-        'port' : '80'
+        'host' : '127.0.0.1', //change to the skynet.im instance
+        'port' : '3000'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -73,12 +73,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector', {
                 url: '/connector',
                 templateUrl: 'pages/connector/index.html',
-                controller: 'connectorController'
-            })
-            .state('connector.devices', {
-                url: '/devices',
-                abstract : true,
-                template: '<ui-view></ui-view>',
+                controller: 'connectorController',
                 resolve: {
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
@@ -89,7 +84,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     myDevices : function(currentUser, ownerService){
                         return ownerService.getMyDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
-                },
+                }
+            })
+            .state('connector.devices', {
+                url: '/devices',
+                abstract : true,
+                template: '<ui-view></ui-view>',
                 onEnter: function () {
 //                    console.log('Entering devices state');
                 },
