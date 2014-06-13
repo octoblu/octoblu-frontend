@@ -177,7 +177,7 @@ angular.module('octobluApp')
 
                 $scope.deleteDevice = function( idx ){
 
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?',
+                    $scope.confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?',
                         function() {
                             $log.info('ok clicked');
                             var device_to_delete = $scope.devices[idx];
@@ -272,7 +272,7 @@ angular.module('octobluApp')
 
                 $scope.deleteGateway = function( idx ){
 
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?',
+                    $scope.confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?',
                         function() {
                             $log.info('ok clicked');
                             var gateway_to_delete = $scope.gateways[idx];
@@ -289,7 +289,7 @@ angular.module('octobluApp')
                 };
 
                 $scope.deleteSubdevice = function(parent, idx){
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
+                    $scope.confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
                         function() {
                             $log.info('ok clicked');
                             var subName = $scope.gateways[parent].subdevices[idx].name
@@ -339,7 +339,7 @@ angular.module('octobluApp')
                 };
 
                 $scope.deletePlugin = function(parent, idx){
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
+                    $scope.confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
                         function() {
                             $log.info('ok clicked');
                             skynetService.gatewayConfig({
