@@ -263,7 +263,7 @@ angular.module('octobluApp')
                       //now update the name
                     return deviceService.updateDevice(hub.uuid, currentUser.skynetuuid, currentUser.skynettoken, {
                         name : hubName
-                    })
+                    });
                }).then(function(device){
                       $state.go('connector.devices.all', {}, {reload : true});
                   }, function(error){

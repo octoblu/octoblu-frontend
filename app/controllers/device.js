@@ -66,6 +66,7 @@ var deviceController = {
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
                 skynet_auth_token: req.headers.skynet_auth_token
             },
+            params : req.body,
             entity: req.body
         })
             .then(function (result) {
@@ -89,6 +90,7 @@ var deviceController = {
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
                 skynet_auth_token: req.headers.skynet_auth_token
             }
+
         })
             .then(function (result) {
                 res.send(result.entity);
@@ -103,18 +105,15 @@ var deviceController = {
         client({
             method: 'PUT',
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
-            params: {
-                uuid: req.params.uuid
-            },
+            params: req.body,
             headers: {
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
                 skynet_auth_token: req.headers.skynet_auth_token
-            }
+            },
+            entity : req.body
         })
             .then(function (result) {
-                var devices = createDeviceResources(result.entity.devices, user);
-                var device = _.findWhere(devices, {uuid: req.params.uuid});
-                res.send(device);
+              res.send(result.entity);
             })
             .catch(function (error) {
                 res.send(400, error);
@@ -142,7 +141,7 @@ var deviceController = {
             },
             entity: req.body
         }).then(function (result) {
-               res.send(result);
+               res.send(result.entity);
             })
             .catch(function (error) {
                 res.send(400, error.status );
