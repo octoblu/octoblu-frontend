@@ -5,6 +5,7 @@ angular.module('octobluApp')
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
 
             // Get user devices
+            console.log("getting devices from ownerService");
             ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
                 $scope.devices = data;
                 for (var i in $scope.devices) {
@@ -12,6 +13,7 @@ angular.module('octobluApp')
                         $scope.devices.splice(i,1);
                     }
                 }
+                console.log($scope.devices);
             });
 
 
@@ -64,7 +66,7 @@ angular.module('octobluApp')
             // }, 1000);
 
             // Initialize up to 10 lines for charting
-            var line = [];
+            /*var line = [];
             for(var i =0; i < 10; i++){
               line[i] = new TimeSeries();
             }            
@@ -79,7 +81,7 @@ angular.module('octobluApp')
 
             smoothie.streamTo(document.getElementById("mycanvas"), 1000);
 
-
+	  END OF SMOOTHIE	*/
             var sensorGrid = [];
 
             skynetConfig.uuid = $scope.skynetuuid;
@@ -91,9 +93,7 @@ angular.module('octobluApp')
 
                 $scope.sensorListen = function (sensor){
                   console.log('sensor listen', sensor);
-
                   sensorGrid = [];
-
                   // unsubscribe from other devices
                   ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function (data) {
 
@@ -103,7 +103,7 @@ angular.module('octobluApp')
                              socket.emit('unsubscribe', {
                                  'uuid': device.uuid
                              }, function (data) {
-                                 // console.log(data);
+                                  console.log(data);
                              });
 
                          });
@@ -114,7 +114,7 @@ angular.module('octobluApp')
                          'uuid': sensor.uuid
                          // 'token': sensor.token
                      }, function (data) {
-                         // console.log(data);
+                          console.log(data);
                      });
 
 
