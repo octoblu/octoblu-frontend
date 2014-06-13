@@ -561,38 +561,6 @@ html, body {
   <div class="footer-copyright text-center">© 2014 - All Rights Reserved. Octoblu, Inc.</div>
 </div>
 
-<script type="text/ng-template" id="watchVideo.html">
-    <div class="modal-body">
-      <iframe width="560" height="315" src="//www.youtube.com/embed/FhRaMzUZfAU" frameborder="0" allowfullscreen></iframe>
-    </div>
 
-    <div class="modal-footer">
-        <button class="btn" ng-click="cancel()">Close</button>
-    </div>
-</script>
 
-<script>
-setTimeout(function(){
-  //   Isotope
-  var container = document.querySelector('#container');
-  // init
-  var iso = new Isotope( container, {
-    // options
-    itemSelector: '.item',
-    layoutMode: 'fitRows'
-  });
 
-},3000);
-
-//   Skroller
-var s = skrollr.init({
-  edgeStrategy: 'set',
-  easing: {
-    WTF: Math.random,
-    inverted: function(p) {
-      return 1-p;
-    }
-  }
-});
-
-</script>
