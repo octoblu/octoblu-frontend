@@ -39,7 +39,7 @@ var deviceController = {
         var user = req.user;
         client({
             method: 'GET',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/:uuid",
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
             params: {
                 uuid: req.params.uuid
             },
@@ -83,19 +83,15 @@ var deviceController = {
         var user = req.user;
         client({
             method: 'DELETE',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/:uuid",
-            params: {
-                uuid: req.params.uuid
-            },
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
+
             headers: {
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
                 skynet_auth_token: req.headers.skynet_auth_token
             }
         })
             .then(function (result) {
-                var devices = createDeviceResources(result.entity.devices, user);
-                var device = _.findWhere(devices, {uuid: req.params.uuid});
-                res.send(device);
+                res.send(result.entity);
             })
             .catch(function (error) {
                 res.send(400, error);
@@ -106,7 +102,7 @@ var deviceController = {
         var user = req.user;
         client({
             method: 'PUT',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/:uuid",
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
             params: {
                 uuid: req.params.uuid
             },
@@ -128,27 +124,28 @@ var deviceController = {
 
     claimDevice: function (req, res) {
         var user = req.user;
-        var deviceData = { owner: user.resource.uuid, name: req.body.name };
+        if(req.body.owner !== user.skynetuuid ){
+            res.send(401, {'error' : 'unauthorized'});
+            return;
+        }
+
         client({
             method: 'PUT',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/claimdevice/:uuid",
+            path: req.protocol + "://" + deviceController.skynetUrl + "/claimdevice/" + req.params.uuid,
             params: {
-                uuid: req.params.uuid,
-                overrideIp: req.ip
+                "overrideIp" : req.ip
             },
             headers: {
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_token: req.headers.skynet_auth_token,
+                Skynet_override_token: deviceController.config.skynet.override_token
             },
-            entity: deviceData
-        })
-            .then(function (result) {
-                var devices = createDeviceResources(result.entity.devices, user);
-                var device = _.findWhere(devices, {uuid: req.params.uuid});
-                res.send(device);
+            entity: req.body
+        }).then(function (result) {
+               res.send(result);
             })
             .catch(function (error) {
-                res.send(400, error);
+                res.send(400, error.status );
             });
     },
 
@@ -159,7 +156,6 @@ var deviceController = {
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices",
             params: {
                 "ipAddress": req.ip,
-                "type": "gateway",
                 "owner": null
             },
             headers: {
@@ -197,6 +193,8 @@ var deviceController = {
 };
 module.exports = function (app, config) {
 
+
+
     deviceController.skynetUrl = app.locals.skynetUrl;
     deviceController.config = config;
     app.get('/api/devices/unclaimed', isAuthenticated, deviceController.getUnclaimedDevices);
@@ -219,4 +217,4 @@ function createDeviceResources(devices, owner) {
             includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress', 'localhost' ]
         });
     }) || [];
-}
+};

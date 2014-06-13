@@ -9,9 +9,9 @@ angular.module('octobluApp')
           $rootScope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name ,'Are you sure you want to delete this Device?',
               function() {
                   deviceService.deleteDevice(device.uuid, currentUser.skynetuuid, currentUser.skynettoken)
-                      .then(function(deletedDevice){
-                          if(deletedDevice){
-                              $scope.devices =  _.without($scope.devices, device );
+                      .then(function(device){
+                          if(device){
+                              $scope.devices =  _.without($scope.devices, _.findWhere($scope.devices, {uuid: device.uuid}));
                           }
                       }, function(error){
                   }); 
@@ -181,8 +181,6 @@ angular.module('octobluApp')
 
     {
 
-//        $scope.hubName;
-
         $scope.availableGateways = _.filter(unclaimedDevices, function(device){
             return device.type === 'gateway';
         }) || [];
@@ -204,16 +202,16 @@ angular.module('octobluApp')
             }
         };
 
+        $scope.$watch('hubName', function(newName, oldName, scope){
+            console.log(newName);
+            console.log(oldName);
 
+        }, true);
 
-
-//        $scope.getNextState = function(){
-//            return $scope.wizardStates.findhub.id;
-//        };
-//
-//        $scope.getPreviousState = function( ){
-//            return $scope.wizardStates.instructions.id;
-//        };
+        $scope.$watch('selectedHub', function(newHub, oldHub, scope){
+            console.log(newHub);
+            console.log(oldHub);
+        }, true);
 
         $scope.canClaim = function(name, hub){
 //            console.log('checkFinish');
@@ -233,43 +231,44 @@ angular.module('octobluApp')
             }
         }
 
-        //Notify the parent scope that a new hub has been selected
-//        $scope.notifyHubSelected = function(hub){
-//            console.log('hub selected notifying parent scope');
-//            $scope.$emit('hubSelected', hub);
-//        };
+//        Notify the parent scope that a new hub has been selected
+        $scope.notifyHubSelected = function(hub){
+            console.log('hub selected notifying parent scope');
+            $scope.$emit('hubSelected', hub);
+        };
 
-        //Notify the parent scope that the hub name has been changed
-//        $scope.notifyHubNameChanged = function(name){
-//            $scope.$emit('hubNameChanged', name);
-//        }
+//        Notify the parent scope that the hub name has been changed
+        $scope.notifyHubNameChanged = function(name){
+            $scope.$emit('hubNameChanged', name);
+        }
 
-        //event handler for updating the hubName selected in the child scope
-//        $scope.$on('hubNameChanged', function(event, name){
-//
-//            $scope.hubName = name;
-//        });
+//        event handler for updating the hubName selected in the child scope
+        $scope.$on('hubNameChanged', function(event, name){
+            $scope.hubName = name;
+            event.preventDefault();
+        });
 
-        //event handler for updating the hub selected in the child scope.
-//        $scope.$on('hubSelected', function(event, hub){
-//
-//            $scope.selectedHub = hub;
-//        });
+//        event handler for updating the hub selected in the child scope.
+        $scope.$on('hubSelected', function(event, hub){
+            $scope.selectedHub = hub;
+            event.preventDefault();
+        });
 
-        $scope.saveHub = function(hub, hubName){
+        $scope.claimHub = function(hub, hubName){
            if(hub && hubName && hubName.trim().length > 0 ){
 
-              var devicePromise =  deviceService
-                  .claimDevice(hub.uuid,
-                  {
-                      skynetuuid : currentUser.skynetuuid,
-                      skynettoken : currentUser.skynettoken
-                  },
-                  hubName );
-
-               devicePromise.then(function(result){
-                   $state.go('connector.devices.all', {}, {reload: true});
-               }, function(error){
+              deviceService
+                  .claimDevice(hub.uuid, currentUser.skynetuuid, currentUser.skynettoken,  $scope.hubName)
+                  .then(function(result){
+                      //now update the name
+                    return deviceService.updateDevice(hub.uuid, currentUser.skynetuuid, currentUser.skynettoken, {
+                        name : hubName
+                    })
+               }).then(function(device){
+                      $state.go('connector.devices.all', {}, {reload : true});
+                  }, function(error){
+                   console.log(error);
+                   $state.go('connector.devices.all', {}, {reload : true});
                });
 
            }

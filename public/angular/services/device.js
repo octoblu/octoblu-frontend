@@ -55,10 +55,10 @@ angular.module('octobluApp')
          * @param name
          * @returns {*}
          */
-        this.claimDevice = function (deviceUUID, userUUID, userToken,  name) {
+        this.claimDevice = function (deviceUUID, userUUID, userToken) {
             
            return $http.put('/api/devices/' + deviceUUID + '/claim', {
-               name : name,
+               uuid : deviceUUID,
                owner : userUUID
            }, {
                headers: {
@@ -98,7 +98,7 @@ angular.module('octobluApp')
          */
         this.deleteDevice = function (deviceUUID, userUUID, userToken) {
 
-            return $http.get('/api/devices/' + deviceUUID,{
+            return $http.delete('/api/devices/' + deviceUUID,{
                 headers: {
                     skynet_auth_uuid  : userUUID,
                     skynet_auth_token : userToken
