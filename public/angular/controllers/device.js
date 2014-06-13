@@ -189,19 +189,6 @@ angular.module('octobluApp')
         $scope.isopen = false;
         $scope.user = currentUser;
 
-        $scope.wizardStates = {
-            instructions: {
-                name: 'instructions',
-                id: 'connector.devices.wizard.instructions',
-                title: 'Install a new Hub'
-            },
-            findhub: {
-                name: 'findhub',
-                id: 'connector.devices.wizard.findhub',
-                title: 'Add Available Hub'
-            }
-        };
-
         $scope.$watch('hubName', function(newName, oldName, scope){
             console.log(newName);
             console.log(oldName);

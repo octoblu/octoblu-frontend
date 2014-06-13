@@ -1,0 +1,23 @@
+<div class="modal-dialog wizard-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <a type="button" class="close"  data-dismiss="modal" ng-click="cancel()" aria-hidden="true">&times;</a>
+            <h3>Add Plugin to Hub: {{selectedGateway.name}}</h3>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="plugin" class="col-sm-2 control-label">Plugins</label>
+
+                <div class="col-sm-10">
+                    <select ng-model="plugin" ng-options="plugin.name for plugin in plugins" class="form-control"
+                            id="plugin" ng-change="getSchema(plugin)"></select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok(plugin)">OK</button>
+            <button class="btn" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>
