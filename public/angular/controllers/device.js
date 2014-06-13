@@ -5,6 +5,8 @@ angular.module('octobluApp')
         $scope.smartDevices = smartDevices;
         $scope.devices = myDevices;
 
+
+
         //TODO - this may need to be refactored into a more elegant solution
 //        $scope.$on('editSubDevice', function(event, subdevice, hub){
 //            $scope.editSubDevice(subdevice, hub);
