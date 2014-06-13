@@ -69,7 +69,7 @@ angular.module('octobluApp')
 //        };
 
         $scope.deleteDevice = function(device){
-          $rootScope.confirmModal($modal, $scope, $log, 'Delete Hub ' + hub.name ,'Are you sure you want to delete this Hub?',
+          $rootScope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name ,'Are you sure you want to delete this Device?',
               function() {
                   deviceService.deleteDevice(device.uuid, currentUser.skynetuuid, currentUser.skynettoken)
                       .then(function(deletedDevice){
