@@ -48,14 +48,14 @@ var deviceController = {
                 skynet_auth_token: req.headers.skynet_auth_token
             }
         })
-            .then(function (result) {
+        .then(function (result) {
                 var devices = createDeviceResources(result.entity.devices, user);
                 var device = _.findWhere(devices, {uuid: req.params.uuid});
                 res.send(device);
-            })
-            .catch(function (error) {
-                res.send(400, error);
-            });
+        })
+        .catch(function (error) {
+            res.send(400, error.status);
+        });
     },
 
     createDevice: function (req, res) {
@@ -158,20 +158,21 @@ var deviceController = {
             method: 'GET',
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices",
             params: {
-                ipAddress: req.ip,
-                owner: null
+                "ipAddress": req.ip,
+                "type": "gateway",
+                "owner": null
             },
             headers: {
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
                 skynet_auth_token: req.headers.skynet_auth_token,
-                skynet_override_token: config.skynet.override_token
+                skynet_override_token: deviceController.config.skynet.override_token
             }
         }).then(function (result) {
+
             var devices = createDeviceResources(result.entity.devices, null);
-            var device = _.findWhere(devices, {uuid: req.params.uuid});
-            res.send(device);
+            return res.send(devices);
         }, function (errorResult) {
-            return res.send(errorResult.status.code, []);
+            return res.send( []);
         });
 
     },
@@ -194,9 +195,11 @@ var deviceController = {
         });
     }
 };
-module.exports = function (app) {
+module.exports = function (app, config) {
 
     deviceController.skynetUrl = app.locals.skynetUrl;
+    deviceController.config = config;
+    app.get('/api/devices/unclaimed', isAuthenticated, deviceController.getUnclaimedDevices);
     app.get('/api/devices/plugins', deviceController.getPlugins);
     app.get('/api/devices', isAuthenticated, deviceController.getDevices);
     app.get('/api/devices/:uuid', isAuthenticated, deviceController.getDeviceByUUID);
@@ -213,7 +216,7 @@ function createDeviceResources(devices, owner) {
             type: 'device',
             uuidProperty: 'uuid',
             ownerType: owner ? owner.resource.type : undefined,
-            includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress' ]
+            includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress', 'localhost' ]
         });
     }) || [];
 }

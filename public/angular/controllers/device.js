@@ -5,71 +5,6 @@ angular.module('octobluApp')
         $scope.smartDevices = smartDevices;
         $scope.devices = myDevices;
 
-
-
-        //TODO - this may need to be refactored into a more elegant solution
-//        $scope.$on('editSubDevice', function(event, subdevice, hub){
-//            $scope.editSubDevice(subdevice, hub);
-//        });
-
-//        $scope.$on('deleteSubDevice', function(event, subdevice, hub){
-//            $scope.deleteSubDevice(subdevice, hub);
-//        });
-
-//        $scope.saveHubName = function(hub){
-//            var elementSelector = '#' + hub.uuid;
-//            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
-//            hubNameField.attr('readonly' , 'readonly');
-//
-//            var errors = $scope.validateName(hub);
-//            if(errors.length > 0 ){
-//                hub.validationErrors = errors;
-//            } else {
-//                var hubData = {
-//                    uuid : hub.uuid,
-//                    owner : hub.owner,
-//                    name : hub.name,
-//                    token : hub.token,
-//                    keyvals : [{}]
-//                }
-//
-//                deviceService.updateDevice(hub.owner, hubData, function( data ){
-//                    console.log(JSON.stringify(data));
-//
-//                } ) ;
-//                hub.isNameEditable = false;
-//            }
-//        };
-
-//        $scope.toggleNameEditable = function( hub ){
-//            var elementSelector = '#' + hub.uuid;
-//            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
-//            hubNameField.removeAttr('readonly');
-//        };
-
-//        $scope.validateName = function(hub){
-//            var errors = [];
-//            if(hub.name === undefined || hub.name.length === 0){
-//                errors.push(
-//                    {
-//                        type : 'danger',
-//                        summary : 'Missing Name',
-//                        msg : 'Hub Name is required. Please enter a valid name for Hub.'
-//                    }
-//                )
-//            }
-//            var duplicateHubs = _.findWhere(hub.subdevices, {'name' : hub.name });
-//
-//            if(duplicateHubs && duplicateHubs.count > 1){
-//                errors.push({
-//                    type: 'danger',
-//                    summary: 'Duplicate Hub Name',
-//                    msg: 'Please enter a unique name for the Hub'
-//                });
-//            }
-//            return errors;
-//        };
-
         $scope.deleteDevice = function(device){
           $rootScope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name ,'Are you sure you want to delete this Device?',
               function() {
@@ -242,20 +177,16 @@ angular.module('octobluApp')
              });
         console.log($scope.device);
     })
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser,  deviceService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser, unclaimedDevices,  deviceService )
 
     {
-        $scope.availableGateways;
 
-        deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken)
-            .then(function(data){
-                $scope.availableGateways = data;
-                $scope.$apply();
-        }, function(error){
-                console.log(error);
-                $scope.availableGateways = [];
-                $scope.$apply();
-        });
+//        $scope.hubName;
+
+        $scope.availableGateways = _.filter(unclaimedDevices, function(device){
+            return device.type === 'gateway';
+        }) || [];
+
 
         $scope.isopen = false;
         $scope.user = currentUser;
@@ -276,13 +207,13 @@ angular.module('octobluApp')
 
 
 
-        $scope.getNextState = function(){
-            return $scope.wizardStates.findhub.id;
-        };
-
-        $scope.getPreviousState = function( ){
-            return $scope.wizardStates.instructions.id;
-        };
+//        $scope.getNextState = function(){
+//            return $scope.wizardStates.findhub.id;
+//        };
+//
+//        $scope.getPreviousState = function( ){
+//            return $scope.wizardStates.instructions.id;
+//        };
 
         $scope.canClaim = function(name, hub){
 //            console.log('checkFinish');
@@ -303,27 +234,27 @@ angular.module('octobluApp')
         }
 
         //Notify the parent scope that a new hub has been selected
-        $scope.notifyHubSelected = function(hub){
-            console.log('hub selected notifying parent scope');
-            $scope.$emit('hubSelected', hub);
-        };
+//        $scope.notifyHubSelected = function(hub){
+//            console.log('hub selected notifying parent scope');
+//            $scope.$emit('hubSelected', hub);
+//        };
 
         //Notify the parent scope that the hub name has been changed
-        $scope.notifyHubNameChanged = function(name){
-            $scope.$emit('hubNameChanged', name);
-        }
+//        $scope.notifyHubNameChanged = function(name){
+//            $scope.$emit('hubNameChanged', name);
+//        }
 
         //event handler for updating the hubName selected in the child scope
-        $scope.$on('hubNameChanged', function(event, name){
-
-            $scope.hubName = name;
-        });
+//        $scope.$on('hubNameChanged', function(event, name){
+//
+//            $scope.hubName = name;
+//        });
 
         //event handler for updating the hub selected in the child scope.
-        $scope.$on('hubSelected', function(event, hub){
-
-            $scope.selectedHub = hub;
-        });
+//        $scope.$on('hubSelected', function(event, hub){
+//
+//            $scope.selectedHub = hub;
+//        });
 
         $scope.saveHub = function(hub, hubName){
            if(hub && hubName && hubName.trim().length > 0 ){

@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
         require('./controllers/channel')(app);
         require('./controllers/connect')(app, passport, config);
         require('./controllers/cors')(app);
-        require('./controllers/device')(app, passport, config);
+        require('./controllers/device')(app, config);
         require('./controllers/elastic')(app);
         require('./controllers/message')(app, conn);
         require('./controllers/owner')(app, config, conn);
