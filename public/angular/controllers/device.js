@@ -1,12 +1,12 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state, $http, $cookies, $modal, $timeout, currentUser, myDevices, smartDevices, deviceService) {
+    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $cookies, $modal, $timeout, currentUser, myDevices, smartDevices, deviceService) {
 
         $scope.user = currentUser;
         $scope.smartDevices = smartDevices;
         $scope.devices = myDevices;
 
         $scope.deleteDevice = function (device) {
-            $rootScope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
+            $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {
                     deviceService.deleteDevice(device.uuid, currentUser.skynetuuid, currentUser.skynettoken)
                         .then(function (device) {
@@ -46,14 +46,14 @@ angular.module('octobluApp')
                 });
 
                 subdeviceModal.result.then(function (result) {
-                    $rootScope.skynetSocket.emit('gatewayConfig', {
+                    skynetService.gatewayConfig({
                         "uuid": result.hub.uuid,
                         "token": result.hub.token,
                         "method": "createSubdevice",
                         "type": result.device.plugin,
                         "name": result.name,
                         "options": result.options
-                    }, function (addResult) {
+                    }).then(function (addResult) {
                         console.log(addResult);
                     });
 
@@ -70,7 +70,7 @@ angular.module('octobluApp')
 
 
     })
-    .controller('DeviceEditController', function ($rootScope, $cookies, $scope, $state, $stateParams, $http, currentUser, deviceService) {
+    .controller('DeviceEditController', function ($scope, skynetService) {
 
         $scope.editSubDevice = function (subdevice, hub) {
 
@@ -107,14 +107,14 @@ angular.module('octobluApp')
             });
 
             subDeviceModal.result.then(function (options) {
-                $rootScope.skynetSocket.emit('gatewayConfig', {
+                skynetService.gatewayConfig({
                     "uuid": hub.uuid,
                     "token": hub.token,
                     "method": "updateSubdevice",
                     "type": subdevice.type,
                     "name": subdevice.name,
                     "options": options
-                }, function (updateResult) {
+                }).then(function (updateResult) {
                     console.log(updateResult);
                 });
                 subdevice.options = options;
@@ -122,7 +122,7 @@ angular.module('octobluApp')
 
             });
 
-        }
+        };
 
         $scope.deleteSubDevice = function (subdevice, hub) {
             $rootScope.confirmModal($modal, $scope, $log,
@@ -130,12 +130,12 @@ angular.module('octobluApp')
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
                 function () {
                     $log.info('ok clicked');
-                    $rootScope.skynetSocket.emit('gatewayConfig', {
-                            "uuid": hub.uuid,
-                            "token": hub.token,
-                            "method": "deleteSubdevice",
-                            "name": subdevice.name
-                        },
+                    skynetService.gatewayConfig({
+                        "uuid": hub.uuid,
+                        "token": hub.token,
+                        "method": "deleteSubdevice",
+                        "name": subdevice.name
+                    }).then(
                         function (deleteResult) {
                             if (deleteResult.result === 'ok') {
                                 hub.subdevices = _.without(hub.subdevices, subdevice);
@@ -145,7 +145,7 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('DeviceDetailController', function ($scope, $state, $stateParams, currentUser, myDevices, PermissionsService) {
+    .controller('DeviceDetailController', function ($scope, $state, $stateParams, currentUser, myDevices, PermissionsService, skynetService) {
         $scope.device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         PermissionsService
             .allSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
@@ -178,6 +178,16 @@ angular.module('octobluApp')
             return (permission.name instanceof Array);
         };
 
+        if ($scope.device.type === 'gateway') {
+            skynetService.gatewayConfig( {
+                    "uuid": $scope.device.uuid,
+                    "token": $scope.device.token
+            }).then(function (result) {
+                    if (result.result === 'ok') {
+                        $scope.device.subdevices = result;
+                    }
+                });
+        }
         console.log($scope.device);
     })
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state, $http, currentUser, unclaimedDevices, deviceService) {

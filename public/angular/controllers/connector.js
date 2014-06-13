@@ -1,21 +1,14 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,skynetConfig, ownerService, deviceService, channelService) {
+    .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
 
-        $rootScope.checkLogin($scope, $http, $injector, true, function () {
+        $scope.checkLogin($scope, $http, $injector, true, function () {
 
             $scope.navType = 'pills';
-            // $scope.navType = 'tabs';
-            skynetConfig.uuid = $scope.skynetuuid;
-            skynetConfig.token = $scope.skynettoken;
-            skynet(skynetConfig, function (e, socket) {
-                if (e) throw e
-
-
                 // Get user devices
                 ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
                     $scope.devices = data;
@@ -301,13 +294,13 @@ angular.module('octobluApp')
                             $log.info('ok clicked');
                             var subName = $scope.gateways[parent].subdevices[idx].name
                             $scope.gateways[parent].subdevices.splice(idx,1)
-                            socket.emit('gatewayConfig', {
+                            skynetService.gatewayConfig({
                                 "uuid": $scope.gateways[parent].uuid,
                                 "token": $scope.gateways[parent].token,
                                 "method": "deleteSubdevice",
                                 "name": subName
                                 // "name": $scope.gateways[parent].subdevices[idx].name
-                            }, function (deleteResult) {
+                            }).then(function (deleteResult) {
                                 // alert(JSON.stringify(deleteResult));
                             });
                         },
@@ -319,28 +312,28 @@ angular.module('octobluApp')
 
                 $scope.addSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
                     console.log('add device properties ', deviceProperties);
-                    socket.emit('gatewayConfig', {
+                    skynetService.gatewayConfig( {
                         "uuid": gateway.uuid,
                         "token": gateway.token,
                         "method": "createSubdevice",
                         "type": pluginName,
                         "name": subDeviceName,
                         "options": deviceProperties
-                    }, function (addResult) {
+                    }).then(function (addResult) {
                         console.log(addResult);
                     });
                 };
 
                 $scope.updateSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
                   console.log('updating device properties ', deviceProperties);
-                  socket.emit('gatewayConfig', {
+                    skynetService.gatewayConfig( {
                       "uuid": gateway.uuid,
                       "token": gateway.token,
                       "method": "updateSubdevice",
                       "type": pluginName,
                       "name": subDeviceName,
                       "options": deviceProperties
-                  }, function (updateResult) {
+                  }).then(function (updateResult) {
                       console.log(updateResult);
                   });
                 };
@@ -349,12 +342,12 @@ angular.module('octobluApp')
                     $rootScope.confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
                         function() {
                             $log.info('ok clicked');
-                            socket.emit('gatewayConfig', {
+                            skynetService.gatewayConfig({
                                 "uuid": $scope.gateways[parent].uuid,
                                 "token": $scope.gateways[parent].token,
                                 "method": "deletePlugin",
                                 "name": $scope.gateways[parent].plugins[idx].name
-                            }, function (deleteResult) {
+                            }).then(function (deleteResult) {
                                 alert('plugin deleted');
                             });
                         },
@@ -365,13 +358,12 @@ angular.module('octobluApp')
                 };
 
                 $scope.addPlugin = function(gateway, pluginName){
-
-                    socket.emit('gatewayConfig', {
+                    skynetService.gatewayConfig( {
                         "uuid": gateway.uuid,
                         "token": gateway.token,
                         "method": "installPlugin",
                         "name": pluginName
-                    }, function (addResult) {
+                    }).then(function (addResult) {
                         // alert('plugin added');
                         console.log(addResult);
                     });
@@ -489,12 +481,12 @@ angular.module('octobluApp')
                                 $scope.deviceProperties = deviceProperties;
 
                                 // Get default options
-                                socket.emit('gatewayConfig', {
+                                skynetService.gatewayConfig( {
                                     "uuid": $scope.selectedGateway.uuid,
                                     "token": $scope.selectedGateway.token,
                                     "method": "getDefaultOptions",
                                     "name": plugin.name
-                                }, function (defaults) {
+                                }).then(function (defaults) {
                                     // TODO: defaults are not returning - factor into object
                                     console.log('config:', defaults);
                                     console.log($scope.deviceProperties);
@@ -631,11 +623,7 @@ angular.module('octobluApp')
                     });
 
                 }
-
-            }); //end skynet.js
-
         });
-
     })
     .controller('connectorAdvancedController', function($scope, $http, $location, $modal, $log, $q, $state,
                                                 ownerService, deviceService, channelService) {

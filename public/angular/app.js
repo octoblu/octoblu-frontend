@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host' : 'skynet.im', //change to the skynet.im instance
-        'port' : '80'
+        'host': '127.0.0.1', //change to the skynet.im instance
+        'port': '3000'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -286,9 +286,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 //        $urlRouterProvider.otherwise('/');
     })
     .run(function ($rootScope, $state, $stateParams, $cookies, skynetConfig) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-
         // TODO: Replace with proper authorization service object and eliminate checkLogin.
         $rootScope.authorization = { isAuthenticated: false };
 
@@ -389,23 +386,4 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             );
 
         };
-
-        //They have logged in so create a skynetClient
-        if ($cookies.skynetuuid && $cookies.skynettoken) {
-
-            if ($rootScope.skynetClient === undefined) {
-                $rootScope.skynetClient = skynet({
-                    'host': skynetConfig.host,
-                    'port': skynetConfig.port,
-                    'uuid': $cookies.skynetuuid,
-                    'token': $cookies.skynettoken
-                }, function (e, socket) {
-                    if (e) {
-                        console.log(e.toString());
-                    } else {
-                        $rootScope.skynetSocket = socket;
-                    }
-                });
-            }
-        }
     });
