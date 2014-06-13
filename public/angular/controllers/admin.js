@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService) {
+    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
         $scope.user = currentUser;
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
@@ -61,8 +61,30 @@ angular.module('octobluApp')
             }
             return '/assets/images/robot8.png';
         };
+
+        //Send the invitation
+        $scope.recipientEmail = '';
+
+        $scope.send = function () {
+
+            var invitationPromise = InvitationService.sendInvitation({
+                'uuid': currentUser.skynetuuid,
+                'token': currentUser.skynettoken
+            }, $scope.recipientEmail);
+
+            invitationPromise.then(function (invitation) {
+                $scope.recipientEmail = '';
+
+
+            }, function (result) {
+                /*
+                 *TODO - Display an error notification to the user
+                 */
+            });
+        };
+
     })
-    .controller('adminGroupDetailController', function ($scope, PermissionsService, GroupService, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup) {
+    .controller('adminGroupDetailController', function ($scope, PermissionsService, GroupService, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup, currentUser) {
         $scope.resourcePermission = resourcePermission;
         $scope.sourcePermissionsGroup = sourcePermissionsGroup;
         $scope.targetPermissionsGroup = targetPermissionsGroup;
@@ -152,28 +174,4 @@ angular.module('octobluApp')
                     resourceCounts[type] = count;
                 });
         }
-
-    })
-    .controller('invitationController', function ($scope, userService, InvitationService) {
-        //Send the invitation
-        $scope.recipientEmail = '';
-
-        $scope.send = function () {
-
-            var invitationPromise = InvitationService.sendInvitation({
-                'uuid': $cookies.skynetuuid,
-                'token': $cookies.skynettoken
-            }, $scope.recipientEmail);
-
-            invitationPromise.then(function (invitation) {
-                $scope.recipientEmail = '';
-
-
-            }, function (result) {
-                /*
-                 *TODO - Display an error notification to the user
-                 */
-            });
-        };
-
     });

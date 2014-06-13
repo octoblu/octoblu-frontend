@@ -89,35 +89,17 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector.devices', {
                 url: '/devices',
                 abstract : true,
-                template: '<ui-view></ui-view>',
-                onEnter: function () {
-//                    console.log('Entering devices state');
-                },
-                onExit: function () {
-//                    console.log('leaving devices state');
-                }
+                template: '<ui-view></ui-view>'
             })
             .state('connector.devices.all', {
                 url : '',
                 controller : 'DeviceController',
-                templateUrl: 'pages/connector/devices/index.html',
-                onEnter: function () {
-//                    console.log('Entering devices state');
-                },
-                onExit: function () {
-//                    console.log('leaving devices state');
-                }
+                templateUrl: 'pages/connector/devices/index.html'
             })
             .state('connector.devices.detail', {
                 url: '/:uuid',
                 templateUrl: 'pages/connector/devices/detail/index.html',
-                controller: 'DeviceDetailController',
-                onEnter: function () {
-                    console.log('Entering devices state');
-                },
-                onExit: function () {
-                    console.log('leaving devices state');
-                }
+                controller: 'DeviceDetailController'
             })
             .state('connector.devices.wizard', {
                 url: '/wizard',
@@ -129,16 +111,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
 
-                },
-                onEnter: function () {
-//                    console.log('Entering device wizard state. ');
-                },
-                onExit : function(){
-//                    console.log('Exiting device wizard state. ');
                 }
-
-
-
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
@@ -239,11 +212,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('admin.all', {
                 url: '/groups',
-                parent: 'admin',
-                templateUrl: 'pages/admin/groups/all.html'
+                templateUrl: 'pages/admin/groups/all.html',
             })
             .state('admin.detail', {
-                parent: 'admin',
                 url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',

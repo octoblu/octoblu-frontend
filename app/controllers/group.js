@@ -143,16 +143,25 @@ var groupController = {
         });
     },
     getOperatorsGroup: function (req, res) {
+        var user = req.user;
         Group.findOne({
             'resource.owner.uuid': req.user.resource.uuid,
             type: 'operators'
         }).exec().then(
             function (dbGroup) {
-                if(!dbGroup) {
-                    res.send(400, {error: 'group not found'});
-                    return;
+                if(dbGroup) {
+                    return dbGroup;
                 }
-                res.send(dbGroup);
+                return Group.create({
+                    name: 'operators',
+                    type: 'operators',
+                    resource: {
+                        owner: user.resourceId
+                    }
+                });
+            })
+            .then(function(group){
+                res.send(group);
             },
             function (err) {
                 res.send(400, err);

@@ -20,7 +20,7 @@
                         <i class="fa fa-stack-1x"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                  </span>
-                <span>{{resource.name || resource.displayName || resource.properties.name}}</span>
+                <span>{{resource.properties.name || resource.properties.displayName || resource.properties.email}}</span>
                 <a class="btn btn-danger pull-right"
                    ng-click="removeResourceFromGroup(sourcePermissionsGroup, resource)"><i
                         class="fa fa-trash-o"></i></a>
@@ -40,7 +40,7 @@
                     <a href ng-click="addResourceToGroup(sourcePermissionsGroup, resource)">
                         <i class="fa fa-fw"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type === 'device'}"></i>
-                        {{resource.name || resource.displayName || resource.properties.name}}
+                        {{resource.properties.name || resource.properties.displayName || resource.properties.email}}
                     </a>
                 </li>
             </ul>
@@ -141,7 +141,7 @@
                         <i class="fa  fa-stack-1x"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                  </span>
-                <span>{{resource.properties.name}}</span>
+                <span>{{resource.properties.name || resource.properties.displayName || resource.properties.email }}</span>
                 <a class="btn btn-danger pull-right"
                    ng-click="removeResourceFromGroup(targetPermissionsGroup, resource)">
                     <i class="fa fa-trash-o"></i></a>
@@ -161,7 +161,7 @@
                     <a href ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
                         <i class="fa fa-fw"
                            ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
-                        {{resource.properties.name}}
+                        {{resource.properties.name || resource.properties.displayName || resource.properties.email }}
                     </a>
                 </li>
             </ul>
