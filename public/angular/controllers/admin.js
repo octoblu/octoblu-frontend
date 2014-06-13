@@ -12,8 +12,7 @@ angular.module('octobluApp')
 
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
-                var resourcePermission;
-
+                var resourcePermission, sourceGroup;
                 PermissionsService.add(currentUser.skynetuuid, currentUser.skynettoken, { name: $scope.resourcePermissionName })
                     .then(function (newResourcePermission) {
                         resourcePermission = newResourcePermission;
@@ -23,13 +22,18 @@ angular.module('octobluApp')
                     .then(function (resourcePermission) {
                         return GroupService.addGroup(resourcePermission.resource.uuid + '_sources', currentUser.skynetuuid, currentUser.skynettoken);
                     })
-                    .then(function (sourceGroup) {
+                    .then(function (srcGroup) {
+                        sourceGroup = srcGroup;
                         resourcePermission.source = sourceGroup.resource;
                         return GroupService.addGroup(resourcePermission.resource.uuid + '_targets', currentUser.skynetuuid, currentUser.skynettoken);
                     })
                     .then(function (targetGroup) {
                         resourcePermission.target = targetGroup.resource;
-                        return PermissionsService.update(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission);
+                        return PermissionsService.update(currentUser.skynetuuid,
+                            currentUser.skynettoken,
+                            { resourcePermission: resourcePermission,
+                                targetGroup: targetGroup,
+                                sourceGroup: sourceGroup });
                     })
                     .then(function (updatedResourcePermission) {
                         angular.copy(updatedResourcePermission, resourcePermission);
@@ -45,13 +49,8 @@ angular.module('octobluApp')
                         .then(function () {
                             var index = $scope.allGroupResourcePermissions.indexOf(resourcePermission);
                             $scope.allGroupResourcePermissions.splice(index, 1);
+                            $state.go('admin.all');
                         });
-                    //We don't delete the permission groups right now. This leaves orphaned groups, but no big deal.
-                    //They can't do anything.
-//                    if(resourcePermission.target){
-//                        GroupService.delete(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid)
-//
-//                    }
                 });
         };
 
@@ -89,59 +88,6 @@ angular.module('octobluApp')
         $scope.sourcePermissionsGroup = sourcePermissionsGroup;
         $scope.targetPermissionsGroup = targetPermissionsGroup;
 
-        $scope.$watch('resourcePermission', _.debounce(
-            function (newValue, oldValue) {
-                if (!angular.equals(newValue, oldValue)) {
-                    $scope.$apply(function () {
-                        PermissionsService.update(
-                            $scope.user.skynetuuid,
-                            $scope.user.skynettoken,
-                            $scope.resourcePermission
-                        ).then(function (updatedResourcePermission) {
-                                console.log('resource permission saved');
-                            }, function (error) {
-                                console.log('error saving resource permission');
-                                console.log(error);
-                            });
-                    });
-                }
-            }, 1000), true);
-
-
-        $scope.$watch('sourcePermissionsGroup',
-            _.debounce(function (newValue, oldValue) {
-                if (!angular.equals(newValue, oldValue)) {
-                    $scope.$apply(function () {
-                        console.log('sourcePermissionsGroup updated');
-                        GroupService.updateGroup($scope.user.skynetuuid,
-                            $scope.user.skynettoken,
-                            $scope.sourcePermissionsGroup)
-                            .then(function (updatedGroup) {
-                                updateResourceTotals();
-                            }, function (error) {
-                                console.log(error);
-                            });
-                    });
-                }
-            }, 1000), true);
-
-        $scope.$watch('targetPermissionsGroup',
-            _.debounce(function (newValue, oldValue) {
-                if (!angular.equals(newValue, oldValue)) {
-                    $scope.$apply(function () {
-                        console.log('targetPermissionsGroup changed');
-                        GroupService.updateGroup($scope.user.skynetuuid,
-                            $scope.user.skynettoken,
-                            $scope.targetPermissionsGroup)
-                            .then(function (updatedGroup) {
-                                updateResourceTotals();
-                            }, function (error) {
-                                console.log(error);
-                            });
-                    });
-                }
-            }, 1000), true);
-
         $scope.removeResourceFromGroup = function (group, resource) {
             group.members = _.filter(group.members, function (member) {
                 return member.uuid !== resource.uuid;
@@ -154,6 +100,23 @@ angular.module('octobluApp')
             if (!resourcePermission) {
                 group.members.push(resource);
             }
+        };
+
+        $scope.save = function () {
+            updateResourceTotals();
+            PermissionsService.update(
+                $scope.user.skynetuuid,
+                $scope.user.skynettoken,
+                { resourcePermission: $scope.resourcePermission,
+                    targetGroup: $scope.targetPermissionsGroup,
+                    sourceGroup: $scope.sourcePermissionsGroup }
+            ).then(function (whitelists) {
+                    console.log('whitelists');
+                    console.log(whitelists)
+                }, function (error) {
+                    console.log('error saving resource permission');
+                    console.log(error);
+                });
         };
 
         function updateResourceTotals() {
