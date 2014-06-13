@@ -13,30 +13,6 @@
 
             <div class="container-fluid">
               <div class="row">
-                <h2>Live Streaming Data</h2>
-                <div class="input-group">
-                  <form class="form-inline col-md-12">
-                  <div class="form-group col-md-12">
-
-                  <div class="form-group">
-                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select>                      
-                  </div>
-                  <br /><br />
-
-                  <canvas id="mycanvas" width="400" height="100"></canvas>
-  
-
-                  <div id="legend"></div>
-
-                  </div>
-                  </form>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="container-fluid">
-              <div class="row">
                 <h2>Search Freeform Analytics</h2>
                 <div class="input-group">
                   <form class="form-inline col-md-12">
@@ -61,9 +37,8 @@
               </div>
             </div>
             <br/>
-            <br/>
 
-                <div class="panel panel-info" ng-show="results">
+                <div class="panel panel-info" ng-show="results" style="display:none;">
                     <!-- Default panel contents -->
                     <div class="panel-heading">Results
                       <p class="pull-right"> hits: {{ results.hits.total }}</p>
@@ -83,5 +58,40 @@
 
             </div>
         </div>
+           <div class="container-fluid">
+              <div class="row">
+                <h2>Device Details</h2>
+                <div class="input-group">
+                  <form class="form-inline col-md-12">
+                  <div class="form-group col-md-12">
+                  <div class="form-group">
+                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select> 
+                  </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+		<br/>
+		  <h1 >{{device.name}}</h1>
+		  <div class="col-md-4">
+			<h2> Top Devices Sending</h2>
+                        <pager total-items="1" page="currentPage" ng-show="top_device_send" ></pager>
+                  </div>
+		  <div class="col-md-4">
+			<h2> Top Devices Receiving</h2>
+		  </div>
+		  <div class="col-md-4">
+			<h2> Top Payloads </h2>
+		  </div>
+	      </div>
+	      <div class="row">
+                 <div class="col-md-10">
+		<h2>Count of EventCodes over time</h2>
+		</div>
+		</div>
+            </div>
+		<textarea style="width:100%">{{device}}</textarea>
+
     </div>
 </section>
