@@ -172,7 +172,11 @@ var deviceController = {
 
     },
     getPlugins: function (req, res) {
-        var keywords = 'keywords:' + (req.query.keywords || '\"skynet-plugin\"');
+        // var name = 'name:' + ('\"' + req.query.name + '\"' || '');
+        var keywords = 'keywords:' + ('\"' + req.query.keywords + '\"' || '\"skynet-plugin\"');
+        // var keywords = ('\"' + req.query.keywords + '\"' || '\"skynet-plugin\"');
+        // var qsOptions = {};
+        // qsOptions.keywords = req.query.keywords;
         client({
             method: 'GET',
             path: 'http://npmsearch.com/query',
@@ -184,7 +188,32 @@ var deviceController = {
                 sort: 'rating:desc'
             }
         }).then(function (result) {
-            return res.send(result.entity);
+        setTimeout(function(){
+            var data = JSON.parse(result.entity);            
+            for (var i = 0; i < data.results.length; i++) {
+                // console.log(data.results[i]);
+                if(data.results[i].homepage.indexOf("https://github.com/") > -1){
+                    var url = data.results[i].homepage.split("https://github.com/");
+                } else if(data.results[i].homepage.indexOf("http://npmjs.org/") > -1){
+                    var url = data.results[i].homepage.split("http://npmjs.org/");
+                } else if(data.results[i].homepage.indexOf("http://github.com/") > -1){
+                    var url = data.results[i].homepage.split("http://github.com/");
+                } else {
+                    var url = data.results[i].homepage.split("git@github.com:");
+                }
+                console.log(url);
+                if (url[1].indexOf(".git")){
+                    var gitUrl = url[1].split(".git");
+                } else {
+                    var gitUrl = url[1];
+                }
+                
+                console.log(gitUrl);
+                var actualUrl = "https://raw.githubusercontent.com/" + gitUrl;
+                data.results[i].bundle = actualUrl + "/master/bundle.js";
+            }
+            return res.send(data.results);
+        }, 1000)
         }, function (errorResult) {
             return res.send(errorResult.status.code, []);
         });
