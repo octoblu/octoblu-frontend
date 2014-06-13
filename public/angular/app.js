@@ -77,17 +77,14 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.devices', {
                 url: '/devices',
-                templateUrl: 'pages/connector/devices/index.html',
-                controller: 'DeviceController',
+                abstract : true,
+                template: '<ui-view></ui-view>',
                 resolve: {
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
                     smartDevices: function (channelService) {
                         return channelService.getSmartDevices();
-                    },
-                    claimedGateways: function (currentUser, ownerService) {
-                        return ownerService.getClaimedGateways({skynetuuid: currentUser.skynetuuid, skynettoken: currentUser.skynettoken});
                     },
                     myDevices : function(currentUser, ownerService){
                         return ownerService.getMyDevices(currentUser.skynetuuid, currentUser.skynettoken);
@@ -100,15 +97,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 //                    console.log('leaving devices state');
                 }
             })
-            .state('connector.devices.detail', {
-                url: '/:uuid',
-                templateUrl: 'pages/connector/devices/detail/index.html',
-                controller: 'DeviceDetailController',
-                resolve :{
-                    device : function($stateParmas, currentUser, deviceService){
-
-                    }
-                },
+            .state('connector.devices.all', {
+                url : '',
+                controller : 'DeviceController',
+                templateUrl: 'pages/connector/devices/index.html',
                 onEnter: function () {
 //                    console.log('Entering devices state');
                 },
@@ -116,11 +108,28 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 //                    console.log('leaving devices state');
                 }
             })
+            .state('connector.devices.detail', {
+                url: '/:uuid',
+                templateUrl: 'pages/connector/devices/detail/index.html',
+                controller: 'DeviceDetailController',
+                onEnter: function () {
+                    console.log('Entering devices state');
+                },
+                onExit: function () {
+                    console.log('leaving devices state');
+                }
+            })
             .state('connector.devices.wizard', {
                 url: '/wizard',
                 abstract: true,
                 templateUrl: 'pages/connector/devices/wizard/index.html',
                 controller: 'DeviceWizardController',
+                resolve : {
+                    unclaimedDevices : function(currentUser, deviceService){
+                        return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    }
+
+                },
                 onEnter: function () {
 //                    console.log('Entering device wizard state. ');
                 },
@@ -218,8 +227,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
-                    allDevices: function (currentUser, GroupService) {
-                        return GroupService.getAllDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    allDevices: function (currentUser, deviceService) {
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     },
                     allGroupResourcePermissions: function (currentUser, PermissionsService) {
                         return PermissionsService.allGroupPermissions(currentUser.skynetuuid, currentUser.skynettoken);

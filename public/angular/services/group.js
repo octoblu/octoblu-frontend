@@ -1,21 +1,6 @@
 angular.module('octobluApp')
     .service('GroupService', function ($cookies, $q, $http) {
 
-        /**
-         * Get a promise of the list of devices that belong to the owner.
-         * @param owner
-         * @returns {defer.promise|*} A promise that will resolve
-         * to the list of devices owned by the owner, an empty list
-         * if the owner owns no devices, or an error if there is an
-         * error returned from the API call.
-         */
-        this.getAllDevices = function (uuid, token) {
-            return $http.get('/api/owner/' + uuid + '/' + token + "/devices")
-                .then(function (res) {
-                    return res.data;
-                });
-        };
-
 
         /**
          * addGroup
@@ -158,28 +143,15 @@ angular.module('octobluApp')
          * successfully
          */
         this.updateGroup = function (uuid, token, updatedGroup) {
-
-            var defer = $q.defer();
-            if (!uuid || !token || !updatedGroup) {
-                defer.reject({
-                    'error': 'missing required parameters'
+            var url = '/api/groups/' + updatedGroup.uuid;
+            return $http.put(url,
+                updatedGroup,
+                {
+                    headers: {
+                        'skynet_auth_uuid': uuid,
+                        'skynet_auth_token': token
+                    }
                 });
-            } else {
-                var url = '/api/groups/' + updatedGroup.uuid;
-                $http.put(url,
-                    updatedGroup,
-                    {
-                        headers: {
-                            'skynet_auth_uuid': uuid,
-                            'skynet_auth_token': token
-                        }
-                    }).success(function (result) {
-                        defer.resolve(result)
-                    }).error(function (result) {
-                        defer.reject(result);
-                    });
-            }
-            return defer.promise;
         };
 
         this.getOperatorsGroup = function (uuid, token) {
@@ -194,31 +166,29 @@ angular.module('octobluApp')
         };
 
         this.getAllGroups = function (uuid, token, type) {
-            var defer = $q.defer();
-            if (!uuid || !token) {
-                defer.reject({
-                    'error': 'missing required parameters'
-                });
-            } else {
+            var url = '/api/groups';
 
-                var url = '/api/groups';
+            if (type) {
+                url = url + '?type=' + type;
+            }
 
-                if (type) {
-                    url = url + '?type=' + type;
+            return $http.get(url, {
+                headers: {
+                    skynet_auth_uuid: uuid,
+                    skynet_auth_token: token
                 }
 
-                $http.get(url, {
-                    headers: {
-                        skynet_auth_uuid: uuid,
-                        skynet_auth_token: token
-                    }
-                }).success(function (group) {
-                    defer.resolve(group)
-                }).error(function (result) {
-                    defer.reject(result);
-                });
-            }
-            return defer.promise;
+            });
+        };
+        this.getGroupsContainingResource = function (uuid, token, resourceUUID) {
+            var url = '/api/groups/contain/' +  resourceUUID;
+            return $http.get(url, {
+                headers: {
+                    skynet_auth_uuid: uuid,
+                    skynet_auth_token: token
+                }
+
+            });
         };
     });
 

@@ -1,92 +1,20 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, currentUser, claimedGateways, smartDevices, ownerService, deviceService ) {
+    .controller('DeviceController', function ($rootScope, $scope, $q, $log, $state,  $http, $cookies, $modal, $timeout, currentUser, myDevices, smartDevices, deviceService ) {
 
-//        var ownerId = $cookies.skynetuuid;
-//        var token = $cookies.skynettoken;
-
+        $scope.user = currentUser;
         $scope.smartDevices = smartDevices;
-        $scope.claimedGateways = claimedGateways;
+        $scope.devices = myDevices;
 
-//        $scope.socket = $rootScope.skynetSocket;
-//        //TODO this will be handled by route checking at the root scope level. Should be changed then.
-//        if( ownerId === undefined || token === undefined ){
-//             $state.go('login');
-//        }
-
-        //Event handlers to detect edit and delete subdevice calls  from the device carousel directive
-        //TODO - this may need to be refactored into a more elegant solution
-        $scope.$on('editSubDevice', function(event, subdevice, hub){
-            $scope.editSubDevice(subdevice, hub);
-        });
-
-        $scope.$on('deleteSubDevice', function(event, subdevice, hub){
-            $scope.deleteSubDevice(subdevice, hub);
-        });
-
-        $scope.saveHubName = function(hub){
-            var elementSelector = '#' + hub.uuid;
-            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
-            hubNameField.attr('readonly' , 'readonly');
-
-            var errors = $scope.validateName(hub);
-            if(errors.length > 0 ){
-                hub.validationErrors = errors;
-            } else {
-                var hubData = {
-                    uuid : hub.uuid,
-                    owner : hub.owner,
-                    name : hub.name,
-                    token : hub.token,
-                    keyvals : [{}]
-                }
-
-                deviceService.updateDevice(hub.owner, hubData, function( data ){
-                    console.log(JSON.stringify(data));
-
-                } ) ;
-                hub.isNameEditable = false;
-            }
-        };
-
-        $scope.toggleNameEditable = function( hub ){
-            var elementSelector = '#' + hub.uuid;
-            var hubNameField = $(elementSelector).find('input[name="hub-name"]');
-            hubNameField.removeAttr('readonly');
-        };
-
-        $scope.validateName = function(hub){
-            var errors = [];
-            if(hub.name === undefined || hub.name.length === 0){
-                errors.push(
-                    {
-                        type : 'danger',
-                        summary : 'Missing Name',
-                        msg : 'Hub Name is required. Please enter a valid name for Hub.'
-                    }
-                )
-            }
-            var duplicateHubs = _.findWhere(hub.subdevices, {'name' : hub.name });
-
-            if(duplicateHubs && duplicateHubs.count > 1){
-                errors.push({
-                    type: 'danger',
-                    summary: 'Duplicate Hub Name',
-                    msg: 'Please enter a unique name for the Hub'
-                });
-            }
-            return errors;
-        };
-
-        $scope.deleteHub = function(hub){
-          $rootScope.confirmModal($modal, $scope, $log, 'Delete Hub ' + hub.name ,'Are you sure you want to delete this Hub?',
+        $scope.deleteDevice = function(device){
+          $rootScope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name ,'Are you sure you want to delete this Device?',
               function() {
-                  $log.info('ok clicked');
-                  deviceService.deleteDevice(hub.uuid, { skynetuuid : currentUser.skynetuuid, skynettoken : currentUser.skynettoken }, function( error, data ) {
-                      if(! error){
-                          var claimedGateways = $scope.claimedGateways;
-                          $scope.claimedGateways = _.without(claimedGateways, hub);
-                      }
-                  });
+                  deviceService.deleteDevice(device.uuid, currentUser.skynetuuid, currentUser.skynettoken)
+                      .then(function(device){
+                          if(device){
+                              $scope.devices =  _.without($scope.devices, _.findWhere($scope.devices, {uuid: device.uuid}));
+                          }
+                      }, function(error){
+                  }); 
               },
               function() {
                   $log.info('cancel clicked');
@@ -105,14 +33,13 @@ angular.module('octobluApp')
                       mode: function () {
                           return 'ADD';
                       },
-                      hubs: function () {
-                          return $scope.gateways;
-                      },
+                      hubs : function(){
+                         return _.filter($scope.devices, function(device){
+                             return device.type === 'gateway';
+                         } ) ;
+                      }, 
                       smartDevice: function () {
                           return smartDevice;
-                      },
-                      selectedHub : function(){
-                         return null;
                       }
                   }
 
@@ -220,23 +147,44 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('DeviceDetailController', function($rootScope, $scope, $state, $stateParams, currentUser){
+    .controller('DeviceDetailController', function($scope, $state, $stateParams, currentUser, myDevices, PermissionsService){
+        $scope.device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
+        PermissionsService
+            .allSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.sourcePermissions = permissions;
+            });
+        PermissionsService
+            .flatSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.sourceGroups = _.uniq(permissions, function(permission){
+                    return permission.uuid;
+                });
+            });
 
+        PermissionsService
+            .flatTargetPermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.targetGroups = _.uniq(permissions, function(permission){
+                    return permission.uuid;
+                });
+             });
+
+        PermissionsService
+            .allTargetPermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .then(function(permissions){
+                $scope.targetPermissions = permissions;
+             });
+        console.log($scope.device);
     })
-    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser,  deviceService )
+    .controller('DeviceWizardController', function ($rootScope, $cookies, $scope,  $state , $http,  currentUser, unclaimedDevices,  deviceService )
 
     {
-        $scope.availableGateways;
 
-        deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken)
-            .then(function(data){
-                $scope.availableGateways = data;
-                $scope.$apply();
-        }, function(error){
-                console.log(error);
-                $scope.availableGateways = [];
-                $scope.$apply();
-        });
+        $scope.availableGateways = _.filter(unclaimedDevices, function(device){
+            return device.type === 'gateway';
+        }) || [];
+
 
         $scope.isopen = false;
         $scope.user = currentUser;
@@ -254,16 +202,16 @@ angular.module('octobluApp')
             }
         };
 
+        $scope.$watch('hubName', function(newName, oldName, scope){
+            console.log(newName);
+            console.log(oldName);
 
+        }, true);
 
-
-        $scope.getNextState = function(){
-            return $scope.wizardStates.findhub.id;
-        };
-
-        $scope.getPreviousState = function( ){
-            return $scope.wizardStates.instructions.id;
-        };
+        $scope.$watch('selectedHub', function(newHub, oldHub, scope){
+            console.log(newHub);
+            console.log(oldHub);
+        }, true);
 
         $scope.canClaim = function(name, hub){
 //            console.log('checkFinish');
@@ -283,43 +231,44 @@ angular.module('octobluApp')
             }
         }
 
-        //Notify the parent scope that a new hub has been selected
+//        Notify the parent scope that a new hub has been selected
         $scope.notifyHubSelected = function(hub){
             console.log('hub selected notifying parent scope');
             $scope.$emit('hubSelected', hub);
         };
 
-        //Notify the parent scope that the hub name has been changed
+//        Notify the parent scope that the hub name has been changed
         $scope.notifyHubNameChanged = function(name){
             $scope.$emit('hubNameChanged', name);
         }
 
-        //event handler for updating the hubName selected in the child scope
+//        event handler for updating the hubName selected in the child scope
         $scope.$on('hubNameChanged', function(event, name){
-
             $scope.hubName = name;
+            event.preventDefault();
         });
 
-        //event handler for updating the hub selected in the child scope.
+//        event handler for updating the hub selected in the child scope.
         $scope.$on('hubSelected', function(event, hub){
-
             $scope.selectedHub = hub;
+            event.preventDefault();
         });
 
-        $scope.saveHub = function(hub, hubName){
+        $scope.claimHub = function(hub, hubName){
            if(hub && hubName && hubName.trim().length > 0 ){
 
-              var devicePromise =  deviceService
-                  .claimDevice(hub.uuid,
-                  {
-                      skynetuuid : currentUser.skynetuuid,
-                      skynettoken : currentUser.skynettoken
-                  },
-                  hubName );
-
-               devicePromise.then(function(result){
-                   $state.go('connector.devices', {}, {reload: true});
-               }, function(error){
+              deviceService
+                  .claimDevice(hub.uuid, currentUser.skynetuuid, currentUser.skynettoken,  $scope.hubName)
+                  .then(function(result){
+                      //now update the name
+                    return deviceService.updateDevice(hub.uuid, currentUser.skynetuuid, currentUser.skynettoken, {
+                        name : hubName
+                    });
+               }).then(function(device){
+                      $state.go('connector.devices.all', {}, {reload : true});
+                  }, function(error){
+                   console.log(error);
+                   $state.go('connector.devices.all', {}, {reload : true});
                });
 
            }

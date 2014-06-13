@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .service('ownerService', function ($q, $http) {
         this.getDevices = function(uuid, token, callback) {
 
-            $http.get('/api/owner/' + uuid + '/' + token + '/devices')                
+            $http.get('/api/owner/' + uuid + '/' + token + '/devices')
                 .success(function(data) {
                     // console.log('OWNER DEVICES',data);
                     callback(data);
@@ -31,23 +31,23 @@ angular.module('octobluApp')
 
         this.getGateways = function(uuid, token, includeDevices, callback) {
             // $http.get('/api/owner/gateways/' + uuid + '/' + token)
-           return $http({
+            return $http({
                 url: '/api/owner/gateways/' + uuid + '/' + token,
                 method: 'get',
                 params: {
                     devices: includeDevices
                 }
             }).success(function(data) {
-               if(callback ){
-                   callback(null, data);
-               }
+                if(callback ){
+                    callback(null, data);
+                }
             })
-            .error(function(error) {
-                console.log('Error: ' + error);
-                   if(callback){
-                       callback(error, null);
-                   }
-            });
+                .error(function(error) {
+                    console.log('Error: ' + error);
+                    if(callback){
+                        callback(error, null);
+                    }
+                });
         };
 
         /**

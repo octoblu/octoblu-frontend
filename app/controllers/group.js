@@ -114,6 +114,7 @@ var groupController = {
     updateGroup: function (req, res) {
         var group = req.body,
             user = req.user;
+        var skynetUrl = req.protocol + '://' + groupController.skynetUrl;
 
         Group.findOne({
             uuid: req.params.uuid,
@@ -135,6 +136,9 @@ var groupController = {
                     return;
                 }
                 res.send(dbGroup);
+                ResourcePermission.updateSkynetPermissions(req.user.resource,
+                    dbGroup.members,
+                    skynetUrl);
             });
         });
     },
@@ -186,6 +190,7 @@ module.exports = function (app) {
     app.put('/api/groups/:uuid', isAuthenticated, groupController.updateGroup);
     app.get('/api/groups/:uuid', isAuthenticated, groupController.getGroupById);
 };
+
 
 
 

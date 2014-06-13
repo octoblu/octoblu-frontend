@@ -61,9 +61,8 @@ function makeResourceObject( options ){
         resourceObject.resource.properties = _.cloneDeep(model);
     }
 
-    resourceObject.type = model.type || options.type || 'device';
     resourceObject.resource.uuid = model[uuidProperty];
-    resourceObject.resource.type = model.type || options.type || 'device';
+    resourceObject.resource.type = options.type || 'device';
     resourceObject.resource.owner = { uuid : model.owner, type : options.ownerType};
     return resourceObject;
 }

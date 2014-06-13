@@ -1,145 +1,67 @@
-<style>
-    .online-indicator {
-        background-image: url('assets/images/online_indicator.png');
-        height: 16px !important;
-        width: 16px !important;
+<div class="row">
+    <h1 style="margin-left: 20px;"><i class="fa fa-hdd-o" style="margin-right: 5px;"></i>My Devices</h1>
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 panel" ng-repeat="device in devices | orderBy:'name'">
+          <div class="panel-heading">
+             <h3 class="text-center">
 
-    }
+                {{device.name}}
+                 <div class="pull-right">
+                    <i class="fa fa-power-off" ng-class="{'text-success': device.online, 'text-muted': ! device.online}"></i>
+                 </div>
+             </h3>
 
-    .offline-indicator {
-        background-image: url('assets/images/offline_indicator.png');
-        height: 16px !important;
-        width: 16px !important;
-    }
-    .hub-details{
-        margin-bottom: 0px;
-        font-size: 0.75em;
-    }
+          </div>
+         <div class="panel-body center-block">
 
-    .hub-details > li {
-        padding-left : 0px;
-        padding-right: 0px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-
-    }
-    .hub-panel {
-        border: 1px solid #dddddd;
-        border-radius: 3em / 3em;
-        padding: 2% 20px 2% 20px;
-        margin-left: 2%;
-    }
-   .subdevice-panel {
-       border: 1px solid #dddddd;
-       border-radius: 3em / 3em;
-       padding: 0% 20px 0% 20px;
-       /*margin-left: 2%;*/
-
-   }
-
-   .device-panel {
-       margin-bottom: 15px !important;
-   }
-    .device-carousel-item {
-
-        margin-top: 30px;
-        margin-bottom: 30px;
-        width: 120px;
-    }
-    .owl-item {
+                <span class="fa fa-stack fa-5x col-xs-push-3">
+                    <i class="fa fa-square-o fa-stack-2x"></i>
+                    <i class="fa fa-stack-1x" ng-class="{'fa-h-square' : device.type === 'gateway', 'fa-mobile' : device.type === 'mobile-hub', 'fa-hdd-o' : ! device.type || device.type == 'device'}"></i>
+                </span>
 
 
-        padding: 5px 5px 5px 5px;
-        width: 120px;
-    }
-
-    .channel_icon-grid-view {
-      cursor:pointer;
-    }
-
-    .smart-device-panel {
-
-    }
-
-    .thumbnail { height: 280px !important; }
-    .btn-droppable { width: 180px; height: 30px; padding-left: 4px; }
-    .btn-draggable { width: 160px; }
-    .emage { height: 215px; }
-
-</style>
-<h2 style="margin-left: 20px; margin-bottom: 30px;"><i class='fa fa-hospital-o'>&nbsp;&nbsp;</i>Hubs<a
-        class="btn btn-primary pull-right" href="" ui-sref="connector.devices.wizard.instructions"
-        ng-click="addHub()"><i
-        class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Add Hub</a></h2>
-
-<div ng-if="claimedGateways.length == 0" class="row">
-    <div class="well">
-        <h3>No Hubs Found</h3>
-
-        <p>
-            You currently have no Hubs added to your account. Add a new Hub.
-        </p>
-
-    </div>
-
-</div>
-
-<div class="row device-panel" ng-repeat="g in claimedGateways | orderBy: 'name'">
-    <div id="{{g.uuid}}" class="col-sm-2">
-        <img class="img-thumbnail col-sm-12" src="/assets/images/network_hub.png" height="64px" width="64px">
-    <div class="input-group col-sm-12">
-        <input type="text" class="form-control col-sm-12" name="hub-name" readonly="readonly"
-               ng-model="g.name" value="{{g.name}}" class="media-heading" ng-blur="saveHubName(g)" ng-focus="toggleNameEditable(g)">
-
-    </div>
-        <div collapse="!g.showDetails" class="col-sm-12 " style="padding-left: 0; padding-right: 0;">
-            <ul class="list-group hub-details" style="margin-bottom: 0px;">
-                <li class="list-group-item list-group-item-default" tooltip="UUID" tooltip-placement="right"
-                    tooltip-popup-delay="5" >
-                  <span class="label label-default">{{g.uuid}}</span>
-                </li>
-                <li class="list-group-item" tooltip="Token" tooltip-placement="right" tooltip-popup-delay="5">
-                    <span class="label label-default">{{g.token}}</span>
-                </li>
-                <li class="list-group-item list-group-item-default" tooltip="Online" tooltip-placement="right"
-                    tooltip-popup-delay="5">
-                    <span class="label" ng-class="{'label-success' : g.online, 'label-danger': !g.online}">{{g.online}}</span>
-                </li>
-            </ul>
+             <div class="btn-group btn-group-justified">
+                 <div class="btn-group">
+                     <a href ui-sref="connector.devices.detail({uuid : device.uuid})" class="btn btn-default">
+                         <i class="fa fa-th-large fa-lg" style="margin-right: 5px;"></i>Details
+                     </a>
+                 </div>
+                 <div class="btn-group">
+                     <button type=button" class="btn btn-danger" ng-click="deleteDevice(device)">
+                         <i class="fa fa-trash-o fa-lg" style="margin-right: 5px;"></i>Delete
+                     </button>
+                 </div>
+             </div>
+         </div>
 
         </div>
-
-        <div class="btn-group btn-group-justified">
-            <div class="btn-group">
-                <a href ui-sref="connector.devices.detail({uuid: g.uuid})" tooltip="View Device Details" tooltip-placement="bottom"
-                        tooltip-popup-delay="5" type="button" class="btn btn-default" ng-model="g.showDetails" btn-checkbox
-                        btn-checkbox-true="true" btn-checkbox-false="false">
-                    <i class="fa fa-th-list" style="padding-right: 5px;" ></i>Info
-                </a>
-            </div>
-            <div  class="btn-group">
-                <button  type="button" class="btn btn-danger" tooltip="Delete Hub" tooltip-popup-delay="5" tooltip-placement="bottom" ng-click="deleteHub(g)" style="padding-right: 5px;">
-                    <i class="fa fa-times" style=""></i>Delete
-                </button>
-            </div>
-        </div>
     </div>
-</div>
-<div class="divScroll">
-    <div class="scrollWrapper">
-        <h2 style="margin-left: 20px;"><i class='icon-off'></i> Add New Device</h2>
-        <ul class="channellist">
-            <li ng-repeat="smartDevice in smartDevices | orderBy:'name'">
+    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+       <div class="panel panel-primary">
+           <div class="panel-heading">
+               <h4 class="text-center">
+                   <i class="fa fa-plus fa-lg"></i>
+                   Add Device
+                   <i class="fa fa-hdd-o"></i>
+               </h4>
 
-                <div class="channel_icon-grid-view mod-index-0 pop-over"
-                     ng-class="{'unavailable':!smartDevice.enabled}">
-                    <a ng-disabled="{{! smartDevice.enabled}}" ng-click="addSmartDevice(smartDevice)">
-                        <img ng-src="{{smartDevice.logo || defaultLogo }}" width="70" height="70"  ng-model="smartDevice"/>
-                    </a>
 
-              </div>
-            </li>
-        </ul>
+           </div>
+           <div class="panel-body">
+                   <a   ng-class="{'unavailable': ! smartDevice.enabled }" ng-repeat="smartDevice in smartDevices" class="pull-left" ng-click="addSmartDevice(smartDevice)" style="margin: 0 0 15px 15px; ">
+                     <img src="{{smartDevice.logo || defaultLogo }}" width="80" height="80"  ng-model="smartDevice" />
+                   </a>
+
+           </div>
+       </div>
+       <div class="btn-group btn-group-justified">
+           <div class="btn-group">
+               <a class="btn btn-primary btn-lg" href ui-sref="connector.devices.wizard.instructions">
+                   <i class="fa fa-plus"></i> Add Hub<i class="fa fa-building-o" style="margin-left: 10px;"></i>
+               </a>
+           </div>
+       </div>
+
     </div>
+
 </div>

@@ -7,11 +7,12 @@
                     <h1 class='pull-left'>
                         <i class='icon-code-fork'></i>
                         <span>Connectors</span>
+                        <span>{{$state.current.name}}</span>
                     </h1>
                 </div>
                 <ul class="nav nav-tabs">
                     <li ng-class="{'active': $state.includes('connector.devices')}">
-                        <a href="" ui-sref="connector.devices">Devices</a>
+                        <a href="" ui-sref="connector.devices.all">Devices</a>
                     </li>
                     <li ng-class="{'active': $state.includes('connector.channels')}">
                         <a href="" ui-sref="connector.channels.index">Channels</a>

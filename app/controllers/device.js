@@ -9,257 +9,211 @@ var _ = require('lodash'),
     client = rest.wrap(mime).wrap(errorCode),
     request = require('request'),
     isAuthenticated = require('./controller-middleware').isAuthenticated;
-    var deviceController = {
-    getDeviceByUUID : function(req, res){
+var deviceController = {
+
+    getDevices: function (req, res) {
+
+        var user = req.user;
         client({
             method: 'GET',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/:uuid",
-            params : {
-                uuid : req.params.uuid
-            },
+            path: req.protocol + "://" + deviceController.skynetUrl + "/mydevices",
             headers: {
-                 skynet_auth_uuid : req.headers.skynet_auth_uuid,
-                 skynet_auth_token : req.headers.skynet_auth_token
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token
             }
         })
-        .then(function(result){
-           var device =  Resource.makeResourceObject({
-                   model: _.findWhere( result.entity.devices, { uuid : req.params.uuid}),
-                   type: 'device',
-                   uuidProperty: 'uuid',
-                   ownerType: owner.resource.type,
-                   includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress' ]
-               });
-            res.send(device);
+            .then(function (result) {
+                var devices = createDeviceResources(result.entity.devices, user);
+                res.send(devices);
+            })
+            .catch(function (errorResult) {
+                //Log the error from skynet but send an empty array list to the user.
+                console.log("Result Skynet : ");
+                console.log(errorResult.status.code);
+                console.log(errorResult.status.text);
+                res.send(200, []);
+            });
+    },
+
+    getDeviceByUUID: function (req, res) {
+        var user = req.user;
+        client({
+            method: 'GET',
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
+            params: {
+                uuid: req.params.uuid
+            },
+            headers: {
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token
+            }
         })
-        .catch(function(error){
-            res.send(400, error);
+        .then(function (result) {
+                var devices = createDeviceResources(result.entity.devices, user);
+                var device = _.findWhere(devices, {uuid: req.params.uuid});
+                res.send(device);
+        })
+        .catch(function (error) {
+            res.send(400, error.status);
         });
     },
 
-    registerDevice : function(req, res){
+    createDevice: function (req, res) {
         client({
-            method: 'GET',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/:uuid",
-            params : {
-                uuid : req.params.uuid
-            },
+            method: 'POST',
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices",
             headers: {
-                skynet_auth_uuid : req.headers.skynet_auth_uuid,
-                skynet_auth_token : req.headers.skynet_auth_token
-            }
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token
+            },
+            params : req.body,
+            entity: req.body
         })
-            .then(function(result){
-                var device =  Resource.makeResourceObject({
-                    model: _.findWhere( result.entity.devices, { uuid : req.params.uuid}),
-                    type: 'device',
-                    uuidProperty: 'uuid',
-                    ownerType: owner.resource.type,
-                    includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress' ]
-                });
+            .then(function (result) {
+                var devices = createDeviceResources(result.entity.devices, user);
+                var device = _.findWhere(devices, {uuid: req.params.uuid});
                 res.send(device);
             })
-            .catch(function(error){
+            .catch(function (error) {
                 res.send(400, error);
             });
 
     },
 
-    deleteDevice : function(req, res){
+    deleteDevice: function (req, res) {
+        var user = req.user;
         client({
             method: 'DELETE',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/:uuid",
-            params : {
-                uuid : req.params.uuid
-            },
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
+
             headers: {
-                skynet_auth_uuid : req.headers.skynet_auth_uuid,
-                skynet_auth_token : req.headers.skynet_auth_token
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token
             }
+
         })
-            .then(function(result){
-                var device =  Resource.makeResourceObject({
-                    model: _.findWhere( result.entity.devices, { uuid : req.params.uuid}),
-                    type: 'device',
-                    uuidProperty: 'uuid',
-                    ownerType: owner.resource.type,
-                    includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress' ]
-                });
-                res.send(device);
+            .then(function (result) {
+                res.send(result.entity);
             })
-            .catch(function(error){
+            .catch(function (error) {
+                res.send(400, error);
+            });
+    },
+
+    updateDevice: function (req, res) {
+        var user = req.user;
+        client({
+            method: 'PUT',
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
+            params: req.body,
+            headers: {
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token
+            },
+            entity : req.body
+        })
+            .then(function (result) {
+              res.send(result.entity);
+            })
+            .catch(function (error) {
                 res.send(400, error);
             });
 
     },
 
-    updateDevice : function(req, res){
+    claimDevice: function (req, res) {
+        var user = req.user;
+        if(req.body.owner !== user.skynetuuid ){
+            res.send(401, {'error' : 'unauthorized'});
+            return;
+        }
+
         client({
             method: 'PUT',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/devices/:uuid",
-            params : {
-                uuid : req.params.uuid
+            path: req.protocol + "://" + deviceController.skynetUrl + "/claimdevice/" + req.params.uuid,
+            params: {
+                "overrideIp" : req.ip
             },
             headers: {
-                skynet_auth_uuid : req.headers.skynet_auth_uuid,
-                skynet_auth_token : req.headers.skynet_auth_token
-            }
-        })
-            .then(function(result){
-                var device =  Resource.makeResourceObject({
-                    model: _.findWhere( result.entity.devices, { uuid : req.params.uuid}),
-                    type: 'device',
-                    uuidProperty: 'uuid',
-                    ownerType: owner.resource.type,
-                    includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress' ]
-                });
-                res.send(device);
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token,
+                Skynet_override_token: deviceController.config.skynet.override_token
+            },
+            entity: req.body
+        }).then(function (result) {
+               res.send(result.entity);
             })
-            .catch(function(error){
-                res.send(400, error);
+            .catch(function (error) {
+                res.send(400, error.status );
             });
-
     },
 
-    claimDevice : function(req, res){
+    getUnclaimedDevices: function (req, res) {
+        var user = req.user;
         client({
-            method: 'PUT',
-            path: req.protocol + "://" + deviceController.skynetUrl + "/claimdevice/:uuid",
-            params : {
-                uuid : req.params.uuid,
-                overrideIp : req.ip
+            method: 'GET',
+            path: req.protocol + "://" + deviceController.skynetUrl + "/devices",
+            params: {
+                "ipAddress": req.ip,
+                "owner": null
             },
             headers: {
-                skynet_auth_uuid : req.headers.skynet_auth_uuid,
-                skynet_auth_token : req.headers.skynet_auth_token
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token,
+                skynet_override_token: deviceController.config.skynet.override_token
             }
-        })
-            .then(function(result){
-                var device =  Resource.makeResourceObject({
-                    model: _.findWhere( result.entity.devices, { uuid : req.params.uuid}),
-                    type: 'device',
-                    uuidProperty: 'uuid',
-                    ownerType: owner.resource.type,
-                    includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress' ]
-                });
-                res.send(device);
-            })
-            .catch(function(error){
-                res.send(400, error);
-            });
+        }).then(function (result) {
+
+            var devices = createDeviceResources(result.entity.devices, null);
+            return res.send(devices);
+        }, function (errorResult) {
+            return res.send( []);
+        });
+
+    },
+    getPlugins: function (req, res) {
+        var keywords = 'keywords:' + (req.query.keywords || '\"skynet-plugin\"');
+        client({
+            method: 'GET',
+            path: 'http://npmsearch.com/query',
+            params: {
+                q: keywords,
+                fields: 'name,author,description,repository,homepage,dependencies',
+                start: 0,
+                size: 100,
+                sort: 'rating:desc'
+            }
+        }).then(function (result) {
+            return res.send(result.entity);
+        }, function (errorResult) {
+            return res.send(errorResult.status.code, []);
+        });
     }
-
 };
-module.exports = function (app, passport, config) {
+module.exports = function (app, config) {
+
+
 
     deviceController.skynetUrl = app.locals.skynetUrl;
-    app.get('/api/devices/:uuid', isAuthenticated, deviceController.getDeviceByUUID );
-    app.post('/api/devices', isAuthenticated, deviceController.registerDevice );
-    app.put('/api/devices/:uuid', isAuthenticated, deviceController.updateDevice );
-    app.delete('/api/devices/:uuid', isAuthenticated, deviceController.deleteDevice );
-    app.put('/api/devices/:uuid/claim', isAuthenticated, deviceController.claimDevice );
+    deviceController.config = config;
+    app.get('/api/devices/unclaimed', isAuthenticated, deviceController.getUnclaimedDevices);
+    app.get('/api/devices/plugins', deviceController.getPlugins);
+    app.get('/api/devices', isAuthenticated, deviceController.getDevices);
+    app.get('/api/devices/:uuid', isAuthenticated, deviceController.getDeviceByUUID);
+    app.post('/api/devices', isAuthenticated, deviceController.createDevice);
+    app.put('/api/devices/:uuid', isAuthenticated, deviceController.updateDevice);
+    app.delete('/api/devices/:uuid', isAuthenticated, deviceController.deleteDevice);
+    app.put('/api/devices/:uuid/claim', isAuthenticated, deviceController.claimDevice);
+};
 
-    // Get device info from Skynet
-//    app.get('/api/devices/:uuid', function(req, res) {
-//
-//        request.get(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
-//        {
-//            headers: {
-//                'skynet_auth_uuid': req.params.id,
-//                'skynet_auth_token': req.query.token
-//            }}
-//        , function (error, response, body) {
-//                console.log("DEVICES", body);
-//                var data = JSON.parse(body);
-//                res.json(data);
-//            });
-//
-//    });
-
-    // Register device with Skynet
-//    app.post('/api/devices/:id', function(req, res) {
-//        // console.log(req);
-//
-//
-//        var deviceData = {};
-//        deviceData.owner = req.params.id;
-//        deviceData.name = req.body.name;
-//
-//        // flatten array
-//        var obj = req.body.keyvals;
-//        for (var i in obj) {
-//            deviceData[obj[i]["key"]] = obj[i]["value"];
-//        }
-//        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-//            {form: deviceData}
-//            , function (error, response, body) {
-//                var data = JSON.parse(body);
-//                res.json(data);
-//            });
-//
-//    });
-
-    // Update device with Skynet
-//    app.put('/api/devices/:id', function(req, res) {
-//        // console.log(req);
-//
-//        var deviceData = {};
-//        deviceData.owner = req.params.id;
-//        deviceData.name = req.body.name;
-//        deviceData.token = req.body.token;
-//
-//        // flatten array
-//        var obj = req.body.keyvals;
-//        for (var i in obj) {
-//            deviceData[obj[i]["key"]] = obj[i]["value"];
-//        }
-//
-//        request.put(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.body.uuid,
-//            {form: deviceData,
-//            headers: {
-//                'skynet_auth_uuid': req.body.uuid,
-//                'skynet_auth_token': req.body.token
-//            }}
-//            , function (error, response, body) {
-//                var data = JSON.parse(body);
-//                res.json(data);
-//            });
-//
-//    });
-
-    // Remove device with Skynet
-//    app.delete('/api/devices/:id', function(req, res) {
-//
-//        if( ! req.query.uuid || ! req.query.token) {
-//            res.send(400, {"error" : "missing required query parameters [uuid, token"});
-//        }
-//        request.del(req.protocol + '://' + app.locals.skynetUrl + '/devices/' + req.params.id,
-//            {headers: {
-//                'skynet_auth_uuid': req.query.uuid,
-//                'skynet_auth_token': req.query.token
-//            }}
-//            , function (error, response, body) {
-//                var data = JSON.parse(body);
-//                res.json(data);
-//            });
-//
-//    });
-
-    // Update device with Skynet
-//    app.put('/api/claimdevice/:uuid', function(req, res) {
-//        // console.log('skynet_override_token', config.skynet_override_token);
-//        request.put(req.protocol + '://' + app.locals.skynetUrl + '/claimdevice/' + req.body.uuid + '?overrideIp=' + req.ip,
-//            {
-//                form: req.body,
-//                headers: {'Skynet_override_token': config.skynet.override_token,
-//                'skynet_auth_uuid': req.params.uuid,
-//                'skynet_auth_token': req.query.token}
-//
-//            }, function (error, response, body) {
-//                var data = JSON.parse(body);
-//                res.json(data);
-//            });
-//
-//    });
-
+function createDeviceResources(devices, owner) {
+    return _.map(devices, function (device) {
+        return Resource.makeResourceObject({
+            model: device,
+            type: 'device',
+            uuidProperty: 'uuid',
+            ownerType: owner ? owner.resource.type : undefined,
+            includeProperties: ['uuid', 'token', 'name', 'type', 'online', 'ipAddress', 'localhost' ]
+        });
+    }) || [];
 };
