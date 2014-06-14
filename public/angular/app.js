@@ -29,12 +29,16 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
         $stateProvider
+            // .state('home', {
+            //     url: '/',
+            //     templateUrl: 'pages/home2.html',
+            //     controller: 'homeController'
+            // })
             .state('home', {
                 url: '/',
-                templateUrl: 'pages/home2.html',
-                controller: 'homeController'
-
-            })
+                templateUrl: 'pages/login.html',
+                controller: 'loginController'
+            })            
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
