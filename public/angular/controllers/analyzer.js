@@ -27,7 +27,7 @@ angular.module('octobluApp')
             $scope.search = function (currentPage) {
               $scope.results="searching...";
                 if ($scope.searchText !== undefined) {
-                    elasticService.search($scope.searchText, $scope.skynetuuid, currentPage, $scope.eventCode, function (error, response) {
+                    elasticService.searchAdvanced($scope.searchText, $scope.skynetuuid, currentPage, $scope.eventCode, function (error, response) {
                         if (error) {
                             console.log(error);
                         } else {
