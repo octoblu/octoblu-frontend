@@ -58,7 +58,6 @@ module.exports = function(app, passport) {
             res.sendfile('./public/index.html');
         });
 
-
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {
             res.sendfile('./public/index.html');
