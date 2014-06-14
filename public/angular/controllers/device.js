@@ -145,8 +145,9 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('DeviceDetailController', function ($scope, $state, $stateParams, currentUser, myDevices, PermissionsService, skynetService) {
-        $scope.device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
+    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, PermissionsService, skynetService) {
+        var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
+        $scope.device = device;
         PermissionsService
             .allSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
             .then(function (permissions) {
@@ -184,10 +185,88 @@ angular.module('octobluApp')
                 method: 'getSubdevices',
                 token: $scope.device.token
             }).then(function (result) {
-                    $scope.device.subdevices = result.result;
+                $scope.device.subdevices = result.result;
+            });
+            skynetService.gatewayConfig({
+                uuid: $scope.device.uuid,
+                method: 'getPlugins',
+                token: $scope.device.token
+            }).then(function (result) {
+                $scope.device.plugins = result.result;
             });
         }
-        console.log($scope.device);
+        $scope.deleteSubdevice = function (subdevice) {
+            $scope.confirmModal($modal, $scope, $log, 'Delete Subdevice', 'Are you sure you want to delete this subdevice?',
+                function () {
+                    skynetService.gatewayConfig({
+                        "uuid": device.uuid,
+                        "token": device.token,
+                        "method": "deleteSubdevice",
+                        "name": subdevice.name
+                    }).then(function (deleteResult) {
+                        device.subdevices = _.without(device.subdevices, subdevice);
+                    });
+                },
+                function () {
+                    $log.info('cancel clicked');
+                });
+
+        };
+        $scope.editSubdevice = function (subdevice) {
+            var plugin = _.findWhere($scope.device.plugins, {name: subdevice.type}),
+                device = $scope.device;
+            var modalInstance = $modal.open({
+                templateUrl: 'pages/modals/edit-sub-device.html',
+                controller: function ($log, $scope, $modalInstance) {
+                    $scope.subdevice = subdevice;
+                    $scope.plugin = plugin;
+                    $scope.schema = plugin.optionsSchema;
+
+                    var keys = _.keys($scope.schema.properties);
+                    $scope.deviceProperties = _.map(keys, function (propertyKey) {
+                        var propertyValue = $scope.schema.properties[propertyKey];
+                        var deviceProperty = {};
+                        deviceProperty.name = propertyKey;
+                        deviceProperty.type = propertyValue.type;
+                        deviceProperty.required = propertyValue.required;
+                        var value = _.findWhere(subdevice.options, {name: propertyKey});
+                        if (value) {
+                            deviceProperty.value = value.value;
+                        }
+                        return deviceProperty;
+                    });
+
+
+                    $scope.ok = function () {
+                        var deviceProperties = _.map($scope.deviceProperties, function (property) {
+                            return _.omit(property, '$$hashKey', 'type', 'required');
+                        });
+
+                        var options = {};
+                        _.forEach(deviceProperties, function (property) {
+                            options[property.name] = property.value;
+                        });
+
+                        console.log('updating device properties ', deviceProperties);
+                        $modalInstance.close();
+                        return skynetService.gatewayConfig({
+                            "uuid": device.uuid,
+                            "token": device.token,
+                            "method": "updateSubdevice",
+                            "type": subdevice.type,
+                            "name": subdevice.name,
+                            "options": deviceProperties
+                        }).then(function (updateResult) {
+                            subdevice.options = deviceProperties;
+                        });
+                    };
+
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+        }
     })
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state, $http, currentUser, unclaimedDevices, deviceService) {
 
