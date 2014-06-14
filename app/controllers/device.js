@@ -188,32 +188,32 @@ var deviceController = {
                 sort: 'rating:desc'
             }
         }).then(function (result) {
-        setTimeout(function(){
-            var data = JSON.parse(result.entity);            
-            for (var i = 0; i < data.results.length; i++) {
-                // console.log(data.results[i]);
-                if(data.results[i].homepage.indexOf("https://github.com/") > -1){
-                    var url = data.results[i].homepage.split("https://github.com/");
-                } else if(data.results[i].homepage.indexOf("http://npmjs.org/") > -1){
-                    var url = data.results[i].homepage.split("http://npmjs.org/");
-                } else if(data.results[i].homepage.indexOf("http://github.com/") > -1){
-                    var url = data.results[i].homepage.split("http://github.com/");
-                } else {
-                    var url = data.results[i].homepage.split("git@github.com:");
+            setTimeout(function(){
+                var data = JSON.parse(result.entity);            
+                for (var i = 0; i < data.results.length; i++) {
+                    // console.log(data.results[i]);
+                    if(data.results[i].homepage.indexOf("https://github.com/") > -1){
+                        var url = data.results[i].homepage.split("https://github.com/");
+                    } else if(data.results[i].homepage.indexOf("http://npmjs.org/") > -1){
+                        var url = data.results[i].homepage.split("http://npmjs.org/");
+                    } else if(data.results[i].homepage.indexOf("http://github.com/") > -1){
+                        var url = data.results[i].homepage.split("http://github.com/");
+                    } else {
+                        var url = data.results[i].homepage.split("git@github.com:");
+                    }
+                    console.log(url);
+                    if (url[1].indexOf(".git")){
+                        var gitUrl = url[1].split(".git");
+                    } else {
+                        var gitUrl = url[1];
+                    }
+                    
+                    // console.log(gitUrl);
+                    var actualUrl = "https://raw.githubusercontent.com/" + gitUrl;
+                    data.results[i].bundle = actualUrl + "/master/bundle.js";
                 }
-                console.log(url);
-                if (url[1].indexOf(".git")){
-                    var gitUrl = url[1].split(".git");
-                } else {
-                    var gitUrl = url[1];
-                }
-                
-                console.log(gitUrl);
-                var actualUrl = "https://raw.githubusercontent.com/" + gitUrl;
-                data.results[i].bundle = actualUrl + "/master/bundle.js";
-            }
-            return res.send(data.results);
-        }, 1000)
+                return res.send(data);
+            }, 1000)
         }, function (errorResult) {
             return res.send(errorResult.status.code, []);
         });
