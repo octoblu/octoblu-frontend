@@ -8,9 +8,9 @@
        </div>
        <div class="modal-footer">
            <a class="btn btn-danger" data-dismiss="modal" ui-sref="connector.devices.all"><i class="fa fa-times"></i>&nbsp;&nbsp;Close</a>
-           <a id="wizard-previous-btn" class="btn btn-default"  ui-sref="connector.devices.wizard.instructions"><i class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;Previous</a>
-           <a id="wizard-next-btn" class="btn btn-default" ui-sref="connector.devices.wizard.findhub">Next&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
-           <button type="button" id="wizard-finish-btn"  class="btn btn-success" ng-disabled="canClaim(hubName, selectedHub)" ng-click="claimHub(selectedHub, hubName)" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</button>
+           <a ng-if="$state.current.name === 'connector.devices.wizard.findhub'" id="wizard-previous-btn" class="btn btn-default"  ui-sref="connector.devices.wizard.instructions"><i class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;Previous</a>
+           <a ng-if="$state.current.name !== 'connector.devices.wizard.findhub'" id="wizard-next-btn" class="btn btn-default" ui-sref="connector.devices.wizard.findhub">Next&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
+           <button type="button"  ng-if="$state.current.name !== 'connector.devices.wizard.instructions'" id="wizard-finish-btn"  class="btn btn-success" ng-disabled="canClaim(hubName, selectedHub)" ng-click="claimHub(selectedHub, hubName)" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</button>
        </div>
    </div>
 </div>
