@@ -644,3 +644,11 @@ padding-right: 15px;
 .device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-wemo{
     background-image: url('http://store.linksys.com/moduleimages/163/WeMo_AppLogo.jpg');
 }
+
+.devices .device-thumbnail {
+    height: 380px;
+}
+.devices .device-thumbnail .panel-heading {
+    height: 6em;
+    overflow:hidden;
+}

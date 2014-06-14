@@ -7,26 +7,23 @@
                     Devices
                 </div>
                 <div class='pull-right'>
-                    <!-- <button ng-click="createDevice()">Add</button> -->
-
-                    <button ng-click="addDevice = true" class="btn btn-primary" ng-hide="addDevice">
+                    <button ng-click="editingDevice = {}" class="btn btn-primary" ng-hide="editingDevice">
                         <i class="icon-chevron-down"></i> Add Device
                     </button>
-                    <button ng-click="addDevice = false" class="btn btn-primary" ng-show="addDevice">
+                    <button ng-click="editingDevice = false" class="btn btn-primary" ng-show="editingDevice">
                         <i class="icon-chevron-up"></i> Cancel
                     </button>
 
                 </div>
             </div>
 
-            <div class="col-sm-12" ng-show="addDevice">
+            <div class="col-sm-12" ng-show="editingDevice">
                 <h3>Add/Edit Device</h3>
                 <!form name="myForm">
-                    <input class="form-control" name="deviceName" ng-model="deviceName" placeholder="Device Name (required)" ng-value="deviceName" required>
-                    <!-- <span ng-show="duplicateDevice" style="color:red;">Device name already exists.</span> -->
+                    <input class="form-control" name="deviceName" ng-model="device.name" placeholder="Device Name (required)" required>
                     <br />
 
-                    <div ng-repeat="key in keys" class="form-inline">
+                    <div ng-repeat="key in device" class="form-inline">
                         <div class="form-group">
                             <input class="form-control" ng-model="key.key" placeholder="Key">
                         </div>
@@ -39,7 +36,7 @@
                     </div>
 
                     <br />
-                    <button class="btn" ng-click="createDevice(this)">Submit</button>
+                    <button class="btn" ng-click="createDevice(device)">Submit</button>
                     <br /><br />
                 <!/form>
             </div>
@@ -69,8 +66,8 @@
                             <!-- <a ng-click="moreInfo = true" ng-hide="moreInfo">more...</a> -->
                             <!-- <a ng-click="moreInfo = false" ng-show="moreInfo">{{device}}</a> -->
                             <button class="btn"ng-click="alert(device)" href="">Info</button>
-                            <button class="btn btn-inverse" ng-click="editDevice($index)">Edit</button>
-                            <button class="btn btn-danger" ng-click="deleteDevice($index)">Delete</button>
+                            <button class="btn btn-inverse" ng-click="editingDevice = device">Edit</button>
+                            <button class="btn btn-danger" ng-click="deleteDevice(device)">Delete</button>
                         </td>
 
                     </tr>

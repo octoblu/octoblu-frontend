@@ -3,7 +3,7 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'app.octoblu.com', //change to the skynet.im instance
+        'host': 'skynet.im', //change to the skynet.im instance
         'port': '80'
     })
     // enabled CORS by removing ajax header
@@ -130,23 +130,17 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
-                templateUrl: 'pages/connector/devices/wizard/find-hub.html',
-                onEnter: function () {
-
-                },
-                onExit: function () {
-
-                }
+                templateUrl: 'pages/connector/devices/wizard/find-hub.html'
             })
             .state('connector.channels', {
                 abstract: true,
                 url: '/channels',
-                template: '<ui-view />'
+                template: '<ui-view />',
+                controller: 'channelController'
             })
             .state('connector.channels.index', {
                 url: '',
-                templateUrl: 'pages/connector/channels/index.html',
-                controller: 'connectorController'
+                templateUrl: 'pages/connector/channels/index.html'
             })
             .state('connector.channels.detail', {
                 url: '/:name',
@@ -165,18 +159,15 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced', {
                 url: '/advanced',
-                templateUrl: 'pages/connector/advanced/index.html',
-                controller: 'connectorAdvancedController'
+                templateUrl: 'pages/connector/advanced/index.html'
             })
             .state('connector.advanced.devices', {
                 url: '/smartdevices',
-                templateUrl: 'pages/connector/advanced/devices.html',
-                controller: 'connectorAdvancedController'
+                templateUrl: 'pages/connector/advanced/devices.html'
             })
             .state('connector.advanced.channels', {
                 url: '/custom_channels',
-                templateUrl: 'pages/connector/advanced/channels.html',
-                controller: 'connectorAdvancedController'
+                templateUrl: 'pages/connector/advanced/channels.html'
             })
             .state('connector.advanced.channels.editor', {
                 url: '/editor/:name',
@@ -186,13 +177,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             .state('connector.advanced.gateways', {
                 url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways.html',
-                controller: 'connectorController'
+                templateUrl: 'pages/connector/advanced/gateways.html'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
-                templateUrl: 'pages/connector/advanced/messaging.html',
-                controller: 'controllerController'
+                templateUrl: 'pages/connector/advanced/messaging.html'
             })
             .state('admin', {
                 abstract: true,
