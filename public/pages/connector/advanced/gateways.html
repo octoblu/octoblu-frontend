@@ -45,9 +45,9 @@
                 <h3 class="panel-title">
                     <div>
                         {{gateway.name || 'NOT CLAIMED'}} - {{gateway.uuid}}
-                        <button class="btn btn-inverse" ng-click="editGateway($index)"><i class="icon-edit"></i>
+                        <button class="btn btn-inverse" ng-click="editGateway(gateway)"><i class="icon-edit"></i>
                         </button>
-                        <button class="btn btn-danger" ng-click="deleteGateway($index)"><i class="icon-trash"></i>
+                        <button class="btn btn-danger" ng-click="deleteGateway(gateway)"><i class="icon-trash"></i>
                         </button>
                         <a class="btn" href="/gateway?uuid={{gateway.uuid}}"><i class="icon-reply"></i> Goto</a>
 
@@ -80,7 +80,7 @@
                                                 ng-click="openEditSubdevice(gateway, subdevice)">Edit
                                         </button>
                                         <button class="btn btn-danger"
-                                                ng-click="deleteSubdevice($parent.$index, $index)">Delete
+                                                ng-click="deleteSubdevice(gateway, subdevice)">Delete
                                         </button>
                                     </td>
                                 </tr>
@@ -101,12 +101,11 @@
                                     <td>{{plugin.name}}</td>
                                     <td>{{plugin.version}}</td>
                                     <td>
-                                        <button class="btn btn-danger" ng-click="deletePlugin($parent.$index, $index)">
+                                        <button class="btn btn-danger" ng-click="deletePlugin(gateway, plugin)">
                                             Delete
                                         </button>
 
                                     </td>
-
                                 </tr>
                             </table>
                         </div>

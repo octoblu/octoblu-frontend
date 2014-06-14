@@ -1,35 +1,34 @@
 angular.module('octobluApp')
     .service('ownerService', function ($q, $http) {
-        this.getDevices = function(uuid, token, callback) {
+        this.getDevices = function (uuid, token, callback) {
 
             $http.get('/api/owner/' + uuid + '/' + token + '/devices')
-                .success(function(data) {
+                .success(function (data) {
                     // console.log('OWNER DEVICES',data);
                     callback(data);
                 })
-                .error(function(data) {
+                .error(function (data) {
                     console.log('Error: ' + data);
                     callback({});
                 });
 
         };
 
-        this.getMyDevices = function(uuid, token ) {
+        this.getMyDevices = function (uuid, token) {
 
             var defer = $q.defer();
 
             $http.get('/api/owner/' + uuid + '/' + token + '/devices')
-                .success(function(data) {
+                .success(function (data) {
                     defer.resolve(data);
                 })
-                .error(function(data) {
+                .error(function (data) {
                     defer.reject(data);
                 });
             return defer.promise;
-
         };
 
-        this.getGateways = function(uuid, token, includeDevices, callback) {
+        this.getGateways = function (uuid, token, includeDevices, callback) {
             // $http.get('/api/owner/gateways/' + uuid + '/' + token)
             return $http({
                 url: '/api/owner/gateways/' + uuid + '/' + token,
@@ -37,14 +36,14 @@ angular.module('octobluApp')
                 params: {
                     devices: includeDevices
                 }
-            }).success(function(data) {
-                if(callback ){
+            }).success(function (data) {
+                if (callback) {
                     callback(null, data);
                 }
             })
-                .error(function(error) {
+                .error(function (error) {
                     console.log('Error: ' + error);
-                    if(callback){
+                    if (callback) {
                         callback(error, null);
                     }
                 });
@@ -55,13 +54,13 @@ angular.module('octobluApp')
          * @param uuid
          * @param token
          */
-        this.getClaimedGateways = function(owner){
+        this.getClaimedGateways = function (owner) {
             var defer = $q.defer();
             // /api/owner/:id/:token/devices/unclaimed
-            if( ! owner ){
+            if (!owner) {
                 defer.reject("owner is required");
             }
-            if( ! owner.skynetuuid || ! owner.skynettoken ){
+            if (!owner.skynetuuid || !owner.skynettoken) {
                 defer.reject("Missing required parameters [skynetuuid, skynettoken]");
             }
             $http.get('/api/owner/' + owner.skynetuuid + '/' + owner.skynettoken + '/gateways', { cache: false })

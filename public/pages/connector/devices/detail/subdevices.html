@@ -1,0 +1,29 @@
+<div class="row device-subdevices">
+    <div class="pull-left panel panel-default subdevice-thumbnail" ng-repeat="sub in device.subdevices">
+        <div class="panel-heading text-center">
+            {{sub.name}}
+        </div>
+        <div class="subdevice-panel panel-body center-block">
+
+                <div class="center-block subdevice-icon subdevice-icon-{{sub.type}}"></div>
+
+
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <a href ng-click="editSubdevice(sub)" class="btn btn-inverse">
+                        <i class="icon-edit"></i>
+                        <span class="hidden-sm hidden-xs">Edit</span>
+                    </a>
+
+                </div>
+                <div class="btn-group">
+                    <a href class="btn btn-danger" ng-click="deleteSubdevice(sub)">
+                        <i class="icon-trash"></i>
+                        <span class="hidden-sm hidden-xs">Delete</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

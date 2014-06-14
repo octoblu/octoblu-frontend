@@ -97,6 +97,22 @@ module.exports = function (app, config, conn) {
             });
 
 
+    });    //TODO - clean up APIs
+    app.get('/api/owner/gateways/:uuid', function (req, res) {
+        var user = req.user;
+        var skynetUrl = req.protocol + "://" + app.locals.skynetUrl + "/gateway/" + req.params.uuid ;
+        client({
+            method: 'GET',
+            path: skynetUrl,
+            headers: {
+                skynet_auth_uuid: req.headers.skynet_auth_uuid,
+                skynet_auth_token: req.headers.skynet_auth_token
+            }
+        }).then(function(response){
+            res.send(response.data);
+        })
+
+
     });
 
     app.get('/api/owner/:id/:token/devices', function (req, res) {

@@ -1,18 +1,17 @@
-<div class="row">
+<div class="row devices">
     <h1 style="margin-left: 20px;"><i class="fa fa-hdd-o" style="margin-right: 5px;"></i>My Devices</h1>
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
         <div class="jumbotron" ng-if="devices.length == 0">
             <p>You have no Devices or Hubs. Add a new Hub</p>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 panel" ng-repeat="device in devices | orderBy:'name'">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 panel device-thumbnail" ng-repeat="device in devices | orderBy:'name'">
           <div class="panel-heading">
-             <h3 class="text-center">
-
+             <h3 class="text-center col-xs-11">
                 {{device.name}}
-                 <div class="pull-right">
-                    <i class="fa fa-power-off" ng-class="{'text-success': device.online, 'text-muted': ! device.online}"></i>
-                 </div>
              </h3>
+              <h3 class="pull-right">
+                  <i class="fa fa-power-off" ng-class="{'text-success': device.online, 'text-muted': ! device.online}"></i>
+              </h3>
 
           </div>
          <div class="panel-body center-block">

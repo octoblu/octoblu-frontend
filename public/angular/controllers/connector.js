@@ -1,50 +1,16 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('connectorController', function($rootScope, $scope, $http, $injector, $location, $modal, $log, $q, $state,skynetConfig, ownerService, deviceService, channelService) {
+    .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
 
-        $rootScope.checkLogin($scope, $http, $injector, true, function () {
+        $scope.checkLogin($scope, $http, $injector, true, function () {
 
             $scope.navType = 'pills';
-            // $scope.navType = 'tabs';
-            skynetConfig.uuid = $scope.skynetuuid;
-            skynetConfig.token = $scope.skynettoken;
-            skynet(skynetConfig, function (e, socket) {
-                if (e) throw e
-
-
                 // Get user devices
-                ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-                    $scope.devices = data;
-                    for (var i in $scope.devices) {
-                        if($scope.devices[i].type == 'gateway'){
-                            $scope.devices.splice(i,1);
-                        }
-                    }
-                });
-
                 // Get user gateways (true param specifies inclusion of devices)
-                ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(error, data) {
-                    if(error){
-                        console.log('Error'  + error);
-                    }
-                    $scope.editGatewaySection = false;
-                    $scope.gateways = data.gateways;
-                });
-
-                // get api list, if showing api
-                if($state.is('connector.channels.index')) {
-                    channelService.getActive($scope.skynetuuid,function(data) {
-                        $scope.activeChannels = data;
-                    });
-                    channelService.getAvailable($scope.skynetuuid,function(error, data) {
-                        $scope.availableChannels = data;
-                    });
-                }
-
 
                 $scope.openDetails = function (channel) {
                     // $scope.channel = channel;
@@ -52,27 +18,12 @@ angular.module('octobluApp')
                 };
 
                 $scope.isActive = function (channel) {
-                    if($scope.current_user.api) {
-                        for(var l = 0; l<$scope.current_user.api.length; l++) {
-                            if($scope.current_user.api[l].name===channel.name) {
-                                return true;
-                            }
-                        }
-                    }
-
-                    return false;
+                    return $scope.current_user.api &&
+                        _.findWhere($scope.current_user.api, { name: channel.name});
                 };
 
                 $scope.isInactive = function (channel) {
-                    if($scope.current_user.api) {
-                        for(var l = 0; l<$scope.current_user.api.length; l++) {
-                            if($scope.current_user.api[l].name===channel.name) {
-                                return false;
-                            }
-                        }
-                    }
-
-                    return true;
+                   !$scope.isActive(channel);
                 };
 
                 $scope.getFAName = function (channel) {
@@ -100,286 +51,76 @@ angular.module('octobluApp')
                     alert(JSON.stringify(alertContent));
                 };
 
-                // $scope.addDevice = function(){
-                //   $scope.deviceName = "";l
-                //   $scope.keys = [];
-                // }
-
-                $scope.createDevice = function ($scope) {
-                    if($scope.deviceName){
-                        // var dupeFound = false;
-                        // $scope.duplicateDevice = false;
-                        var dupeUuid, dupeToken, dupeIndex;
-
-                        for (var i in $scope.devices) {
-                            if($scope.devices[i].name == $scope.deviceName){
-                                // dupeFound = true;
-                                // $scope.duplicateDevice = true;
-                                dupeUuid = $scope.devices[i].uuid;
-                                dupeToken = $scope.devices[i].token;
-                                dupeIndex = i;
-                            }
-                        }
-
-                        var formData = {};
-                        formData.name = $scope.deviceName;
-                        formData.keyvals = $scope.keys;
-
-                        if(dupeUuid){
-                            formData.uuid = dupeUuid;
-                            formData.token = dupeToken;
-
-                            deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
-                                try{
-                                    $scope.devices.splice(dupeIndex,1);
-                                    data.token = dupeToken;
-                                    data.online = false;
-                                    $scope.devices.push(data);
-                                    $scope.deviceName = "";
-                                    $scope.keys = [{}];
-                                } catch(e){
-                                    $scope.devices = [data];
-                                }
-                                $scope.addDevice = false;
-                            });
-
-                        } else {
-                            deviceService.createDevice($scope.skynetuuid, formData, function(data) {
-                                try{
-                                    $scope.devices.push(data);
-                                    $scope.deviceName = "";
-                                    $scope.keys = [{}];
-                                } catch(e){
-                                    $scope.devices = [data];
-                                }
-                                $scope.addDevice = false;
-                            });
-
-                        }
-                    }
-
-                };
-
-                $scope.editDevice = function( idx ){
-                    $scope.addDevice = true;
-                    var device_to_edit = $scope.devices[idx];
-                    $scope.deviceName = device_to_edit.name;
-
-                    // find additional keys to edit
-                    var keys = [];
-                    for (var key in device_to_edit) {
-                        if (device_to_edit.hasOwnProperty(key)) {
-                            if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
-                                keys.push({"key": key, "value": device_to_edit[key]});
-                            }
-                        }
-                    }
-                    if(keys.length){
-                        $scope.keys = keys;
-                    } else {
-                        $scope.keys = [{}];
-                    }
-
-                }
-
-                $scope.deleteDevice = function( idx ){
-
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?',
-                        function() {
-                            $log.info('ok clicked');
-                            var device_to_delete = $scope.devices[idx];
-                            console.log(device_to_delete);
-                            deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) {
-                                $scope.devices.splice(idx, 1);
-                            });
-                        },
-                        function() {
-                            $log.info('cancel clicked');
-                        });
-
-                };
-
                 $scope.keys = [{key:'', value:''}];
+                var badKeys =  ['_id', 'name', 'online', 'owner', 'socketId', 'timestamp' , 'uuid' , 'token' , '$$hashKey' , 'channel' , 'eventCode'];
+
                 $scope.addKeyVals = function() {
                     $scope.keys.push( {key:'', value:''} );
-                }
-                $scope.removeKeyVals = function(idx) {
-                    // $scope.keys.push( {key:'', value:''} );
-                    $scope.keys.splice(idx,1);
-                }
-                $scope.editGatewayCancel = function() {
-                    $scope.editGatewaySection = false;
-                }
-
-                $scope.editGateway = function( idx ){
-                    $scope.editGatewaySection = true;
-                    var gateway_to_edit = $scope.gateways[idx];
-                    $scope.gatewayName = gateway_to_edit.name;
-                    $scope.gatewayOwner = gateway_to_edit.owner;
-                    $scope.editGatewayUuid = gateway_to_edit.uuid;
-
-                    // find additional keys to edit
-                    var keys = [];
-                    for (var key in gateway_to_edit) {
-                        if (gateway_to_edit.hasOwnProperty(key)) {
-                            if(key != "_id" && key != "name" && key != "online" && key != "owner" && key != "socketId" && key != "timestamp" && key != "uuid" && key != "token" && key != "$$hashKey" && key != "channel" && key != "eventCode"){
-                                keys.push({"key": key, "value": gateway_to_edit[key]});
-                            }
-                        }
-                    }
-                    if(keys.length){
-                        $scope.keys = keys;
-                    } else {
-                        $scope.keys = [{}];
-                    }
-
-                }
-
-                $scope.updateGateway = function(){
-                    $scope.gatewayName = $('#gatewayName').val();
-                    var gatewayOwner = $('#gatewayOwner').val();
-
-                    if($scope.gatewayName){
-                        var dupeUuid, dupeToken, dupeIndex;
-
-                        for (var i in $scope.gateways) {
-                            if($scope.gateways[i].uuid == $scope.editGatewayUuid){
-                                dupeUuid = $scope.gateways[i].uuid;
-                                dupeToken = $scope.gateways[i].token;
-                                dupeIndex = i;
-                            }
-                        }
-
-                        var formData = {};
-                        formData.owner = $scope.skynetuuid;
-                        formData.name = $scope.gatewayName;
-                        formData.keyvals = $scope.keys;
-
-                        formData.uuid = dupeUuid;
-                        formData.token = dupeToken;
-
-                        deviceService.updateDevice($scope.skynetuuid, formData, gatewayOwner, function(data) {
-                            console.log(data);
-                            try{
-                                $scope.gateways.splice(dupeIndex,1);
-                                data.token = dupeToken;
-                                $scope.gateways.push(data);
-                                $scope.gatewayName = "";
-                                $scope.keys = [{}];
-                            } catch(e){
-                                $scope.gateways = [data];
-                            }
-                            $scope.editGatewaySection = false;
-                        });
-                    } else {
-                        //$scope.editGatewayUuid
-                    }
-
+                };
+                $scope.removeKeyVals = function(key) {
+                   delete $scope.editingDevice[key];
                 };
 
-                $scope.deleteGateway = function( idx ){
-
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?',
+                $scope.deleteSubdevice = function(gateway, subdevice){
+                    $scope.confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
                         function() {
-                            $log.info('ok clicked');
-                            var gateway_to_delete = $scope.gateways[idx];
-                            deviceService.deleteDevice(gateway_to_delete.uuid, { skynetuuid: $scope.skynetuuid, skynettoken : $scope.skynettoken }, function(error, data) {
-                                if( ! error ){
-                                    $scope.gateways.splice(idx, 1);
-                                }
-                            });
-                        },
-                        function() {
-                            $log.info('cancel clicked');
-                        });
-
-                };
-
-                $scope.deleteSubdevice = function(parent, idx){
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Subdevice','Are you sure you want to delete this subdevice?',
-                        function() {
-                            $log.info('ok clicked');
-                            var subName = $scope.gateways[parent].subdevices[idx].name
-                            $scope.gateways[parent].subdevices.splice(idx,1)
-                            socket.emit('gatewayConfig', {
-                                "uuid": $scope.gateways[parent].uuid,
-                                "token": $scope.gateways[parent].token,
+                            gateway.subdevices = _.without(gateway.subdevices, subdevice);
+                            skynetService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
                                 "method": "deleteSubdevice",
-                                "name": subName
-                                // "name": $scope.gateways[parent].subdevices[idx].name
-                            }, function (deleteResult) {
-                                // alert(JSON.stringify(deleteResult));
+                                "name": subdevice.name
                             });
-                        },
-                        function() {
-                            $log.info('cancel clicked');
                         });
-
                 };
 
                 $scope.addSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
                     console.log('add device properties ', deviceProperties);
-                    socket.emit('gatewayConfig', {
+                    skynetService.gatewayConfig( {
                         "uuid": gateway.uuid,
                         "token": gateway.token,
                         "method": "createSubdevice",
                         "type": pluginName,
                         "name": subDeviceName,
                         "options": deviceProperties
-                    }, function (addResult) {
+                    }).then(function (addResult) {
                         console.log(addResult);
                     });
                 };
 
                 $scope.updateSubdevice = function(gateway, pluginName, subDeviceName, deviceProperties){
                   console.log('updating device properties ', deviceProperties);
-                  socket.emit('gatewayConfig', {
+                    skynetService.gatewayConfig( {
                       "uuid": gateway.uuid,
                       "token": gateway.token,
                       "method": "updateSubdevice",
                       "type": pluginName,
                       "name": subDeviceName,
                       "options": deviceProperties
-                  }, function (updateResult) {
+                  }).then(function (updateResult) {
                       console.log(updateResult);
                   });
                 };
 
-                $scope.deletePlugin = function(parent, idx){
-                    $rootScope.confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
+                $scope.deletePlugin = function(gateway, plugin){
+                    $scope.confirmModal($modal, $scope, $log, 'Delete Plugin','Are you sure you want to delete this plugin?',
                         function() {
                             $log.info('ok clicked');
-                            socket.emit('gatewayConfig', {
-                                "uuid": $scope.gateways[parent].uuid,
-                                "token": $scope.gateways[parent].token,
+                            skynetService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
                                 "method": "deletePlugin",
-                                "name": $scope.gateways[parent].plugins[idx].name
-                            }, function (deleteResult) {
+                                "name": plugin.name
+                            }).then(function (deleteResult) {
                                 alert('plugin deleted');
                             });
                         },
                         function() {
                             $log.info('cancel clicked');
                         });
-
-                };
-
-                $scope.addPlugin = function(gateway, pluginName){
-
-                    socket.emit('gatewayConfig', {
-                        "uuid": gateway.uuid,
-                        "token": gateway.token,
-                        "method": "installPlugin",
-                        "name": pluginName
-                    }, function (addResult) {
-                        // alert('plugin added');
-                        console.log(addResult);
-                    });
                 };
 
                 $scope.openNewPlugin = function (gateway) {
-                    console.log(gateway);
-                    $scope.selectedGateway = gateway;
                     $http({
                         url: "http://npmsearch.com/query",
                         method: "get",
@@ -390,70 +131,58 @@ angular.module('octobluApp')
                             size: 100,
                             sort: 'rating:desc'
                         }
-                    }).success(function(data, status, headers, config) {
+                    }).success(function(data) {
                         console.log('npm search success',data);
-                        $scope.plugins = data.results;
-
                         var modalInstance = $modal.open({
                             templateUrl: 'pluginModal.html',
-                            scope: $scope,
-                            controller: function ($modalInstance) {
+                            controller: function ($scope, $modalInstance) {
+                                $scope.gateway = gateway;
                                 $scope.ok = function (plugin) {
                                     $modalInstance.close({
                                         "plugin" : plugin.name
                                     });
                                 };
-
                                 $scope.cancel = function () {
                                     $modalInstance.dismiss('cancel');
                                 };
                             }
                         });
-                        modalInstance.result.then(function (response) {
 
-                            $scope.plugin = response.plugin;
-                            $scope.addPlugin($scope.selectedGateway, response.plugin);
-                            if(!$scope.selectedGateway.plugins) $scope.selectedGateway.plugins = [];
-                            $scope.selectedGateway.plugins.push({name: response.plugin})
+                        modalInstance.result.then(function (response) {
+                            skynetService.gatewayConfig( {
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
+                                "method": "installPlugin",
+                                "name": pluginName
+                            }).then(function (addResult) {
+                                console.log(addResult);
+                            });
+
+                            gateway.plugins = gateway.plugins || [];
+                            gateway.plugins.push({name: response.plugin});
 
                         }, function (){
                             $log.info('Modal dismissed at: ' + new Date());
                         });
 
-
-                    }).error(function(data, status, headers, config) {
+                    }).error(function(data, status) {
                         console.log('npm search failed',data);
                         $scope.status = status;
                         alert("Plugin search failed. Try again in a little while...")
                     });
-
                 };
 
                 $scope.openNewSubdevice = function (gateway) {
-                    $scope.selectedGateway = gateway;
+                    $scope.gateway = gateway;
 
                     var modalInstance = $modal.open({
                         templateUrl: 'subDeviceModal.html',
-                        scope: $scope,
                         controller: function ($modalInstance) {
-
-                            $scope.gatewayName = $scope.selectedGateway.name;
-                            $scope.plugins = $scope.selectedGateway.plugins;
+                            $scope.gatewayName = $scope.gateway.name;
+                            $scope.plugins = $scope.gateway.plugins;
                             $scope.ok = function (subDeviceName, plugin, deviceProperties) {
-
                                 console.log(deviceProperties);
-                                var properties = _.map(deviceProperties, function(deviceProperty){
-                                    delete deviceProperty.$$hashKey;
-                                    delete deviceProperty.type;
-                                    delete deviceProperty.required;
-                                    return deviceProperty;
-                                });
-
-                                var options = {};
-                                _.forEach(deviceProperties, function(property){
-                                    options[property.name] = property.value;
-                                });
-
+                                var options = angular.copy(_.omit(deviceProperties, ['$$hashKey', 'type', 'required']));
                                 $modalInstance.close({
                                     "name" : subDeviceName,
                                     "plugin" : plugin.name,
@@ -489,27 +218,16 @@ angular.module('octobluApp')
                                 $scope.deviceProperties = deviceProperties;
 
                                 // Get default options
-                                socket.emit('gatewayConfig', {
-                                    "uuid": $scope.selectedGateway.uuid,
-                                    "token": $scope.selectedGateway.token,
+                                skynetService.gatewayConfig( {
+                                    "uuid": $scope.gateway.uuid,
+                                    "token": $scope.gateway.token,
                                     "method": "getDefaultOptions",
                                     "name": plugin.name
-                                }, function (defaults) {
+                                }).then(function (defaults) {
                                     // TODO: defaults are not returning - factor into object
                                     console.log('config:', defaults);
                                     console.log($scope.deviceProperties);
-                                    _.each(defaults.result, function(value, key){
-                                      for (var i in $scope.deviceProperties) {
-                                        if($scope.deviceProperties[i].name == key){
-                                          // $scope.deviceProperties[i].value = value;
-                                          $scope.$apply(function () {
-                                              $scope.deviceProperties[i].value = value;
-                                          });
-                                        }
-                                      }
-                                    });
                                 });
-
                             };
                         }
                     });
@@ -519,9 +237,9 @@ angular.module('octobluApp')
                         $scope.subDeviceName = response.name;
                         $scope.plugin = response.plugin;
                         $scope.deviceProperties = response.deviceProperties;
-                        $scope.addSubdevice($scope.selectedGateway, response.plugin, response.name, response.deviceProperties);
+                        $scope.addSubdevice($scope.gateway, response.plugin, response.name, response.deviceProperties);
 
-                        $scope.selectedGateway.subdevices.push({name: response.name, type: response.plugin, options: response.deviceProperties})
+                        $scope.gateway.subdevices.push({name: response.name, type: response.plugin, options: response.deviceProperties})
 
                     }, function (){
                         $log.info('Modal dismissed at: ' + new Date());
@@ -529,27 +247,18 @@ angular.module('octobluApp')
 
                 };
 
-
                 $scope.openEditSubdevice = function (gateway, subdevice) {
-                    console.log(subdevice);
-                    $scope.selectedGateway = gateway;
-                    $scope.selectedSubdevice = subdevice;
-                    for(var l=0;l<$scope.selectedGateway.plugins.length;l++) {
-                        if($scope.selectedGateway.plugins[l].name===subdevice.type) {
-                            $scope.selectedPlugin = $scope.selectedGateway.plugins[l];
-                            break;
-                        }
-                    }
+                    $scope.gateway = gateway;
+
+                    var plugin = _.findWhere(gateway.plugins, function(plugin){
+                        return plugin.name === subdevice.type;
+                    });
+
                     $scope._backup = angular.copy(subdevice);
 
                     var modalInstance = $modal.open({
                         templateUrl: 'editSubDeviceModal.html',
-                        scope: $scope,
                         controller: function ($modalInstance) {
-                            // $log.info($scope.selectedSubdevice);
-                            $scope.gatewayName = $scope.selectedGateway.name;
-                            $scope.plugins = $scope.selectedGateway.plugins;
-                            console.log(subdevice.options);
                             var devicePairs = _.pairs(subdevice.options);
                             $scope.deviceProperties2 = _.map(devicePairs, function(devicePair){
                               return {
@@ -559,24 +268,22 @@ angular.module('octobluApp')
                                  "value" : devicePair[1]
                               }
                             });
-                            console.log($scope.deviceProperties2);
                             $scope.ok = function (deviceProperties) {
                                 $scope._backup = false;
-                                console.log(deviceProperties);
-                                var properties = _.map(deviceProperties, function(deviceProperty){
-                                    delete deviceProperty.$$hashKey;
-                                    delete deviceProperty.type;
-                                    delete deviceProperty.required;
-                                    return deviceProperty;
-                                });
+
+                                var properties = _.indexBy(
+                                    _.map(deviceProperties, function(deviceProperty){
+                                    return _.omit(deviceProperty, '$$hashKey', 'type', 'required');
+                                }), 'name');
 
                                 var options = {};
-                                _.forEach(deviceProperties, function(property){
+                                _.forEach(properties, function(property){
                                     options[property.name] = property.value;
                                 });
+
                                 console.log('update', options);
                                 $modalInstance.close({
-                                    "subDeviceName" : $scope.selectedSubdevice.name,
+                                    "subDeviceName" : $scope.subdevice.name,
                                     "plugin" : subdevice.type,
                                     "deviceProperties" : options
                                 });
@@ -604,7 +311,7 @@ angular.module('octobluApp')
                                 $scope.deviceProperties = deviceProperties;
                             };
 
-                            $scope.getSchema($scope.selectedPlugin);
+                            $scope.getSchema(plugin);
                         }
                     });
 
@@ -629,19 +336,139 @@ angular.module('octobluApp')
                             }
                         }
                     });
-
                 }
-
-            }); //end skynet.js
-
         });
-
     })
-    .controller('connectorAdvancedController', function($scope, $http, $location, $modal, $log, $q, $state,
-                                                ownerService, deviceService, channelService) {
+    .controller('deviceController', function($scope, ownerService){
+        ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
+            $scope.devices = _.filter(data, function(device){
+                return device.type !== 'gateway';
+            });
+        });
+        $scope.createDevice = function (device) {
+            if($scope.editingDevice){
+                var dupeDevice = _.findWhere($scope.devices, {uuid: device.uuid});
+                var formData = {
+                    name: $scope.deviceName,
+                    keyvals: $scope.keys
+                };
 
-      $scope.openNewApi = function() {
-          $state.go('connector.advanced.channels.editor', { name: 'new' });
-      };
+                if(dupeDevice){
+                    formData.uuid = dupeDevice.uuid;
+                    formData.token = dupeDevice.token;
 
+                    deviceService.updateDevice($scope.skynetuuid, formData, function(data) {
+                        try{
+                            $scope.devices = _.without($scope.devices, dupeDevice);
+                            data.token = dupeDevice.token;
+                            data.online = false;
+                            $scope.devices.push(data);
+                            $scope.deviceName = "";
+                            $scope.keys = [{}];
+                        } catch(e){
+                            $scope.devices = [data];
+                        }
+                        $scope.addDevice = false;
+                    });
+
+                } else {
+                    deviceService.createDevice($scope.skynetuuid, formData, function(data) {
+                        try{
+                            $scope.devices.push(data);
+                            $scope.deviceName = "";
+                            $scope.keys = [{}];
+                        } catch(e){
+                            $scope.devices = [data];
+                        }
+                        delete $scope.editingDevice;
+                    });
+                }
+            }
+        };
+
+        $scope.deleteDevice = function( device_to_delete ){
+            $scope.confirmModal($modal, $scope, $log, 'Delete Device','Are you sure you want to delete this device?',
+                function() {
+                    deviceService.deleteDevice(device_to_delete.uuid, device_to_delete.token, function(data) {
+                        $scope.devices = _.without($scope.devices, device_to_delete);
+                    });
+                },
+                function() {
+                    $log.info('cancel clicked');
+                });
+        };
+    })
+    .controller('gatewayController', function($scope){
+
+        $scope.editGatewayCancel = function() {
+            $scope.editGatewaySection = false;
+        };
+
+        $scope.editGateway = function(gateway){
+            $scope.editGatewaySection = true;
+            $scope.gatewayName = gateway.name;
+            $scope.gatewayOwner = gateway.owner;
+            $scope.editGatewayUuid = gateway.uuid;
+
+            // find additional keys to edit
+            var keys = _.omit(gateway, badKeys);
+
+            if(keys.length){
+                $scope.keys = keys;
+            } else {
+                $scope.keys = [{}];
+            }
+        };
+
+        $scope.updateGateway = function(){
+            $scope.gatewayName = $('#gatewayName').val();
+            var gatewayOwner = $('#gatewayOwner').val();
+
+            if($scope.gatewayName){
+                var dupeGateway = _.findWhere($scope.gateways, {name: $scope.gatewayName});
+                var formData = {
+                    owner: $scope.skynetuuid,
+                    name: $scope.gatewayName,
+                    keyVals : $scope.keys,
+                    uuid: dupeGateway.uuid,
+                    token: dupeGateway.token
+                };
+
+                deviceService.updateDevice($scope.skynetuuid, formData, gatewayOwner, function(data) {
+                    console.log(data);
+                    try{
+                        $scope.gateways = _.without($scope.gateways, dupeGateway);
+                        data.token = dupeGateway.token;
+                        $scope.gateways.push(data);
+                        $scope.gatewayName = "";
+                        $scope.keys = [{}];
+                    } catch(e){
+                        $scope.gateways = [data];
+                    }
+                    $scope.editGatewaySection = false;
+                });
+            }
+        };
+
+        $scope.deleteGateway = function(gateway){
+            $scope.confirmModal($modal, $scope, $log, 'Delete Gateway','Are you sure you want to delete this gateway?',
+                function() {
+                    deviceService.deleteDevice(gateway.uuid,
+                        { skynetuuid: $scope.skynetuuid, skynettoken : $scope.skynettoken }, function(error, data) {
+                            if( ! error ){
+                                $scope.gateways = _.without($scope.gateways, gateway);
+                            }
+                        });
+                },
+                function() {
+                });
+        };
+    })
+    .controller('channelController', function($scope, channelService){
+            channelService.getActive($scope.skynetuuid,function(data) {
+                $scope.activeChannels = data;
+            });
+            channelService.getAvailable($scope.skynetuuid,function(error, data) {
+                $scope.availableChannels = data;
+            });
     });
