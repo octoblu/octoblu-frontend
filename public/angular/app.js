@@ -136,7 +136,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 abstract: true,
                 url: '/channels',
                 template: '<ui-view />',
-                controller: 'channelController'
+                controller: 'connectorController'
             })
             .state('connector.channels.index', {
                 url: '',
