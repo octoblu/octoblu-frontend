@@ -1,3 +1,4 @@
+
 <section id='content'>
     <div class='container full-screen'>
         <!-- Made an Edit -->
@@ -38,7 +39,7 @@
             </div>
             <br/>
 
-                <div class="panel panel-info" ng-show="results" style="display:none;">
+                <div class="panel panel-info" ng-show="results" >
                     <!-- Default panel contents -->
                     <div class="panel-heading">Results
                       <p class="pull-right"> hits: {{ results.hits.total }}</p>
@@ -54,7 +55,7 @@
                     </div>
                 </div>
 
-                <pager total-items="totalItems" page="currentPage" ng-show="results"></pager>
+                <!--<pager total-items="totalItems" page="currentPage" ng-show="results"></pager>-->
 
             </div>
         </div>
@@ -76,7 +77,6 @@
 		  <h1 >{{device.name}}</h1>
 		  <div class="col-md-4">
 			<h2> Top Devices Sending</h2>
-                        <pager total-items="1" page="currentPage" ng-show="top_device_send" ></pager>
                   </div>
 		  <div class="col-md-4">
 			<h2> Top Devices Receiving</h2>

@@ -9,30 +9,46 @@ angular.module('octobluApp')
         this.client = esFactory({
             host: elasticSearchConfig.host + ':' + elasticSearchConfig.port
         });
-
+	
         this.search = function (queryText, ownerUuid, page, eventCode, callback) {
             fromPage = (page * 10) / 10;
             if(eventCode){
               eventCode = ' , _type:' + eventCode;
             }
+	    console.log(queryText);
+            secondaryString = queryText + ', owner:' + ownerUuid + eventCode;
+            console.log(secondaryString);
             service.client.search({
                 index: '_all',
                 size: 10,
                 from: fromPage,
-                q: queryText + ', owner:' + ownerUuid + eventCode
-                // q: 'type:drone AND owner:' + ownerUuid
-                // q: queryText + ' AND uuid:' + ownerUuid
-                // q: queryText
-
+                q: queryText
             }, function (error, response) {
                 callback(error, response);
             });
         };
 
-        this.searchAdvanced = function (queryObject, callback) {
+        this.searchAdvanced = function (queryObject, ownerUuid, page, eventCode, callback) {
+            fromPage = (page * 10) / 10;
+            console.log("Advanced Search");
+            console.log(queryObject);
+            eC = "";
+            if (eventCode){
+		eC = ', _type:' + eventCode;
+	    }
+            console.log(ownerUuid);
             service.client.search({
                 index: '_all',
-                body: queryObject
+                size: 10,
+                from: fromPage,
+                body: {
+  "query": {
+    "query_string": {
+      "default_field": "_all",
+      "query": queryObject + ", owner:"+ownerUuid + eC
+    }
+  }
+}
             }, function (error, response) {
                 callback(error, response);
             });
