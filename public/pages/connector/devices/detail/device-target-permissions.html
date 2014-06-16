@@ -1,0 +1,56 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Discover</th>
+        <th>Configure</th>
+        <th>Send Msg</th>
+        <th>Receive Msg</th>
+    </tr>
+    </thead>
+    <tr ng-repeat="permission in targetPermissions track by permission.source.uuid ">
+        <td title="via {{permission.name}}">
+            {{permission.source.properties.name || permission.source.properties.displayName || permission.source.properties.email}}
+        </td>
+        <td>
+            <div class="btn-group">
+                <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.discover, 'btn-default': !permission.permissions.discover, 'disabled': true}"
+                       ng-model="permission.permissions.discover"
+                       btn-radio=true value="YES" uncheckable>Yes</label>
+                <label ng-model="permission.permissions.discover"
+                       ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.discover, 'btn-default': permission.permissions.discover, 'disabled': true}"
+                       btn-radio=false value="NO" uncheckable>No</label>
+            </div>
+        </td>
+        <td>
+            <div class="btn-group">
+                <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.configure, 'btn-default': !permission.permissions.configure, 'disabled': true}"
+                       ng-model="permission.permissions.configure"
+                       btn-radio=true value="YES" uncheckable>Yes</label>
+                <label ng-model="permission.permissions.configure"
+                       ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.configure, 'btn-default': permission.permissions.configure, 'disabled': true}"
+                       btn-radio=false value="NO" uncheckable>No</label>
+            </div>
+        </td>
+        <td>
+            <div class="btn-group">
+                <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.message_send, 'btn-default': !permission.permissions.message_send, 'disabled': true}"
+                       ng-model="permission.permissions.message_send"
+                       btn-radio=true value="YES" uncheckable>Yes</label>
+                <label ng-model="permission.permissions.message_send"
+                       ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.message_send, 'btn-default': permission.permissions.message_send, 'disabled': true}"
+                       btn-radio=false value="NO" uncheckable>No</label>
+            </div>
+        </td>
+        <td>
+            <div class="btn-group">
+                <label ng-class="{'btn' : true, 'btn-success' : permission.permissions.message_receive, 'btn-default': !permission.permissions.message_receive, 'disabled': true}"
+                       ng-model="permission.permissions.message_receive"
+                       btn-radio=true value="YES" uncheckable>Yes</label>
+                <label ng-model="permission.permissions.message_receive"
+                       ng-class="{'btn' : true, 'btn-danger' : !permission.permissions.message_receive, 'btn-default': permission.permissions.message_receive, 'disabled': true}"
+                       btn-radio=false value="NO" uncheckable>No</label>
+            </div>
+        </td>
+    </tr>
+</table>

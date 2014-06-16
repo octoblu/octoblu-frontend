@@ -8,7 +8,8 @@
     <!-- META -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta content="text/html;charset=utf-8" http-equiv="content-type">
-    <meta content="Meshines" name="description">
+    <meta name="description" content="Octoblu - Internet of Everything!">
+    <meta name="author" content="Octoblu">
     <link href="assets/images/meta_icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="assets/images/meta_icons/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
     <link href="assets/images/meta_icons/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
@@ -16,33 +17,31 @@
     <link href="assets/images/meta_icons/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114">
     <link href="assets/images/meta_icons/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144">
 
-    <title>Octoblu</title>
+    <title>Octoblu - Internet of Everything!</title>
 
     <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <!-- <link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- <link href="assets/stylesheets/bootstrap-switch/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" /> -->
     <link href="assets/stylesheets/light-theme.css" media="all" id="color-settings-body-color" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/theme-colors.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/stylesheets/bootstrap-switch/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/demo.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="assets/stylesheets/erosIntro.css" rel="stylesheet" media="screen">
+    <!-- <link href="assets/stylesheets/erosIntro.css" rel="stylesheet" media="screen"> -->
     <link href="assets/stylesheets/style.css" rel="stylesheet" media="screen">
     <link href="assets/stylesheets/custom.css" rel="stylesheet">
     <link href="assets/stylesheets/animation.css" rel="stylesheet">
     <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet" >
-    <link href="assets/stylesheets/athenaSlide.css" rel="stylesheet">
-    <link href="assets/javascripts/nvd3/nv.d3.min.css" rel="stylesheet">
-    <link href="assets/javascripts/owl.carousel/owl.carousel.css" rel="stylesheet">
-    <link href="assets/javascripts/owl.carousel/owl.theme.css" rel="stylesheet">
-    <!--   <link rel="shortcut icon" href="images/favicon.png"> -->
+    <!-- <link href="assets/stylesheets/athenaSlide.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.css" type="text/css"/>
+    <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.css" type="text/css"/>
+    <link href="lib/nvd3/nv.d3.css" rel="stylesheet"/>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
     <script src="assets/javascripts/skynet.js"></script>
 
     <style type="text/css">
         .reveal-animation.ng-enter {
-            -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
-            animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+            -webkit-animation: enter_sequence 1s linear;
+            animation: enter_sequence 1s linear;
         }
         @-webkit-keyframes enter_sequence {
             from { opacity:0; }
@@ -53,247 +52,212 @@
             to { opacity:1; }
         }
         @media (min-width: 1200px) {
-            .container {
+            .full-screen {
                 width: 100%;
             }
         }
     </style>
 </head>
 <body class="contrast-sea-blue" ng-app="octobluApp">
-    <header>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <a class="navbar-brand" href="" ui-sref="home">
-                OCTOBLU
-            </a>
-            <a class="toggle-nav btn pull-left" href="" ng-show="authorization.isAuthenticated">
-                <i class="icon-reorder"></i>
-            </a>
-            <ul class="nav" ng-show="authorization.isAuthenticated">
-                <li class="auth"><!-- <a href="/login"><i class="fa fa-lock"></i> Sign In/Up</a> --></li>
-                <li class="dropdown dark user-menu">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="avatar"></span>
-                        <span class="user-name"></span>
-                        <b class="caret"></b>
+
+
+<header ng-show="authorization.isAuthenticated">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <a class="navbar-brand" href="" ui-sref="home">
+            <img src="/assets/images/octoblu.png" height="50px"/>
+        </a>
+        <a class="toggle-nav btn pull-left" href="">
+            <i class="icon-reorder"></i>
+        </a>
+        <ul class="nav" ng-show="authorization.isAuthenticated">
+            <li class="auth"><!-- <a href="/login"><i class="fa fa-lock"></i> Sign In/Up</a> --></li>
+            <li class="dropdown dark user-menu">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="avatar"></span>
+                    <span class="user-name"></span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="" ui-sref="profile">
+                            <i class="icon-user"></i>
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" ui-sref="services">
+                            <i class="icon-cog"></i>
+                            Services
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/logout" target="_self">
+                            <i class="icon-signout"></i>
+                            Sign out
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Left Nav Menu -->
+<div id="main" ng-show="authorization.isAuthenticated">
+    <div id="main-nav-bg"></div>
+    <nav id="main-nav">
+        <div class="navigation">
+            <ul class="nav nav-stacked">
+                <li id="nav-dashboard" ng-class="{'active': $state.includes('dashboard')}">
+                    <a href="" ui-sref="dashboard">
+                        <i class="icon-dashboard"></i>
+                        <span>Dashboard</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="" ui-sref="profile">
-                                <i class="icon-user"></i>
-                                Profile
+                </li>
+                <li id="nav-connector" ng-class="{'active': $state.includes('connector')}">
+                    <a href="" ui-sref="connector.devices.all">
+                        <i class="icon-code-fork"></i>
+                        <span>Connectors</span>
+                    </a>
+                </li>
+                <li id="nav-designer" ng-class="{'active': $state.includes('designer')}">
+                    <a href="" ui-sref="designer"><i class="icon-edit"></i>
+                        <span>Designer</span>
+                    </a>
+                </li>
+                <li id="nav-analyzer" ng-class="{'active': $state.includes('analyzer')}">
+                    <a href="" ui-sref="analyzer">
+                        <i class="icon-bar-chart"></i>
+                        <span>Analyzer</span>
+                    </a>
+                </li>
+                <li id="nav-community" ng-class="{'active': $state.includes('community')}">
+                    <a href="" ui-sref="community">
+                        <i class="icon-group"></i>
+                        <span>Community</span>
+                    </a>
+                </li>
+                <li id="nav-admin" ng-class="{'active': $state.includes('admin')}">
+                    <a href="" ui-sref="admin.all"  >
+                        <i class="icon-lock"></i>
+                        <span>Admin</span>
+                    </a>
+                </li>
+                <li id="nav-resources">
+                    <a class="dropdown-collapse" href="" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                        <i class="icon-book"></i>
+                        <span>Resources</span>
+                        <i class="icon-angle-down angle-down"></i>
+                    </a>
+                    <ul class="nav nav-stacked" ng-class="{'in': navCollapsed && !navCollapsed}">
+                        <li ng-class="{'active': $state.includes('docs')}">
+                            <a href="" ui-sref="docs">
+                                <i class="icon-cogs"></i>
+                                <span>API Docs</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="" ui-sref="services">
-                                <i class="icon-cog"></i>
-                                Services
+                        <li ng-class="{'active': $state.includes('pricing')}">
+                            <a href="" ui-sref="pricing">
+                                <i class="icon-table"></i>
+                                <span>Pricing tables</span>
                             </a>
                         </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/logout" target="_self">
-                                <i class="icon-signout"></i>
-                                Sign out
+                        <li ng-class="{'active': $state.includes('faqs')}">
+                            <a href="" ui-sref="faqs">
+                                <i class="icon-bullhorn"></i>
+                                <span>FAQ</span>
                             </a>
                         </li>
                     </ul>
                 </li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</div>
 
-    <!-- Left Nav Menu -->
-    <div id="main" ng-show="authorization.isAuthenticated">
-        <div id="main-nav-bg"></div>
-        <nav id="main-nav">
-            <div class="navigation">
-                <ul class="nav nav-stacked">
-                    <li id="nav-dashboard" ng-class="{'active': $state.includes('dashboard')}">
-                        <a href="" ui-sref="dashboard">
-                            <i class="icon-dashboard"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li id="nav-connector" ng-class="{'active': $state.includes('connector')}">
-                        <a href="" ui-sref="connector.devices">
-                            <i class="icon-code-fork"></i>
-                            <span>Connectors</span>
-                        </a>
-                    </li>
-                    <li id="nav-designer" ng-class="{'active': $state.includes('designer')}">
-                        <a href="" ui-sref="designer"><i class="icon-edit"></i>
-                            <span>Designer</span>
-                        </a>
-                    </li>
-                    <li id="nav-analyzer" ng-class="{'active': $state.includes('analyzer')}">
-                        <a href="" ui-sref="analyzer">
-                            <i class="icon-bar-chart"></i>
-                            <span>Analyzer</span>
-                        </a>
-                    </li>
-                    <li id="nav-community" ng-class="{'active': $state.includes('community')}">
-                        <a href="" ui-sref="community">
-                            <i class="icon-group"></i>
-                            <span>Community</span>
-                        </a>
-                    </li>
-                    <li id="nav-admin" ng-class="{'active': $state.includes('admin')}">
-                        <a href="" ui-sref="admin.all"  >
-                            <i class="icon-lock"></i>
-                            <span>Admin</span>
-                        </a>
-                    </li>
-                    <li id="nav-resources">
-                        <a class="dropdown-collapse" href="" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-                            <i class="icon-book"></i>
-                            <span>Resources</span>
-                            <i class="icon-angle-down angle-down"></i>
-                        </a>
-                        <ul class="nav nav-stacked" ng-class="{'in': navCollapsed && !navCollapsed}">
-                            <li ng-class="{'active': $state.includes('docs')}">
-                                <a href="" ui-sref="docs">
-                                    <i class="icon-cogs"></i>
-                                    <span>API Docs</span>
-                                </a>
-                            </li>
-                            <li ng-class="{'active': $state.includes('pricing')}">
-                                <a href="" ui-sref="pricing">
-                                    <i class="icon-table"></i>
-                                    <span>Pricing tables</span>
-                                </a>
-                            </li>
-                            <li ng-class="{'active': $state.includes('faqs')}">
-                                <a href="" ui-sref="faqs">
-                                    <i class="icon-bullhorn"></i>
-                                    <span>FAQ</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+<!-- Content -->
+<div ui-view="" class="reveal-animation">
 
-    <!-- Content -->
-    <div ui-view="" class="reveal-animation">
+</div>
 
-    </div>
+<footer></footer>
 
-    <footer></footer>
+<!-- build:js scripts/plugins.js -->
+<!-- <script src="assets/javascripts/athenaSlide.js"></script> -->
+<script src="lib/jquery/dist/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery-ui/ui/jquery-ui.js" type="text/javascript"></script>
+<!-- <script src="lib/requirejs/require.js" type="text/javascript"></script> -->
+<!-- <script src="lib/jquery-mobile/js/requirejs.config.js" type="text/javascript"></script> -->
+<!-- <script src="lib/jquery-mobile/js/jquery.mobile.init.js" type="text/javascript"></script> -->
+<!-- <script src="lib/jquery-mobile/js/jquery.mobile.define.js" type="text/javascript"></script> -->
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-sanitize/angular-sanitize.js"></script>
+<script src="lib/angular-cookies/angular-cookies.js"></script>
+<script src="lib/angular-resource/angular-resource.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+<script src="lib/underscore/underscore.js"></script>
+<script src="lib/d3/d3.js"></script>
+<script src="lib/nvd3/nv.d3.js"></script>
+<!-- endbuild -->
 
-    <!-- build:js scripts/plugins.js -->
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/jquery_ui_touch_punch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/jquery/jquery.cookie.js"></script>
-    <script src="assets/javascripts/jquery/jquery.mobile.custom.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-cookies.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="assets/javascripts/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-    <script src="assets/javascripts/athenaSlide.js"></script>
-    <script src="assets/javascripts/underscore.js"></script>
-    <script src="assets/javascripts/d3/d3.min.js"></script>
-    <script src="assets/javascripts/nvd3/nv.d3.min.js"></script>
-    <script src="assets/javascripts/owl.carousel/owl.carousel.min.js"></script>
+<!-- build:js scripts/modules.js -->
+<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="lib/angular-ui-utils/ui-utils.js"></script>
+<script src="lib/angular-google-analytics/src/angular-google-analytics.js"></script>
+<script src="lib/modernizr/modernizr.js" type="text/javascript"></script>
+<script src="lib/json-editor/dist/jsoneditor.js" type="text/javascript"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="lib/isotope/dist/isotope.pkgd.js"></script>
+<script src="lib/elastic.js/dist/elastic.js"></script>
+<script src="lib/elasticsearch/elasticsearch.angular.js"></script>
+<script src="lib/smoothie/smoothie.js"></script>
+<!-- <script src="lib/jpreloader/js/jpreloader.js"></script> -->
+<!-- <script src="assets/javascripts/loop.js"></script> -->
+<!-- endbuild -->
 
-    <!-- endbuild -->
-
-    <!-- build:js scripts/modules.js -->
-    <script src="assets/javascripts/angular-ui-router.min.js"></script>
-    <script src="assets/javascripts/angular-ui-utils/ui-utils.min.js"></script>
-    <script src="assets/javascripts/angular-google-analytics.js"></script>
-    <script src="assets/javascripts/plugins/modernizr/modernizr.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/canvasjs.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/retina/retina.js" type="text/javascript"></script>
-    <script src="assets/javascripts/theme.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/validate/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="assets/javascripts/plugins/validate/additional-methods.js" type="text/javascript"></script>
-    <script src="assets/javascripts/jsoneditor/jsoneditor.js" type="text/javascript"></script>
-    <script src="assets/javascripts/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
-    <script src="assets/javascripts/isotope.js"></script>
-    <script src="assets/javascripts/skroller.js"></script>
-    <script src="assets/javascripts/elastic.min.js"></script>
-    <script src="assets/javascripts/elasticsearch.angular.js"></script>
-    <script src="assets/javascripts/angular-dragdrop.min.js"></script>
-    <script src="assets/javascripts/smoothie.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="angular/app.js"></script>
-    <script src="angular/services/user.js"></script>
-    <script src="angular/services/owner.js"></script>
-    <script src="angular/services/gateway.js"></script>
-    <script src="angular/services/device.js"></script>
-    <script src="angular/services/channel.js"></script>
-    <script src="angular/services/nodered.js"></script>
-    <script src="angular/services/group.js"></script>
-    <script src="angular/services/message.js"></script>
-    <script src="angular/services/elastic.js"></script>
-    <script src="angular/services/plugin.js"></script>
-    <script src="angular/services/invitation.js"></script>
-    <script src="angular/directives/nvd3-line-chart.js"></script>
-    <script src="angular/directives/nvd3-pie-chart.js"></script>
-    <script src="angular/directives/popover.js"></script>
-    <script src="angular/directives/toggle.js"></script>
-    <script src="angular/directives/device-carousel.js"></script>
-    <script src="angular/controllers/about.js"></script>
-    <script src="angular/controllers/admin.js"></script>
-    <script src="angular/controllers/analyzer.js"></script>
-    <script src="angular/controllers/api.js"></script>
-    <script src="angular/controllers/connector.js"></script>
-    <script src="angular/controllers/contact.js"></script>
-    <script src="angular/controllers/controller.js"></script>
-    <script src="angular/controllers/device.js"></script>
-    <script src="angular/controllers/subdevice.js"></script>
-    <script src="angular/controllers/dashboard.js"></script>
-    <script src="angular/controllers/designer.js"></script>
-    <script src="angular/controllers/devtools.js"></script>
-    <script src="angular/controllers/docs.js"></script>
-    <script src="angular/controllers/faqs.js"></script>
-    <script src="angular/controllers/gateway.js"></script>
-    <script src="angular/controllers/home.js"></script>
-    <script src="angular/controllers/login.js"></script>
-    <script src="angular/controllers/pricing.js"></script>
-    <script src="angular/controllers/profile.js"></script>
-    <script src="angular/controllers/services.js"></script>
-    <script src="angular/controllers/signup.js"></script>
-    <!-- endbuild -->
-
-    <!--
-      <script>
-        var socket;
-        if($.cookie('skynetuuid') && $.cookie('skynettoken')){
-          // connect to skynet
-          var skynetConfig = {
-            "uuid": $.cookie('skynetuuid'),
-            "token": $.cookie('skynettoken')
-          }
-          skynet(skynetConfig, function (e, skysocket) {
-            if (e) throw e;
-            socket = skysocket;
-          });
-
-        }
-      </script>
-    -->
-
-    <!--<script type="text/javascript">-->
-        <!--/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */-->
-        <!--var disqus_shortname = 'octoblu'; // required: replace example with your forum shortname-->
-
-        <!--/* * * DON'T EDIT BELOW THIS LINE * * */-->
-        <!--(function () {-->
-            <!--var s = document.createElement('script'); s.async = true;-->
-            <!--s.type = 'text/javascript';-->
-            <!--s.src = '//' + disqus_shortname + '.disqus.com/count.js';-->
-            <!--(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);-->
-        <!--}());-->
-    <!--</script>-->
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="angular/app.js"></script>
+<script src="angular/services/user.js"></script>
+<script src="angular/services/owner.js"></script>
+<script src="angular/services/device.js"></script>
+<script src="angular/services/channel.js"></script>
+<script src="angular/services/nodered.js"></script>
+<script src="angular/services/group.js"></script>
+<script src="angular/services/message.js"></script>
+<script src="angular/services/elastic.js"></script>
+<script src="angular/services/plugin.js"></script>
+<script src="angular/services/invitation.js"></script>
+<script src="angular/services/permissions.js"></script>
+<script src="angular/services/skynet.js"></script>
+<script src="angular/directives/nvd3-line-chart.js"></script>
+<script src="angular/directives/nvd3-pie-chart.js"></script>
+<script src="angular/directives/popover.js"></script>
+<script src="angular/directives/toggle.js"></script>
+<script src="angular/directives/device-carousel.js"></script>
+<script src="angular/controllers/about.js"></script>
+<script src="angular/controllers/admin.js"></script>
+<script src="angular/controllers/analyzer.js"></script>
+<script src="angular/controllers/api.js"></script>
+<script src="angular/controllers/connector.js"></script>
+<script src="angular/controllers/contact.js"></script>
+<script src="angular/controllers/controller.js"></script>
+<script src="angular/controllers/device.js"></script>
+<script src="angular/controllers/subdevice.js"></script>
+<script src="angular/controllers/dashboard.js"></script>
+<script src="angular/controllers/designer.js"></script>
+<script src="angular/controllers/devtools.js"></script>
+<script src="angular/controllers/docs.js"></script>
+<script src="angular/controllers/faqs.js"></script>
+<script src="angular/controllers/home.js"></script>
+<script src="angular/controllers/login.js"></script>
+<script src="angular/controllers/pricing.js"></script>
+<script src="angular/controllers/profile.js"></script>
+<script src="angular/controllers/services.js"></script>
+<script src="angular/controllers/signup.js"></script>
+<!-- endbuild -->
 </body>
 </html>

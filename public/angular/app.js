@@ -1,10 +1,10 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngDragDrop'])
+angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host' : 'skynet.im', //change to the skynet.im instance
-        'port' : '80'
+        'host': 'skynet.im', //change to the skynet.im instance
+        'port': '80'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -29,15 +29,24 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
         $stateProvider
+            // .state('home', {
+            //     url: '/',
+            //     templateUrl: 'pages/home2.html',
+            //     controller: 'homeController'
+            // })
             .state('home', {
                 url: '/',
-                templateUrl: 'pages/home2.html',
-                controller: 'homeController'
-
-            })
+                templateUrl: 'pages/login.html',
+                controller: 'loginController'
+            })            
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
+                controller: 'homeController'
+            })
+            .state('home3', {
+                url: '/home3',
+                templateUrl: 'pages/home3.html',
                 controller: 'homeController'
             })
             .state('terms', {
@@ -68,75 +77,70 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector', {
                 url: '/connector',
                 templateUrl: 'pages/connector/index.html',
-                controller: 'connectorController'
-            })
-            .state('connector.devices', {
-                url: '/devices',
-                templateUrl: 'pages/connector/devices/index.html',
-                controller: 'DeviceController',
-                resolve : {
-                    currentUser : function(userService){
-                       return userService.getCurrentUser();
+                controller: 'connectorController',
+                resolve: {
+                    currentUser: function (userService) {
+                        return userService.getCurrentUser();
                     },
                     smartDevices: function (channelService) {
                         return channelService.getSmartDevices();
                     },
-                    claimedGateways : function(currentUser,  ownerService ){
-                        return ownerService.getClaimedGateways({skynetuuid : currentUser.skynetuuid, skynettoken: currentUser.skynettoken});
+                    myDevices : function(currentUser, deviceService){
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
-                },
-                onEnter : function(){
-//                    console.log('Entering devices state');
-                },
-                onExit : function(){
-//                    console.log('leaving devices state');
                 }
+            })
+            .state('connector.devices', {
+                url: '/devices',
+                abstract : true,
+                template: '<ui-view></ui-view>'
+            })
+            .state('connector.devices.all', {
+                url : '',
+                controller : 'DeviceController',
+                templateUrl: 'pages/connector/devices/index.html'
+            })
+            .state('connector.devices.detail', {
+                url: '/:uuid',
+                templateUrl: 'pages/connector/devices/detail/index.html',
+                controller: 'DeviceDetailController'
             })
             .state('connector.devices.wizard', {
                 url: '/wizard',
                 abstract: true,
                 templateUrl: 'pages/connector/devices/wizard/index.html',
                 controller: 'DeviceWizardController',
-                onEnter : function(){
-//                    console.log('Entering device wizard state. ');
-                },
-                onExit : function(){
-//                    console.log('Exiting device wizard state. ');
+                resolve : {
+                    unclaimedDevices : function(currentUser, deviceService){
+                        return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    }
+
                 }
-
-
-
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
                 templateUrl: 'pages/connector/devices/wizard/instructions.html',
-                onEnter : function(){
-           //         console.log('Entering device wizard instructions state. ');
+                onEnter: function () {
+                    //         console.log('Entering device wizard instructions state. ');
                 },
-                onExit : function(){
-         //           console.log('Exiting device wizard instructions state. ');
+                onExit: function () {
+                    //           console.log('Exiting device wizard instructions state. ');
                 }
 
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
-                templateUrl: 'pages/connector/devices/wizard/find-hub.html',
-                onEnter: function () {
-
-                },
-                onExit: function () {
-
-                }
+                templateUrl: 'pages/connector/devices/wizard/find-hub.html'
             })
             .state('connector.channels', {
                 abstract: true,
                 url: '/channels',
-                template: '<ui-view />'
+                template: '<ui-view />',
+                controller: 'connectorController'
             })
             .state('connector.channels.index', {
                 url: '',
-                templateUrl: 'pages/connector/channels/index.html',
-                controller: 'connectorController'
+                templateUrl: 'pages/connector/channels/index.html'
             })
             .state('connector.channels.detail', {
                 url: '/:name',
@@ -155,18 +159,15 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced', {
                 url: '/advanced',
-                templateUrl: 'pages/connector/advanced/index.html',
-                controller: 'connectorAdvancedController'
+                templateUrl: 'pages/connector/advanced/index.html'
             })
             .state('connector.advanced.devices', {
                 url: '/smartdevices',
-                templateUrl: 'pages/connector/advanced/devices.html',
-                controller: 'connectorAdvancedController'
+                templateUrl: 'pages/connector/advanced/devices.html'
             })
             .state('connector.advanced.channels', {
                 url: '/custom_channels',
-                templateUrl: 'pages/connector/advanced/channels.html',
-                controller: 'connectorAdvancedController'
+                templateUrl: 'pages/connector/advanced/channels.html'
             })
             .state('connector.advanced.channels.editor', {
                 url: '/editor/:name',
@@ -176,13 +177,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             .state('connector.advanced.gateways', {
                 url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways.html',
-                controller: 'connectorController'
+                templateUrl: 'pages/connector/advanced/gateways.html'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
-                templateUrl: 'pages/connector/advanced/messaging.html',
-                controller: 'controllerController'
+                templateUrl: 'pages/connector/advanced/messaging.html'
             })
             .state('admin', {
                 abstract: true,
@@ -190,36 +189,38 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/admin/index.html',
                 controller: 'adminController',
                 resolve: {
+                    operatorsGroup : function(GroupService, currentUser){
+                        return GroupService.getOperatorsGroup(currentUser.skynetuuid, currentUser.skynettoken)
+                    },
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
-                    allDevices: function(currentUser, GroupService){
-                        return GroupService.getAllDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    allDevices: function (currentUser, deviceService) {
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    },
+                    allGroupResourcePermissions: function (currentUser, PermissionsService) {
+                        return PermissionsService.allGroupPermissions(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 }
             })
             .state('admin.all', {
                 url: '/groups',
-                parent: 'admin',
                 templateUrl: 'pages/admin/groups/all.html',
-                controller: 'adminController'
             })
             .state('admin.detail', {
-                parent: 'admin',
                 url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',
-                resolve : {
-                    currentGroup : function($stateParams, currentUser, GroupService ){
-                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, $stateParams.uuid );
+                resolve: {
+                    resourcePermission : function(allGroupResourcePermissions, $stateParams){
+                        return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
+                    },
+                    sourcePermissionsGroup: function (resourcePermission, GroupService, currentUser) {
+                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.source.uuid);
+                    },
+                    targetPermissionsGroup: function (resourcePermission, GroupService, currentUser) {
+                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid);
                     }
-
-                },
-                onEnter: function () {
-//                    console.log('Entering admin groups detail');
-                },
-                onExit: function () {
-
                 }
             })
             .state('analyzer', {
@@ -278,9 +279,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 //        $urlRouterProvider.otherwise('/');
     })
     .run(function ($rootScope, $state, $stateParams, $cookies, skynetConfig) {
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-
         // TODO: Replace with proper authorization service object and eliminate checkLogin.
         $rootScope.authorization = { isAuthenticated: false };
 
@@ -381,23 +379,4 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             );
 
         };
-
-        //They have logged in so create a skynetClient
-        if ($cookies.skynetuuid && $cookies.skynettoken) {
-
-            if ($rootScope.skynetClient === undefined) {
-                $rootScope.skynetClient = skynet({
-                    'host' : skynetConfig.host,
-                    'port' : skynetConfig.port,
-                    'uuid': $cookies.skynetuuid,
-                    'token': $cookies.skynettoken
-                }, function (e, socket) {
-                    if (e) {
-                        console.log(e.toString());
-                    } else {
-                        $rootScope.skynetSocket = socket;
-                    }
-                });
-            }
-        }
     });

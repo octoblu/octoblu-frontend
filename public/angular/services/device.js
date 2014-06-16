@@ -1,28 +1,52 @@
 angular.module('octobluApp')
-    .service('deviceService', function ($q, $http, $cookies) {
-        this.getDevice = function (uuid, token, callback) {
-            $http.get('/api/devices/' + uuid + '?token=' + token)
-                .success(function (data) {
-                    callback(data);
-                })
-                .error(function (data) {
-                    console.log('Error: ' + data);
-                    callback({});
-                });
+    .service('deviceService', function ($q, $http ) {
+        
+        this.getDevices = function(userUUID, userToken){
+            return $http.get('/api/devices', {
+                headers: {
+                    skynet_auth_uuid  : userUUID,
+                    skynet_auth_token : userToken
+                }
+            }).then(function(result){
+                return result.data; 
+            }); 
+        };
+        /**
+         *
+         * @param deviceUUID
+         * @param userUUID
+         * @param userToken
+         * @returns {*}
+         */
+        this.getDevice = function (deviceUUID, userUUID, userToken) {
+            var url = '/api/devices/' + deviceUUID;
 
+            return $http.get(url, {
+                headers: {
+                    skynet_auth_uuid  : userUUID,
+                    skynet_auth_token : userToken
+                }
+            }).then(function(result){
+                return result.data; 
+            }); 
         };
 
-        this.createDevice = function (uuid, formData, callback) {
-
-            $http.post('/api/devices/' + uuid, formData)
-                .success(function (data) {
-                    callback(data);
-                })
-                .error(function (data) {
-                    console.log('Error: ' + data);
-                    callback({});
-                });
-
+        /**
+         *
+         * @param userUUID
+         * @param userToken
+         * @param deviceData
+         * @returns {*}
+         */
+        this.createDevice = function (userUUID, userToken, deviceData ) {
+            return $http.post('/api/devices', deviceData, {
+                headers: {
+                    skynet_auth_uuid  : userUUID,
+                    skynet_auth_token : userToken
+                }
+                }).then(function(result){
+                    return result.data; 
+            }); 
         };
         /**
          *
@@ -31,153 +55,75 @@ angular.module('octobluApp')
          * @param name
          * @returns {*}
          */
-        this.claimDevice = function (deviceUUID, owner, name) {
-            var defer = $q.defer();
-            if (!deviceUUID) {
-                defer.reject("deviceUUID is required");
-            }
-            if (!owner.skynetuuid || !owner.skynettoken) {
-                defer.reject("Missing skynetuuid or skynettoken");
-            }
+        this.claimDevice = function (deviceUUID, userUUID, userToken) {
+            
+           return $http.put('/api/devices/' + deviceUUID + '/claim', {
+               uuid : deviceUUID,
+               owner : userUUID
+           }, {
+               headers: {
+                   skynet_auth_uuid  : userUUID,
+                   skynet_auth_token : userToken
+               } 
+           }).then(function(result){
+               return result.data; 
+           }); 
+        };
 
-            if (!name) {
-                defer.reject("Name is required");
-            }
+        /**
+         * 
+         * @param deviceUUID
+         * @param userUUID
+         * @param userToken
+         * @param deviceData
+         * @returns {*}
+         */
+        this.updateDevice = function (deviceUUID, userUUID, userToken, deviceData ) {
+           return $http.put('/api/devices/' + deviceUUID, deviceData, {
+               headers: {
+                   skynet_auth_uuid  : userUUID,
+                   skynet_auth_token : userToken
+               }
+               
+           }).then(function(result){
+               return result.data; 
+           }); 
+        };
+        /**
+         * 
+         * @param deviceUUID
+         * @param userUUID
+         * @param userToken
+         * @returns {*}
+         */
+        this.deleteDevice = function (deviceUUID, userUUID, userToken) {
 
-           var promise =  $http.put('/api/claimdevice/' + owner.skynetuuid + '?token=' + owner.skynettoken, {
-                uuid : deviceUUID,
-                name : name
+            return $http.delete('/api/devices/' + deviceUUID,{
+                headers: {
+                    skynet_auth_uuid  : userUUID,
+                    skynet_auth_token : userToken
+                }
+            })
+                .then(function(result){
+                    return result.data;
             });
-            return defer.promise.then(promise);
-        };
-
-        /**
-         *
-         * @param device
-         * @param owner
-         * @param data
-         */
-        this.update_Device = function (device, owner, data) {
-            var defer = $q.defer();
-            if( ! device ){
-                defer.reject("device parameter is required");
-            }
-
-            if( ! device.uuid ){
-                defer.reject("device.uuid is required");
-            }
-
-            if( ! owner){
-                defer.reject("owner is required");
-            }
-
-            if(! owner.skynetuuid || !owner.skynettoken){
-                defer.reject("Missing required parameters for owner - skynetuuid, skynettoken");
-            }
-
-            return defer.promise.then(
-                $http.put('/api/devices/' + device.uuid + '?token=' + owner.skynettoken, data));
         };
         /**
-         *
-         * @param uuid  - the uuid of the device
-         * @param formData - object containing the device properties to update
-         * @param owner - the device owner
-         * @param callback - callback function notifying caller once the update is complete.
+         * 
+         * @param userUUID
+         * @param userToken
+         * @returns {*}
          */
-        this.updateDevice = function (uuid, formData, owner, callback) {
-
-            if (owner) {
-                console.log('updated device owner', owner);
-                $http.put('/api/devices/' + uuid + '?token=' + $cookies.skynettoken, formData)
-                    .success(function (data) {
-                        callback(data);
-                    })
-                    .error(function (data) {
-                        console.log('Error: ' + data);
-                        callback({});
-                    });
-            } else {
-                console.log('updated device claim', uuid, formData);
-                formData.claimUuid = formData.uuid;
-                formData.token = $cookies.skynettoken;
-                console.log('formData', formData);
-                // 'skynet_override_token': "w0rldd0m1n4t10n"
-                $http.put('/api/claimdevice/' + uuid + '?token=' + $cookies.skynettoken, formData)
-                    .success(function (data) {
-                        callback(data);
-                    })
-                    .error(function (data) {
-                        console.log('Error: ' + data);
-                        callback({});
-                    });
-
-            }
-
-        };
-
-        /**
-         * deleteDevice - deletes a device with the given UUID
-         * @param deviceUUID - the device UUID
-         * @param owner - the device owner
-         * @param callback
-         */
-        this.deleteDevice = function (deviceUUID, owner, callback) {
-
-            $http.delete('/api/devices/' + deviceUUID + '?uuid=' + owner.skynetuuid + '&token=' + owner.skynettoken)
-                .success(function (data) {
-                    callback(null, data);
-                })
-                .error(function (error){
-                    console.log('Error: ' + error);
-                    callback( data, null );
-                });
-
-        };
-        /**
-         * Gets the claimed devices for the owner with the given
-         * @param uuid - the uuid of the device owner
-         * @param token = the token of the device owner
-         * @param options
-         * object containing the fields to filter for i.e "type" : "gateway"
-         * @returns {defer.promise|*}
-         */
-        this.getClaimedDevices = function (uuid, token, options) {
-            var defer = $q.defer();
-            // /api/owner/:id/:token/devices/unclaimed
-            $http.get('/api/owner/' + uuid + '/' + token + '/devices', { cache: false })
-                .success(function (data) {
-                    defer.resolve(data);
-//                    if (options) {
-//                        var filteredDevices = _.findWhere(data, options) || [];
-//                        defer.resolve(filteredDevices);
-//                    } else {
-//                        defer.resolve(data);
-//                    }
-                })
-                .error(function (data) {
-                    defer.reject(data);
-                });
-            return defer.promise;
-        };
-        /**
-         *
-         * @param uuid
-         * @param token
-         * @returns {defer.promise|*}
-         */
-        this.getUnclaimedDevices = function (uuid, token, options) {
-            var defer = $q.defer();
-            // /api/owner/:id/:token/devices/unclaimed
-            $http.get('/api/owner/' + uuid + '/' + token + '/devices/unclaimed')
-                .success(function (data) {
-                    var devices = data.devices || [];
-                    defer.resolve(devices);
-                })
-                .error(function (data) {
-                    defer.reject([]);
-                });
-            return defer.promise;
+        this.getUnclaimedDevices = function (userUUID, userToken) {
+           return $http.get('/api/devices/unclaimed',{
+                   headers: {
+                       skynet_auth_uuid  : userUUID,
+                       skynet_auth_token : userToken
+                   }
+               })
+               .then(function(result){
+                    return result.data;      
+           }); 
         };
 
     });

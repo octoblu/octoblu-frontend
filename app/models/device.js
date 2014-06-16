@@ -1,9 +1,10 @@
 'use strict';
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Resource = require('./mixins/resource');
 
 // define the schema for our user model
-var DeviceSchema = mongoose.Schema({
+var DeviceSchema = new mongoose.Schema({
     name: String,
     plugin: String,
     logo: String,
@@ -11,6 +12,6 @@ var DeviceSchema = mongoose.Schema({
     enabled: Boolean
 });
 
-mongoose.model('Device', DeviceSchema);
+Resource.makeResourceModel({schema: DeviceSchema, type: 'device'});
 
 module.exports = DeviceSchema;

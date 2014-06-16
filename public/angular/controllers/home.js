@@ -17,7 +17,6 @@ angular.module('octobluApp')
              if(error){
                  console.log('error: ' + error);
              }
-//              $scope.availableChannels = channelData;
               $scope.availableDevices = deviceData;
              $scope.availableChannels = channelData.concat(deviceData);
          });

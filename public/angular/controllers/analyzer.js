@@ -5,13 +5,21 @@ angular.module('octobluApp')
         $rootScope.checkLogin($scope, $http, $injector, true, function () {
 
             // Get user devices
+            console.log("getting devices from ownerService");
             ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
+		$scope.splunk_devices = "";
                 $scope.devices = data;
+                $scope.deviceLookup = {};
                 for (var i in $scope.devices) {
                     if($scope.devices[i].type == 'gateway'){
                         $scope.devices.splice(i,1);
                     }
+		    $scope.splunk_devices +=  $scope.devices[i].uuid + " OR ";
+                    $scope.deviceLookup[$scope.devices[i].uuid] = $scope.devices[i].name;
                 }
+                $scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices" };
+                console.log($scope.devices);
+		console.log($scope.splunk_devices);
             });
 
 
@@ -25,7 +33,7 @@ angular.module('octobluApp')
             $scope.search = function (currentPage) {
               $scope.results="searching...";
                 if ($scope.searchText !== undefined) {
-                    elasticService.search($scope.searchText, $scope.skynetuuid, currentPage, $scope.eventCode, function (error, response) {
+                    elasticService.searchAdvanced($scope.searchText, $scope.skynetuuid, currentPage, $scope.eventCode, function (error, response) {
                         if (error) {
                             console.log(error);
                         } else {
@@ -43,6 +51,33 @@ angular.module('octobluApp')
                 }
 
             };
+
+	    //Load Top Counts Panels On init of page
+	$scope.loadTop = function(){
+		console.log("Searching LoadTop");
+                $scope.loadTopfacetObject = { 
+			"toUuids": {"terms": {"script_field": "_source.uuid"}}, 
+                        "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } }
+    		};
+		elasticService.facetSearch("now-7d/d","now", $scope.skynetuuid, 0, $scope.loadTopfacetObject, function (err, data) {
+                    if (err) { return console.log(err); }
+		    $scope.topResults =	{
+                        total: data.hits.total,
+                        fromUuid: _.map(data.facets.fromUuids.terms, function (item) {
+                            return {
+                                label: item.term,
+                                value: item.count
+                            };
+                        }),
+		      toUuid: _.map(data.facets.toUuids.terms, function(item) {
+			   return {
+				label: $scope.deviceLookup[item.term],
+				value: item.count
+			  };
+			})
+                    }
+                    });
+		};
 
             elasticService.getEvents("", function(data) {
                 $scope.events = data;
@@ -64,7 +99,7 @@ angular.module('octobluApp')
             // }, 1000);
 
             // Initialize up to 10 lines for charting
-            var line = [];
+            /*var line = [];
             for(var i =0; i < 10; i++){
               line[i] = new TimeSeries();
             }            
@@ -79,7 +114,7 @@ angular.module('octobluApp')
 
             smoothie.streamTo(document.getElementById("mycanvas"), 1000);
 
-
+	  END OF SMOOTHIE	*/
             var sensorGrid = [];
 
             skynetConfig.uuid = $scope.skynetuuid;
@@ -91,9 +126,7 @@ angular.module('octobluApp')
 
                 $scope.sensorListen = function (sensor){
                   console.log('sensor listen', sensor);
-
                   sensorGrid = [];
-
                   // unsubscribe from other devices
                   ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function (data) {
 
@@ -103,7 +136,7 @@ angular.module('octobluApp')
                              socket.emit('unsubscribe', {
                                  'uuid': device.uuid
                              }, function (data) {
-                                 // console.log(data);
+                                  //console.log(data);
                              });
 
                          });
@@ -114,7 +147,7 @@ angular.module('octobluApp')
                          'uuid': sensor.uuid
                          // 'token': sensor.token
                      }, function (data) {
-                         // console.log(data);
+                          console.log(data);
                      });
 
 

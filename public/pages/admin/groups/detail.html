@@ -1,112 +1,173 @@
-    <h2 class="text-center col-xs-12 col-sm-12 col-md-10 col-lg-10">{{ group.name }}</h2>
-    <div class="panel purple-border col-xs-12 col-sm-12 col-md-3 col-lg-3 group-info-panel people-panel">
-        <div class="panel-heading purple-background">
-            <h3 class="title text-center">
-                <i class="fa fa-user fa-lg" style="margin-right: 5px;"></i>People
-                <span class="dropdown pull-right">
-                   <a href class="dropdown-toggle" style="color: #ffffff;">
-                       <i class="fa fa-plus fa-lg"></i><span class="caret"></span>
-                   </a>
-                      <ul class="dropdown-menu dropdown-menu-left  list-group" role="menu">
-                          <li class="list-group-item" ng-repeat="member in operatorGroup.members | orderBy:'name'" tooltip="Add to Group"  tooltip-placement="right"
-                              tooltip-popup-delay="5" >
-                              <a ng-disabled="{{isMemberInGroup(member)}}"  ng-click="addMemberToGroup(member)">
-                                  {{member.name}}
-                              </a>
-                          </li>
-                      </ul>
-                </span>
-            </h3>
-
-        </div>
-        <div class="panel-body group-info-panel-body ">
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="member in group.members | orderBy:'name'" style="min-height: 50px;">
-                 <span class="fa-stack fa-2x">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-user fa-inverse fa-stack-1x"></i>
-                 </span>
-                    <span>{{member.name}}</span>
-                    <a class="btn btn-danger pull-right" ng-click="removeMemberFromGroup(member)"><i class="fa fa-trash-o"></i></a>
-                </li>
-            </ul>
-        </div>
+<h2 class="text-center col-xs-12 col-sm-12 col-md-10 col-lg-10">{{ resourcePermission.name }}</h2>
+<div class="panel green-border col-xs-12 col-sm-12 col-md-3 col-lg-3 group-info-panel resource-panel">
+    <div class="panel-heading green-background">
+        <h3 class="title text-center">
+            <i class="fa fa-bullhorn fa-lg" style="margin-right: 5px;"></i>Sources
+        </h3>
     </div>
-    <div class="panel panel-default col-xs-12 col-sm-12 col-md-3 col-lg-3 group-info-panel permissions-panel">
-        <div class="panel-heading">
-            <h3 class="title text-center">
-                <i class="fa fa-lock fa-lg" style="margin-right: 5px;"></i>Permissions
-            </h3>
-        </div>
-        <div class="panel-body">
-            <ul class="list-group">
-                <li class="list-group-item">
-                  <span class="fa-stack fa-lg">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-search fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="permission-title">Discover</span>
-                    <div class="pull-right btn-group">
-                        <input type="button" class="btn btn-default"  ng-model="group.permissions.discover" btn-radio=true value="YES">
-                        <input type="button" class="btn btn-default"  ng-model="group.permissions.discover" btn-radio=false value="NO">
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <span class="fa-stack fa-lg">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-wrench fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="permission-title">Configure</span>
-                    <div class="pull-right btn-group">
-                        <input type="button" class="btn btn-default"  ng-model="group.permissions.configure" btn-radio=true value="YES">
-                        <input type="button" class="btn btn-default"  ng-model="group.permissions.configure" btn-radio=false value="NO">
-                    </div>
-                </li>
-                <li class="list-group-item">
-                     <span class="fa-stack fa-lg">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-comments fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <span class="permission-title">Message</span>
-                    <div class="pull-right">
-                        <div class="pull-right btn-group">
-                            <input type="button" class="btn btn-default"  ng-model="group.permissions.message" btn-radio=true value="YES">
-                            <input type="button" class="btn btn-default"  ng-model="group.permissions.message" btn-radio=false value="NO">
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="panel grass-green-border col-xs-12 col-sm-12 col-md-3 col-lg-3 group-info-panel device-panel">
-        <div class="panel-heading grass-green-background">
-            <h3 class="title text-center">
-                <i class="fa fa-hdd-o fa-lg"></i> Devices
-               <span class="dropdown pull-right">
-                     <a href class="dropdown-toggle" style="color: #ffffff;">
-                         <i class="fa fa-plus fa-lg"></i><span class="caret"></span>
-                     </a>
-                      <ul class="dropdown-menu  list-group" role="menu">
-                          <li class="list-group-item" ng-repeat="device in ownedDevices| orderBy:'name'" tooltip="{{device.uuid}}"  tooltip-placement="right"
-                              tooltip-popup-delay="5" >
-                              <a ng-disabled="{{isDeviceInGroup(device)}}"  ng-click="addDeviceToGroup(device)">
-                               {{device.name}}
-                              </a>
-                          </li>
-                      </ul>
-                </span>
-            </h3>
-        </div>
-        <div class="panel-body group-info-panel-body">
-            <ul class="list-group">
-                <li class="list-group-item" ng-repeat="device in group.devices | orderBy:'name'" style="min-height: 50px;">
-                 <span class="fa-stack fa-2x">
+    <div class="panel-body group-info-panel-body ">
+        <p class="lead text-muted"
+           ng-if="sourcePermissionsGroup.members.length == 0 || !sourcePermissionsGroup.members || !sourcePermissionsGroup">
+            You have no resources as <i class="fa fa-bullhorn" style="margin-right: 5px;"></i>sources.
+            <br/>Add them using the &OpenCurlyQuote;<i class="fa fa-plus"></i>&CloseCurlyQuote; button
+        </p>
+        <ul ng-if="!(sourcePermissionsGroup.members.length == 0) && sourcePermissionsGroup.members && sourcePermissionsGroup"
+            class="list-group">
+            <li class="list-group-item" ng-repeat="resource in sourcePermissionsGroup.members | orderBy:'name'"
+                style="min-height: 50px;">
+                 <span class="fa-stack fa-2x resource-icon">
                         <i class="fa fa-square-o fa-stack-2x"></i>
-                        <i class="fa fa-hdd-o fa-stack-1x"></i>
+                        <i class="fa fa-stack-1x"
+                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
                  </span>
-                 <span>{{device.name}}</span>
-                 <a class="btn btn-danger pull-right" ng-click="removeDeviceFromGroup(device)"><i class="fa fa-trash-o"></i></a>
+                <span>{{resource.properties.name || resource.properties.displayName || resource.properties.email}}</span>
+                <a class="btn btn-danger pull-right"
+                   ng-click="removeResourceFromGroup(sourcePermissionsGroup, resource)"><i
+                        class="fa fa-trash-o"></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-plus">
+                    <i class="fa fa-bullhorn fa-lg" style="margin-right: 5px;"></i>
+                </i>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="resource in allResources">
+                    <a href ng-click="addResourceToGroup(sourcePermissionsGroup, resource)">
+                        <i class="fa fa-fw"
+                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type === 'device'}"></i>
+                        {{resource.properties.name || resource.properties.displayName || resource.properties.email}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /btn-group -->
+        <!--<input type="text" class="form-control">-->
+    </div>
+</div>
+<div class="panel panel-default col-xs-12 col-sm-12 col-md-3 col-lg-3 group-info-panel permissions-panel">
+    <div class="panel-heading">
+        <h3 class="title text-center">
+            <i class="fa fa-key fa-lg" style="margin-right: 5px;"></i>Permissions
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-search fa-stack-1x"></i>
+                    <i class="fa fa-square-o fa-3x fa-stack-2x"></i>
+                   </span>
+                <span class="permission-title">Discover</span>
+
+                <div class="pull-right btn-group">
+                    <input type="button" class="btn btn-default" ng-model="resourcePermission.permissions.discover"
+                           btn-radio=true value="YES">
+                    <input type="button" class="btn btn-default" ng-model="resourcePermission.permissions.discover"
+                           btn-radio=false value="NO">
+                </div>
+            </li>
+            <li class="list-group-item">
+                      <span class="fa-stack fa-lg">
+                    <i class="fa fa-wrench fa-stack-1x"></i>
+                    <i class="fa fa-square-o fa-3x fa-stack-2x"></i>
+                   </span>
+                <span class="permission-title">Configure</span>
+
+                <div class="pull-right btn-group">
+                    <input type="button" class="btn btn-default" ng-model="resourcePermission.permissions.configure"
+                           btn-radio=true value="YES">
+                    <input type="button" class="btn btn-default" ng-model="resourcePermission.permissions.configure"
+                           btn-radio=false value="NO">
+                </div>
+            </li>
+            <li class="list-group-item">
+                  <span class="fa-stack fa-lg">
+                        <i class="fa fa-comment fa-flip-horizontal fa-stack-1x"></i>
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                    </span>
+                <span class="permission-title">Receive Msg</span>
+
+                <div class="pull-right">
+                    <div class="pull-right btn-group">
+                        <input type="button" class="btn btn-default"
+                               ng-model="resourcePermission.permissions.message_receive" btn-radio=true value="YES">
+                        <input type="button" class="btn btn-default"
+                               ng-model="resourcePermission.permissions.message_receive" btn-radio=false value="NO">
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                   <span class="fa-stack fa-lg">
+                        <i class="fa fa-comment-o fa-stack-1x"></i>
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                    </span>
+                <span class="permission-title">Send Msg</span>
+
+                <div class="pull-right">
+                    <div class="pull-right btn-group">
+                        <input type="button" class="btn btn-default"
+                               ng-model="resourcePermission.permissions.message_send" btn-radio=true value="YES">
+                        <input type="button" class="btn btn-default"
+                               ng-model="resourcePermission.permissions.message_send" btn-radio=false value="NO">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="panel-footer row">
+        <a href ng-click="save()" class=" col-xs-12 btn btn-lg btn-success">Save</a>
+    </div>
+</div>
+<div class="panel sea-blue-border col-xs-12 col-sm-12 col-md-3 col-lg-3 group-info-panel resource-panel">
+    <div class="panel-heading sea-blue-background">
+        <h3 class="title text-center">
+            <i class="fa fa-crosshairs fa-lg" style="margin-right: 5px;"></i>Targets
+        </h3>
+    </div>
+    <div class="panel-body group-info-panel-body ">
+        <p class="lead text-muted"
+           ng-if="targetPermissionsGroup.members.length == 0 || !targetPermissionsGroup.members || !targetPermissionsGroup">
+            You have no resources as <i class="fa fa-crosshairs" style="margin-right: 5px;"></i>targets.<br/> Add them
+            using the &OpenCurlyQuote;<i class="fa fa-plus"></i>&CloseCurlyQuote; button
+        </p>
+        <ul ng-if="!(targetPermissionsGroup.members.length == 0) && targetPermissionsGroup.members && targetPermissionsGroup"
+            class="list-group">
+            <li class="list-group-item" ng-repeat="resource in targetPermissionsGroup.members | orderBy:'name'"
+                style="min-height: 50px;">
+                 <span class="fa-stack fa-2x resource-icon">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa  fa-stack-1x"
+                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
+                 </span>
+                <span>{{resource.properties.name || resource.properties.displayName || resource.properties.email }}</span>
+                <a class="btn btn-danger pull-right"
+                   ng-click="removeResourceFromGroup(targetPermissionsGroup, resource)">
+                    <i class="fa fa-trash-o"></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="panel-footer">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-plus">
+                    <i class="fa fa-crosshairs fa-lg" style="margin-right: 5px;"></i>
+                </i>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li ng-repeat="resource in allResources | filter : {type : 'device'}">
+                    <a href ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
+                        <i class="fa fa-fw"
+                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
+                        {{resource.properties.name || resource.properties.displayName || resource.properties.email }}
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
+</div>

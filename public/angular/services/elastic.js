@@ -9,27 +9,48 @@ angular.module('octobluApp')
         this.client = esFactory({
             host: elasticSearchConfig.host + ':' + elasticSearchConfig.port
         });
-
+	
         this.search = function (queryText, ownerUuid, page, eventCode, callback) {
             fromPage = (page * 10) / 10;
             if(eventCode){
               eventCode = ' , _type:' + eventCode;
             }
+	    console.log(queryText);
+            secondaryString = queryText + ', owner:' + ownerUuid + eventCode;
+            console.log(secondaryString);
             service.client.search({
                 index: '_all',
                 size: 10,
                 from: fromPage,
-                q: queryText + ', owner:' + ownerUuid + eventCode
-                // q: 'type:drone AND owner:' + ownerUuid
-                // q: queryText + ' AND uuid:' + ownerUuid
-                // q: queryText
-
+                q: queryText
             }, function (error, response) {
                 callback(error, response);
             });
         };
 
-        this.searchAdvanced = function (queryObject, callback) {
+/*                body: {
+  "query": {
+    "query_string": {
+      "default_field": "_all",
+      "query": queryObject + ", owner:"+ownerUuid + eC
+    }
+  }}*/
+
+        this.facetSearch = function (from, to, ownerUuid, size, facet, callback) {
+            console.log("Time Advanced Search");
+            console.log(ownerUuid);
+            baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "(fromUuid.owner = '"+ownerUuid+"' OR toUuid.owner = '"+ownerUuid+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
+	    console.log(baseSearchObject);
+            service.client.search({
+                index: '_all',
+                body: baseSearchObject
+            }, function (error, response) {
+                callback(error, response);
+            });
+
+	};
+	this.searchAdvanced = function (queryObject, callback) {
+            console.log(queryObject);
             service.client.search({
                 index: '_all',
                 body: queryObject

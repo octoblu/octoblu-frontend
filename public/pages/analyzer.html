@@ -1,5 +1,7 @@
+
 <section id='content'>
-    <div class='container'>
+    <div class='container full-screen'>
+        <!-- Made an Edit -->
         <div class='row' id='content-wrapper'>
             <div class='col-xs-12'>
 
@@ -10,32 +12,54 @@
                     </h1>
                 </div>
 
-            <div class="container-fluid">
-              <div class="row">
-                <h2>Live Streaming Data</h2>
-                <div class="input-group">
-                  <form class="form-inline col-md-12">
-                  <div class="form-group col-md-12">
-
-                  <div class="form-group">
-                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select>                      
-                  </div>
-                  <br /><br />
-
-                  <canvas id="mycanvas" width="400" height="100"></canvas>
-
-                  <div id="legend"></div>
-
-                  </div>
-                  </form>
+	<div class="container-fluid" ng-click="loadTop()">
+	 <div class="row">
+		<div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Top Devices Sending</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="">
+                                <div class="panel-body">
+                                    <div ng-switch="!!topResults ? 1 : 0" >
+                                        <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                                        <div ng-switch-default>
+                                            <div nvd3-pie-chart data="topResults.fromUuid" height="300"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+		<div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Top Devices Receiving</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="">
+                                <div class="panel-body">
+                                    <div ng-switch="!!topResults ? 1 : 0" >
+                                        <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                                        <div ng-switch-default>
+                                            <div nvd3-pie-chart data="topResults.toUuid" height="300"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
-              </div>
+              <div class="row">
+                 <div class="col-md-10">
+                <h2>Count of EventCodes over time</h2>
+                </div>
+                </div>
             </div>
-
+	</div>
+<br/><br/><br/><br/>
             <div class="container-fluid">
               <div class="row">
-                <h2>Search Analytics</h2>
+                <h2>Search Freeform Analytics</h2>
                 <div class="input-group">
                   <form class="form-inline col-md-12">
                     <div class="form-group col-md-8">
@@ -59,9 +83,8 @@
               </div>
             </div>
             <br/>
-            <br/>
 
-                <div class="panel panel-info" ng-show="results">
+                <div class="panel panel-info" ng-show="results" >
                     <!-- Default panel contents -->
                     <div class="panel-heading">Results
                       <p class="pull-right"> hits: {{ results.hits.total }}</p>
@@ -77,9 +100,25 @@
                     </div>
                 </div>
 
-                <pager total-items="totalItems" page="currentPage" ng-show="results"></pager>
+                <!--<pager total-items="totalItems" page="currentPage" ng-show="results"></pager>-->
 
             </div>
         </div>
+           <div class="container-fluid">
+              <div class="row">
+                <h2>Device Details</h2>
+                <div class="input-group">
+                  <form class="form-inline col-md-12">
+                  <div class="form-group col-md-12">
+                  <div class="form-group">
+                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select> 
+                  </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+	<textarea style="width:100%">{{device}}</textarea>
+
     </div>
 </section>

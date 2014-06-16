@@ -1,38 +1,52 @@
 angular.module('octobluApp')
     .service('ownerService', function ($q, $http) {
-        this.getDevices = function(uuid, token, callback) {
+        this.getDevices = function (uuid, token, callback) {
 
-            $http.get('/api/owner/' + uuid + '/' + token + '/devices')                
-                .success(function(data) {
+            $http.get('/api/owner/' + uuid + '/' + token + '/devices')
+                .success(function (data) {
                     // console.log('OWNER DEVICES',data);
                     callback(data);
                 })
-                .error(function(data) {
+                .error(function (data) {
                     console.log('Error: ' + data);
                     callback({});
                 });
 
         };
 
-        this.getGateways = function(uuid, token, includeDevices, callback) {
+        this.getMyDevices = function (uuid, token) {
+
+            var defer = $q.defer();
+
+            $http.get('/api/owner/' + uuid + '/' + token + '/devices')
+                .success(function (data) {
+                    defer.resolve(data);
+                })
+                .error(function (data) {
+                    defer.reject(data);
+                });
+            return defer.promise;
+        };
+
+        this.getGateways = function (uuid, token, includeDevices, callback) {
             // $http.get('/api/owner/gateways/' + uuid + '/' + token)
-           return $http({
+            return $http({
                 url: '/api/owner/gateways/' + uuid + '/' + token,
                 method: 'get',
                 params: {
                     devices: includeDevices
                 }
-            }).success(function(data) {
-               if(callback ){
-                   callback(null, data);
-               }
+            }).success(function (data) {
+                if (callback) {
+                    callback(null, data);
+                }
             })
-            .error(function(error) {
-                console.log('Error: ' + error);
-                   if(callback){
-                       callback(error, null);
-                   }
-            });
+                .error(function (error) {
+                    console.log('Error: ' + error);
+                    if (callback) {
+                        callback(error, null);
+                    }
+                });
         };
 
         /**
@@ -40,13 +54,13 @@ angular.module('octobluApp')
          * @param uuid
          * @param token
          */
-        this.getClaimedGateways = function(owner){
+        this.getClaimedGateways = function (owner) {
             var defer = $q.defer();
             // /api/owner/:id/:token/devices/unclaimed
-            if( ! owner ){
+            if (!owner) {
                 defer.reject("owner is required");
             }
-            if( ! owner.skynetuuid || ! owner.skynettoken ){
+            if (!owner.skynetuuid || !owner.skynettoken) {
                 defer.reject("Missing required parameters [skynetuuid, skynettoken]");
             }
             $http.get('/api/owner/' + owner.skynetuuid + '/' + owner.skynettoken + '/gateways', { cache: false })
@@ -54,7 +68,7 @@ angular.module('octobluApp')
                     defer.resolve(data);
                 })
                 .error(function (data) {
-                    defer.resolve(data);
+                    defer.reject(data);
                 });
             return defer.promise;
         };

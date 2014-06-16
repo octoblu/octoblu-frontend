@@ -1,0 +1,478 @@
+	<!-- HERO UNIT -->
+	<div id="top" class="hero-unit hero-light hero-video">
+		<div class="hero-content text-center">
+			<!-- Hero text -->
+			<div id="slidecaption" class="slide-caption">
+				<div class="hero-text">
+					<h2 class="hero-heading">
+						<!-- <img src="assets/images/octoblu.png" alt="Octoblu Logo" /> --><br /><br />
+					</h2>
+					<h2 class="hero-heading">
+						<!-- Internet of Everything --><br />
+					</h2>
+					<p></p>
+				</div>
+			</div>
+			<div class="hero-buttons" id="video-buttons">
+				<a href="#about" id="btn-about" class="btn btn-success btn-lg"><i class="fa fa-arrow-circle-o-down"></i> READ MORE</a>
+				<a href="/" id="btn-contact" class="btn btn-info btn-lg"><i class="fa fa-sign-in"></i> SIGN UP NOW</a>
+			</div>
+		</div>
+		<div id="controls">
+			<a id="video-volume"><i class="fa fa-volume-off"></i></a>
+		</div>
+		<div class="hero-bg-pattern"></div>
+	</div>
+	<!-- END HERO UNIT -->
+
+
+	<!-- MAIN CONTENT -->
+	<div id="main-content" class="main-content">
+
+		<!-- ABOUT -->
+		<div id="about" class="section about">
+			<div class="container">
+				<div class="section-heading">
+					<h2>ABOUT US</h2>
+					<p>Enterprise automation: Systems + People + Things</p>
+					<hr />
+				</div>
+				<div class="section-content">
+					<div class="row">
+						<img src="assets/images/300x300spiral.png" alt="About Us" class="img-left" />
+						<div class="col-lg-9 col-lg-offset-3">
+							<h3>Leap frog your competition today!</h3>
+							<ul>
+								<li>Octoblu is a service for managing realtime connections and communications across different systems, people, and physical devices.</li>
+								<li>The service allows you to connect, design, control, and analyze the overall flow of information.</li>
+								<li>Octoblu simplifies management of complicated and numerous activities in one platform.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END ABOUT -->
+
+		<div id="aboutx" class="section about">
+			<div class="container">
+				<div class="section-heading">
+					<h2>Available Channels & Smart Devices</h2>
+					<p>Connect Everything to Everything</p>
+					<hr />
+				</div>
+
+				<div class="section-content">
+					<div class="row">
+				    <div ng-repeat="channel in availableChannels | orderBy:'name'" class="col-md-1 col-xs-3" style="list-style-type:none">
+				        <div class="channel_icon-grid-view mod-index-0 pop-over"
+				              ng-class="{'activechannel': isActive(channel)}"
+				          data-original-title="{{channel.name}}">
+				          <img ng-src="{{channel.logo}}" style="height:100px; width:100px;"/>
+				        </div>
+				    </div>
+				  </div>
+				</div>
+				<br /><br /><br />
+		</div>
+
+		<!-- SERVICES -->
+		<div id="services" class="section darker services" >
+			<div class="container">
+				<div class="section-heading">
+					<h2>SERVICES</h2>
+					<p>Radically new approach to solving age-old automation problems</p>
+					<hr />
+				</div>
+				<div class="section-content">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="service-item">
+								<span class="fa fa-code-fork fa-4x service-icon"></span>
+								<div class="service-text">
+									<h3>Connect</h3>
+									<p>Easily connect devices, people, and systems to a powerful coordination and communications platform.</p>
+									<a href="#" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="service-item">
+								<span class="fa fa-edit fa-4x service-icon"></span>
+								<div class="service-text">
+									<h3>Design</h3>
+									<p>Intuitively design simple to complex process through a simple drag and drop user interface.</p>
+									<a href="#" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="service-item">
+								<span class="fa fa-cogs fa-4x service-icon"></span>
+								<div class="service-text">
+									<h3>Control</h3>
+									<p>Powerfully control events, processes, and delivery of information through realtime communications.</p>
+									<a href="#" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="service-item">
+								<span class="fa fa-bar-chart-o fa-4x service-icon"></span>
+								<div class="service-text">
+									<h3>Analyze</h3>
+									<p>Quickly analyze all aspects of activities and trends through advanced search and reporting tools.</p>
+									<a href="#" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="service-item">
+								<span class="fa fa-cloud fa-4x service-icon"></span>
+								<div class="service-text">
+									<h3>IoT Cloud</h3>
+									<p>We are the creators of the popular open source, multi-protocol SKYNET.im IoT platform. We offer mesh networks as-a-service.</p>
+									<a href="#" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="service-item">
+								<span class="fa fa-flask fa-4x  service-icon"></span>
+								<div class="service-text">
+									<h3>Labs</h3>
+									<p>SKYNET.im hubs, SKYNET.im Operating System (Arduino, Spark, Pinoccio), Mobile app</p>
+									<a href="#" class="read-more"><span>Read more ...</span> <i class="i fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END SERVICES -->
+
+		<!-- CALL TO ACTION -->
+		<div id="call-to-action" class="section call-to-action most-dark">
+			<p class="fadeInUp" data-wow-offset="200">Experience the Internet of Everything! <br />
+Get started automating your personal life and business now!</p>
+			<p class="fadeInUp" data-wow-offset="200"><a href="#" id="btn-contact" class="btn btn-info btn-lg"><i class="fa fa-sign-in"></i> SIGN UP NOW</a></p>
+		</div>
+		<!-- END CALL TO ACTION -->
+
+
+		<!-- WORKS -->
+		<div id="works" class="section works">
+			<div class="section-heading">
+				<h2>WORKS</h2>
+				<p>The best thing is when our work become part of client success</p>
+				<hr />
+			</div>
+			<div class="section-content">
+				<!-- <ul class="list-inline work-item-filters">
+					<li><a class="active" href="#" data-filter="*">ALL</a></li>
+					<li><a href="#" data-filter=".design">DESIGN</a></li>
+					<li><a href="#" data-filter=".photography">PHOTOGRAPHY</a></li>
+					<li><a href="#" data-filter=".ui">UI</a></li>
+					<li><a href="#" data-filter=".ux">UX</a></li>
+					<li><a href="#" data-filter=".video">VIDEO</a></li>
+				</ul> -->
+
+				<div class="work-item-wrapper">
+					<ul class="work-item-list list-col-4">
+						<li class="work-item design">
+							<img src="https://i1.ytimg.com/vi/vOgFLR-peQw/default.jpg" alt="This is the description">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=vOgFLR-peQw" class="mfp-iframe media-popup" title="Reading & Writing @SmartSheet cells & @TweetHue">
+									<div class="work-item-info">
+										<h3>Reading & Writing @SmartSheet cells & @TweetHue #IoT </h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+						<li class="work-item video">
+							<img src="https://i1.ytimg.com/vi/UVLarHyJPBY/default.jpg?v=537e3eb2" alt="Just paste the link and go">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=UVLarHyJPBY" class="mfp-iframe media-popup" title="Using @SKYNETim to track Heartbeats and Geolocation #HackIoT ">
+									<div class="work-item-info">
+										<h3>Using @SKYNETim to track Heartbeats and Geolocation #HackIoT </h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+						<li class="work-item ux">
+							<img src="https://i1.ytimg.com/vi/ZV37MzKYkTw/default.jpg" alt="Work item brief description">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=ZV37MzKYkTw" class="mfp-iframe media-popup" title="Mind blown! @monteslu controls @arduino robot through @skynetim #IoT ">
+									<div class="work-item-info">
+										<h3>Mind blown! @monteslu controls @arduino robot through @skynetim #IoT</h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+						<li class="work-item photography">
+							<img src="https://i1.ytimg.com/vi/wSMWT4mdseI/default.jpg?v=537155e8" alt="Work item brief description">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=wSMWT4mdseI" class="mfp-iframe media-popup" title="Live streaming sensor data from @SkyNetIM OS">
+									<div class="work-item-info">
+										<h3>Live streaming sensor data from @SkyNetIM OS</h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+						<li class="work-item design ux">
+							<img src="https://i1.ytimg.com/vi/k4Qq5DEzrW0/default.jpg?v=53627d34" alt="Work item brief description">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=k4Qq5DEzrW0" class="mfp-iframe media-popup" title="Control #IoT Devices Connected to @SkyNetIM Using Your Voice! ">
+									<div class="work-item-info">
+										<h3>Control #IoT Devices Connected to @SkyNetIM Using Your Voice! </h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+						<li class="work-item ui design">
+							<img src="https://i1.ytimg.com/vi/RwqRvuWbFGg/default.jpg" alt="Work item brief description">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=RwqRvuWbFGg" class="mfp-iframe media-popup" title="Controlling @tweethue bulbs via @skynetim with your mind! #IoT ">
+									<div class="work-item-info">
+										<h3>Controlling @tweethue bulbs via @skynetim with your mind! #IoT</h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+						<li class="work-item photography ux">
+							<img src="https://i1.ytimg.com/vi/CCr17B1gSPw/default.jpg?v=52d16864" alt="Work item brief description">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=CCr17B1gSPw" class="mfp-iframe media-popup" title="Synchronized Drone Dance Powered by @SkyNetIM & @NodeCopter & @LeapMotion #IoT ">
+									<div class="work-item-info">
+										<h3>Synchronized Drone Dance Powered by @SkyNetIM & @NodeCopter & @LeapMotion #IoT </h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+						<li class="work-item video">
+							<img src="https://i1.ytimg.com/vi/4iJYeK6wFBs/default.jpg" alt="Just paste the link and go">
+							<div class="image-overlay">
+								<a href="https://www.youtube.com/watch?v=4iJYeK6wFBs" class="mfp-iframe media-popup" title="Multiple AR Drones Controlled via @SkynetIM & @LeapMotion #IoT ">
+									<div class="work-item-info">
+										<h3>Multiple AR Drones Controlled via @SkynetIM & @LeapMotion #IoT </h3>
+										<p></p>
+										<i class="fa fa-search-plus"></i>
+									</div>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- END WORKS -->
+
+		<!-- TEAM -->
+		<div id="team" class="section team">
+			<div class="container">
+				<div class="section-heading">
+					<h2>MEET THE TEAM</h2>
+					<p>We are a group of skilled individual, various background with the same purpose</p>
+					<hr />
+				</div>
+				<div class="section-content">
+					<div class="col-md-5">
+						<div class="team-member media">
+							<img src="assets/images/gramleth.jpeg" class="media-object img-circle pull-left" alt="" width="150px"/>
+							<div class="media-body">
+								<h3 class="media-heading team-name">Geir Ramleth</h3>
+								<strong>President & CEO</strong>
+								<hr />
+								<p>add bio...</p>
+								<ul class="list-inline">
+									<!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
+									<li><a href="http://twitter.com/gramleth"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="https://www.linkedin.com/profile/view?id=1702942"><i class="fa fa-linkedin"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5 col-md-offset-2">
+						<div class="team-member media">
+							<img src="assets/images/cmatthieu.jpg" class="media-object img-circle pull-left" alt=""  width="150px"/>
+							<div class="media-body">
+								<h3 class="media-heading team-name">Chris Matthieu</h3>
+								<strong>CTO</strong>
+								<hr />
+								<p>add bio...</p>
+								<ul class="list-inline">
+									<!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
+									<li><a href="http://twitter.com/chrismatthieu"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="https://www.linkedin.com/in/chrismatthieu"><i class="fa fa-linkedin"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="team-member media">
+							<img src="assets/images/brinehart.jpg" class="media-object img-circle pull-left" alt=""  width="150px"/>
+							<div class="media-body">
+								<h3 class="media-heading team-name">Bill Rinehart</h3>
+								<strong>Director</strong>
+								<hr />
+								<p>add bio</p>
+								<ul class="list-inline">
+									<!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
+									<li><a href="http://twitter.com/billrinhart"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="https://www.linkedin.com/profile/view?id=1778511"><i class="fa fa-linkedin"></i></a></li>
+									<!-- <li><a href="#"><i class="fa fa-dribbble"></i></a></li> -->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5 col-md-offset-2">
+						<div class="team-member media">
+							<img src="assets/images/mgodlewski.jpg" class="media-object img-circle pull-left" alt=""  width="150px"/>
+							<div class="media-body">
+								<h3 class="media-heading team-name">Mike Godlewski</h3>
+								<strong>...</strong>
+								<hr />
+								<p>add bio...</p>
+								<ul class="list-inline">
+									<!-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> -->
+									<!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
+									<li><a href="https://www.linkedin.com/profile/view?id=1958567"><i class="fa fa-linkedin"></i></a></li>
+									<!-- <li><a href="#"><i class="fa fa-dribbble"></i></a></li> -->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END TEAM -->
+
+		<!-- TESTIMONIAL -->
+		<div id="testimonial" class="section testimonial">
+			<div class="container">
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<div class="testimonial-text">
+								<p><i class="fa fa-quote-left quote-left"></i>By using the SkyNet platform, we are able to save a ton of work by not having to develop our own communication tools, authentication scheme, or backend service to handle the streams of data. Instead, our devices simply turn on, authenticate and connect with SkyNet automatically, and we are able to start passing data securely.<i class="fa fa-quote-right quote-right"></i></p>
+							</div>
+							<div class="testimonial-author">
+								<p class="author-name">- Rory Aronson</p>
+								<p class="autor-title">Founder, FarmBot</p>
+							</div>
+						</li>
+						<li>
+							<div class="testimonial-text">
+								<p><i class="fa fa-quote-left quote-left"></i>The team is unbelievable awesome. Top-notch professional service.<i class="fa fa-quote-right quote-right"></i></p>
+							</div>
+							<div class="testimonial-author">
+								<p class="author-name">- Alicia Brown</p>
+								<p class="autor-title">CEO, Dreamland Inc.</p>
+							</div>
+						</li>
+						<li>
+							<div class="testimonial-text">
+								<p><i class="fa fa-quote-left quote-left"></i>One word, SUPERB!<i class="fa fa-quote-right quote-right"></i></p>
+							</div>
+							<div class="testimonial-author">
+								<p class="author-name">- Jack</p>
+								<p class="autor-title">Art Director</p>
+							</div>
+						</li>
+						<li>
+							<div class="testimonial-text">
+								<p><i class="fa fa-quote-left quote-left"></i>In case you need more reliable help so that you can do more, just call them.<i class="fa fa-quote-right quote-right"></i></p>
+							</div>
+							<div class="testimonial-author">
+								<p class="author-name">- Albert Doe</p>
+								<p class="autor-title">Freelance UI Designer</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- END TESTIMONIAL -->
+
+		<!-- CONTACT -->
+		<div id="contact" class="section contact">
+			<div class="section-heading">
+				<h2>GET IN TOUCH</h2>
+				<p>Now it's time to build a business and relationship</p>
+				<hr />
+			</div>
+			<div class="section-content">
+				<div class="google-map">
+					<div id="map-canvas"></div>
+				</div>
+				<div class="contact-info">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4">
+								<i class="fa fa-map-marker"></i>
+								<h3>Address</h3>
+								<p>401 S. Mill Ave<br />Tempe, AZ 85281</p>
+							</div>
+							<div class="col-md-4">
+								<i class="fa fa-envelope"></i>
+								<h3>Contact</h3>
+								<p>+480-555-1212<br /><a href="mailto:hello@octoblu.com">hello@octoblu.com</a></p>
+							</div>
+							<div class="col-md-4">
+								<i class="fa fa-user"></i>
+								<h3>Join Us</h3>
+								<p>Send your latest resume to<br /><a href="mailto:career@octoblu.com">career@octoblu.com</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END CONTACT -->
+
+		<!-- TWITTER STREAM -->
+		<div id="twitter-stream" class="section twitter-stream">
+			<div class="container">
+				<div class="twitter-icon">
+					<i class="fa fa-twitter"></i>
+				</div>
+				<div id="tweet"></div>
+			</div>
+		</div>
+		<!-- END TWITTER STREAM -->
+
+	</div>
+	<!-- END MAIN CONTENT -->
+
+	<!-- FOOTER -->
+	<footer id="footer" class="section">
+		<div class="container">
+			<p class="copyright pull-left">&copy; 2014 Octoblu, Inc. All Rights Reserved.</p>
+			<ul class="list-inline pull-right social-icon">
+				<li><a href="http://facebook.com/skynetim" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+				<li><a href="http://twitter.com/skynetim" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+				<li><a href="https://plus.google.com/communities/106179367424841209509" data-toggle="tooltip" data-placement="top" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
+			</ul>
+		</div>
+	</footer>
+	<!-- END FOOTER -->
+
+	<div class="back-to-top" id="top-button">
+		<a href="#top"><i class="fa fa-chevron-up"></i></a>
+	</div>
+
