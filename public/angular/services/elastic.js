@@ -36,18 +36,14 @@ angular.module('octobluApp')
     }
   }}*/
 
-        this.searchAdvancedTop = function (queryObject, ownerUuid, page, eventCode, callback) {
-		fromPage = (page * 10) / 10;
-            console.log("Advanced Search");
-            console.log(queryObject);
-            eC = "";
-            if (eventCode){
-                eC = ', _type:' + eventCode;
-            }
+        this.facetSearch = function (from, to, ownerUuid, size, facet, callback) {
+            console.log("Time Advanced Search");
             console.log(ownerUuid);
+            baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "(fromUuid.owner = '"+ownerUuid+"' OR toUuid.owner = '"+ownerUuid+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
+	    console.log(baseSearchObject);
             service.client.search({
                 index: '_all',
-                body: queryObject
+                body: baseSearchObject
             }, function (error, response) {
                 callback(error, response);
             });
