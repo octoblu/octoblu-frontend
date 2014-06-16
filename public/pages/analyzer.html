@@ -12,19 +12,43 @@
                     </h1>
                 </div>
 
-	<div class="container-fluid" ng-init="loadTop()">
-		 <div class="row">
-                <br/>
-                  <div class="col-md-4">
-                        <h2> Top Devices Sending</h2>
-                  </div>
-                  <div class="col-md-4">
-                        <h2> Top Devices Receiving</h2>
-                  </div>
-                  <div class="col-md-4">
-                        <h2> Top Payloads </h2>
-                  </div>
-              </div>
+	<div class="container-fluid" ng-click="loadTop()">
+	 <div class="row">
+		<div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Top Devices Sending</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="">
+                                <div class="panel-body">
+                                    <div ng-switch="!!topResults ? 1 : 0" >
+                                        <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                                        <div ng-switch-default>
+                                            <div nvd3-pie-chart data="topResults.fromUuid" height="300"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+		<div class="col-sm-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Top Devices Receiving</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="">
+                                <div class="panel-body">
+                                    <div ng-switch="!!topResults ? 1 : 0" >
+                                        <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                                        <div ng-switch-default>
+                                            <div nvd3-pie-chart data="topResults.toUuid" height="300"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
               <div class="row">
                  <div class="col-md-10">
                 <h2>Count of EventCodes over time</h2>
@@ -93,26 +117,8 @@
                   </form>
                 </div>
               </div>
-              <div class="row">
-		<br/>
-		  <h1 >{{device.name}}</h1>
-		  <div class="col-md-4">
-			<h2> Top Devices Sending</h2>
-                  </div>
-		  <div class="col-md-4">
-			<h2> Top Devices Receiving</h2>
-		  </div>
-		  <div class="col-md-4">
-			<h2> Top Payloads </h2>
-		  </div>
-	      </div>
-	      <div class="row">
-                 <div class="col-md-10">
-		<h2>Count of EventCodes over time</h2>
-		</div>
-		</div>
             </div>
-		<textarea style="width:100%">{{device}}</textarea>
+	<textarea style="width:100%">{{device}}</textarea>
 
     </div>
 </section>

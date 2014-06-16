@@ -180,19 +180,13 @@ angular.module('octobluApp')
         };
 
         if ($scope.device.type === 'gateway') {
-            skynetService.gatewayConfig({
-                uuid: $scope.device.uuid,
-                method: 'getSubdevices',
-                token: $scope.device.token
-            }).then(function (result) {
-                $scope.device.subdevices = result.result;
-            });
-            skynetService.gatewayConfig({
-                uuid: $scope.device.uuid,
-                method: 'getPlugins',
-                token: $scope.device.token
-            }).then(function (result) {
-                $scope.device.plugins = result.result;
+            skynetService.gatewayConfig( {
+                "uuid": $scope.device.uuid,
+                "token": $scope.device.token,
+                "method": "configurationDetails",
+            }).then(function (response) {
+                $scope.device.subdevices = response.result.subdevices || [];
+                $scope.device.plugins = response.result.plugins || [];
             });
         }
         $scope.deleteSubdevice = function (subdevice) {

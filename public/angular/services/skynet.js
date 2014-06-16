@@ -24,7 +24,7 @@ angular.module('octobluApp')
                         promise = defer.promise;
                     skynetSocket.emit('gatewayConfig', options, function (result) {
                         console.log('got gateway configuration!');
-                        defer.resolve(result)
+                        defer.resolve(result);
                     });
                     return promise;
                 });

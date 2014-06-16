@@ -85,8 +85,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     smartDevices: function (channelService) {
                         return channelService.getSmartDevices();
                     },
-                    myDevices : function(currentUser, ownerService){
-                        return ownerService.getMyDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    myDevices : function(currentUser, deviceService){
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 }
             })

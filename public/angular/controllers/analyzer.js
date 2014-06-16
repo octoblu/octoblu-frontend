@@ -9,11 +9,13 @@ angular.module('octobluApp')
             ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
 		$scope.splunk_devices = "";
                 $scope.devices = data;
+                $scope.deviceLookup = {};
                 for (var i in $scope.devices) {
                     if($scope.devices[i].type == 'gateway'){
                         $scope.devices.splice(i,1);
                     }
 		    $scope.splunk_devices +=  $scope.devices[i].uuid + " OR ";
+                    $scope.deviceLookup[$scope.devices[i].uuid] = $scope.devices[i].name;
                 }
                 $scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices" };
                 console.log($scope.devices);
@@ -51,8 +53,30 @@ angular.module('octobluApp')
             };
 
 	    //Load Top Counts Panels On init of page
-		$scope.loadTop = function(){
-		$scope.results = "searching....";
+	$scope.loadTop = function(){
+		console.log("Searching LoadTop");
+                $scope.loadTopfacetObject = { 
+			"toUuids": {"terms": {"script_field": "_source.uuid"}}, 
+                        "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } }
+    		};
+		elasticService.facetSearch("now-7d/d","now", $scope.skynetuuid, 0, $scope.loadTopfacetObject, function (err, data) {
+                    if (err) { return console.log(err); }
+		    $scope.topResults =	{
+                        total: data.hits.total,
+                        fromUuid: _.map(data.facets.fromUuids.terms, function (item) {
+                            return {
+                                label: item.term,
+                                value: item.count
+                            };
+                        }),
+		      toUuid: _.map(data.facets.toUuids.terms, function(item) {
+			   return {
+				label: $scope.deviceLookup[item.term],
+				value: item.count
+			  };
+			})
+                    }
+                    });
 		};
 
             elasticService.getEvents("", function(data) {
@@ -123,7 +147,7 @@ angular.module('octobluApp')
                          'uuid': sensor.uuid
                          // 'token': sensor.token
                      }, function (data) {
-                          //console.log(data);
+                          console.log(data);
                      });
 
 
