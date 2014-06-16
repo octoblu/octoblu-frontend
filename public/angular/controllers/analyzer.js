@@ -57,8 +57,7 @@ angular.module('octobluApp')
 		console.log("Searching LoadTop");
                 $scope.loadTopfacetObject = { 
 			"toUuids": {"terms": {"script_field": "_source.uuid"}}, 
-                        "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } },
-                        "eventsOverTime": { }
+                        "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } }
     		};
 		elasticService.facetSearch("now-7d/d","now", $scope.skynetuuid, 0, $scope.loadTopfacetObject, function (err, data) {
                     if (err) { return console.log(err); }
