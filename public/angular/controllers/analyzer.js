@@ -147,7 +147,7 @@ angular.module('octobluApp')
                          'uuid': sensor.uuid
                          // 'token': sensor.token
                      }, function (data) {
-                          //console.log(data);
+                          console.log(data);
                      });
 
 
