@@ -28,27 +28,36 @@ angular.module('octobluApp')
             });
         };
 
-        this.searchAdvanced = function (queryObject, ownerUuid, page, eventCode, callback) {
-            fromPage = (page * 10) / 10;
-            console.log("Advanced Search");
-            console.log(queryObject);
-            eC = "";
-            if (eventCode){
-		eC = ', _type:' + eventCode;
-	    }
-            console.log(ownerUuid);
-            service.client.search({
-                index: '_all',
-                size: 10,
-                from: fromPage,
-                body: {
+/*                body: {
   "query": {
     "query_string": {
       "default_field": "_all",
       "query": queryObject + ", owner:"+ownerUuid + eC
     }
-  }
-}
+  }}*/
+
+        this.searchAdvancedTop = function (queryObject, ownerUuid, page, eventCode, callback) {
+		fromPage = (page * 10) / 10;
+            console.log("Advanced Search");
+            console.log(queryObject);
+            eC = "";
+            if (eventCode){
+                eC = ', _type:' + eventCode;
+            }
+            console.log(ownerUuid);
+            service.client.search({
+                index: '_all',
+                body: queryObject
+            }, function (error, response) {
+                callback(error, response);
+            });
+
+	};
+	this.searchAdvanced = function (queryObject, callback) {
+            console.log(queryObject);
+            service.client.search({
+                index: '_all',
+                body: queryObject
             }, function (error, response) {
                 callback(error, response);
             });
