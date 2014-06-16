@@ -1,32 +1,31 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService) {
+    .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices ) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
 
-        $scope.checkLogin($scope, $http, $injector, true, function () {
+        var devices = _.filter(myDevices, function(device){
+            return device.type !== 'gateway';
+        });
+
+        $scope.gateways = _.difference( myDevices, devices);
+        $scope.devices = devices;
+
+        _.each($scope.gateways, function(gateway){
+            skynetService.gatewayConfig( {
+                "uuid": gateway.uuid,
+                "token": gateway.token,
+                "method": "configurationDetails",
+            }).then(function (response) {
+                gateway.subdevices = response.result.subdevices || [];
+                gateway.plugins = response.result.plugins || [];
+            });
+        });
 
             $scope.navType = 'pills';
-                // Get user devices
-                ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-                    $scope.devices = data;
-                    for (var i in $scope.devices) {
-                        if($scope.devices[i].type == 'gateway'){
-                            $scope.devices.splice(i,1);
-                        }
-                    }
-                });
 
-                // Get user gateways (true param specifies inclusion of devices)
-                ownerService.getGateways($scope.skynetuuid, $scope.skynettoken, false, function(error, data) {
-                    if(error){
-                        console.log('Error'  + error);
-                    }
-                    $scope.editGatewaySection = false;
-                    $scope.gateways = data.gateways;
-                });
 
                 // get api list, if showing api
                 if($state.is('connector.channels.index')) {
@@ -623,7 +622,6 @@ angular.module('octobluApp')
                     });
 
                 }
-        });
     })
     .controller('connectorAdvancedController', function($scope, $http, $location, $modal, $log, $q, $state,
                                                 ownerService, deviceService, channelService) {

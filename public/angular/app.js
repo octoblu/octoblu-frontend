@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'skynet.im', //change to the skynet.im instance
-        'port': '80'
+        'host': '127.0.0.1', //change to the skynet.im instance
+        'port': '3000'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -85,8 +85,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     smartDevices: function (channelService) {
                         return channelService.getSmartDevices();
                     },
-                    myDevices : function(currentUser, ownerService){
-                        return ownerService.getMyDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    myDevices : function(currentUser, deviceService){
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 }
             })
