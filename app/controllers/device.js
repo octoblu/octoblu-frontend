@@ -12,7 +12,7 @@ var _ = require('lodash'),
 var deviceController = {
 
     getDevices: function (req, res) {
-
+        //this gets the devices.
         var user = req.user;
         client({
             method: 'GET',
