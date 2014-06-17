@@ -384,3 +384,7 @@ max-width: 100%;
     opacity: 0.3 !important;
     filter: alpha(opacity=30) !important;
 }
+
+.accordion-toggle {
+   cursor: pointer;
+}
