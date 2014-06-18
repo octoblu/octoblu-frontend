@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'skynet.im', //change to the skynet.im instance
-        'port': '80'
+        'host': '127.0.0.1', //change to the skynet.im instance
+        'port': '3000'
     })
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
@@ -29,11 +29,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
         $stateProvider
-            // .state('home', {
-            //     url: '/',
-            //     templateUrl: 'pages/home2.html',
-            //     controller: 'homeController'
-            // })
             .state('home', {
                 url: '/',
                 templateUrl: 'pages/login.html',
@@ -168,7 +163,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced', {
                 url: '/advanced',
-                templateUrl: 'pages/connector/advanced/index.html'
+                templateUrl: 'pages/connector/advanced/index.html',
+                controller: 'connectorAdvancedController'
             })
             .state('connector.advanced.devices', {
                 url: '/smartdevices',
@@ -186,7 +182,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             .state('connector.advanced.gateways', {
                 url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways.html'
+                templateUrl: 'pages/connector/advanced/gateways.html',
+                controller: 'connectorController'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
