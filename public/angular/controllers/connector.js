@@ -1,6 +1,23 @@
 'use strict';
 
 angular.module('octobluApp')
+    .controller('smartDeviceController', function(myDevices, $scope) {
+        var readOnlyKeys = [ 'uuid', 'token', 'resource',  'socketid', '_id', 'owner', 'timestamp', 'online', 'channel',
+            'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'];
+        $scope.devices = _.filter(myDevices, function(device){
+            return device.type !== 'gateway';
+        });
+
+
+
+        $scope.filterReadOnlyKeys = function(key){
+            console.log(key);
+            return readOnlyKeys.indexOf(key) === -1;
+        };
+        $scope.editDevice = function(device) {
+            $scope.editingDevice = _.omit(angular.copy(device), readOnlyKeys);
+        };
+    })
     .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices ) {
         $scope.skynetStatus = false;
         $scope.channelList = [];

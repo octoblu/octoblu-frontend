@@ -72,7 +72,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector', {
                 url: '/connector',
                 templateUrl: 'pages/connector/index.html',
-                controller: 'connectorController',
                 resolve: {
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
@@ -109,7 +108,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     unclaimedDevices : function(currentUser, deviceService){
                         return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
-
                 }
             })
             .state('connector.devices.wizard.instructions', {
@@ -161,6 +159,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced.devices', {
                 url: '/smartdevices',
+                controller: 'smartDeviceController',
                 templateUrl: 'pages/connector/advanced/devices.html'
             })
             .state('connector.advanced.channels', {
