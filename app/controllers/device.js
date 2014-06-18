@@ -18,7 +18,6 @@ var deviceController = {
             method: 'GET',
             path: req.protocol + "://" + deviceController.skynetUrl + "/mydevices",
             headers: {
-                uselessHeader: true,
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
                 skynet_auth_token: req.headers.skynet_auth_token
             }
