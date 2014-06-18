@@ -8,15 +8,6 @@
             <div class="pull-right" ng-hide="editingDevice">
                 <a class="btn btn-success btn-lg" ng-click="newDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Add</a>
             </div>
-            <!--<div class='pull-right'>-->
-            <!--<button ng-click="editingDevice = {}" class="btn btn-primary" ng-hide="editingDevice">-->
-            <!--<i class="icon-chevron-down"></i> Add Device-->
-            <!--</button>-->
-            <!--<button ng-click="editingDevice = false" class="btn btn-primary" ng-show="editingDevice">-->
-            <!--<i class="icon-chevron-up"></i> Cancel-->
-            <!--</button>-->
-
-            <!--</div>-->
         </div>
 
         <div class="col-sm-12 col-md-6" ng-show="editingDevice">
@@ -71,9 +62,6 @@
                 </td>
                 <td>{{device.online}}</td>
                 <td>
-                    <!-- <a ng-click="moreInfo = true" ng-hide="moreInfo">more...</a> -->
-                    <!-- <a ng-click="moreInfo = false" ng-show="moreInfo">{{device}}</a> -->
-                    <!--<button class="btn"ng-click="alert(device)" href="">Info</button>-->
                     <button class="btn btn-inverse" ng-click="editDevice(device)">Edit</button>
                     <button class="btn btn-danger" ng-click="deleteDevice(device)">Delete</button>
                 </td>
