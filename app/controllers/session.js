@@ -13,7 +13,11 @@ module.exports = function ( app, passport, config ) {
         delete req.session.user;
 		// Check for deeplink redirect > http://localhost:8080/logout?referrer=http:%2F%2Flocalhost%2Fauth.js
 		if(req.query.referrer && req.query.referrer.length){
-			return res.redirect(req.query.referrer);
+      if(req.query.js){
+          return res.send('<script>window.location.href="' + req.query.referrer + '"</script>');
+      } else {
+          return res.redirect(req.query.referrer);
+      }      		
 		} else {
 			res.redirect('/');
 		}
@@ -42,8 +46,12 @@ module.exports = function ( app, passport, config ) {
         });
 
         // Check for deep link redirect based on referrer in querystring
-        if(req.session.redirect){
-          return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
+        if(req.session.redirect){          
+          if(req.session.js){
+              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
+          } else {
+              return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
+          }         
         } else {
           return res.redirect('/dashboard');
         }
