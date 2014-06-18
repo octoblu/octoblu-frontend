@@ -1,78 +1,72 @@
-<div>
-    <div class='row'>
-        <div class='col-sm-12 box'>
-            <div class='box-header'>
-                <div class='title pull-left'>
-                    <i class='icon-lightbulb'></i>
-                    Devices
-                </div>
-                <div class='pull-right'>
-                    <button ng-click="editingDevice = {}" class="btn btn-primary" ng-hide="editingDevice">
-                        <i class="icon-chevron-down"></i> Add Device
-                    </button>
-                    <button ng-click="editingDevice = false" class="btn btn-primary" ng-show="editingDevice">
-                        <i class="icon-chevron-up"></i> Cancel
-                    </button>
-
-                </div>
+<div class='row'>
+    <div class='col-sm-12 box'>
+        <div class='box-header'>
+            <div class="pull-left">
+                <i class="fa fa-hdd-o"></i>
+                Devices
             </div>
-
-            <div class="col-sm-12" ng-show="editingDevice">
-                <h3>Add/Edit Device</h3>
-                <!form name="myForm">
-                    <input class="form-control" name="deviceName" ng-model="device.name" placeholder="Device Name (required)" required>
-                    <br />
-
-                    <div ng-repeat="key in device" class="form-inline">
-                        <div class="form-group">
-                            <input class="form-control" ng-model="key.key" placeholder="Key">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" ng-model="key.value" placeholder="Value">
-                        </div>
-                        <a href ng-click="removeKeyVals($index)"> <i class="icon-minus"></i></a>
-                        <a href ng-click="addKeyVals()"> <i class="icon-plus"></i></a>
-
-                    </div>
-
-                    <br />
-                    <button class="btn" ng-click="createDevice(device)">Submit</button>
-                    <br /><br />
-                <!/form>
-            </div>
-
-
-            <div ng-hide="devices.length">No devices found</div>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <tr>
-                        <th>Name</th>
-                        <th>UUID</th>
-                        <th>Token</th>
-                        <th>Online</th>
-                        <th>Action</th>
-                    </tr>
-                    <tr ng-repeat="device in devices">
-
-                        <td>{{device.name}}</td>
-                        <td>{{device.uuid}}</td>
-                        <td>
-                            <a ng-click="moreInfo = true" ng-hide="moreInfo" href="">********************************</a>
-                            <input type="text" ng-show="moreInfo" value="{{device.token}}" size="40">
-
-                        </td>
-                        <td>{{device.online}}</td>
-                        <td>
-                            <!-- <a ng-click="moreInfo = true" ng-hide="moreInfo">more...</a> -->
-                            <!-- <a ng-click="moreInfo = false" ng-show="moreInfo">{{device}}</a> -->
-                            <button class="btn"ng-click="alert(device)" href="">Info</button>
-                            <button class="btn btn-inverse" ng-click="editingDevice = device">Edit</button>
-                            <button class="btn btn-danger" ng-click="deleteDevice(device)">Delete</button>
-                        </td>
-
-                    </tr>
-                </table>
+            <div class="pull-right" ng-hide="editingDevice">
+                <a class="btn btn-success btn-lg" ng-click="newDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Add</a>
             </div>
         </div>
+
+        <div class="col-sm-12 col-md-6" ng-show="editingDevice">
+            <h3 ng-hide="!editingDevice">Add/Edit Device</h3>
+
+            <form  class="form-horizontal" role="form">
+                <div ng-repeat="(key, value) in editingDevice" class="form-group">
+                    <label class="col-xs-4 control-label">{{key}}</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" ng-model="editingDevice[key]">
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btn btn-sm btn-danger" href ng-click="removeProperty(key)"> <i class="fa fa-trash-o"> Delete</i></a>
+                    </div>
+                </div>
+                <div class="form-group" ng-hide="!editingDevice">
+                    <div class="col-xs-6 col-xs-offset-4">
+                        <input class="form-control" ng-model="newProperty" placeholder="Property Name">
+                    </div>
+                    <div class="col-xs-2">
+                    <a class="btn btn-primary" ng-class="{disabled: !newProperty}" ng-click="addProperty()"><i class="fa fa-plus" style="margin-right: 5px"></i>Add</a>
+                    </div>
+                </div>
+                <div class="form-group" ng-hide="!editingDevice">
+                    <div class="btn-group">
+                        <a class="btn btn-success btn-lg" ng-click="saveDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Save</a>
+                        <a class="btn btn-default btn-lg" ng-click="editingDevice = undefined"><i class="fa fa-times" style="margin-right: 5px"></i>Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <div ng-hide="devices.length">No devices found</div>
+        <table ng-show="devices.length" class="table table-striped table-hover">
+            <tr>
+                <th>Name</th>
+                <th>UUID</th>
+                <th>Token</th>
+                <th>Online</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="device in devices">
+
+                <td>{{device.name}}</td>
+                <td>{{device.uuid}}</td>
+                <td>
+                    <a ng-click="showToken = !showToken" href>
+                        {{ showToken ? device.token : '********************************'}}
+                    </a>
+
+                </td>
+                <td>{{device.online}}</td>
+                <td>
+                    <button class="btn btn-inverse" ng-click="editDevice(device)">Edit</button>
+                    <button class="btn btn-danger" ng-click="deleteDevice(device)">Delete</button>
+                </td>
+
+            </tr>
+        </table>
     </div>
 </div>

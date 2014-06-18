@@ -46,13 +46,18 @@ module.exports = function(app, passport) {
 
         // Check for deeplink redirect > http://localhost:8080/login?referrer=http:%2F%2Flocalhost%2Fauth.js
         app.get('/login', function(req, res) {
-          // console.log(req.query.referrer);
+
             // Check for deep link redirect based on referrer in querystring
             if(req.query.referrer && req.query.referrer.length){
                 if(req.cookies.skynetuuid && req.cookies.skynettoken){
-                    return res.redirect(req.query.referrer + '?uuid=' + req.cookies.skynetuuid + '&token=' + req.cookies.skynettoken);
+                    if(req.query.js && req.query.js == 1){
+                        return res.send('<script>window.location.href="' + req.query.referrer + '?uuid=' + req.cookies.skynetuuid + '&token=' + req.cookies.skynettoken + '"</script>');
+                    } else {
+                        return res.redirect(req.query.referrer + '?uuid=' + req.cookies.skynetuuid + '&token=' + req.cookies.skynettoken);
+                    }
                 }
                 req.session.redirect = req.query.referrer;
+                req.session.js = req.query.js;
             }
 
             res.sendfile('./public/index.html');
