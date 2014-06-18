@@ -28,6 +28,11 @@ angular.module('octobluApp')
             return defer.promise;
         };
 
+        /**
+         * @deprecated - use getActiveChannels
+         * @param uuid
+         * @param callback
+         */
         this.getActive = function(uuid, callback) {
             $http.get('/api/channels/'+uuid+'/active', { cache: false})
                 .success(function(data) { callback(data); })
@@ -37,12 +42,41 @@ angular.module('octobluApp')
                 });
         };
 
+        /**
+         * @deprecated - use getAvailableChannels
+         * @param uuid
+         * @param callback
+         */
         this.getAvailable = function(uuid, callback) {
-            $http.get('/api/channels/'+uuid+'/available', { cache: false})
+            return $http.get('/api/channels/'+uuid+'/available', { cache: false})
                 .success(function(data) { callback(null, data); })
                 .error(function(error) {
                     console.log('Error: ' + error);
                     callback(error, null);
+                });
+        };
+
+        /**
+         * gets the activeChannels
+         * @param userUUID
+         * @returns {*}
+         */
+        this.getActiveChannels = function(userUUID){
+            return $http.get('/api/channels/'+ userUUID +'/active', { cache: false})
+                .then(function(result){
+                    return result.data;
+                });
+        };
+
+        /**
+         *
+         * @param userUUID
+         * @returns {*}
+         */
+        this.getAvailableChannels = function(userUUID){
+            return $http.get('/api/channels/'+ userUUID +'/available', { cache: false})
+                .then(function(result){
+                    return result.data;
                 });
         };
 
