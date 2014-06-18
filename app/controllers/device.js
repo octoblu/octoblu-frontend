@@ -12,14 +12,14 @@ var _ = require('lodash'),
 var deviceController = {
 
     getDevices: function (req, res) {
-
+        //this gets the devices.
         var user = req.user;
         client({
             method: 'GET',
             path: req.protocol + "://" + deviceController.skynetUrl + "/mydevices",
             headers: {
                 skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_token: req.headers.skynet_auth_token,
             }
         })
             .then(function (result) {
