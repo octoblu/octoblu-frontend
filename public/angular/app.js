@@ -97,14 +97,14 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.devices.detail', {
                 url: '/:uuid',
-                templateUrl: 'pages/connector/devices/detail/index.html',
-                controller: 'DeviceDetailController'
+                controller: 'DeviceDetailController',
+                templateUrl: 'pages/connector/devices/detail/index.html'
             })
             .state('connector.devices.wizard', {
                 url: '/wizard',
                 abstract: true,
-                templateUrl: 'pages/connector/devices/wizard/index.html',
                 controller: 'DeviceWizardController',
+                templateUrl: 'pages/connector/devices/wizard/index.html',
                 resolve : {
                     unclaimedDevices : function(currentUser, deviceService){
                         return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
@@ -114,19 +114,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
-                templateUrl: 'pages/connector/devices/wizard/instructions.html',
-                onEnter: function () {
-                    //         console.log('Entering device wizard instructions state. ');
-                },
-                onExit: function () {
-                    //           console.log('Exiting device wizard instructions state. ');
-                }
-
+                templateUrl: 'pages/connector/devices/wizard/instructions.html'
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
                 templateUrl: 'pages/connector/devices/wizard/find-hub.html'
             })
+            //begin refactor states
             .state('connector.channels', {
                 abstract: true,
                 url: '/channels',
@@ -163,8 +157,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced', {
                 url: '/advanced',
-                templateUrl: 'pages/connector/advanced/index.html',
-                controller: 'connectorAdvancedController'
+                templateUrl: 'pages/connector/advanced/index.html'
             })
             .state('connector.advanced.devices', {
                 url: '/smartdevices',
@@ -189,6 +182,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/messaging',
                 templateUrl: 'pages/connector/advanced/messaging.html'
             })
+            //end refactor states
+
             .state('admin', {
                 abstract: true,
                 url: '/admin',

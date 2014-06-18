@@ -622,12 +622,4 @@ angular.module('octobluApp')
                     });
 
                 }
-    })
-    .controller('connectorAdvancedController', function($scope, $http, $location, $modal, $log, $q, $state,
-                                                ownerService, deviceService, channelService) {
-
-      $scope.openNewApi = function() {
-          $state.go('connector.advanced.channels.editor', { name: 'new' });
-      };
-
     });

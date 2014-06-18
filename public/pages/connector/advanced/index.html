@@ -1,15 +1,15 @@
 <!-- Advanced Tab-->
     <ul class="nav nav-pills">
-        <li ng-class="{'active': $state.includes('connector.advanced.devices')}">
-            <a href="" ui-sref="connector.advanced.devices">Smart Devices</a>
+        <li ui-sref-active="active">
+            <a href ui-sref="connector.advanced.devices">Smart Devices</a>
         </li>
-        <li ng-class="{'active': $state.includes('connector.advanced.gateways')}">
-            <a href="" ui-sref="connector.advanced.gateways">Configure Hubs</a>
+        <li ui-sref-active="active">
+            <a href ui-sref="connector.advanced.gateways">Configure Hubs</a>
         </li>
-        <li ng-class="{'active': $state.includes('connector.advanced.channels')}">
-            <a href="" ui-sref="connector.advanced.channels">Custom Channels</a>
+        <li ui-sref-active="active">
+            <a href ui-sref="connector.advanced.channels">Custom Channels</a>
         </li>
-        <li ng-class="{'active': $state.includes('connector.advanced.messaging')}">
+        <li ui-sref-active="active">
             <a href="" ui-sref="connector.advanced.messaging">Message Devices</a>
         </li>
     </ul>
