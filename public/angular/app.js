@@ -136,7 +136,16 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 abstract: true,
                 url: '/channels',
                 template: '<ui-view />',
-                controller: 'connectorController'
+                controller: 'ChannelController',
+                resolve : {
+                    activeChannels : function(currentUser, channelService){
+                        return channelService.getActiveChannels(currentUser.skynetuuid);
+
+                    },
+                    availableChannels : function(currentUser, channelService){
+                        return channelService.getAvailableChannels(currentUser.skynetuuid);
+                    }
+                }
             })
             .state('connector.channels.index', {
                 url: '',
