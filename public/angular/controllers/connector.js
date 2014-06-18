@@ -48,6 +48,9 @@ angular.module('octobluApp')
                     delete $scope.editingDevice;
                     console.log(result);
                     myDevices.push(result);
+                    $scope.devices = _.filter(myDevices, function(device){
+                        return device.type !== 'gateway';
+                    });
                 });
             }
         };
