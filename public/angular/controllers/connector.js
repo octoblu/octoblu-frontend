@@ -3,20 +3,40 @@
 angular.module('octobluApp')
     .controller('smartDeviceController', function(myDevices, $scope) {
         var readOnlyKeys = [ 'uuid', 'token', 'resource',  'socketid', '_id', 'owner', 'timestamp', 'online', 'channel',
-            'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'];
+            'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
+            originalDevice;
+
         $scope.devices = _.filter(myDevices, function(device){
             return device.type !== 'gateway';
         });
-
-
 
         $scope.filterReadOnlyKeys = function(key){
             console.log(key);
             return readOnlyKeys.indexOf(key) === -1;
         };
         $scope.editDevice = function(device) {
+            originalDevice = device;
             $scope.editingDevice = _.omit(angular.copy(device), readOnlyKeys);
         };
+
+        $scope.addProperty = function() {
+            $scope.editingDevice[$scope.newProperty] = '';
+            $scope.newProperty = '';
+        };
+
+        $scope.removeProperty = function(property) {
+            delete $scope.editingDevice[property];
+            propertiesToDelete.push(property);
+        };
+
+        $scope.saveDevice = function() {
+            _.each(_.pairs($scope.editingDevice), function (pair) {
+                var key = pair[0], value = pair[1];
+                originalDevice[key] = value;
+            });
+            angular.copy(_.extend({}, $scope.editingDevice, _.pick(originalDevice, readOnlyKeys)), originalDevice);
+        };
+
     })
     .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices ) {
         $scope.skynetStatus = false;

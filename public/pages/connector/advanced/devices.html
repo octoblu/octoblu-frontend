@@ -16,26 +16,31 @@
             <!--</div>-->
         </div>
 
-        <div class="col-sm-12" ng-show="editingDevice">
+        <div class="col-sm-12 col-md-6" ng-show="editingDevice">
             <h3>Add/Edit Device</h3>
-            <form name="myForm">
-            <input class="form-control" name="deviceName" ng-model="device.name" placeholder="Device Name (required)"
-                   required>
-            <br/>
-
-            <div ng-repeat="(key, value) in editingDevice" class="form-inline">
-                <div class="form-group">
-                    <label class="form-control-label">{{key}}</label>
+            <form  class="form-horizontal" role="form">
+                <div ng-repeat="(key, value) in editingDevice" class="form-group">
+                    <label class="col-xs-4 control-label">{{key}}</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" ng-model="editingDevice[key]">
+                    </div>
+                    <div class="col-xs-2">
+                        <a class="btn btn-sm btn-danger" href ng-click="removeProperty(key)"> <i class="fa fa-trash-o"> Delete</i></a>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" ng-model="editingDevice[key]" placeholder="Value">
+                    <div class="col-xs-6 col-xs-offset-4">
+                        <input class="form-control" ng-model="newProperty" placeholder="Property Name">
+                    </div>
+                    <div class="col-xs-2">
+                    <a class="btn btn-primary" ng-class="{disabled: !newProperty}" ng-click="addProperty()"><i class="fa fa-plus" style="margin-right: 5px"></i>Add</a>
+                    </div>
                 </div>
-                <a href ng-click="removeKeyVals(key)"> <i class="icon-minus"></i></a>
-                <a href ng-click="addKeyVals()"> <i class="icon-plus"></i></a>
-
-            </div>
-            <button class="btn" ng-click="saveDevice(editingDevice)">Submit</button>
-            <br/><br/>
+                <div class="form-group">
+                    <div class="btn-group">
+                        <a class="btn btn-success btn-lg" ng-click="saveDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Save</a>
+                    </div>
+                </div>
             </form>
         </div>
 
