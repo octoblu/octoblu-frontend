@@ -172,7 +172,7 @@ angular.module('octobluApp')
             enabled: true,
             application: {
                 base: '',
-                resources: [],
+                resources: []
             }
         };
 
