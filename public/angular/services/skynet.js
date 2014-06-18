@@ -17,7 +17,7 @@ angular.module('octobluApp')
             }
         });
 
-        return {
+        var service = {
             gatewayConfig: function (options) {
                 return skynetPromise.then(function () {
                     var defer = $q.defer(),
@@ -28,6 +28,44 @@ angular.module('octobluApp')
                     });
                     return promise;
                 });
+            },
+
+            updateDevice : function(options){
+                return skynetPromise.then(function () {
+                    var defer = $q.defer(),
+                        promise = defer.promise;
+                    skynetSocket.emit('update', options, function (result) {
+                        console.log('updated device!');
+                        defer.resolve(result);
+                    });
+                    return promise;
+                });
+
+            },
+            registerDevice : function(options){
+                return skynetPromise.then(function () {
+                    var defer = $q.defer(),
+                        promise = defer.promise;
+                    skynetSocket.emit('register', options, function (result) {
+                        console.log('registered device!');
+                        defer.resolve(result);
+                    });
+                    return promise;
+                });
+
+            },
+            unregisterDevice : function(options){
+                return skynetPromise.then(function () {
+                    var defer = $q.defer(),
+                        promise = defer.promise;
+                    skynetSocket.emit('unregister', options, function (result) {
+                        console.log('registered device!');
+                        defer.resolve(result);
+                    });
+                    return promise;
+                });
+
             }
         };
+        return service;
     });

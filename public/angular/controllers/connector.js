@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('smartDeviceController', function(myDevices, $scope) {
+    .controller('smartDeviceController', function($scope, myDevices, skynetService, currentUser) {
         var readOnlyKeys = [ 'uuid', 'token', 'resource',  'socketid', '_id', 'owner', 'timestamp', 'online', 'channel',
             'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
             originalDevice;
@@ -26,7 +26,6 @@ angular.module('octobluApp')
 
         $scope.removeProperty = function(property) {
             delete $scope.editingDevice[property];
-            propertiesToDelete.push(property);
         };
 
         $scope.saveDevice = function() {
@@ -34,9 +33,36 @@ angular.module('octobluApp')
                 var key = pair[0], value = pair[1];
                 originalDevice[key] = value;
             });
-            angular.copy(_.extend({}, $scope.editingDevice, _.pick(originalDevice, readOnlyKeys)), originalDevice);
+            var updatedDevice = _.extend({}, $scope.editingDevice, _.pick(originalDevice, readOnlyKeys));
+
+            angular.copy(updatedDevice, originalDevice);
+            delete updatedDevice['$$hashkey'];
+            delete updatedDevice['_id'];
+            if(updatedDevice.uuid) {
+                skynetService.updateDevice(updatedDevice).then(function (result) {
+                    delete $scope.editingDevice;
+                    console.log('made it');
+                });
+            } else {
+                skynetService.registerDevice(updatedDevice).then(function (result) {
+                    delete $scope.editingDevice;
+                    console.log(result);
+                    myDevices.push(result);
+                });
+            }
         };
 
+        $scope.newDevice = function() {
+            $scope.editDevice({ owner: currentUser.skynetuuid, name: '' });
+        };
+
+        $scope.deleteDevice = function(device) {
+            skynetService.unregisterDevice({ uuid : device.uuid})
+                .then(function(result){
+                   $scope.devices = _.without($scope.devices, device );
+                });
+
+        };
     })
     .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices ) {
         $scope.skynetStatus = false;
