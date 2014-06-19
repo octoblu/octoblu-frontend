@@ -36,8 +36,6 @@ angular.module('octobluApp')
                         var key = pair[0], value = pair[1];
                         originalDevice[key] = value;
                     });
-//                    var updatedDevice = _.extend({}, $scope.editingDevice, _.pick(originalDevice, readOnlyKeys));
-//                    angular.copy(updatedDevice, $scope.deviceToEdit);
                     delete $scope.editingDevice;
                     $scope.onSave();
                 };
