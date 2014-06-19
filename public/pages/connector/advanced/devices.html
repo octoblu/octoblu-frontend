@@ -24,20 +24,21 @@
                     </div>
                 </div>
                 <div class="form-group" ng-hide="!editingDevice">
-                    <div class="col-xs-8 col-xs-offset-2">
+                    <div class="col-xs-9 col-xs-offset-1">
                         <div class="input-group">
-                            <input class="form-control" ng-model="newProperty" placeholder="Property Name">
-                         <span class="input-group-btn">
+                        <span class="input-group-btn">
                             <a class="btn btn-primary" ng-class="{disabled: !newProperty}" ng-click="addProperty()"><i class="fa fa-plus" style="margin-right: 5px"></i>Add</a>
                         </span>
+                            <input class="form-control" ng-model="newProperty" placeholder="Property Name">
+
                         </div>
                     </div>
 
                 </div>
                 <div class="form-group" ng-hide="!editingDevice">
-                    <div class="btn-group col-xs-4 col-xs-push-8">
-                        <a class="btn btn-success btn-lg" ng-click="saveDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Save</a>
-                        <a class="btn btn-default btn-lg" ng-click="editingDevice = undefined"><i class="fa fa-times" style="margin-right: 5px"></i>Cancel</a>
+                    <div class="btn-group col-xs-4 col-xs-offset-7">
+                        <a class="btn btn-success" ng-click="saveDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Save</a>
+                        <a class="btn btn-default" ng-click="editingDevice = undefined"><i class="fa fa-times" style="margin-right: 5px"></i>Cancel</a>
                     </div>
                 </div>
             </form>
