@@ -54,13 +54,15 @@ angular.module('octobluApp')
 
 	    //Load Top Counts Panels On init of page
 	$scope.loadTop = function(){
+		$scope.step1open = true;
 		console.log("Searching LoadTop");
                 $scope.loadTopfacetObject = { 
-			"toUuids": {"terms": {"script_field": "_source.uuid"}}, 
+			"toUuids": {"terms": {"script_field": "doc['toUuid.uuid'].value"}}, 
                         "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } }
     		};
-		elasticService.facetSearch("now-7d/d","now", $scope.skynetuuid, 0, $scope.loadTopfacetObject, function (err, data) {
+		elasticService.facetSearch("now-1d/d","now", $scope.skynetuuid, 0, $scope.loadTopfacetObject, function (err, data) {
                     if (err) { return console.log(err); }
+		    console.log("Total Top Hits: " + data.hits.total);
 		    $scope.topResults =	{
                         total: data.hits.total,
                         fromUuid: _.map(data.facets.fromUuids.terms, function (item) {
@@ -69,9 +71,9 @@ angular.module('octobluApp')
                                 value: item.count
                             };
                         }),
-		      toUuid: _.map(data.facets.toUuids.terms, function(item) {
+		        toUuid: _.map(data.facets.toUuids.terms, function(item) {
 			   return {
-				label: $scope.deviceLookup[item.term],
+				label: item.term,
 				value: item.count
 			  };
 			})
@@ -82,10 +84,12 @@ angular.module('octobluApp')
             elasticService.getEvents("", function(data) {
                 $scope.events = data;
             });
-
+		
+            $scope.loadTop();
             $scope.setPage = function (pageNo) {
               $scope.currentPage = pageNo;
             };
+
 
             // SETUP CHART
             // http://smoothiecharts.org/tutorial.html

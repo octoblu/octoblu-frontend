@@ -29,11 +29,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
         $stateProvider
-            // .state('home', {
-            //     url: '/',
-            //     templateUrl: 'pages/home2.html',
-            //     controller: 'homeController'
-            // })
             .state('home', {
                 url: '/',
                 templateUrl: 'pages/login.html',
@@ -77,7 +72,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('connector', {
                 url: '/connector',
                 templateUrl: 'pages/connector/index.html',
-                controller: 'connectorController',
                 resolve: {
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
@@ -102,41 +96,43 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.devices.detail', {
                 url: '/:uuid',
-                templateUrl: 'pages/connector/devices/detail/index.html',
-                controller: 'DeviceDetailController'
+                controller: 'DeviceDetailController',
+                templateUrl: 'pages/connector/devices/detail/index.html'
             })
             .state('connector.devices.wizard', {
                 url: '/wizard',
                 abstract: true,
-                templateUrl: 'pages/connector/devices/wizard/index.html',
                 controller: 'DeviceWizardController',
+                templateUrl: 'pages/connector/devices/wizard/index.html',
                 resolve : {
                     unclaimedDevices : function(currentUser, deviceService){
                         return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
-
                 }
             })
             .state('connector.devices.wizard.instructions', {
                 url: '/instructions',
-                templateUrl: 'pages/connector/devices/wizard/instructions.html',
-                onEnter: function () {
-                    //         console.log('Entering device wizard instructions state. ');
-                },
-                onExit: function () {
-                    //           console.log('Exiting device wizard instructions state. ');
-                }
-
+                templateUrl: 'pages/connector/devices/wizard/instructions.html'
             })
             .state('connector.devices.wizard.findhub', {
                 url: '/findhub',
                 templateUrl: 'pages/connector/devices/wizard/find-hub.html'
             })
+            //begin refactor states
             .state('connector.channels', {
                 abstract: true,
                 url: '/channels',
                 template: '<ui-view />',
-                controller: 'connectorController'
+                controller: 'ChannelController',
+                resolve : {
+                    activeChannels : function(currentUser, channelService){
+                        return channelService.getActiveChannels(currentUser.skynetuuid);
+
+                    },
+                    availableChannels : function(currentUser, channelService){
+                        return channelService.getAvailableChannels(currentUser.skynetuuid);
+                    }
+                }
             })
             .state('connector.channels.index', {
                 url: '',
@@ -163,6 +159,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced.devices', {
                 url: '/smartdevices',
+                controller: 'smartDeviceController',
                 templateUrl: 'pages/connector/advanced/devices.html'
             })
             .state('connector.advanced.channels', {
@@ -177,12 +174,15 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             .state('connector.advanced.gateways', {
                 url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways.html'
+                templateUrl: 'pages/connector/advanced/gateways.html',
+                controller: 'connectorController'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
                 templateUrl: 'pages/connector/advanced/messaging.html'
             })
+            //end refactor states
+
             .state('admin', {
                 abstract: true,
                 url: '/admin',
