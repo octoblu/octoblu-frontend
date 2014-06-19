@@ -31,10 +31,13 @@ angular.module('octobluApp')
             },
 
             updateDevice : function(options){
+                var device = _.clone(options);
+                delete device['$$hashKey'];
+                delete device['_id'];
                 return skynetPromise.then(function () {
                     var defer = $q.defer(),
                         promise = defer.promise;
-                    skynetSocket.emit('update', options, function (result) {
+                    skynetSocket.emit('update', device, function (result) {
                         console.log('updated device!');
                         defer.resolve(result);
                     });
@@ -43,10 +46,13 @@ angular.module('octobluApp')
 
             },
             registerDevice : function(options){
+                var device = _.clone(options);
+                delete device['$$hashKey'];
+                delete device['_id'];
                 return skynetPromise.then(function () {
                     var defer = $q.defer(),
                         promise = defer.promise;
-                    skynetSocket.emit('register', options, function (result) {
+                    skynetSocket.emit('register', device, function (result) {
                         console.log('registered device!');
                         defer.resolve(result);
                     });

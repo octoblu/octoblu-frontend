@@ -2,42 +2,14 @@
 
 angular.module('octobluApp')
     .controller('smartDeviceController', function($scope, myDevices, skynetService, currentUser) {
-        var readOnlyKeys = [ 'uuid', 'token', 'resource',  'socketid', '_id', 'owner', 'timestamp', 'online', 'channel',
-            'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
-            originalDevice;
+
 
         $scope.devices = _.filter(myDevices, function(device){
             return device.type !== 'gateway';
         });
 
-        $scope.filterReadOnlyKeys = function(key){
-            console.log(key);
-            return readOnlyKeys.indexOf(key) === -1;
-        };
-        $scope.editDevice = function(device) {
-            originalDevice = device;
-            $scope.editingDevice = _.omit(angular.copy(device), readOnlyKeys);
-        };
-
-        $scope.addProperty = function() {
-            $scope.editingDevice[$scope.newProperty] = '';
-            $scope.newProperty = '';
-        };
-
-        $scope.removeProperty = function(property) {
-            delete $scope.editingDevice[property];
-        };
-
         $scope.saveDevice = function() {
-            _.each(_.pairs($scope.editingDevice), function (pair) {
-                var key = pair[0], value = pair[1];
-                originalDevice[key] = value;
-            });
-            var updatedDevice = _.extend({}, $scope.editingDevice, _.pick(originalDevice, readOnlyKeys));
-
-            angular.copy(updatedDevice, originalDevice);
-            delete updatedDevice['$$hashkey'];
-            delete updatedDevice['_id'];
+            var updatedDevice = $scope.editingDevice;
             if(updatedDevice.uuid) {
                 skynetService.updateDevice(updatedDevice).then(function (result) {
                     delete $scope.editingDevice;
@@ -55,6 +27,10 @@ angular.module('octobluApp')
             }
         };
 
+        $scope.editDevice = function(device) {
+            $scope.editingDevice =  device;
+        };
+
         $scope.newDevice = function() {
             $scope.editDevice({ owner: currentUser.skynetuuid, name: '' });
         };
@@ -66,6 +42,22 @@ angular.module('octobluApp')
                 });
 
         };
+    })
+    .controller('hubController', function($scope, myDevices, skynetService, currentUser){
+        $scope.claimedHubs = _.filter(myDevices, function(device){
+            return device.type === 'gateway';
+        });
+        _.each($scope.claimedHubs, function(gateway){
+            skynetService.gatewayConfig( {
+                "uuid": gateway.uuid,
+                "token": gateway.token,
+                "method": "configurationDetails"
+            }).then(function (response) {
+                gateway.subdevices = response.result.subdevices || [];
+                gateway.plugins = response.result.plugins || [];
+            });
+        });
+
     })
     .controller('connectorController', function(skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices ) {
         $scope.skynetStatus = false;
@@ -83,7 +75,7 @@ angular.module('octobluApp')
             skynetService.gatewayConfig( {
                 "uuid": gateway.uuid,
                 "token": gateway.token,
-                "method": "configurationDetails",
+                "method": "configurationDetails"
             }).then(function (response) {
                 gateway.subdevices = response.result.subdevices || [];
                 gateway.plugins = response.result.plugins || [];

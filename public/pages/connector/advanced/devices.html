@@ -10,40 +10,7 @@
             </div>
         </div>
 
-        <div class="col-sm-12 col-md-6" ng-show="editingDevice">
-            <h3 ng-hide="!editingDevice">Add/Edit Device</h3>
-
-            <form  class="form-horizontal" role="form">
-                <div ng-repeat="(key, value) in editingDevice" class="form-group">
-                    <label class="col-xs-2 control-label">{{key}}</label>
-                    <div class="col-xs-8">
-                        <input class="form-control" ng-model="editingDevice[key]">
-                    </div>
-                    <div class="col-xs-2">
-                        <a class="btn btn-sm btn-danger" href ng-click="removeProperty(key)"> <i class="fa fa-trash-o"> Delete</i></a>
-                    </div>
-                </div>
-                <div class="form-group" ng-hide="!editingDevice">
-                    <div class="col-xs-9 col-xs-offset-1">
-                        <div class="input-group">
-                        <span class="input-group-btn">
-                            <a class="btn btn-primary" ng-class="{disabled: !newProperty}" ng-click="addProperty()"><i class="fa fa-plus" style="margin-right: 5px"></i>Add</a>
-                        </span>
-                            <input class="form-control" ng-model="newProperty" placeholder="Property Name">
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="form-group" ng-hide="!editingDevice">
-                    <div class="btn-group col-xs-4 col-xs-offset-7">
-                        <a class="btn btn-success" ng-click="saveDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Save</a>
-                        <a class="btn btn-default" ng-click="editingDevice = undefined"><i class="fa fa-times" style="margin-right: 5px"></i>Cancel</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-
+        <device-property-editor device-to-edit="editingDevice" on-save="saveDevice()"></device-property-editor>
 
         <div ng-hide="devices.length">No devices found</div>
         <table ng-show="devices.length" class="table table-striped table-hover">

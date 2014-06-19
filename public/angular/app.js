@@ -174,8 +174,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             .state('connector.advanced.gateways', {
                 url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways.html',
-                controller: 'connectorController'
+                templateUrl: 'pages/connector/advanced/gateways/index.html',
+                controller: 'hubController'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
