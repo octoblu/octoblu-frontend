@@ -11,11 +11,6 @@
         </div>
     </div>
     <div class="col-xs-12">
-        <div>
-            <form name="xxx" ng-if="editingSubdevice"  sf-schema="editingPlugin.optionsSchema" sf-model="editingSubDevice"></form>
-            <pre>{{editingSubdevice | json}}</pre>
-            <pre>{{editingPlugin.optionsSchema | json}}</pre>
-        </div>
         <div class="panel panel-primary" ng-repeat="hub in claimedHubs">
             <div class="panel-heading">
                 {{hub.name }} - {{hub.uuid }}

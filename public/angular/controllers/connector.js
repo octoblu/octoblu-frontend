@@ -48,7 +48,7 @@ angular.module('octobluApp')
 
         };
     })
-    .controller('hubController', function ($scope, myDevices, skynetService, currentUser, PluginService, availableDeviceTypes) {
+    .controller('hubController', function ($scope, $modal,  myDevices, skynetService, currentUser, PluginService, availableDeviceTypes) {
 
         $scope.claimedHubs = _.filter(myDevices, function (device) {
             return device.type === 'gateway';
@@ -86,15 +86,49 @@ angular.module('octobluApp')
         };
 
         $scope.configureSubdevice = function (hub, pluginName, subdevice) {
-            var plugin = _.findWhere(hub.plugins, {name: pluginName});
-            if (!subdevice) {
-                subdevice = {
-                    name: '',
-                    options: {}
-                };
-            }
-            $scope.editingSubdevice = subdevice;
-            $scope.editingPlugin = plugin;
+
+            var subdeviceModal = $modal.open({
+                templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
+                controller: 'AddEditSubDeviceController',
+                backdrop: true,
+                resolve: {
+
+                    hubs : function(){
+                        return $scope.claimedHubs;
+                    },
+                    selectedHub : function(){
+                        return hub;
+                    },
+                    plugin : function(){
+                        return _.findWhere(hub.plugins, {name : pluginName});
+                    },
+                    subdevice : function(){
+                        return subdevice;
+                    },
+                    availableDeviceTypes : function(){
+                        return availableDeviceTypes;
+                    }
+
+                }
+
+            });
+
+            subdeviceModal.result.then(function (result) {
+                skynetService.gatewayConfig({
+                    "uuid": hub.uuid,
+                    "token": hub.token,
+                    "method": "createSubdevice",
+                    "type": result.device.plugin,
+                    "name": result.device.name,
+                    "options": result.device.options
+                }).then(function (addResult) {
+                    console.log(addResult);
+                });
+
+                hub.subdevices.push(result.device);
+            }, function () {
+
+            });
         };
 
         $scope.deleteSubdevice = function (hub, subdevice) {
