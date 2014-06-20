@@ -18,9 +18,9 @@
             </div>
         </div>
     </form>
-    <schema-editor schema="plugin.optionsSchema" model="subdevice.options" allow-json-edit="false"></schema-editor>
+    <schema-editor control="schemaEditor" schema="plugin.optionsSchema" model="subdevice.options" allow-json-edit="false"></schema-editor>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
-    <button type="submit" class="btn btn-primary" ng-click="ok(deviceProperties)">Save changes</button>
+    <button type="submit" class="btn btn-primary" ng-click="save()">Save changes</button>
 </div>

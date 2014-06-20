@@ -1,12 +1,23 @@
 angular.module('octobluApp')
-    .controller('AddEditSubDeviceController', function ($scope, $modalInstance, selectedHub, hubs, subdevice, plugin,
-                                                        availableDeviceTypes, skynetService, PluginService) {
-
+    .controller('AddEditSubDeviceController', function ($scope, $modalInstance, selectedHub, subdevice, plugin, availableDeviceTypes, skynetService, PluginService) {
+        var newSubdevice = !subdevice.name;
         $scope.selectedHub = selectedHub;
-        $scope.hubs = hubs;
-        $scope.subdevice = subdevice || { options: { name: 'test'} };
+        $scope.subdevice = angular.copy(subdevice) || { options: {} };
+
         $scope.smartDevices = availableDeviceTypes;
         $scope.plugin = plugin;
+        $scope.schemaEditor = {};
+
+        $scope.cancel = function () {
+            $modalInstance.close();
+        };
+
+        $scope.save = function () {
+            var errors = $scope.schemaEditor.validate();
+            if (!errors.length) {
+                $modalInstance.close(subdevice);
+            }
+        };
     })
     .controller('AddSubDeviceController', function ($rootScope, $scope, $q, $modalInstance, PluginService, mode, hubs, smartDevice) {
         $scope.hubs = hubs || [];
@@ -34,20 +45,6 @@ angular.module('octobluApp')
 
             }
         }
-
-
-        $scope.getDefaults = function (hub) {
-
-//            PluginService.getDefaultOptions(hub, smartDevice.plugin)
-//                .then(function(result){
-//                    console.log(JSON.stringify(result));
-//                }, function(error){
-//
-//                });
-
-
-        };
-
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');

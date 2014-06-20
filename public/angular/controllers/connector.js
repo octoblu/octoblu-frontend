@@ -48,7 +48,7 @@ angular.module('octobluApp')
 
         };
     })
-    .controller('hubController', function ($scope, $modal,  myDevices, skynetService, currentUser, PluginService, availableDeviceTypes) {
+    .controller('hubController', function ($scope, $modal, myDevices, skynetService, currentUser, PluginService, availableDeviceTypes) {
 
         $scope.claimedHubs = _.filter(myDevices, function (device) {
             return device.type === 'gateway';
@@ -92,25 +92,29 @@ angular.module('octobluApp')
                 controller: 'AddEditSubDeviceController',
                 backdrop: true,
                 resolve: {
-
-                    hubs : function(){
-                        return $scope.claimedHubs;
-                    },
-                    selectedHub : function(){
+                    selectedHub: function () {
                         return hub;
                     },
-                    plugin : function(){
-                        return _.findWhere(hub.plugins, {name : pluginName});
+                    plugin: function () {
+                        return _.findWhere(hub.plugins, {name: pluginName});
                     },
-                    subdevice : function(){
-                        return subdevice;
+                    subdevice: function () {
+                        if (!subdevice) {
+                            return  PluginService.getDefaultOptions(hub, pluginName)
+                                .then(function (response) {
+                                    return {options: response.result };
+                                }, function (error) {
+                                    console.log(error);
+                                    return { options: {}};
+                                });
+                        } else {
+                            return subdevice;
+                        }
                     },
-                    availableDeviceTypes : function(){
+                    availableDeviceTypes: function () {
                         return availableDeviceTypes;
                     }
-
                 }
-
             });
 
             subdeviceModal.result.then(function (result) {
