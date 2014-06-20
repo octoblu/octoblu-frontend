@@ -114,12 +114,13 @@
                         <div class="panel panel-default">
                             <a href="">
                                 <div class="panel-body">
-					<label ng-repeat="cb_device in devices">
-					  <input
-					    type="checkbox"
-					    value="{{cb_device.name}}"
-					  > {{cb_device.name}}
+					<ul class="list-group">
+					<li ng-repeat="cb_device in devices" class="list-group-item">
+					<label >
+					  <input type="checkbox" value="{{cb_device.uuid}}" /> {{cb_device.name}}
 					</label>
+					</li>
+					</ul>
                                 </div>
                             </a>
                         </div>
