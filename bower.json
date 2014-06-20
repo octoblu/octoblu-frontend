@@ -63,8 +63,7 @@
     "supersized": "*",
     "jquery-easing": "*",
     "flexslider": "*",
-    "jquery.videoBG": "*",
-    "angular-schema-form": "*"
+    "jquery.videoBG": "*"
   },
   "resolutions": {
     "jquery-ui": "~1.10.4",
