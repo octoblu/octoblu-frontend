@@ -1,8 +1,9 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $cookies, $modal, $timeout, currentUser, myDevices, smartDevices, deviceService) {
+    .controller('DeviceController', function (skynetService, $scope, $q, $log,
+                                              $state, $http, $cookies, $modal, $timeout, currentUser, myDevices, availableDeviceTypes, deviceService) {
 
         $scope.user = currentUser;
-        $scope.smartDevices = smartDevices;
+        $scope.smartDevices = availableDeviceTypes;
         $scope.devices = myDevices;
 
         $scope.deleteDevice = function (device) {

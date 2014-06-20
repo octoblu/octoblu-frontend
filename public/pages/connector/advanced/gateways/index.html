@@ -11,6 +11,11 @@
         </div>
     </div>
     <div class="col-xs-12">
+        <div>
+            <form name="xxx" ng-if="editingSubdevice"  sf-schema="editingPlugin.optionsSchema" sf-model="editingSubDevice"></form>
+            <pre>{{editingSubdevice | json}}</pre>
+            <pre>{{editingPlugin.optionsSchema | json}}</pre>
+        </div>
         <div class="panel panel-primary" ng-repeat="hub in claimedHubs">
             <div class="panel-heading">
                 {{hub.name }} - {{hub.uuid }}
@@ -18,7 +23,12 @@
             <div class="panel-body">
                 <tabset>
                     <tab heading="Subdevices" style="cursor:pointer;">
-                        <button class="btn btn-success pull-right" ng-click="addSubdevice(gateway)">Add</button>
+                        <div class="input-group">
+                            <select ng-model="selectedDeviceType"
+                                    ng-options="deviceType.name for deviceType in availableDeviceTypes | filter: {enabled : true}">
+                            </select>
+                            <a href class="btn btn-success" ng-class="{disabled : ! selectedDeviceType }" ng-click="addSubdevice(hub, selectedDeviceType)"><i class="fa fa-plus"></i>Add</a>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tr>
@@ -31,7 +41,7 @@
                                     <td>{{subdevice.type}}</td>
                                     <td>
                                         <button class="btn btn-inverse"
-                                                ng-click="openEditSubdevice(hub, subdevice)">Edit
+                                                ng-click="editSubdevice(hub, subdevice)">Edit
                                         </button>
                                         <button class="btn btn-danger"
                                                 ng-click="deleteSubdevice(hub, subdevice)">Delete
@@ -43,7 +53,7 @@
                     </tab>
 
                     <tab heading="Plugins" style="cursor:pointer;">
-                        <button class="btn btn-success pull-right" ng-click="openNewPlugin(hub)">Add</button>
+                        <button class="btn btn-success pull-right" ng-click="addPlugin(hub)">Add</button>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tr>

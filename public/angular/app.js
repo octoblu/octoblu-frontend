@@ -1,7 +1,7 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
+angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'schemaForm'])
     .constant('skynetConfig', {
         'host': '127.0.0.1', //change to the skynet.im instance
         'port': '3000'
@@ -76,7 +76,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
-                    smartDevices: function (channelService) {
+                    availableDeviceTypes: function (channelService) {
                         return channelService.getSmartDevices();
                     },
                     myDevices : function(currentUser, deviceService){
