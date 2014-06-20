@@ -18,8 +18,7 @@
             </div>
         </div>
     </form>
-    <schema-editor schema="plugin.optionsSchema" model="subdevice.options"></schema-editor>
-    <pre>{{subdevice.options | json}}</pre>
+    <schema-editor schema="plugin.optionsSchema" model="subdevice.options" allow-json-edit="false"></schema-editor>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Close</button>
