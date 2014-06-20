@@ -2,9 +2,11 @@ angular.module('octobluApp')
     .controller('AddEditSubDeviceController', function ($scope, $modalInstance, selectedHub, hubs, subdevice, plugin,
                                                         availableDeviceTypes, skynetService, PluginService) {
 
-//        $scope.selectedHub = selectedHub;
-//        $scope.hubs = hubs;
-//        $scope.smartDevices = smartDevices;
+        $scope.selectedHub = selectedHub;
+        $scope.hubs = hubs;
+        $scope.subdevice = subdevice || { options: { name: 'test'} };
+        $scope.smartDevices = availableDeviceTypes;
+        $scope.plugin = plugin;
     })
     .controller('AddSubDeviceController', function ($rootScope, $scope, $q, $modalInstance, PluginService, mode, hubs, smartDevice) {
         $scope.hubs = hubs || [];
@@ -31,7 +33,6 @@ angular.module('octobluApp')
                     }).value();
 
             }
-
         }
 
 
