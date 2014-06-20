@@ -92,10 +92,29 @@ angular.module('octobluApp')
                 $scope.events = data;
             });
 		
+	    // LOAD GRAPHS
             $scope.loadTop();
+
+           //Checkbox Functions for Exploring list.
+	$scope.selection = [];
+	$scope.toggleSelection = function toggleSelection(fruitName) {
+    		var idx = $scope.selection.indexOf(fruitName);
+
+		    // is currently selected
+		    if (idx > -1) {
+		      $scope.selection.splice(idx, 1);
+		    }	
+
+		    // is newly selected
+		    else {
+		      $scope.selection.push(fruitName);
+		    }
+		  };
+		
             $scope.setPage = function (pageNo) {
               $scope.currentPage = pageNo;
             };
+
 
 		// SETUP CHART
             // http://smoothiecharts.org/tutorial.html

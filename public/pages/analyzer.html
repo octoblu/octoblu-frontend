@@ -104,7 +104,39 @@
 
                 <!--<pager total-items="totalItems" page="currentPage" ng-show="results"></pager>-->
 	</accordion-group>
-	<accordion-group heading="Device Details">
+	<accordion-group heading="Explore">
+	<div class="container-fluid">
+		<div class="row">
+		  <div class="col-md-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Device Selection</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="">
+                                <div class="panel-body">
+					<label ng-repeat="cb_device in devices">
+					  <input
+					    type="checkbox"
+					    value="{{cb_device.name}}"
+					  > {{cb_device.name}}
+					</label>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+		<div class="col-md-8 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">The Graph</h3>
+                        </div>
+                        <div class="panel panel-default">
+				Hello? Is it me you're looking for? 
+                        </div>
+                    </div>
+
+		</div>
+	</div>
+	</accordion-group>
+	<accordion-group heading="Device Details - possibly move to the connectors page">
 	<div class="container-fluid">
               <div class="row">
                 <h2>Device Details</h2>
