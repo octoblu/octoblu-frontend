@@ -37,7 +37,6 @@
     "bootstrap": "~3.1.1",
     "fontawesome": "Font-Awesome#4.1.0",
     "angular-ui-utils": "~0.1.1",
-    "underscore": "~1.6.0",
     "d3": "~3.4.8",
     "jquery-migrate": "~1.2.1",
     "bootstrap-switch": "~3.0.1",
