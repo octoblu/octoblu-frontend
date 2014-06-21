@@ -66,10 +66,10 @@ angular.module('octobluApp')
         });
         $scope.availableDeviceTypes = availableDeviceTypes;
 
-        $scope.addSubdevice = function (hub, selectedDeviceType) {
-            var installedPlugin = _.findWhere(hub.plugins, {name: selectedDeviceType.plugin});
+        $scope.editSubdevice = function (hub, subdeviceType, subdevice) {
+            var installedPlugin = _.findWhere(hub.plugins, {name: subdeviceType});
             if (!installedPlugin) {
-                PluginService.installPlugin(hub, selectedDeviceType.plugin)
+                PluginService.installPlugin(hub, subdeviceType)
                     .then(function (result) {
                         return PluginService.getInstalledPlugins(hub);
                     })
@@ -78,14 +78,14 @@ angular.module('octobluApp')
                         hub.plugins = result.result;
                     })
                     .then(function () {
-                        return $scope.configureSubdevice(hub, selectedDeviceType.plugin);
+                        return $scope.configureSubdevice(hub, subdeviceType, subdevice);
                     });
             } else {
-                return $scope.configureSubdevice(hub, selectedDeviceType.plugin);
+                return $scope.configureSubdevice(hub, subdeviceType, subdevice);
             }
         };
 
-        $scope.configureSubdevice = function (hub, pluginName, subdevice) {
+        $scope.configureSubdevice = function (hub, subdeviceType, subdevice) {
 
             var subdeviceModal = $modal.open({
                 templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
@@ -96,11 +96,11 @@ angular.module('octobluApp')
                         return hub;
                     },
                     plugin: function () {
-                        return _.findWhere(hub.plugins, {name: pluginName});
+                        return _.findWhere(hub.plugins, {name: subdeviceType});
                     },
                     subdevice: function () {
                         if (!subdevice) {
-                            return  PluginService.getDefaultOptions(hub, pluginName)
+                            return  PluginService.getDefaultOptions(hub, subdeviceType)
                                 .then(function (response) {
                                     return {options: response.result };
                                 }, function (error) {
@@ -117,26 +117,44 @@ angular.module('octobluApp')
                 }
             });
 
-            subdeviceModal.result.then(function (result) {
-                skynetService.gatewayConfig({
-                    "uuid": hub.uuid,
-                    "token": hub.token,
-                    "method": "createSubdevice",
-                    "type": result.device.plugin,
-                    "name": result.device.name,
-                    "options": result.device.options
-                }).then(function (addResult) {
-                    console.log(addResult);
-                });
+            subdeviceModal.result.then(function (updatedSubdevice) {
+                if (!subdevice) {
+                    skynetService.createSubdevice({
+                        uuid: hub.uuid,
+                        token: hub.token,
+                        type: subdeviceType,
+                        name: updatedSubdevice.name,
+                        options: updatedSubdevice.options
+                    }).then(function (response) {
+                        hub.subdevices.push(response.result);
+                    });
+                } else {
+                    skynetService.updateSubdevice({
+                        uuid: hub.uuid,
+                        token: hub.token,
+                        type: subdeviceType,
+                        name: updatedSubdevice.name,
+                        options: updatedSubdevice.options
+                    }).then(function (response) {
+                        console.log(response);
+                        angular.copy(updatedSubdevice, subdevice);
+                    });
+                }
 
-                hub.subdevices.push(result.device);
             }, function () {
-
+                console.log('cancelled');
             });
         };
 
         $scope.deleteSubdevice = function (hub, subdevice) {
-
+            skynetService.deleteSubdevice({
+                "uuid": hub.uuid,
+                "token": hub.token,
+                "name": subdevice.name
+            }).then(function (response) {
+                console.log(response);
+                hub.subdevices = _.without(hub.subdevices, subdevice);
+            });
         };
 
         $scope.addPlugin = function (hub) {
