@@ -170,7 +170,7 @@ angular.module('octobluApp')
 
         };
     })
-    .controller('connectorController', function (skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices) {
+    .controller('connectorController', function (currentUser, skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
@@ -213,9 +213,9 @@ angular.module('octobluApp')
         };
 
         $scope.isActive = function (channel) {
-            if ($scope.current_user.api) {
-                for (var l = 0; l < $scope.current_user.api.length; l++) {
-                    if ($scope.current_user.api[l].name === channel.name) {
+            if (currentUser.api) {
+                for (var l = 0; l < currentUser.api.length; l++) {
+                    if (currentUser.api[l].name === channel.name) {
                         return true;
                     }
                 }
@@ -225,9 +225,9 @@ angular.module('octobluApp')
         };
 
         $scope.isInactive = function (channel) {
-            if ($scope.current_user.api) {
-                for (var l = 0; l < $scope.current_user.api.length; l++) {
-                    if ($scope.current_user.api[l].name === channel.name) {
+            if (currentUser.api) {
+                for (var l = 0; l < currentUser.api.length; l++) {
+                    if (currentUser.api[l].name === channel.name) {
                         return false;
                     }
                 }

@@ -27,7 +27,7 @@ angular.module('octobluApp')
             });
 
             $scope.editCustom = function() {
-                $state.go('connector.channels.editor', { name: $scope.channel.name });
+                $state.go('connector.advanced.channels.editor', { name: $scope.channel.name });
             };
 
             $scope.open = function () {

@@ -124,7 +124,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 abstract: true,
                 url: '/channels',
                 template: '<ui-view />',
-                controller: 'connectorController',
+                controller: 'ChannelController',
                 resolve : {
                     activeChannels : function(currentUser, channelService){
                         return channelService.getActiveChannels(currentUser.skynetuuid);
@@ -206,7 +206,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('admin.all', {
                 url: '/groups',
-                templateUrl: 'pages/admin/groups/all.html',
+                templateUrl: 'pages/admin/groups/all.html'
             })
             .state('admin.detail', {
                 url: '/groups/:uuid',
