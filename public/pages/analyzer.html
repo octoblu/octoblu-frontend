@@ -104,25 +104,65 @@
 
                 <!--<pager total-items="totalItems" page="currentPage" ng-show="results"></pager>-->
 	</accordion-group>
-	</accordion>
+	<accordion-group heading="Explore">
+	<div class="container-fluid">
+		<div class="row">
+		  <div class="col-md-4 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Device Selection</h3>
+                        </div>
+                        <div class="panel panel-default">
+                            <a href="">
+                                <div class="panel-body">
+					<ul class="list-group">
+					<li ng-repeat="cb_device in devices" class="list-group-item">
+					<label >
+					  <input type="checkbox" value="{{cb_device.uuid}}" /> {{cb_device.name}}
+					</label>
+					</li>
+					</ul>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+		<div class="col-md-8 dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">The Graph</h3>
+                        </div>
+                        <div class="panel panel-default">
+				Hello? Is it me you're looking for? 
+                        </div>
+                    </div>
 
-            </div>
-        </div>
-           <div class="container-fluid">
+		</div>
+	</div>
+	</accordion-group>
+	<accordion-group heading="Device Details - possibly move to the connectors page">
+	<div class="container-fluid">
               <div class="row">
                 <h2>Device Details</h2>
                 <div class="input-group">
                   <form class="form-inline col-md-12">
                   <div class="form-group col-md-12">
                   <div class="form-group">
-                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select> 
+                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select>
                   </div>
                   </div>
                   </form>
                 </div>
               </div>
             </div>
-	<textarea style="width:100%">{{device}}</textarea>
 
+                 <canvas id="mycanvas" width="400" height="100"></canvas>
+
+                 <div id="legend"></div>
+
+        <textarea style="width:100%">{{device}}</textarea>
+
+	</accordion-group>
+	</accordion>
+
+            </div>
+        </div>
     </div>
 </section>
