@@ -1,8 +1,9 @@
 angular.module('octobluApp')
-    .service('skynetService', function ($q, $cookies, skynetConfig) {
+    .service('skynetService', function ($q, $cookies, skynetConfig, reservedProperties) {
         var skynetSocket,
             defer = $q.defer(),
             skynetPromise = defer.promise;
+
         skynet({
             'host': skynetConfig.host,
             'port': skynetConfig.port,
@@ -30,11 +31,12 @@ angular.module('octobluApp')
                 });
             },
 
-            updateDevice : function(options){
+            updateDevice: function (options) {
+                var device = _.omit(options, reservedProperties);
                 return skynetPromise.then(function () {
                     var defer = $q.defer(),
                         promise = defer.promise;
-                    skynetSocket.emit('update', options, function (result) {
+                    skynetSocket.emit('update', device, function (result) {
                         console.log('updated device!');
                         defer.resolve(result);
                     });
@@ -42,11 +44,12 @@ angular.module('octobluApp')
                 });
 
             },
-            registerDevice : function(options){
+            registerDevice: function (options) {
+                var device = _.omit(options, reservedProperties);
                 return skynetPromise.then(function () {
                     var defer = $q.defer(),
                         promise = defer.promise;
-                    skynetSocket.emit('register', options, function (result) {
+                    skynetSocket.emit('register', device, function (result) {
                         console.log('registered device!');
                         defer.resolve(result);
                     });
@@ -54,17 +57,32 @@ angular.module('octobluApp')
                 });
 
             },
-            unregisterDevice : function(options){
+            unregisterDevice: function (options) {
+                var device = _.omit(options, reservedProperties);
                 return skynetPromise.then(function () {
                     var defer = $q.defer(),
                         promise = defer.promise;
-                    skynetSocket.emit('unregister', options, function (result) {
+                    skynetSocket.emit('unregister', device, function (result) {
                         console.log('registered device!');
                         defer.resolve(result);
                     });
                     return promise;
                 });
+            },
 
+            createSubdevice: function (options) {
+                return service.gatewayConfig(_.extend({ method: 'createSubdevice' },
+                    _.omit(options, reservedProperties)));
+            },
+
+            updateSubdevice: function (options) {
+                return service.gatewayConfig(_.extend({ method: 'updateSubdevice' },
+                    _.omit(options, reservedProperties)));
+            },
+
+            deleteSubdevice: function (options) {
+                return service.gatewayConfig(_.extend({ method: 'deleteSubdevice' },
+                    _.omit(options, reservedProperties)));
             }
         };
         return service;

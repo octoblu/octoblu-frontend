@@ -19,7 +19,7 @@ angular.module('octobluApp')
                   $scope.customchannelList = data;
                 });
 
-                $scope.openNewApi = function() { $state.go('connector.channels.editor', { name: 'new' }); };
+//                $scope.openNewApi = function() { $state.go('connector.channels.editor', { name: 'new' }); };
                 $scope.openDetails = function (channel) { $state.go('connector.channels.detail', { name: channel.name }); };
 
                 $scope.isActive = function (channel) {

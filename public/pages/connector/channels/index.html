@@ -35,8 +35,10 @@
 			  	<li ng-repeat="channel in activeChannels | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
-						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;">
-                <img ng-src="{{channel.logo}}" width="70" height="70"/>
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" style="cursor:pointer;">
+                            <a href ui-sref="connector.channels.detail({name : channel.name})">
+                                <img ng-src="{{channel.logo}}" width="70" height="70"/>
+                            </a>
               </div>
 				</li>
 			  </ul>
@@ -50,9 +52,11 @@
 			  	<li ng-repeat="channel in availableChannels | orderBy:'name'">
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
-						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
-                <a disabled><img ng-src="{{channel.logo}}" width="70" height="70"/></a>
-              </div>
+						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto"  style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
+                            <a href ui-sref="connector.channels.detail({name : channel.name})">
+                               <img ng-src="{{channel.logo}}" width="70" height="70"/>
+                            </a>
+                        </div>
 				</li>
 			  </ul>
 		</div>

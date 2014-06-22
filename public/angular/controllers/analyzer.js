@@ -58,7 +58,8 @@ angular.module('octobluApp')
 		console.log("Searching LoadTop");
                 $scope.loadTopfacetObject = { 
 			"toUuids": {"terms": {"script_field": "doc['toUuid.uuid'].value"}}, 
-                        "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } }
+                        "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } },
+			"eventCodes": {"terms": { "field": "eventCode" } }
     		};
 		elasticService.facetSearch("now-1d/d","now", $scope.skynetuuid, 0, $scope.loadTopfacetObject, function (err, data) {
                     if (err) { return console.log(err); }
@@ -76,6 +77,12 @@ angular.module('octobluApp')
 				label: item.term,
 				value: item.count
 			  };
+			}),
+			eventCodes: _.map(data.facets.eventCodes.terms, function(item) {
+			  return {
+				label: item.term,
+				value: item.count
+			  };
 			})
                     }
                     });
@@ -85,17 +92,35 @@ angular.module('octobluApp')
                 $scope.events = data;
             });
 		
+	    // LOAD GRAPHS
             $scope.loadTop();
+
+           //Checkbox Functions for Exploring list.
+	$scope.selection = [];
+	$scope.toggleSelection = function toggleSelection(fruitName) {
+    		var idx = $scope.selection.indexOf(fruitName);
+
+		    // is currently selected
+		    if (idx > -1) {
+		      $scope.selection.splice(idx, 1);
+		    }	
+
+		    // is newly selected
+		    else {
+		      $scope.selection.push(fruitName);
+		    }
+		  };
+		
             $scope.setPage = function (pageNo) {
               $scope.currentPage = pageNo;
             };
 
 
-            // SETUP CHART
+		// SETUP CHART
             // http://smoothiecharts.org/tutorial.html
 
-            // var line1 = new TimeSeries();
-            // var line2 = new TimeSeries();
+             var line1 = new TimeSeries();
+             var line2 = new TimeSeries();
 
             // setInterval(function() {
             //   line1.append(new Date().getTime(), Math.random()*100);
@@ -103,7 +128,7 @@ angular.module('octobluApp')
             // }, 1000);
 
             // Initialize up to 10 lines for charting
-            /*var line = [];
+           var line = [];
             for(var i =0; i < 10; i++){
               line[i] = new TimeSeries();
             }            
@@ -118,7 +143,7 @@ angular.module('octobluApp')
 
             smoothie.streamTo(document.getElementById("mycanvas"), 1000);
 
-	  END OF SMOOTHIE	*/
+
             var sensorGrid = [];
 
             skynetConfig.uuid = $scope.skynetuuid;
@@ -162,16 +187,12 @@ angular.module('octobluApp')
                 }
 
                 socket.on('message', function (message) {
-                  // plot data
-                  // {"payload":{"uuid":"99ede351-d6f6-11e3-abcd-1d32e7e917fb","temperature":"78","ipAddress":"70.171.192.231"},"devices":"99ede351-d6f6-11e3-abcd-1d32e7e917fb"}
-                  
                   // remove standard data from payload
                   var sensorData = message.payload;
+                  console.log(sensorData);
                   delete sensorData.uuid;
                   delete sensorData.ipAddress;
                   delete sensorData.api;
-
-                  console.log(sensorData);
 
                   for (var property in sensorData) {
                       if (sensorData.hasOwnProperty(property)) {
@@ -186,20 +207,11 @@ angular.module('octobluApp')
                             if (property == sensorGrid[i]){
                               line[i].append(new Date().getTime(), sensorData[property] *1);  
                             }
-
                           }
-
                         }
                       }
                   }
-
-                  // line1.append(new Date().getTime(), Math.random());
-                  // line2.append(new Date().getTime(), Math.random());
-
-
                 });
-
             });
-
         });
     });

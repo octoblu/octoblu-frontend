@@ -6,6 +6,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         'host': 'skynet.im', //change to the skynet.im instance
         'port': '80'
     })
+    .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
     .config(function ($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider, AnalyticsProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -76,7 +77,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     currentUser: function (userService) {
                         return userService.getCurrentUser();
                     },
-                    smartDevices: function (channelService) {
+                    availableDeviceTypes: function (channelService) {
                         return channelService.getSmartDevices();
                     },
                     myDevices : function(currentUser, deviceService){
@@ -174,8 +175,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
             .state('connector.advanced.gateways', {
                 url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways.html',
-                controller: 'connectorController'
+                templateUrl: 'pages/connector/advanced/gateways/index.html',
+                controller: 'hubController'
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
@@ -205,7 +206,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('admin.all', {
                 url: '/groups',
-                templateUrl: 'pages/admin/groups/all.html',
+                templateUrl: 'pages/admin/groups/all.html'
             })
             .state('admin.detail', {
                 url: '/groups/:uuid',

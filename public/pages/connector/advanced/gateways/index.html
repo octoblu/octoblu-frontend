@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="row">
+    <div class="col-sm-12 box">
+        <div class="box-header">
+            <div class="title pull-left">
+                <div class="fa fa-fw fa-stack fa-lg">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-h-square fa-inverse fa-stack-1x"></i>
+                </div>
+                <div class="text-center">Hubs</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="panel panel-primary" ng-repeat="hub in claimedHubs">
+            <div class="panel-heading">
+                {{hub.name }} - {{hub.uuid }}
+            </div>
+            <div class="panel-body">
+                <tabset>
+                    <tab heading="Subdevices" style="cursor:pointer;">
+                        <div class="input-group">
+                            <select ng-model="selectedDeviceType"
+                                    ng-options="deviceType.name for deviceType in availableDeviceTypes | filter: {enabled : true}">
+                            </select>
+                            <a href class="btn btn-success" ng-class="{disabled : ! selectedDeviceType }" ng-click="editSubdevice(hub, selectedDeviceType.plugin)"><i class="fa fa-plus"></i>Add</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <tr>
+                                    <th width="40%">Name</th>
+                                    <th width="40%">Plugin</th>
+                                    <th width="20%">Action</th>
+                                </tr>
+                                <tr ng-repeat="subdevice in hub.subdevices">
+                                    <td>{{subdevice.name}}</td>
+                                    <td>{{subdevice.type}}</td>
+                                    <td>
+                                        <button class="btn btn-inverse"
+                                                ng-click="editSubdevice(hub, subdevice.type, subdevice)">Edit
+                                        </button>
+                                        <button class="btn btn-danger"
+                                                ng-click="deleteSubdevice(hub, subdevice)">Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </tab>
 
-</body>
-</html>
+                    <tab heading="Plugins" style="cursor:pointer;">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <tr>
+                                    <th width="40%">Name</th>
+                                    <th width="40%">Version</th>
+                                    <th width="20%">Action</th>
+                                </tr>
+                                <tr ng-repeat="plugin in hub.plugins">
+                                    <td>{{plugin.name}}</td>
+                                    <td>{{plugin.version}}</td>
+                                    <td>
+                                        <button class="btn btn-danger" ng-click="deletePlugin(hub, plugin)">
+                                            Delete
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </tab>
+
+                </tabset>
+            </div>
+        </div>
+    </div>
+</div>

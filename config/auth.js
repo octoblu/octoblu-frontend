@@ -79,7 +79,7 @@ var config = {
           'port' : process.env.SKYNET_PORT || 80
       },
 
-    'port' : 8080,
+    'port' : process.env.PORT || 8080,
     'domain': null
   },
   test: {
@@ -169,7 +169,7 @@ var config = {
            'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
            'port' : process.env.SKYNET_PORT || 80
       },
-    'port' : 80,
+    'port' : process.env.PORT || 80,
     'domain': '.octoblu.com'
   }
 };
