@@ -14,14 +14,14 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">UUID</label>
                     <div class="col-sm-10">
-                        <select  ng-required="!selectedHub" class="form-control" ng-change="checkClaim(hubName, selectedHub);notifyHubSelected(selectedHub)" ng-model="selectedHub" ng-required="!selectedHub" ng-options="g.uuid for g in availableGateways">
+                        <select class="form-control" ng-model="hubConfig.hub" ng-options="g.uuid for g in availableGateways">
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-model="hubName" ng-change="checkClaim(hubName, selectedHub); notifyHubNameChanged(hubName)">
+                        <input type="text" class="form-control" ng-model="hubConfig.name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -31,14 +31,14 @@
                                 Details <span class="glyphicon pull-right"  ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}" ng-click="toggleOpen()"></span>
                             </accordion-heading>
                             <ul class="list-group">
-                                <li class="list-group-item">Channel <span class="label label-primary pull-right">{{selectedHub.channel}}</span></li>
-                                <li class="list-group-item">UUID<span class="label label-primary pull-right">{{selectedHub.uuid}}</span></li>
-                                <li class="list-group-item">IP Address <span class="label label-primary pull-right">{{selectedHub.ipAddress}}</span></li>
-                                <li class="list-group-item">Localhost <span class="label label-primary pull-right">{{selectedHub.localhost}}</span></li>
+                                <li class="list-group-item">Channel <span class="label label-primary pull-right">{{hubConfig.hub.channel}}</span></li>
+                                <li class="list-group-item">UUID<span class="label label-primary pull-right">{{hubConfig.hub.uuid}}</span></li>
+                                <li class="list-group-item">IP Address <span class="label label-primary pull-right">{{hubConfig.hub.ipAddress}}</span></li>
+                                <li class="list-group-item">Localhost <span class="label label-primary pull-right">{{hubConfig.hub.localhost}}</span></li>
                                 <li class="list-group-item">Online
                                     <div class="pull-right">
-                                        <i class="fa fa-power-off fa-lg" ng-class="{'text-success':selectedHub.online, 'text-muted':!selectedHub.online}"></i>
-                                        <!--<toggle-switch state="{{selectedHub.online}}"></toggle-switch>-->
+                                        <i class="fa fa-power-off fa-lg" ng-class="{'text-success':hubConfig.hub.online, 'text-muted':!hubConfig.hub.online}"></i>
+                                        <!--<toggle-switch state="{{hubConfig.hub.online}}"></toggle-switch>-->
                                     </div>
                                 </li>
                             </ul>
