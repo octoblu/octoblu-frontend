@@ -18,21 +18,21 @@
             </div>
             <br /><br />
 
-            <div ng-show="subdevices">
+            <div ng-hide="!device.subdevices">
                 Select a Gateway Subdevice:<br /><br />
-                <select ng-model="subdevice" ng-options="subdevice.name for subdevice in subdevices" class="form-control" id="subdevice" ng-change="getSchema(device, subdevice)"></select>
+                <select ng-model="subdevice" ng-options="subdevice.name for subdevice in device.subdevices" class="form-control" id="subdevice"></select>
                 <br /><br />
             </div>
 
-            <div ng-show="schema">
-                <div id="device-msg-editor"></div>
+            <div ng-hide="!schema">
+                <schema-editor control="schemaEditor" schema="schema" model="msg" allow-json-edit="true" additional-properties="true"></schema-editor>
             </div>
 
 
         </div>
-        <input ng-model="sendText" class="form-control" placeholder="Message">
+        <!--<input  ng-show="!subdevice" ng-hide="subdevice"  ng-model="sendText" class="form-control" placeholder="Message">-->
         <br />
         <button ng-click="sendMessage()" class="btn btn-primary">Send</button>
-        <span style="color:green;">{{messageOutput}}</span><br />
+        <span style="color:green;"><pre>{{messageOutput | json }}</pre></span><br />
         <br /><br />
 

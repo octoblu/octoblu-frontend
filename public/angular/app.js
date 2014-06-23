@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'skynet.im', //change to the skynet.im instance
-        'port': '80'
+        'host': '127.0.0.1', //change to the skynet.im instance
+        'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -197,6 +197,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
+                controller : 'MessagingController',
                 templateUrl: 'pages/connector/advanced/messaging.html'
             })
             //end refactor states

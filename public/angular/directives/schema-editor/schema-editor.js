@@ -40,6 +40,10 @@ angular.module('octobluApp')
                     scope.control.validate = function () {
                         return editor.validate();
                     };
+
+                    scope.control.getValue = function () {
+                        return editor.getValue();
+                    };
                 }
             }
         }
