@@ -4,7 +4,7 @@ angular.module('octobluApp')
         $scope.user = currentUser;
         $scope.smartDevices = availableDeviceTypes;
         $scope.devices = myDevices;
-        $scope.hasHubs = !!_.findWhere(myDevices, {type: 'gateway'});
+        $scope.hasHubs = !! myGateways.length;
 
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
@@ -70,51 +70,53 @@ angular.module('octobluApp')
 
         $scope.editSubDevice = function (subdevice, hub) {
 
-            /*
-             TODO
-             * Check if the sub device is installed for the current hub
-             * install the sub device refresh the current device to get the list of updated plugins installed
-             * pass the installed plugin for the sub-device to the modal to the modal
-             *
-             */
-            var subDeviceModal = $modal.open({
+            var subdeviceModal = $modal.open({
                 templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
-                controller: 'AddEditSubdeviceController',
+                controller: 'AddEditSubDeviceController',
                 backdrop: true,
                 resolve: {
-                    mode: function () {
-                        return 'EDIT';
-                    },
-
-                    subdevice: function () {
-                        return null;
-                    },
                     hubs: function () {
                         return [hub];
                     },
-                    smartDevices: function () {
-                        return $scope.smartDevices;
+                    pluginName: function () {
+                        return subdevice.type;
                     },
-                    plugins: function () {
-                        return hub.plugins;
+                    subdevice: function () {
+                     return subdevice;
+                    },
+                    availableDeviceTypes: function () {
+                        return availableDeviceTypes;
                     }
                 }
             });
 
-            subDeviceModal.result.then(function (options) {
-                skynetService.gatewayConfig({
-                    "uuid": hub.uuid,
-                    "token": hub.token,
-                    "method": "updateSubdevice",
-                    "type": subdevice.type,
-                    "name": subdevice.name,
-                    "options": options
-                }).then(function (updateResult) {
-                    console.log(updateResult);
-                });
-                subdevice.options = options;
-            }, function () {
+            subdeviceModal.result.then(function (result) {
+                var hub = result.hub, updatedSubdevice = result.subdevice;
+                if (!subdevice) {
+                    skynetService.createSubdevice({
+                        uuid: hub.uuid,
+                        token: hub.token,
+                        type: subdeviceType,
+                        name: updatedSubdevice.name,
+                        options: updatedSubdevice.options
+                    }).then(function (response) {
+                        hub.subdevices.push(response.result);
+                    });
+                } else {
+                    skynetService.updateSubdevice({
+                        uuid: hub.uuid,
+                        token: hub.token,
+                        type: subdeviceType,
+                        name: updatedSubdevice.name,
+                        options: updatedSubdevice.options
+                    }).then(function (response) {
+                        console.log(response);
+                        angular.copy(updatedSubdevice, subdevice);
+                    });
+                }
 
+            }, function () {
+                console.log('cancelled');
             });
 
         };
@@ -125,16 +127,14 @@ angular.module('octobluApp')
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
                 function () {
                     $log.info('ok clicked');
-                    skynetService.gatewayConfig({
+                    skynetService.deleteSubdevice({
                         "uuid": hub.uuid,
                         "token": hub.token,
-                        "method": "deleteSubdevice",
                         "name": subdevice.name
                     }).then(
-                        function (deleteResult) {
-                            if (deleteResult.result === 'ok') {
-                                hub.subdevices = _.without(hub.subdevices, subdevice);
-                            }
+                        function (response) {
+                            console.log(response);
+                            hub.subdevices = _.without(hub.subdevices, subdevice);
                         });
                 });
         };
@@ -235,7 +235,7 @@ angular.module('octobluApp')
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state, $http, currentUser, unclaimedDevices, deviceService) {
 
         $scope.availableGateways = _.filter(unclaimedDevices, function (device) {
-            return device.type === 'gateway';
+            return device.type === 'gateway' && device.online === true;
         }) || [];
 
 

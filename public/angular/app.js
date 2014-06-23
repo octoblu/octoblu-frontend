@@ -85,7 +85,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     },
                     myGateways: function (myDevices, skynetService, $q) {
                         var gateways = [];
-                        return $q.all(_.map(_.filter(myDevices, {type: 'gateway'}), function (gateway) {
+                        return $q.all(_.map(_.filter(myDevices, {type: 'gateway', online : true }), function (gateway) {
                                 return skynetService.gatewayConfig({
                                     "uuid": gateway.uuid,
                                     "token": gateway.token,
@@ -197,6 +197,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
+                controller : 'MessagingController',
                 templateUrl: 'pages/connector/advanced/messaging.html'
             })
             //end refactor states
