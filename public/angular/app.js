@@ -3,7 +3,7 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'skynet.im, //change to the skynet.im instance
+        'host': 'skynet.im', //change to the skynet.im instance
         'port': '80'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
