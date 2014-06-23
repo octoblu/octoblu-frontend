@@ -1,6 +1,6 @@
 {
   "name": "octoblu",
-  "version": "0.2.2-alpha",
+  "version": "0.3.4.1-alpha",
   "homepage": "https://github.com/skynetim/octoblu",
   "description": "Octoblu is a device automation platform built on top of Skynet.im",
   "appPath": "public",
