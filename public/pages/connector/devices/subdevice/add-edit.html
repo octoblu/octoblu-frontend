@@ -1,0 +1,23 @@
+<div class="modal-header" >
+    <img ng-src="{{getSubDeviceLogo(subdevice)}}" class="img-rounded pull-left" height="48px" width="48px">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title text-center" style="padding-bottom: 1em;" id="myModalLabel">
+        <select ng-model="hub" ng-options="hub.name for hub in hubs"></select>
+    </h3>
+
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Subdevice Name</label>
+            <div class="col-sm-10">
+                <input ng-disabled="!nameEditable" ng-change="validateSubdeviceName()" type="text" name="deviceName"  ng-model="subdevice.name" placeholder="Name" class="form-control" required="required">
+            </div>
+        </div>
+    </form>
+    <schema-editor control="schemaEditor" schema="plugin.optionsSchema" model="subdevice.options" allow-json-edit="false"></schema-editor>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()"><i class="fa fa-times"></i>Cancel</button>
+    <button type="submit" class="btn btn-success" ng-click="save()" ng-class="{disabled : ! subdevice.name }"><i class="fa fa-save"></i>Save changes</button>
+</div>
