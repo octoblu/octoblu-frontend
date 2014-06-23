@@ -48,41 +48,14 @@ angular.module('octobluApp')
 
         };
     })
-    .controller('hubController', function ($scope, $modal, myDevices, skynetService, currentUser, PluginService, availableDeviceTypes) {
+    .controller('hubController', function ($scope, $modal, myDevices,
+                                           myGateways, skynetService, currentUser, PluginService, availableDeviceTypes) {
 
-        $scope.claimedHubs = _.filter(myDevices, function (device) {
-            return device.type === 'gateway';
-        });
-
-        _.each($scope.claimedHubs, function (gateway) {
-            skynetService.gatewayConfig({
-                "uuid": gateway.uuid,
-                "token": gateway.token,
-                "method": "configurationDetails"
-            }).then(function (response) {
-                gateway.subdevices = response.result.subdevices || [];
-                gateway.plugins = response.result.plugins || [];
-            });
-        });
+        $scope.claimedHubs = myGateways;
         $scope.availableDeviceTypes = availableDeviceTypes;
 
         $scope.editSubdevice = function (hub, subdeviceType, subdevice) {
-            var installedPlugin = _.findWhere(hub.plugins, {name: subdeviceType});
-            if (!installedPlugin) {
-                PluginService.installPlugin(hub, subdeviceType)
-                    .then(function (result) {
-                        return PluginService.getInstalledPlugins(hub);
-                    })
-                    .then(function (result) {
-                        console.log(result);
-                        hub.plugins = result.result;
-                    })
-                    .then(function () {
-                        return $scope.configureSubdevice(hub, subdeviceType, subdevice);
-                    });
-            } else {
-                return $scope.configureSubdevice(hub, subdeviceType, subdevice);
-            }
+            return $scope.configureSubdevice(hub, subdeviceType, subdevice);
         };
 
         $scope.configureSubdevice = function (hub, subdeviceType, subdevice) {
@@ -92,20 +65,20 @@ angular.module('octobluApp')
                 controller: 'AddEditSubDeviceController',
                 backdrop: true,
                 resolve: {
-                    selectedHub: function () {
-                        return hub;
+                    hubs: function () {
+                        return [hub];
                     },
-                    plugin: function () {
-                        return _.findWhere(hub.plugins, {name: subdeviceType});
+                    pluginName: function () {
+                        return subdeviceType;
                     },
                     subdevice: function () {
                         if (!subdevice) {
                             return  PluginService.getDefaultOptions(hub, subdeviceType)
                                 .then(function (response) {
-                                    return {options: response.result };
+                                    return {options: response.result, type: subdeviceType };
                                 }, function (error) {
                                     console.log(error);
-                                    return { options: {}};
+                                    return { options: {}, type: subdeviceType};
                                 });
                         } else {
                             return subdevice;
@@ -117,7 +90,8 @@ angular.module('octobluApp')
                 }
             });
 
-            subdeviceModal.result.then(function (updatedSubdevice) {
+            subdeviceModal.result.then(function (result) {
+                var hub = result.hub, updatedSubdevice = result.subdevice;
                 if (!subdevice) {
                     skynetService.createSubdevice({
                         uuid: hub.uuid,

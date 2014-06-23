@@ -34,7 +34,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/',
                 templateUrl: 'pages/login.html',
                 controller: 'loginController'
-            })            
+            })
             .state('home2', {
                 url: '/home2',
                 templateUrl: 'pages/home2.html',
@@ -80,19 +80,36 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     availableDeviceTypes: function (channelService) {
                         return channelService.getSmartDevices();
                     },
-                    myDevices : function(currentUser, deviceService){
+                    myDevices: function (currentUser, deviceService) {
                         return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    },
+                    myGateways: function (myDevices, skynetService, $q) {
+                        var gateways = [];
+                        return $q.all(_.map(_.filter(myDevices, {type: 'gateway'}), function (gateway) {
+                                return skynetService.gatewayConfig({
+                                    "uuid": gateway.uuid,
+                                    "token": gateway.token,
+                                    "method": "configurationDetails"
+                                }).then(function (response) {
+                                    gateway.subdevices = response.result.subdevices || [];
+                                    gateway.plugins = response.result.plugins || [];
+                                    gateways.push(gateway);
+                                });
+                            })
+                        ).then(function () {
+                                return gateways;
+                            });
                     }
                 }
             })
             .state('connector.devices', {
                 url: '/devices',
-                abstract : true,
+                abstract: true,
                 template: '<ui-view></ui-view>'
             })
             .state('connector.devices.all', {
-                url : '',
-                controller : 'DeviceController',
+                url: '',
+                controller: 'DeviceController',
                 templateUrl: 'pages/connector/devices/index.html'
             })
             .state('connector.devices.detail', {
@@ -105,8 +122,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 abstract: true,
                 controller: 'DeviceWizardController',
                 templateUrl: 'pages/connector/devices/wizard/index.html',
-                resolve : {
-                    unclaimedDevices : function(currentUser, deviceService){
+                resolve: {
+                    unclaimedDevices: function (currentUser, deviceService) {
                         return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     }
                 }
@@ -125,12 +142,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/channels',
                 template: '<ui-view />',
                 controller: 'ChannelController',
-                resolve : {
-                    activeChannels : function(currentUser, channelService){
+                resolve: {
+                    activeChannels: function (currentUser, channelService) {
                         return channelService.getActiveChannels(currentUser.skynetuuid);
 
                     },
-                    availableChannels : function(currentUser, channelService){
+                    availableChannels: function (currentUser, channelService) {
                         return channelService.getAvailableChannels(currentUser.skynetuuid);
                     }
                 }
@@ -190,7 +207,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/admin/index.html',
                 controller: 'adminController',
                 resolve: {
-                    operatorsGroup : function(GroupService, currentUser){
+                    operatorsGroup: function (GroupService, currentUser) {
                         return GroupService.getOperatorsGroup(currentUser.skynetuuid, currentUser.skynettoken)
                     },
                     currentUser: function (userService) {
@@ -213,7 +230,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',
                 resolve: {
-                    resourcePermission : function(allGroupResourcePermissions, $stateParams){
+                    resourcePermission: function (allGroupResourcePermissions, $stateParams) {
                         return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
                     },
                     sourcePermissionsGroup: function (resourcePermission, GroupService, currentUser) {
