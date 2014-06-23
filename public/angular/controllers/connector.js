@@ -48,8 +48,7 @@ angular.module('octobluApp')
 
         };
     })
-    .controller('hubController', function ($scope, $modal, myDevices,
-                                           myGateways, skynetService, currentUser, PluginService, availableDeviceTypes) {
+    .controller('hubController', function ($scope, $modal, myDevices,myGateways, skynetService, currentUser, PluginService, availableDeviceTypes) {
 
         $scope.claimedHubs = myGateways;
         $scope.availableDeviceTypes = availableDeviceTypes;

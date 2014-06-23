@@ -4,7 +4,7 @@ angular.module('octobluApp')
         $scope.user = currentUser;
         $scope.smartDevices = availableDeviceTypes;
         $scope.devices = myDevices;
-        $scope.hasHubs = !!_.findWhere(myDevices, {type: 'gateway'});
+        $scope.hasHubs = !! myGateways.length;
 
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
@@ -235,7 +235,7 @@ angular.module('octobluApp')
     .controller('DeviceWizardController', function ($rootScope, $cookies, $scope, $state, $http, currentUser, unclaimedDevices, deviceService) {
 
         $scope.availableGateways = _.filter(unclaimedDevices, function (device) {
-            return device.type === 'gateway';
+            return device.type === 'gateway' && device.online === true;
         }) || [];
 
 
