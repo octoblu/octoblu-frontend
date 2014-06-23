@@ -144,7 +144,14 @@ angular.module('octobluApp')
         };
     })
     .controller('MessagingController', function($scope, currentUser, myDevices, myGateways, skynetService, PluginService){
-        $scope.devices = myDevices;
+        $scope.devices = _.clone(myDevices);
+        $scope.devices.push({
+            name : 'Me',
+            uuid : currentUser.skynetuuuid,
+            token : currentUser.skynettoken,
+            type : 'user'
+        });
+
         $scope.schemaEditor = {};
         $scope.msg;
 
