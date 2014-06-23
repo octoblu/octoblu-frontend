@@ -12,6 +12,21 @@ var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
 
+    app.post('/api/auth/login', passport.authenticate('local-login'), function(req, res) {
+        if(req.user && req.user._id) {
+            res.send(req.user)
+        } else {
+            res.send(401, {error: 'unauthorized'});
+        }
+    });
+
+    app.get('/api/auth', function(req, res){
+        if(req.user){
+            res.send(req.user);
+        } else {
+            res.send(401, {error: 'unauthorized'});
+        }
+    });
 
     var getApiHashCode = function(clientSecret, requestCode) {
         var toHash = clientSecret + "|" + requestCode

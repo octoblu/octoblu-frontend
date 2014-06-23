@@ -2,11 +2,12 @@
 
 angular.module('octobluApp')
 
-    .controller('loginController', function($scope, $state, $cookies) {
-
-//        var user = $.cookie("skynetuuid");
-//
-//        if (user){
-//            $state.go('dashboard');
-//        }
+    .controller('loginController', function ($rootScope, $scope, $state, $cookies, AuthService) {
+        $scope.login = function () {
+            AuthService.login($scope.email, $scope.password).then(function (user) {
+                $rootScope.currentUser = user;
+                $state.go('dashboard');
+            }, function () {
+            });
+        }
     });

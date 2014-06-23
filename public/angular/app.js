@@ -35,16 +35,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/login.html',
                 controller: 'loginController'
             })
-            .state('home2', {
-                url: '/home2',
-                templateUrl: 'pages/home2.html',
-                controller: 'homeController'
-            })
-            .state('home3', {
-                url: '/home3',
-                templateUrl: 'pages/home3.html',
-                controller: 'homeController'
-            })
             .state('terms', {
                 url: '/terms',
                 templateUrl: 'pages/terms.html',
@@ -297,64 +287,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // For any unmatched url, redirect to /
 //        $urlRouterProvider.otherwise('/');
     })
-    .run(function ($rootScope, $state, $stateParams, $cookies, skynetConfig) {
-        // TODO: Replace with proper authorization service object and eliminate checkLogin.
-        $rootScope.authorization = { isAuthenticated: false };
-
-        //TODO - remove all calls to checkLogin, create an authorization Service
-        $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
-            var user = $cookies.skynetuuid;
-
-            if (user == undefined || user == null) {
-                if (secured) {
-                    window.location.href = "/login";
-                }
-            } else {
-                var userService = $injector.get('userService');
-                userService.getUser(user, function (data) {
-                    var token;
-
-                    $scope.user_id = data._id;
-                    $scope.current_user = data;
-                    $rootScope.authorization.isAuthenticated = true;
-
-                    if (data.local) {
-                        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />');
-                        $(".user-name").html(data.local.email.toString());
-                        $scope.user = data.local.email;
-                        $scope.skynetuuid = data.local.skynetuuid;
-                        $scope.skynettoken = data.local.skynettoken;
-                        token = data.local.skynettoken;
-                    } else if (data.twitter) {
-                        $(".user-name").html('@' + data.twitter.username.toString());
-                        $scope.user = data.twitter.displayName;
-                        $scope.skynetuuid = data.twitter.skynetuuid;
-                        $scope.skynettoken = data.twitter.skynettoken;
-                        token = data.twitter.skynettoken;
-                    } else if (data.facebook) {
-                        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />');
-                        $(".user-name").html(data.facebook.name.toString());
-                        $scope.user = data.facebook.name;
-                        $scope.skynetuuid = data.facebook.skynetuuid;
-                        $scope.skynettoken = data.facebook.skynettoken;
-                        token = data.facebook.skynettoken;
-                    } else if (data.google) {
-                        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />');
-                        $(".user-name").html('+' + data.google.name.toString());
-                        $scope.user = data.google.name;
-                        $scope.skynetuuid = data.google.skynetuuid;
-                        $scope.skynettoken = data.google.skynettoken;
-                        token = data.google.skynettoken;
-                    } else {
-                        // $scope.user = data.local.email;
-                        $scope.skynetuuid = user;
-                    }
-
-
-                    cb();
-                });
-            }
-        };
+    .run(function ($rootScope) {
 
         $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
             var modalHtml = '<div class="modal-header">';
