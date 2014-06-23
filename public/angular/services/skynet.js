@@ -83,6 +83,20 @@ angular.module('octobluApp')
             deleteSubdevice: function (options) {
                 return service.gatewayConfig(_.extend({ method: 'deleteSubdevice' },
                     _.omit(options, reservedProperties)));
+            },
+            getMessage : function( cb ){
+                return skynetPromise.then(function () {
+                    skynetSocket.on('message',cb);
+                    return true;
+                });
+            },
+            sendMessage : function(options){
+                return skynetPromise.then(function () {
+                    skynetSocket.emit('message', options, function (result) {
+                        console.log('sending skynet message!');
+                    });
+                    return true;
+                });
             }
         };
         return service;
