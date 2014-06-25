@@ -47,7 +47,6 @@ angular.module('octobluApp')
                 $scope.results = "";
 
             }
-
         };
 
         //Load Top Counts Panels On init of page
@@ -134,18 +133,17 @@ angular.module('octobluApp')
         }
 
         // TODO: dynamically select better colors
-        var smoothie = new SmoothieChart({ grid: { strokeStyle: 'rgb(125, 0, 0)', fillStyle: 'rgb(60, 0, 0)', lineWidth: 1, millisPerLine: 250, verticalSections: 6 } });
+//        var smoothie = new SmoothieChart({ grid: { strokeStyle: 'rgb(125, 0, 0)', fillStyle: 'rgb(60, 0, 0)', lineWidth: 1, millisPerLine: 250, verticalSections: 6 } });
         // smoothie.addTimeSeries(line[1], { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0.4)', lineWidth: 3 });
         // smoothie.addTimeSeries(line[2], { strokeStyle: 'rgb(255, 0, 255)', fillStyle: 'rgba(255, 0, 255, 0.3)', lineWidth: 3 });
-        for (var i = 0; i < 10; i++) {
-            smoothie.addTimeSeries(line[i], { strokeStyle: 'rgb(0, ' + 255 + ', 0)', fillStyle: 'rgba(0, ' + 255 + ', 0, 0.4)', lineWidth: 3 });
-        }
+//        for (var i = 0; i < 10; i++) {
+//            smoothie.addTimeSeries(line[i], { strokeStyle: 'rgb(0, ' + 255 + ', 0)', fillStyle: 'rgba(0, ' + 255 + ', 0, 0.4)', lineWidth: 3 });
+//        }
 
-        smoothie.streamTo(document.getElementById("mycanvas"), 1000);
+//        smoothie.streamTo(document.getElementById("mycanvas"), 1000);
 
 
         var sensorGrid = [];
-
 
             $scope.sensorListen = function (sensor) {
                 console.log('sensor listen', sensor);

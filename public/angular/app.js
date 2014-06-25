@@ -32,8 +32,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'pages/login.html',
-                controller: 'loginController',
+                onEnter: function($state){
+                    $state.go('dashboard');
+                },
                 unsecured: true
             })
             .state('terms', {
@@ -95,7 +96,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                                 }).then(function (response) {
                                     gateway.subdevices = response.result.subdevices || [];
                                     gateway.plugins = response.result.plugins || [];
-                                }, function(){
+                                }, function () {
                                     console.log('couldn\'t get data for: ');
                                     console.log(gateway);
                                 });
@@ -248,7 +249,15 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('analyzer', {
                 url: '/analyzer',
                 templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController'
+                controller: 'analyzerController',
+                resolve: {
+                    currentUser: function (AuthService) {
+                        return AuthService.getCurrentUser();
+                    },
+                    myDevices: function (currentUser, deviceService) {
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    }
+                }
             })
             .state('docs', {
                 url: '/docs',

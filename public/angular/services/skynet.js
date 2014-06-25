@@ -31,7 +31,7 @@ angular.module('octobluApp')
             console.log('registering for messages');
             skynetSocket.on('message', function (channel, message) {
                 console.log('skynet sent a message');
-                $rootScope.$emit('skynet:message', message);
+                $rootScope.$broadcast('skynet:message', message);
             });
         });
 
