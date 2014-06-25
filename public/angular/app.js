@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'skynet.im', //change to the skynet.im instance
-        'port': '80'
+        'host': 'localhost', //change to the skynet.im instance
+        'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -86,8 +86,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
                     },
                     myGateways: function (myDevices, skynetService, $q) {
-                        var gateways = [];
-                        return $q.all(_.map(_.filter(myDevices, {type: 'gateway', online: true }), function (gateway) {
+                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
+                        $q.all(_.map(gateways, function (gateway) {
                                 return skynetService.gatewayConfig({
                                     "uuid": gateway.uuid,
                                     "token": gateway.token,
@@ -95,12 +95,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                                 }).then(function (response) {
                                     gateway.subdevices = response.result.subdevices || [];
                                     gateway.plugins = response.result.plugins || [];
-                                    gateways.push(gateway);
+                                }, function(){
+                                    console.log('couldn\'t get data for: ');
+                                    console.log(gateway);
                                 });
                             })
-                        ).then(function () {
-                                return gateways;
-                            });
+                        );
+                        return gateways;
                     }
                 }
             })

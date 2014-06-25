@@ -6,9 +6,11 @@ angular.module('octobluApp')
         // Get user devices
         console.log("getting devices from ownerService");
         $scope.splunk_devices = "";
+
         $scope.devices = _.filter(myDevices, function (device) {
             return device.type !== 'gateway';
         });
+
         $scope.deviceLookup = {};
         _.each($scope.devices, function (device) {
             $scope.splunk_devices += device.uuid + " OR ";
@@ -164,7 +166,8 @@ angular.module('octobluApp')
                     });
             };
 
-            socket.on('message', function (message) {
+            $scope.$on('skynet:message', function (event, message) {
+                console.log('got message');
                 // remove standard data from payload
                 var sensorData = message.payload;
                 console.log(sensorData);

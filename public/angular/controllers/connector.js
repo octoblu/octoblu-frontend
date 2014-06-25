@@ -147,15 +147,13 @@ angular.module('octobluApp')
         $scope.devices = _.sortBy(_.clone(myDevices), 'name');
         $scope.devices.unshift({
             name : 'Me',
-            uuid : currentUser.skynetuuuid,
+            uuid : currentUser.skynetuuid,
             token : currentUser.skynettoken,
             type : 'user'
         });
 
         $scope.schemaEditor = {};
-        $scope.msg;
-
-        skynetService.getMessage(function(channel, message){
+        $scope.$on('skynet:message', function(channel, message){
             alert(JSON.stringify(message, null, true));
         });
 
@@ -168,7 +166,7 @@ angular.module('octobluApp')
         });
 
         $scope.$watch('device', function(newDevice, oldDevice){
-
+            $scope.subdevice = null;
             if(newDevice || $scope.sendUuid ){
                 if(newDevice.type !== 'gateway'){
                     $scope.schema = {};
@@ -179,7 +177,6 @@ angular.module('octobluApp')
         });
 
         $scope.$watch('subdevice', function(newSubdevice, oldSubdevice){
-
             if(newSubdevice){
                var plugin = _.findWhere($scope.device.plugins, {name : newSubdevice.type});
                if(! plugin ){
@@ -209,7 +206,7 @@ angular.module('octobluApp')
              if no schema exists, they are doing this manually and we check if the UUID field is populated and that
              there is a message to send.
              */
-            var sender = $scope.fromDevice || { uuid : currentUser.skynetuuid, token : currentUser.skynettoken};
+            var sender = $scope.fromDevice;
             if( $scope.subdevice ){
                 skynetService.sendMessage({
                    fromUuid : sender.uuid,
