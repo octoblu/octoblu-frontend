@@ -33,22 +33,26 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('home', {
                 url: '/',
                 templateUrl: 'pages/login.html',
-                controller: 'loginController'
+                controller: 'loginController',
+                unsecured: true
             })
             .state('terms', {
                 url: '/terms',
                 templateUrl: 'pages/terms.html',
-                controller: 'termsController'
+                controller: 'termsController',
+                unsecured: true
             })
             .state('about', {
                 url: '/about',
                 templateUrl: 'pages/about.html',
-                controller: 'aboutController'
+                controller: 'aboutController',
+                unsecured: true
             })
             .state('contact', {
                 url: '/contact',
                 templateUrl: 'pages/contact.html',
-                controller: 'contactController'
+                controller: 'contactController',
+                unsecured: true
             })
             .state('profile', {
                 url: '/profile',
@@ -58,7 +62,15 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: 'pages/dashboard.html',
-                controller: 'dashboardController'
+                controller: 'dashboardController',
+                resolve: {
+                    currentUser: function (AuthService) {
+                        return AuthService.getCurrentUser();
+                    },
+                    myDevices: function (currentUser, deviceService) {
+                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    }
+                }
             })
             .state('connector', {
                 url: '/connector',
@@ -75,7 +87,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     },
                     myGateways: function (myDevices, skynetService, $q) {
                         var gateways = [];
-                        return $q.all(_.map(_.filter(myDevices, {type: 'gateway', online : true }), function (gateway) {
+                        return $q.all(_.map(_.filter(myDevices, {type: 'gateway', online: true }), function (gateway) {
                                 return skynetService.gatewayConfig({
                                     "uuid": gateway.uuid,
                                     "token": gateway.token,
@@ -187,7 +199,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('connector.advanced.messaging', {
                 url: '/messaging',
-                controller : 'MessagingController',
+                controller: 'MessagingController',
                 templateUrl: 'pages/connector/advanced/messaging.html'
             })
             //end refactor states
@@ -240,7 +252,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('docs', {
                 url: '/docs',
                 templateUrl: 'pages/docs.html',
-                controller: 'docsController'
+                controller: 'docsController',
+                unsecured: true
             })
             .state('designer', {
                 url: '/designer',
@@ -259,27 +272,32 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('pricing', {
                 url: '/pricing',
                 templateUrl: 'pages/pricing.html',
-                controller: 'pricingController'
+                controller: 'pricingController',
+                unsecured: true
             })
             .state('faqs', {
                 url: '/faqs',
                 templateUrl: 'pages/faqs.html',
-                controller: 'faqsController'
+                controller: 'faqsController',
+                unsecured: true
             })
             .state('login', {
                 url: '/login',
                 templateUrl: 'pages/login.html',
-                controller: 'loginController'
+                controller: 'loginController',
+                unsecured: true
             })
             .state('signup', {
                 url: '/signup',
                 templateUrl: 'pages/signup.html',
-                controller: 'signupController'
+                controller: 'signupController',
+                unsecured: true
             })
             .state('forgot', {
                 url: '/forgot',
                 templateUrl: 'pages/forgot.html',
-                controller: 'forgotController'
+                controller: 'forgotController',
+                unsecured: true
             });
 
         $locationProvider.html5Mode(true);
@@ -287,7 +305,18 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // For any unmatched url, redirect to /
 //        $urlRouterProvider.otherwise('/');
     })
-    .run(function ($rootScope) {
+    .run(function ($rootScope, $state, $urlRouter, AuthService) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+            if (!toState.unsecured) {
+                return AuthService.getCurrentUser().then(function (user) {
+                    console.log('got a user!');
+                    console.log(user);
+                }, function (err) {
+                    event.preventDefault();
+                    $state.go('login');
+                });
+            }
+        });
 
         $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
             var modalHtml = '<div class="modal-header">';
