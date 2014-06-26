@@ -316,7 +316,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 //        $urlRouterProvider.otherwise('/');
     })
     .run(function ($rootScope, $state, $urlRouter, AuthService) {
-        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeStart', function (event, toState) {
             if (!toState.unsecured) {
                 return AuthService.getCurrentUser().then(function (user) {
                     console.log('got a user!');
@@ -326,6 +326,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     $state.go('login');
                 });
             }
+        });
+
+        //Just in case we want a user object in an unauthenticated state, we have to do this separately.
+        AuthService.getCurrentUser().then(function(user){
+            $rootScope.currentUser = user;
         });
 
         $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {

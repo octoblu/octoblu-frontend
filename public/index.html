@@ -19,17 +19,13 @@
 
     <title>Octoblu - Internet of Everything!</title>
 
-    <!-- SCROLLS -->
-    <!-- <link href="assets/stylesheets/bootstrap-switch/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" /> -->
     <link href="assets/stylesheets/light-theme.css" media="all" id="color-settings-body-color" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/theme-colors.css" media="all" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/demo.css" media="all" rel="stylesheet" type="text/css" />
-    <!-- <link href="assets/stylesheets/erosIntro.css" rel="stylesheet" media="screen"> -->
     <link href="assets/stylesheets/style.css" rel="stylesheet" media="screen">
     <link href="assets/stylesheets/custom.css" rel="stylesheet">
     <link href="assets/stylesheets/animation.css" rel="stylesheet">
     <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet" >
-    <!-- <link href="assets/stylesheets/athenaSlide.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.css" type="text/css"/>
     <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.css" type="text/css"/>
@@ -69,12 +65,14 @@
         <a class="toggle-nav btn pull-left" href="">
             <i class="icon-reorder"></i>
         </a>
-        <ul class="nav" ng-show="authorization.isAuthenticated">
+        <ul class="nav">
             <li class="auth"><!-- <a href="/login"><i class="fa fa-lock"></i> Sign In/Up</a> --></li>
             <li class="dropdown dark user-menu">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span class="avatar"></span>
-                    <span class="user-name"></span>
+                    <span class="avatar">
+                        <img width="23" height="23" ng-src="{{currentUser.avatarUrl}}">
+                    </span>
+                    <span class="user-name">{{currentUser.displayName}}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
