@@ -49,7 +49,7 @@ angular.module('octobluApp')
                         .then(function () {
                             var index = $scope.allGroupResourcePermissions.indexOf(resourcePermission);
                             $scope.allGroupResourcePermissions.splice(index, 1);
-                            $state.go('admin.all');
+                            $state.go('.all');
                         });
                 });
         };

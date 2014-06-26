@@ -36,7 +36,7 @@
 				        <div class="channel_icon-grid-view mod-index-0 pop-over"
 				            ng-class="{'activechannel': isActive(channel)}"
 						  	data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" style="cursor:pointer;">
-                            <a href ui-sref="connector.channels.detail({name : channel.name})">
+                            <a href ui-sref="^.detail({name : channel.name})">
                                 <img ng-src="{{channel.logo}}" width="70" height="70"/>
                             </a>
               </div>

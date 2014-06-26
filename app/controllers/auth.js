@@ -38,7 +38,7 @@ module.exports = function (app, passport, config) {
         if (req.logout) {
             req.logout();
         }
-        res.redirect('/');
+        res.send(200);
     }
 
     var getApiHashCode = function (clientSecret, requestCode) {

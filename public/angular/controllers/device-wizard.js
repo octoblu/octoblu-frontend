@@ -21,10 +21,10 @@ angular.module('octobluApp')
                     });
                 }).then(function (device) {
                     console.log(device);
-                    $state.go('connector.devices.all', {}, {reload: true});
+                    $state.go('ob.connector.devices.all', {}, {reload: true});
                 }, function (error) {
                     console.log(error);
-                    $state.go('connector.devices.all', {}, {reload: true});
+                    $state.go('ob.connector.devices.all', {}, {reload: true});
                 });
     };
 

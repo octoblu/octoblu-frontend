@@ -6,7 +6,7 @@ angular.module('octobluApp')
         $scope.login = function () {
             AuthService.login($scope.email, $scope.password).then(function (user) {
                 $rootScope.currentUser = user;
-                $state.go('dashboard');
+                $state.go('ob.dashboard');
             }, function () {
             });
         }

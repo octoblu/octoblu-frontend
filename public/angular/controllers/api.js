@@ -25,7 +25,7 @@ angular.module('octobluApp')
         });
 
         $scope.editCustom = function () {
-            $state.go('connector.advanced.channels.editor', { name: $scope.channel.name });
+            $state.go('ob.connector.advanced.channels.editor', { name: $scope.channel.name });
         };
 
         $scope.open = function () {
@@ -208,7 +208,7 @@ angular.module('octobluApp')
                 if (data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
-                    $state.go('connector.advanced.channels.editor', { name: data.name });
+                    $state.go('ob.connector.advanced.channels.editor', { name: data.name });
                 }
             });
 

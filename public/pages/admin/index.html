@@ -112,7 +112,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 group-summary">
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <a class="pull-left btn btn-default" ui-sref="admin.all"><i
+                        <a class="pull-left btn btn-default" ui-sref=".all"><i
                                 class="fa fa-th-large"></i>All</a>
 
                         <form class="form-inline pull-right" role="form">
@@ -130,7 +130,7 @@
                         <div class="panel-heading group-summary-panel-heading">
                             <h4>
                             <i class="fa fa-users"></i>
-                            <a ui-sref="admin.detail({ 'uuid' : resourcePermission.uuid })" class="bg-primary">{{resourcePermission.name}}</a>
+                            <a ui-sref=".detail({ 'uuid' : resourcePermission.uuid })" class="bg-primary">{{resourcePermission.name}}</a>
                             <a href class="pull-right bg-primary" tooltip="Delete {{resourcePermission.name}}" tooltip-placement="top"
                                tooltip-popup-delay="5" ng-click="deleteResourcePermission(resourcePermission)">
                                     <i class="fa fa-trash-o fa-lg"></i>

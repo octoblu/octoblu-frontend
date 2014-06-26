@@ -351,7 +351,7 @@ angular.module('octobluApp')
 
         $scope.openDetails = function (channel) {
             // $scope.channel = channel;
-            $state.go('connector.channels.detail', { name: channel.name });
+            $state.go('ob.connector.channels.detail', { name: channel.name });
         };
 
         $scope.isActive = function (channel) {
