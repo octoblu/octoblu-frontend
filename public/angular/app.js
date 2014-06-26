@@ -322,6 +322,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     console.log('got a user!');
                     console.log(user);
                 }, function (err) {
+                    console.log('LOGIN ERROR:');
+                    console.log(err);
                     event.preventDefault();
                     $state.go('login');
                 });
@@ -332,6 +334,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         AuthService.getCurrentUser().then(function(user){
             $rootScope.currentUser = user;
         });
+
+        $rootScope.logout = AuthService.logout;
 
         $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
             var modalHtml = '<div class="modal-header">';
