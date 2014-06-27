@@ -78,12 +78,12 @@ angular.module('octobluApp')
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
         PermissionsService
-            .allSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .allSourcePermissions($scope.device.resource.uuid)
             .then(function (permissions) {
                 $scope.sourcePermissions = permissions;
             });
         PermissionsService
-            .flatSourcePermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .flatSourcePermissions($scope.device.resource.uuid)
             .then(function (permissions) {
                 $scope.sourceGroups = _.uniq(permissions, function (permission) {
                     return permission.uuid;
@@ -91,7 +91,7 @@ angular.module('octobluApp')
             });
 
         PermissionsService
-            .flatTargetPermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .flatTargetPermissions($scope.device.resource.uuid)
             .then(function (permissions) {
                 $scope.targetGroups = _.uniq(permissions, function (permission) {
                     return permission.uuid;
@@ -99,7 +99,7 @@ angular.module('octobluApp')
             });
 
         PermissionsService
-            .allTargetPermissions(currentUser.skynetuuid, currentUser.skynettoken, $scope.device.resource.uuid)
+            .allTargetPermissions($scope.device.resource.uuid)
             .then(function (permissions) {
                 $scope.targetPermissions = permissions;
             });

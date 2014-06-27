@@ -13,12 +13,12 @@ angular.module('octobluApp')
             $scope.channel = data;
             $scope.custom_tokens = data.custom_tokens;
 
-            for (var l = 0; l < $scope.current_user.api.length; l++) {
-                if ($scope.current_user.api[l].name === $scope.channel.name) {
-                    $scope.user_channel = $scope.current_user.api[l];
+            for (var l = 0; l < $scope.currentUser.api.length; l++) {
+                if ($scope.currentUser.api[l].name === $scope.channel.name) {
+                    $scope.user_channel = $scope.currentUser.api[l];
 
-                    if ($scope.current_user.api[l].custom_tokens)
-                        $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+                    if ($scope.currentUser.api[l].custom_tokens)
+                        $scope.custom_tokens = $scope.currentUser.api[l].custom_tokens;
                     $scope.has_user_channel = true;
                 }
             }
@@ -56,7 +56,6 @@ angular.module('octobluApp')
                     });
 
                 }
-                ;
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -116,7 +115,7 @@ angular.module('octobluApp')
             }
 
             return false;
-        }
+        };
 
         $scope.save = function () {
             if (!$scope.channel) return;
@@ -134,7 +133,7 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function (data) {
-                    $scope.current_user = data;
+                    $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });
@@ -217,7 +216,7 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function (data) {
-                    $scope.current_user = data;
+                    $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });
@@ -372,12 +371,12 @@ angular.module('octobluApp')
             $scope.channel = data;
             $scope.custom_tokens = data.custom_tokens;
 
-            for (var l = 0; l < $scope.current_user.api.length; l++) {
-                if ($scope.current_user.api[l].name === $scope.channel.name) {
-                    $scope.user_channel = $scope.current_user.api[l];
+            for (var l = 0; l < $scope.currentUser.api.length; l++) {
+                if ($scope.currentUser.api[l].name === $scope.channel.name) {
+                    $scope.user_channel = $scope.currentUser.api[l];
 
-                    if ($scope.current_user.api[l].custom_tokens)
-                        $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+                    if ($scope.currentUser.api[l].custom_tokens)
+                        $scope.custom_tokens = $scope.currentUser.api[l].custom_tokens;
                     $scope.has_user_channel = true;
                 }
             }
@@ -433,7 +432,7 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function (data) {
-                    $scope.current_user = data;
+                    $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });
@@ -464,12 +463,12 @@ angular.module('octobluApp')
             $scope.channel = data;
             $scope.custom_tokens = data.custom_tokens;
 
-            for (var l = 0; l < $scope.current_user.api.length; l++) {
-                if ($scope.current_user.api[l].name === $scope.channel.name) {
-                    $scope.user_channel = $scope.current_user.api[l];
+            for (var l = 0; l < $scope.currentUser.api.length; l++) {
+                if ($scope.currentUser.api[l].name === $scope.channel.name) {
+                    $scope.user_channel = $scope.currentUser.api[l];
 
-                    if ($scope.current_user.api[l].custom_tokens)
-                        $scope.custom_tokens = $scope.current_user.api[l].custom_tokens;
+                    if ($scope.currentUser.api[l].custom_tokens)
+                        $scope.custom_tokens = $scope.currentUser.api[l].custom_tokens;
                     $scope.has_user_channel = true;
                 }
             }
@@ -523,8 +522,8 @@ angular.module('octobluApp')
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function (data) {
-                    $scope.current_user = data;
+                userService.activateNoAuthChannel(channel.name, function (data) {
+                    $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });

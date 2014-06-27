@@ -4,6 +4,7 @@ angular.module('octobluApp')
 
         //TODO: move me to the eventual root controller.
         function getProfileUrl(user) {
+
             if (user.local) {
                 user.avatarUrl = 'http://avatars.io/email/' + user.local.email.toString();
             } else if (user.twitter) {
@@ -17,8 +18,8 @@ angular.module('octobluApp')
 
         function loginHandler(result) {
             currentUser = result.data;
-            $http.defaults.headers.skynet_auth_uuid = currentUser.skynetuuid;
-            $http.defaults.headers.skynet_auth_token = currentUser.skynettoken;
+            $http.defaults.headers.common.skynet_auth_uuid = currentUser.skynetuuid;
+            $http.defaults.headers.common.skynet_auth_token = currentUser.skynettoken;
             $cookies.skynetuuid = currentUser.skynetuuid;
             $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);
@@ -27,8 +28,8 @@ angular.module('octobluApp')
 
         function logoutHandler(err) {
             currentUser = undefined;
-            delete $http.defaults.headers.skynet_auth_uuid;
-            delete $http.defaults.headers.skynet_auth_token;
+            delete $http.defaults.common.headers.skynet_auth_uuid;
+            delete $http.defaults.common.headers.skynet_auth_token;
             delete $cookies.skynetuuid;
             delete $cookies.skynettoken;
         }

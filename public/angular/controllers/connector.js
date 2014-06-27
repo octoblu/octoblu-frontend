@@ -628,7 +628,7 @@ angular.module('octobluApp')
                 function () {
                     $log.info('ok clicked');
                     var gateway_to_delete = $scope.gateways[idx];
-                    deviceService.deleteDevice(gateway_to_delete.uuid, { skynetuuid: $scope.skynetuuid, skynettoken: $scope.skynettoken }, function (error, data) {
+                    deviceService.deleteDevice(gateway_to_delete.uuid, function (error, data) {
                         if (!error) {
                             $scope.gateways.splice(idx, 1);
                         }

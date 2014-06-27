@@ -1,6 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function (skynetService, $scope, $q, $log,
-                                              $state, $http, $cookies, $modal, $timeout, currentUser, myDevices, availableDeviceTypes, deviceService) {
+    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $cookies, $modal, $timeout, currentUser, myDevices, availableDeviceTypes, deviceService) {
 
         $scope.user = currentUser;
         $scope.smartDevices = availableDeviceTypes;
@@ -9,7 +8,7 @@ angular.module('octobluApp')
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {
-                    deviceService.deleteDevice(device.uuid, currentUser.skynetuuid, currentUser.skynettoken)
+                    deviceService.deleteDevice(device.uuid)
                         .then(function (device) {
                             if (device) {
                                 $scope.devices = _.without($scope.devices, _.findWhere($scope.devices, {uuid: device.uuid}));
@@ -38,20 +37,9 @@ angular.module('octobluApp')
                         },
                         subdevice: function () {
                             return null;
-//                            if (!subdevice) {
-//                                return  PluginService.getDefaultOptions(hub, subdeviceType)
-//                                    .then(function (response) {
-//                                        return {options: response.result };
-//                                    }, function (error) {
-//                                        console.log(error);
-//                                        return { options: {}};
-//                                    });
-//                            } else {
-//                                return subdevice;
-//                            }
                         },
-                        hubs : function(){
-                           return _.filter($scope.devices, {type : 'gateway'});
+                        hubs: function () {
+                            return _.filter($scope.devices, {type: 'gateway'});
                         },
                         availableDeviceTypes: function () {
                             return availableDeviceTypes;
@@ -88,4 +76,4 @@ angular.module('octobluApp')
                 });
             }
         }
-    })
+    });
