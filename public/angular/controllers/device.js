@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $cookies, $modal, $timeout, currentUser, myDevices, availableDeviceTypes, deviceService) {
+    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, availableDeviceTypes, deviceService) {
 
         $scope.user = currentUser;
         $scope.smartDevices = availableDeviceTypes;

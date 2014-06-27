@@ -1,14 +1,12 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, $state,
-                                             allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
+    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, $state, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
         $scope.operatorsGroup = operatorsGroup;
-        $scope.allResources = _.union(operatorsGroup.members,
-            _.pluck(allDevices, 'resource'));
+        $scope.allResources = _.union(operatorsGroup.members, _.pluck(allDevices, 'resource'));
 
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
@@ -63,23 +61,11 @@ angular.module('octobluApp')
         $scope.recipientEmail = '';
 
         $scope.send = function () {
-
-            var invitationPromise = InvitationService.sendInvitation({
-                'uuid': currentUser.skynetuuid,
-                'token': currentUser.skynettoken
-            }, $scope.recipientEmail);
-
-            invitationPromise.then(function (invitation) {
-                $scope.recipientEmail = '';
-
-
-            }, function (result) {
-                /*
-                 *TODO - Display an error notification to the user
-                 */
-            });
+            InvitationService.sendInvitation($scope.recipientEmail)
+                .then(function (invitation) {
+                    $scope.recipientEmail = '';
+                });
         };
-
     })
     .controller('adminGroupDetailController', function ($scope, PermissionsService, GroupService, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup) {
         $scope.resourcePermission = resourcePermission;

@@ -46,8 +46,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'OctobluController',
                 templateUrl: "pages/octoblu.html",
                 resolve: {
-                    currentUser: function (userService) {
-                        return userService.getCurrentUser();
+                    currentUser: function (AuthService) {
+                        return AuthService.getCurrentUser();
                     }
                 },
                 unsecured: true

@@ -16,15 +16,15 @@ angular.module('octobluApp')
         };
 
         // Get NodeRed port number
-        nodeRedService.getPort($scope.skynetuuid, $scope.skynettoken, function (data) {
+        nodeRedService.getPort($scope.currentUser.skynetuuid, $scope.currentUser.skynettoken, function (data) {
             $scope.redPort = data.replace(/["']/g, "");
-            $scope.redFrame = "http://" + $scope.skynetuuid + ":" + $scope.skynettoken + "@designer.octoblu.com:" + $scope.redPort;
+            $scope.redFrame = "http://" + $scope.currentUser.skynetuuid + ":" + $scope.currentUser.skynettoken + "@designer.octoblu.com:" + $scope.redPort;
 
             $scope.getSessionFlow();
 
             $scope.designerFrame = {
-                skynetid: $scope.skynetuuid,
-                skynettoken: $scope.skynettoken
+                skynetid: $scope.currentUser.skynetuuid,
+                skynettoken: $scope.currentUser.skynettoken
             };
         });
     });

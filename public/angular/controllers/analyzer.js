@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('analyzerController', function ($rootScope, $scope, $http, $injector, elasticService, ownerService, skynetService, currentUser, myDevices) {
+    .controller('analyzerController', function ($rootScope, $scope, $http, $injector, elasticService, skynetService, currentUser, myDevices) {
 
         // Get user devices
-        console.log("getting devices from ownerService");
         $scope.splunk_devices = "";
 
         $scope.devices = _.filter(myDevices, function (device) {

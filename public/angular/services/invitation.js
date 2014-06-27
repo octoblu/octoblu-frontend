@@ -1,33 +1,16 @@
 angular.module('octobluApp')
-    .service('InvitationService' , function($q, $http ){
+    .service('InvitationService', function ($q, $http) {
 
         /**
          * Sends an invitation to the Operators group an email address
          * @param user - the user sending the invitation
-         * @param recipient - email address of the recipient
+         * @param recipientEmail - email address of the recipient
          */
-        this.sendInvitation = function(user, recipientEmail ){
-            var deferredInvitation = $q.defer();
-            if(! user ){
-                deferredInvitation.reject({
-                    'error' : 'User info is missing'
-                })
-            }
-            var sendUrl = '/api/user/' + user.uuid + '/' + user.token + '/invitation/send';
-            $http.put(sendUrl,
-                {
-                    'email' : recipientEmail
-                },
-                {
-                    cache : false
-                }
-            ).success(function(invitation){
-                    deferredInvitation.resolve( invitation );
-            }).error(function(error){
-                    deferredInvitation.reject( error );
-            });
-
-            return deferredInvitation.promise;
+        this.sendInvitation = function (recipientEmail) {
+            return $http.post('/api/user/invitation/send',{ 'email': recipientEmail})
+                .then(function (result) {
+                    return result.data;
+                });
         };
 
         /**
@@ -36,7 +19,7 @@ angular.module('octobluApp')
          *
          * @param invitation
          */
-        this.deleteInvitation = function( invitation ){
+        this.deleteInvitation = function (invitation) {
 
 
         };
@@ -52,32 +35,18 @@ angular.module('octobluApp')
          *
          * By default if there are no options, we will fetch all invitations.
          */
-        this.getInvitations = function( user, options ){
-
+        this.getInvitations = function (options) {
             var url = '/api/user/:id/:token/invitations';
-            if( options ){
-                if(options.sent ){
-                    url =  '/api/user/:id/:token/invitations/sent';
-                } else if (options.received ){
-                    url ='/api/user/:id/:token/invitations/received';
+            if (options) {
+                if (options.sent) {
+                    url = '/api/user/:id/:token/invitations/sent';
+                } else if (options.received) {
+                    url = '/api/user/:id/:token/invitations/received';
                 }
             }
 
-            var deferred = $q.defer();
-
-            $http.get(url, { params : { 'uuid' : user.uuid, 'token' : user.token },
-                            cache : false
-            }).success(function( invitations ){
-                deferred.resolve(invitations);
-
-            }).error(function(error){
-                deferred.reject(error);
+            return $http.get(url).then(function (result) {
+                return result.data
             });
-
-            return deferred.promise;
         };
-
-
-
-
     });
