@@ -3,14 +3,14 @@ var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
-var LinkedInStrategy = require('passport-linkedin').Strategy
+var LinkedInStrategy = require('passport-linkedin').Strategy;
 
-var StackExchangeStrategy = require('passport-stackexchange').Strategy
-var BitlyStrategy = require('passport-bitly').Strategy
-var FourSquareStrategy = require('passport-foursquare').Strategy
-var TumblrStrategy = require('passport-tumblr').Strategy
-var FitBitStrategy = require('passport-fitbit').Strategy
-var RdioStrategy     = require('passport-rdio').Strategy
+var StackExchangeStrategy = require('passport-stackexchange').Strategy;
+var BitlyStrategy = require('passport-bitly').Strategy;
+var FourSquareStrategy = require('passport-foursquare').Strategy;
+var TumblrStrategy = require('passport-tumblr').Strategy;
+var FitBitStrategy = require('passport-fitbit').Strategy;
+var RdioStrategy     = require('passport-rdio').Strategy;
 
 // load up the user model
 var mongoose = require('mongoose');

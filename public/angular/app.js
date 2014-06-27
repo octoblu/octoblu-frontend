@@ -347,7 +347,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         $rootScope.logout = function () {
             AuthService.logout()
                 .then(function () {
-                    $window.location.reload();
+                    $state.go('login');
                 });
         };
 
