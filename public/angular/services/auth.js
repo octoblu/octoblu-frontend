@@ -18,8 +18,6 @@ angular.module('octobluApp')
 
         function loginHandler(result) {
             currentUser = result.data;
-            $http.defaults.headers.common.skynet_auth_uuid = currentUser.skynetuuid;
-            $http.defaults.headers.common.skynet_auth_token = currentUser.skynettoken;
             $cookies.skynetuuid = currentUser.skynetuuid;
             $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);
@@ -28,8 +26,6 @@ angular.module('octobluApp')
 
         function logoutHandler(err) {
             currentUser = undefined;
-            delete $http.defaults.common.headers.skynet_auth_uuid;
-            delete $http.defaults.common.headers.skynet_auth_token;
             delete $cookies.skynetuuid;
             delete $cookies.skynettoken;
         }

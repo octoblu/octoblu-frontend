@@ -1,10 +1,8 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('OctobluController', function($scope, AuthService, currentUser) {
-        console.log('octoblu here');
+    .controller('OctobluController', function ($state, $scope, AuthService, currentUser) {
         $scope.currentUser = currentUser;
-
         $scope.logout = function () {
             AuthService.logout()
                 .then(function () {

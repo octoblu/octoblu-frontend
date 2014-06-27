@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
-        $scope.user = currentUser;
+    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, $state,
+                                             allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
@@ -48,7 +48,6 @@ angular.module('octobluApp')
                         .then(function () {
                             var index = $scope.allGroupResourcePermissions.indexOf(resourcePermission);
                             $scope.allGroupResourcePermissions.splice(index, 1);
-                            $state.go('.all');
                         });
                 });
         };

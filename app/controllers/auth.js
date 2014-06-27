@@ -5,7 +5,8 @@ var request = require('request'),
     Api = mongoose.model('Api'),
     crypto = require('crypto'),
     url = require('url'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    isAuthenticated = require('./middleware/security').isAuthenticated;
 
 // Using MongoJS on SkyNet database queries to avoid schemas
 var skynetdb = require('../lib/skynetdb').collection('devices');
@@ -18,12 +19,8 @@ module.exports = function (app, passport, config) {
     app.delete('/api/auth', logoutRoute);
     app.get('/api/auth/logout', logoutRoute);
 
-    app.get('/api/auth', function (req, res) {
-        if (req.user) {
-            res.send(req.user);
-        } else {
-            res.send(401, {error: 'unauthorized'});
-        }
+    app.get('/api/auth', isAuthenticated, function (req, res) {
+        res.send(req.user);
     });
 
     function loginRoute(req, res) {

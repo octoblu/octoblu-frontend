@@ -31,15 +31,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
         $httpProvider.interceptors.push(function ($injector) {
             return {
-                request: function (request) {
-                    console.log(request);
-                    if (request.url.indexOf('http') === 0) {
-                        delete request.headers.skynet_auth_uuid;
-                        delete request.headers.skynet_auth_token;
-                    }
-                    return request;
-
-                },
                 responseError: function (response) {
                     if (response.status >= 400) {
                         $injector.get('$state').go('login');
@@ -230,7 +221,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/admin/index.html',
                 controller: 'adminController',
                 resolve: {
-                    operatorsGroup: function (GroupService, currentUser) {
+                    operatorsGroup: function (GroupService) {
                         return GroupService.getOperatorsGroup();
                     },
                     allDevices: function (deviceService) {
@@ -342,7 +333,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 });
             }
         });
-
         $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
             var modalHtml = '<div class="modal-header">';
             modalHtml += '<h3>' + title + '</h3>';
