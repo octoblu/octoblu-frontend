@@ -90,13 +90,12 @@ var invitationController = {
         //4. send an outgoing email to the recipient email  with the HTML template generated in the previous step
         //and return the invitation to the user.
 
-        return User.findByEmail(email).exec()
+        return User.findByEmail(email)
             .then(function (rcp) {
                 recipient = rcp;
                 var inviteData = {};
-                inviteData.recipient = {};
-                inviteData.recipient.email = email;
-                inviteData.from = uuid;
+                inviteData.recipient = {email: email};
+                inviteData.from = req.user.skynetuuid;
                 inviteData.status = 'PENDING';
                 inviteData.sent = moment.utc();
 
@@ -226,6 +225,6 @@ module.exports = function (app, passport, config) {
     app.get('/api/user/invitations/received', isAuthenticated, invitationController.getInvitationsReceived);
     app.get('/api/user/invitation/:invitationId', isAuthenticated, invitationController.getInvitationById);
     app.post('/api/user/invitation/send', isAuthenticated, invitationController.sendInvitation);
-    app.get('/api/invitation/:id/accept', isAuthenticated, invitationController.acceptInvitation);
+    app.get('/api/invitation/:id/accept', invitationController.acceptInvitation);
     app.delete('/api/invitations/:invitationId', isAuthenticated, invitationController.deleteInvitation);
 };

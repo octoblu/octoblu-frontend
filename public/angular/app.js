@@ -157,11 +157,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'ChannelController',
                 resolve: {
                     activeChannels: function (currentUser, channelService) {
-                        return channelService.getActiveChannels(currentUser.skynetuuid);
+                        return channelService.getActiveChannels();
 
                     },
                     availableChannels: function (currentUser, channelService) {
-                        return channelService.getAvailableChannels(currentUser.skynetuuid);
+                        return channelService.getAvailableChannels();
                     }
                 }
             })

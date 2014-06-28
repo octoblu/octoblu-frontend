@@ -44,8 +44,8 @@ var deviceController = {
                 uuid: req.params.uuid
             },
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             }
         })
             .then(function (result) {
@@ -63,8 +63,8 @@ var deviceController = {
             method: 'POST',
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices",
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             },
             params: req.body,
             entity: req.body
@@ -87,8 +87,8 @@ var deviceController = {
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
 
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             }
 
         })
@@ -107,8 +107,8 @@ var deviceController = {
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
             params: req.body,
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             },
             entity: req.body
         })
@@ -122,12 +122,6 @@ var deviceController = {
     },
 
     claimDevice: function (req, res) {
-        var user = req.user;
-        if (req.body.owner !== user.skynetuuid) {
-            res.send(401, {'error': 'unauthorized'});
-            return;
-        }
-
         client({
             method: 'PUT',
             path: req.protocol + "://" + deviceController.skynetUrl + "/claimdevice/" + req.params.uuid,
@@ -135,8 +129,8 @@ var deviceController = {
                 "overrideIp": req.ip
             },
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token,
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken,
                 Skynet_override_token: deviceController.config.skynet.override_token
             },
             entity: req.body
@@ -158,8 +152,8 @@ var deviceController = {
                 "owner": null
             },
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token,
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken,
                 skynet_override_token: deviceController.config.skynet.override_token
             }
         }).then(function (result) {

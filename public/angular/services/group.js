@@ -15,12 +15,14 @@ angular.module('octobluApp')
                     return res.data;
                 });
         };
+
         this.deleteGroup = function (group_uuid) {
             return $http.delete('/api/groups/' + group_uuid)
                 .then(function (res) {
                     return res.data;
                 });
         };
+
         this.updateGroup = function (updatedGroup) {
             return $http.put('/api/groups/' + updatedGroup.uuid, updatedGroup)
                 .then(function (res) {
@@ -47,6 +49,7 @@ angular.module('octobluApp')
                     return res.data;
                 });
         };
+
         this.getGroupsContainingResource = function (resourceUUID) {
             var url = '/api/groups/contain/' + resourceUUID;
             return $http.get(url)

@@ -257,10 +257,10 @@ angular.module('octobluApp')
 
         // get api list, if showing api
         if ($state.is('connector.channels.index')) {
-            channelService.getActive($scope.skynetuuid, function (data) {
+            channelService.getActive(function (data) {
                 $scope.activeChannels = data;
             });
-            channelService.getAvailable($scope.skynetuuid, function (error, data) {
+            channelService.getAvailable(function (error, data) {
                 $scope.availableChannels = data;
             });
         }
