@@ -51,21 +51,13 @@ module.exports = function (app, passport, config) {
     };
 
     var handleOauth1 = function (name, req, res, next) {
-        var token = req.param('oauth_token'),
+        var user = req.user,
+            token = req.param('oauth_token'),
             verifier = req.param('oauth_verifier');
 
-        User.findOne({ $or: [
-            {'local.skynetuuid': req.cookies.skynetuuid},
-            {'twitter.skynetuuid': req.cookies.skynetuuid},
-            {'facebook.skynetuuid': req.cookies.skynetuuid},
-            {'google.skynetuuid': req.cookies.skynetuuid}
-        ]}, function (err, user) {
-            if (!err) {
-                user.addOrUpdateApiByName(name, 'oauth', null, token, null, verifier, null);
-                user.save(function (err) {
-                    return handleApiCompleteRedirect(res, name, err);
-                });
-            }
+        user.addOrUpdateApiByName(name, 'oauth', null, token, null, verifier, null);
+        user.save(function (err) {
+            return handleApiCompleteRedirect(res, name, err);
         });
     };
 
@@ -428,16 +420,16 @@ module.exports = function (app, passport, config) {
                                             user.save(function (err) {
                                                 if (!err) {
                                                     console.log('user ' + data.uuid + ' updated');
-                                                    res.cookie('skynetuuid', data.uuid, {
-                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                        domain: config.domain,
-                                                        httpOnly: false
-                                                    });
-                                                    res.cookie('skynettoken', data.token, {
-                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                        domain: config.domain,
-                                                        httpOnly: false
-                                                    });
+//                                                    res.cookie('skynetuuid', data.uuid, {
+//                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+//                                                        domain: config.domain,
+//                                                        httpOnly: false
+//                                                    });
+//                                                    res.cookie('skynettoken', data.token, {
+//                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+//                                                        domain: config.domain,
+//                                                        httpOnly: false
+//                                                    });
                                                     // Check for deep link redirect based on referrer in querystring
                                                     if (req.session.redirect) {
                                                         if (req.session.js) {
@@ -484,16 +476,16 @@ module.exports = function (app, passport, config) {
                             }
                         )
                     } else {
-                        res.cookie('skynetuuid', user.google.skynetuuid, {
-                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                            domain: config.domain,
-                            httpOnly: false
-                        });
-                        res.cookie('skynettoken', user.google.skynettoken, {
-                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                            domain: config.domain,
-                            httpOnly: false
-                        });
+//                        res.cookie('skynetuuid', user.google.skynetuuid, {
+//                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+//                            domain: config.domain,
+//                            httpOnly: false
+//                        });
+//                        res.cookie('skynettoken', user.google.skynettoken, {
+//                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+//                            domain: config.domain,
+//                            httpOnly: false
+//                        });
 
                         // Check for deep link redirect based on referrer in querystring
                         if (req.session.redirect) {
@@ -615,9 +607,10 @@ module.exports = function (app, passport, config) {
         });
 
     });
-    app.get('/api/auth/:name/callback/custom', function (req, res) {
+    app.get('/api/auth/:name/callback/custom', isAuthenticated, function (req, res) {
         // handle oauth response....
         var name = req.params.name;
+        var user = req.user;
 
         Api.findOne({name: req.params.name}, function (err, api) {
             if (err) {
@@ -694,26 +687,13 @@ module.exports = function (app, passport, config) {
                         // extract bearer token
                         var token = data.access_token;
 
-                        User.findOne({ $or: [
-                            {'local.skynetuuid': req.cookies.skynetuuid},
-                            {'twitter.skynetuuid': req.cookies.skynetuuid},
-                            {'facebook.skynetuuid': req.cookies.skynetuuid},
-                            {'google.skynetuuid': req.cookies.skynetuuid}
-                        ]
-                        }, function (err, user) {
-                            if (!err) {
-                                if (token) {
-                                    user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
-                                    user.save(function (err) {
-                                        console.log('saved oauth token: ' + name);
-                                        res.redirect('/connector/channels/' + name);
-                                    });
-                                }
-                            } else {
-                                console.log('error saving oauth token');
+                        if (token) {
+                            user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                            user.save(function (err) {
+                                console.log('saved oauth token: ' + name);
                                 res.redirect('/connector/channels/' + name);
-                            }
-                        });
+                            });
+                        }
                     });
                 } else {
                     var OAuth2 = getOauth2Instance(api);
@@ -729,23 +709,10 @@ module.exports = function (app, passport, config) {
                             console.log('Access Token Error', error);
                             res.redirect('/connector/channels/' + api.name);
                         } else {
-                            User.findOne({ $or: [
-                                {'local.skynetuuid': req.cookies.skynetuuid},
-                                {'twitter.skynetuuid': req.cookies.skynetuuid},
-                                {'facebook.skynetuuid': req.cookies.skynetuuid},
-                                {'google.skynetuuid': req.cookies.skynetuuid}
-                            ]
-                            }, function (err, user) {
-                                if (!err) {
-                                    user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
-                                    user.save(function (err) {
-                                        console.log('saved oauth token: ' + name);
-                                        res.redirect('/connector/channels/' + name);
-                                    });
-                                } else {
-                                    console.log('error saving oauth token');
-                                    res.redirect('/connector/channels/' + name);
-                                }
+                            user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                            user.save(function (err) {
+                                console.log('saved oauth token: ' + name);
+                                res.redirect('/connector/channels/' + name);
                             });
                         }
                     });
@@ -774,26 +741,12 @@ module.exports = function (app, passport, config) {
                             console.log(error);
                             res.redirect(500, '/connector/channels/' + name);
                         } else {
-                            User.findOne({ $or: [
-                                {'local.skynetuuid': req.cookies.skynetuuid},
-                                {'twitter.skynetuuid': req.cookies.skynetuuid},
-                                {'facebook.skynetuuid': req.cookies.skynetuuid},
-                                {'google.skynetuuid': req.cookies.skynetuuid}
-                            ]
-                            }, function (err, user) {
-                                if (!err) {
-                                    user.addOrUpdateApiByName(name, 'oauth', null,
-                                        oauth_access_token, oauth_access_token_secret, null, null);
-                                    user.save(function (err) {
-                                        console.log('saved oauth token: ' + name);
-                                        return handleApiCompleteRedirect(res, name, err);
-                                    });
-                                } else {
-                                    console.log('error saving oauth token');
-                                    res.redirect('/connector/channels/' + name);
-                                }
+                            user.addOrUpdateApiByName(name, 'oauth', null,
+                                oauth_access_token, oauth_access_token_secret, null, null);
+                            user.save(function (err) {
+                                console.log('saved oauth token: ' + name);
+                                return handleApiCompleteRedirect(res, name, err);
                             });
-
                         }
                     }
                 );
@@ -804,14 +757,14 @@ module.exports = function (app, passport, config) {
 
     app.get('/api/auth/StackOverflow',
         passport.authorize('stackexchange', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/StackOverflow/callback',
+    app.get('/api/auth/StackOverflow/callback', isAuthenticated,
         function (req, res, next) {
             handleOauth1('StackOverflow', req, res, next);
         });
 
     app.get('/api/auth/Bitly',
         passport.authorize('bitly', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/Bitly/callback',
+    app.get('/api/auth/Bitly/callback', isAuthenticated,
         function (req, res, next) {
             handleOauth1('Bitly', req, res, next);
         });
@@ -820,26 +773,15 @@ module.exports = function (app, passport, config) {
         var api_url = config.lastfm.base_url + '?api_key=' + config.lastfm.consumerKey;
         return res.redirect(api_url);
     });
-    app.get('/api/auth/LastFM/callback',
+    app.get('/api/auth/LastFM/callback', isAuthenticated,
         function (req, res, next) {
+            var user = req.user;
             // perform custom handling here....
-            var token = req.param('token')
-
-            User.findOne({ $or: [
-                {'local.skynetuuid': req.cookies.skynetuuid},
-                {'twitter.skynetuuid': req.cookies.skynetuuid},
-                {'facebook.skynetuuid': req.cookies.skynetuuid},
-                {'google.skynetuuid': req.cookies.skynetuuid}
-            ]
-            }, function (err, user) {
-                if (!err) {
-                    user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null, null);
-                    user.save(function (err) {
-                        return handleApiCompleteRedirect(res, 'LastFM', err);
-                    });
-                }
+            var token = req.param('token');
+            user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null, null);
+            user.save(function (err) {
+                return handleApiCompleteRedirect(res, 'LastFM', err);
             });
-
         });
 
     app.get('/api/auth/Delicious', function (req, res) {
@@ -847,24 +789,14 @@ module.exports = function (app, passport, config) {
         api_url += '&redirect_uri=' + config.delicious.callbackURL;
         return res.redirect(api_url);
     });
-    app.get('/api/auth/Delicious/callback', function (req, res, next) {
+    app.get('/api/auth/Delicious/callback', isAuthenticated, function (req, res, next) {
+        var user = req.user;
         // perform custom handling here....
         var token = req.param('code');
 
-        User.findOne({ $or: [
-            {'local.skynetuuid': req.cookies.skynetuuid},
-            {'twitter.skynetuuid': req.cookies.skynetuuid},
-            {'facebook.skynetuuid': req.cookies.skynetuuid},
-            {'google.skynetuuid': req.cookies.skynetuuid}
-        ]
-        }, function (err, user) {
-            if (!err) {
-                user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null, null);
-                user.save(function (err) {
-                    return handleApiCompleteRedirect(res, 'Delicious', err);
-                });
-            }
+        user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null, null);
+        user.save(function (err) {
+            return handleApiCompleteRedirect(res, 'Delicious', err);
         });
-
     });
 };
