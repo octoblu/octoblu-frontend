@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .service('AuthService', function ($q, $http) {
+    .service('AuthService', function ($q, $cookies,  $http) {
         var currentUser;
 
         //TODO: move me to the eventual root controller.
@@ -18,12 +18,16 @@ angular.module('octobluApp')
 
         function loginHandler(result) {
             currentUser = result.data;
+            $cookies.skynetuuid = currentUser.skynetuuid;
+            $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);
             return currentUser;
         }
 
         function logoutHandler(err) {
             currentUser = undefined;
+            delete $cookies.skynetuuid;
+            delete $cookies.skynettoken;
         }
 
         return {

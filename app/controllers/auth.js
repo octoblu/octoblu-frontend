@@ -238,139 +238,8 @@ module.exports = function (app, passport, config) {
     });
 
     app.get('/auth/twitter', passport.authenticate('twitter', { scope: 'email' }));
-    app.get('/auth/twitter/callback', function (req, res, next) {
-        passport.authenticate('twitter', function (err, user, info) {
-            if (err) {
-                return next(err);
-            }
-            if (!user) {
-                return res.redirect('/login');
-            }
-            req.logIn(user, function (err) {
-                if (err) {
-                    return next(err);
-                }
-                console.log(user);
-                console.log(info);
-
-                // Check if user exists in Skynet
-                skynetdb.find({
-                    email: user.twitter.username + '@twitter'
-                }, function (error, body) {
-                    console.log('MONGOJS ERROR', error);
-                    console.log('MONGOJS BODY', body);
-
-                    // request.get('http://skynet.im/devices',
-                    //     {qs: {'email': user.twitter.username + '@twitter'}}
-                    //     , function (error, response, body) {
-                    console.log(body);
-                    try {
-                        var data = JSON.parse(body);
-                    } catch (e) {
-                        var data = body;
-                    }
-                    if (data.error) {
-
-                        // Add user to Skynet
-                        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-                            {form: {'type': 'user', 'email': user.twitter.username + '@twitter'}}
-                            , function (error, response, body) {
-                                if (response.statusCode == 200) {
-
-                                    var data = JSON.parse(body);
-                                    User.findOne({_id: user._id}, function (err, user) {
-                                        if (!err) {
-                                            user.twitter.skynetuuid = data.uuid.toString();
-                                            user.twitter.skynettoken = data.token.toString();
-                                            user.save(function (err) {
-                                                if (!err) {
-                                                    console.log('user ' + data.uuid + ' updated');
-                                                    res.cookie('skynetuuid', data.uuid, {
-                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                        domain: config.domain,
-                                                        httpOnly: false
-                                                    });
-                                                    res.cookie('skynettoken', data.token, {
-                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                        domain: config.domain,
-                                                        httpOnly: false
-                                                    });
-                                                    // Check for deep link redirect based on referrer in querystring
-                                                    if (req.session.redirect) {
-                                                        if (req.session.js) {
-                                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                        } else {
-                                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                        }
-                                                    } else {
-                                                        return res.redirect('/dashboard');
-                                                    }
-
-                                                }
-                                                else {
-                                                    console.log('Error: ' + err);
-                                                    // Check for deep link redirect based on referrer in querystring
-                                                    if (req.session.redirect) {
-                                                        if (req.session.js) {
-                                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                        } else {
-                                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                        }
-                                                    } else {
-                                                        return res.redirect('/dashboard');
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    });
-
-                                } else {
-                                    console.log('error: ' + response.statusCode);
-                                    console.log(error);
-                                    // Check for deep link redirect based on referrer in querystring
-                                    if (req.session.redirect) {
-                                        if (req.session.js) {
-                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                        } else {
-                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                        }
-                                    } else {
-                                        return res.redirect('/dashboard');
-                                    }
-                                }
-                            }
-                        )
-                    } else {
-                        // res.cookie('skynetuuid', data.devices[0], {
-                        //   maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                        //   domain: config.domain,
-                        //   httpOnly: false
-                        // });
-                        res.cookie('skynetuuid', user.twitter.skynetuuid, {
-                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                            domain: config.domain,
-                            httpOnly: false
-                        });
-                        res.cookie('skynettoken', user.twitter.skynettoken, {
-                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                            domain: config.domain,
-                            httpOnly: false
-                        });
-
-                        // Check for deep link redirect based on referrer in querystring
-                        if (req.session.redirect) {
-                            if (req.session.js) {
-                                return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.twitter.skynetuuid + '&token=' + user.twitter.skynettoken + '"</script>');
-                            } else {
-                                return res.redirect(req.session.redirect + '?uuid=' + user.twitter.skynetuuid + '&token=' + user.twitter.skynettoken);
-                            }
-                        } else {
-                            return res.redirect('/dashboard');
-                        }
-                    }
-                });
-            });
-        })(req, res, next);
+    app.get('/auth/twitter/callback', passport.authenticate('twitter'), function (req, res, next) {
+        res.redirect('/dashboard');
     });
 
     app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -420,16 +289,16 @@ module.exports = function (app, passport, config) {
                                             user.save(function (err) {
                                                 if (!err) {
                                                     console.log('user ' + data.uuid + ' updated');
-//                                                    res.cookie('skynetuuid', data.uuid, {
-//                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-//                                                        domain: config.domain,
-//                                                        httpOnly: false
-//                                                    });
-//                                                    res.cookie('skynettoken', data.token, {
-//                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-//                                                        domain: config.domain,
-//                                                        httpOnly: false
-//                                                    });
+                                                    res.cookie('skynetuuid', data.uuid, {
+                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+                                                        domain: config.domain,
+                                                        httpOnly: false
+                                                    });
+                                                    res.cookie('skynettoken', data.token, {
+                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+                                                        domain: config.domain,
+                                                        httpOnly: false
+                                                    });
                                                     // Check for deep link redirect based on referrer in querystring
                                                     if (req.session.redirect) {
                                                         if (req.session.js) {

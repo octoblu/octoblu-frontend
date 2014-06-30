@@ -1,8 +1,19 @@
 // load all the things we need
-var LocalStrategy    = require('passport-local').Strategy;
+var rest = require('rest'),
+    when = require('when'),
+    _ = require('lodash'),
+    nodefn = require('when/node/function'),
+    mime = require('rest/interceptor/mime'),
+
+    errorCode = require('rest/interceptor/errorCode'),
+    client = rest.wrap(mime).wrap(errorCode),
+    crypto = require('crypto'),
+    config = require('./auth');
+
+var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var TwitterStrategy  = require('passport-twitter').Strategy;
-var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var LinkedInStrategy = require('passport-linkedin').Strategy;
 
 var StackExchangeStrategy = require('passport-stackexchange').Strategy;
@@ -10,16 +21,16 @@ var BitlyStrategy = require('passport-bitly').Strategy;
 var FourSquareStrategy = require('passport-foursquare').Strategy;
 var TumblrStrategy = require('passport-tumblr').Strategy;
 var FitBitStrategy = require('passport-fitbit').Strategy;
-var RdioStrategy     = require('passport-rdio').Strategy;
+var RdioStrategy = require('passport-rdio').Strategy;
 
 // load up the user model
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-module.exports = function(env, passport) {
+module.exports = function (env, passport) {
 
 // load the auth variables
-var configAuth = require('./auth')(env); // use this one for testing
+    var configAuth = require('./auth')(env); // use this one for testing
 
     // =========================================================================
     // passport session setup ==================================================
@@ -28,13 +39,13 @@ var configAuth = require('./auth')(env); // use this one for testing
     // passport needs ability to serialize and unserialize users out of session
 
     // used to serialize the user for the session
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser(function (user, done) {
         done(null, user.id);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+    passport.deserializeUser(function (id, done) {
+        User.findById(id, function (err, user) {
             done(err, user);
         });
     });
@@ -43,379 +54,381 @@ var configAuth = require('./auth')(env); // use this one for testing
     // LOCAL LOGIN =============================================================
     // =========================================================================
     passport.use('local-login', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-    },
-    function(req, email, password, done) {
-        // asynchronous
-        process.nextTick(function() {
-            User.findOne({ 'local.email' :  email }, function(err, user) {
-                // if there are any errors, return the error
-                if (err){
-                    console.log('auth error');
-                    return done(err);
-                }
-                    
-                // if no user is found, return the message
-                if (!user){
-                    console.log('auth user not found');
-                    return done(null, false, req.flash('loginMessage', 'No user found.'));
-                }
-                    
-                if (!user.validPassword(password)){
-                    console.log('auth password doesnt match');
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
-                }
-                    
+            // by default, local strategy uses username and password, we will override with email
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        },
+        function (req, email, password, done) {
+            // asynchronous
+            process.nextTick(function () {
+                User.findOne({ 'local.email': email }, function (err, user) {
+                    // if there are any errors, return the error
+                    if (err) {
+                        console.log('auth error');
+                        return done(err);
+                    }
 
-                // all is well, return user
-                else {
-                    console.log('auth good');
-                    return done(null, user);
-                }
-                    
+                    // if no user is found, return the message
+                    if (!user) {
+                        console.log('auth user not found');
+                        return done(null, false, req.flash('loginMessage', 'No user found.'));
+                    }
+
+                    if (!user.validPassword(password)) {
+                        console.log('auth password doesnt match');
+                        return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+                    }
+
+
+                    // all is well, return user
+                    else {
+                        console.log('auth good');
+                        return done(null, user);
+                    }
+
+                });
             });
-        });
 
-    }));
+        }));
 
     // =========================================================================
     // LOCAL SIGNUP ============================================================
     // =========================================================================
     passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-    },
-    function(req, email, password, done) {
-        // asynchronous
-        process.nextTick(function() {
-            // check if the user is already logged ina
-            if (!req.user) {
-                User.findOne({ 'local.email' :  email }, function(err, user) {
-                    // if there are any errors, return the error
-                    if (err)
-                        return done(err);
+            // by default, local strategy uses username and password, we will override with email
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        },
+        function (req, email, password, done) {
+            // asynchronous
+            process.nextTick(function () {
+                // check if the user is already logged ina
+                if (!req.user) {
+                    User.findOne({ 'local.email': email }, function (err, user) {
+                        // if there are any errors, return the error
+                        if (err)
+                            return done(err);
 
-                    // check to see if theres already a user with that email
-                    if (user) {
-                        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-                    } else {
+                        // check to see if theres already a user with that email
+                        if (user) {
+                            return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                        } else {
 
-                        // create the user
-                        var newUser            = new User();
+                            // create the user
+                            var newUser = new User();
 
-                        newUser.local.email    = email;
-                        newUser.local.password = newUser.generateHash(password);
+                            newUser.local.email = email;
+                            newUser.local.password = newUser.generateHash(password);
 
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
+                            newUser.save(function (err) {
+                                if (err)
+                                    throw err;
 
-                            return done(null, newUser);
-                        });
-                    }
+                                return done(null, newUser);
+                            });
+                        }
 
-                });
-            } else {
+                    });
+                } else {
 
-                var user            = req.user;
-                user.local.email    = email;
-                user.local.password = user.generateHash(password);
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
+                    var user = req.user;
+                    user.local.email = email;
+                    user.local.password = user.generateHash(password);
+                    user.save(function (err) {
+                        if (err)
+                            throw err;
+                        return done(null, user);
+                    });
 
-            }
-        });
+                }
+            });
 
-    }));
+        }));
 
     // =========================================================================
     // FACEBOOK ================================================================
     // =========================================================================
     passport.use(new FacebookStrategy({
 
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+            clientID: configAuth.facebookAuth.clientID,
+            clientSecret: configAuth.facebookAuth.clientSecret,
+            callbackURL: configAuth.facebookAuth.callbackURL,
+            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
-    },
-    function(req, token, refreshToken, profile, done) {
-        // asynchronous
-        process.nextTick(function() {
+        },
+        function (req, token, refreshToken, profile, done) {
+            // asynchronous
+            process.nextTick(function () {
 
-            // check if the user is already logged in
-            if (!req.user) {
+                // check if the user is already logged in
+                if (!req.user) {
 
-                User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
-                    if (err)
-                        return done(err);
+                    User.findOne({ 'facebook.id': profile.id }, function (err, user) {
+                        if (err)
+                            return done(err);
 
-                    if (user) {
+                        if (user) {
 
-                        // if there is a user id already but no token (user was linked at one point and then removed)
-                        if (!user.facebook.token) {
-                            user.facebook.token = token;
-                            user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                            user.facebook.email = profile.emails[0].value;
+                            // if there is a user id already but no token (user was linked at one point and then removed)
+                            if (!user.facebook.token) {
+                                user.facebook.token = token;
+                                user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+                                user.facebook.email = profile.emails[0].value;
 
-                            user.save(function(err) {
+                                user.save(function (err) {
+                                    if (err)
+                                        throw err;
+                                    return done(null, user);
+                                });
+                            }
+
+                            return done(null, user); // user found, return that user
+                        } else {
+                            // if there is no user, create them
+                            var newUser = new User();
+
+                            newUser.facebook.id = profile.id;
+                            newUser.facebook.token = token;
+                            newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+                            newUser.facebook.email = profile.emails[0].value;
+
+                            newUser.save(function (err) {
                                 if (err)
                                     throw err;
-                                return done(null, user);
+                                return done(null, newUser);
                             });
                         }
+                    });
 
-                        return done(null, user); // user found, return that user
-                    } else {
-                        // if there is no user, create them
-                        var newUser            = new User();
+                } else {
+                    // user already exists and is logged in, we have to link accounts
+                    var user = req.user; // pull the user out of the session
 
-                        newUser.facebook.id    = profile.id;
-                        newUser.facebook.token = token;
-                        newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                        newUser.facebook.email = profile.emails[0].value;
+                    user.facebook.id = profile.id;
+                    user.facebook.token = token;
+                    user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+                    user.facebook.email = profile.emails[0].value;
 
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
-                        });
-                    }
-                });
+                    user.save(function (err) {
+                        if (err)
+                            throw err;
+                        return done(null, user);
+                    });
 
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user            = req.user; // pull the user out of the session
+                }
+            });
 
-                user.facebook.id    = profile.id;
-                user.facebook.token = token;
-                user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                user.facebook.email = profile.emails[0].value;
-
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-
-            }
-        });
-
-    }));
+        }));
 
     // =========================================================================
     // TWITTER =================================================================
     // =========================================================================
     passport.use(new TwitterStrategy({
 
-        consumerKey     : configAuth.twitterAuth.consumerKey,
-        consumerSecret  : configAuth.twitterAuth.consumerSecret,
-        callbackURL     : configAuth.twitterAuth.callbackURL,
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+            consumerKey: configAuth.twitterAuth.consumerKey,
+            consumerSecret: configAuth.twitterAuth.consumerSecret,
+            callbackURL: configAuth.twitterAuth.callbackURL,
+            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
-    },
-    function(req, token, tokenSecret, profile, done) {
-        // asynchronous
-        process.nextTick(function() {
+        },
+        function (req, token, tokenSecret, profile, done) {
+                // check if the user is already logged in
+                if (!req.user) {
+                    User.findOne({ 'twitter.id': profile.id }, function (err, user) {
+                        if (err)
+                            return done(err);
+                        if (user) {
+                            return done(null, user); // user found, return that user
+                        } else {
+                            // if there is no user, create them
+                            var newUser = new User({
+                                    twitter : {
+                                        id: profile.id,
+                                        token: token,
+                                        username: profile.username,
+                                        displayName: profile.displayName
+                                    }
+                                });
 
-            // check if the user is already logged in
-            if (!req.user) {
+                            newUser.skynet = {
+                                uuid: newUser.resource.uuid,
+                                token: User.generateToken()
+                            };
 
-                User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
-                    if (err)
-                        return done(err);
-
-                    if (user) {
-                        // if there is a user id already but no token (user was linked at one point and then removed)
-                        if (!user.twitter.token) {
-                            user.twitter.token       = token;
-                            user.twitter.username    = profile.username;
-                            user.twitter.displayName = profile.displayName;
-
-                            user.save(function(err) {
+                            newUser.save(function (err, dbUser) {
                                 if (err)
                                     throw err;
-                                return done(null, user);
+                                client({
+                                    method: 'POST',
+                                    path: req.protocol + '://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices',
+                                    params: {
+                                        type: 'user',
+                                        uuid: dbUser.skynet.uuid,
+                                        token : dbUser.skynet.token,
+                                        'email': dbUser.email
+
+                                    }})
+                                    .then(function (result) {
+                                        console.log(result.entity);
+                                        done(null, newUser);
+                                    })
+                                    .catch(function (error) {
+                                        return done(error);
+                                    });
                             });
                         }
+                    });
 
-                        return done(null, user); // user found, return that user
-                    } else {
-                        // if there is no user, create them
-                        var newUser                 = new User();
+                } else {
+                    // user already exists and is logged in, we have to link accounts
+                    var user = req.user; // pull the user out of the session
 
-                        newUser.twitter.id          = profile.id;
-                        newUser.twitter.token       = token;
-                        newUser.twitter.username    = profile.username;
-                        newUser.twitter.displayName = profile.displayName;
+                    user.twitter.id = profile.id;
+                    user.twitter.token = token;
+                    user.twitter.username = profile.username;
+                    user.twitter.displayName = profile.displayName;
 
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
-                        });
-                    }
-                });
-
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user                 = req.user; // pull the user out of the session
-
-                user.twitter.id          = profile.id;
-                user.twitter.token       = token;
-                user.twitter.username    = profile.username;
-                user.twitter.displayName = profile.displayName;
-
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-            }
-
-        });
-
-    }));
+                    user.save(function (err) {
+                        if (err)
+                            throw err;
+                        return done(null, user);
+                    });
+                }
+        }));
 
     // =========================================================================
     // GOOGLE ==================================================================
     // =========================================================================
     passport.use(new GoogleStrategy({
 
-        clientID        : configAuth.googleAuth.clientID,
-        clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL,
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+            clientID: configAuth.googleAuth.clientID,
+            clientSecret: configAuth.googleAuth.clientSecret,
+            callbackURL: configAuth.googleAuth.callbackURL,
+            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
-    },
-    function(req, token, refreshToken, profile, done) {
-        // asynchronous
-        process.nextTick(function() {
+        },
+        function (req, token, refreshToken, profile, done) {
+            // asynchronous
+            process.nextTick(function () {
 
-            // check if the user is already logged in
-            if (!req.user) {
+                // check if the user is already logged in
+                if (!req.user) {
 
-                User.findOne({ 'google.id' : profile.id }, function(err, user) {
-                    if (err)
-                        return done(err);
+                    User.findOne({ 'google.id': profile.id }, function (err, user) {
+                        if (err)
+                            return done(err);
 
-                    if (user) {
+                        if (user) {
 
-                        // if there is a user id already but no token (user was linked at one point and then removed)
-                        if (!user.google.token) {
-                            user.google.token = token;
-                            user.google.name  = profile.displayName;
-                            user.google.email = profile.emails[0].value; // pull the first email
+                            // if there is a user id already but no token (user was linked at one point and then removed)
+                            if (!user.google.token) {
+                                user.google.token = token;
+                                user.google.name = profile.displayName;
+                                user.google.email = profile.emails[0].value; // pull the first email
 
-                            user.save(function(err) {
+                                user.save(function (err) {
+                                    if (err)
+                                        throw err;
+                                    return done(null, user);
+                                });
+                            }
+
+                            return done(null, user);
+                        } else {
+                            var newUser = new User();
+
+                            newUser.google.id = profile.id;
+                            newUser.google.token = token;
+                            newUser.google.name = profile.displayName;
+                            newUser.google.email = profile.emails[0].value; // pull the first email
+
+                            newUser.save(function (err) {
                                 if (err)
                                     throw err;
-                                return done(null, user);
+                                return done(null, newUser);
                             });
                         }
+                    });
 
+                } else {
+                    // user already exists and is logged in, we have to link accounts
+                    var user = req.user; // pull the user out of the session
+
+                    user.google.id = profile.id;
+                    user.google.token = token;
+                    user.google.name = profile.displayName;
+                    user.google.email = profile.emails[0].value; // pull the first email
+
+                    user.save(function (err) {
+                        if (err)
+                            throw err;
                         return done(null, user);
-                    } else {
-                        var newUser          = new User();
+                    });
 
-                        newUser.google.id    = profile.id;
-                        newUser.google.token = token;
-                        newUser.google.name  = profile.displayName;
-                        newUser.google.email = profile.emails[0].value; // pull the first email
+                }
 
-                        newUser.save(function(err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
-                        });
-                    }
-                });
+            });
 
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user               = req.user; // pull the user out of the session
-
-                user.google.id    = profile.id;
-                user.google.token = token;
-                user.google.name  = profile.displayName;
-                user.google.email = profile.emails[0].value; // pull the first email
-
-                user.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-
-            }
-
-        });
-
-    }));
+        }));
 
     passport.use(new StackExchangeStrategy({
-        clientID        : configAuth.stackexchange.clientId,
-        key             : configAuth.stackexchange.clientKey,
-        clientSecret    : configAuth.stackexchange.clientSecret,
-        callbackURL     : configAuth.stackexchange.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling stackexchange response with passport');
-      }
+            clientID: configAuth.stackexchange.clientId,
+            key: configAuth.stackexchange.clientKey,
+            clientSecret: configAuth.stackexchange.clientSecret,
+            callbackURL: configAuth.stackexchange.callbackURL,
+            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+        },
+        function (req, token, tokenSecret, profile, done) {
+            console.log('handling stackexchange response with passport');
+        }
     ));
 
     passport.use(new BitlyStrategy({
-        clientID        : configAuth.bitly.clientId,
-        key             : configAuth.bitly.clientId,
-        clientSecret    : configAuth.bitly.clientSecret,
-        callbackURL     : configAuth.bitly.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling bitly response with passport');
-      }
+            clientID: configAuth.bitly.clientId,
+            key: configAuth.bitly.clientId,
+            clientSecret: configAuth.bitly.clientSecret,
+            callbackURL: configAuth.bitly.callbackURL,
+            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+        },
+        function (req, token, tokenSecret, profile, done) {
+            console.log('handling bitly response with passport');
+        }
     ));
 
     passport.use(new FourSquareStrategy({
-        clientID        : configAuth.foursquare.clientKey,
-        key             : configAuth.foursquare.clientKey,
-        clientSecret    : configAuth.foursquare.clientSecret,
-        callbackURL     : configAuth.foursquare.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling foursquare response with passport');
-      }
+            clientID: configAuth.foursquare.clientKey,
+            key: configAuth.foursquare.clientKey,
+            clientSecret: configAuth.foursquare.clientSecret,
+            callbackURL: configAuth.foursquare.callbackURL,
+            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+        },
+        function (req, token, tokenSecret, profile, done) {
+            console.log('handling foursquare response with passport');
+        }
     ));
 
     passport.use(new TumblrStrategy({
-        consumerKey     : configAuth.tumblr.consumerKey,
-        consumerSecret  : configAuth.tumblr.consumerSecret,
-        callbackURL     : configAuth.tumblr.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling tumblr response with passport');
-      }
+            consumerKey: configAuth.tumblr.consumerKey,
+            consumerSecret: configAuth.tumblr.consumerSecret,
+            callbackURL: configAuth.tumblr.callbackURL,
+            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+        },
+        function (req, token, tokenSecret, profile, done) {
+            console.log('handling tumblr response with passport');
+        }
     ));
 
     passport.use(new RdioStrategy({
-        consumerKey     : configAuth.rdio.consumerKey,
-        consumerSecret  : configAuth.rdio.consumerSecret,
-        callbackURL     : configAuth.rdio.callbackURL,
-        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-      },
-      function(req, token, tokenSecret, profile, done) {
-        console.log('handling rdio response with passport');
-      }
+            consumerKey: configAuth.rdio.consumerKey,
+            consumerSecret: configAuth.rdio.consumerSecret,
+            callbackURL: configAuth.rdio.callbackURL,
+            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+        },
+        function (req, token, tokenSecret, profile, done) {
+            console.log('handling rdio response with passport');
+        }
     ));
 
 };

@@ -156,11 +156,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 template: '<ui-view />',
                 controller: 'ChannelController',
                 resolve: {
-                    activeChannels: function (currentUser, channelService) {
+                    activeChannels: function (channelService) {
                         return channelService.getActiveChannels();
 
                     },
-                    availableChannels: function (currentUser, channelService) {
+                    availableChannels: function (channelService) {
                         return channelService.getAvailableChannels();
                     }
                 }
@@ -319,6 +319,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         $urlRouterProvider.otherwise('/dashboard');
     })
     .run(function ($rootScope, $window, $state, $urlRouter, AuthService) {
+
+        $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams){
+            console.log('error from ' + fromState.name + ' to ' + toState.name)
+            ;
+        });
 
         $rootScope.$on('$stateChangeStart', function (event, toState) {
             if (!toState.unsecured) {

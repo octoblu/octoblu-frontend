@@ -9,34 +9,38 @@ var UserSchema = new mongoose.Schema({
         name: String,
         username: String,
         admin: Boolean,
+        skynet : {
+            uuid : String,
+            token : String
+        },
         local: {
             email: String,
             password: String,
-            skynetuuid: String,
-            skynettoken: String
+//            skynetuuid: String,
+//            skynettoken: String
         },
         facebook: {
             id: String,
             token: String,
             email: String,
             name: String,
-            skynetuuid: String,
-            skynettoken: String
+//            skynetuuid: String,
+//            skynettoken: String
         },
         twitter: {
             id: String,
             token: String,
             displayName: String,
             username: String,
-            skynetuuid: String,
-            skynettoken: String
+//            skynetuuid: String,
+//            skynettoken: String
         },
         google: {
             id: String,
             token: String,
             email: String,
             name: String,
-            skynetuuid: String,
+//            skynetuuid: String,
             skynettoken: String
         },
         api: [
@@ -131,17 +135,17 @@ UserSchema.methods.validPassword = function (password) {
 //Convenience method for getting the Skynet UUID
 //TODO: replace this with resource.uuid
 UserSchema.virtual('skynetuuid').get(function () {
-    return this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
+    return this.skynet.uuid || this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
 });
 
 //Convenience method for getting the Skynet Token
 UserSchema.virtual('skynettoken').get(function () {
-    return this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
+    return this.skynet.token || this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
 });
 
 //Convenience method for getting the Skynet Token
 UserSchema.virtual('email').get(function () {
-    return this.local.email || this.google.email || this.facebook.email;
+    return this.local.email || this.google.email || this.facebook.email || this.twitter.username  + '@twitter';
 });
 
 UserSchema.virtual('displayName').get(function () {
@@ -151,6 +155,9 @@ UserSchema.virtual('displayName').get(function () {
 
 UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
     return this.findOne({ $or: [
+        {
+            'skynet.uuid': skynetuuid
+        },
         {
             'local.skynetuuid': skynetuuid
         },
@@ -187,6 +194,10 @@ UserSchema.statics.findByEmail = function (email) {
 
 UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
     return this.findOne({ $or: [
+        {
+            'skynet.uuid': skynetuuid,
+            'skynet.token': skynettoken
+        },
         {
             'local.skynetuuid': skynetuuid,
             'local.skynettoken': skynettoken
