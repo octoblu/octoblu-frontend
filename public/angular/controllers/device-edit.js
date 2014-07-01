@@ -1,6 +1,8 @@
 angular.module('octobluApp')
 .controller('DeviceEditController', function ($scope, skynetService) {
 
+
+
     $scope.editSubDevice = function (subdevice, hub) {
 
         /*
@@ -77,6 +79,11 @@ angular.module('octobluApp')
     .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, PermissionsService, skynetService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
+
+        $scope.$on('skynet:message:' + device.uuid, function(event, message){
+            console.log('Got message for Device ' + device.uuid);
+            console.log(message);
+        });
         PermissionsService
             .allSourcePermissions($scope.device.resource.uuid)
             .then(function (permissions) {
