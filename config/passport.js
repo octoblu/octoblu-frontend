@@ -148,7 +148,7 @@ module.exports = function (env, passport) {
             callbackURL: configAuth.facebookAuth.callbackURL,
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         },
-        function (req, token, tokenSecret, profile, done) {
+        function (req, token, refreshToken, profile, done) {
             User.findOne({ 'facebook.id': profile.id }).exec()
                 .then(function (user) {
                     if (user) {
