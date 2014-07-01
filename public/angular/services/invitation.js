@@ -23,30 +23,4 @@ angular.module('octobluApp')
 
 
         };
-
-
-        /**
-         * Returns a promise for the list of pending invitations sent and/or received by the user.
-         * @param user
-         * @param options object with three properties - all, sent and received
-         * all - boolean flag indicating whether to get all the invitations sent and received by the user
-         * sent - boolean flag indicating whether to only get the invitations sent by the user
-         * received - boolean flag indicating whether to only get the invitations received by the user
-         *
-         * By default if there are no options, we will fetch all invitations.
-         */
-        this.getInvitations = function (options) {
-            var url = '/api/user/:id/:token/invitations';
-            if (options) {
-                if (options.sent) {
-                    url = '/api/user/:id/:token/invitations/sent';
-                } else if (options.received) {
-                    url = '/api/user/:id/:token/invitations/received';
-                }
-            }
-
-            return $http.get(url).then(function (result) {
-                return result.data
-            });
-        };
     });
