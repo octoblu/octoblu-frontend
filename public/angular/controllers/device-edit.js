@@ -81,8 +81,6 @@ angular.module('octobluApp')
         $scope.device = device;
 
         $scope.$on('skynet:message:' + device.uuid, function(event, message){
-            console.log('Got message for Device ' + device.uuid);
-            console.log(message);
         });
         PermissionsService
             .allSourcePermissions($scope.device.resource.uuid)
