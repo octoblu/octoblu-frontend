@@ -43,3 +43,25 @@ while(userCursor.hasNext()){
 	printjson(user);
 	db.users.save(user); 
 }
+
+var userCursor = db.users.find({});
+while(userCursor.hasNext()){
+    var user = userCursor.next();
+
+    if(user.local && user.local.email) {
+        user.email = user.local.email;
+        user.displayName = user.local.displayName;
+        user.username = user.local.email;
+
+    } else if(user.google && user.google.email) {
+
+    }  else if(user.facebook && user.facebook.username) {
+
+    }   else if(user.twitter && user.twitter.displayName) {
+        user.email = user.twitter.username + '@twitter';
+        user.username = user.twitter.username;
+        user.displayName = user.twitter.displayName;
+    }
+    printjson(user);
+    db.users.save(user);
+}

@@ -391,5 +391,4 @@ module.exports = function (app, passport, config) {
             return res.redirect('/dashboard');
         }
     }
-
 };
