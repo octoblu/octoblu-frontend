@@ -15,6 +15,8 @@ var mongoose = require('mongoose'),
 var UserSchema = new mongoose.Schema({
         name: String,
         username: String,
+        displayName : String,
+        email : String,
         admin: Boolean,
         skynet: {
             uuid: {type: String, unique: true, required: true},
@@ -140,36 +142,22 @@ UserSchema.virtual('skynettoken').get(function () {
     return this.skynet.token || this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
 });
 
-//Convenience method for getting the Skynet Token
-UserSchema.virtual('email').get(function () {
-    return this.local.email || this.google.email || this.facebook.email || this.twitter.username + '@twitter';
-});
-
-UserSchema.virtual('displayName').get(function () {
-
-    return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
-});
+////Convenience method for getting the Skynet Token
+//UserSchema.virtual('email').get(function () {
+//    return this.local.email || this.google.email || this.facebook.email || this.twitter.username + '@twitter';
+//});
+//
+//UserSchema.virtual('displayName').get(function () {
+//
+//    return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
+//});
 
 UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
     return this.findOne({'skynet.uuid' : skynetuuid}).exec();
 };
 
 UserSchema.statics.findByEmail = function (email) {
-    return this.findOne({ $or: [
-        {
-            'local.email': email
-        },
-        {
-            'twitter.email': email
-        },
-        {
-            'facebook.email': email
-        },
-        {
-            'google.email': email
-        }
-    ]
-    }).exec();
+    return this.findOne({ email : email }).exec();
 };
 
 UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {

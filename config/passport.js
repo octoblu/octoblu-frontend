@@ -234,45 +234,30 @@ module.exports = function (env, passport) {
 
         },
         function (req, token, tokenSecret, profile, done) {
-            // check if the user is already logged in
-            if (!req.user) {
-                User.findOne({ 'twitter.id': profile.id }).exec()
-                    .then(function (user) {
-                        if (user) {
-                            return user; // user found, return that user
-                        } else {
-                            // if there is no user, create them
-                            return User.create({
-                                twitter: {
-                                    id: profile.id,
-                                    token: token,
-                                    username: profile.username,
-                                    displayName: profile.displayName
-                                }
-                            });
-                        }
-                    })
-                    .then(function (user) {
-                        done(null, user);
-                    }, function (err) {
-                        done(err);
-                    });
-
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user = req.user; // pull the user out of the session
-
-                user.twitter.id = profile.id;
-                user.twitter.token = token;
-                user.twitter.username = profile.username;
-                user.twitter.displayName = profile.displayName;
-
-                user.save(function (err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
+            User.findOne({ 'twitter.id': profile.id }).exec()
+                .then(function (user) {
+                    if (user) {
+                        return user; // user found, return that user
+                    } else {
+                        // if there is no user, create them
+                        return User.create({
+                            displayName : profile.displayName,
+                            email : profile.displayName + '@twitter',
+                            username : profile.username,
+                            twitter: {
+                                id: profile.id,
+                                token: token,
+                                username: profile.username,
+                                displayName: profile.displayName
+                            }
+                        });
+                    }
+                })
+                .then(function (user) {
+                    done(null, user);
+                }, function (err) {
+                    done(err);
                 });
-            }
         }));
 
     // =========================================================================
@@ -286,65 +271,33 @@ module.exports = function (env, passport) {
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
         },
-        function (req, token, refreshToken, profile, done) {
-            // asynchronous
-
-            // check if the user is already logged in
-            if (!req.user) {
-
-                User.findOne({ 'google.id': profile.id }, function (err, user) {
-                    if (err)
-                        return done(err);
-
+        function (req, token, tokenSecret, profile, done) {
+            User.findOne({ 'google.id': profile.id }).exec()
+                .then(function (user) {
                     if (user) {
-
-                        // if there is a user id already but no token (user was linked at one point and then removed)
-                        if (!user.google.token) {
-                            user.google.token = token;
-                            user.google.name = profile.displayName;
-                            user.google.email = profile.emails[0].value; // pull the first email
-
-                            user.save(function (err) {
-                                if (err)
-                                    throw err;
-                                return done(null, user);
-                            });
-                        }
-
-                        return done(null, user);
+                        return user; // user found, return that user
                     } else {
-                        var newUser = new User();
-
-                        newUser.google.id = profile.id;
-                        newUser.google.token = token;
-                        newUser.google.name = profile.displayName;
-                        newUser.google.email = profile.emails[0].value; // pull the first email
-
-                        newUser.save(function (err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
+                        // if there is no user, create them
+                        return User.create({
+                            username : profile.emails[0].value,
+                            displayName : profile.displayName,
+                            email : profile.emails[0].value,
+                            google: {
+                                id: profile.id,
+                                token: token,
+                                username: profile.emails[0].value,
+                                displayName: profile.displayName
+                            }
                         });
                     }
+                })
+                .then(function (user) {
+                    done(null, user);
+                }, function (err) {
+                    done(err);
                 });
-
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user = req.user; // pull the user out of the session
-
-                user.google.id = profile.id;
-                user.google.token = token;
-                user.google.name = profile.displayName;
-                user.google.email = profile.emails[0].value; // pull the first email
-
-                user.save(function (err) {
-                    if (err)
-                        throw err;
-                    return done(null, user);
-                });
-
-            }
         }));
+
 
     passport.use(new StackExchangeStrategy({
             clientID: configAuth.stackexchange.clientId,

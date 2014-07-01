@@ -6,6 +6,7 @@ var _ = require('lodash'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
     User = mongoose.model('User'),
+    isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request');
 
 var uuid = require('node-uuid');

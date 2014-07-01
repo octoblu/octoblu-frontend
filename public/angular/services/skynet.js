@@ -110,6 +110,7 @@ angular.module('octobluApp')
                 return skynetPromise.then(function () {
                     skynetSocket.emit('message', options, function (result) {
                         console.log('sending skynet message!');
+                        return result;
                     });
                 });
             }
