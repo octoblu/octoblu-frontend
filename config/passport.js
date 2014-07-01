@@ -112,17 +112,16 @@ module.exports = function (env, passport) {
                         local: {
                             email: email,
                             displayName: email,
-                            username: email,
-                            password: newUser.generateHash(password)
+                            username: email
                         }
 
                     });
-
-                    newUser.save(function (err) {
+                    newUser.local.password = newUser.generateHash(password);
+                    newUser.save(function (err, dbUser) {
                         if (err)
                             throw err;
 
-                        return done(null, newUser);
+                        return done(null, dbUser);
                     });
                 }
 
