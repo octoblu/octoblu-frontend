@@ -55,7 +55,13 @@ while(userCursor.hasNext()){
 
     } else if(user.google && user.google.email) {
 
-    }  else if(user.facebook && user.facebook.username) {
+        user.email = user.google.email;
+        user.displayName = user.google.name;
+        user.username = user.google.email;
+    }  else if(user.facebook && user.facebook.name) {
+        user.email = user.facebook.email;
+        user.displayName = user.facebook.name;
+        user.username = user.facebook.email;
 
     }   else if(user.twitter && user.twitter.displayName) {
         user.email = user.twitter.username + '@twitter';
