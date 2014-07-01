@@ -14,14 +14,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var LinkedInStrategy = require('passport-linkedin').Strategy;
-
-var StackExchangeStrategy = require('passport-stackexchange').Strategy;
-var BitlyStrategy = require('passport-bitly').Strategy;
-var FourSquareStrategy = require('passport-foursquare').Strategy;
-var TumblrStrategy = require('passport-tumblr').Strategy;
-var FitBitStrategy = require('passport-fitbit').Strategy;
-var RdioStrategy = require('passport-rdio').Strategy;
 
 // load up the user model
 var mongoose = require('mongoose');
@@ -151,75 +143,36 @@ module.exports = function (env, passport) {
     // FACEBOOK ================================================================
     // =========================================================================
     passport.use(new FacebookStrategy({
-
             clientID: configAuth.facebookAuth.clientID,
             clientSecret: configAuth.facebookAuth.clientSecret,
             callbackURL: configAuth.facebookAuth.callbackURL,
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
         },
-        function (req, token, refreshToken, profile, done) {
-            // asynchronous
-            process.nextTick(function () {
-
-                // check if the user is already logged in
-                if (!req.user) {
-
-                    User.findOne({ 'facebook.id': profile.id }, function (err, user) {
-                        if (err)
-                            return done(err);
-
-                        if (user) {
-
-                            // if there is a user id already but no token (user was linked at one point and then removed)
-                            if (!user.facebook.token) {
-                                user.facebook.token = token;
-                                user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-                                user.facebook.email = profile.emails[0].value;
-
-                                user.save(function (err) {
-                                    if (err)
-                                        throw err;
-                                    return done(null, user);
-                                });
+        function (req, token, tokenSecret, profile, done) {
+            User.findOne({ 'facebook.id': profile.id }).exec()
+                .then(function (user) {
+                    if (user) {
+                        return user; // user found, return that user
+                    } else {
+                        // if there is no user, create them
+                        return User.create({
+                            displayName: profile.name.givenName + ' ' + profile.name.familyName,
+                            email: profile.emails[0].value,
+                            username: profile.emails[0].value,
+                            facebook: {
+                                id: profile.id,
+                                token: token,
+                                username: profile.emails[0].value,
+                                displayName: profile.name.givenName + ' ' + profile.name.familyName
                             }
-
-                            return done(null, user); // user found, return that user
-                        } else {
-                            // if there is no user, create them
-                            var newUser = new User();
-
-                            newUser.facebook.id = profile.id;
-                            newUser.facebook.token = token;
-                            newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-                            newUser.facebook.email = profile.emails[0].value;
-
-                            newUser.save(function (err) {
-                                if (err)
-                                    throw err;
-                                return done(null, newUser);
-                            });
-                        }
-                    });
-
-                } else {
-                    // user already exists and is logged in, we have to link accounts
-                    var user = req.user; // pull the user out of the session
-
-                    user.facebook.id = profile.id;
-                    user.facebook.token = token;
-                    user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-                    user.facebook.email = profile.emails[0].value;
-
-                    user.save(function (err) {
-                        if (err)
-                            throw err;
-                        return done(null, user);
-                    });
-
-                }
-            });
-
+                        });
+                    }
+                })
+                .then(function (user) {
+                    done(null, user);
+                }, function (err) {
+                    done(err);
+                });
         }));
 
     // =========================================================================
@@ -241,9 +194,9 @@ module.exports = function (env, passport) {
                     } else {
                         // if there is no user, create them
                         return User.create({
-                            displayName : profile.displayName,
-                            email : profile.displayName + '@twitter',
-                            username : profile.username,
+                            displayName: profile.displayName,
+                            email: profile.displayName + '@twitter',
+                            username: profile.username,
                             twitter: {
                                 id: profile.id,
                                 token: token,
@@ -279,9 +232,9 @@ module.exports = function (env, passport) {
                     } else {
                         // if there is no user, create them
                         return User.create({
-                            username : profile.emails[0].value,
-                            displayName : profile.displayName,
-                            email : profile.emails[0].value,
+                            username: profile.emails[0].value,
+                            displayName: profile.displayName,
+                            email: profile.emails[0].value,
                             google: {
                                 id: profile.id,
                                 token: token,
@@ -297,64 +250,64 @@ module.exports = function (env, passport) {
                     done(err);
                 });
         }));
-
-
-    passport.use(new StackExchangeStrategy({
-            clientID: configAuth.stackexchange.clientId,
-            key: configAuth.stackexchange.clientKey,
-            clientSecret: configAuth.stackexchange.clientSecret,
-            callbackURL: configAuth.stackexchange.callbackURL,
-            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-        },
-        function (req, token, tokenSecret, profile, done) {
-            console.log('handling stackexchange response with passport');
-        }
-    ));
-
-    passport.use(new BitlyStrategy({
-            clientID: configAuth.bitly.clientId,
-            key: configAuth.bitly.clientId,
-            clientSecret: configAuth.bitly.clientSecret,
-            callbackURL: configAuth.bitly.callbackURL,
-            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-        },
-        function (req, token, tokenSecret, profile, done) {
-            console.log('handling bitly response with passport');
-        }
-    ));
-
-    passport.use(new FourSquareStrategy({
-            clientID: configAuth.foursquare.clientKey,
-            key: configAuth.foursquare.clientKey,
-            clientSecret: configAuth.foursquare.clientSecret,
-            callbackURL: configAuth.foursquare.callbackURL,
-            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-        },
-        function (req, token, tokenSecret, profile, done) {
-            console.log('handling foursquare response with passport');
-        }
-    ));
-
-    passport.use(new TumblrStrategy({
-            consumerKey: configAuth.tumblr.consumerKey,
-            consumerSecret: configAuth.tumblr.consumerSecret,
-            callbackURL: configAuth.tumblr.callbackURL,
-            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-        },
-        function (req, token, tokenSecret, profile, done) {
-            console.log('handling tumblr response with passport');
-        }
-    ));
-
-    passport.use(new RdioStrategy({
-            consumerKey: configAuth.rdio.consumerKey,
-            consumerSecret: configAuth.rdio.consumerSecret,
-            callbackURL: configAuth.rdio.callbackURL,
-            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-        },
-        function (req, token, tokenSecret, profile, done) {
-            console.log('handling rdio response with passport');
-        }
-    ));
-
 };
+
+//    passport.use(new StackExchangeStrategy({
+//            clientID: configAuth.stackexchange.clientId,
+//            key: configAuth.stackexchange.clientKey,
+//            clientSecret: configAuth.stackexchange.clientSecret,
+//            callbackURL: configAuth.stackexchange.callbackURL,
+//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+//        },
+//        function (req, token, tokenSecret, profile, done) {
+//            console.log('handling stackexchange response with passport');
+//        }
+//    ));
+//
+//    passport.use(new BitlyStrategy({
+//            clientID: configAuth.bitly.clientId,
+//            key: configAuth.bitly.clientId,
+//            clientSecret: configAuth.bitly.clientSecret,
+//            callbackURL: configAuth.bitly.callbackURL,
+//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+//        },
+//        function (req, token, tokenSecret, profile, done) {
+//            console.log('handling bitly response with passport');
+//        }
+//    ));
+//
+//    passport.use(new FourSquareStrategy({
+//            clientID: configAuth.foursquare.clientKey,
+//            key: configAuth.foursquare.clientKey,
+//            clientSecret: configAuth.foursquare.clientSecret,
+//            callbackURL: configAuth.foursquare.callbackURL,
+//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+//        },
+//        function (req, token, tokenSecret, profile, done) {
+//            console.log('handling foursquare response with passport');
+//        }
+//    ));
+//
+//    passport.use(new TumblrStrategy({
+//            consumerKey: configAuth.tumblr.consumerKey,
+//            consumerSecret: configAuth.tumblr.consumerSecret,
+//            callbackURL: configAuth.tumblr.callbackURL,
+//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+//        },
+//        function (req, token, tokenSecret, profile, done) {
+//            console.log('handling tumblr response with passport');
+//        }
+//    ));
+//
+//    passport.use(new RdioStrategy({
+//            consumerKey: configAuth.rdio.consumerKey,
+//            consumerSecret: configAuth.rdio.consumerSecret,
+//            callbackURL: configAuth.rdio.callbackURL,
+//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+//        },
+//        function (req, token, tokenSecret, profile, done) {
+//            console.log('handling rdio response with passport');
+//        }
+//    ));
+//
+//};
