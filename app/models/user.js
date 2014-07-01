@@ -3,15 +3,22 @@
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     Resource = require('./mixins/resource'),
-    moment = require('moment');
+    moment = require('moment'),
+
+    configAuth = require('../../config/auth')(process.env.NODE_ENV),
+    rest = require('rest'),
+    mime = require('rest/interceptor/mime'),
+    errorCode = require('rest/interceptor/errorCode'),
+    client = rest.wrap(mime).wrap(errorCode);
+
 // define the schema for our user model
 var UserSchema = new mongoose.Schema({
         name: String,
         username: String,
         admin: Boolean,
-        skynet : {
-            uuid : String,
-            token : String
+        skynet: {
+            uuid: {type: String, unique: true, required: true},
+            token: { type: String, required: true}
         },
         local: {
             email: String,
@@ -41,7 +48,7 @@ var UserSchema = new mongoose.Schema({
             email: String,
             name: String,
 //            skynetuuid: String,
-            skynettoken: String
+//            skynettoken: String
         },
         api: [
             {
@@ -66,7 +73,7 @@ var UserSchema = new mongoose.Schema({
     },
     { toObject: {virtuals: true}, toJSON: {virtuals: true} });
 
-Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties : ['displayName', 'email', 'skynettoken']});
+Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties: ['displayName', 'email', 'skynettoken']});
 
 // find api connection by name
 UserSchema.methods.findApiByName = function (name) {
@@ -145,7 +152,7 @@ UserSchema.virtual('skynettoken').get(function () {
 
 //Convenience method for getting the Skynet Token
 UserSchema.virtual('email').get(function () {
-    return this.local.email || this.google.email || this.facebook.email || this.twitter.username  + '@twitter';
+    return this.local.email || this.google.email || this.facebook.email || this.twitter.username + '@twitter';
 });
 
 UserSchema.virtual('displayName').get(function () {
@@ -217,5 +224,37 @@ UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken)
     ]
     }).exec();
 };
+
+
+UserSchema.pre('validate', function (next) {
+    var user = this;
+    user.skynet = user.skynet || migrateSkynet(user);
+    if (!user.skynet.uuid) {
+        user.skynet = {
+            uuid: user.resource.uuid,
+            token: Resource.generateToken()
+        };
+
+        client({
+            method: 'POST',
+            path: 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices',
+            params: {
+                type: 'user',
+                uuid: user.skynet.uuid,
+                token: user.skynet.token,
+                'email': user.email
+
+            }})
+            .then(function (result) {
+                console.log(result.entity);
+                next();
+            })
+            .catch(function (error) {
+                next(error);
+            });
+    } else {
+        next();
+    }
+});
 
 module.exports = UserSchema;

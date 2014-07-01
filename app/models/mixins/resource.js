@@ -123,6 +123,7 @@ module.exports = {
     Resource: Resource,
     ResourceType: ResourceType,
     ResourceId: ResourceId,
+    generateToken : generateToken,
     makeResourceModel: makeResourceModel,
     makeResourceObject : makeResourceObject
 };

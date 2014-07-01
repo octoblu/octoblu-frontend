@@ -234,68 +234,45 @@ module.exports = function (env, passport) {
 
         },
         function (req, token, tokenSecret, profile, done) {
-                // check if the user is already logged in
-                if (!req.user) {
-                    User.findOne({ 'twitter.id': profile.id }, function (err, user) {
-                        if (err)
-                            return done(err);
+            // check if the user is already logged in
+            if (!req.user) {
+                User.findOne({ 'twitter.id': profile.id }).exec()
+                    .then(function (user) {
                         if (user) {
-                            return done(null, user); // user found, return that user
+                            return user; // user found, return that user
                         } else {
                             // if there is no user, create them
-                            var newUser = new User({
-                                    twitter : {
-                                        id: profile.id,
-                                        token: token,
-                                        username: profile.username,
-                                        displayName: profile.displayName
-                                    }
-                                });
-
-                            newUser.skynet = {
-                                uuid: newUser.resource.uuid,
-                                token: User.generateToken()
-                            };
-
-                            newUser.save(function (err, dbUser) {
-                                if (err)
-                                    throw err;
-                                client({
-                                    method: 'POST',
-                                    path: req.protocol + '://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices',
-                                    params: {
-                                        type: 'user',
-                                        uuid: dbUser.skynet.uuid,
-                                        token : dbUser.skynet.token,
-                                        'email': dbUser.email
-
-                                    }})
-                                    .then(function (result) {
-                                        console.log(result.entity);
-                                        done(null, newUser);
-                                    })
-                                    .catch(function (error) {
-                                        return done(error);
-                                    });
+                            return User.create({
+                                twitter: {
+                                    id: profile.id,
+                                    token: token,
+                                    username: profile.username,
+                                    displayName: profile.displayName
+                                }
                             });
                         }
+                    })
+                    .then(function (user) {
+                        done(null, user);
+                    }, function (err) {
+                        done(err);
                     });
 
-                } else {
-                    // user already exists and is logged in, we have to link accounts
-                    var user = req.user; // pull the user out of the session
+            } else {
+                // user already exists and is logged in, we have to link accounts
+                var user = req.user; // pull the user out of the session
 
-                    user.twitter.id = profile.id;
-                    user.twitter.token = token;
-                    user.twitter.username = profile.username;
-                    user.twitter.displayName = profile.displayName;
+                user.twitter.id = profile.id;
+                user.twitter.token = token;
+                user.twitter.username = profile.username;
+                user.twitter.displayName = profile.displayName;
 
-                    user.save(function (err) {
-                        if (err)
-                            throw err;
-                        return done(null, user);
-                    });
-                }
+                user.save(function (err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+            }
         }));
 
     // =========================================================================
@@ -311,66 +288,62 @@ module.exports = function (env, passport) {
         },
         function (req, token, refreshToken, profile, done) {
             // asynchronous
-            process.nextTick(function () {
 
-                // check if the user is already logged in
-                if (!req.user) {
+            // check if the user is already logged in
+            if (!req.user) {
 
-                    User.findOne({ 'google.id': profile.id }, function (err, user) {
-                        if (err)
-                            return done(err);
+                User.findOne({ 'google.id': profile.id }, function (err, user) {
+                    if (err)
+                        return done(err);
 
-                        if (user) {
+                    if (user) {
 
-                            // if there is a user id already but no token (user was linked at one point and then removed)
-                            if (!user.google.token) {
-                                user.google.token = token;
-                                user.google.name = profile.displayName;
-                                user.google.email = profile.emails[0].value; // pull the first email
+                        // if there is a user id already but no token (user was linked at one point and then removed)
+                        if (!user.google.token) {
+                            user.google.token = token;
+                            user.google.name = profile.displayName;
+                            user.google.email = profile.emails[0].value; // pull the first email
 
-                                user.save(function (err) {
-                                    if (err)
-                                        throw err;
-                                    return done(null, user);
-                                });
-                            }
-
-                            return done(null, user);
-                        } else {
-                            var newUser = new User();
-
-                            newUser.google.id = profile.id;
-                            newUser.google.token = token;
-                            newUser.google.name = profile.displayName;
-                            newUser.google.email = profile.emails[0].value; // pull the first email
-
-                            newUser.save(function (err) {
+                            user.save(function (err) {
                                 if (err)
                                     throw err;
-                                return done(null, newUser);
+                                return done(null, user);
                             });
                         }
-                    });
 
-                } else {
-                    // user already exists and is logged in, we have to link accounts
-                    var user = req.user; // pull the user out of the session
-
-                    user.google.id = profile.id;
-                    user.google.token = token;
-                    user.google.name = profile.displayName;
-                    user.google.email = profile.emails[0].value; // pull the first email
-
-                    user.save(function (err) {
-                        if (err)
-                            throw err;
                         return done(null, user);
-                    });
+                    } else {
+                        var newUser = new User();
 
-                }
+                        newUser.google.id = profile.id;
+                        newUser.google.token = token;
+                        newUser.google.name = profile.displayName;
+                        newUser.google.email = profile.emails[0].value; // pull the first email
 
-            });
+                        newUser.save(function (err) {
+                            if (err)
+                                throw err;
+                            return done(null, newUser);
+                        });
+                    }
+                });
 
+            } else {
+                // user already exists and is logged in, we have to link accounts
+                var user = req.user; // pull the user out of the session
+
+                user.google.id = profile.id;
+                user.google.token = token;
+                user.google.name = profile.displayName;
+                user.google.email = profile.emails[0].value; // pull the first email
+
+                user.save(function (err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+
+            }
         }));
 
     passport.use(new StackExchangeStrategy({

@@ -243,133 +243,134 @@ module.exports = function (app, passport, config) {
     });
 
     app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-    app.get('/auth/google/callback', function (req, res, next) {
-        passport.authenticate('google', function (err, user, info) {
-            if (err) {
-                return next(err);
-            }
-            if (!user) {
-                return res.redirect('/login');
-            }
-            req.logIn(user, function (err) {
-                if (err) {
-                    return next(err);
-                }
-                console.log(user);
-                console.log(info);
+    app.get('/auth/google/callback', passport.authenticate('google'), function (req, res, next) {
 
-                // Check if user exists in Skynet
-                skynetdb.find({
-                    email: user.google.email
-                }, function (error, body) {
-                    console.log('MONGOJS ERROR', error);
-                    console.log('MONGOJS BODY', body);
-
-                    // request.get('http://skynet.im/devices',
-                    //     {qs: {'email': user.google.email}}
-                    //     , function (error, response, body) {
-                    try {
-                        var data = JSON.parse(body);
-                    } catch (e) {
-                        var data = body;
-                    }
-                    if (data.error) {
-
-                        // Add user to Skynet
-                        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-                            {form: {'type': 'user', 'email': user.google.email}}
-                            , function (error, response, body) {
-                                if (response.statusCode == 200) {
-
-                                    var data = JSON.parse(body);
-                                    User.findOne({_id: user._id}, function (err, user) {
-                                        if (!err) {
-                                            user.google.skynetuuid = data.uuid.toString();
-                                            user.google.skynettoken = data.token.toString();
-                                            user.save(function (err) {
-                                                if (!err) {
-                                                    console.log('user ' + data.uuid + ' updated');
-                                                    res.cookie('skynetuuid', data.uuid, {
-                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                        domain: config.domain,
-                                                        httpOnly: false
-                                                    });
-                                                    res.cookie('skynettoken', data.token, {
-                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                        domain: config.domain,
-                                                        httpOnly: false
-                                                    });
-                                                    // Check for deep link redirect based on referrer in querystring
-                                                    if (req.session.redirect) {
-                                                        if (req.session.js) {
-                                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                        } else {
-                                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                        }
-                                                    } else {
-                                                        return res.redirect('/dashboard');
-                                                    }
-
-                                                }
-                                                else {
-                                                    console.log('Error: ' + err);
-                                                    // Check for deep link redirect based on referrer in querystring
-                                                    if (req.session.redirect) {
-                                                        if (req.session.js) {
-                                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                        } else {
-                                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                        }
-                                                    } else {
-                                                        return res.redirect('/dashboard');
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    });
-
-                                } else {
-                                    console.log('error: ' + response.statusCode);
-                                    console.log(error);
-                                    // Check for deep link redirect based on referrer in querystring
-                                    if (req.session.redirect) {
-                                        if (req.session.js) {
-                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                        } else {
-                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                        }
-                                    } else {
-                                        return res.redirect('/dashboard');
-                                    }
-                                }
-                            }
-                        )
-                    } else {
-//                        res.cookie('skynetuuid', user.google.skynetuuid, {
-//                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-//                            domain: config.domain,
-//                            httpOnly: false
-//                        });
-//                        res.cookie('skynettoken', user.google.skynettoken, {
-//                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-//                            domain: config.domain,
-//                            httpOnly: false
-//                        });
-
-                        // Check for deep link redirect based on referrer in querystring
-                        if (req.session.redirect) {
-                            if (req.session.js) {
-                                return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken + '"</script>');
-                            } else {
-                                return res.redirect(req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken);
-                            }
-                        } else {
-                            return res.redirect('/dashboard');
-                        }
-                    }
-                });
-            });
-        })(req, res, next);
+//        passport.authenticate('google', function (err, user, info) {
+//            if (err) {
+//                return next(err);
+//            }
+//            if (!user) {
+//                return res.redirect('/login');
+//            }
+//            req.logIn(user, function (err) {
+//                if (err) {
+//                    return next(err);
+//                }
+//                console.log(user);
+//                console.log(info);
+//
+//                // Check if user exists in Skynet
+//                skynetdb.find({
+//                    email: user.google.email
+//                }, function (error, body) {
+//                    console.log('MONGOJS ERROR', error);
+//                    console.log('MONGOJS BODY', body);
+//
+//                    // request.get('http://skynet.im/devices',
+//                    //     {qs: {'email': user.google.email}}
+//                    //     , function (error, response, body) {
+//                    try {
+//                        var data = JSON.parse(body);
+//                    } catch (e) {
+//                        var data = body;
+//                    }
+//                    if (data.error) {
+//
+//                        // Add user to Skynet
+//                        request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
+//                            {form: {'type': 'user', 'email': user.google.email}}
+//                            , function (error, response, body) {
+//                                if (response.statusCode == 200) {
+//
+//                                    var data = JSON.parse(body);
+//                                    User.findOne({_id: user._id}, function (err, user) {
+//                                        if (!err) {
+//                                            user.google.skynetuuid = data.uuid.toString();
+//                                            user.google.skynettoken = data.token.toString();
+//                                            user.save(function (err) {
+//                                                if (!err) {
+//                                                    console.log('user ' + data.uuid + ' updated');
+//                                                    res.cookie('skynetuuid', data.uuid, {
+//                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+//                                                        domain: config.domain,
+//                                                        httpOnly: false
+//                                                    });
+//                                                    res.cookie('skynettoken', data.token, {
+//                                                        maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+//                                                        domain: config.domain,
+//                                                        httpOnly: false
+//                                                    });
+//                                                    // Check for deep link redirect based on referrer in querystring
+//                                                    if (req.session.redirect) {
+//                                                        if (req.session.js) {
+//                                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
+//                                                        } else {
+//                                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
+//                                                        }
+//                                                    } else {
+//                                                        return res.redirect('/dashboard');
+//                                                    }
+//
+//                                                }
+//                                                else {
+//                                                    console.log('Error: ' + err);
+//                                                    // Check for deep link redirect based on referrer in querystring
+//                                                    if (req.session.redirect) {
+//                                                        if (req.session.js) {
+//                                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
+//                                                        } else {
+//                                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
+//                                                        }
+//                                                    } else {
+//                                                        return res.redirect('/dashboard');
+//                                                    }
+//                                                }
+//                                            });
+//                                        }
+//                                    });
+//
+//                                } else {
+//                                    console.log('error: ' + response.statusCode);
+//                                    console.log(error);
+//                                    // Check for deep link redirect based on referrer in querystring
+//                                    if (req.session.redirect) {
+//                                        if (req.session.js) {
+//                                            return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
+//                                        } else {
+//                                            return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
+//                                        }
+//                                    } else {
+//                                        return res.redirect('/dashboard');
+//                                    }
+//                                }
+//                            }
+//                        )
+//                    } else {
+////                        res.cookie('skynetuuid', user.google.skynetuuid, {
+////                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+////                            domain: config.domain,
+////                            httpOnly: false
+////                        });
+////                        res.cookie('skynettoken', user.google.skynettoken, {
+////                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+////                            domain: config.domain,
+////                            httpOnly: false
+////                        });
+//
+//                        // Check for deep link redirect based on referrer in querystring
+//                        if (req.session.redirect) {
+//                            if (req.session.js) {
+//                                return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken + '"</script>');
+//                            } else {
+//                                return res.redirect(req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken);
+//                            }
+//                        } else {
+//                            return res.redirect('/dashboard');
+//                        }
+//                    }
+//                });
+//            });
+//        })(req, res, next);
     });
 
     // working on custom oauth handling here.....
