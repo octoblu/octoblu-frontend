@@ -1,9 +1,10 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, availableDeviceTypes, deviceService) {
+    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableDeviceTypes, deviceService) {
 
         $scope.user = currentUser;
         $scope.smartDevices = availableDeviceTypes;
         $scope.devices = myDevices;
+        $scope.hasHubs = myGateways.length;
 
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
@@ -32,14 +33,14 @@ angular.module('octobluApp')
                         selectedHub: function () {
                             return null;
                         },
-                        plugin: function () {
-                            return _.findWhere(hub.plugins, {name: subdeviceType});
+                        pluginName: function () {
+                            return smartDevice.plugin;
                         },
                         subdevice: function () {
                             return null;
                         },
                         hubs: function () {
-                            return _.filter($scope.devices, {type: 'gateway'});
+                            return myGateways;
                         },
                         availableDeviceTypes: function () {
                             return availableDeviceTypes;
@@ -47,29 +48,16 @@ angular.module('octobluApp')
                     }
                 });
 
-                subdeviceModal.result.then(function (updatedSubdevice) {
-                    if (!subdevice) {
+                subdeviceModal.result.then(function (result) {
                         skynetService.createSubdevice({
-                            uuid: hub.uuid,
-                            token: hub.token,
-                            type: subdeviceType,
-                            name: updatedSubdevice.name,
-                            options: updatedSubdevice.options
+                            uuid: result.hub.uuid,
+                            token: result.hub.token,
+                            type: smartDevice.plugin,
+                            name: result.subdevice.name,
+                            options: result.subdevice.options
                         }).then(function (response) {
-                            hub.subdevices.push(response.result);
+                            result.hub.subdevices.push(response.result);
                         });
-                    } else {
-                        skynetService.updateSubdevice({
-                            uuid: hub.uuid,
-                            token: hub.token,
-                            type: subdeviceType,
-                            name: updatedSubdevice.name,
-                            options: updatedSubdevice.options
-                        }).then(function (response) {
-                            console.log(response);
-                            angular.copy(updatedSubdevice, subdevice);
-                        });
-                    }
 
                 }, function () {
                     console.log('cancelled');

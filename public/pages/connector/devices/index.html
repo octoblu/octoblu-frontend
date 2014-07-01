@@ -50,7 +50,7 @@
 
            </div>
            <div class="panel-body">
-                   <a   ng-class="{'unavailable': ! smartDevice.enabled }" ng-repeat="smartDevice in smartDevices" class="pull-left" ng-click="addSmartDevice(smartDevice)" style="margin: 0 0 15px 15px; ">
+                   <a   ng-class="{'unavailable': !smartDevice.enabled }" ng-repeat="smartDevice in smartDevices" class="pull-left" ng-click="addSmartDevice(smartDevice)" style="margin: 0 0 15px 15px; ">
                      <img src="{{smartDevice.logo || defaultLogo }}" width="80" height="80"  ng-model="smartDevice" />
                    </a>
 

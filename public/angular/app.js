@@ -97,20 +97,21 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     },
                     myGateways: function (myDevices, skynetService, $q) {
                         var gateways = _.filter(myDevices, {type: 'gateway', online: true });
-                        $q.all(_.map(gateways, function (gateway) {
-                                return skynetService.gatewayConfig({
-                                    "uuid": gateway.uuid,
-                                    "token": gateway.token,
-                                    "method": "configurationDetails"
-                                }).then(function (response) {
-                                    gateway.subdevices = response.result.subdevices || [];
-                                    gateway.plugins = response.result.plugins || [];
-                                }, function () {
-                                    console.log('couldn\'t get data for: ');
-                                    console.log(gateway);
-                                });
-                            })
-                        );
+                        _.map(gateways, function (gateway) {
+                            gateway.subdevices = [];
+                            gateway.plugins = [];
+                            return skynetService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
+                                "method": "configurationDetails"
+                            }).then(function (response) {
+                                gateway.subdevices = response.result.subdevices || [];
+                                gateway.plugins = response.result.plugins || [];
+                            }, function () {
+                                console.log('couldn\'t get data for: ');
+                                console.log(gateway);
+                            });
+                        });
                         return gateways;
                     }
                 }
@@ -320,7 +321,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
     })
     .run(function ($rootScope, $window, $state, $urlRouter, AuthService) {
 
-        $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams){
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams) {
             console.log('error from ' + fromState.name + ' to ' + toState.name)
             ;
         });
