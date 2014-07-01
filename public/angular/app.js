@@ -48,6 +48,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 resolve: {
                     currentUser: function (AuthService) {
                         return AuthService.getCurrentUser();
+                    },
+                    myDevices: function (currentUser, deviceService) {
+                        return deviceService.getDevices();
                     }
                 },
                 unsecured: true
@@ -79,11 +82,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/dashboard',
                 templateUrl: 'pages/dashboard.html',
                 controller: 'dashboardController',
-                resolve: {
-                    myDevices: function (deviceService) {
-                        return deviceService.getDevices();
-                    }
-                }
             })
             .state('ob.connector', {
                 url: '/connector',
@@ -91,9 +89,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 resolve: {
                     availableDeviceTypes: function (channelService) {
                         return channelService.getSmartDevices();
-                    },
-                    myDevices: function (deviceService) {
-                        return deviceService.getDevices();
                     },
                     myGateways: function (myDevices, skynetService, $q) {
                         var gateways = _.filter(myDevices, {type: 'gateway', online: true });

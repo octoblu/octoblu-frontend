@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService, reservedProperties) {
+    .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService, deviceService, reservedProperties) {
         var skynetSocket,
             user,
             defer = $q.defer(),
@@ -29,9 +29,32 @@ angular.module('octobluApp')
 
         skynetPromise.then(function () {
             console.log('registering for messages');
-            skynetSocket.on('message', function (channel, message) {
+            skynetSocket.on('message', function (message) {
                 console.log('skynet sent a message');
+                console.log(message);
                 $rootScope.$broadcast('skynet:message', message);
+            });
+            skynetSocket.on('ready', function (message) {
+                console.log('skynet sent a ready message');
+                console.log(message);
+                $rootScope.$broadcast('skynet:message', message);
+            });
+
+            _.each($rootScope.myDevices, function(device){
+                console.log('Subscribing for device :'  + device.uuid);
+                skynetSocket.emit('subscribe', {uuid: device.uuid});
+            });
+
+            $rootScope.$watch('myDevices', function (myDevices, prevMyDevices) {
+                _.each(prevMyDevices, function (device) {
+                    console.log('Unsubscribing for device :'  + device.uuid);
+                    skynetSocket.emit('unsubscribe', {uuid: device.uuid});
+                });
+
+                _.each(myDevices, function(device){
+                    console.log('Subscribing for device :'  + device.uuid);
+                    skynetSocket.emit('subscribe', {uuid: device.uuid});
+                });
             });
         });
 
