@@ -389,6 +389,10 @@ max-width: 100%;
 .device-list .device-actions {
     margin-bottom: 35px;
 }
+
+.device-list .device-actions .add-device:hover{
+    color:white;
+}
 .device-list .subdevice-actions .subdevice {
     cursor:pointer;
 }

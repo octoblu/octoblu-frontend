@@ -86,24 +86,12 @@ angular.module('octobluApp')
          * getSmartDevices gets the smart devices that Octoblu supports
          * @returns {defer.promise|*} a promise that will eventually resolve to an array of smart devices
          */
-          this.getSmartDevices = function() {
-            return $http.get('/api/smartdevices')
+          this.getDeviceTypes = function() {
+            return $http.get('/api/devicetypes')
                 .then(function(result){
                     return result.data;
                 });
         };
-
-        this.getSmartDevicesHomePage = function(callback) {
-          var defer = $q.defer();
-          $http.get('/api/smartdevices')
-              .success(function(data) {
-                   callback(null, data);
-              })
-              .error(function(error) {
-                 callback(error);
-              });
-        };
-
 
         this.getCustomList = function(uuid, callback) {
             $http.get('/api/customchannels/' + uuid, { cache: true})

@@ -4,7 +4,7 @@ var _ = require('underscore'),
     request = require('request'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
-    Device = mongoose.model('Device'),
+    DeviceType = mongoose.model('DeviceType'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
 
@@ -23,8 +23,8 @@ module.exports = function (app) {
 
     // List of all Smart Devices
     // TODO: rename to match naming convention
-    app.get('/api/smartdevices', function (req, res) {
-        Device.find({}, function (err, apis) {
+    app.get('/api/devicetypes', function (req, res) {
+        DeviceType.find({}, function (err, apis) {
             if (err) {
                 res.send(err);
             } else {

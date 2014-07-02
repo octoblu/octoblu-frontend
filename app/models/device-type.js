@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     Resource = require('./mixins/resource');
 
 // define the schema for our user model
-var DeviceSchema = new mongoose.Schema({
+var DeviceTypeSchema = new mongoose.Schema({
     name: String,
     plugin: String,
     logo: String,
@@ -12,6 +12,6 @@ var DeviceSchema = new mongoose.Schema({
     enabled: Boolean
 });
 
-Resource.makeResourceModel({schema: DeviceSchema, type: 'device'});
+Resource.makeResourceModel({schema: DeviceTypeSchema, type: 'devicetype'});
 
-module.exports = DeviceSchema;
+module.exports = DeviceTypeSchema;

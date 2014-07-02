@@ -9,8 +9,8 @@ mongoose.model('Api', ApiSchema);
 var ResourcePermissionSchema = require('./app/models/resourcePermission');
 mongoose.model('ResourcePermission', ResourcePermissionSchema);
 
-var DeviceSchema = require('./app/models/device');
-mongoose.model('Device', DeviceSchema);
+var DeviceTypeSchema = require('./app/models/device-type');
+mongoose.model('DeviceType', DeviceTypeSchema);
 
 var UserSchema = require('./app/models/user');
 mongoose.model('User', UserSchema);
