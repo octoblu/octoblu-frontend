@@ -1,9 +1,6 @@
-<section id='content'>
-  <div class='container full-screen'>
-    <br /><br />    
-    <iframe  width="100%" ng-src="{{redFrame}}" marginheight="0" frameborder="0" height="100px" id="designerFrame"></iframe>    
-  </div>
-</section>
+<div class="row">
+    <iframe  width="100%" ng-src="{{redFrame}}" marginheight="0" frameborder="0" height="100px" id="designerFrame"></iframe>
+</div>
 <script>
 $('#designerFrame').attr('height',$("body").height()-50)
 window.onresize = function(event) {
