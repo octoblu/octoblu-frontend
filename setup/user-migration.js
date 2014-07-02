@@ -50,7 +50,7 @@ while(userCursor.hasNext()){
 
     if(user.local && user.local.email) {
         user.email = user.local.email;
-        user.displayName = user.local.displayName;
+        user.displayName = user.local.email;
         user.username = user.local.email;
 
     } else if(user.google && user.google.email) {
