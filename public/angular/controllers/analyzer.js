@@ -7,19 +7,20 @@ angular.module('octobluApp')
             // Get user devices
             console.log("getting devices from ownerService");
             ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
-		$scope.splunk_devices = "";
+		$scope.logic_devices = "";
                 $scope.devices = data;
                 $scope.deviceLookup = {};
                 for (var i in $scope.devices) {
                     if($scope.devices[i].type == 'gateway'){
                         $scope.devices.splice(i,1);
                     }
-		    $scope.splunk_devices +=  $scope.devices[i].uuid + " OR ";
+		    $scope.logic_devices +=  $scope.devices[i].uuid + " OR ";
                     $scope.deviceLookup[$scope.devices[i].uuid] = $scope.devices[i].name;
                 }
                 $scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices" };
+		console.log("logging devices");
                 console.log($scope.devices);
-		console.log($scope.splunk_devices);
+		console.log($scope.logic_devices);
             });
 
 
@@ -29,7 +30,21 @@ angular.module('octobluApp')
               $scope.currentPage = newValue;
               $scope.search(newValue);
             });
+	   
+            $scope.$watch('devices', function(newValue, oldValue) {
+		if (newValue) {
+			console.log("New Value for Devices");
+			elasticService.paramSearch("now-1d/d","now", 0, {}, newValue, function(err,data){
+                        	if (err) { return console.log(err); }
+				console.log("function=paramSearch callback");
+                        	console.log(data);
+                	});
+		    // LOAD GRAPHS
+	            $scope.loadTop();
 
+
+		}
+	    });
             $scope.search = function (currentPage) {
               $scope.results="searching...";
                 if ($scope.searchText !== undefined) {
@@ -92,8 +107,6 @@ angular.module('octobluApp')
                 $scope.events = data;
             });
 		
-	    // LOAD GRAPHS
-            $scope.loadTop();
 
            //Checkbox Functions for Exploring list.
 	$scope.selection = [];

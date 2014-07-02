@@ -35,9 +35,21 @@ angular.module('octobluApp')
       "query": queryObject + ", owner:"+ownerUuid + eC
     }
   }}*/
+	this.paramSearch = function (from, to, size, facet, myDevices, callback) {
+		console.log("starting function=paramSearch");
+		first = true;
+		deviceString = "";
+		_.each(myDevices, function(data){
+			if (first && data.uuid) { first = false; deviceString += " uuid="+data.uuid; }
+			else if (data.uuid) { deviceString += " OR uuid="+data.uuid;  }
+		});
+		baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+deviceString+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
+		console.log(baseSearchObject);
+		service.client.search({ index: 'log', body: baseSearchObject}, function(error,response) { callback(error, response); });
+	}; 
 
         this.facetSearch = function (from, to, ownerUuid, size, facet, callback) {
-            console.log("Time Advanced Search");
+            console.log("starting function=facetSearch");
             console.log(ownerUuid);
             baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "(fromUuid.owner = '"+ownerUuid+"' OR toUuid.owner = '"+ownerUuid+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
 	    console.log(baseSearchObject);
