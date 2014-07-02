@@ -44,8 +44,8 @@ angular.module('octobluApp')
 			else if (data.uuid) { deviceString += " OR uuid="+data.uuid;  }
 		});
 		baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+deviceString+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
-		console.log(baseSearchObject);
-		service.client.search({ index: 'log', body: baseSearchObject}, function(error,response) { callback(error, response); });
+		console.log(JSON.stringify(baseSearchObject));
+		service.client.search({ index: '_all', body: baseSearchObject}, function(error,response) { callback(error, response); });
 	}; 
 
         this.facetSearch = function (from, to, ownerUuid, size, facet, callback) {

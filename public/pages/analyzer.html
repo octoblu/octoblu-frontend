@@ -137,29 +137,6 @@
 		</div>
 	</div>
 	</accordion-group>
-	<accordion-group heading="Device Details - possibly move to the connectors page">
-	<div class="container-fluid">
-              <div class="row">
-                <h2>Device Details</h2>
-                <div class="input-group">
-                  <form class="form-inline col-md-12">
-                  <div class="form-group col-md-12">
-                  <div class="form-group">
-                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select>
-                  </div>
-                  </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-                 <canvas id="mycanvas" width="400" height="100"></canvas>
-
-                 <div id="legend"></div>
-
-        <textarea style="width:100%">{{device}}</textarea>
-
-	</accordion-group>
 	</accordion>
 
             </div>
