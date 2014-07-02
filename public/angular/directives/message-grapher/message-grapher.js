@@ -33,18 +33,24 @@ angular.module('octobluApp')
                 });
                 smoothie.addTimeSeries(messageLines.message.line, { strokeStyle: messageLines.message.color, lineWidth: 3 });
                 smoothie.streamTo(element.find('canvas')[0]);
-                scope.$on('skynet:message:' + scope.device.uuid, function (event, message) {
+                var eventName = 'skynet:message';
+                if (scope.device) {
+                    eventName += ':' + scope.device;
+                }
+                scope.$on(eventName, function (event, message) {
                     messages.push(message.payload);
-                    _.each(_.keys(message.payload), function (key) {
-                        if ((typeof message.payload[key] === 'number') && !messageLines[key]) {
-                            messageLines[key] = {
-                                line: new TimeSeries(),
-                                color: lineColors.pop()
-                            };
-                            smoothie.addTimeSeries(messageLines[key].line, { strokeStyle: messageLines[key].color, lineWidth: 3 });
-                            console.log('added line for: ' + key);
-                        }
-                    });
+                    if (scope.device) {
+                        _.each(_.keys(message.payload), function (key) {
+                            if ((typeof message.payload[key] === 'number') && !messageLines[key]) {
+                                messageLines[key] = {
+                                    line: new TimeSeries(),
+                                    color: lineColors.pop()
+                                };
+                                smoothie.addTimeSeries(messageLines[key].line, { strokeStyle: messageLines[key].color, lineWidth: 3 });
+                                console.log('added line for: ' + key);
+                            }
+                        });
+                    }
                 });
 
                 var intervalPromise = $interval(function () {

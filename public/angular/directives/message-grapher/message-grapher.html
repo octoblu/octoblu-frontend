@@ -11,7 +11,7 @@
 </style>
 <div class="message-grapher">
     <canvas width="400" height="100"></canvas>
-    <div class="legend">
+    <div class="legend" ng-if="device">
         <div class=" pull-left legend-item" ng-repeat="(key, value) in messageLines">
             <div class="swatch" style="background-color:{{value.color}};">
                 <div class="legend-text">{{key}}</div>
