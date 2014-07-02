@@ -366,7 +366,7 @@ max-width: 100%;
     display:-moz-inline-stack;
     display:inline-block;
     zoom: 1;
-    *display: inline;
+    display: inline;
     padding: 10px;
     height: auto;
     width: auto;
@@ -388,3 +388,7 @@ max-width: 100%;
 .accordion-toggle {
    cursor: pointer;
 }
+.message-summary {
+    margin-bottom: 5px;
+}
+

@@ -119,10 +119,6 @@ angular.module('octobluApp')
             return prefix + name;
         };
 
-        $scope.alert = function (alertContent) {
-            alert(JSON.stringify(alertContent));
-        };
-
         // $scope.addDevice = function(){
         //   $scope.deviceName = "";l
         //   $scope.keys = [];
