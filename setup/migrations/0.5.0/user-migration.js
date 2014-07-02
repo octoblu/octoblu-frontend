@@ -68,6 +68,9 @@ while(userCursor.hasNext()){
         user.username = user.twitter.username;
         user.displayName = user.twitter.displayName;
     }
+
+    delete user.groups;
+
     printjson(user);
     db.users.save(user);
 }

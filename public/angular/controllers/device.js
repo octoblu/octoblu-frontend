@@ -23,7 +23,7 @@ angular.module('octobluApp')
 
         };
 
-        $scope.addSmartDevice = function (smartDevice) {
+        $scope.addSubdevice = function (smartDevice) {
             if (smartDevice.enabled) {
                 var subdeviceModal = $modal.open({
                     templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
@@ -57,6 +57,36 @@ angular.module('octobluApp')
                             options: result.subdevice.options
                         }).then(function (response) {
                             result.hub.subdevices.push(response.result);
+                        });
+
+                }, function () {
+                    console.log('cancelled');
+                });
+            }
+        };
+
+        $scope.addDevice = function (smartDevice) {
+            if (smartDevice.enabled) {
+                var deviceModal = $modal.open({
+                    templateUrl: 'pages/connector/devices/device/add-edit.html',
+                    controller: 'AddEditDeviceController',
+                    backdrop: true,
+                    resolve: {
+                        availableDeviceTypes: function () {
+                            return availableDeviceTypes;
+                        }
+                    }
+                });
+
+                deviceModal.result.then(function (result) {
+                        skynetService.createDevice({
+                            uuid: result.hub.uuid,
+                            token: result.hub.token,
+                            type: smartDevice.plugin,
+                            name: result.device.name,
+                            options: result.device.options
+                        }).then(function (response) {
+                            result.hub.devices.push(response.result);
                         });
 
                 }, function () {

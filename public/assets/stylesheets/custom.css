@@ -379,12 +379,6 @@ max-width: 100%;
     top: 10% !important;
 }
 
-.unavailable {
-    cursor:pointer !important;
-    opacity: 0.3 !important;
-    filter: alpha(opacity=30) !important;
-}
-
 .accordion-toggle {
    cursor: pointer;
 }
@@ -392,3 +386,14 @@ max-width: 100%;
     margin-bottom: 5px;
 }
 
+.device-list .device-actions {
+    margin-bottom: 35px;
+}
+.device-list .subdevice-actions .subdevice {
+    cursor:pointer;
+}
+.device-list .subdevice-actions .subdevice.unavailable {
+    cursor:not-allowed;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}

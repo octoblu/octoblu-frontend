@@ -1,4 +1,4 @@
-<div class="row devices">
+<div class="row devices device-list">
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
         <div class="jumbotron" ng-if="devices.length == 0">
             <p>You have no Devices or Hubs. Add a new Hub</p>
@@ -38,30 +38,34 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
-       <div ng-if="hasHubs" class="panel panel-primary">
+        <div class="device-actions">
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <a class="btn btn-inverse btn-lg" href><i class="fa fa-hdd-o fa-2x pull-left"></i><span>Add Device</span></a>
+                </div>
+            </div>
+            <div class="btn-group btn-group-justified">
+
+                <div class="btn-group">
+                    <a class="btn btn-primary btn-lg" href ui-sref="^.wizard.instructions">
+                        <i class="fa fa-hand-o-right fa-2x pull-left"></i>
+                        <span>Claim Device</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+       <div ng-if="hasHubs" class="panel panel-default subdevice-actions">
            <div class="panel-heading">
-               <h4 class="text-center">
-                   <i class="fa fa-plus fa-lg"></i>
-                   Add Device
-                   <i class="fa fa-hdd-o"></i>
-               </h4>
-
-
+               <h4 class="text-center"><i class="fa fa-puzzle-piece fa-2x pull-left"></i><span>Add Sub-Device</span></h4>
            </div>
            <div class="panel-body">
-                   <a   ng-class="{'unavailable': !smartDevice.enabled }" ng-repeat="smartDevice in smartDevices" class="pull-left" ng-click="addSmartDevice(smartDevice)" style="margin: 0 0 15px 15px; ">
+                   <a   ng-class="{'unavailable': !smartDevice.enabled }" ng-repeat="smartDevice in smartDevices" class="subdevice pull-left" ng-click="addSubdevice(smartDevice)" style="margin: 0 0 15px 15px; ">
                      <img src="{{smartDevice.logo || defaultLogo }}" width="80" height="80"  ng-model="smartDevice" />
                    </a>
 
            </div>
        </div>
-       <div class="btn-group btn-group-justified">
-           <div class="btn-group">
-               <a class="btn btn-primary btn-lg" href ui-sref="^.wizard.instructions">
-                   <i class="fa fa-plus"></i> Add Hub<i class="fa fa-building-o" style="margin-left: 10px;"></i>
-               </a>
-           </div>
-       </div>
+
 
     </div>
 
