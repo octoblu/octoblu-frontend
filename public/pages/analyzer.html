@@ -73,6 +73,7 @@
                           <option value="">All Event Codes</option>
                           <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
                       </select>
+
                     </div>
                     <div class="form-group col-md-2">
                       <span class="input-group-btn">
@@ -110,17 +111,14 @@
 		  <div class="col-md-4 dashboard-panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">Device Selection</h3>
+				<span>CTRL+click for multiple</span>
                         </div>
                         <div class="panel panel-default">
                             <a href="">
                                 <div class="panel-body">
-					<ul class="list-group">
-					<li ng-repeat="cb_device in devices" class="list-group-item">
-					<label >
-					  <input type="checkbox" value="{{cb_device.uuid}}" /> {{cb_device.name}}
-					</label>
-					</li>
-					</ul>
+					<select class="form-control" style="height:100%" multiple data-live-search="true" data-selected-text-format="count>3">
+						<option ng-repeat="cb_device in devices" value="{{cb_device.uuid}}">{{cb_device.name}}</option>
+  					</select>
                                 </div>
                             </a>
                         </div>
