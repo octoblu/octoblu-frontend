@@ -401,3 +401,7 @@ max-width: 100%;
     opacity: 0.3;
     filter: alpha(opacity=30);
 }
+.device-list .device-actions .panel-heading {
+    border-bottom: 1px solid darkgray;
+    color : darkgray;
+}
