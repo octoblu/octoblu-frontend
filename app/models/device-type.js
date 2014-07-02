@@ -5,11 +5,11 @@ var mongoose = require('mongoose'),
 
 // define the schema for our user model
 var DeviceTypeSchema = new mongoose.Schema({
-    name: String,
+    name: {type: String, unique: true, index: 1},
     plugin: String,
     logo: String,
     description: String,
-    enabled: Boolean
+    enabled: {type: Boolean, index: 1}
 });
 
 Resource.makeResourceModel({schema: DeviceTypeSchema, type: 'devicetype'});

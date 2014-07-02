@@ -390,7 +390,7 @@ max-width: 100%;
     margin-bottom: 35px;
 }
 
-.device-list .device-actions .add-device:hover{
+.device-list .device-actions .device-action-button:hover{
     color:white;
 }
 .device-list .subdevice-actions .subdevice {

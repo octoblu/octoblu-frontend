@@ -2,7 +2,12 @@ angular.module('octobluApp')
     .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableDeviceTypes, deviceService) {
 
         $scope.user = currentUser;
-        $scope.smartDevices = availableDeviceTypes;
+
+        $scope.subdeviceTypes = _.filter(availableDeviceTypes, function (device) {
+            return device.plugin;
+        });
+        $scope.deviceTypes = _.difference(availableDeviceTypes, $scope.subdeviceTypes);
+
         $scope.devices = myDevices;
         $scope.hasHubs = myGateways.length;
 
@@ -49,15 +54,15 @@ angular.module('octobluApp')
                 });
 
                 subdeviceModal.result.then(function (result) {
-                        skynetService.createSubdevice({
-                            uuid: result.hub.uuid,
-                            token: result.hub.token,
-                            type: smartDevice.plugin,
-                            name: result.subdevice.name,
-                            options: result.subdevice.options
-                        }).then(function (response) {
-                            result.hub.subdevices.push(response.result);
-                        });
+                    skynetService.createSubdevice({
+                        uuid: result.hub.uuid,
+                        token: result.hub.token,
+                        type: smartDevice.plugin,
+                        name: result.subdevice.name,
+                        options: result.subdevice.options
+                    }).then(function (response) {
+                        result.hub.subdevices.push(response.result);
+                    });
 
                 }, function () {
                     console.log('cancelled');
@@ -79,15 +84,15 @@ angular.module('octobluApp')
                 });
 
                 deviceModal.result.then(function (result) {
-                        skynetService.createDevice({
-                            uuid: result.hub.uuid,
-                            token: result.hub.token,
-                            type: smartDevice.plugin,
-                            name: result.device.name,
-                            options: result.device.options
-                        }).then(function (response) {
-                            result.hub.devices.push(response.result);
-                        });
+                    skynetService.createDevice({
+                        uuid: result.hub.uuid,
+                        token: result.hub.token,
+                        type: smartDevice.plugin,
+                        name: result.device.name,
+                        options: result.device.options
+                    }).then(function (response) {
+                        result.hub.devices.push(response.result);
+                    });
 
                 }, function () {
                     console.log('cancelled');
