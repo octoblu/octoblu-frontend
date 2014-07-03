@@ -81,7 +81,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('ob.dashboard', {
                 url: '/dashboard',
                 templateUrl: 'pages/dashboard.html',
-                controller: 'dashboardController',
+                controller: 'dashboardController'
             })
             .state('ob.connector', {
                 url: '/connector',
