@@ -64,7 +64,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="input-group">
-                  <form class="form-inline col-md-12">
+                  <form class="form-inline col-md-12" name="form.freeform">
                     <div class="form-group col-md-8">
                       <input type="text" class="form-control" ng-model="searchText" placeholder="Search" autofocus>
                     </div>
@@ -108,21 +108,60 @@
 	<accordion-group heading="Explore">
 	<div class="container-fluid">
 		<div class="row">
+		<form novalidate>
 		  <div class="col-md-4 dashboard-panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">Device Selection</h3>
 				<span>CTRL+click for multiple</span>
                         </div>
-                        <div class="panel panel-default">
+                        <div class="panel ">
                             <a href="">
                                 <div class="panel-body">
-					<select class="form-control" style="height:100%" multiple data-live-search="true" data-selected-text-format="count>3">
+					<select class="form-control" size=10 style="height:100%" multiple data-live-search="true" data-selected-text-format="count>3" ng-model="graphDevices">
 						<option ng-repeat="cb_device in devices" value="{{cb_device.uuid}}">{{cb_device.name}}</option>
   					</select>
                                 </div>
                             </a>
                         </div>
                     </div>
+			<div class="col-md-8 dashboard-panel">
+			<div class="row" >
+				<div class="col-md-4 dashboard-panel" > 
+				<div class="panel-heading">
+					<h3 class="panel-title">Options</h3>
+				</div>
+				<div class="panel">
+				   <div class="form-group">
+					<label for="eventCode"> Event Code: </label> <select class="form-control" ng-model="eGeventCode">
+	                	          <option value="">All Event Codes</option>
+        	                	  <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
+		                        </select>
+				   </div>
+				   <div class="form-group">
+					<label for="starting"> Starting: </label><select class="form-control" ng-model="starting">
+					  <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
+					</select>
+					<label for="ending"> Ending: </label> <select class="form-control" ng-model="ending">
+                                          <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
+                                        </select>
+				   </div>
+				</div>
+				</div>
+			</div>
+			<div class="row" >
+				<div class="col-lg-12 dashboard-panel" >
+				<div class="form-group col-md-2 text-center">
+		                      <span class="input-group-btn">
+                		          <button class="btn btn-default" type="button" ng-click="loadExploreGraph()">
+                              			<span class="glyphicon glyphicon-search"> Find</span>
+		                          </button>
+                		      </span>
+	                       </div>
+				</div>
+			</div>
+		</form>
+		</div> <!-- end Choices Div Row -->
+		<div class="row">
 		<div class="col-md-8 dashboard-panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">The Graph</h3>
