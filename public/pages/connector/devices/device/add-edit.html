@@ -1,0 +1,27 @@
+
+<div class="modal-header" >
+    <img src="{{model.deviceType.logo}}" class="pull-left" height="64px" width="64px">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title text-center" id="myModalLabel">Add A New {{model.deviceType.name}}</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input  type="text" name="deviceName"  ng-model="model.device.name" placeholder="Name" class="form-control" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-10">
+                <select ng-model="model.deviceType" ng-options="deviceType.name for deviceType in model.deviceTypes" ></select>
+            </div>
+        </div>
+    </form>
+    <schema-editor control="model.schemaEditor" schema="model.plugin.optionsSchema" model="model.subdevice.options" allow-json-edit="false"></schema-editor>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()"><i class="fa fa-times"></i>Cancel</button>
+    <button type="submit" class="btn btn-success" ng-click="save()" ng-class="{disabled : ! model.device.name }"><i class="fa fa-save"></i>Save changes</button>
+</div>

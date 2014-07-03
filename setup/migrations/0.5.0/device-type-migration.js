@@ -104,14 +104,14 @@ db.devicetypes.insert({
 
 db.devicetypes.insert({
     logo : "http://octoblu-devices.s3.amazonaws.com/iphone.png",
-    name : "Apple",
-    description : "OctobluMobile-Apple",
+    name : "Octoblu Moble - IOS",
+    description : "Octoblu Mobile - IPhone Version",
     enabled : true
 });
 
 db.devicetypes.insert({
     logo : "http://octoblu-devices.s3.amazonaws.com/android.png",
-    name : "OctobluMobile-Android",
-    description : "Octoblu Mobile Android",
+    name : "Octoblu Mobile - Android",
+    description : "Octoblu Mobile - Android Version",
     enabled : true
 });

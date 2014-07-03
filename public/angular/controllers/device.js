@@ -70,13 +70,16 @@ angular.module('octobluApp')
             }
         };
 
-        $scope.addDevice = function (smartDevice) {
-            if (smartDevice.enabled) {
+        $scope.addDevice = function (deviceType) {
+            if (deviceType.enabled) {
                 var deviceModal = $modal.open({
                     templateUrl: 'pages/connector/devices/device/add-edit.html',
                     controller: 'AddEditDeviceController',
                     backdrop: true,
                     resolve: {
+                        deviceType : function(){
+                           return deviceType;
+                        },
                         availableDeviceTypes: function () {
                             return availableDeviceTypes;
                         }
@@ -99,4 +102,17 @@ angular.module('octobluApp')
                 });
             }
         }
+    })
+    .controller('AddEditDeviceController', function($scope, $modalInstance, deviceType, availableDeviceTypes){
+
+        $scope.model = {
+            name : '',
+            deviceType : deviceType,
+            deviceTypes : availableDeviceTypes
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss();
+        };
+
     });
