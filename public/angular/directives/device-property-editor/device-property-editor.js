@@ -2,43 +2,40 @@ angular.module('octobluApp')
     .directive('devicePropertyEditor', function () {
         return {
             restrict: 'AE',
-            templateUrl : 'angular/directives/device-property-editor/device-property-editor.html',
+            templateUrl: 'angular/directives/device-property-editor/device-property-editor.html',
             replace: true,
             scope: {
-                deviceToEdit: '=',
-                onSave : '&'
+                deviceToEdit: '=', 
+                control : '='
             },
-            controller : function($scope) {
-                var readOnlyKeys = [ 'uuid', 'token', 'resource',  'socketid', '_id', 'owner', 'timestamp', 'online', 'channel',
+            controller: function ($scope) {
+                var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketid', '_id', 'owner', 'timestamp', 'online', 'channel',
                         'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
                     originalDevice;
 
-                $scope.$watch('deviceToEdit', function(newDevice, oldDevice){
+                $scope.$watch('deviceToEdit', function (newDevice, oldDevice) {
                     console.log('device changed!');
                     console.log(newDevice);
-                    if(newDevice) {
+                    if (newDevice) {
                         originalDevice = newDevice;
-                        $scope.editingDevice = _.omit(angular.copy(originalDevice), readOnlyKeys);
+                        $scope.deviceProperties = _.omit(angular.copy(originalDevice), readOnlyKeys);
                     }
                 });
 
-                $scope.addProperty = function() {
-                    $scope.editingDevice[$scope.newProperty] = '';
+                $scope.addProperty = function () {
+                    $scope.deviceProperties[$scope.newProperty] = '';
                     $scope.newProperty = '';
                 };
 
-                $scope.removeProperty = function(property) {
-                    delete $scope.editingDevice[property];
+                $scope.removeProperty = function (property) {
+                    delete $scope.deviceProperties[property];
                 };
 
-                $scope.saveDevice = function() {
-                    _.each(_.pairs($scope.editingDevice), function (pair) {
-                        var key = pair[0], value = pair[1];
-                        originalDevice[key] = value;
-                    });
-                    delete $scope.editingDevice;
-                    $scope.onSave();
-                };
+                if ($scope.control) {
+                    $scope.control.getProperties = function () {
+                        return _.omit($scope.deviceProperties, readOnlyKeys);
+                    };
+                }
             }
         }
     });

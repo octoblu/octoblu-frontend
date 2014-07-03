@@ -4,7 +4,7 @@ angular.module('octobluApp')
         $scope.user = currentUser;
 
         $scope.subdeviceTypes = _.filter(availableDeviceTypes, function (device) {
-            return device.plugin;
+            return device.skynet.plugin;
         });
         $scope.deviceTypes = _.difference(availableDeviceTypes, $scope.subdeviceTypes);
 
@@ -77,6 +77,9 @@ angular.module('octobluApp')
                     controller: 'AddEditDeviceController',
                     backdrop: true,
                     resolve: {
+                        device : function(){
+                            return null;
+                        },
                         deviceType : function(){
                            return deviceType;
                         },
@@ -103,16 +106,34 @@ angular.module('octobluApp')
             }
         }
     })
-    .controller('AddEditDeviceController', function($scope, $modalInstance, deviceType, availableDeviceTypes){
-
+    .controller('AddEditDeviceController', function($scope, $modalInstance, device,  deviceType, availableDeviceTypes){
         $scope.model = {
-            name : '',
+            isNew : !!device,
+            device : angular.copy(device) || {},
             deviceType : deviceType,
-            deviceTypes : availableDeviceTypes
+            deviceTypes : availableDeviceTypes,
+            propertyEditor : {}
         };
 
         $scope.cancel = function () {
             $modalInstance.dismiss();
         };
 
+        $scope.save = function () {
+            //If the deviceType selected has an options schema then we should validate the
+            //options set for errors
+            if($scope.model.deviceType.optionsSchema){
+                var errors = $scope.model.schemaEditor.validate();
+                if (!errors.length) {
+                    $modalInstance.close({deviceType: $scope.model.deviceType, device: $scope.model.device, isNew : $scope.model.isNew});
+                }
+            } else {
+                if($scope.model.customSubType) {
+
+                }
+                $scope.model.device = angular.extend($scope.model.device, $scope.model.propertyEditor.getProperties(),
+                    { type : $scope.model.deviceType.skynet.type, subtype : $scope.model.deviceType.skynet.subtype});
+                $modalInstance.close({deviceType: $scope.model.deviceType, device: $scope.model.device, isNew : $scope.model.isNew});
+            }
+        };
     });

@@ -9,6 +9,11 @@ var DeviceTypeSchema = new mongoose.Schema({
     plugin: String,
     logo: String,
     description: String,
+    skynet : {
+        plugin : {type : String},
+        type : {type : String},
+        subtype: {type: String}
+    },
     enabled: {type: Boolean, index: 1}
 });
 

@@ -2,13 +2,7 @@
 
 angular.module('octobluApp')
     .controller('smartDeviceController', function ($scope, myDevices, skynetService, currentUser) {
-        $scope.sfForm = [
-            '*',
-            {
-                type: 'submit',
-                title: 'Save'
-            }
-        ];
+
         $scope.devices = _.filter(myDevices, function (device) {
             return device.type !== 'gateway';
         });
