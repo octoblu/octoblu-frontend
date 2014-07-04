@@ -29,7 +29,11 @@ angular.module('octobluApp')
                 $scope.log($scope.devices);
 		$scope.log($scope.logic_devices);
             });
-
+	    
+	    $scope.setFormScope = function(scope){
+ 		  $scope.formScope = scope;
+		  $scope.log("setting form scope to " + scope);
+	    };
 
             $scope.currentPage = 1;
 
@@ -54,11 +58,16 @@ angular.module('octobluApp')
 		}
 	    });
 
-	    $scope.loadExploreGraph = function() {
+		$scope.eGCharts = [];
+    		$scope.eGCharts.push({      text: "Line"    });
+    		$scope.eGCharts.push({	text: "Bar" });
+	    
+	$scope.loadExploreGraph = function() {
 		$scope.eGstartDate = $scope.starting;
 		$scope.eGendDate = $scope.ending;
 		$scope.eGselectDevices = $scope.graphDevices;
 		$scope.eGEC = $scope.eGeventCode;
+		$scope.log($scope);
 		$scope.log("Ending: "+ $scope.eGendDate + ", Starting: " +$scope.eGstartDate+ ", EventCodes: "+$scope.eGEC+", Selected Devices: " + $scope.eGselectDevices);
 		
 	    };
