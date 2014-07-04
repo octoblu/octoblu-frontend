@@ -13,7 +13,7 @@
 
 	<div class="container-fluid" >
 	<accordion>
-	<accordion-group heading="Top Graphs" is-open="$parent.step1open" ng-init="step1open = false">
+	<accordion-group heading="Top Graphs" is-open="$parent.step1open" ng-init="step1open = false" >
          <div class="container-fluid" >
         <div class="row">
 		<div class="col-sm-4 dashboard-panel">
@@ -59,17 +59,17 @@
                 <h2>Count of EventCodes over time</h2>
                 </div>
                 </div>
-        </accordion-group>
-	<accordion-group heading="Freeform Search" > 
+	</accordion-group>
+	<accordion-group heading="Freeform Search" ng-model="acc_freeform"> 
             <div class="container-fluid">
               <div class="row">
                 <div class="input-group">
-                  <form class="form-inline col-md-12" >
+                  <form class="form-inline col-md-12" name="freeform_search">
                     <div class="form-group col-md-8">
-                      <input type="text" class="form-control" ng-model="form.freeform.FFsearchText" placeholder="Search" autofocus />
+                      <input type="text" class="form-control" ng-form="freeform_search" ng-bind="FFsearchText" placeholder="Search" autofocus />
                     </div>
                     <div class="form-group col-md-2">
-                      <select class="form-control" ng-model="FFeventCode">
+                      <select class="form-control" ng-model="form.freeform.FFeventCode">
                           <option value="">All Event Codes</option>
                           <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
                       </select>
