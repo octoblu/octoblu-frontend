@@ -2,8 +2,8 @@ angular.module('octobluApp')
     .service('deviceService', function ($q, $http) {
         var myDevices;
 
-        this.getDevices = function () {
-            if (myDevices) {
+        this.getDevices = function (force) {
+            if (myDevices && !force) {
                 var defer = $q.defer();
                 defer.resolve(myDevices);
                 return defer.promise;
