@@ -94,8 +94,10 @@ angular.module('octobluApp')
 
                 deviceModal.result.then(function (result) {
                     skynetService.registerDevice(result.device).then(function(res){
-                        $scope.devices.push(res);
-                    }, function(error){
+                       return deviceService.getDevices(true);
+                    }).then(function(devices){
+                          $scope.devices = devices;
+                        }, function(error){
                         console.log(error); 
                     });
                 }, function () {
