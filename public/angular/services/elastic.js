@@ -32,8 +32,8 @@ angular.module('octobluApp')
 
 	this.getDateFormats = function(){
 		return { 
-			"now": { "text": "Now" },
-			"yesterday": {"text": "Yesterday, at Midnight"}
+			"now": { "text": "Now", "value": "now" },
+			"yesterday": {"text": "Yesterday, at Midnight", "value": "now-1d/d"}
 		};
 	};
 
@@ -59,7 +59,9 @@ angular.module('octobluApp')
 		this.log("starting function=paramSearch");
 		myQuery = "";
 		if (query.length > 0) { myQuery = " AND " + query; }
+		
 		baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+this.devices.logic+"') "+myQuery }},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
+		if (size < 1) { delete baseSearchObject.size; }
 		this.log(JSON.stringify(baseSearchObject));
 		service.client.search({ index: '_all', body: baseSearchObject}, function(error,response) { callback(error, response); });
 	}; 

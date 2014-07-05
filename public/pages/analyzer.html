@@ -60,16 +60,16 @@
                 </div>
                 </div>
 	</accordion-group>
-	<accordion-group heading="Freeform Search" ng-model="acc_freeform"> 
+	<accordion-group heading="Freeform Search" > 
             <div class="container-fluid">
               <div class="row">
                 <div class="input-group">
-                  <form class="form-inline col-md-12" name="freeform_search">
+                  <form class="form-inline col-md-12">
                     <div class="form-group col-md-8">
-                      <input type="text" class="form-control" ng-form="freeform_search" ng-bind="FFsearchText" placeholder="Search" autofocus />
+                      <input type="text" class="form-control" ng-model="forms.FF_searchText" placeholder="Search" autofocus />
                     </div>
                     <div class="form-group col-md-2">
-                      <select class="form-control" ng-model="form.freeform.FFeventCode">
+                      <select class="form-control" ng-model="forms.FF_eventCode">
                           <option value="">All Event Codes</option>
                           <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
                       </select>
@@ -112,13 +112,12 @@
 		  <div class="col-md-4 dashboard-panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">Device Selection</h3>
-				<span>CTRL+click for multiple</span>
+				<span><kbd>ctrl+click</kbd> for multiple</span>
                         </div>
                         <div class="panel ">
                             <a href="">
                                 <div class="panel-body">
-					<select class="form-control" size=10 style="height:100%" multiple data-live-search="true" data-selected-text-format="count>3" ng-model="graphDevices" ng-options="cb_device.name for cb_device in devices">
-						<!--<option ng-repeat="cb_device in devices" value="{{cb_device.uuid}}">{{cb_device.name}}</option>-->
+					<select class="form-control" size=10 style="height:100%" multiple data-live-search="true" data-selected-text-format="count>3" ng-model="forms.EX_graphDevices" ng-options="cb_device.name for cb_device in devices">
   					</select>
                                 </div>
                             </a>
@@ -132,19 +131,30 @@
 				</div>
 				<div class="panel">
 				   <div class="form-group">
-					<label for="eventCode"> Event Code: </label> <select class="form-control" ng-model="eGeventCode">
+					<label for="eventCode"> Event Code: </label> <select class="form-control" ng-model="forms.EX_eventCode">
 	                	          <option value="">All Event Codes</option>
         	                	  <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
 		                        </select>
 				   </div>
 				   <div class="form-group">
-					<label for="starting"> Starting: </label><select class="form-control" ng-model="starting">
-					  <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
+					<label for="starting"> Starting: </label><select class="form-control" ng-model="forms.EX_starting">
+					  <option ng-repeat="df in ESdateFormats" value="{{df.value}}" {{df.selected}} >{{df.text}}</option>
 					</select>
-					<label for="ending"> Ending: </label> <select class="form-control" ng-model="ending">
-                                          <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
+					<label for="ending"> Ending: </label> <select class="form-control" ng-model="forms.EX_ending">
+                                          <option ng-repeat="df in ESdateFormats" value="{{df.value}}" {{df.selected}} >{{df.text}}</option>
                                         </select>
 				   </div>
+				</div>
+				</div>
+				<div class="col-md-4 dashboard-panel" >
+				<div class="panel-heading">
+					<h3 class="panel-title">Summary Results</h3>
+				</div>
+				<div class="panel">
+					<table class="table table-hover">
+  					  <tr><td>Different Event Codes:</td><td>{{leg.dcEC}}</td></tr>
+					  <tr><td>Total Events Returned:</td><td>{{leg.total}}</td></tr>
+					</table>
 				</div>
 				</div>
 			</div>

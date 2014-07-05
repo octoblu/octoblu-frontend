@@ -11,6 +11,7 @@ angular.module('octobluApp')
 	    //Elastic Search Time Format Dropdowns
             $scope.ESdateFormats = elasticService.getDateFormats();
 
+	    $scope.forms = {};
             // Get user devices
             $scope.log("getting devices from ownerService");
             ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
@@ -63,21 +64,40 @@ angular.module('octobluApp')
     		$scope.eGCharts.push({	text: "Bar" });
 	    
 	$scope.loadExploreGraph = function() {
-		$scope.eGstartDate = $scope.starting;
-		$scope.eGendDate = $scope.ending;
-		$scope.eGselectDevices = $scope.graphDevices;
-		$scope.eGEC = $scope.eGeventCode;
+		$scope.eGstartDate = $scope.forms.EX_starting;
+		$scope.eGendDate = $scope.forms.EX_ending;
+		$scope.eGselectDevices = $scope.forms.EX_graphDevices;
+		$scope.eGEC = $scope.forms.EX_eventCode;
 		$scope.log($scope);
 		$scope.log("Ending: "+ $scope.eGendDate + ", Starting: " +$scope.eGstartDate+ ", EventCodes: "+$scope.eGEC+", Selected Devices: " + $scope.eGselectDevices);
+		$scope.legFirst = true;
+		$scope.myAdditionalQuery =  " ( ";
+		if ( $scope.eGselectDevices && $scope.eGselectDevices.length > 0 ){
+			_.each($scope.eGselectDevices, function(key, value) {
+				if ($scope.legFirst) { $scope.myAdditionalQuery += " " + key.uuid + " " ; $scope.legFirst = false; }
+				else { $scope.myAdditionalQuery += " OR uuid="+ key.uuid + " "; }
+			});
+			
+		}
+		$scope.legFacets = { "eventCodes": {"terms": { "field": "eventCode" } }
+				   };
+		$scope.myAdditionalQuery += " ) ";
+		elasticService.paramSearch($scope.eGstartDate, $scope.eGendDate, 0, $scope.myAdditionalQuery, $scope.legFacets, $scope.eGselectDevices, function(err,data){
+			if (err) { return $scope.log(err); }
+                        $scope.log("function=loadExploreGraph callback");
+                        $scope.log(data);
+			$scope.leg = {"results":data, "total" : data.hits.total, "dcEC": data.facets.eventCodes.terms.length };
+			
+		});
 		
 	    };
 
             $scope.search = function (currentPage) {
               $scope.log("starting search function, analyzer controller");
               $scope.results="searching...";
-	      $scope.log("searchText = "+ $scope.searchText);
-                if ($scope.searchText !== undefined) {
-                    elasticService.search($scope.devices, $scope.searchText, $scope.skynetuuid, currentPage, $scope.eventCode, function (error, response) {
+	      $scope.log("searchText = "+ $scope.forms.FFsearchText);
+                if ($scope.forms.FFsearchText !== undefined) {
+                    elasticService.search($scope.devices, $scope.forms.FF_searchText, $scope.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
                         if (error) {
                             $scope.log(error);
                         } else {
