@@ -86,7 +86,7 @@ angular.module('octobluApp')
 		if ($scope.eGEC) { 
 			_.each($scope.eGEC, function(key, value) {
 				$scope.myAdditionalQuery += " AND eventCode=" + key; 
-				}
+				});
 		}
 		$scope.myAdditionalQuery += " ) ";
 		elasticService.paramSearch($scope.eGstartDate, $scope.eGendDate, 0, $scope.myAdditionalQuery, $scope.legFacets, $scope.eGselectDevices, function(err,data){
