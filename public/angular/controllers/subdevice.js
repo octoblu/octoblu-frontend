@@ -6,6 +6,9 @@ angular.module('octobluApp')
             subdevice : angular.copy(subdevice) || { options: {}, type: pluginName },
             nameEditable : !subdevice || !subdevice.name,
             smartDevices : availableDeviceTypes,
+            deviceType  : _.findWhere(availableDeviceTypes, function(deviceType){
+                return deviceType.skynet.plugin === pluginName;
+            }),
             schemaEditor: {}
         };
 

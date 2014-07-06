@@ -157,8 +157,10 @@ var deviceController = {
                 skynet_override_token: deviceController.config.skynet.override_token
             }
         }).then(function (result) {
-
-            var devices = createDeviceResources(result.entity.devices, null);
+            var skynetDevices = _.filter(result.entity.devices, function(device){
+                return device.type !== 'user' && device.online === true;
+            }) || [];
+            var devices = createDeviceResources(skynetDevices, null);
             return res.send(devices);
         }, function (errorResult) {
             return res.send([]);

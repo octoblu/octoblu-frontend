@@ -2,7 +2,9 @@
    <div class="modal-content">
        <div class="modal-header">
            <a type="button" class="close"  data-dismiss="modal" ui-sref="^.all" aria-hidden="true">&times;</a>
-           <h4 class="modal-title" id="myModalLabel"><i class="fa fa-home fa-2x"></i>&nbsp;&nbsp;Add a new Hub</h4>
+           <h2 class="modal-title" id="myModalLabel"><i class="fa fa-hand-o-right fa-2x"></i>&nbsp;&nbsp;
+             Claim Device Wizard
+           </h2>
        </div>
        <div ui-view class="modal-body">
        </div>
@@ -10,7 +12,7 @@
            <a class="btn btn-danger" data-dismiss="modal" ui-sref="^.all"><i class="fa fa-times"></i>&nbsp;&nbsp;Close</a>
            <a id="wizard-previous-btn" ui-sref-active="disabled" class="btn btn-default"  ui-sref=".instructions"><i class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;Previous</a>
            <a  id="wizard-next-btn" ui-sref-active="disabled" class="btn btn-default" ui-sref=".findhub">Next&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
-           <div   id="wizard-finish-btn" ng-class="{disabled: !hubConfig.hub || !hubConfig.name}"  class="btn btn-success"  ng-click="claimHub(s)" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</div>
+           <div   id="wizard-finish-btn" ng-class="{disabled: !model.device || !model.name}"  class="btn btn-success"  ng-click="claimDevice()" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</div>
        </div>
    </div>
 </div>

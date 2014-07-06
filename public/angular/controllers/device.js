@@ -28,18 +28,16 @@ angular.module('octobluApp')
 
         };
 
-        $scope.addSubdevice = function (smartDevice) {
-            if (smartDevice.enabled) {
+
+        $scope.addSubdevice = function (deviceType) {
+            if (deviceType.enabled) {
                 var subdeviceModal = $modal.open({
                     templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
                     controller: 'AddEditSubDeviceController',
                     backdrop: true,
                     resolve: {
-                        selectedHub: function () {
-                            return null;
-                        },
                         pluginName: function () {
-                            return smartDevice.plugin;
+                            return deviceType.skynet.plugin;
                         },
                         subdevice: function () {
                             return null;

@@ -1,13 +1,17 @@
 angular.module('octobluApp')
-    .controller('DeviceWizardController', function ($scope, $state, currentUser, unclaimedDevices, deviceService) {
+    .controller('DeviceWizardController', function ($scope, $state, $stateParams,  currentUser, availableDeviceTypes,  unclaimedDevices, deviceService) {
 
         $scope.getStateName = function () {
             return $state.current.name;
         };
-        $scope.availableGateways = _.filter(unclaimedDevices, function (device) {
-            return device.type === 'gateway';
-        }) || [];
+//        $scope.availableGateways = _.filter(unclaimedDevices, function (device) {
+//            return device.type === 'gateway';
+//        }) || [];
 
+        $scope.model = {
+            deviceTypes : availableDeviceTypes,
+            unclaimedDevices : unclaimedDevices
+        };
         $scope.isopen = false;
         $scope.user = currentUser;
         $scope.hubConfig = {};

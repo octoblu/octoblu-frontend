@@ -139,11 +139,23 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.connector.devices.wizard.instructions', {
                 url: '/instructions',
-                templateUrl: 'pages/connector/devices/wizard/instructions.html'
+                templateUrl: 'pages/connector/devices/wizard/hub-install-instructions.html',
+                onEnter : function($stateParams){
+
+                },
+                onExit : function($stateParams){
+
+                }
             })
             .state('ob.connector.devices.wizard.findhub', {
                 url: '/findhub',
-                templateUrl: 'pages/connector/devices/wizard/find-hub.html'
+                templateUrl: 'pages/connector/devices/wizard/find-device.html',
+                onEnter : function($stateParams){
+
+                },
+                onExit : function($stateParams){
+
+                }
             })
             //begin refactor states
             .state('ob.connector.channels', {
