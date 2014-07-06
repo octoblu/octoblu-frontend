@@ -33,7 +33,11 @@ angular.module('octobluApp')
 	this.getDateFormats = function(){
 		return { 
 			"now": { "text": "Now", "value": "now" },
-			"yesterday": {"text": "Yesterday, at Midnight", "value": "now-1d/d"}
+			"yesterday": {"text": "Yesterday", "value": "now-1d/d"},
+			"4_hours_ago": { "text": "4 Hours Ago", "value":"now-4h/h"},
+			"12_hours_ago" : { "text": "12 Hours Ago", "value":"now-12h/h" },
+			"24_hours_ago" : { "text": "24 Hours Ago", "value":"now-24h/h" },
+			"this_week" : { "text": "Week to date", "value" : "now-1w/w" }
 		};
 	};
 

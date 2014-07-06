@@ -22,10 +22,11 @@ angular.module('octobluApp')
                     if($scope.devices[i].type == 'gateway'){
                         $scope.devices.splice(i,1);
                     }
+		    if( !$scope.devices[i].name ) { $scope.devices[i].name = $scope.devices[i].uuid; }
 		    $scope.logic_devices +=  $scope.devices[i].uuid + " OR ";
                     $scope.deviceLookup[$scope.devices[i].uuid] = $scope.devices[i].name;
                 }
-                $scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices" };
+                //$scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices", "uuid": "*" };
 		$scope.log("logging devices");
                 $scope.log($scope.devices);
 		$scope.log($scope.logic_devices);
@@ -74,13 +75,19 @@ angular.module('octobluApp')
 		$scope.myAdditionalQuery =  " ( ";
 		if ( $scope.eGselectDevices && $scope.eGselectDevices.length > 0 ){
 			_.each($scope.eGselectDevices, function(key, value) {
-				if ($scope.legFirst) { $scope.myAdditionalQuery += " " + key.uuid + " " ; $scope.legFirst = false; }
-				else { $scope.myAdditionalQuery += " OR uuid="+ key.uuid + " "; }
+				$scope.log(key);
+				if ($scope.legFirst) { $scope.myAdditionalQuery += " uuid=" + key + " " ; $scope.legFirst = false; }
+				else { $scope.myAdditionalQuery += " OR uuid="+ key + " "; }
 			});
 			
 		}
 		$scope.legFacets = { "eventCodes": {"terms": { "field": "eventCode" } }
 				   };
+		if ($scope.eGEC) { 
+			_.each($scope.eGEC, function(key, value) {
+				$scope.myAdditionalQuery += " AND eventCode=" + key; 
+				}
+		}
 		$scope.myAdditionalQuery += " ) ";
 		elasticService.paramSearch($scope.eGstartDate, $scope.eGendDate, 0, $scope.myAdditionalQuery, $scope.legFacets, $scope.eGselectDevices, function(err,data){
 			if (err) { return $scope.log(err); }
