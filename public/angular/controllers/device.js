@@ -108,8 +108,19 @@ angular.module('octobluApp')
 
         $scope.editDevice = function(device){
 
-            var deviceType = _.findWhere(availableDeviceTypes, {'skynet.type' : device.type, 'skynet.subtype' : device.subtype })
-                            || _.findWhere(availableDeviceTypes, {'skynet.subtype' : 'other'});
+
+            var deviceType = _.findWhere(availableDeviceTypes, function(deviceType){
+                var isDeviceType = false;
+                if(device.type ){
+                    if(device.subtype){
+                        return deviceType.skynet.type === device.type && device.skynet.subtype === device.subtype;
+                    } else {
+                        return deviceType.skynet.type === device.type;
+                    }
+                } else {
+                    return deviceType.skynet.type === 'device' && deviceType.skynet.subtype === 'other';
+                }
+            });
 
             var deviceModal = $modal.open({
                 templateUrl: 'pages/connector/devices/device/add-edit.html',
@@ -128,7 +139,8 @@ angular.module('octobluApp')
                     availableDeviceTypes: function () {
                         return availableDeviceTypes;
                     }
-                }
+                },
+                size : 'lg'
             });
 
             deviceModal.result.then(function (result) {
@@ -143,7 +155,7 @@ angular.module('octobluApp')
     })
     .controller('AddEditDeviceController', function ($scope, $modalInstance, owner, device, deviceType, availableDeviceTypes) {
         $scope.model = {
-            isNew: !!device,
+            isNew: !device,
             device: angular.copy(device) || {},
             deviceType: deviceType,
             deviceTypes: availableDeviceTypes,

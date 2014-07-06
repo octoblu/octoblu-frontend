@@ -6,8 +6,8 @@ db.devices.drop();
 db.devicetypes.drop();
 
 db.devicetypes.insert({
-    logo: "http://octoblu-devices.s3.amazonaws.com/skynet.png",
-    name: "SkyNet",
+    logo: "assets/images/skynet/cloud.png",
+    name: "SkyNet Cloud",
     description: "SkyNet cloud",
     enabled: true,
     skynet: {
@@ -179,12 +179,11 @@ db.devicetypes.insert({
 });
 
 db.devicetypes.insert({
-    logo: "http://octoblu-devices.s3.amazonaws.com/android.png",
-    name: "Android",
-    description: "Android Device",
+    logo: "assets/images/skynet/hub.png",
+    name: "Skynet Hub",
+    description: "Skynet Hub",
     skynet: {
-        type: "octobluMobile",
-        subtype: "android"
+        type: "gateway"
     },
     enabled: true
 });

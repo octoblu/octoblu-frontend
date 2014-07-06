@@ -9,8 +9,8 @@ angular.module('octobluApp')
                 control : '='
             },
             controller: function ($scope) {
-                var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketid', '_id', 'owner', 'timestamp', 'online', 'channel',
-                        'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
+                var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketid', '_id', 'owner', 'timestamp', 'online', 'channel', 'protocol',
+                        'localhost','secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
                     originalDevice;
 
                 $scope.$watch('deviceToEdit', function (newDevice, oldDevice) {
@@ -18,6 +18,9 @@ angular.module('octobluApp')
                     console.log(newDevice);
                     if (newDevice) {
                         originalDevice = newDevice;
+                        if(newDevice.type === 'gateway' || newDevice.type === 'octobluMobile'){
+                            readOnlyKeys = _.unique(_.union(readOnlyKeys, ['ipAddress', 'port','subdevices', 'plugins']));
+                        }
                         $scope.deviceProperties = _.omit(angular.copy(originalDevice), readOnlyKeys);
                     }
                 });
