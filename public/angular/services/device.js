@@ -20,24 +20,29 @@ angular.module('octobluApp')
 
         this.createDevice = function (deviceData) {
             return $http.post('/api/devices', deviceData).then(function (res) {
+                myDevices =  myDevices.push(res.data);
                 return res.data;
             });
         };
 
         this.claimDevice = function (deviceUUID) {
             return $http.put('/api/devices/' + deviceUUID + '/claim', {uuid: deviceUUID}).then(function (res) {
+                myDevices = myDevices.push(res.data);
                 return res.data;
             });
         };
 
         this.updateDevice = function (deviceUUID, deviceData) {
             return $http.put('/api/devices/' + deviceUUID, deviceData).then(function (res) {
+                var existingDevice = _.extend(res.data, _.findWhere(myDevices, {uuid : deviceUUID}));
                 return res.data;
             });
         };
 
         this.deleteDevice = function (deviceUUID) {
             return $http.delete('/api/devices/' + deviceUUID).then(function (res) {
+                var deletedDevice = _.findWhere(myDevices, {uuid : deviceUUID});
+                myDevices = _.without(myDevices, deletedDevice);
                 return res.data;
             });
         };
