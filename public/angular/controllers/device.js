@@ -80,8 +80,8 @@ angular.module('octobluApp')
                         device: function () {
                             return null;
                         },
-                        owner : function(){
-                           return currentUser;
+                        owner: function () {
+                            return currentUser;
                         },
                         deviceType: function () {
                             return deviceType;
@@ -93,12 +93,12 @@ angular.module('octobluApp')
                 });
 
                 deviceModal.result.then(function (result) {
-                    skynetService.registerDevice(result.device).then(function(res){
-                       return deviceService.getDevices(true);
-                    }).then(function(devices){
-                          $scope.devices = devices;
-                        }, function(error){
-                        console.log(error); 
+                    skynetService.registerDevice(result.device).then(function (res) {
+                        return deviceService.getDevices(true);
+                    }).then(function (devices) {
+                        $scope.devices = devices;
+                    }, function (error) {
+                        console.log(error);
                     });
                 }, function () {
                     console.log('cancelled');
@@ -106,14 +106,11 @@ angular.module('octobluApp')
             }
         };
 
-        $scope.editDevice = function(device){
-
-
-            var deviceType = _.findWhere(availableDeviceTypes, function(deviceType){
-                var isDeviceType = false;
-                if(device.type ){
-                    if(device.subtype){
-                        return deviceType.skynet.type === device.type && device.skynet.subtype === device.subtype;
+        $scope.editDevice = function (device) {
+            var deviceType = _.findWhere(availableDeviceTypes, function (deviceType) {
+                if (device.type) {
+                    if (device.subtype) {
+                        return deviceType.skynet.type === device.type && deviceType.skynet.subtype === device.subtype;
                     } else {
                         return deviceType.skynet.type === device.type;
                     }
@@ -130,8 +127,8 @@ angular.module('octobluApp')
                     device: function () {
                         return device;
                     },
-                    owner : function(){
-                       return currentUser;
+                    owner: function () {
+                        return currentUser;
                     },
                     deviceType: function () {
                         return deviceType;
@@ -140,13 +137,14 @@ angular.module('octobluApp')
                         return availableDeviceTypes;
                     }
                 },
-                size : 'lg'
+                size: 'lg'
             });
 
             deviceModal.result.then(function (result) {
                 skynetService.updateDevice(result.device)
-                    .then(function(res){
-
+                    .then(function (res) {
+                        console.log('Device updated');
+                        device = angular.extend(device, result.device);
                     });
             }, function () {
                 console.log('cancelled');
