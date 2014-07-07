@@ -1,321 +1,8 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('smartDeviceController', function ($scope, myDevices, skynetService, currentUser) {
-        $scope.sfForm = [
-            '*',
-            {
-                type: 'submit',
-                title: 'Save'
-            }
-        ];
-        $scope.devices = _.filter(myDevices, function (device) {
-            return device.type !== 'gateway';
-        });
-
-        $scope.saveDevice = function () {
-            var updatedDevice = $scope.editingDevice;
-            if (updatedDevice.uuid) {
-                skynetService.updateDevice(updatedDevice).then(function (result) {
-                    delete $scope.editingDevice;
-                    console.log('made it');
-                });
-            } else {
-                skynetService.registerDevice(updatedDevice).then(function (result) {
-                    delete $scope.editingDevice;
-                    console.log(result);
-                    myDevices.push(result);
-                    $scope.devices = _.filter(myDevices, function (device) {
-                        return device.type !== 'gateway';
-                    });
-                });
-            }
-        };
-
-        $scope.editDevice = function (device) {
-            $scope.editingDevice = device;
-        };
-
-        $scope.newDevice = function () {
-            $scope.editDevice({ owner: currentUser.skynetuuid, name: '' });
-        };
-
-        $scope.deleteDevice = function (device) {
-            skynetService.unregisterDevice({ uuid: device.uuid})
-                .then(function (result) {
-                    $scope.devices = _.without($scope.devices, device);
-                });
-
-        };
-    })
-    .controller('hubController', function ($scope, $modal, myDevices,myGateways, skynetService, currentUser, PluginService, availableDeviceTypes) {
-
-        $scope.claimedHubs = myGateways;
-        $scope.availableDeviceTypes = availableDeviceTypes;
-
-        $scope.editSubdevice = function (hub, subdeviceType, subdevice) {
-            return $scope.configureSubdevice(hub, subdeviceType, subdevice);
-        };
-
-        $scope.configureSubdevice = function (hub, subdeviceType, subdevice) {
-
-            var subdeviceModal = $modal.open({
-                templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
-                controller: 'AddEditSubDeviceController',
-                backdrop: true,
-                resolve: {
-                    hubs: function () {
-                        return [hub];
-                    },
-                    pluginName: function () {
-                        return subdeviceType;
-                    },
-                    subdevice: function () {
-                        if (!subdevice) {
-                            return  PluginService.getDefaultOptions(hub, subdeviceType)
-                                .then(function (response) {
-                                    return {options: response.result, type: subdeviceType };
-                                }, function (error) {
-                                    console.log(error);
-                                    return { options: {}, type: subdeviceType};
-                                });
-                        } else {
-                            return subdevice;
-                        }
-                    },
-                    availableDeviceTypes: function () {
-                        return availableDeviceTypes;
-                    }
-                }
-            });
-
-            subdeviceModal.result.then(function (result) {
-                var hub = result.hub, updatedSubdevice = result.subdevice;
-                if (!subdevice) {
-                    skynetService.createSubdevice({
-                        uuid: hub.uuid,
-                        token: hub.token,
-                        type: subdeviceType,
-                        name: updatedSubdevice.name,
-                        options: updatedSubdevice.options
-                    }).then(function (response) {
-                        hub.subdevices.push(response.result);
-                    });
-                } else {
-                    skynetService.updateSubdevice({
-                        uuid: hub.uuid,
-                        token: hub.token,
-                        type: subdeviceType,
-                        name: updatedSubdevice.name,
-                        options: updatedSubdevice.options
-                    }).then(function (response) {
-                        console.log(response);
-                        angular.copy(updatedSubdevice, subdevice);
-                    });
-                }
-
-            }, function () {
-                console.log('cancelled');
-            });
-        };
-
-        $scope.deleteSubdevice = function (hub, subdevice) {
-            skynetService.deleteSubdevice({
-                "uuid": hub.uuid,
-                "token": hub.token,
-                "name": subdevice.name
-            }).then(function (response) {
-                console.log(response);
-                hub.subdevices = _.without(hub.subdevices, subdevice);
-            });
-        };
-
-        $scope.addPlugin = function (hub) {
-
-        };
-
-        $scope.deletePlugin = function (hub, plugin) {
-            PluginService.uninstallPlugin(hub, plugin.name)
-                .then(function (result) {
-                    console.log(result);
-                    hub.plugins = _.without(hub.plugins, plugin);
-                });
-
-        };
-    })
-    .controller('MessagingController', function($scope, currentUser, myDevices, myGateways, skynetService, PluginService){
-        $scope.devices = _.sortBy(_.clone(myDevices), 'name');
-        $scope.devices.unshift({
-            name : 'Me',
-            uuid : currentUser.skynetuuuid,
-            token : currentUser.skynettoken,
-            type : 'user'
-        });
-
-        $scope.schemaEditor = {};
-        $scope.msg;
-
-        skynetService.getMessage(function(channel, message){
-            alert(JSON.stringify(message, null, true));
-        });
-
-        $scope.$watch('sendUuid', function(newValue, oldValue){
-            if(newValue || $scope.device){
-                $scope.schema = {};
-            } else {
-                delete $scope.schema;
-            }
-        });
-
-        $scope.$watch('device', function(newDevice, oldDevice){
-
-            if(newDevice || $scope.sendUuid ){
-                if(newDevice.type !== 'gateway'){
-                    $scope.schema = {};
-                }
-            } else {
-                delete $scope.schema;
-            }
-        });
-
-        $scope.$watch('subdevice', function(newSubdevice, oldSubdevice){
-
-            if(newSubdevice){
-               var plugin = _.findWhere($scope.device.plugins, {name : newSubdevice.type});
-               if(! plugin ){
-                   PluginService.installPlugin($scope.device, newSubdevice.type)
-                       .then(function (result) {
-                           return PluginService.getInstalledPlugins($scope.device);
-                       })
-                       .then(function (result) {
-                           console.log(result);
-                           $scope.device.plugins = result.result;
-                           $scope.plugin = _.findWhere($scope.device.plugins, {name: newSubdevice.type});
-                           $scope.schema = $scope.plugin.messageSchema;
-                       })
-
-               } else {
-                   $scope.plugin = plugin;
-                   $scope.schema = $scope.plugin.messageSchema;
-               }
-            }
-        });
-
-        $scope.sendMessage = function(){
-            /*
-             if schema exists - get the value from the editor, validate the input and send the message if valid
-             otherwise notify the user that there was an error.
-
-             if no schema exists, they are doing this manually and we check if the UUID field is populated and that
-             there is a message to send.
-             */
-            var sender = $scope.fromDevice || { uuid : currentUser.skynetuuid, token : currentUser.skynettoken};
-            if( $scope.subdevice ){
-                skynetService.sendMessage({
-                   fromUuid : sender.uuid,
-                     devices : $scope.sendUuid || $scope.device.uuid ,
-                     subdevice : $scope.subdevice.name,
-                     payload: $scope.schemaEditor.getValue()
-                }).then(function(result){
-                    $scope.messageOutput = $scope.schemaEditor.getValue();
-                });
-            } else {
-
-                skynetService.sendMessage({
-                    fromUuid : sender.uuid,
-                    devices : $scope.sendUuid || $scope.device.uuid,
-                    payload: $scope.schemaEditor.getValue()
-                }).then(function(result){
-                      $scope.messageOutput = $scope.schemaEditor.getValue();
-                });
-            }
-
-
-
-//            var message = $scope.message;
-//
-//            if($scope.fromDevice){
-//                var fromDeviceUuid = $scope.fromDevice.uuid;
-//                var fromDeviceToken = $scope.fromDevice.token
-//            } else {
-//                var fromDeviceUuid = $cookies.skynetuuid
-//                var fromDeviceToken = $cookies.skynettoken
-//            }
-//
-//            if($scope.sendUuid === undefined || $scope.sendUuid == ""){
-//                if($scope.device){
-//                    var uuid = $scope.device.uuid;
-//                } else {
-//                    var uuid = "";
-//                }
-//            } else {
-//                var uuid = $scope.sendUuid;
-//            }
-//
-//            if(uuid){
-//
-//                if($scope.schema){
-//                    var errors = $('#device-msg-editor').jsoneditor('validate');
-//                    if(errors.length){
-//                        alert(errors);
-//                    } else{
-//                        // if ($scope.sendText != ""){
-//                        //   message = $scope.sendText;
-//                        //   if(typeof message == "string"){
-//                        //     message = JSON.parse($scope.sendText);
-//                        //   }
-//                        // } else {
-//                        message = $('#device-msg-editor').jsoneditor('value');
-//                        console.log('schema message', message);
-//                        // }
-//
-//                        $scope.subdevicename = $scope.subdevice.name;
-//                    }
-//
-//                } else{
-//                    message = $scope.sendText;
-//                    try{
-//                        if(typeof message == "string"){
-//                            message = JSON.parse($scope.sendText);
-//                        }
-//                        // message = message.message;
-//                        $scope.subdevicename = message.subdevice;
-//                        delete message["subdevice"];
-//
-//                    } catch(e){
-//                        message = $scope.sendText;
-//                        $scope.subdevicename = "";
-//                    }
-//
-//                }
-//
-//                var newMessage = {};
-//                newMessage.subdevice = $scope.subdevicename;
-//                newMessage.payload = message;
-//
-//                // socket.emit('message', {
-//                //     "devices": uuid,
-//                //     "subdevice": $scope.subdevicename,
-//                //     "payload": message
-//                // }, function(data){
-//                //     console.log(data);
-//                // });
-//
-//                messageService.sendMessage(fromDeviceUuid, fromDeviceToken, uuid, newMessage, function(data) {
-//
-//                    $scope.messageOutput = "Message Sent: " + JSON.stringify(data);
-//
-//                });
-//
-//                // $scope.messageOutput = "Message Sent: " + JSON.stringify(message);
-//
-//            }
-        }
-
-
-
-    })
-    .controller('connectorController', function (currentUser, skynetService, $scope, $http, $injector, $location, $modal, $log, $q, $state, ownerService, deviceService, channelService, myDevices) {
+    .controller('connectorController', function (currentUser, skynetService, $scope, $http, $injector, $location,
+                                                 $modal, $log, $q, $state, deviceService, channelService, myDevices) {
         $scope.skynetStatus = false;
         $scope.channelList = [];
         $scope.predicate = 'name';
@@ -343,10 +30,10 @@ angular.module('octobluApp')
 
         // get api list, if showing api
         if ($state.is('connector.channels.index')) {
-            channelService.getActive($scope.skynetuuid, function (data) {
+            channelService.getActive(function (data) {
                 $scope.activeChannels = data;
             });
-            channelService.getAvailable($scope.skynetuuid, function (error, data) {
+            channelService.getAvailable(function (error, data) {
                 $scope.availableChannels = data;
             });
         }
@@ -354,7 +41,7 @@ angular.module('octobluApp')
 
         $scope.openDetails = function (channel) {
             // $scope.channel = channel;
-            $state.go('connector.channels.detail', { name: channel.name });
+            $state.go('ob.connector.channels.detail', { name: channel.name });
         };
 
         $scope.isActive = function (channel) {
@@ -430,10 +117,6 @@ angular.module('octobluApp')
                 return prefix + 'square';
             }
             return prefix + name;
-        };
-
-        $scope.alert = function (alertContent) {
-            alert(JSON.stringify(alertContent));
         };
 
         // $scope.addDevice = function(){
@@ -631,7 +314,7 @@ angular.module('octobluApp')
                 function () {
                     $log.info('ok clicked');
                     var gateway_to_delete = $scope.gateways[idx];
-                    deviceService.deleteDevice(gateway_to_delete.uuid, { skynetuuid: $scope.skynetuuid, skynettoken: $scope.skynettoken }, function (error, data) {
+                    deviceService.deleteDevice(gateway_to_delete.uuid, function (error, data) {
                         if (!error) {
                             $scope.gateways.splice(idx, 1);
                         }

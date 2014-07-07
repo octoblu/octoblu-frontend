@@ -1,29 +1,25 @@
-<section id='content'>
-    <div class='container full-screen'>
-        <div class='row' id='content-wrapper'>
-            <div class='col-xs-12'>
+<div class='col-xs-12'>
 
-                <div class='page-header page-header-with-buttons'>
-                    <h1 class='pull-left'>
-                        <i class='icon-code-fork'></i>
-                        <span>Connectors</span>
-                    </h1>
-                </div>
-                <ul class="nav nav-tabs">
-                    <li ng-class="{'active': $state.includes('connector.devices')}">
-                        <a href="" ui-sref="connector.devices.all">Devices</a>
-                    </li>
-                    <li ng-class="{'active': $state.includes('connector.channels')}">
-                        <a href="" ui-sref="connector.channels.index">Channels</a>
-                    </li>
-                    <li ng-class="{'active': $state.includes('connector.advanced')}">
-                        <a href="" ui-sref="connector.advanced.devices">Advanced</a>
-                    </li>
-                </ul>
-                <div class="tab-content" ui-view="">
-                </div>
-
-            </div>
-        </div>
+    <div class='page-header page-header-with-buttons'>
+        <h1 class='pull-left'>
+            <i class='icon-code-fork'></i>
+            <span>Connectors</span>
+        </h1>
     </div>
-</section>
+    <div>
+        <message-grapher class="message-summary col-xs-12"></message-grapher>
+    </div>
+    <ul class="nav nav-tabs">
+        <li ui-sref-active="active">
+            <a href="" ui-sref=".devices.all">Devices</a>
+        </li>
+        <li ui-sref-active="active">
+            <a href="" ui-sref=".channels.index">Channels</a>
+        </li>
+        <li ui-sref-active="active">
+            <a href="" ui-sref=".advanced.devices">Advanced</a>
+        </li>
+    </ul>
+    <div class="tab-content" ui-view="">
+    </div>
+</div>

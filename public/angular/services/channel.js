@@ -1,7 +1,7 @@
 angular.module('octobluApp')
     .service('channelService', function ($q, $http) {
         this.getList = function(callback) {
-            $http.get('/api/channels/', { cache: true})
+            $http.get('/api/channels', { cache: true})
                 .success(function(data) { callback(data); })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -33,8 +33,8 @@ angular.module('octobluApp')
          * @param uuid
          * @param callback
          */
-        this.getActive = function(uuid, callback) {
-            $http.get('/api/channels/'+uuid+'/active', { cache: false})
+        this.getActive = function(callback) {
+            $http.get('/api/channels/active', { cache: false})
                 .success(function(data) { callback(data); })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -47,8 +47,8 @@ angular.module('octobluApp')
          * @param uuid
          * @param callback
          */
-        this.getAvailable = function(uuid, callback) {
-            return $http.get('/api/channels/'+uuid+'/available', { cache: false})
+        this.getAvailable = function(callback) {
+            return $http.get('/api/channels/available', { cache: false})
                 .success(function(data) { callback(null, data); })
                 .error(function(error) {
                     console.log('Error: ' + error);
@@ -61,8 +61,8 @@ angular.module('octobluApp')
          * @param userUUID
          * @returns {*}
          */
-        this.getActiveChannels = function(userUUID){
-            return $http.get('/api/channels/'+ userUUID +'/active', { cache: false})
+        this.getActiveChannels = function(){
+            return $http.get('/api/channels/active', { cache: false})
                 .then(function(result){
                     return result.data;
                 });
@@ -73,8 +73,8 @@ angular.module('octobluApp')
          * @param userUUID
          * @returns {*}
          */
-        this.getAvailableChannels = function(userUUID){
-            return $http.get('/api/channels/'+ userUUID +'/available', { cache: false})
+        this.getAvailableChannels = function(){
+            return $http.get('/api/channels/available', { cache: false})
                 .then(function(result){
                     return result.data;
                 });
@@ -86,24 +86,12 @@ angular.module('octobluApp')
          * getSmartDevices gets the smart devices that Octoblu supports
          * @returns {defer.promise|*} a promise that will eventually resolve to an array of smart devices
          */
-          this.getSmartDevices = function() {
-            return $http.get('/api/smartdevices')
+          this.getDeviceTypes = function() {
+            return $http.get('/api/devicetypes')
                 .then(function(result){
                     return result.data;
                 });
         };
-
-        this.getSmartDevicesHomePage = function(callback) {
-          var defer = $q.defer();
-          $http.get('/api/smartdevices')
-              .success(function(data) {
-                   callback(null, data);
-              })
-              .error(function(error) {
-                 callback(error);
-              });
-        };
-
 
         this.getCustomList = function(uuid, callback) {
             $http.get('/api/customchannels/' + uuid, { cache: true})

@@ -366,7 +366,7 @@ max-width: 100%;
     display:-moz-inline-stack;
     display:inline-block;
     zoom: 1;
-    *display: inline;
+    display: inline;
     padding: 10px;
     height: auto;
     width: auto;
@@ -379,12 +379,80 @@ max-width: 100%;
     top: 10% !important;
 }
 
-.unavailable {
-    cursor:pointer !important;
-    opacity: 0.3 !important;
-    filter: alpha(opacity=30) !important;
-}
-
 .accordion-toggle {
    cursor: pointer;
 }
+.message-summary {
+    margin-bottom: 5px;
+}
+
+.device-subdevices .subdevice-thumbnail {
+    width: 250px;
+}
+.device-subdevices .subdevice-thumbnail .subdevice-icon {
+    height:125px;
+    background-image: url('/assets/images/robots/robot2.png');
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin: 15px 0;
+}
+
+.device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-arduino{
+    background-image: url('http://www.unwinnable.com/wp-content/uploads/2010/12/Arduino-logo.png');
+}
+.device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-hue{
+    background-image: url('http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/Philips-Hue-Logo-125x125.png');
+}
+.device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-wemo{
+    background-image: url('http://store.linksys.com/moduleimages/163/WeMo_AppLogo.jpg');
+}
+
+.devices .device-thumbnail {
+    height: 380px;
+}
+.devices .device-thumbnail .panel-heading {
+    height: 6em;
+    overflow:hidden;
+}
+
+.device-list .device-actions {
+    margin-bottom: 35px;
+}
+
+.device-list .device-actions .device-action-button:hover{
+    color:white;
+}
+.device-list .subdevice-actions .subdevice {
+    cursor:pointer;
+}
+
+.device-list .subdevice > img {
+    height: 64px;
+    width: 64px;
+}
+.device-list .subdevice-actions .subdevice.unavailable {
+    cursor:not-allowed;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+.device-list .device-actions .panel-heading {
+    border-bottom: 1px solid darkgray;
+    color : darkgray;
+}
+
+.device-list .panel-body .device-image-container {
+    padding: 0;
+    height: 12em;
+    width : inherit;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.device-list .panel-body .device-image-container > .device-image {
+    width: inherit;
+    height: inherit;
+    padding-bottom: 10px;
+}
+
+
+

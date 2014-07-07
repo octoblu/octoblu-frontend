@@ -1,168 +1,173 @@
-<section id='content'>
-    <div class='container full-screen'>
-        <!-- Made an Edit -->
-        <div class='row' id='content-wrapper'>
-            <div class='col-xs-12'>
+<div class='col-xs-12'>
 
-                <div class='page-header page-header-with-buttons'>
-                    <h1 class='pull-left'>
-                        <i class='icon-bar-chart'></i>
-                        <span>Analyzer</span>
-                    </h1>
-                </div>
+    <div class='page-header page-header-with-buttons'>
+        <h1 class='pull-left'>
+            <i class='icon-bar-chart'></i>
+            <span>Analyzer</span>
+        </h1>
+    </div>
 
-	<div class="container-fluid" >
-	<accordion>
-	<accordion-group heading="Top Graphs" is-open="$parent.step1open" ng-init="step1open = false"> 
-         <div class="container-fluid" >
-        <div class="row">
-		<div class="col-sm-4 dashboard-panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Top Devices Sending</h3>
-                        </div>
-                        <div class="panel panel-default">
-                            <a href="">
-                                <div class="panel-body">
-                                    <div ng-switch="!!topResults ? 1 : 0" >
-                                        <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-                                        <div ng-switch-default>
-                                            <div nvd3-pie-chart data="topResults.fromUuid" height="300"></div>
+    <div class="row">
+        <accordion>
+            <accordion-group heading="Top Graphs" is-open="$parent.step1open" ng-init="step1open = false">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4 dashboard-panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Top Devices Sending</h3>
+                            </div>
+                            <div class="panel panel-default">
+                                <a href="">
+                                    <div class="panel-body">
+                                        <div ng-switch="!!topResults ? 1 : 0">
+                                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i>
+                                            </h1></div>
+                                            <div ng-switch-default>
+                                                <div nvd3-pie-chart data="topResults.fromUuid"
+                                                     height="300"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-		<div class="col-sm-4 dashboard-panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Top Devices Receiving</h3>
-                        </div>
-                        <div class="panel panel-default">
-                            <a href="">
-                                <div class="panel-body">
-                                    <div ng-switch="!!topResults ? 1 : 0" >
-                                        <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-                                        <div ng-switch-default>
-                                            <div nvd3-pie-chart data="topResults.toUuid" height="300"></div>
+                        <div class="col-sm-4 dashboard-panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Top Devices Receiving</h3>
+                            </div>
+                            <div class="panel panel-default">
+                                <a href="">
+                                    <div class="panel-body">
+                                        <div ng-switch="!!topResults ? 1 : 0">
+                                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i>
+                                            </h1></div>
+                                            <div ng-switch-default>
+                                                <div nvd3-pie-chart data="topResults.toUuid"
+                                                     height="300"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-	</div><!-- Endof Container Fluid-->
-	</accordion-group>
-	<accordion-group heading="Time Ranges">
-              <div class="row">
-                 <div class="col-md-10">
-                <h2>Count of EventCodes over time</h2>
-                </div>
-                </div>
-        </accordion-group>
-	<accordion-group heading="Freeform Search">	
-            <div class="container-fluid">
-              <div class="row">
-                <div class="input-group">
-                  <form class="form-inline col-md-12">
-                    <div class="form-group col-md-8">
-                      <input type="text" class="form-control" ng-model="searchText" placeholder="Search" autofocus>
+                <!-- Endof Container Fluid-->
+            </accordion-group>
+            <accordion-group heading="Time Ranges">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>Count of EventCodes over time</h2>
                     </div>
-                    <div class="form-group col-md-2">
-                      <select class="form-control" ng-model="eventCode">
-                          <option value="">All Event Codes</option>
-                          <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-2">
+                </div>
+            </accordion-group>
+            <accordion-group heading="Freeform Search">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="input-group">
+                            <form class="form-inline col-md-12">
+                                <div class="form-group col-md-8">
+                                    <input type="text" class="form-control" ng-model="searchText"
+                                           placeholder="Search" autofocus>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <select class="form-control" ng-model="eventCode">
+                                        <option value="">All Event Codes</option>
+                                        <option ng-repeat="event in events" value="{{event.code}}">
+                                            {{event.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
                       <span class="input-group-btn">
                           <button class="btn btn-default" type="button" ng-click="search(1)">
                               <span class="glyphicon glyphicon-search"> Find</span>
                           </button>
                       </span>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </form>
                 </div>
-              </div>
-            </div>
-                
-	    <div class="panel panel-info" ng-show="results" >
+
+                <div class="panel panel-info" ng-show="results">
                     <!-- Default panel contents -->
                     <div class="panel-heading">Results
-                      <p class="pull-right"> hits: {{ results.hits.total }}</p>
+                        <p class="pull-right"> hits: {{ results.hits.total }}</p>
                     </div>
                     <input type="checkbox" ng-model="checked"> pretty print?
                     <div class="panel-body">
-                      <table class="table table-striped table-hover">
-                          <tr ng-repeat="result in results.hits.hits" ng-class="rowClass(result)">
-                              <td ng-hide="checked">{{ result }}</td>
-                              <td ng-show="checked"><pre>{{ result | json }}</pre></td>
-                          </tr>
-                      </table>
+                        <table class="table table-striped table-hover">
+                            <tr ng-repeat="result in results.hits.hits" ng-class="rowClass(result)">
+                                <td ng-hide="checked">{{ result }}</td>
+                                <td ng-show="checked">
+                                    <pre>{{ result | json }}</pre>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-            </div>
+                </div>
 
                 <!--<pager total-items="totalItems" page="currentPage" ng-show="results"></pager>-->
-	</accordion-group>
-	<accordion-group heading="Explore">
-	<div class="container-fluid">
-		<div class="row">
-		  <div class="col-md-4 dashboard-panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Device Selection</h3>
+            </accordion-group>
+            <accordion-group heading="Explore">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4 dashboard-panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Device Selection</h3>
+                            </div>
+                            <div class="panel panel-default">
+                                <a href="">
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            <li ng-repeat="cb_device in devices" class="list-group-item">
+                                                <label>
+                                                    <input type="checkbox" value="{{cb_device.uuid}}"/>
+                                                    {{cb_device.name}}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                        <div class="panel panel-default">
-                            <a href="">
-                                <div class="panel-body">
-					<ul class="list-group">
-					<li ng-repeat="cb_device in devices" class="list-group-item">
-					<label >
-					  <input type="checkbox" value="{{cb_device.uuid}}" /> {{cb_device.name}}
-					</label>
-					</li>
-					</ul>
-                                </div>
-                            </a>
+                        <div class="col-md-8 dashboard-panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">The Graph</h3>
+                            </div>
+                            <div class="panel panel-default">
+                                Hello? Is it me you're looking for?
+                            </div>
                         </div>
-                    </div>
-		<div class="col-md-8 dashboard-panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">The Graph</h3>
-                        </div>
-                        <div class="panel panel-default">
-				Hello? Is it me you're looking for? 
-                        </div>
-                    </div>
 
-		</div>
-	</div>
-	</accordion-group>
-	<accordion-group heading="Device Details - possibly move to the connectors page">
-	<div class="container-fluid">
-              <div class="row">
-                <h2>Device Details</h2>
-                <div class="input-group">
-                  <form class="form-inline col-md-12">
-                  <div class="form-group col-md-12">
-                  <div class="form-group">
-                    <select ng-model="device" ng-options="device.name for device in devices" class="form-control" ng-change="sensorListen(device)"></select>
-                  </div>
-                  </div>
-                  </form>
+                    </div>
                 </div>
-              </div>
-            </div>
+            </accordion-group>
+            <accordion-group heading="Device Details - possibly move to the connectors page">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2>Device Details</h2>
 
-                 <canvas id="mycanvas" width="400" height="100"></canvas>
+                        <div class="input-group">
+                            <form class="form-inline col-md-12">
+                                <div class="form-group col-md-12">
+                                    <div class="form-group">
+                                        <select ng-model="device"
+                                                ng-options="device.name for device in devices"
+                                                class="form-control"></select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-                 <div id="legend"></div>
+                <message-grapher device="device.uuid"></message-grapher>
+                <textarea style="width:100%">{{device}}</textarea>
 
-        <textarea style="width:100%">{{device}}</textarea>
+            </accordion-group>
+        </accordion>
 
-	</accordion-group>
-	</accordion>
-
-            </div>
-        </div>
     </div>
-</section>
+</div>

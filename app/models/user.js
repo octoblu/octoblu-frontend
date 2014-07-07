@@ -3,41 +3,46 @@
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     Resource = require('./mixins/resource'),
-    moment = require('moment');
+    moment = require('moment'),
+
+    configAuth = require('../../config/auth')(process.env.NODE_ENV),
+    rest = require('rest'),
+    mime = require('rest/interceptor/mime'),
+    errorCode = require('rest/interceptor/errorCode'),
+    client = rest.wrap(mime).wrap(errorCode);
+
 // define the schema for our user model
 var UserSchema = new mongoose.Schema({
         name: String,
         username: String,
+        displayName : String,
+        email : String,
         admin: Boolean,
+        skynet: {
+            uuid: {type: String, unique: true, required: true},
+            token: { type: String, required: true}
+        },
         local: {
             email: String,
-            password: String,
-            skynetuuid: String,
-            skynettoken: String
+            password: String
         },
         facebook: {
             id: String,
             token: String,
             email: String,
             name: String,
-            skynetuuid: String,
-            skynettoken: String
         },
         twitter: {
             id: String,
             token: String,
             displayName: String,
-            username: String,
-            skynetuuid: String,
-            skynettoken: String
+            username: String
         },
         google: {
             id: String,
             token: String,
             email: String,
-            name: String,
-            skynetuuid: String,
-            skynettoken: String
+            name: String
         },
         api: [
             {
@@ -62,7 +67,7 @@ var UserSchema = new mongoose.Schema({
     },
     { toObject: {virtuals: true}, toJSON: {virtuals: true} });
 
-Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties : ['displayName', 'email', 'skynettoken']});
+Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties: ['displayName', 'email', 'skynettoken']});
 
 // find api connection by name
 UserSchema.methods.findApiByName = function (name) {
@@ -80,9 +85,7 @@ UserSchema.methods.findApiByName = function (name) {
 };
 
 UserSchema.methods.addOrUpdateApiByName = function (name, type, key, token, secret, verifier, custom_tokens) {
-    if (this.api == null && this.api == nil) {
-        this.api = [];
-    }
+    this.api = this.api || [];
 
     var isoDate = moment().format();
 
@@ -131,80 +134,65 @@ UserSchema.methods.validPassword = function (password) {
 //Convenience method for getting the Skynet UUID
 //TODO: replace this with resource.uuid
 UserSchema.virtual('skynetuuid').get(function () {
-    return this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
+    return this.skynet.uuid || this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
 });
 
 //Convenience method for getting the Skynet Token
 UserSchema.virtual('skynettoken').get(function () {
-    return this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
+    return this.skynet.token || this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
 });
 
-//Convenience method for getting the Skynet Token
-UserSchema.virtual('email').get(function () {
-    return this.local.email || this.google.email || this.facebook.email;
-});
-
-UserSchema.virtual('displayName').get(function () {
-
-    return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
-});
+////Convenience method for getting the Skynet Token
+//UserSchema.virtual('email').get(function () {
+//    return this.local.email || this.google.email || this.facebook.email || this.twitter.username + '@twitter';
+//});
+//
+//UserSchema.virtual('displayName').get(function () {
+//
+//    return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
+//});
 
 UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
-    return this.findOne({ $or: [
-        {
-            'local.skynetuuid': skynetuuid
-        },
-        {
-            'twitter.skynetuuid': skynetuuid
-        },
-        {
-            'facebook.skynetuuid': skynetuuid
-        },
-        {
-            'google.skynetuuid': skynetuuid
-        }
-    ]
-    }).exec();
+    return this.findOne({'skynet.uuid' : skynetuuid}).exec();
 };
 
 UserSchema.statics.findByEmail = function (email) {
-    return this.findOne({ $or: [
-        {
-            'local.email': email
-        },
-        {
-            'twitter.email': email
-        },
-        {
-            'facebook.email': email
-        },
-        {
-            'google.email': email
-        }
-    ]
-    }).exec();
+    return this.findOne({ email : email }).exec();
 };
 
 UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
-    return this.findOne({ $or: [
-        {
-            'local.skynetuuid': skynetuuid,
-            'local.skynettoken': skynettoken
-        },
-        {
-            'twitter.skynetuuid': skynetuuid,
-            'twitter.skynettoken': skynettoken
-        },
-        {
-            'facebook.skynetuuid': skynetuuid,
-            'facebook.skynettoken': skynettoken
-        },
-        {
-            'google.skynetuuid': skynetuuid,
-            'google.skynettoken': skynettoken
-        }
-    ]
-    }).exec();
+    return this.findOne({'skynet.uuid' : skynetuuid, 'skynet.token' : skynettoken}).exec();
 };
+
+UserSchema.pre('validate', function (next) {
+    var user = this;
+    user.skynet = user.skynet || migrateSkynet(user);
+    if (!user.skynet.uuid) {
+        user.skynet = {
+            uuid: user.resource.uuid,
+            token: Resource.generateToken()
+        };
+
+        client({
+            method: 'POST',
+            path: 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices',
+            params: {
+                type: 'user',
+                uuid: user.skynet.uuid,
+                token: user.skynet.token,
+                'email': user.email
+
+            }})
+            .then(function (result) {
+                console.log(result.entity);
+                next();
+            })
+            .catch(function (error) {
+                next(error);
+            });
+    } else {
+        next();
+    }
+});
 
 module.exports = UserSchema;

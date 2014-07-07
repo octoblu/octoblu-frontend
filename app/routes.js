@@ -34,7 +34,6 @@ module.exports = function(app, passport) {
         require('./controllers/device')(app, config);
         require('./controllers/elastic')(app);
         require('./controllers/message')(app, conn);
-        require('./controllers/owner')(app, config, conn);
         require('./controllers/redport')(app);
         require('./controllers/session')(app, passport, config);
         require('./controllers/unlink')(app);
