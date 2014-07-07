@@ -11,6 +11,22 @@ angular.module('octobluApp')
         $scope.devices = myDevices;
         $scope.hasHubs = myGateways.length;
 
+        $scope.getDeviceTypeLogo = function(device){
+
+            var deviceType = _.findWhere(availableDeviceTypes, function(deviceType){
+                if(device.type ){
+                    if(device.subtype){
+                        return deviceType.skynet.type === device.type && deviceType.skynet.subtype === device.subtype;
+                    } else {
+                        return deviceType.skynet.type === device.type;
+                    }
+                } else {
+                    return deviceType.skynet.type === 'device' && deviceType.skynet.subtype === 'other';
+                }
+            });
+            return deviceType.logo;
+        };
+
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {

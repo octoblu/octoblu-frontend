@@ -9,11 +9,12 @@ db.devicetypes.insert({
     logo: "assets/images/skynet/cloud.png",
     name: "SkyNet Cloud",
     description: "SkyNet cloud",
-    enabled: true,
     skynet: {
         type: "skynet",
         subtype: "cloud"
-    }
+    },
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -24,7 +25,8 @@ db.devicetypes.insert({
         type: "device",
         subtype: "arduino"
     },
-    enabled: false
+    enabled: false,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -36,7 +38,8 @@ db.devicetypes.insert({
         subtype: "phillips hue",
         plugin: "skynet-hue"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -49,7 +52,8 @@ db.devicetypes.insert({
         plugin: "skynet-wemo"
 
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -62,7 +66,8 @@ db.devicetypes.insert({
         plugin: "skynet-nest"
 
     },
-    enabled: false
+    enabled: false,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -75,7 +80,8 @@ db.devicetypes.insert({
         plugin: "skynet-insteon"
 
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -87,7 +93,8 @@ db.devicetypes.insert({
         subtype: "blink1",
         plugin: "skynet-blink1"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -98,7 +105,8 @@ db.devicetypes.insert({
         type: "device",
         subtype: "raspberrypi"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -109,7 +117,8 @@ db.devicetypes.insert({
         type: "device",
         subtype: "galileo"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -120,7 +129,8 @@ db.devicetypes.insert({
         type: "device",
         subtype: "beaglebone"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -131,7 +141,8 @@ db.devicetypes.insert({
         type: "device",
         subtype: "spark"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -142,7 +153,8 @@ db.devicetypes.insert({
         type: "device",
         subtype: "pinoccio"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -153,7 +165,8 @@ db.devicetypes.insert({
         type: "device",
         subtype: "tessel"
     },
-    "enabled": true
+    "enabled": true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -164,7 +177,8 @@ db.devicetypes.insert({
         type: "octobluMobile",
         subtype: "apple"
     },
-    enabled: true
+    enabled: true,
+    display : true
 });
 
 db.devicetypes.insert({
@@ -185,35 +199,37 @@ db.devicetypes.insert({
     skynet: {
         type: "gateway"
     },
-    enabled: true
+    enabled: true,
+    display : false
 });
 
 db.devicetypes.insert({
-        name: "SMS inbound",
-        description: "Inbound SMS phone number",
-        logo: "http://octoblu-devices.s3.amazonaws.com/sms.png",
-        optionsSchema: {
-            type: "object",
-            properties: {
-                phoneNumber: {
-                    type: "string",
-                    required: true
-                },
-                plivoAuthId: {
-                    type: "string",
-                    required: true
-                },
-                plivoAuthToken: {
-                    type: "string",
-                    required: true
-                }
+    name: "SMS inbound",
+    description: "Inbound SMS phone number",
+    logo: "http://octoblu-devices.s3.amazonaws.com/sms.png",
+    optionsSchema: {
+        type: "object",
+        properties: {
+            phoneNumber: {
+                type: "string",
+                required: true
+            },
+            plivoAuthId: {
+                type: "string",
+                required: true
+            },
+            plivoAuthToken: {
+                type: "string",
+                required: true
             }
-        },
-        skynet: {
-            type: "sms",
-            subtype: "inbound"
-        },
-        enabled: true
+        }
+    },
+    skynet: {
+        type: "sms",
+        subtype: "inbound"
+    },
+    enabled: true,
+    display: true
 });
 
 db.devicetypes.insert({
@@ -241,7 +257,8 @@ db.devicetypes.insert({
         type: "sms",
         subtype: "outbound"
     },
-    enabled: true
+    enabled: true,
+    display: true
 });
 
 db.devicetypes.insert({
@@ -252,5 +269,6 @@ db.devicetypes.insert({
         type: "device",
         subtype: "other"
     },
-    enabled: true
+    enabled: true,
+    display: true
 });

@@ -14,7 +14,8 @@ var DeviceTypeSchema = new mongoose.Schema({
         type : {type : String},
         subtype: {type: String}
     },
-    enabled: {type: Boolean, index: 1}
+    enabled: {type: Boolean, index: 1},
+    display: {type: Boolean, index: 1}
 });
 
 Resource.makeResourceModel({schema: DeviceTypeSchema, type: 'devicetype'});
