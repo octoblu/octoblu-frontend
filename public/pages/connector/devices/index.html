@@ -5,17 +5,11 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 panel device-thumbnail" ng-repeat="device in devices | orderBy:'name'">
           <div class="panel-heading">
-            <div class="pull-left col-xs-1">
-                <a class="btn btn-danger" ng-click="deleteDevice(device)" tooltip="Delete Device" tooltip-placement="right" tooltip-popup-delay="10">
-                    <i class="fa fa-trash-o"></i>
-                </a>
-            </div>
-
              <div class="col-xs-10">
-                <h3 class="text-center">{{device.name}}</h3>
+                <h4 class="text-center">{{device.name}}</h4>
              </div>
-              <div class="pull-right col-xs-1">
-                  <i class="fa fa-power-off fa-2x" ng-class="{'text-success': device.online, 'text-muted': ! device.online}" tooltip="Online Indicator - Online: {{device.online}}" tooltip-placement="left" tooltip-popup-delay="10"></i>
+              <div class="col-xs-1 pull-right">
+                  <i class="fa fa-power-off fa-lg" ng-class="{'text-success': device.online, 'text-muted': ! device.online}" tooltip="Online Indicator - Online: {{device.online}}" tooltip-placement="left" tooltip-popup-delay="10"></i>
               </div>
           </div>
          <div class="panel-body center-block">
@@ -34,6 +28,11 @@
                          <i class="fa fa-edit fa-lg">&nbsp;&nbsp;</i>Edit
                      </a>
                  </div>
+                 <div class="btn-group">
+                     <a class="btn btn-danger" ng-click="deleteDevice(device)" tooltip="Delete Device" tooltip-placement="right" tooltip-popup-delay="10">
+                         <i class="fa fa-trash-o">&nbsp;&nbsp;</i>Delete
+                     </a>
+                 </div>
              </div>
          </div>
         </div>
@@ -42,7 +41,7 @@
         <div>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                    <a class="btn btn-inverse btn-lg add-device device-action-button" href ui-sref="ob.connector.devices.wizard.instructions({claim:'gateway'})">
+                    <a class="btn btn-primary add-device device-action-button" href ui-sref="ob.connector.devices.wizard.instructions({claim:'gateway'})">
                         <i class="fa fa-h-square fa-2x pull-left"></i>
                         <span>Add Hub</span>
                     </a>
@@ -50,11 +49,11 @@
             </div>
             <div ng-if="hasHubs" class="panel subdevice-actions">
                 <div class="panel-heading">
-                    <h4 class="text-center"><i class="fa fa-puzzle-piece fa-2x pull-left"></i><span>Add Sub-Device</span></h4>
+                    <h4 class="text-center"><i class="fa fa-puzzle-piece fa-lg pull-left"></i><span>Add Sub-Device</span></h4>
                 </div>
                 <div class="panel-body">
                     <a   ng-class="{'unavailable': !deviceType.enabled }" ng-repeat="deviceType in subDeviceTypes" class="subdevice pull-left" ng-click="addSubdevice(deviceType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{deviceType.name}}" tooltip-placement="left" tooltip-popup-delay="10">
-                        <img src="{{deviceType.logo || defaultLogo }}" alt="{{deviceType.name}}" width="80" height="80"  ng-model="deviceType" />
+                        <img src="{{deviceType.logo || defaultLogo }}" alt="{{deviceType.name}}"  ng-model="deviceType" />
                     </a>
 
                 </div>
@@ -63,7 +62,7 @@
             <div class="btn-group btn-group-justified">
 
                 <div class="btn-group">
-                    <a class="btn btn-inverse btn-lg claim-device device-action-button" href ui-sref="ob.connector.devices.wizard.finddevice({claim :'device'})" tooltip="Claim Device" tooltip-placement="bottom" tooltip-popup-delay="10">
+                    <a class="btn btn-primary  claim-device device-action-button" href ui-sref="ob.connector.devices.wizard.finddevice({claim :'device'})" tooltip="Claim Device" tooltip-placement="bottom" tooltip-popup-delay="10">
                         <i class="fa fa-hand-o-right fa-2x pull-left"></i>
                         <span>Claim Device</span>
                     </a>
@@ -71,11 +70,11 @@
             </div>
             <div class="panel subdevice-actions">
                 <div class="panel-heading">
-                    <h4 class="text-center"><i class="fa fa-hdd-o fa-2x pull-left"></i><span>Add Device</span></h4>
+                    <h4 class="text-center"><i class="fa fa-hdd-o fa-lg pull-left"></i><span>Add Device</span></h4>
                 </div>
                 <div class="panel-body">
                     <a   ng-class="{'unavailable': !deviceType.enabled }" ng-repeat="deviceType in deviceTypes | filter :{ display : true }" class="subdevice pull-left" ng-click="addDevice(deviceType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{deviceType.name}}" tooltip-placement="left" tooltip-popup-delay="10" >
-                        <img src="{{deviceType.logo}}" alt="{{deviceType.name}}"  width="80" height="80"  ng-model="deviceType" />
+                        <img src="{{deviceType.logo}}" alt="{{deviceType.name}}"  ng-model="deviceType" />
                     </a>
 
                 </div>

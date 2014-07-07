@@ -426,6 +426,11 @@ max-width: 100%;
 .device-list .subdevice-actions .subdevice {
     cursor:pointer;
 }
+
+.device-list .subdevice > img {
+    height: 64px;
+    width: 64px;
+}
 .device-list .subdevice-actions .subdevice.unavailable {
     cursor:not-allowed;
     opacity: 0.3;
@@ -437,13 +442,16 @@ max-width: 100%;
 }
 
 .device-list .panel-body .device-image-container {
-    padding:2em 0 2em 0;
-    height: 16em;
+    padding: 0;
+    height: 12em;
     width : inherit;
     margin-left: 25%;
     margin-right: 25%;
 }
 .device-list .panel-body .device-image-container > .device-image {
+    width: inherit;
+    height: inherit;
+    padding-bottom: 10px;
 }
 
 
