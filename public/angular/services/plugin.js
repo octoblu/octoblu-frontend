@@ -3,27 +3,27 @@ angular.module('octobluApp').
 
         this.getDefaultOptions = function (hub, pluginName) {
             return skynetService.gatewayConfig({
-                "uuid": hub.uuid,
-                "token": hub.token,
-                "method": "getDefaultOptions",
-                "name": pluginName
+                uuid: hub.uuid,
+                token: hub.token,
+                method: "getDefaultOptions",
+                name: pluginName
             });
         };
 
         this.getInstalledPlugins = function (hub) {
             skynetService.gatewayConfig({
-                "uuid": hub.uuid,
-                "token": hub.token,
-                "method": "getPlugins"
+                uuid: hub.uuid,
+                token: hub.token,
+                method: "getPlugins"
             });
         };
 
         this.installPlugin = function (hub, pluginName) {
             return skynetService.gatewayConfig({
-                "uuid": hub.uuid,
-                "token": hub.token,
-                "method": "installPlugin",
-                "name": pluginName
+                uuid: hub.uuid,
+                token: hub.token,
+                method: "installPlugin",
+                name : pluginName
             });
         };
 
