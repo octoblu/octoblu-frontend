@@ -155,8 +155,7 @@
                                     <div class="form-group">
                                         <select ng-model="device"
                                                 ng-options="device.name for device in devices"
-                                                class="form-control"
-                                                ng-change="sensorListen(device)"></select>
+                                                class="form-control"></select>
                                     </div>
                                 </div>
                             </form>
@@ -164,10 +163,7 @@
                     </div>
                 </div>
 
-                <canvas id="mycanvas" width="400" height="100"></canvas>
-
-                <div id="legend"></div>
-
+                <message-grapher device="device.uuid"></message-grapher>
                 <textarea style="width:100%">{{device}}</textarea>
 
             </accordion-group>

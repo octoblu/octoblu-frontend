@@ -5,8 +5,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
     .constant('skynetConfig', {
         // 'host': 'skynet.im', //change to the skynet.im instance
         // 'port': '80'
-        'host': '192.168.112.21', //change to the skynet.im instance
-        'port': '3000'
+        'host': 'skynet.im', //change to the skynet.im instance
+        'port': '80'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
