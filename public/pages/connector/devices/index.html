@@ -53,7 +53,7 @@
                     <h4 class="text-center"><i class="fa fa-puzzle-piece fa-2x pull-left"></i><span>Add Sub-Device</span></h4>
                 </div>
                 <div class="panel-body">
-                    <a   ng-class="{'unavailable': !deviceType.enabled }" ng-repeat="deviceType in subdeviceTypes" class="subdevice pull-left" ng-click="addSubdevice(deviceType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{deviceType.name}}" tooltip-placement="left" tooltip-popup-delay="10">
+                    <a   ng-class="{'unavailable': !deviceType.enabled }" ng-repeat="deviceType in subDeviceTypes" class="subdevice pull-left" ng-click="addSubdevice(deviceType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{deviceType.name}}" tooltip-placement="left" tooltip-popup-delay="10">
                         <img src="{{deviceType.logo || defaultLogo }}" alt="{{deviceType.name}}" width="80" height="80"  ng-model="deviceType" />
                     </a>
 
