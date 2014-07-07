@@ -22,7 +22,6 @@ angular.module('octobluApp')
         };
         $scope.isopen = false;
         $scope.user = currentUser;
-        $scope.hubConfig = {};
         $scope.claimDevice = function () {
             deviceService
                 .claimDevice($scope.model.device.uuid)
@@ -31,10 +30,11 @@ angular.module('octobluApp')
                     return deviceService.updateDevice($scope.model.device.uuid, { name: $scope.model.name });
                 }).then(function (device) {
                     console.log(device);
-                    $state.go('ob.connector.devices.all', {}, {reload: true});
+                    angular.extend($scope.model.device, device);
+                    $state.go('ob.connector.devices.all');
                 }, function (error) {
                     console.log(error);
-                    $state.go('ob.connector.devices.all', {}, {reload: true});
+                    $state.go('ob.connector.devices.all');
                 });
         };
 
