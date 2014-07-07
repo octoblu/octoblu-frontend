@@ -8,7 +8,7 @@ var _ = require('lodash'),
     Resource = require('../models/mixins/resource'),
     client = rest.wrap(mime).wrap(errorCode),
     request = require('request'),
-    isAuthenticated = require('./controller-middleware').isAuthenticated;
+    isAuthenticated = require('./middleware/security').isAuthenticated;
 var deviceController = {
 
     getDevices: function (req, res) {
@@ -18,8 +18,8 @@ var deviceController = {
             method: 'GET',
             path: req.protocol + "://" + deviceController.skynetUrl + "/mydevices",
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token,
+                skynet_auth_uuid: user.skynetuuid,
+                skynet_auth_token: user.skynettoken
             }
         })
             .then(function (result) {
@@ -44,18 +44,18 @@ var deviceController = {
                 uuid: req.params.uuid
             },
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             }
         })
-        .then(function (result) {
+            .then(function (result) {
                 var devices = createDeviceResources(result.entity.devices, user);
                 var device = _.findWhere(devices, {uuid: req.params.uuid});
                 res.send(device);
-        })
-        .catch(function (error) {
-            res.send(400, error.status);
-        });
+            })
+            .catch(function (error) {
+                res.send(400, error.status);
+            });
     },
 
     createDevice: function (req, res) {
@@ -63,10 +63,10 @@ var deviceController = {
             method: 'POST',
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices",
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             },
-            params : req.body,
+            params: req.body,
             entity: req.body
         })
             .then(function (result) {
@@ -87,8 +87,8 @@ var deviceController = {
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
 
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             }
 
         })
@@ -107,13 +107,13 @@ var deviceController = {
             path: req.protocol + "://" + deviceController.skynetUrl + "/devices/" + req.params.uuid,
             params: req.body,
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken
             },
-            entity : req.body
+            entity: req.body
         })
             .then(function (result) {
-              res.send(result.entity);
+                res.send(result.entity);
             })
             .catch(function (error) {
                 res.send(400, error);
@@ -122,29 +122,23 @@ var deviceController = {
     },
 
     claimDevice: function (req, res) {
-        var user = req.user;
-        if(req.body.owner !== user.skynetuuid ){
-            res.send(401, {'error' : 'unauthorized'});
-            return;
-        }
-
         client({
             method: 'PUT',
             path: req.protocol + "://" + deviceController.skynetUrl + "/claimdevice/" + req.params.uuid,
             params: {
-                "overrideIp" : req.ip
+                "overrideIp": req.ip
             },
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token,
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken,
                 Skynet_override_token: deviceController.config.skynet.override_token
             },
             entity: req.body
         }).then(function (result) {
-               res.send(result.entity);
-            })
+            res.send(result.entity);
+        })
             .catch(function (error) {
-                res.send(400, error.status );
+                res.send(400, error.status);
             });
     },
 
@@ -158,16 +152,18 @@ var deviceController = {
                 "owner": null
             },
             headers: {
-                skynet_auth_uuid: req.headers.skynet_auth_uuid,
-                skynet_auth_token: req.headers.skynet_auth_token,
+                skynet_auth_uuid: req.user.skynetuuid,
+                skynet_auth_token: req.user.skynettoken,
                 skynet_override_token: deviceController.config.skynet.override_token
             }
         }).then(function (result) {
-
-            var devices = createDeviceResources(result.entity.devices, null);
+            var skynetDevices = _.filter(result.entity.devices, function(device){
+                return device.type !== 'user' && device.online === true;
+            }) || [];
+            var devices = createDeviceResources(skynetDevices, null);
             return res.send(devices);
         }, function (errorResult) {
-            return res.send( []);
+            return res.send([]);
         });
 
     },
@@ -188,26 +184,26 @@ var deviceController = {
                 sort: 'rating:desc'
             }
         }).then(function (result) {
-            setTimeout(function(){
-                var data = JSON.parse(result.entity);            
+            setTimeout(function () {
+                var data = JSON.parse(result.entity);
                 for (var i = 0; i < data.results.length; i++) {
                     // console.log(data.results[i]);
-                    if(data.results[i].homepage.indexOf("https://github.com/") > -1){
+                    if (data.results[i].homepage.indexOf("https://github.com/") > -1) {
                         var url = data.results[i].homepage.split("https://github.com/");
-                    } else if(data.results[i].homepage.indexOf("http://npmjs.org/") > -1){
+                    } else if (data.results[i].homepage.indexOf("http://npmjs.org/") > -1) {
                         var url = data.results[i].homepage.split("http://npmjs.org/");
-                    } else if(data.results[i].homepage.indexOf("http://github.com/") > -1){
+                    } else if (data.results[i].homepage.indexOf("http://github.com/") > -1) {
                         var url = data.results[i].homepage.split("http://github.com/");
                     } else {
                         var url = data.results[i].homepage.split("git@github.com:");
                     }
                     console.log(url);
-                    if (url[1].indexOf(".git")){
+                    if (url[1].indexOf(".git")) {
                         var gitUrl = url[1].split(".git");
                     } else {
                         var gitUrl = url[1];
                     }
-                    
+
                     // console.log(gitUrl);
                     var actualUrl = "https://raw.githubusercontent.com/" + gitUrl;
                     data.results[i].bundle = actualUrl + "/master/bundle.js";
@@ -220,7 +216,6 @@ var deviceController = {
     }
 };
 module.exports = function (app, config) {
-
 
 
     deviceController.skynetUrl = app.locals.skynetUrl;

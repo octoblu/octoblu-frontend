@@ -1,0 +1,68 @@
+<div ng-if="!model.unclaimedDevices.length" class="well">
+    <h3>
+      <span class="fa-stack fa-2x">
+        <i class="fa fa-hdd-o fa-stack-1x"></i>
+        <i class="fa fa-ban fa-stack-2x text-danger"></i>
+      </span>
+      <span>No available Devices</span>
+    </h3>
+
+    <p class="lead">Could not find any available devices that are online and unclaimed. Please exit and
+        make sure that the devices are accessible within your network.
+    </p>
+</div>
+<div ng-if="model.unclaimedDevices.length">
+    <div class="panel panel-primary">
+        <div class="panel-heading center-block">Available Hubs</div>
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">UUID</label>
+
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="model.device"
+                                ng-options="device.uuid + '(' + (device.type || 'device') + ')' for device in model.unclaimedDevices">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Name</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="model.name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <accordion>
+                        <accordion-group>
+                            <accordion-heading>
+                                Details <span class="glyphicon pull-right"
+                                              ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"
+                                              ng-click="toggleOpen()"></span>
+                            </accordion-heading>
+                            <ul class="list-group">
+                                <li class="list-group-item">Channel <span class="label label-primary pull-right">{{model.device.channel}}</span>
+                                </li>
+                                <li class="list-group-item">UUID<span class="label label-primary pull-right">{{model.device.uuid}}</span>
+                                </li>
+                                <li class="list-group-item">IP Address <span class="label label-primary pull-right">{{model.device.ipAddress}}</span>
+                                </li>
+                                <li class="list-group-item">Localhost <span class="label label-primary pull-right">{{model.device.localhost}}</span>
+                                </li>
+                                <li class="list-group-item">Online
+                                    <div class="pull-right">
+                                        <i class="fa fa-power-off fa-lg"
+                                           ng-class="{'text-success':model.device.online, 'text-muted':!model.device.online}"></i>
+                                        <!--<toggle-switch state="{{model.device.online}}"></toggle-switch>-->
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </accordion-group>
+                    </accordion>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

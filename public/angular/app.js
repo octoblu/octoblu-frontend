@@ -5,8 +5,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
     .constant('skynetConfig', {
         // 'host': 'skynet.im', //change to the skynet.im instance
         // 'port': '80'
-        'host': '192.168.112.21', //change to the skynet.im instance
-        'port': '3000'
+        'host': 'skynet.im', //change to the skynet.im instance
+        'port': '80'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -31,204 +31,210 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // change page event name
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
+        $httpProvider.interceptors.push(function ($injector) {
+            return {
+                responseError: function (response) {
+                    if (response.status >= 400) {
+                        $injector.get('$state').go('login');
+                    }
+                    return response;
+                }
+            };
+        });
+
         $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: 'pages/login.html',
-                controller: 'loginController'
-            })
-            .state('home2', {
-                url: '/home2',
-                templateUrl: 'pages/home2.html',
-                controller: 'homeController'
-            })
-            .state('home3', {
-                url: '/home3',
-                templateUrl: 'pages/home3.html',
-                controller: 'homeController'
+            .state('ob', {
+                abstract: true,
+                controller: 'OctobluController',
+                templateUrl: "pages/octoblu.html",
+                resolve: {
+                    currentUser: function (AuthService) {
+                        return AuthService.getCurrentUser();
+                    },
+                    myDevices: function (currentUser, deviceService) {
+                        return deviceService.getDevices();
+                    }
+                },
+                unsecured: true
             })
             .state('terms', {
                 url: '/terms',
                 templateUrl: 'pages/terms.html',
-                controller: 'termsController'
+                controller: 'termsController',
+                unsecured: true
             })
-            .state('about', {
+            .state('ob.about', {
                 url: '/about',
                 templateUrl: 'pages/about.html',
-                controller: 'aboutController'
+                controller: 'aboutController',
+                unsecured: true
             })
             .state('contact', {
                 url: '/contact',
                 templateUrl: 'pages/contact.html',
-                controller: 'contactController'
+                controller: 'contactController',
+                unsecured: true
             })
-            .state('profile', {
+            .state('ob.profile', {
                 url: '/profile',
                 templateUrl: 'pages/profile.html',
                 controller: 'profileController'
             })
-            .state('dashboard', {
+            .state('ob.dashboard', {
                 url: '/dashboard',
                 templateUrl: 'pages/dashboard.html',
                 controller: 'dashboardController'
             })
-            .state('connector', {
+            .state('ob.connector', {
                 url: '/connector',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
-                    currentUser: function (userService) {
-                        return userService.getCurrentUser();
-                    },
                     availableDeviceTypes: function (channelService) {
-                        return channelService.getSmartDevices();
-                    },
-                    myDevices: function (currentUser, deviceService) {
-                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                        return channelService.getDeviceTypes();
                     },
                     myGateways: function (myDevices, skynetService, $q) {
-                        var gateways = [];
-                        return $q.all(_.map(_.filter(myDevices, {type: 'gateway', online : true }), function (gateway) {
-                                return skynetService.gatewayConfig({
-                                    "uuid": gateway.uuid,
-                                    "token": gateway.token,
-                                    "method": "configurationDetails"
-                                }).then(function (response) {
-                                    gateway.subdevices = response.result.subdevices || [];
-                                    gateway.plugins = response.result.plugins || [];
-                                    gateways.push(gateway);
-                                });
-                            })
-                        ).then(function () {
-                                return gateways;
+                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
+                        _.map(gateways, function (gateway) {
+                            gateway.subdevices = [];
+                            gateway.plugins = [];
+                            return skynetService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
+                                "method": "configurationDetails"
+                            }).then(function (response) {
+                                gateway.subdevices = response.result.subdevices || [];
+                                gateway.plugins = response.result.plugins || [];
+                            }, function () {
+                                console.log('couldn\'t get data for: ');
+                                console.log(gateway);
                             });
+                        });
+                        return gateways;
                     }
                 }
             })
-            .state('connector.devices', {
+            .state('ob.connector.devices', {
                 url: '/devices',
                 abstract: true,
                 template: '<ui-view></ui-view>'
             })
-            .state('connector.devices.all', {
+            .state('ob.connector.devices.all', {
                 url: '',
                 controller: 'DeviceController',
                 templateUrl: 'pages/connector/devices/index.html'
             })
-            .state('connector.devices.detail', {
+            .state('ob.connector.devices.detail', {
                 url: '/:uuid',
                 controller: 'DeviceDetailController',
                 templateUrl: 'pages/connector/devices/detail/index.html'
             })
-            .state('connector.devices.wizard', {
+            .state('ob.connector.devices.wizard', {
                 url: '/wizard',
                 abstract: true,
                 controller: 'DeviceWizardController',
                 templateUrl: 'pages/connector/devices/wizard/index.html',
                 resolve: {
-                    unclaimedDevices: function (currentUser, deviceService) {
-                        return deviceService.getUnclaimedDevices(currentUser.skynetuuid, currentUser.skynettoken);
+                    unclaimedDevices: function (deviceService) {
+                        return deviceService.getUnclaimedDevices();
                     }
                 }
             })
-            .state('connector.devices.wizard.instructions', {
-                url: '/instructions',
-                templateUrl: 'pages/connector/devices/wizard/instructions.html'
+            .state('ob.connector.devices.wizard.instructions', {
+                url: '/instructions?claim',
+                templateUrl: 'pages/connector/devices/wizard/hub-install-instructions.html'
             })
-            .state('connector.devices.wizard.findhub', {
-                url: '/findhub',
-                templateUrl: 'pages/connector/devices/wizard/find-hub.html'
+            .state('ob.connector.devices.wizard.finddevice', {
+                url: '/finddevice?claim',
+                templateUrl: 'pages/connector/devices/wizard/find-device.html'
             })
             //begin refactor states
-            .state('connector.channels', {
+            .state('ob.connector.channels', {
                 abstract: true,
                 url: '/channels',
                 template: '<ui-view />',
                 controller: 'ChannelController',
                 resolve: {
-                    activeChannels: function (currentUser, channelService) {
-                        return channelService.getActiveChannels(currentUser.skynetuuid);
+                    activeChannels: function (channelService) {
+                        return channelService.getActiveChannels();
 
                     },
-                    availableChannels: function (currentUser, channelService) {
-                        return channelService.getAvailableChannels(currentUser.skynetuuid);
+                    availableChannels: function (channelService) {
+                        return channelService.getAvailableChannels();
                     }
                 }
             })
-            .state('connector.channels.index', {
+            .state('ob.connector.channels.index', {
                 url: '',
                 templateUrl: 'pages/connector/channels/index.html'
             })
-            .state('connector.channels.detail', {
+            .state('ob.connector.channels.detail', {
                 url: '/:name',
                 templateUrl: 'pages/connector/channels/detail.html',
                 controller: 'apiController'
             })
-            .state('connector.channels.resources', {
+            .state('ob.connector.channels.resources', {
                 url: '/resources',
                 templateUrl: 'pages/connector/channels/resources/index.html',
                 controller: 'apiResourcesController'
             })
-            .state('connector.channels.resources.detail', {
+            .state('ob.connector.channels.resources.detail', {
                 url: '/:apiname',
                 templateUrl: 'pages/connector/channels/resources/detail.html',
                 controller: 'apiResourcesController'
             })
-            .state('connector.advanced', {
+            .state('ob.connector.advanced', {
                 url: '/advanced',
                 templateUrl: 'pages/connector/advanced/index.html'
             })
-            .state('connector.advanced.devices', {
+            .state('ob.connector.advanced.devices', {
                 url: '/smartdevices',
                 controller: 'smartDeviceController',
                 templateUrl: 'pages/connector/advanced/devices.html'
             })
-            .state('connector.advanced.channels', {
+            .state('ob.connector.advanced.channels', {
                 url: '/custom_channels',
                 templateUrl: 'pages/connector/advanced/channels.html'
             })
-            .state('connector.advanced.channels.editor', {
+            .state('ob.connector.advanced.channels.editor', {
                 url: '/editor/:name',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
             })
 
-            .state('connector.advanced.gateways', {
+            .state('ob.connector.advanced.gateways', {
                 url: '/gateways',
                 templateUrl: 'pages/connector/advanced/gateways/index.html',
                 controller: 'hubController'
             })
-            .state('connector.advanced.messaging', {
+            .state('ob.connector.advanced.messaging', {
                 url: '/messaging',
-                controller : 'MessagingController',
+                controller: 'MessagingController',
                 templateUrl: 'pages/connector/advanced/messaging.html'
             })
             //end refactor states
 
-            .state('admin', {
+            .state('ob.admin', {
                 abstract: true,
                 url: '/admin',
                 templateUrl: 'pages/admin/index.html',
                 controller: 'adminController',
                 resolve: {
-                    operatorsGroup: function (GroupService, currentUser) {
-                        return GroupService.getOperatorsGroup(currentUser.skynetuuid, currentUser.skynettoken)
+                    operatorsGroup: function (GroupService) {
+                        return GroupService.getOperatorsGroup();
                     },
-                    currentUser: function (userService) {
-                        return userService.getCurrentUser();
+                    allDevices: function (deviceService) {
+                        return deviceService.getDevices();
                     },
-                    allDevices: function (currentUser, deviceService) {
-                        return deviceService.getDevices(currentUser.skynetuuid, currentUser.skynettoken);
-                    },
-                    allGroupResourcePermissions: function (currentUser, PermissionsService) {
-                        return PermissionsService.allGroupPermissions(currentUser.skynetuuid, currentUser.skynettoken);
+                    allGroupResourcePermissions: function (PermissionsService) {
+                        return PermissionsService.allGroupPermissions();
                     }
                 }
             })
-            .state('admin.all', {
+            .state('ob.admin.all', {
                 url: '/groups',
                 templateUrl: 'pages/admin/groups/all.html'
             })
-            .state('admin.detail', {
+            .state('ob.admin.detail', {
                 url: '/groups/:uuid',
                 templateUrl: 'pages/admin/groups/detail.html',
                 controller: 'adminGroupDetailController',
@@ -236,128 +242,100 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     resourcePermission: function (allGroupResourcePermissions, $stateParams) {
                         return _.findWhere(allGroupResourcePermissions, {uuid: $stateParams.uuid});
                     },
-                    sourcePermissionsGroup: function (resourcePermission, GroupService, currentUser) {
-                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.source.uuid);
+                    sourcePermissionsGroup: function (resourcePermission, GroupService) {
+                        return GroupService.getGroup(resourcePermission.source.uuid);
                     },
-                    targetPermissionsGroup: function (resourcePermission, GroupService, currentUser) {
-                        return GroupService.getGroup(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.target.uuid);
+                    targetPermissionsGroup: function (resourcePermission, GroupService) {
+                        return GroupService.getGroup(resourcePermission.target.uuid);
                     }
                 }
             })
-            .state('analyzer', {
+            .state('ob.analyzer', {
                 url: '/analyzer',
                 templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController'
+                controller: 'analyzerController',
+                resolve: {
+                    myDevices: function (deviceService) {
+                        return deviceService.getDevices();
+                    }
+                }
             })
             .state('docs', {
                 url: '/docs',
                 templateUrl: 'pages/docs.html',
-                controller: 'docsController'
+                controller: 'docsController',
+                unsecured: true
             })
-            .state('designer', {
+            .state('ob.designer', {
                 url: '/designer',
                 templateUrl: 'pages/designer.html',
                 controller: 'designerController'
             })
-            .state('community', {
+            .state('ob.community', {
                 url: '/community',
                 templateUrl: 'pages/community.html'
             })
-            .state('services', {
+            .state('ob.services', {
                 url: '/services',
                 templateUrl: 'pages/services.html',
                 controller: 'servicesController'
             })
-            .state('pricing', {
+            .state('ob.pricing', {
                 url: '/pricing',
                 templateUrl: 'pages/pricing.html',
-                controller: 'pricingController'
+                controller: 'pricingController',
+                unsecured: true
             })
             .state('faqs', {
                 url: '/faqs',
                 templateUrl: 'pages/faqs.html',
-                controller: 'faqsController'
+                controller: 'faqsController',
+                unsecured: true
             })
             .state('login', {
                 url: '/login',
                 templateUrl: 'pages/login.html',
-                controller: 'loginController'
+                controller: 'loginController',
+                unsecured: true
             })
             .state('signup', {
                 url: '/signup',
                 templateUrl: 'pages/signup.html',
-                controller: 'signupController'
+                controller: 'signupController',
+                unsecured: true
             })
             .state('forgot', {
                 url: '/forgot',
                 templateUrl: 'pages/forgot.html',
-                controller: 'forgotController'
+                controller: 'forgotController',
+                unsecured: true
             });
 
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-//        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/dashboard');
     })
-    .run(function ($rootScope, $state, $stateParams, $cookies, skynetConfig) {
-        // TODO: Replace with proper authorization service object and eliminate checkLogin.
-        $rootScope.authorization = { isAuthenticated: false };
+    .run(function ($rootScope, $window, $state, $urlRouter, AuthService) {
 
-        //TODO - remove all calls to checkLogin, create an authorization Service
-        $rootScope.checkLogin = function ($scope, $http, $injector, secured, cb) {
-            var user = $cookies.skynetuuid;
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams) {
+            console.log('error from ' + fromState.name + ' to ' + toState.name)
+            ;
+        });
 
-            if (user == undefined || user == null) {
-                if (secured) {
-                    window.location.href = "/login";
-                }
-            } else {
-                var userService = $injector.get('userService');
-                userService.getUser(user, function (data) {
-                    var token;
-
-                    $scope.user_id = data._id;
-                    $scope.current_user = data;
-                    $rootScope.authorization.isAuthenticated = true;
-
-                    if (data.local) {
-                        $(".avatar").html('<img width="23" height="23" src="http://avatars.io/email/' + data.local.email.toString() + '" />');
-                        $(".user-name").html(data.local.email.toString());
-                        $scope.user = data.local.email;
-                        $scope.skynetuuid = data.local.skynetuuid;
-                        $scope.skynettoken = data.local.skynettoken;
-                        token = data.local.skynettoken;
-                    } else if (data.twitter) {
-                        $(".user-name").html('@' + data.twitter.username.toString());
-                        $scope.user = data.twitter.displayName;
-                        $scope.skynetuuid = data.twitter.skynetuuid;
-                        $scope.skynettoken = data.twitter.skynettoken;
-                        token = data.twitter.skynettoken;
-                    } else if (data.facebook) {
-                        $(".avatar").html('<img width="23" height="23" alt="' + data.facebook.name.toString() + '" src="https://graph.facebook.com/' + data.facebook.id.toString() + '/picture" />');
-                        $(".user-name").html(data.facebook.name.toString());
-                        $scope.user = data.facebook.name;
-                        $scope.skynetuuid = data.facebook.skynetuuid;
-                        $scope.skynettoken = data.facebook.skynettoken;
-                        token = data.facebook.skynettoken;
-                    } else if (data.google) {
-                        $(".avatar").html('<img width="23" height="23" alt="' + data.google.name.toString() + '" src="https://plus.google.com/s2/photos/profile/' + data.google.id.toString() + '?sz=32" />');
-                        $(".user-name").html('+' + data.google.name.toString());
-                        $scope.user = data.google.name;
-                        $scope.skynetuuid = data.google.skynetuuid;
-                        $scope.skynettoken = data.google.skynettoken;
-                        token = data.google.skynettoken;
-                    } else {
-                        // $scope.user = data.local.email;
-                        $scope.skynetuuid = user;
-                    }
-
-
-                    cb();
+        $rootScope.$on('$stateChangeStart', function (event, toState) {
+            if (!toState.unsecured) {
+                return AuthService.getCurrentUser().then(function (user) {
+                    console.log('got a user!');
+                    console.log(user);
+                }, function (err) {
+                    console.log('LOGIN ERROR:');
+                    console.log(err);
+                    event.preventDefault();
+                    $state.go('login');
                 });
             }
-        };
-
+        });
         $rootScope.confirmModal = function ($modal, $scope, $log, title, message, okFN, cancelFN) {
             var modalHtml = '<div class="modal-header">';
             modalHtml += '<h3>' + title + '</h3>';

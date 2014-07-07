@@ -1,194 +1,62 @@
 angular.module('octobluApp')
-    .service('GroupService', function ($cookies, $q, $http) {
+    .service('GroupService', function ($http) {
 
-
-        /**
-         * addGroup
-         * @param name  - The name of the group - REQUIRED
-         * @param uuid - The uuid of the group owner - REQUIRED
-         * @param token - token of the group owner - REQUIRED
-         * @param permissions - OPTIONAL
-         * The permissions of the group. This object
-         * will have properties corresponding to the permissions available [discover, configure, upgdate]
-         *
-         * @returns {defer.promise|*} A promise containing the result of the API call to add a new group
-         * - i.e. /api/user/:uuid/:token/groups PUT
-         *          data : {
-         *             name : [name value]
-         *             permissions : [permissions value]
-         *          }
-         */
-        this.addGroup = function (name, uuid, token) {
-
-            var defer = $q.defer();
-
-            if (!(uuid && token)) {
-                defer.reject({
-                    'error': 'Missing uuid and/or token'
-                });
-            }
-
-            if (!name) {
-                defer.reject({
-                    'error': 'Name is required'
-                });
-            } else {
-
-                if (name.trim().length === 0) {
-                    defer.reject({
-                        'error': 'Name cannot be blank'
-                    });
-                }
-
-                var url = '/api/groups';
-                //Create the new group with the data
-                //If no permissions have been set, use default permissions
-                var groupData = {
-                    'name': name
-                };
-
-                $http.post(url, groupData, {
-                    headers: {
-                        'skynet_auth_uuid': uuid,
-                        'skynet_auth_token': token
-                    }
-                }).success(function (group) {
-                    defer.resolve(group);
-                })
-                    .error(function (result) {
-                        defer.reject(result);
-                    });
-            }
-            return defer.promise;
-        };
-
-        /**
-         * Gets the group for the user
-         * @param uuid
-         * @param token
-         * @param group_uuid
-         * @returns {defer.promise|*}
-         */
-        this.getGroup = function (uuid, token, group_uuid) {
-            var defer = $q.defer();
-            if (!(uuid)) {
-                defer.reject({
-                    'error': 'Missing uuid and/or token'
-                });
-            }
-
-            if (!group_uuid) {
-                defer.reject({
-                    'error': 'Missing required parameter: group uuid'
-                });
-            }
-
-            var url = '/api/groups/' + group_uuid;
-            $http.get(url, {
-                headers: {
-                    'skynet_auth_uuid': uuid,
-                    'skynet_auth_token': token
-                }
-            }).success(function (group) {
-                defer.resolve(group);
-            })
-                .error(function (result) {
-                    defer.reject(result);
-                });
-
-            return defer.promise;
-        };
-
-        /**
-         * Makes a rest call to delete the Group
-         *
-         * @param uuid - the Group owner uuid
-         * @param token - the Group owner token
-         * @param group_uuid - The uuid of the group
-         * @returns {defer.promise|*} a promise
-         * that will contain the deleted group if successful
-         * or an error.
-         */
-        this.deleteGroup = function (uuid, token, group_uuid) {
-            var defer = $q.defer();
-            if (!uuid || !token || !group_uuid) {
-                defer.reject({
-                    'error': 'missing required parameters'
-                });
-            } else {
-                var url = '/api/groups/' + group_uuid;
-                $http.delete(url, {
-                    headers: {
-                        'skynet_auth_uuid': uuid,
-                        'skynet_auth_token': token
-                    }
-                }).success(function (group) {
-                    defer.resolve(group);
-                }).error(function (result) {
-                    defer.reject(result);
-                });
-            }
-            return defer.promise;
-        };
-
-        /**
-         * HTTP VERB : PUT
-         *
-         * updateGroup saves the modified group
-         * @param uuid - the owner UUID
-         * @param token - the owner token
-         * @param updatedGroup - the modified group
-         * @returns {defer.promise|*} a promise that will eventually
-         * be the modified group on success or error if the group could not be saved
-         * successfully
-         */
-        this.updateGroup = function (uuid, token, updatedGroup) {
-            var url = '/api/groups/' + updatedGroup.uuid;
-            return $http.put(url,
-                updatedGroup,
-                {
-                    headers: {
-                        'skynet_auth_uuid': uuid,
-                        'skynet_auth_token': token
-                    }
-                });
-        };
-
-        this.getOperatorsGroup = function (uuid, token) {
-            return $http.get('/api/groups/operators', {
-                headers: {
-                    'skynet_auth_uuid': uuid,
-                    'skynet_auth_token': token
-                }
+        this.addGroup = function (name) {
+            return $http.post('/api/groups', {
+                'name': name
             }).then(function (res) {
                 return res.data;
             });
         };
 
-        this.getAllGroups = function (uuid, token, type) {
+        this.getGroup = function (group_uuid) {
+            return $http.get('/api/groups/' + group_uuid)
+                .then(function (res) {
+                    return res.data;
+                });
+        };
+
+        this.deleteGroup = function (group_uuid) {
+            return $http.delete('/api/groups/' + group_uuid)
+                .then(function (res) {
+                    return res.data;
+                });
+        };
+
+        this.updateGroup = function (updatedGroup) {
+            return $http.put('/api/groups/' + updatedGroup.uuid, updatedGroup)
+                .then(function (res) {
+                    return res.data;
+                });
+        };
+
+        this.getOperatorsGroup = function () {
+            return $http.get('/api/groups/operators')
+                .then(function (res) {
+                    return res.data;
+                });
+        };
+
+        this.getAllGroups = function (type) {
             var url = '/api/groups';
 
             if (type) {
                 url = url + '?type=' + type;
             }
 
-            return $http.get(url, {
-                headers: {
-                    skynet_auth_uuid: uuid,
-                    skynet_auth_token: token
-                }
-
-            });
+            return $http.get(url)
+                .then(function (res) {
+                    return res.data;
+                });
         };
-        this.getGroupsContainingResource = function (uuid, token, resourceUUID) {
-            var url = '/api/groups/contain/' +  resourceUUID;
-            return $http.get(url, {
-                headers: {
-                    skynet_auth_uuid: uuid,
-                    skynet_auth_token: token
-                }
 
-            });
+        this.getGroupsContainingResource = function (resourceUUID) {
+            var url = '/api/groups/contain/' + resourceUUID;
+            return $http.get(url)
+                .then(function (res) {
+                    return res.data;
+                });
         };
-    });
+    })
+;
 

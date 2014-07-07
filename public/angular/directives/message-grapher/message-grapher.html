@@ -1,0 +1,21 @@
+<style>
+   .message-grapher .legend .legend-item .swatch {
+       color: white;
+       font-size: 1em;
+       font-family: "Helvetica Neue", "Light Helvetica Neue",sans-serif ;
+       border: 1px solid black;
+       margin: 2px;
+   }   .message-grapher .legend .legend-item .swatch .legend-text {
+       padding: 2px;
+   }
+</style>
+<div class="message-grapher">
+    <canvas width="400" height="100"></canvas>
+    <div class="legend" ng-if="device">
+        <div class=" pull-left legend-item" ng-repeat="(key, value) in messageLines">
+            <div class="swatch" style="background-color:{{value.color}};">
+                <div class="legend-text">{{key}}</div>
+            </div>
+        </div>
+    </div>
+</div>

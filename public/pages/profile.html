@@ -1,24 +1,25 @@
 <section id='content'>
-  <div class='container full-screen'>
-    <div class='row' id='content-wrapper'>
-      <div class='col-xs-12'>
+    <div class='container full-screen'>
+        <div class='row' id='content-wrapper'>
+            <div class='col-xs-12'>
 
-        <div class='page-header page-header-with-buttons'>
-          <h1 class='pull-left'>
-            <i class='icon-user'></i>
-            <span>Profile - {{user}}</span>
-          </h1>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h2 style="margin-bottom: 30px;">
-                    <strong>Your UUID is:</strong> {{skynetuuid}}
-                </h2>
+                <div class='page-header page-header-with-buttons'>
+                    <h1 class='pull-left'>
+                        <i class='icon-user'></i>
+                        <span>Profile - {{currentUser.displayName}}</span>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 style="margin-bottom: 30px;">
+                            <strong>Your UUID is:</strong> {{currentUser.skynetuuid}}
+                        </h2>
+                    </div>
+                    <div>
+                        <pre>{{currentUser | json}}</pre>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-      </div>
     </div>
-  </div>
 </section>

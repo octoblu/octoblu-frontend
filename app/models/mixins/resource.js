@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose'),
     _ = require('lodash'),
+    crypto = require('crypto'),
     uuid = require('node-uuid');
 
 var ResourceType = {
@@ -47,6 +48,9 @@ function enforceDefaults(doc, uuidProperty, type, properties) {
             doc.resource.properties[property] = doc[property];
         });
     }
+}
+function generateToken(){
+  return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('base64');
 }
 
 function makeResourceObject( options ){
@@ -110,6 +114,8 @@ function makeResourceModel(options) {
             properties: this.resource.parent.properties
         };
     });
+
+    schema.statics.generateToken = generateToken;
 }
 
 
@@ -117,6 +123,7 @@ module.exports = {
     Resource: Resource,
     ResourceType: ResourceType,
     ResourceId: ResourceId,
+    generateToken : generateToken,
     makeResourceModel: makeResourceModel,
     makeResourceObject : makeResourceObject
 };

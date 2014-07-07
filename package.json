@@ -1,6 +1,6 @@
 {
   "name": "octoblu",
-  "version": "0.3.3-alpha",
+  "version": "0.4.0-alpha",
   "description": "octoblu.com",
   "main": "server.js",
   "author": "Chris Matthieu",
@@ -30,7 +30,7 @@
     "node-uuid": "*",
     "nodemailer": "^0.6.3",
     "oauth": "~0.9.11",
-    "passport": "^0.1.18",
+    "passport": "~0.2.0",
     "passport-bitly": "^0.1.0",
     "passport-facebook": "^1.0.3",
     "passport-fitbit": "^0.1.2",

@@ -1,33 +1,25 @@
-<div class="col-sm-12 col-md-6" ng-hide="!editingDevice">
-    <h3>Add/Edit Device</h3>
-
     <form  class="form-horizontal" role="form">
-        <div ng-repeat="(key, value) in editingDevice" class="form-group">
-            <label class="col-xs-2 control-label">{{key}}</label>
-            <div class="col-xs-8">
-                <input class="form-control" ng-model="editingDevice[key]">
+        <fieldset>
+            <legend>Device Properties</legend>
+            <div ng-repeat="(key, value) in deviceProperties" class="form-group">
+                <label class="col-sm-2 control-label">{{key}}</label>
+                <div class="col-sm-8">
+                    <input class="form-control" ng-model="deviceProperties[key]">
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-sm btn-danger" href ng-click="removeProperty(key)"> <i class="fa fa-trash-o"> Delete</i></a>
+                </div>
             </div>
-            <div class="col-xs-2">
-                <a class="btn btn-sm btn-danger" href ng-click="removeProperty(key)"> <i class="fa fa-trash-o"> Delete</i></a>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-9 col-xs-offset-1">
-                <div class="input-group">
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <input class="form-control" ng-model="newProperty" placeholder="Property Name">
                         <span class="input-group-btn">
                             <a class="btn btn-primary" ng-class="{disabled: !newProperty}" ng-click="addProperty()"><i class="fa fa-plus" style="margin-right: 5px"></i>Add</a>
                         </span>
-                    <input class="form-control" ng-model="newProperty" placeholder="Property Name">
-
+                    </div>
                 </div>
             </div>
+        </fieldset>
 
-        </div>
-        <div class="form-group">
-            <div class="btn-group col-xs-4 col-xs-offset-7">
-                <a class="btn btn-success" ng-click="saveDevice()"><i class="fa fa-save" style="margin-right: 5px"></i>Save</a>
-                <a class="btn btn-default" ng-click="editingDevice = undefined"><i class="fa fa-times" style="margin-right: 5px"></i>Cancel</a>
-            </div>
-        </div>
     </form>
-</div>
