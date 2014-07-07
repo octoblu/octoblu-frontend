@@ -1,35 +1,42 @@
 angular.module('octobluApp')
     .controller('AddEditSubDeviceController', function ($scope, $modalInstance, hubs, subdevice, pluginName, availableDeviceTypes, PluginService) {
-        $scope.hubs = hubs;
-        $scope.hub = hubs[0];
-        $scope.subdevice = angular.copy(subdevice) || { options: {}, type: pluginName };
-        $scope.nameEditable = !subdevice || !subdevice.name;
-        $scope.smartDevices = availableDeviceTypes;
-        $scope.schemaEditor = {};
-        $scope.$watch('hub', function(newHub){
+        $scope.model = {
+            hub: hubs[0],
+            hubs: hubs,
+            subdevice : angular.copy(subdevice) || { options: {}, type: pluginName },
+            nameEditable : !subdevice || !subdevice.name,
+            smartDevices : availableDeviceTypes,
+            deviceType  : _.findWhere(availableDeviceTypes, function(deviceType){
+                return deviceType.skynet.plugin === pluginName;
+            }),
+            schemaEditor: {}
+        };
+
+        $scope.$watch('model.hub', function(newHub){
             var installedPlugin = _.findWhere(newHub.plugins, {name: pluginName});
             if (!installedPlugin) {
-                PluginService.installPlugin($scope.hub, pluginName)
+                PluginService.installPlugin($scope.model.hub, pluginName)
                     .then(function (result) {
-                        return PluginService.getInstalledPlugins($scope.hub);
+                        return PluginService.getInstalledPlugins($scope.model.hub);
                     })
                     .then(function (result) {
                         console.log(result);
                         newHub.plugins = result.result;
-                        $scope.plugin = _.findWhere(newHub.plugins, {name: pluginName})
+                        $scope.model.plugin = _.findWhere(newHub.plugins, {name: pluginName})
                     })
             } else {
-                $scope.plugin = installedPlugin;
+                $scope.model.plugin = installedPlugin;
             }
-        }, true);
+        });
+
         $scope.cancel = function () {
             $modalInstance.dismiss();
         };
 
         $scope.save = function () {
-            var errors = $scope.schemaEditor.validate();
+            var errors = $scope.model.schemaEditor.validate();
             if (!errors.length) {
-                $modalInstance.close({hub: $scope.hub, subdevice: $scope.subdevice});
+                $modalInstance.close({hub: $scope.model.hub, subdevice: $scope.model.subdevice});
             }
         };
     });

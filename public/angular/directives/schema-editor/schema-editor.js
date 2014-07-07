@@ -27,6 +27,7 @@ angular.module('octobluApp')
                                 theme: 'bootstrap3',
                                 startval: scope.model,
                                 disable_collapse: true,
+                                required_by_default : true,
                                 disable_edit_json: !scope.allowJsonEdit
 
                             });

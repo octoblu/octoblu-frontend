@@ -19,17 +19,12 @@
 
     <title>Octoblu - Internet of Everything!</title>
 
-    <!-- SCROLLS -->
-    <!-- <link href="assets/stylesheets/bootstrap-switch/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" /> -->
     <link href="assets/stylesheets/light-theme.css" media="all" id="color-settings-body-color" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/theme-colors.css" media="all" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/demo.css" media="all" rel="stylesheet" type="text/css" />
-    <!-- <link href="assets/stylesheets/erosIntro.css" rel="stylesheet" media="screen"> -->
     <link href="assets/stylesheets/style.css" rel="stylesheet" media="screen">
     <link href="assets/stylesheets/custom.css" rel="stylesheet">
     <link href="assets/stylesheets/animation.css" rel="stylesheet">
-    <link href="assets/stylesheets/font-awesome.min.css" rel="stylesheet" >
-    <!-- <link href="assets/stylesheets/athenaSlide.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.css" type="text/css"/>
     <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.css" type="text/css"/>
@@ -58,128 +53,8 @@
         }
     </style>
 </head>
-<body class="contrast-sea-blue" ng-app="octobluApp">
-
-
-<header ng-show="authorization.isAuthenticated">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <a class="navbar-brand" href="" ui-sref="home">
-            <img src="/assets/images/octoblu.png" height="50px"/>
-        </a>
-        <a class="toggle-nav btn pull-left" href="">
-            <i class="icon-reorder"></i>
-        </a>
-        <ul class="nav" ng-show="authorization.isAuthenticated">
-            <li class="auth"><!-- <a href="/login"><i class="fa fa-lock"></i> Sign In/Up</a> --></li>
-            <li class="dropdown dark user-menu">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span class="avatar"></span>
-                    <span class="user-name"></span>
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="" ui-sref="profile">
-                            <i class="icon-user"></i>
-                            Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" ui-sref="services">
-                            <i class="icon-cog"></i>
-                            Services
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="/logout" target="_self">
-                            <i class="icon-signout"></i>
-                            Sign out
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</header>
-
-<!-- Left Nav Menu -->
-<div id="main" ng-show="authorization.isAuthenticated">
-    <div id="main-nav-bg"></div>
-    <nav id="main-nav">
-        <div class="navigation">
-            <ul class="nav nav-stacked">
-                <li id="nav-dashboard" ng-class="{'active': $state.includes('dashboard')}">
-                    <a href="" ui-sref="dashboard">
-                        <i class="icon-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li id="nav-connector" ng-class="{'active': $state.includes('connector')}">
-                    <a href="" ui-sref="connector.devices.all">
-                        <i class="icon-code-fork"></i>
-                        <span>Connectors</span>
-                    </a>
-                </li>
-                <li id="nav-designer" ng-class="{'active': $state.includes('designer')}">
-                    <a href="" ui-sref="designer"><i class="icon-edit"></i>
-                        <span>Designer</span>
-                    </a>
-                </li>
-                <li id="nav-analyzer" ng-class="{'active': $state.includes('analyzer')}">
-                    <a href="" ui-sref="analyzer">
-                        <i class="icon-bar-chart"></i>
-                        <span>Analyzer</span>
-                    </a>
-                </li>
-                <li id="nav-community" ng-class="{'active': $state.includes('community')}">
-                    <a href="" ui-sref="community">
-                        <i class="icon-group"></i>
-                        <span>Community</span>
-                    </a>
-                </li>
-                <li id="nav-admin" ng-class="{'active': $state.includes('admin')}">
-                    <a href="" ui-sref="admin.all"  >
-                        <i class="icon-lock"></i>
-                        <span>Admin</span>
-                    </a>
-                </li>
-                <li id="nav-resources">
-                    <a class="dropdown-collapse" href="" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-                        <i class="icon-book"></i>
-                        <span>Resources</span>
-                        <i class="icon-angle-down angle-down"></i>
-                    </a>
-                    <ul class="nav nav-stacked" ng-class="{'in': navCollapsed && !navCollapsed}">
-                        <li ng-class="{'active': $state.includes('docs')}">
-                            <a href="" ui-sref="docs">
-                                <i class="icon-cogs"></i>
-                                <span>API Docs</span>
-                            </a>
-                        </li>
-                        <li ng-class="{'active': $state.includes('pricing')}">
-                            <a href="" ui-sref="pricing">
-                                <i class="icon-table"></i>
-                                <span>Pricing tables</span>
-                            </a>
-                        </li>
-                        <li ng-class="{'active': $state.includes('faqs')}">
-                            <a href="" ui-sref="faqs">
-                                <i class="icon-bullhorn"></i>
-                                <span>FAQ</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
-
-<!-- Content -->
-<div ui-view="" class="reveal-animation">
-
-</div>
+<body class="contrast-sea-blue container-fluid" ng-app="octobluApp">
+<div ui-view="" class="row-fluid"></div>
 
 <footer></footer>
 
@@ -222,39 +97,42 @@
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="angular/app.js"></script>
 <script src="angular/services/user.js"></script>
-<script src="angular/services/owner.js"></script>
 <script src="angular/services/device.js"></script>
 <script src="angular/services/channel.js"></script>
 <script src="angular/services/nodered.js"></script>
 <script src="angular/services/group.js"></script>
-<script src="angular/services/message.js"></script>
 <script src="angular/services/elastic.js"></script>
 <script src="angular/services/plugin.js"></script>
 <script src="angular/services/invitation.js"></script>
 <script src="angular/services/permissions.js"></script>
 <script src="angular/services/skynet.js"></script>
+<script src="angular/services/auth.js"></script>
 <script src="angular/directives/nvd3-line-chart.js"></script>
 <script src="angular/directives/nvd3-pie-chart.js"></script>
 <script src="angular/directives/popover.js"></script>
 <script src="angular/directives/toggle.js"></script>
+<script src="angular/directives/message-grapher/message-grapher.js"></script>
 <script src="angular/directives/device-property-editor/device-property-editor.js"></script>
 <script src="angular/directives/schema-editor/schema-editor.js"></script>
 <script src="angular/controllers/about.js"></script>
 <script src="angular/controllers/admin.js"></script>
+<script src="angular/controllers/connector.js"></script>
+<script src="angular/controllers/device.js"></script>
+<script src="angular/controllers/subdevice.js"></script>
+<script src="angular/controllers/device-wizard.js"></script>
+<script src="angular/controllers/device-edit.js"></script>
+<script src="angular/controllers/smart-device.js"></script>
+<script src="angular/controllers/hub.js"></script>
 <script src="angular/controllers/analyzer.js"></script>
 <script src="angular/controllers/api.js"></script>
 <script src="angular/controllers/channel.js"></script>
-<script src="angular/controllers/connector.js"></script>
+<script src="angular/controllers/messaging.js"></script>
 <script src="angular/controllers/contact.js"></script>
-<script src="angular/controllers/controller.js"></script>
-<script src="angular/controllers/device.js"></script>
-<script src="angular/controllers/subdevice.js"></script>
 <script src="angular/controllers/dashboard.js"></script>
 <script src="angular/controllers/designer.js"></script>
-<script src="angular/controllers/devtools.js"></script>
 <script src="angular/controllers/docs.js"></script>
 <script src="angular/controllers/faqs.js"></script>
-<script src="angular/controllers/home.js"></script>
+<script src="angular/controllers/octoblu.js"></script>
 <script src="angular/controllers/login.js"></script>
 <script src="angular/controllers/pricing.js"></script>
 <script src="angular/controllers/profile.js"></script>

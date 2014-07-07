@@ -5,476 +5,123 @@ var request = require('request'),
     Api = mongoose.model('Api'),
     crypto = require('crypto'),
     url = require('url'),
-    User = mongoose.model('User');
-    
+    User = mongoose.model('User'),
+    isAuthenticated = require('./middleware/security').isAuthenticated;
+
 // Using MongoJS on SkyNet database queries to avoid schemas
 var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
 
+    app.post('/api/auth', passport.authenticate('local-login'), loginRoute);
+    app.get('/api/auth/login', passport.authenticate('local-login'), loginRoute);
 
-    var getApiHashCode = function(clientSecret, requestCode) {
-        var toHash = clientSecret + "|" + requestCode
+    app.delete('/api/auth', logoutRoute);
+    app.get('/api/auth/logout', logoutRoute);
+
+    app.get('/api/auth', isAuthenticated, function (req, res) {
+        res.send(req.user);
+    });
+
+    function loginRoute(req, res) {
+        if (req.user && req.user._id) {
+            res.send(req.user)
+        } else {
+            res.send(401, {error: 'unauthorized'});
+        }
+    }
+
+    function logoutRoute(req, res) {
+        if (req.logout) {
+            req.logout();
+        }
+        res.send(200);
+    }
+
+    var getApiHashCode = function (clientSecret, requestCode) {
+        var toHash = clientSecret + "|" + requestCode;
         return crypto.createHash("sha256")
-          .update(toHash)
-          .digest("hex");
+            .update(toHash)
+            .digest("hex");
     };
 
-    var generateCSRFToken = function() {
+    var generateCSRFToken = function () {
         return crypto.randomBytes(18).toString('base64')
-        .replace(/\//g, '-').replace(/\+/g, '_');
+            .replace(/\//g, '-').replace(/\+/g, '_');
     };
 
     var handleOauth1 = function (name, req, res, next) {
-        var token = req.param('oauth_token'),
+        var user = req.user,
+            token = req.param('oauth_token'),
             verifier = req.param('oauth_verifier');
 
-        User.findOne({ $or: [
-            {'local.skynetuuid' : req.cookies.skynetuuid},
-            {'twitter.skynetuuid' : req.cookies.skynetuuid},
-            {'facebook.skynetuuid' : req.cookies.skynetuuid},
-            {'google.skynetuuid' : req.cookies.skynetuuid}
-        ]}, function(err, user) {
-            if(!err) {
-                user.addOrUpdateApiByName(name, 'oauth', null, token, null, verifier, null);
-                user.save(function (err) {
-                    return handleApiCompleteRedirect(res, name, err);
-                });
-            }
+        user.addOrUpdateApiByName(name, 'oauth', null, token, null, verifier, null);
+        user.save(function (err) {
+            return handleApiCompleteRedirect(res, name, err);
         });
     };
 
-    var getOauth1Instance = function(req, api) {
+    var getOauth1Instance = function (req, api) {
         var OAuth = require('oauth');
         return new OAuth.OAuth(
-                api.oauth.requestTokenURL,
-                api.oauth.accessTokenURL,
-                api.oauth.key,
-                api.oauth.secret,
-                api.oauth.version,
-                getOAuthCallbackUrl(req, api.name),
-                'HMAC-SHA1'
-            );
-    }
+            api.oauth.requestTokenURL,
+            api.oauth.accessTokenURL,
+            api.oauth.key,
+            api.oauth.secret,
+            api.oauth.version,
+            getOAuthCallbackUrl(req, api.name),
+            'HMAC-SHA1'
+        );
+    };
 
-    var getOauth2Instance = function(api) {
+    var getOauth2Instance = function (api) {
         return require('simple-oauth2')({
             clientID: api.oauth.clientId,
             clientSecret: api.oauth.secret,
             site: api.oauth.baseURL,
             tokenPath: api.oauth.authTokenPath
         });
-    }
-
-    var getOAuthCallbackUrl = function(req, apiName) {
-        return req.protocol + '://' + req.headers.host + '/api/auth/'+apiName+'/callback/custom';
     };
 
-    var handleApiCompleteRedirect = function(res, name, err) {
-        if(!err) {
-            return res.redirect('/connector/channels/'+name);
+    var getOAuthCallbackUrl = function (req, apiName) {
+        return req.protocol + '://' + req.headers.host + '/api/auth/' + apiName + '/callback/custom';
+    };
+
+    var handleApiCompleteRedirect = function (res, name, err) {
+        if (!err) {
+            return res.redirect('/connector/channels/' + name);
         } else {
             console.log('Error: ' + err);
-            return res.redirect('/connector/channels/'+name);
+            return res.redirect('/connector/channels/' + name);
         }
-    }
+    };
 
-    var parseHashResponse = function(body) {
+    var parseHashResponse = function (body) {
         var ar1 = body.split('&');
         var result = {};
-        for(var l = 0; l<ar1.length; l++) {
+        for (var l = 0; l < ar1.length; l++) {
             var pair = ar1[l].split('=');
             result[pair[0]] = pair[1];
         }
         return result;
     };
 
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-    app.get('/auth/facebook/callback', function(req, res, next) {
-        passport.authenticate('facebook', function(err, user, info) {
-            if (err) { return next(err); }
-            if (!user) { return res.redirect('/login'); }
-            req.logIn(user, function(err) {
-                if (err) { return next(err); }
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile','email']}), completeLogin);
 
-                // Check if user exists in Skynet
-                skynetdb.find({
-                  email: user.facebook.email
-                }, function(error, body) {
-                    console.log('MONGOJS ERROR', error);
-                    console.log('MONGOJS BODY', body);
+    app.get('/auth/twitter', passport.authenticate('twitter', { scope: 'email' }));
+    app.get('/auth/twitter/callback', passport.authenticate('twitter'), completeLogin);
 
-                // request.get('http://skynet.im/devices',
-                //     {qs: {'email': user.facebook.email}}
-                //     , function (error, response, body) {
-
-                        console.log(body);
-                        try{
-                            var data = JSON.parse(body);
-                        } catch(e){
-                            var data = body;
-                        }
-                        if(data.error){
-
-                            // Add user to Skynet
-                            request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-                                {form: {'type':'user', 'email': user.facebook.email}}
-                                , function (error, response, body) {
-                                    if(response.statusCode == 200){
-
-                                        var data = JSON.parse(body);
-                                        User.findOne({_id: user._id}, function(err, user) {
-                                            if(!err) {
-                                                user.facebook.skynetuuid = data.uuid.toString();
-                                                user.facebook.skynettoken = data.token.toString();
-                                                user.save(function(err) {
-                                                    if(!err) {
-                                                        console.log('user ' + data.uuid + ' updated');
-                                                        res.cookie('skynetuuid', data.uuid, {
-                                                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                            domain: config.domain,
-                                                            httpOnly: false
-                                                        });
-                                                        res.cookie('skynettoken', data.token, {
-                                                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                            domain: config.domain,
-                                                            httpOnly: false
-                                                        });
-                                                        // Check for deep link redirect based on referrer in querystring
-                                                        if(req.session.redirect){
-                                                          if(req.session.js){
-                                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                          } else {
-                                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                          }
-                                                        } else {
-                                                          return res.redirect('/dashboard');
-                                                        }
-
-                                                    }
-                                                    else {
-                                                        console.log('Error: ' + err);
-                                                        // Check for deep link redirect based on referrer in querystring
-                                                        if(req.session.redirect){
-                                                          if(req.session.js){
-                                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                          } else {
-                                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                          }
-                                                        } else {
-                                                          return res.redirect('/dashboard');
-                                                        }
-
-                                                    }
-                                                });
-                                            }
-                                        });
-
-                                    } else {
-                                        console.log('error: '+ response.statusCode);
-                                        console.log(error);
-                                        // Check for deep link redirect based on referrer in querystring
-                                        if(req.session.redirect){
-                                          if(req.session.js){
-                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                          } else {
-                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                          }
-                                        } else {
-                                          return res.redirect('/dashboard');
-                                        }
-                                    }
-                                }
-                            )
-                        } else {
-                            res.cookie('skynetuuid', user.facebook.skynetuuid, {
-                                maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                domain: config.domain,
-                                httpOnly: false
-                            });
-                            res.cookie('skynettoken', user.facebook.skynettoken, {
-                                maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                domain: config.domain,
-                                httpOnly: false
-                            });
-
-                            // Check for deep link redirect based on referrer in querystring
-                            if(req.session.redirect){
-                              if(req.session.js){
-                                  return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.facebook.skynetuuid + '&token=' + user.facebook.skynettoken + '"</script>');
-                              } else {
-                                  return res.redirect(req.session.redirect + '?uuid=' + user.facebook.skynetuuid + '&token=' + user.facebook.skynettoken);
-                              }
-                            } else {
-                              return res.redirect('/dashboard');
-                            }
-                        }
-                    });
-            });
-        })(req, res, next);
-    });
-
-    app.get('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
-    app.get('/auth/twitter/callback', function(req, res, next) {
-        passport.authenticate('twitter', function(err, user, info) {
-            if (err) { return next(err); }
-            if (!user) { return res.redirect('/login'); }
-            req.logIn(user, function(err) {
-                if (err) { return next(err); }
-                console.log(user);
-                console.log(info);
-
-                // Check if user exists in Skynet
-                skynetdb.find({
-                  email: user.twitter.username + '@twitter'
-                }, function(error, body) {
-                    console.log('MONGOJS ERROR', error);
-                    console.log('MONGOJS BODY', body);
-
-                // request.get('http://skynet.im/devices',
-                //     {qs: {'email': user.twitter.username + '@twitter'}}
-                //     , function (error, response, body) {
-                        console.log(body);
-                        try{
-                            var data = JSON.parse(body);
-                        } catch(e){
-                            var data = body;
-                        }
-                        if(data.error){
-
-                            // Add user to Skynet
-                            request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-                                {form: {'type':'user', 'email': user.twitter.username + '@twitter'}}
-                                , function (error, response, body) {
-                                    if(response.statusCode == 200){
-
-                                        var data = JSON.parse(body);
-                                        User.findOne({_id: user._id}, function(err, user) {
-                                            if(!err) {
-                                                user.twitter.skynetuuid = data.uuid.toString();
-                                                user.twitter.skynettoken = data.token.toString();
-                                                user.save(function(err) {
-                                                    if(!err) {
-                                                        console.log('user ' + data.uuid + ' updated');
-                                                        res.cookie('skynetuuid', data.uuid, {
-                                                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                            domain: config.domain,
-                                                            httpOnly: false
-                                                        });
-                                                        res.cookie('skynettoken', data.token, {
-                                                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                            domain: config.domain,
-                                                            httpOnly: false
-                                                        });
-                                                        // Check for deep link redirect based on referrer in querystring
-                                                        if(req.session.redirect){
-                                                          if(req.session.js){
-                                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                          } else {
-                                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                          }
-                                                        } else {
-                                                          return res.redirect('/dashboard');
-                                                        }
-
-                                                    }
-                                                    else {
-                                                        console.log('Error: ' + err);
-                                                        // Check for deep link redirect based on referrer in querystring
-                                                        if(req.session.redirect){
-                                                          if(req.session.js){
-                                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                          } else {
-                                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                          }
-                                                        } else {
-                                                          return res.redirect('/dashboard');
-                                                        }
-                                                    }
-                                                });
-                                            }
-                                        });
-
-                                    } else {
-                                        console.log('error: '+ response.statusCode);
-                                        console.log(error);
-                                        // Check for deep link redirect based on referrer in querystring
-                                        if(req.session.redirect){
-                                          if(req.session.js){
-                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                          } else {
-                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                          }
-                                        } else {
-                                          return res.redirect('/dashboard');
-                                        }
-                                    }
-                                }
-                            )
-                        } else {
-                            // res.cookie('skynetuuid', data.devices[0], {
-                            //   maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                            //   domain: config.domain,
-                            //   httpOnly: false
-                            // });
-                            res.cookie('skynetuuid', user.twitter.skynetuuid, {
-                                maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                domain: config.domain,
-                                httpOnly: false
-                            });
-                            res.cookie('skynettoken', user.twitter.skynettoken, {
-                                maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                domain: config.domain,
-                                httpOnly: false
-                            });
-
-                            // Check for deep link redirect based on referrer in querystring
-                            if(req.session.redirect){
-                              if(req.session.js){
-                                  return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.twitter.skynetuuid + '&token=' + user.twitter.skynettoken + '"</script>');
-                              } else {
-                                  return res.redirect(req.session.redirect + '?uuid=' + user.twitter.skynetuuid + '&token=' + user.twitter.skynettoken);
-                              }
-                            } else {
-                              return res.redirect('/dashboard');
-                            }
-                        }
-                    });
-            });
-        })(req, res, next);
-    });
-
-    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get('/auth/google/callback', function(req, res, next) {
-        passport.authenticate('google', function(err, user, info) {
-            if (err) { return next(err); }
-            if (!user) { return res.redirect('/login'); }
-            req.logIn(user, function(err) {
-                if (err) { return next(err); }
-                console.log(user);
-                console.log(info);
-
-                // Check if user exists in Skynet
-                skynetdb.find({
-                  email: user.google.email
-                }, function(error, body) {
-                    console.log('MONGOJS ERROR', error);
-                    console.log('MONGOJS BODY', body);
-
-                // request.get('http://skynet.im/devices',
-                //     {qs: {'email': user.google.email}}
-                //     , function (error, response, body) {
-                        try{
-                            var data = JSON.parse(body);
-                        } catch(e){
-                            var data = body;
-                        }
-                        if(data.error){
-
-                            // Add user to Skynet
-                            request.post(req.protocol + '://' + app.locals.skynetUrl + '/devices',
-                                {form: {'type':'user', 'email': user.google.email}}
-                                , function (error, response, body) {
-                                    if(response.statusCode == 200){
-
-                                        var data = JSON.parse(body);
-                                        User.findOne({_id: user._id}, function(err, user) {
-                                            if(!err) {
-                                                user.google.skynetuuid = data.uuid.toString();
-                                                user.google.skynettoken = data.token.toString();
-                                                user.save(function(err) {
-                                                    if(!err) {
-                                                        console.log('user ' + data.uuid + ' updated');
-                                                        res.cookie('skynetuuid', data.uuid, {
-                                                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                            domain: config.domain,
-                                                            httpOnly: false
-                                                        });
-                                                        res.cookie('skynettoken', data.token, {
-                                                            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                                            domain: config.domain,
-                                                            httpOnly: false
-                                                        });
-                                                        // Check for deep link redirect based on referrer in querystring
-                                                        if(req.session.redirect){
-                                                          if(req.session.js){
-                                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                          } else {
-                                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                          }
-                                                        } else {
-                                                          return res.redirect('/dashboard');
-                                                        }
-
-                                                    }
-                                                    else {
-                                                        console.log('Error: ' + err);
-                                                        // Check for deep link redirect based on referrer in querystring
-                                                        if(req.session.redirect){
-                                                          if(req.session.js){
-                                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                                          } else {
-                                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                                          }
-                                                        } else {
-                                                          return res.redirect('/dashboard');
-                                                        }
-                                                    }
-                                                });
-                                            }
-                                        });
-
-                                    } else {
-                                        console.log('error: '+ response.statusCode);
-                                        console.log(error);
-                                        // Check for deep link redirect based on referrer in querystring
-                                        if(req.session.redirect){
-                                          if(req.session.js){
-                                              return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token + '"</script>');
-                                          } else {
-                                              return res.redirect(req.session.redirect + '?uuid=' + data.uuid + '&token=' + data.token);
-                                          }
-                                        } else {
-                                          return res.redirect('/dashboard');
-                                        }
-                                    }
-                                }
-                            )
-                        } else {
-                            res.cookie('skynetuuid', user.google.skynetuuid, {
-                                maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                domain: config.domain,
-                                httpOnly: false
-                            });
-                            res.cookie('skynettoken', user.google.skynettoken, {
-                                maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                domain: config.domain,
-                                httpOnly: false
-                            });
-
-                            // Check for deep link redirect based on referrer in querystring
-                            if(req.session.redirect){
-                              if(req.session.js){
-                                  return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken + '"</script>');
-                              } else {
-                                  return res.redirect(req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken);
-                              }
-                            } else {
-                              return res.redirect('/dashboard');
-                            }
-                        }
-                    });
-            });
-        })(req, res, next);
-    });
+    app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+    app.get('/auth/google/callback', passport.authenticate('google'), completeLogin);
 
     // working on custom oauth handling here.....
-    app.get('/api/auth/:name/custom', function(req, res) {
+    app.get('/api/auth/:name/custom', function (req, res) {
 
         Api.findOne({name: req.params.name}, function (err, api) {
 
-            if(api.oauth.version=='2.0') {
-                if(api.oauth.isManual) {
+            if (api.oauth.version == '2.0') {
+                if (api.oauth.isManual) {
                     console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
@@ -483,7 +130,7 @@ module.exports = function (app, passport, config) {
 
                     res.cookie('csrf', csrfToken);
                     var query;
-                    if(api.oauth.useOAuthParams) {
+                    if (api.oauth.useOAuthParams) {
                         query = {
                             oauth_consumer_key: api.oauth.clientId,
                             response_type: 'code',
@@ -491,18 +138,18 @@ module.exports = function (app, passport, config) {
                             oauth_signature_method: 'HMAC-SHA1',
                             oauth_timestamp: timestamp,
                             oauth_nonce: nonce,
-                            oauth_callback: getOAuthCallbackUrl(req, api.name) 
+                            oauth_callback: getOAuthCallbackUrl(req, api.name)
                         };
                     } else {
                         query = {
                             client_id: api.oauth.clientId,
                             response_type: 'code',
                             state: csrfToken,
-                            redirect_uri: getOAuthCallbackUrl(req, api.name) 
+                            redirect_uri: getOAuthCallbackUrl(req, api.name)
                         };
                     }
 
-                    if(api.oauth.scope.length > 0) {
+                    if (api.oauth.scope.length > 0) {
                         query.scope = api.oauth.scope;
                     }
 
@@ -528,7 +175,7 @@ module.exports = function (app, passport, config) {
                         state: '3(#0/!~'
                     });
                     console.log(api.oauth);
-                    console.log('oauth2 redirect: '+authorization_uri);
+                    console.log('oauth2 redirect: ' + authorization_uri);
                     res.redirect(authorization_uri);
                 }
 
@@ -545,7 +192,7 @@ module.exports = function (app, passport, config) {
                 //     getOAuthCallbackUrl(req, api.name),
                 //     'HMAC-SHA1'
                 // );
-                oa.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
+                oa.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, results) {
                     if (error) {
                         console.log(error);
                         res.send('yeah no. didn\'t work.')
@@ -572,50 +219,51 @@ module.exports = function (app, passport, config) {
         });
 
     });
-    app.get('/api/auth/:name/callback/custom', function(req, res) {
+    app.get('/api/auth/:name/callback/custom', isAuthenticated, function (req, res) {
         // handle oauth response....
         var name = req.params.name;
+        var user = req.user;
 
         Api.findOne({name: req.params.name}, function (err, api) {
             if (err) {
                 console.log(error);
                 res.redirect(500, '/apis/' + api.name);
-            } else if(api.oauth.version=='2.0') {
-                if(api.oauth.isManual) {
+            } else if (api.oauth.version == '2.0') {
+                if (api.oauth.isManual) {
                     console.log('handling manual callback');
                     if (req.query.error) {
                         console.log('error position 1');
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
                     // check CSRF token
-                    if (api.oauth.checkCSRFOnCallback && (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf)<0) ) {
+                    if (api.oauth.checkCSRFOnCallback && (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf) < 0)) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
 
                     var form = {
-                            code: req.query.code,
-                            grant_type: api.oauth.grant_type,
-                            redirect_uri: getOAuthCallbackUrl(req, api.name) 
-                        };
-                    if(api.name==='Bitly') {
+                        code: req.query.code,
+                        grant_type: api.oauth.grant_type,
+                        redirect_uri: getOAuthCallbackUrl(req, api.name)
+                    };
+                    if (api.name === 'Bitly') {
                         delete form.grant_type;
                     }
-                    if(api.oauth.accessTokenIncludeClientInfo || api.name==='Box' || api.name==='GoogleDrive' || api.name=='Facebook') {
+                    if (api.oauth.accessTokenIncludeClientInfo || api.name === 'Box' || api.name === 'GoogleDrive' || api.name == 'Facebook') {
                         form.client_id = api.oauth.clientId;
                         form.client_secret = api.oauth.secret;
                     }
-                    if(api.name==='Smartsheet') {
+                    if (api.name === 'Smartsheet') {
                         form.client_id = api.oauth.clientId;
                         form.hash = getApiHashCode(api.oauth.secret, req.query.code);
-                    }                    
+                    }
 
                     var auth = {
                         user: api.oauth.clientId,
                         pass: api.oauth.secret
                     };
 
-                    if(api.name==='Bitly') auth = null;
-                    if(api.name === 'Paypal') {
+                    if (api.name === 'Bitly') auth = null;
+                    if (api.name === 'Paypal') {
                         delete form.redirect_uri;
                         delete form.code;
                     }
@@ -625,52 +273,39 @@ module.exports = function (app, passport, config) {
                     request.post(api.oauth.accessTokenURL, {
                         form: form,
                         auth: auth
-                        }, function (error, response, body) {
-                            console.log(response.statusCode);
-                            var data;
+                    }, function (error, response, body) {
+                        console.log(response.statusCode);
+                        var data;
 
-                            if(response.statusCode!='200') {
-                                console.log(body);
-                                return res.send('ERROR: HTTP Status ' + response.statusCode);
+                        if (response.statusCode != '200') {
+                            console.log(body);
+                            return res.send('ERROR: HTTP Status ' + response.statusCode);
 
-                            } else if (body=='INVALID_LOGIN') {
-                                return res.send('ERROR: ' + body);
-                            }
+                        } else if (body == 'INVALID_LOGIN') {
+                            return res.send('ERROR: ' + body);
+                        }
 
-                            if(api.name==='Facebook' || api.name==='Bitly') {
-                                data = parseHashResponse(body);
-                            } else {
-                                data = JSON.parse(body);
-                            }
+                        if (api.name === 'Facebook' || api.name === 'Bitly') {
+                            data = parseHashResponse(body);
+                        } else {
+                            data = JSON.parse(body);
+                        }
 
-                            if (data.error) {
-                                console.log('error position 2');
-                                return res.send('ERROR: ' + data.error);
-                            }
+                        if (data.error) {
+                            console.log('error position 2');
+                            return res.send('ERROR: ' + data.error);
+                        }
 
-                            // extract bearer token
-                            var token = data.access_token;
+                        // extract bearer token
+                        var token = data.access_token;
 
-                            User.findOne({ $or: [
-                                {'local.skynetuuid' : req.cookies.skynetuuid},
-                                {'twitter.skynetuuid' : req.cookies.skynetuuid},
-                                {'facebook.skynetuuid' : req.cookies.skynetuuid},
-                                {'google.skynetuuid' : req.cookies.skynetuuid}
-                            ]
-                            }, function(err, user) {
-                                if(!err) {
-                                    if(token) {
-                                        user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
-                                        user.save(function(err) {
-                                            console.log('saved oauth token: '+name);
-                                            res.redirect('/connector/channels/'+name);
-                                        });
-                                    }
-                                } else {
-                                    console.log('error saving oauth token');
-                                    res.redirect('/connector/channels/'+name);
-                                }
+                        if (token) {
+                            user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                            user.save(function (err) {
+                                console.log('saved oauth token: ' + name);
+                                res.redirect('/connector/channels/' + name);
                             });
+                        }
                     });
                 } else {
                     var OAuth2 = getOauth2Instance(api);
@@ -680,29 +315,16 @@ module.exports = function (app, passport, config) {
                     OAuth2.AuthCode.getToken({
                         code: code,
                         redirect_uri: getOAuthCallbackUrl(req, api.name)
-                    }, function(error, result) {
+                    }, function (error, result) {
                         var token = result;
                         if (error) {
                             console.log('Access Token Error', error);
-                            res.redirect('/connector/channels/'+api.name);
+                            res.redirect('/connector/channels/' + api.name);
                         } else {
-                            User.findOne({ $or: [
-                                {'local.skynetuuid' : req.cookies.skynetuuid},
-                                {'twitter.skynetuuid' : req.cookies.skynetuuid},
-                                {'facebook.skynetuuid' : req.cookies.skynetuuid},
-                                {'google.skynetuuid' : req.cookies.skynetuuid}
-                            ]
-                            }, function(err, user) {
-                                if(!err) {
-                                    user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
-                                    user.save(function(err) {
-                                        console.log('saved oauth token: '+name);
-                                        res.redirect('/connector/channels/'+name);
-                                    });
-                                } else {
-                                    console.log('error saving oauth token');
-                                    res.redirect('/connector/channels/'+name);
-                                }
+                            user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                            user.save(function (err) {
+                                console.log('saved oauth token: ' + name);
+                                res.redirect('/connector/channels/' + name);
                             });
                         }
                     });
@@ -726,31 +348,17 @@ module.exports = function (app, passport, config) {
                 //     'HMAC-SHA1'
                 // );
                 oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
-                    function(error, oauth_access_token, oauth_access_token_secret, results){
-                        if (error){
+                    function (error, oauth_access_token, oauth_access_token_secret, results) {
+                        if (error) {
                             console.log(error);
                             res.redirect(500, '/connector/channels/' + name);
                         } else {
-                            User.findOne({ $or: [
-                                {'local.skynetuuid' : req.cookies.skynetuuid},
-                                {'twitter.skynetuuid' : req.cookies.skynetuuid},
-                                {'facebook.skynetuuid' : req.cookies.skynetuuid},
-                                {'google.skynetuuid' : req.cookies.skynetuuid}
-                            ]
-                            }, function(err, user) {
-                                if(!err) {
-                                    user.addOrUpdateApiByName(name, 'oauth', null,
-                                        oauth_access_token, oauth_access_token_secret, null, null);
-                                    user.save(function(err) {
-                                        console.log('saved oauth token: ' + name);
-                                        return handleApiCompleteRedirect(res, name, err);
-                                    });
-                                } else {
-                                    console.log('error saving oauth token');
-                                    res.redirect('/connector/channels/' + name);
-                                }
+                            user.addOrUpdateApiByName(name, 'oauth', null,
+                                oauth_access_token, oauth_access_token_secret, null, null);
+                            user.save(function (err) {
+                                console.log('saved oauth token: ' + name);
+                                return handleApiCompleteRedirect(res, name, err);
                             });
-
                         }
                     }
                 );
@@ -759,65 +367,28 @@ module.exports = function (app, passport, config) {
 
     });
 
-    app.get('/api/auth/StackOverflow',
-        passport.authorize('stackexchange', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/StackOverflow/callback',
-        function(req, res, next) { handleOauth1('StackOverflow', req, res, next); });
-
-    app.get('/api/auth/Bitly',
-        passport.authorize('bitly', { scope: ['r_basicprofile', 'r_emailaddress'] }));
-    app.get('/api/auth/Bitly/callback',
-        function(req, res, next) { handleOauth1('Bitly', req, res, next); });
-
-    app.get('/api/auth/LastFM', function(req, res) {
-        var api_url = config.lastfm.base_url + '?api_key=' + config.lastfm.consumerKey;
-        return res.redirect(api_url);
-    });
-    app.get('/api/auth/LastFM/callback',
-        function(req, res, next) {
-            // perform custom handling here....
-            var token = req.param('token')
-
-            User.findOne({ $or: [
-                {'local.skynetuuid' : req.cookies.skynetuuid},
-                {'twitter.skynetuuid' : req.cookies.skynetuuid},
-                {'facebook.skynetuuid' : req.cookies.skynetuuid},
-                {'google.skynetuuid' : req.cookies.skynetuuid}
-            ]
-            }, function(err, user) {
-                if(!err) {
-                    user.addOrUpdateApiByName('LastFM', 'token', null, token, null, null, null);
-                    user.save(function(err) {
-                        return handleApiCompleteRedirect(res, 'LastFM', err);
-                    });
-                }
-            });
-
+    function completeLogin (req, res) {
+        var user = req.user;
+        res.cookie('skynetuuid', user.skynet.uuid, {
+            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+            domain: config.domain,
+            httpOnly: false
+        });
+        res.cookie('skynettoken', user.skynet.token, {
+            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+            domain: config.domain,
+            httpOnly: false
         });
 
-    app.get('/api/auth/Delicious', function (req, res) {
-        var api_url = config.delicious.base_url + 'auth/authorize?client_id=' + config.delicious.consumerKey;
-        api_url += '&redirect_uri=' + config.delicious.callbackURL;
-        return res.redirect(api_url);
-    });
-    app.get('/api/auth/Delicious/callback', function (req, res, next) {
-        // perform custom handling here....
-        var token = req.param('code');
-
-        User.findOne({ $or: [
-            {'local.skynetuuid' : req.cookies.skynetuuid},
-            {'twitter.skynetuuid' : req.cookies.skynetuuid},
-            {'facebook.skynetuuid' : req.cookies.skynetuuid},
-            {'google.skynetuuid' : req.cookies.skynetuuid}
-        ]
-        }, function(err, user) {
-            if(!err) {
-                user.addOrUpdateApiByName('Delicious', 'token', null, token, null, null, null);
-                user.save(function(err) {
-                    return handleApiCompleteRedirect(res, 'Delicious', err);
-                });
+        // Check for deep link redirect based on referrer in querystring
+        if (req.session.redirect) {
+            if (req.session.js) {
+                return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken + '"</script>');
+            } else {
+                return res.redirect(req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken);
             }
-        });
-
-    });
+        } else {
+            return res.redirect('/dashboard');
+        }
+    }
 };

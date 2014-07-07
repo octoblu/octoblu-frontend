@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .service('userService', function ($http, $q, $cookies, elasticService) {
+    .service('userService', function ($http, $q, elasticService) {
         this.getMessageGraph = function (uuid, from, interval, callback) {
             elasticService.searchAdvanced(
                 {
@@ -76,30 +76,6 @@ angular.module('octobluApp')
                     });
                 }
             );
-        };
-
-        this.getUser = function (user, callback) {
-            $http.get('/api/user/' + user)
-                .success(function (data) {
-                    callback(data);
-                })
-                .error(function (data) {
-                    console.log('Error: ' + data);
-                    callback({});
-                });
-
-        };
-
-        this.getCurrentUser = function( ){
-            var deferred = $q.defer();
-            $http.get('/api/user/' + $cookies.skynetuuid )
-                .success(function(user){
-                    deferred.resolve(user);
-                })
-                .error(function(error){
-                    deferred.reject(error);
-                });
-            return deferred.promise;
         };
 
         this.activateNoAuthChannel = function(user, apiName, callback) {

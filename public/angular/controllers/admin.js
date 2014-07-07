@@ -1,36 +1,33 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, currentUser, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
-        $scope.user = currentUser;
+    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, $state, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
         $scope.operatorsGroup = operatorsGroup;
-        $scope.allResources = _.union(operatorsGroup.members,
-            _.pluck(allDevices, 'resource'));
+        $scope.allResources = _.union(operatorsGroup.members, _.pluck(allDevices, 'resource'));
 
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
                 var resourcePermission, sourceGroup;
-                PermissionsService.add(currentUser.skynetuuid, currentUser.skynettoken, { name: $scope.resourcePermissionName })
+                PermissionsService.add({ name: $scope.resourcePermissionName })
                     .then(function (newResourcePermission) {
                         resourcePermission = newResourcePermission;
                         $scope.allGroupResourcePermissions.push(resourcePermission);
                         return resourcePermission;
                     })
                     .then(function (resourcePermission) {
-                        return GroupService.addGroup(resourcePermission.resource.uuid + '_sources', currentUser.skynetuuid, currentUser.skynettoken);
+                        return GroupService.addGroup(resourcePermission.resource.uuid + '_sources');
                     })
                     .then(function (srcGroup) {
                         sourceGroup = srcGroup;
                         resourcePermission.source = sourceGroup.resource;
-                        return GroupService.addGroup(resourcePermission.resource.uuid + '_targets', currentUser.skynetuuid, currentUser.skynettoken);
+                        return GroupService.addGroup(resourcePermission.resource.uuid + '_targets');
                     })
                     .then(function (targetGroup) {
                         resourcePermission.target = targetGroup.resource;
-                        return PermissionsService.update(currentUser.skynetuuid,
-                            currentUser.skynettoken,
+                        return PermissionsService.update(
                             { resourcePermission: resourcePermission,
                                 targetGroup: targetGroup,
                                 sourceGroup: sourceGroup });
@@ -45,11 +42,10 @@ angular.module('octobluApp')
             $scope.confirmModal($modal, $scope, $log,
                 'Confirm Delete Group', 'Are you sure you want to delete ' + resourcePermission.name + ' group?',
                 function () {
-                    PermissionsService.delete(currentUser.skynetuuid, currentUser.skynettoken, resourcePermission.resource.uuid)
+                    PermissionsService.delete(resourcePermission.resource.uuid)
                         .then(function () {
                             var index = $scope.allGroupResourcePermissions.indexOf(resourcePermission);
                             $scope.allGroupResourcePermissions.splice(index, 1);
-                            $state.go('admin.all');
                         });
                 });
         };
@@ -65,25 +61,13 @@ angular.module('octobluApp')
         $scope.recipientEmail = '';
 
         $scope.send = function () {
-
-            var invitationPromise = InvitationService.sendInvitation({
-                'uuid': currentUser.skynetuuid,
-                'token': currentUser.skynettoken
-            }, $scope.recipientEmail);
-
-            invitationPromise.then(function (invitation) {
-                $scope.recipientEmail = '';
-
-
-            }, function (result) {
-                /*
-                 *TODO - Display an error notification to the user
-                 */
-            });
+            InvitationService.sendInvitation($scope.recipientEmail)
+                .then(function (invitation) {
+                    $scope.recipientEmail = '';
+                });
         };
-
     })
-    .controller('adminGroupDetailController', function ($scope, PermissionsService, GroupService, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup, currentUser) {
+    .controller('adminGroupDetailController', function ($scope, PermissionsService, GroupService, resourcePermission, sourcePermissionsGroup, targetPermissionsGroup) {
         $scope.resourcePermission = resourcePermission;
         $scope.sourcePermissionsGroup = sourcePermissionsGroup;
         $scope.targetPermissionsGroup = targetPermissionsGroup;
@@ -105,8 +89,6 @@ angular.module('octobluApp')
         $scope.save = function () {
             updateResourceTotals();
             PermissionsService.update(
-                $scope.user.skynetuuid,
-                $scope.user.skynettoken,
                 { resourcePermission: $scope.resourcePermission,
                     targetGroup: $scope.targetPermissionsGroup,
                     sourceGroup: $scope.sourcePermissionsGroup }

@@ -5,7 +5,7 @@ var _ = require('lodash'),
     ResourcePermission = mongoose.model('ResourcePermission'),
     request = require('request'),
     uuid = require('node-uuid'),
-    isAuthenticated = require('./controller-middleware').isAuthenticated;
+    isAuthenticated = require('./middleware/security').isAuthenticated;
 
 //Look in /test folder for postman api dump.
 var groupController = {
