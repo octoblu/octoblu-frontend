@@ -23,7 +23,7 @@ angular.module('octobluApp')
         $scope.isopen = false;
         $scope.user = currentUser;
         $scope.hubConfig = {};
-        $scope.claimDevoce = function () {
+        $scope.claimDevice = function () {
             deviceService
                 .claimDevice($scope.model.device.uuid)
                 .then(function (result) {
