@@ -3,7 +3,7 @@ angular.module('octobluApp')
 
         $scope.user = currentUser;
 
-        $scope.subdeviceTypes = _.filter(availableDeviceTypes, function (device) {
+        $scope.deviceTypes = _.filter(availableDeviceTypes, function (device) {
             return device.skynet.plugin;
         });
         $scope.deviceTypes = _.difference(availableDeviceTypes, $scope.subdeviceTypes);
