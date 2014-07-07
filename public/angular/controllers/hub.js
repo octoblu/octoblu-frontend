@@ -4,7 +4,9 @@ angular.module('octobluApp')
     .controller('hubController', function ($scope, $modal, myDevices, myGateways, skynetService, currentUser, PluginService, availableDeviceTypes) {
 
         $scope.claimedHubs = myGateways;
-        $scope.availableDeviceTypes = availableDeviceTypes;
+        $scope.availableDeviceTypes = _.filter(availableDeviceTypes, function(deviceType){
+            return deviceType.skynet.plugin && deviceType.enabled;
+        });
 
         $scope.editSubdevice = function (hub, subdeviceType, subdevice) {
             return $scope.configureSubdevice(hub, subdeviceType, subdevice);

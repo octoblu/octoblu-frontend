@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableDeviceTypes, deviceService) {
+    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableDeviceTypes, deviceService, PluginService) {
 
         $scope.user = currentUser;
 
@@ -56,7 +56,18 @@ angular.module('octobluApp')
                             return deviceType.skynet.plugin;
                         },
                         subdevice: function () {
-                            return null;
+                             var hub = _.findWhere(myGateways, function(gateway){
+                                var plugin = _.findWhere(gateway.plugins, {name : deviceType.skynet.plugin} );
+                                 return plugin;
+                             });
+
+                                return  PluginService.getDefaultOptions(hub , deviceType.skynet.plugin)
+                                    .then(function (response) {
+                                        return {options: response.result, type: deviceType.skynet.plugin };
+                                    }, function (error) {
+                                        console.log(error);
+                                        return { options: {}, type: deviceType.skynet.plugin};
+                                    });
                         },
                         hubs: function () {
                             return myGateways;
@@ -64,14 +75,15 @@ angular.module('octobluApp')
                         availableDeviceTypes: function () {
                             return availableDeviceTypes;
                         }
-                    }
+                    },
+                    size : 'lg'
                 });
 
                 subdeviceModal.result.then(function (result) {
                     skynetService.createSubdevice({
                         uuid: result.hub.uuid,
                         token: result.hub.token,
-                        type: smartDevice.plugin,
+                        type: deviceType.skynet.plugin,
                         name: result.subdevice.name,
                         options: result.subdevice.options
                     }).then(function (response) {
