@@ -11,6 +11,7 @@ angular.module('octobluApp')
 	    //Elastic Search Time Format Dropdowns
             $scope.ESdateFormats = elasticService.getDateFormats();
 
+	    $scope.forms = {};
             // Get user devices
             $scope.log("getting devices from ownerService");
             ownerService.getDevices($scope.skynetuuid, $scope.skynettoken, function(data) {
@@ -21,15 +22,20 @@ angular.module('octobluApp')
                     if($scope.devices[i].type == 'gateway'){
                         $scope.devices.splice(i,1);
                     }
+		    if( !$scope.devices[i].name ) { $scope.devices[i].name = $scope.devices[i].uuid; }
 		    $scope.logic_devices +=  $scope.devices[i].uuid + " OR ";
                     $scope.deviceLookup[$scope.devices[i].uuid] = $scope.devices[i].name;
                 }
-                $scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices" };
+                //$scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices", "uuid": "*" };
 		$scope.log("logging devices");
                 $scope.log($scope.devices);
 		$scope.log($scope.logic_devices);
             });
-
+	    
+	    $scope.setFormScope = function(scope){
+ 		  $scope.formScope = scope;
+		  $scope.log("setting form scope to " + scope);
+	    };
 
             $scope.currentPage = 1;
 
@@ -54,21 +60,51 @@ angular.module('octobluApp')
 		}
 	    });
 
-	    $scope.loadExploreGraph = function() {
-		$scope.eGstartDate = $scope.starting;
-		$scope.eGendDate = $scope.ending;
-		$scope.eGselectDevices = $scope.graphDevices;
-		$scope.eGEC = $scope.eGeventCode;
+		$scope.eGCharts = [];
+    		$scope.eGCharts.push({      text: "Line"    });
+    		$scope.eGCharts.push({	text: "Bar" });
+	    
+	$scope.loadExploreGraph = function() {
+		$scope.eGstartDate = $scope.forms.EX_starting;
+		$scope.eGendDate = $scope.forms.EX_ending;
+		$scope.eGselectDevices = $scope.forms.EX_graphDevices;
+		$scope.eGEC = $scope.forms.EX_eventCode;
+		$scope.log($scope);
 		$scope.log("Ending: "+ $scope.eGendDate + ", Starting: " +$scope.eGstartDate+ ", EventCodes: "+$scope.eGEC+", Selected Devices: " + $scope.eGselectDevices);
+		$scope.legFirst = true;
+		$scope.myAdditionalQuery =  " ( ";
+		if ( $scope.eGselectDevices && $scope.eGselectDevices.length > 0 ){
+			_.each($scope.eGselectDevices, function(key, value) {
+				$scope.log(key);
+				if ($scope.legFirst) { $scope.myAdditionalQuery += " uuid=" + key + " " ; $scope.legFirst = false; }
+				else { $scope.myAdditionalQuery += " OR uuid="+ key + " "; }
+			});
+			
+		}
+		$scope.legFacets = { "eventCodes": {"terms": { "field": "eventCode" } }
+				   };
+		if ($scope.eGEC) { 
+			_.each($scope.eGEC, function(key, value) {
+				$scope.myAdditionalQuery += " AND eventCode=" + key; 
+				});
+		}
+		$scope.myAdditionalQuery += " ) ";
+		elasticService.paramSearch($scope.eGstartDate, $scope.eGendDate, 0, $scope.myAdditionalQuery, $scope.legFacets, $scope.eGselectDevices, function(err,data){
+			if (err) { return $scope.log(err); }
+                        $scope.log("function=loadExploreGraph callback");
+                        $scope.log(data);
+			$scope.leg = {"results":data, "total" : data.hits.total, "dcEC": data.facets.eventCodes.terms.length };
+			
+		});
 		
 	    };
 
             $scope.search = function (currentPage) {
               $scope.log("starting search function, analyzer controller");
               $scope.results="searching...";
-	      $scope.log("searchText = "+ $scope.searchText);
-                if ($scope.searchText !== undefined) {
-                    elasticService.search($scope.devices, $scope.searchText, $scope.skynetuuid, currentPage, $scope.eventCode, function (error, response) {
+	      $scope.log("searchText = "+ $scope.forms.FFsearchText);
+                if ($scope.forms.FFsearchText !== undefined) {
+                    elasticService.search($scope.devices, $scope.forms.FF_searchText, $scope.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
                         if (error) {
                             $scope.log(error);
                         } else {

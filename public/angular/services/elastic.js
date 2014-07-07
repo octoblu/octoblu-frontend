@@ -32,8 +32,12 @@ angular.module('octobluApp')
 
 	this.getDateFormats = function(){
 		return { 
-			"now": { "text": "Now" },
-			"yesterday": {"text": "Yesterday, at Midnight"}
+			"now": { "text": "Now", "value": "now" },
+			"yesterday": {"text": "Yesterday", "value": "now-1d/d"},
+			"4_hours_ago": { "text": "4 Hours Ago", "value":"now-4h/h"},
+			"12_hours_ago" : { "text": "12 Hours Ago", "value":"now-12h/h" },
+			"24_hours_ago" : { "text": "24 Hours Ago", "value":"now-24h/h" },
+			"this_week" : { "text": "Week to date", "value" : "now-1w/w" }
 		};
 	};
 
@@ -59,7 +63,9 @@ angular.module('octobluApp')
 		this.log("starting function=paramSearch");
 		myQuery = "";
 		if (query.length > 0) { myQuery = " AND " + query; }
+		
 		baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+this.devices.logic+"') "+myQuery }},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
+		if (size < 1) { delete baseSearchObject.size; }
 		this.log(JSON.stringify(baseSearchObject));
 		service.client.search({ index: '_all', body: baseSearchObject}, function(error,response) { callback(error, response); });
 	}; 
