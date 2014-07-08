@@ -77,8 +77,8 @@ var config = {
            'override_token' : '72d077e6-44ac-4d2e-952e-1e43ff310eff',
           // 'host' : process.env.SKYNET_HOST || 'skynet.im',
           // 'port' : process.env.SKYNET_PORT || 80
-          'host' : process.env.SKYNET_HOST || 'http://192.168.112.21',
-          'port' : process.env.SKYNET_PORT || 3000
+          'host' : process.env.SKYNET_HOST || 'skynet.im',
+          'port' : process.env.SKYNET_PORT || 80
       },
     'port' : process.env.PORT || 8080,
     'domain': null
