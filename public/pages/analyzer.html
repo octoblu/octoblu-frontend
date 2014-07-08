@@ -19,7 +19,7 @@
                 <div class="panel panel-default">
                     <a href="">
                         <div class="panel-body">
-                            <div ng-switch="!!topResults ? 1 : 0">
+                            <div ng-switch="!!topResults.fromUuid ? 1 : 0">
                                 <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                                 <div ng-switch-default>
                                     <div nvd3-pie-chart data="topResults.fromUuid" height="300"></div>
@@ -36,7 +36,7 @@
                 <div class="panel panel-default">
                     <a href="">
                         <div class="panel-body">
-                            <div ng-switch="!!topResults ? 1 : 0">
+                            <div ng-switch="!!topResults.toUuid ? 1 : 0">
                                 <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                                 <div ng-switch-default>
                                     <div nvd3-pie-chart data="topResults.toUuid" height="300"></div>
@@ -50,13 +50,14 @@
     </div>
     <!-- Endof Container Fluid-->
 </accordion-group>
+<!-- Maybe later
 <accordion-group heading="Time Ranges">
     <div class="row">
         <div class="col-md-10">
             <h2>Count of EventCodes over time</h2>
         </div>
     </div>
-</accordion-group>
+</accordion-group> -->
 <accordion-group heading="Freeform Search">
     <div class="container-fluid">
         <div class="row">
