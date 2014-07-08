@@ -89,9 +89,8 @@ angular.module('octobluApp')
                         console.log('registered device!');
                         defer.resolve(result);
                     });
-
-                    return promise;
                 });
+                return promise;
             },
 
             unregisterDevice: function (options) {

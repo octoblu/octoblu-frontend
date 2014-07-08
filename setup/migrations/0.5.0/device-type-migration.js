@@ -193,7 +193,7 @@ db.devicetypes.insert({
 });
 
 db.devicetypes.insert({
-    logo: "assets/images/skynet/hub.png",
+    logo: "assets/images/octoblu-hub.png",
     name: "Skynet Hub",
     description: "Skynet Hub",
     skynet: {
