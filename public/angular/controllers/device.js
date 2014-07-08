@@ -186,7 +186,7 @@ angular.module('octobluApp')
             //If the deviceType selected has an options schema then we should validate the
             //options set for errors
             if ($scope.model.deviceType.optionsSchema) {
-                var errors = $scope.model.schemaEditor.validate();
+                var errors = $scope.model.propertyEditor.validate();
                 if (!errors.length) {
                     $modalInstance.close({deviceType: $scope.model.deviceType, device: $scope.model.device, isNew: $scope.model.isNew});
                 }
