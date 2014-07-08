@@ -11,20 +11,21 @@ angular.module('octobluApp')
         $scope.devices = myDevices;
         $scope.hasHubs = myGateways.length;
 
-        $scope.getDeviceTypeLogo = function(device){
-
-            var deviceType = _.findWhere(availableDeviceTypes, function(deviceType){
-                if(device.type ){
-                    if(device.subtype){
-                        return deviceType.skynet.type === device.type && deviceType.skynet.subtype === device.subtype;
+        $scope.getDeviceTypeLogo = function (device) {
+            if (device) {
+                var deviceType = _.findWhere(availableDeviceTypes, function (deviceType) {
+                    if (device.type) {
+                        if (device.subtype && deviceType.skynet) {
+                            return deviceType.skynet.type === device.type && deviceType.skynet.subtype === device.subtype;
+                        } else {
+                            return deviceType.skynet.type === device.type;
+                        }
                     } else {
-                        return deviceType.skynet.type === device.type;
+                        return deviceType.skynet.type === 'device' && deviceType.skynet.subtype === 'other';
                     }
-                } else {
-                    return deviceType.skynet.type === 'device' && deviceType.skynet.subtype === 'other';
-                }
-            });
-            return deviceType.logo;
+                });
+                return deviceType ? deviceType.logo : null;
+            }
         };
 
         $scope.deleteDevice = function (device) {
@@ -56,7 +57,7 @@ angular.module('octobluApp')
                             return deviceType.skynet.plugin;
                         },
                         subdevice: function () {
-                           return null;
+                            return null;
                         },
                         hubs: function () {
                             return myGateways;
@@ -77,7 +78,7 @@ angular.module('octobluApp')
                         options: result.subdevice.options
                     }).then(function (response) {
                         result.hub.subdevices.push(response.result);
-                        var device = _.findWhere($scope.devices, {uuid : result.hub.uuid});
+                        var device = _.findWhere($scope.devices, {uuid: result.hub.uuid});
                         device.subdevices.push(response.result);
                     });
 
@@ -111,7 +112,8 @@ angular.module('octobluApp')
 
                 deviceModal.result.then(function (result) {
                     skynetService.registerDevice(result.device).then(function (res) {
-                        return deviceService.getDevices(true);
+                        myDevices.push(result.device);
+                        return myDevices;
                     }).then(function (devices) {
                         $scope.devices = devices;
                     }, function (error) {
