@@ -57,18 +57,7 @@ angular.module('octobluApp')
                             return deviceType.skynet.plugin;
                         },
                         subdevice: function () {
-                             var hub = _.findWhere(myGateways, function(gateway){
-                                var plugin = _.findWhere(gateway.plugins, {name : deviceType.skynet.plugin} );
-                                 return plugin;
-                             });
-
-                                return  PluginService.getDefaultOptions(hub , deviceType.skynet.plugin)
-                                    .then(function (response) {
-                                        return {options: response.result, type: deviceType.skynet.plugin };
-                                    }, function (error) {
-                                        console.log(error);
-                                        return { options: {}, type: deviceType.skynet.plugin};
-                                    });
+                            return null;
                         },
                         hubs: function () {
                             return myGateways;
