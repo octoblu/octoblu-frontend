@@ -1,7 +1,7 @@
 function skynet (config, cb) {
   if (!cb && typeof config === 'function') {
-    cb = config;
-    config = {};
+    cb = config
+    config = {}
   }
 
   function loadScript(url, callback)
@@ -23,41 +23,42 @@ function skynet (config, cb) {
 
   var authenticate = function() {
 
-     var socket = io.connect(config.host, {
-         port: config.port
-     });
-      // var socket = io.connect('localhost', {
-      //      port: 3000
-      // });
+      var network;
+      if(config.host && config.port){
+        if(config.host.indexOf("http") == -1 && config.host.indexOf("ws") == -1){
+          config.host = "ws://" + config.host;
+        }
+        network = config.host + ":" + config.port;
+      }
+      var socket = io(network || "http://skynet.im");
 
       socket.on('connect', function(){
-          socket.on('identify', function(data){
-              console.log('Websocket connecting to Skynet with socket id: ' + data.socketid);
-              //console.log('Sending device uuid: ' + config.uuid);
-              if (config.uuid && config.token){
-                  socket.emit('identity', {uuid: config.uuid, socketid: data.socketid, token: config.token});
-              }
-              else {
-                  socket.emit('register', config, function (ident) {
-                      config = ident;
-                      socket.emit('identity', {uuid: config.uuid, socketid: data.socketid, token: config.token});
-                      console.log(config);
-                  });
-              }
-          });
-
         console.log('Requesting websocket connection to Skynet');
+
+        socket.on('identify', function(data){
+          console.log('Websocket connecting to Skynet with socket id: ' + data.socketid);
+          //console.log('Sending device uuid: ' + config.uuid);
+          if (config.uuid && config.token) socket.emit('identity', {uuid: config.uuid, socketid: data.socketid, token: config.token});
+          else socket.emit('register', config, function (ident) {
+            config = ident
+            socket.emit('identity', {uuid: config.uuid, socketid: data.socketid, token: config.token});
+            console.log(config)
+          })
+        });
 
         socket.on('notReady', function(data){
           cb(new Error('Authentication Error'));
         });
         socket.on('ready', function(data){
-          cb(null, socket);
+          // cb(null, socket);
+          cb(null, socket, data);
         });
 
       });
 
   };
 
-  loadScript("http://skynet.im/socket.io/socket.io.js", authenticate);
+  // // loadScript("http://skynet.im/socket.io/socket.io.js", authenticate);
+  loadScript("https://skynet.im/socket.io/socket.io.js", authenticate);
+  // loadScript("http://localhost:3000/socket.io/socket.io.js", authenticate);
 };
