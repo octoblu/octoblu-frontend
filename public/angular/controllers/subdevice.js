@@ -16,6 +16,13 @@ angular.module('octobluApp')
             var installedPlugin = _.findWhere(newHub.plugins, {name: pluginName});
             if (!installedPlugin) {
                 PluginService.installPlugin($scope.model.hub, pluginName)
+                    .then(function(result){
+                        var defer = $q.defer();
+                        setTimeout(function(){
+                            defer.resolve(result);
+                        }, 5000);
+                        return defer.promise;
+                    })
                     .then(function (result) {
                         return PluginService.getInstalledPlugins($scope.model.hub);
                     })
@@ -23,7 +30,7 @@ angular.module('octobluApp')
                         console.log(result);
                         newHub.plugins = result.result;
                         $scope.model.plugin = _.findWhere(newHub.plugins, {name: pluginName})
-                    })
+                    });
             } else {
                 $scope.model.plugin = installedPlugin;
             }

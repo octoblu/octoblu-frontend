@@ -258,7 +258,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('docs', {
+            .state('ob.docs', {
                 url: '/docs',
                 templateUrl: 'pages/docs.html',
                 controller: 'docsController',
@@ -284,7 +284,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'pricingController',
                 unsecured: true
             })
-            .state('faqs', {
+            .state('ob.faqs', {
                 url: '/faqs',
                 templateUrl: 'pages/faqs.html',
                 controller: 'faqsController',
