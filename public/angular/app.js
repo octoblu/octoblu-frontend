@@ -3,8 +3,6 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        // 'host': 'skynet.im', //change to the skynet.im instance
-        // 'port': '80'
         'host': 'skynet.im', //change to the skynet.im instance
         'port': '80'
     })
@@ -253,14 +251,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('ob.analyzer', {
                 url: '/analyzer',
                 templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController',
-                resolve: {
-                    myDevices: function (deviceService) {
-                        return deviceService.getDevices();
-                    }
-                }
+                controller: 'analyzerController'
             })
-            .state('docs', {
+            .state('ob.docs', {
                 url: '/docs',
                 templateUrl: 'pages/docs.html',
                 controller: 'docsController',
@@ -286,7 +279,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'pricingController',
                 unsecured: true
             })
-            .state('faqs', {
+            .state('ob.faqs', {
                 url: '/faqs',
                 templateUrl: 'pages/faqs.html',
                 controller: 'faqsController',
