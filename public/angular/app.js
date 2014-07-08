@@ -251,12 +251,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('ob.analyzer', {
                 url: '/analyzer',
                 templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController',
-                resolve: {
-                    myDevices: function (deviceService) {
-                        return deviceService.getDevices();
-                    }
-                }
+                controller: 'analyzerController'
             })
             .state('ob.docs', {
                 url: '/docs',
