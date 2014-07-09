@@ -1,19 +1,19 @@
 angular.module('octobluApp')
     .service('deviceService', function ($q, $http) {
-        var myDevices;
+        var myDevices = [];
 
         this.getDevices = function (force) {
-            if (myDevices && !force) {
+            if (myDevices && myDevices.length && !force) {
                 var defer = $q.defer();
                 defer.resolve(myDevices);
                 return defer.promise;
             } else {
                 return $http.get('/api/devices').then(function (res) {
-                   myDevices  = res.data;
+                   angular.copy(res.data, myDevices);
                    return myDevices;
                 }, function (err) {
                     console.log(err);
-                    return [];
+                    return angular.copy([], myDevices);
                 });
             }
         };

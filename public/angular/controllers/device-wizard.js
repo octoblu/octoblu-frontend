@@ -8,6 +8,12 @@ angular.module('octobluApp')
             return $state.current.name;
         };
 
+        if($state.params.claim === 'gateway'){
+            $scope.gateway=true;
+        } else {
+            $scope.gateway=false;
+        }
+
         $scope.model = {
             deviceTypes : availableDeviceTypes,
             unclaimedDevices : _.filter(unclaimedDevices, function(device){
