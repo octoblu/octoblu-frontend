@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'localhost', //change to the skynet.im instance
-        'port': '3000'
+        'host': 'skynet.im', //change to the skynet.im instance
+        'port': '80'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -100,8 +100,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                                 "token": gateway.token,
                                 "method": "configurationDetails"
                             }).then(function (response) {
-                                gateway.subdevices = response.result.subdevices || [];
-                                gateway.plugins = response.result.plugins || [];
+                                if (response && response.result) {
+                                    gateway.subdevices = response.result.subdevices || [];
+                                    gateway.plugins = response.result.plugins || [];
+                                }
                             }, function () {
                                 console.log('couldn\'t get data for: ');
                                 console.log(gateway);
