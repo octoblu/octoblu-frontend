@@ -136,13 +136,13 @@ angular.module('octobluApp')
                     total: data.hits.total,
                     fromUuid: _.map(data.facets.fromUuids.terms, function (item) {
                         return {
-                            label: item.term,
+                            label: $scope.deviceLookup[item.term] ? $scope.deviceLookup[item.term] : item.term,
                             value: item.count
                         };
                     }),
                     toUuid: _.map(data.facets.toUuids.terms, function (item) {
                         return {
-                            label: item.term,
+                            label: $scope.deviceLookup[item.term] ? $scope.deviceLookup[item.term] : item.term,
                             value: item.count
                         };
                     }),

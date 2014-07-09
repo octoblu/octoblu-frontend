@@ -141,7 +141,7 @@
                                     <label for="eventCode"> Event Code: </label> <select multiple size=5
                                                                                          class="form-control"
                                                                                          ng-model="forms.EX_eventCode">
-                                    <option value="">All Event Codes</option>
+                                    <option value="*">All Event Codes</option>
                                     <option ng-repeat="event in events" value="{{event.code}}">
                                         {{event.name}}
                                     </option>
