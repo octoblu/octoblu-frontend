@@ -9,7 +9,7 @@
 			    <li ng-repeat="channel in customChannels | orderBy:'name'">
 			        <div class="channel_icon-grid-view mod-index-0 pop-over"
 			             data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" style="">
-			            <a href ui-sref="ob.connector.advanced.channels.editor({name : channel.name})">
+			            <a href ui-sref=".editor({name : channel.name})">
                             <img ng-src="{{channel.logo}}" width="70" height="70"/>
                         </a>
 			        </div>

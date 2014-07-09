@@ -176,6 +176,10 @@ angular.module('octobluApp')
         };
         $scope.cancelEdit = function () {
             $scope.isEdit = false;
+            if($scope.isNew) {
+                // cancel new channel..
+                $state.go('^');
+            }
         };
         $scope.showEditResouce = function (path) {
             return $scope.editPath === path;
