@@ -6,24 +6,28 @@ angular.module('octobluApp')
             skynetPromise = defer.promise;
 
         AuthService.getCurrentUser().then(function (currentUser) {
-            user = currentUser;
 
-            skynet({
-                'host': skynetConfig.host,
-                'port': skynetConfig.port,
-                'uuid': user.skynetuuid,
-                'token': user.skynettoken
-            }, function (e, socket) {
-                if (e) {
-                    defer.reject(e);
-                    console.log('Skynet Error!');
-                    console.log(e);
-                } else {
-                    skynetSocket = socket;
-                    console.log('skynet connected');
-                    defer.resolve();
-                }
+
+            user = currentUser;
+            var conn = skynet.createConnection({
+                server : skynetConfig.host,
+                port : skynetConfig.port,
+                uuid : user.skynetuuid,
+                token : user.skynettoken
             });
+
+            conn.on('ready', function(data){
+                skynetSocket = conn;
+                console.log(data);
+                console.log('Connected to skynet');
+                defer.resolve();
+            });
+
+            conn.on('notReady', function(error){
+               console.log('Skynet Error during connect');
+               defer.reject(error);
+            });
+
             return defer.promise;
         });
 
