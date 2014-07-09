@@ -6,7 +6,7 @@
 
 			<h3><i class='icon-edit'></i> Custom </h3>
 			<ul class="channellist">
-			    <li ng-repeat="channel in customChannels | orderBy:'name'">
+			    <li ng-repeat="channel in customChannels | orderBy:'name'" style="display:inline-block">
 			        <div class="channel_icon-grid-view mod-index-0 pop-over"
 			             data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" style="">
 			            <a href ui-sref=".editor({name : channel.name})">
