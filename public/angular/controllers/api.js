@@ -207,6 +207,7 @@ angular.module('octobluApp')
             // console.log($scope.channel);
             if (!$scope.channel) return;
             if(!$scope.channel.owner) $scope.channel.owner = $scope.skynetuuid;
+            // $log.info($scope.channel);
             channelService.save($scope.channel, function (data) {
                 // $log.info('completed save call............');
                 if (data) {
@@ -381,7 +382,7 @@ angular.module('octobluApp')
 
         if ($stateParams.name == 'new') {
             $scope.isNew = true;
-            $scope.channel.owner = $scope.skynetuuid;
+            $scope.channel.owner = currentUser.skynetuuid;
         } else {
             channelService.getByName($stateParams.name, function (data) {
                 $scope.isNew = false;
