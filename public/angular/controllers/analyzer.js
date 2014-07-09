@@ -63,15 +63,18 @@ angular.module('octobluApp')
             $log.log($scope);
             $log.log("Ending: " + $scope.eGendDate + ", Starting: " + $scope.eGstartDate + ", EventCodes: " + $scope.eGEC + ", Selected Devices: " + $scope.eGselectDevices);
             $scope.legFirst = true;
-            $scope.myAdditionalQuery = " ( ";
-            if ($scope.eGselectDevices && $scope.eGselectDevices.length > 0) {
+            $scope.myAdditionalQuery = "";
+            $scope.leg = {};
+	    $scope.leg.config = { "contains_uuid" : "false", "contains_ec" : "false" };
+            if ($scope.eGselectDevices && $scope.eGselectDevices.length > 0 ) {
                 _.each($scope.eGselectDevices, function (key, value) {
                     $log.log(key);
-                    if ($scope.legFirst) {
+                    if ($scope.legFirst && key != "all") {
+                        $scope.leg.config.contains_uuid = "true";
                         $scope.myAdditionalQuery += " uuid=" + key + " ";
                         $scope.legFirst = false;
                     }
-                    else {
+                    else if (key != "all") {
                         $scope.myAdditionalQuery += " OR uuid=" + key + " ";
                     }
                 });
@@ -79,13 +82,20 @@ angular.module('octobluApp')
             }
             $scope.legFacets = { "eventCodes": {"terms": { "field": "eventCode" } }};
 
-            if ($scope.eGEC) {
+            if ($scope.eGEC && $scope.eGEC != "all") {
+                
                 _.each($scope.eGEC, function (key, value) {
-                    $scope.myAdditionalQuery += " AND eventCode=" + key;
+                    var oper = "";
+                    $scope.leg.config.contains_ec = "true";
+                    if ($scope.leg.config.contains_uuid == "true") { oper = " AND "; }
+                    $scope.myAdditionalQuery += " " + oper + " eventCode=" + key;
                 });
             }
-            $scope.myAdditionalQuery += " ) ";
-            elasticService.paramSearch($scope.eGstartDate, $scope.eGendDate, 0, $scope.myAdditionalQuery, $scope.legFacets, $scope.eGselectDevices, function (err, data) {
+            $scope.myAdditionalQuery += "";
+	    $scope.myAQ = "";
+	    if ($scope.myAdditionalQuery.length > 1) {$scope.myAQ = " ( " + $scope.myAdditionalQuery + " ) "; }
+	    $log.log($scope.myAQ);
+            elasticService.paramSearch($scope.eGstartDate, $scope.eGendDate, 0, $scope.myAQ, $scope.legFacets, $scope.eGselectDevices, function (err, data) {
                 if (err) {
                     return $log.log(err);
                 }
