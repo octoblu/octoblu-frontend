@@ -121,7 +121,7 @@
                             <div class="panel-body">
                                 <select class="form-control" size=10 style="height:100%" multiple
                                         ng-model="forms.EX_graphDevices">
-                                    <option value="*" selected="selected">All Event Codes</option>
+                                    <option value="all" selected="selected">All Devices</option>
                                     <option ng-repeat="cb_device in devices" value="{{cb_device.uuid}}">
                                         {{cb_device.name}}
                                     </option>
@@ -141,7 +141,7 @@
                                     <label for="eventCode"> Event Code: </label> <select multiple size=5
                                                                                          class="form-control"
                                                                                          ng-model="forms.EX_eventCode">
-                                    <option value="*">All Event Codes</option>
+                                    <option value="all">All Event Codes</option>
                                     <option ng-repeat="event in events" value="{{event.code}}">
                                         {{event.name}}
                                     </option>
