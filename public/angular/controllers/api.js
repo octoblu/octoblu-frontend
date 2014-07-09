@@ -152,13 +152,14 @@ angular.module('octobluApp')
             return $scope.channel.logo;
         };
     })
-    .controller('apiEditorController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state, channelService, userService) {
+    .controller('apiEditorController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, 
+            $modal, $log, $state, channelService, userService, currentUser) {
         $scope.skynetStatus = false;
         $scope.isEdit = false;
         $scope.isNew = false;
 
         $scope.channel = {
-            owner: $scope.skynetuuid,
+            owner: currentUser.skynetuuid,
             auth_strategy: '',
             logo: '',
             name: '',
@@ -276,6 +277,31 @@ angular.module('octobluApp')
                     $scope.selectedResourceIndex = null;
                 });
 
+        };
+
+        $scope.confirmDeleteApi = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'confirmDeleteChannel.html',
+                scope: $scope,
+                controller: function ($modalInstance) {
+                    $scope.ok = function () {
+                        $modalInstance.close('ok');                        
+                    };
+                    $scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+                }
+            });
+            modalInstance.result.then(function (response) {
+                    $log.info('response: '+response);
+                    if (response === 'ok') {
+                        $log.info('clicked ok');
+                        $state.go('^');
+                    }
+                },
+                function () {
+                    $log.info('Modal dismissed at: ' + new Date());
+                });
         };
 
         $scope.openEditResource = function (resource) {
