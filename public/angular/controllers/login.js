@@ -8,7 +8,7 @@ angular.module('octobluApp')
                 $rootScope.currentUser = user;
                 var referrer = $location.search().referrer;
                 if (referrer) {
-                    window.location = referrer;
+                    window.location = referrer + '?uuid=' + user.skynetuuid + '&token=' + user.skynettoken;
                 } else {
                     $state.go('ob.dashboard');
                 }
