@@ -4,14 +4,14 @@ angular.module('octobluApp')
     .controller('smartDeviceController', function ($scope, $modal, $log, skynetService, deviceService,  myDevices, currentUser, availableDeviceTypes) {
 
         $scope.model = {
-            devices :  _.filter(myDevices, function (device) {
-                return device.type !== 'gateway';
-            }),
+            devices : myDevices,
             deviceTypes : _.filter(availableDeviceTypes, function(deviceType){
                 return deviceType.skynet.type == 'device' && ! deviceType.skynet.plugin
             })
         };
-
+        $scope.notGateway = function(device) {
+            return device && device.type !== 'gateway';
+        }
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {
@@ -33,14 +33,14 @@ angular.module('octobluApp')
         $scope.addDevice = function (deviceType) {
             if (deviceType.enabled) {
                 var deviceModal = $modal.open({
-                    templateUrl: '/pages/connector/devices/device/add-edit.html',
+                    templateUrl: 'pages/connector/devices/device/add-edit.html',
                     controller: 'AddEditDeviceController',
                     backdrop: true,
                     resolve: {
                         device: function () {
                             return null;
                         },
-                        owner : function(){
+                        owner: function () {
                             return currentUser;
                         },
                         deviceType: function () {
@@ -49,30 +49,26 @@ angular.module('octobluApp')
                         availableDeviceTypes: function () {
                             return availableDeviceTypes;
                         }
-                    },
-                    size : 'lg'
+                    }
                 });
 
                 deviceModal.result.then(function (result) {
-                    skynetService.registerDevice(result.device).then(function(res){
-                        return deviceService.getDevices(true);
-                    }).then(function(devices){
-                        $scope.model.devices = devices;
-                    }, function(error){
-                        console.log(error);
-                    });
+                    skynetService.registerDevice(result.device)
+                        .then(function (res) {
+                            return deviceService.getDevices(true);
+                        }).then(null, function (error) {
+                            console.log(error);
+                        });
                 }, function () {
                     console.log('cancelled');
                 });
             }
         };
 
-        $scope.editDevice = function(device){
-
-
-            var deviceType = _.findWhere(availableDeviceTypes, function(deviceType){
-                if(device.type ){
-                    if(device.subtype){
+        $scope.editDevice = function (device) {
+            var deviceType = _.findWhere(availableDeviceTypes, function (deviceType) {
+                if (device.type) {
+                    if (device.subtype) {
                         return deviceType.skynet.type === device.type && deviceType.skynet.subtype === device.subtype;
                     } else {
                         return deviceType.skynet.type === device.type;
@@ -90,7 +86,7 @@ angular.module('octobluApp')
                     device: function () {
                         return device;
                     },
-                    owner : function(){
+                    owner: function () {
                         return currentUser;
                     },
                     deviceType: function () {
@@ -100,14 +96,15 @@ angular.module('octobluApp')
                         return availableDeviceTypes;
                     }
                 },
-                size : 'lg'
+                size: 'lg'
             });
 
             deviceModal.result.then(function (result) {
                 skynetService.updateDevice(result.device)
-                    .then(function(res){
-                        console.log('Device updated');
-                       device =  angular.extend(device, result.device);
+                    .then(function (res) {
+                        return deviceService.getDevices(true);
+                    }).then(null, function (error) {
+                        console.log(error);
                     });
             }, function () {
                 console.log('cancelled');

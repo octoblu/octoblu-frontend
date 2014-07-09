@@ -111,12 +111,10 @@ angular.module('octobluApp')
                 });
 
                 deviceModal.result.then(function (result) {
-                    skynetService.registerDevice(result.device).then(function (res) {
-                        myDevices.push(result.device);
-                        return myDevices;
-                    }).then(function (devices) {
-                        $scope.devices = devices;
-                    }, function (error) {
+                    skynetService.registerDevice(result.device)
+                        .then(function (res) {
+                        return deviceService.getDevices(true);
+                    }).then(null, function (error) {
                         console.log(error);
                     });
                 }, function () {
@@ -162,8 +160,9 @@ angular.module('octobluApp')
             deviceModal.result.then(function (result) {
                 skynetService.updateDevice(result.device)
                     .then(function (res) {
-                        console.log('Device updated');
-                        device = angular.extend(device, result.device);
+                        return deviceService.getDevices(true);
+                    }).then(null, function (error) {
+                        console.log(error);
                     });
             }, function () {
                 console.log('cancelled');
@@ -176,10 +175,11 @@ angular.module('octobluApp')
             device: angular.copy(device) || {},
             deviceType: deviceType,
             deviceTypes: availableDeviceTypes,
-            propertyEditor: {}
+            propertyEditor: {},
+            schema : deviceType.optionsSchema || {}
         };
 
-        $scope.model.device.owner = $scope.model.device.owner || owner.skynetuuid;
+
         $scope.cancel = function () {
             $modalInstance.dismiss();
         };
@@ -187,15 +187,14 @@ angular.module('octobluApp')
         $scope.save = function () {
             //If the deviceType selected has an options schema then we should validate the
             //options set for errors
-            if ($scope.model.deviceType.optionsSchema) {
-                var errors = $scope.model.schemaEditor.validate();
+                var errors = $scope.model.propertyEditor.validate();
                 if (!errors.length) {
+                    var device = $scope.model.propertyEditor.getValue();
+                    angular.extend($scope.model.device, device);
+                    $scope.model.device.owner = $scope.model.device.owner || owner.skynetuuid;
+                    $scope.model.device.type = $scope.model.deviceType.skynet.type;
+                    $scope.model.device.subtype = $scope.model.deviceType.skynet.subtype || '';
                     $modalInstance.close({deviceType: $scope.model.deviceType, device: $scope.model.device, isNew: $scope.model.isNew});
                 }
-            } else {
-                $scope.model.device = angular.extend($scope.model.device, $scope.model.propertyEditor.getProperties(),
-                    { type: $scope.model.deviceType.skynet.type, subtype: $scope.model.deviceType.skynet.subtype});
-                $modalInstance.close({ device: $scope.model.device, isNew: $scope.model.isNew});
-            }
         };
     });

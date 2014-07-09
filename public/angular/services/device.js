@@ -13,7 +13,7 @@ angular.module('octobluApp')
                    return myDevices;
                 }, function (err) {
                     console.log(err);
-                    return [];
+                    return angular.copy([], myDevices);
                 });
             }
         };
