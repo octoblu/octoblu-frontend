@@ -49,9 +49,10 @@
     "isotope": "~2.0.0",
     "angular-google-analytics": "~0.0.2",
     "jquery-mobile": "~1.4.2",
-    "requirejs": "~2.1.13",
     "nvd3": "~1.1.15-beta",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "socket.io": "~1.0.6",
+    "socket.io-client": "~1.0.6"
   },
   "resolutions": {
     "jquery-ui": "~1.10.4",
