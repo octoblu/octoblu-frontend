@@ -67,7 +67,7 @@ angular.module('octobluApp')
 		baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+this.devices.logic+"') "+myQuery }},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
 		if (size < 1) { delete baseSearchObject.size; }
 		this.log(JSON.stringify(baseSearchObject));
-		service.client.search({ index: '_all', body: baseSearchObject}, function(error,response) { callback(error, response); });
+		service.client.search({ index: elasticSearchConfig.es_index, body: baseSearchObject}, function(error,response) { callback(error, response); });
 	}; 
 
         this.facetSearch = function (from, to, ownerUuid, size, facet, callback) {
@@ -76,7 +76,7 @@ angular.module('octobluApp')
             baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "(fromUuid.owner = '"+ownerUuid+"' OR toUuid.owner = '"+ownerUuid+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
 	    this.log(baseSearchObject);
             service.client.search({
-                index: '_all',
+                index: elasticSearchConfig.es_index,
                 body: baseSearchObject
             }, function (error, response) {
                 callback(error, response);
@@ -86,7 +86,7 @@ angular.module('octobluApp')
 	this.searchAdvanced = function (queryObject, callback) {
             this.log(queryObject);
             service.client.search({
-                index: '_all',
+                index: elasticSearchConfig.es_index,
                 body: queryObject
             }, function (error, response) {
                 callback(error, response);
