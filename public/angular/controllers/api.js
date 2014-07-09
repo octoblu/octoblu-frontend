@@ -158,7 +158,7 @@ angular.module('octobluApp')
         $scope.isNew = false;
 
         $scope.channel = {
-            owner: '',
+            owner: $scope.skynetuuid,
             auth_strategy: '',
             logo: '',
             name: '',
@@ -201,7 +201,7 @@ angular.module('octobluApp')
             $scope.isEdit = false;
             // console.log($scope.channel);
             if (!$scope.channel) return;
-
+            if(!$scope.channel.owner) $scope.channel.owner = $scope.skynetuuid;
             channelService.save($scope.channel, function (data) {
                 // $log.info('completed save call............');
                 if (data) {
@@ -210,7 +210,6 @@ angular.module('octobluApp')
                     $state.go('ob.connector.advanced.channels.editor', { name: data.name });
                 }
             });
-
         };
 
         $scope.authorize = function (channel) {

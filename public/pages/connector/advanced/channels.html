@@ -7,9 +7,11 @@
 			<h3><i class='icon-edit'></i> Custom </h3>
 			<ul class="channellist">
 			    <li ng-repeat="channel in customChannels | orderBy:'name'">
-			        <div class="channel_icon-grid-view mod-index-0 pop-over activechannel"
-			             data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" ng-click="openDetails(channel)" style="cursor:pointer;opacity: 0.3; filter: alpha(opacity=30);">
-			            <img ng-src="{{channel.logo}}" width="70" height="70"/>
+			        <div class="channel_icon-grid-view mod-index-0 pop-over"
+			             data-original-title="{{channel.name}} - {{channel.description}}" data-placement="auto" style="">
+			            <a href ui-sref="ob.connector.advanced.channels.editor({name : channel.name})">
+                            <img ng-src="{{channel.logo}}" width="70" height="70"/>
+                        </a>
 			        </div>
 			    </li>
 			</ul>
