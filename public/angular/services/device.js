@@ -26,7 +26,7 @@ angular.module('octobluApp')
 
         this.claimDevice = function (deviceUUID) {
             return $http.put('/api/devices/' + deviceUUID + '/claim', {uuid: deviceUUID}).then(function (res) {
-                myDevices = myDevices.push(res.data);
+                myDevices.push(res.data);
                 return res.data;
             });
         };
