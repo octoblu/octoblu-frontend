@@ -206,9 +206,14 @@ module.exports = function (app, passport, config) {
                         // var authURL = 'https://sandbox.evernote.com/OAuth.action' + '?oauth_token='
                         //     + oauth_token + '&oauth_consumer_key=' + api.oauth.key
                         //     + '&callback=' + callbackURL;
+
                         var authURL = api.oauth.authTokenURL + '?oauth_token='
-                            + oauth_token + '&oauth_consumer_key=' + api.oauth.key
+                            + oauth_token;
+                            
+                        if(api.name!='Tumblr') {
+                            authURL += '&oauth_consumer_key=' + api.oauth.key
                             + '&callback=' + callbackURL;
+                        }
                         console.log(authURL);
                         res.redirect(authURL);
                     }
