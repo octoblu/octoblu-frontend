@@ -100,8 +100,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                                 "token": gateway.token,
                                 "method": "configurationDetails"
                             }).then(function (response) {
-                                gateway.subdevices = response.result.subdevices || [];
-                                gateway.plugins = response.result.plugins || [];
+                                if (response && response.result) {
+                                    gateway.subdevices = response.result.subdevices || [];
+                                    gateway.plugins = response.result.plugins || [];
+                                }
                             }, function () {
                                 console.log('couldn\'t get data for: ');
                                 console.log(gateway);
