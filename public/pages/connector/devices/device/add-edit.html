@@ -25,14 +25,12 @@
             </div>
         </div>
     </form>
-    <div ng-if="model.deviceType.optionsSchema" class="col-sm-12 well">
         <schema-editor control="model.propertyEditor"
-                       schema="model.deviceType.optionsSchema" model="model.device.options"
-                       allow-json-edit="false"></schema-editor>
-    </div>
-    <div ng-if="!model.deviceType.optionsSchema" class="col-sm-12 well">
-        <device-property-editor device-to-edit="model.device" on-save="save()" control="model.propertyEditor"></device-property-editor>
-    </div>
+                       schema="model.schema"
+                       model="model.device"
+                       allow-json-edit="true" additional-properties="true"></schema-editor>
+
+
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()"><i class="fa fa-times"></i>Cancel
