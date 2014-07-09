@@ -122,4 +122,19 @@ angular.module('octobluApp')
                     callback({});
                 });
         };
+
+        this.delete = function(name, callback) {
+            // return $http.delete('/api/channels/'+name, { cache: false})
+            //     .then(function(result){
+            //         return result.data;
+            //     });
+            $http.delete('/api/channels/'+name, { cache: true})
+                .success(function(data) {
+                    callback(true);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                    callback(false);
+                });
+        };
     });

@@ -296,7 +296,11 @@ angular.module('octobluApp')
                     $log.info('response: '+response);
                     if (response === 'ok') {
                         $log.info('clicked ok');
-                        $state.go('^');
+                        channelService.delete($scope.channel.name, function(result){
+                            if(result) {
+                                $state.go('^');
+                            }
+                        });
                     }
                 },
                 function () {
