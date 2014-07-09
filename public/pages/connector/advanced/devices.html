@@ -35,7 +35,7 @@
                 <th>Online</th>
                 <th>Action</th>
             </tr>
-            <tr ng-repeat="device in model.devices">
+            <tr ng-repeat="device in model.devices | filter: notGateway | orderBy: 'name' ">
 
                 <td>{{device.name}}</td>
                 <td>{{device.uuid}}</td>

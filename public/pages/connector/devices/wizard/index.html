@@ -2,8 +2,11 @@
    <div class="modal-content">
        <div class="modal-header">
            <a type="button" class="close"  data-dismiss="modal" ui-sref="^.all" aria-hidden="true">&times;</a>
-           <h2 class="modal-title" id="myModalLabel"><i class="fa fa-hand-o-right fa-2x"></i>&nbsp;&nbsp;
+           <h2 ng-show="!gateway" class="modal-title" id="myModalLabel"><i class="fa fa-hand-o-right fa-2x"></i>&nbsp;&nbsp;
              Claim Device Wizard
+           </h2>
+           <h2 ng-show="gateway" class="modal-title" id="myModalLabel"><i class="fa fa-h-square fa-2x"></i>&nbsp;&nbsp;
+             Hub Install Wizard
            </h2>
        </div>
        <div ui-view class="modal-body">
