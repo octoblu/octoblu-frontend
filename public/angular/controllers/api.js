@@ -213,6 +213,7 @@ angular.module('octobluApp')
                 if (data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
+                    try { $scope.updateCustomChannel($scope.channel); } catch(e) {}
                     $state.go('ob.connector.advanced.channels.editor', { name: data.name });
                 }
             });
@@ -299,6 +300,7 @@ angular.module('octobluApp')
                         $log.info('clicked ok');
                         channelService.delete($scope.channel.name, function(result){
                             if(result) {
+                                try { $scope.removeCustomChannels($scope.channel); } catch(e) {}
                                 $state.go('^');
                             }
                         });
