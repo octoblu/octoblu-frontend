@@ -194,7 +194,7 @@
         </div>
         <!-- end Choices Div Row -->
         <div class="row">
-            <div class="col-md-8 dashboard-panel">
+            <!--<div class="col-md-8 dashboard-panel">
                 <div class="panel-heading">
                     <h3 class="panel-title">The Graph</h3>
                 </div>
@@ -209,7 +209,26 @@
                         </slide>
                     </carousel>
                 </div>
+            </div>-->
+	<div class="col-sm-8 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Event Counts over Time</h3>
             </div>
+            <div class="panel panel-default">
+                <a href="" ui-sref="^.analyzer">
+                    <div class="panel-body">
+                        <div ng-switch="!!leg ? 1 : 0">
+                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                            <div ng-switch-default>
+                                <div nvd3-line-chart show-legend="false" axis-x-label="Day" axis-x-type="date"
+                                     axis-x-format="%-m/%-d" data="leg.eventCounts" height="300"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
         </div>
     </div>
 </accordion-group>

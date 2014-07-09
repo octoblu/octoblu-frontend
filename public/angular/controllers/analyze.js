@@ -80,16 +80,24 @@ angular.module('octobluApp')
                 });
 
             }
-            $scope.legFacets = { "eventCodes": {"terms": { "field": "eventCode" } }};
+            $scope.legFacets = { "eventCodes": {"terms": { "field": "eventCode" } },
+				'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  }
+				 };
 
             if ($scope.eGEC && $scope.eGEC != "all") {
-                
-                _.each($scope.eGEC, function (key, value) {
-                    var oper = "";
+               var oper = "";
                     $scope.leg.config.contains_ec = "true";
-                    if ($scope.leg.config.contains_uuid == "true") { oper = " AND "; }
-                    $scope.myAdditionalQuery += " " + oper + " eventCode=" + key;
+                    if ($scope.leg.config.contains_uuid == "true") { oper = " AND ( "; } 
+		$scope.leg.firstEC = true;
+                _.each($scope.eGEC, function (key, value) {
+                    if ($scope.leg.firstEC) {
+			$scope.leg.firstEC = false;
+			$scope.myAdditionalQuery += oper + " eventCode=" + key;
+		    } else {
+                    	$scope.myAdditionalQuery += " OR eventCode=" + key;
+                    }
                 });
+              if ($scope.leg.config.contains_uuid == "true") { $scope.myAdditionalQuery += " ) "; }
             }
             $scope.myAdditionalQuery += "";
 	    $scope.myAQ = "";
@@ -101,7 +109,17 @@ angular.module('octobluApp')
                 }
                 $log.log("function=loadExploreGraph callback");
                 $log.log(data);
-                $scope.leg = {"results": data, "total": data.hits.total, "dcEC": data.facets.eventCodes.terms.length };
+                $scope.leg = {"results": data, 
+				"total": data.hits.total, 
+				"dcEC": data.facets.eventCodes.terms.length, 
+				"eventCounts": [ 
+					{ key: "Event Count", 
+					  values: _.map(data.facets.times.entries, function(item) {
+						return { x: item.time, y: item.count };
+					})
+					}] 
+			};
+		$log.log($scope.leg);
 
             });
 
