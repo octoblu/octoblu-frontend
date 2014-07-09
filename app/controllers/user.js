@@ -17,11 +17,18 @@ module.exports = function (app) {
         res.json(req.user);
     });
 
+    app.get('/api/user', isAuthenticated, function (req, res) {
+        res.json(req.user);
+    });
+
     app.get('/api/user/:id/api/:name', isAuthenticated, function (req, res) {
         res.json(_.findWhere(req.user.api, {name: req.params.name}));
     });
+    app.get('/api/user/api/:name', isAuthenticated, function (req, res) {
+        res.json(_.findWhere(req.user.api, {name: req.params.name}));
+    });
 
-    app.put('/api/user/:id/channel/:name', isAuthenticated, function (req, res) {
+    var getUserChannel = function (req, res) {
         var user = req.user,
             key = req.body.key,
             token = req.body.token,
@@ -38,10 +45,11 @@ module.exports = function (app) {
                 res.json(user);
             }
         });
-    });
+    };
+    app.put('/api/user/:id/channel/:name', isAuthenticated, getUserChannel);
+    app.put('/api/user/channel/:name', isAuthenticated, getUserChannel);
 
-    app.put('/api/user/:id/activate/:name', isAuthenticated, function (req, res) {
-
+    var getUserActivation = function (req, res) {
         var user = req.user,
             key = req.body.key,
             token = req.body.token,
@@ -57,9 +65,11 @@ module.exports = function (app) {
                 res.json(user);
             }
         });
-    });
+    };
+    app.put('/api/user/:id/activate/:name', isAuthenticated, getUserActivation);
+    app.put('/api/user/activate/:name', isAuthenticated, getUserActivation);
 
-    app.delete('/api/user/:id/channel/:name', isAuthenticated, function (req, res) {
+    var deleteUserChannel = function (req, res) {
         var found = false,
             name = req.params.name;
         user.api = user.api || [];
@@ -78,5 +88,7 @@ module.exports = function (app) {
         } else {
             res.send({'message': 'success'});
         }
-    });
+    };
+    app.delete('/api/user/:id/channel/:name', isAuthenticated, deleteUserChannel);
+    app.delete('/api/user/channel/:name', isAuthenticated, deleteUserChannel);
 };
