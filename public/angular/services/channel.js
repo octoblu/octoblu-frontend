@@ -1,5 +1,7 @@
 angular.module('octobluApp')
     .service('channelService', function ($q, $http) {
+        var customchannels = [];
+
         this.getList = function(callback) {
             $http.get('/api/channels', { cache: true})
                 .success(function(data) { callback(data); })
@@ -93,11 +95,24 @@ angular.module('octobluApp')
                 });
         };
 
-        this.getCustomList = function() {
-            return $http.get('/api/customchannels/', { cache: false})
-                .then(function(result){
-                    return result.data;
+        this.getCustomList = function(force) {
+            // return $http.get('/api/customchannels/', { cache: false})
+            //     .then(function(result){
+            //         return result.data;
+            //     });
+            if (customchannels && customchannels.length && !force) {
+                var defer = $q.defer();
+                defer.resolve(customchannels);
+                return defer.promise;
+            } else {
+                return $http.get('/api/customchannels/').then(function (res) {
+                   angular.copy(res.data, customchannels);
+                   return customchannels;
+                }, function (err) {
+                    console.log(err);
+                    return angular.copy([], customchannels);
                 });
+            }
         };
 
         this.getByName = function(name, callback) {
@@ -123,12 +138,8 @@ angular.module('octobluApp')
                 });
         };
 
-        this.delete = function(name, callback) {
-            // return $http.delete('/api/channels/'+name, { cache: false})
-            //     .then(function(result){
-            //         return result.data;
-            //     });
-            $http.delete('/api/channels/'+name, { cache: true})
+        this.delete = function(channelId, callback) {
+            $http.delete('/api/channels/'+channelId, { cache: false})
                 .success(function(data) {
                     callback(true);
                 })
