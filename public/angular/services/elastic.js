@@ -32,23 +32,25 @@ angular.module('octobluApp')
 
 	this.getDateFormats = function(){
 		return { 
-			"now": { "text": "Now", "value": "now" },
+			"now": { "text": "Now", "value": "now", "esel": "selected=selected" },
 			"yesterday": {"text": "Yesterday", "value": "now-1d/d"},
 			"4_hours_ago": { "text": "4 Hours Ago", "value":"now-4h/h"},
 			"12_hours_ago" : { "text": "12 Hours Ago", "value":"now-12h/h" },
 			"24_hours_ago" : { "text": "24 Hours Ago", "value":"now-24h/h" },
-			"this_week" : { "text": "Week to date", "value" : "now-1w/w" }
+			"this_week" : { "text": "Week to date", "value" : "now-1w/w" },
+			"30_days" : {"text" : "30 Days Ago", "value" : "now-30d/d", "ssel":"selected=selected"}
 		};
 	};
 
         this.search = function (myDevices,queryText, ownerUuid, page, eventCode, callback) {
 	    this.log('starting function=search');
             fromPage = (page * 10) / 10;
+	    eCode = "";
             if(eventCode){
-              eventCode = ' , _type:' + eventCode;
+              eCode = ' , _type:' + eventCode;
             }
 	    this.log(queryText);
-            secondaryString = queryText + ', owner:' + ownerUuid + eventCode;
+            secondaryString = queryText + ', owner:' + ownerUuid + eCode;
             this.log(secondaryString);
             service.client.search({
                 index: elasticSearchConfig.es_index,

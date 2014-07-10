@@ -19,7 +19,7 @@ angular.module('octobluApp')
             $scope.logic_devices += device.uuid + " OR ";
             $scope.deviceLookup[device.uuid] = device.name;
         });
-
+	
         //$scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices", "uuid": "*" };
         $log.log("logging devices");
         $log.log($scope.devices);
@@ -64,6 +64,8 @@ angular.module('octobluApp')
             $scope.legFirst = true;
             $scope.myAdditionalQuery = "";
             $scope.leg = {};
+	    if (!$scope.eGendDate) { $scope.eGendDate = "now"; }
+	    if (!$scope.eGstartDate) { $scope.eGstartDate = "now-30d/d"; }
 	    $scope.leg.config = { "contains_uuid" : "false", "contains_ec" : "false" };
             if ($scope.eGselectDevices && $scope.eGselectDevices.length > 0 ) {
                 _.each($scope.eGselectDevices, function (key, value) {
@@ -80,7 +82,7 @@ angular.module('octobluApp')
 
             }
             $scope.leg.facets = { "eventCodes": {"terms": { "field": "eventCode" } },
-				'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  },
+				  'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  },
 				  "uuids": { "terms":{"field":"uuid"} }
 				 };
 	    $scope.leg.aggs = {
@@ -164,15 +166,44 @@ angular.module('octobluApp')
 
         };
 
+	$scope.search = function(currentPage) { 
+		$scope.ff = {};
+        	$log.log("starting search function, analyzer controller");
+            $scope.results = [ { "text":"searching..." } ];
+            $log.log("searchText = " + $scope.forms.FF_searchText);
+            if ($scope.forms.FF_searchText !== undefined) {
+                elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
+                    if (error) {
+                        $log.log(error);
+                    } else {
+			$log.log("Found stuff");
+			$log.log(response);
+			$log.log(currentUser);
+			$scope.ff.currentPage = currentPage;
+                        $scope.freeform_results = response.hits.hits;
+                        $scope.results = response;
+                        $scope.totalItems = response.hits.total;
+                        $scope.ff.maxSize = 10;
+
+                    }
+                });
+
+            } else {
+                $scope.results = "None Found";
+		$log.log("no search term");
+            }
+
+	 };
         function search (currentPage) {
             $log.log("starting search function, analyzer controller");
-            $scope.results = "searching...";
-            $log.log("searchText = " + $scope.forms.FFsearchText);
+            $scope.results = [ { "text":"searching..." } ];
+            $log.log("searchText = " + $scope.forms.FF_searchText);
             if ($scope.forms.FFsearchText !== undefined) {
                 elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
                     if (error) {
                         $log.log(error);
                     } else {
+			$scope.freeform_results = response.hits.hits;
                         $scope.results = response;
                         $scope.totalItems = response.hits.total;
                         $scope.maxSize = 10;
