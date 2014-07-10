@@ -118,8 +118,10 @@ angular.module('octobluApp')
                 token: $scope.device.token,
                 method: "configurationDetails"
             }).then(function (response) {
-                $scope.device.subdevices = response.result.subdevices || [];
-                $scope.device.plugins = response.result.plugins || [];
+                if (response && response.result) {
+                    $scope.device.subdevices = response.result.subdevices || [];
+                    $scope.device.plugins = response.result.plugins || [];
+                }
             });
         }
         $scope.deleteSubdevice = function (subdevice) {

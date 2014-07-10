@@ -15,7 +15,7 @@
            <a class="btn btn-danger" data-dismiss="modal" ui-sref="^.all"><i class="fa fa-times"></i>&nbsp;&nbsp;Close</a>
            <a id="wizard-previous-btn" ui-sref-active="disabled" class="btn btn-default"  ui-sref=".instructions({claim : model.claim})"><i class="fa fa-chevron-circle-left"></i>&nbsp;&nbsp;Previous</a>
            <a  id="wizard-next-btn" ui-sref-active="disabled" class="btn btn-default" ui-sref=".finddevice({claim : model.claim})">Next&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i></a>
-           <div   id="wizard-finish-btn" ng-class="{disabled: !model.device || !model.name}"  class="btn btn-success"  ng-click="claimDevice()" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</div>
+           <div   id="wizard-finish-btn" ng-class="{disabled: !model.device || !model.device.name}"  class="btn btn-success"  ng-click="claimDevice()" ><i class="fa fa-save"></i>&nbsp;&nbsp;Finish</div>
        </div>
    </div>
 </div>

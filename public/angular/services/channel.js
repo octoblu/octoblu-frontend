@@ -93,12 +93,10 @@ angular.module('octobluApp')
                 });
         };
 
-        this.getCustomList = function(uuid, callback) {
-            $http.get('/api/customchannels/' + uuid, { cache: true})
-                .success(function(data) { callback(data); })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                    callback({});
+        this.getCustomList = function() {
+            return $http.get('/api/customchannels/', { cache: false})
+                .then(function(result){
+                    return result.data;
                 });
         };
 
@@ -122,6 +120,21 @@ angular.module('octobluApp')
                 .error(function(data) {
                     console.log('Error: ' + data);
                     callback({});
+                });
+        };
+
+        this.delete = function(name, callback) {
+            // return $http.delete('/api/channels/'+name, { cache: false})
+            //     .then(function(result){
+            //         return result.data;
+            //     });
+            $http.delete('/api/channels/'+name, { cache: true})
+                .success(function(data) {
+                    callback(true);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                    callback(false);
                 });
         };
     });

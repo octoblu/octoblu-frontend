@@ -3,7 +3,7 @@ angular.module('octobluApp')
         $scope.model = {
             hub: hubs[0],
             hubs: hubs,
-            subdevice : angular.copy(subdevice) || { options: {}, type: pluginName },
+            subdevice : subdevice || { options: {}, type: pluginName },
             nameEditable : !subdevice || !subdevice.name,
             smartDevices : availableDeviceTypes,
             deviceType  : _.findWhere(availableDeviceTypes, function(deviceType){
