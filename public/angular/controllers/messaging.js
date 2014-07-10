@@ -87,8 +87,9 @@ angular.module('octobluApp')
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
                     subdevice: $scope.model.subdevice.name,
                     payload: $scope.model.schemaEditor.getValue()
-                }).then(function (result) {
+                }).then(function (response) {
                     $scope.model.messageOutput = $scope.model.schemaEditor.getValue();
+                    $scope.model.messageResult = response;
                 });
             } else {
 
