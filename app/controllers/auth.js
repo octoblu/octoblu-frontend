@@ -24,6 +24,18 @@ module.exports = function (app, passport, config) {
     });
 
     function loginRoute(req, res) {
+        res.cookie('skynetuuid', user.skynet.uuid, {
+            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+            domain: config.domain,
+            httpOnly: false
+        });
+
+        res.cookie('skynettoken', user.skynet.token, {
+            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+            domain: config.domain,
+            httpOnly: false
+        });
+
         if (req.user && req.user._id) {
             res.send(req.user)
         } else {
@@ -32,6 +44,9 @@ module.exports = function (app, passport, config) {
     }
 
     function logoutRoute(req, res) {
+        res.clearCookie('skynetuuid');
+        res.clearCookie('skynettoken');
+
         if (req.logout) {
             req.logout();
         }
@@ -373,7 +388,7 @@ module.exports = function (app, passport, config) {
     });
 
     //Keep the referrer in the session as briefly as possible - this prevents the login infinite redirect error.
-    function storeReferrer (req, res, next) {
+    function storeReferrer(req, res, next) {
         req.session.referrer = req.query.referrer;
         req.session.mobile = req.query.mobile;
         delete req.query.referrer;
