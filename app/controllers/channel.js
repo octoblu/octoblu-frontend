@@ -43,7 +43,7 @@ module.exports = function (app) {
             });
 
         Api.find(
-            { channelid: { $in: criteria }, enabled: true },
+            { _id: { $in: criteria }, enabled: true },
             { application: 0, custom_tokens: 0 },
             function (err, apis) {
                 if (err) {
@@ -64,7 +64,7 @@ module.exports = function (app) {
             });
 
         Api.find(
-            { channelid: { $nin: criteria }, owner: { $exists: false }, enabled: true },
+            { _id: { $nin: criteria }, owner: { $exists: false }, enabled: true },
             { application: 0, custom_tokens: 0 },
             function (err, apis) {
                 if (err) {
