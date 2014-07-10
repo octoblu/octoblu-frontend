@@ -148,7 +148,7 @@ angular.module('octobluApp')
                     formData.uuid = dupeUuid;
                     formData.token = dupeToken;
 
-                    deviceService.updateDevice($scope.skynetuuid, formData, function (data) {
+                    deviceService.updateDevice(currentUser.skynetuuid, formData, function (data) {
                         try {
                             $scope.devices.splice(dupeIndex, 1);
                             data.token = dupeToken;
@@ -165,7 +165,7 @@ angular.module('octobluApp')
                     });
 
                 } else {
-                    deviceService.createDevice($scope.skynetuuid, formData, function (data) {
+                    deviceService.createDevice(currentUser.skynetuuid, formData, function (data) {
                         try {
                             $scope.devices.push(data);
                             $scope.deviceName = "";
@@ -280,14 +280,14 @@ angular.module('octobluApp')
                 }
 
                 var formData = {};
-                formData.owner = $scope.skynetuuid;
+                formData.owner = currentUser.skynetuuid;
                 formData.name = $scope.gatewayName;
                 formData.keyvals = $scope.keys;
 
                 formData.uuid = dupeUuid;
                 formData.token = dupeToken;
 
-                deviceService.updateDevice($scope.skynetuuid, formData, gatewayOwner, function (data) {
+                deviceService.updateDevice(currentUser.skynetuuid, formData, gatewayOwner, function (data) {
                     console.log(data);
                     try {
                         $scope.gateways.splice(dupeIndex, 1);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('apiController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state, channelService, userService) {
+    .controller('apiController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state, currentUser, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
         $scope.user_channel = {};
@@ -29,15 +29,12 @@ angular.module('octobluApp')
         };
 
         $scope.open = function () {
-
             var modalInstance = $modal.open({
                 templateUrl: 'myModalContent.html',
                 controller: function ($scope, $modalInstance) {
-
                     $scope.ok = function () {
                         $modalInstance.close('ok');
                     };
-
                     $scope.cancel = function () {
                         $modalInstance.dismiss('cancel');
                     };
@@ -47,14 +44,10 @@ angular.module('octobluApp')
 
             modalInstance.result.then(function (response) {
                 if (response === 'ok') {
-                    $log.info('clicked ok');
-
-                    userService.removeConnection($scope.skynetuuid, $scope.channel.name, function (data) {
-
+                    // $log.info('clicked ok');
+                    userService.removeConnection(currentUser.skynetuuid, $scope.channel.name, function (data) {
                         $scope.has_user_channel = false;
-
                     });
-
                 }
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
@@ -120,7 +113,7 @@ angular.module('octobluApp')
         $scope.save = function () {
             if (!$scope.channel) return;
 
-            userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.user_channel.key,
+            userService.saveConnection(currentUser.skynetuuid, $scope.channel.name, $scope.user_channel.key,
                 $scope.user_channel.token, $scope.custom_tokens,
                 function (data) {
                     console.log('saved');
@@ -132,7 +125,7 @@ angular.module('octobluApp')
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function (data) {
+                userService.activateNoAuthChannel($currentUser.skynetuuid, channel.name, function (data) {
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
@@ -206,7 +199,7 @@ angular.module('octobluApp')
             $scope.isEdit = false;
             // console.log($scope.channel);
             if (!$scope.channel) return;
-            if(!$scope.channel.owner) $scope.channel.owner = $scope.skynetuuid;
+            if(!$scope.channel.owner) $scope.channel.owner = currentUser.skynetuuid;
             // $log.info($scope.channel);
             channelService.save($scope.channel, function (data) {
                 // $log.info('completed save call............');
@@ -221,7 +214,7 @@ angular.module('octobluApp')
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynetuuid, channel.name, function (data) {
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
@@ -395,7 +388,8 @@ angular.module('octobluApp')
 
 
     })
-    .controller('apiResourcesController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, channelService, userService) {
+    .controller('apiResourcesController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log
+            ,currentUser, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
         $scope.user_channel = {};
@@ -438,16 +432,12 @@ angular.module('octobluApp')
 
             modalInstance.result.then(function (response) {
                 if (response === 'ok') {
-                    $log.info('clicked ok');
-
-                    userService.removeConnection($scope.skynetuuid, $scope.channel.name, function (data) {
-
+                    // $log.info('clicked ok');
+                    $log.info(currentUser);
+                    userService.removeConnection(currentUser.skynetuuid, $scope.channel.name, function (data) {
                         $scope.has_user_channel = false;
-
                     });
-
-                }
-                ;
+                };
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -455,19 +445,17 @@ angular.module('octobluApp')
 
         $scope.save = function () {
             if (!$scope.channel) return;
-
             // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
             //   function(data) {
             //     console.log('saved');
             //     $scope.has_user_channel = true;
             //   });
-
             return;
         };
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel($scope.skynetuuid, channel.name, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynetuuid, channel.name, function (data) {
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
@@ -487,7 +475,7 @@ angular.module('octobluApp')
             return $scope.channel.logo;
         };
     })
-    .controller('apiResourceDetailController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, channelService, userService) {
+    .controller('apiResourceDetailController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, currentUser, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
         $scope.user_channel = {};
@@ -529,16 +517,11 @@ angular.module('octobluApp')
 
             modalInstance.result.then(function (response) {
                 if (response === 'ok') {
-                    $log.info('clicked ok');
-
-                    userService.removeConnection($scope.skynetuuid, $scope.channel.name, function (data) {
-
+                    // $log.info('clicked ok');
+                    userService.removeConnection(currentUser.skynetuuid, $scope.channel.name, function (data) {
                         $scope.has_user_channel = false;
-
                     });
-
-                }
-                ;
+                };
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
