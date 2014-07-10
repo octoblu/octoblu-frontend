@@ -170,6 +170,11 @@ Connection.prototype.send = function(text) {
   return this;
 };
 
+Connection.prototype.claimdevice = function(data, fn) {
+    this.socket.emit('claimdevice', data, fn);
+    return this;
+};
+
 Connection.prototype.update = function(data, fn) {
   this.socket.emit('update', data, fn);
   return this;
@@ -185,6 +190,7 @@ Connection.prototype.unregister = function(data, fn) {
   return this;
 };
 
+
 Connection.prototype.whoami = function(data, fn) {
   this.socket.emit('whoami', data, fn);
   return this;
@@ -198,6 +204,11 @@ Connection.prototype.devices = function(data, fn) {
 Connection.prototype.mydevices = function(data, fn) {
   this.socket.emit('mydevices', data, fn);
   return this;
+};
+
+Connection.prototype.localdevices = function(data, fn) {
+    this.socket.emit('localdevices', data, fn);
+    return this;
 };
 
 Connection.prototype.bindSocket = function(data, fn) {
