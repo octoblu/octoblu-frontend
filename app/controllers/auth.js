@@ -106,14 +106,14 @@ module.exports = function (app, passport, config) {
         return result;
     };
 
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile','email']}), completeLogin);
+    app.get('/auth/facebook', storeReferrer, passport.authenticate('facebook', { scope: 'email' }));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile', 'email']}), restoreReferrer, completeLogin);
 
-    app.get('/auth/twitter', passport.authenticate('twitter', { scope: 'email' }));
-    app.get('/auth/twitter/callback', passport.authenticate('twitter'), completeLogin);
+    app.get('/auth/twitter', storeReferrer, passport.authenticate('twitter', { scope: 'email' }));
+    app.get('/auth/twitter/callback', passport.authenticate('twitter'), restoreReferrer, completeLogin);
 
-    app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-    app.get('/auth/google/callback', passport.authenticate('google'), completeLogin);
+    app.get('/auth/google', storeReferrer, passport.authenticate('google', { scope: ['profile', 'email'] }));
+    app.get('/auth/google/callback', passport.authenticate('google'), restoreReferrer, completeLogin);
 
     // working on custom oauth handling here.....
     app.get('/api/auth/:name/custom', function (req, res) {
@@ -209,10 +209,10 @@ module.exports = function (app, passport, config) {
 
                         var authURL = api.oauth.authTokenURL + '?oauth_token='
                             + oauth_token;
-                            
-                        if(api.name!='Tumblr') {
+
+                        if (api.name != 'Tumblr') {
                             authURL += '&oauth_consumer_key=' + api.oauth.key
-                            + '&callback=' + callbackURL;
+                                + '&callback=' + callbackURL;
                         }
                         console.log(authURL);
                         res.redirect(authURL);
@@ -372,7 +372,20 @@ module.exports = function (app, passport, config) {
 
     });
 
-    function completeLogin (req, res) {
+    //Keep the referrer in the session as briefly as possible - this prevents the login infinite redirect error.
+    function storeReferrer (req, res, next) {
+        req.session.referrer = req.query.referrer;
+        delete req.query.referrer;
+        next();
+    }
+
+    function restoreReferrer(req, res, next) {
+        req.referrer = req.session.referrer;
+        delete req.session.referrer;
+        next();
+    }
+
+    function completeLogin(req, res) {
         var user = req.user;
         res.cookie('skynetuuid', user.skynet.uuid, {
             maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
@@ -385,15 +398,14 @@ module.exports = function (app, passport, config) {
             httpOnly: false
         });
 
-        // Check for deep link redirect based on referrer in querystring
-        if (req.session.redirect) {
+        if (req.referrer) {
             if (req.session.js) {
-                return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken + '"</script>');
+                res.send('<script>window.location.href="' + req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token + '"</script>');
             } else {
-                return res.redirect(req.session.redirect + '?uuid=' + user.google.skynetuuid + '&token=' + user.google.skynettoken);
+                res.redirect(req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token);
             }
         } else {
-            return res.redirect('/dashboard');
+            res.redirect('/dashboard');
         }
     }
 };
