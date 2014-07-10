@@ -94,6 +94,27 @@
         </div>
         <input type="checkbox" ng-model="checked"> pretty print?
         <div class="panel-body">
+		<table ng-table="freeform_results" show-filter="true" class="table">
+	        <thead>
+        	<tr>
+	            <th ng-repeat="column in columns" ng-show="column.visible"
+	                class="text-center sortable" ng-class="{
+	                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
+	                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
+	                  }"
+	                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+	                {{column.title}}
+	            </th>
+	        </tr>
+	        </thead>
+	        <tbody>
+	        <tr ng-repeat="user in $data">
+	            <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field">
+        	        {{user[column.field]}}
+	            </td>
+	        </tr>
+	        </tbody>
+	    </table>
             <table class="table table-striped table-hover">
                 <tr ng-repeat="result in results.hits.hits" ng-class="rowClass(result)">
                     <td ng-hide="checked">{{ result }}</td>
@@ -102,10 +123,12 @@
                     </td>
                 </tr>
             </table>
+		<div data-pagination="" data-num-pages="numPages()" 
+			  data-current-page="ff.currentPage" data-max-size="ff.maxSize"  
+			  data-boundary-links="true"></div>
         </div>
     </div>
 
-    <!--<pager total-items="totalItems" page="currentPage" ng-show="results"></pager>-->
 </accordion-group>
 <accordion-group heading="Explore">
     <div class="container-fluid">
@@ -151,12 +174,12 @@
                                     <label for="starting"> Starting: </label><select
                                         class="form-control" ng-model="forms.EX_starting">
                                     <option ng-repeat="df in ESdateFormats" value="{{df.value}}"
-                                    {{df.selected}} >{{df.text}}</option>
+                                    >{{df.text}}</option>
                                 </select>
                                     <label for="ending"> Ending: </label> <select class="form-control"
                                                                                   ng-model="forms.EX_ending">
                                     <option ng-repeat="df in ESdateFormats" value="{{df.value}}"
-                                    {{df.selected}} >{{df.text}}</option>
+                                    >{{df.text}}</option>
                                 </select>
                                 </div>
                             </div>
@@ -198,22 +221,6 @@
         </div>
         <!-- end Choices Div Row -->
         <div class="row">
-            <!--<div class="col-md-8 dashboard-panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">The Graph</h3>
-                </div>
-                <div class="panel panel-default">
-                    <carousel>
-                        <slide ng-repeat="chart in eGCharts" active="chart.active">
-                            <div class="carousel-caption">
-                                <h4>Chart {{index}}</h4>
-
-                                <p>{{chart.text}}</p>
-                            </div>
-                        </slide>
-                    </carousel>
-                </div>
-            </div>-->
 	<div class="col-sm-8 dashboard-panel">
             <div class="panel-heading">
                 <h3 class="panel-title">Event Counts over Time</h3>
@@ -225,7 +232,7 @@
                             <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                             <div ng-switch-default>
                                 <div nvd3-line-chart show-legend="True" axis-x-label="Hour" axis-x-type="date"
-                                     axis-x-format="%-m/%-d %-H:%-M" data="leg.uuids" height="300"></div>
+                                     axis-x-format="%-m/%-d %-H:%-M" data="leg.eventCounts" height="300"></div>
                             </div>
                         </div>
                     </div>
