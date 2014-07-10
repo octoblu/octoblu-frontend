@@ -64,12 +64,12 @@ module.exports = function (env, passport) {
                 // if no user is found, return the message
                 if (!user) {
                     console.log('auth user not found');
-                    return done(null, false, req.flash('loginMessage', 'No user found.'));
+                    return done({error : 'No User Found'});
                 }
 
                 if (!user.validPassword(password)) {
                     console.log('auth password doesnt match');
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+                    return done({error : 'Bad Password!'});
                 }
 
 
