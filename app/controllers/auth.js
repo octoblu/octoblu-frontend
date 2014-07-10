@@ -375,13 +375,17 @@ module.exports = function (app, passport, config) {
     //Keep the referrer in the session as briefly as possible - this prevents the login infinite redirect error.
     function storeReferrer (req, res, next) {
         req.session.referrer = req.query.referrer;
+        req.session.mobile = req.query.mobile;
         delete req.query.referrer;
+        delete req.query.mobile;
         next();
     }
 
     function restoreReferrer(req, res, next) {
         req.referrer = req.session.referrer;
+        req.mobile = req.session.mobile;
         delete req.session.referrer;
+        delete req.session.mobile;
         next();
     }
 
@@ -399,7 +403,7 @@ module.exports = function (app, passport, config) {
         });
 
         if (req.referrer) {
-            if (req.session.js) {
+            if (req.mobile) {
                 res.send('<script>window.location.href="' + req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token + '"</script>');
             } else {
                 res.redirect(req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token);
