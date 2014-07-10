@@ -38,6 +38,9 @@ module.exports = function (app) {
     app.get('/api/channels/active', isAuthenticated, function (req, res) {
         var user = req.user,
             criteria = _.pluck(user.api, 'name');
+        var criteria = criteria.filter(function(item) {
+                return item;
+            });
 
         Api.find(
             { name: { $in: criteria }, enabled: true },
@@ -56,6 +59,9 @@ module.exports = function (app) {
     app.get('/api/channels/available', isAuthenticated, function (req, res) {
         var user = req.user,
             criteria = _.pluck(user.api, 'name');
+        var criteria = criteria.filter(function(item) {
+                return item;
+            });
 
         Api.find(
             { name: { $nin: criteria }, owner: { $exists: false }, enabled: true },

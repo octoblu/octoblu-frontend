@@ -74,7 +74,7 @@ var config = {
         }
     },
       'skynet' : {
-           'override_token' : 'w0rldd0m1n4t10n',
+           'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
           // 'host' : process.env.SKYNET_HOST || 'skynet.im',
           // 'port' : process.env.SKYNET_PORT || 80
           'host' : process.env.SKYNET_HOST || 'skynet.im',
@@ -167,7 +167,7 @@ var config = {
 
       'skynet' : {
            'host' : process.env.SKYNET_HOST || 'skynet.im',
-          'override_token' : 'w0rldd0m1n4t10n',
+          'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
            'port' : process.env.SKYNET_PORT || 80
       },
     'port' : process.env.PORT || 80,
