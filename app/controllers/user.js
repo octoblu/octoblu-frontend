@@ -72,6 +72,7 @@ module.exports = function (app) {
     var deleteUserChannel = function (req, res) {
         var found = false,
             name = req.params.name;
+        var user = req.user;
         user.api = user.api || [];
         var api = _.findWhere(user.api, {name: name});
         if (api) {

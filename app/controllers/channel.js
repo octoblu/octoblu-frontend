@@ -121,4 +121,16 @@ module.exports = function (app) {
             }
         });
     });
+
+    app.delete('/api/channels/:name', isAuthenticated, function(req, res) {
+        // model.findOneAndRemove
+        // owner: req.user.resource.uuid
+        Api.findOneAndRemove({ name: req.params.name, owner: req.user.resource.uuid }, function (err) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json({'msg':'ok'});
+            }
+        });
+    });
 };

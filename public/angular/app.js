@@ -147,7 +147,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/finddevice?claim',
                 templateUrl: 'pages/connector/devices/wizard/find-device.html'
             })
-            //begin refactor states
+            //begin refactor states            
             .state('ob.connector.channels', {
                 abstract: true,
                 url: '/channels',
@@ -191,10 +191,31 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'smartDeviceController',
                 templateUrl: 'pages/connector/advanced/devices.html'
             })
+            // .state('ob.connector.advanced.channels', {
+            //     url: '/custom_channels',
+            //     templateUrl: 'pages/connector/advanced/channels.html'
+            // })
             .state('ob.connector.advanced.channels', {
+                // abstract: true,
                 url: '/custom_channels',
-                templateUrl: 'pages/connector/advanced/channels.html'
+                // template: '<ui-view />',
+                templateUrl: 'pages/connector/advanced/channels.html',
+                controller: 'CustomChannelController',
+                resolve: {
+                    customChannels: function (channelService) {
+                        return channelService.getCustomList();
+                    }
+                }
+                // resolve: {
+                //     customChannels: function (channelService) {
+                //         return [];
+                //     }
+                // }
             })
+            // .state('ob.connector.advanced.channels.index', {
+            //     url: '',
+            //     templateUrl: 'pages/connector/advanced/channels.html'
+            // })
             .state('ob.connector.advanced.channels.editor', {
                 url: '/editor/:name',
                 templateUrl: 'pages/connector/channels/editor.html',
