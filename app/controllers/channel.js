@@ -7,6 +7,7 @@ var _ = require('underscore'),
     DeviceType = mongoose.model('DeviceType'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = function (app) {
 
@@ -122,10 +123,10 @@ module.exports = function (app) {
         });
     });
 
-    app.delete('/api/channels/:name', isAuthenticated, function(req, res) {
+    app.delete('/api/channels/:id', isAuthenticated, function(req, res) {
         // model.findOneAndRemove
         // owner: req.user.resource.uuid
-        Api.findOneAndRemove({ name: req.params.name, owner: req.user.resource.uuid }, function (err) {
+        Api.findOneAndRemove({ _id: new ObjectId(req.params.id), owner: req.user.resource.uuid }, function (err) {
             if (err) {
                 res.send(err);
             } else {

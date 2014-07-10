@@ -77,8 +77,7 @@ angular.module('octobluApp')
                         name: result.subdevice.name,
                         options: result.subdevice.options
                     }).then(function (response) {
-                        result.hub.subdevices.push(response.result);
-                        var device = _.findWhere($scope.devices, {uuid: result.hub.uuid});
+                        var device = _.findWhere(myDevices, {uuid: result.hub.uuid});
                         device.subdevices.push(response.result);
                     });
 

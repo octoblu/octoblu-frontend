@@ -65,7 +65,6 @@ angular.module('octobluApp')
                         options: updatedSubdevice.options
                     }).then(function (response) {
                         console.log(response);
-                        angular.copy(updatedSubdevice, subdevice);
                     });
                 }
 
