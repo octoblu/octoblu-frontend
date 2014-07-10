@@ -8,7 +8,7 @@ var _ = require('lodash'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request');
-
+var ObjectId = require('mongoose').Types.ObjectId; 
 var uuid = require('node-uuid');
 
 module.exports = function (app) {
@@ -21,33 +21,31 @@ module.exports = function (app) {
         res.json(req.user);
     });
 
-    app.get('/api/user/:id/api/:name', isAuthenticated, function (req, res) {
-        res.json(_.findWhere(req.user.api, {name: req.params.name}));
+    app.get('/api/user/:id/api/:id', isAuthenticated, function (req, res) {
+        res.json(_.findWhere(req.user.api, {channelid: req.params.id}));
     });
-    app.get('/api/user/api/:name', isAuthenticated, function (req, res) {
-        res.json(_.findWhere(req.user.api, {name: req.params.name}));
+    app.get('/api/user/api/:id', isAuthenticated, function (req, res) {
+        res.json(_.findWhere(req.user.api, {channelid: req.params.id}));
     });
 
-    var getUserChannel = function (req, res) {
+    var updateUserChannel = function (req, res) {
         var user = req.user,
             key = req.body.key,
             token = req.body.token,
             custom_tokens = req.body.custom_tokens;
 
-        user.addOrUpdateApiByName(req.params.name, 'simple', key, token, null, null, custom_tokens);
+        user.addOrUpdateApiByChannelId(req.params.id, 'simple', key, token, null, null, custom_tokens);
         user.save(function (err) {
             if (!err) {
-                console.log(user);
                 res.json(user);
-
             } else {
                 console.log('Error: ' + err);
                 res.json(user);
             }
         });
     };
-    app.put('/api/user/:id/channel/:name', isAuthenticated, getUserChannel);
-    app.put('/api/user/channel/:name', isAuthenticated, getUserChannel);
+    app.put('/api/user/:id/channel/:id', isAuthenticated, updateUserChannel);
+    app.put('/api/user/channel/:id', isAuthenticated, updateUserChannel);
 
     var getUserActivation = function (req, res) {
         var user = req.user,
