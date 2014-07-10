@@ -175,6 +175,10 @@
                                         <td>Total Events Returned:</td>
                                         <td>{{leg.total}}</td>
                                     </tr>
+				    <tr>
+					<td>Different UUIDs:</td>
+					<td>{{leg.dcUUIDs}}</td>
+				    </tr>
                                 </table>
                             </div>
                         </div>
@@ -220,8 +224,8 @@
                         <div ng-switch="!!leg ? 1 : 0">
                             <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                             <div ng-switch-default>
-                                <div nvd3-line-chart show-legend="false" axis-x-label="Day" axis-x-type="date"
-                                     axis-x-format="%-m/%-d" data="leg.eventCounts" height="300"></div>
+                                <div nvd3-line-chart show-legend="True" axis-x-label="Hour" axis-x-type="date"
+                                     axis-x-format="%-m/%-d %-H:%-M" data="leg.uuids" height="300"></div>
                             </div>
                         </div>
                     </div>

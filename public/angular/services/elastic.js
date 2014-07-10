@@ -59,13 +59,13 @@ angular.module('octobluApp')
             });
         };
 
-	this.paramSearch = function (from, to, size, query, facet, myDevices, callback) {
+	this.paramSearch = function (pConfig, myDevices, callback) {
 		this.log("starting function=paramSearch");
 		myQuery = "";
-		if (query.length > 0) { myQuery = " AND " + query; }
+		if (pConfig.query.length > 0) { myQuery = " AND " + pConfig.query; }
 		
-		baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+this.devices.logic+"') "+myQuery }},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
-		if (size < 1) { delete baseSearchObject.size; }
+		baseSearchObject = {"size":pConfig.size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+this.devices.logic+"') "+myQuery }},{"range": {"timestamp": {"from": pConfig.from,"to": pConfig.to}}}]}}}}},"facets": pConfig.facet, "aggs": pConfig.aggs};
+		if (pConfig.size < 1) { delete baseSearchObject.size; }
 		this.log(JSON.stringify(baseSearchObject));
 		service.client.search({ index: elasticSearchConfig.es_index, body: baseSearchObject}, function(error,response) { callback(error, response); });
 	}; 

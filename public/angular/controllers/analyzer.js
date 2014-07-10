@@ -40,7 +40,7 @@ angular.module('octobluApp')
         });
         $log.log("New Value for Devices");
         elasticService.setOwnedDevices($scope.devices);
-        elasticService.paramSearch("now-1d/d", "now", 0, "", {}, $scope.devices, function (err, data) {
+        elasticService.paramSearch({ "from": "now-1d/d", "to": "now", "size": 0, "query": "", "facet": {}, "aggs": {}}, $scope.devices, function (err, data) {
             if (err) {
                 return $log.log(err);
             }
@@ -60,7 +60,6 @@ angular.module('octobluApp')
             $scope.eGendDate = $scope.forms.EX_ending;
             $scope.eGselectDevices = $scope.forms.EX_graphDevices;
             $scope.eGEC = $scope.forms.EX_eventCode;
-            $log.log($scope);
             $log.log("Ending: " + $scope.eGendDate + ", Starting: " + $scope.eGstartDate + ", EventCodes: " + $scope.eGEC + ", Selected Devices: " + $scope.eGselectDevices);
             $scope.legFirst = true;
             $scope.myAdditionalQuery = "";
@@ -80,10 +79,42 @@ angular.module('octobluApp')
                 });
 
             }
-            $scope.legFacets = { "eventCodes": {"terms": { "field": "eventCode" } },
-				'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  }
+            $scope.leg.facets = { "eventCodes": {"terms": { "field": "eventCode" } },
+				'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  },
+				  "uuids": { "terms":{"field":"uuid"} }
 				 };
-
+	    $scope.leg.aggs = {
+				"uuids" : {
+            				"terms" : {
+                				"field" : "uuid"
+            				}
+        			},
+				"eventcodes" : {
+					"terms" : {
+						"field" : "eventCode"
+					}
+				},
+				"count_by_uuid": {
+         				"terms": {
+            					"field": "uuid"
+        				 },
+         				"aggs": {
+            				"events_by_date": {
+               					"date_histogram": {
+                  				"field": "timestamp",
+                  				"interval": "hour"
+               				},
+               				"aggs": {
+                  				"value_count_terms": {
+                     					"value_count": {
+                        					"field": "uuid"
+                     					}
+                  				}
+					}
+					}
+					}
+				}
+			      };
             if ($scope.eGEC && $scope.eGEC != "all") {
                var oper = "";
                     $scope.leg.config.contains_ec = "true";
@@ -103,7 +134,7 @@ angular.module('octobluApp')
 	    $scope.myAQ = "";
 	    if ($scope.myAdditionalQuery.length > 1) {$scope.myAQ = " ( " + $scope.myAdditionalQuery + " ) "; }
 	    $log.log($scope.myAQ);
-            elasticService.paramSearch($scope.eGstartDate, $scope.eGendDate, 0, $scope.myAQ, $scope.legFacets, $scope.eGselectDevices, function (err, data) {
+            elasticService.paramSearch({ "from":$scope.eGstartDate, "to":$scope.eGendDate, "size":0, "query":$scope.myAQ, "facet": $scope.leg.facets, "aggs": $scope.leg.aggs }, $scope.eGselectDevices, function (err, data) {
                 if (err) {
                     return $log.log(err);
                 }
@@ -112,12 +143,20 @@ angular.module('octobluApp')
                 $scope.leg = {"results": data, 
 				"total": data.hits.total, 
 				"dcEC": data.facets.eventCodes.terms.length, 
+				"dcUUIDs" : data.facets.uuids.terms.length,
 				"eventCounts": [ 
 					{ key: "Event Count", 
 					  values: _.map(data.facets.times.entries, function(item) {
 						return { x: item.time, y: item.count };
 					})
-					}] 
+					}],
+				"uuid_counts": [_.map(data.aggregations.count_by_uuid.buckets, function(item) {
+							return { "key": item.key, "values": _.map(item.events_by_date, function(kitem){ 
+								return { x: kitem.key, y: kitem.doc_count}; 
+								})
+							};
+					       })
+					       ]
 			};
 		$log.log($scope.leg);
 
@@ -155,7 +194,7 @@ angular.module('octobluApp')
                 "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } },
                 "eventCodes": {"terms": { "field": "eventCode" } }
             };
-            elasticService.paramSearch("now-1d/d", "now", 0, "", $scope.loadTopfacetObject, $scope.devices, function (err, data) {
+            elasticService.paramSearch({"from":"now-1d/d", "to":"now", "size":0, "query":"", "facet": $scope.loadTopfacetObject, "aggs":{}}, $scope.devices, function (err, data) {
                 if (err) {
                     return $log.log(err);
                 }
