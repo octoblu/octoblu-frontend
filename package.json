@@ -1,6 +1,6 @@
 {
   "name": "octoblu",
-  "version": "0.4.2",
+  "version": "0.4.4",
   "description": "octoblu.com",
   "main": "server.js",
   "author": "Chris Matthieu",
@@ -8,6 +8,7 @@
     "async": "*",
     "bcrypt-nodejs": "latest",
     "bower": "^1.3.3",
+    "browserify": "^4.2.0",
     "connect-flash": "~0.1.1",
     "cors": "*",
     "coveralls": "^2.7.1",

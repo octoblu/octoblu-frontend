@@ -55,7 +55,6 @@ angular.module('octobluApp')
 
                 var intervalPromise = $interval(function () {
                     messageLines.message.line.append(new Date().getTime(), messages.length);
-                    console.log(messages.length);
                     if (messages.length) {
                         _.each(_.keys(messageLines), function (key) {
                             if (key !== 'message') {
