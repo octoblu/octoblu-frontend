@@ -217,7 +217,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             //     templateUrl: 'pages/connector/advanced/channels.html'
             // })
             .state('ob.connector.advanced.channels.editor', {
-                url: '/editor/:name',
+                url: '/editor/:id',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
             })
