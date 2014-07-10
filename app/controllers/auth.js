@@ -383,7 +383,7 @@ module.exports = function (app, passport, config) {
 
     function restoreReferrer(req, res, next) {
         req.referrer = req.session.referrer;
-        req.mobile = req.session.mobile;
+        req.mobile = req.session.mobiler;
         delete req.session.referrer;
         delete req.session.mobile;
         next();
@@ -403,7 +403,7 @@ module.exports = function (app, passport, config) {
         });
 
         if (req.referrer) {
-            if (req.mobile) {
+            if (req.session.js || req.mobile) {
                 res.send('<script>window.location.href="' + req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token + '"</script>');
             } else {
                 res.redirect(req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token);
