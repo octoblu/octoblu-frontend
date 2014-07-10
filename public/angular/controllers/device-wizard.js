@@ -46,9 +46,10 @@ angular.module('octobluApp')
             deviceService
                 .claimDevice($scope.model.device.uuid)
                 .then(function (result) {
-                    //now update the name
-                    return deviceService.updateDevice($scope.model.device.uuid, { name: $scope.model.device.name });
-                }).then(function (device) {
+                   var device = $scope.model.device;
+                   return skynetService.updateDevice(device);
+                }).then(function (result) {
+                    console.log(result);
                     return  deviceService.getDevices(true);
                 }).then(function(){
                     $state.go('ob.connector.devices.all', {}, {reload : true});
