@@ -47,6 +47,7 @@ var UserSchema = new mongoose.Schema({
         api: [
             {
                 name: String,
+                channelid: String,
                 authtype: String,
                 key: String,
                 token: String,

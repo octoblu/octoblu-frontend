@@ -78,8 +78,8 @@ angular.module('octobluApp')
             );
         };
 
-        this.activateNoAuthChannel = function(user, apiName, callback) {
-            $http.put('/api/user/' + user + '/activate/' + apiName)
+        this.activateNoAuthChannel = function(user, channelid, callback) {
+            $http.put('/api/user/' + user + '/activate/' + channelid)
                 .success(function(data) {
                     callback(data);
                 })
@@ -90,9 +90,9 @@ angular.module('octobluApp')
 
         };
 
-        this.saveConnection = function (uuid, name, key, token, custom_tokens, callback) {
+        this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback) {
 
-            $http.put('/api/user/' + uuid+ '/channel/' + name, { key: key, token: token, custom_tokens: custom_tokens })
+            $http.put('/api/user/' + uuid+ '/channel/' + channelid, { key: key, token: token, custom_tokens: custom_tokens })
                 .success(function (data) {
                     callback(data);
                 })
@@ -103,9 +103,9 @@ angular.module('octobluApp')
 
         };
 
-        this.removeConnection = function (uuid, name, callback) {
+        this.removeConnection = function (uuid, channelid, callback) {
 
-            $http.delete('/api/user/' + uuid+ '/channel/' + name, {})
+            $http.delete('/api/user/' + uuid+ '/channel/' + channelid, {})
                 .success(function (data) {
                     callback(data);
                 })

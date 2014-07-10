@@ -37,13 +37,13 @@ module.exports = function (app) {
     // List of active API channels
     app.get('/api/channels/active', isAuthenticated, function (req, res) {
         var user = req.user,
-            criteria = _.pluck(user.api, 'name');
+            criteria = _.pluck(user.api, 'channelid');
         var criteria = criteria.filter(function(item) {
                 return item;
             });
 
         Api.find(
-            { name: { $in: criteria }, enabled: true },
+            { channelid: { $in: criteria }, enabled: true },
             { application: 0, custom_tokens: 0 },
             function (err, apis) {
                 if (err) {
@@ -58,13 +58,13 @@ module.exports = function (app) {
     // List of active API channels
     app.get('/api/channels/available', isAuthenticated, function (req, res) {
         var user = req.user,
-            criteria = _.pluck(user.api, 'name');
+            criteria = _.pluck(user.api, 'channelid');
         var criteria = criteria.filter(function(item) {
                 return item;
             });
 
         Api.find(
-            { name: { $nin: criteria }, owner: { $exists: false }, enabled: true },
+            { channelid: { $nin: criteria }, owner: { $exists: false }, enabled: true },
             { application: 0, custom_tokens: 0 },
             function (err, apis) {
                 if (err) {
