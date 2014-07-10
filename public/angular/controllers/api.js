@@ -290,8 +290,8 @@ angular.module('octobluApp')
             modalInstance.result.then(function (response) {
                     $log.info('response: '+response);
                     if (response === 'ok') {
-                        $log.info('clicked ok');
-                        channelService.delete($scope.channel.name, function(result){
+                        // $log.info('clicked ok: '+$scope.channel._id);
+                        channelService.delete($scope.channel._id, function(result){
                             if(result) {
                                 try { $scope.removeCustomChannels($scope.channel); } catch(e) {}
                                 $state.go('^');
