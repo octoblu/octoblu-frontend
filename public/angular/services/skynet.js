@@ -33,14 +33,11 @@ angular.module('octobluApp')
 
         skynetPromise.then(function () {
             console.log('registering for messages');
-            skynetConnection.on('message', function (message) {
-                $rootScope.$broadcast('skynet:message', message);
-                $rootScope.$broadcast('skynet:message:' + message.fromUuid, message);
-            });
+            skynetConnection.on('message', processMessage);
 
             _.each($rootScope.myDevices, function (device) {
                 console.log('Subscribing for device :' + device.uuid);
-                skynetConnection.subscribe({uuid: device.uuid});
+                skynetConnection.subscribe({uuid: device.uuid, token: device.token});
             });
 
             $rootScope.$watch('myDevices', function (myDevices, prevMyDevices) {
@@ -51,10 +48,21 @@ angular.module('octobluApp')
 
                 _.each(myDevices, function (device) {
                     console.log('Subscribing for device :' + device.uuid);
-                    skynetConnection.subscribe({uuid: device.uuid});
+                    skynetConnection.subscribe({uuid: device.uuid, token: device.token});
                 });
             });
         });
+
+        function processMessage(message) {
+            $rootScope.$broadcast('skynet:message', message);
+            $rootScope.$broadcast('skynet:message:' + message.fromUuid, message);
+            if (message.payload && _.has(message.payload, 'online')) {
+                var device = _.findWhere($rootScope.myDevices, {uuid: message.fromUuid});
+                if (device) {
+                    device.online = message.payload.online;
+                }
+            }
+        }
 
         var service = {
             /**
@@ -63,7 +71,7 @@ angular.module('octobluApp')
              * can grab the skynetConnection and make the underlying api calls.
              * @returns {Deferred.promise|*}
              */
-            getSkynetConnection : function(){
+            getSkynetConnection: function () {
                 var defer = $q.defer(), promise = defer.promise;
 
                 skynetPromise.then(function () {
@@ -95,7 +103,7 @@ angular.module('octobluApp')
              * @param options
              * @returns {Deferred.promise|*}
              */
-            claimDevice : function(options){
+            claimDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer(), promise = defer.promise;
 
@@ -212,4 +220,5 @@ angular.module('octobluApp')
         };
 
         return service;
-    });
+    })
+;
