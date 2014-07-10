@@ -14,7 +14,7 @@ angular.module('octobluApp')
             },
             link: function (scope, element, attrs) {
                 var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketId', 'socketid',  '_id', 'owner', 'timestamp', 'online', 'channel', 'protocol',
-                       'ipAddress', 'localhost', 'secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
+                        'localhost', 'secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
                     originalDevice = scope.model, schema, editor;
 
                 scope.editingDevice =  _.omit(angular.copy(originalDevice), readOnlyKeys);

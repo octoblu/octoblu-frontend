@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('AddEditSubDeviceController', function ($scope, $modalInstance, hubs, subdevice, pluginName, availableDeviceTypes, PluginService) {
+    .controller('AddEditSubDeviceController', function ($q, $scope, $modalInstance, hubs, subdevice, pluginName, availableDeviceTypes, PluginService) {
         $scope.model = {
             hub: hubs[0],
             hubs: hubs,
@@ -28,7 +28,7 @@ angular.module('octobluApp')
                     })
                     .then(function (result) {
                         console.log(result);
-                        newHub.plugins = result.result;
+                        newHub.plugins = result;
                         $scope.model.plugin = _.findWhere(newHub.plugins, {name: pluginName})
                     });
             } else {
@@ -43,7 +43,8 @@ angular.module('octobluApp')
         $scope.save = function () {
             var errors = $scope.model.schemaEditor.validate();
             if (!errors.length) {
-                $modalInstance.close({hub: $scope.model.hub, subdevice: $scope.model.subdevice});
+                $scope.model.subdevice.options = $scope.model.schemaEditor.getValue();
+                $modalInstance.close({hub: $scope.model.hub, deviceType: $scope.model.deviceType, subdevice: $scope.model.subdevice, isNew: $scope.model.isNew});
             }
         };
     });
