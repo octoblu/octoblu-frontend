@@ -11,9 +11,6 @@ angular.module('octobluApp')
         });
 
         $scope.schemaEditor = {};
-        $scope.$on('skynet:message:' + currentUser.skynetuuid, function (channel, message) {
-            alert(JSON.stringify(message, null, true));
-        });
 
         $scope.$watch('sendUuid', function (newValue, oldValue) {
             if (newValue || $scope.device) {
