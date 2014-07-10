@@ -168,7 +168,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/channels/index.html'
             })
             .state('ob.connector.channels.detail', {
-                url: '/:name',
+                url: '/:id',
                 templateUrl: 'pages/connector/channels/detail.html',
                 controller: 'apiController'
             })
@@ -178,7 +178,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'apiResourcesController'
             })
             .state('ob.connector.channels.resources.detail', {
-                url: '/:apiname',
+                url: '/:id',
                 templateUrl: 'pages/connector/channels/resources/detail.html',
                 controller: 'apiResourcesController'
             })

@@ -113,8 +113,8 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/api/channels/:name', function (req, res) {
-        Api.findOne({ name: req.params.name }, function (err, api) {
+    app.get('/api/channels/:id', function (req, res) {
+        Api.findOne({ _id: new ObjectId(req.params.id) }, function (err, api) {
             if (err) {
                 res.send(err);
             } else {
