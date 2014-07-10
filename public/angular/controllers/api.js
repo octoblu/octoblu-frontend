@@ -125,7 +125,7 @@ angular.module('octobluApp')
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel($currentUser.skynetuuid, channel.name, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynetuuid, channel.name, function (data) {
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
