@@ -57,6 +57,26 @@ angular.module('octobluApp')
         });
 
         var service = {
+            /**
+             * gets the skynetConnection. This is so that when we migrate the
+             * device centric apis to the device service, the device service
+             * can grab the skynetConnection and make the underlying api calls.
+             * @returns {Deferred.promise|*}
+             */
+            getSkynetConnection : function(){
+                var defer = $q.defer(), promise = defer.promise;
+
+                skynetPromise.then(function () {
+                    return skynetConnection;
+                });
+                return promise;
+            },
+
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
             gatewayConfig: function (options) {
                 var defer = $q.defer(), promise = defer.promise;
 
@@ -70,6 +90,31 @@ angular.module('octobluApp')
                 return promise;
             },
 
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
+            claimDevice : function(options){
+                var device = _.omit(options, reservedProperties),
+                    defer = $q.defer(), promise = defer.promise;
+
+                skynetPromise.then(function () {
+                    skynetConnection.claimdevice(device, function (data) {
+                        console.log('claim device results: ');
+                        console.log(data);
+                        defer.resolve(data);
+                    });
+                });
+
+                return promise;
+            },
+
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
             updateDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer(), promise = defer.promise;
@@ -84,6 +129,11 @@ angular.module('octobluApp')
                 return promise;
             },
 
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
             registerDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer(), promise = defer.promise;
@@ -97,6 +147,11 @@ angular.module('octobluApp')
                 return promise;
             },
 
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
             unregisterDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer(), promise = defer.promise;
@@ -111,21 +166,41 @@ angular.module('octobluApp')
                 return promise;
             },
 
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
             createSubdevice: function (options) {
                 return service.gatewayConfig(_.extend({ method: 'createSubdevice' },
                     _.omit(options, reservedProperties)));
             },
 
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
             updateSubdevice: function (options) {
                 return service.gatewayConfig(_.extend({ method: 'updateSubdevice' },
                     _.omit(options, reservedProperties)));
             },
 
+            /**
+             *
+             * @param options
+             * @returns {Deferred.promise|*}
+             */
             deleteSubdevice: function (options) {
                 return service.gatewayConfig(_.extend({ method: 'deleteSubdevice' },
                     _.omit(options, reservedProperties)));
             },
 
+            /**
+             *
+             * @param options
+             * @returns {*}
+             */
             sendMessage: function (options) {
                 return skynetPromise.then(function () {
                     skynetConnection.message(options, function (result) {
