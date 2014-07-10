@@ -208,9 +208,8 @@ angular.module('octobluApp')
                 if (data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
-                    // try { $scope.updateCustomChannel($scope.channel); } catch(e) {}
                     channelService.getCustomList(true);
-                    $state.go('ob.connector.advanced.channels.editor', { name: data._id });
+                    $state.go('ob.connector.advanced.channels.editor', { id: data._id });
                 }
             });
         };
@@ -378,7 +377,7 @@ angular.module('octobluApp')
                 });
         };
 
-        if ($stateParams.name == 'new') {
+        if ($stateParams.id == 'new') {
             $scope.isNew = true;
             $scope.channel.owner = currentUser.skynetuuid;
         } else {
