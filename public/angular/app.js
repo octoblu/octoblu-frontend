@@ -29,11 +29,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // change page event name
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-        $httpProvider.interceptors.push(function ($injector) {
+        $httpProvider.interceptors.push(function ($location) {
             return {
                 responseError: function (response) {
-                    if (response.status >= 400) {
-                        $injector.get('$state').go('login');
+                    if (response.status === 401) {
+                        $location.url('/login');
                     }
                     return response;
                 }
@@ -147,7 +147,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/finddevice?claim',
                 templateUrl: 'pages/connector/devices/wizard/find-device.html'
             })
-            //begin refactor states
+            //begin refactor states            
             .state('ob.connector.channels', {
                 abstract: true,
                 url: '/channels',
@@ -191,10 +191,31 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'smartDeviceController',
                 templateUrl: 'pages/connector/advanced/devices.html'
             })
+            // .state('ob.connector.advanced.channels', {
+            //     url: '/custom_channels',
+            //     templateUrl: 'pages/connector/advanced/channels.html'
+            // })
             .state('ob.connector.advanced.channels', {
+                // abstract: true,
                 url: '/custom_channels',
-                templateUrl: 'pages/connector/advanced/channels.html'
+                // template: '<ui-view />',
+                templateUrl: 'pages/connector/advanced/channels.html',
+                controller: 'CustomChannelController',
+                resolve: {
+                    customChannels: function (channelService) {
+                        return channelService.getCustomList();
+                    }
+                }
+                // resolve: {
+                //     customChannels: function (channelService) {
+                //         return [];
+                //     }
+                // }
             })
+            // .state('ob.connector.advanced.channels.index', {
+            //     url: '',
+            //     templateUrl: 'pages/connector/advanced/channels.html'
+            // })
             .state('ob.connector.advanced.channels.editor', {
                 url: '/editor/:name',
                 templateUrl: 'pages/connector/channels/editor.html',
@@ -311,7 +332,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // For any unmatched url, redirect to /
         $urlRouterProvider.otherwise('/dashboard');
     })
-    .run(function ($rootScope, $window, $state, $urlRouter, AuthService) {
+    .run(function ($rootScope, $window, $state, $urlRouter, $location, AuthService) {
 
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams) {
             console.log('error from ' + fromState.name + ' to ' + toState.name)
@@ -320,14 +341,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
         $rootScope.$on('$stateChangeStart', function (event, toState) {
             if (!toState.unsecured) {
-                return AuthService.getCurrentUser().then(function (user) {
-                    console.log('got a user!');
-                    console.log(user);
-                }, function (err) {
+                return AuthService.getCurrentUser(true).then(null, function (err) {
                     console.log('LOGIN ERROR:');
                     console.log(err);
                     event.preventDefault();
-                    $state.go('login');
+                    $location.url('/login');
                 });
             }
         });

@@ -14,13 +14,13 @@ angular.module('octobluApp')
             },
             link: function (scope, element, attrs) {
                 var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketId', 'socketid',  '_id', 'owner', 'timestamp', 'online', 'channel', 'protocol',
-                       'ipAddress', 'localhost', 'secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
+                        'localhost', 'secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
                     originalDevice = scope.model, schema, editor;
 
-                scope.editingDevice =  _.omit(angular.copy(originalDevice), readOnlyKeys);
                 scope.$watch('schema', function (newSchema) {
                     console.log('schema is');
                     console.log(scope.schema);
+                    scope.editingDevice =  _.omit(angular.copy(originalDevice), readOnlyKeys);
                     schema = _.extend({ title: 'Options'}, scope.schema);
 
                     if (editor) {
@@ -35,7 +35,6 @@ angular.module('octobluApp')
                             disable_collapse: true,
                             required_by_default: true,
                             disable_edit_json: !scope.allowJsonEdit
-
                         });
 
                     editor.on('change', function () {

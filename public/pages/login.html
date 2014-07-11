@@ -18,7 +18,7 @@
             <div class='row'>
               <div class='col-sm-4 col-sm-offset-4'>
                 <h1 class='text-center title'>Sign in</h1>
-                <form class='validate-form' target="_self">
+                <form class='validate-form' target="_self" ng-submit="login()">
                   <div class='form-group'>
                     <div class='controls with-icon-over-input'>
                       <input value="" ng-model="email" placeholder="E-mail" class="form-control" data-rule-required="true" name="email" type="text" />
@@ -37,15 +37,15 @@
                       Remember me
                     </label>
                   </div>
-                  <a href ng-click="login()" class='btn btn-block'>Sign in</a>
+                  <button type="submit" class="btn btn-block">Sign in</button>
                 </form>
                 <div class='text-center'>
                   <hr class='hr-normal'>
-                  <a href='/forgot'>Forgot your password?</a> / 
+                  <a href='/forgot'>Forgot your password?</a> /
                   <a href='/signup'><strong>Sign up!</strong></a>
                 </div>
                 <br />
-            
+
                 <div class="row text-center">
                   <a class="btn btn-fb" href="{{getLoginUrl('/auth/facebook')}}" target="_self">
                     <span class="fa fa-facebook"> Facebook</span>

@@ -7,6 +7,7 @@ var _ = require('underscore'),
     DeviceType = mongoose.model('DeviceType'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = function (app) {
 
@@ -37,6 +38,9 @@ module.exports = function (app) {
     app.get('/api/channels/active', isAuthenticated, function (req, res) {
         var user = req.user,
             criteria = _.pluck(user.api, 'name');
+        var criteria = criteria.filter(function(item) {
+                return item;
+            });
 
         Api.find(
             { name: { $in: criteria }, enabled: true },
@@ -55,6 +59,9 @@ module.exports = function (app) {
     app.get('/api/channels/available', isAuthenticated, function (req, res) {
         var user = req.user,
             criteria = _.pluck(user.api, 'name');
+        var criteria = criteria.filter(function(item) {
+                return item;
+            });
 
         Api.find(
             { name: { $nin: criteria }, owner: { $exists: false }, enabled: true },
@@ -118,6 +125,18 @@ module.exports = function (app) {
                 res.send(err);
             } else {
                 res.json(api);
+            }
+        });
+    });
+
+    app.delete('/api/channels/:id', isAuthenticated, function(req, res) {
+        // model.findOneAndRemove
+        // owner: req.user.resource.uuid
+        Api.findOneAndRemove({ _id: new ObjectId(req.params.id), owner: req.user.resource.uuid }, function (err) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json({'msg':'ok'});
             }
         });
     });

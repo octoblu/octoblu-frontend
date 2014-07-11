@@ -24,6 +24,7 @@ module.exports = function (app, passport, config) {
     });
 
     function loginRoute(req, res) {
+        var user = req.user;
         res.cookie('skynetuuid', user.skynet.uuid, {
             maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
             domain: config.domain,

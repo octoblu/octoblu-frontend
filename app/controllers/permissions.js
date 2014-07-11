@@ -71,7 +71,7 @@ var permissionsController = {
             permission = req.body.resourcePermission,
             targetGroup = req.body.targetGroup,
             sourceGroup = req.body.sourceGroup,
-            members,
+            membersToUpdate,
             compiledPermissions;
 
         ResourcePermission.findOne({
@@ -97,10 +97,14 @@ var permissionsController = {
                             'resource.uuid': rscPerm.target.uuid
                         }).exec()
                             .then(function (group) {
-                                members = targetGroup.members;
+                                var oldMembers;
+
+                                membersToUpdate = targetGroup.members;
+
                                 if (group) {
-                                    members = _.uniq(_.union(members, targetGroup.members), function (member) {
-                                        return member.uuid
+                                    oldMembers      = group.members;
+                                    membersToUpdate = _.uniq(_.union(oldMembers, targetGroup.members), function (member) {
+                                        return member.uuid;
                                     });
                                 }
                                 return Q.all([
@@ -121,7 +125,7 @@ var permissionsController = {
                             })
                             .then(function () {
                                 return ResourcePermission.updateSkynetPermissions(user.resource,
-                                    members, skynetUrl);
+                                    membersToUpdate, skynetUrl);
                             })
                             .then(function () {
                                 res.send(rscPerm);
