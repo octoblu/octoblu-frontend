@@ -18,6 +18,8 @@ var UserSchema = new mongoose.Schema({
         displayName : String,
         email : String,
         admin: Boolean,
+        resetPasswordToken: String,
+        resetPasswordExpires: Date,
         skynet: {
             uuid: {type: String, unique: true, required: true},
             token: { type: String, required: true}
