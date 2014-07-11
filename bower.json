@@ -51,6 +51,7 @@
     "jquery-mobile": "~1.4.2",
     "nvd3": "~1.1.15-beta",
     "ng-table":"~0.3.3",
+    "angularjs-nvd3-directives":"~0.0.7",
     "lodash": "~2.4.1",
     "socket.io": "~1.0.6",
     "socket.io-client": "~1.0.6"

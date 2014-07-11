@@ -160,6 +160,38 @@ angular.module('octobluApp')
 					       })
 					       ]
 			};
+		var ndata = [{name: "Moroni", age: 50, role: 'Administrator'},
+                {name: "Tiancum", age: 43, role: 'Administrator'},
+                {name: "Jacob", age: 27, role: 'Administrator'},
+                {name: "Nephi", age: 29, role: 'Moderator'},
+                {name: "Enos", age: 34, role: 'User'},
+                {name: "Tiancum", age: 43, role: 'User'},
+                {name: "Jacob", age: 27, role: 'User'},
+                {name: "Nephi", age: 29, role: 'Moderator'},
+                {name: "Enos", age: 34, role: 'User'},
+                {name: "Tiancum", age: 43, role: 'Moderator'},
+                {name: "Jacob", age: 27, role: 'User'},
+                {name: "Nephi", age: 29, role: 'User'},
+                {name: "Enos", age: 34, role: 'Moderator'},
+                {name: "Tiancum", age: 43, role: 'User'},
+                {name: "Jacob", age: 27, role: 'User'},
+                {name: "Nephi", age: 29, role: 'User'},
+                {name: "Enos", age: 34, role: 'User'}];
+
+    $scope.freeform_results_ngTable = new ngTableParams({
+        page: 1,            // show first page
+        count: 10          // count per page
+    }, {
+        groupBy: 'role',
+        total: ndata.length,
+        getData: function($defer, params) {
+            var orderedData = params.sorting() ?
+                    $filter('orderBy')(ndata, $scope.tableParams.orderBy()) :
+                    ndata;
+
+            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+    });
 		$log.log($scope.leg);
 
             });
