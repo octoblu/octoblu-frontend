@@ -45,8 +45,8 @@ angular.module('octobluApp')
                 return $http.delete('/api/auth').then(logoutHandler, logoutHandler);
             },
 
-            getCurrentUser: function () {
-                if (currentUser) {
+            getCurrentUser: function (force) {
+                if (currentUser && !force) {
                     var defer = $q.defer();
                     defer.resolve(currentUser);
                     return defer.promise;
