@@ -1,33 +1,29 @@
 'use strict';
 
-var async      = require('async'),
-    crypto     = require('crypto'),
-    mongoose   = require('mongoose'),
-    nodemailer = require('nodemailer'),
-    request    = require('request'),
-    User       = mongoose.model('User');
+var mongoose      = require('mongoose'),
+    nodemailer    = require('nodemailer'),
+    request       = require('request'),
+    generateToken = require('../models/mixins/resource').generateToken,
+    User          = mongoose.model('User');
 
 module.exports = function ( app, passport, config ) {
 
-  app.post('/forgot', function(req, res, next) {
-    async.waterfall([
-      generateToken,
-      function(token, done) {
+  app.post('/api/reset', function(req, res, next) {
+    var user;
+    User.findByEmail(req.body.email)
+      .then(function(dbUser){
+        user = dbUser;
 
-        User.findOne({ email: req.body.email }, function(err, user) {
-          if (!user) {
-            return res.send({errors: {email: ['No account with that email address exists.']}}, 404);
-          }
+        if (!user) {
+          throw {code: 404, errors: {email: ['No account with that email address exists.']}};
+        }
 
-          user.resetPasswordToken   = token;
-          user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+        user.resetPasswordToken   = generateToken();
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
-          user.save(function(err) {
-            done(err, token, user);
-          });
-        });
-      },
-      function(token, user, done) {
+        return user.saveWithPromise();
+      })
+      .then(function(){
         var smtpTransport, mailOptions;
 
         smtpTransport = nodemailer.createTransport("SMTP", {
@@ -43,18 +39,42 @@ module.exports = function ( app, passport, config ) {
           subject: 'Octoblu Password Reset',
           text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-            'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+            'http://' + req.headers.host + '/reset/' + user.resetPasswordToken + '\n\n' +
             'If you did not request this, please ignore this email and your password will remain unchanged.\n'
         };
 
-        smtpTransport.sendMail(mailOptions, function(err) {
-          done(err);
+        smtpTransport.sendMail(mailOptions, function(error) {
+           if (error) { throw {code: 500, errors: {all: [error]}} }
+           res.send(201);
         });
+
+      }).catch(function(options){
+        if(options.code) {
+          return res.send(options.code, {errors: options.errors});
+        }
+        return res.send(500, {errors: options.errors, arguments: arguments});
+      });
+  });
+
+  app.put('/api/reset/:token', function(req, res, next){
+    User.findByResetToken(req.params.token).then(function(user){
+      if(!user){
+        return res.send(404, {error: 'Password reset token is invalid or has expired.', arguments: arguments});
       }
-    ], function(error){
-      if(error) { return res.send(error, 500); }
-      return res.send(arguments);
-      res.redirect('/login');
+
+      user.local.password       = user.generateHash(req.body.password);
+      user.resetPasswordToken   = null;
+      user.resetPasswordExpires = null;
+
+      user.save(function(error, returnedUser) {
+        if(error) {
+          return res.send(404, {error: error});
+        }
+
+        return res.send(204);
+      });
+    },function(error){
+      res.send(404, {error: error});
     });
   });
 
@@ -151,10 +171,3 @@ module.exports = function ( app, passport, config ) {
 	  })(req, res, next);
 	});
 };
-
-var generateToken = function(done){
-  crypto.randomBytes(20, function(err, buf) {
-    var token = buf.toString('hex');
-    done(err, token);
-  });
-}

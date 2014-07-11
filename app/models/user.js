@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     Resource = require('./mixins/resource'),
     moment = require('moment'),
+    Q = require('q'),
 
     configAuth = require('../../config/auth')(process.env.NODE_ENV),
     rest = require('rest'),
@@ -128,6 +129,17 @@ UserSchema.methods.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
+UserSchema.methods.saveWithPromise = function(){
+    var defer = Q.defer();
+    this.save(function(error, user){
+        if(error) {
+          return defer.reject(error);
+        }
+        defer.resolve(user);
+    });
+    return defer.promise;
+}
+
 // checking if password is valid
 UserSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.local.password);
@@ -159,7 +171,18 @@ UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
 };
 
 UserSchema.statics.findByEmail = function (email) {
-    return this.findOne({ email : email }).exec();
+    return Q(this.findOne({ email : email }).exec());
+};
+
+UserSchema.statics.findByResetToken = function(resetToken) {
+    var userQuery;
+
+    userQuery = {
+      resetPasswordToken: resetToken,
+      resetPasswordExpires: { $gt: (new Date()) }
+    };
+
+    return this.findOne(userQuery).exec();
 };
 
 UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
