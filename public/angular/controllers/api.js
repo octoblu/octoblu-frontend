@@ -120,6 +120,7 @@ angular.module('octobluApp')
                 $scope.user_channel.token, $scope.custom_tokens,
                 function (data) {
                     console.log('saved');
+                    // currentUser = data;
                     $scope.has_user_channel = true;
                 });
 
@@ -129,6 +130,8 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
@@ -217,6 +220,8 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
@@ -435,6 +440,8 @@ angular.module('octobluApp')
                     $log.info(currentUser);
                     userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
+                        channelService.getActiveChannels(true);
+                        channelService.getAvailableChannels(true);
                     });
                 };
             }, function () {
@@ -455,6 +462,8 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
@@ -518,6 +527,8 @@ angular.module('octobluApp')
                     // $log.info('clicked ok');
                     userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
+                        channelService.getActiveChannels(true);
+                        channelService.getAvailableChannels(true);
                     });
                 };
             }, function () {
@@ -540,6 +551,8 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;

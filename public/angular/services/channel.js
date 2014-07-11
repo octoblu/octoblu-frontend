@@ -156,7 +156,7 @@ angular.module('octobluApp')
 
         this.save = function(channel, callback) {
             var d = angular.toJson(channel);
-            $http.put('/api/channels/', d, { cache: true})
+            $http.put('/api/channels/', d, { cache: false})
                 .success(function(data) {
                     callback(data);
                 })
