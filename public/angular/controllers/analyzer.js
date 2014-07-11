@@ -152,50 +152,19 @@ angular.module('octobluApp')
 						return { x: item.time, y: item.count };
 					})
 					}],
-				"uuid_counts": [_.map(data.aggregations.count_by_uuid.buckets, function(item) {
+				"uuid_counts": [
+						_.each(data.aggregations.count_by_uuid,function(key, value){
+							$log.log(key);
+						})
+						/*_.map(data.aggregations.count_by_uuid.buckets, function(item) {
 							return { "key": item.key, "values": _.map(item.events_by_date, function(kitem){ 
 								return { x: kitem.key, y: kitem.doc_count}; 
 								})
 							};
-					       })
+					       })*/
 					       ]
 			};
-		var ndata = [{name: "Moroni", age: 50, role: 'Administrator'},
-                {name: "Tiancum", age: 43, role: 'Administrator'},
-                {name: "Jacob", age: 27, role: 'Administrator'},
-                {name: "Nephi", age: 29, role: 'Moderator'},
-                {name: "Enos", age: 34, role: 'User'},
-                {name: "Tiancum", age: 43, role: 'User'},
-                {name: "Jacob", age: 27, role: 'User'},
-                {name: "Nephi", age: 29, role: 'Moderator'},
-                {name: "Enos", age: 34, role: 'User'},
-                {name: "Tiancum", age: 43, role: 'Moderator'},
-                {name: "Jacob", age: 27, role: 'User'},
-                {name: "Nephi", age: 29, role: 'User'},
-                {name: "Enos", age: 34, role: 'Moderator'},
-                {name: "Tiancum", age: 43, role: 'User'},
-                {name: "Jacob", age: 27, role: 'User'},
-                {name: "Nephi", age: 29, role: 'User'},
-                {name: "Enos", age: 34, role: 'User'}];
-
-    $scope.freeform_results_ngTable = new ngTableParams({
-        page: 1,            // show first page
-        count: 10          // count per page
-    }, {
-        groupBy: 'role',
-        total: ndata.length,
-        getData: function($defer, params) {
-            var orderedData = params.sorting() ?
-                    $filter('orderBy')(ndata, $scope.tableParams.orderBy()) :
-                    ndata;
-
-            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-        }
-    });
-		$log.log($scope.leg);
-
-            });
-
+	});
         };
 
 	$scope.search = function(currentPage) { 
