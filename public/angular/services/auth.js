@@ -45,6 +45,18 @@ angular.module('octobluApp')
                 return $http.delete('/api/auth').then(logoutHandler, logoutHandler);
             },
 
+            resetPassword: function(email) {
+                return $http.post('/api/reset', {email: email}).then(function(response){
+                    if(response.status !== 201) {
+                        throw response.data;
+                    }
+                });
+            },
+
+            setPassword: function(resetToken, password) {
+                return $http.put('/api/reset/'+resetToken, {password: password});
+            },
+
             getCurrentUser: function (force) {
                 if (currentUser && !force) {
                     var defer = $q.defer();
