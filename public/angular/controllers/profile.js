@@ -2,18 +2,26 @@
 
 angular.module('octobluApp')
     .controller('profileController', function ($rootScope, $scope, AuthService) {
-      $scope.formIsValid = false;
-      $scope.errors = {};
 
-      $scope.updatePassword = function(){
+      $scope.updatePassword = function(passwordForm){
         AuthService.updatePassword($scope.oldPassword, $scope.newPassword).then(function(result){
-          $scope.successMessage = 'Your password has been updated.';
-        }, function(error){
-          $scope.errorMessage = error.error || 'Could not reset your password.';
+          $scope.passwordUpdated = true;
+          delete $scope.oldPassword;
+          delete $scope.newPassword;
+          delete $scope.confirmNewPassword;
+          passwordForm.$setPristine();
+        }, function(result){
+          passwordForm.oldPassword.$setValidity('correct', false);
         });
       };
 
+      $scope.validateOldPassword = function(passwordForm) {
+        $scope.passwordUpdated = false;
+        passwordForm.oldPassword.$setValidity('correct', true);
+      }
+
       $scope.validateConfirmPassword = function(passwordForm) {
-          passwordForm.confirmNewPassword.$setValidity('matches', $scope.newPassword === $scope.confirmNewPassword);
+        $scope.passwordUpdated = false;
+        passwordForm.confirmNewPassword.$setValidity('matches', $scope.newPassword === $scope.confirmNewPassword);
       };
     });

@@ -12,17 +12,20 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <!-- <h2 class="col-sm-offset-2">Change Password</h2> -->
-      <form name="passwordForm" class="form-horizontal" ng-submit="updatePassword()">
+      <div class="alert alert-success" ng-show="passwordUpdated">
+        Your password has been updated
+      </div>
+      <form name="passwordForm" class="form-horizontal" ng-submit="updatePassword(passwordForm)">
         <fieldset>
           <legend>Change Password</legend>
 
           <div class="form-group" ng-class="{'has-error': passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty}">
             <label for="old-password" class="col-sm-2 control-label">Old Password</label>
             <div class="col-sm-10">
-              <input ng-model="oldPassword" id="old-password" name="oldPassword" type="password" class="form-control" required>
+              <input ng-model="oldPassword" ng-change="validateOldPassword(passwordForm)" id="old-password" name="oldPassword" type="password" class="form-control" required>
               <p class="help-block" ng-if="passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty">
                 <span ng-show="passwordForm.oldPassword.$error.required">Old password is required.</span>
+                <span ng-show="passwordForm.oldPassword.$error.correct">Old password is not correct.</span>
               </p>
             </div>
           </div>

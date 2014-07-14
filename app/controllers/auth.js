@@ -16,6 +16,7 @@ module.exports = function (app, passport, config) {
     app.post('/api/auth', passport.authenticate('local-login'), loginRoute);
     app.get('/api/auth/login', passport.authenticate('local-login'), loginRoute);
 
+    app.put('/api/auth', isAuthenticated, updatePassword);
     app.delete('/api/auth', logoutRoute);
     app.get('/api/auth/logout', logoutRoute);
 
@@ -52,6 +53,20 @@ module.exports = function (app, passport, config) {
             req.logout();
         }
         res.send(200);
+    }
+
+    function updatePassword (req, res) {
+        var oldPassword, newPassword;
+
+        oldPassword = req.body.oldPassword;
+        newPassword = req.body.newPassword;
+
+        req.user.updatePassword(oldPassword, newPassword).then(function(){
+            return res.send(204);
+        })
+        .catch(function(){
+            return res.send(422, {errors: {oldPassword: ['is incorrect.']}});
+        });
     }
 
     var getApiHashCode = function (clientSecret, requestCode) {
