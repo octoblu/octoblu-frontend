@@ -139,10 +139,25 @@ UserSchema.methods.saveWithPromise = function(){
     return defer.promise;
 }
 
+UserSchema.methods.updatePassword = function(oldPassword, newPassword){
+    var defer, user;
+    defer = Q.defer();
+    user = this;
+
+    if(!this.validPassword(oldPassword)) {
+        defer.reject('Password is invalid')
+        return defer.promise;
+    }
+
+    this.local.password = this.generateHash(newPassword);
+    return user.saveWithPromise();
+};
+
 // checking if password is valid
 UserSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.local.password);
 };
+
 
 //Convenience method for getting the Skynet UUID
 //TODO: replace this with resource.uuid
