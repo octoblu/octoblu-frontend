@@ -5,8 +5,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
     .constant('skynetConfig', {
         // 'host': 'skynet.im',
         // 'port': '80'
-        'host': 'skynet.im', //change to the skynet.im instance
-        'port': '80'
+        'host': 'localhost', //change to the skynet.im instance
+        'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -284,10 +284,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'docsController',
                 unsecured: true
             })
-            .state('ob.designer', {
-                url: '/designer',
-                templateUrl: 'pages/designer.html',
-                controller: 'designerController'
+            .state('ob.design', {
+                url: '/design',
+                templateUrl: 'pages/design.html',
+                controller: 'designController'
             })
             .state('ob.community', {
                 url: '/community',
