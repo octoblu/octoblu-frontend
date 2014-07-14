@@ -154,7 +154,7 @@ angular.module('octobluApp')
 					}],
 				"uuid_counts": [
 						_.each(data.aggregations.count_by_uuid,function(key, value){
-							$log.log(key);
+							$log.log(key.key);
 						})
 						/*_.map(data.aggregations.count_by_uuid.buckets, function(item) {
 							return { "key": item.key, "values": _.map(item.events_by_date, function(kitem){ 
