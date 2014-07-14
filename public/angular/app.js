@@ -121,7 +121,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 template: '<ui-view></ui-view>'
             })
             .state('ob.connector.devices.all', {
-                url: '',
+                url: '/',
                 controller: 'DeviceController',
                 templateUrl: 'pages/connector/devices/index.html'
             })
@@ -310,6 +310,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'faqsController',
                 unsecured: true
             })
+            .state('ob.home', {
+                url: '/home',
+                templateUrl: 'pages/home.html',
+                controller: 'homeController'
+            })
             .state('login', {
                 url: '/login',
                 templateUrl: 'pages/login.html',
@@ -338,7 +343,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/home');
     })
     .run(function ($rootScope, $window, $state, $urlRouter, $location, AuthService) {
 

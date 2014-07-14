@@ -90,23 +90,33 @@
 
 <div class="col-xs-12">
     <div class='page-header'>
-        <h1 class="col-xs-12 col-sm-12 col-md-11 col-lg-11" style="margin-top: 25px;">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h1>
             <i class='fa fa-lock'></i>
-            <span>Admin</span>
-
-            <form class="form-inline pull-right" role="form" style="margin-top: 0px;">
-                <div class="form-group">
-                    <label class="sr-only" for="recipientEmail">Email address</label>
-                    <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail"
-                           placeholder="Enter email">
-                </div>
-                <button type="button" class="btn btn-default btn-lg" ng-disabled="form.$invalid" ng-click="send()"
-                        style="margin-top: 0px;">
-                    <i class="fa fa-users" style="margin-right: 10px"></i>Invite
-                </button>
-            </form>
-
+            Admin
         </h1>
+      </div>
+      <div class="col-xs-12 col-md-6 text-right">
+        <form class="form-inline" role="form" ng-submit="send()">
+            <div class="form-group">
+                <label class="sr-only" for="recipientEmail">Email address</label>
+                <div class="input-group">
+                    <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail" placeholder="Enter email">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="fa fa-users"></i> Invite
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+            </div>
+        </form>
+      </div>
+    </div>
+
+
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ui-view=""></div>
 
