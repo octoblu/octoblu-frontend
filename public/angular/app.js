@@ -86,7 +86,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'processController'
             })
             .state('ob.connector', {
-                url: '/connector',
+                url: '/connect',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
                     availableDeviceTypes: function (channelService) {
