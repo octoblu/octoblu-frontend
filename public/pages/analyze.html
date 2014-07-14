@@ -22,7 +22,7 @@
                             <div ng-switch="!!topResults.fromUuid ? 1 : 0">
                                <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                                 <div ng-switch-default>
-                                    <div nvd3-pie-chart x="xFunction()" y="yFunction()" data="topResults.fromUuid" height="300">
+                                    <div nvd3-pie-chart  data="topResults.fromUuid" height="300">
 					</div>
                                 </div>
                             </div>
