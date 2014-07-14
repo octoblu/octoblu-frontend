@@ -155,7 +155,7 @@ var invitationController = {
                 invitation = inv;
                 console.log('inv', inv);
                 if (invitation.status === 'ACCEPTED') {
-                    res.redirect('/dashboard');
+                    res.redirect('/home');
                 } else {
                     return User.findBySkynetUUID(invitation.from)
                         .then(function (snd) {
@@ -199,7 +199,7 @@ var invitationController = {
                                                 invitation.save();
                                             }
                                         }
-                                        res.redirect('/dashboard');
+                                        res.redirect('/home');
                                     });
                             }
                         })

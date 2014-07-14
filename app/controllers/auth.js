@@ -7,7 +7,7 @@ var request = require('request'),
     url = require('url'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
-var ObjectId = require('mongoose').Types.ObjectId; 
+var ObjectId = require('mongoose').Types.ObjectId;
 
 // Using MongoJS on SkyNet database queries to avoid schemas
 var skynetdb = require('../lib/skynetdb').collection('devices');
@@ -121,10 +121,10 @@ module.exports = function (app, passport, config) {
 
     var handleApiCompleteRedirect = function (res, channelid, err) {
         if (!err) {
-            return res.redirect('/connector/channels/' + channelid);
+            return res.redirect('/connect/channels/' + channelid);
         } else {
             console.log('Error: ' + err);
-            return res.redirect('/connector/channels/' + channelid);
+            return res.redirect('/connect/channels/' + channelid);
         }
     };
 
@@ -327,7 +327,7 @@ module.exports = function (app, passport, config) {
                             user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
                             user.save(function (err) {
                                 console.log('saved oauth token: ' + channelid);
-                                res.redirect('/connector/channels/' + channelid);
+                                res.redirect('/connect/channels/' + channelid);
                             });
                         }
                     });
@@ -343,12 +343,12 @@ module.exports = function (app, passport, config) {
                         var token = result;
                         if (error) {
                             console.log('Access Token Error', error);
-                            res.redirect('/connector/channels/' + api._id);
+                            res.redirect('/connect/channels/' + api._id);
                         } else {
                             user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
                             user.save(function (err) {
                                 console.log('saved oauth token: ' + _id);
-                                res.redirect('/connector/channels/' + channelid);
+                                res.redirect('/connect/channels/' + channelid);
                             });
                         }
                     });
@@ -365,7 +365,7 @@ module.exports = function (app, passport, config) {
                     function (error, oauth_access_token, oauth_access_token_secret, results) {
                         if (error) {
                             console.log(error);
-                            res.redirect(500, '/connector/channels/' + channelid);
+                            res.redirect(500, '/connect/channels/' + channelid);
                         } else {
                             user.addOrUpdateApiByChannelId(channelid, 'oauth', null,
                                 oauth_access_token, oauth_access_token_secret, null, null);
@@ -418,7 +418,7 @@ module.exports = function (app, passport, config) {
                 res.redirect(req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token);
             }
         } else {
-            res.redirect('/dashboard');
+            res.redirect('/home');
         }
     }
 };

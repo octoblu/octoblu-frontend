@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('analyzerController', function ($scope, $http, $injector, $log, elasticService, myDevices, currentUser) {
+    .controller('analyzeController', function ($scope, $http, $injector, $log, elasticService, myDevices, currentUser) {
         $scope.debug_logging = true;
         //Elastic Search Time Format Dropdowns
         $scope.ESdateFormats = elasticService.getDateFormats();
@@ -98,7 +98,7 @@ angular.module('octobluApp')
         };
 
         function search (currentPage) {
-            $log.log("starting search function, analyzer controller");
+            $log.log("starting search function, analyze controller");
             $scope.results = "searching...";
             $log.log("searchText = " + $scope.forms.FFsearchText);
             if ($scope.forms.FFsearchText !== undefined) {

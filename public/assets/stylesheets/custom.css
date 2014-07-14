@@ -104,6 +104,10 @@ a, a:hover, a:focus {color: #3498db;}
 .nav>li>a:hover, .nav>li>a:focus {
 	background-color: transparent;
 }
+
+.main-container {
+  margin-top: 50px;
+}
 		/* *** TABS END *** */
 
 		/* *** PROGRESS BARS *** */
