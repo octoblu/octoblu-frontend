@@ -3,8 +3,10 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
-        'host': 'skynet.im', //change to the skynet.im instance
+        'host': 'skynet.im',
         'port': '80'
+        // 'host': 'localhost', //change to the skynet.im instance
+        // 'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -147,7 +149,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/finddevice?claim',
                 templateUrl: 'pages/connector/devices/wizard/find-device.html'
             })
-            //begin refactor states            
+            //begin refactor states
             .state('ob.connector.channels', {
                 abstract: true,
                 url: '/channels',
@@ -324,6 +326,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/forgot',
                 templateUrl: 'pages/forgot.html',
                 controller: 'forgotController',
+                unsecured: true
+            })
+            .state('reset', {
+                url: '/reset/:resetToken',
+                templateUrl: 'pages/reset.html',
+                controller: 'resetController',
                 unsecured: true
             });
 
