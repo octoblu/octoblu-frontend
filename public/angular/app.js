@@ -273,10 +273,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('ob.analyzer', {
-                url: '/analyzer',
-                templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController'
+            .state('ob.analyze', {
+                url: '/analyze',
+                templateUrl: 'pages/analyze.html',
+                controller: 'analyzeController'
             })
             .state('ob.docs', {
                 url: '/docs',
