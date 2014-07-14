@@ -11,5 +11,8 @@ gulp.task('less:compile', function(){
 });
 
 gulp.task('default', ['less:compile'], function() {
+});
+
+gulp.task('watch', ['less:compile'], function() {
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
 });
