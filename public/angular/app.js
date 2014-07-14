@@ -80,10 +80,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/profile.html',
                 controller: 'profileController'
             })
-            .state('ob.dashboard', {
-                url: '/dashboard',
-                templateUrl: 'pages/dashboard.html',
-                controller: 'dashboardController'
+            .state('ob.process', {
+                url: '/process',
+                templateUrl: 'pages/process.html',
+                controller: 'processController'
             })
             .state('ob.connector', {
                 url: '/connector',

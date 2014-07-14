@@ -13,22 +13,13 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="ob-navbar-collapse-1">
             <ul class="nav navbar-nav" ng-show="currentUser">
-                <li ui-sref-active="active"><a href ui-sref=".dashboard"><i class="fa fa-dashboard fa-lg"></i>&nbsp;Dashboard</a></li>
+                <li ui-sref-active="active"><a href ui-sref=".home"><i class="fa fa-dashboard fa-lg"></i>&nbsp;Home</a></li>
                 <li ui-sref-active="active"><a href ui-sref=".connector.devices.all"><i class="fa fa-code-fork fa-lg"></i>&nbsp;Connectors</a></li>
                 <li ui-sref-active="active"><a href ui-sref=".design"><i class="fa fa-edit fa-lg"></i>&nbsp;Design</a></li>
+                <li ui-sref-active="active"><a href ui-sref=".process"><i class="fa fa-tasks fa-lg"></i>&nbsp;Process</a></li>
                 <li ui-sref-active="active"><a href ui-sref=".analyze"><i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;Analyze</a></li>
-                <li ui-sref-active="active"><a href ui-sref=".community"><i class="fa fa-group fa-lg"></i>&nbsp;Community</a></li>
                 <li ui-sref-active="active"><a href ui-sref=".admin.all"><i class="fa fa-lock fa-lg"></i>&nbsp;Admin</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" id="resources-drop-down-menu" data-toggle="dropdown">Resources&nbsp;<span class="fa fa-caret-down fa-lg"></span></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="resources-drop-down-menu">
-                        <li ><a href ui-sref=".docs"><i class="fa fa-fw fa-gears"></i>API Docs</a></li>
-                        <li class="divider"></li>
-                        <li><a href ui-sref=".pricing"><i class="fa fa-fw fa-money"></i>Pricing</a></li>
-                        <li class="divider"></li>
-                        <li ><a href ui-sref=".faqs"><i class="fa fa-fw fa-bullhorn"></i>FAQ</a></li>
-                    </ul>
-                </li>
+                <li ui-sref-active="active"><a href ui-sref=".community"><i class="fa fa-group fa-lg"></i>&nbsp;Community</a></li>
                 <li class="dropdown navbar-right">
                     <a href="#" class="dropdown-toggle" id="profile-drop-down-menu" data-toggle="dropdown">
                         <span class="avatar">
