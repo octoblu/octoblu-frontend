@@ -120,7 +120,7 @@ module.exports = function ( app, passport, config ) {
 				          httpOnly: false
 				        });
                 req.session.user = user;
-					      // return res.redirect('/dashboard');
+					      // return res.redirect('/home');
                 // Check for deep link redirect based on referrer in querystring
                 if(req.session.redirect){
                   if(req.session.js){
@@ -129,14 +129,14 @@ module.exports = function ( app, passport, config ) {
                     return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
                   }
                 } else {
-                  return res.redirect('/dashboard');
+                  return res.redirect('/home');
                 }
 
 
 		            }
 		            else {
 		                console.log("Error: could not update user - error " + err);
-							      // return res.redirect('/dashboard');
+							      // return res.redirect('/home');
                     // Check for deep link redirect based on referrer in querystring
                     if(req.session.redirect){
                       if(req.session.js){
@@ -145,7 +145,7 @@ module.exports = function ( app, passport, config ) {
                         return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
                       }
                     } else {
-                      return res.redirect('/dashboard');
+                      return res.redirect('/home');
                     }
 
 		            }
@@ -154,7 +154,7 @@ module.exports = function ( app, passport, config ) {
 			      } else {
 			        console.log('error: '+ response.statusCode);
 			        console.log(error);
-  			      // return res.redirect('/dashboard');
+  			      // return res.redirect('/home');
               // Check for deep link redirect based on referrer in querystring
               if(req.session.redirect){
                 if(req.session.js){
@@ -163,7 +163,7 @@ module.exports = function ( app, passport, config ) {
                   return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
                 }
               } else {
-                return res.redirect('/dashboard');
+                return res.redirect('/home');
               }
 
 			      }

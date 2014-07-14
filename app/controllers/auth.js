@@ -418,7 +418,7 @@ module.exports = function (app, passport, config) {
                 res.redirect(req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token);
             }
         } else {
-            res.redirect('/dashboard');
+            res.redirect('/home');
         }
     }
 };
