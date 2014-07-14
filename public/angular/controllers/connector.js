@@ -30,12 +30,14 @@ angular.module('octobluApp')
 
         // get api list, if showing api
         if ($state.is('connector.channels.index')) {
-            channelService.getActive(function (data) {
-                $scope.activeChannels = data;
-            });
-            channelService.getAvailable(function (error, data) {
-                $scope.availableChannels = data;
-            });
+            $scope.activeChannels = channelService.getActiveChannels();
+            $scope.availableChannels = channelService.getAvailableChannels();
+            // channelService.getActive(function (data) {
+            //     $scope.activeChannels = data;
+            // });
+            // channelService.getAvailable(function (error, data) {
+            //     $scope.availableChannels = data;
+            // });
         }
 
 

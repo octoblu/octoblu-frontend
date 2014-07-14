@@ -7,6 +7,7 @@ var request = require('request'),
     url = require('url'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 // Using MongoJS on SkyNet database queries to avoid schemas
 var skynetdb = require('../lib/skynetdb').collection('devices');
@@ -66,14 +67,14 @@ module.exports = function (app, passport, config) {
             .replace(/\//g, '-').replace(/\+/g, '_');
     };
 
-    var handleOauth1 = function (name, req, res, next) {
+    var handleOauth1 = function (channelid, req, res, next) {
         var user = req.user,
             token = req.param('oauth_token'),
             verifier = req.param('oauth_verifier');
 
-        user.addOrUpdateApiByName(name, 'oauth', null, token, null, verifier, null);
+        user.addOrUpdateApiByChannelId(channelid, 'oauth', null, token, null, verifier, null);
         user.save(function (err) {
-            return handleApiCompleteRedirect(res, name, err);
+            return handleApiCompleteRedirect(res, channelid, err);
         });
     };
 
@@ -85,7 +86,7 @@ module.exports = function (app, passport, config) {
             api.oauth.key,
             api.oauth.secret,
             api.oauth.version,
-            getOAuthCallbackUrl(req, api.name),
+            getOAuthCallbackUrl(req, api._id),
             'HMAC-SHA1'
         );
     };
@@ -99,16 +100,16 @@ module.exports = function (app, passport, config) {
         });
     };
 
-    var getOAuthCallbackUrl = function (req, apiName) {
-        return req.protocol + '://' + req.headers.host + '/api/auth/' + apiName + '/callback/custom';
+    var getOAuthCallbackUrl = function (req, channelid) {
+        return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
     };
 
-    var handleApiCompleteRedirect = function (res, name, err) {
+    var handleApiCompleteRedirect = function (res, channelid, err) {
         if (!err) {
-            return res.redirect('/connector/channels/' + name);
+            return res.redirect('/connector/channels/' + channelid);
         } else {
             console.log('Error: ' + err);
-            return res.redirect('/connector/channels/' + name);
+            return res.redirect('/connector/channels/' + channelid);
         }
     };
 
@@ -132,9 +133,9 @@ module.exports = function (app, passport, config) {
     app.get('/auth/google/callback', passport.authenticate('google'), restoreReferrer, completeLogin);
 
     // working on custom oauth handling here.....
-    app.get('/api/auth/:name/custom', function (req, res) {
+    app.get('/api/auth/:id/custom', function (req, res) {
 
-        Api.findOne({name: req.params.name}, function (err, api) {
+        Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
 
             if (api.oauth.version == '2.0') {
                 if (api.oauth.isManual) {
@@ -154,14 +155,14 @@ module.exports = function (app, passport, config) {
                             oauth_signature_method: 'HMAC-SHA1',
                             oauth_timestamp: timestamp,
                             oauth_nonce: nonce,
-                            oauth_callback: getOAuthCallbackUrl(req, api.name)
+                            oauth_callback: getOAuthCallbackUrl(req, api._id)
                         };
                     } else {
                         query = {
                             client_id: api.oauth.clientId,
                             response_type: 'code',
                             state: csrfToken,
-                            redirect_uri: getOAuthCallbackUrl(req, api.name)
+                            redirect_uri: getOAuthCallbackUrl(req, api._id)
                         };
                     }
 
@@ -186,7 +187,7 @@ module.exports = function (app, passport, config) {
                 } else {
                     var oauth2 = getOauth2Instance(api);
                     var authorization_uri = oauth2.AuthCode.authorizeURL({
-                        redirect_uri: getOAuthCallbackUrl(req, api.name),
+                        redirect_uri: getOAuthCallbackUrl(req, api._id),
                         scope: api.oauth.scope,
                         state: '3(#0/!~'
                     });
@@ -198,16 +199,6 @@ module.exports = function (app, passport, config) {
             } else {
                 // oauth 1.0..
                 var oa = getOauth1Instance(req, api);
-                // var OAuth = require('oauth');
-                // var oa = new OAuth.OAuth(
-                //     "https://sandbox.evernote.com/oauth",
-                //     "https://sandbox.evernote.com/oauth",
-                //     "joshcoffman-4144",
-                //     "e3d037e41811b07e",
-                //     "1.0",
-                //     getOAuthCallbackUrl(req, api.name),
-                //     'HMAC-SHA1'
-                // );
                 oa.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, results) {
                     if (error) {
                         console.log(error);
@@ -218,10 +209,7 @@ module.exports = function (app, passport, config) {
                         req.session.oauth = {};
                         req.session.oauth.token = oauth_token;
                         req.session.oauth.token_secret = oauth_token_secret;
-                        var callbackURL = getOAuthCallbackUrl(req, api.name);
-                        // var authURL = 'https://sandbox.evernote.com/OAuth.action' + '?oauth_token='
-                        //     + oauth_token + '&oauth_consumer_key=' + api.oauth.key
-                        //     + '&callback=' + callbackURL;
+                        var callbackURL = getOAuthCallbackUrl(req, api._id);
 
                         var authURL = api.oauth.authTokenURL + '?oauth_token='
                             + oauth_token;
@@ -240,15 +228,15 @@ module.exports = function (app, passport, config) {
         });
 
     });
-    app.get('/api/auth/:name/callback/custom', isAuthenticated, function (req, res) {
+    app.get('/api/auth/:id/callback/custom', isAuthenticated, function (req, res) {
         // handle oauth response....
-        var name = req.params.name;
+        var channelid = req.params.id;
         var user = req.user;
 
-        Api.findOne({name: req.params.name}, function (err, api) {
+        Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
             if (err) {
                 console.log(error);
-                res.redirect(500, '/apis/' + api.name);
+                res.redirect(500, '/apis/' + api._id);
             } else if (api.oauth.version == '2.0') {
                 if (api.oauth.isManual) {
                     console.log('handling manual callback');
@@ -264,7 +252,7 @@ module.exports = function (app, passport, config) {
                     var form = {
                         code: req.query.code,
                         grant_type: api.oauth.grant_type,
-                        redirect_uri: getOAuthCallbackUrl(req, api.name)
+                        redirect_uri: getOAuthCallbackUrl(req, api._id)
                     };
                     if (api.name === 'Bitly') {
                         delete form.grant_type;
@@ -321,10 +309,10 @@ module.exports = function (app, passport, config) {
                         var token = data.access_token;
 
                         if (token) {
-                            user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + name);
-                                res.redirect('/connector/channels/' + name);
+                                console.log('saved oauth token: ' + channelid);
+                                res.redirect('/connector/channels/' + channelid);
                             });
                         }
                     });
@@ -335,17 +323,17 @@ module.exports = function (app, passport, config) {
 
                     OAuth2.AuthCode.getToken({
                         code: code,
-                        redirect_uri: getOAuthCallbackUrl(req, api.name)
+                        redirect_uri: getOAuthCallbackUrl(req, api._id)
                     }, function (error, result) {
                         var token = result;
                         if (error) {
                             console.log('Access Token Error', error);
-                            res.redirect('/connector/channels/' + api.name);
+                            res.redirect('/connector/channels/' + api._id);
                         } else {
-                            user.addOrUpdateApiByName(api.name, 'oauth', null, token, null, null, null);
+                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + name);
-                                res.redirect('/connector/channels/' + name);
+                                console.log('saved oauth token: ' + _id);
+                                res.redirect('/connector/channels/' + channelid);
                             });
                         }
                     });
@@ -358,27 +346,17 @@ module.exports = function (app, passport, config) {
                 var oauth = req.session.oauth;
 
                 var oa = getOauth1Instance(req, api);
-                // var OAuth = require('oauth');
-                // var oa = new OAuth.OAuth(
-                //     "https://sandbox.evernote.com/oauth",
-                //     "https://sandbox.evernote.com/oauth",
-                //     "joshcoffman-4144",
-                //     "e3d037e41811b07e",
-                //     "1.0",
-                //     getOAuthCallbackUrl(req, api.name),
-                //     'HMAC-SHA1'
-                // );
                 oa.getOAuthAccessToken(oauth.token, oauth.token_secret, oauth.verifier,
                     function (error, oauth_access_token, oauth_access_token_secret, results) {
                         if (error) {
                             console.log(error);
-                            res.redirect(500, '/connector/channels/' + name);
+                            res.redirect(500, '/connector/channels/' + channelid);
                         } else {
-                            user.addOrUpdateApiByName(name, 'oauth', null,
+                            user.addOrUpdateApiByChannelId(channelid, 'oauth', null,
                                 oauth_access_token, oauth_access_token_secret, null, null);
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + name);
-                                return handleApiCompleteRedirect(res, name, err);
+                                console.log('saved oauth token: ' + channelid);
+                                return handleApiCompleteRedirect(res, channelid, err);
                             });
                         }
                     }
