@@ -54,7 +54,11 @@ angular.module('octobluApp')
             },
 
             setPassword: function(resetToken, password) {
-                return $http.put('/api/reset/'+resetToken, {password: password});
+                return $http.put('/api/reset/'+resetToken, {password: password}).then(function(response){
+                    if(response.status !== 204) {
+                        throw response.data;
+                    }
+                });
             },
 
             getCurrentUser: function (force) {

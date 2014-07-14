@@ -3,7 +3,7 @@
 var mongoose      = require('mongoose'),
     nodemailer    = require('nodemailer'),
     request       = require('request'),
-    generateToken = require('../models/mixins/resource').generateToken,
+    generateUrlSafeToken = require('../models/mixins/resource').generateUrlSafeToken,
     User          = mongoose.model('User');
 
 module.exports = function ( app, passport, config ) {
@@ -18,7 +18,10 @@ module.exports = function ( app, passport, config ) {
           throw {code: 404, errors: {email: ['No account with that email address exists.']}};
         }
 
-        user.resetPasswordToken   = generateToken();
+        return generateUrlSafeToken();
+      })
+      .then(function(token){
+        user.resetPasswordToken   = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
         return user.saveWithPromise();

@@ -330,7 +330,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('reset', {
                 url: '/reset/:resetToken',
-                templateUrl: 'pages/reset.html',
+                templateUrl: 'pages/reset/reset.html',
                 controller: 'resetController',
                 unsecured: true
             });
