@@ -4,10 +4,10 @@ var gulp = require('gulp'),
 
 
 gulp.task('less:compile', function(){
-  gulp.src('./assets/less/**/*.less')
+  gulp.src('./assets/less/manifest.less')
     .pipe(less())
     .pipe(concat('styles.css'))
-    .pipe(gulp.dest('./public/css/dist/'));
+    .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
 });
 
 gulp.task('default', ['less:compile'], function() {
