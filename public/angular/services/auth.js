@@ -61,6 +61,14 @@ angular.module('octobluApp')
                 });
             },
 
+            updatePassword: function(oldPassword, newPassword) {
+                return $http.put('/api/auth', {oldPassword: oldPassword, newPassword: newPassword}).then(function(response){
+                    if(response.status !== 204) {
+                        throw response.data;
+                    }
+                })
+            },
+
             getCurrentUser: function (force) {
                 if (currentUser && !force) {
                     var defer = $q.defer();

@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('profileController', function ($rootScope, $scope) {
+    .controller('profileController', function ($rootScope, $scope, AuthService) {
       $scope.formIsValid = false;
       $scope.errors = {};
 
-      $scope.resetPassword = function(){
+      $scope.updatePassword = function(){
         AuthService.updatePassword($scope.oldPassword, $scope.newPassword).then(function(result){
           $scope.successMessage = 'Your password has been updated.';
         }, function(error){
