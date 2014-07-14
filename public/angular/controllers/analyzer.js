@@ -142,6 +142,17 @@ angular.module('octobluApp')
                 }
                 $log.log("function=loadExploreGraph callback");
                 $log.log(data);
+		$scope.legCounter = 0;
+		_.each(data.aggregations.count_by_uuid.buckets, function(key, val) {
+			$log.log("each Aggregate");
+		});
+		var tmpAggro = _.each(data.aggregations.count_by_uuid.buckets,function(key, val){
+                                                        return {  "key": key.key, "values": _.map(key.events_by_date.buckets, function(item){              
+                                                                return { x: item.key, y: item.value_count_terms.value };
+                                                        })
+                                                        };
+				});
+
                 $scope.leg = {"results": data, 
 				"total": data.hits.total, 
 				"dcEC": data.facets.eventCodes.terms.length, 
@@ -152,18 +163,14 @@ angular.module('octobluApp')
 						return { x: item.time, y: item.count };
 					})
 					}],
-				"uuid_counts": [
-						_.each(data.aggregations.count_by_uuid,function(key, value){
-							$log.log(key.key);
-						})
-						/*_.map(data.aggregations.count_by_uuid.buckets, function(item) {
-							return { "key": item.key, "values": _.map(item.events_by_date, function(kitem){ 
-								return { x: kitem.key, y: kitem.doc_count}; 
-								})
-							};
-					       })*/
-					       ]
+				"uuid_counts": _.map(data.aggregations.count_by_uuid.buckets,function(key){
+                                                        return {  "key": ( $scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key), "values": _.map(key.events_by_date.buckets, function(item){
+                                                                return { x: item.key, y: item.value_count_terms.value };
+                                                        })
+                                                        };
+                                	       })
 			};
+		$log.log($scope.leg);
 	});
         };
 
