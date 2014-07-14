@@ -6,7 +6,6 @@ angular.module('octobluApp')
       $scope.errors = {};
 
       $scope.resetPassword = function(){
-
         AuthService.updatePassword($scope.oldPassword, $scope.newPassword).then(function(result){
           $scope.successMessage = 'Your password has been updated.';
         }, function(error){
