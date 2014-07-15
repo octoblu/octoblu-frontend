@@ -210,7 +210,7 @@ db.nodetypes.insert({
 });
 
 db.nodetypes.insert({
-    logo: "assets/images/octoblu-hub.png",
+    logo: "assets/images/octoblucircle.png",
     name: "Skynet Hub",
     description: "Skynet Hub",
     skynet: {
@@ -294,10 +294,19 @@ db.nodetypes.insert({
     display: true
 });
 
-var channelCursor = db.channel.find({ owner : {$exists: false} });
+var channelCursor = db.apis.find({ owner : { $exists : false}}, { name : 1, logo : 1, enabled : 1, description : 1 });
 while(channelCursor.hasNext()){
     var channel = channelCursor.next();
-    var nodeType = {};
-    printjson(user);
+    var nodeType = {
+        name : channel.name,
+        description : channel.description || '',
+        category : 'channel',
+        skynet : {
+            type : 'channel' ,
+            subtype : channel.name
+        },
+        enabled : channel.enabled
+    };
+    printjson(channel);
     db.nodeTypes.save(nodeType);
 }
