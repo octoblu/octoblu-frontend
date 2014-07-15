@@ -1,7 +1,6 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    Resource = require('./mixins/resource');
+var mongoose = require('mongoose');
 
 // define the schema for our user model
 var NodeTypeSchema = new mongoose.Schema({
@@ -18,7 +17,5 @@ var NodeTypeSchema = new mongoose.Schema({
     enabled: {type: Boolean, index: 1},
     display: {type: Boolean, index: 1}
 });
-
-Resource.makeResourceModel({schema: NodeTypeSchema, type: 'nodetype'});
 
 module.exports = NodeTypeSchema;
