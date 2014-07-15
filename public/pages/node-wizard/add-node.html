@@ -1,0 +1,26 @@
+<h2 class="text-center">Add a new Node</h2>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+    <form class="form">
+      <dif class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control">
+          <span class="input-group-addon">
+            <i class="fa fa-search"></i>
+          </span>
+        </div>
+      </dif>
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div ng-repeat="deviceType in deviceTypes" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+    <a href class="">
+      <div class="device-thumbnail" ng-style="{'background-image': 'url('+deviceType.logo+')'}"></div>
+    </a>
+  </div>
+</div>
