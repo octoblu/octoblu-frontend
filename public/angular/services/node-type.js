@@ -1,4 +1,4 @@
-ngular.module('octobluApp')
+angular.module('octobluApp')
     .service('NodeTypeService', function ($http) {
         return {
             getNodeTypes : function(){

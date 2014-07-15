@@ -1,13 +1,11 @@
 angular.module('octobluApp')
-    .controller('addNodeController', function($scope, $state, channelService) {
-        channelService.getDeviceTypes().then(function(nodeTypes){
+    .controller('addNodeController', function($scope, $state, NodeTypeService) {
+        NodeTypeService.getNodeTypes().then(function(nodeTypes){
             $scope.nodeTypes = nodeTypes;
         });
 
         $scope.nextStepUrl = function(nodeType){
-            var category, sref;
-            category = (nodeType.category || 'device');
-            sref     = 'ob.nodewizard.add'+category;
+            var sref = 'ob.nodewizard.add'+nodeType.category;
             return $state.href(sref, {deviceId: nodeType._id});
         };
     });
