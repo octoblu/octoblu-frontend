@@ -3,14 +3,14 @@
 <div class="row">
   <div class="col-xs-12 col-sm-offset-3 col-sm-6">
     <form class="form">
-      <dif class="form-group">
+      <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" ng-model="deviceTypeSearch">
+          <input type="text" class="form-control" ng-model="nodeTypeSearch">
           <span class="input-group-addon">
             <i class="fa fa-search"></i>
           </span>
         </div>
-      </dif>
+      </div>
     </form>
   </div>
 </div>
@@ -18,9 +18,9 @@
 <hr>
 
 <div class="row">
-  <div ng-repeat="deviceType in deviceTypes | filter: {name:deviceTypeSearch}" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 device-thumbnail">
-    <a href class="">
-      <div ng-style="{'background-image': 'url('+deviceType.logo+')'}"></div>
+  <div ng-repeat="nodeType in nodeTypes | filter: {name:nodeTypeSearch}" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 node-thumbnail">
+    <a class="" ng-href="{{nextStepUrl(nodeType)}}">
+      <div ng-style="{'background-image': 'url('+nodeType.logo+')'}"></div>
     </a>
   </div>
 </div>
