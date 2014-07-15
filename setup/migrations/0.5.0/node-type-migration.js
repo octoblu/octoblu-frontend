@@ -1,8 +1,7 @@
 var conn = new Mongo();
 var db = conn.getDB("meshines");
 
-var conn = new Mongo();
-var db = conn.getDB("meshines");
+
 db.copyDatabase("meshines", "meshines-" + new Date().toISOString());
 
 db.nodetypes.drop();
@@ -298,8 +297,9 @@ var channelCursor = db.apis.find({ owner : { $exists : false}}, { name : 1, logo
 while(channelCursor.hasNext()){
     var channel = channelCursor.next();
     var nodeType = {
-        name : channel.name,
+        name : channel.name || 'null',
         description : channel.description || '',
+        logo :  channel. logo,
         category : 'channel',
         skynet : {
             type : 'channel' ,
@@ -308,5 +308,5 @@ while(channelCursor.hasNext()){
         enabled : channel.enabled
     };
     printjson(channel);
-    db.nodeTypes.save(nodeType);
+    db.nodetypes.insert(nodeType);
 }
