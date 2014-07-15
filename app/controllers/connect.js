@@ -7,7 +7,7 @@ module.exports = function ( app, passport, config ) {
     });
 
     app.post('/connect/local', passport.authenticate('local-signup', {
-        successRedirect : '/dashboard', // redirect to the secure profile section
+        successRedirect : '/home', // redirect to the secure profile section
         failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -20,7 +20,7 @@ module.exports = function ( app, passport, config ) {
     // handle the callback after facebook has authorized the user
     app.get('/connect/facebook/callback',
         passport.authorize('facebook', {
-            successRedirect : '/dashboard',
+            successRedirect : '/home',
             failureRedirect : '/'
         }));
 
@@ -32,7 +32,7 @@ module.exports = function ( app, passport, config ) {
     // handle the callback after twitter has authorized the user
     app.get('/connect/twitter/callback',
         passport.authorize('twitter', {
-            successRedirect : '/dashboard',
+            successRedirect : '/home',
             failureRedirect : '/'
         }));
 
@@ -45,7 +45,7 @@ module.exports = function ( app, passport, config ) {
     // the callback after google has authorized the user
     app.get('/connect/google/callback',
         passport.authorize('google', {
-            successRedirect : '/dashboard',
+            successRedirect : '/home',
             failureRedirect : '/'
         }));
 };
