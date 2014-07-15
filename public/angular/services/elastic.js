@@ -1,7 +1,7 @@
 angular.module('octobluApp')
     .constant('elasticSearchConfig', {
-       //host: '54.187.66.141',
-	host: 'localhost',
+       host: '54.187.66.141',
+	//host: 'localhost',
        port: '9200',
        es_index: 'skynet_trans_log',
        debug_logging: true
