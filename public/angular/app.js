@@ -273,64 +273,66 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('ob.analyze', {
-                url: '/analyze',
-                templateUrl: 'pages/analyze.html',
-                controller: 'analyzeController'
-            })
-            .state('ob.docs', {
-                url: '/docs',
-                templateUrl: 'pages/docs.html',
-                controller: 'docsController',
-                unsecured: true
-            })
-            .state('ob.design', {
-                url: '/design',
-                templateUrl: 'pages/design.html',
-                controller: 'designController'
-            })
-            .state('ob.community', {
-                url: '/community',
-                templateUrl: 'pages/community.html'
-            })
-            .state('ob.services', {
-                url: '/services',
-                templateUrl: 'pages/services.html',
-                controller: 'servicesController'
-            })
-            .state('ob.pricing', {
-                url: '/pricing',
-                templateUrl: 'pages/pricing.html',
-                controller: 'pricingController',
-                unsecured: true
-            })
-            .state('ob.faqs', {
-                url: '/faqs',
-                templateUrl: 'pages/faqs.html',
-                controller: 'faqsController',
-                unsecured: true
-            })
-            .state('ob.home', {
-                url: '/home',
-                templateUrl: 'pages/home.html',
-                controller: 'homeController'
-            })
             .state('login', {
                 url: '/login',
                 templateUrl: 'pages/login.html',
                 controller: 'loginController',
                 unsecured: true
             })
-            .state('signup', {
-                url: '/signup',
-                templateUrl: 'pages/signup.html',
-                controller: 'signupController',
-                unsecured: true
-            })
             .state('forgot', {
                 url: '/forgot',
                 templateUrl: 'pages/forgot.html',
                 controller: 'forgotController',
+                unsecured: true
+            })
+            .state('ob.analyze', {
+                url: '/analyze',
+                templateUrl: 'pages/analyze.html',
+                controller: 'analyzeController'
+            })
+            .state('ob.community', {
+                url: '/community',
+                templateUrl: 'pages/community.html'
+            })
+            .state('ob.design', {
+                url: '/design',
+                templateUrl: 'pages/design.html',
+                controller: 'designController'
+            })
+            .state('ob.docs', {
+                url: '/docs',
+                templateUrl: 'pages/docs.html',
+                controller: 'docsController'
+            })
+            .state('ob.faqs', {
+                url: '/faqs',
+                templateUrl: 'pages/faqs.html',
+                controller: 'faqsController'
+            })
+            .state('ob.home', {
+                url: '/home',
+                templateUrl: 'pages/home.html',
+                controller: 'homeController'
+            })
+            .state('ob.services', {
+                url: '/services',
+                templateUrl: 'pages/services.html',
+                controller: 'servicesController'
+            })
+            .state('ob.nodewizard', {
+                url: '/node-wizard',
+                abstract: true,
+                controller: 'nodeWizardController',
+                templateUrl: 'pages/node-wizard/index.html'
+            })
+            .state('ob.nodewizard.addnode', {
+                url: '',
+                templateUrl: 'pages/node-wizard/add-node.html'
+            })
+            .state('signup', {
+                url: '/signup',
+                templateUrl: 'pages/signup.html',
+                controller: 'signupController',
                 unsecured: true
             })
             .state('reset', {
