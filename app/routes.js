@@ -40,6 +40,7 @@ module.exports = function(app, passport) {
         require('./controllers/user')(app);
         require('./controllers/group')(app);
         require('./controllers/permissions')(app);
+        require('./controllers/node')(app);
         require('./controllers/designer')(app);
         require('./controllers/invitation')(app, passport, config);
 
