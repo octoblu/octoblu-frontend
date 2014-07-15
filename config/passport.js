@@ -64,12 +64,12 @@ module.exports = function (env, passport) {
                 // if no user is found, return the message
                 if (!user) {
                     console.log('auth user not found');
-                    return done(null, false, req.flash('loginMessage', 'No user found.'));
+                    return done({error : 'No User Found'});
                 }
 
                 if (!user.validPassword(password)) {
                     console.log('auth password doesnt match');
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+                    return done({error : 'Bad Password!'});
                 }
 
 
@@ -240,63 +240,3 @@ module.exports = function (env, passport) {
                 });
         }));
 };
-
-//    passport.use(new StackExchangeStrategy({
-//            clientID: configAuth.stackexchange.clientId,
-//            key: configAuth.stackexchange.clientKey,
-//            clientSecret: configAuth.stackexchange.clientSecret,
-//            callbackURL: configAuth.stackexchange.callbackURL,
-//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-//        },
-//        function (req, token, tokenSecret, profile, done) {
-//            console.log('handling stackexchange response with passport');
-//        }
-//    ));
-//
-//    passport.use(new BitlyStrategy({
-//            clientID: configAuth.bitly.clientId,
-//            key: configAuth.bitly.clientId,
-//            clientSecret: configAuth.bitly.clientSecret,
-//            callbackURL: configAuth.bitly.callbackURL,
-//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-//        },
-//        function (req, token, tokenSecret, profile, done) {
-//            console.log('handling bitly response with passport');
-//        }
-//    ));
-//
-//    passport.use(new FourSquareStrategy({
-//            clientID: configAuth.foursquare.clientKey,
-//            key: configAuth.foursquare.clientKey,
-//            clientSecret: configAuth.foursquare.clientSecret,
-//            callbackURL: configAuth.foursquare.callbackURL,
-//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-//        },
-//        function (req, token, tokenSecret, profile, done) {
-//            console.log('handling foursquare response with passport');
-//        }
-//    ));
-//
-//    passport.use(new TumblrStrategy({
-//            consumerKey: configAuth.tumblr.consumerKey,
-//            consumerSecret: configAuth.tumblr.consumerSecret,
-//            callbackURL: configAuth.tumblr.callbackURL,
-//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-//        },
-//        function (req, token, tokenSecret, profile, done) {
-//            console.log('handling tumblr response with passport');
-//        }
-//    ));
-//
-//    passport.use(new RdioStrategy({
-//            consumerKey: configAuth.rdio.consumerKey,
-//            consumerSecret: configAuth.rdio.consumerSecret,
-//            callbackURL: configAuth.rdio.callbackURL,
-//            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-//        },
-//        function (req, token, tokenSecret, profile, done) {
-//            console.log('handling rdio response with passport');
-//        }
-//    ));
-//
-//};

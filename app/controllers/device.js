@@ -116,7 +116,7 @@ var deviceController = {
                 res.send(result.entity);
             })
             .catch(function (error) {
-                res.send(400, error);
+                res.send(400, error.entity);
             });
 
     },

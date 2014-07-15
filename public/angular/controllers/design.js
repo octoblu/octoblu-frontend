@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('designerController', function ($rootScope, $scope, $http, $injector, $location, nodeRedService) {
+    .controller('designController', function ($rootScope, $scope, $http, $injector, $location, nodeRedService) {
         $scope.getSessionFlow = function () {
             $http({method: 'GET', url: '/api/get/flow'})
                 .success(function (data, status, headers, config) {

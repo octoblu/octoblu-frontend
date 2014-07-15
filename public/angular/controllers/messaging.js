@@ -1,57 +1,73 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, skynetService, PluginService) {
-        $scope.devices = _.sortBy(_.clone(myDevices), 'name');
-        $scope.devices.unshift({
+    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableDeviceTypes, skynetService, PluginService) {
+
+        $scope.model = {
+            devices : _.sortBy(_.cloneDeep(myDevices), 'name'),
+            deviceTypes : availableDeviceTypes,
+            schemaEditor : {}
+
+        };
+
+
+
+        $scope.model.devices.unshift({
             name: 'Me',
             uuid: currentUser.skynetuuid,
             token: currentUser.skynettoken,
             type: 'user'
         });
 
-        $scope.schemaEditor = {};
-        $scope.$on('skynet:message:' + currentUser.skynetuuid, function (channel, message) {
-            alert(JSON.stringify(message, null, true));
-        });
 
-        $scope.$watch('sendUuid', function (newValue, oldValue) {
-            if (newValue || $scope.device) {
-                $scope.schema = {};
+        $scope.$watch('model.sendUuid', function (newValue, oldValue) {
+            if (newValue || $scope.model.device) {
+                $scope.model.schema = {};
             } else {
-                delete $scope.schema;
+                delete $scope.model.schema;
             }
         });
 
-        $scope.$watch('device', function (newDevice, oldDevice) {
-            $scope.subdevice = null;
-            if (newDevice || $scope.sendUuid) {
+        $scope.$watch('model.device', function (newDevice, oldDevice) {
+            $scope.model.subdevice = null;
+            if (newDevice || $scope.model.sendUuid) {
                 if (newDevice.type !== 'gateway') {
-                    $scope.schema = {};
+                    $scope.model.schema = {};
+                } else {
+                    skynetService.gatewayConfig({
+                        uuid: newDevice.uuid,
+                        token: newDevice.token,
+                        method: "configurationDetails"
+                    }).then(function (response) {
+                        if (response && response.result) {
+                            $scope.model.device.subdevices = response.result.subdevices || [];
+                            $scope.model.device.plugins = response.result.plugins || [];
+                        }
+                    });
                 }
             } else {
-                delete $scope.schema;
+                delete $scope.model.schema;
             }
         });
 
-        $scope.$watch('subdevice', function (newSubdevice, oldSubdevice) {
+        $scope.$watch('model.subdevice', function (newSubdevice, oldSubdevice) {
             if (newSubdevice) {
-                var plugin = _.findWhere($scope.device.plugins, {name: newSubdevice.type});
+                var plugin = _.findWhere($scope.model.device.plugins, {name: newSubdevice.type});
                 if (!plugin) {
-                    PluginService.installPlugin($scope.device, newSubdevice.type)
+                    PluginService.installPlugin($scope.model.device, newSubdevice.type)
                         .then(function (result) {
-                            return PluginService.getInstalledPlugins($scope.device);
+                            return PluginService.getInstalledPlugins($scope.model.device);
                         })
                         .then(function (result) {
                             console.log(result);
-                            $scope.device.plugins = result.result;
-                            $scope.plugin = _.findWhere($scope.device.plugins, {name: newSubdevice.type});
-                            $scope.schema = $scope.plugin.messageSchema;
+                            $scope.model.device.plugins = result;
+                            $scope.model.plugin = _.findWhere($scope.model.device.plugins, {name: newSubdevice.type});
+                            $scope.model.schema = $scope.model.plugin.messageSchema;
                         })
 
                 } else {
-                    $scope.plugin = plugin;
-                    $scope.schema = $scope.plugin.messageSchema;
+                    $scope.model.plugin = plugin;
+                    $scope.model.schema = $scope.model.plugin.messageSchema;
                 }
             }
         });
@@ -64,24 +80,26 @@ angular.module('octobluApp')
              if no schema exists, they are doing this manually and we check if the UUID field is populated and that
              there is a message to send.
              */
-            var sender = $scope.fromDevice;
-            if ($scope.subdevice) {
+            var sender = $scope.model.fromDevice;
+            if ($scope.model.subdevice) {
                 skynetService.sendMessage({
                     fromUuid: sender.uuid,
-                    devices: $scope.sendUuid || $scope.device.uuid,
-                    subdevice: $scope.subdevice.name,
-                    payload: $scope.schemaEditor.getValue()
-                }).then(function (result) {
-                    $scope.messageOutput = $scope.schemaEditor.getValue();
+                    devices: $scope.model.sendUuid || $scope.model.device.uuid,
+                    subdevice: $scope.model.subdevice.name,
+                    payload: $scope.model.schemaEditor.getValue()
+                }).then(function (response) {
+                    $scope.model.messageOutput = $scope.model.schemaEditor.getValue();
+                    $scope.model.messageResult = response;
                 });
             } else {
 
                 skynetService.sendMessage({
                     fromUuid: sender.uuid,
-                    devices: $scope.sendUuid || $scope.device.uuid,
-                    payload: $scope.schemaEditor.getValue()
-                }).then(function (result) {
-                    $scope.messageOutput = $scope.schemaEditor.getValue();
+                    devices: $scope.model.sendUuid || $scope.model.device.uuid,
+                    payload: $scope.model.schemaEditor.getValue()
+                }).then(function (response) {
+                    $scope.model.messageOutput = $scope.model.schemaEditor.getValue();
+                    $scope.model.messageResult = response;
                 });
             }
         }

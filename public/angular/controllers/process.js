@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('dashboardController', function ($rootScope, $scope, $http, $injector, $location,
+    .controller('processController', function ($rootScope, $scope, $http, $injector, $location,
                                                  channelService, userService, currentUser, myDevices) {
         $scope.message = 'Contact page content pending.';
         var dataPoints = [];

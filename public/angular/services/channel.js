@@ -1,5 +1,9 @@
 angular.module('octobluApp')
     .service('channelService', function ($q, $http) {
+        var customchannels = [];
+        var activechannels = [];
+        var availablechannels = [];
+
         this.getList = function(callback) {
             $http.get('/api/channels', { cache: true})
                 .success(function(data) { callback(data); })
@@ -61,11 +65,24 @@ angular.module('octobluApp')
          * @param userUUID
          * @returns {*}
          */
-        this.getActiveChannels = function(){
-            return $http.get('/api/channels/active', { cache: false})
-                .then(function(result){
-                    return result.data;
+        this.getActiveChannels = function(force){
+            // return $http.get('/api/channels/active', { cache: false})
+            //     .then(function(result){
+            //         return result.data;
+            //     });
+            if (activechannels && activechannels.length && !force) {
+                var defer = $q.defer();
+                defer.resolve(activechannels);
+                return defer.promise;
+            } else {
+                return $http.get('/api/channels/active').then(function (res) {
+                   angular.copy(res.data, activechannels);
+                   return activechannels;
+                }, function (err) {
+                    console.log(err);
+                    return angular.copy([], activechannels);
                 });
+            }
         };
 
         /**
@@ -73,11 +90,24 @@ angular.module('octobluApp')
          * @param userUUID
          * @returns {*}
          */
-        this.getAvailableChannels = function(){
-            return $http.get('/api/channels/available', { cache: false})
-                .then(function(result){
-                    return result.data;
+        this.getAvailableChannels = function(force){
+            // return $http.get('/api/channels/available', { cache: false})
+            //     .then(function(result){
+            //         return result.data;
+            //     });
+            if (availablechannels && availablechannels.length && !force) {
+                var defer = $q.defer();
+                defer.resolve(availablechannels);
+                return defer.promise;
+            } else {
+                return $http.get('/api/channels/available').then(function (res) {
+                   angular.copy(res.data, availablechannels);
+                   return availablechannels;
+                }, function (err) {
+                    console.log(err);
+                    return angular.copy([], availablechannels);
                 });
+            }
         };
 
         /**
@@ -93,17 +123,28 @@ angular.module('octobluApp')
                 });
         };
 
-        this.getCustomList = function(uuid, callback) {
-            $http.get('/api/customchannels/' + uuid, { cache: true})
-                .success(function(data) { callback(data); })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                    callback({});
+        this.getCustomList = function(force) {
+            // return $http.get('/api/customchannels/', { cache: false})
+            //     .then(function(result){
+            //         return result.data;
+            //     });
+            if (customchannels && customchannels.length && !force) {
+                var defer = $q.defer();
+                defer.resolve(customchannels);
+                return defer.promise;
+            } else {
+                return $http.get('/api/customchannels/').then(function (res) {
+                   angular.copy(res.data, customchannels);
+                   return customchannels;
+                }, function (err) {
+                    console.log(err);
+                    return angular.copy([], customchannels);
                 });
+            }
         };
 
-        this.getByName = function(name, callback) {
-            $http.get('/api/channels/'+name, { cache: true})
+        this.get = function(id, callback) {
+            $http.get('/api/channels/'+id, { cache: false})
                 .success(function(data) {
                     callback(data);
                 })
@@ -115,13 +156,24 @@ angular.module('octobluApp')
 
         this.save = function(channel, callback) {
             var d = angular.toJson(channel);
-            $http.put('/api/channels/', d, { cache: true})
+            $http.put('/api/channels/', d, { cache: false})
                 .success(function(data) {
                     callback(data);
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
                     callback({});
+                });
+        };
+
+        this.delete = function(channelId, callback) {
+            $http.delete('/api/channels/'+channelId, { cache: false})
+                .success(function(data) {
+                    callback(true);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                    callback(false);
                 });
         };
     });

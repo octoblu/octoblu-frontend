@@ -1,0 +1,58 @@
+<div class='contrast-red login contrast-background'>
+  <div class='middle-container'>
+    <div class='middle-row'>
+      <div class='middle-wrapper'>
+        <div class="login-container-header">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="text-center">
+                  <!-- <img width="121" height="31" src="assets/images/logo_lg.svg" /> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='login-container'>
+          <div class='container'>
+            <div class='row'>
+              <div class="col-sm-offset-3 col-sm-6">
+                <div class="row">
+                  <h1 class='text-center title'>Reset Password</h1>
+
+                  <div ng-show="passwordHasBeenReset" class="text-center">
+                    <h3 class="text-center text-success">
+                      Your password has been reset, you can now login with your new password.
+                    </h3>
+                    <h4><a href ng-click="gotoLogin()">Login</a></h4>
+                  </div>
+
+                  <form action="" ng-submit="resetPassword()" class="form-horizontal" role="form" ng-hide="passwordHasBeenReset">
+                    <div class="form-group" ng-class="{'has-error': errorMessage}">
+                      <label for="password" class="col-sm-4 control-label">Password</label>
+                      <div class="col-sm-8">
+                        <input ng-model="password" id="password" name="password" type="password" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': errorMessage}">
+                      <label for="confirm-password" class="col-sm-4 control-label">Confirm Password</label>
+                      <div class="col-sm-8">
+                        <input ng-model="confirmPassword" id="confirm-password" name="confirm-password" type="password"  class="form-control" required>
+                        <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                      <input type="submit" class="btn btn-block btn-primary" value="Reset" ng-class="{'disabled': !(password && confirmPassword)}">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

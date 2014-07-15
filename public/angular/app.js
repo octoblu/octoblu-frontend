@@ -3,6 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
+        // 'host': 'skynet.im',
+        // 'port': '80'
         'host': 'localhost', //change to the skynet.im instance
         'port': '3000'
     })
@@ -29,11 +31,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // change page event name
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-        $httpProvider.interceptors.push(function ($injector) {
+        $httpProvider.interceptors.push(function ($location) {
             return {
                 responseError: function (response) {
-                    if (response.status >= 400) {
-                        $injector.get('$state').go('login');
+                    if (response.status === 401) {
+                        $location.url('/login');
                     }
                     return response;
                 }
@@ -78,13 +80,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/profile.html',
                 controller: 'profileController'
             })
-            .state('ob.dashboard', {
-                url: '/dashboard',
-                templateUrl: 'pages/dashboard.html',
-                controller: 'dashboardController'
+            .state('ob.process', {
+                url: '/process',
+                templateUrl: 'pages/process.html',
+                controller: 'processController'
             })
             .state('ob.connector', {
-                url: '/connector',
+                url: '/connect',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
                     availableDeviceTypes: function (channelService) {
@@ -119,7 +121,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 template: '<ui-view></ui-view>'
             })
             .state('ob.connector.devices.all', {
-                url: '',
+                url: '/',
                 controller: 'DeviceController',
                 templateUrl: 'pages/connector/devices/index.html'
             })
@@ -168,7 +170,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/channels/index.html'
             })
             .state('ob.connector.channels.detail', {
-                url: '/:name',
+                url: '/:id',
                 templateUrl: 'pages/connector/channels/detail.html',
                 controller: 'apiController'
             })
@@ -178,7 +180,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'apiResourcesController'
             })
             .state('ob.connector.channels.resources.detail', {
-                url: '/:apiname',
+                url: '/:id',
                 templateUrl: 'pages/connector/channels/resources/detail.html',
                 controller: 'apiResourcesController'
             })
@@ -191,12 +193,33 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'smartDeviceController',
                 templateUrl: 'pages/connector/advanced/devices.html'
             })
+            // .state('ob.connector.advanced.channels', {
+            //     url: '/custom_channels',
+            //     templateUrl: 'pages/connector/advanced/channels.html'
+            // })
             .state('ob.connector.advanced.channels', {
+                // abstract: true,
                 url: '/custom_channels',
-                templateUrl: 'pages/connector/advanced/channels.html'
+                // template: '<ui-view />',
+                templateUrl: 'pages/connector/advanced/channels.html',
+                controller: 'CustomChannelController',
+                resolve: {
+                    customChannels: function (channelService) {
+                        return channelService.getCustomList();
+                    }
+                }
+                // resolve: {
+                //     customChannels: function (channelService) {
+                //         return [];
+                //     }
+                // }
             })
+            // .state('ob.connector.advanced.channels.index', {
+            //     url: '',
+            //     templateUrl: 'pages/connector/advanced/channels.html'
+            // })
             .state('ob.connector.advanced.channels.editor', {
-                url: '/editor/:name',
+                url: '/editor/:id',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
             })
@@ -250,10 +273,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('ob.analyzer', {
-                url: '/analyzer',
-                templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController'
+            .state('ob.analyze', {
+                url: '/analyze',
+                templateUrl: 'pages/analyze.html',
+                controller: 'analyzeController'
             })
             .state('ob.docs', {
                 url: '/docs',
@@ -261,10 +284,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'docsController',
                 unsecured: true
             })
-            .state('ob.designer', {
-                url: '/designer',
-                templateUrl: 'pages/designer.html',
-                controller: 'designerController'
+            .state('ob.design', {
+                url: '/design',
+                templateUrl: 'pages/design.html',
+                controller: 'designController'
             })
             .state('ob.community', {
                 url: '/community',
@@ -287,6 +310,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'faqsController',
                 unsecured: true
             })
+            .state('ob.home', {
+                url: '/home',
+                templateUrl: 'pages/home.html',
+                controller: 'homeController'
+            })
             .state('login', {
                 url: '/login',
                 templateUrl: 'pages/login.html',
@@ -304,14 +332,20 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/forgot.html',
                 controller: 'forgotController',
                 unsecured: true
+            })
+            .state('reset', {
+                url: '/reset/:resetToken',
+                templateUrl: 'pages/reset/reset.html',
+                controller: 'resetController',
+                unsecured: true
             });
 
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/home');
     })
-    .run(function ($rootScope, $window, $state, $urlRouter, AuthService) {
+    .run(function ($rootScope, $window, $state, $urlRouter, $location, AuthService) {
 
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams) {
             console.log('error from ' + fromState.name + ' to ' + toState.name)
@@ -320,14 +354,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
         $rootScope.$on('$stateChangeStart', function (event, toState) {
             if (!toState.unsecured) {
-                return AuthService.getCurrentUser().then(function (user) {
-                    console.log('got a user!');
-                    console.log(user);
-                }, function (err) {
+                return AuthService.getCurrentUser(true).then(null, function (err) {
                     console.log('LOGIN ERROR:');
                     console.log(err);
                     event.preventDefault();
-                    $state.go('login');
+                    $location.url('/login');
                 });
             }
         });

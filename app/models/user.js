@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     Resource = require('./mixins/resource'),
     moment = require('moment'),
+    Q = require('q'),
 
     configAuth = require('../../config/auth')(process.env.NODE_ENV),
     rest = require('rest'),
@@ -18,6 +19,8 @@ var UserSchema = new mongoose.Schema({
         displayName : String,
         email : String,
         admin: Boolean,
+        resetPasswordToken: String,
+        resetPasswordExpires: Date,
         skynet: {
             uuid: {type: String, unique: true, required: true},
             token: { type: String, required: true}
@@ -47,6 +50,7 @@ var UserSchema = new mongoose.Schema({
         api: [
             {
                 name: String,
+                channelid: String,
                 authtype: String,
                 key: String,
                 token: String,
@@ -84,13 +88,13 @@ UserSchema.methods.findApiByName = function (name) {
     return null;
 };
 
-UserSchema.methods.addOrUpdateApiByName = function (name, type, key, token, secret, verifier, custom_tokens) {
+UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, token, secret, verifier, custom_tokens) {
     this.api = this.api || [];
 
     var isoDate = moment().format();
 
     for (var l = 0; l < this.api.length; l++) {
-        if (this.api[l].name === name) {
+        if (this.api[l].channelid == channelid) {
             console.log('updating existing');
             this.api[l].key = key;
             this.api[l].authtype = type;
@@ -106,7 +110,7 @@ UserSchema.methods.addOrUpdateApiByName = function (name, type, key, token, secr
 
     // at this point the match wasn't found, so add it..
     var item = {
-        name: name,
+        channelid: channelid,
         authtype: type,
         key: key,
         token: token,
@@ -116,8 +120,6 @@ UserSchema.methods.addOrUpdateApiByName = function (name, type, key, token, secr
         updated: isoDate
     };
 
-    console.log('adding');
-    console.log(item);
     this.api.push(item);
 };
 
@@ -126,10 +128,36 @@ UserSchema.methods.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
+UserSchema.methods.saveWithPromise = function(){
+    var defer = Q.defer();
+    this.save(function(error, user){
+        if(error) {
+          return defer.reject(error);
+        }
+        defer.resolve(user);
+    });
+    return defer.promise;
+}
+
+UserSchema.methods.updatePassword = function(oldPassword, newPassword){
+    var defer, user;
+    defer = Q.defer();
+    user = this;
+
+    if(!this.validPassword(oldPassword)) {
+        defer.reject('Password is invalid')
+        return defer.promise;
+    }
+
+    this.local.password = this.generateHash(newPassword);
+    return user.saveWithPromise();
+};
+
 // checking if password is valid
 UserSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.local.password);
 };
+
 
 //Convenience method for getting the Skynet UUID
 //TODO: replace this with resource.uuid
@@ -157,7 +185,18 @@ UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
 };
 
 UserSchema.statics.findByEmail = function (email) {
-    return this.findOne({ email : email }).exec();
+    return Q(this.findOne({ email : email }).exec());
+};
+
+UserSchema.statics.findByResetToken = function(resetToken) {
+    var userQuery;
+
+    userQuery = {
+      resetPasswordToken: resetToken,
+      resetPasswordExpires: { $gt: (new Date()) }
+    };
+
+    return this.findOne(userQuery).exec();
 };
 
 UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
