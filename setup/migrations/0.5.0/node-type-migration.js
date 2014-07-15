@@ -293,7 +293,7 @@ db.nodetypes.insert({
     display: true
 });
 
-var channelCursor = db.apis.find({ owner : { $exists : false}}, { name : 1, logo : 1, enabled : 1, description : 1 });
+var channelCursor = db.apis.find({ owner : { $exists : false}, name : {$exists : true }}, { name : 1, logo : 1, enabled : 1, description : 1 });
 while(channelCursor.hasNext()){
     var channel = channelCursor.next();
     var nodeType = {
