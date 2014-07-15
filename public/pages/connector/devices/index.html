@@ -15,7 +15,7 @@
          <div class="panel-body center-block">
 
              <div class="device-image-container center-block">
-                 <img class="device-image" src="{{getDeviceTypeLogo(device)}}" />
+                 <img class="device-image" src="{{getDeviceTypeLogo(device)}}" ng-class="{faded: !device.online}"/>
              </div>
              <div class="btn-group btn-group-justified">
                  <div class="btn-group">
