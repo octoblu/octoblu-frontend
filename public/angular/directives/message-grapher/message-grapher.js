@@ -2,6 +2,7 @@ angular.module('octobluApp')
     .directive('messageGrapher', function ($interval, $window) {
         return {
             restrict: 'AE',
+            replace: true,
             templateUrl: 'angular/directives/message-grapher/message-grapher.html',
             scope: {
                 device: '=',
@@ -13,15 +14,9 @@ angular.module('octobluApp')
                     smoothie,
                     messageLines;
 
-                if (scope.width) {
-                    scope.graphWidth = scope.width;
-                    if (scope.width === "stretch") {
-                        scope.graphWidth = $window.innerWidth;
-                    }
-                } else {
-                    scope.graphWidth = 400;
-                }
 
+                scope.graphWidth = element.innerWidth();
+                scope.graphHeight = 100;
                 initializeSmoothie();
                 var eventName = 'skynet:message';
 
@@ -60,10 +55,10 @@ angular.module('octobluApp')
                     }
                     messages = [];
 
-                    if (scope.width === 'stretch' && scope.graphWidth !== $window.innerWidth) {
-                        console.log('resize smoothie');
+                    if (scope.graphWidth !== element.innerWidth()) {
+                        scope.graphWidth = element.innerWidth();
+                        element.find('canvas').attr('height', 100);
                     }
-
                 }, 1000);
 
                 scope.$on('$destroy', function () {
