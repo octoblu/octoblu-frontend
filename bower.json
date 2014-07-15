@@ -34,7 +34,6 @@
     "jquery-ui": "~1.10.4",
     "angular-ui-router": "~0.2.10",
     "modernizr": "~2.8.2",
-    "bootstrap": "~3.1.1",
     "fontawesome": "Font-Awesome#4.1.0",
     "angular-ui-utils": "~0.1.1",
     "d3": "~3.4.8",

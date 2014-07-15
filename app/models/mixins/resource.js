@@ -3,6 +3,7 @@
 var mongoose = require('mongoose'),
     _ = require('lodash'),
     crypto = require('crypto'),
+    Q = require('q'),
     uuid = require('node-uuid');
 
 var ResourceType = {
@@ -52,6 +53,18 @@ function enforceDefaults(doc, uuidProperty, type, properties) {
 
 function generateToken(){
   return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('base64');
+}
+
+function generateUrlSafeToken(){
+    var defer = Q.defer();
+    crypto.randomBytes(20, function(error, buffer) {
+        if(error){
+            return defer.reject(error);
+        }
+        var token = buffer.toString('hex');
+        defer.resolve(token);
+    });
+    return defer.promise;
 }
 
 function makeResourceObject( options ){
@@ -125,6 +138,7 @@ module.exports = {
     ResourceType: ResourceType,
     ResourceId: ResourceId,
     generateToken : generateToken,
+    generateUrlSafeToken : generateUrlSafeToken,
     makeResourceModel: makeResourceModel,
     makeResourceObject : makeResourceObject
 };

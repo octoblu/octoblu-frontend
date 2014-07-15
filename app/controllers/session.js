@@ -3,7 +3,7 @@
 var mongoose      = require('mongoose'),
     nodemailer    = require('nodemailer'),
     request       = require('request'),
-    generateToken = require('../models/mixins/resource').generateToken,
+    generateUrlSafeToken = require('../models/mixins/resource').generateUrlSafeToken,
     User          = mongoose.model('User');
 
 module.exports = function ( app, passport, config ) {
@@ -18,7 +18,10 @@ module.exports = function ( app, passport, config ) {
           throw {code: 404, errors: {email: ['No account with that email address exists.']}};
         }
 
-        user.resetPasswordToken   = generateToken();
+        return generateUrlSafeToken();
+      })
+      .then(function(token){
+        user.resetPasswordToken   = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
         return user.saveWithPromise();
@@ -117,7 +120,7 @@ module.exports = function ( app, passport, config ) {
 				          httpOnly: false
 				        });
                 req.session.user = user;
-					      // return res.redirect('/dashboard');
+					      // return res.redirect('/home');
                 // Check for deep link redirect based on referrer in querystring
                 if(req.session.redirect){
                   if(req.session.js){
@@ -126,14 +129,14 @@ module.exports = function ( app, passport, config ) {
                     return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
                   }
                 } else {
-                  return res.redirect('/dashboard');
+                  return res.redirect('/home');
                 }
 
 
 		            }
 		            else {
 		                console.log("Error: could not update user - error " + err);
-							      // return res.redirect('/dashboard');
+							      // return res.redirect('/home');
                     // Check for deep link redirect based on referrer in querystring
                     if(req.session.redirect){
                       if(req.session.js){
@@ -142,7 +145,7 @@ module.exports = function ( app, passport, config ) {
                         return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
                       }
                     } else {
-                      return res.redirect('/dashboard');
+                      return res.redirect('/home');
                     }
 
 		            }
@@ -151,7 +154,7 @@ module.exports = function ( app, passport, config ) {
 			      } else {
 			        console.log('error: '+ response.statusCode);
 			        console.log(error);
-  			      // return res.redirect('/dashboard');
+  			      // return res.redirect('/home');
               // Check for deep link redirect based on referrer in querystring
               if(req.session.redirect){
                 if(req.session.js){
@@ -160,7 +163,7 @@ module.exports = function ( app, passport, config ) {
                   return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
                 }
               } else {
-                return res.redirect('/dashboard');
+                return res.redirect('/home');
               }
 
 			      }

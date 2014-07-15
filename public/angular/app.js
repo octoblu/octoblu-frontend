@@ -3,10 +3,10 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
-        'host': 'skynet.im',
-        'port': '80'
-        // 'host': 'localhost', //change to the skynet.im instance
-        // 'port': '3000'
+        // 'host': 'skynet.im',
+        // 'port': '80'
+        'host': 'localhost', //change to the skynet.im instance
+        'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -80,13 +80,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/profile.html',
                 controller: 'profileController'
             })
-            .state('ob.dashboard', {
-                url: '/dashboard',
-                templateUrl: 'pages/dashboard.html',
-                controller: 'dashboardController'
+            .state('ob.process', {
+                url: '/process',
+                templateUrl: 'pages/process.html',
+                controller: 'processController'
             })
             .state('ob.connector', {
-                url: '/connector',
+                url: '/connect',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
                     availableDeviceTypes: function (channelService) {
@@ -121,7 +121,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 template: '<ui-view></ui-view>'
             })
             .state('ob.connector.devices.all', {
-                url: '',
+                url: '/',
                 controller: 'DeviceController',
                 templateUrl: 'pages/connector/devices/index.html'
             })
@@ -170,7 +170,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/channels/index.html'
             })
             .state('ob.connector.channels.detail', {
-                url: '/:name',
+                url: '/:id',
                 templateUrl: 'pages/connector/channels/detail.html',
                 controller: 'apiController'
             })
@@ -180,7 +180,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'apiResourcesController'
             })
             .state('ob.connector.channels.resources.detail', {
-                url: '/:apiname',
+                url: '/:id',
                 templateUrl: 'pages/connector/channels/resources/detail.html',
                 controller: 'apiResourcesController'
             })
@@ -219,7 +219,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             //     templateUrl: 'pages/connector/advanced/channels.html'
             // })
             .state('ob.connector.advanced.channels.editor', {
-                url: '/editor/:name',
+                url: '/editor/:id',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
             })
@@ -273,10 +273,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('ob.analyzer', {
-                url: '/analyzer',
-                templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController'
+            .state('ob.analyze', {
+                url: '/analyze',
+                templateUrl: 'pages/analyze.html',
+                controller: 'analyzeController'
             })
             .state('ob.docs', {
                 url: '/docs',
@@ -284,10 +284,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'docsController',
                 unsecured: true
             })
-            .state('ob.designer', {
-                url: '/designer',
-                templateUrl: 'pages/designer.html',
-                controller: 'designerController'
+            .state('ob.design', {
+                url: '/design',
+                templateUrl: 'pages/design.html',
+                controller: 'designController'
             })
             .state('ob.community', {
                 url: '/community',
@@ -310,6 +310,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'faqsController',
                 unsecured: true
             })
+            .state('ob.home', {
+                url: '/home',
+                templateUrl: 'pages/home.html',
+                controller: 'homeController'
+            })
             .state('login', {
                 url: '/login',
                 templateUrl: 'pages/login.html',
@@ -330,7 +335,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('reset', {
                 url: '/reset/:resetToken',
-                templateUrl: 'pages/reset.html',
+                templateUrl: 'pages/reset/reset.html',
                 controller: 'resetController',
                 unsecured: true
             });
@@ -338,7 +343,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/home');
     })
     .run(function ($rootScope, $window, $state, $urlRouter, $location, AuthService) {
 

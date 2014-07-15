@@ -19,7 +19,15 @@
               <div class="col-sm-offset-3 col-sm-6">
                 <div class="row">
                   <h1 class='text-center title'>Reset Password</h1>
-                  <form action="" ng-submit="resetPassword()" class="form-horizontal" role="form">
+
+                  <div ng-show="passwordHasBeenReset" class="text-center">
+                    <h3 class="text-center text-success">
+                      Your password has been reset, you can now login with your new password.
+                    </h3>
+                    <h4><a href ng-click="gotoLogin()">Login</a></h4>
+                  </div>
+
+                  <form action="" ng-submit="resetPassword()" class="form-horizontal" role="form" ng-hide="passwordHasBeenReset">
                     <div class="form-group" ng-class="{'has-error': errorMessage}">
                       <label for="password" class="col-sm-4 control-label">Password</label>
                       <div class="col-sm-8">

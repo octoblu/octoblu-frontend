@@ -50,6 +50,7 @@ var UserSchema = new mongoose.Schema({
         api: [
             {
                 name: String,
+                channelid: String,
                 authtype: String,
                 key: String,
                 token: String,
@@ -87,13 +88,13 @@ UserSchema.methods.findApiByName = function (name) {
     return null;
 };
 
-UserSchema.methods.addOrUpdateApiByName = function (name, type, key, token, secret, verifier, custom_tokens) {
+UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, token, secret, verifier, custom_tokens) {
     this.api = this.api || [];
 
     var isoDate = moment().format();
 
     for (var l = 0; l < this.api.length; l++) {
-        if (this.api[l].name === name) {
+        if (this.api[l].channelid == channelid) {
             console.log('updating existing');
             this.api[l].key = key;
             this.api[l].authtype = type;
@@ -109,7 +110,7 @@ UserSchema.methods.addOrUpdateApiByName = function (name, type, key, token, secr
 
     // at this point the match wasn't found, so add it..
     var item = {
-        name: name,
+        channelid: channelid,
         authtype: type,
         key: key,
         token: token,
@@ -119,8 +120,6 @@ UserSchema.methods.addOrUpdateApiByName = function (name, type, key, token, secr
         updated: isoDate
     };
 
-    console.log('adding');
-    console.log(item);
     this.api.push(item);
 };
 
@@ -140,10 +139,25 @@ UserSchema.methods.saveWithPromise = function(){
     return defer.promise;
 }
 
+UserSchema.methods.updatePassword = function(oldPassword, newPassword){
+    var defer, user;
+    defer = Q.defer();
+    user = this;
+
+    if(!this.validPassword(oldPassword)) {
+        defer.reject('Password is invalid')
+        return defer.promise;
+    }
+
+    this.local.password = this.generateHash(newPassword);
+    return user.saveWithPromise();
+};
+
 // checking if password is valid
 UserSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.local.password);
 };
+
 
 //Convenience method for getting the Skynet UUID
 //TODO: replace this with resource.uuid

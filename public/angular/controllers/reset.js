@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('resetController', function($scope, $state, $stateParams, $location, AuthService) {
+    .controller('resetController', function($scope, $state, $location, AuthService) {
+      $scope.passwordHasBeenReset = false;
+
       $scope.resetPassword = function(){
         $scope.errorMessage = undefined;
 
@@ -10,9 +12,12 @@ angular.module('octobluApp')
         }
 
         AuthService.setPassword($state.params.resetToken, $scope.password).then(function(result){
-          $state.go('login');
+          $scope.passwordHasBeenReset = true;
         }, function(error){
-          $scope.errorMessage = 'Could not reset your password.';
+          $scope.errorMessage = error.error || 'Could not reset your password.';
         });
+      }
+      $scope.gotoLogin = function(){
+        $state.go('login');
       }
     });

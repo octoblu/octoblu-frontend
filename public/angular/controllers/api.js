@@ -8,13 +8,12 @@ angular.module('octobluApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        channelService.getByName($stateParams.name, function (data) {
-
+        channelService.get($stateParams.id, function (data) {
             $scope.channel = data;
             $scope.custom_tokens = data.custom_tokens;
 
             for (var l = 0; l < $scope.currentUser.api.length; l++) {
-                if ($scope.currentUser.api[l].name === $scope.channel.name) {
+                if ($scope.currentUser.api[l].channelid === $scope.channel._id) {
                     $scope.user_channel = $scope.currentUser.api[l];
 
                     if ($scope.currentUser.api[l].custom_tokens)
@@ -25,7 +24,7 @@ angular.module('octobluApp')
         });
 
         $scope.editCustom = function () {
-            $state.go('ob.connector.advanced.channels.editor', { name: $scope.channel.name });
+            $state.go('ob.connector.advanced.channels.editor', { id: $scope.channel._id });
         };
 
         $scope.open = function () {
@@ -45,8 +44,10 @@ angular.module('octobluApp')
             modalInstance.result.then(function (response) {
                 if (response === 'ok') {
                     // $log.info('clicked ok');
-                    userService.removeConnection(currentUser.skynetuuid, $scope.channel.name, function (data) {
+                    userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
+                        channelService.getActiveChannels(true);
+                        channelService.getAvailableChannels(true);
                     });
                 }
             }, function () {
@@ -61,6 +62,8 @@ angular.module('octobluApp')
             }
 
             $scope.has_user_channel = false;
+            channelService.getActiveChannels(true);
+            channelService.getAvailableChannels(true);
         };
 
         $scope.isActivated = function () {
@@ -113,10 +116,11 @@ angular.module('octobluApp')
         $scope.save = function () {
             if (!$scope.channel) return;
 
-            userService.saveConnection(currentUser.skynetuuid, $scope.channel.name, $scope.user_channel.key,
+            userService.saveConnection(currentUser.skynetuuid, $scope.channel._id, $scope.user_channel.key,
                 $scope.user_channel.token, $scope.custom_tokens,
                 function (data) {
                     console.log('saved');
+                    // currentUser = data;
                     $scope.has_user_channel = true;
                 });
 
@@ -125,13 +129,15 @@ angular.module('octobluApp')
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(currentUser.skynetuuid, channel.name, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel.name + '/custom';
+                var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
                 var loc = '/api/auth/' + channel.name;
@@ -141,7 +147,6 @@ angular.module('octobluApp')
 
         $scope.logo_url = function () {
             if (!$scope.channel || !$scope.channel.logo) return '';
-
             return $scope.channel.logo;
         };
     })
@@ -206,22 +211,23 @@ angular.module('octobluApp')
                 if (data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
-                    // try { $scope.updateCustomChannel($scope.channel); } catch(e) {}
                     channelService.getCustomList(true);
-                    $state.go('ob.connector.advanced.channels.editor', { name: data.name });
+                    $state.go('ob.connector.advanced.channels.editor', { id: data._id });
                 }
             });
         };
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(currentUser.skynetuuid, channel.name, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel.name + '/custom';
+                var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
                 var loc = '/api/auth/' + channel.name;
@@ -231,7 +237,6 @@ angular.module('octobluApp')
 
         $scope.logo_url = function () {
             if (!$scope.channel || !$scope.channel.logo) return '';
-
             return $scope.channel.logo;
         };
 
@@ -251,6 +256,7 @@ angular.module('octobluApp')
                         $scope.channel.application.resources.splice($scope.selectedResourceIndex, 1);
                         channelService.save($scope.channel, function (data) {
                             if (data) {
+                                $scope.channel = data;
                                 $modalInstance.dismiss('ok');
                             }
                         });
@@ -336,6 +342,7 @@ angular.module('octobluApp')
                         channelService.save($scope.channel, function (data) {
                             // $log.info('completed save call............');
                             if (data) {
+                                $scope.channel = data;
                                 $modalInstance.dismiss('ok');
                             }
                         });
@@ -375,19 +382,15 @@ angular.module('octobluApp')
                 });
         };
 
-//            $scope.$apply(function(){
-
-        if ($stateParams.name == 'new') {
+        if ($stateParams.id == 'new') {
             $scope.isNew = true;
             $scope.channel.owner = currentUser.skynetuuid;
         } else {
-            channelService.getByName($stateParams.name, function (data) {
+            channelService.get($stateParams.id, function (data) {
                 $scope.isNew = false;
                 $scope.channel = data;
             });
         }
-//            });
-
 
     })
     .controller('apiResourcesController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log
@@ -398,13 +401,12 @@ angular.module('octobluApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        channelService.getByName($stateParams.name, function (data) {
-
+        channelService.get($stateParams.id, function (data) {
             $scope.channel = data;
             $scope.custom_tokens = data.custom_tokens;
 
             for (var l = 0; l < $scope.currentUser.api.length; l++) {
-                if ($scope.currentUser.api[l].name === $scope.channel.name) {
+                if ($scope.currentUser.api[l].channelid === $scope.channel._id) {
                     $scope.user_channel = $scope.currentUser.api[l];
 
                     if ($scope.currentUser.api[l].custom_tokens)
@@ -436,8 +438,10 @@ angular.module('octobluApp')
                 if (response === 'ok') {
                     // $log.info('clicked ok');
                     $log.info(currentUser);
-                    userService.removeConnection(currentUser.skynetuuid, $scope.channel.name, function (data) {
+                    userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
+                        channelService.getActiveChannels(true);
+                        channelService.getAvailableChannels(true);
                     });
                 };
             }, function () {
@@ -457,13 +461,15 @@ angular.module('octobluApp')
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(currentUser.skynetuuid, channel.name, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel.name + '/custom';
+                var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
                 var loc = '/api/auth/' + channel.name;
@@ -484,13 +490,12 @@ angular.module('octobluApp')
         $scope.has_user_channel = false;
         $scope.custom_tokens = {};
 
-        channelService.getByName($stateParams.name, function (data) {
-
+        channelService.get($stateParams.id, function (data) {
             $scope.channel = data;
             $scope.custom_tokens = data.custom_tokens;
 
             for (var l = 0; l < $scope.currentUser.api.length; l++) {
-                if ($scope.currentUser.api[l].name === $scope.channel.name) {
+                if ($scope.currentUser.api[l].channelid === $scope.channel._id) {
                     $scope.user_channel = $scope.currentUser.api[l];
 
                     if ($scope.currentUser.api[l].custom_tokens)
@@ -520,8 +525,10 @@ angular.module('octobluApp')
             modalInstance.result.then(function (response) {
                 if (response === 'ok') {
                     // $log.info('clicked ok');
-                    userService.removeConnection(currentUser.skynetuuid, $scope.channel.name, function (data) {
+                    userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
+                        channelService.getActiveChannels(true);
+                        channelService.getAvailableChannels(true);
                     });
                 };
             }, function () {
@@ -543,13 +550,15 @@ angular.module('octobluApp')
 
         $scope.authorize = function (channel) {
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(channel.name, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                    channelService.getActiveChannels(true);
+                    channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
                     $scope.has_user_channel = true;
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel.name + '/custom';
+                var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
                 var loc = '/api/auth/' + channel.name;
