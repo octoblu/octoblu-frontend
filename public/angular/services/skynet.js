@@ -114,6 +114,18 @@ angular.module('octobluApp')
                 return promise;
             },
 
+            claimAndUpdateDevice: function (options) {
+                var device = _.omit(options, reservedProperties);
+
+                return skynetPromise.then(function(){
+                    device.owner = user.skynet.uuid;
+                    return service.updateDevice(device);
+                })
+                .then(function(){
+                    $rootScope.myDevices.push(device);
+                });
+            },
+
             /**
              *
              * @param options
@@ -122,6 +134,7 @@ angular.module('octobluApp')
             updateDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer(), promise = defer.promise;
+
 
                 skynetPromise.then(function () {
                     skynetConnection.update(device, function (result) {
@@ -152,9 +165,10 @@ angular.module('octobluApp')
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer(), promise = defer.promise;
 
-                device.owner = user.skynet.uuid;
 
                 skynetPromise.then(function () {
+                    device.owner = user.skynet.uuid;
+
                     skynetConnection.register(device, function (result) {
                         console.log('registered device!');
                         defer.resolve(result);

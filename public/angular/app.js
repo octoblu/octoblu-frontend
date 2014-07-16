@@ -137,7 +137,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/devices/wizard/index.html',
                 resolve: {
                     unclaimedDevices: function (deviceService) {
-                        return deviceService.getUnclaimedDevices();
+                        return deviceService.getUnclaimedNodes();
                     }
                 }
             })
