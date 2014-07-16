@@ -1,0 +1,44 @@
+<h2 class="text-center">{{nodeType.name}}</h2>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-12 col-md-offset-4 col-md-4">
+    <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" class="node-thumbnail"></div>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-xs-12 col-md-offset-3 col-md-6">
+    <form class="form" ng-submit="addGateway()">
+      <div class="form-group">
+        <select class="form-control input-lg" ng-model="newGateway.selectedGateway" ng-options="gateway.uuid + '(' + (gateway.type || 'gateway') + ')' for gateway in newGateway.unclaimedGateways">
+          <option value="">Add New</option>
+        </select>
+      </div>
+      <div class="form-group" ng-class="{'has-error': errorMessage}">
+        <label for="name" class="control-label">Name</label>
+        <input type="text" ng-model="newGateway.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
+        <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          <i class="fa fa-plus"></i>
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
