@@ -43,6 +43,14 @@ angular.module('octobluApp')
             });
         };
 
+        this.getUnclaimed = function(type){
+            if(type === 'gateway') {
+                return this.getUnclaimedGateways();
+            }
+
+            return this.getUnclaimedDevices();
+        };
+
         this.getUnclaimedDevices = function () {
             return this.getUnclaimedNodes().then(function(unclaimedNodes){
                 return _.filter(unclaimedNodes, function(unclaimedNode){

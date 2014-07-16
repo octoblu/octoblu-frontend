@@ -342,8 +342,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.nodewizard.addgateway', {
                 url: '/node-wizard/add-gateway/:deviceId',
-                controller: 'addGatewayController',
-                templateUrl: 'pages/node-wizard/add-gateway/index.html'
+                controller: 'addDeviceController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addsubdevice', {
                 url: '/node-wizard/add-subdevice/:deviceId',

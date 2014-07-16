@@ -6,11 +6,13 @@ angular.module('octobluApp')
 
         NodeTypeService.getNodeTypes().then(function(nodeTypes){
             $scope.nodeType = _.findWhere(nodeTypes, {_id: $stateParams.deviceId});
-        });
-
-        deviceService.getUnclaimedDevices().then(function(unclaimedDevices){
+        })
+        .then(function(){
+            return deviceService.getUnclaimed($scope.nodeType.category);
+        })
+        .then(function(unclaimedDevices){
             $scope.newDevice.unclaimedDevices = unclaimedDevices;
-            $scope.newDevice.selectedDevice = _.first(unclaimedDevices);
+            $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
         });
 
         $scope.addDevice = function() {
