@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top col-xs-12"  role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ob-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" ng-click="navIsCollapsed = !navIsCollapsed">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -11,7 +11,7 @@
                 <img src="/assets/images/octoblu.png" height="50px"/>
             </a>
         </div>
-        <div class="collapse navbar-collapse navbar-right" id="ob-navbar-collapse-1">
+        <div class="collapse navbar-collapse navbar-right" collapse="navIsCollapsed">
             <ul class="nav navbar-nav" ng-show="currentUser">
                 <li class="dropdown navbar-right">
                     <a href class="dropdown-toggle" id="profile-drop-down-menu" data-toggle="dropdown">
