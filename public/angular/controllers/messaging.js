@@ -80,7 +80,9 @@ angular.module('octobluApp')
              if no schema exists, they are doing this manually and we check if the UUID field is populated and that
              there is a message to send.
              */
-
+            
+            $scope.model.messageResult = "";
+            $scope.messageResponseTime = "";
             $scope.startTimer = new Date().getTime();
 
             var sender = $scope.model.fromDevice;
