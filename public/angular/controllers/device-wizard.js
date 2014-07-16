@@ -1,9 +1,5 @@
 angular.module('octobluApp')
     .controller('DeviceWizardController', function ($scope, $state,currentUser, availableDeviceTypes,  unclaimedDevices, myDevices,  skynetService, deviceService) {
-
-
-
-
         $scope.getStateName = function () {
             return $state.current.name;
         };
