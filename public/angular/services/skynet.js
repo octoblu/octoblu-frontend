@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService, deviceService, reservedProperties) {
+    .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService) {
         var skynetConnection,
             user,
             defer = $q.defer(),
@@ -32,33 +32,10 @@ angular.module('octobluApp')
         });
 
         skynetPromise.then(function () {
-            skynetConnection.on('message', processMessage);
-
-            _.each($rootScope.myDevices, function (device) {
-                skynetConnection.subscribe({uuid: device.uuid, token: device.token});
-            });
-
-            $rootScope.$watch('myDevices', function (myDevices, prevMyDevices) {
-                _.each(prevMyDevices, function (device) {
-                    skynetConnection.unsubscribe({uuid: device.uuid});
-                });
-
-                _.each(myDevices, function (device) {
-                    skynetConnection.subscribe({uuid: device.uuid, token: device.token});
-                });
+            skynetConnection.on('message', function (message) {
+                $rootScope.$broadcast('skynet:message', message);
             });
         });
-
-        function processMessage(message) {
-            $rootScope.$broadcast('skynet:message', message);
-            $rootScope.$broadcast('skynet:message:' + message.fromUuid, message);
-            if (message.payload && _.has(message.payload, 'online')) {
-                var device = _.findWhere($rootScope.myDevices, {uuid: message.fromUuid});
-                if (device) {
-                    device.online = message.payload.online;
-                }
-            }
-        }
 
         var service = {
             /**
@@ -117,13 +94,13 @@ angular.module('octobluApp')
             claimAndUpdateDevice: function (options) {
                 var device = _.omit(options, reservedProperties);
 
-                return skynetPromise.then(function(){
+                return skynetPromise.then(function () {
                     device.owner = user.skynet.uuid;
                     return service.updateDevice(device);
                 })
-                .then(function(){
-                    $rootScope.myDevices.push(device);
-                });
+                    .then(function () {
+                        $rootScope.myDevices.push(device);
+                    });
             },
 
             /**
@@ -146,12 +123,12 @@ angular.module('octobluApp')
                 return promise;
             },
 
-            registerDevice: function(options){
+            registerDevice: function (options) {
                 var device;
-                return service.initializeDevice(options).then(function(result){
+                return service.initializeDevice(options).then(function (result) {
                     device = _.extend({}, result, options);
                     return service.updateDevice(device);
-                }).then(function(){
+                }).then(function () {
                     $rootScope.myDevices.push(device);
                 });
             },
