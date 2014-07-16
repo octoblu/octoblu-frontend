@@ -210,12 +210,17 @@ angular.module('octobluApp')
              * @returns {*}
              */
             sendMessage: function (options) {
-                return skynetPromise.then(function () {
+
+                var defer = $q.defer(), promise = defer.promise;
+
+                skynetPromise.then(function () {
+                    console.log('sending message.');
                     skynetConnection.message(options, function (result) {
-                        console.log('sending skynet message!');
-                        return result;
+                        console.log('meshblu response:', result);
+                        defer.resolve(result);
                     });
                 });
+                return promise;
             }
         };
 
