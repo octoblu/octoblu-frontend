@@ -348,7 +348,18 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('ob.nodewizard.addsubdevice', {
                 url: '/node-wizard/add-subdevice/:deviceId',
                 controller: 'addSubdeviceController',
-                templateUrl: 'pages/node-wizard/add-subdevice.html'
+                templateUrl: 'pages/node-wizard/add-subdevice/index.html',
+                abstract: true
+            })
+            .state('ob.nodewizard.addsubdevice.selectgateway', {
+                url: '',
+                controller: 'addSubdeviceSelectGatewayController',
+                templateUrl: 'pages/node-wizard/add-subdevice/select-gateway.html'
+            })
+            .state('ob.nodewizard.addsubdevice.add', {
+                url: '/gateways/:gatewayId',
+                controller: 'addSubdeviceFormController',
+                templateUrl: 'pages/node-wizard/add-subdevice/form.html'
             })
             .state('signup', {
                 url: '/signup',

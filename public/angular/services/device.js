@@ -18,6 +18,12 @@ angular.module('octobluApp')
             }
         };
 
+        this.getGateways = function() {
+            return this.getDevices().then(function(devices){
+                return _.where(devices, {type: 'gateway'});
+            });
+        }
+
         this.createDevice = function (deviceData) {
             return $http.post('/api/devices', deviceData).then(function (res) {
                 return res.data;

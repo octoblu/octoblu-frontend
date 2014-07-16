@@ -36,6 +36,10 @@ angular.module('octobluApp').
             });
         };
 
+        this.getOrInstallPlugin = function(hub, pluginName){
+
+        };
+
         this.installPlugin = function (hub, pluginName) {
             return skynetService.gatewayConfig({
                 uuid: hub.uuid,

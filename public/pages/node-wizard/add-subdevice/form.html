@@ -1,29 +1,18 @@
-<h2 class="text-center">Add {{nodeType.name}}</h2>
-
-<br>
-
-<div class="row">
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" class="node-thumbnail"></div>
-  </div>
-</div>
-
-<br>
-<br>
-
 <div class="row">
   <div class="col-xs-12 col-md-offset-3 col-md-6">
-    <form class="form" ng-submit="addDevice()">
+    <form class="form" ng-submit="addSubDevice()">
       <div class="form-group">
-        <select class="form-control input-lg" ng-model="newDevice.selectedDevice" ng-options="device.uuid + '(' + (device.type || 'device') + ')' for device in newDevice.unclaimedDevices">
-          <option value="">Add New</option>
-        </select>
+        <label class="control-label">Gateway</label>
+        <h4>{{newSubDevice.gateway.name}}</h4>
       </div>
+
       <div class="form-group" ng-class="{'has-error': errorMessage}">
         <label for="name" class="control-label">Name</label>
         <input type="text" ng-model="newDevice.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
         <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
       </div>
+
+      <schema-editor control="newDevice.schemaEditor" schema="newDevice.plugin.optionsSchema" model="newDevice.subdevice.options" allow-json-edit="false"></schema-editor>
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg btn-block">
@@ -34,10 +23,3 @@
     </form>
   </div>
 </div>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
