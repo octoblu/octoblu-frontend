@@ -3,16 +3,16 @@
     <form class="form" ng-submit="addSubDevice()">
       <div class="form-group">
         <label class="control-label">Gateway</label>
-        <h4>{{newSubDevice.gateway.name}}</h4>
+        <h4>{{newSubdevice.gateway.name}}</h4>
       </div>
 
       <div class="form-group" ng-class="{'has-error': errorMessage}">
         <label for="name" class="control-label">Name</label>
-        <input type="text" ng-model="newDevice.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
+        <input type="text" ng-model="newSubdevice.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
         <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
       </div>
 
-      <schema-editor control="newDevice.schemaEditor" schema="newDevice.plugin.optionsSchema" model="newDevice.subdevice.options" allow-json-edit="false"></schema-editor>
+      <schema-editor control="newSubdevice.schemaEditor" schema="newSubdevice.plugin.optionsSchema" model="newSubdevice.subdevice.options" allow-json-edit="false"></schema-editor>
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg btn-block">
