@@ -32,22 +32,18 @@ angular.module('octobluApp')
         });
 
         skynetPromise.then(function () {
-            console.log('registering for messages');
             skynetConnection.on('message', processMessage);
 
             _.each($rootScope.myDevices, function (device) {
-                console.log('Subscribing for device :' + device.uuid);
                 skynetConnection.subscribe({uuid: device.uuid, token: device.token});
             });
 
             $rootScope.$watch('myDevices', function (myDevices, prevMyDevices) {
                 _.each(prevMyDevices, function (device) {
-                    console.log('Unsubscribing for device :' + device.uuid);
                     skynetConnection.unsubscribe({uuid: device.uuid});
                 });
 
                 _.each(myDevices, function (device) {
-                    console.log('Subscribing for device :' + device.uuid);
                     skynetConnection.subscribe({uuid: device.uuid, token: device.token});
                 });
             });
@@ -137,14 +133,26 @@ angular.module('octobluApp')
                 return promise;
             },
 
+            registerDevice: function(options){
+                var device;
+                return service.initializeDevice(options).then(function(result){
+                    device = _.extend({}, result, options);
+                    return service.updateDevice(device);
+                }).then(function(){
+                    $rootScope.myDevices.push(device);
+                });
+            },
+
             /**
              *
              * @param options
              * @returns {Deferred.promise|*}
              */
-            registerDevice: function (options) {
+            initializeDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer(), promise = defer.promise;
+
+                device.owner = user.skynet.uuid;
 
                 skynetPromise.then(function () {
                     skynetConnection.register(device, function (result) {
