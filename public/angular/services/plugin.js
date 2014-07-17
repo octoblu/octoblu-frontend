@@ -77,7 +77,6 @@ angular.module('octobluApp').
         };
 
         this.waitForPlugin = function(hub, pluginName){
-            console.log('waiting for plugin...')
             var _this = this;
 
             return this.getInstalledPlugins(hub).then(function(result){
