@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'localhost',
-        'port': '3000'
+        'host': 'skynet.im',
+        'port': '80'
         // 'host': 'localhost', //change to the skynet.im instance
         // 'port': '3000'
     })
@@ -331,23 +331,51 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'addNodeController',
                 templateUrl: 'pages/node-wizard/add-node.html'
             })
+
             .state('ob.nodewizard.addchannel', {
                 url: '/node-wizard/add-channel/:nodeTypeId',
                 controller: 'addChannelController',
-                templateUrl: 'pages/node-wizard/add-channel.html'
+                templateUrl: 'pages/node-wizard/add-channel/index.html',
+                abstract: true,
+                resolve: {
+                    nodeType: function($stateParams, NodeTypeService){
+                        return NodeTypeService.getNodeTypeById($stateParams.nodeTypeId);
+                    }
+                }
             })
+            .state('ob.nodewizard.addchannel.existing', {
+                url: '',
+                controller: 'addChannelExistingController',
+                templateUrl: 'pages/node-wizard/add-channel/existing.html'
+            })
+            .state('ob.nodewizard.addchannel.noauth', {
+                url: '/noauth',
+                controller: 'addChannelNoauthController',
+                templateUrl: 'pages/node-wizard/add-channel/noauth.html'
+            })
+            .state('ob.nodewizard.addchannel.oauth', {
+                url: '/oauth',
+                controller: 'addChannelOauthController',
+                templateUrl: 'pages/node-wizard/add-channel/oauth.html'
+            })
+            .state('ob.nodewizard.addchannel.simple', {
+                url: '/simple',
+                controller: 'addChannelSimpleController',
+                templateUrl: 'pages/node-wizard/add-channel/simple.html'
+            })
+
             .state('ob.nodewizard.adddevice', {
                 url: '/add-device/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addgateway', {
-                url: '/node-wizard/add-gateway/:nodeTypeId',
+                url: '/add-gateway/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addsubdevice', {
-                url: '/node-wizard/add-subdevice/:nodeTypeId',
+                url: '/add-subdevice/:nodeTypeId',
                 controller: 'addSubdeviceController',
                 templateUrl: 'pages/node-wizard/add-subdevice/index.html',
                 abstract: true
