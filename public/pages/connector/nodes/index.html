@@ -1,0 +1,29 @@
+<h2 class="text-center">Your Active Nodes</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+        <form class="form">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="nodeSearch">
+          <span class="input-group-addon">
+            <i class="fa fa-search"></i>
+          </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div ng-repeat="node in nodes | filter: {name:nodeSearch} | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+        <a class="" ng-href="{{nextStepUrl(node)}}">
+            <div ng-style="{'background-image': 'url('+node.nodeType.logo+')'}" title="{{node.name}}" class="node-thumbnail animated-popout">
+
+            </div>
+        </a>
+        <div class="node-name">{{node.name}}</div>
+    </div>
+</div>
