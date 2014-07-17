@@ -29,7 +29,7 @@ angular.module('octobluApp').
         };
 
         this.getInstalledPlugins = function (hub) {
-            deviceService.gatewayConfig({
+            return deviceService.gatewayConfig({
                 uuid: hub.uuid,
                 token: hub.token,
                 method: "getPlugins"
