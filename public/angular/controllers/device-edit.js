@@ -75,19 +75,19 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableDeviceTypes, PermissionsService, skynetService) {
+    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableDeviceTypes, PermissionsService, deviceService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
 
         $scope.$on('skynet:message:' + device.uuid, function (event, message) {
         });
         PermissionsService
-            .allSourcePermissions($scope.device.resource.uuid)
+            .allSourcePermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.sourcePermissions = permissions;
             });
         PermissionsService
-            .flatSourcePermissions($scope.device.resource.uuid)
+            .flatSourcePermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.sourceGroups = _.uniq(permissions, function (permission) {
                     return permission.uuid;
@@ -95,7 +95,7 @@ angular.module('octobluApp')
             });
 
         PermissionsService
-            .flatTargetPermissions($scope.device.resource.uuid)
+            .flatTargetPermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.targetGroups = _.uniq(permissions, function (permission) {
                     return permission.uuid;
@@ -103,7 +103,7 @@ angular.module('octobluApp')
             });
 
         PermissionsService
-            .allTargetPermissions($scope.device.resource.uuid)
+            .allTargetPermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.targetPermissions = permissions;
             });
@@ -142,7 +142,7 @@ angular.module('octobluApp')
 
         };
 
-        $scope.editSubdevice = function (device, subdevice) {
+        $scope.editSubdevice = function (subdevice) {
             var subdeviceModal = $modal.open({
                 templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
                 controller: 'AddEditSubDeviceController',
@@ -173,7 +173,6 @@ angular.module('octobluApp')
                     options: updatedSubdevice.options
                 }).then(function (response) {
                     console.log(response);
-                    angular.copy(updatedSubdevice, subdevice);
                 });
 
             }, function () {

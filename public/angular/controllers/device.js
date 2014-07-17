@@ -1,6 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function ($scope, $q, $log, $state, $http, $modal, $timeout,
-                                              currentUser, myDevices, myGateways, availableDeviceTypes, deviceService, PluginService) {
+    .controller('DeviceController', function ($scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableDeviceTypes, deviceService, PluginService) {
 
         $scope.user = currentUser;
 
@@ -67,7 +66,7 @@ angular.module('octobluApp')
                             return availableDeviceTypes;
                         }
                     },
-                    size : 'lg'
+                    size: 'lg'
                 });
 
                 subdeviceModal.result.then(function (result) {
@@ -112,11 +111,9 @@ angular.module('octobluApp')
 
                 deviceModal.result.then(function (result) {
                     deviceService.registerDevice(result.device)
-                        .then(function (res) {
-                        return deviceService.getDevices(true);
-                    }).then(null, function (error) {
-                        console.log(error);
-                    });
+                        .then(null, function (error) {
+                            console.log(error);
+                        });
                 }, function () {
                     console.log('cancelled');
                 });
@@ -176,7 +173,7 @@ angular.module('octobluApp')
             deviceType: deviceType,
             deviceTypes: availableDeviceTypes,
             propertyEditor: {},
-            schema : deviceType.optionsSchema || {}
+            schema: deviceType.optionsSchema || {}
         };
 
 
@@ -187,14 +184,14 @@ angular.module('octobluApp')
         $scope.save = function () {
             //If the deviceType selected has an options schema then we should validate the
             //options set for errors
-                var errors = $scope.model.propertyEditor.validate();
-                if (!errors.length) {
-                    var device = $scope.model.propertyEditor.getValue();
-                    angular.extend($scope.model.device, device);
-                    $scope.model.device.owner = $scope.model.device.owner || owner.skynetuuid;
-                    $scope.model.device.type = $scope.model.deviceType.skynet.type;
-                    $scope.model.device.subtype = $scope.model.deviceType.skynet.subtype || '';
-                    $modalInstance.close({deviceType: $scope.model.deviceType, device: $scope.model.device, isNew: $scope.model.isNew});
-                }
+            var errors = $scope.model.propertyEditor.validate();
+            if (!errors.length) {
+                var device = $scope.model.propertyEditor.getValue();
+                angular.extend($scope.model.device, device);
+                $scope.model.device.owner = $scope.model.device.owner || owner.skynetuuid;
+                $scope.model.device.type = $scope.model.deviceType.skynet.type;
+                $scope.model.device.subtype = $scope.model.deviceType.skynet.subtype || '';
+                $modalInstance.close({deviceType: $scope.model.deviceType, device: $scope.model.device, isNew: $scope.model.isNew});
+            }
         };
     });

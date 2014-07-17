@@ -45,24 +45,15 @@ angular.module('octobluApp')
             },
 
             registerDevice: function (options) {
-                return service.initializeDevice(options)
-                    .then(function (result) {
-                        var device = _.extend({}, result, options);
-                        return service.updateDevice(device);
-                    }).then(function (device) {
-                        addDevice(device);
-                    });
-            },
-
-            initializeDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    device.owner = user.skynet.uuid;
+                    device.owner = skynetConnection.options.uuid;
 
                     skynetConnection.register(device, function (result) {
                         console.log('registered device!');
+                        myDevices.push(result);
                         defer.resolve(result);
                     });
                 });
