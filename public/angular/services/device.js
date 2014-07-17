@@ -87,20 +87,15 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
-            unregisterDevice: function (options) {
-                var device = _.findWhere(myDevices, {uuid: options.uuid}),
-                    defer = $q.defer();
+            unregisterDevice: function (device) {
+                var defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.unregister({
-                        uuid: options.uuid,
-                        token: options.token}, function (result) {
-
-                        if (device) {
-                            myDevices.splice(_.indexOf(myDevices, device));
-                        }
-
-                        defer.resolve(result);
+                    skynetConnection.unregister(device, function (result) {
+                        console.log('unregistered device:' , result);
+                        service.getDevices(true).then(function(devices){
+                            defer.resolve(devices);
+                        });
                     });
                 });
 

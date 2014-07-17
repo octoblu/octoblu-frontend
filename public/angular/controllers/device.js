@@ -31,12 +31,11 @@ angular.module('octobluApp')
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {
-                    deviceService.unregisterDevice({uuid: device.uuid})
-                        .then(function (device) {
-                            if (device) {
-                                $scope.devices = _.without($scope.devices, _.findWhere($scope.devices, {uuid: device.uuid}));
-                            }
+                    deviceService.unregisterDevice(device)
+                        .then(function (devices) {
+                            console.log(devices);
                         }, function (error) {
+                            console.log(error);
                         });
                 },
                 function () {
