@@ -148,7 +148,7 @@ angular.module('octobluApp')
 
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.localdevices({}, function (result) {
-                        defer.resolve(result.devices);
+                        defer.resolve(_.where(result.devices, {online: true}));
                     });
                 });
 
