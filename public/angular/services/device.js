@@ -18,6 +18,12 @@ angular.module('octobluApp')
             }
         };
 
+        this.getDeviceByUUID = function(uuid, force) {
+            return this.getDevices(force).then(function(devices){
+                return _.findWhere(devices, {uuid: uuid});
+            });
+        },
+
         this.getGateways = function() {
             return this.getDevices().then(function(devices){
                 return _.where(devices, {type: 'gateway'});
