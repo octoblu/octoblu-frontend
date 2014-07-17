@@ -43,6 +43,7 @@ angular.module('octobluApp')
             }
         }
 
+        return {
             getSkynetConnection: function () {
                 return skynetPromise.then(function (skynetConnection) {
                     return skynetConnection;
@@ -53,17 +54,17 @@ angular.module('octobluApp')
             sendMessage: function (options) {
                 return skynetPromise.then(function (skynetConnection) {
 
-                var defer = $q.defer(), promise = defer.promise;
+                    var defer = $q.defer(), promise = defer.promise;
 
-                skynetPromise.then(function () {
-                    console.log('sending message.');
-                    skynetConnection.message(options, function (result) {
-                        console.log('meshblu response:', result);
-                        defer.resolve(result);
+                    skynetPromise.then(function () {
+                        console.log('sending message.');
+                        skynetConnection.message(options, function (result) {
+                            console.log('meshblu response:', result);
+                            defer.resolve(result);
+                        });
                     });
+                    return promise;
                 });
-                return promise;
             }
-        };
-    })
-;
+        }
+    });
