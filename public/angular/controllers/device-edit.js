@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceEditController', function ($scope, skynetService) {
+    .controller('DeviceEditController', function ($scope, deviceService) {
 
 
         $scope.editSubDevice = function (subdevice, hub) {
@@ -37,7 +37,7 @@ angular.module('octobluApp')
             });
 
             subDeviceModal.result.then(function (options) {
-                skynetService.gatewayConfig({
+                deviceService.gatewayConfig({
                     "uuid": hub.uuid,
                     "token": hub.token,
                     "method": "updateSubdevice",
@@ -60,7 +60,7 @@ angular.module('octobluApp')
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
                 function () {
                     $log.info('ok clicked');
-                    skynetService.gatewayConfig({
+                    deviceService.gatewayConfig({
                         "uuid": hub.uuid,
                         "token": hub.token,
                         "method": "deleteSubdevice",
@@ -113,7 +113,7 @@ angular.module('octobluApp')
         };
 
         if ($scope.device.type === 'gateway') {
-            skynetService.gatewayConfig({
+            deviceService.gatewayConfig({
                 uuid: $scope.device.uuid,
                 token: $scope.device.token,
                 method: "configurationDetails"
@@ -127,7 +127,7 @@ angular.module('octobluApp')
         $scope.deleteSubdevice = function (subdevice) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Subdevice', 'Are you sure you want to delete this subdevice?',
                 function () {
-                    skynetService.gatewayConfig({
+                    deviceService.gatewayConfig({
                         "uuid": device.uuid,
                         "token": device.token,
                         "method": "deleteSubdevice",
@@ -165,7 +165,7 @@ angular.module('octobluApp')
 
             subdeviceModal.result.then(function (result) {
                 var hub = result.hub, updatedSubdevice = result.subdevice;
-                skynetService.updateSubdevice({
+                deviceService.updateSubdevice({
                     uuid: hub.uuid,
                     token: hub.token,
                     type: subdevice.type,

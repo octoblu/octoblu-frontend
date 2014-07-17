@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableDeviceTypes, skynetService, PluginService) {
+    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableDeviceTypes,
+                                                 skynetService, deviceService, PluginService) {
 
         $scope.model = {
-            devices : _.sortBy(_.cloneDeep(myDevices), 'name'),
-            deviceTypes : availableDeviceTypes,
-            schemaEditor : {}
+            devices: _.sortBy(_.cloneDeep(myDevices), 'name'),
+            deviceTypes: availableDeviceTypes,
+            schemaEditor: {}
 
         };
-
 
 
         $scope.model.devices.unshift({
@@ -34,7 +34,7 @@ angular.module('octobluApp')
                 if (newDevice.type !== 'gateway') {
                     $scope.model.schema = {};
                 } else {
-                    skynetService.gatewayConfig({
+                    deviceService.gatewayConfig({
                         uuid: newDevice.uuid,
                         token: newDevice.token,
                         method: "configurationDetails"

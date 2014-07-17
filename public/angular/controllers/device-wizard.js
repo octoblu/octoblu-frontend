@@ -1,14 +1,10 @@
 angular.module('octobluApp')
-    .controller('DeviceWizardController', function ($scope, $state,currentUser, availableDeviceTypes,  unclaimedDevices, myDevices,  skynetService, deviceService) {
+    .controller('DeviceWizardController', function ($scope, $state,currentUser, availableDeviceTypes,  unclaimedDevices, myDevices, deviceService) {
         $scope.getStateName = function () {
             return $state.current.name;
         };
 
-        if($state.params.claim === 'gateway'){
-            $scope.gateway=true;
-        } else {
-            $scope.gateway=false;
-        }
+        $scope.gateway = $state.params.claim === 'gateway';
 
         $scope.model = {
             deviceTypes : availableDeviceTypes,
@@ -25,28 +21,14 @@ angular.module('octobluApp')
         $scope.isopen = false;
         $scope.user = currentUser;
         $scope.claimDevice = function () {
-
-//            skynetService.claimDevice($scope.model.device)
-//                .then(function(skynetResult){
-//                    console.log(skynetResult);
-//                    return skynetResult;
-//                })
-//                .then(function(claimResult){
-//                    console.log('Device updated');
-//                    return deviceService.getDevices(true)
-//                }).then(function(devices){
-//                    console.log('fetched all devices');
-//                    $state.go('ob.connector.devices.all', {}, {reload : true });
-//                });
-
             deviceService
                 .claimDevice($scope.model.device.uuid)
                 .then(function (result) {
                    var device = $scope.model.device;
-                   return skynetService.updateDevice(device);
+                   return deviceService.updateDevice(device);
                 }).then(function (result) {
                     console.log(result);
-                    return  deviceService.getDevices(true);
+                    return deviceService.getDevices(true);
                 }).then(function(){
                     $state.go('ob.connector.devices.all', {}, {reload : true});
                 }, function (error) {

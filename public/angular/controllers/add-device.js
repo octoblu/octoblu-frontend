@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('addDeviceController', function($scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
+    .controller('addDeviceController', function($scope, $state, $stateParams, NodeTypeService, deviceService) {
         $scope.newDevice = {};
 
         NodeTypeService.getNodeTypes().then(function(nodeTypes){
@@ -27,7 +27,7 @@ angular.module('octobluApp')
             deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
             promise = skynetService.claimAndUpdateDevice(deviceOptions);
           } else {
-            promise = skynetService.registerDevice(deviceOptions);
+            promise = deviceService.registerDevice(deviceOptions);
           }
 
           promise.then(function(){
@@ -35,5 +35,6 @@ angular.module('octobluApp')
           }, function(error){
             $scope.errorMessage = error;
           });
+
         };
     });

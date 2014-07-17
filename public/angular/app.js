@@ -92,12 +92,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     availableDeviceTypes: function (channelService) {
                         return channelService.getDeviceTypes();
                     },
-                    myGateways: function (myDevices, skynetService, $q) {
+                    myGateways: function (myDevices, deviceService) {
                         var gateways = _.filter(myDevices, {type: 'gateway', online: true });
                         _.map(gateways, function (gateway) {
                             gateway.subdevices = [];
                             gateway.plugins = [];
-                            return skynetService.gatewayConfig({
+                            return deviceService.gatewayConfig({
                                 "uuid": gateway.uuid,
                                 "token": gateway.token,
                                 "method": "configurationDetails"

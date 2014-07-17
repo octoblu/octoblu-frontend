@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('addGatewayController', function($scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
+    .controller('addGatewayController', function($scope, $state, $stateParams, NodeTypeService, deviceService) {
         $scope.newGateway = {};
 
         NodeTypeService.getNodeTypes().then(function(nodeTypes){
@@ -25,9 +25,9 @@ angular.module('octobluApp')
 
           if($scope.newGateway.selectedGateway) {
             deviceOptions.uuid = $scope.newGateway.selectedGateway.uuid;
-            promise = skynetService.claimAndUpdateDevice(deviceOptions);
+            promise = deviceService.claimAndUpdateDevice(deviceOptions);
           } else {
-            promise = skynetService.registerDevice(deviceOptions);
+            promise = deviceService.registerDevice(deviceOptions);
           }
 
           promise.then(function(){

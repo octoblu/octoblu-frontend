@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('hubController', function ($scope, $modal, myDevices, myGateways, skynetService, currentUser, PluginService, availableDeviceTypes) {
+    .controller('hubController', function ($scope, $modal, myDevices, myGateways, currentUser, PluginService, availableDeviceTypes) {
 
         $scope.claimedHubs = myGateways;
         $scope.availableDeviceTypes = _.filter(availableDeviceTypes, function(deviceType){
@@ -47,7 +47,7 @@ angular.module('octobluApp')
             subdeviceModal.result.then(function (result) {
                 var hub = result.hub, updatedSubdevice = result.subdevice;
                 if (!subdevice) {
-                    skynetService.createSubdevice({
+                    deviceService.createSubdevice({
                         uuid: hub.uuid,
                         token: hub.token,
                         type: subdeviceType,
@@ -57,7 +57,7 @@ angular.module('octobluApp')
                         hub.subdevices.push(response.result);
                     });
                 } else {
-                    skynetService.updateSubdevice({
+                    deviceService.updateSubdevice({
                         uuid: hub.uuid,
                         token: hub.token,
                         type: subdeviceType,
@@ -74,7 +74,7 @@ angular.module('octobluApp')
         };
 
         $scope.deleteSubdevice = function (hub, subdevice) {
-            skynetService.deleteSubdevice({
+            deviceService.deleteSubdevice({
                 "uuid": hub.uuid,
                 "token": hub.token,
                 "name": subdevice.name

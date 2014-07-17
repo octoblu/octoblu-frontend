@@ -1,5 +1,6 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function (skynetService, $scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableDeviceTypes, deviceService, PluginService) {
+    .controller('DeviceController', function ($scope, $q, $log, $state, $http, $modal, $timeout,
+                                              currentUser, myDevices, myGateways, availableDeviceTypes, deviceService, PluginService) {
 
         $scope.user = currentUser;
 
@@ -31,7 +32,7 @@ angular.module('octobluApp')
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {
-                    deviceService.deleteDevice(device.uuid)
+                    deviceService.unregisterDevice({uuid: device.uuid})
                         .then(function (device) {
                             if (device) {
                                 $scope.devices = _.without($scope.devices, _.findWhere($scope.devices, {uuid: device.uuid}));
@@ -70,7 +71,7 @@ angular.module('octobluApp')
                 });
 
                 subdeviceModal.result.then(function (result) {
-                    skynetService.createSubdevice({
+                    deviceService.createSubdevice({
                         uuid: result.hub.uuid,
                         token: result.hub.token,
                         type: deviceType.skynet.plugin,
@@ -110,7 +111,7 @@ angular.module('octobluApp')
                 });
 
                 deviceModal.result.then(function (result) {
-                    skynetService.registerDevice(result.device)
+                    deviceService.registerDevice(result.device)
                         .then(function (res) {
                         return deviceService.getDevices(true);
                     }).then(null, function (error) {
@@ -157,7 +158,7 @@ angular.module('octobluApp')
             });
 
             deviceModal.result.then(function (result) {
-                skynetService.updateDevice(result.device)
+                deviceService.updateDevice(result.device)
                     .then(function (res) {
                         return deviceService.getDevices(true);
                     }).then(null, function (error) {

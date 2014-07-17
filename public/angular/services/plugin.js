@@ -1,8 +1,8 @@
 angular.module('octobluApp').
-    service('PluginService', function ($q, $http,  skynetService) {
+    service('PluginService', function ($q, $http,  deviceService) {
 
         this.getDefaultOptions = function (hub, pluginName) {
-            return skynetService.gatewayConfig({
+            return deviceService.gatewayConfig({
                 uuid: hub.uuid,
                 token: hub.token,
                 method: "getDefaultOptions",
@@ -29,7 +29,7 @@ angular.module('octobluApp').
         };
 
         this.getInstalledPlugins = function (hub) {
-            skynetService.gatewayConfig({
+            deviceService.gatewayConfig({
                 uuid: hub.uuid,
                 token: hub.token,
                 method: "getPlugins"
@@ -37,7 +37,7 @@ angular.module('octobluApp').
         };
 
         this.installPlugin = function (hub, pluginName) {
-            return skynetService.gatewayConfig({
+            return deviceService.gatewayConfig({
                 uuid: hub.uuid,
                 token: hub.token,
                 method: "installPlugin",
@@ -46,7 +46,7 @@ angular.module('octobluApp').
         };
 
         this.uninstallPlugin = function(hub, pluginName){
-            return skynetService.gatewayConfig({
+            return deviceService.gatewayConfig({
                 "uuid": hub.uuid,
                 "token": hub.token,
                 "method": "uninstallPlugin",
