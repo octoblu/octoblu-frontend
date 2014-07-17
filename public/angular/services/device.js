@@ -79,9 +79,8 @@ angular.module('octobluApp')
                     defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.update(device, function (result) {
-                        angular.copy(result, options);
-                        defer.resolve(result);
+                    skynetConnection.update(device, function () {
+                        defer.resolve(device);
                     });
                 });
 

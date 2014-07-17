@@ -156,9 +156,7 @@ angular.module('octobluApp')
 
             deviceModal.result.then(function (result) {
                 deviceService.updateDevice(result.device)
-                    .then(function (res) {
-                        return deviceService.getDevices(true);
-                    }).then(null, function (error) {
+                  .then(null, function (error) {
                         console.log(error);
                     });
             }, function () {

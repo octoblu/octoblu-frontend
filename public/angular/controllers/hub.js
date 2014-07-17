@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('hubController', function ($scope, $modal, myDevices, myGateways, currentUser, PluginService, availableDeviceTypes) {
+    .controller('hubController', function ($scope, $modal, myDevices, myGateways, currentUser, PluginService, availableDeviceTypes, deviceService) {
 
         $scope.claimedHubs = myGateways;
         $scope.availableDeviceTypes = _.filter(availableDeviceTypes, function(deviceType){
