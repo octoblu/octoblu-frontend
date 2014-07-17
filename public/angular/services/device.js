@@ -33,11 +33,11 @@ angular.module('octobluApp')
                         .then(function (skynetConnection) {
                             skynetConnection.mydevices({}, function (result) {
                                 angular.copy([], myDevices);
-                                _.each(result, function (device) {
+                                _.each(result.devices, function (device) {
                                     addDevice(device);
                                 });
 
-                                defer.resolve(result);
+                                defer.resolve(myDevices);
                             });
                         });
                 }
@@ -156,4 +156,5 @@ angular.module('octobluApp')
                     _.omit(options, reservedProperties)));
             }
         };
+        return service;
     });

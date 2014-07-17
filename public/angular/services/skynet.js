@@ -1,6 +1,6 @@
 angular.module('octobluApp')
     .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService) {
-        var skynetConnection, user, defer = $q.defer(), skynetPromise = defer.promise;
+        var user, defer = $q.defer(), skynetPromise = defer.promise;
 
         AuthService.getCurrentUser().then(function (currentUser) {
 
@@ -13,10 +13,9 @@ angular.module('octobluApp')
             });
 
             conn.on('ready', function (data) {
-                skynetConnection = conn;
                 console.log(data);
                 console.log('Connected to skynet');
-                defer.resolve();
+                defer.resolve(conn);
             });
 
             conn.on('notReady', function (error) {
@@ -24,10 +23,10 @@ angular.module('octobluApp')
                 defer.reject(error);
             });
 
-            return defer.promise;
+            return skynetPromise;
         });
 
-        skynetPromise.then(function () {
+        skynetPromise.then(function (skynetConnection) {
             skynetConnection.on('message', function (message) {
                 $rootScope.$broadcast('skynet:message', message);
             });
@@ -36,17 +35,14 @@ angular.module('octobluApp')
         return {
 
             getSkynetConnection: function () {
-                var defer = $q.defer();
-
-                skynetPromise.then(function () {
+                return skynetPromise.then(function (skynetConnection) {
                     return skynetConnection;
                 });
 
-                return defer.promise();
             },
 
             sendMessage: function (options) {
-                return skynetPromise.then(function () {
+                return skynetPromise.then(function (skynetConnection) {
                     skynetConnection.message(options, function (result) {
                         console.log('sending skynet message!');
                         return result;
