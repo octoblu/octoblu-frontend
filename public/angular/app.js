@@ -330,11 +330,39 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'addNodeController',
                 templateUrl: 'pages/node-wizard/add-node.html'
             })
+
             .state('ob.nodewizard.addchannel', {
                 url: '/node-wizard/add-channel/:nodeTypeId',
                 controller: 'addChannelController',
-                templateUrl: 'pages/node-wizard/add-channel.html'
+                templateUrl: 'pages/node-wizard/add-channel/index.html',
+                abstract: true,
+                resolve: {
+                    nodeType: function($stateParams, NodeTypeService){
+                        return NodeTypeService.getNodeTypeById($stateParams.nodeTypeId);
+                    }
+                }
             })
+            .state('ob.nodewizard.addchannel.existing', {
+                url: '',
+                controller: 'addChannelExistingController',
+                templateUrl: 'pages/node-wizard/add-channel/existing.html'
+            })
+            .state('ob.nodewizard.addchannel.noauth', {
+                url: '/noauth',
+                controller: 'addChannelNoauthController',
+                templateUrl: 'pages/node-wizard/add-channel/noauth.html'
+            })
+            .state('ob.nodewizard.addchannel.oauth', {
+                url: '/oauth',
+                controller: 'addChannelOauthController',
+                templateUrl: 'pages/node-wizard/add-channel/oauth.html'
+            })
+            .state('ob.nodewizard.addchannel.simple', {
+                url: '/simple',
+                controller: 'addChannelSimpleController',
+                templateUrl: 'pages/node-wizard/add-channel/simple.html'
+            })
+
             .state('ob.nodewizard.adddevice', {
                 url: '/add-device/:nodeTypeId',
                 controller: 'addDeviceController',
