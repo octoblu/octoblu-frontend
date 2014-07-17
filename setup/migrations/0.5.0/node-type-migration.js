@@ -293,9 +293,10 @@ db.nodetypes.insert({
     display: true
 });
 
-var channelCursor = db.apis.find({ owner : { $exists : false}, name : {$exists : true }}, { name : 1, logo : 1, enabled : 1, description : 1 });
+var channelCursor = db.apis.find({ owner : { $exists : false}, name : {$exists : true }});
 while(channelCursor.hasNext()){
     var channel = channelCursor.next();
+
     var nodeType = {
         name : channel.name || 'null',
         description : channel.description || '',
@@ -305,7 +306,8 @@ while(channelCursor.hasNext()){
             type : 'channel' ,
             subtype : channel.name
         },
-        enabled : channel.enabled
+        enabled : channel.enabled,
+        channel: channel
     };
     printjson(channel);
     db.nodetypes.insert(nodeType);

@@ -331,24 +331,40 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/node-wizard/add-node.html'
             })
             .state('ob.nodewizard.addchannel', {
-                url: '/node-wizard/add-channel/:deviceId',
+                url: '/node-wizard/add-channel/:nodeTypeId',
                 controller: 'addChannelController',
                 templateUrl: 'pages/node-wizard/add-channel.html'
             })
             .state('ob.nodewizard.adddevice', {
-                url: '/add-device/:deviceId',
+                url: '/add-device/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addgateway', {
-                url: '/node-wizard/add-gateway/:deviceId',
-                controller: 'addGatewayController',
-                templateUrl: 'pages/node-wizard/add-gateway/index.html'
+                url: '/node-wizard/add-gateway/:nodeTypeId',
+                controller: 'addDeviceController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addsubdevice', {
-                url: '/node-wizard/add-subdevice/:deviceId',
+                url: '/node-wizard/add-subdevice/:nodeTypeId',
                 controller: 'addSubdeviceController',
-                templateUrl: 'pages/node-wizard/add-subdevice.html'
+                templateUrl: 'pages/node-wizard/add-subdevice/index.html',
+                abstract: true
+            })
+            .state('ob.nodewizard.addsubdevice.addGateway', {
+                url: '/add-gateway',
+                controller: 'addSubdeviceAddGatewayController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
+            })
+            .state('ob.nodewizard.addsubdevice.selectgateway', {
+                url: '',
+                controller: 'addSubdeviceSelectGatewayController',
+                templateUrl: 'pages/node-wizard/add-subdevice/select-gateway.html'
+            })
+            .state('ob.nodewizard.addsubdevice.form', {
+                url: '/gateways/:gatewayId',
+                controller: 'addSubdeviceFormController',
+                templateUrl: 'pages/node-wizard/add-subdevice/form.html'
             })
             .state('signup', {
                 url: '/signup',

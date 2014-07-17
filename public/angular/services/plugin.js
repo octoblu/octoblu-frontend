@@ -36,6 +36,20 @@ angular.module('octobluApp').
             });
         };
 
+        this.getOrInstallPlugin = function(hub, pluginName){
+            var _this = this;
+
+            return this.getInstalledPlugins(hub).then(function(result){
+                var plugin = _.findWhere(result.result, {name: pluginName});
+
+                if(plugin){
+                    return plugin;
+                }
+
+                return _this.installAndReturnPlugin(hub, pluginName);
+            });
+        };
+
         this.installPlugin = function (hub, pluginName) {
             return deviceService.gatewayConfig({
                 uuid: hub.uuid,
@@ -45,12 +59,41 @@ angular.module('octobluApp').
             });
         };
 
+        this.installAndReturnPlugin = function(hub, pluginName){
+            var _this = this;
+
+            return this.installPlugin(hub, pluginName).then(function(){
+                return _this.waitForPlugin(hub, pluginName);
+            });
+        };
+
         this.uninstallPlugin = function(hub, pluginName){
             return deviceService.gatewayConfig({
                 "uuid": hub.uuid,
                 "token": hub.token,
                 "method": "uninstallPlugin",
                 "name": pluginName
+            });
+        };
+
+        this.waitForPlugin = function(hub, pluginName){
+            var _this = this;
+
+            return this.getInstalledPlugins(hub).then(function(result){
+                var defer, plugin;
+
+                plugin = _.findWhere(result.result, {name: pluginName});
+                defer = $q.defer();
+
+                if(plugin){
+                    return plugin;
+                }
+
+                _.delay(function(){
+                    defer.resolve(_this.waitForPlugin(hub, pluginName));
+                }, 1000);
+
+                return defer.promise;
             });
         };
 
