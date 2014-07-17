@@ -47,6 +47,7 @@
         </form>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <span>{{messageRequestTime}}</span>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4><i class="fa fa-send-o"></i> Message Sent</h4>
@@ -56,6 +57,7 @@
             </div>
         </div>
 
+        <span>{{messageResponseTime}}</span>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4><i class="fa fa-envelope-o"></i> Message Response</h4>
@@ -64,6 +66,7 @@
                 <pre ng-hide="!model.messageResult">{{model.messageResult | json }}</pre>
             </div>
         </div>
+        <span>Note: Not all devices respond to messages</span>
 
     </div>
 </div>
