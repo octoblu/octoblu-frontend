@@ -32,7 +32,16 @@ angular.module('octobluApp')
             });
         });
 
-        return {
+        function processMessage(message) {
+            $rootScope.$broadcast('skynet:message', message);
+            $rootScope.$broadcast('skynet:message:' + message.fromUuid, message);
+            if (message.payload && _.has(message.payload, 'online')) {
+                var device = _.findWhere($rootScope.myDevices, {uuid: message.fromUuid});
+                if (device) {
+                    device.online = message.payload.online;
+                }
+            }
+        }
 
             getSkynetConnection: function () {
                 return skynetPromise.then(function (skynetConnection) {
@@ -43,11 +52,17 @@ angular.module('octobluApp')
 
             sendMessage: function (options) {
                 return skynetPromise.then(function (skynetConnection) {
+
+                var defer = $q.defer(), promise = defer.promise;
+
+                skynetPromise.then(function () {
+                    console.log('sending message.');
                     skynetConnection.message(options, function (result) {
-                        console.log('sending skynet message!');
-                        return result;
+                        console.log('meshblu response:', result);
+                        defer.resolve(result);
                     });
                 });
+                return promise;
             }
         };
     })

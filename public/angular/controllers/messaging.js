@@ -80,7 +80,19 @@ angular.module('octobluApp')
              if no schema exists, they are doing this manually and we check if the UUID field is populated and that
              there is a message to send.
              */
+            
+            $scope.model.messageResult = "";
+            $scope.messageResponseTime = "";
+            $scope.startTimer = new Date().getTime();
+
             var sender = $scope.model.fromDevice;
+
+            $scope.sendTimer = new Date().getTime();
+            var difference = $scope.sendTimer - $scope.startTimer;
+
+            $scope.model.messageOutput = $scope.model.schemaEditor.getValue();
+            $scope.messageRequestTime = 'Sent in ' + difference + ' milliseconds';
+
             if ($scope.model.subdevice) {
                 skynetService.sendMessage({
                     fromUuid: sender.uuid,
@@ -88,17 +100,22 @@ angular.module('octobluApp')
                     subdevice: $scope.model.subdevice.name,
                     payload: $scope.model.schemaEditor.getValue()
                 }).then(function (response) {
-                    $scope.model.messageOutput = $scope.model.schemaEditor.getValue();
+                    $scope.responseTimer = new Date().getTime();
+                    var difference = $scope.responseTimer - $scope.startTimer;
+                    $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
+
                     $scope.model.messageResult = response;
                 });
             } else {
-
                 skynetService.sendMessage({
                     fromUuid: sender.uuid,
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
                     payload: $scope.model.schemaEditor.getValue()
                 }).then(function (response) {
-                    $scope.model.messageOutput = $scope.model.schemaEditor.getValue();
+                    $scope.responseTimer = new Date().getTime();
+                    var difference = $scope.responseTimer - $scope.startTimer;
+                    $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
+
                     $scope.model.messageResult = response;
                 });
             }
