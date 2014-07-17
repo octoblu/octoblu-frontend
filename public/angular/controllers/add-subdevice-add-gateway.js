@@ -27,9 +27,9 @@ angular.module('octobluApp')
 
           if($scope.newDevice.selectedDevice) {
             deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
-            promise = skynetService.claimAndUpdateDevice(deviceOptions);
+            promise = deviceService.claimDevice(deviceOptions);
           } else {
-            promise = skynetService.registerDevice(deviceOptions);
+            promise = deviceService.registerDevice(deviceOptions);
           }
 
           promise.then(function(device){

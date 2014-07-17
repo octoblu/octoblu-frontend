@@ -119,6 +119,12 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
+            getUnclaimedGateways: function () {
+                return service.getUnclaimedDevices().then(function (devices) {
+                    return _.where(device, {type: 'gateway'});
+                });
+            },
+
             gatewayConfig: function (options) {
                 var defer = $q.defer();
 
@@ -146,5 +152,7 @@ angular.module('octobluApp')
                     _.omit(options, reservedProperties)));
             }
         };
+
+        service.getUnclaimedNodes = service.getUnclaimedDevices;
         return service;
     });

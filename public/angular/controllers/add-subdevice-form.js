@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('addSubdeviceFormController', function($scope, $state, $stateParams, NodeTypeService, PluginService, deviceService, skynetService) {
+    .controller('addSubdeviceFormController', function($scope, $state, $stateParams, NodeTypeService, PluginService, deviceService) {
         $scope.newSubdevice = {
             schemaEditor: {},
             subdevice: { options: {}, type: null }
@@ -26,7 +26,7 @@ angular.module('octobluApp')
                 return;
             }
 
-            skynetService.createSubdevice({
+            deviceService.createSubdevice({
                         uuid:    $scope.newSubdevice.gateway.uuid,
                         token:   $scope.newSubdevice.gateway.token,
                         type:    $scope.newSubdevice.subdevice.type,

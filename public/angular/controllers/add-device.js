@@ -8,7 +8,7 @@ angular.module('octobluApp')
             $scope.nodeType = _.findWhere(nodeTypes, {_id: $stateParams.nodeTypeId});
         })
         .then(function(){
-            return deviceService.getUnclaimed($scope.nodeType.category);
+            return deviceService.getUnclaimedDevices($scope.nodeType.category);
         })
         .then(function(unclaimedDevices){
             $scope.newDevice.unclaimedDevices = unclaimedDevices;
@@ -27,7 +27,7 @@ angular.module('octobluApp')
 
           if($scope.newDevice.selectedDevice) {
             deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
-            promise = skynetService.claimAndUpdateDevice(deviceOptions);
+            promise = deviceService.claimDevice(deviceOptions);
           } else {
             promise = deviceService.registerDevice(deviceOptions);
           }
