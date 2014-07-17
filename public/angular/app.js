@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'skynet.im',
-        'port': '80'
+        'host': 'localhost',
+        'port': '3000'
         // 'host': 'localhost', //change to the skynet.im instance
         // 'port': '3000'
     })
@@ -51,7 +51,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     currentUser: function (AuthService) {
                         return AuthService.getCurrentUser();
                     },
-                    myDevices: function (currentUser, deviceService) {
+                    myDevices: function (deviceService) {
                         return deviceService.getDevices();
                     }
                 },
@@ -92,12 +92,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     availableDeviceTypes: function (channelService) {
                         return channelService.getDeviceTypes();
                     },
-                    myGateways: function (myDevices, skynetService, $q) {
+                    myGateways: function (myDevices, deviceService) {
                         var gateways = _.filter(myDevices, {type: 'gateway', online: true });
                         _.map(gateways, function (gateway) {
                             gateway.subdevices = [];
                             gateway.plugins = [];
-                            return skynetService.gatewayConfig({
+                            return deviceService.gatewayConfig({
                                 "uuid": gateway.uuid,
                                 "token": gateway.token,
                                 "method": "configurationDetails"
@@ -331,24 +331,40 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/node-wizard/add-node.html'
             })
             .state('ob.nodewizard.addchannel', {
-                url: '/node-wizard/add-channel/:deviceId',
+                url: '/node-wizard/add-channel/:nodeTypeId',
                 controller: 'addChannelController',
                 templateUrl: 'pages/node-wizard/add-channel.html'
             })
             .state('ob.nodewizard.adddevice', {
-                url: '/add-device/:deviceId',
+                url: '/add-device/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addgateway', {
-                url: '/node-wizard/add-gateway/:deviceId',
-                controller: 'addGatewayController',
-                templateUrl: 'pages/node-wizard/add-gateway/index.html'
+                url: '/node-wizard/add-gateway/:nodeTypeId',
+                controller: 'addDeviceController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addsubdevice', {
-                url: '/node-wizard/add-subdevice/:deviceId',
+                url: '/node-wizard/add-subdevice/:nodeTypeId',
                 controller: 'addSubdeviceController',
-                templateUrl: 'pages/node-wizard/add-subdevice.html'
+                templateUrl: 'pages/node-wizard/add-subdevice/index.html',
+                abstract: true
+            })
+            .state('ob.nodewizard.addsubdevice.addGateway', {
+                url: '/add-gateway',
+                controller: 'addSubdeviceAddGatewayController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
+            })
+            .state('ob.nodewizard.addsubdevice.selectgateway', {
+                url: '',
+                controller: 'addSubdeviceSelectGatewayController',
+                templateUrl: 'pages/node-wizard/add-subdevice/select-gateway.html'
+            })
+            .state('ob.nodewizard.addsubdevice.form', {
+                url: '/gateways/:gatewayId',
+                controller: 'addSubdeviceFormController',
+                templateUrl: 'pages/node-wizard/add-subdevice/form.html'
             })
             .state('signup', {
                 url: '/signup',

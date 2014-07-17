@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceEditController', function ($scope, skynetService) {
+    .controller('DeviceEditController', function ($scope, deviceService) {
 
 
         $scope.editSubDevice = function (subdevice, hub) {
@@ -37,7 +37,7 @@ angular.module('octobluApp')
             });
 
             subDeviceModal.result.then(function (options) {
-                skynetService.gatewayConfig({
+                deviceService.gatewayConfig({
                     "uuid": hub.uuid,
                     "token": hub.token,
                     "method": "updateSubdevice",
@@ -60,7 +60,7 @@ angular.module('octobluApp')
                     'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
                 function () {
                     $log.info('ok clicked');
-                    skynetService.gatewayConfig({
+                    deviceService.gatewayConfig({
                         "uuid": hub.uuid,
                         "token": hub.token,
                         "method": "deleteSubdevice",
@@ -75,19 +75,19 @@ angular.module('octobluApp')
         };
 
     })
-    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableDeviceTypes, PermissionsService, skynetService) {
+    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableDeviceTypes, PermissionsService, deviceService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
 
         $scope.$on('skynet:message:' + device.uuid, function (event, message) {
         });
         PermissionsService
-            .allSourcePermissions($scope.device.resource.uuid)
+            .allSourcePermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.sourcePermissions = permissions;
             });
         PermissionsService
-            .flatSourcePermissions($scope.device.resource.uuid)
+            .flatSourcePermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.sourceGroups = _.uniq(permissions, function (permission) {
                     return permission.uuid;
@@ -95,7 +95,7 @@ angular.module('octobluApp')
             });
 
         PermissionsService
-            .flatTargetPermissions($scope.device.resource.uuid)
+            .flatTargetPermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.targetGroups = _.uniq(permissions, function (permission) {
                     return permission.uuid;
@@ -103,7 +103,7 @@ angular.module('octobluApp')
             });
 
         PermissionsService
-            .allTargetPermissions($scope.device.resource.uuid)
+            .allTargetPermissions($scope.device.uuid)
             .then(function (permissions) {
                 $scope.targetPermissions = permissions;
             });
@@ -113,7 +113,7 @@ angular.module('octobluApp')
         };
 
         if ($scope.device.type === 'gateway') {
-            skynetService.gatewayConfig({
+            deviceService.gatewayConfig({
                 uuid: $scope.device.uuid,
                 token: $scope.device.token,
                 method: "configurationDetails"
@@ -127,7 +127,7 @@ angular.module('octobluApp')
         $scope.deleteSubdevice = function (subdevice) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Subdevice', 'Are you sure you want to delete this subdevice?',
                 function () {
-                    skynetService.gatewayConfig({
+                    deviceService.gatewayConfig({
                         "uuid": device.uuid,
                         "token": device.token,
                         "method": "deleteSubdevice",
@@ -142,7 +142,7 @@ angular.module('octobluApp')
 
         };
 
-        $scope.editSubdevice = function (device, subdevice) {
+        $scope.editSubdevice = function (subdevice) {
             var subdeviceModal = $modal.open({
                 templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
                 controller: 'AddEditSubDeviceController',
@@ -165,7 +165,7 @@ angular.module('octobluApp')
 
             subdeviceModal.result.then(function (result) {
                 var hub = result.hub, updatedSubdevice = result.subdevice;
-                skynetService.updateSubdevice({
+                deviceService.updateSubdevice({
                     uuid: hub.uuid,
                     token: hub.token,
                     type: subdevice.type,
@@ -173,7 +173,6 @@ angular.module('octobluApp')
                     options: updatedSubdevice.options
                 }).then(function (response) {
                     console.log(response);
-                    angular.copy(updatedSubdevice, subdevice);
                 });
 
             }, function () {
