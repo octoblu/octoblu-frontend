@@ -331,22 +331,22 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/node-wizard/add-node.html'
             })
             .state('ob.nodewizard.addchannel', {
-                url: '/node-wizard/add-channel/:deviceId',
+                url: '/node-wizard/add-channel/:nodeTypeId',
                 controller: 'addChannelController',
                 templateUrl: 'pages/node-wizard/add-channel.html'
             })
             .state('ob.nodewizard.adddevice', {
-                url: '/add-device/:deviceId',
+                url: '/add-device/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addgateway', {
-                url: '/node-wizard/add-gateway/:deviceId',
+                url: '/node-wizard/add-gateway/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addsubdevice', {
-                url: '/node-wizard/add-subdevice/:deviceId',
+                url: '/node-wizard/add-subdevice/:nodeTypeId',
                 controller: 'addSubdeviceController',
                 templateUrl: 'pages/node-wizard/add-subdevice/index.html',
                 abstract: true

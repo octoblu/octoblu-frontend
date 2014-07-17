@@ -6,7 +6,6 @@ angular.module('octobluApp')
 
         NodeTypeService.getNodeTypes().then(function(nodeTypes){
             $scope.nodeType = _.findWhere(nodeTypes, {category: 'gateway'});
-            console.log('nodeType', $scope.nodeType);
         })
         .then(function(){
             return deviceService.getUnclaimed($scope.nodeType.category);

@@ -5,7 +5,7 @@ angular.module('octobluApp')
         $scope.newSubDevice = {};
 
         NodeTypeService.getNodeTypes().then(function(nodeTypes){
-            $scope.nodeType = _.findWhere(nodeTypes, {_id: $stateParams.deviceId});
+            $scope.nodeType = _.findWhere(nodeTypes, {_id: $stateParams.nodeTypeId});
             return deviceService.getGateways();
         }).then(function(gateways){
             $scope.availableGateways = gateways;

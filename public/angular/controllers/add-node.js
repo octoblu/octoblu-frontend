@@ -6,6 +6,6 @@ angular.module('octobluApp')
 
         $scope.nextStepUrl = function(nodeType){
             var sref = 'ob.nodewizard.add'+nodeType.category;
-            return $state.href(sref, {deviceId: nodeType._id});
+            return $state.href(sref, {nodeTypeId: nodeType._id});
         };
     });
