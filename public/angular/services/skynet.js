@@ -123,6 +123,7 @@ angular.module('octobluApp')
                 })
                 .then(function(){
                     $rootScope.myDevices.push(device);
+                    return device;
                 });
             },
 
@@ -153,6 +154,7 @@ angular.module('octobluApp')
                     return service.updateDevice(device);
                 }).then(function(){
                     $rootScope.myDevices.push(device);
+                    return device;
                 });
             },
 
