@@ -85,6 +85,12 @@ angular.module('octobluApp')
             }
         };
 
+        this.getActiveChannelByName = function(name){
+            return this.getActiveChannels().then(function(channels){
+                return _.findWhere(channels, {name: name});
+            });
+        };
+
         /**
          *
          * @param userUUID

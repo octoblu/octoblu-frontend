@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('smartDeviceController', function ($scope, $modal, $log, skynetService, deviceService,  myDevices, currentUser, availableDeviceTypes) {
+    .controller('smartDeviceController', function ($scope, $modal, $log, deviceService,  myDevices, currentUser, availableDeviceTypes) {
 
         $scope.model = {
             devices : myDevices,
@@ -9,13 +9,15 @@ angular.module('octobluApp')
                 return deviceType.skynet.type == 'device' && ! deviceType.skynet.plugin
             })
         };
+
         $scope.notGateway = function(device) {
             return device && device.type !== 'gateway';
-        }
+        };
+
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {
-                    deviceService.deleteDevice(device.uuid)
+                    deviceService.unregisterDevice({uuid: device.uuid})
                         .then(function (device) {
                             if (device) {
                                 $scope.model.devices = _.without($scope.model.devices, _.findWhere($scope.model.devices, {uuid: device.uuid}));
@@ -53,7 +55,7 @@ angular.module('octobluApp')
                 });
 
                 deviceModal.result.then(function (result) {
-                    skynetService.registerDevice(result.device)
+                    deviceService.registerDevice(result.device)
                         .then(function (res) {
                             return deviceService.getDevices(true);
                         }).then(null, function (error) {
@@ -100,7 +102,7 @@ angular.module('octobluApp')
             });
 
             deviceModal.result.then(function (result) {
-                skynetService.updateDevice(result.device)
+                deviceService.updateDevice(result.device)
                     .then(function (res) {
                         return deviceService.getDevices(true);
                     }).then(null, function (error) {

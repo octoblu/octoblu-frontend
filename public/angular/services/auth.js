@@ -1,6 +1,6 @@
 angular.module('octobluApp')
-    .service('AuthService', function ($q, $cookies,  $http) {
-        var currentUser;
+    .service('AuthService', function ($q, $cookies,  $http, $location) {
+        var currentUser = {};
 
         //TODO: move me to the eventual root controller.
         function getProfileUrl(user) {
@@ -17,7 +17,7 @@ angular.module('octobluApp')
         }
 
         function loginHandler(result) {
-            currentUser = result.data;
+            angular.copy(result.data, currentUser);
             $cookies.skynetuuid = currentUser.skynetuuid;
             $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);
@@ -25,9 +25,10 @@ angular.module('octobluApp')
         }
 
         function logoutHandler(err) {
-            currentUser = undefined;
+            angular.copy({}, currentUser);
             delete $cookies.skynetuuid;
             delete $cookies.skynettoken;
+            $location.url('/login');
         }
 
         return {
@@ -70,11 +71,12 @@ angular.module('octobluApp')
             },
 
             getCurrentUser: function (force) {
-                if (currentUser && !force) {
+                if (currentUser.id && !force) {
                     var defer = $q.defer();
                     defer.resolve(currentUser);
                     return defer.promise;
                 } else {
+                    angular.copy({}, currentUser);
                     return $http.get('/api/auth').then(loginHandler, function (err) {
                         logoutHandler(err);
                         throw err;
