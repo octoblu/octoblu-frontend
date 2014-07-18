@@ -211,7 +211,7 @@ db.nodetypes.insert({
     skynet: {
         type: "gateway"
     },
-    category: 'gateway',
+    category: 'device',
     enabled: true,
     display : false
 });

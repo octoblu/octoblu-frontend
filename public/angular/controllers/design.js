@@ -1,30 +1,24 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('designController', function ($rootScope, $scope, $http, $injector, $location, nodeRedService) {
-        $scope.getSessionFlow = function () {
+    .controller('designController', function ($rootScope, $scope, $http, $injector, $location, nodeRedService, currentUser) {
+        var getSessionFlow = function () {
             $http({method: 'GET', url: '/api/get/flow'})
                 .success(function (data, status, headers, config) {
-                    console.log(data);
+                    console.log('/api/get/flow', data);
                     if (data.flow) {
-                        var win = angular.element('#designerFrame')[0];
-                        win.onload = function () {
-                            win.contentWindow.postMessage(data.flow, $scope.redFrame);
-                        };
+                        RED.view.importFromCommunity(data.flow);
                     }
                 });
         };
 
-        // Get NodeRed port number
-        nodeRedService.getPort($scope.currentUser.skynetuuid, $scope.currentUser.skynettoken, function (data) {
-            $scope.redPort = data.replace(/["']/g, "");
-            $scope.redFrame = "http://" + $scope.currentUser.skynetuuid + ":" + $scope.currentUser.skynettoken + "@designer.octoblu.com:" + $scope.redPort;
-
-            $scope.getSessionFlow();
-
-            $scope.designerFrame = {
-                skynetid: $scope.currentUser.skynetuuid,
-                skynettoken: $scope.currentUser.skynettoken
-            };
+        nodeRedService.getPort(currentUser.skynet.uuid, currentUser.skynet.token, function (port) {
+            RED.initialize();
+            RED.wsConnect(RED.loadSettings, currentUser.skynet.uuid, currentUser.skynet.token, port);
+            getSessionFlow();
         });
+
+        $scope.save = function(){
+            RED.save();
+        };
     });

@@ -1,13 +1,13 @@
 angular.module('octobluApp')
-    .controller('AddEditSubDeviceController', function ($q, $scope, $modalInstance, hubs, subdevice, pluginName, availableDeviceTypes, PluginService) {
+    .controller('AddEditSubDeviceController', function ($q, $scope, $modalInstance, hubs, subdevice, pluginName, availableNodeTypes, PluginService) {
         $scope.model = {
             hub: hubs[0],
             hubs: hubs,
             subdevice : subdevice || { options: {}, type: pluginName },
             nameEditable : !subdevice || !subdevice.name,
-            smartDevices : availableDeviceTypes,
-            deviceType  : _.findWhere(availableDeviceTypes, function(deviceType){
-                return deviceType.skynet.plugin === pluginName;
+            smartDevices : availableNodeTypes,
+            nodeType  : _.findWhere(availableNodeTypes, function(nodeType){
+                return nodeType.skynet.plugin === pluginName;
             }),
             schemaEditor: {}
         };
@@ -44,7 +44,7 @@ angular.module('octobluApp')
             var errors = $scope.model.schemaEditor.validate();
             if (!errors.length) {
                 $scope.model.subdevice.options = $scope.model.schemaEditor.getValue();
-                $modalInstance.close({hub: $scope.model.hub, deviceType: $scope.model.deviceType, subdevice: $scope.model.subdevice, isNew: $scope.model.isNew});
+                $modalInstance.close({hub: $scope.model.hub, nodeType: $scope.model.nodeType, subdevice: $scope.model.subdevice, isNew: $scope.model.isNew});
             }
         };
     });

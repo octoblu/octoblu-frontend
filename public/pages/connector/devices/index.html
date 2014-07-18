@@ -15,7 +15,7 @@
          <div class="panel-body center-block">
 
              <div class="device-image-container center-block">
-                 <img class="device-image" src="{{getDeviceTypeLogo(device)}}" ng-class="{faded: !device.online}"/>
+                 <img class="device-image" src="{{getNodeTypeLogo(device)}}" ng-class="{faded: !device.online}"/>
              </div>
              <div class="btn-group btn-group-justified">
                  <div class="btn-group">
@@ -57,8 +57,8 @@
                     <h4 class="text-center"><i class="fa fa-puzzle-piece fa-lg pull-left"></i><span>Add Sub-Device</span></h4>
                 </div>
                 <div class="panel-body">
-                    <a   ng-class="{'unavailable': !deviceType.enabled }" ng-repeat="deviceType in subDeviceTypes" class="subdevice pull-left" ng-click="addSubdevice(deviceType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{deviceType.name}}" tooltip-placement="left" tooltip-popup-delay="10">
-                        <img src="{{deviceType.logo || defaultLogo }}" alt="{{deviceType.name}}"  ng-model="deviceType" />
+                    <a   ng-class="{'unavailable': !nodeType.enabled }" ng-repeat="nodeType in subNodeTypes" class="subdevice pull-left" ng-click="addSubdevice(nodeType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{nodeType.name}}" tooltip-placement="left" tooltip-popup-delay="10">
+                        <img src="{{nodeType.logo || defaultLogo }}" alt="{{nodeType.name}}"  ng-model="nodeType" />
                     </a>
 
                 </div>
@@ -78,8 +78,8 @@
                     <h4 class="text-center"><i class="fa fa-hdd-o fa-lg pull-left"></i><span>Add Device</span></h4>
                 </div>
                 <div class="panel-body">
-                    <a   ng-class="{'unavailable': !deviceType.enabled }" ng-repeat="deviceType in deviceTypes | filter :{ display : true }" class="subdevice pull-left" ng-click="addDevice(deviceType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{deviceType.name}}" tooltip-placement="left" tooltip-popup-delay="10" >
-                        <img src="{{deviceType.logo}}" alt="{{deviceType.name}}"  ng-model="deviceType" />
+                    <a   ng-class="{'unavailable': !nodeType.enabled }" ng-repeat="nodeType in nodeTypes | filter :{ display : true }" class="subdevice pull-left" ng-click="addDevice(nodeType)" style="margin: 0 0 15px 15px; " tooltip="Add new {{nodeType.name}}" tooltip-placement="left" tooltip-popup-delay="10" >
+                        <img src="{{nodeType.logo}}" alt="{{nodeType.name}}"  ng-model="nodeType" />
                     </a>
 
                 </div>
