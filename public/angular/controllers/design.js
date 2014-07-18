@@ -18,7 +18,7 @@ angular.module('octobluApp')
 
         // Get NodeRed port number
         nodeRedService.getPort(currentUser.skynet.uuid, currentUser.skynet.token, function (port) {
-            RED.initializeView();
+            RED.initialize();
             RED.wsConnect(RED.loadSettings, currentUser.skynet.uuid, currentUser.skynet.token, port);
             // $scope.redPort = data.replace(/["']/g, "");
         //     $scope.redFrame = "http://" + currentUser.skynetuuid + ":" + currentUser.skynettoken + "@designer.octoblu.com:" + $scope.redPort;

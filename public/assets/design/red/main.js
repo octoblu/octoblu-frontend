@@ -267,8 +267,16 @@ var RED = function() {
             };
         }
 
+    var initialize = function(){
+        RED.view    = RED.initializeView();
+        RED.sidebar = RED.initializeSidebar();
+        RED.sidebar.info = RED.initializeTabInfo();
+        RED.sidebar.config = RED.initializeTabConfig();
+    };
+
     return {
         loadSettings: loadSettings,
-        wsConnect: wsConnect
+        wsConnect: wsConnect,
+        initialize: initialize
     };
 }();

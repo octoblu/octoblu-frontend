@@ -15,7 +15,7 @@
  **/
 
 
-RED._initializeView = function() {
+RED.initializeView = function() {
     var space_width = 5000,
         space_height = 5000,
         lineCurveScale = 0.75,
@@ -1405,8 +1405,4 @@ RED._initializeView = function() {
             workspace_tabs.resize();
         }
     };
-};
-
-RED.initializeView = function(){
-    RED.view = RED._initializeView();
 };

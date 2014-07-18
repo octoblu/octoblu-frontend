@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-RED.sidebar = function() {
+RED.initializeSidebar = function() {
 
     //$('#sidebar').tabs();
     var sidebar_tabs = RED.tabs.create({
@@ -33,7 +33,7 @@ RED.sidebar = function() {
         //content.style.position = "absolute";
         //$('#sidebar').tabs("refresh");
     }
-    
+
     $('#btn-sidebar').click(function() {toggleSidebar();});
     RED.keyboard.add(/* SPACE */ 32,{ctrl:true},function(){toggleSidebar();d3.event.preventDefault();});
 
@@ -51,7 +51,7 @@ RED.sidebar = function() {
             drag: function(event,ui) {
                 var d = ui.position.left-sidebarSeparator.start;
                 var newSidebarWidth = sidebarSeparator.width-d;
-                
+
                 if (newSidebarWidth > 180 && sidebarSeparator.chartWidth+d > 200) {
                     var newChartRight = sidebarSeparator.chartRight-d;
                     $("#workspace").css("right",newChartRight);
@@ -68,7 +68,7 @@ RED.sidebar = function() {
                 }
                 sidebar_tabs.resize();
                 RED.view.resize();
-                    
+
             },
             stop:function(event,ui) {
                 $("#sidebar-separator").css("left","auto");
@@ -79,14 +79,14 @@ RED.sidebar = function() {
                 }
             }
     });
-    
+
     function toggleSidebar() {
         //if ($('#sidebar').tabs( "option", "active" ) === false) {
         //    $('#sidebar').tabs( "option", "active",0);
         //}
         var btnSidebar = $("#btn-sidebar");
         btnSidebar.toggleClass("active");
-        
+
         if (!btnSidebar.hasClass("active")) {
             $("#main-container").addClass("sidebar-closed");
         } else {
@@ -94,22 +94,22 @@ RED.sidebar = function() {
         }
     }
     toggleSidebar();
-    
+
     function showSidebar(id) {
         if (!$("#btn-sidebar").hasClass("active")) {
             toggleSidebar();
         }
         sidebar_tabs.activateTab("tab-"+id);
     }
-    
+
     function containsTab(id) {
         return sidebar_tabs.contains("tab-"+id);
     }
-    
+
     return {
         addTab: addTab,
         show: showSidebar,
         containsTab: containsTab
     }
-    
-}();
+
+};
