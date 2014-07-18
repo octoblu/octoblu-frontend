@@ -34,7 +34,7 @@ angular.module('octobluApp')
                     }).then(function (response) {
                         return deviceService.getDevices(true);
                     }).then(function (){
-                        $state.go('ob.connector.devices.all');
+                        $state.go('ob.connector.nodes.all');
                     });
         };
     });

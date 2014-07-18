@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceWizardController', function ($scope, $state,currentUser, availableDeviceTypes,  unclaimedDevices, myDevices, deviceService) {
+    .controller('DeviceWizardController', function ($scope, $state,currentUser, availableNodeTypes,  unclaimedDevices, myDevices, deviceService) {
         $scope.getStateName = function () {
             return $state.current.name;
         };
@@ -7,7 +7,7 @@ angular.module('octobluApp')
         $scope.gateway = $state.params.claim === 'gateway';
 
         $scope.model = {
-            deviceTypes : availableDeviceTypes,
+            nodeTypes : availableNodeTypes,
             unclaimedDevices : _.filter(unclaimedDevices, function(device){
                 //If we are selecting gateways, we only filter for gateways otherwise select all other devices.
                 if($state.params.claim === 'gateway'){
@@ -30,10 +30,10 @@ angular.module('octobluApp')
                     console.log(result);
                     return deviceService.getDevices(true);
                 }).then(function(){
-                    $state.go('ob.connector.devices.all', {}, {reload : true});
+                    $state.go('ob.connector.nodes.all', {}, {reload : true});
                 }, function (error) {
                     console.log(error);
-                    $state.go('ob.connector.devices.all');
+                    $state.go('ob.connector.nodes.all');
                 });
         };
 

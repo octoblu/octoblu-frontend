@@ -89,8 +89,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/connect',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
-                    availableDeviceTypes: function (channelService) {
-                        return channelService.getDeviceTypes();
+                    availableNodeTypes: function (NodeTypeService) {
+                        return NodeTypeService.getNodeTypes();
                     },
                     myGateways: function (myDevices, deviceService) {
                         var gateways = _.filter(myDevices, {type: 'gateway', online: true });
@@ -297,7 +297,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.design', {
                 url: '/design',
-                templateUrl: 'pages/design/index.html',
+                templateUrl: 'pages/design.html',
                 controller: 'designController'
             })
             .state('ob.docs', {

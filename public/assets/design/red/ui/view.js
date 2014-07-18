@@ -15,7 +15,7 @@
  **/
 
 
-RED.view = function() {
+RED.initializeView = function() {
     var space_width = 5000,
         space_height = 5000,
         lineCurveScale = 0.75,
@@ -1400,8 +1400,9 @@ RED.view = function() {
             }
         },
         importNodes: importNodes,
+        importFromCommunity: importFromCommunity,
         resize: function() {
             workspace_tabs.resize();
         }
     };
-}();
+};

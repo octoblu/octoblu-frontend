@@ -1,30 +1,30 @@
 angular.module('octobluApp')
-    .controller('DeviceController', function ($scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableDeviceTypes, deviceService, PluginService) {
+    .controller('DeviceController', function ($scope, $q, $log, $state, $http, $modal, $timeout, currentUser, myDevices, myGateways, availableNodeTypes, deviceService, PluginService) {
 
         $scope.user = currentUser;
 
-        $scope.subDeviceTypes = _.filter(availableDeviceTypes, function (device) {
+        $scope.subnodeTypes = _.filter(availableNodeTypes, function (device) {
             return device.skynet.plugin;
         });
-        $scope.deviceTypes = _.difference(availableDeviceTypes, $scope.subDeviceTypes);
+        $scope.nodeTypes = _.difference(availableNodeTypes, $scope.subnodeTypes);
 
         $scope.devices = myDevices;
         $scope.hasHubs = myGateways.length;
 
-        $scope.getDeviceTypeLogo = function (device) {
+        $scope.getnodeTypeLogo = function (device) {
             if (device) {
-                var deviceType = _.findWhere(availableDeviceTypes, function (deviceType) {
+                var nodeType = _.findWhere(availableNodeTypes, function (nodeType) {
                     if (device.type) {
-                        if (device.subtype && deviceType.skynet) {
-                            return deviceType.skynet.type === device.type && deviceType.skynet.subtype === device.subtype;
+                        if (device.subtype && nodeType.skynet) {
+                            return nodeType.skynet.type === device.type && nodeType.skynet.subtype === device.subtype;
                         } else {
-                            return deviceType.skynet.type === device.type;
+                            return nodeType.skynet.type === device.type;
                         }
                     } else {
-                        return deviceType.skynet.type === 'device' && deviceType.skynet.subtype === 'other';
+                        return nodeType.skynet.type === 'device' && nodeType.skynet.subtype === 'other';
                     }
                 });
-                return deviceType ? deviceType.logo : null;
+                return nodeType ? nodeType.logo : null;
             }
         };
 
@@ -45,15 +45,15 @@ angular.module('octobluApp')
         };
 
 
-        $scope.addSubdevice = function (deviceType) {
-            if (deviceType.enabled) {
+        $scope.addSubdevice = function (nodeType) {
+            if (nodeType.enabled) {
                 var subdeviceModal = $modal.open({
                     templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
                     controller: 'AddEditSubDeviceController',
                     backdrop: true,
                     resolve: {
                         pluginName: function () {
-                            return deviceType.skynet.plugin;
+                            return nodeType.skynet.plugin;
                         },
                         subdevice: function () {
                             return null;
@@ -61,8 +61,8 @@ angular.module('octobluApp')
                         hubs: function () {
                             return myGateways;
                         },
-                        availableDeviceTypes: function () {
-                            return availableDeviceTypes;
+                        availableNodeTypes: function () {
+                            return availableNodeTypes;
                         }
                     },
                     size: 'lg'
@@ -72,7 +72,7 @@ angular.module('octobluApp')
                     deviceService.createSubdevice({
                         uuid: result.hub.uuid,
                         token: result.hub.token,
-                        type: deviceType.skynet.plugin,
+                        type: nodeType.skynet.plugin,
                         name: result.subdevice.name,
                         options: result.subdevice.options
                     }).then(function (response) {
@@ -86,8 +86,8 @@ angular.module('octobluApp')
             }
         };
 
-        $scope.addDevice = function (deviceType) {
-            if (deviceType.enabled) {
+        $scope.addDevice = function (nodeType) {
+            if (nodeType.enabled) {
                 var deviceModal = $modal.open({
                     templateUrl: 'pages/connector/devices/device/add-edit.html',
                     controller: 'AddEditDeviceController',
@@ -99,11 +99,11 @@ angular.module('octobluApp')
                         owner: function () {
                             return currentUser;
                         },
-                        deviceType: function () {
-                            return deviceType;
+                        nodeType: function () {
+                            return nodeType;
                         },
-                        availableDeviceTypes: function () {
-                            return availableDeviceTypes;
+                        availableNodeTypes: function () {
+                            return availableNodeTypes;
                         }
                     }
                 });
@@ -120,15 +120,15 @@ angular.module('octobluApp')
         };
 
         $scope.editDevice = function (device) {
-            var deviceType = _.findWhere(availableDeviceTypes, function (deviceType) {
+            var nodeType = _.findWhere(availableNodeTypes, function (nodeType) {
                 if (device.type) {
                     if (device.subtype) {
-                        return deviceType.skynet.type === device.type && deviceType.skynet.subtype === device.subtype;
+                        return nodeType.skynet.type === device.type && nodeType.skynet.subtype === device.subtype;
                     } else {
-                        return deviceType.skynet.type === device.type;
+                        return nodeType.skynet.type === device.type;
                     }
                 } else {
-                    return deviceType.skynet.type === 'device' && deviceType.skynet.subtype === 'other';
+                    return nodeType.skynet.type === 'device' && nodeType.skynet.subtype === 'other';
                 }
             });
 
@@ -143,11 +143,11 @@ angular.module('octobluApp')
                     owner: function () {
                         return currentUser;
                     },
-                    deviceType: function () {
-                        return deviceType;
+                    nodeType: function () {
+                        return nodeType;
                     },
-                    availableDeviceTypes: function () {
-                        return availableDeviceTypes;
+                    availableNodeTypes: function () {
+                        return availableNodeTypes;
                     }
                 },
                 size: 'lg'
@@ -163,14 +163,14 @@ angular.module('octobluApp')
             });
         };
     })
-    .controller('AddEditDeviceController', function ($scope, $modalInstance, owner, device, deviceType, availableDeviceTypes) {
+    .controller('AddEditDeviceController', function ($scope, $modalInstance, owner, device, nodeType, availableNodeTypes) {
         $scope.model = {
             isNew: !device,
             device: angular.copy(device) || {},
-            deviceType: deviceType,
-            deviceTypes: availableDeviceTypes,
+            nodeType: nodeType,
+            nodeTypes: availableNodeTypes,
             propertyEditor: {},
-            schema: deviceType.optionsSchema || {}
+            schema: nodeType.optionsSchema || {}
         };
 
 
@@ -179,16 +179,16 @@ angular.module('octobluApp')
         };
 
         $scope.save = function () {
-            //If the deviceType selected has an options schema then we should validate the
+            //If the nodeType selected has an options schema then we should validate the
             //options set for errors
             var errors = $scope.model.propertyEditor.validate();
             if (!errors.length) {
                 var device = $scope.model.propertyEditor.getValue();
                 angular.extend($scope.model.device, device);
                 $scope.model.device.owner = $scope.model.device.owner || owner.skynetuuid;
-                $scope.model.device.type = $scope.model.deviceType.skynet.type;
-                $scope.model.device.subtype = $scope.model.deviceType.skynet.subtype || '';
-                $modalInstance.close({deviceType: $scope.model.deviceType, device: $scope.model.device, isNew: $scope.model.isNew});
+                $scope.model.device.type = $scope.model.nodeType.skynet.type;
+                $scope.model.device.subtype = $scope.model.nodeType.skynet.subtype || '';
+                $modalInstance.close({nodeType: $scope.model.nodeType, device: $scope.model.device, isNew: $scope.model.isNew});
             }
         };
     });
