@@ -15,6 +15,6 @@ angular.module('octobluApp')
             if($scope.existingChannel){return;}
 
             var auth_strategy = nodeType.channel.auth_strategy;
-            return $state.go(AUTH_DESTINATIONS[auth_strategy]);
+            return $state.go(AUTH_DESTINATIONS[auth_strategy], {}, {location: 'replace'});
         });
     });

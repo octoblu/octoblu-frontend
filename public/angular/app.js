@@ -126,12 +126,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/nodes/index.html'
             })
             .state('ob.connector.nodes.device-detail', {
-                url: '/:uuid',
+                url: '/device/:uuid',
                 controller: 'DeviceDetailController',
                 templateUrl: 'pages/connector/devices/detail/index.html'
             })
             .state('ob.connector.nodes.channel-detail', {
-                url: '/:id',
+                url: '/channel/:id',
                 templateUrl: 'pages/connector/channels/detail.html',
                 controller: 'apiController'
             })
