@@ -89,27 +89,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 resolve: {
                     availableNodeTypes: function (NodeTypeService) {
                         return NodeTypeService.getNodeTypes();
-                    },
-                    myGateways: function (myDevices, deviceService) {
-                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
-                        _.map(gateways, function (gateway) {
-                            gateway.subdevices = [];
-                            gateway.plugins = [];
-                            return deviceService.gatewayConfig({
-                                "uuid": gateway.uuid,
-                                "token": gateway.token,
-                                "method": "configurationDetails"
-                            }).then(function (response) {
-                                if (response && response.result) {
-                                    gateway.subdevices = response.result.subdevices || [];
-                                    gateway.plugins = response.result.plugins || [];
-                                }
-                            }, function () {
-                                console.log('couldn\'t get data for: ');
-                                console.log(gateway);
-                            });
-                        });
-                        return gateways;
                     }
                 }
             })
@@ -207,7 +186,30 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             .state('ob.connector.advanced.messaging', {
                 url: '/messaging',
                 controller: 'MessagingController',
-                templateUrl: 'pages/connector/advanced/messaging.html'
+                templateUrl: 'pages/connector/advanced/messaging.html',
+                resolve: {
+                    myGateways: function (myDevices, deviceService) {
+                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
+                        _.map(gateways, function (gateway) {
+                            gateway.subdevices = [];
+                            gateway.plugins = [];
+                            return deviceService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
+                                "method": "configurationDetails"
+                            }).then(function (response) {
+                                if (response && response.result) {
+                                    gateway.subdevices = response.result.subdevices || [];
+                                    gateway.plugins = response.result.plugins || [];
+                                }
+                            }, function () {
+                                console.log('couldn\'t get data for: ');
+                                console.log(gateway);
+                            });
+                        });
+                        return gateways;
+                    }
+                }
             })
             //end refactor states
 

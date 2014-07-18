@@ -17,7 +17,13 @@ angular.module('octobluApp')
                     }
                     return existingNodeType;
                 });
-                return _.extend({ category: 'device', nodeType : deviceNodeType}, device);
+                return {
+                    category: 'device',
+                    name: device.name,
+                    nodeType: deviceNodeType,
+                    online: device.online,
+                    resource: device
+                };
             });
             return deviceNodes;
         }
@@ -28,7 +34,13 @@ angular.module('octobluApp')
                     return (nodeType.category === 'channel')
                         && (nodeType.name.toLowerCase() === channel.name.toLowerCase() )
                 });
-                return _.extend({ category : 'channel',  nodeType : channelNodeType}, channel);
+                return {
+                    category : 'channel',
+                    name : channel.name,
+                    nodeType : channelNodeType,
+                    online: true,
+                    resource: channel
+                };
             });
             return channelNodes;
         }
@@ -38,11 +50,10 @@ angular.module('octobluApp')
                 var defer = $q.defer();
                 NodeTypeService.getNodeTypes().then(function(nodeTypes){
                     angular.copy(nodeTypes, allNodeTypes);
-                    return deviceService.getDevices(true);
+                    return deviceService.getDevices();
                 }).then(function(devices){
                    nodes = getDeviceNodes(devices, allNodeTypes);
-//                   angular.copy(deviceNodes, nodes);
-                   return channelService.getActiveChannels(true);
+                   return channelService.getActiveChannels();
                 }).then(function(channels){
                     var channelNodes = getChannelNodes(channels, allNodeTypes);
                     return nodes.concat(channelNodes);
