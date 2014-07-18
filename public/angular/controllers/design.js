@@ -13,7 +13,7 @@ angular.module('octobluApp')
         };
 
         nodeRedService.getPort(currentUser.skynet.uuid, currentUser.skynet.token, function (port) {
-            RED.initialize();
+            initializeRED();
             RED.wsConnect(RED.loadSettings, currentUser.skynet.uuid, currentUser.skynet.token, port);
             getSessionFlow();
         });

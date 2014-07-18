@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-RED.editor = function() {
+RED.initializeEditor = function() {
     var editing_node = null;
 
     // TODO: should IMPORT/EXPORT get their own dialogs?
@@ -503,4 +503,4 @@ RED.editor = function() {
         updateNodeProperties: updateNodeProperties, // TODO: only exposed for edit-undo
         updateConfigNodeSelect: updateConfigNodeSelect // TODO: exposed for dynamic lists gotten oneditprepare
     }
-}();
+};

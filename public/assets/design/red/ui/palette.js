@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-RED.palette = function() {
+RED.initializePalette = function() {
 
     function addNodeType(nt,def) {
         if (def.category != 'config') {
@@ -125,4 +125,4 @@ RED.palette = function() {
     return {
         add:addNodeType
     };
-}();
+};
