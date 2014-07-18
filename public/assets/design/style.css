@@ -16,7 +16,7 @@
 
 body {
   font: 13px "Helvetica" !important;
-  padding-top: 100px;
+  /*padding-top: 100px;*/
   background: url("pw_maze_white.png");
 }
 #dropTarget {
@@ -265,7 +265,7 @@ a.brand img {
 /* ---------- Layout ---------- */
 #main-container {
     position: absolute;
-    top:50px; left:0; bottom: 0; right:0;
+    top:140px; left:0; bottom: 0; right:0;
     overflow:hidden;
 }
 #palette {
