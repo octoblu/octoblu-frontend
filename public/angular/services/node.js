@@ -8,7 +8,7 @@ angular.module('octobluApp')
                 var deviceNodeType = _.findWhere(nodeTypes, function(nodeType){
                     var existingNodeType = false;
                     if(device.type){
-                        existingNodeType = node.skynet.type === device.type;
+                        existingNodeType = nodeType.skynet.type === device.type;
                         if(device.subtype){
                            existingNodeType = existingNodeType && device.subtype === nodeType.skynet.subtype;
                         }
