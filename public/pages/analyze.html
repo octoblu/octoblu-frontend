@@ -105,13 +105,13 @@
                 	                <a href ng-click="prevPage()">« Prev</a>
         	                    </li>
 	
-	                            <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
+	                            <li ng-repeat="n in range(freeform_results_ngTable.pagedItems.length, currentPage, currentPage + gap) "
                         	        ng-class="{active: n == currentPage}"
                 	            ng-click="setPage()">
         	                        <a href ng-bind="n + 1">1</a>
 	                            </li>
 
-	                            <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+	                            <li ng-class="{disabled: (currentPage) == freeform_results_ngTable.pagedItems.length - 1}">
         	                        <a href ng-click="nextPage()">Next »</a>
 	                            </li>
                         	</ul>
@@ -121,6 +121,12 @@
 			<pre>pagedItems.length: {{pagedItems.length|json}}</pre>
 	                <pre>currentPage: {{currentPage|json}}</pre>
         	        <pre>currentPage: {{sort|json}}</pre>
+			<tbody>
+
+	                <tr ng-repeat="item in freeform_results_ngTable.pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
+        	             <td ng-repeat="val in item" ng-bind-html-unsafe="item[freeform_results_ngTable.headers[$index].name]"></td>
+                	</tr>
+		        </tbody>
 		</table>
 		<!--<table ng-table="freeform_results_ngTable" show-filter="true" class="table">
 	        <thead>

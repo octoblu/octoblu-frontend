@@ -1,14 +1,18 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('analyzeController', function ($scope, $http, $injector, $log, elasticService, myDevices, currentUser) {
+    .controller('analyzeController', function ($scope, $http, $injector, $log, elasticService, currentUser, myDevices) {
         $scope.debug_logging = true;
         //Elastic Search Time Format Dropdowns
         $scope.ESdateFormats = elasticService.getDateFormats();
 
         $scope.forms = {};
         // Get user devices
+
+	$log.log("currentUser");
+	$log.log(currentUser);
         $log.log("getting devices from ownerService");
+	$log.log(myDevices);
 
         $scope.devices = _.filter(myDevices, function (device) {
             return device.type !== 'gateway';
@@ -174,7 +178,7 @@ angular.module('octobluApp')
 	});
         };
 
-	$scope.sort = "=", $scope.order = '=';
+	$scope.sort = "=", $scope.order = '='; $scope.itemsPerPage = 10;
 	$scope.sort_by = function(newSortingOrder) {       
             var sort = $scope.sort;
 
@@ -195,6 +199,52 @@ angular.module('octobluApp')
             } 
         };      
 
+    // calculate page in place
+    $scope.groupToPages = function () {
+        $scope.freeform_results_ngTable.pagedItems = [];
+        $log.log("groupToPages");
+	$log.log($scope.freeform_results); 
+        for (var i = 0; i < $scope.freeform_results.length; i++) {
+            if (i % $scope.itemsPerPage === 0) {
+                $scope.freeform_results_ngTable.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.freeform_results[i] ];
+            } else {
+                $scope.freeform_results_ngTable.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.freeform_results[i]);
+            }
+        }
+    };
+    
+    $scope.range = function (size,start, end) {
+        var ret = [];        
+        console.log(size,start, end);
+                      
+        if (size < end) {
+            end = size;
+            start = size-$scope.gap;
+        }
+        for (var i = start; i < end; i++) {
+            ret.push(i);
+        }        
+         console.log(ret);        
+        return ret;
+    };
+    
+    $scope.prevPage = function () {
+        if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+        }
+    };
+    
+    $scope.nextPage = function () {
+        if ($scope.currentPage < $scope.pagedItems.length - 1) {
+            $scope.currentPage++;
+        }
+    };
+    
+    $scope.setPage = function () {
+        $scope.currentPage = this.n;
+    };
+
+	
 	$scope.search = function(currentPage) { 
 		$scope.ff = {};
         	$log.log("starting search function, analyzer controller");
@@ -206,11 +256,14 @@ angular.module('octobluApp')
                         $log.log(error);
                     } else {
 			$log.log("Found stuff");
+			$log.log("response follows");
 			$log.log(response);
 			$log.log(currentUser);
 			$scope.ff.currentPage = currentPage;
                         $scope.freeform_results = response.hits.hits;
-			$scope.freeform_results_ngTable = { "headers": [ { "name": "one" }, {"name":"two"} ], "events": response.hits.hits };
+			$scope.freeform_results_ngTable = { "headers": [ { "name": "one" }, {"name":"two"} ] };			
+			$scope.groupToPages();
+			$log.log($scope.freeform_results_ngTable);
                         $scope.results = response;
                         $scope.totalItems = response.hits.total;
                         $scope.ff.maxSize = 10;
