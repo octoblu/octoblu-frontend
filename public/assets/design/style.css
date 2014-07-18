@@ -16,7 +16,6 @@
 
 body {
   font: 13px "Helvetica" !important;
-  /*padding-top: 100px;*/
   background: url("pw_maze_white.png");
 }
 #dropTarget {
@@ -854,10 +853,6 @@ i.spinner {
     margin-top: 0px;
     background: url(spin.svg) no-repeat 50% 50%;
     background-size: contain
-}
-
-.navbar-link{
-  display: none;
 }
 
 
