@@ -64,7 +64,7 @@ angular.module('octobluApp')
             $scope.legFirst = true;
             $scope.myAdditionalQuery = "";
             $scope.leg = {};
-	    $scope.leg.config = { "contains_uuid" : "false", "contains_ec" : "false" };
+            $scope.leg.config = { "contains_uuid" : "false", "contains_ec" : "false" };
             if ($scope.eGselectDevices && $scope.eGselectDevices.length > 0 ) {
                 _.each($scope.eGselectDevices, function (key, value) {
                     $log.log(key);
@@ -80,96 +80,96 @@ angular.module('octobluApp')
 
             }
             $scope.leg.facets = { "eventCodes": {"terms": { "field": "eventCode" } },
-				'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  },
-				  "uuids": { "terms":{"field":"uuid"} }
-				 };
-	    $scope.leg.aggs = {
-				"uuids" : {
-            				"terms" : {
-                				"field" : "uuid"
-            				}
-        			},
-				"eventcodes" : {
-					"terms" : {
-						"field" : "eventCode"
-					}
-				},
-				"count_by_uuid": {
-         				"terms": {
-            					"field": "uuid"
-        				 },
-         				"aggs": {
-            				"events_by_date": {
-               					"date_histogram": {
-                  				"field": "timestamp",
-                  				"interval": "hour"
-               				},
-               				"aggs": {
-                  				"value_count_terms": {
-                     					"value_count": {
-                        					"field": "uuid"
-                     					}
-                  				}
-					}
-					}
-					}
-				}
-			      };
+                'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  },
+                "uuids": { "terms":{"field":"uuid"} }
+            };
+            $scope.leg.aggs = {
+                "uuids" : {
+                    "terms" : {
+                        "field" : "uuid"
+                    }
+                },
+                "eventcodes" : {
+                    "terms" : {
+                        "field" : "eventCode"
+                    }
+                },
+                "count_by_uuid": {
+                    "terms": {
+                        "field": "uuid"
+                    },
+                    "aggs": {
+                        "events_by_date": {
+                            "date_histogram": {
+                                "field": "timestamp",
+                                "interval": "hour"
+                            },
+                            "aggs": {
+                                "value_count_terms": {
+                                    "value_count": {
+                                        "field": "uuid"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
             if ($scope.eGEC && $scope.eGEC != "all") {
-               var oper = "";
-                    $scope.leg.config.contains_ec = "true";
-                    if ($scope.leg.config.contains_uuid == "true") { oper = " AND ( "; } 
-		$scope.leg.firstEC = true;
+                var oper = "";
+                $scope.leg.config.contains_ec = "true";
+                if ($scope.leg.config.contains_uuid == "true") { oper = " AND ( "; }
+                $scope.leg.firstEC = true;
                 _.each($scope.eGEC, function (key, value) {
                     if ($scope.leg.firstEC) {
-			$scope.leg.firstEC = false;
-			$scope.myAdditionalQuery += oper + " eventCode=" + key;
-		    } else {
-                    	$scope.myAdditionalQuery += " OR eventCode=" + key;
+                        $scope.leg.firstEC = false;
+                        $scope.myAdditionalQuery += oper + " eventCode=" + key;
+                    } else {
+                        $scope.myAdditionalQuery += " OR eventCode=" + key;
                     }
                 });
-              if ($scope.leg.config.contains_uuid == "true") { $scope.myAdditionalQuery += " ) "; }
+                if ($scope.leg.config.contains_uuid == "true") { $scope.myAdditionalQuery += " ) "; }
             }
             $scope.myAdditionalQuery += "";
-	    $scope.myAQ = "";
-	    if ($scope.myAdditionalQuery.length > 1) {$scope.myAQ = " ( " + $scope.myAdditionalQuery + " ) "; }
-	    $log.log($scope.myAQ);
+            $scope.myAQ = "";
+            if ($scope.myAdditionalQuery.length > 1) {$scope.myAQ = " ( " + $scope.myAdditionalQuery + " ) "; }
+            $log.log($scope.myAQ);
             elasticService.paramSearch({ "from":$scope.eGstartDate, "to":$scope.eGendDate, "size":0, "query":$scope.myAQ, "facet": $scope.leg.facets, "aggs": $scope.leg.aggs }, $scope.eGselectDevices, function (err, data) {
                 if (err) {
                     return $log.log(err);
                 }
                 $log.log("function=loadExploreGraph callback");
                 $log.log(data);
-		$scope.legCounter = 0;
-		_.each(data.aggregations.count_by_uuid.buckets, function(key, val) {
-			$log.log("each Aggregate");
-		});
-		var tmpAggro = _.each(data.aggregations.count_by_uuid.buckets,function(key, val){
-                                                        return {  "key": key.key, "values": _.map(key.events_by_date.buckets, function(item){              
-                                                                return { x: item.key, y: item.value_count_terms.value };
-                                                        })
-                                                        };
-				});
+                $scope.legCounter = 0;
+                _.each(data.aggregations.count_by_uuid.buckets, function(key, val) {
+                    $log.log("each Aggregate");
+                });
+                var tmpAggro = _.each(data.aggregations.count_by_uuid.buckets,function(key, val){
+                    return {  "key": key.key, "values": _.map(key.events_by_date.buckets, function(item){
+                        return { x: item.key, y: item.value_count_terms.value };
+                    })
+                    };
+                });
 
-                $scope.leg = {"results": data, 
-				"total": data.hits.total, 
-				"dcEC": data.facets.eventCodes.terms.length, 
-				"dcUUIDs" : data.facets.uuids.terms.length,
-				"eventCounts": [ 
-					{ key: "Event Count", 
-					  values: _.map(data.facets.times.entries, function(item) {
-						return { x: item.time, y: item.count };
-					})
-					}],
-				"uuid_counts": _.map(data.aggregations.count_by_uuid.buckets,function(key){
-                                                        return {  "key": ( $scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key), "values": _.map(key.events_by_date.buckets, function(item){
-                                                                return { x: item.key, y: item.value_count_terms.value };
-                                                        })
-                                                        };
-                                	       })
-			};
-		$log.log($scope.leg);
-	});
+                $scope.leg = {"results": data,
+                    "total": data.hits.total,
+                    "dcEC": data.facets.eventCodes.terms.length,
+                    "dcUUIDs" : data.facets.uuids.terms.length,
+                    "eventCounts": [
+                        { key: "Event Count",
+                            values: _.map(data.facets.times.entries, function(item) {
+                                return { x: item.time, y: item.count };
+                            })
+                        }],
+                    "uuid_counts": _.map(data.aggregations.count_by_uuid.buckets,function(key){
+                        return {  "key": ( $scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key), "values": _.map(key.events_by_date.buckets, function(item){
+                            return { x: item.key, y: item.value_count_terms.value };
+                        })
+                        };
+                    })
+                };
+                $log.log($scope.leg);
+            });
         };
 
         function search (currentPage) {
