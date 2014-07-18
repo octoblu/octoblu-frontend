@@ -37,7 +37,7 @@
         <div class="clearfix">
           <button class="btn btn-default" ng-click="save()">Save</button>
         </div>
-        
+
       </div>
 
       <div class="pull-right" ng-show="isCustomAuth() && !isActivated()">
@@ -53,7 +53,7 @@
         <div class="clearfix">
           <button class="btn btn-default" ng-click="save()">Save</button>
         </div>
-        
+
       </div>
 
 
@@ -61,21 +61,22 @@
     </div>
     <div class="row col-xs-12">
       <br /><br />
-      <h4><strong>Base URI: {{channel.application.base}}</strong></h4>
+      <h4 ng-hide="channel.name=='ElasticLogs'"><strong>Base URI: {{channel.application.base}}</strong></h4>
+      <h4 ng-show="channel.name=='ElasticLogs'"><strong>Base URI: &lt;hidden&gt;</strong></h4>
       <br /><br />
     <div ng-hide="channel.application.resources.resource.length || channel.application.resources.length">No API resources found</div>
     <div class="table-responsive">
       <table class="table table-striped table-hover">
-        <tr ng-repeat="resource in channel.application.resources.resource">
+        <tr ng-repeat="resource in channel.application.resources.resource" ng-hide="resource.disabled">
           <td>{{resource.method.name}}</td>
           <td>{{resource.path}}</td>
           <td>{{resource.method.doc.$t}}</td>
         </tr>
-        <tr ng-repeat="resource in channel.application.resources">
+        <tr ng-repeat="resource in channel.application.resources" ng-hide="resource.disabled">
           <td>
             <a class="btn disabled btn-large btn-primary" ng-show="resource.httpMethod == 'GET'"> GET</a>
             <a class="btn disabled btn-large btn-success" ng-show="resource.httpMethod == 'POST'"> POST</a>
-            <a class="btn disabled btn-large btn-inverse" ng-show="resource.httpMethod == 'PUT'"> PUT</a>
+            <a class="btn disabled btn-large btn-info" ng-show="resource.httpMethod == 'PUT'"> PUT</a>
             <a class="btn disabled btn-large btn-warning" ng-show="resource.httpMethod == 'PATCH'"> PATCH</a>
             <a class="btn disabled btn-large btn-danger" ng-show="resource.httpMethod == 'DELETE'"> DELETE</a>
 

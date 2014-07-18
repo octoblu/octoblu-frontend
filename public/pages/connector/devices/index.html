@@ -15,16 +15,16 @@
          <div class="panel-body center-block">
 
              <div class="device-image-container center-block">
-                 <img class="device-image" src="{{getDeviceTypeLogo(device)}}" />
+                 <img class="device-image" src="{{getDeviceTypeLogo(device)}}" ng-class="{faded: !device.online}"/>
              </div>
              <div class="btn-group btn-group-justified">
                  <div class="btn-group">
-                     <a href ui-sref="^.detail({uuid : device.uuid})" class="btn btn-default" tooltip="Show Device Details" tooltip-placement="top" tooltip-popup-delay="10">
+                     <a href ui-sref="^.detail({uuid : device.uuid})" class="btn btn-primary" tooltip="Show Device Details" tooltip-placement="top" tooltip-popup-delay="10">
                          <i class="fa fa-th-large fa-lg" style="margin-right: 5px;"></i>Details
                      </a>
                  </div>
                  <div class="btn-group">
-                     <a href class="btn btn-inverse" ng-click="editDevice(device)" tooltip="Edit Device" tooltip-placement="top" tooltip-popup-delay="10">
+                     <a href class="btn btn-default" ng-click="editDevice(device)" tooltip="Edit Device" tooltip-placement="top" tooltip-popup-delay="10">
                          <i class="fa fa-edit fa-lg">&nbsp;&nbsp;</i>Edit
                      </a>
                  </div>
@@ -40,12 +40,17 @@
     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 device-actions">
         <div>
             <div class="btn-group btn-group-justified">
-                <div class="btn-group">
-                    <a class="btn btn-primary add-device device-action-button" href ui-sref="ob.connector.devices.wizard.instructions({claim:'gateway'})">
-                        <i class="fa fa-h-square fa-2x pull-left"></i>
-                        <span>Add Hub</span>
-                    </a>
-                </div>
+                <a class="btn btn-primary" href ui-sref="ob.nodewizard.addnode">
+                    <i class="fa fa-magic"></i>
+                    Wizard
+                </a>
+            </div>
+            <br>
+            <div class="btn-group btn-group-justified">
+                <a class="btn btn-info" href ui-sref="ob.connector.devices.wizard.instructions({claim:'gateway'})">
+                    <i class="fa fa-h-square"></i>
+                    Add Hub
+                </a>
             </div>
             <div ng-if="hasHubs" class="panel subdevice-actions">
                 <div class="panel-heading">

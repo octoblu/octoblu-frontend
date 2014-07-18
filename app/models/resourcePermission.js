@@ -96,7 +96,7 @@ ResourcePermissionSchema.statics.findFlattenedPermissionsOnResource = function (
 
 ResourcePermissionSchema.statics.findCompiledPermissionsOnResource = function (ownerUUID, resourceUUID, permissionDirection) {
     var ResourcePermission = mongoose.model('ResourcePermission'),
-        otherDirection = permissionDirection === 'source' ? 'target' : 'source';
+        otherDirection = (permissionDirection === 'source' ? 'target' : 'source');
 
     return ResourcePermission.findFlattenedPermissionsOnResource(ownerUUID, resourceUUID, permissionDirection)
         .then(function (flatPermissions) {

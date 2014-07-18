@@ -104,6 +104,10 @@ a, a:hover, a:focus {color: #3498db;}
 .nav>li>a:hover, .nav>li>a:focus {
 	background-color: transparent;
 }
+
+.main-container {
+  margin-top: 50px;
+}
 		/* *** TABS END *** */
 
 		/* *** PROGRESS BARS *** */
@@ -406,6 +410,18 @@ max-width: 100%;
 }
 .device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-wemo{
     background-image: url('http://store.linksys.com/moduleimages/163/WeMo_AppLogo.jpg');
+}
+
+.device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-nest{
+    background-image: url('http://www.sharedapk.com/wp-content/uploads/2013/05/Nest-Mobile-Logo.png');
+}
+
+.device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-insteon{
+    background-image: url('https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/t1/p160x160/1459899_10151726832550974_1776657458_n.jpg');
+}
+
+.device-subdevices .subdevice-thumbnail .subdevice-icon.subdevice-icon-skynet-blink1{
+    background-image: url('http://thingm.com/wp-content/uploads/2013/05/tm_blink1_site_logo_300x225.jpg');
 }
 
 .devices .device-thumbnail {
