@@ -23,3 +23,6 @@ mongoose.model('Group', GroupSchema);
 
 var InvitationSchema = require('./app/models/invitation');
 mongoose.model('Invitation', InvitationSchema);
+
+var NodeTypeSchema = require('./app/models/node-type');
+mongoose.model('NodeType', NodeTypeSchema);
