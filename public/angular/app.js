@@ -1,12 +1,10 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
+angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
-        'host': 'skynet.im',
-        'port': '80'
-        // 'host': 'localhost', //change to the skynet.im instance
-        // 'port': '3000'
+        'host': 'localhost',
+        'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -189,15 +187,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/advanced',
                 templateUrl: 'pages/connector/advanced/index.html'
             })
-            .state('ob.connector.advanced.devices', {
-                url: '/smartdevices',
-                controller: 'smartDeviceController',
-                templateUrl: 'pages/connector/advanced/devices.html'
-            })
-            // .state('ob.connector.advanced.channels', {
-            //     url: '/custom_channels',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels', {
                 // abstract: true,
                 url: '/custom_channels',
@@ -209,26 +198,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return channelService.getCustomList();
                     }
                 }
-                // resolve: {
-                //     customChannels: function (channelService) {
-                //         return [];
-                //     }
-                // }
             })
-            // .state('ob.connector.advanced.channels.index', {
-            //     url: '',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels.editor', {
                 url: '/editor/:id',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
-            })
-
-            .state('ob.connector.advanced.gateways', {
-                url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways/index.html',
-                controller: 'hubController'
             })
             .state('ob.connector.advanced.messaging', {
                 url: '/messaging',

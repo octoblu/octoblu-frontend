@@ -1,3 +1,41 @@
+<style>
+.row-flex, .row-flex > div[class*='col-'] {  
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
+}
+
+.row-flex-wrap {
+    -webkit-flex-flow: row wrap;
+    align-content: flex-start;
+    flex:0;
+}
+
+.row-flex > div[class*='col-'], .container-flex > div[class*='col-'] {
+     margin:-.2px; /* hack adjust for wrapping */
+}
+
+.container-flex > div[class*='col-'] div,.row-flex > div[class*='col-'] div {
+    width:100%;
+}
+
+
+.flex-col {
+    display: flex;
+    display: -webkit-flex;
+    flex: 1 100%;
+    flex-flow: column nowrap;
+}
+
+.flex-grow {
+    display: flex;
+    -webkit-flex: 2;
+    flex: 2;
+}
+</style>
 <div class="col-xs-12">
     <div class="page-header page-header-with-buttons">
         <h1>
@@ -6,83 +44,63 @@
         </h1>
     </div>
     
-    <h4>We empower you to connect things, systems, and people to our Internet of Things (IoT) platform to design flows, process events/data, and analyze/react to results, trends, and anomolies.</h4>
+    <h4>Connect things, systems, and people to our Internet of Things (IoT) platform to design flows, process events/data, and analyze/react to results, trends, and anomolies.</h4>
     <br />
 
 </div>
-<div class="row">
-    <div class="col-xs-12 col-md-6">
-        <div class="jumbotron">
-            <div class="container">
-                <div class="col-lg-2">
-                    <i class="fa fa-code-fork fa-5x pull-left"></i>
-                </div>
-                <div class="col-lg-10">
-                    <h2>CONNECT</h2>
-                    <h3>Connect people, things, applications, and clouds</h3>
-                    <ul>
-                        <li>Direct Connect - WIRED</li>
-                        <li>Direct Connect - WIRELESS</li>
-                        <li>APIs</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+
+<div class="container col-lg-12">
+  <div class="row row-flex row-flex-wrap">
+    <div class="col-md-3">
+      <div class="well"> 
+        <i class="fa fa-code-fork fa-5x pull-left"></i>
+            <h2>CONNECT</h2>
+            <h3>Connect people, things, applications, and clouds</h3>
+            <ul>
+                <li>Direct Connect - WIRED</li>
+                <li>Direct Connect - WIRELESS</li>
+                <li>APIs</li>
+            </ul>
+      </div>
     </div>
-    <div class="col-xs-12 col-md-6">
-        <div class="jumbotron">
-            <div class="container">
-                <div class="col-lg-2">
-                    <i class="fa fa-edit fa-5x pull-left"></i>
-                </div>
-                <div class="col-lg-10">
-                    <h2>DESIGN</h2>
-                    <h3>Design flows are a simple ‘drag and drop’ with automatic deployment to production</h3>
-                    <ul>
-                        <li>Creat powerful orchestrations</li>
-                        <li>Share flows with others</li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="col-md-3">
+      <div class="well"> 
+        <i class="fa fa-edit fa-5x pull-left"></i>
+        <h2>DESIGN</h2>
+        <h3>Design flows are a simple ‘drag and drop’ with automatic deployment to production</h3>
+        <ul>
+            <li>Creat powerful orchestrations</li>
+            <li>Share flows with others</li>
+            <li></li>
+        </ul>
+      </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-md-6">
-        <div class="jumbotron">
-            <div class="container">
-                <div class="col-lg-2">
-                    <i class="fa fa-tasks fa-5x pull-left"></i>
-                </div>
-                <div class="col-lg-10">
-                    <h2>PROCESS</h2>
-                    <h3>Securely process custom flows across multiple protocols and environments with advanced rights management model.</h3>
-                    <ul>
-                        <li>24/7 event monitoring and messaging</li>
-                        <li>Millisecond response time</li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+  </div>
+  <div class="row row-flex row-flex-wrap">
+    <div class="col-md-3">
+      <div class="well"> 
+        <i class="fa fa-tasks fa-5x pull-left"></i>
+            <h2>PROCESS</h2>
+            <h3>Securely process custom flows across multiple protocols and environments with advanced rights management model.</h3>
+            <ul>
+                <li>24/7 event monitoring and messaging</li>
+                <li>Millisecond response time</li>
+                <li></li>
+            </ul>
+      </div>
     </div>
-    <div class="col-xs-12 col-md-6">
-        <div class="jumbotron">
-            <div class="container">
-                <div class="col-lg-2">
-                    <i class="fa fa-bar-chart-o fa-5x pull-left"></i>
-                </div>
-                <div class="col-lg-10">
-                    <h2>ANALYZE</h2>
-                    <h3>Built-in analysis tools for rich and deep analytics:</h3>
-                    <ul>
-                        <li>ElasticSearch</li>
-                        <li>Splunk</li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="col-md-3">
+      <div class="well"> 
+        <i class="fa fa-bar-chart-o fa-5x pull-left"></i>
+        <h2>ANALYZE</h2>
+        <h3>Built-in analysis tools for rich and deep analytics:</h3>
+        <ul>
+            <li>ElasticSearch</li>
+            <li>Splunk</li>
+            <li></li>
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
+</div><!--/container-->
+
