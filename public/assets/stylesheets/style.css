@@ -45,11 +45,7 @@
 		/* *** FONTS END *** */
 
 		/* *** General Classes *** */
-html {font-family: robotoslabregular!important;}
-body {font-family: robotoslabregular!important;}
-h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {font-family:robotoslabregular!important;}
 a, a:hover, a:active, a:link, a:visited {text-decoration: none; outline: none;}
-b, .b, strong, .strong {font-family: robotoslabbold; font-weight: normal;}
 .paragraph {font-size: 16px;line-height: 30px;margin-top: -10px;}
 .btn-margin-icon {margin-right: 5px;} /* Use this class to add a margin-right to the icons of the buttons */
 		/* *** General Classes END *** */
