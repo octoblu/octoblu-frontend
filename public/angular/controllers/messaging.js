@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableDeviceTypes,
+    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableNodeTypes,
                                                  skynetService, deviceService, PluginService) {
 
         $scope.model = {
             devices: _.sortBy(_.cloneDeep(myDevices), 'name'),
-            deviceTypes: availableDeviceTypes,
+            nodeTypes: availableNodeTypes,
             schemaEditor: {}
 
         };

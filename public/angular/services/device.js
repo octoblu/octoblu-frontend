@@ -121,8 +121,8 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
-            getUnclaimed: function (deviceType) {
-                if(deviceType === 'gateway'){
+            getUnclaimed: function (nodeType) {
+                if(nodeType === 'gateway'){
                     return service.getUnclaimedGateways();
                 }
 
