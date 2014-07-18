@@ -7,28 +7,18 @@ angular.module('octobluApp')
                 .success(function (data, status, headers, config) {
                     console.log('/api/get/flow', data);
                     if (data.flow) {
-                        // var win = angular.element('#designerFrame')[0];
-                        // win.onload = function () {
                         RED.view.importFromCommunity(data.flow);
-                        //     win.contentWindow.postMessage(data.flow, $scope.redFrame);
-                        // };
                     }
                 });
         };
 
-        // Get NodeRed port number
         nodeRedService.getPort(currentUser.skynet.uuid, currentUser.skynet.token, function (port) {
             RED.initialize();
             RED.wsConnect(RED.loadSettings, currentUser.skynet.uuid, currentUser.skynet.token, port);
-            // $scope.redPort = data.replace(/["']/g, "");
-        //     $scope.redFrame = "http://" + currentUser.skynetuuid + ":" + currentUser.skynettoken + "@designer.octoblu.com:" + $scope.redPort;
-
-               getSessionFlow();
-
-
-        //     $scope.designerFrame = {
-        //         skynetid: currentUser.skynetuuid,
-        //         skynettoken: currentUser.skynettoken
-        //     };
+            getSessionFlow();
         });
+
+        $scope.save = function(){
+            RED.save();
+        };
     });

@@ -110,28 +110,30 @@ var RED = function() {
 
     $('#btn-deploy').click(function() { save(); });
 
-    $( "#node-dialog-confirm-deploy" ).dialog({
-            title: "Confirm deploy",
-            modal: true,
-            autoOpen: false,
-            width: 530,
-            height: 230,
-            buttons: [
-                {
-                    text: "Confirm deploy",
-                    click: function() {
-                        save(true);
-                        $( this ).dialog( "close" );
+    var initializeDeployDialog = function(){
+        $( "#node-dialog-confirm-deploy" ).dialog({
+                title: "Confirm deploy",
+                modal: true,
+                autoOpen: false,
+                width: 530,
+                height: 230,
+                buttons: [
+                    {
+                        text: "Confirm deploy",
+                        click: function() {
+                            save(true);
+                            $( this ).dialog( "close" );
+                        }
+                    },
+                    {
+                        text: "Cancel",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
                     }
-                },
-                {
-                    text: "Cancel",
-                    click: function() {
-                        $( this ).dialog( "close" );
-                    }
-                }
-            ]
-    });
+                ]
+        });
+    }
 
     function loadSettings() {
         RED.rpc('settings', function(err, data){
@@ -268,6 +270,7 @@ var RED = function() {
         }
 
     var initialize = function(){
+        initializeDeployDialog();
         RED.view    = RED.initializeView();
         RED.sidebar = RED.initializeSidebar();
         RED.sidebar.info = RED.initializeTabInfo();
@@ -277,6 +280,7 @@ var RED = function() {
     return {
         loadSettings: loadSettings,
         wsConnect: wsConnect,
-        initialize: initialize
+        initialize: initialize,
+        save: save
     };
 }();
