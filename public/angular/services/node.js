@@ -5,7 +5,7 @@ angular.module('octobluApp')
 
         function getDeviceNodes(devices, nodeTypes ){
             var deviceNodes = _.map(devices, function(device){
-                var deviceNodeType = _.findWhere(nodeTypes, function(nodeType){
+                var deviceNodeType = _.findWhere(_.filter(nodeTypes, {category : 'device'}), function(nodeType){
                     var existingNodeType = false;
                     if(device.type){
                         existingNodeType = nodeType.skynet.type === device.type;
@@ -30,7 +30,7 @@ angular.module('octobluApp')
 
         function getChannelNodes(channels, nodeTypes){
             var channelNodes = _.map(channels, function(channel){
-                var channelNodeType = _.findWhere(nodeTypes, function(nodeType){
+                var channelNodeType = _.findWhere(_.filter(nodeTypes,{category: 'channel'}), function(nodeType){
                     return (nodeType.category === 'channel')
                         && (nodeType.name.toLowerCase() === channel.name.toLowerCase() )
                 });

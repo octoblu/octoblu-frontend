@@ -24,7 +24,7 @@ db.nodetypes.insert({
         subtype: "arduino"
     },
     category: 'device',
-    enabled: false,
+    enabled: true,
     display : true
 });
 
@@ -238,8 +238,7 @@ db.nodetypes.insert({
         }
     },
     skynet: {
-        type: "sms",
-        subtype: "inbound"
+        type: "inboundSMS"
     },
     category: 'device',
     enabled: true,
@@ -268,8 +267,7 @@ db.nodetypes.insert({
         }
     },
     skynet: {
-        type: "sms",
-        subtype: "outbound"
+        type: "outboundSMS"
     },
     category: 'device',
     enabled: true,
