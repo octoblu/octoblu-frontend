@@ -174,6 +174,27 @@ angular.module('octobluApp')
 	});
         };
 
+	$scope.sort = "=", $scope.order = '=';
+	$scope.sort_by = function(newSortingOrder) {       
+            var sort = $scope.sort;
+
+            if (sort.sortingOrder == newSortingOrder){
+                sort.reverse = !sort.reverse;
+            }                    
+
+            sort.sortingOrder = newSortingOrder;        
+        };
+
+
+        $scope.selectedCls = function(column) {
+            if(column == $scope.sort.sortingOrder){
+                return ('icon-chevron-' + (($scope.sort.reverse) ? 'down' : 'up'));
+            }
+            else{            
+                return'icon-sort' 
+            } 
+        };      
+
 	$scope.search = function(currentPage) { 
 		$scope.ff = {};
         	$log.log("starting search function, analyzer controller");
@@ -189,6 +210,7 @@ angular.module('octobluApp')
 			$log.log(currentUser);
 			$scope.ff.currentPage = currentPage;
                         $scope.freeform_results = response.hits.hits;
+			$scope.freeform_results_ngTable = { "headers": [ { "name": "one" }, {"name":"two"} ], "events": response.hits.hits };
                         $scope.results = response;
                         $scope.totalItems = response.hits.total;
                         $scope.ff.maxSize = 10;
