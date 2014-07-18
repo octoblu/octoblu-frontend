@@ -1,6 +1,4 @@
-var conn = new Mongo();
-var db = conn.getDB("meshines");
-
+use meshines
 
 db.copyDatabase("meshines", "meshines-" + new Date().toISOString());
 
