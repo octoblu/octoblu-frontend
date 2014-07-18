@@ -5,14 +5,20 @@ angular.module('octobluApp')
 
         function getDeviceNodes(devices, nodeTypes ){
             var deviceNodes = _.map(devices, function(device){
-
                 var deviceNodeType = _.findWhere(nodeTypes, function(nodeType){
-                    var isNodeType = (nodeType.skynet.type === (device.type || 'device') && nodeType.skynet.subtype === (device.subtype || 'other'));
-                    return isNodeType;
+                    var existingNodeType = false;
+                    if(device.type){
+                        existingNodeType = node.skynet.type === device.type;
+                        if(device.subtype){
+                           existingNodeType = existingNodeType && device.subtype === nodeType.skynet.subtype;
+                        }
+                    } else {
+                        existingNodeType = nodeType.skynet.type === 'device' && nodeType.skynet.subtype === 'other';
+                    }
+                    return existingNodeType;
                 });
                 return _.extend({ category: 'device', nodeType : deviceNodeType}, device);
             });
-
             return deviceNodes;
         }
 
@@ -20,7 +26,7 @@ angular.module('octobluApp')
             var channelNodes = _.map(channels, function(channel){
                 var channelNodeType = _.findWhere(nodeTypes, function(nodeType){
                     return (nodeType.category === 'channel')
-                        && (nodeType.name === channel.name )
+                        && (nodeType.name.toLowerCase() === channel.name.toLowerCase() )
                 });
                 return _.extend({ category : 'channel',  nodeType : channelNodeType}, channel);
             });
