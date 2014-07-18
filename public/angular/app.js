@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'skynet.im',
-        'port': '80'
+        'host': 'localhost',
+        'port': '3000'
         // 'host': 'localhost', //change to the skynet.im instance
         // 'port': '3000'
     })
@@ -115,20 +115,25 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('ob.connector.devices', {
-                url: '/devices',
+            .state('ob.connector.nodes', {
+                url: '/nodes',
                 abstract: true,
                 template: '<ui-view></ui-view>'
             })
-            .state('ob.connector.devices.all', {
+            .state('ob.connector.nodes.all', {
                 url: '/',
-                controller: 'DeviceController',
-                templateUrl: 'pages/connector/devices/index.html'
+                controller: 'NodeController',
+                templateUrl: 'pages/connector/nodes/index.html'
             })
-            .state('ob.connector.devices.detail', {
+            .state('ob.connector.nodes.device-detail', {
                 url: '/:uuid',
                 controller: 'DeviceDetailController',
                 templateUrl: 'pages/connector/devices/detail/index.html'
+            })
+            .state('ob.connector.nodes.channel-detail', {
+                url: '/:id',
+                templateUrl: 'pages/connector/channels/detail.html',
+                controller: 'apiController'
             })
             .state('ob.connector.devices.wizard', {
                 url: '/wizard',
@@ -169,11 +174,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '',
                 templateUrl: 'pages/connector/channels/index.html'
             })
-            .state('ob.connector.channels.detail', {
-                url: '/:id',
-                templateUrl: 'pages/connector/channels/detail.html',
-                controller: 'apiController'
-            })
+
             .state('ob.connector.channels.resources', {
                 url: '/resources',
                 templateUrl: 'pages/connector/channels/resources/index.html',
@@ -296,7 +297,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.design', {
                 url: '/design',
-                templateUrl: 'pages/design.html',
+                templateUrl: 'pages/design/index.html',
                 controller: 'designController'
             })
             .state('ob.docs', {
