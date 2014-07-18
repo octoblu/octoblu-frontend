@@ -7,44 +7,25 @@
         <div class="col-xs-12">
             <div class="page-header">
                 <div class="btn-group pull-right">
-                    <a class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" href><i class="icon-align-justify"></i> <span class="caret"></span></a>
+                    <a class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" href><i class="fa fa-align-justify"></i> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a id="btn-sidebar" tabindex="-1" href="#"><i class="icon-ok pull-right"></i><i class="icon-list-alt"></i> Sidebar</a></li>
+                        <li><a id="btn-sidebar" tabindex="-1" href><i class="fa fa-list-alt"></i> Toggle Sidebar</a></li>
+                        <li><a id="btn-config-nodes" tabindex="-1" href><i class="fa fa-th-list"></i> Configure nodes</a></li>
                         <li class="divider"></li>
-                        <li class="dropdown-submenu pull-left"><a tabindex="-1" href="#"><i class="icon-edit"></i> Import from...</a>
-                            <ul class="dropdown-menu">
-                                <li><a id="btn-import" tabindex="-1" href="#"><i class="icon-edit"></i> Clipboard...</a></li>
-                                <li id="flow-menu-parent" class="dropdown-submenu pull-left">
-                                    <a tabindex="-1" href="#"><i class="icon-book"></i> Library</a>
-                                    <ul class="dropdown-menu"></ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li id="li-menu-export" class="dropdown-submenu disabled pull-left"><a tabindex="-1" href="#"><i class="icon-share"></i> Export to...</a>
-                            <ul class="dropdown-menu">
-                                <li id="li-menu-export-community" class="disabled"><a id="btn-export-community" tabindex="-1" href="#"><i class="icon-share"></i> Share...</a></li>
-                                <li id="li-menu-export-clipboard" class="disabled"><a id="btn-export-clipboard" tabindex="-1" href="#"><i class="icon-share"></i> Clipboard...</a></li>
-                                <li id="li-menu-export-library" class="disabled"><a id="btn-export-library" tabindex="-1" href="#"><i class="icon-book"></i> Library...</a></li>
-                            </ul>
-                        </li>
+                        <li class="dropdown-header">Import From</li>
+                        <li><a id="btn-import" href><i class="fa fa-clipboard"></i> Clipboard</a></li>
                         <li class="divider"></li>
-                        <li><a id="btn-config-nodes" tabindex="-1" href="#"><i class="icon-th-list"></i> Configuration nodes...</a></li>
+                        <li class="dropdown-header">Workspace</li>
+                        <li><a id="btn-workspace-add" href><i class="fa fa-plus"></i> Add</a></li>
+                        <li><a id="btn-workspace-edit" href><i class="fa fa-edit"></i> Rename</a></li>
+                        <li><a id="btn-workspace-delete" href><i class="fa fa-minus"></i> Delete</a></li>
                         <li class="divider"></li>
-                        <li class="dropdown-submenu pull-left"><a tabindex="-1" href="#"><i class="icon-th-large"></i> Workspaces</a>
-                            <ul id="workspace-menu-list" class="dropdown-menu">
-                                <li><a id="btn-workspace-add" tabindex="-1" href="#"><i class="icon-plus"></i> Add</a></li>
-                                <li><a id="btn-workspace-edit" tabindex="-1" href="#"><i class="icon-edit"></i> Rename</a></li>
-                                <li><a id="btn-workspace-delete" tabindex="-1" href="#"><i class="icon-minus"></i> Delete</a></li>
-                                <li class="divider"></li>
-                            </ul>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a id="btn-keyboard-shortcuts" tabindex="-1" href="#"><i class="icon-question-sign"></i> Keyboard Shortcuts</a></li>
-                        <li><a id="btn-help" tabindex="-1" href="http://node-red.github.io/docs" target="_blank"><i class="icon-question-sign"></i> Help...</a></li>
+                        <li><a id="btn-keyboard-shortcuts" href><i class="fa fa-keyboard-o"></i> Keyboard Shortcuts</a></li>
+                        <li><a id="btn-help" href="http://node-red.github.io/docs" target="_blank"><i class="fa fa-question"></i> Help</a></li>
                     </ul>
                 </div>
                 <div class="btn-group pull-right">
-                    <a ng-click="save()" id="btn-deploy" class="btn btn-lg btn-default action-deploy disabled" href><i id="btn-icn-deploy" class="icon-upload"></i> Deploy</a>
+                    <a ng-click="save()" id="btn-deploy" class="btn btn-lg btn-default action-deploy disabled" href><i id="btn-icn-deploy" class="fa fa-upload"></i> Deploy</a>
                 </div>
             </div>
         </div>
@@ -55,23 +36,23 @@
             <img src="spin.svg" class="palette-spinner"/>
             <div class="palette-scroll">
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>skynet</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>skynet</span></div>
                     <div class="palette-content" id="palette-skynet"></div>
                 </div>
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>inputs</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>inputs</span></div>
                     <div class="palette-content" id="palette-input"></div>
                 </div>
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>outputs</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>outputs</span></div>
                     <div class="palette-content" id="palette-output"></div>
                 </div>
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>functions</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>functions</span></div>
                     <div class="palette-content" id="palette-function"></div>
                 </div>
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>social</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>social</span></div>
                     <div class="palette-content">
                         <div id="palette-social-input"></div>
                         <div id="palette-social-output"></div>
@@ -79,7 +60,7 @@
                     </div>
                 </div>
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>storage</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>storage</span></div>
                     <div class="palette-content">
                         <div id="palette-storage-input"></div>
                         <div id="palette-storage-output"></div>
@@ -87,7 +68,7 @@
                     </div>
                 </div>
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>analysis</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>analysis</span></div>
                     <div class="palette-content">
                         <div id="palette-analysis-input"></div>
                         <div id="palette-analysis-output"></div>
@@ -95,7 +76,7 @@
                     </div>
                 </div>
                 <div class="palette-category">
-                    <div class="palette-header"><i class="expanded icon-chevron-down"></i><span>advanced</span></div>
+                    <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>advanced</span></div>
                     <div class="palette-content">
                         <div id="palette-advanced-input"></div>
                         <div id="palette-advanced-output"></div>
@@ -104,28 +85,28 @@
                 </div>
             </div>
             <div id="palette-search">
-                <i class="icon-search"></i><input id="palette-search-input" type="text" placeholder="filter"><a href="#" id="palette-search-clear"><i class="icon-remove"></i></a></input>
+                <i class="fa fa-search"></i><input id="palette-search-input" type="text" placeholder="filter"><a href id="palette-search-clear"><i class="fa fa-remove"></i></a></input>
             </div>
         </div><!-- /palette -->
 
         <div id="workspace">
             <ul id="workspace-tabs"></ul>
-            <div id="workspace-add-tab"><a id="btn-workspace-add-tab" href="#"><i class="icon-plus"></i></a></div>
+            <div id="workspace-add-tab"><a id="btn-workspace-add-tab" href><i class="fa fa-plus"></i></a></div>
             <div id="chart"></div>
             <div id="workspace-toolbar">
                 <div class="btn-group">
-                    <a class="btn btn-small" href="#"><i class="icon-zoom-out"></i></a>
-                    <a class="btn btn-small" href="#"><i class="icon-th"></i></a>
-                    <a class="btn btn-small" href="#"><i class="icon-zoom-in"></i></a>
+                    <a class="btn btn-small" href><i class="fa fa-zoom-out"></i></a>
+                    <a class="btn btn-small" href><i class="fa fa-th"></i></a>
+                    <a class="btn btn-small" href><i class="fa fa-zoom-in"></i></a>
                 </div>
             </div>
         </div>
 
         <div id="chart-zoom-controls">
             <div class="btn-group">
-                <a class="btn btn-mini" id="btn-zoom-out" href="#"><i class="icon-zoom-out"></i></a>
-                <a class="btn btn-mini" id="btn-zoom-zero" href="#"><i class="icon-th"></i></a>
-                <a class="btn btn-mini" id="btn-zoom-in" href="#"><i class="icon-zoom-in"></i></a>
+                <a class="btn btn-mini" id="btn-zoom-out" href><i class="fa fa-zoom-out"></i></a>
+                <a class="btn btn-mini" id="btn-zoom-zero" href><i class="fa fa-th"></i></a>
+                <a class="btn btn-mini" id="btn-zoom-in" href><i class="fa fa-zoom-in"></i></a>
             </div>
         </div>
 
@@ -141,10 +122,10 @@
     <div id="notifications"></div>
     <div id="dropTarget"><div>Drop the flow here</div></div>
 
-    <div id="dialog" class="hide"><form id="dialog-form" class="form-horizontal"></form></div>
-    <div id="node-config-dialog" class="hide"><form id="dialog-config-form" class="form-horizontal"></form><div class="form-tips" id="node-config-dialog-user-count"></div></div>
+    <div id="dialog"><form id="dialog-form" class="form-horizontal"></form></div>
+    <div id="node-config-dialog"><form id="dialog-config-form" class="form-horizontal"></form><div class="form-tips" id="node-config-dialog-user-count"></div></div>
 
-    <div id="node-dialog-confirm-deploy" class="hide">
+    <div id="node-dialog-confirm-deploy">
         <form class="form-horizontal">
             <div id="node-dialog-confirm-deploy-config" style="text-align: center; padding-top: 30px;">
              Some of the nodes are not properly configured. Are you sure you want to deploy?
@@ -157,7 +138,7 @@
         </form>
     </div>
 
-    <div id="node-help" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="node-help-label" aria-hidden="true">
+    <div id="node-help" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="node-help-label" aria-hidden="true">
       <div class="modal-header">
         <h5 id="node-help-label">Keyboard Shortcuts <span style="float: right;"><a href="http://node-red.github.io/docs" target="_blank">Open help in new window &raquo;</a></span></h5>
       </div>
@@ -216,11 +197,11 @@
     <div id="node-dialog-library-save" class="hide">
         <form class="form-horizontal">
             <div class="form-row">
-                <label for="node-dialog-library-save-folder"><i class="icon-folder-open"></i> Folder</label>
+                <label for="node-dialog-library-save-folder"><i class="fa fa-folder-open"></i> Folder</label>
                 <input type="text" id="node-dialog-library-save-folder" placeholder="Folder">
             </div>
             <div class="form-row">
-                <label for="node-dialog-library-save-filename"><i class="icon-file"></i> Filename</label>
+                <label for="node-dialog-library-save-filename"><i class="fa fa-file"></i> Filename</label>
                 <input type="text" id="node-dialog-library-save-filename" placeholder="Filename">
             </div>
         </form>
@@ -230,7 +211,7 @@
         <form class="form-horizontal">
             <div class="form-row">
                 <ul id="node-dialog-library-breadcrumbs" class="breadcrumb">
-                    <li class="active"><a href="#">Library</a> <span class="divider">/</span></li>
+                    <li class="active"><a href>Library</a> <span class="divider">/</span></li>
                 </ul>
             </div>
             <div class="form-row">
@@ -243,15 +224,16 @@
             </div>
         </form>
     </div>
-    <div id="node-dialog-rename-workspace" class="hide">
+
+    <div id="node-dialog-rename-workspace">
         <form class="form-horizontal">
             <div class="form-row">
-                <label for="node-input-workspace-name" ><i class="icon-tag"></i> Name:</label>
+                <label for="node-input-workspace-name" ><i class="fa fa-tag"></i> Name:</label>
                 <input type="text" id="node-input-workspace-name">
             </div>
         </form>
     </div>
-    <div id="node-dialog-delete-workspace" class="hide">
+    <div id="node-dialog-delete-workspace">
         <form class="form-horizontal">
             <div style="text-align: center; padding-top: 30px;">
              Are you sure you want to delete '<span id="node-dialog-delete-workspace-name"></span>'?
@@ -262,7 +244,7 @@
 
     <script type="text/x-red" data-template-name="export-clipboard-dialog">
         <div class="form-row">
-            <label for="node-input-export" style="display: block; width:100%;"><i class="icon-share"></i> Nodes:</label>
+            <label for="node-input-export" style="display: block; width:100%;"><i class="fa fa-share"></i> Nodes:</label>
             <textarea readonly style="font-family: monospace; font-size: 12px; background:rgb(226, 229, 255); padding-left: 0.5em;" class="input-block-level" id="node-input-export" rows="5"></textarea>
         </div>
         <div class="form-tips">
@@ -288,13 +270,13 @@
     </script>
     <script type="text/x-red" data-template-name="export-library-dialog">
         <div class="form-row">
-            <label for="node-input-filename" ><i class="icon-tag"></i> Filename:</label>
+            <label for="node-input-filename" ><i class="fa fa-tag"></i> Filename:</label>
             <input type="text" id="node-input-filename" placeholder="Filename">
         </div>
     </script>
     <script type="text/x-red" data-template-name="import-dialog">
         <div class="form-row">
-            <label for="node-input-export"><i class="icon-share"></i>Nodes:</label>
+            <label for="node-input-export"><i class="fa fa-share"></i>Nodes:</label>
             <textarea style="font-family: monospace; font-size: 12px; background:rgb(226, 229, 255); padding-left: 0.5em;" class="input-block-level" id="node-input-import" rows="5" placeholder="Paste nodes here, or lookup in the library"></textarea>
         </div>
     </script>
