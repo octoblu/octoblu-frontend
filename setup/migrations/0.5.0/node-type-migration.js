@@ -1,5 +1,3 @@
-use meshines
-
 db.copyDatabase("meshines", "meshines-" + new Date().toISOString());
 
 db.nodetypes.drop();
@@ -298,7 +296,7 @@ while(channelCursor.hasNext()){
     var nodeType = {
         name : channel.name || 'null',
         description : channel.description || '',
-        logo :  channel. logo,
+        logo :  channel.logo,
         category : 'channel',
         skynet : {
             type : 'channel' ,

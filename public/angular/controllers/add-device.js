@@ -33,7 +33,7 @@ angular.module('octobluApp')
           }
 
           promise.then(function(){
-            $state.go("ob.connector.devices.all");
+            $state.go("ob.connector.nodes.all");
           }, function(error){
             $scope.errorMessage = error;
           });

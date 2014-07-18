@@ -1,8 +1,8 @@
 <div class="modal-header">
-    <img src="{{model.deviceType.logo}}" class="pull-left" height="64px" width="64px">
+    <img src="{{model.nodeType.logo}}" class="pull-left" height="64px" width="64px">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">&times;</button>
     <h3 class="modal-title text-center" id="myModalLabel">
-            <span ng-if="model.isNew">Add New {{model.deviceType.name}}</span>
+            <span ng-if="model.isNew">Add New {{model.nodeType.name}}</span>
             <span ng-if="!model.isNew">Edit {{model.device.name}}</span>
         </h3>
 </div>
@@ -20,8 +20,8 @@
             <label class="col-sm-2 control-label">Type</label>
 
             <div class="col-sm-10">
-                <select class="form-control" ng-model="model.deviceType"
-                        ng-options="deviceType.name for deviceType in model.deviceTypes"></select>
+                <select class="form-control" ng-model="model.nodeType"
+                        ng-options="nodeType.name for nodeType in model.nodeTypes"></select>
             </div>
         </div>
     </form>

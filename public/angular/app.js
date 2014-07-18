@@ -89,8 +89,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/connect',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
-                    availableDeviceTypes: function (channelService) {
-                        return channelService.getDeviceTypes();
+                    availableNodeTypes: function (NodeTypeService) {
+                        return NodeTypeService.getNodeTypes();
                     },
                     myGateways: function (myDevices, deviceService) {
                         var gateways = _.filter(myDevices, {type: 'gateway', online: true });
