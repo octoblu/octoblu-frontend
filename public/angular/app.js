@@ -297,7 +297,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.design', {
                 url: '/design',
-                templateUrl: 'pages/design.html',
+                templateUrl: 'pages/design/index.html',
                 controller: 'designController'
             })
             .state('ob.docs', {
