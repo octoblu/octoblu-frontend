@@ -115,20 +115,25 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('ob.connector.devices', {
-                url: '/devices',
+            .state('ob.connector.nodes', {
+                url: '/nodes',
                 abstract: true,
                 template: '<ui-view></ui-view>'
             })
-            .state('ob.connector.devices.all', {
+            .state('ob.connector.nodes.all', {
                 url: '/',
-                controller: 'DeviceController',
-                templateUrl: 'pages/connector/devices/index.html'
+                controller: 'NodeController',
+                templateUrl: 'pages/connector/nodes/index.html'
             })
-            .state('ob.connector.devices.detail', {
+            .state('ob.connector.nodes.device-detail', {
                 url: '/:uuid',
                 controller: 'DeviceDetailController',
                 templateUrl: 'pages/connector/devices/detail/index.html'
+            })
+            .state('ob.connector.nodes.channel-detail', {
+                url: '/:id',
+                templateUrl: 'pages/connector/channels/detail.html',
+                controller: 'apiController'
             })
             .state('ob.connector.devices.wizard', {
                 url: '/wizard',
@@ -169,11 +174,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '',
                 templateUrl: 'pages/connector/channels/index.html'
             })
-            .state('ob.connector.channels.detail', {
-                url: '/:id',
-                templateUrl: 'pages/connector/channels/detail.html',
-                controller: 'apiController'
-            })
+
             .state('ob.connector.channels.resources', {
                 url: '/resources',
                 templateUrl: 'pages/connector/channels/resources/index.html',
@@ -296,7 +297,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.design', {
                 url: '/design',
-                templateUrl: 'pages/design.html',
+                templateUrl: 'pages/design/index.html',
                 controller: 'designController'
             })
             .state('ob.docs', {
@@ -330,23 +331,51 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'addNodeController',
                 templateUrl: 'pages/node-wizard/add-node.html'
             })
+
             .state('ob.nodewizard.addchannel', {
                 url: '/node-wizard/add-channel/:nodeTypeId',
                 controller: 'addChannelController',
-                templateUrl: 'pages/node-wizard/add-channel.html'
+                templateUrl: 'pages/node-wizard/add-channel/index.html',
+                abstract: true,
+                resolve: {
+                    nodeType: function($stateParams, NodeTypeService){
+                        return NodeTypeService.getNodeTypeById($stateParams.nodeTypeId);
+                    }
+                }
             })
+            .state('ob.nodewizard.addchannel.existing', {
+                url: '',
+                controller: 'addChannelExistingController',
+                templateUrl: 'pages/node-wizard/add-channel/existing.html'
+            })
+            .state('ob.nodewizard.addchannel.noauth', {
+                url: '/noauth',
+                controller: 'addChannelNoauthController',
+                templateUrl: 'pages/node-wizard/add-channel/noauth.html'
+            })
+            .state('ob.nodewizard.addchannel.oauth', {
+                url: '/oauth',
+                controller: 'addChannelOauthController',
+                templateUrl: 'pages/node-wizard/add-channel/oauth.html'
+            })
+            .state('ob.nodewizard.addchannel.simple', {
+                url: '/simple',
+                controller: 'addChannelSimpleController',
+                templateUrl: 'pages/node-wizard/add-channel/simple.html'
+            })
+
             .state('ob.nodewizard.adddevice', {
                 url: '/add-device/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addgateway', {
-                url: '/node-wizard/add-gateway/:nodeTypeId',
+                url: '/add-gateway/:nodeTypeId',
                 controller: 'addDeviceController',
                 templateUrl: 'pages/node-wizard/add-device/index.html'
             })
             .state('ob.nodewizard.addsubdevice', {
-                url: '/node-wizard/add-subdevice/:nodeTypeId',
+                url: '/add-subdevice/:nodeTypeId',
                 controller: 'addSubdeviceController',
                 templateUrl: 'pages/node-wizard/add-subdevice/index.html',
                 abstract: true

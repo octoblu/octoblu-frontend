@@ -44,6 +44,24 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
+            getDeviceByUUID: function(uuid){
+                return service.getDevices().then(function(devices){
+                    return _.findWhere(devices, {uuid: uuid});
+                });
+            },
+
+            refreshDevices: function(){
+                return service.getDevices(true).then(function(){
+                    return undefined;
+                })
+            },
+
+            getGateways: function(){
+                return service.getDevices().then(function(devices){
+                    return _.where(devices, {type: 'gateway'});
+                });
+            },
+
             registerDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer();
@@ -61,17 +79,18 @@ angular.module('octobluApp')
             },
 
             claimDevice: function (options) {
-                var device = _.omit(options, reservedProperties),
-                    defer = $q.defer();
+                var deviceOptions = _.omit(options, reservedProperties);
 
-                skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.claimdevice(device, function (data) {
-                        defer.resolve(data);
-                        addDevice(options);
-                    });
+                return skynetPromise.then(function(skynetConnection){
+                    deviceOptions.owner = skynetConnection.options.uuid;
+                    return service.updateDevice(deviceOptions);
+                })
+                .then(function(){
+                    return service.refreshDevices();
+                })
+                .then(function(){
+                    return service.getDeviceByUUID(deviceOptions.uuid);
                 });
-
-                return defer.promise;
             },
 
             updateDevice: function (options) {
@@ -102,22 +121,38 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
+            getUnclaimed: function (deviceType) {
+                if(deviceType === 'gateway'){
+                    return service.getUnclaimedGateways();
+                }
+
+                return service.getUnclaimedDevices();
+            },
+
             getUnclaimedDevices: function () {
+                return service.getUnclaimedNodes().then(function (devices) {
+                    return _.filter(devices, function(device){
+                        return (device.type !== 'gateway');
+                    });
+                });
+            },
+
+            getUnclaimedGateways: function () {
+                return service.getUnclaimedNodes().then(function (devices) {
+                    return _.where(devices, {type: 'gateway'});
+                });
+            },
+
+            getUnclaimedNodes: function() {
                 var defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.localdevices({}, function (result) {
-                        defer.resolve(result);
+                        defer.resolve(_.where(result.devices, {online: true}));
                     });
                 });
 
                 return defer.promise;
-            },
-
-            getUnclaimedGateways: function () {
-                return service.getUnclaimedDevices().then(function (devices) {
-                    return _.where(device, {type: 'gateway'});
-                });
             },
 
             gatewayConfig: function (options) {
@@ -148,6 +183,5 @@ angular.module('octobluApp')
             }
         };
 
-        service.getUnclaimedNodes = service.getUnclaimedDevices;
         return service;
     });

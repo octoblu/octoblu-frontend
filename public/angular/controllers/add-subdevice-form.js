@@ -11,10 +11,9 @@ angular.module('octobluApp')
             var nodeType = _.findWhere(nodeTypes, {_id: $stateParams.nodeTypeId});
             $scope.nodeType = nodeType;
             $scope.newSubdevice.subdevice.type = nodeType.skynet.plugin;
-            return deviceService.getGateways();
-        }).then(function(gateways){
-            $scope.availableGateways = gateways;
-            $scope.newSubdevice.gateway = _.findWhere(gateways, {uuid: $stateParams.gatewayId});
+            return deviceService.getDeviceByUUID($stateParams.gatewayId);
+        }).then(function(gateway){
+            $scope.newSubdevice.gateway = gateway;
             return PluginService.getOrInstallPlugin($scope.newSubdevice.gateway, $scope.nodeType.skynet.plugin);
         }).then(function(plugin){
             $scope.newSubdevice.plugin = plugin;

@@ -8,7 +8,7 @@ angular.module('octobluApp')
             $scope.nodeType = _.findWhere(nodeTypes, {category: 'gateway'});
         })
         .then(function(){
-            return deviceService.getUnclaimed($scope.nodeType.category);
+            return deviceService.getUnclaimedGateways();
         })
         .then(function(unclaimedDevices){
             $scope.newDevice.unclaimedDevices = unclaimedDevices;

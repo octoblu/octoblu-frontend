@@ -19,7 +19,7 @@ angular.module('octobluApp')
             });
 
             conn.on('notReady', function (error) {
-                console.log('Skynet Error during connect');
+                console.log('Skynet Error during connect', error);
                 defer.reject(error);
             });
 
