@@ -16,7 +16,7 @@ angular.module('octobluApp')
             var sref = 'ob.connector.nodes.'+ node.category + '-detail';
             var params = {};
             if(node.category === 'device'){
-                params.uuid = node.uuid;
+                params.uuid = node.resource.uuid;
             } else if(node.category === 'channel'){
                params.id = node.nodeType.channel._id;
             }
