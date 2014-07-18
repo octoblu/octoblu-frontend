@@ -3,8 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
     .constant('skynetConfig', {
-        'host': 'localhost',
-        'port': '3000'
+        'host': 'skynet.im',
+        'port': '80'
         // 'host': 'localhost', //change to the skynet.im instance
         // 'port': '3000'
     })
@@ -297,7 +297,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.design', {
                 url: '/design',
-                templateUrl: 'pages/design/index.html',
+                templateUrl: 'pages/design.html',
                 controller: 'designController'
             })
             .state('ob.docs', {

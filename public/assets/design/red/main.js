@@ -14,6 +14,7 @@
  * limitations under the License.
  **/
 var RED = function() {
+    var uuid, token, port;
 
     $('#btn-keyboard-shortcuts').click(function(){showHelp();});
 
@@ -178,12 +179,16 @@ var RED = function() {
 
     $(function() {
             RED.keyboard.add(/* ? */ 191,{shift:true},function(){showHelp();d3.event.preventDefault();});
-            wsConnect(loadSettings);
+            // wsConnect(loadSettings);
     });
 
+    function wsConnect(ready, userUUID, userToken, userPort) {
+            if (userUUID !== null) {
+                uuid  = userUUID;
+                token = userToken;
+                port  = userPort;
+            }
 
-
-    function wsConnect(ready) {
             var path = location.hostname+":"+location.port+document.location.pathname;
             //TODO place uuid/token and port in from $scope.currentUser.skynetuuid  $scope.currentUser.skynettoken $scope.redPort;
             path = uuid + ':' + token + '@designer.octoblu.com:' + port;
@@ -263,5 +268,7 @@ var RED = function() {
         }
 
     return {
+        loadSettings: loadSettings,
+        wsConnect: wsConnect
     };
 }();
