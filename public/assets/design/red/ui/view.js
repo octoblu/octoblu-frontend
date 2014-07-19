@@ -15,7 +15,7 @@
  **/
 
 
-RED.view = function() {
+RED.initializeView = function() {
     var space_width = 5000,
         space_height = 5000,
         lineCurveScale = 0.75,
@@ -1040,9 +1040,9 @@ RED.view = function() {
     function setDirty(d) {
         dirty = d;
         if (dirty) {
-            $("#btn-deploy").removeClass("disabled").addClass("btn-danger");
+            $("#btn-deploy").removeClass("disabled").addClass("btn-primary");
         } else {
-            $("#btn-deploy").addClass("disabled").removeClass("btn-danger");
+            $("#btn-deploy").addClass("disabled").removeClass("btn-primary");
         }
     }
 
@@ -1400,8 +1400,9 @@ RED.view = function() {
             }
         },
         importNodes: importNodes,
+        importFromCommunity: importFromCommunity,
         resize: function() {
             workspace_tabs.resize();
         }
     };
-}();
+};

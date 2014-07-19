@@ -1,5 +1,3 @@
-use meshines
-
 db.copyDatabase("meshines", "meshines-" + new Date().toISOString());
 
 db.nodetypes.drop();
@@ -26,7 +24,7 @@ db.nodetypes.insert({
         subtype: "arduino"
     },
     category: 'device',
-    enabled: false,
+    enabled: true,
     display : true
 });
 
@@ -213,7 +211,7 @@ db.nodetypes.insert({
     skynet: {
         type: "gateway"
     },
-    category: 'gateway',
+    category: 'device',
     enabled: true,
     display : false
 });
@@ -240,8 +238,7 @@ db.nodetypes.insert({
         }
     },
     skynet: {
-        type: "sms",
-        subtype: "inbound"
+        type: "inboundSMS"
     },
     category: 'device',
     enabled: true,
@@ -270,8 +267,7 @@ db.nodetypes.insert({
         }
     },
     skynet: {
-        type: "sms",
-        subtype: "outbound"
+        type: "outboundSMS"
     },
     category: 'device',
     enabled: true,
@@ -298,7 +294,7 @@ while(channelCursor.hasNext()){
     var nodeType = {
         name : channel.name || 'null',
         description : channel.description || '',
-        logo :  channel. logo,
+        logo :  channel.logo,
         category : 'channel',
         skynet : {
             type : 'channel' ,

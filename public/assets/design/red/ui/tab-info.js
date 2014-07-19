@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-RED.sidebar.info = function() {
-    
+RED.initializeTabInfo = function() {
+
     var content = document.createElement("div");
     content.id = "tab-info";
     content.style.paddingTop = "4px";
@@ -22,7 +22,7 @@ RED.sidebar.info = function() {
     content.style.paddingRight = "4px";
 
     RED.sidebar.addTab("info",content);
-    
+
     function jsonFilter(key,value) {
         if (key == "") {
             return value;
@@ -39,7 +39,7 @@ RED.sidebar.info = function() {
         }
         return value;
     }
-    
+
     function refresh(node) {
         var table = '<table class="node-info"><tbody>';
 
@@ -50,7 +50,7 @@ RED.sidebar.info = function() {
             var val = node[n]||"";
             var type = typeof val;
             if (type === "string") {
-                if (val.length > 30) { 
+                if (val.length > 30) {
                     val = val.substring(0,30)+" ...";
                 }
                 val = val.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -70,18 +70,18 @@ RED.sidebar.info = function() {
                 val = JSON.stringify(val,jsonFilter," ");
                 val = val.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
             }
-            
+
             table += "<tr><td>&nbsp;"+n+"</td><td>"+val+"</td></tr>";
         }
         table += "</tbody></table><br/>";
         table  += '<div class="node-help">'+($("script[data-help-name|='"+node.type+"']").html()||"")+"</div>";
         $("#tab-info").html(table);
     }
-    
+
     return {
         refresh:refresh,
         clear: function() {
             $("#tab-info").html("");
         }
     }
-}();
+};

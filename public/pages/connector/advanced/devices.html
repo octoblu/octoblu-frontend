@@ -8,14 +8,14 @@
             <div class="pull-right col-sm-pull-1">
                 <form role="form" class="form-inline">
                     <div class="form-group">
-                        <select class="form-control" ng-model="model.deviceType"
-                                ng-options="deviceType.name for deviceType in model.deviceTypes">
+                        <select class="form-control" ng-model="model.nodeType"
+                                ng-options="nodeType.name for nodeType in model.nodeTypes">
 
                         </select>
                     </div>
                     <div class="form-group">
-                        <a href class="btn btn-success btn-lg" ng-class="{disabled: !model.deviceType}"
-                           ng-click="addDevice(model.deviceType)">
+                        <a href class="btn btn-success btn-lg" ng-class="{disabled: !model.nodeType}"
+                           ng-click="addDevice(model.nodeType)">
                             <i class="fa fa-plus"></i>
                             <span>Add Device</span>
                             <i class="fa fa-hdd-o"></i>

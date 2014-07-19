@@ -76,7 +76,6 @@ angular.module('octobluApp')
                     defer.resolve(currentUser);
                     return defer.promise;
                 } else {
-                    angular.copy({}, currentUser);
                     return $http.get('/api/auth').then(loginHandler, function (err) {
                         logoutHandler(err);
                         throw err;

@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableDeviceTypes,
+    .controller('MessagingController', function ($scope, currentUser, myDevices, myGateways, availableNodeTypes,
                                                  skynetService, deviceService, PluginService) {
 
         $scope.model = {
             devices: _.sortBy(_.cloneDeep(myDevices), 'name'),
-            deviceTypes: availableDeviceTypes,
+            nodeTypes: availableNodeTypes,
             schemaEditor: {}
 
         };
@@ -100,11 +100,13 @@ angular.module('octobluApp')
                     subdevice: $scope.model.subdevice.name,
                     payload: $scope.model.schemaEditor.getValue()
                 }).then(function (response) {
-                    $scope.responseTimer = new Date().getTime();
-                    var difference = $scope.responseTimer - $scope.startTimer;
-                    $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
+                    if(!response.error){
+                        $scope.responseTimer = new Date().getTime();
+                        var difference = $scope.responseTimer - $scope.startTimer;
+                        $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
 
-                    $scope.model.messageResult = response;
+                        $scope.model.messageResult = response;
+                    }
                 });
             } else {
                 skynetService.sendMessage({
@@ -112,11 +114,13 @@ angular.module('octobluApp')
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
                     payload: $scope.model.schemaEditor.getValue()
                 }).then(function (response) {
-                    $scope.responseTimer = new Date().getTime();
-                    var difference = $scope.responseTimer - $scope.startTimer;
-                    $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
+                    if(!response.error){
+                        $scope.responseTimer = new Date().getTime();
+                        var difference = $scope.responseTimer - $scope.startTimer;
+                        $scope.messageResponseTime = 'Responded in ' + difference + ' milliseconds';
 
-                    $scope.model.messageResult = response;
+                        $scope.model.messageResult = response;
+                    }
                 });
             }
         }

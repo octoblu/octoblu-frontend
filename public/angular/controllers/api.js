@@ -150,7 +150,7 @@ angular.module('octobluApp')
             return $scope.channel.logo;
         };
     })
-    .controller('apiEditorController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, 
+    .controller('apiEditorController', function ($rootScope, $scope, $http, $injector, $location, $stateParams,
             $modal, $log, $state, channelService, userService, currentUser) {
         $scope.skynetStatus = false;
         $scope.isEdit = false;
@@ -287,7 +287,7 @@ angular.module('octobluApp')
                 scope: $scope,
                 controller: function ($modalInstance) {
                     $scope.ok = function () {
-                        $modalInstance.close('ok');                        
+                        $modalInstance.close('ok');
                     };
                     $scope.cancel = function () {
                         $modalInstance.dismiss('cancel');

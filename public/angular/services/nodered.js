@@ -5,7 +5,7 @@ angular.module('octobluApp')
 
         $http.get('/api/redport/' + uuid + '/' + token)
             .success(function(data) {
-                callback(data);
+                callback(JSON.parse(data));
 
             })
             .error(function(data) {

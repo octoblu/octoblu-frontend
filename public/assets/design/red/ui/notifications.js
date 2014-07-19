@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-RED.notify = function() {
+RED.initializeNotifications = function() {
     var currentNotifications = [];
     var c = 0;
     return function(msg,type,fixed,timeout) {

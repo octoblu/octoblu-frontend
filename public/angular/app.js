@@ -1,7 +1,7 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
+angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
         'host': 'skynet.im',
         'port': '80'
@@ -89,29 +89,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/connect',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
-                    availableDeviceTypes: function (channelService) {
-                        return channelService.getDeviceTypes();
-                    },
-                    myGateways: function (myDevices, deviceService) {
-                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
-                        _.map(gateways, function (gateway) {
-                            gateway.subdevices = [];
-                            gateway.plugins = [];
-                            return deviceService.gatewayConfig({
-                                "uuid": gateway.uuid,
-                                "token": gateway.token,
-                                "method": "configurationDetails"
-                            }).then(function (response) {
-                                if (response && response.result) {
-                                    gateway.subdevices = response.result.subdevices || [];
-                                    gateway.plugins = response.result.plugins || [];
-                                }
-                            }, function () {
-                                console.log('couldn\'t get data for: ');
-                                console.log(gateway);
-                            });
-                        });
-                        return gateways;
+                    availableNodeTypes: function (NodeTypeService) {
+                        return NodeTypeService.getNodeTypes();
                     }
                 }
             })
@@ -126,12 +105,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/nodes/index.html'
             })
             .state('ob.connector.nodes.device-detail', {
-                url: '/:uuid',
+                url: '/device/:uuid',
                 controller: 'DeviceDetailController',
                 templateUrl: 'pages/connector/devices/detail/index.html'
             })
             .state('ob.connector.nodes.channel-detail', {
-                url: '/:id',
+                url: '/channel/:id',
                 templateUrl: 'pages/connector/channels/detail.html',
                 controller: 'apiController'
             })
@@ -189,15 +168,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/advanced',
                 templateUrl: 'pages/connector/advanced/index.html'
             })
-            .state('ob.connector.advanced.devices', {
-                url: '/smartdevices',
-                controller: 'smartDeviceController',
-                templateUrl: 'pages/connector/advanced/devices.html'
-            })
-            // .state('ob.connector.advanced.channels', {
-            //     url: '/custom_channels',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels', {
                 // abstract: true,
                 url: '/custom_channels',
@@ -209,31 +179,39 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return channelService.getCustomList();
                     }
                 }
-                // resolve: {
-                //     customChannels: function (channelService) {
-                //         return [];
-                //     }
-                // }
             })
-            // .state('ob.connector.advanced.channels.index', {
-            //     url: '',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels.editor', {
                 url: '/editor/:id',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
             })
-
-            .state('ob.connector.advanced.gateways', {
-                url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways/index.html',
-                controller: 'hubController'
-            })
             .state('ob.connector.advanced.messaging', {
                 url: '/messaging',
                 controller: 'MessagingController',
-                templateUrl: 'pages/connector/advanced/messaging.html'
+                templateUrl: 'pages/connector/advanced/messaging.html',
+                resolve: {
+                    myGateways: function (myDevices, deviceService) {
+                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
+                        _.map(gateways, function (gateway) {
+                            gateway.subdevices = [];
+                            gateway.plugins = [];
+                            return deviceService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
+                                "method": "configurationDetails"
+                            }).then(function (response) {
+                                if (response && response.result) {
+                                    gateway.subdevices = response.result.subdevices || [];
+                                    gateway.plugins = response.result.plugins || [];
+                                }
+                            }, function () {
+                                console.log('couldn\'t get data for: ');
+                                console.log(gateway);
+                            });
+                        });
+                        return gateways;
+                    }
+                }
             })
             //end refactor states
 
@@ -297,7 +275,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             })
             .state('ob.design', {
                 url: '/design',
-                templateUrl: 'pages/design/index.html',
+                templateUrl: 'pages/design.html',
                 controller: 'designController'
             })
             .state('ob.docs', {
