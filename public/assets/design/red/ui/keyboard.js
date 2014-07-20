@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-RED.keyboard = function() {
-    
+RED.initializeKeyboard = function() {
+
     var active = true;
     var handlers = {};
-    
+
     d3.select(window).on("keydown",function() {
         if (!active) { return; }
         var handler = handlers[d3.event.keyCode];
@@ -29,7 +29,7 @@ RED.keyboard = function() {
             }
         }
     });
-    
+
     function addHandler(key,modifiers,callback) {
         var mod = modifiers;
         var cb = callback;
@@ -42,7 +42,7 @@ RED.keyboard = function() {
     function removeHandler(key) {
         delete handlers[key];
     }
-    
+
     return {
         add: addHandler,
         remove: removeHandler,
@@ -50,4 +50,4 @@ RED.keyboard = function() {
         enable: function(){ active = true; }
     }
 
-}();
+};

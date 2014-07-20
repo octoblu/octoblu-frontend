@@ -16,7 +16,6 @@
 
 body {
   font: 13px "Helvetica" !important;
-  padding-top: 100px;
   background: url("pw_maze_white.png");
 }
 #dropTarget {
@@ -120,7 +119,7 @@ a.brand img {
     -moz-box-sizing: border-box;
 }
 .palette-spinner {
-    padding-top: 40px;
+    margin-top: 40px;
 }
 #palette-search {
     position: absolute;
@@ -265,7 +264,7 @@ a.brand img {
 /* ---------- Layout ---------- */
 #main-container {
     position: absolute;
-    top:50px; left:0; bottom: 0; right:0;
+    top:140px; left:0; bottom: 0; right:0;
     overflow:hidden;
 }
 #palette {
@@ -854,10 +853,6 @@ i.spinner {
     margin-top: 0px;
     background: url(spin.svg) no-repeat 50% 50%;
     background-size: contain
-}
-
-.navbar-link{
-  display: none;
 }
 
 

@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-var RED = function() {
+var RED = {}
+
+var initializeRED = function() {
     var uuid, token, port;
 
     $('#btn-keyboard-shortcuts').click(function(){showHelp();});
@@ -110,28 +112,30 @@ var RED = function() {
 
     $('#btn-deploy').click(function() { save(); });
 
-    $( "#node-dialog-confirm-deploy" ).dialog({
-            title: "Confirm deploy",
-            modal: true,
-            autoOpen: false,
-            width: 530,
-            height: 230,
-            buttons: [
-                {
-                    text: "Confirm deploy",
-                    click: function() {
-                        save(true);
-                        $( this ).dialog( "close" );
+    var initializeDeployDialog = function(){
+        $( "#node-dialog-confirm-deploy" ).dialog({
+                title: "Confirm deploy",
+                modal: true,
+                autoOpen: false,
+                width: 530,
+                height: 230,
+                buttons: [
+                    {
+                        text: "Confirm deploy",
+                        click: function() {
+                            save(true);
+                            $( this ).dialog( "close" );
+                        }
+                    },
+                    {
+                        text: "Cancel",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
                     }
-                },
-                {
-                    text: "Cancel",
-                    click: function() {
-                        $( this ).dialog( "close" );
-                    }
-                }
-            ]
-    });
+                ]
+        });
+    }
 
     function loadSettings() {
         RED.rpc('settings', function(err, data){
@@ -178,7 +182,6 @@ var RED = function() {
     }
 
     $(function() {
-            RED.keyboard.add(/* ? */ 191,{shift:true},function(){showHelp();d3.event.preventDefault();});
             // wsConnect(loadSettings);
     });
 
@@ -267,16 +270,20 @@ var RED = function() {
             };
         }
 
-    var initialize = function(){
-        RED.view    = RED.initializeView();
-        RED.sidebar = RED.initializeSidebar();
-        RED.sidebar.info = RED.initializeTabInfo();
-        RED.sidebar.config = RED.initializeTabConfig();
-    };
+    RED.loadSettings = loadSettings;
+    RED.wsConnect    = wsConnect;
+    RED.save         = save;
 
-    return {
-        loadSettings: loadSettings,
-        wsConnect: wsConnect,
-        initialize: initialize
-    };
-}();
+    initializeDeployDialog();
+    RED.keyboard       = RED.initializeKeyboard();
+    RED.tabs           = RED.initializeTabs();
+    RED.view           = RED.initializeView();
+    RED.sidebar        = RED.initializeSidebar();
+    RED.palette        = RED.initializePalette();
+    RED.sidebar.info   = RED.initializeTabInfo();
+    RED.sidebar.config = RED.initializeTabConfig();
+    RED.editor         = RED.initializeEditor();
+    RED.notify         = RED.initializeNotifications();
+
+    RED.keyboard.add(/* ? */ 191,{shift:true},function(){showHelp();d3.event.preventDefault();});
+};

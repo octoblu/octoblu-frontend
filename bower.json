@@ -25,12 +25,12 @@
   ],
   "dependencies": {
     "jquery": "~2.1.1",
-    "angular": "~1.2.17",
-    "angular-animate": "~1.2.17",
-    "angular-sanitize": "~1.2.17",
-    "angular-cookies": "~1.2.17",
-    "angular-resource": "~1.2.17",
-    "angular-mocks": "~1.2.17",
+    "angular": "~1.2.20",
+    "angular-animate": "~1.2.20",
+    "angular-sanitize": "~1.2.20",
+    "angular-cookies": "~1.2.20",
+    "angular-resource": "~1.2.20",
+    "angular-mocks": "~1.2.20",
     "jquery-ui": "~1.10.4",
     "angular-ui-router": "~0.2.10",
     "modernizr": "~2.8.2",
@@ -44,20 +44,16 @@
     "elastic.js": "~1.1.1",
     "elasticsearch": "~2.2.0",
     "smoothie": "https://github.com/joewalnes/smoothie.git",
-    "skrollr": "~0.6.25",
-    "isotope": "~2.0.0",
     "angular-google-analytics": "~0.0.2",
-    "jquery-mobile": "~1.4.2",
     "nvd3": "~1.1.15-beta",
-    "ng-table":"~0.3.3",
-    "angularjs-nvd3-directives":"~0.0.7",
+    "ng-table": "~0.3.3",
+    "angularjs-nvd3-directives": "~0.0.7",
     "lodash": "~2.4.1",
     "socket.io": "~1.0.6",
     "socket.io-client": "~1.0.6"
   },
   "resolutions": {
     "jquery-ui": "~1.10.4",
-    "jquery": "~2.1.1",
-    "d3": "~3.3.13"
+    "jquery": "~2.1.1"
   }
 }

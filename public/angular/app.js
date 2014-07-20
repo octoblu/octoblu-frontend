@@ -91,27 +91,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 resolve: {
                     availableNodeTypes: function (NodeTypeService) {
                         return NodeTypeService.getNodeTypes();
-                    },
-                    myGateways: function (myDevices, deviceService) {
-                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
-                        _.map(gateways, function (gateway) {
-                            gateway.subdevices = [];
-                            gateway.plugins = [];
-                            return deviceService.gatewayConfig({
-                                "uuid": gateway.uuid,
-                                "token": gateway.token,
-                                "method": "configurationDetails"
-                            }).then(function (response) {
-                                if (response && response.result) {
-                                    gateway.subdevices = response.result.subdevices || [];
-                                    gateway.plugins = response.result.plugins || [];
-                                }
-                            }, function () {
-                                console.log('couldn\'t get data for: ');
-                                console.log(gateway);
-                            });
-                        });
-                        return gateways;
                     }
                 }
             })
@@ -189,15 +168,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/advanced',
                 templateUrl: 'pages/connector/advanced/index.html'
             })
-            .state('ob.connector.advanced.devices', {
-                url: '/smartdevices',
-                controller: 'smartDeviceController',
-                templateUrl: 'pages/connector/advanced/devices.html'
-            })
-            // .state('ob.connector.advanced.channels', {
-            //     url: '/custom_channels',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels', {
                 // abstract: true,
                 url: '/custom_channels',
@@ -209,31 +179,39 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return channelService.getCustomList();
                     }
                 }
-                // resolve: {
-                //     customChannels: function (channelService) {
-                //         return [];
-                //     }
-                // }
             })
-            // .state('ob.connector.advanced.channels.index', {
-            //     url: '',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels.editor', {
                 url: '/editor/:id',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
             })
-
-            .state('ob.connector.advanced.gateways', {
-                url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways/index.html',
-                controller: 'hubController'
-            })
             .state('ob.connector.advanced.messaging', {
                 url: '/messaging',
                 controller: 'MessagingController',
-                templateUrl: 'pages/connector/advanced/messaging.html'
+                templateUrl: 'pages/connector/advanced/messaging.html',
+                resolve: {
+                    myGateways: function (myDevices, deviceService) {
+                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
+                        _.map(gateways, function (gateway) {
+                            gateway.subdevices = [];
+                            gateway.plugins = [];
+                            return deviceService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
+                                "method": "configurationDetails"
+                            }).then(function (response) {
+                                if (response && response.result) {
+                                    gateway.subdevices = response.result.subdevices || [];
+                                    gateway.plugins = response.result.plugins || [];
+                                }
+                            }, function () {
+                                console.log('couldn\'t get data for: ');
+                                console.log(gateway);
+                            });
+                        });
+                        return gateways;
+                    }
+                }
             })
             //end refactor states
 
