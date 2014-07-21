@@ -85,12 +85,12 @@ angular.module('octobluApp')
                     deviceOptions.owner = skynetConnection.options.uuid;
                     return service.updateDevice(deviceOptions);
                 })
-                    .then(function(){
-                        return service.refreshDevices();
-                    })
-                    .then(function(){
-                        return service.getDeviceByUUID(deviceOptions.uuid);
-                    });
+                .then(function(){
+                    return service.refreshDevices();
+                })
+                .then(function(){
+                    return service.getDeviceByUUID(deviceOptions.uuid);
+                });
             },
 
             updateDevice: function (options) {
