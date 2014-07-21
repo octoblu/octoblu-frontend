@@ -47,7 +47,7 @@ angular.module('octobluApp')
         $scope.$watch('currentPage', function (newValue, oldValue) {
             //newvalue *is* the $scope.currentPage at this point already.
             //$scope.currentPage = newValue;
-            search(newValue);
+            searchNewValue(newValue);
         });
         $log.log("New Value for Devices");
         elasticService.setOwnedDevices($scope.devices);
@@ -300,7 +300,7 @@ angular.module('octobluApp')
             }
 
 	 };
-/*        function search () {
+        function searchNewValue () {
             $log.log("starting search function, analyzer controller");
             $scope.results = [ { "text":"searching..." } ];
             $log.log("searchText = " + $scope.forms.FF_searchText);
@@ -320,7 +320,7 @@ angular.module('octobluApp')
             } else {
                 $scope.results = "";
             }
-        }*/
+        }
 
         //Load Top Counts Panels On init of page
         function loadTop() {
@@ -331,11 +331,18 @@ angular.module('octobluApp')
                 "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" } },
                 "eventCodes": {"terms": { "field": "eventCode" } }
             };
-            elasticService.paramSearch({"from":"now-1d/d", "to":"now", "size":0, "query":"", "facet": $scope.loadTopfacetObject, "aggs":{}}, $scope.devices, function (err, data) {
+	    $scope.loadTopAggObject = {
+		"distCountDevice":  {"cardinality": { "field": "uuid"} },
+		"distCountChannels" : {"cardinality": {"field":"channel"}}, 
+		"distCountToDevice": { "cardinality": {"field":"toUuid.uuid"}},
+		"distCountFromDevice": {"cardinality" : {"field":"fromUuid.uuid"}}
+		};
+            elasticService.paramSearch({"from":"now-30d/d", "to":"now", "size":0, "query":"", "facet": $scope.loadTopfacetObject, "aggs":$scope.loadTopAggObject }, $scope.devices, function (err, data) {
                 if (err) {
                     return $log.log(err);
                 }
                 $log.log("Total Top Hits: " + data.hits.total);
+		$log.log(data.aggregations);
                 $scope.topResults = {
                     total: data.hits.total,
                     fromUuid: _.map(data.facets.fromUuids.terms, function (item) {
@@ -355,7 +362,13 @@ angular.module('octobluApp')
                             label: item.term,
                             value: item.count
                         };
-                    })
+                    }),
+		    "avgMsgPerDay": Math.round(data.hits.total / 30),
+		    "avgMsgPerHour" : Math.round(data.hits.total / (30 * 24)),
+		    "distCountDevice" : data.aggregations.distCountDevice.value,
+		    "distCountToDevice" : data.aggregations.distCountToDevice.value,
+		    "distCountFromDevice" : data.aggregations.distCountFromDevice.value,
+		    "distCountChannels" : data.aggregations.distCountChannels.value
                 }
             });
         };

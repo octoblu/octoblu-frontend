@@ -9,9 +9,127 @@
 
 <div class="container-fluid">
 <accordion>
-<accordion-group heading="Top Graphs" >
+<accordion-group heading="Quick Hits - Last 30 days" >
     <div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-2 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Average Messages Per Day</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-switch="!!topResults.avgMsgPerDay ? topResults.avgMsgPerDay : 0">
+                        <h1>
+                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                            <div ng-switch-default>{{topResults.avgMsgPerDay}}
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+	
+	<div class="col-sm-2 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Average Messages Per Hour</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-switch="!!topResults.avgMsgPerHour ? topResults.avgMsgPerHour : 0">
+                        <h1>
+                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                            <div ng-switch-default>{{topResults.avgMsgPerHour}}
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="col-sm-2 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Number of Channels</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-switch="!!topResults.distCountChannels ? topResults.distCountChannels : 0">
+                        <h1>
+                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                            <div ng-switch-default>{{topResults.distCountChannels}}
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	<div class="col-sm-2 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Distinct Count of Devices</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-switch="!!devices ? devices.length : 0">
+                        <h1>
+                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                            <div ng-switch-default>{{topResults.distCountDevice}}
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="col-sm-2 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Distinct Devices sent from</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-switch="!!devices ? devices.length : 0">
+                        <h1>
+                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                            <div ng-switch-default>{{topResults.distCountFromDevice}}
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div class="col-sm-2 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Distinct Devices sent to</h3>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-switch="!!devices ? devices.length : 0">
+                        <h1>
+                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
+                            <div ng-switch-default>{{topResults.distCountToDevice}}
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
         <div class="row">
+		<div class="col-sm-4 dashboard-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Top Event Codes</h3>
+                </div>
+                <div class="panel panel-default">
+                    <a href="">
+                        <div class="panel-body">
+                            <div ng-switch="!!topResults.eventCodes ? 1 : 0">
+                               <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                                <div ng-switch-default>
+                                    <div nvd3-pie-chart  data="topResults.eventCodes" height="300">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
             <div class="col-sm-4 dashboard-panel">
                 <div class="panel-heading">
                     <h3 class="panel-title">Top Devices Sending</h3>
