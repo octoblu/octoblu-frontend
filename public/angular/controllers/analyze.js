@@ -1,7 +1,14 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('analyzeController', function ($scope, $http, $injector, $log, elasticService, currentUser, myDevices) {
+    .filter('freeFormDisplayText', function() {
+		return function(text) {
+			return angular.isObject(text) ? 'Object' : text;
+		};
+	})
+//    .controller('analyzeController', function ($scope, $http, $injector, $log, elasticService, currentUser, myDevices) {
+    .controller('analyzeController', function ($rootScope, $scope, $http, $injector, $location, $log,
+                                                 elasticService, channelService, userService, currentUser, myDevices) {
         $scope.debug_logging = true;
         //Elastic Search Time Format Dropdowns
         $scope.ESdateFormats = elasticService.getDateFormats();
@@ -212,14 +219,15 @@ angular.module('octobluApp')
             }
         }
     };
-    
-    $scope.range = function (size,start, end) {
+   
+    $scope.gap = 1; 
+    $scope.range = function (size,start, end, gap) {
         var ret = [];        
         console.log(size,start, end);
                       
         if (size < end) {
             end = size;
-            start = size-$scope.gap;
+            start = size-gap;
         }
         for (var i = start; i < end; i++) {
             ret.push(i);
@@ -235,7 +243,7 @@ angular.module('octobluApp')
     };
     
     $scope.nextPage = function () {
-        if ($scope.currentPage < $scope.pagedItems.length - 1) {
+        if ($scope.currentPage < $scope.freeform_results_ngTable.pagedItems.length - 1) {
             $scope.currentPage++;
         }
     };
@@ -245,13 +253,14 @@ angular.module('octobluApp')
     };
 
 	
-	$scope.search = function(currentPage) { 
+	$scope.search = function() { 
 		$scope.ff = {};
         	$log.log("starting search function, analyzer controller");
             $scope.results = [ { "text":"searching..." } ];
             $log.log("searchText = " + $scope.forms.FF_searchText);
             if ($scope.forms.FF_searchText !== undefined) {
-                elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
+                //elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
+		elasticService.paramSearch({ "from":"now-90d/d", "to": "now", "size":100000, "query": $scope.forms.FF_searchText, "facet": {}, "aggs": {}}, $scope.devices, function (error, response) {
                     if (error) {
                         $log.log(error);
                     } else {
@@ -259,11 +268,25 @@ angular.module('octobluApp')
 			$log.log("response follows");
 			$log.log(response);
 			$log.log(currentUser);
-			$scope.ff.currentPage = currentPage;
                         $scope.freeform_results = response.hits.hits;
-			$scope.freeform_results_ngTable = { "headers": [ { "name": "one" }, {"name":"two"} ] };			
+			var tmp_head = {};
+			for ( var item in $scope.freeform_results ) {
+				for (var prop in $scope.freeform_results[item]._source) {
+					tmp_head[prop] = "exist";
+				}
+			} 
+			$log.log(tmp_head);
+			var headers = [];
+			var excludeList = [ "auth", "fromUuid", "toUuid", "subdevices", "plugins", "token" ];
+			for (var name in tmp_head) {
+				if ( _.contains(excludeList, name) ) { $log.log("excluding " + name); }
+				else {
+					headers.push({"name":name});
+				}
+			}		
+//			$scope.freeform_results_ngTable = { "headers": [{"name": "uuid"}, {"name":"protocol"}, {"name":"ipAddress"},{"name":"eventCode"},{"name": "timestamp"}, {"name":"channel"},{"name":"online"},{"name":"name"} ]};
+			$scope.freeform_results_ngTable = { "headers": headers };
 			$scope.groupToPages();
-			$log.log($scope.freeform_results_ngTable);
                         $scope.results = response;
                         $scope.totalItems = response.hits.total;
                         $scope.ff.maxSize = 10;
@@ -277,7 +300,7 @@ angular.module('octobluApp')
             }
 
 	 };
-        function search (currentPage) {
+/*        function search () {
             $log.log("starting search function, analyzer controller");
             $scope.results = [ { "text":"searching..." } ];
             $log.log("searchText = " + $scope.forms.FF_searchText);
@@ -297,7 +320,7 @@ angular.module('octobluApp')
             } else {
                 $scope.results = "";
             }
-        }
+        }*/
 
         //Load Top Counts Panels On init of page
         function loadTop() {
