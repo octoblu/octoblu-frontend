@@ -1,10 +1,12 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource'])
+angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
-        'host': 'skynet.im', //change to the skynet.im instance
-        'port': '80'
+        'host': 'wss://skynet.im',
+        'port': '443'
+        // 'host': 'localhost', //change to the skynet.im instance
+        // 'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -29,11 +31,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // change page event name
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-        $httpProvider.interceptors.push(function ($injector) {
+        $httpProvider.interceptors.push(function ($location) {
             return {
                 responseError: function (response) {
-                    if (response.status >= 400) {
-                        $injector.get('$state').go('login');
+                    if (response.status === 401) {
+                        $location.url('/login');
                     }
                     return response;
                 }
@@ -49,7 +51,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     currentUser: function (AuthService) {
                         return AuthService.getCurrentUser();
                     },
-                    myDevices: function (currentUser, deviceService) {
+                    myDevices: function (deviceService) {
                         return deviceService.getDevices();
                     }
                 },
@@ -78,55 +80,39 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/profile.html',
                 controller: 'profileController'
             })
-            .state('ob.dashboard', {
-                url: '/dashboard',
-                templateUrl: 'pages/dashboard.html',
-                controller: 'dashboardController'
+            .state('ob.process', {
+                url: '/process',
+                templateUrl: 'pages/process.html',
+                controller: 'processController'
             })
             .state('ob.connector', {
-                url: '/connector',
+                url: '/connect',
                 templateUrl: 'pages/connector/index.html',
                 resolve: {
-                    availableDeviceTypes: function (channelService) {
-                        return channelService.getDeviceTypes();
-                    },
-                    myGateways: function (myDevices, skynetService, $q) {
-                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
-                        _.map(gateways, function (gateway) {
-                            gateway.subdevices = [];
-                            gateway.plugins = [];
-                            return skynetService.gatewayConfig({
-                                "uuid": gateway.uuid,
-                                "token": gateway.token,
-                                "method": "configurationDetails"
-                            }).then(function (response) {
-                                if (response && response.result) {
-                                    gateway.subdevices = response.result.subdevices || [];
-                                    gateway.plugins = response.result.plugins || [];
-                                }
-                            }, function () {
-                                console.log('couldn\'t get data for: ');
-                                console.log(gateway);
-                            });
-                        });
-                        return gateways;
+                    availableNodeTypes: function (NodeTypeService) {
+                        return NodeTypeService.getNodeTypes();
                     }
                 }
             })
-            .state('ob.connector.devices', {
-                url: '/devices',
+            .state('ob.connector.nodes', {
+                url: '/nodes',
                 abstract: true,
                 template: '<ui-view></ui-view>'
             })
-            .state('ob.connector.devices.all', {
-                url: '',
-                controller: 'DeviceController',
-                templateUrl: 'pages/connector/devices/index.html'
+            .state('ob.connector.nodes.all', {
+                url: '/',
+                controller: 'NodeController',
+                templateUrl: 'pages/connector/nodes/index.html'
             })
-            .state('ob.connector.devices.detail', {
-                url: '/:uuid',
+            .state('ob.connector.nodes.device-detail', {
+                url: '/device/:uuid',
                 controller: 'DeviceDetailController',
                 templateUrl: 'pages/connector/devices/detail/index.html'
+            })
+            .state('ob.connector.nodes.channel-detail', {
+                url: '/channel/:id',
+                templateUrl: 'pages/connector/channels/detail.html',
+                controller: 'apiController'
             })
             .state('ob.connector.devices.wizard', {
                 url: '/wizard',
@@ -135,7 +121,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/connector/devices/wizard/index.html',
                 resolve: {
                     unclaimedDevices: function (deviceService) {
-                        return deviceService.getUnclaimedDevices();
+                        return deviceService.getUnclaimedNodes();
                     }
                 }
             })
@@ -147,7 +133,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/finddevice?claim',
                 templateUrl: 'pages/connector/devices/wizard/find-device.html'
             })
-            //begin refactor states            
+            //begin refactor states
             .state('ob.connector.channels', {
                 abstract: true,
                 url: '/channels',
@@ -167,18 +153,14 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '',
                 templateUrl: 'pages/connector/channels/index.html'
             })
-            .state('ob.connector.channels.detail', {
-                url: '/:name',
-                templateUrl: 'pages/connector/channels/detail.html',
-                controller: 'apiController'
-            })
+
             .state('ob.connector.channels.resources', {
                 url: '/resources',
                 templateUrl: 'pages/connector/channels/resources/index.html',
                 controller: 'apiResourcesController'
             })
             .state('ob.connector.channels.resources.detail', {
-                url: '/:apiname',
+                url: '/:id',
                 templateUrl: 'pages/connector/channels/resources/detail.html',
                 controller: 'apiResourcesController'
             })
@@ -186,15 +168,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 url: '/advanced',
                 templateUrl: 'pages/connector/advanced/index.html'
             })
-            .state('ob.connector.advanced.devices', {
-                url: '/smartdevices',
-                controller: 'smartDeviceController',
-                templateUrl: 'pages/connector/advanced/devices.html'
-            })
-            // .state('ob.connector.advanced.channels', {
-            //     url: '/custom_channels',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels', {
                 // abstract: true,
                 url: '/custom_channels',
@@ -206,31 +179,39 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return channelService.getCustomList();
                     }
                 }
-                // resolve: {
-                //     customChannels: function (channelService) {
-                //         return [];
-                //     }
-                // }
             })
-            // .state('ob.connector.advanced.channels.index', {
-            //     url: '',
-            //     templateUrl: 'pages/connector/advanced/channels.html'
-            // })
             .state('ob.connector.advanced.channels.editor', {
-                url: '/editor/:name',
+                url: '/editor/:id',
                 templateUrl: 'pages/connector/channels/editor.html',
                 controller: 'apiEditorController'
-            })
-
-            .state('ob.connector.advanced.gateways', {
-                url: '/gateways',
-                templateUrl: 'pages/connector/advanced/gateways/index.html',
-                controller: 'hubController'
             })
             .state('ob.connector.advanced.messaging', {
                 url: '/messaging',
                 controller: 'MessagingController',
-                templateUrl: 'pages/connector/advanced/messaging.html'
+                templateUrl: 'pages/connector/advanced/messaging.html',
+                resolve: {
+                    myGateways: function (myDevices, deviceService) {
+                        var gateways = _.filter(myDevices, {type: 'gateway', online: true });
+                        _.map(gateways, function (gateway) {
+                            gateway.subdevices = [];
+                            gateway.plugins = [];
+                            return deviceService.gatewayConfig({
+                                "uuid": gateway.uuid,
+                                "token": gateway.token,
+                                "method": "configurationDetails"
+                            }).then(function (response) {
+                                if (response && response.result) {
+                                    gateway.subdevices = response.result.subdevices || [];
+                                    gateway.plugins = response.result.plugins || [];
+                                }
+                            }, function () {
+                                console.log('couldn\'t get data for: ');
+                                console.log(gateway);
+                            });
+                        });
+                        return gateways;
+                    }
+                }
             })
             //end refactor states
 
@@ -271,53 +252,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                     }
                 }
             })
-            .state('ob.analyzer', {
-                url: '/analyzer',
-                templateUrl: 'pages/analyzer.html',
-                controller: 'analyzerController'
-            })
-            .state('ob.docs', {
-                url: '/docs',
-                templateUrl: 'pages/docs.html',
-                controller: 'docsController',
-                unsecured: true
-            })
-            .state('ob.designer', {
-                url: '/designer',
-                templateUrl: 'pages/designer.html',
-                controller: 'designerController'
-            })
-            .state('ob.community', {
-                url: '/community',
-                templateUrl: 'pages/community.html'
-            })
-            .state('ob.services', {
-                url: '/services',
-                templateUrl: 'pages/services.html',
-                controller: 'servicesController'
-            })
-            .state('ob.pricing', {
-                url: '/pricing',
-                templateUrl: 'pages/pricing.html',
-                controller: 'pricingController',
-                unsecured: true
-            })
-            .state('ob.faqs', {
-                url: '/faqs',
-                templateUrl: 'pages/faqs.html',
-                controller: 'faqsController',
-                unsecured: true
-            })
             .state('login', {
                 url: '/login',
                 templateUrl: 'pages/login.html',
                 controller: 'loginController',
-                unsecured: true
-            })
-            .state('signup', {
-                url: '/signup',
-                templateUrl: 'pages/signup.html',
-                controller: 'signupController',
                 unsecured: true
             })
             .state('forgot', {
@@ -325,14 +263,135 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/forgot.html',
                 controller: 'forgotController',
                 unsecured: true
+            })
+            .state('ob.analyze', {
+                url: '/analyze',
+                templateUrl: 'pages/analyze.html',
+                controller: 'analyzeController'
+            })
+            .state('ob.community', {
+                url: '/community',
+                templateUrl: 'pages/community.html'
+            })
+            .state('ob.design', {
+                url: '/design',
+                templateUrl: 'pages/design.html',
+                controller: 'designController'
+            })
+            .state('ob.docs', {
+                url: '/docs',
+                templateUrl: 'pages/docs.html',
+                controller: 'docsController'
+            })
+            .state('ob.faqs', {
+                url: '/faqs',
+                templateUrl: 'pages/faqs.html',
+                controller: 'faqsController'
+            })
+            .state('ob.home', {
+                url: '/home',
+                templateUrl: 'pages/home.html',
+                controller: 'homeController'
+            })
+            .state('ob.services', {
+                url: '/services',
+                templateUrl: 'pages/services.html',
+                controller: 'servicesController'
+            })
+            .state('ob.nodewizard', {
+                url: '/node-wizard',
+                abstract: true,
+                controller: 'nodeWizardController',
+                templateUrl: 'pages/node-wizard/index.html'
+            })
+            .state('ob.nodewizard.addnode', {
+                url: '',
+                controller: 'addNodeController',
+                templateUrl: 'pages/node-wizard/add-node.html'
+            })
+
+            .state('ob.nodewizard.addchannel', {
+                url: '/node-wizard/add-channel/:nodeTypeId',
+                controller: 'addChannelController',
+                templateUrl: 'pages/node-wizard/add-channel/index.html',
+                abstract: true,
+                resolve: {
+                    nodeType: function($stateParams, NodeTypeService){
+                        return NodeTypeService.getNodeTypeById($stateParams.nodeTypeId);
+                    }
+                }
+            })
+            .state('ob.nodewizard.addchannel.existing', {
+                url: '',
+                controller: 'addChannelExistingController',
+                templateUrl: 'pages/node-wizard/add-channel/existing.html'
+            })
+            .state('ob.nodewizard.addchannel.noauth', {
+                url: '/noauth',
+                controller: 'addChannelNoauthController',
+                templateUrl: 'pages/node-wizard/add-channel/noauth.html'
+            })
+            .state('ob.nodewizard.addchannel.oauth', {
+                url: '/oauth',
+                controller: 'addChannelOauthController',
+                templateUrl: 'pages/node-wizard/add-channel/oauth.html'
+            })
+            .state('ob.nodewizard.addchannel.simple', {
+                url: '/simple',
+                controller: 'addChannelSimpleController',
+                templateUrl: 'pages/node-wizard/add-channel/simple.html'
+            })
+
+            .state('ob.nodewizard.adddevice', {
+                url: '/add-device/:nodeTypeId',
+                controller: 'addDeviceController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
+            })
+            .state('ob.nodewizard.addgateway', {
+                url: '/add-gateway/:nodeTypeId',
+                controller: 'addDeviceController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
+            })
+            .state('ob.nodewizard.addsubdevice', {
+                url: '/add-subdevice/:nodeTypeId',
+                controller: 'addSubdeviceController',
+                templateUrl: 'pages/node-wizard/add-subdevice/index.html',
+                abstract: true
+            })
+            .state('ob.nodewizard.addsubdevice.addGateway', {
+                url: '/add-gateway',
+                controller: 'addSubdeviceAddGatewayController',
+                templateUrl: 'pages/node-wizard/add-device/index.html'
+            })
+            .state('ob.nodewizard.addsubdevice.selectgateway', {
+                url: '',
+                controller: 'addSubdeviceSelectGatewayController',
+                templateUrl: 'pages/node-wizard/add-subdevice/select-gateway.html'
+            })
+            .state('ob.nodewizard.addsubdevice.form', {
+                url: '/gateways/:gatewayId',
+                controller: 'addSubdeviceFormController',
+                templateUrl: 'pages/node-wizard/add-subdevice/form.html'
+            })
+            .state('signup', {
+                url: '/signup',
+                templateUrl: 'pages/signup.html',
+                controller: 'signupController',
+                unsecured: true
+            })
+            .state('reset', {
+                url: '/reset/:resetToken',
+                templateUrl: 'pages/reset/reset.html',
+                controller: 'resetController',
+                unsecured: true
             });
 
         $locationProvider.html5Mode(true);
 
         // For any unmatched url, redirect to /
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/home');
     })
-    .run(function ($rootScope, $window, $state, $urlRouter, AuthService) {
+    .run(function ($rootScope, $window, $state, $urlRouter, $location, AuthService) {
 
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams) {
             console.log('error from ' + fromState.name + ' to ' + toState.name)
@@ -341,14 +400,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
 
         $rootScope.$on('$stateChangeStart', function (event, toState) {
             if (!toState.unsecured) {
-                return AuthService.getCurrentUser().then(function (user) {
-                    console.log('got a user!');
-                    console.log(user);
-                }, function (err) {
+                return AuthService.getCurrentUser(true).then(null, function (err) {
                     console.log('LOGIN ERROR:');
                     console.log(err);
                     event.preventDefault();
-                    $state.go('login');
+                    $location.url('/login');
                 });
             }
         });

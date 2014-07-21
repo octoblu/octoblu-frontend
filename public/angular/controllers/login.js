@@ -10,7 +10,7 @@ angular.module('octobluApp')
                 if (referrer) {
                     window.location = referrer + '?uuid=' + user.skynetuuid + '&token=' + user.skynettoken;
                 } else {
-                    $state.go('ob.dashboard');
+                    $state.go('ob.home');
                 }
             }, function () {
                 //error message goes here.

@@ -1,11 +1,25 @@
 <div class="row device-detail">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h2><i class="fa fa-power-off" ng-class="{'text-success': device.online, 'text-muted': ! device.online}"></i> {{device.name}}</h2>
+        <h2><i class="fa fa-power-off" ng-class="{'text-success': device.online, 'text-muted': ! device.online}"></i>
+            {{device.name}}
+         <div class="btn-toolbar pull-right">
+             <div class="btn-group">
+                 <a class="btn btn-primary btn-lg" ng-click="editDevice(device)">
+                     <i class="fa fa-edit fa-lg"></i>
+                     <span>Edit</span>
+                 </a>
+             </div>
+            <div class="btn-group">
+                <a class="btn btn-danger btn-lg" ng-click="deleteDevice(device)">
+                    <i class="fa fa-trash-o fa-lg"></i>
+                    <span>Delete</span>
+                </a>
+            </div>
+         </div>
+        </h2>
         <h4 class="text-muted">{{device.uuid}}</h4>
         <div>
-            <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
-                <message-grapher device="device.uuid"></message-grapher>
-            </div>
+            <message-grapher device="device.uuid"></message-grapher>
         </div>
         <section class="col-xs-12">
             <tabset ng-if="device.type === 'gateway'">

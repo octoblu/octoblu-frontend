@@ -11,11 +11,11 @@ module.exports = function(app, passport) {
 
     // Generic UUID / Token for SkyNet API calls
     var conn = skynet.createConnection({
-        "uuid": "9b47c2f1-9d9b-11e3-a443-ab1cdce04787",
-        "token": "pxdq6kdnf74iy66rhuvdw9h5d2f0f6r",
-        'server' : config.skynet.host,
-        'port'   : config.skynet.port ,
-        "protocol": "websocket"
+        "uuid"     : "9b47c2f1-9d9b-11e3-a443-ab1cdce04787",
+        "token"    : "pxdq6kdnf74iy66rhuvdw9h5d2f0f6r",
+        "server"   : config.skynet.host,
+        "port"     : config.skynet.port,
+        "protocol" : "websocket"
     });
 
     conn.on('notReady', function(data){
@@ -40,6 +40,7 @@ module.exports = function(app, passport) {
         require('./controllers/user')(app);
         require('./controllers/group')(app);
         require('./controllers/permissions')(app);
+        require('./controllers/node')(app);
         require('./controllers/designer')(app);
         require('./controllers/invitation')(app, passport, config);
 

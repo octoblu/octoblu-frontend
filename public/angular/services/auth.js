@@ -1,6 +1,6 @@
 angular.module('octobluApp')
-    .service('AuthService', function ($q, $cookies,  $http) {
-        var currentUser;
+    .service('AuthService', function ($q, $cookies,  $http, $location) {
+        var currentUser = {};
 
         //TODO: move me to the eventual root controller.
         function getProfileUrl(user) {
@@ -17,7 +17,7 @@ angular.module('octobluApp')
         }
 
         function loginHandler(result) {
-            currentUser = result.data;
+            angular.copy(result.data, currentUser);
             $cookies.skynetuuid = currentUser.skynetuuid;
             $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);
@@ -25,9 +25,10 @@ angular.module('octobluApp')
         }
 
         function logoutHandler(err) {
-            currentUser = undefined;
+            angular.copy({}, currentUser);
             delete $cookies.skynetuuid;
             delete $cookies.skynettoken;
+            $location.url('/login');
         }
 
         return {
@@ -45,8 +46,32 @@ angular.module('octobluApp')
                 return $http.delete('/api/auth').then(logoutHandler, logoutHandler);
             },
 
-            getCurrentUser: function () {
-                if (currentUser) {
+            resetPassword: function(email) {
+                return $http.post('/api/reset', {email: email}).then(function(response){
+                    if(response.status !== 201) {
+                        throw response.data;
+                    }
+                });
+            },
+
+            setPassword: function(resetToken, password) {
+                return $http.put('/api/reset/'+resetToken, {password: password}).then(function(response){
+                    if(response.status !== 204) {
+                        throw response.data;
+                    }
+                });
+            },
+
+            updatePassword: function(oldPassword, newPassword) {
+                return $http.put('/api/auth', {oldPassword: oldPassword, newPassword: newPassword}).then(function(response){
+                    if(response.status !== 204) {
+                        throw response.data;
+                    }
+                })
+            },
+
+            getCurrentUser: function (force) {
+                if (currentUser.id && !force) {
                     var defer = $q.defer();
                     defer.resolve(currentUser);
                     return defer.promise;

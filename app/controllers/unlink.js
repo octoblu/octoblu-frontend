@@ -18,7 +18,7 @@ module.exports = function (app) {
         user.local.email = undefined;
         user.local.password = undefined;
         user.save(function (err) {
-            res.redirect('/dashboard');
+            res.redirect('/home');
         });
     });
 
@@ -27,7 +27,7 @@ module.exports = function (app) {
         var user = req.user;
         user.facebook.token = undefined;
         user.save(function (err) {
-            res.redirect('/dashboard');
+            res.redirect('/home');
         });
     });
 
@@ -36,7 +36,7 @@ module.exports = function (app) {
         var user = req.user;
         user.twitter.token = undefined;
         user.save(function (err) {
-            res.redirect('/dashboard');
+            res.redirect('/home');
         });
     });
 
@@ -45,7 +45,7 @@ module.exports = function (app) {
         var user = req.user;
         user.google.token = undefined;
         user.save(function (err) {
-            res.redirect('/dashboard');
+            res.redirect('/home');
         });
     });
 };
