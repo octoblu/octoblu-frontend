@@ -4,7 +4,8 @@
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
         'host': 'skynet.im',
-        'port': '443'
+        'port': '443',
+        'secure': true
         // 'host': 'localhost', //change to the skynet.im instance
         // 'port': '3000'
     })
