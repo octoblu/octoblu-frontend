@@ -81,6 +81,7 @@ var config = {
           'port' : process.env.SKYNET_PORT || 80
       },
     'port' : process.env.PORT || 8080,
+    'sslPort' : process.env.SSL_PORT || 8081,
     'domain': null
   },
   test: {
@@ -171,6 +172,7 @@ var config = {
            'port' : process.env.SKYNET_PORT || 80
       },
     'port' : process.env.PORT || 80,
+    'sslPort' : process.env.SSL_PORT || 443,
     'domain': '.octoblu.com'
   }
 };
