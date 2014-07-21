@@ -52,15 +52,15 @@ RED.initializePalette = function() {
 
             d.onmousedown = function(e) { e.preventDefault(); }
 
-            $(d).popover({
-                    title:d.type,
-                    placement:"right",
-                    trigger: "hover",
-                    delay: { show: 750, hide: 50 },
-                    html: true,
-                    container:'body',
-                    content: $(($("script[data-help-name|='"+nt+"']").html()||"<p>no information available</p>").trim())[0]
-            });
+//            $(d).popover({
+//                    title:d.type,
+//                    placement:"right",
+//                    trigger: "hover",
+//                    delay: { show: 750, hide: 50 },
+//                    html: true,
+//                    container:'body',
+//                    content: $(($("script[data-help-name|='"+nt+"']").html()||"<p>no information available</p>").trim())[0]
+//            });
             $(d).click(function() {
                     var help = '<div class="node-help">'+($("script[data-help-name|='"+d.type+"']").html()||"")+"</div>";
                     $("#tab-info").html(help);

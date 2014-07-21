@@ -55,5 +55,5 @@ RED.initializeNotifications = function() {
         c+=1;
         return n;
     }
-}();
+};
 

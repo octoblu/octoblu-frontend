@@ -53,6 +53,8 @@
     "socket.io-client": "~1.0.6"
   },
   "resolutions": {
+    "jquery-ui": "~1.10.4",
+    "jquery": "~2.1.1",
     "d3": "~3.4.8"
   }
 }

@@ -20,8 +20,8 @@ var credentials = {key: privateKey, cert: certificate};
 var app        = express();
 var env        = app.settings.env;
 var configAuth = require('./config/auth.js')(env);
-var port       = process.env.PORT || configAuth.port;
-var sslPort    = process.env.SSLPORT || configAuth.sslPort;
+var port       = process.env.OCTOBLU_PORT || configAuth.port;
+var sslPort    = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 
 var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
@@ -46,10 +46,10 @@ app.use(express.static(__dirname + '/public'));     // set the static files loca
 // app.set('view engine', 'jade'); // set up jade for templating
 
 // required for passport
-app.use(expressSession({ 
+app.use(expressSession({
         store:  new RedisStore({url: configDB.redisSessionUrl}),
         secret: 'e2em2miotskynet',
-        cookie: { domain: configAuth.domain} 
+        cookie: { domain: configAuth.domain}
     })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

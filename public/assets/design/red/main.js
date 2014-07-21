@@ -79,13 +79,13 @@ var initializeRED = function() {
             }
             var nns = RED.nodes.createCompleteNodeSet();
 
-            $("#btn-icn-deploy").removeClass('icon-upload');
-            $("#btn-icn-deploy").addClass('spinner');
+            $("#btn-icn-deploy").removeClass('fa-upload');
+            $("#btn-icn-deploy").addClass('fa-spinner');
             RED.view.dirty(false);
 
             RED.rpc('saveFlows',[nns],function(err,resp) {
-                    $("#btn-icn-deploy").removeClass('spinner');
-                    $("#btn-icn-deploy").addClass('icon-upload');
+                    $("#btn-icn-deploy").removeClass('fa-spinner');
+                    $("#btn-icn-deploy").addClass('fa-upload');
                     if (resp) {
                         RED.notify("Successfully deployed","success");
                         RED.nodes.eachNode(function(node) {
