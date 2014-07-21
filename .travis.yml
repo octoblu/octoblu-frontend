@@ -12,3 +12,6 @@ deploy:
   app-id: 42f87aa6-8b69-47d5-b2a3-dcc9511281be
   on:
     repo: octoblu/octoblu
+branches:
+  only:
+    - master
