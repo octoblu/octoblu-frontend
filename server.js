@@ -18,7 +18,7 @@ var port     = process.env.PORT || configAuth.port;
 var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
 skynetdb.connect(configDB.skynetUrl);
-RedisStore = connectRedis(expressSession);
+var RedisStore = connectRedis(expressSession);
 // Initialize Models
 
 //moved all the models initialization into here, because otherwise when we include the schema twice,
