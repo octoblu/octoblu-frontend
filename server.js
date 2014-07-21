@@ -8,6 +8,7 @@ var mongoose       = require('mongoose');
 var passport       = require('passport');
 var flash          = require('connect-flash');
 var skynetdb       = require('./app/lib/skynetdb');
+var connectRedis   = require('connect-redis');
 
 var app      = express();
 var env      = app.settings.env;
@@ -17,7 +18,7 @@ var port     = process.env.PORT || configAuth.port;
 var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
 skynetdb.connect(configDB.skynetUrl);
-
+RedisStore = connectRedis(expressSession);
 // Initialize Models
 
 //moved all the models initialization into here, because otherwise when we include the schema twice,
@@ -37,8 +38,11 @@ app.use(express.static(__dirname + '/public'));     // set the static files loca
 // app.set('view engine', 'jade'); // set up jade for templating
 
 // required for passport
-app.use(expressSession({ secret: 'e2em2miotskynet',
-        cookie: { domain: configAuth.domain} })); // session secret
+app.use(expressSession({ 
+        store:  new RedisStore({url: configDB.redisSessionUrl}),
+        secret: 'e2em2miotskynet',
+        cookie: { domain: configAuth.domain} 
+    })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
