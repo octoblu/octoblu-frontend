@@ -59,6 +59,11 @@ a, a:hover, a:active, a:link, a:visited {text-decoration: none; outline: none;}
 position: relative;
 }
 
+
+.main-container {
+    margin-top: 50px;
+}
+
 		/* *** MENU *** */
 .dropdown-menu {
 background-color: #f8f8f8;
@@ -77,14 +82,7 @@ color: #555555;
 color: #262626;
 background-color: #eee;
 }
-		/* *** SECTION *** */
-.section {		/* Use it to create a menu section like "ABOUT" or "SERVICES" */
-	text-align: center;
-	height: 80px;
-	display: inline-block;
-	width: 100%;
-	background-attachment: fixed;
-}
+
 .section-dark {
 	text-align: center;
 	height: 80px;
