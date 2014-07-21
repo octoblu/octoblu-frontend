@@ -66,7 +66,8 @@
   },
   "scripts": {
     "test": "NODE_ENV=test make test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "gulp && bower install"
   },
   "engines": {
     "node": ">=0.6"
