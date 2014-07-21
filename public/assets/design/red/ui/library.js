@@ -100,7 +100,7 @@ RED.library = function() {
                             });
                         }
                     }();
-                    li.innerHTML = '<i class="icon-folder-close"></i> '+v+"</i>";
+                    li.innerHTML = '<i class="fa fa-folder-close"></i> '+v+"</i>";
                     ul.appendChild(li);
                 } else {
                     // file
@@ -125,7 +125,7 @@ RED.library = function() {
 
         $('#node-input-name').addClass('input-append-left').css("width","65%").after(
             '<div class="btn-group" style="margin-left: -5px;">'+
-            '<button id="node-input-'+options.type+'-lookup" class="btn input-append-right" data-toggle="dropdown"><i class="icon-book"></i> <span class="caret"></span></button>'+
+            '<button id="node-input-'+options.type+'-lookup" class="btn btn-default btn-xs input-append-right" data-toggle="dropdown"><i class="fa fa-book"></i> <span class="caret"></span></button>'+
             '<ul class="dropdown-menu pull-right" role="menu">'+
             '<li><a id="node-input-'+options.type+'-menu-open-library" tabindex="-1" href="#">Open Library...</a></li>'+
             '<li><a id="node-input-'+options.type+'-menu-save-library" tabindex="-1" href="#">Save to Library...</a></li>'+
