@@ -1,13 +1,18 @@
-var express  = require('express');
+var express        = require('express');
+var morgan         = require('morgan');
+var cookieParser   = require('cookie-parser');
+var bodyParser     = require('body-parser');
+var expressSession = require('express-session');
+var cors           = require('cors');
+var mongoose       = require('mongoose');
+var passport       = require('passport');
+var flash          = require('connect-flash');
+var skynetdb       = require('./app/lib/skynetdb');
+
 var app      = express();
-var cors     = require('cors');
 var env      = app.settings.env;
 var configAuth = require('./config/auth.js')(env);
 var port     = process.env.PORT || configAuth.port;
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash    = require('connect-flash');
-var skynetdb = require('./app/lib/skynetdb');
 
 var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
@@ -21,30 +26,26 @@ require('./initializeModels.js');
 
 require('./config/passport')(env, passport); // pass passport for configuration
 
-app.configure(function() {
 
-    // set up our express application
-    app.use(express.logger({format: 'dev', immediate:false})); // log every request to the console
-    app.use(express.cookieParser()); // read cookies (needed for auth)
-    // app.use(express.bodyParser()); // get information from html forms
-    app.use(express.urlencoded());
-    app.use(express.json());
-    app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
+// set up our express application
+app.use(morgan('dev', {immediate:false})); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+// app.use(express.bodyParser()); // get information from html forms
+app.use(bodyParser());
+app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
 
-    // app.set('view engine', 'jade'); // set up jade for templating
+// app.set('view engine', 'jade'); // set up jade for templating
 
-    // required for passport
-    app.use(express.session({ secret: 'e2em2miotskynet',
+// required for passport
+app.use(expressSession({ secret: 'e2em2miotskynet',
         cookie: { domain: configAuth.domain} })); // session secret
-    app.use(passport.initialize());
-    app.use(passport.session()); // persistent login sessions
-    app.use(flash()); // use connect-flash for flash messages stored in session
-
-    app.use(cors());
-
-});
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(cors());
 
 require('./app/routes.js')(app, passport);
 
-app.listen(port);
-console.log('Listening on port ' + port);
+app.listen(port, function(){
+    console.log('Listening on port ' + port);
+});
