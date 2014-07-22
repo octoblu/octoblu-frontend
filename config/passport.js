@@ -59,18 +59,18 @@ module.exports = function (env, passport) {
                 // if there are any errors, return the error
                 if (err) {
                     console.log('auth error');
-                    return done(err);
+                    return done(null, false, { message : "Internal Server Error"});
                 }
 
                 // if no user is found, return the message
                 if (!user) {
                     console.log('auth user not found');
-                    return done({error : 'No User Found'});
+                    return done(null, false,  {message : 'No User Found'});
                 }
 
                 if (!user.validPassword(password)) {
                     console.log('auth password doesnt match');
-                    return done({error : 'Bad Password!'});
+                    return done(null, false, {message : 'Invalid Password!'});
                 }
 
 
