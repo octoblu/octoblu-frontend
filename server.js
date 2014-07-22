@@ -1,4 +1,6 @@
 var express        = require('express');
+var http           = require('http');
+var https          = require('https');
 var morgan         = require('morgan');
 var cookieParser   = require('cookie-parser');
 var bodyParser     = require('body-parser');
@@ -9,16 +11,22 @@ var passport       = require('passport');
 var flash          = require('connect-flash');
 var skynetdb       = require('./app/lib/skynetdb');
 var connectRedis   = require('connect-redis');
+var fs             = require('fs');
+var privateKey     = fs.readFileSync('config/server.key', 'utf8');
+var certificate    = fs.readFileSync('config/server.crt', 'utf8');
 
-var app      = express();
-var env      = app.settings.env;
+var credentials = {key: privateKey, cert: certificate};
+
+var app        = express();
+var env        = app.settings.env;
 var configAuth = require('./config/auth.js')(env);
-var port     = process.env.PORT || configAuth.port;
+var port       = process.env.OCTOBLU_PORT || configAuth.port;
+var sslPort    = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 
 var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
 skynetdb.connect(configDB.skynetUrl);
-RedisStore = connectRedis(expressSession);
+var RedisStore = connectRedis(expressSession);
 // Initialize Models
 
 //moved all the models initialization into here, because otherwise when we include the schema twice,
@@ -38,10 +46,10 @@ app.use(express.static(__dirname + '/public'));     // set the static files loca
 // app.set('view engine', 'jade'); // set up jade for templating
 
 // required for passport
-app.use(expressSession({ 
+app.use(expressSession({
         store:  new RedisStore({url: configDB.redisSessionUrl}),
         secret: 'e2em2miotskynet',
-        cookie: { domain: configAuth.domain} 
+        cookie: { domain: configAuth.domain}
     })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -50,6 +58,13 @@ app.use(cors());
 
 require('./app/routes.js')(app, passport);
 
-app.listen(port, function(){
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(port, function(){
     console.log('Listening on port ' + port);
+});
+
+httpsServer.listen(sslPort, function() {
+  console.log('HTTPS listening on', sslPort);
 });
