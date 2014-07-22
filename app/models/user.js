@@ -145,7 +145,7 @@ UserSchema.methods.updatePassword = function(oldPassword, newPassword){
     user = this;
 
     if(!this.validPassword(oldPassword)) {
-        defer.reject('Password is invalid')
+        defer.reject('Password is invalid');
         return defer.promise;
     }
 

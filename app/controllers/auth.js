@@ -27,6 +27,11 @@ module.exports = function (app, passport, config) {
 
     function loginRoute(req, res) {
         var user = req.user;
+
+        if (! user || ! user._id) {
+            res.send(401, {error: 'unauthorized'});
+            return;
+        }
         res.cookie('skynetuuid', user.skynet.uuid, {
             maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
             domain: config.domain,
@@ -38,12 +43,7 @@ module.exports = function (app, passport, config) {
             domain: config.domain,
             httpOnly: false
         });
-
-        if (req.user && req.user._id) {
-            res.send(req.user)
-        } else {
-            res.send(401, {error: 'unauthorized'});
-        }
+        res.send(user);
     }
 
     function logoutRoute(req, res) {
