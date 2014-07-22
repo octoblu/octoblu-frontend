@@ -2,6 +2,12 @@ var config = {
   rh: {
   },
   development: {
+    'githubAuth' : {
+      'clientID': 'eb5bb208bc4dba9e8c13',
+      'clientSecret': 'ce1d5cb7487b0974e970c0c76f5c9c76412309e9',
+      'callbackURL'   : 'http://localhost:8080/auth/github/callback'
+    },
+
     'facebookAuth' : {
       'clientID'    : '244672615710168', // your App ID
       'clientSecret'  : '936b46491b2f10ac4f9941329d68b3bb', // your App Secret
@@ -88,6 +94,11 @@ var config = {
 
   },
   production: {
+    'githubAuth' : {
+      'clientID': 'INSERT_SECERT_HERE',
+      'clientSecret': 'INSERT_SECERT_HERE',
+      'callbackURL'   : 'http://app.octoblu.com/auth/github/callback'
+    },
     'facebookAuth' : {
       'clientID'    : 'INSERT_SECERT_HERE', // your App ID
       'clientSecret'  : 'INSERT_SECERT_HERE', // your App Secret

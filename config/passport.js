@@ -14,6 +14,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var GithubStrategy = require('passport-github').Strategy;
 
 // load up the user model
 var mongoose = require('mongoose');
@@ -225,6 +226,44 @@ module.exports = function (env, passport) {
                             displayName: profile.displayName,
                             email: profile.emails[0].value,
                             google: {
+                                id: profile.id,
+                                token: token,
+                                username: profile.emails[0].value,
+                                displayName: profile.displayName
+                            }
+                        });
+                    }
+                })
+                .then(function (user) {
+                    done(null, user);
+                }, function (err) {
+                    done(err);
+                });
+        }));
+
+    // =========================================================================
+    // GITHUB ==================================================================
+    // =========================================================================
+    passport.use(new GithubStrategy({
+
+            clientID: configAuth.githubAuth.clientID,
+            clientSecret: configAuth.githubAuth.clientSecret,
+            callbackURL: configAuth.githubAuth.callbackURL,
+            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+
+        },
+        function (req, token, tokenSecret, profile, done) {
+            User.findOne({ 'github.id': profile.id }).exec()
+                .then(function (user) {
+                    if (user) {
+                        return user; // user found, return that user
+                    } else {
+                        // if there is no user, create them
+                        return User.create({
+                            username: profile.emails[0].value,
+                            displayName: profile.displayName,
+                            email: profile.emails[0].value,
+                            github: {
                                 id: profile.id,
                                 token: token,
                                 username: profile.emails[0].value,

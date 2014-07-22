@@ -147,6 +147,9 @@ module.exports = function (app, passport, config) {
     app.get('/auth/google', storeReferrer, passport.authenticate('google', { scope: ['profile', 'email'] }));
     app.get('/auth/google/callback', passport.authenticate('google'), restoreReferrer, completeLogin);
 
+    app.get('/auth/github', storeReferrer, passport.authenticate('github', { scope: ['user:email'] }));
+    app.get('/auth/github/callback', passport.authenticate('github'), restoreReferrer, completeLogin);
+
     // working on custom oauth handling here.....
     app.get('/api/auth/:id/custom', function (req, res) {
 
