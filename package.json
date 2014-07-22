@@ -59,7 +59,8 @@
     "simple-oauth2": "~0.1.9",
     "skynet": "*",
     "underscore": "~1.6.0",
-    "when": "^3.0.1"
+    "when": "^3.0.1",
+    "passport-github": "~0.1.5"
   },
   "devDependencies": {
     "gulp": "~3.8.6"
