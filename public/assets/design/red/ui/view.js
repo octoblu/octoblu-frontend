@@ -1113,22 +1113,14 @@ RED.initializeView = function() {
         }
     }
 
-    function importFromCommunity(event){
-        var flowStr = event.data || false;
-        if(flowStr && flowStr.length){
-            //Successful found a importable flow
-            // Wait until document is loaded - THIS IS A HACK - This needs to be triggered on an event
-            setTimeout(function(){
-                if(confirm('Do you want to import now?')){
-                    importNodes(flowStr);
-                    return true;
-                }
-            }, 1000);
+    function importFromCommunity(flowStr){
+        if(confirm('Do you want to import now?')){
+           importNodes(flowStr);
+            return true;
         }
-        return false;
     }
 
-    addEventListener("message", importFromCommunity, false);
+//    addEventListener("message", importFromCommunity, false);
 
 
     $('#btn-import').click(function() {showImportNodesDialog();});
