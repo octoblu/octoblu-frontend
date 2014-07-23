@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-var RED = {}
+var RED = {};
 
 var initializeRED = function() {
     var uuid, token, port;
@@ -135,7 +135,7 @@ var initializeRED = function() {
                     }
                 ]
         });
-    }
+    };
 
     function loadSettings() {
         RED.rpc('settings', function(err, data){
@@ -194,7 +194,8 @@ var initializeRED = function() {
 
             var path = location.hostname+":"+location.port+document.location.pathname;
             //TODO place uuid/token and port in from $scope.currentUser.skynetuuid  $scope.currentUser.skynettoken $scope.redPort;
-            path = uuid + ':' + token + '@designer.octoblu.com:' + port;
+//            path = uuid + ':' + token + '@designer.octoblu.com:' + port;
+            path = 'localhost:1880';
             path = path+(path.slice(-1) == "/"?"":"/")+"ws";
             path = "ws"+(document.location.protocol=="https:"?"s":"")+"://"+path;
 
