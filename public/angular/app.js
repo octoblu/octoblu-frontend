@@ -3,10 +3,8 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
-        'host': 'wss://skynet.im',
-        'port': '443'
-        // 'host': 'wss://localhost', //change to the skynet.im instance
-        // 'port': '3001'
+        'host': 'localhost', //change to the skynet.im instance
+        'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -31,11 +29,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         // change page event name
         AnalyticsProvider.setPageEvent('$stateChangeSuccess');
 
-        $httpProvider.interceptors.push(function ($location) {
+        $httpProvider.interceptors.push(function ($window) {
             return {
                 responseError: function (response) {
                     if (response.status === 401) {
-                        $location.url('/login');
+                        $window.location = '/login';
                     }
                     return response;
                 }

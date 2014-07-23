@@ -124,7 +124,7 @@ RED.library = function() {
         }
 
         $('#node-input-name').addClass('input-append-left').css("width","65%").after(
-            '<div class="btn-group" style="margin-left: -5px;">'+
+            '<div class="dropdown btn-group" style="margin-left: -5px;">'+
             '<button id="node-input-'+options.type+'-lookup" class="btn btn-default btn-xs input-append-right" data-toggle="dropdown"><i class="fa fa-book"></i> <span class="caret"></span></button>'+
             '<ul class="dropdown-menu pull-right" role="menu">'+
             '<li><a id="node-input-'+options.type+'-menu-open-library" tabindex="-1" href="#">Open Library...</a></li>'+

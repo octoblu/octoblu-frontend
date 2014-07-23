@@ -6,7 +6,7 @@ module.exports = function (app) {
     app.post('/api/import/flow', function(req, res) {
         if(req.body.flow){
             req.session.flow = req.body.flow;
-            res.redirect('/designer');
+            res.redirect('/design');
             return;
         }
         res.json({ success  : false });
