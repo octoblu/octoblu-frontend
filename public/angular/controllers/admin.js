@@ -6,7 +6,7 @@ angular.module('octobluApp')
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
         $scope.operatorsGroup = operatorsGroup;
-        $scope.allResources = _.union(operatorsGroup.members, _.pluck(allDevices, 'resource'));
+        $scope.allResources = _.union(operatorsGroup.members, allDevices);
 
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
@@ -48,6 +48,13 @@ angular.module('octobluApp')
                             $scope.allGroupResourcePermissions.splice(index, 1);
                         });
                 });
+        };
+
+        $scope.getDisplayName = function(resource) {
+            if(resource.properties) {
+                resource = resource.properties;
+            }
+            return resource.name || resource.displayName || resource.email;
         };
 
         $scope.getDeviceImageUrl = function (device) {

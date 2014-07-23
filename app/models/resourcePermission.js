@@ -202,6 +202,17 @@ ResourcePermissionSchema.statics.updateSkynetPermissions = function (options) {
         });
 };
 
+ResourcePermissionSchema..methods.saveWithPromise = function(){
+    var defer = Q.defer();
+    this.save(function(error, resourcePermission){
+        if(error) {
+            return defer.reject(error);
+        }
+        defer.resolve(resourcePermission);
+    });
+    return defer.promise;
+};
+
 ResourcePermissionSchema.statics.formatSkynetPermissions = function (permissions) {
 
     var viewWhitelist = _.filter(permissions, function (permission) {
