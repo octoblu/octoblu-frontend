@@ -14,7 +14,7 @@ var config = {
         // url : 'mongodb://[user]:[password]@dharma.mongohq.com:10040/meshines'
         url : 'mongodb://localhost:27017/meshines',
         skynetUrl: 'mongodb://localhost:27017/skynet',
-        redisSessionUrl: 'redis://meshblu-redis.csy8op.0001.usw2.cache.amazonaws.com'
+        redisSessionUrl: 'redis://localhost'
     }
 };
 
