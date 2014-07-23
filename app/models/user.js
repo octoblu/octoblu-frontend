@@ -33,7 +33,7 @@ var UserSchema = new mongoose.Schema({
             id: String,
             token: String,
             email: String,
-            name: String,
+            name: String
         },
         twitter: {
             id: String,
@@ -46,6 +46,9 @@ var UserSchema = new mongoose.Schema({
             token: String,
             email: String,
             name: String
+        },
+        github: {
+            id: String
         },
         api: [
             {
@@ -221,8 +224,8 @@ UserSchema.pre('validate', function (next) {
                 token: user.skynet.token,
                 'email': user.email
 
-            }})
-            .then(function (result) {
+            }
+        }).then(function (result) {
                 console.log(result.entity);
                 next();
             })
