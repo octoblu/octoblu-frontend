@@ -194,8 +194,8 @@ var initializeRED = function() {
 
             var path = location.hostname+":"+location.port+document.location.pathname;
             //TODO place uuid/token and port in from $scope.currentUser.skynetuuid  $scope.currentUser.skynettoken $scope.redPort;
-//            path = uuid + ':' + token + '@designer.octoblu.com:' + port;
-            path = 'localhost:1880';
+             path = uuid + ':' + token + '@designer.octoblu.com:' + port;
+//            path = 'localhost:1880';
             path = path+(path.slice(-1) == "/"?"":"/")+"ws";
             path = "ws"+(document.location.protocol=="https:"?"s":"")+"://"+path;
 
