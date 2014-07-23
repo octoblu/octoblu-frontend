@@ -1,9 +1,10 @@
 angular.module('octobluApp')
-    .service('deviceService', function ($q, $http, $rootScope, skynetService, reservedProperties) {
+    .service('deviceService', function ($q, $http, $rootScope, skynetService, PermissionsService, reservedProperties) {
         var myDevices = [];
         var skynetPromise = skynetService.getSkynetConnection();
 
         function addDevice(device) {
+            device = PermissionsService.makeResource(device);
             myDevices.push(device);
             skynetPromise.then(function (skynetConnection) {
                 skynetConnection.unsubscribe({uuid: device.uuid, token: device.token});

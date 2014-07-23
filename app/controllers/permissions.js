@@ -91,7 +91,8 @@ var permissionsController = {
                     if (err) {
                         throw {error: err};
                     }
-                    if(rscPerm.target) {
+
+                    if (rscPerm.target) {
                         Group.findOne({
                             'resource.owner.uuid': user.resource.uuid,
                             'resource.uuid': rscPerm.target.uuid
@@ -102,7 +103,7 @@ var permissionsController = {
                                 membersToUpdate = targetGroup.members;
 
                                 if (group) {
-                                    oldMembers      = group.members;
+                                    oldMembers = group.members;
                                     membersToUpdate = _.uniq(_.union(oldMembers, targetGroup.members), function (member) {
                                         return member.uuid;
                                     });
@@ -124,8 +125,11 @@ var permissionsController = {
                                     }).exec()]);
                             })
                             .then(function () {
-                                return ResourcePermission.updateSkynetPermissions(user.resource,
-                                    membersToUpdate, skynetUrl);
+                                return ResourcePermission.updateSkynetPermissions({
+                                    ownerResource: user.resource,
+                                    resources: membersToUpdate,
+                                    skynetUrl: skynetUrl
+                                });
                             })
                             .then(function () {
                                 res.send(rscPerm);
@@ -237,7 +241,11 @@ var permissionsController = {
             });
     },
     getPermissionsByTarget: function (req, res) {
-        ResourcePermission.findPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'target')
+        ResourcePermission.findPermissionsOnResource({
+            ownerUUID: req.user.resource.uuid,
+            resourceUUID: req.params.uuid,
+            permissionDirection: 'target'
+        })
             .then(function (permissions) {
                 res.send(permissions);
             },
@@ -248,7 +256,11 @@ var permissionsController = {
     },
 
     getFlattenedPermissionsByTarget: function (req, res) {
-        ResourcePermission.findFlattenedPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'target')
+        ResourcePermission.findFlattenedPermissionsOnResource({
+            ownerUUID: req.user.resource.uuid,
+            resourceUUID: req.params.uuid,
+            permissionDirection: 'target'
+        })
             .then(function (permissions) {
                 res.send(permissions);
             },
@@ -259,7 +271,11 @@ var permissionsController = {
     },
 
     getCompiledPermissionsByTarget: function (req, res) {
-        ResourcePermission.findCompiledPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'target')
+        ResourcePermission.findCompiledPermissionsOnResource({
+            ownerUUID: req.user.resource.uuid,
+            resourceUUID: req.params.uuid,
+            permissionDirection: 'target'
+        })
             .then(function (permissions) {
                 res.send(permissions);
             },
@@ -269,7 +285,11 @@ var permissionsController = {
         );
     },
     getPermissionsBySource: function (req, res) {
-        ResourcePermission.findPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'source')
+        ResourcePermission.findPermissionsOnResource({
+            ownerUUID: req.user.resource.uuid,
+            resourceUUID: req.params.uuid,
+            permissionDirection: 'source'
+        })
             .then(function (permissions) {
                 res.send(permissions);
             },
@@ -278,8 +298,27 @@ var permissionsController = {
             }
         )
     },
+
+    getMySharedResourceTargets: function (req, res) {
+        ResourcePermission.findPermissionsOnResource({
+            ownerUUID: req.user.resource.uuid,
+            resourceUUID: req.params.uuid,
+            permissionDirection: 'source'
+        })
+            .then(function (permissions) {
+                res.send(permissions);
+            },
+            function (err) {
+                res.send(400, err);
+            });
+    },
+
     getFlattenedPermissionsBySource: function (req, res) {
-        ResourcePermission.findFlattenedPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'source')
+        ResourcePermission.findFlattenedPermissionsOnResource({
+            ownerUUID: req.user.resource.uuid,
+            resourceUUID: req.params.uuid,
+            permissionDirection: 'source'
+        })
             .then(function (permissions) {
                 res.send(permissions);
             },
@@ -290,7 +329,11 @@ var permissionsController = {
     },
 
     getCompiledPermissionsBySource: function (req, res) {
-        ResourcePermission.findCompiledPermissionsOnResource(req.user.resource.uuid, req.params.uuid, 'source')
+        ResourcePermission.findCompiledPermissionsOnResource({
+            ownerUUID: req.user.resource.uuid,
+            resourceUUID: req.params.uuid,
+            permissionDirection: 'source'
+        })
             .then(function (permissions) {
                 res.send(permissions);
             },
