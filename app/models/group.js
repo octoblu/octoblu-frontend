@@ -5,6 +5,7 @@ var Resource = require('./mixins/resource');
 var _ = require('lodash');
 var ResourcePermission = mongoose.model('ResourcePermission');
 var uuid = require('node-uuid');
+var Q = require('q');
 
 
 var GroupSchema = new mongoose.Schema({
@@ -16,7 +17,7 @@ var GroupSchema = new mongoose.Schema({
         enum: ['default', 'operators'],
         required: true
     },
-    members: {type: [Resource.ResourceId], default: [], index: true}
+    members: {type: [mongoose.Schema.Types.Mixed], default: [], index: true}
 });
 GroupSchema.statics.updateProperties = ['name', 'members'];
 
@@ -27,11 +28,17 @@ GroupSchema.statics.permissionsSuffix = {
 
 Resource.makeResourceModel({schema: GroupSchema, type: 'group', uuidProperty: 'uuid'});
 
-/**
- *
- * @param groupUUID
- * @param ownerUUID
- */
+GroupSchema.methods.saveWithPromise = function(){
+    var defer = Q.defer();
+    this.save(function(error, group){
+        if(error) {
+            return defer.reject(error);
+        }
+        defer.resolve(group);
+    });
+    return defer.promise;
+};
+
 GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
     var Group = this, group, sourcePermissionsGroup, targetPermissionsGroup;
 
@@ -86,9 +93,11 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
     });
 };
 
-GroupSchema.statics.findGroupsContainingResource = function (ownerUUID, resourceUUID) {
-    var Group = mongoose.model('Group');
-    var groupResourceQuery = resourceUUID  instanceof Array ? {$in: resourceUUID} : resourceUUID;
+GroupSchema.statics.findGroupsContainingResource = function (options) {
+    var resourceUUID = options.resourceUUID,
+        Group = mongoose.model('Group'),
+        groupResourceQuery = resourceUUID  instanceof Array ? {$in: resourceUUID} : resourceUUID;
+
     return Group.find({
         'members.uuid': groupResourceQuery
     }).exec();

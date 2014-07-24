@@ -132,7 +132,6 @@ function makeResourceModel(options) {
     schema.statics.generateToken = generateToken;
 }
 
-
 module.exports = {
     Resource: Resource,
     ResourceType: ResourceType,

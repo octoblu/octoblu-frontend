@@ -160,7 +160,7 @@ UserSchema.methods.saveWithPromise = function(){
         defer.resolve(user);
     });
     return defer.promise;
-}
+};
 
 UserSchema.methods.updatePassword = function(oldPassword, newPassword){
     var defer, user;
