@@ -50,7 +50,8 @@
     "angularjs-nvd3-directives": "~0.0.7",
     "lodash": "~2.4.1",
     "socket.io": "~1.0.6",
-    "socket.io-client": "~1.0.6"
+    "socket.io-client": "~1.0.6",
+    "bootstrap": "~3.2.0"
   },
   "resolutions": {
     "jquery-ui": "~1.10.4",

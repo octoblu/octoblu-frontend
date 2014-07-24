@@ -7,9 +7,10 @@ module.exports = {
     isAuthenticated: function (req, res, next) {
         if (req.user) {
             next();
-        } else {
-            var skynetuuid = req.headers.skynet_auth_uuid,
-                skynettoken = req.headers.skynet_auth_token;
+        } else {            
+            var skynetuuid = decodeURIComponent(req.headers.skynet_auth_uuid),
+                skynettoken = decodeURIComponent(req.headers.skynet_auth_token);
+            
             if (!skynetuuid || !skynettoken) {
                 res.json(401, {
                     'error': 'unauthorized'
