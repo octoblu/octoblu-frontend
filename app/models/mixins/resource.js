@@ -132,10 +132,6 @@ function makeResourceModel(options) {
     schema.statics.generateToken = generateToken;
 }
 
-function generateProperties(node) {
-    return _.omit(node, _.keys(ResourceId));
-}
-
 module.exports = {
     Resource: Resource,
     ResourceType: ResourceType,
@@ -143,6 +139,5 @@ module.exports = {
     generateToken : generateToken,
     generateUrlSafeToken : generateUrlSafeToken,
     makeResourceModel: makeResourceModel,
-    makeResourceObject : makeResourceObject,
-    generateProperties : generateProperties
+    makeResourceObject : makeResourceObject
 };
