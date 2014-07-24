@@ -103,32 +103,6 @@ GroupSchema.statics.findGroupsContainingResource = function (options) {
     }).exec();
 };
 
-GroupSchema.pre('save', function (next) {
-     _.each(this.members, function (member) {
-        // make sure we store the display properties on non-resource objects.
-
-        if(member.toObject) {
-            member = member.toObject();
-        }
-
-        if (!(member.properties)) {
-            member.properties = _.omit( _.cloneDeep(member), _.keys(Resource.ResourceId));
-        }
-        return member;
-    });
-
-    next();
-});
-
-//GroupSchema.post('init', function (doc) {
-//    doc.members = _.map(doc.members, function (member) {
-//        if (!(member.properties)) {
-//            member.properties = Resource.generateProperties(member);
-//        }
-//        return member;
-//    });
-//});
-
 GroupSchema.index({'resource.owner.uuid': 1, name: 1}, {unique: true});
 
 module.exports = GroupSchema;
