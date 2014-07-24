@@ -10,7 +10,7 @@
     </thead>
     <tr ng-repeat="permission in targetPermissions track by permission.source.uuid ">
         <td title="via {{permission.name}}">
-            {{permission.source.properties.name || permission.source.properties.displayName || permission.source.properties.email}}
+            {{getDisplayName(permission.source)}}
         </td>
         <td>
             <div class="btn-group">

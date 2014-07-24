@@ -1,80 +1,4 @@
 angular.module('octobluApp')
-    .controller('DeviceEditController', function ($scope, deviceService) {
-
-
-        $scope.editSubDevice = function (subdevice, hub) {
-
-            /*
-             TODO
-             * Check if the sub device is installed for the current hub
-             * install the sub device refresh the current device to get the list of updated plugins installed
-             * pass the installed plugin for the sub-device to the modal to the modal
-             *
-             */
-            var subDeviceModal = $modal.open({
-                templateUrl: 'pages/connector/devices/subdevice/edit.html',
-                controller: 'EditSubDeviceController',
-                backdrop: true,
-                resolve: {
-                    mode: function () {
-                        return 'EDIT';
-                    },
-
-                    subdevice: function () {
-                        return subdevice;
-                    },
-
-                    hub: function () {
-                        return hub;
-                    },
-                    smartDevices: function () {
-                        return $scope.smartDevices;
-                    },
-                    plugins: function () {
-                        return hub.plugins;
-                    }
-                }
-            });
-
-            subDeviceModal.result.then(function (options) {
-                deviceService.gatewayConfig({
-                    "uuid": hub.uuid,
-                    "token": hub.token,
-                    "method": "updateSubdevice",
-                    "type": subdevice.type,
-                    "name": subdevice.name,
-                    "options": options
-                }).then(function (updateResult) {
-                    console.log(updateResult);
-                });
-                subdevice.options = options;
-            }, function () {
-
-            });
-
-        };
-
-        $scope.deleteSubDevice = function (subdevice, hub) {
-            $rootScope.confirmModal($modal, $scope, $log,
-                    'Delete Subdevice' + subdevice.name,
-                    'Are you sure you want to delete' + subdevice.name + ' attached to ' + hub.name + ' ?',
-                function () {
-                    $log.info('ok clicked');
-                    deviceService.gatewayConfig({
-                        "uuid": hub.uuid,
-                        "token": hub.token,
-                        "method": "deleteSubdevice",
-                        "name": subdevice.name
-                    }).then(
-                        function (deleteResult) {
-                            if (deleteResult.result === 'ok') {
-                                hub.subdevices = _.without(hub.subdevices, subdevice);
-                            }
-                        });
-                });
-        };
-
-    })
     .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
@@ -124,6 +48,13 @@ angular.module('octobluApp')
                 }
             });
         }
+
+        $scope.getDisplayName = function(resource) {
+            if(resource.properties) {
+                resource = resource.properties;
+            }
+            return resource.name || resource.displayName || resource.email || 'unknown';
+        };
 
         $scope.deleteDevice = function (device) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
