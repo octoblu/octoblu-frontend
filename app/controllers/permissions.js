@@ -79,12 +79,12 @@ var permissionsController = {
             }).exec(),
             Group.findOne({
                 'resource.owner.uuid': user.resource.uuid,
-                'resource.uuid': newSourceGroup.uuid
-            }),
+                'resource.uuid': newSourceGroup.resource.uuid
+            }).exec(),
             Group.findOne({
                 'resource.owner.uuid': user.resource.uuid,
-                'resource.uuid': newTargetGroup.uuid
-            })
+                'resource.uuid': newTargetGroup.resource.uuid
+            }).exec()
         ]).then(function(results){
             var dbPermission = results[0], dbSourceGroup = results[1], dbTargetGroup = results[2];
             var membersToUpdate = _.uniq(_.union(dbTargetGroup.members, newTargetGroup.members), function (member) {
@@ -100,14 +100,14 @@ var permissionsController = {
             dbSourceGroup.members = newSourceGroup.members;
 
             return Q.all([
-                ResourcePermission.saveWithPromise,
-                dbSourceGroup.saveWithPromise,
-                dbTargetGroup.saveWithPromise,
+                dbPermission.saveWithPromise(),
+                dbSourceGroup.saveWithPromise(),
+                dbTargetGroup.saveWithPromise(),
                 ResourcePermission.updateSkynetPermissions({
                     ownerResource: user.resource,
                     resources: membersToUpdate,
                     skynetUrl: skynetUrl
-                }),
+                })
             ])
                 .then(function(results){
                     var updatedPermission = results[0].toObject(),

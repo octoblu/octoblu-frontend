@@ -202,7 +202,7 @@ ResourcePermissionSchema.statics.updateSkynetPermissions = function (options) {
         });
 };
 
-ResourcePermissionSchema..methods.saveWithPromise = function(){
+ResourcePermissionSchema.methods.saveWithPromise = function(){
     var defer = Q.defer();
     this.save(function(error, resourcePermission){
         if(error) {

@@ -86,9 +86,7 @@ angular.module('octobluApp')
         };
 
         $scope.addResourceToGroup = function (group, resource) {
-            var resourcePermission = _.findWhere(group.members, {uuid: resource.uuid});
-
-            if (!resourcePermission) {
+            if (!_.findWhere(group.members, {uuid: resource.uuid})) {
                 group.members.push(resource);
             }
         };

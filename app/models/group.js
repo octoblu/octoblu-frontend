@@ -5,7 +5,7 @@ var Resource = require('./mixins/resource');
 var _ = require('lodash');
 var ResourcePermission = mongoose.model('ResourcePermission');
 var uuid = require('node-uuid');
-var Q = require('Q');
+var Q = require('q');
 
 
 var GroupSchema = new mongoose.Schema({
@@ -17,7 +17,7 @@ var GroupSchema = new mongoose.Schema({
         enum: ['default', 'operators'],
         required: true
     },
-    members: {type: [Resource.ResourceId], default: [], index: true}
+    members: {type: [mongoose.Schema.Types.Mixed], default: [], index: true}
 });
 GroupSchema.statics.updateProperties = ['name', 'members'];
 
@@ -103,11 +103,16 @@ GroupSchema.statics.findGroupsContainingResource = function (options) {
     }).exec();
 };
 
-GroupSchema.pre('validate', function (next) {
-    this.members = _.map(this.members, function (member) {
+GroupSchema.pre('save', function (next) {
+     _.each(this.members, function (member) {
         // make sure we store the display properties on non-resource objects.
+
+        if(member.toObject) {
+            member = member.toObject();
+        }
+
         if (!(member.properties)) {
-            member.properties = Resource.generateProperties(member);
+            member.properties = _.omit( _.cloneDeep(member), _.keys(Resource.ResourceId));
         }
         return member;
     });
