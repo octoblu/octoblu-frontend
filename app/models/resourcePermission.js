@@ -173,8 +173,8 @@ ResourcePermissionSchema.statics.updateSkynetPermissions = function (options) {
                     resourceUUID: resource.uuid,
                     permissionDirection: 'target'
                 })
-                    .then(function (permissions) {
-                        return ResourcePermission.formatSkynetPermissions(permissions);
+                    .then(function (compiledPermissions) {
+                        return ResourcePermission.formatSkynetPermissions(compiledPermissions);
                     })
                     .then(function (permissions) {
                         deviceProperties = {
@@ -183,6 +183,22 @@ ResourcePermissionSchema.statics.updateSkynetPermissions = function (options) {
                             sendWhitelist: permissions.sendWhitelist,
                             receiveWhitelist: permissions.receiveWhitelist
                         };
+
+                        if(_.isEmpty(deviceProperties.viewWhitelist) ) {
+                            deviceProperties.viewWhitelist = null;
+                        }
+
+                        if(_.isEmpty(deviceProperties.updateWhitelist) ) {
+                            deviceProperties.updateWhitelist = null;
+                        }
+
+                        if(_.isEmpty(deviceProperties.sendWhitelist ) ) {
+                            deviceProperties.sendWhitelist = null;
+                        }
+
+                        if(_.isEmpty(deviceProperties.receiveWhitelist ) ) {
+                            deviceProperties.receiveWhitelist= null;
+                        }
 
                         return client({
                             method: 'PUT',

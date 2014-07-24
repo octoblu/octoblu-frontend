@@ -102,13 +102,16 @@ var permissionsController = {
             return Q.all([
                 dbPermission.saveWithPromise(),
                 dbSourceGroup.saveWithPromise(),
-                dbTargetGroup.saveWithPromise(),
-                ResourcePermission.updateSkynetPermissions({
-                    ownerResource: user.resource,
-                    resources: membersToUpdate,
-                    skynetUrl: skynetUrl
-                })
+                dbTargetGroup.saveWithPromise()
             ])
+                .then(function(results){
+                    ResourcePermission.updateSkynetPermissions({
+                        ownerResource: user.resource,
+                        resources: membersToUpdate,
+                        skynetUrl: skynetUrl
+                    });
+                    return results;
+                })
                 .then(function(results){
                     var updatedPermission = results[0].toObject(),
                         updatedSourceGroup = results[1].toObject(),
@@ -117,6 +120,8 @@ var permissionsController = {
                     updatedPermission.targetGroup = updatedTargetGroup;
                     res.send(updatedPermission);
                 });
+        }).catch(function(error){
+            console.log(error)
         });
     },
 

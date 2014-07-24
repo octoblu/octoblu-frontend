@@ -17,7 +17,7 @@ var GroupSchema = new mongoose.Schema({
         enum: ['default', 'operators'],
         required: true
     },
-    members: {type: [mongoose.Schema.Types.Mixed], default: [], index: true}
+    members: {type: [mongoose.Schema.Types.Mixed], default: []}
 });
 GroupSchema.statics.updateProperties = ['name', 'members'];
 
