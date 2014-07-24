@@ -253,24 +253,18 @@ module.exports = function (env, passport) {
 
         },
         function (req, token, tokenSecret, profile, done) {
-            User.findOne({ 'github.id': profile.id }).exec()
+            return User.findOne({ 'github.id': profile.id }).exec()
                 .then(function (user) {
-                    if (user) {
-                        return user; // user found, return that user
-                    } else {
-                        // if there is no user, create them
-                        return User.create({
-                            username: profile.emails[0].value,
-                            displayName: profile.displayName,
-                            email: profile.emails[0].value,
-                            github: {
-                                id: profile.id,
-                                token: token,
-                                username: profile.emails[0].value,
-                                displayName: profile.displayName
-                            }
-                        });
-                    }
+                    if (user) {return user;} // user found, return that user
+
+                    return User.create({
+                        username: profile.username,
+                        displayName: profile.displayName,
+                        email: profile.username,
+                        github: {
+                            id: profile.id
+                        }
+                    });
                 })
                 .then(function (user) {
                     done(null, user);
