@@ -9,38 +9,38 @@
 
 <div class="container-fluid">
 <accordion>
-<accordion-group heading="Top Graphs" >
+<accordion-group heading="Quick Hits - Last 30 days" >
     <div class="container-fluid">
+	<div class="row">
+	<div class="form-group col-md-2">
+                      <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" ng-click='loadTop("now-15d/d")'>
+                              <span class="fa fa-refresh"> Update</span>
+                          </button>
+                      </span>
+                    </div>
+	</div>
+	<div class="row" ng-repeat="trRow in topResults.rows">
+	<div class="col-lg-3 col-sm-4 col-xs-6  dashboard-panel" ng-repeat="panel in trRow">
+		<div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
+		<div class="panel panel-default"><div class="panel-body"><div ng-switch="!!panel.results ? panel.results : 0">
+		<h1><div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div><div ng-switch-default>{{panel.results}}</div></h1>
+		</div></div></div>
+	</div>
+	</div>
         <div class="row">
-            <div class="col-sm-4 dashboard-panel">
+		<div class="col-sm-4 dashboard-panel" ng-repeat="panel in topResults.pie_panels">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Top Devices Sending</h3>
+                    <h3 class="panel-title">{{panel.title}}</h3>
                 </div>
                 <div class="panel panel-default">
                     <a href="">
                         <div class="panel-body">
-                            <div ng-switch="!!topResults.fromUuid ? 1 : 0">
+                            <div ng-switch="!!panel.results ? 1 : 0">
                                <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                                 <div ng-switch-default>
-                                    <div nvd3-pie-chart  data="topResults.fromUuid" height="300">
-					</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-sm-4 dashboard-panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Top Devices Receiving</h3>
-                </div>
-                <div class="panel panel-default">
-                    <a href="">
-                        <div class="panel-body">
-                            <div ng-switch="!!topResults.toUuid ? 1 : 0">
-                                <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-                                <div ng-switch-default>
-                                    <div nvd3-pie-chart data="topResults.toUuid" height="300"></div>
+                                    <div nvd3-pie-chart  data="panel.results" height="300">
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -51,14 +51,6 @@
     </div>
     <!-- Endof Container Fluid-->
 </accordion-group>
-<!-- Maybe later
-<accordion-group heading="Time Ranges">
-    <div class="row">
-        <div class="col-md-10">
-            <h2>Count of EventCodes over time</h2>
-        </div>
-    </div>
-</accordion-group> -->
 <accordion-group heading="Freeform Search">
     <div class="container-fluid">
         <div class="row">
@@ -78,8 +70,8 @@
                     </div>
                     <div class="form-group col-md-2">
                       <span class="input-group-btn">
-                          <button class="btn btn-default" type="button" ng-click="search(1)">
-                              <span class="glyphicon glyphicon-search"> Find</span>
+                          <button class="btn btn-default" type="button" ng-click="search()">
+                              <span class="fa fa-search"> Find</span>
                           </button>
                       </span>
                     </div>
@@ -93,73 +85,37 @@
         <div class="panel-heading">Results
             <p class="pull-right"> hits: {{ results.hits.total }}</p>
         </div>
-        <input type="checkbox" ng-model="checked"> pretty print?
         <div class="panel-body">
 		<table class="table table-striped table-condensed table-hover">
-			<thead><tr><th ng-repeat="header in freeform_results_ngTable.headers" class="{{header.name}}" custom-sort order="header.name" sort="sort">{{header.name}}</th></tr></thead>
+			<thead><tr><th ng-repeat="header in freeform_results_ngTable.headers" class="{{header.name}}" custom-sort order="header.name" sort="sort">
+			<a ng-click="sort_by(order)" style="color: #555;"><i ng-class="selectedCls(order)">{{header.name}}</i></a></th></tr></thead>
 			<tfoot>
-	                <td colspan="6">
-        	            <div class="pagination pull-right">
-	                        <ul>
+	                <td colspan="{{freeform_results_ngTable.headers.length}}">
+        	            <div >
+	                        <ul class="pagination">
                         	    <li ng-class="{disabled: currentPage == 0}">
-                	                <a href ng-click="prevPage()">« Prev</a>
+                	                <a href="/analyze#" ng-click="prevPage()">« Prev</a>
         	                    </li>
 	
-	                            <li ng-repeat="n in range(freeform_results_ngTable.pagedItems.length, currentPage, currentPage + gap) "
-                        	        ng-class="{active: n == currentPage}"
-                	            ng-click="setPage()">
-        	                        <a href ng-bind="n + 1">1</a>
+	                            <li ng-repeat="n in range(freeform_results_ngTable.pagedItems.length, 0, (results.hits.total / ff.maxSize -1 ), 1)"
+                        	        ng-class="{active: n == currentPage}" >
+        	                        <span ng-bind="n + 1">1</span>
 	                            </li>
 
 	                            <li ng-class="{disabled: (currentPage) == freeform_results_ngTable.pagedItems.length - 1}">
-        	                        <a href ng-click="nextPage()">Next »</a>
+        	                        <a href="/analyze#" ng-click="nextPage()">Next »</a>
 	                            </li>
                         	</ul>
                 	    </div>
 	                </td>
         	        </tfoot>
-			<pre>pagedItems.length: {{pagedItems.length|json}}</pre>
-	                <pre>currentPage: {{currentPage|json}}</pre>
-        	        <pre>currentPage: {{sort|json}}</pre>
 			<tbody>
-
 	                <tr ng-repeat="item in freeform_results_ngTable.pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
-        	             <td ng-repeat="val in item" ng-bind-html-unsafe="item[freeform_results_ngTable.headers[$index].name]"></td>
+        	             <!--<td ng-repeat="val in item" ng-bind-html-unsafe="item._source[freeform_results_ngTable.headers[$index].name]"></td>-->
+				<td ng-repeat="header in freeform_results_ngTable.headers">{{ item._source[header.name] | freeFormDisplayText  }}</td>
                 	</tr>
 		        </tbody>
 		</table>
-		<!--<table ng-table="freeform_results_ngTable" show-filter="true" class="table">
-	        <thead>
-        	<tr>
-	            <th ng-repeat="column in columns" ng-show="column.visible"
-	                class="text-center sortable" ng-class="{
-	                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
-	                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
-	                  }"
-	                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
-	                {{column.title}}
-	            </th>
-	        </tr>
-	        </thead>
-	        <tbody>
-	        <tr ng-repeat="user in $data">
-	            <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field">
-        	        {{user[column.field]}}
-	            </td>
-	        </tr>
-	        </tbody>
-	    </table>
-            <table class="table table-striped table-hover">
-                <tr ng-repeat="result in results.hits.hits" ng-class="rowClass(result)">
-                    <td ng-hide="checked">{{ result }}</td>
-                    <td ng-show="checked">
-                        <pre>{{ result | json }}</pre>
-                    </td>
-                </tr>
-            </table>
-		<div data-pagination="" data-num-pages="numPages()" 
-			  data-current-page="ff.currentPage" data-max-size="ff.maxSize"  
-			  data-boundary-links="true"></div>-->
         </div>
     </div>
 
@@ -240,7 +196,7 @@
 			<div class="form-group col-md-2 text-center">
 				<span class="input-group-btn">
                                           <button class="btn btn-default" type="button" ng-click="loadExploreGraph()">
-                                      <span class="glyphicon glyphicon-search"> Find</span>
+                                      <span class="fa fa-search"> Find</span>
                                   </button>
                                       </span>
                             </div>
@@ -267,8 +223,26 @@
                     </div>
             </div>
         </div>
-
+        </div><!-- END OF GRAPH ROW -->
+       <div class="row">
+        <div class="col-sm-8 dashboard-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Event Counts over Time</h3>
+            </div>
+            <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div ng-switch="!!leg ? 1 : 0">
+                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                            <div ng-switch-default>
+                                <div nvd3-scatter-chart show-legend="True" axis-x-label="Hour" axis-x-type="date" axis-x-format="%-m/%-d %-H:%-M"
+                                      data="leg.scatter" height="400" ></div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
+        </div><!-- END OF GRAPH ROW -->
+
     </div>
 </accordion-group>
 </accordion>
