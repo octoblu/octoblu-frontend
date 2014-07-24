@@ -66,6 +66,13 @@ angular.module('octobluApp').
                 }).then(function (res) {
                     return res.data;
                 });
+            },
+            getSharedResources: function (type) {
+                return $http({method: 'GET',
+                    url: '/api/permissions/shared' + (type ? '/' + type : '')
+                }).then(function (res) {
+                    return res.data;
+                });
             }
         }
     })

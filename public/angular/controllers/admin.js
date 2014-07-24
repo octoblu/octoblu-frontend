@@ -6,7 +6,7 @@ angular.module('octobluApp')
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
         $scope.operatorsGroup = operatorsGroup;
-        $scope.allResources = _.union(operatorsGroup.members, _.pluck(allDevices, 'resource'));
+        $scope.allResources = _.union(operatorsGroup.members, allDevices);
 
         $scope.addResourcePermission = function () {
             if ($scope.resourcePermissionName) {
@@ -50,6 +50,13 @@ angular.module('octobluApp')
                 });
         };
 
+        $scope.getDisplayName = function(resource) {
+            if(resource.properties) {
+                resource = resource.properties;
+            }
+            return resource.name || resource.displayName || resource.email;
+        };
+
         $scope.getDeviceImageUrl = function (device) {
             if (device && device.type === 'gateway') {
                 return '/assets/images/network_hub.png';
@@ -79,9 +86,7 @@ angular.module('octobluApp')
         };
 
         $scope.addResourceToGroup = function (group, resource) {
-            var resourcePermission = _.findWhere(group.members, {uuid: resource.uuid});
-
-            if (!resourcePermission) {
+            if (!_.findWhere(group.members, {uuid: resource.uuid})) {
                 group.members.push(resource);
             }
         };
