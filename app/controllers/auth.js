@@ -17,9 +17,10 @@ module.exports = function (app, passport, config) {
     app.post('/api/auth', passport.authenticate('local-login'), loginRoute);
     app.get('/api/auth/login', passport.authenticate('local-login'), loginRoute);
 
-    app.put('/api/auth', isAuthenticated, updatePassword);
     app.delete('/api/auth', logoutRoute);
     app.get('/api/auth/logout', logoutRoute);
+    app.put('/api/auth/accept_terms', isAuthenticated, updateTerms);
+    app.put('/api/auth/password', isAuthenticated, updatePassword);
 
     app.get('/api/auth', isAuthenticated, function (req, res) {
         res.send(req.user);
@@ -68,6 +69,15 @@ module.exports = function (app, passport, config) {
         .catch(function(){
             return res.send(422, {errors: {oldPassword: ['is incorrect.']}});
         });
+    }
+
+    function updateTerms (req, res) {
+        req.user.acceptTerms(req.body.accept_terms).then(function(){
+            return res.send(204);
+        })
+        .catch(function(){
+            return res.send(422, {errors: {accept_terms: ['must be true']}});
+        })
     }
 
     var getApiHashCode = function (clientSecret, requestCode) {

@@ -21,6 +21,7 @@ var UserSchema = new mongoose.Schema({
         admin: Boolean,
         resetPasswordToken: String,
         resetPasswordExpires: Date,
+        terms_accepted_at: Date,
         skynet: {
             uuid: {type: String, unique: true, required: true},
             token: { type: String, required: true}
@@ -90,6 +91,25 @@ UserSchema.methods.findApiByName = function (name) {
 
     return null;
 };
+
+UserSchema.methods.acceptTerms = function (termsAccepted) {
+    var defer = Q.defer();
+
+    if(!termsAccepted){
+        defer.reject("termsAccepted must be true");
+        return defer.promise;
+    }
+
+    this.terms_accepted_at = new Date();
+    this.save(function(error, user){
+        if(error) {
+          return defer.reject(error);
+        }
+        defer.resolve(user);
+    });
+
+    return defer.promise;
+}
 
 UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, token, secret, verifier, custom_tokens) {
     this.api = this.api || [];

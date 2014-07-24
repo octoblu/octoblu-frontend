@@ -15,14 +15,14 @@ angular.module('octobluApp')
                                                     'query': '(fromUuid.owner = "' + uuid + '" OR toUuid.owner = "' + uuid + '")'
                                                 }
                                             },
-//                                            {
-//                                                'range': {
-//                                                    'eventCode': {
-//                                                        gte: 300,
-//                                                        lt: 400
-//                                                    }
-//                                                }
-//                                            },
+                                           // {
+                                           //     'range': {
+                                           //         'eventCode': {
+                                           //             gte: 300,
+                                           //             lt: 400
+                                           //         }
+                                           //     }
+                                           // },
                                             {
                                                 'range': {
                                                     'timestamp': {

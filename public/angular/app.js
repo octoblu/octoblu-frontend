@@ -3,8 +3,10 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
-        'host': 'skynet.im', //change to the skynet.im instance
-        'port': '80'
+        // 'host': 'skynet.im', //change to the skynet.im instance
+        // 'port': '80'
+        'host': 'localhost', //change to the skynet.im instance
+        'port': '3000'
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
@@ -53,7 +55,25 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                         return deviceService.getDevices();
                     }
                 },
+                onEnter: function($state, currentUser){
+                    var terms_accepted_at = new Date(currentUser.terms_accepted_at || null), // new Date(null) -> Epoch
+                        terms_updated_at  = new Date('2014-07-01');
+
+                    if(terms_accepted_at < terms_updated_at) {
+                        $state.go('accept_terms');
+                    }
+                },
                 unsecured: true
+            })
+            .state('accept_terms', {
+                url: '/accept_terms',
+                templateUrl: 'pages/accept_terms.html',
+                controller:  'acceptTermsController',
+                resolve: {
+                    currentUser: function (AuthService) {
+                        return AuthService.getCurrentUser();
+                    }
+                }
             })
             .state('terms', {
                 url: '/terms',
