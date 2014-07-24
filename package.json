@@ -1,6 +1,6 @@
 {
   "name": "octoblu",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "octoblu.com",
   "main": "server.js",
   "author": "Chris Matthieu",
