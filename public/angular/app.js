@@ -35,7 +35,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             return {
                 responseError: function (response) {
                     if (response.status === 401) {
-                        $window.location = '/login';
+                        return $window.location = '/login';
+                    }
+                    if (response.status === 403) {
+                        return $window.location = '/accept_terms';
                     }
                     return response;
                 }
