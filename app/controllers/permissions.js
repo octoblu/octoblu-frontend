@@ -74,8 +74,8 @@ var permissionsController = {
 
         Q.all([
             ResourcePermission.findOne({
-            'resource.uuid': req.params.uuid,
-            'resource.owner.uuid': user.resource.uuid
+                'resource.uuid': req.params.uuid,
+                'resource.owner.uuid': user.resource.uuid
             }).exec(),
             Group.findOne({
                 'resource.owner.uuid': user.resource.uuid,
@@ -85,14 +85,14 @@ var permissionsController = {
                 'resource.owner.uuid': user.resource.uuid,
                 'resource.uuid': newTargetGroup.resource.uuid
             }).exec()
-        ]).then(function(results){
+        ]).then(function (results) {
             var dbPermission = results[0], dbSourceGroup = results[1], dbTargetGroup = results[2];
             var membersToUpdate = _.uniq(_.union(dbTargetGroup.members, newTargetGroup.members), function (member) {
                 return member.uuid;
             });
 
             dbPermission.set({
-                 permissions: newPermission.permissions,
+                permissions: newPermission.permissions,
                 'source': newPermission.source,
                 'target': newPermission.target,
                 'resource.properties': newPermission.resource.properties
@@ -106,7 +106,7 @@ var permissionsController = {
                 dbSourceGroup.saveWithPromise(),
                 dbTargetGroup.saveWithPromise()
             ])
-                .then(function(results){
+                .then(function (results) {
                     ResourcePermission.updateSkynetPermissions({
                         ownerResource: user.resource,
                         resources: membersToUpdate,
@@ -114,7 +114,7 @@ var permissionsController = {
                     });
                     return results;
                 })
-                .then(function(results){
+                .then(function (results) {
                     var updatedPermission = results[0].toObject(),
                         updatedSourceGroup = results[1].toObject(),
                         updatedTargetGroup = results[2].toObject();
@@ -122,7 +122,7 @@ var permissionsController = {
                     updatedPermission.targetGroup = updatedTargetGroup;
                     res.send(updatedPermission);
                 });
-        }).catch(function(error){
+        }).catch(function (error) {
             console.log(error)
         });
     },
@@ -282,9 +282,8 @@ var permissionsController = {
     },
 
     getMySharedResourceTargets: function (req, res) {
-        ResourcePermission.findPermissionsOnResource({
-            ownerUUID: req.user.resource.uuid,
-            resourceUUID: req.params.uuid,
+        ResourcePermission.findFlattenedPermissionsOnResource({
+            resourceUUID: req.user.resource.uuid,
             permissionDirection: 'source'
         })
             .then(function (permissions) {
@@ -330,20 +329,22 @@ var permissionsController = {
 module.exports = function (app) {
 
     permissionsController.skynetUrl = app.locals.skynetUrl;
-    app.get('/api/permissions', isAuthenticated, permissionsController.getResourcePermissions);
-    app.get('/api/permissions/groups', isAuthenticated, permissionsController.getGroupResourcePermissions);
+    app.get('/api/permissions', permissionsController.getResourcePermissions);
+    app.get('/api/permissions/groups', permissionsController.getGroupResourcePermissions);
 
-    app.get('/api/permissions/:uuid', isAuthenticated, permissionsController.getResourcePermissionsById);
-    app.get('/api/permissions/target/:uuid', isAuthenticated, permissionsController.getPermissionsByTarget);
-    app.get('/api/permissions/target/:uuid/flat', isAuthenticated, permissionsController.getFlattenedPermissionsByTarget);
-    app.get('/api/permissions/target/:uuid/compiled', isAuthenticated, permissionsController.getCompiledPermissionsByTarget);
-    app.get('/api/permissions/source/:uuid', isAuthenticated, permissionsController.getPermissionsBySource);
-    app.get('/api/permissions/source/:uuid/flat', isAuthenticated, permissionsController.getFlattenedPermissionsBySource);
-    app.get('/api/permissions/source/:uuid/compiled', isAuthenticated, permissionsController.getCompiledPermissionsBySource);
+    app.get('/api/permissions/:uuid', permissionsController.getResourcePermissionsById);
+    app.get('/api/permissions/target/:uuid', permissionsController.getPermissionsByTarget);
+    app.get('/api/permissions/target/:uuid/flat', permissionsController.getFlattenedPermissionsByTarget);
+    app.get('/api/permissions/target/:uuid/compiled', permissionsController.getCompiledPermissionsByTarget);
+    app.get('/api/permissions/source/:uuid', permissionsController.getPermissionsBySource);
+    app.get('/api/permissions/source/:uuid/flat', permissionsController.getFlattenedPermissionsBySource);
+    app.get('/api/permissions/source/:uuid/compiled', permissionsController.getCompiledPermissionsBySource);
 
-    app.delete('/api/permissions/:uuid', isAuthenticated, permissionsController.deleteResourcePermission);
-    app.put('/api/permissions/:uuid', isAuthenticated, permissionsController.updateGroupResourcePermission);
-    app.post('/api/permissions', isAuthenticated, permissionsController.createResourcePermission);
+    app.delete('/api/permissions/:uuid', permissionsController.deleteResourcePermission);
+    app.put('/api/permissions/:uuid', permissionsController.updateGroupResourcePermission);
+    app.post('/api/permissions', permissionsController.createResourcePermission);
+
+    app.get('/api/permissions/shared/:type?', permissionsController.getMySharedResourceTargets);
 
 };
 
