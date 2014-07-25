@@ -137,6 +137,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 controller: 'DeviceDetailController',
                 templateUrl: 'pages/connector/devices/detail/index.html'
             })
+            .state('ob.connector.nodes.shared-device-detail', {
+                url: '/device-shared/:uuid',
+                controller: 'DeviceDetailSharedController',
+                templateUrl: 'pages/connector/devices/detail/index.html'
+            })
             .state('ob.connector.nodes.channel-detail', {
                 url: '/channel/:id',
                 templateUrl: 'pages/connector/channels/detail.html',
