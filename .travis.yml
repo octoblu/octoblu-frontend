@@ -13,6 +13,7 @@ deploy:
     bucket: deploy-octoblu-static
     region: us-west-2
     skip_cleanup: true
+    acl: authenticated_read
     local-dir: build
     on:
       branch: master
