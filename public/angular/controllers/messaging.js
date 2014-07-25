@@ -97,7 +97,7 @@ angular.module('octobluApp')
                 skynetService.sendMessage({
                     fromUuid: sender.uuid,
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
-                    subdevice: $scope.model.subdevice.name,
+                    subdevice: $scope.model.subdevice.uuid || $scope.model.subdevice.name,
                     payload: $scope.model.schemaEditor.getValue()
                 }).then(function (response) {
                     if(!response.error){
