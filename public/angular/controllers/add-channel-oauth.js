@@ -8,7 +8,7 @@ angular.module('octobluApp')
             if (nodeType.channel.owner || nodeType.channel.useCustom) {
                 url = url + nodeType.channel._id + '/custom';
             } else {
-                url = url + nodeType.channel._id;
+                url = url + nodeType.channel.name;
             }
 
             $window.location.href = url;
