@@ -19,7 +19,7 @@
                 </div>
 
             </div>
-            <div ng-hide="!messageDevice.device.subdevices" class="form-group">
+            <div ng-hide="!messageDevice.recipientDevice.subdevices" class="form-group">
                 <label class="col-sm-2 control-label">SUBDEVICE</label>
                 <div class="col-sm-10">
                     <select ng-model="messageDevice.subdevice" ng-options="subdevice.name for subdevice in messageDevice.recipientDevice.subdevices | orderBy:'name'" class="form-control" id="subdevice"></select>

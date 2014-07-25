@@ -2,7 +2,8 @@ angular.module('octobluApp')
     .controller('MessagingDeviceController', function ($scope, AuthService,  deviceService, skynetService, PluginService) {
 
         $scope.messageDevice = {
-            recipientDevices : [$scope.device], 
+            recipientDevices : [$scope.device],
+            recipientDevice : $scope.device,
             schemaEditor :{}
         };
 
@@ -10,30 +11,6 @@ angular.module('octobluApp')
             $scope.messageDevice.senderDevices = _.sortBy(_.cloneDeep(devices),'name');
         });
 
-//        $scope.model = {
-//            devices: _.sortBy(_.cloneDeep(myDevices), 'name'),
-//            nodeTypes: availableNodeTypes,
-//            schemaEditor: {}
-//
-//        };
-//
-//
-//        $scope.messageDevice.devices.unshift({
-//            name: 'Me',
-//            uuid: currentUser.skynetuuid,
-//            token: currentUser.skynettoken,
-//            type: 'user'
-//        });
-//
-//
-//        $scope.$watch('model.sendUuid', function (newValue, oldValue) {
-//            if (newValue || $scope.messageDevice.device) {
-//                $scope.messageDevice.schema = {};
-//            } else {
-//                delete $scope.messageDevice.schema;
-//            }
-//        });
-//
         $scope.$watch('messageDevice.recipientDevice', function (newDevice, oldDevice) {
             $scope.messageDevice.subdevice = null;
             if (newDevice) {
@@ -56,7 +33,7 @@ angular.module('octobluApp')
             }
         });
 
-        $scope.$watch('model.subdevice', function (newSubdevice, oldSubdevice) {
+        $scope.$watch('messageDevice.subdevice', function (newSubdevice, oldSubdevice) {
             if (newSubdevice) {
                 var plugin = _.findWhere($scope.messageDevice.recipientDevice.plugins, {name: newSubdevice.type});
                 if (!plugin) {
