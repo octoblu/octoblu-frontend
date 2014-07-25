@@ -12,7 +12,7 @@ deploy:
     bucket: deploy-octoblu-static
     skip_cleanup: true
     on:
-      branch: release
+      branch: master
   - provider: opsworks
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
     secret_access_key:
