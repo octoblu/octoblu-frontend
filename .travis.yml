@@ -5,7 +5,7 @@ cache:
   directories:
     - node_modules
     - vendor/bundle
-before_deploy: "mkdir dist && tar czf dist/static.tar.gz public"
+before_deploy: "mkdir build && tar czf build/public.tar.gz public"
 deploy:
   - provider: s3
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
@@ -14,7 +14,7 @@ deploy:
     bucket: deploy-octoblu-static
     region: us-west-2
     skip_cleanup: true
-    local-dir: dist
+    local-dir: build
     on:
       branch: master
   - provider: opsworks
