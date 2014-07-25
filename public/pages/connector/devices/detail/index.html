@@ -74,6 +74,9 @@
                         </div>
                     </ul>
                 </tab>
+                <tab heading="Messaging">
+                    <div ng-include="'/pages/connector/devices/detail/messaging.html'"></div>
+                </tab>
             </tabset>
             <tabset ng-if="device.type !== 'gateway'">
                 <tab heading="Accessible By">
@@ -112,6 +115,9 @@
                             </div>
                         </div>
                     </ul>
+                </tab>
+                <tab heading="Messaging">
+                    <div ng-controller="MessagingDeviceController" ng-include="'/pages/connector/devices/detail/messaging.html'"></div>
                 </tab>
             </tabset>
 
