@@ -75,7 +75,7 @@ var UserSchema = new mongoose.Schema({
     },
     { toObject: {virtuals: true}, toJSON: {virtuals: true} });
 
-Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties: ['displayName', 'email', 'skynettoken']});
+Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties: ['displayName', 'email']});
 
 // find api connection by name
 UserSchema.methods.findApiByName = function (name) {
@@ -109,7 +109,7 @@ UserSchema.methods.acceptTerms = function (termsAccepted) {
     });
 
     return defer.promise;
-}
+};
 
 UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, token, secret, verifier, custom_tokens) {
     this.api = this.api || [];
