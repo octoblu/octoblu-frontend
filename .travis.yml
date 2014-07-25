@@ -4,8 +4,7 @@ node_js:
 cache:
   directories:
     - node_modules
-    - vendor/bundle
-before_deploy: "mkdir build && tar czf build/public.tar.gz public"
+before_deploy: "mkdir -p build && tar czf build/public.tar.gz public"
 deploy:
   - provider: s3
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
