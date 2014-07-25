@@ -140,7 +140,7 @@ angular.module('octobluApp')
                 var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
+                var loc = '/api/auth/' + channel._id;
                 location.href = loc;
             }
         };
@@ -230,7 +230,7 @@ angular.module('octobluApp')
                 var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
+                var loc = '/api/auth/' + channel._id;
                 location.href = loc;
             }
         };
@@ -472,7 +472,7 @@ angular.module('octobluApp')
                 var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
+                var loc = '/api/auth/' + channel._id;
                 location.href = loc;
             }
         };
@@ -561,7 +561,7 @@ angular.module('octobluApp')
                 var loc = '/api/auth/' + channel._id + '/custom';
                 location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
+                var loc = '/api/auth/' + channel._id;
                 location.href = loc;
             }
         };
