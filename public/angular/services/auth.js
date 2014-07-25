@@ -1,5 +1,6 @@
 angular.module('octobluApp')
     .service('AuthService', function ($q, $cookies,  $http, $window) {
+        var service;
         var currentUser = {};
 
         //TODO: move me to the eventual root controller.
@@ -35,7 +36,16 @@ angular.module('octobluApp')
             $window.location = '/login';
         }
 
-        return {
+        return service = {
+            acceptTerms: function(){
+                return $http.put('/api/auth/accept_terms', {accept_terms: true}, function(){
+                    if(response.status !== 204) {
+                        throw response.data;
+                    }
+                }).then(function(){
+                    return service.getCurrentUser(true);
+                });
+            },
             login: function (email, password) {
                 return $http.post('/api/auth', {
                     email: email,
@@ -67,7 +77,7 @@ angular.module('octobluApp')
             },
 
             updatePassword: function(oldPassword, newPassword) {
-                return $http.put('/api/auth', {oldPassword: oldPassword, newPassword: newPassword}).then(function(response){
+                return $http.put('/api/auth/password', {oldPassword: oldPassword, newPassword: newPassword}).then(function(response){
                     if(response.status !== 204) {
                         throw response.data;
                     }

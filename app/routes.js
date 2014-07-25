@@ -3,6 +3,7 @@ module.exports = function(app, passport) {
     var env = app.settings.env;
     var config = require('../config/auth')(env);
     var skynet = require('skynet');
+    var security = require('./controllers/middleware/security');
 
     //set the skynetUrl
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
@@ -25,6 +26,11 @@ module.exports = function(app, passport) {
     // Attach additional routes
     conn.on('ready', function(data){
         console.log('SkyNet authentication: success');
+
+        app.post('/api/auth', security.bypassAuth);
+        app.all('/api/auth', security.bypassTerms);
+        app.all('/api/auth/*', security.bypassTerms);
+        app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
         // Initialize Controllers
         require('./controllers/auth')(app, passport, config);

@@ -8,10 +8,13 @@ var _ = require('lodash'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request');
-var ObjectId = require('mongoose').Types.ObjectId; 
+var ObjectId = require('mongoose').Types.ObjectId;
 var uuid = require('node-uuid');
 
 module.exports = function (app) {
+    app.get('/api/user/terms_accepted', function(req, res){
+        res.send(204, null);
+    });
     // Get user
     app.get('/api/user/:id', isAuthenticated, function (req, res) {
         res.json(req.user);

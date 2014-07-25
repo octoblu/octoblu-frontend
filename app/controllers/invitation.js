@@ -153,59 +153,56 @@ var invitationController = {
         Invitation.findById(req.params.id).exec()
             .then(function (inv) {
                 invitation = inv;
-                console.log('inv', inv);
-                if (invitation.status === 'ACCEPTED') {
-                    res.redirect('/home');
-                } else {
-                    return User.findBySkynetUUID(invitation.from)
-                        .then(function (snd) {
-                            sender = snd;
-                            if (invitation.recipient.uuid) {
-                                return User.findBySkynetUUID(invitation.recipient.uuid);
-                            }
-                            else {
-                                return User.findByEmail(invitation.recipient.email);
-                            }
-                        }).then(function (rcp) {
-                            recipient = rcp;
-                            if (!recipient || recipient.skynetuuid !== req.user.skynetuuid) {
-                                res.redirect('/signup');
-                            } else {
-                                return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid }).exec()
-                                    .then(function (operatorGroup) {
-                                        operatorGroup = operatorGroup ||
-                                            new Group({
-                                                name: 'operators',
-                                                'type': 'operators',
-                                                resource: {
-                                                    owner: user.resourceId
-                                                }
-                                            });
 
-                                        var existingMember = _.findWhere(operatorGroup.members, {'uuid': recipient.resource.uuid });
-                                        //We are seeing if the recipient is already part of the operators group. If the member is
-                                        //already part of the
-                                        if (!existingMember) {
-                                            operatorGroup.members.push(recipient.resourceId);
-                                            invitation.accepted = moment.utc();
-                                            invitation.status = "ACCEPTED";
-                                            invitation.save();
-                                            operatorGroup.save();
-                                        } else {
-                                            //Make sure
-                                            if (invitation.status === "PENDING") {
-                                                invitation.status = "ACCEPTED";
-                                                invitation.accepted = moment.utc();
-                                                invitation.save();
-                                            }
-                                        }
-                                        res.redirect('/home');
-                                    });
-                            }
-                        })
+                if (invitation.status === 'ACCEPTED') {
+                    return res.redirect('/home');
                 }
+
+                return User.findBySkynetUUID(invitation.from)
+                    .then(function (snd) {
+                        sender = snd;
+                        if (invitation.recipient.uuid) {
+                            return User.findBySkynetUUID(invitation.recipient.uuid);
+                        }
+                        return User.findByEmail(invitation.recipient.email);
+                    })
+                    .then(function (rcp) {
+                        recipient = rcp;
+                        if (!recipient || recipient.skynetuuid !== req.user.skynetuuid) {
+                            return res.redirect('/signup');
+                        }
+                        return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid }).exec()
+                            .then(function (operatorGroup) {
+                                operatorGroup = operatorGroup ||
+                                    new Group({
+                                        name: 'operators',
+                                        'type': 'operators',
+                                        resource: {
+                                            owner: recipient.resourceId
+                                        }
+                                    });
+
+                                var existingMember = _.findWhere(operatorGroup.members, {'uuid': recipient.resource.uuid });
+
+                                invitation.accepted = moment.utc();
+                                invitation.status = "ACCEPTED";
+                                invitation.save();
+
+                                if (!existingMember) {
+                                    operatorGroup.members.push(recipient.resourceId);
+                                    operatorGroup.save();
+                                }
+
+                                res.redirect('/home');
+                            });
+                    });
+            })
+            .then(null, function(err){
+                console.log('invitation messed up.');
+                console.log(err);
             });
     },
+
     deleteInvitation: function (req, res) {
         Invitation.findByIdAndRemove(req.params.invitationId, function (err, invitation) {
             if (err) {
