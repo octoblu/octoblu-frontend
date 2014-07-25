@@ -87,23 +87,23 @@ angular.module('octobluApp')
                     $log.log(key);
                     if ($scope.legFirst && key != "all") {
                         $scope.leg.config.contains_uuid = "true";
-                        $scope.myAdditionalQuery += " uuid=" + key + " ";
+                        $scope.myAdditionalQuery += " _type:" + key + " ";
                         $scope.legFirst = false;
                     }
                     else if (key != "all") {
-                        $scope.myAdditionalQuery += " OR uuid=" + key + " ";
+                        $scope.myAdditionalQuery += " OR _type:" + key + " ";
                     }
                 });
 
             }
             $scope.leg.facets = { "eventCodes": {"terms": { "field": "eventCode" } },
                 'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  },
-                "uuids": { "terms":{"field":"uuid"} }
+                "uuids": { "terms":{"field":"_type"} }
             };
             $scope.leg.aggs = {
                 "uuids" : {
                     "terms" : {
-                        "field" : "uuid"
+                        "field" : "_type"
                     }
                 },
                 "eventcodes" : {
@@ -113,7 +113,7 @@ angular.module('octobluApp')
                 },
                 "count_by_uuid": {
                     "terms": {
-                        "field": "uuid"
+                        "field": "_type"
                     },
                     "aggs": {
                         "events_by_date": {
@@ -124,9 +124,14 @@ angular.module('octobluApp')
                             "aggs": {
                                 "value_count_terms": {
                                     "value_count": {
-                                        "field": "uuid"
+                                        "field": "_type"
                                     }
-                                }
+                                },
+				"count_terms": {
+					"terms": {
+						"field":"eventCode"
+					}
+				}
                             }
                         }
                     }
@@ -235,7 +240,6 @@ angular.module('octobluApp')
         $scope.range = function (size,start, end, gap) {
             var ret = [];
             console.log(size,start, end);
-
             if (size < end) {
                 end = size;
                 start = size-gap;
@@ -368,19 +372,19 @@ angular.module('octobluApp')
                     ]
                     ],
                     "pie_panels": [
-                        { "title" : "Top Event Codes", "results": _.map(data.facets.eventCodes.terms, function (item) {
+                        { "id": "topEC", "title" : "Top Event Codes", "results": _.map(data.facets.eventCodes.terms, function (item) {
                             return {
                                 label: item.term,
                                 value: item.count
                             };
                         })},
-                        { "title": "Top "+data.facets.fromUuids.terms.length+" Devices Sending", "results": _.map(data.facets.fromUuids.terms, function (item) {
+                        { "id": "topDS","title": "Top "+data.facets.fromUuids.terms.length+" Devices Sending", "results": _.map(data.facets.fromUuids.terms, function (item) {
                             return {
                                 label: $scope.deviceLookup[item.term] ? $scope.deviceLookup[item.term] : item.term,
                                 value: item.count
                             };
                         })},
-                        { "title": "Top "+data.facets.fromUuids.terms.length+" Devices Receiving", "results": _.map(data.facets.toUuids.terms, function (item) {
+                        { "id": "topDR", "title": "Top "+data.facets.fromUuids.terms.length+" Devices Receiving", "results": _.map(data.facets.toUuids.terms, function (item) {
                             return {
                                 label: $scope.deviceLookup[item.term] ? $scope.deviceLookup[item.term] : item.term,
                                 value: item.count
@@ -400,7 +404,7 @@ angular.module('octobluApp')
         };
 
         // LOAD GRAPHS
-        $scope.loadTop("now-30d/d");
+	$scope.loadTop("now-30d/d");
 
         var sensorGrid = [];
 
