@@ -44,6 +44,14 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
+            getSharedDevices: function (force) {
+                return PermissionsService.getSharedResources('device').then(function(devices){
+                       return _.map(devices, function(device){
+                            return device.target;
+                       });
+                });
+            },
+
             getDeviceByUUID: function(uuid){
                 return service.getDevices().then(function(devices){
                     return _.findWhere(devices, {uuid: uuid});
