@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Thu May 08 2014 02:59:55 GMT-0700 (MST)
+// Generated on Thu Jul 24 2014 17:22:33 GMT-0700 (MST)
 
 module.exports = function(config) {
   config.set({
@@ -10,25 +10,53 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['mocha'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'test/**/*Spec.js'
+        "public/lib/jquery/dist/jquery.js",
+        "public/lib/jquery-ui/ui/jquery-ui.js",
+
+        "public/lib/angular/angular.js",
+        "public/lib/angular-animate/angular-animate.js",
+        "public/lib/angular-sanitize/angular-sanitize.js",
+        "public/lib/angular-cookies/angular-cookies.js",
+        "public/lib/angular-resource/angular-resource.js",
+        "public/lib/lodash/dist/lodash.js",
+        "public/lib/d3/d3.js",
+        "public/lib/nvd3/nv.d3.js",
+
+        "public/lib/angular-ui-router/release/angular-ui-router.js",
+        "public/lib/angular-ui-utils/ui-utils.js",
+        "public/lib/angular-google-analytics/src/angular-google-analytics.js",
+        "public/lib/modernizr/modernizr.js",
+        "public/lib/json-editor/dist/jsoneditor.js",
+        "public/lib/angular-bootstrap/ui-bootstrap.js",
+        "public/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+        "public/lib/bootstrap-switch/dist/js/bootstrap-switch.js",
+        "public/lib/elastic.js/dist/elastic.js",
+        "public/lib/elasticsearch/elasticsearch.angular.js",
+        "public/lib/smoothie/smoothie.js",
+        "public/lib/ng-table/ng-table.js",
+
+        "public/lib/angular-mocks/angular-mocks.js",
+        "public/lib/chai/chai.js",
+
+        "public/angular/**/*.js",
+        "test/angular/test_helper.js",
+        "test/angular/**/*-spec.js"
     ],
 
 
     // list of files to exclude
     exclude: [
-      
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-    
     },
 
 
@@ -57,7 +85,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
