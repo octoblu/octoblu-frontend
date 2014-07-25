@@ -17,6 +17,8 @@ var GroupSchema = new mongoose.Schema({
         enum: ['default', 'operators'],
         required: true
     },
+    //we want only resourceIds in here, if we can help it.
+    // Devices exist outside the system though, so this is the simplest solution for now.
     members: {type: [mongoose.Schema.Types.Mixed], default: []}
 });
 GroupSchema.statics.updateProperties = ['name', 'members'];
@@ -25,6 +27,9 @@ GroupSchema.statics.permissionsSuffix = {
     sources: '_sources',
     targets: '_targets'
 };
+
+GroupSchema.index({'members.uuid' : 1, required: true});
+GroupSchema.index({'members.type' : 1, required: true});
 
 Resource.makeResourceModel({schema: GroupSchema, type: 'group', uuidProperty: 'uuid'});
 
