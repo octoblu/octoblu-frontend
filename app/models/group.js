@@ -28,8 +28,8 @@ GroupSchema.statics.permissionsSuffix = {
     targets: '_targets'
 };
 
-GroupSchema.index({'members.uuid' : 1});
-GroupSchema.index({'members.type' : 1});
+GroupSchema.index({'members.uuid' : 1, required: true});
+GroupSchema.index({'members.type' : 1, required: true});
 
 Resource.makeResourceModel({schema: GroupSchema, type: 'group', uuidProperty: 'uuid'});
 
