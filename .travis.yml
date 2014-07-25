@@ -10,6 +10,7 @@ deploy:
     secret_access_key:
       secure: KOR29IukG7svfdwoHmPMUrAg+gO7NFmSX6Th6lbar6vPlQkFr59xtLFyMJE2LVYWS0CYPQPMhxSN1oFM+tnYoDNMAX31Q8ZC6theW4UbJIjrNBadzq8FH2OWTvFUHv2UGEcmndTBl+x4VW1wKwy72pAzQ6mCl2+B9viUYRbp7Tg=
     bucket: deploy-octoblu-static
+    region: us-west-2
     skip_cleanup: true
     on:
       branch: master
