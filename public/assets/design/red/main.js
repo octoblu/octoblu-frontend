@@ -197,7 +197,7 @@ var initializeRED = function() {
              path = uuid + ':' + token + '@designer.octoblu.com:' + port;
 //            path = 'localhost:1880';
             path = path+(path.slice(-1) == "/"?"":"/")+"ws";
-            path = "ws"+(document.location.protocol=="https:"?"s":"")+"://"+path;
+            path = "wss://"+path;
 
             //if you want to point to a different backend host:
             //path = 'ws://localhost:1880/ws';
