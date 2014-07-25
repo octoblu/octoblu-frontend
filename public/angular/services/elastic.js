@@ -20,8 +20,8 @@ angular.module('octobluApp')
         first = true;
         deviceString = "";
         _.each(myDevices, function(data){
-            if (first && data.uuid) { first = false; deviceString += " uuid="+data.uuid; }
-            else if (data.uuid) { deviceString += " OR uuid="+data.uuid;  }
+            if (first && data.uuid) { first = false; deviceString += " _type:"+data.uuid; }
+            else if (data.uuid) { deviceString += " OR _type:"+data.uuid;  }
         });
         return deviceString;
     };
