@@ -40,4 +40,20 @@ describe('RubberService', function () {
       });
     });
   });
+
+  describe('->setOwnedDevices', function () {
+    describe('with nothing passed in', function () {
+      it('should set devices with no logic', function () {
+        this.sut.setOwnedDevices();
+        expect(this.sut.devices).to.deep.equal({object: undefined, logic: ''});
+      });
+    });
+
+    describe('when a device is passed in', function () {
+      it('should set the device logic with a single uuid', function () {
+        this.sut.setOwnedDevices([{uuid: 'the_uuid'}]);
+        expect(this.sut.devices).to.deep.equal({object: [{uuid: 'the_uuid'}], logic: 'uuid=the_uuid'});
+      });
+    });
+  });
 });

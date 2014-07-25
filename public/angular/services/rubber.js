@@ -5,4 +5,12 @@ angular.module('octobluApp')
       return 'uuid='+device.uuid;
     }).join(' OR ');
   };
+
+  this.setOwnedDevices = function(devices){
+    this.devices = {
+      object: devices,
+      logic:  this.buildDevices(devices)
+    };
+  };
 });
+
