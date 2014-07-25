@@ -1,66 +1,67 @@
 <!-- Made an Edit -->
 
+<!---
+COMMENTED OUT FOR WHITESPACE
 <div class='page-header page-header-with-buttons'>
     <h1>
         <i class='fa fa-bar-chart-o'></i>
         <span>Analyze</span>
     </h1>
 </div>
-
+-->
 <div class="container-fluid">
-<accordion>
-<accordion-group heading="Quick Hits - Last 30 days" >
-    <div class="container-fluid">
+    <h1>
+        <i class='fa fa-bar-chart-o'></i>
+        <span>Analyze</span>
+    </h1>
+
+	<tabset>
+	<tab heading="Quick Hits">
+	<div class="container-fluid">
         <div class="row">
-            <div class="form-group col-md-2">
-                      <span class="input-group-btn">
-                          <button class="btn btn-default" type="button" ng-click='loadTop("now-15d/d")'>
-                              <span class="fa fa-refresh"> Update</span>
-                          </button>
-                      </span>
+            <div class="form-group col-md-12">
+			<div class="col-md-4">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="fa fa-refresh"></span></span>
+				<select class="form-control" ng-model="forms.QH_starting" ng-change="loadTop(forms.QH_starting)">
+                                    <option ng-repeat="df in ESdateFormats" value="{{df.value}}">{{df.text}}</option>
+                        	</select>
+			</div>
+			</div>
             </div>
         </div>
         <div class="row" ng-repeat="trRow in topResults.rows">
             <div class="col-lg-3 col-sm-4 col-xs-6  dashboard-panel" ng-repeat="panel in trRow">
                 <div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
                 <div class="panel panel-default"><div class="panel-body"><div ng-switch="!!panel.results ? panel.results : 0">
-                    <h1><div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div><div ng-switch-default>{{panel.results}}</div></h1>
+                    <h1><div ng-switch-when="0"><i class="fa fa-times"></i></div><div ng-switch-default>{{panel.results}}</div></h1>
                 </div></div></div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4 dashboard-panel" ng-repeat="panel in topResults.pie_panels">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{panel.title}}</h3>
-                </div>
-                <div class="panel panel-default">
-                    <a href="">
-                        <div class="panel-body">
-                            <div ng-switch="!!panel.results ? 1 : 0">
+                <div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
+                <div class="panel panel-default"><div class="panel-body">
+                            <div ng-switch="!!panel.results.length ? 1 : 0">
                                 <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                                 <div ng-switch-default>
-                                    <div nvd3-pie-chart  data="panel.results" height="300">
-                                    </div>
-                                </div>
+                                    <div nvd3-pie-chart objectequality="false" donut="true"  data="panel.results" id="panel.id" height="300"></div>
+				</div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                </div></div>
             </div>
-        </div>
-    </div>
-    <!-- Endof Container Fluid-->
-</accordion-group>
-<accordion-group heading="Freeform Search">
-    <div class="container-fluid">
+        </div></div>
+	</tab>
+	<tab heading="Freeform">
+	<div class="container-fluid">
         <div class="row">
             <div class="input-group">
-                <form class="form-inline col-md-12">
+                <form class="form-inline col-lg-16">
                     <div class="form-group col-md-8">
                         <input type="text" class="form-control" ng-model="forms.FF_searchText"
                                placeholder="Search" autofocus/>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4">
                         <select class="form-control" ng-model="forms.FF_eventCode">
                             <option value="">All Event Codes</option>
                             <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}
@@ -78,7 +79,6 @@
                 </form>
             </div>
         </div>
-    </div>
 
     <div class="panel panel-info" ng-show="results">
         <!-- Default panel contents -->
@@ -117,10 +117,9 @@
                 </tbody>
             </table>
         </div>
-    </div>
-
-</accordion-group>
-<accordion-group heading="Explore">
+    </div></div>
+	</tab>
+<tab heading="Explore">
     <div class="container-fluid">
         <div class="row">
             <form novalidate>
@@ -242,8 +241,8 @@
                 </div>
             </div>
         </div><!-- END OF GRAPH ROW -->
-
     </div>
-</accordion-group>
-</accordion>
+</tab>
+</tabset>
+
 </div>
