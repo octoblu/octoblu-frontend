@@ -42,7 +42,7 @@ angular.module('octobluApp')
         };
     };
 
-    this.search = function (myDevices,queryText, ownerUuid, page, eventCode, callback) {
+    this.search = function (myDevices, queryText, ownerUuid, page, eventCode, callback) {
         this.log('starting function=search');
         fromPage = (page * 10) / 10;
         eCode = "";
