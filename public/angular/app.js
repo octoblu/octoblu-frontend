@@ -2,11 +2,18 @@
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
-    .constant('skynetConfig', {
-        'host': 'wss://skynet.im', //change to the skynet.im instance
-        'port': '443'
-        // 'host': 'localhost', //change to the skynet.im instance
-        // 'port': '3000'
+    .service('skynetConfig', function($location){
+        var config = {
+            host: 'wss://skynet.im',
+            port: '443'
+        };
+
+        if($location.host() === 'localhost'){
+            config.host = 'ws://localhost';
+            config.port = '3000';
+        }
+
+        return config;
     })
     .constant('reservedProperties', ['$$hashKey', '_id'])
     // enabled CORS by removing ajax header
