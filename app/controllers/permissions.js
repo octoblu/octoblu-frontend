@@ -93,6 +93,8 @@ var permissionsController = {
 
             dbPermission.set({
                  permissions: newPermission.permissions,
+                'source': newPermission.source,
+                'target': newPermission.target,
                 'resource.properties': newPermission.resource.properties
             });
 
