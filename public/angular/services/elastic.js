@@ -1,15 +1,18 @@
 angular.module('octobluApp')
-.constant('elasticSearchConfig', {
-    host: 'es.octoblu.com',
-    port: '80',
-    es_index: 'skynet_trans_log',
-    debug_logging: true
+.service('elasticSearchConfig', function($location){
+    return {
+        host: $location.host(),
+        port: $location.port(),
+        path: '/api/elastic',
+        es_index: 'skynet_trans_log',
+        debug_logging: true
+    };
 })
 .service('elasticService', function (elasticSearchConfig, esFactory, $http) {
     var service = this;
     this.config = elasticSearchConfig;
     this.client = esFactory({
-        host: elasticSearchConfig.host + ':' + elasticSearchConfig.port
+        host: this.config.host + ':' + this.config.port + this.config.path
     });
 
     this.log = function(log_string) {
