@@ -52,7 +52,7 @@ function enforceDefaults(doc, uuidProperty, type, properties) {
 }
 
 function generateToken(){
-  return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('base64');
+  return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('hex');
 }
 
 function generateUrlSafeToken(){
