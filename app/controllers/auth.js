@@ -131,10 +131,10 @@ module.exports = function (app, passport, config) {
 
     var handleApiCompleteRedirect = function (res, channelid, err) {
         if (!err) {
-            return res.redirect('/connect/channels/' + channelid);
+            return res.redirect('/connect/nodes/channel/' + channelid);
         } else {
             console.log('Error: ' + err);
-            return res.redirect('/connect/channels/' + channelid);
+            return res.redirect('/node-wizard/node-wizard/add-channel/'+channelid+'/oauth');
         }
     };
 
@@ -192,6 +192,13 @@ module.exports = function (app, passport, config) {
                             state: csrfToken,
                             redirect_uri: getOAuthCallbackUrl(req, api._id)
                         };
+                    }
+
+                    if(api.oauth.auth_use_client_id_value) {
+                        query.client_id = api.oauth.auth_use_client_id_value;
+                    }
+                    if(api.oauth.auth_use_api_key==true && api.oauth.clientId) {
+                        query.api_key = api.oauth.clientId;
                     }
 
                     if (api.oauth.scope.length > 0) {
@@ -299,6 +306,14 @@ module.exports = function (app, passport, config) {
                         pass: api.oauth.secret
                     };
 
+                    var query = {};
+                    if(api.oauth.auth_use_client_id_value) {
+                        form.client_id = api.oauth.auth_use_client_id_value;
+                    }
+                    if(api.oauth.auth_use_api_key==true && api.oauth.clientId) {
+                        query.api_key = api.oauth.clientId;
+                    }
+
                     if (api.name === 'Bitly') auth = null;
                     if (api.name === 'Paypal') {
                         delete form.redirect_uri;
@@ -306,11 +321,13 @@ module.exports = function (app, passport, config) {
                     }
 
                     // exchange access code for bearer token
-                    console.log(api.oauth.accessTokenURL, form);
-                    request.post(api.oauth.accessTokenURL, {
+                    var opts = {
                         form: form,
-                        auth: auth
-                    }, function (error, response, body) {
+                        auth: auth,
+                        qs: query
+                    };
+                    console.log(api.oauth.accessTokenURL, opts);
+                    request.post(api.oauth.accessTokenURL, opts, function (error, response, body) {
                         console.log(response.statusCode);
                         var data;
 
@@ -340,7 +357,7 @@ module.exports = function (app, passport, config) {
                             user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
                             user.save(function (err) {
                                 console.log('saved oauth token: ' + channelid);
-                                res.redirect('/connect/channels/' + channelid);
+                                res.redirect('/connect/nodes/channel/' + channelid);
                             });
                         }
                     });
@@ -356,12 +373,12 @@ module.exports = function (app, passport, config) {
                         var token = result;
                         if (error) {
                             console.log('Access Token Error', error);
-                            res.redirect('/connect/channels/' + api._id);
+                            res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
                         } else {
                             user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
                             user.save(function (err) {
                                 console.log('saved oauth token: ' + _id);
-                                res.redirect('/connect/channels/' + channelid);
+                                res.redirect('/connect/nodes/channel/' + channelid);
                             });
                         }
                     });
@@ -378,7 +395,7 @@ module.exports = function (app, passport, config) {
                     function (error, oauth_access_token, oauth_access_token_secret, results) {
                         if (error) {
                             console.log(error);
-                            res.redirect(500, '/connect/channels/' + channelid);
+                            res.redirect(500, '/node-wizard/node-wizard/add-channel/'+channelid+'/oauth');
                         } else {
                             user.addOrUpdateApiByChannelId(channelid, 'oauth', null,
                                 oauth_access_token, oauth_access_token_secret, null, null);

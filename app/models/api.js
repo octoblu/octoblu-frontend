@@ -13,6 +13,7 @@ var ApiSchema = new mongoose.Schema({
     logobw           : String,
     auth_strategy    : String, // options: oauth, simple (user enters token), custom (use custom tokens), none (requires no authorization)
     custom_tokens    : [{name: String}],
+    useCustom        : Boolean,
     oauth            : {
         key              : String,
         clientId         : String,
@@ -35,7 +36,9 @@ var ApiSchema = new mongoose.Schema({
         tokenMethod     : String,
         passTokenInQuery: Boolean,
         tokenQueryParam: String,
-        checkCSRFOnCallback: Boolean
+        checkCSRFOnCallback: Boolean,
+        auth_use_client_id_value    :String,
+        auth_use_api_key    :Boolean
     },
     documentation: String,
     application: { base: String, resources: [] }
