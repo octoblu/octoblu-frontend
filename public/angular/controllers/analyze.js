@@ -42,28 +42,10 @@ angular.module('octobluApp')
         $log.log($scope.devices);
         $log.log($scope.logic_devices);
 
-        //Not sure what's going on here...but you probably should tackle it another way if you can.
-        $scope.setFormScope = function (scope) {
-            $scope.formScope = scope;
-            $log.log("setting form scope to " + scope);
-        };
+        $scope.currentPage = 0;
 
-        $scope.currentPage = 1;
-
-        $scope.$watch('currentPage', function (newValue, oldValue) {
-            //newvalue *is* the $scope.currentPage at this point already.
-            //$scope.currentPage = newValue;
-            searchNewValue(newValue);
-        });
         $log.log("New Value for Devices");
         elasticService.setOwnedDevices($scope.devices);
-        /*elasticService.paramSearch({ "from": "now-1d/d", "to": "now", "size": 0, "query": "", "facet": {}, "aggs": {}}, $scope.devices, function (err, data) {
-         if (err) {
-         return $log.log(err);
-         }
-         $log.log("function=paramSearch callback");
-         $log.log(data);
-         });*/
         /// FUNCTIONS
 
         $scope.eGCharts = [];
@@ -274,8 +256,12 @@ angular.module('octobluApp')
             $scope.results = [ { "text":"searching..." } ];
             $log.log("searchText = " + $scope.forms.FF_searchText);
             if ($scope.forms.FF_searchText !== undefined) {
-                //elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
-                elasticService.paramSearch({ "from":"now-90d/d", "to": "now", "size":100000, "query": $scope.forms.FF_searchText, "facet": {}, "aggs": {}}, $scope.devices, function (error, response) {
+        	var query = " ( " + $scope.forms.FF_searchText;
+                if ($scope.forms.FF_eventCode !== undefined && $scope.forms.FF_eventCode > 0) {
+                        query += " AND eventCode:"+$scope.forms.FF_eventCode;
+                }
+		query += " )";
+                elasticService.paramSearch({ "from":"now-90d/d", "to": "now", "size":1000, "query": query, "facet": {}, "aggs": {}}, $scope.devices, function (error, response) {
                     if (error) {
                         $log.log(error);
                     } else {
@@ -301,9 +287,10 @@ angular.module('octobluApp')
                         }
 //			$scope.freeform_results_ngTable = { "headers": [{"name": "uuid"}, {"name":"protocol"}, {"name":"ipAddress"},{"name":"eventCode"},{"name": "timestamp"}, {"name":"channel"},{"name":"online"},{"name":"name"} ]};
                         $scope.freeform_results_ngTable = { "headers": headers };
+			$scope.currentPage = 0;
+			$scope.totalItems = response.hits.total;
                         $scope.groupToPages();
                         $scope.results = response;
-                        $scope.totalItems = response.hits.total;
                         $scope.ff.maxSize = 10;
 
                     }
@@ -315,11 +302,17 @@ angular.module('octobluApp')
             }
 
         };
+	/*
         function searchNewValue () {
             $log.log("starting search function, analyzer controller");
             $scope.results = [ { "text":"searching..." } ];
             $log.log("searchText = " + $scope.forms.FF_searchText);
-            if ($scope.forms.FFsearchText !== undefined) {
+	   
+            if ($scope.forms.FF_searchText !== undefined) {
+		var query = $scope.forms.FF_searchText;
+		if ($scope.forms.forms.FF_eventCode !== undefined) {
+			query += " eventCode:"+$scope.forms.FF_eventCode;
+		}
                 elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
                     if (error) {
                         $log.log(error);
@@ -335,7 +328,7 @@ angular.module('octobluApp')
             } else {
                 $scope.results = "";
             }
-        }
+        }*/
 
         //Load Top Counts Panels On init of page
         $scope.loadTop = function(usageFrom) {
