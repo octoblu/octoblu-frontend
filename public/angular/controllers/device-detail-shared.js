@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('DeviceDetailSharedController', function ($scope, $stateParams, currentUser, availableNodeTypes,
+    .controller('DeviceDetailSharedController', function ($scope, $stateParams, $modal, currentUser, availableNodeTypes,
                                                           PermissionsService, deviceService) {
         var permission;
         PermissionsService.getSharedResources()
