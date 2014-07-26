@@ -184,7 +184,7 @@ var config = {
       },
     'port' : process.env.PORT || 80,
     'sslPort' : process.env.SSL_PORT || 443,
-    'domain': '.octoblu.com'
+    'domain': 'kyleasmith.info'
   }
 };
 

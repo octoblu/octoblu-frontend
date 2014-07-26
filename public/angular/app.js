@@ -3,8 +3,9 @@
 // create the module and name it octobluApp
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .constant('skynetConfig', {
-        'host': 'wss://skynet.im', //change to the skynet.im instance
-        'port': '443'
+        //'host': 'wss://skynet.im', //change to the skynet.im instance
+        //'port': '443'
+	'host':'ws://skynet.im', 'port': '80'
         // 'host': 'localhost', //change to the skynet.im instance
         // 'port': '3000'
     })
