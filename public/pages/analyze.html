@@ -54,22 +54,20 @@ COMMENTED OUT FOR WHITESPACE
 	</tab>
 	<tab heading="Freeform">
 	<div class="container-fluid">
-        <div class="row">
+        <div class="row panel">
             <div class="input-group">
-                <form class="form-inline col-lg-16">
-                    <div class="form-group col-md-8">
-                        <input type="text" class="form-control" ng-model="forms.FF_searchText"
-                               placeholder="Search" autofocus/>
+                <form class="form-inline col-md-16">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" ng-model="forms.FF_searchText" placeholder="Search" autofocus/>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="col-md-4">
                         <select class="form-control" ng-model="forms.FF_eventCode">
                             <option value="">All Event Codes</option>
-                            <option ng-repeat="event in events" value="{{event.code}}">{{event.name}}
-                            </option>
+                            <option ng-repeat="event in events" value="{{event.code}}">{{event.name}} ({{event.code}})</option>
                         </select>
 
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="col-md-2">
                       <span class="input-group-btn">
                           <button class="btn btn-default" type="button" ng-click="search()">
                               <span class="fa fa-search"> Find</span>
@@ -80,24 +78,36 @@ COMMENTED OUT FOR WHITESPACE
             </div>
         </div>
 
-    <div class="panel panel-info" ng-show="results">
+    <div class="panel panel-primary" ng-show="results">
+	<div ng-switch="results.hits.total > 999 ? 'true' : 'false'">
+		<div ng-switch-when="true"><div class="alert alert-success" role="alert">Total Hits are more than 1000. Only showing first 1000 results.</div></div>
+		<div ng-switch-default></div>
+	</div>
         <!-- Default panel contents -->
         <div class="panel-heading">Results
-            <p class="pull-right"> hits: {{ results.hits.total }}</p>
+            <p class="panel-title pull-right"> hits: {{ results.hits.total }}</p>
         </div>
         <div class="panel-body">
+	    <div ng-switch="!!results.hits.total ? 1 : 0">
+                <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+		<div ng-switch-default>
             <table class="table table-striped table-condensed table-hover">
                 <thead><tr><th ng-repeat="header in freeform_results_ngTable.headers" class="{{header.name}}" custom-sort order="header.name" sort="sort">
                     <a ng-click="sort_by(order)" style="color: #555;"><i ng-class="selectedCls(order)">{{header.name}}</i></a></th></tr></thead>
                 <tfoot>
                 <td colspan="{{freeform_results_ngTable.headers.length}}">
-                    <div >
-                        <ul class="pagination">
+                    <div class="col-lg-24">
+			<ul class="pagination">
+  				<li ng-class="{disabled: currentPage == 0}" ng-click="prevPage()"><a href="/analyze#" >Previous</a></li>
+				<li ><span class="label label-info">{{currentPage + 1}}</span></li>
+  				<li  ng-class="{disabled: (currentPage) == freeform_results_ngTable.pagedItems.length - 1}" ng-click="nextPage()"><a href="/analyze#" >Next</a></li>
+			</ul>
+                        <!--<ul class="pagination">
                             <li ng-class="{disabled: currentPage == 0}">
                                 <a href="/analyze#" ng-click="prevPage()">« Prev</a>
                             </li>
 
-                            <li ng-repeat="n in range(freeform_results_ngTable.pagedItems.length, 0, (results.hits.total / ff.maxSize -1 ), 1)"
+                            <li ng-repeat="n in range(freeform_results_ngTable.pagedItems.length, 0, results.hits.total / ff.maxSize, 1)"
                                 ng-class="{active: n == currentPage}" >
                                 <span ng-bind="n + 1">1</span>
                             </li>
@@ -105,7 +115,7 @@ COMMENTED OUT FOR WHITESPACE
                             <li ng-class="{disabled: (currentPage) == freeform_results_ngTable.pagedItems.length - 1}">
                                 <a href="/analyze#" ng-click="nextPage()">Next »</a>
                             </li>
-                        </ul>
+                        </ul>-->
                     </div>
                 </td>
                 </tfoot>
@@ -116,6 +126,7 @@ COMMENTED OUT FOR WHITESPACE
                 </tr>
                 </tbody>
             </table>
+	</div></div><!-- end ng switch -->
         </div>
     </div></div>
 	</tab>
