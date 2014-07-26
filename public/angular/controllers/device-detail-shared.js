@@ -1,54 +1,48 @@
 angular.module('octobluApp')
-    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService) {
-        var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
-        $scope.device = device;
-
-        PermissionsService
-            .allSourcePermissions($scope.device.uuid)
+    .controller('DeviceDetailSharedController', function ($scope, $stateParams, $modal, currentUser, availableNodeTypes,
+                                                          PermissionsService, deviceService) {
+        var permission;
+        PermissionsService.getSharedResources()
             .then(function (permissions) {
-                $scope.sourcePermissions = permissions;
-            });
-        PermissionsService
-            .flatSourcePermissions($scope.device.uuid)
-            .then(function (permissions) {
-                $scope.sourceGroups = _.uniq(permissions, function (permission) {
-                    return permission.uuid;
+                permission = _.find(permissions, function (permission) {
+                    return permission.target.uuid === $stateParams.uuid;
                 });
-            });
 
-        PermissionsService
-            .flatTargetPermissions($scope.device.uuid)
-            .then(function (permissions) {
-                $scope.targetGroups = _.uniq(permissions, function (permission) {
-                    return permission.uuid;
-                });
-            });
+                $scope.device = permission.target;
+                $scope.sourceGroups = [permission];
+                $scope.multipleNames = function (permission) {
+                    return (permission.name instanceof Array);
+                };
 
-        PermissionsService
-            .allTargetPermissions($scope.device.uuid)
-            .then(function (permissions) {
-                $scope.targetPermissions = permissions;
-            });
+                PermissionsService
+                    .flatTargetPermissions($scope.device.uuid)
+                    .then(function (permissions) {
+                        $scope.targetGroups = _.uniq(permissions, function (permission) {
+                            return permission.uuid;
+                        });
+                    });
 
-        $scope.multipleNames = function (permission) {
-            return (permission.name instanceof Array);
-        };
+                PermissionsService
+                    .allTargetPermissions($scope.device.uuid)
+                    .then(function (permissions) {
+                        $scope.targetPermissions = permissions;
+                    });
 
-        if ($scope.device.type === 'gateway') {
-            deviceService.gatewayConfig({
-                uuid: $scope.device.uuid,
-                token: $scope.device.token,
-                method: "configurationDetails"
-            }).then(function (response) {
-                if (response && response.result) {
-                    $scope.device.subdevices = response.result.subdevices || [];
-                    $scope.device.plugins = response.result.plugins || [];
+                if ($scope.device.type === 'gateway') {
+                    deviceService.gatewayConfig({
+                        uuid: $scope.device.uuid,
+                        method: "configurationDetails"
+                    }).then(function (response) {
+                        if (response && response.result) {
+                            $scope.device.subdevices = response.result.subdevices || [];
+                            $scope.device.plugins = response.result.plugins || [];
+                        }
+                    });
                 }
             });
-        }
 
-        $scope.getDisplayName = function(resource) {
-            if(resource.properties) {
+        $scope.getDisplayName = function (resource) {
+            if (resource.properties) {
                 resource = resource.properties;
             }
             return resource.name || resource.displayName || resource.email || 'unknown';
@@ -60,7 +54,7 @@ angular.module('octobluApp')
                     deviceService.unregisterDevice(device)
                         .then(function (devices) {
                             console.log(devices);
-                            $state.go('ob.connector.nodes.all', {}, {reload : true});
+                            $state.go('ob.connector.nodes.all', {}, {reload: true});
                         }, function (error) {
                             console.log(error);
                         });
@@ -70,7 +64,7 @@ angular.module('octobluApp')
                 });
 
         };
-        
+
         $scope.deleteSubdevice = function (subdevice) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Subdevice', 'Are you sure you want to delete this subdevice?',
                 function () {
@@ -108,12 +102,12 @@ angular.module('octobluApp')
                 backdrop: true,
                 resolve: {
                     device: function () {
-                        return device;
+                        return $scope.device;
                     },
                     owner: function () {
                         return currentUser;
                     },
-                  nodeType: function () {
+                    nodeType: function () {
                         return nodeType;
                     },
                     availableNodeTypes: function () {
@@ -132,7 +126,7 @@ angular.module('octobluApp')
                 console.log('cancelled');
             });
         };
-        
+
         $scope.editSubdevice = function (subdevice) {
             var subdeviceModal = $modal.open({
                 templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
@@ -140,7 +134,7 @@ angular.module('octobluApp')
                 backdrop: true,
                 resolve: {
                     hubs: function () {
-                        return [device];
+                        return [$scope.device];
                     },
                     pluginName: function () {
                         return subdevice.type;

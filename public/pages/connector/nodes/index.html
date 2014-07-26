@@ -1,6 +1,6 @@
 <h2 class="text-center">Your Active Nodes</h2>
 
-<div class="row">
+<div class="row node-container">
     <div class="col-xs-12 col-sm-offset-3 col-sm-6">
         <form class="form">
             <div class="form-group">
@@ -30,10 +30,12 @@
         <div ng-repeat="node in nodes | filter: {name:nodeSearch} | orderBy: 'name'"
              class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
             <h4 class="text-center">
-              <a href ng-href="{{nextStepUrl(node)}}" class="">
-                <div title="{{node.name}}" class="node-thumbnail animated-popout" ng-style="{'background-image': 'url('+node.nodeType.logo+')'}" title="{{node.name}}" ng-class="{faded: !node.online}"></div>
-                <strong class="muted-link">{{node.name}}</strong>
-              </a>
+                <a href ng-href="{{nextStepUrl(node)}}" class="">
+                    <div title="{{node.name}}" class="node-thumbnail animated-popout"
+                         ng-style="{'background-image': 'url('+node.nodeType.logo+')'}" title="{{node.name}}"
+                         ng-class="{faded: !node.online}"></div>
+                    <strong class="muted-link">{{node.name}}</strong>
+                </a>
             </h4>
         </div>
     </div>
@@ -47,13 +49,28 @@
 
     </div>
 </div>
-<hr>
-<h2 class="text-center">
+<div class="row node-container" ng-if="sharedNodes.length != 0">
+    <hr>
+    <h2 class="text-center">
     <span class="fa-stack fa-lg">
         <i class="fa fa-square-o fa-stack-2x"></i>
         <i class="fa fa-share-alt fa-stack-1x"></i>
     </span>
-    Shared Nodes
-</h2>
-<div class="row">
+        Shared With Me
+    </h2>
+
+    <div>
+        <div ng-repeat="node in sharedNodes | filter: {name:nodeSearch} | orderBy: 'name'"
+             class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <h4 class="text-center">
+                <a href ui-sref="^.shared-device-detail({uuid: node.resource.uuid})" class="">
+                    <div title="{{node.name}}" class="node-thumbnail animated-popout"
+                         ng-style="{'background-image': 'url('+node.nodeType.logo+')'}" title="{{node.name}}"
+                         ng-class="{faded: !node.online}"></div>
+                    <div class="muted-link">{{node.name}}</div>
+                    <!--<small class="node-shared-by">Shared by {{node.owner.displayName}}</small>-->
+                </a>
+            </h4>
+        </div>
+    </div>
 </div>
