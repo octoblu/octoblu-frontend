@@ -72,6 +72,10 @@ var permissionsController = {
             newSourceGroup = req.body.sourceGroup,
             newTargetGroup = req.body.targetGroup;
 
+        newTargetGroup.members = _.map(newTargetGroup.members, function(member){
+           return _.omit(member, ['token', 'skynettoken']);
+        });
+
         Q.all([
             ResourcePermission.findOne({
                 'resource.uuid': req.params.uuid,
@@ -98,8 +102,14 @@ var permissionsController = {
                 'resource.properties': newPermission.resource.properties
             });
 
-            dbTargetGroup.members = newTargetGroup.members;
-            dbSourceGroup.members = newSourceGroup.members;
+            //once we emulate the resource map on devices, we won't need this.
+            dbTargetGroup.members = _.map(newTargetGroup.members, function(member){
+                return _.omit(member, 'token', 'skynettoken');
+            });
+
+            dbSourceGroup.members = _.map(newSourceGroup.members, function(member){
+                return _.omit(member, 'token', 'skynettoken');
+            });
 
             return Q.all([
                 dbPermission.saveWithPromise(),
