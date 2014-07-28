@@ -20,9 +20,9 @@ angular.module('octobluApp')
         // Get NodeRed port number
         nodeRedService.getPort($scope.currentUser.skynet.uuid, $scope.currentUser.skynet.token, function (data) {
             var uuid         = $scope.currentUser.skynet.uuid,
-                token        = $scope.currentUser.skynet.token,
+                token        = decodeURIComponent($scope.currentUser.skynet.token),
                 protocol     = 'https://',
-                designerHost = '@designer.octoblu.com';
+                designerHost = 'designer.octoblu.com';
 
             if($location.host() === 'localhost'){
                 protocol     = 'http://';
@@ -54,5 +54,7 @@ angular.module('octobluApp')
                     location.reload();
                 });
         }
+
+
 
     });
