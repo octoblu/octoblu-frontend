@@ -2,6 +2,7 @@ language: node_js
 node_js:
   - "0.10"
 cache:
+  bundler: true
   directories:
     - node_modules
 before_deploy: "mkdir -p build && tar czf build/public.tar.gz public"
