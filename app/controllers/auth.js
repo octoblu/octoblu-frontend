@@ -443,9 +443,9 @@ module.exports = function (app, passport, config) {
 
         if (req.referrer) {
             if (req.session.js || req.mobile) {
-                res.send('<script>window.location.href="' + req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token + '"</script>');
+                res.send('<script>window.location.href="' + req.referrer + '?uuid=' + encodeURIComponent(user.skynet.uuid) + '&token=' + encodeURIComponent(user.skynet.token) + '"</script>');
             } else {
-                res.redirect(req.referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token);
+                res.redirect(req.referrer + '?uuid=' + encodeURIComponent(user.skynet.uuid) + '&token=' + encodeURIComponent(user.skynet.token));
             }
         } else {
             res.redirect('/home');
