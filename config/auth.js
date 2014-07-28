@@ -188,6 +188,8 @@ var config = {
   }
 };
 
+config.staging = config.production;
+
 module.exports = function (environment) {
   return config[environment || process.env];
 };
