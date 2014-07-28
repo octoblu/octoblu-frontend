@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('designController', function ($rootScope, $scope, $http, $injector, $location, nodeRedService) {
+    .controller('designController', function (currentUser, $rootScope, $scope, $http, $injector, $location, nodeRedService) {
         $scope.getSessionFlow = function () {
             $http({method: 'GET', url: '/api/get/flow'})
                 .success(function (data, status, headers, config) {
@@ -21,6 +21,7 @@ angular.module('octobluApp')
         nodeRedService.getPort($scope.currentUser.skynet.uuid, $scope.currentUser.skynet.token, function (data) {
             $scope.redPort = data.replace(/["']/g, "");
             $scope.redFrame = "https://" + $scope.currentUser.skynet.uuid + ":" + $scope.currentUser.skynet.token + "@designer.octoblu.com:" + $scope.redPort;
+//            $scope.redFrame = 'https://'+ currentUser.skynet.uuid +':' + current.skynet.uuid + '@designer.octoblu.com:1066';
 
             $scope.getSessionFlow();
 
@@ -29,4 +30,20 @@ angular.module('octobluApp')
                 skynettoken: $scope.currentUser.skynet.token
             };
         });
+
+        $scope.resetNodeRed = function () {
+            $scope.resetting = true;
+            $http.get('http://designer.octoblu.com:1025/red/restart/' + currentUser.skynet.uuid + '?token=' + currentUser.skynet.token + '&branch=master')
+                .then(function (result) {
+                    $scope.resetting = false;
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
+
+                }, function (result) {
+                    $scope.resetting = false;
+                    location.reload();
+                });
+        }
+
     });
