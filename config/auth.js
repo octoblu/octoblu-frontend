@@ -203,8 +203,8 @@ var config = {
       'callbackURL'   : 'http://staging.octoblu.com/auth/github/callback'
     },
     'facebookAuth' : {
-      'clientID'    : 'INSERT_SECERT_HERE', // your App ID
-      'clientSecret'  : 'INSERT_SECERT_HERE', // your App Secret
+      'clientID'    : '1478230185752033', // your App ID
+      'clientSecret'  : '787e17c6cbfbf2e9434069e356804078', // your App Secret
       'callbackURL'   : 'http://staging.octoblu.com/auth/facebook/callback'
     },
 
