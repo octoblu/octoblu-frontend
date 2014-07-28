@@ -13,6 +13,7 @@ angular.module('octobluApp')
                 donutRatio: '@',
                 labelThreshold: '@',
                 labelType: '@',
+		objectequality: '@',
                 showLabels: '@'
             },
             link: function (scope, element, attr) {
@@ -36,7 +37,6 @@ angular.module('octobluApp')
                             .donut(true)          //Turn on Donut mode. Makes pie chart look tasty!
                             .donutRatio(attr.donutRatio);     //Configure how big you want the donut hole size to be.
                     }
-
                     var svg = d3.select(element[0])
                         .append('svg');
 
@@ -45,20 +45,22 @@ angular.module('octobluApp')
                     }
 
                     if (attr.width) {
-                        chart.style('width', attr.width + 'px');
+                        svg.style('width', attr.width + 'px');
                     }
 
                     // Watch data for any changes.
                     scope.$watch('data', function (newVal) {
                         if (newVal) {
-                            svg.datum(scope.data); // Populate the <svg> element with chart data...
-                            svg.call(chart);          //Finally, render the chart!
+			    console.log("piechart new data");
+			    console.log(newVal);
+			    svg.empty();
+                            svg.datum(scope.data).call(scope.chart); // Populate the <svg> element with chart data... and render!
                         }
                     });
 
                     //Update the chart when window resizes.
-                    nv.utils.windowResize(function() { chart.update() });
-
+                    nv.utils.windowResize(chart.update);
+		    scope.chart = chart;
                     return chart;
                 });
             }

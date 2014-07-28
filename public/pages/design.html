@@ -1,5 +1,8 @@
-<div class="">
-    <iframe style="margin-top:56px;" width="100%" ng-src="{{redFrame}}" marginheight="0" frameborder="0" height="100%" id="designerFrame"></iframe>
+
+<div class="node-red-container">
+    <a href ng-disabled="resetting" ng-click="resetNodeRed()" class="btn btn-info btn-sm pull-right">Reset</a>
+    <div ng-show="resetting" class="fa fa-refresh fa-lg fa-spin pull-right node-red-spinner"></div>
+    <iframe width="100%" ng-src="{{redFrame}}" marginheight="0" frameborder="0" height="100%" id="designerFrame"></iframe>
 </div>
 <script>
 $('#designerFrame').attr('height',$("body").height()+500);
