@@ -44,7 +44,7 @@ deploy:
     skip_cleanup: true
     local-dir: build
     on:
-      branch: develop
+      branch: staging
   - provider: opsworks
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
     secret_access_key:
@@ -52,7 +52,7 @@ deploy:
     app-id: 1d628748-95d0-45bf-be4e-bf9d53630243
     on:
       repo: octoblu/octoblu
-      branch: develop
+      branch: staging
   - provider: opsworks
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
     secret_access_key:
@@ -60,12 +60,12 @@ deploy:
     app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
     on:
       repo: octoblu/octoblu
-      branch: develop
+      branch: staging
 
 branches:
   only:
     - master
-    - develop
+    - staging
 before_script:
   - node_modules/.bin/gulp
   - node_modules/.bin/bower install
