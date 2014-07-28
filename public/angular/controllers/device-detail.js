@@ -3,8 +3,6 @@ angular.module('octobluApp')
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
 
-        $scope.$on('skynet:message:' + device.uuid, function (event, message) {
-        });
         PermissionsService
             .allSourcePermissions($scope.device.uuid)
             .then(function (permissions) {
