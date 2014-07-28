@@ -79,13 +79,18 @@ var config = {
             templateUrl : '/templates/invitation.jade'
         }
     },
-      'skynet' : {
-           'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
-          // 'host' : process.env.SKYNET_HOST || 'skynet.im',
-          // 'port' : process.env.SKYNET_PORT || 80
-          'host' : process.env.SKYNET_HOST || 'skynet.im',
-          'port' : process.env.SKYNET_PORT || 80
-      },
+    'skynet' : {
+         'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
+        // 'host' : process.env.SKYNET_HOST || 'skynet.im',
+        // 'port' : process.env.SKYNET_PORT || 80
+        'host' : process.env.SKYNET_HOST || 'skynet.im',
+        'port' : process.env.SKYNET_PORT || 80
+    },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.env.DESIGNER_DOCKER_PORT
+    },
     'port' : process.env.PORT || 8080,
     'sslPort' : process.env.SSL_PORT || 8081,
     'domain': null
@@ -177,11 +182,16 @@ var config = {
           }
       },
 
-      'skynet' : {
-           'host' : process.env.SKYNET_HOST || 'skynet.im',
-          'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
-           'port' : process.env.SKYNET_PORT || 80
-      },
+    'skynet' : {
+         'host' : process.env.SKYNET_HOST || 'skynet.im',
+        'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
+         'port' : process.env.SKYNET_PORT || 80
+    },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.DESIGNER_DOCKER_PORT
+    },
     'port' : process.env.PORT || 80,
     'sslPort' : process.env.SSL_PORT || 443,
     'domain': '.octoblu.com'
@@ -256,25 +266,30 @@ var config = {
     'musixmatch' : {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/'
     },
-      email : {
-          'SMTP': {
-              'Gmail': {
-                  'user': 'octoblu@skynet.im',
-                  'password': 'hacktheplanet1'
-              }
+    email : {
+        'SMTP': {
+            'Gmail': {
+                'user': 'octoblu@skynet.im',
+                'password': 'hacktheplanet1'
+            }
 
-          },
+        },
 
-          invitation: {
-              templateUrl: '/templates/invitation.jade'
-          }
-      },
+        invitation: {
+            templateUrl: '/templates/invitation.jade'
+        }
+    },
 
-      'skynet' : {
-           'host' : process.env.SKYNET_HOST || 'skynet.im',
-          'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
-           'port' : process.env.SKYNET_PORT || 80
-      },
+    'skynet' : {
+         'host' : process.env.SKYNET_HOST || 'skynet.im',
+        'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
+         'port' : process.env.SKYNET_PORT || 80
+    },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.DESIGNER_DOCKER_PORT
+    },
     'port' : process.env.PORT || 80,
     'sslPort' : process.env.SSL_PORT || 443,
     'domain': '.octoblu.com'

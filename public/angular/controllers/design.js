@@ -34,7 +34,7 @@ angular.module('octobluApp')
                     if (data.flow) {
                         var win = angular.element('#designerFrame')[0];
                         win.onload = function () {
-                            win.contentWindow.postMessage(data.flow, $scope.redFrame);
+                            win.contentWindow.postMessage({flow: data.flow}, $scope.redFrame);
                         };
                     }
                 });
@@ -42,8 +42,18 @@ angular.module('octobluApp')
 
         // Get NodeRed port number
         nodeRedService.getPort($scope.currentUser.skynet.uuid, $scope.currentUser.skynet.token, function (data) {
+            var uuid         = $scope.currentUser.skynet.uuid,
+                token        = $scope.currentUser.skynet.token,
+                protocol     = 'https://',
+                designerHost = '@designer.octoblu.com';
+
+            if($location.host() === 'localhost'){
+                protocol     = 'http://';
+                designerHost = 'localhost';
+            }
+
             $scope.redPort = data.replace(/["']/g, "");
-            $scope.redFrame = "https://" + $scope.currentUser.skynet.uuid + ":" + $scope.currentUser.skynet.token + "@designer.octoblu.com:" + $scope.redPort;
+            $scope.redFrame = protocol+uuid+":"+token+'@'+designerHost+':'+$scope.redPort;
 
             $scope.getSessionFlow();
 
