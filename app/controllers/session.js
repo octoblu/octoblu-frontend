@@ -128,7 +128,7 @@ module.exports = function ( app, passport, config ) {
                     return res.send(req.session.user);
                     // return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
                   } else {
-                    return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
+                    return res.redirect(req.session.redirect + '?uuid=' + encodeURIComponent(user.local.skynetuuid) + '&token=' + encodeURIComponent(user.local.skynettoken));
                   }
                 } else {
                   return res.redirect('/home');
@@ -142,9 +142,10 @@ module.exports = function ( app, passport, config ) {
                     // Check for deep link redirect based on referrer in querystring
                     if(req.session.redirect){
                       if(req.session.js){
-                          return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
+                          return res.send(422, {});
+                          // return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
                       } else {
-                        return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
+                        return res.redirect(req.session.redirect + '?uuid=' + encodeURIComponent(user.local.skynetuuid) + '&token=' + encodeURIComponent(user.local.skynettoken));
                       }
                     } else {
                       return res.redirect('/home');
