@@ -221,8 +221,8 @@ var config = {
     // },
     // Octoblu
     'googleAuth' : {
-      'clientID'    : '369178117909-psv35jjicbu961aj4ups6h5s2mb08j6m.apps.googleusercontent.com',
-      'clientSecret'  : 'bgqPgsEjZC_F65rKDxp7PwRQ',
+      'clientID'    : '413378006378-c72poeh9lsab0ut86g9ejepr2ucjpsh8.apps.googleusercontent.com',
+      'clientSecret'  : 'sN79Qi65ykVRjSvZAUBnB5Pp',
       'callbackURL'   : 'http://staging.octoblu.com/auth/google/callback'
     },
     'stackexchange' : {
