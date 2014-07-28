@@ -1,7 +1,6 @@
 use meshines;
 function update(api) {
-	delete api.owner;
-	
+	delete api.owner;	
 	api.useCustom = true;
 	api.oauth = {
 			isManual: true,
