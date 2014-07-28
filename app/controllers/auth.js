@@ -190,7 +190,7 @@ module.exports = function (app, passport, config) {
                             client_id: api.oauth.clientId,
                             response_type: 'code',
                             state: csrfToken,
-                            redirect_uri: getOAuthCallbackUrl(req, api._id)
+                            redirect_uri: 'https://www.yahoo.com' //getOAuthCallbackUrl(req, api._id)
                         };
                     }
 

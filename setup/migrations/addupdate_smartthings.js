@@ -12,15 +12,15 @@ function insert() {
 		oauth: {
 			isManual: true,
 			version: "2.0",
-			clientId: "1a9beb2e-5865-4f86-9f91-cd293d9f4747",
-			secret: "040313d4-db5e-4489-9675-fa60d4be9004",
+			clientId: "216bc683-5ef4-46fc-ba1c-396c70773c6a",
+			secret: "b7e39f22-0e13-4fc5-b3f9-7a64f21e1a6a",
 			baseURL: "https://api.surveymonkey.net",
 			accessTokenURL: "https://graph.api.smartthings.com/oauth/token",
 			authTokenURL: "https://graph.api.smartthings.com/oauth/authorize",
 			authTokenPath: "/oauth/authorize",
 			accessTokenIncludeClientInfo: true,
 			grant_type: "authorization_code",
-			scope: "",
+			scope: "app",
 			protocol: "https",
 			host: "graph.api.smartthings.com",
 			passTokenInQuery: true,
@@ -48,7 +48,10 @@ function insert() {
     db.nodetypes.insert(nodeType);
 }
 function update(api) {
-	// db.apis.save(api);
+	api.oauth.clientId = "216bc683-5ef4-46fc-ba1c-396c70773c6a";
+	api.oauth.secret = "b7e39f22-0e13-4fc5-b3f9-7a64f21e1a6a";
+	api.oauth.scope = "app";
+	db.apis.save(api);
 }
 
 var api = db.apis.findOne({name: 'SmartThings'});
