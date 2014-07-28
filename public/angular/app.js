@@ -8,10 +8,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
             port: '443'
         };
 
-        // if($location.host() === 'localhost'){
-        //     config.host = 'ws://localhost';
-        //     config.port = '3000';
-        // }
+        if($location.host() === 'localhost'){
+            config.host = 'ws://localhost';
+            config.port = '3000';
+        }
 
         return config;
     })
