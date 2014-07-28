@@ -13,7 +13,6 @@ deploy:
     bucket: deploy-octoblu-static
     region: us-west-2
     skip_cleanup: true
-    acl: authenticated_read
     local-dir: build
     on:
       branch: master
@@ -34,3 +33,6 @@ deploy:
 branches:
   only:
     - master
+before_script:
+  - node_modules/.bin/gulp
+  - node_modules/.bin/bower install

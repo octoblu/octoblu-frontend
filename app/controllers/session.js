@@ -124,7 +124,9 @@ module.exports = function ( app, passport, config ) {
                 // Check for deep link redirect based on referrer in querystring
                 if(req.session.redirect){
                   if(req.session.js){
-                      return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
+                    // this is the current response for Android
+                    return res.send(req.session.user);
+                    // return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
                   } else {
                     return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
                   }
