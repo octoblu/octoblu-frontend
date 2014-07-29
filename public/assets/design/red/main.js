@@ -191,13 +191,18 @@ var initializeRED = function() {
                 token = userToken;
                 port  = userPort;
             }
+            var protocol     = 'wss://';
+            var designerHost = 'designer.octoblu.com';
+
+            if(location.hostname === 'localhost'){
+                protocol     = 'ws://';
+                designerHost = 'localhost';
+            }
 
             var path = location.hostname+":"+location.port+document.location.pathname;
             //TODO place uuid/token and port in from $scope.currentUser.skynetuuid  $scope.currentUser.skynettoken $scope.redPort;
-             path = uuid + ':' + token + '@designer.octoblu.com:' + port;
+            path = protocol + uuid + ':' + token + '@' + designerHost + ':' + port + '/ws';
 //            path = 'localhost:1880';
-            path = path+(path.slice(-1) == "/"?"":"/")+"ws";
-            path = "wss://"+path;
 
             //if you want to point to a different backend host:
             //path = 'ws://localhost:1880/ws';
