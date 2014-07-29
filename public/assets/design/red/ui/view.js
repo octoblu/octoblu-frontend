@@ -1040,9 +1040,9 @@ RED.initializeView = function() {
     function setDirty(d) {
         dirty = d;
         if (dirty) {
-            $("#btn-deploy").removeClass("disabled").addClass("btn-primary");
+            $("#btn-deploy").removeClass("disabled").removeClass("btn-default").addClass("btn-primary");
         } else {
-            $("#btn-deploy").addClass("disabled").removeClass("btn-primary");
+            $("#btn-deploy").addClass("disabled").addClass("btn-default").removeClass("btn-primary");
         }
     }
 
