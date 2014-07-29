@@ -3,34 +3,36 @@
     <link rel="stylesheet" type="text/css" href="/assets/design/orion/built-editor.css"/>
     <!-- <link rel="stylesheet" href="/assets/design/style.css"/> -->
 
-    <div class="page-header text-right">
-        <div class="btn-group dropdown-container">
-            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href>
-                <i class="fa fa-align-justify"></i> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a id="btn-sidebar" tabindex="-1" href><i class="fa fa-list-alt"></i> Toggle Sidebar</a></li>
-                <li><a id="btn-config-nodes" tabindex="-1" href><i class="fa fa-th-list"></i> Configure nodes</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Import From</li>
-                <li><a id="btn-import" href><i class="fa fa-clipboard"></i> Clipboard</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Export To</li>
-                <li id="li-menu-export-clipboard">
-                    <a id="btn-export-clipboard" tabindex="-1" href><i class="fa fa-clipboard"></i> Clipboard</a>
-                </li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Workspace</li>
-                <li><a id="btn-workspace-add" href><i class="fa fa-plus"></i> Add</a></li>
-                <li><a id="btn-workspace-edit" href><i class="fa fa-edit"></i> Rename</a></li>
-                <li><a id="btn-workspace-delete" href><i class="fa fa-minus"></i> Delete</a></li>
-                <li class="divider"></li>
-                <li><a id="btn-keyboard-shortcuts" href><i class="fa fa-keyboard-o"></i> Keyboard Shortcuts</a></li>
-                <li><a id="btn-help" href="http://node-red.github.io/docs" target="_blank"><i class="fa fa-question"></i> Help</a></li>
-            </ul>
-        </div>
+    <div class="page-header">
         <div class="btn-group">
-            <a ng-click="save()" id="btn-deploy" class="btn btn-primary btn-deploy disabled" href><i class="fa fa-upload"></i> Deploy</a>
+            <div class="btn-group dropdown-container">
+                <a class="dropdown-toggle btn btn-lg btn-default" data-toggle="dropdown" href>
+                    <i class="fa fa-align-justify"></i> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a id="btn-sidebar" tabindex="-1" href><i class="fa fa-list-alt"></i> Toggle Sidebar</a></li>
+                    <li><a id="btn-config-nodes" tabindex="-1" href><i class="fa fa-th-list"></i> Configure nodes</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Import From</li>
+                    <li><a id="btn-import" href><i class="fa fa-clipboard"></i> Clipboard</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Export To</li>
+                    <li id="li-menu-export-clipboard">
+                        <a id="btn-export-clipboard" tabindex="-1" href><i class="fa fa-clipboard"></i> Clipboard</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Workspace</li>
+                    <li><a id="btn-workspace-add" href><i class="fa fa-plus"></i> Add</a></li>
+                    <li><a id="btn-workspace-edit" href><i class="fa fa-edit"></i> Rename</a></li>
+                    <li><a id="btn-workspace-delete" href><i class="fa fa-minus"></i> Delete</a></li>
+                    <li class="divider"></li>
+                    <li><a id="btn-keyboard-shortcuts" href><i class="fa fa-keyboard-o"></i> Keyboard Shortcuts</a></li>
+                    <li><a id="btn-help" href="http://node-red.github.io/docs" target="_blank"><i class="fa fa-question"></i> Help</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <a ng-click="save()" id="btn-deploy" class="btn btn-lg btn-default btn-deploy disabled" href><i class="fa fa-upload"></i> Deploy</a>
+            </div>
         </div>
     </div>
 
