@@ -1,0 +1,4717 @@
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="sentiment">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">Adds <b>msg.sentiment.score</b> as the anaylsis result.
+    </div>
+</div>
+
+<div class="red-template"data-help-name="sentiment">
+    <p>Analyses the <b>msg.payload</b> and adds a <b>msg.sentiment</b> object that contains the resulting AFINN-111 sentiment score as <b>msg.sentiment.score</b>.</p>
+    <p>A score greater than zero is positive and less than zero is negative.</p>
+    <p>The score typically ranges from -5 to +5, but can go higher and lower.</p>
+    <p>See <a href="https://github.com/thisandagain/sentiment/blob/master/README.md" target="_new">the Sentiment docs here</a>.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('sentiment',{
+        category: 'analysis-function',
+        color:"#E6E0F8",
+        defaults: {
+            name: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"sentiment";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="xml2js">
+    <!-- <div class="form-row">
+        <label>Use Console</label>
+        <input type="checkbox" id="node-input-useEyes" placeholder="Name" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-useEyes" style="width: 70%;">Debug output in console ?</label>
+    </div> -->
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <!-- <div class="form-tips">Uses xml2js to process xml into javascript object.</div> -->
+</div>
+
+<div class="red-template"data-help-name="xml2js">
+    <p>A function that parses the <b>msg.payload</b> using the xml2js library. Places the result in the payload.</p>
+    <p>See <a href="https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/README.md" target="_new">the xml2js docs <i>here</i></a> for more information.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('xml2js',{
+        category: 'advanced-function',
+        color:"#E6E0F8",
+        defaults: {
+        //useEyes: {value:false},
+        name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "arrow-in.png",
+        label: function() {
+            return this.name||"xml2json";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="inject">
+    <div class="form-row node-input-payload">
+        <label for="node-input-payloadType"><i class="icon-envelope"></i> Payload</label>
+        <select id="node-input-payloadType" style="width:125px !important">
+          <option value="date">timestamp</option>
+          <option value="none">blank</option>
+          <option value="string">string</option>
+        </select>
+    </div>
+
+    <div class="form-row" id="node-input-row-payload">
+        <label for="node-input-payload"></label>
+        <input type="text" id="node-input-payload" placeholder="Payload">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+
+    <div class="form-row">
+        <label for=""><i class="icon-repeat"></i> Repeat</label>
+        <select id="inject-time-type-select"><option value="none">None</option><option value="interval">interval</option><option value="interval-time">interval between times</option><option value="time">at a specific time</option></select>
+        <input type="hidden" id="node-input-repeat" placeholder="Payload">
+        <input type="hidden" id="node-input-crontab" placeholder="Payload">
+    </div>
+
+    <div class="form-row inject-time-row hidden" id="inject-time-row-interval">
+        every <input id="inject-time-interval-count" class="inject-time-count" value="1"></input>
+              <select style="width: 100px" id="inject-time-interval-units"><option value="s">seconds</option><option value="m">minutes</option><option value="h">hours</option></select><br/>
+        on <select disabled id="inject-time-interval-days" class="inject-time-days"></select>
+    </div>
+
+    <div class="form-row inject-time-row hidden" id="inject-time-row-interval-time">
+        every <input id="inject-time-interval-time-units" class="inject-time-count" value="1"></input> minutes<br/>
+        between <select id="inject-time-interval-time-start" class="inject-time-times"></select>
+        and <select id="inject-time-interval-time-end" class="inject-time-times"></select><br/>
+        on <select id="inject-time-interval-time-days" class="inject-time-days"></select>
+    </div>
+
+    <div class="form-row inject-time-row hidden" id="inject-time-row-time">
+        at <input id="inject-time-time" value="12:00"></input><br/>
+        on <select id="inject-time-time-days" class="inject-time-days"></select>
+    </div>
+
+    <div class="form-row" id="node-once">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-once" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-once" style="width: 70%;">Fire once at start ?</label>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <script>
+    {
+        $("#inject-time-type-select").change(function() {
+            $("#node-input-crontab").val('');
+            var id = $("#inject-time-type-select option:selected").val();
+            $(".inject-time-row").hide();
+            $("#inject-time-row-"+id).show();
+            if ((id == "none") || (id == "interval")) {
+                $("#node-once").show();
+            }
+            else {
+                $("#node-once").hide();
+                $("#node-input-once").prop('checked', false);
+            }
+        });
+
+        var days = [
+            {v:"*",t:"every day"},
+            {v:"1-5",t:"Mondays to Fridays"},
+            {v:"6-7",t:"Saturdays and Sundays"},
+            {v:"1",t:"Mondays"},
+            {v:"2",t:"Tuesdays"},
+            {v:"3",t:"Wednesdays"},
+            {v:"4",t:"Thursdays"},
+            {v:"5",t:"Fridays"},
+            {v:"6",t:"Saturdays"},
+            {v:"7",t:"Sundays"}
+        ];
+
+        $(".inject-time-days").each(function() {
+            for (var d in days) {
+                $(this).append($("<option></option>").val(days[d].v).text(days[d].t));
+            }
+        });
+
+        $(".inject-time-times").each(function() {
+            for (var i=0;i<24;i++) {
+                var l = (i<10?"0":"")+i+":00";
+                $(this).append($("<option></option>").val(i).text(l));
+            }
+        });
+
+        $(".inject-time-count").spinner({
+            min:1,
+            max:60
+        });
+
+        $("#inject-time-interval-units").change(function() {
+            var units = $("#inject-time-interval-units option:selected").val();
+            $("#inject-time-interval-days").prop("disabled",(units == "s")?"disabled":false);
+            $(".inject-time-count").spinner("option","max",(units == "h")?24:60);
+        });
+
+        $.widget( "ui.injecttimespinner", $.ui.spinner, {
+            options: {
+                // seconds
+                step: 60 * 1000,
+                // hours
+                page: 60,
+                min:0,
+                max:(23*60+59)*60*1000
+            },
+            _parse: function( value ) {
+                if ( typeof value === "string" ) {
+                    // already a timestamp
+                    if ( Number( value ) == value ) {
+                        return Number( value );
+                    }
+                    var p = value.split(":");
+                    return ((p[0]*60)+Number(p[1]))*60*1000;
+                }
+                return value;
+            },
+            _format: function( value ) {
+                var d = new Date(value);
+                var h = d.getHours();
+                var m = d.getMinutes();
+                return ((h<10)?"0":"")+h+":"+((m<10)?"0":"")+m;
+            }
+        });
+
+        $("#inject-time-time").injecttimespinner();
+    };
+
+    </script>
+</div>
+<style>
+    .inject-time-row {
+        padding-left: 110px;
+    }
+    .inject-time-row select {
+        margin: 3px 0;
+    }
+    .inject-time-days {
+        width: 225px;
+    }
+    .inject-time-times {
+        width: 90px;
+    }
+    .inject-time-row > .ui-spinner {
+        height: 28px;
+        margin: 3px 0;
+        border-color: rgb(204, 204, 204);
+    }
+    #inject-time-time {
+        margin-top: 3px;
+        width: 75px;
+    }
+    .inject-time-count {
+        width: 30px !important;
+    }
+</style>
+<div class="red-template"data-help-name="inject">
+    <p>Pressing the button on the left side of the node allows a message on a topic to be injected into the flow. This is mainly for test purposes.</p>
+    <p>If no payload is specified the payload is set to the current time in millisecs since 1970. This allows subsequent functions to perform time based actions.</p>
+    <p>The repeat function does what it says on the tin and continuously sends the payload every x seconds.</p>
+    <p>The Fire once at start option actually waits 50mS before firing to give other nodes a chance to instantiate properly.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('inject',{
+        category: 'input',
+        color:"#a6bbcf",
+        defaults: {
+            name: {value:""},
+            topic: {value:""},
+            payload: {value:""},
+            payloadType: {value:"date"},
+            repeat: {value:""},
+            crontab: {value:""},
+            once: {value:false}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "inject.png",
+        label: function() {
+            if (this.payloadType == "string") {
+                return this.name||this.topic||this.payload||"inject";
+            }
+            else { return this.name||"inject"; }
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            var repeattype = "none";
+            if (this.repeat != "" && this.repeat != 0) {
+                repeattype = "interval";
+                $("#inject-time-interval-units option").filter(function() {return $(this).val() == "s";}).attr('selected',true);
+                $("#inject-time-interval-count").val(this.repeat);
+                $("#inject-time-interval-days").prop("disabled","disabled");
+            } else if (this.crontab) {
+                var cronparts = this.crontab.split(" ");
+                var days = cronparts[4];
+                if (!isNaN(cronparts[0]) && !isNaN(cronparts[1])) {
+                    repeattype = "time";
+                    // Fixed time
+                    var time = cronparts[1]+":"+cronparts[0];
+                    $("#inject-time-time").val(time);
+                    $("#inject-time-type-select option").filter(function() {return $(this).val() == "s";}).attr('selected',true);
+                    $("#inject-time-time-days option").filter(function() {return $(this).val() == days;}).attr('selected',true);
+
+                } else if (cronparts[0] == "0") {
+                    // interval - hours
+                    var hours = cronparts[1].slice(2);
+                    repeattype = "interval";
+                    $("#inject-time-interval-days").prop("disabled",false);
+                    $("#inject-time-interval-days option").filter(function() {return $(this).val() == days;}).attr('selected',true);
+                    $("#inject-time-interval-count").val(hours)
+                    $("#inject-time-interval-units option").filter(function() {return $(this).val() == "h";}).attr('selected',true);
+                } else if (cronparts[1] == "*") {
+                    // interval - minutes
+                    var minutes = cronparts[0].slice(2);
+                    repeattype = "interval";
+                    $("#inject-time-interval-days").prop("disabled",false);
+                    $("#inject-time-interval-days option").filter(function() {return $(this).val() == days;}).attr('selected',true);
+                    $("#inject-time-interval-count").val(minutes)
+                    $("#inject-time-interval-units option").filter(function() {return $(this).val() == "m";}).attr('selected',true);
+                } else {
+                    repeattype = "interval-time";
+                    // interval - time period
+                    var minutes = cronparts[0].slice(2);
+                    $("#inject-time-interval-time-units").val(minutes);
+                    $("#inject-time-interval-time-days option").filter(function() {return $(this).val() == days;}).attr('selected',true);
+                    var time = cronparts[1];
+                    var timeparts = time.split(",");
+                    var start;
+                    var end;
+                    if (timeparts.length == 1) {
+                        // 0 or 0-10
+                        var hours = timeparts[0].split("-");
+                        if (hours.length == 1) {
+                            start = hours[0];
+                            end = Number(hours[0])+1;
+                        } else {
+                            start = hours[0];
+                            end = (Number(hours[1])+1)%24;
+                        }
+                    } else {
+                        // 23,0 or 17-23,0-10 or 23,0-2 or 17-23,0
+                        var startparts = timeparts[0].split("-");
+                        start = startparts[0];
+
+                        var endparts = timeparts[1].split("-");
+                        if (endparts.length == 1) {
+                            end = Number(endparts[0])+1;
+                        } else {
+                            end = Number(endparts[1])+1;
+                        }
+                    }
+                    $("#inject-time-interval-time-start option").filter(function() {return $(this).val() == start;}).attr('selected',true);
+                    $("#inject-time-interval-time-end option").filter(function() {return $(this).val() == end;}).attr('selected',true);
+
+                }
+            } else {
+                $("#inject-time-type-select option").filter(function() {return $(this).val() == "none";}).attr('selected',true);
+            }
+
+            $(".inject-time-row").hide();
+            $("#inject-time-type-select option").filter(function() {return $(this).val() == repeattype;}).attr('selected',true);
+            $("#inject-time-row-"+repeattype).show();
+
+            if (this.payloadType == null) {
+                if (this.payload == "") {
+                    this.payloadType = "date";
+                } else {
+                    this.payloadType = "string";
+                }
+            }
+
+            $("#node-input-payloadType").change(function() {
+                var id = $("#node-input-payloadType option:selected").val();
+                if (id == "string") {
+                    $("#node-input-row-payload").show();
+                } else {
+                    $("#node-input-row-payload").hide();
+                }
+            });
+            $("#node-input-payloadType").val(this.payloadType);
+            $("#node-input-payloadType").change();
+            $("#inject-time-type-select").change();
+
+        },
+        oneditsave: function() {
+            var repeat = "";
+            var crontab = "";
+            var type = $("#inject-time-type-select option:selected").val();
+            if (type == "none") {
+                // nothing
+            } else if (type == "interval") {
+                var count = $("#inject-time-interval-count").val();
+                var units = $("#inject-time-interval-units option:selected").val();
+                var days = $("#inject-time-interval-days option:selected").val();
+                if (units == "s") {
+                    repeat = count;
+                } else {
+                    if (units == "m") {
+                        crontab = "*/"+count+" * * * "+days;
+                    } else if (units == "h") {
+                        crontab = "0 */"+count+" * * "+days;
+                    }
+                }
+            } else if (type == "interval-time") {
+                var count = $("#inject-time-interval-time-units").val();
+                var startTime = Number($("#inject-time-interval-time-start option:selected").val());
+                var endTime = Number($("#inject-time-interval-time-end option:selected").val());
+                var days = $("#inject-time-interval-time-days option:selected").val();
+                var timerange = "";
+                if (startTime == endTime) {
+                    //TODO: invalid
+                    repeat = "";
+                    crontab = "";
+                } else if (endTime == 0) {
+                    timerange = startTime+"-23";
+                } else if (startTime+1 < endTime) {
+                    timerange = startTime+"-"+(endTime-1);
+                } else if (startTime+1 == endTime) {
+                    timerange = startTime;
+                } else {
+                    var startpart = "";
+                    var endpart = "";
+                    if (startTime == 23) {
+                        startpart = "23";
+                    } else {
+                        startpart = startTime+"-23";
+                    }
+                    if (endTime == 1) {
+                        endpart = "0";
+                    } else {
+                        endpart = "0-"+(endTime-1);
+                    }
+                    timerange = startpart+","+endpart;
+                }
+                repeat = "";
+                crontab = "*/"+count+" "+timerange+" * * "+days;
+            } else if (type == "time") {
+                var time = $("#inject-time-time").val();
+                var days = $("#inject-time-time-days option:selected").val();
+                var parts = time.split(":");
+                repeat = "";
+                crontab = parts[1]+" "+parts[0]+" * * "+days;
+            }
+
+            $("#node-input-repeat").val(repeat);
+            $("#node-input-crontab").val(crontab);
+
+        },
+        button: {
+            onclick: function() {
+                var label = (this.name||this.payload).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+                RED.rpc('inject', this.id, function(err,resp) {
+                        if (err) {
+                            RED.notify("<strong>Error</strong>: " + err,"error");
+                        } else{
+                            RED.notify("Successfully injected: "+label,"success");
+                        }
+                });
+            }
+        }
+    });
+
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="debug">
+    <div class="form-row">
+        <label for="node-input-complete"><i class="icon-list"></i> Output</label>
+        <select type="text" id="node-input-complete" style="display: inline-block; width: auto; vertical-align: top;">
+            <option value=false>Payload only</option>
+            <option value=true>Complete msg object</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="debug">
+    <p>The Debug node can be connected to the output of any node. It will display the timestamp, <b>msg.topic</b> and <b>msg.payload</b> fields of any messages it receives in the debug tab of the sidebar.
+    <br/>The sidebar can be accessed under the options drop-down in the top right corner.</p>
+    <p>The button to the right of the node will toggle its output on and off so you can de-clutter the debug window.</p>
+    <p>If the payload is an object it will be stringified first for display and indicate that by saying "(Object) ".</p>
+    <p>If the payload is a buffer it will be stringified first for display and indicate that by saying "(Buffer) ".</p>
+    <p>Selecting any particular message will highlight (in red) the debug node that reported it. This is useful if you wire up multiple debug nodes.</p>
+    <p>Optionally can show the complete msg object - but the screen can get messy.</p>
+    <p>In addition any calls to node.warn or node.error will appear here.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('debug',{
+        category: 'output',
+        defaults: {
+            name: {value:""},
+            active: {value:true},
+            complete: {value:false}
+        },
+        label: function() {
+            return this.name||"debug";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        color:"#87a980",
+        inputs:1,
+        outputs:0,
+        icon: "debug.png",
+        align: "right",
+        button: {
+            toggle: "active",
+            onclick: function() {
+                var label = this.name||"debug";
+                RED.rpc('setDebugState',[this.id,(this.active?"enable":"disable")],function(err,resp) {
+                    if (err) {
+                        RED.notify("<strong>Error</strong>: " + err,"error");
+                    } else if (resp.status == 200) {
+                        RED.notify("Successfully activated: "+label,"success");
+                    } else if (resp.status == 201) {
+                        RED.notify("Successfully deactivated: "+label,"success");
+                    }
+                });
+            }
+        }
+    });
+
+    var a = function() {
+        var content = document.createElement("div");
+        content.id = "tab-debug";
+
+        var toolbar = document.createElement("div");
+        toolbar.id = "debug-toolbar";
+        content.appendChild(toolbar);
+
+        toolbar.innerHTML = '<div class="btn-group pull-right"><a id="debug-tab-clear" title="clear log" class="btn btn-mini" href="#"><i class="icon-trash"></i></a></div> ';
+
+        var messages = document.createElement("div");
+        messages.id = "debug-content";
+        content.appendChild(messages);
+
+        RED.sidebar.addTab("debug",content);
+
+        function getTimestamp() {
+            var d = new Date();
+            return d.toUTCString().substring(5,25)+"."+d.getMilliseconds();
+        }
+
+        var sbc = document.getElementById("debug-content");
+
+
+
+        var messageCount = 0;
+
+        $.subscribe('pulse', function(event, id) {
+            RED.nodes.eachNode(function(node) {
+                if( node.id == id) {
+                    node.pulse = true;
+                    node.dirty = true;
+                }
+
+            });
+            RED.view.redraw();
+        });
+
+        $.subscribe('debug', function(event, o) {
+            //console.log('debug', event, o);
+            //console.log(msg);
+            var msg = document.createElement("div");
+            msg.onmouseover = function() {
+                msg.style.borderRightColor = "#999";
+                RED.nodes.eachNode(function(node) {
+                    if( node.id == o.id) {
+                        node.highlighted = true;
+                        node.dirty = true;
+                    }
+                });
+                RED.view.redraw();
+            };
+            msg.onmouseout = function() {
+                msg.style.borderRightColor = "";
+                RED.nodes.eachNode(function(node) {
+                    if( node.id == o.id) {
+                        node.highlighted = false;
+                        node.dirty = true;
+                    }
+                });
+                RED.view.redraw();
+            };
+            var name = (o.name?o.name:o.id).toString().replace(/</g,"&lt;").replace(/>/g,"&gt;");
+            var topic = (o.topic||"").toString().replace(/</g,"&lt;").replace(/>/g,"&gt;");
+            var payload = (o.msg||"").toString().replace(/</g,"&lt;").replace(/>/g,"&gt;");
+            msg.className = 'debug-message'+(o.level?(' debug-message-level-'+o.level):'')
+            msg.innerHTML = '<span class="debug-message-date">'+getTimestamp()+'</span>'+
+                            '<span class="debug-message-name">['+name+']</span>'+
+                            (o.topic?'<span class="debug-message-topic">'+topic+'</span>':'')+
+                            '<span class="debug-message-payload">'+payload+'</span>';
+            var atBottom = (sbc.scrollHeight-messages.offsetHeight-sbc.scrollTop) < 5;
+            messageCount++;
+            $(messages).append(msg);
+
+            if (messageCount > 200) {
+                $("#debug-content .debug-message:first").remove();
+                messageCount--;
+            }
+            if (atBottom) {
+                $(sbc).scrollTop(sbc.scrollHeight);
+            }
+        });
+
+
+        $("#debug-tab-clear").click(function() {
+            $(".debug-message").remove();
+            messageCount = 0;
+            RED.nodes.eachNode(function(node) {
+                node.highlighted = false;
+                node.dirty = true;
+            });
+            RED.view.redraw();
+        });
+
+    }();
+</script>
+
+<style>
+    #debug-content {
+        position: absolute;
+        top: 30px;
+        bottom: 0px;
+        left:0px;
+        right: 0px;
+        overflow-y: scroll;
+    }
+    #debug-toolbar {
+        padding: 3px 10px;
+        height: 24px;
+        background: #f3f3f3;
+    }
+    .debug-message {
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+        border-left: 8px solid #eee;
+        border-right: 8px solid #eee;
+        padding: 2px;
+    }
+    .debug-message-date {
+        background: #fff;
+        font-size: 9px;
+        color: #aaa;
+        padding: 1px 5px 1px 1px;
+    }
+    .debug-message-topic {
+        display: block;
+        background: #fff;
+        padding: 1px 5px;
+        font-size: 9px;
+        color: #a66;
+    }
+    .debug-message-name {
+        background: #fff;
+        padding: 1px 5px;
+        font-size: 9px;
+        color: #aac;
+    }
+    .debug-message-payload {
+        display: block;
+        padding: 2px;
+        background: #fff;
+    }
+    .debug-message-level-log {
+        border-left-color: #eee;
+        border-right-color: #eee;
+    }
+    .debug-message-level-warn {
+        border-left-color: #ffdf9d;
+        border-right-color: #ffdf9d;
+    }
+    .debug-message-level-error {
+        border-left-color: #f99;
+        border-right-color: #f99;
+    }
+</style>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="exec">
+    <div class="form-row">
+        <label for="node-input-command"><i class="icon-file"></i> Command</label>
+        <input type="text" id="node-input-command" placeholder="command">
+    </div>
+    <div class="form-row">
+        <label for="node-input-append"><i class="icon-list"></i> Append</label>
+        <input type="text" id="node-input-append" placeholder="extra input">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-useSpawn" placeholder="spawn" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-useSpawn" style="width: 70%;">Use spawn() instead of exec() ?</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">Tip: <i>spawn</i> expects only one command word - and appended args to be comma separated.</div>
+</div>
+
+<div class="red-template"data-help-name="exec">
+    <p>Calls out to a system command.<br/></p>
+    <p>Provides 3 outputs... stdout, stderr, and return code.</p>
+    <p>By default uses exec() which calls the command, blocks while waiting for completion, and then returns the complete result in one go, along with any errors.</p>
+    <p>Optionally can use spawn() instead, which returns output from stdout and stderr as the command runs (ie one line at a time). On completion it then returns a return code (on the 3rd output).</p>
+    <p>Spawn only expect one command word, with all extra parameters to be comma separated and passed as the append.</p>
+    <p>The optional append gets added to the command after the <b>msg.payload</b> - so you can do things like pipe the result to another command.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('exec',{
+        category: 'advanced-function',
+        color:"darksalmon",
+        defaults: {
+            command: {value:"",required:true},
+            append: {value:""},
+            useSpawn: {value:""},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:3,
+        icon: "arrow-in.png",
+        align: "right",
+        label: function() {
+            return this.name||this.command;
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="function">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-func"><i class="icon-wrench"></i> Function</label>
+        <input type="hidden" id="node-input-func" autofocus="autofocus">
+        <div style="height: 250px;" class="node-text-editor" id="node-input-func-editor" ></div>
+    </div>
+    <div class="form-row">
+        <label for="node-input-outputs"><i class="icon-random"></i> Outputs</label>
+        <input id="node-input-outputs" style="width: 60px; height: 1.7em;" value="1">
+    </div>
+    <div class="form-tips">See the Info tab for help writing functions.</div>
+</div>
+
+<div class="red-template"data-help-name="function">
+<p>A function block where you can write code to do more interesting things.</p>
+<p>The message is passed in as a JavaScript object called <code>msg</code>.</p>
+<p>By convention it will have a <code>msg.payload</code> property containing
+   the body of the message.</p>
+<p>The function should return the messages it wants to pass on to the next nodes
+in the flow. It can return:</p>
+<ul>
+  <li>a single message object - passed to nodes connected to the first output</li>
+  <li>an array of message objects - passed to nodes connected to the corresponding outputs</li>
+    </ul>
+    <p>If any element of the array is itself an array of messages, multiple
+      messages are sent to the corresponding output.</p>
+<p>If null is returned, either by itself or as an element of the array, no
+      message is passed on.</p>
+<p>See the <a target="_new" href="http://nodered.org/docs/writing-functions.html">online documentation</a> for more help.</p>
+
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('function',{
+        color:"#fdd0a2",
+        category: 'function',
+        defaults: {
+            name: {value:""},
+            func: {value:"\
+return msg;"},
+            outputs: {value:1}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "function.png",
+        label: function() {
+            return this.name;
+        },
+        oneditprepare: function() {
+            $( "#node-input-outputs" ).spinner({
+                min:1
+            });
+
+            function functionDialogResize(ev,ui) {
+                $("#node-input-func-editor").css("height",(ui.size.height-275)+"px");
+            };
+
+            $( "#dialog" ).on("dialogresize", functionDialogResize);
+            $( "#dialog" ).one("dialogopen", function(ev) {
+                var size = $( "#dialog" ).dialog('option','sizeCache-function');
+                if (size) {
+                    functionDialogResize(null,{size:size});
+                }
+            });
+            $( "#dialog" ).one("dialogclose", function(ev,ui) {
+                var height = $( "#dialog" ).dialog('option','height');
+                $( "#dialog" ).off("dialogresize",functionDialogResize);
+            });
+            var that = this;
+            require(["orion/editor/edit"], function(edit) {
+                that.editor = edit({
+                    parent:document.getElementById('node-input-func-editor'),
+                    lang:"js",
+                    contents: $("#node-input-func").val()
+                });
+                RED.library.create({
+                    url:"functions", // where to get the data from
+                    type:"function", // the type of object the library is for
+                    editor:that.editor, // the field name the main text body goes to
+                    fields:['name','outputs']
+                });
+                $("#node-input-name").focus();
+
+            });
+        },
+        oneditsave: function() {
+            $("#node-input-func").val(this.editor.getText())
+            delete this.editor;
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="template">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-template"><i class="icon-wrench"></i> Template</label>
+        <input type="hidden" id="node-input-template" autofocus="autofocus">
+        <div style="height: 250px;" class="node-text-editor" id="node-input-template-editor" ></div>
+    </div>
+
+</div>
+
+<div class="red-template"data-help-name="template">
+<p>Creates new messages based on a template.</p>
+<p>Very useful for creating boilerplate web pages, emails, tweets and so on.</p>
+<p>Uses the <i><a href="http://mustache.github.io/mustache.5.html" target="_new">Mustache</a></i> format.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('template',{
+        color:"rgb(243, 181, 103)",
+        category: 'function',
+        defaults: {
+            name: {value:""},
+            template: {value:"This is the payload: {{payload}}!"},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "template.png",
+        label: function() {
+            return this.name;
+        },
+        oneditprepare: function() {
+
+            function templateDialogResize(ev,ui) {
+                $("#node-input-template-editor").css("height",(ui.size.height-200)+"px");
+            };
+
+            $( "#dialog" ).on("dialogresize", templateDialogResize);
+            $( "#dialog" ).one("dialogopen", function(ev) {
+                var size = $( "#dialog" ).dialog('option','sizeCache-template');
+                if (size) {
+                    templateDialogResize(null,{size:size});
+                }
+            });
+            $( "#dialog" ).one("dialogclose", function(ev,ui) {
+                var height = $( "#dialog" ).dialog('option','height');
+                $( "#dialog" ).off("dialogresize",templateDialogResize);
+            });
+
+            var that = this;
+            require(["orion/editor/edit"], function(edit) {
+                that.editor = edit({
+                    parent:document.getElementById('node-input-template-editor'),
+                    lang:"html",
+                    contents: $("#node-input-template").val()
+                });
+                RED.library.create({
+                    url:"templates", // where to get the data from
+                    type:"template", // the type of object the library is for
+                    editor:that.editor, // the field name the main text body goes to
+                    fields:['name']
+                });
+                $("#node-input-name").focus();
+            });
+        },
+        oneditsave: function() {
+            $("#node-input-template").val(this.editor.getText())
+            delete this.editor;
+        }
+    });
+
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!-- First, the content of the edit dialog is defined.                       -->
+<div class="red-template"data-template-name="delay">
+
+    <div class="form-row">
+        <label for="node-input-pauseType"><i class="icon-tasks"></i> Action</label>
+        <select id="node-input-pauseType" style="width:270px !important">
+          <option value="delay">Delay message</option>
+          <option value="rate">Limit rate to</option>
+          <option value="random">Random delay</option>
+        </select>
+    </div>
+    <div id="delay-details" class="form-row">
+        <label for="node-input-timeout"><i class="icon-time"></i> For</label>
+        <input type="text" id="node-input-timeout" placeholder="Time" style="direction:rtl; width:50px !important">
+        <select id="node-input-timeoutUnits" style="width:200px !important">
+          <option value="milliseconds">Milliseconds</option>
+          <option value="seconds">Seconds</option>
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+          <option value="days">Days</option>
+        </select>
+    </div>
+
+    <div id="rate-details" class="form-row">
+        <label for="node-input-rate"><i class="icon-time"></i> To</label>
+        <input type="text" id="node-input-rate" placeholder="1" style="direction:rtl; width:50px !important">
+        <label for="node-input-reateUnits">message(s) per</label>
+        <select id="node-input-rateUnits" style="width:140px !important">
+          <option value="second">Second</option>
+          <option value="minute">Minute</option>
+          <option value="hour">Hour</option>
+          <option value="day">Day</option>
+        </select>
+    </div>
+
+    <div id="random-details" class="form-row">
+        <label for="node-input-randomFirst"><i class="icon-time"></i> Between</label>
+        <input type="text" id="node-input-randomFirst" placeholder="" style="directon:rtl; width:30px !important">
+<label for="node-input-randomLast" style="width:20px"> & </label>
+        <input type="text" id="node-input-randomLast" placeholder="" style="directon:rtl; width:30px !important">
+        <select id="node-input-randomUnits" style="width:140px !important">
+          <option value="milliseconds">Milliseconds</option>
+          <option value="seconds">Seconds</option>
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+          <option value="days">Days</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+</div>
+
+<!-- Next, some simple help text is provided for the node.                   -->
+<div class="red-template"data-help-name="delay">
+    <p>Introduces a delay into a flow or rate limts messges</p>
+    <p>Default delay is 5 seconds and rate limit of 1 msg/second, but both can be configured</p>
+</div>
+
+<!-- Finally, the node type is registered along with all of its properties   -->
+<script type="text/javascript">
+    RED.nodes.registerType('delay',{
+        category: 'function',      // the palette category
+        color:"#E6E0F8",
+        defaults: {             // defines the editable properties of the node
+            name: {value:""},   //  along with default values.
+            pauseType: {value:"delay", required:true},
+            timeout: {value:"5", required:true, validate:RED.validators.number()},
+            timeoutUnits: {value:"seconds"},
+            rate: {value:"1", required:true, validate:RED.validators.number()},
+            rateUnits: {value: "second"},
+            randomFirst: {value:"1", required:true, validate:RED.validators.number()},
+            randomLast: {value:"5", required:true, validate:RED.validators.number()},
+            randomUnits: {value: "seconds"}
+        },
+        inputs:1,                // set the number of inputs - only 0 or 1
+        outputs:1,               // set the number of outputs - 0 to n
+        icon: "timer.png",    // set the icon (held in public/icons)
+        label: function() {      // sets the default label contents
+            if (this.pauseType == "delay") {
+              var units = this.timeoutUnits ? this.timeoutUnits.charAt(0) : "s";
+              return this.name||"delay "+this.timeout+" " + units;
+            } else if (this.pauseType == "rate") {
+              var units = this.rateUnits ? this.rateUnits.charAt(0) : "s";
+              return this.name||"limit "+this.rate+" msg/"+ units;
+            } else if (this.pauseType == "random") {
+              return this.name || "random";
+            }
+            return "foo";
+        },
+        labelStyle: function() { // sets the class to apply to the label
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+          $( "#node-input-timeout" ).spinner({min:1,max:60});
+          $( "#node-input-rate" ).spinner({min:1});
+
+          $( "#node-input-randomFirst" ).spinner({min:0});
+          $( "#node-input-randomLast" ).spinner({min:1});
+
+          if (this.pauseType == "delay") {
+            $("#delay-details").show();
+            $("#rate-details").hide();
+            $("#random-details").hide();
+          } else if (this.pauseType == "rate") {
+            $("#delay-details").hide();
+            $("#rate-details").show();
+            $("#random-details").hide();
+          } else if (this.pauseType == "random") {
+        $("#delay-details").hide();
+            $("#rate-details").hide();
+            $("#random-details").show();
+          }
+
+          if (!this.timeoutUnits) {
+            $("#node-input-timeoutUnits option").filter(function() {
+              return $(this).val() == 'seconds';
+            }).attr('selected', true);
+          }
+
+          if (!this.randomUnits) {
+        $("#node-input-randomUnits option").filter(function() {
+               return $(this).val() == 'seconds';
+            }).attr('selected', true);
+          }
+
+          $("#node-input-pauseType").on("change",function() {
+            if (this.value == "delay") {
+              $("#delay-details").show();
+              $("#rate-details").hide();
+              $("#random-details").hide();
+            } else if (this.value == "rate") {
+              $("#delay-details").hide();
+              $("#rate-details").show();
+              $("#random-details").hide();
+            } else if (this.value == "random") {
+              $("#delay-details").hide();
+              $("#rate-details").hide();
+              $("#random-details").show();
+            }
+          });
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="comment">
+<div class="form-row">
+<label for="node-input-name"><i class="icon-tag"></i> Comment</label>
+<input type="text" id="node-input-name" placeholder="Comment">
+</div>
+<div class="form-row">
+        <label for="node-input-info" style="width: 100% !important;"><i class="icon-file"></i> More</label>
+        <input type="hidden" id="node-input-info" autofocus="autofocus">
+        <div style="height: 250px;" class="node-text-editor" id="node-input-info-editor" ></div>
+    </div>
+    <div class="form-tips">Tip: this isn't meant for War and Peace - but useful notes can be kept here.</div>
+</div>
+
+<div class="red-template"data-help-name="comment">
+<p>Simple comment block.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('comment',{
+        category: 'function',
+        color:"#ffffff",
+        defaults: {
+            name: {value:""},
+            info: {value:""}
+        },
+        inputs:0,
+        outputs:0,
+        icon: "file.png",
+        label: function() {
+            return this.name||"";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $( "#node-input-outputs" ).spinner({
+                min:1
+            });
+            function functionDialogResize(ev,ui) {
+                $("#node-input-info-editor").css("height",(ui.size.height-235)+"px");
+            };
+            $( "#dialog" ).on("dialogresize", functionDialogResize);
+            $( "#dialog" ).one("dialogopen", function(ev) {
+                var size = $( "#dialog" ).dialog('option','sizeCache-function');
+                if (size) {
+                    functionDialogResize(null,{size:size});
+                }
+            });
+            $( "#dialog" ).one("dialogclose", function(ev,ui) {
+                var height = $( "#dialog" ).dialog('option','height');
+                $( "#dialog" ).off("dialogresize",functionDialogResize);
+            });
+            var that = this;
+            require(["orion/editor/edit"], function(edit) {
+                that.editor = edit({
+                    parent:document.getElementById('node-input-info-editor'),
+                    lang:"text",
+                    showLinesRuler:false,
+                    showFoldingRuler:false,
+                    contents: $("#node-input-info").val()
+                });
+                $("#node-input-name").focus();
+            });
+        },
+        oneditsave: function() {
+            $("#node-input-info").val(this.editor.getText());
+            delete this.editor;
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="unknown">
+    <div class="form-tips"><p>This node is a type unknown to your installation of Node-RED.</p>
+    <p><i>If you deploy with the node in this state, it will lose all of its configuration.</i></p>
+    <p>See the Info side bar for more help</p></div>
+</div>
+
+<div class="red-template"data-help-name="unknown">
+    <p>This node is a type unknown to your installation of Node-RED.</p>
+    <p><i>If you deploy with the node in this state, it will lose all of its configuration.</i></p>
+    <p>It is possible this node type is already installed, but is missing a dependency. Check the Node-RED start-up log for
+       any error messages associated with the missing node type. Use <b>npm install &lt;module&gt;</b> to install any missing modules
+       and restart Node-RED and reimport the nodes.</p>
+    <p>Otherwise, you should contact the author of the flow to obtain a copy of the missing node type.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('unknown',{
+        category: 'unknown',
+        color:"#fff0f0",
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "",
+        label: function() {
+            return "("+this.name+")"||"unknown";
+        },
+        labelStyle: function() {
+            return "node_label_unknown";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="socket in">
+    <div class="form-row">
+        <label for="node-input-transport"><i class="icon-tasks"></i> Type</label>
+        <select type="text" id="node-input-transport" style="width: 150px;">
+        <option value="http">http listen</option>
+        <option value="tcp">tcp server</option>
+        <!-- <option value="tcpc">tcp client</option> -->
+        <option value="udp">udp socket</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="icon-random"></i> Port</label>
+        <input type="text" id="node-input-port" placeholder="Port">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">Tip: sends the received data as a Buffer object.</div>
+</div>
+
+<div class="red-template"data-help-name="socket in">
+<p>Provides a input node for http, tcp or udp sockets. Topic is optional. These are server like sockets.</p>
+<p>The TCP and UDP sockets produce a <i>BUFFER</i> object msg.payload and NOT a String. If you need a String then use .toString() on msg.payload in your next function block.</p>
+<p>TCP and UDP sockets also provide <b>msg.fromip</b> of the form ipaddress:port</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('socket in',{
+        category: 'deprecated',
+        color:"Silver",
+        defaults: {
+            name: {value:""},
+            topic: {value:""},
+            port: {value:"",required:true},
+            transport: {value:"tcp",required:true}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "bridge-dash.png",
+        label: function() {
+            return this.name||this.topic||("socket "+this.transport+":"+this.port);
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="socket out">
+    <div class="form-row">
+        <label for="node-input-host"><i class="icon-bookmark"></i> Host</label>
+        <input type="text" id="node-input-host" placeholder="localhost" style="width: 40%;" >
+
+        <label for="node-input-port" style="margin-left: 10px; width: 35px;"> Port</label>
+        <input type="text" id="node-input-port" placeholder="Port" style="width: 45px">
+    </div>
+    <div class="form-row">
+        <label for="node-input-transport"><i class="icon-tasks"></i> Type</label>
+        <select type="text" id="node-input-transport" style="width: 150px;">
+        <option value="http">http</option>
+        <option value="tcp">tcp</option>
+        <option value="udp">udp</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="socket out">
+<p>Provides a choice of http, tcp or udp output connections. All connect, send their <b>msg.payload</b> and disconnect.</p>
+<p>To use broadcast select udp and set the host to be either the subnet broadcast address required or 255.255.255.255</p>
+<p>If you need a response from an http request use the httpget node instead.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('socket out',{
+        category: 'deprecated',
+        color:"Silver",
+        defaults: {
+            host: {value:"127.0.0.1",required:true},
+            port: {value:"",required:true},
+            name: {value:""},
+            transport: {value:"tcp",required:true}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "bridge-dash.png",
+        align: "right",
+        label: function() {
+            return this.name||this.topic||("socket "+this.transport+":"+this.port);
+        },
+        labelStyle: function() {
+            return (this.name||!this.topic)?"node_label_italic":"";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!--  The Input Node  -->
+<div class="red-template"data-template-name="multicast in">
+    <div class="form-row">
+        <label for="node-input-group"><i class="icon-tasks"></i> Group</label>
+        <input type="text" id="node-input-group" placeholder="225.0.18.83" style="width: 40%;">
+        <label for="node-input-port" style="margin-left: 10px; width: 35px;"> Port</label>
+        <input type="text" id="node-input-port" placeholder="Port" style="width: 45px">
+    </div>
+    <div class="form-row">
+        <label for="node-input-iface"><i class="icon-globe"></i> Interface</label>
+        <input type="text" id="node-input-iface" placeholder="eth0">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-base64" placeholder="base64" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-base64" style="width: 70%;">Base64 encode payload ?</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">Tip: sends the received data as a Buffer object (not a String).<br/>Make sure your firewall will allow the data in.</div>
+</div>
+
+<div class="red-template"data-help-name="multicast in">
+<p>A multicast udp input node, that produces a <b>msg.payload</b> containing a <i>BUFFER</i> object and NOT a String.</p>
+<p>If you need a String then use <i>.toString()</i> on <b>msg.payload</b> in your next function block.</p>
+<p>It also provides <b>msg.fromip</b> of the form ipaddress:port .</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('multicast in',{
+        category: 'deprecated',
+        color:"Silver",
+        defaults: {
+            name: {value:""},
+            group: {value:"",required:true},
+            host: {value:""},
+            iface: {value:""},
+            port: {value:"",required:true,validate:RED.validators.number()},
+            base64: {value:false,required:true},
+            multicast: {value:"true"}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "bridge-dash.png",
+        label: function() {
+            if ((this.group!="") & (this.port!="")) {
+                return this.name||(this.group+":"+this.port);
+            }
+            else { return "multicast in"; }
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<!--  The Output Node  -->
+<div class="red-template"data-template-name="multicast out">
+    <div class="form-row">
+        <label for="node-input-group"><i class="icon-tasks"></i> Group</label>
+        <input type="text" id="node-input-group" placeholder="225.0.18.83" style="width: 40%;">
+        <label for="node-input-port" style="margin-left: 10px; width: 35px;"> Port</label>
+        <input type="text" id="node-input-port" placeholder="Port" style="width: 45px">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-iface"><i class="icon-globe"></i> Interface</label>
+        <input type="text" id="node-input-iface" placeholder="eth0">
+    </div>
+
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-base64" placeholder="base64" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-base64" style="width: 70%;">Decode Base64 encoded payload ?</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="multicast out">
+<p>This node sends <b>msg.payload</b> to the designated multicast group and port.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('multicast out',{
+        category: 'deprecated',
+        color:"Silver",
+        defaults: {
+            name: {value:""},
+            group: {value:"",required:true},
+            host: {value:""},
+            iface: {value:""},
+            port: {value:"",required:true,validate:RED.validators.number()},
+            base64: {value:false,required:true},
+            multicast: {value:"true"}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "bridge-dash.png",
+        align: "right",
+        label: function() {
+            if ((this.group!="") & (this.port!="")) {
+                return this.name||(this.group+":"+this.port);
+            }
+            else { return "multicast out"; }
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="httpget">
+    <div class="form-tips"><b>Deprecated</b>: please use the <i>http request</i> node.</div>
+    <br>
+    <div class="form-row">
+        <label for="node-input-baseurl"><i class="icon-tasks"></i> Base URL</label>
+        <input type="text" id="node-input-baseurl" placeholder="http(s)://url">
+    </div>
+    <div class="form-row">
+        <label for="node-input-append"><i class="icon-tasks"></i> Append</label>
+        <input type="text" id="node-input-append" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">The <b>Base URL</b> gets prepended to whatever payload is passed in. Leave blank if you pass in a full url.<br/>The append gets added to the end after any payload.<br/>The output Topic is the same as the input Topic.</div>
+</div>
+
+<div class="red-template"data-help-name="httpget">
+<p>Performs an HTTP or HTTPS GET and returns the fetched page.</p>
+<p>The return code is placed in <b>msg.rc</b>, and the full text of the result is in <b>msg.payload</b>.</p>
+<p>The <b>msg.payload</b> is added to the base url, and then the optional append is added after.</p>
+<p>This is mostly suitable for small pages as large results will need a lot of parsing....</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('httpget',{
+        category: 'deprecated',
+        color:"rgb(231, 231, 174)",
+        defaults: {
+            name: {value:""},
+            baseurl: {value:""},
+            append: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "white-globe.png",
+        label: function() {
+            return this.name||this.baseurl;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="mqtt in">
+    <div class="form-row">
+        <label for="node-input-broker"><i class="icon-tag"></i> Broker</label>
+        <input type="text" id="node-input-broker">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="mqtt in">
+    <p>MQTT input node. Connects to a broker and subscribes to the specified topic. The topic may contain MQTT wildcards.</p>
+    <p>Outputs an object called <b>msg</b> containing <b>msg.topic, msg.payload, msg.qos</b> and <b>msg.retain</b>.</p>
+    <p><b>msg.payload</b> is a String.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt in',{
+        category: 'input',
+        defaults: {
+            name: {value:""},
+            topic: {value:"",required:true},
+            broker: {type:"mqtt-broker", required:true}
+        },
+        color:"#d8bfd8",
+        inputs:0,
+        outputs:1,
+        icon: "bridge.png",
+        label: function() {
+            return this.name||this.topic||"mqtt";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<div class="red-template"data-template-name="mqtt out">
+    <div class="form-row">
+        <label for="node-input-broker"><i class="icon-tag"></i> Broker</label>
+        <input type="text" id="node-input-broker">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="mqtt out">
+    <p>Connects to a MQTT broker and publishes <b>msg.payload</b> either to the <b>msg.topic</b> OR to the topic specified in the edit window. The value in the edit window has precedence.</p>
+    <p><b>msg.qos</b> and <b>msg.retain</b> may also optionally have been set. If not set they are set to 0 and false respectively.</p>
+    <p>If <b>msg.payload</b> contains a buffer or an object it will be stringified before being sent.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt out',{
+        category: 'output',
+        defaults: {
+            name: {value:""},
+            topic: {value:""},
+            broker: {type:"mqtt-broker", required:true}
+        },
+        color:"#d8bfd8",
+        inputs:1,
+        outputs:0,
+        icon: "bridge.png",
+        align: "right",
+        label: function() {
+            return this.name||this.topic||"mqtt";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<div class="red-template"data-template-name="mqtt-broker">
+    <div class="form-row node-input-broker">
+        <label for="node-config-input-broker"><i class="icon-bookmark"></i> Broker</label>
+        <input class="input-append-left" type="text" id="node-config-input-broker" placeholder="Broker" style="width: 40%;" >
+        <label for="node-config-input-port" style="margin-left: 10px; width: 35px; "> Port</label>
+        <input type="text" id="node-config-input-port" placeholder="Port" style="width:45px">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-clientid"><i class="icon-tag"></i> Client ID</label>
+        <input type="text" id="node-config-input-clientid" placeholder="Leave blank for auto generated">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-user"><i class="icon-user"></i> Username</label>
+        <input type="text" id="node-config-input-user">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-pass"><i class="icon-lock"></i> Password</label>
+        <input type="password" id="node-config-input-pass">
+    </div>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt-broker',{
+        category: 'config',
+        defaults: {
+            broker: {value:"localhost",required:true},
+            port: {value:1883,required:true,validate:RED.validators.number()},
+            clientid: { value:"" }
+            //user -> credentials
+            //pass -> credentials
+
+        },
+        label: function() {
+            return (this.clientid?this.clientid+"@":"")+this.broker+":"+this.port;
+        },
+        oneditprepare: function() {
+            $.getJSON('mqtt-broker/'+this.id,function(data) {
+                if (data.user) {
+                    $('#node-config-input-user').val(data.user);
+                }
+                if (data.hasPassword) {
+                    $('#node-config-input-pass').val('__PWRD__');
+                } else {
+                    $('#node-config-input-pass').val('');
+                }
+
+            });
+        },
+        oneditsave: function() {
+            var newUser = $('#node-config-input-user').val();
+            var newPass = $('#node-config-input-pass').val();
+            var credentials = {};
+            credentials.user = newUser;
+            if (newPass != '__PWRD__') {
+                credentials.password = newPass;
+            }
+            $.ajax({
+                url: 'mqtt-broker/'+this.id,
+                type: 'POST',
+                data: credentials,
+                success:function(result){}
+            });
+        },
+        ondelete: function() {
+            $.ajax({
+                url: 'mqtt-broker/'+this.id,
+                type: 'DELETE',
+                success: function(result) {}
+            });
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="http in">
+    <div class="form-row">
+        <label for="node-input-method"><i class="icon-tasks"></i> Method</label>
+        <select type="text" id="node-input-method" style="width: 150px;">
+        <option value="get">GET</option>
+        <option value="post">POST</option>
+        <option value="put">PUT</option>
+        <option value="delete">DELETE</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-globe"></i> url</label>
+        <input type="text" id="node-input-url" placeholder="/url">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div id="node-input-tip" class="form-tips">The url will be relative to <code><span id="node-input-path"></span></code>.</div>
+</div>
+
+<div class="red-template"data-help-name="http in">
+<p>Provides an input node for http requests, allowing the creation of simple web services.</p>
+<p>The resulting message has the following properties:
+    <ul>
+        <li>msg.req : <a href="http://expressjs.com/api.html#req">http request</a></li>
+        <li>msg.res : <a href="http://expressjs.com/api.html#res">http response</a></li>
+    </ul>
+</p>
+<p>For POST/PUT requests, the body is available under <code>msg.req.body</code>. This
+   uses the <a href="http://expressjs.com/api.html#bodyParser">Express bodyParser middleware</a> to parse the content to a JSON object.
+    </p>
+<p>
+   By default, this expects the body of the request to be url encoded:
+   <pre>foo=bar&amp;this=that</pre>
+    </p>
+<p>
+   To send JSON encoded data to the node, the content-type header of the request must be set to
+   <code>application/json</code>.
+</p>
+<p>
+   <b>Note: </b>This node does not send any response to the http request. This should be done with
+   a subsequent HTTP Response node, or Function node.
+   In the case of a Function node, the <a href="http://expressjs.com/api.html#res">Express response documentation</a>
+   describes how this should be done. For example:
+   <pre>msg.res.send(200, 'Thanks for the request ');<br/>return msg;</pre>
+    </p>
+
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('http in',{
+        category: 'input',
+        color:"rgb(231, 231, 174)",
+        defaults: {
+            name: {value:""},
+            url: {value:"",required:true},
+            method: {value:"get",required:true}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "white-globe.png",
+        label: function() {
+            if (this.name) {
+                return this.name;
+            } else if (this.url) {
+                var root = RED.settings.httpNodeRoot.slice(0,-1);
+                root += this.url;
+                return "["+this.method+"] "+root;
+            } else {
+                return "http";
+            }
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            var root = RED.settings.httpNodeRoot.slice(0,-1);
+            if (root == "") {
+                $("#node-input-tip").hide();
+            } else {
+                $("#node-input-path").html(root);
+                $("#node-input-tip").show();
+            }
+            //document.getElementById("node-config-wsdocpath").innerHTML=
+        }
+
+    });
+</script>
+
+<div class="red-template"data-template-name="http response">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">The messages sent to this node <b>must</b> originate from an <i>http input</i> node</div>
+</div>
+
+<div class="red-template"data-help-name="http response">
+<p>Sends responses back to http requests received from an HTTP Input node.</p>
+<p>The response can be customised using the following message properties:</p>
+<ul>
+    <li><code>payload</code> is sent as the body of the reponse</li>
+    <li><code>statusCode</code>, if set, is used as the response status code (default: 200)</li>
+    <li><code>headers</code>, if set, should be an object containing field/value
+    pairs to be added as response headers.</li>
+</ul>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('http response',{
+        category: 'output',
+        color:"rgb(231, 231, 174)",
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:0,
+        align: "right",
+        icon: "white-globe.png",
+        label: function() {
+            return this.name||"http";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+
+
+
+<div class="red-template"data-template-name="http request">
+    <div class="form-row">
+        <label for="node-input-method"><i class="icon-tasks"></i> Method</label>
+        <select type="text" id="node-input-method" style="width: 150px;">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+        <option value="PUT">PUT</option>
+        <option value="DELETE">DELETE</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-url"><i class="icon-tasks"></i> URL</label>
+        <input type="text" id="node-input-url" placeholder="http://">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-useAuth" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-useAuth" style="width: 70%;">Use basic authentication?</label>
+    </div>
+    <div class="form-row node-input-useAuth-row">
+        <label for="node-config-input-user"><i class="icon-user"></i> Username</label>
+        <input type="text" id="node-config-input-user">
+    </div>
+    <div class="form-row node-input-useAuth-row">
+        <label for="node-config-input-pass"><i class="icon-lock"></i> Password</label>
+        <input type="password" id="node-config-input-pass">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="http request">
+<p>Provides a node for making http requests.</p>
+<p>The URL and HTTP method can be configured in the node, but also
+   overridden by the incoming message:
+<ul>
+    <li><code>url</code>, if set, is used as the url of the request</li>
+    <li><code>method</code>, if set, is used as the HTTP method of the request. Must be one of <code>GET</code>, <code>PUT</code>, <code>POST</code> or <code>DELETE</code> (default: GET)</li>
+    <li><code>headers</code>, if set, should be an object containing field/value
+    pairs to be added as request headers</li>
+    <li><code>payload</code> is sent as the body of the request</li>
+</ul>
+
+The output message contains the following properties:
+<ul>
+    <li><code>payload</code> is the body of the response</li>
+    <li><code>statusCode</code> is the status code of the response, or the error code if the request could not be completed</li>
+    <li><code>headers</code> is an object containing the response headers</li>
+</ul>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('http request',{
+        category: 'function',
+        color:"rgb(231, 231, 174)",
+        defaults: {
+            name: {value:""},
+            method:{value:"GET"},
+            url:{value:""},
+            //user -> credentials
+            //pass -> credentials
+        },
+        inputs:1,
+        outputs:1,
+        align: "right",
+        icon: "white-globe.png",
+        label: function() {
+            return this.name||"http request";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $.getJSON('http-request/'+this.id,function(data) {
+                if (data.user) {
+                    $('#node-input-useAuth').prop('checked', true);
+                    $(".node-input-useAuth-row").show();
+                    $('#node-config-input-user').data("v",data.user);
+                    $('#node-config-input-user').val(data.user);
+                } else {
+                    $('#node-input-useAuth').prop('checked', false);
+                    $(".node-input-useAuth-row").hide();
+                    $('#node-config-input-user').data("v",'');
+                }
+                if (data.hasPassword) {
+                    $('#node-input-useAuth').prop('checked', true);
+                    $(".node-input-useAuth-row").show();
+                    $('#node-config-input-pass').data("v",'__PWRD__');
+                    $('#node-config-input-pass').val('__PWRD__');
+                } else {
+                    $('#node-config-input-pass').data("v",'');
+                    $('#node-config-input-pass').val('');
+                }
+
+            });
+
+            $("#node-input-useAuth").change(function() {
+                if ($(this).is(":checked")) {
+                    $(".node-input-useAuth-row").show();
+                } else {
+                    $(".node-input-useAuth-row").hide();
+                }
+            });
+        },
+        oneditsave: function() {
+            var oldUser = $('#node-config-input-user').data("v");
+            var oldPass = $('#node-config-input-pass').data("v");
+            var newUser = $('#node-config-input-user').val();
+            var newPass = $('#node-config-input-pass').val();
+
+            if (!$("#node-input-useAuth").is(":checked")) {
+                newUser = "";
+                newPass = "";
+            }
+
+            if (oldUser != newUser || oldPass != newPass) {
+                if (newUser == "" && newPass == "") {
+                    $.ajax({
+                        url: 'http-request/'+this.id,
+                        type: 'DELETE',
+                        success: function(result) {}
+                    });
+                } else {
+                    var credentials = {};
+                    credentials.user = newUser;
+                    if (newPass != '__PWRD__') {
+                        credentials.password = newPass;
+                    }
+                    $.ajax({
+                        url: 'http-request/'+this.id,
+                        type: 'POST',
+                        data: credentials,
+                        success:function(result){}
+                    });
+                }
+                return true;
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!-- WebSocket Input Node -->
+<div class="red-template"data-template-name="websocket in">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-bookmark"></i> Path</label>
+        <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="websocket in">
+    <p>WebSocket input node.</p>
+    <p>By default, the data received from the WebSocket will be in <b>msg.payload</b>.
+    The listener can be configured to expect a properly formed JSON string, in which
+    case it will parse the JSON and send on the resulting object as the entire message.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('websocket in',{
+        category: 'input',
+        defaults: {
+            name: {value:""},
+            server: {type:"websocket-listener"}
+        },
+        color:"rgb(215, 215, 160)",
+        inputs:0,
+        outputs:1,
+        icon: "white-globe.png",
+        label: function() {
+            var wsNode = RED.nodes.node(this.server);
+            return this.name||(wsNode?"[ws] "+wsNode.label():"websocket");
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<!-- WebSocket out Node -->
+<div class="red-template"data-template-name="websocket out">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-bookmark"></i> Path</label>
+        <input type="text" id="node-input-server">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="websocket out">
+    <p>WebSocket out node.</p>
+    <p>By default, <b>msg.payload</b> will be sent over the WebSocket. The listener
+    can be configured to encode the entire message object as a JSON string and send that
+    over the WebSocket.</p>
+    
+    <p>If the message arriving at this node started at a WebSocket In node, the message
+    will be sent back to the client that triggered the flow. Otherwise, the message
+    will be broadcast to all conntected clients.</p>
+    <p>If you want to broadcast a message that started at a WebSocket In node, you 
+    should delete the <b>msg._session</b> property within the flow</p>.
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('websocket out',{
+        category: 'output',
+        defaults: {
+            name: {value:""},
+            server: {type:"websocket-listener", required:true}
+        },
+        color:"rgb(215, 215, 160)",
+        inputs:1,
+        outputs:0,
+        icon: "white-globe.png",
+        align: "right",
+        label: function() {
+            var wsNode = RED.nodes.node(this.server);
+            return this.name||(wsNode?"[ws] "+wsNode.label():"websocket");
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<!-- WebSocket Server configuration node -->
+<div class="red-template"data-template-name="websocket-listener">
+    <div class="form-row">
+        <label for="node-config-input-path"><i class="icon-bookmark"></i> Path</label>
+        <input type="text" id="node-config-input-path" placeholder="/ws/example">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-wholemsg">&nbsp;</label>
+        <select type="text" id="node-config-input-wholemsg" style="width: 70%;">
+            <option value="false">Send/Receive payload</option>
+            <option value="true">Send/Receive entire message</option>
+        </select>
+    </div>
+    <div class="form-tips">
+    Be default, <code>payload</code> will contain the data to be sent over, or received from a websocket.
+    The listener can be configured to send or receive the entire message object as a JSON formatted string.
+    <p id="node-config-ws-tip">This path will be relative to <code><span id="node-config-ws-path"></span></code>.</p>
+    </div>
+</div>
+
+<div class="red-template"data-help-name="websocket-listener">
+   <p>This configuration node creates a WebSocket Server using the specified path</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('websocket-listener',{
+        category: 'config',
+        defaults: {
+            path: {value:"",required:true,validate:RED.validators.regex(/^((?!\/debug\/ws).)*$/) },
+            wholemsg: {value:"false"}
+        },
+        inputs:0,
+        outputs:0,
+        label: function() {
+            var root = RED.settings.httpNodeRoot.slice(0,-1);
+            root += this.path;
+            return root;
+        },
+        oneditprepare: function() {
+            var root = RED.settings.httpNodeRoot.slice(0,-1);
+            if (root == "") {
+                $("#node-config-ws-tip").hide();
+            } else {
+                $("#node-config-ws-path").html(root);
+                $("#node-config-ws-tip").show();
+            }
+            //document.getElementById("node-config-wsdocpath").innerHTML=
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="tcp in">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-resize-small"></i> Type</label>
+        <select id="node-input-server" style="width:120px; margin-right:5px;">
+            <option value="server">Listen on</option>
+            <option value="client">Connect to</option>
+        </select>
+        port <input type="text" id="node-input-port" style="width: 50px">
+    </div>
+    <div class="form-row hidden" id="node-input-host-row" style="padding-left: 110px;">
+        at host <input type="text" id="node-input-host" placeholder="localhost" style="width: 40%;">
+    </div>
+
+    <div class="form-row">
+        <label><i class="icon-th"></i> Output</label>
+        a
+        <select id="node-input-datamode" style="width:110px;">
+            <option value="stream">stream of</option>
+            <option value="single">single</option>
+        </select>
+        <select id="node-input-datatype" style="width:140px;">
+            <option value="buffer">Buffer</option>
+            <option value="utf8">String</option>
+            <option value="base64">Base64 String</option>
+        </select>
+        payload<span id="node-input-datamode-plural">s</span>
+    </div>
+
+    <div id="node-row-newline" class="form-row hidden" style="padding-left: 110px;">
+        delimited by <input type="text" id="node-input-newline" style="width: 110px;">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-topic"><i class="icon-tasks"></i> Topic</label>
+        <input type="text" id="node-input-topic" placeholder="Topic">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="tcp in">
+<p>Provides a choice of tcp inputs. Can either connect to a remote tcp port,
+   or accept incoming connections.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tcp in',{
+        category: 'input',
+        color:"Silver",
+        defaults: {
+            server: {value:"server",required:true},
+            host: {value:"",validate:function(v) { return (this.server == "server")||v.length > 0;} },
+            port: {value:"",required:true,validate:RED.validators.number()},
+            datamode:{value:"stream"},
+            datatype:{value:"buffer"},
+            newline:{value:""},
+            topic: {value:""},
+            name: {value:""},
+            base64: {/*deprecated*/ value:false,required:true}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "bridge-dash.png",
+        label: function() {
+            return this.name || "tcp:"+(this.host?this.host+":":"")+this.port;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            var updateOptions = function() {
+                var sockettype = $("#node-input-server option:selected").val();
+                if (sockettype == "client") {
+                    $("#node-input-host-row").show();
+                } else {
+                    $("#node-input-host-row").hide();
+                }
+                var datamode = $("#node-input-datamode option:selected").val();
+                var datatype = $("#node-input-datatype option:selected").val();
+                if (datamode == "stream") {
+                    $("#node-input-datamode-plural").show();
+                    if (datatype == "utf8") {
+                        $("#node-row-newline").show();
+                    } else {
+                        $("#node-row-newline").hide();
+                    }
+                } else {
+                    $("#node-input-datamode-plural").hide();
+                    $("#node-row-newline").hide();
+                }
+            };
+            updateOptions();
+            $("#node-input-server").change(updateOptions);
+            $("#node-input-datatype").change(updateOptions);
+            $("#node-input-datamode").change(updateOptions);
+        }
+    });
+</script>
+
+<div class="red-template"data-template-name="tcp out">
+    <div class="form-row">
+        <label for="node-input-beserver"><i class="icon-resize-small"></i> Type</label>
+        <select id="node-input-beserver" style="width:150px; margin-right:5px;">
+            <option value="server">Listen on</option>
+            <option value="client">Connect to</option>
+            <option value="reply">Reply to TCP</option>
+        </select>
+        <span id="node-input-port-row">port <input type="text" id="node-input-port" style="width: 50px"></span>
+    </div>
+
+    <div class="form-row hidden" id="node-input-host-row" style="padding-left: 110px;">
+        at host <input type="text" id="node-input-host" placeholder="localhost" style="width: 40%;">
+    </div>
+
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-base64" placeholder="base64" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-base64" style="width: 70%;">Decode Base64 message ?</label>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="tcp out">
+<p>Provides a choice of tcp outputs. Can either connect to a remote tcp port,
+    accept incoming connections, or reply to messages received from a TCP In node.</p>
+<p>Only <b>msg.payload</b> is sent.</p>
+<p>If <b>msg.payload</b> is a string containing a base64 encoding of binary
+data, the Base64 decoding option will cause it to be converted back to binary
+before being sent.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tcp out',{
+        category: 'output',
+        color:"Silver",
+        defaults: {
+            host: {value:"",validate:function(v) { return (this.beserver != "client")||v.length > 0;} },
+            port: {value:"",validate:function(v) { return (this.beserver == "reply")||RED.validators.number()(v) } },
+            beserver: {value:"client",required:true},
+            base64: {value:false,required:true},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "bridge-dash.png",
+        align: "right",
+        label: function() {
+            return this.name || "tcp:"+(this.host?this.host+":":"")+this.port;
+        },
+        labelStyle: function() {
+            return (this.name)?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            var updateOptions = function() {
+                var sockettype = $("#node-input-beserver option:selected").val();
+                if (sockettype == "reply") {
+                    $("#node-input-port-row").hide();
+                    $("#node-input-host-row").hide();
+                } else {
+                    $("#node-input-port-row").show();
+                }
+
+                if (sockettype == "client") {
+                    $("#node-input-host-row").show();
+                } else {
+                    $("#node-input-host-row").hide();
+                }
+            };
+            updateOptions();
+            $("#node-input-beserver").change(updateOptions);
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!--  The Input Node  -->
+<div class="red-template"data-template-name="udp in">
+    <div class="form-row">
+        <label for="node-input-port"><i class="icon-inbox"></i> Listen</label>
+        on port <input type="text" id="node-input-port" placeholder="Port" style="width: 45px">
+        for <select id="node-input-multicast" style='width:40%'>
+          <option value="false">udp messages</option>
+          <option value="true">multicast messages</option>
+        </select>
+    </div>
+    <div class="form-row node-input-group">
+        <label for="node-input-group"><i class="icon-list"></i> Group</label>
+        <input type="text" id="node-input-group" placeholder="225.0.18.83">
+    </div>
+    <div class="form-row node-input-iface">
+        <label for="node-input-iface"><i class="icon-random"></i> Interface</label>
+        <input type="text" id="node-input-iface" placeholder="(optional) ip address of eth0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-datatype"><i class="icon-file"></i> Output</label>
+        <select id="node-input-datatype" style="width: 70%;">
+            <option value="buffer">a Buffer</option>
+            <option value="utf8">a String</option>
+            <option value="base64">a Base64 encoded string</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">Tip: Make sure your firewall will allow the data in.</div>
+    <script>
+        $("#node-input-multicast").change(function() {
+            var id = $("#node-input-multicast option:selected").val();
+            if (id == "false") {
+                $(".node-input-group").hide();
+                $(".node-input-iface").hide();
+            }
+            else {
+                $(".node-input-group").show();
+                $(".node-input-iface").show();
+            }
+        });
+    </script>
+</div>
+
+<div class="red-template"data-help-name="udp in">
+    <p>A udp input node, that produces a <b>msg.payload</b> containing a <i>BUFFER</i>, string, or base64 encoded string. Supports multicast.</p>
+    <p>It also provides <b>msg.ip</b> and <b>msg.port</b> to the ip address and port from which the message was received.</b>
+    <p>On some systems you may need to be root to use ports below 1024 and/or broadcast.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('udp in',{
+        category: 'input',
+        color:"Silver",
+        defaults: {
+            name: {value:""},
+            iface: {value:""},
+            port: {value:"",required:true,validate:RED.validators.number()},
+            datatype: {value:"buffer",required:true},
+            multicast: {value:"false"},
+            group: {value:"",validate:function(v) { return (this.multicast !== "true")||v.length > 0;} }
+        },
+        inputs:0,
+        outputs:1,
+        icon: "bridge-dash.png",
+        label: function() {
+            if (this.multicast=="false") {
+                return this.name||"udp "+this.port;
+            }
+            else return this.name||"udp "+(this.group+":"+this.port);
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+
+<!--  The Output Node  -->
+<div class="red-template"data-template-name="udp out">
+    <div class="form-row">
+        <label for="node-input-port"><i class="icon-envelope"></i> Send a</label>
+        <select id="node-input-multicast" style='width:40%'>
+          <option value="false">udp message</option>
+          <option value="broad">broadcast message</option>
+          <option value="multi">multicast message</option>
+        </select>
+        to port <input type="text" id="node-input-port" placeholder="port" style="width: 70px">
+    </div>
+    <div class="form-row node-input-addr">
+        <label for="node-input-addr" id="node-input-addr-label"><i class="icon-list"></i> Address</label>
+        <input type="text" id="node-input-addr" placeholder="destination ip" style="width: 70%;">
+    </div>
+    <div class="form-row node-input-iface">
+        <label for="node-input-iface"><i class="icon-random"></i> Interface</label>
+        <input type="text" id="node-input-iface" placeholder="(optional) ip address of eth0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-outport-type">&nbsp;</label>
+        <select id="node-input-outport-type">
+          <option id="node-input-outport-type-random" value="random">use random local port</option>
+          <option value="fixed">bind to local port</option>
+        </select>
+        <input type="text" id="node-input-outport"  style="width: 70px;" placeholder="port">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-base64" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-base64" style="width: 70%;">Decode Base64 encoded payload ?</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">Tip: leave address and port blank if you want to set using <b>msg.ip</b> and <b>msg.port</b>.</div>
+    <script>
+        $("#node-input-multicast").change(function() {
+            var id = $("#node-input-multicast option:selected").val();
+            if (id !== "multi") {
+                $(".node-input-iface").hide();
+                $("#node-input-addr-label").html('<i class="icon-list"></i> Address');
+                $("#node-input-addr")[0].placeholder = 'destination ip';
+            }
+            else {
+                $(".node-input-iface").show();
+                $("#node-input-addr-label").html('<i class="icon-list"></i> Group');
+                $("#node-input-addr")[0].placeholder = '225.0.18.83';
+            }
+            if (id === "broad") {
+                $("#node-input-addr")[0].placeholder = '255.255.255.255';
+            }
+        });
+    </script>
+</div>
+
+<div class="red-template"data-help-name="udp out">
+    <p>This node sends <b>msg.payload</b> to the designated udp host and port. Supports multicast.</p>
+    <p>You may also use <b>msg.ip</b> and <b>msg.port</b> to set the destination values.<br/><b>Note</b>: the statically configured values have precedence.</p>
+    <p>If you select broadcast either set the address to the local broadcast ip address, or maybe try 255.255.255.255, which is the global broadcast address.</p>
+    <p>On some systems you may need to be root to use ports below 1024 and/or broadcast.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('udp out',{
+        category: 'output',
+        color:"Silver",
+        defaults: {
+            name: {value:""},
+            addr: {value:""},
+            iface: {value:""},
+            port: {value:""},
+            outport: {value:""},
+            base64: {value:false,required:true},
+            multicast: {value:"false"}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "bridge-dash.png",
+        align: "right",
+        label: function() {
+            return this.name||"udp "+(this.addr+":"+this.port);
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            var type = this.outport==""?"random":"fixed";
+            $("#node-input-outport-type option").filter(function() {
+                return $(this).val() == type;
+            }).attr('selected',true);
+
+
+            $("#node-input-outport-type").change(function() {
+                var type = $(this).children("option:selected").val();
+                if (type == "random") {
+                    $("#node-input-outport").val("").hide();
+                } else {
+                    $("#node-input-outport").show();
+                }
+            });
+
+            $("#node-input-outport-type").change();
+
+            $("#node-input-multicast").change(function() {
+                var type = $(this).children("option:selected").val();
+                if (type == "false") {
+                    $("#node-input-outport-type-random").html("bind to random local port");
+                } else {
+                    $("#node-input-outport-type-random").html("bind to target port");
+                }
+            });
+            $("#node-input-multicast").change();
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="switch">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row" style="padding-top:10px;">
+        If msg.<input type="text" id="node-input-property" style="width: 200px;"/>
+    </div>
+    <div class="form-row">
+        <div id="node-input-rule-container-div" style="border-radius: 5px; height: 310px; padding: 5px; border: 1px solid #ccc; overflow-y:scroll;">
+        <ol id="node-input-rule-container" style=" list-style-type:none; margin: 0;">
+        </ol>
+        </div>
+        <a href="#" class="btn btn-mini" id="node-input-add-rule" style="margin-top: 4px;"><i class="icon-plus"></i> Add</a>
+    </div>
+    <div>
+        <select id="node-input-checkall" style="width:100%; margin-right:5px;">
+            <option value="true">checking all rules</option>
+            <option value="false">stopping after first match</option>
+        </select>
+    </div>
+</div>
+
+<div class="red-template"data-help-name="switch">
+    <p>A simple function node to route messages based on its properties.</p>
+    <p>When a message arrives, the selected property is evaluated against each
+    of the defined rules. The message is then sent to the output of <i>all</i>
+    rules that pass.</p>
+    <p>Note: the <i>otherwise</i> rule applies as a "not any of" the rules preceeding it.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('switch', {
+        color: "#E2D96E",
+        category: 'function',
+        defaults: {
+            name: {value:""},
+            property: {value:"payload", required:true},
+            rules: {value:[{t:"eq", v:""}]},
+            checkall: {value:"true", required:true},
+            outputs: {value:1}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "switch.png",
+        label: function() {
+            return this.name||"switch";
+        },
+        oneditprepare: function() {
+
+            var operators = [
+                {v:"eq",t:"=="},
+                {v:"neq",t:"!="},
+                {v:"lt",t:"<"},
+                {v:"lte",t:"<="},
+                {v:"gt",t:">"},
+                {v:"gte",t:">="},
+                {v:"btwn",t:"is between"},
+                {v:"cont",t:"contains"},
+                {v:"regex",t:"matches regex"},
+                {v:"true",t:"is true"},
+                {v:"false",t:"is false"},
+                {v:"null",t:"is null"},
+                {v:"nnull",t:"is not null"},
+                {v:"else",t:"otherwise"}
+            ];
+
+            function generateRule(i,rule) {
+                var container = $('<li/>',{style:"margin:0; padding:8px 0px; border-bottom: 1px solid #ccc;"});
+                var row = $('<div/>').appendTo(container);
+                var row2 = $('<div/>',{style:"padding-top: 5px; text-align: right;"}).appendTo(container);
+
+                var selectField = $('<select/>',{style:"width:120px; margin-left: 5px; text-align: center;"}).appendTo(row);
+                for (var d in operators) {
+                    selectField.append($("<option></option>").val(operators[d].v).text(operators[d].t));
+                }
+
+                var valueField = $('<input/>',{class:"node-input-rule-value",type:"text",style:"margin-left: 5px; width: 145px;"}).appendTo(row);
+                var btwnField = $('<span/>').appendTo(row);
+                var btwnValueField = $('<input/>',{class:"node-input-rule-btwn-value",type:"text",style:"margin-left: 5px; width: 50px;"}).appendTo(btwnField);
+                btwnField.append(" and ");
+                var btwnValue2Field = $('<input/>',{class:"node-input-rule-btwn-value2",type:"text",style:"width: 50px;margin-left:2px;"}).appendTo(btwnField);
+
+                var finalspan = $('<span/>',{style:"float: right; margin-top: 3px;margin-right: 10px;"}).appendTo(row);
+                finalspan.append(' send to <span class="node-input-rule-index">'+i+'</span> ');
+
+                selectField.change(function() {
+                    var type = selectField.children("option:selected").val();
+                    if (type.length < 4) {
+                        selectField.css({"width":"60px"});
+                    } else if (type === "regex") {
+                        selectField.css({"width":"147px"});
+                    } else {
+                        selectField.css({"width":"120px"});
+                    }
+                    if (type === "btwn") {
+                        valueField.hide();
+                        btwnField.show();
+                    } else {
+                        btwnField.hide();
+                        if (type === "true" || type === "false" || type === "null" || type === "nnull" || type === "else") {
+                            valueField.hide();
+                        } else {
+                            valueField.show();
+                        }
+                    }
+                });
+
+                var deleteButton = $('<a/>',{href:"#",class:"btn btn-mini", style:"margin-left: 5px;"}).appendTo(finalspan);
+                $('<i/>',{class:"icon-remove"}).appendTo(deleteButton);
+
+                deleteButton.click(function() {
+                    container.css({"background":"#fee"});
+                    container.fadeOut(300, function() {
+                        $(this).remove();
+                        $("#node-input-rule-container").children().each(function(i) {
+                            $(this).find(".node-input-rule-index").html(i+1);
+                        });
+
+                    });
+                });
+
+                $("#node-input-rule-container").append(container);
+
+                selectField.find("option").filter(function() {return $(this).val() == rule.t;}).attr('selected',true);
+                if (rule.t == "btwn") {
+                    btwnValueField.val(rule.v);
+                    btwnValue2Field.val(rule.v2);
+                } else if (typeof rule.v != "undefined") {
+                    valueField.val(rule.v);
+                }
+                selectField.change();
+            }
+
+            $("#node-input-add-rule").click(function() {
+                generateRule($("#node-input-rule-container").children().length+1,{t:"",v:"",v2:""});
+                $("#node-input-rule-container-div").scrollTop($("#node-input-rule-container-div").get(0).scrollHeight);
+            });
+
+            for (var i=0;i<this.rules.length;i++) {
+                var rule = this.rules[i];
+                generateRule(i+1,rule);
+            }
+
+            function switchDialogResize(ev,ui) {
+                $("#node-input-rule-container-div").css("height",(ui.size.height-260)+"px");
+            };
+
+            $( "#dialog" ).on("dialogresize", switchDialogResize);
+            $( "#dialog" ).one("dialogopen", function(ev) {
+                var size = $( "#dialog" ).dialog('option','sizeCache-switch');
+                if (size) {
+                    switchDialogResize(null,{size:size});
+                }
+            });
+            $( "#dialog" ).one("dialogclose", function(ev,ui) {
+                $( "#dialog" ).off("dialogresize",switchDialogResize);
+            });
+        },
+        oneditsave: function() {
+            var rules = $("#node-input-rule-container").children();
+            var ruleset;
+            var node = this;
+            node.rules= [];
+            rules.each(function(i) {
+                var rule = $(this);
+                var type = rule.find("select option:selected").val();
+                var r = {t:type};
+                if (!(type === "true" || type === "false" || type === "null" || type === "nnull" || type === "else")) {
+                    if (type === "btwn") {
+                        r.v = rule.find(".node-input-rule-btwn-value").val();
+                        r.v2 = rule.find(".node-input-rule-btwn-value2").val();
+                    } else {
+                        r.v = rule.find(".node-input-rule-value").val();
+                    }
+                }
+                node.rules.push(r);
+            });
+            node.outputs = node.rules.length;
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="change">
+    <div>
+        <select id="node-input-action" style="width:95%; margin-right:5px;">
+            <option value="replace">Set the value of the message property</option>
+            <option value="change">Search/replace the value of the message property</option>
+            <option value="delete">Delete the message property</option>
+        </select>
+    </div>
+    <div class="form-row" style="padding-top:10px;" id="node-prop1-row">
+        <label for="node-input-property">called</label> msg.<input type="text" id="node-input-property" style="width: 63%;"/>
+    </div>
+    <div class="form-row" id="node-from-row">
+        <label for="node-input-from" id="node-input-f"></label>
+        <input type="text" id="node-input-from" placeholder="this"/>
+    </div>
+    <div class="form-row" id="node-to-row">
+        <label for="node-input-to" id="node-input-t"></label>
+        <input type="text" id="node-input-to" placeholder="that"/>
+    </div>
+    <div class="form-row" id="node-reg-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-reg" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-reg" style="width: 70%;">Use regular expressions ?</label>
+    </div>
+    <div class="form-tips" id="node-tip"></div>
+    <br/>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="change">
+    <p>A simple function node to change, replace, add or delete properties of a message.</p>
+    <p>When a message arrives, the selected property is modified by the defined rules.
+    The message is then sent to the output.</p>
+    <p><b>Note:</b> Replace only operates on <b>strings</b>. Anything else will be passed straight through.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('change', {
+        color: "#E2D96E",
+        category: 'function',
+        defaults: {
+            action: {value:"replace",required:true},
+            property: {value:"payload",required:true},
+            from: {value:"",validate: function(v) {
+                if (this.action == "change" && this.reg) {
+                    try {
+                        var re = new RegExp(this.from, "g");
+                        return true;
+                    } catch(err) {
+                        return false;
+                    }
+                }
+                return true;
+            }},
+            to: {value:""},
+            reg: {value:false},
+            name: {value:""}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "swap.png",
+        label: function() {
+            if (this.name) {
+                return this.name;
+            }
+            if (this.action == "replace") {
+                return "set msg."+this.property;
+            } else {
+                return this.action+" msg."+this.property
+            }
+        },
+        labelStyle: function() {
+            return this.name ? "node_label_italic" : "";
+        },
+        oneditprepare: function() {
+            if (this.reg === null) { $("#node-input-reg").prop('checked', true); }
+            $("#node-input-action").change( function() {
+                var a = $("#node-input-action").val();
+                if (a === "replace") {
+                    $("#node-input-todo").html("called");
+                    //$("#node-input-f").html("name");
+                    $("#node-input-t").html("to");
+                    $("#node-from-row").hide();
+                    $("#node-to-row").show();
+                    $("#node-reg-row").hide();
+                    $("#node-tip").show();
+                    $("#node-tip").html("Tip: expects a new property name and either a fixed value OR the full name of another message property eg: msg.sentiment.score");
+                }
+                if (a === "delete") {
+                    $("#node-input-todo").html("called");
+                    //$("#node-input-f").html("called");
+                    //$("#node-input-t").html("to");
+                    $("#node-from-row").hide();
+                    $("#node-to-row").hide();
+                    $("#node-reg-row").hide();
+                    $("#node-tip").hide();
+                }
+                if (a === "change") {
+                    $("#node-input-todo").html("called");
+                    $("#node-input-f").html("Search for");
+                    $("#node-input-t").html("replace with");
+                    $("#node-from-row").show();
+                    $("#node-to-row").show();
+                    $("#node-reg-row").show();
+                    $("#node-tip").show();
+                    $("#node-tip").html("Tip: only works on string properties. If regular expressions are used, the <i>replace with</i> field can contain capture results, eg $1.");
+                }
+                //if (a === "replace") {
+                 //   $("#node-input-todo").html("called");
+                 //   //$("#node-input-f").html("with");
+                 //   $("#node-input-t").html("with");
+                 //   $("#node-from-row").hide();
+                 //   $("#node-to-row").show();
+                 //   $("#node-tip").html("Tip: accepts either a fixed value OR the full name of another msg.property eg: msg.sentiment.score");
+                //}
+            });
+            $("#node-input-action").change();
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="range">
+    <div class="form-row">
+        <select id="node-input-action" style="width:90%; margin-right:5px;">
+            <option value="scale">Scale msg.payload</option>
+            <option value="clamp">Scale and limit to the target range</option>
+            <option value="roll">Scale and wrap within the target range</option>
+        </select>
+    </div>
+    <br/>
+    <div class="form-row">
+        From the range:
+    </div>
+    <div class="form-row">
+        &nbsp;&nbsp;&nbsp;&nbsp;min: <input type="text" id="node-input-minin" placeholder="0" style="width:100px;"/>
+        &nbsp;&nbsp;max: <input type="text" id="node-input-maxin" placeholder="99" style="width:100px;"/>
+    </div>
+    <div class="form-row">
+        to the range:
+    </div>
+    <div class="form-row">
+        &nbsp;&nbsp;&nbsp;&nbsp;min: <input type="text" id="node-input-minout" placeholder="0" style="width:100px;"/>
+        &nbsp;&nbsp;max: <input type="text" id="node-input-maxout" placeholder="255" style="width:100px;"/>
+    </div>
+    <br/>
+    <div class="form-row">
+        <input type="checkbox" id="node-input-round" style="display: inline-block; width: auto; vertical-align: top;"> <label style="width: auto;" for="node-input-round">Round to nearest integer?</label></input>
+    </div>
+    <br/>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips" id="node-tip">Tip: This node ONLY works with numbers.</div>
+</div>
+
+<div class="red-template"data-help-name="range">
+    <p>A simple function node to remap numeric input values to another scale.</p>
+    <p>Currently only does a linear scaling.</p>
+    <p><b>Note:</b> This only operates on <b>numbers</b>. Anything else will try to be made into a number and rejected if that fails.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('range', {
+        color: "#E2D96E",
+        category: 'function',
+        defaults: {
+            minin: {value:"",required:true,validate:RED.validators.number()},
+            maxin: {value:"",required:true,validate:RED.validators.number()},
+            minout: {value:"",required:true,validate:RED.validators.number()},
+            maxout: {value:"",required:true,validate:RED.validators.number()},
+            action: {value:"scale"},
+            round: {value:false},
+            name: {value:""}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "range.png",
+        label: function() {
+            return this.name || "range";
+        },
+        labelStyle: function() {
+            return this.name ? "node_label_italic" : "";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="device in">
+    <div class="form-row">
+        <label for="node-input-outputs"><i class="icon-tasks"></i> Directly to Me?</label>
+        <input type="checkbox" id="node-input-directToMe" style="width: 30px; height: 1.7em;"> <span id="node-span-directToMe-uuid" class="selectable"></span>
+    </div>
+    <div class="form-row" id="node-div-deviceRow">
+        <label for="node-input-device"><i class="icon-tasks"></i> A broadcast From</label>
+        <input type="text" id="node-input-device" placeholder="device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="device in">
+    <p>device input node.</p>
+    <p>Outputs an object called <b>msg</b> containing <b>msg.topic</b> and <b>msg.payload</b>.</p>
+    <p>The messages can come from any other device that sends messages directly to your <b>uuid</b>, or the messages can come from broadcasts made by other devices that you are subscribed to.</p>
+</div>
+
+<script type="text/javascript">
+
+    var uuid;
+
+    document.cookie.split(';').forEach(function (cookie) {
+        var sp = cookie.split('=');
+        if (sp[0].trim() === 'skynetuuid'){
+            uuid = sp[1].trim();
+        }
+    });
+
+    if(!uuid){
+        RED.rpc('skynetWhoami', this.id, function(err,data) {
+            console.log('skynetWhoami', err, data);
+            if(data && data.uuid){
+                uuid = data.uuid;
+            }
+        });
+    }else{
+        console.log('uuid', uuid);
+    }
+
+    if ((''+location).indexOf('octoblu') >= 0) document.domain = 'octoblu.com'
+
+    RED.nodes.registerType('device in',{
+        category: 'skynet',
+        defaults: {
+            name: {value:""},
+            //topicFilter: {value:""},
+            device: {type:"skynet-device", value:null, required: false},
+            directToMe: {value: false}
+        },
+        color:"#e05a54",
+        inputs:0,
+        outputs:1,
+        icon: "bridge.png",
+        label: getLabel,
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            console.log('uuid', uuid);
+            getSkynetDevices.call(this);
+            $('#node-span-directToMe-uuid').html(uuid);
+
+            function showDevice(){
+                $( "#node-div-deviceRow" ).show();
+            }
+            function hideDevice(){
+                $( "#node-div-deviceRow" ).hide();
+            }
+
+            var directToMe = $( "#node-input-directToMe" );
+            directToMe.change(function(){
+                console.log('directToMe checked', this.checked);
+                if(this.checked){
+                    hideDevice();
+                }else{
+                    showDevice();
+                }
+            });
+
+            if(this.directToMe){
+                directToMe.checked = 'checked';
+                hideDevice();
+            }
+            else{
+                directToMe.checked = '';
+                showDevice();
+            }
+
+        },
+        oneditsave: function(a) {
+            var direct = $( "#node-input-outputs" );
+            if(direct.checked == 'checked' ){
+                this.directToMe = true;
+            }else{
+                this.directToMe = false;
+            }
+            console.log('saving', this, a);
+        }
+    });
+
+    RED.nodes.registerType('device out',{
+        category: 'skynet',
+        defaults: {
+            name: {value:""},
+            device: {type:"skynet-device", value:null},
+            outputs: {value:0},
+            broadcast: {value: false}
+        },
+        color:"#e05a54",
+        inputs:1,
+        outputs:0,
+        icon: "bridge.png",
+        align: "right",
+        label: getLabel,
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            getSkynetDevices.call(this);
+
+            var inout = $( "#node-input-outputs" );
+            if(this.outputs){
+                inout.checked = 'checked';
+            }
+            else{
+                inout.checked = '';
+            }
+
+            function showDevice(){
+                $( "#node-div-deviceRow" ).show();
+                $( "#node-div-outputsRow" ).show();
+            }
+            function hideDevice(){
+                $( "#node-div-deviceRow" ).hide();
+                $( "#node-div-outputsRow" ).hide();
+            }
+
+            var broadcast = $( "#node-input-broadcast" );
+            broadcast.change(function(){
+                console.log('broadcast checked', this.checked);
+                if(this.checked){
+                    hideDevice();
+                }else{
+                    showDevice();
+                }
+            });
+
+            if(this.broadcast){
+                broadcast.checked = 'checked';
+                hideDevice();
+            }
+            else{
+                broadcast.checked = '';
+                showDevice();
+            }
+        },
+        oneditsave: function(a) {
+            var inout = $( "#node-input-outputs" );
+            if(inout.checked == 'checked' ){
+                this.outputs = 1;
+            }else{
+                this.outputs = 0;
+            }
+
+            var broadcast = $( "#node-input-broadcast" );
+            if(broadcast.checked == 'checked' ){
+                this.broadcast = true;
+            }else{
+                this.broadcast = false;
+            }
+
+            console.log('saving', this, a);
+        }
+
+    });
+
+
+
+
+    getSkynetDevices();
+
+    function getSkynetDevices () {
+        var node = this;
+        RED.rpc('skynetDevices', this.id, function(err,data) {
+            if (err) {
+                //RED.notify("<strong>Error</strong>: " + err,"error");
+            } else{
+                if (data && data.devices) {
+                    var newDeviceIds = data.devices.map(getter('uuid'))
+                    RED.nodes.eachConfig(function (config) {
+                      if (config.dne && newDeviceIds.indexOf(config.id) === -1) RED.nodes.remove(config.id)
+                    })
+
+                    RED.nodes.import(data.devices.map(function (device) {
+                        return {id: device.uuid, uuid: device.uuid, token: device.token, name: device.name, dne:true, type: 'skynet-device'}
+                    }))
+                    RED.editor.updateConfigNodeSelect('device', 'skynet-device', node.device)
+                }
+            }
+        });
+    }
+
+    function getLabel () {
+        if(this.directToMe){
+            return this.name||"me";
+        }else{
+            var device = RED.nodes.node(this.device);
+            return this.name||(device && device.name)||"device";
+        }
+
+    }
+
+    function getter (prop) {
+      return function (obj) {
+        return obj[prop]
+      }
+    }
+</script>
+
+<div class="red-template"data-template-name="device out">
+    <div class="form-row">
+        <label for="node-input-outputs"><i class="icon-tasks"></i> Out to Anyone?</label>
+        <input type="checkbox" id="node-input-broadcast" style="width: 30px; height: 1.7em;"> <span>*</span>
+    </div>
+    <div class="form-row" id="node-div-deviceRow">
+        <label for="node-input-device"><i class="icon-tasks"></i> To Device</label>
+        <input type="text" id="node-input-device" placeholder="device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row"  id="node-div-outputsRow">
+        <label for="node-input-outputs"><i class="icon-random"></i> Forward Response?</label>
+        <input type="checkbox" id="node-input-outputs" style="width: 30px; height: 1.7em;">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="device out">
+    <p>device output node</p>
+    <p>Connects to Skynet and publishes <b>msg.payload</b> to a specific, selected <b>device</b> or broadcasts the payload out to any devices subcribed to your <b>uuid</b></p>
+    <p>If a message is sent to a specific device, it may request a response and forward that response to the next node.
+</div>
+
+
+<div class="red-template"data-template-name="skynet-device">
+    <div class="form-row node-input-uuid">
+        <label for="node-config-input-uuid"><i class="icon-bookmark"></i> UUID</label>
+        <input class="input-append-left" type="text" id="node-config-input-uuid" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-token"><i class="icon-lock"></i> Token</label>
+        <input type="token" id="node-config-input-token">
+    </div>
+    <div class="form-row node-input-name">
+        <label for="node-config-input-name"><i class="icon-bookmark"></i> Name</label>
+        <input class="input-append-left" type="text" id="node-config-input-name" placeholder="Foo">
+    </div>
+    <input type="hidden" id="node-config-input-dne" value="">
+</div>
+
+<script type="text/javascript">
+  /*
+     {"_id":"hex"
+     ,"channel":"main"
+     ,"name":"arduino"
+     ,"online":false
+     ,"owner":"owner-uuid"
+     ,"socketId":"random"
+     ,"timestamp":1390934674113
+     ,"token":"token"
+     ,"uuid":"device-uuid"
+     ,"$$hashKey":"xxx"
+     }
+     */
+
+    RED.nodes.registerType('skynet-device',{
+        category: 'config',
+        defaults: {
+            uuid: {value:"",required:true},
+            token: {value:"", priv: true},
+            name: {value:""},
+            dne: {value:""}
+        },
+        label: function() {
+            return this.name || this.uuid;
+        },
+        oneditprepare: function() {
+            if (this.dne) {
+               ;['uuid', 'name', 'token'].forEach(function (field) {
+                 document.getElementById('node-config-input-'+field).disabled = true
+               })
+               document.getElementById('node-config-input-dne').value = 'true'
+            }
+        },
+        oneditsave: function() {
+        },
+        ondelete: function() {
+        }
+    });
+</script>
+
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="channel">
+    <div class="form-row">
+        <label for="node-input-api"><i class="icon-tasks"></i> Channels</label>
+        <select type="text" id="node-input-api" style="display: inline-block; vertical-align: middle; width:60%;">
+            <option value="none">none</option>
+        </select>
+        <a id="channelDocumentation" href="#" target="_blank">Docs</a>
+    </div>
+    <div class="form-row">
+        <label for="node-input-endpoint"><i class="icon-tag"></i> Endpoint</label>
+        <select type="text" id="node-input-endpoint" style="display: inline-block; vertical-align: middle; width:60%;">
+            <option value="none">none</option>
+        </select>
+        <a id="endpointDocumentation" href="#" target="_blank" style="display:none">Define</a>
+    </div>
+    <div class="form-row">
+        <label for="node-input-method"><i class="icon-tag"></i> Method</label>
+        <input type="text" id="node-input-method" placeholder="GET">
+    </div>
+    <div class="form-row">
+        <label for="node-input-query"><i class="icon-tasks"></i> query</label>
+        <input type="text" id="node-input-query" placeholder="query">
+    </div>
+    <div class="form-row">
+        <label for="node-input-header"><i class="icon-tasks"></i> header</label>
+        <input type="text" id="node-input-header" placeholder="header">
+    </div>
+
+    <div class="form-row" style="visibility:hidden">
+        <label for="node-input-apicreds"><i class="icon-tasks"></i> Api Creds</label>
+        <input type="text" id="node-input-apicreds" placeholder="apicreds">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-body"><i class="icon-tag"></i> Body</label>
+        <textarea id="node-input-body"></textarea>
+    </div>
+    <div class="form-row api-seg" id="seg0">
+        <label for="node-input-seg0"><i class="icon-tasks"></i> URL Segment</label>
+        <input type="text" id="node-input-seg0"></div>
+    </div>
+    <div class="form-row api-seg" id="seg1">
+        <label for="node-input-seg1"><i class="icon-tasks"></i> URL Segment</label>
+        <input type="text" id="node-input-seg1"></div>
+    </div>
+    <div class="form-row api-seg" id="seg2">
+        <label for="node-input-seg2"><i class="icon-tasks"></i> URL Segment</label>
+        <input type="text" id="node-input-seg2"></div>
+    </div>
+    <div class="form-row api-seg" id="seg3">
+        <label for="node-input-seg3"><i class="icon-tasks"></i> URL Segment</label>
+        <input type="text" id="node-input-seg3"></div>
+    </div>
+
+</div>
+
+<div class="red-template"data-template-name="query">
+    <div class="form-row node-config-input-name">
+        <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+    <div class="form-row node-config-input-key0">
+      <strong>?</strong>
+      <input type="text" id="node-config-input-key0" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val0" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key1" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val1" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key2" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val2" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key3" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val3" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key4" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val4" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key5" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val5" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key6" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val6" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key7" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val7" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key8" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val8" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <strong>&</strong>
+      <input type="text" id="node-config-input-key9" placeholder="key" style="width: 40%">
+      <strong>=</strong>
+      <input type="text" id="node-config-input-val9" placeholder="value" style="width: 40%">
+    </div>
+</div>
+
+<div class="red-template"data-template-name="header">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key0" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val0" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key1" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val1" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key2" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val2" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key3" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val3" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key4" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val4" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key5" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val5" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key6" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val6" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key7" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val7" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key8" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val8" placeholder="value" style="width: 40%">
+    </div>
+    <div class="form-row">
+      <input type="text" id="node-config-input-key9" placeholder="header" style="width: 40%">
+      <strong>: </strong>
+      <input type="text" id="node-config-input-val9" placeholder="value" style="width: 40%">
+    </div>
+</div>
+
+
+<div class="red-template"data-template-name="apicreds">
+    <div class="form-row">
+        <label for="node-config-input-key"><i class="icon-tag"></i> key</label>
+        <input type="text" id="node-config-input-key" placeholder="key" disabled="">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-token"><i class="icon-tag"></i> token</label>
+        <input type="text" id="node-config-input-token" placeholder="token" disabled="">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-secret"><i class="icon-tag"></i> secret</label>
+        <input type="password" id="node-config-input-secret" placeholder="secret" disabled="">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="api">
+<p>Provides a node for making http requests.</p>
+<p>The URL and HTTP method can be configured in the node, but also
+   overridden by the incoming message:
+<ul>
+    <li><code>url</code>, if set, is used as the url of the request</li>
+    <li><code>method</code>, if set, is used as the HTTP method of the request. Must be one of <code>GET</code>, <code>PUT</code>, <code>POST</code> or <code>DELETE</code> (default: GET)</li>
+    <li><code>headers</code>, if set, should be an object containing field/value
+    pairs to be added as request headers</li>
+    <li><code>payload</code> is sent as the body of the request</li>
+</ul>
+
+The output message contains the following properties:
+<ul>
+    <li><code>payload</code> is the body of the response</li>
+    <li><code>statusCode</code> is the status code of the response, or the error code if the request could not be completed</li>
+    <li><code>headers</code> is an object containing the response headers</li>
+</ul>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('channel',{
+        category: 'skynet',
+        color:"rgb(133, 180, 230)",
+        defaults: {
+            name: {value: "none"},
+            channelid: {value: "none"},
+            uuid: {value: "none"},
+            token: {value: "none"},
+            api: {value:"none"},
+            endpoint:{value:"none"},
+            body:{value:""},
+            seg0:{value:""},
+            seg1:{value:""},
+            seg2:{value:""},
+            seg3:{value:""},
+            query: {type:"query"},
+            header: {type:"header"},
+            'apicreds': {type:"apicreds"},
+            // 'apisettings': {type:"apisettings"},
+            method:{value:"GET"}
+        },
+        inputs:1,
+        outputs:1,
+        align: "right",
+        icon: "white-globe.png",
+        label: function() {
+            return this.name||"channel";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: findAPIs
+    });
+
+    var apis =
+      { none:
+        { application:
+          { resources: [{path: 'Register apis in the connections tab!'}]
+          }
+        , basepath: 'none'
+        }
+      };
+    var credentials = {};
+
+    function getCookie(k){return(document.cookie.match('(^|; )'+k+'=([^;]*)')||0)[2]}
+
+    var apiBase = 'http://app.octoblu.com';
+    if (window.location.hostname === 'localhost') {
+      apiBase = 'http://localhost:8080';
+    }
+
+    function findAPIs (a) {
+       var node = this;
+       var activeApi = this.api
+         , activeEndpoint = this.endpoint;
+
+       var skynetuuid = getCookie('skynetuuid'),
+          skynettoken = getCookie('skynettoken');
+
+       node.token = skynettoken;
+       node.uuid = skynetuuid;
+
+       $('.api-seg').hide();
+        // setup event handlers
+        document.getElementById('node-input-method').disabled = true
+        $("#node-input-api").change(function() {
+            var channelname = $("#node-input-api option:selected").text();
+            var channelid = $("#node-input-api option:selected").val();
+            if(!apis[channelid] || !apis[channelid].documentation) {
+              $('#channelDocumentation').hide();
+              $('#channelDocumentation').attr('href','#');
+            }
+            else {
+              $('#channelDocumentation').show();
+              $('#channelDocumentation').attr('href',apis[channelid].documentation);
+            }
+            node.name = channelname;
+            // node.uuid = uuid;
+            RED.editor.updateConfigNodeSelect('apicreds', 'apicreds', 'api-'+channelid);
+            // RED.editor.updateConfigNodeSelect('apisettings', 'apisettings', 'apisettings-'+type);
+            $('#node-input-endpoint').empty();
+            if(apis[channelid]) {
+              apis[channelid].application.resources.sort(function(a,b) {return !a.path || a.path.localeCompare(b.path);}).forEach(function (resource) {
+                  if(resource.disabled && resource.disabled==true) {return;}
+                  var name = resource.httpMethod + ' ' + resource.path
+                  if(activeEndpoint && activeEndpoint==name) {
+                    $('#node-input-endpoint').append('<option value="' + name +'" selected="selected">' + name + '</option>');
+                  } else {
+                    $('#node-input-endpoint').append('<option value="' + name +'">' + name + '</option>');
+                  }
+              })
+              $("#node-input-endpoint").change();
+            }
+        })
+
+        $("#node-input-endpoint").change(function() {
+            var channelname = $("#node-input-api option:selected").text();
+            var channelid = $("#node-input-api option:selected").val();
+            var path = $("#node-input-endpoint option:selected").val();
+            if(!apis[channelid]) return;
+            var resource = apis[channelid].application.resources.filter(function (resource) {
+              return (resource.httpMethod + ' ' + resource.path) === path;
+            })[0];
+            $('.api-seg').hide();
+            if(resource && resource.doc && resource.doc.url) {
+              $('#endpointDocumentation').show();
+              $('#endpointDocumentation').attr('href',resource.doc.url);
+
+            } else {
+              $('#endpointDocumentation').hide();
+              $('#endpointDocumentation').attr('href','#');
+            }
+            var num = 0;
+            path.split('/').forEach(function (seg) {
+              seg = seg.trim();
+              if(seg==='') return;
+              if (seg[0] === '{') {
+                var name = seg.slice(1), id = 'seg' + num++;
+                if(name.indexOf('}')) {
+                  name = name.substring(0, name.indexOf('}'));
+                }
+                $('#'+id +' label').html('<i class="icon-tasks"></i> ' + name);
+                $('#'+id).show();
+
+              } else if (seg[0] === ':') {
+                var name = seg.slice(1), id = 'seg' + num++;
+                $('#'+id +' label').html('<i class="icon-tasks"></i> ' + name);
+                $('#'+id).show();
+              }
+            });
+            document.getElementById('node-input-method').value = resource.httpMethod || 'GET';
+        })
+
+        // fire everything off.
+        function fire () {
+          $('#node-input-api').empty();
+          Object.keys(apis).sort(function(a, b) {return !apis[a].name || apis[a].name.localeCompare(apis[b].name);}).forEach(function (id) {
+                if(!apis[id] || !apis[id].name) return;
+                $('#node-input-api').append(
+                    '<option value="' + apis[id]._id +'">' + apis[id].name + '</option>'
+                )
+            })
+          $('#node-input-api option[value="' + activeApi + '"]').attr('selected', 'selected');
+          $("#node-input-api").change();
+          $('#node-input-endpoint option[value="' + activeEndpoint + '"]:first').attr('selected', 'selected');
+          $("#node-input-endpoint").change();
+        }
+
+        fire();
+
+        var user_url = apiBase + '/api/user';
+        console.log('about to request user data...');
+        $.ajax({
+           url: user_url,
+           async: false,
+           data: { },
+           type: "GET",
+           beforeSend: function(xhr){
+              xhr.setRequestHeader('skynet_auth_uuid', skynetuuid);
+              xhr.setRequestHeader('skynet_auth_token', skynettoken);
+            },
+           success: function (data) {
+            if (data && data.api) {
+                RED.nodes.import(data.api.map(function (api) {
+                  return {id: 'api-'+api.channelid, token: api.token, name: api.name||api.channelid, key: api.key, secret: api.secret, type: 'apicreds'}
+                }));
+                RED.editor.updateConfigNodeSelect('apicreds', 'apicreds', node.apicreds);
+                data.api.forEach(function(api) {
+                  if(!api.channelid) return;
+                    var name = api.name || api.channelid;
+                    if (api.channelid in apis) return;
+                    var channelUrl = apiBase + '/api/channels/' + api.channelid;
+                    $.ajax({
+                     url: channelUrl,
+                     async: true,
+                     data: { },
+                     type: "GET",
+                     beforeSend: function(xhr){
+                        xhr.setRequestHeader('skynet_auth_uuid', skynetuuid);
+                        xhr.setRequestHeader('skynet_auth_token', skynettoken);
+                      },
+                     success: function (data) {
+                        if (data._id in apis || data.enabled==false) return;
+                        apis[data._id] = data;
+                        credentials[data.name] = api;
+                        fire();
+                     }});
+                });
+            }
+           }
+        });
+    }
+
+  RED.nodes.registerType('query',
+    { category: 'config'
+    , defaults: genericDef(10)
+    , label: function () {
+        return this.name || 'Unnamed Query Object';
+      }
+    }
+  )
+
+  RED.nodes.registerType('apicreds',
+    { category: 'config'
+    , defaults: {key: {value: ''}, token: {value: ''}, secret: {value: ''}, name: {value: ''}}
+    , exportable: false
+    , label: function () {
+        return this.name || 'Unnamed Api Creds';
+      }
+    }
+  )
+
+  RED.nodes.registerType('header',
+    { category: 'config'
+    , defaults: genericDef(10)
+    , label: function () {
+        return this.name || 'Unnamed Header Object';
+      }
+    }
+
+  )
+
+  function genericDef (size) {
+    var def = { name: { value: '' }}
+    while (size--) {
+      def['key' + size] = { value: ''}
+      def['val' + size] = { value: ''}
+    }
+    return def;
+  }
+
+</script>
+
+<div class="red-template"data-template-name="microblu in">
+    <div class="form-row" id="node-div-skynetRow">
+        <label for="node-input-device"><i class="icon-tasks"></i> Microblu Firmware</label>
+        <input type="text" id="node-input-skynetFirmware" placeholder="device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-pin"><i class="icon-asterisk"></i> Pin</label>
+        <input type="text" id="node-input-pin" placeholder="2">
+    </div>
+    <div class="form-row">
+        <label for="node-input-state"><i class="icon-wrench"></i> Type</label>
+        <select type="text" id="node-input-state" style="width: 150px;">
+            <option value="INPUT">Digital pin</option>
+            <option value="ANALOG">Analog pin</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
+</div>
+
+<div class="red-template"data-help-name="microblu in">
+    <p>microblu input node. Connects to remote Arduino and monitors the selected pin for changes. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
+    <p>You can select either Digital or Analog input. Outputs the value read as <b>msg.payload</b> and the pin number as <b>msg.topic</b>.</p>
+    <p>It only outputs on a change of value - fine for digital inputs, but you can get a lot of data from analogue pins which you must then handle.</p>
+</div>
+
+
+<div class="red-template"data-template-name="microblu out">
+    <div class="form-row" id="node-div-skynetRow">
+        <label for="node-input-device"><i class="icon-tasks"></i> Skynet Firmware</label>
+        <input type="text" id="node-input-skynetFirmware" placeholder="device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-pin"><i class="icon-asterisk"></i> Pin</label>
+        <input type="text" id="node-input-pin" placeholder="13">
+    </div>
+    <div class="form-row">
+        <label for="node-input-state"><i class="icon-wrench"></i> Type</label>
+        <select type="text" id="node-input-state" style="width: 150px;">
+            <option value="OUTPUT">Digital (0/1)</option>
+            <option value="PWM">Analog (0-255)</option>
+            <option value="SERVO">Servo (0-180)</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
+</div>
+
+<div class="red-template"data-help-name="microblu out">
+    <p>microblu output node. Connects to local Arduino and writes to the selected digital pin. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
+    <p>You can select Digital, Analogue (PWM) or Servo type outputs. Expects a numeric value in <b>msg.payload</b>. The pin number is set in the properties panel.</p>
+</div>
+
+
+<script type="text/javascript">
+
+RED.nodes.registerType('microblu in',{
+    category: 'advanced-input',
+    color:"#3fadb5",
+    defaults: {
+        name: {value:""},
+        pin: {value:"",required:true},
+        state: {value:"INPUT",required:true},
+        skynetFirmware: {type:"skynet-device", value: null, required:true}
+    },
+    inputs:0,
+    outputs:1,
+    icon: "arduino.png",
+    label: function() {
+        var a = "";
+        if (this.state == "ANALOG") a = "A";
+        return this.name||"Pin: "+a+this.pin;
+    },
+    labelStyle: function() {
+        return this.name?"node_label_italic":"";
+    }
+
+});
+
+
+
+RED.nodes.registerType('microblu out',{
+    category: 'advanced-output',
+    color:"#3fadb5",
+    defaults: {
+        name: {value:""},
+        pin: {value:""},
+        state: {value:"",required:true},
+        skynetFirmware: {type:"skynet-device", value: null, required:true}
+    },
+    inputs:1,
+    outputs:0,
+    icon: "arduino.png",
+    align: "right",
+    label: function() {
+        return this.name||"Pin: "+this.pin;
+    },
+    labelStyle: function() {
+        return this.name?"node_label_italic":"";
+    }
+});
+
+</script>
+
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="twitter-credentials">
+    <div class="form-row" id="node-config-twitter-row"></div>
+    <input type="hidden" id="node-config-input-screen_name">
+</div>
+
+<script type="text/javascript">
+    var twitterConfigNodeId = null;
+    var twitterConfigNodeIntervalId = null;
+
+    function showTwitterAuthStart() {
+        var pathname = document.location.pathname;
+        if (pathname.slice(-1) != "/") {
+            pathname += "/";
+        }
+        var callback = encodeURIComponent(location.protocol+"//"+location.hostname+":"+location.port+pathname+"twitter/"+twitterConfigNodeId+"/auth/callback");
+
+        $("#node-config-twitter-row").html('Click <a id="node-config-twitter-start" href="twitter/'+twitterConfigNodeId+'/auth?callback='+callback+'" target="_blank"><b>here</b></a> to authenticate with Twitter.');
+        $("#node-config-twitter-start").click(function() {
+            twitterConfigNodeIntervalId = window.setTimeout(pollTwitterCredentials,2000);
+        });
+    }
+    function updateTwitterScreenName(sn) {
+        $("#node-config-input-screen_name").val(sn);
+        $("#node-config-twitter-row").html('<label><i class="icon-user"></i> Twitter ID</label><span class="input-xlarge uneditable-input">'+sn+'</span>');
+    }
+    function pollTwitterCredentials(e) {
+        $.getJSON('twitter/'+twitterConfigNodeId,function(data) {
+            if (data.sn) {
+                updateTwitterScreenName(data.sn);
+                twitterConfigNodeIntervalId = null;
+            } else {
+                twitterConfigNodeIntervalId = window.setTimeout(pollTwitterCredentials,2000);
+            }
+        })
+    }
+    RED.nodes.registerType('twitter-credentials',{
+        category: 'config',
+        defaults: {
+            screen_name: {value:""},
+            access_token: {value: ""},
+            access_token_secret: {value:""}
+        },
+        label: function() {
+            return this.screen_name;
+        },
+        exportable: false,
+        oneditprepare: function() {
+            twitterConfigNodeId = this.id;
+            if (!this.screen_name || this.screen_name == "") {
+                showTwitterAuthStart();
+            } else {
+                $.getJSON('twitter/'+twitterConfigNodeId,function(data) {
+                    if (data.sn) {
+                        updateTwitterScreenName(data.sn);
+                    } else {
+                        showTwitterAuthStart();
+                    }
+                });
+            }
+        },
+        oneditsave: function() {
+            if (twitterConfigNodeIntervalId) {
+                window.clearTimeout(twitterConfigNodeIntervalId);
+            }
+        },
+        oneditcancel: function(adding) {
+            if (twitterConfigNodeIntervalId) {
+                window.clearTimeout(twitterConfigNodeIntervalId);
+            }
+            if (adding) {
+                $.ajax({
+                    url: 'twitter/'+this.id,
+                    type: 'DELETE',
+                    success: function(result) {}
+                });
+            }
+        },
+        ondelete: function() {
+            $.ajax({
+                url: 'twitter/'+this.id,
+                type: 'DELETE',
+                success: function(result) {}
+            });
+        }
+    });
+</script>
+
+<div class="red-template"data-template-name="twitter in">
+    <div class="form-row">
+        <label for="node-input-twitter"><i class="icon-user"></i> Log in as</label>
+        <input type="text" id="node-input-twitter">
+    </div>
+    <div class="form-row">
+        <label for="node-input-user"><i class="icon-search"></i> Search</label>
+        <select type="text" id="node-input-user" style="display: inline-block; vertical-align: middle; width:60%;">
+            <option value="false">all public tweets</option>
+            <option value="true">the tweets of who you follow</option>
+            <option value="user">the tweets of specific users</option>
+            <option value="dm">your direct messages</option>
+        </select>
+    </div>
+    <div class="form-row" id="node-input-tags-row">
+        <label for="node-input-tags"><i class="icon-tags"></i> <span id="node-input-tags-label">for</span></label>
+        <input type="text" id="node-input-tags" placeholder="comma-separated words, @ids, #tags">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">Tip: Use commas without spaces between multiple search terms. Comma = OR, Space = AND.
+    <br/>The Twitter API WILL NOT deliver 100% of all tweets.
+    <br/>Tweets of who you follow will include their retweets and favourites.</div>
+</div>
+
+<div class="red-template"data-help-name="twitter in">
+    <p>Twitter input node. Can be used to search either:
+    <ul><li>the public or a user's stream for tweets containing the configured search term</li>
+        <li>all tweets by specific users</li>
+        <li>direct messages received by the authenticated user</li>
+    </ul></p>
+    <p>Use space for <i>and</i> and comma , for <i>or</i> when searching for multiple terms.</p>
+    <p>Sets the <b>msg.topic</b> to <i>tweets/</i> and then appends the senders screen name.</p>
+    <p>Sets <b>msg.location</b> to the tweeters location if known.</p>
+    <p>Sets <b>msg.tweet</b> to the full tweet object as documented by <a href="https://dev.twitter.com/docs/platform-objects/tweets">Twitter</a>.
+    <p><b>Note:</b> when set to a specific user's tweets, or your direct messages, the node is subject to
+      Twitter's API rate limiting. If you deploy the flows multiple times within a 15 minute window, you may
+      exceed the limit and will see errors from the node. These errors will clear when the current 15 minute window
+      passes.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('twitter in',{
+        category: 'social-input',
+        color:"#C0DEED",
+        defaults: {
+            twitter: {type:"twitter-credentials",required:true},
+            tags: {value:"",validate:function(v) { return this.user == "dm" || v.length > 0;}},
+            user: {value:"false",required:true},
+            name: {value:""},
+            topic: {value:"tweets"}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "twitter.png",
+        label: function() {
+            if (this.name) {
+                return this.name;
+            }
+            if (this.user == "dm") {
+                var user = RED.nodes.node(this.twitter);
+                return (user?user.label()+" ":"")+"DMs";
+            } else if (this.user == "user") {
+                return this.tags+" tweets";
+            }
+            return this.tags;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $("#node-input-user").change(function() {
+                var type = $("#node-input-user option:selected").val();
+                if (type == "user") {
+                    $("#node-input-tags-row").show();
+                    $("#node-input-tags-label").html("User");
+                    $("#node-input-tags").attr("placeholder","comma-separated @twitter handles");
+                } else if (type == "dm") {
+                    $("#node-input-tags-row").hide();
+                } else {
+                    $("#node-input-tags-row").show();
+                    $("#node-input-tags-label").html("for");
+                    $("#node-input-tags").attr("placeholder","comma-separated words, @ids, #hashtags");
+                }
+
+            });
+            $("#node-input-user").change();
+
+        }
+    });
+</script>
+
+
+<div class="red-template"data-template-name="twitter out">
+    <div class="form-row">
+        <label for="node-input-twitter"><i class="icon-user"></i> Twitter</label>
+        <input type="text" id="node-input-twitter">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="twitter out">
+    <p>Twitter out node. Tweets the <b>msg.payload</b>.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('twitter out',{
+        category: 'social-output',
+        color:"#C0DEED",
+        defaults: {
+            twitter: {type:"twitter-credentials",required:true},
+            name: {value:"Tweet"}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "twitter.png",
+        align: "right",
+        label: function() {
+            return this.name;
+        }
+    });
+</script>
+<!--
+  Copyright 2013,2014 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="e-mail">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-envelope"></i> To</label>
+        <input type="text" id="node-input-name" placeholder="email@address.com">
+    </div>
+    <!-- <div class="form-row">
+        <label for="node-input-pin"><i class="icon-asterisk"></i> Service</label>
+        <select type="text" id="node-input-pin" style="width: 150px;">
+            <option value="-" disabled> </option>
+            <option value="DynectEmail">DynectEmail</option>
+            <option value="Gmail">Gmail</option>
+            <option value="hot.ee">hot.ee</option>
+            <option value="Hotmail">Hotmail</option>
+            <option value="iCloud">iCloud</option>
+            <option value="mail.ee">mail.ee</option>
+            <option value="Mail.Ru">Mail.Ru</option>
+            <option value="Mailgun">Mailgun</option>
+            <option value="Mailjet">Mailjet</option>
+            <option value="Mandrill">Mandrill</option>
+            <option value="Postmark">Postmark</option>
+            <option value="QQ">QQ</option>
+            <option value="QQex">QQex</option>
+            <option value="SendGrid">SendGrid</option>
+            <option value="SendCloud">SendCloud</option>
+            <option value="SES">SES</option>
+            <option value="Yahoo">Yahoo</option>
+            <option value="yandex">yandex</option>
+            <option value="Zoho">Zoho</option>
+         </select>
+    </div> -->
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="smtp.gmail.com">
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="icon-random"></i> Port</label>
+        <input type="text" id="node-input-port" placeholder="465">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-userid"><i class="icon-user"></i> Userid</label>
+        <input type="text" id="node-config-input-userid">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="icon-lock"></i> Password</label>
+        <input type="password" id="node-config-input-password">
+    </div>
+    <br/>
+    <div class="form-row">
+        <label for="node-input-dname"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-dname" placeholder="Name">
+    </div>
+    <div class="form-tips" id="node-tip"><b>Note:</b> Using credentials from global emailkeys.js file.</div>
+</div>
+
+<div class="red-template"data-help-name="e-mail">
+    <p>Sends the <b>msg.payload</b> as an email, with a subject of <b>msg.topic</b>.</p>
+    <p>It sends the message to the configured recipient <i>only</i>.</p>
+    <p><b>msg.topic</b> is used to set the subject of the email, and <b>msg.payload</b> is the body text.</p>
+    <p>Uses the nodemailer module.</p>
+</div>
+
+<script type="text/javascript">
+(function() {
+    RED.nodes.registerType('e-mail',{
+        category: 'social-output',
+        color:"#c7e9c0",
+        defaults: {
+            server: {value:"smtp.gmail.com",required:true},
+            port: {value:"465",required:true},
+            name: {value:"",required:true},
+            dname: {value:""}
+        },
+        inputs:1,
+        outputs:0,
+        icon: "envelope.png",
+        align: "right",
+        label: function() {
+            return this.dname||this.name||"email";
+        },
+        labelStyle: function() {
+            return (this.dname||!this.topic)?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $.getJSON('email/'+this.id,function(data) {
+                if (data.userid) {
+                    $('#node-config-input-userid').val(data.userid);
+                }
+                if (data.hasPassword) {
+                    $('#node-config-input-password').val('__PWRD__');
+                } else {
+                    $('#node-config-input-password').val('');
+                }
+                if (data.global) $('#node-tip').show();
+                else $('#node-tip').hide();
+            });
+        },
+        oneditsave: function() {
+            var credentials = {};
+            var newUser = $('#node-config-input-userid').val();
+            var newPass = $('#node-config-input-password').val();
+            credentials.userid = newUser;
+            if (newPass != '__PWRD__') {
+                credentials.password = newPass;
+            }
+            $.ajax({
+                url: 'email/'+this.id,
+                type: 'POST',
+                data: credentials,
+                success: function(result){}
+            });
+        },
+        ondelete: function() {
+            $.ajax({
+                url: 'email/'+this.id,
+                type: 'DELETE',
+                success: function(result) {}
+            });
+        }
+    });
+})();
+</script>
+
+
+<div class="red-template"data-template-name="e-mail in">
+    <div class="form-row node-input-repeat">
+        <label for="node-input-repeat"><i class="icon-repeat"></i> Check Repeat (S)</label>
+        <input type="text" id="node-input-repeat" placeholder="300">
+    </div>
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="imap.gmail.com">
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="icon-random"></i> Port</label>
+        <input type="text" id="node-input-port" placeholder="993">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-userid"><i class="icon-user"></i> Userid</label>
+        <input type="text" id="node-config-input-userid">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="icon-lock"></i> Password</label>
+        <input type="password" id="node-config-input-password">
+    </div>
+    <br/>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips" id="node-tip"><b>Note:</b> Using credentials from global emailkeys.js file.</div>
+    <div id="node-input-tip" class="form-tips">Tip: <b>ONLY</b> retrieves the single most recent email.</div>
+</div>
+
+<div class="red-template"data-help-name="e-mail in">
+    <p>Repeatedly gets a <b>single email</b> from an IMAP server and forwards on as a msg if not already seen.</p>
+    <p>The subject is loaded into <b>msg.topic</b> and <b>msg.payload</b> is the plain text body.
+       If there is text/html then that is returned in <b>msg.html</b>. <b>msg.from</b> and <b>msg.date</b> are also set if you need them.</p>
+    <p>Uses the imap module.</p>
+    <p><b>Note:</b> this node <i>only</i> gets the most recent single email from the inbox, so set the repeat (polling) time appropriately.</p>
+</div>
+
+<script type="text/javascript">
+(function() {
+    RED.nodes.registerType('e-mail in',{
+        category: 'social-input',
+        color:"#c7e9c0",
+        defaults: {
+            repeat: {value:"300",required:true},
+            server: {value:"imap.gmail.com",required:true},
+            port: {value:"993",required:true},
+            name: {value:""}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "envelope.png",
+        label: function() {
+            return this.name||"email";
+        },
+        labelStyle: function() {
+            return (this.name||!this.topic)?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $.getJSON('email/'+this.id,function(data) {
+                if (data.userid) {
+                    $('#node-config-input-userid').val(data.userid);
+                }
+                if (data.hasPassword) {
+                    $('#node-config-input-password').val('__PWRD__');
+                } else {
+                    $('#node-config-input-password').val('');
+                }
+                if (data.global) $('#node-tip').show();
+                else $('#node-tip').hide();
+            });
+        },
+        oneditsave: function() {
+            var credentials = {};
+            var newUser = $('#node-config-input-userid').val();
+            var newPass = $('#node-config-input-password').val();
+            credentials.userid = newUser;
+            if (newPass != '__PWRD__') {
+                credentials.password = newPass;
+            }
+            $.ajax({
+                url: 'email/'+this.id,
+                type: 'POST',
+                data: credentials,
+                success: function(result){}
+            });
+        },
+        ondelete: function() {
+            $.ajax({
+                url: 'email/'+this.id,
+                type: 'DELETE',
+                success: function(result) {}
+            });
+        }
+    });
+})();
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="irc in">
+    <div class="form-row">
+        <label for="node-input-ircserver"><i class="icon-tasks"></i> IRC Server</label>
+        <input type="text" id="node-input-ircserver">
+    </div>
+    <div class="form-row">
+        <label for="node-input-channel"><i class="icon-tasks"></i> Channel</label>
+        <input type="text" id="node-input-channel" placeholder="#nodered">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">The channel to join must start with a # (as per normal irc rules...)</div>
+</div>
+
+<div class="red-template"data-help-name="irc in">
+    <p>Connects to a channel on an IRC server</p>
+    <p>Any messages on that channel will appear on the <b>msg.payload</b> at the output, while <b>msg.topic</b> will contain who it is from.</p>
+    <p>The second output provides a <b>msg.payload</b> that has any status messages such as joins, parts, kicks etc.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('irc in',{
+        category: 'social-input',
+        defaults: {
+            name: {value:""},
+            ircserver: {type:"irc-server", required:true},
+            channel: {value:"",required:true,validate:RED.validators.regex(/^#/)}
+        },
+        color:"Silver",
+        inputs:0,
+        outputs:2,
+        icon: "hash.png",
+        label: function() {
+            var ircNode = RED.nodes.node(this.ircserver);
+            return this.name||(ircNode?ircNode.label():"irc");
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            if (this.ircserver !== undefined) {
+                this.channel = this.channel || RED.nodes.node(this.ircserver).channel;
+                $("#node-input-channel").val(this.channel);
+            }
+            else { this.channel = this.channel; }
+            $("#node-input-channel").val(this.channel);
+        }
+    });
+</script>
+
+
+<div class="red-template"data-template-name="irc out">
+    <div class="form-row">
+        <label for="node-input-ircserver"><i class="icon-tasks"></i> IRC Server</label>
+        <input type="text" id="node-input-ircserver">
+    </div>
+    <div class="form-row">
+        <label for="node-input-channel"><i class="icon-tasks"></i> Channel</label>
+        <input type="text" id="node-input-channel" placeholder="#nodered">
+    </div>
+    <div class="form-row">
+        <label for="node-input-sendObject"><i class="icon-check"></i> Action</label>
+        <select type="text" id="node-input-sendObject" style="display: inline-block; vertical-align: middle; width:70%;">
+            <option value="pay">Send to channel</option>
+            <option value="true">Send to userid in msg.topic as PRIVMSG</option>
+            <option value="false">Send complete msg object to channel</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">The channel to join must start with a # (as per normal irc rules...)<br/>
+    Sending the complete object will stringify the whole msg object before sending.</div>
+</div>
+
+<div class="red-template"data-help-name="irc out">
+    <p>Sends messages to a channel on an IRC server</p>
+    <p>You can send just the <b>msg.payload</b>, or the complete <b>msg</b> object to the selected channel,
+    or you can select to use <b>msg.topic</b> to send the <b>msg.payload</b> to a specific user in the channel (private conversation).</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('irc out',{
+        category: 'social-output',
+        defaults: {
+            name: {value:""},
+            sendObject: {value:"pay", required:true},
+            ircserver: {type:"irc-server", required:true},
+            channel: {value:"",required:true,validate:RED.validators.regex(/^#/)}
+        },
+        color:"Silver",
+        inputs:1,
+        outputs:0,
+        icon: "hash.png",
+        align: "right",
+        label: function() {
+            return this.name || (this.ircserver)?RED.nodes.node(this.ircserver).label():"irc";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            if (this.ircserver !== undefined) {
+                this.channel = this.channel || RED.nodes.node(this.ircserver).channel;
+                $("#node-input-channel").val(this.channel);
+            }
+            else { this.channel = this.channel; }
+        }
+    });
+</script>
+
+
+<div class="red-template"data-template-name="irc-server">
+    <div class="form-row">
+        <label for="node-config-input-server"><i class="icon-tasks"></i> IRC Server</label>
+        <input type="text" id="node-config-input-server" placeholder="irc.freenode.net">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-nickname"><i class="icon-tasks"></i> Nickname</label>
+        <input type="text" id="node-config-input-nickname" placeholder="joe123">
+    </div>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('irc-server',{
+        category: 'config',
+        defaults: {
+            server: {value:"",required:true},
+            nickname: {value:"",required:true}
+        },
+        label: function() {
+            return this.server;
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="tail">
+    <div class="form-row node-input-filename">
+         <label for="node-input-filename"><i class="icon-file"></i> Filename</label>
+         <input type="text" id="node-input-filename" placeholder="Filename">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-split" placeholder="Name" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-split" style="width: 70%;">Split lines if we see \
+ ?</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips">WON'T work on Windows.</div>
+</div>
+
+<div class="red-template"data-help-name="tail">
+<p>Tails (watches for things to be added) to the configured file. (Linux/Mac ONLY)</p>
+<p>This won't work on Windows filesystems (as it relies on the tail -f command) so we will probably have to hide it in future.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tail',{
+        category: 'storage-input',
+        defaults: {
+            name: {value:""},
+            split: {value:false},
+            filename: {value:"",required:true}
+        },
+        color:"BurlyWood",
+        inputs:0,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||this.filename;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+<!--
+  Copyright 2013 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="red-template"data-template-name="file">
+    <div class="form-row node-input-filename">
+         <label for="node-input-filename"><i class="icon-file"></i> Filename</label>
+         <input type="text" id="node-input-filename" placeholder="Filename">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-appendNewline" placeholder="Name" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-appendNewline" style="width: 70%;">Append newline ?</label>
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-overwriteFile" placeholder="Name" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-overwriteFile" style="width: 70%;">Overwrite complete file ?</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</div>
+
+<div class="red-template"data-help-name="file">
+    <p>Writes <b>msg.payload</b> to the file specified, e.g. to create a log.</p>
+    <p>The filename can be overridden by the <code>.filename</code> property
+    of the incoming message.</p>
+    <p>A newline is added to every message. But this can be turned off if required, for example, to allow binary files to be written.</p>
+    <p>The default behaviour is to append to the file. This can be changed to overwrite the file each time, for example if you want to output a "static" web page or report.</p>
+    <p>If a <code>.delete</code> property exists then the file will be deleted instead.</p>
+</div>
+
+<script type="text/javascript">
+    RED.nodes.registerType('file',{
+        category: 'storage-output',
+        defaults: {
+            name: {value:""},
+            filename: {value:""},
+            appendNewline: {value:true},
+            overwriteFile: {value:false}
+        },
+        color:"BurlyWood",
+        inputs:1,
+        outputs:0,
+        icon: "file.png",
+        align: "right",
+        label: function() {
+            return this.name||this.filename;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+
+</script>
+
+

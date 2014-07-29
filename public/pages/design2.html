@@ -284,8 +284,8 @@
         </div>
     </form>
 </div>
-
-
+{{nodeTemplateLocation}}
+<div id="random_html" ng-include="nodeTemplateLocation"></div>
 <script type="text/x-red" data-template-name="export-clipboard-dialog">
         <div class="form-row">
             <label for="node-input-export" style="display: block; width:100%;"><i class="fa fa-share"></i> Nodes:</label>
@@ -294,6 +294,7 @@
         <div class="form-tips">
             Select the text above and copy to the clipboard with Ctrl-A Ctrl-C.
         </div>
+
 
 </script>
 <script type="text/x-red" data-template-name="export-to-community">
@@ -313,6 +314,7 @@
             </div>
         </form>
 
+
 </script>
 <script type="text/x-red" data-template-name="export-library-dialog">
         <div class="form-row">
@@ -320,12 +322,14 @@
             <input type="text" id="node-input-filename" placeholder="Filename">
         </div>
 
+
 </script>
 <script type="text/x-red" data-template-name="import-dialog">
         <div class="form-row">
             <label for="node-input-export"><i class="fa fa-share"></i>Nodes:</label>
             <textarea style="font-family: monospace; font-size: 12px; background:rgb(226, 229, 255); padding-left: 0.5em;" class="input-block-level" id="node-input-import" rows="5" placeholder="Paste nodes here, or lookup in the library"></textarea>
         </div>
+
 
 </script>
 </div>

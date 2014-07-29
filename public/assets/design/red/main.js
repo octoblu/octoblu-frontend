@@ -137,21 +137,26 @@ var initializeRED = function() {
         });
     };
 
-    function loadSettings() {
+    function loadSettings(scope) {
         RED.rpc('settings', function(err, data){
             console.log('settings', err, data);
             RED.settings = data;
-            loadNodes();
+            loadNodes(scope);
             RED.library.loadFlowLibrary();
         });
     }
-    function loadNodes() {
+
+    function loadNodes(scope) {
         RED.rpc('getNodes', function(err, data) {
-                $("body").append(data);
                 $(".palette-spinner").hide();
                 $(".palette-scroll").show();
                 $("#palette-search").show();
+                scope.nodeTemplateLocation = '/assets/design/red/ui/random_html.html';
+                scope.$apply();
+            setTimeout(function(){
                 loadFlows();
+            }, 2000);
+
         });
     }
 
