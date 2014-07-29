@@ -56,7 +56,7 @@
     "skynet": "*",
     "underscore": "~1.6.0",
     "when": "^3.0.1",
-    "passport-github": "~0.1.5"
+    "passport-github": "git://github.com/jaredhanson/passport-github.git"
   },
   "devDependencies": {
     "bower": "^1.3.3",

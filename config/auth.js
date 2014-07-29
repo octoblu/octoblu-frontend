@@ -203,27 +203,19 @@ var config = {
       'callbackURL'   : 'http://staging.octoblu.com/auth/github/callback'
     },
     'facebookAuth' : {
-      'clientID'    : '1478230185752033', // your App ID
-      'clientSecret'  : '787e17c6cbfbf2e9434069e356804078', // your App Secret
+      'clientID'    : '1476628102576653', // your App ID
+      'clientSecret'  : 'd7173aef0ca4636201b38f369e9bda5f', // your App Secret
       'callbackURL'   : 'http://staging.octoblu.com/auth/facebook/callback'
     },
-
     'twitterAuth' : {
       'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
       'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
       'callbackURL'     : 'http://staging.octoblu.com/auth/twitter/callback'
     },
-    // // Meshines
-    // 'googleAuth' : {
-    //   'clientID'    : '541059729530-bbt3n8qh5s8c8m5dm7dh6gojiqqrfrbg.apps.googleusercontent.com',
-    //   'clientSecret'  : 'SVTqhJ7RtsK6zqRcKUZrjxM6',
-    //   'callbackURL'   : 'http://staging.octoblu.com/auth/google/callback'
-    // },
-    // Octoblu
     'googleAuth' : {
       'clientID'    : '413378006378-c72poeh9lsab0ut86g9ejepr2ucjpsh8.apps.googleusercontent.com',
       'clientSecret'  : 'sN79Qi65ykVRjSvZAUBnB5Pp',
-      'callbackURL'   : 'http://staging.octoblu.com/auth/google/callback'
+      'callbackURL'   : 'https://staging.octoblu.com/auth/google/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
