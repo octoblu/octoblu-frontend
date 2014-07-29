@@ -42,10 +42,10 @@
     flex-direction: column;
     background: #f3f3f3;
     .palette-search {
-      margin:5px;
+      margin: 5px;
       background-color: white;
       display: flex;
-      flex-direction:row;
+      flex-direction: row;
       align-content: center;
       justify-content: center;
       height: 30px;
@@ -58,13 +58,153 @@
         flex: 1;
         border: none;
         &:focus {
-          outline:none;
+          outline: none;
         }
       }
     }
   }
   .workspace {
     flex: 1;
+  }
+  .red-tabs-container {
+    display: flex;
+    flex-direction: row;
+    background: #e3e3e3;
+  }
+  .red-tabs {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    li:hover {
+      background: #bbb;
+    }
+    li.active {
+      background: #fff;
+      border-bottom: 1px solid #fff;
+      color: #333;
+    }
+  }
+  .red-add-tab {
+    align-self: flex-end;
+    width: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    &:hover {
+      background: rgb(227, 227, 227);
+    }
+  }
+
+  ul.red-ui-tabs li.active a.red-ui-tab-close {
+    background: rgba(255, 255, 255, 0.8);
+  }
+  ul.red-ui-tabs li.active a.red-ui-tab-label:hover {
+
+  }
+
+  ul.red-ui-tabs li.red-ui-add-tab a {
+    padding: 2px 4px;
+  }
+
+  ul.red-ui-tabs {
+    list-style-type: none;
+    padding: 5px 2px 0px 5px;
+    margin: 0;
+    height: 28px;
+    border-bottom: 1px solid #999;
+  }
+
+  ul.red-ui-tabs li {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    //    display: inline-block;
+    border-left: 1px solid #999;
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    background: #e3e3e3;
+    margin: 0 5px 0 0;
+    height: 23px;
+    line-height: 17px;
+    max-width: 150px;
+    width: 14%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  ul.red-ui-tabs li a.red-ui-tab-label {
+    display: block;
+    padding: 3px 16px;
+    color: #666;
+  }
+  ul.red-ui-tabs li {
+    position: relative;
+  }
+
+  ul.red-ui-tabs li a.red-ui-tab-close {
+    background: rgba(227, 227, 227, 0.8);
+    //    position: absolute;
+    right: 2px;
+    top: 2px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0px;
+    border-radius: 5px;
+  }
+
+  ul.tab-config-list {
+    list-style-type: none;
+    padding: 3px;
+    margin: 0;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  ul.tab-config-list li {
+    max-width: 400px;
+    font-size: 13px;
+    background: #f3f3f3;
+    margin: 10px auto;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 3px 8px;
+  }
+  div.tab-config-list-type {
+  }
+
+  div.tab-config-list-entry {
+    position: relative;
+    margin: 4px 0;
+    padding: 8px 4px 8px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  div.tab-config-list-entry:hover {
+    background: #f6f6f6;
+  }
+
+  div.tab-config-list-label {
+  }
+  div.tab-config-list-users {
+    //    position: absolute;
+    right: 3px;
+    top: 3px;
+    bottom: 3px;
+    line-height: 27px;
+    font-size: 11px;
+    background: #f6f6f6;
+    float: right;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 1px 5px;
   }
 
   #dropTarget {
@@ -116,10 +256,10 @@
     padding-right: 10px;
   }
 
-//  #workspace {
-//    margin-left: 160px;
-//    overflow: hidden;
-//  }
+  //  #workspace {
+  //    margin-left: 160px;
+  //    overflow: hidden;
+  //  }
 
   #chart {
     overflow: auto;
@@ -220,13 +360,13 @@
     flex: 1;
   }
 
-//  #workspace {
-//    margin: 0;
-//    top: 5px;
-//    left: 160px;
-//    bottom: 10px;
-//    right: 330px;
-//  }
+  //  #workspace {
+  //    margin: 0;
+  //    top: 5px;
+  //    left: 160px;
+  //    bottom: 10px;
+  //    right: 330px;
+  //  }
   #chart-zoom-controls {
     position: absolute;
     bottom: 30px;
@@ -254,9 +394,9 @@
   .sidebar-closed > #sidebar-separator {
     display: none;
   }
-//  .sidebar-closed > #workspace {
-//    right: 10px !important;
-//  }
+  //  .sidebar-closed > #workspace {
+  //    right: 10px !important;
+  //  }
   .sidebar-closed > #chart-zoom-controls {
     right: 30px !important;
   }
@@ -651,164 +791,9 @@
     border-radius: 5px;
     overflow: hidden;
   }
-  #workspace-tabs {
-    margin-right: 28px;
-  }
-  #workspace-add-tab {
-    //    position: absolute;
-    top: 0;
-    right: 0;
-    height: 29px;
-    width: 28px;
-    border-bottom: 1px solid #999;
-  }
-  #btn-workspace-add-tab {
-    display: inline-block;
-    width: 100%;
-    background: #e3e3e3;
-    height: 100%;
-    line-height: 28px;
-    text-align: center;
-  }
+
   #btn-workspace-add-tab:hover {
     background: #efefef;
-  }
-
-  ul.red-ui-tabs {
-    list-style-type: none;
-    padding: 5px 2px 0px 5px;
-    margin: 0;
-    display: block;
-    height: 28px;
-    border-bottom: 1px solid #999;
-    background: #e3e3e3;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  ul.red-ui-tabs li {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    display: inline-block;
-    border-left: 1px solid #999;
-    border-top: 1px solid #999;
-    border-right: 1px solid #999;
-    border-bottom: 1px solid #999;
-    background: #e3e3e3;
-    margin: 0 5px 0 0;
-    height: 23px;
-    line-height: 17px;
-    max-width: 150px;
-    width: 14%;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  ul.red-ui-tabs li a.red-ui-tab-label {
-    display: block;
-    padding: 3px 16px;
-    color: #666;
-  }
-  ul.red-ui-tabs li {
-    position: relative;
-  }
-
-  ul.red-ui-tabs li a.red-ui-tab-close {
-    background: rgba(227, 227, 227, 0.8);
-    //    position: absolute;
-    right: 2px;
-    top: 2px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    padding: 0px;
-    border-radius: 5px;
-  }
-  ul.red-ui-tabs li a.red-ui-tab-close:hover {
-    background: #bbb !important;
-  }
-  ul.red-ui-tabs li a:hover {
-    text-decoration: none;
-    background: #f0f0f0;
-  }
-
-  ul.red-ui-tabs li.active {
-    background: #fff;
-    border-bottom: 1px solid #fff;
-  }
-  ul.red-ui-tabs li.active a {
-    color: #333;
-  }
-  ul.red-ui-tabs li.active a.red-ui-tab-close {
-    background: rgba(255, 255, 255, 0.8);
-  }
-  ul.red-ui-tabs li.active a.red-ui-tab-label:hover {
-    background: #fff;
-  }
-  ul.red-ui-tabs li.red-ui-add-tab {
-    width: 25px;
-    border-top-right-radius: 15px;
-    line-height: 22px;
-  }
-  ul.red-ui-tabs li.red-ui-add-tab a {
-    padding: 2px 4px;
-  }
-
-  ul.tab-config-list {
-    list-style-type: none;
-    padding: 3px;
-    margin: 0;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  ul.tab-config-list li {
-    max-width: 400px;
-    font-size: 13px;
-    background: #f3f3f3;
-    margin: 10px auto;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    padding: 3px 8px;
-  }
-  div.tab-config-list-type {
-  }
-
-  div.tab-config-list-entry {
-    position: relative;
-    margin: 4px 0;
-    padding: 8px 4px 8px 10px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  div.tab-config-list-entry:hover {
-    background: #f6f6f6;
-  }
-
-  div.tab-config-list-label {
-  }
-  div.tab-config-list-users {
-    //    position: absolute;
-    right: 3px;
-    top: 3px;
-    bottom: 3px;
-    line-height: 27px;
-    font-size: 11px;
-    background: #f6f6f6;
-    float: right;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    padding: 1px 5px;
   }
 
   i.spinner {
@@ -837,6 +822,7 @@
   background-size: contain;
   position: relative;
 }
+
 .palette_node:hover {
   border-color: #ff7f0e;
   background-color: #eee;
@@ -864,6 +850,7 @@
   height: 10px;
   border: 1px solid #999;
 }
+
 .palette_port_output {
   left: 85px;
 }
