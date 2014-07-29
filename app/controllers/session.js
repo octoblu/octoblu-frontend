@@ -106,69 +106,32 @@ module.exports = function ( app, passport, config ) {
 
 			        User.update({_id: user._id},
 			        	{local: {email: user.local.email, password: user.local.password, skynetuuid: data.uuid, skynettoken: data.token}}
-			        , function(err){
-								if(!err) {
-		                console.log("user " + data.uuid + " updated");
-		                res.cookie('skynetuuid', data.uuid, {
-				          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-				          domain: config.domain,
-				          httpOnly: false
-				        });
-				        res.cookie('skynettoken', data.token, {
-				          maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-				          domain: config.domain,
-				          httpOnly: false
-				        });
-                req.session.user = user;
-					      // return res.redirect('/home');
-                // Check for deep link redirect based on referrer in querystring
-                if(req.session.redirect){
-                  if(req.session.js){
-                    // this is the current response for Android
-                    return res.send(req.session.user);
-                    // return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
-                  } else {
-                    return res.redirect(req.session.redirect + '?uuid=' + encodeURIComponent(user.local.skynetuuid) + '&token=' + encodeURIComponent(user.local.skynettoken));
-                  }
-                } else {
-                  return res.redirect('/home');
-                }
-
-
-		            }
-		            else {
-		                console.log("Error: could not update user - error " + err);
-							      // return res.redirect('/home');
-                    // Check for deep link redirect based on referrer in querystring
-                    if(req.session.redirect){
-                      if(req.session.js){
-                          return res.send(422, {});
-                          // return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
-                      } else {
-                        return res.redirect(req.session.redirect + '?uuid=' + encodeURIComponent(user.local.skynetuuid) + '&token=' + encodeURIComponent(user.local.skynettoken));
-                      }
-                    } else {
-                      return res.redirect('/home');
-                    }
-
-		            }
-			        });
+			        , function(err) {
+                            if (!err) {
+                                console.log("user " + data.uuid + " updated");
+                                res.cookie('skynetuuid', data.uuid, {
+                                    maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+                                    domain: config.domain,
+                                    httpOnly: false
+                                });
+                                res.cookie('skynettoken', data.token, {
+                                    maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+                                    domain: config.domain,
+                                    httpOnly: false
+                                });
+                                req.session.user = user;
+                                res.send(201, user);
+                            } else {
+                                console.log("Error: could not update user - error " + err);
+                                return res.send(422, {});
+                            }
+                        });
 
 			      } else {
-			        console.log('error: '+ response.statusCode);
-			        console.log(error);
-  			      // return res.redirect('/home');
-              // Check for deep link redirect based on referrer in querystring
-              if(req.session.redirect){
-                if(req.session.js){
-                  return res.send('<script>window.location.href="' + req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken + '"</script>');
-                } else {
-                  return res.redirect(req.session.redirect + '?uuid=' + user.local.skynetuuid + '&token=' + user.local.skynettoken);
-                }
-              } else {
-                return res.redirect('/home');
-              }
+			            console.log('error: '+ response.statusCode);
+			            console.log(error);
 
+                        res.send(422, {});
 			      }
 			    }
 			  )
