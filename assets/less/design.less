@@ -13,19 +13,74 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+/*
+  move to a style.less or similar.
+*/
 .node-red-container {
   margin-top: 56px;
   iframe {
     margin-top: 15px;
   }
   .node-red-spinner {
-    margin-top:8px;
+    margin-top: 8px;
   }
 }
 
+.design2.designer-container {
+  display: flex;
+  flex-direction: column;
+  .page-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex: 1;
+    .dropdown-container {
+      .dropdown-toggle {
+        .btn;
+        .btn-lg;
+        .btn-default;
+      }
+    }
+    .btn-deploy {
+      .btn;
+      .btn-lg;
+      .btn-default;
+    }
+  }
+  .palette {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    background: #f3f3f3;
+    .palette-search {
+      margin:5px;
+      background-color: white;
+      display: flex;
+      flex-direction:row;
+      align-content: center;
+      justify-content: center;
+      height: 30px;
+      border: 1px solid #999;
+      i {
+        padding: 5px;
+        text-align: center;
+      }
+      input {
+        flex: 1;
+        border: none;
+        &:focus {
+          outline:none;
+        }
+      }
+    }
+  }
+  .workspace {
+    flex: 1;
+  }
 
   #dropTarget {
-    position: absolute;
+    //    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
@@ -73,15 +128,15 @@
     padding-right: 10px;
   }
 
-  #workspace {
-    margin-left: 160px;
-    overflow: hidden;
-  }
+//  #workspace {
+//    margin-left: 160px;
+//    overflow: hidden;
+//  }
 
   #chart {
     overflow: auto;
     background: #e3e3e3;
-    position: absolute;
+    //    position: absolute;
     bottom: 0px;
     top: 30px;
     left: 0px;
@@ -90,7 +145,7 @@
 
   #workspace-toolbar {
     display: none;
-    position: absolute;
+    //    position: absolute;
     top: 30px;
     left: 0;
     right: 18px;
@@ -104,19 +159,9 @@
     float: right;
   }
 
-  #palette {
-    background: #f3f3f3;
-    width: 140px;
-    text-align: center;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
   .palette-scroll {
     display: none;
-    position: absolute;
+    //    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -129,42 +174,9 @@
   .palette-spinner {
     margin-top: 40px;
   }
-  #palette-search {
-    position: absolute;
-    display: none;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    background: #f3f3f3;
-    text-align: center;
-    height: 35px;
-    padding: 3px;
-    border-top: 1px solid #999;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
+
   #palette-search-clear {
     display: none;
-  }
-
-  #palette-search input {
-    border-radius: 0;
-    border: none;
-    width: 100%;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    padding: 3px 17px;
-    margin: 0px;
-    height: 30px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-
-  }
-  #palette-search input:focus {
-    border: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
   }
 
   .palette-category {
@@ -259,27 +271,18 @@
 
   /* ---------- Layout ---------- */
   #main-container {
-    position: absolute;
-    top: 140px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: hidden;
+    display: flex;
+    flex-direction: horizontal;
+    flex: 1;
   }
-  #palette {
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    bottom: 10px;
-  }
-  #workspace {
-    position: absolute;
-    margin: 0;
-    top: 5px;
-    left: 160px;
-    bottom: 10px;
-    right: 330px;
-  }
+
+//  #workspace {
+//    margin: 0;
+//    top: 5px;
+//    left: 160px;
+//    bottom: 10px;
+//    right: 330px;
+//  }
   #chart-zoom-controls {
     position: absolute;
     bottom: 30px;
@@ -287,14 +290,14 @@
   }
   #sidebar {
     width: 305px;
-    position: absolute;
+    //    position: absolute;
     right: 10px;
     top: 5px;
     bottom: 10px;
   }
   #sidebar-separator {
     width: 10px;
-    position: absolute;
+    //    position: absolute;
     right: 320px;
     top: 5px;
     bottom: 10px;
@@ -307,9 +310,9 @@
   .sidebar-closed > #sidebar-separator {
     display: none;
   }
-  .sidebar-closed > #workspace {
-    right: 10px !important;
-  }
+//  .sidebar-closed > #workspace {
+//    right: 10px !important;
+//  }
   .sidebar-closed > #chart-zoom-controls {
     right: 30px !important;
   }
@@ -358,7 +361,7 @@
   #sidebar-content {
     font-size: 1.2em;
     overflow-y: auto;
-    position: absolute;
+    //    position: absolute;
     top: 30px;
     left: 0px;
     right: 0;
@@ -499,7 +502,7 @@
     stroke-dasharray: 10, 4;
   }
   #shade {
-    position: absolute;
+    //    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -708,7 +711,7 @@
     margin-right: 28px;
   }
   #workspace-add-tab {
-    position: absolute;
+    //    position: absolute;
     top: 0;
     right: 0;
     height: 29px;
@@ -771,7 +774,7 @@
 
   ul.red-ui-tabs li a.red-ui-tab-close {
     background: rgba(227, 227, 227, 0.8);
-    position: absolute;
+    //    position: absolute;
     right: 2px;
     top: 2px;
     display: block;
@@ -851,7 +854,7 @@
   div.tab-config-list-label {
   }
   div.tab-config-list-users {
-    position: absolute;
+    //    position: absolute;
     right: 3px;
     top: 3px;
     bottom: 3px;
@@ -874,5 +877,4 @@
     background: url(../../public/assets/design/spin.svg) no-repeat 50% 50%;
     background-size: contain
   }
-
-
+}
