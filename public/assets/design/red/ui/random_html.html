@@ -576,17 +576,22 @@
         var content = document.createElement("div");
         content.id = "tab-debug";
 
-        var toolbar = document.createElement("div");
-        toolbar.id = "debug-toolbar";
-        content.appendChild(toolbar);
-
-        toolbar.innerHTML = '<div class="btn-group pull-right"><a id="debug-tab-clear" title="clear log" class="btn btn-mini" href="#"><i class="icon-trash"></i></a></div> ';
+        var toolbar = '' +
+            '<div id="debug-toolbar">' +
+                '<h4>' +
+                '<a id="debug-tab-clear" title="Clear Log" class="btn btn-danger btn-mini btn-block" href>' +
+                    '<i class="fa fa-trash-o"></i> Clear Log' +
+                '</a>' +
+                '</h4>' +
+            '</div>' +
+        '';
+        $(content).append(toolbar);
 
         var messages = document.createElement("div");
         messages.id = "debug-content";
         content.appendChild(messages);
 
-        RED.sidebar.addTab("debug",content);
+        RED.sidebar.addTab("debug", content);
 
         function getTimestamp() {
             var d = new Date();
@@ -656,7 +661,9 @@
         });
 
 
-        $("#debug-tab-clear").click(function() {
+        $("#debug-tab-clear").click(function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
             $(".debug-message").remove();
             messageCount = 0;
             RED.nodes.eachNode(function(node) {
@@ -677,11 +684,6 @@
         left:0px;
         right: 0px;
         overflow-y: scroll;
-    }
-    #debug-toolbar {
-        padding: 3px 10px;
-        height: 24px;
-        background: #f3f3f3;
     }
     .debug-message {
         cursor: pointer;
