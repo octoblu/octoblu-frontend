@@ -146,7 +146,7 @@ var initializeRED = function() {
         });
     }
 
-    function loadNodes(scope) {
+    function loadNodes(scope, cb) {
         RED.rpc('getNodes', function(err, data) {
                 $(".palette-spinner").hide();
                 $(".palette-scroll").show();
@@ -155,6 +155,7 @@ var initializeRED = function() {
                 scope.$apply();
             setTimeout(function(){
                 loadFlows();
+                cb();
             }, 2000);
 
         });
