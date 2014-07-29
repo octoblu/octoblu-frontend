@@ -148,7 +148,7 @@ var initializeRED = function() {
 
     function loadNodes(scope, cb) {
         RED.rpc('getNodes', function(err, data) {
-            console.log(data);
+//            console.log(data);
                 $(".palette-spinner").hide();
                 $(".palette-scroll").show();
                 $("#palette-search").show();
