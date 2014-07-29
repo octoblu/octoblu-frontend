@@ -44,12 +44,6 @@
 }
 		/* *** FONTS END *** */
 
-		/* *** General Classes *** */
-a, a:hover, a:active, a:link, a:visited {text-decoration: none; outline: none;}
-.paragraph {font-size: 16px;line-height: 30px;margin-top: -10px;}
-.btn-margin-icon {margin-right: 5px;} /* Use this class to add a margin-right to the icons of the buttons */
-		/* *** General Classes END *** */
-
 
 /* *** Margin Classes, used to create some spaces inside the layout, you can use it from 10 to 60 px *** */
 .margin-top-100 {margin-top: 100px;} .margin-top-90 {margin-top: 90px;} .margin-top-80 {margin-top: 80px;} .margin-top-70 {margin-top: 70px;} .margin-top-60 {margin-top: 60px;} .margin-top-50 {margin-top: 50px;} .margin-top-40 {margin-top: 40px;} .margin-top-30 {margin-top: 30px;} .margin-top-20 {margin-top: 20px;} .margin-top-10 {margin-top: 10px;} .margin-top-0 {margin-top: 0px;} .margin-top-100-res {margin-top: 100px;} @media  (max-width: 1199px) {.margin-top-100-res {margin-top: 0px; margin-bottom: 60px;}}
