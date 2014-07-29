@@ -26,6 +26,8 @@ module.exports = function (app, passport, config) {
         res.send(req.user);
     });
 
+    app.get('/auth/logout', logoutAndRedirectRoute);
+
     function loginRoute(req, res) {
         var user = req.user;
 
@@ -54,7 +56,18 @@ module.exports = function (app, passport, config) {
         if (req.logout) {
             req.logout();
         }
-        res.send(200);
+        res.send(204);
+    }
+
+    function logoutAndRedirectRoute(req, res) {
+        res.clearCookie('skynetuuid');
+        res.clearCookie('skynettoken');
+
+        if (req.logout) {
+            req.logout();
+        }
+
+        res.redirect('/');
     }
 
     function updatePassword (req, res) {
