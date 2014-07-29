@@ -137,17 +137,18 @@ var initializeRED = function() {
         });
     };
 
-    function loadSettings(scope) {
+    function loadSettings(scope, cb) {
         RED.rpc('settings', function(err, data){
             console.log('settings', err, data);
             RED.settings = data;
-            loadNodes(scope);
+            loadNodes(scope, cb);
             RED.library.loadFlowLibrary();
         });
     }
 
     function loadNodes(scope, cb) {
         RED.rpc('getNodes', function(err, data) {
+            console.log(data);
                 $(".palette-spinner").hide();
                 $(".palette-scroll").show();
                 $("#palette-search").show();

@@ -27,7 +27,7 @@ RED.initializeEditor = function() {
     function showEditDialog(node) {
         editing_node = node;
         RED.view.state(RED.state.EDITING);
-        $("#dialog-form").html($("script[data-template-name='"+node.type+"']").html());
+        $("#dialog-form").html($("[data-template-name='"+node.type+"']").html());
         if (node._def.defaults) {
             for (var d in node._def.defaults) {
                 var def = node._def.defaults[d];

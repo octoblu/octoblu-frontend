@@ -14,7 +14,7 @@
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="sentiment">
+<div class="red-template"  data-template-name="sentiment">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="red-template"data-help-name="sentiment">
+<div class="red-template" data-help-name="sentiment">
     <p>Analyses the <b>msg.payload</b> and adds a <b>msg.sentiment</b> object that contains the resulting AFINN-111 sentiment score as <b>msg.sentiment.score</b>.</p>
     <p>A score greater than zero is positive and less than zero is negative.</p>
     <p>The score typically ranges from -5 to +5, but can go higher and lower.</p>
@@ -64,7 +64,7 @@
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="xml2js">
+<div class="red-template"  data-template-name="xml2js">
     <!-- <div class="form-row">
         <label>Use Console</label>
         <input type="checkbox" id="node-input-useEyes" placeholder="Name" style="display: inline-block; width: auto; vertical-align: top;">
@@ -77,7 +77,7 @@
     <!-- <div class="form-tips">Uses xml2js to process xml into javascript object.</div> -->
 </div>
 
-<div class="red-template"data-help-name="xml2js">
+<div class="red-template" data-help-name="xml2js">
     <p>A function that parses the <b>msg.payload</b> using the xml2js library. Places the result in the payload.</p>
     <p>See <a href="https://github.com/Leonidas-from-XIV/node-xml2js/blob/master/README.md" target="_new">the xml2js docs <i>here</i></a> for more information.</p>
 </div>
@@ -117,7 +117,7 @@
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="inject">
+<div class="red-template"  data-template-name="inject">
     <div class="form-row node-input-payload">
         <label for="node-input-payloadType"><i class="icon-envelope"></i> Payload</label>
         <select id="node-input-payloadType" style="width:125px !important">
@@ -285,7 +285,7 @@
         width: 30px !important;
     }
 </style>
-<div class="red-template"data-help-name="inject">
+<div class="red-template" data-help-name="inject">
     <p>Pressing the button on the left side of the node allows a message on a topic to be injected into the flow. This is mainly for test purposes.</p>
     <p>If no payload is specified the payload is set to the current time in millisecs since 1970. This allows subsequent functions to perform time based actions.</p>
     <p>The repeat function does what it says on the tin and continuously sends the payload every x seconds.</p>
@@ -511,7 +511,7 @@
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="debug">
+<div class="red-template"  data-template-name="debug">
     <div class="form-row">
         <label for="node-input-complete"><i class="icon-list"></i> Output</label>
         <select type="text" id="node-input-complete" style="display: inline-block; width: auto; vertical-align: top;">
@@ -525,7 +525,7 @@
     </div>
 </div>
 
-<div class="red-template"data-help-name="debug">
+<div class="red-template" data-help-name="debug">
     <p>The Debug node can be connected to the output of any node. It will display the timestamp, <b>msg.topic</b> and <b>msg.payload</b> fields of any messages it receives in the debug tab of the sidebar.
     <br/>The sidebar can be accessed under the options drop-down in the top right corner.</p>
     <p>The button to the right of the node will toggle its output on and off so you can de-clutter the debug window.</p>
@@ -743,7 +743,7 @@
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="exec">
+<div class="red-template"  data-template-name="exec">
     <div class="form-row">
         <label for="node-input-command"><i class="icon-file"></i> Command</label>
         <input type="text" id="node-input-command" placeholder="command">
@@ -764,7 +764,7 @@
     <div class="form-tips">Tip: <i>spawn</i> expects only one command word - and appended args to be comma separated.</div>
 </div>
 
-<div class="red-template"data-help-name="exec">
+<div class="red-template" data-help-name="exec">
     <p>Calls out to a system command.<br/></p>
     <p>Provides 3 outputs... stdout, stderr, and return code.</p>
     <p>By default uses exec() which calls the command, blocks while waiting for completion, and then returns the complete result in one go, along with any errors.</p>
@@ -808,7 +808,7 @@
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="function">
+<script type="x/handlebars" class="red-template"  data-template-name="function">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -823,9 +823,9 @@
         <input id="node-input-outputs" style="width: 60px; height: 1.7em;" value="1">
     </div>
     <div class="form-tips">See the Info tab for help writing functions.</div>
-</div>
+</script>
 
-<div class="red-template"data-help-name="function">
+<div class="red-template" data-help-name="function">
 <p>A function block where you can write code to do more interesting things.</p>
 <p>The message is passed in as a JavaScript object called <code>msg</code>.</p>
 <p>By convention it will have a <code>msg.payload</code> property containing
@@ -919,7 +919,7 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="template">
+<div class="red-template"  data-template-name="template">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -933,7 +933,7 @@ return msg;"},
 
 </div>
 
-<div class="red-template"data-help-name="template">
+<div class="red-template" data-help-name="template">
 <p>Creates new messages based on a template.</p>
 <p>Very useful for creating boilerplate web pages, emails, tweets and so on.</p>
 <p>Uses the <i><a href="http://mustache.github.io/mustache.5.html" target="_new">Mustache</a></i> format.</p>
@@ -1011,7 +1011,7 @@ return msg;"},
 -->
 
 <!-- First, the content of the edit dialog is defined.                       -->
-<div class="red-template"data-template-name="delay">
+<div class="red-template"  data-template-name="delay">
 
     <div class="form-row">
         <label for="node-input-pauseType"><i class="icon-tasks"></i> Action</label>
@@ -1067,7 +1067,7 @@ return msg;"},
 </div>
 
 <!-- Next, some simple help text is provided for the node.                   -->
-<div class="red-template"data-help-name="delay">
+<div class="red-template" data-help-name="delay">
     <p>Introduces a delay into a flow or rate limts messges</p>
     <p>Default delay is 5 seconds and rate limit of 1 msg/second, but both can be configured</p>
 </div>
@@ -1173,7 +1173,7 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="comment">
+<div class="red-template"  data-template-name="comment">
 <div class="form-row">
 <label for="node-input-name"><i class="icon-tag"></i> Comment</label>
 <input type="text" id="node-input-name" placeholder="Comment">
@@ -1186,7 +1186,7 @@ return msg;"},
     <div class="form-tips">Tip: this isn't meant for War and Peace - but useful notes can be kept here.</div>
 </div>
 
-<div class="red-template"data-help-name="comment">
+<div class="red-template" data-help-name="comment">
 <p>Simple comment block.</p>
 </div>
 
@@ -1259,13 +1259,13 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="unknown">
+<div class="red-template"  data-template-name="unknown">
     <div class="form-tips"><p>This node is a type unknown to your installation of Node-RED.</p>
     <p><i>If you deploy with the node in this state, it will lose all of its configuration.</i></p>
     <p>See the Info side bar for more help</p></div>
 </div>
 
-<div class="red-template"data-help-name="unknown">
+<div class="red-template" data-help-name="unknown">
     <p>This node is a type unknown to your installation of Node-RED.</p>
     <p><i>If you deploy with the node in this state, it will lose all of its configuration.</i></p>
     <p>It is possible this node type is already installed, but is missing a dependency. Check the Node-RED start-up log for
@@ -1308,7 +1308,7 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="socket in">
+<div class="red-template"  data-template-name="socket in">
     <div class="form-row">
         <label for="node-input-transport"><i class="icon-tasks"></i> Type</label>
         <select type="text" id="node-input-transport" style="width: 150px;">
@@ -1333,7 +1333,7 @@ return msg;"},
     <div class="form-tips">Tip: sends the received data as a Buffer object.</div>
 </div>
 
-<div class="red-template"data-help-name="socket in">
+<div class="red-template" data-help-name="socket in">
 <p>Provides a input node for http, tcp or udp sockets. Topic is optional. These are server like sockets.</p>
 <p>The TCP and UDP sockets produce a <i>BUFFER</i> object msg.payload and NOT a String. If you need a String then use .toString() on msg.payload in your next function block.</p>
 <p>TCP and UDP sockets also provide <b>msg.fromip</b> of the form ipaddress:port</p>
@@ -1377,7 +1377,7 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="socket out">
+<div class="red-template"  data-template-name="socket out">
     <div class="form-row">
         <label for="node-input-host"><i class="icon-bookmark"></i> Host</label>
         <input type="text" id="node-input-host" placeholder="localhost" style="width: 40%;" >
@@ -1399,7 +1399,7 @@ return msg;"},
     </div>
 </div>
 
-<div class="red-template"data-help-name="socket out">
+<div class="red-template" data-help-name="socket out">
 <p>Provides a choice of http, tcp or udp output connections. All connect, send their <b>msg.payload</b> and disconnect.</p>
 <p>To use broadcast select udp and set the host to be either the subnet broadcast address required or 255.255.255.255</p>
 <p>If you need a response from an http request use the httpget node instead.</p>
@@ -1444,7 +1444,7 @@ return msg;"},
 -->
 
 <!--  The Input Node  -->
-<div class="red-template"data-template-name="multicast in">
+<div class="red-template"  data-template-name="multicast in">
     <div class="form-row">
         <label for="node-input-group"><i class="icon-tasks"></i> Group</label>
         <input type="text" id="node-input-group" placeholder="225.0.18.83" style="width: 40%;">
@@ -1467,7 +1467,7 @@ return msg;"},
     <div class="form-tips">Tip: sends the received data as a Buffer object (not a String).<br/>Make sure your firewall will allow the data in.</div>
 </div>
 
-<div class="red-template"data-help-name="multicast in">
+<div class="red-template" data-help-name="multicast in">
 <p>A multicast udp input node, that produces a <b>msg.payload</b> containing a <i>BUFFER</i> object and NOT a String.</p>
 <p>If you need a String then use <i>.toString()</i> on <b>msg.payload</b> in your next function block.</p>
 <p>It also provides <b>msg.fromip</b> of the form ipaddress:port .</p>
@@ -1502,7 +1502,7 @@ return msg;"},
 </script>
 
 <!--  The Output Node  -->
-<div class="red-template"data-template-name="multicast out">
+<div class="red-template"  data-template-name="multicast out">
     <div class="form-row">
         <label for="node-input-group"><i class="icon-tasks"></i> Group</label>
         <input type="text" id="node-input-group" placeholder="225.0.18.83" style="width: 40%;">
@@ -1526,7 +1526,7 @@ return msg;"},
     </div>
 </div>
 
-<div class="red-template"data-help-name="multicast out">
+<div class="red-template" data-help-name="multicast out">
 <p>This node sends <b>msg.payload</b> to the designated multicast group and port.</p>
 </div>
 
@@ -1574,7 +1574,7 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="httpget">
+<div class="red-template"  data-template-name="httpget">
     <div class="form-tips"><b>Deprecated</b>: please use the <i>http request</i> node.</div>
     <br>
     <div class="form-row">
@@ -1592,7 +1592,7 @@ return msg;"},
     <div class="form-tips">The <b>Base URL</b> gets prepended to whatever payload is passed in. Leave blank if you pass in a full url.<br/>The append gets added to the end after any payload.<br/>The output Topic is the same as the input Topic.</div>
 </div>
 
-<div class="red-template"data-help-name="httpget">
+<div class="red-template" data-help-name="httpget">
 <p>Performs an HTTP or HTTPS GET and returns the fetched page.</p>
 <p>The return code is placed in <b>msg.rc</b>, and the full text of the result is in <b>msg.payload</b>.</p>
 <p>The <b>msg.payload</b> is added to the base url, and then the optional append is added after.</p>
@@ -1635,7 +1635,7 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="mqtt in">
+<div class="red-template"  data-template-name="mqtt in">
     <div class="form-row">
         <label for="node-input-broker"><i class="icon-tag"></i> Broker</label>
         <input type="text" id="node-input-broker">
@@ -1650,7 +1650,7 @@ return msg;"},
     </div>
 </div>
 
-<div class="red-template"data-help-name="mqtt in">
+<div class="red-template" data-help-name="mqtt in">
     <p>MQTT input node. Connects to a broker and subscribes to the specified topic. The topic may contain MQTT wildcards.</p>
     <p>Outputs an object called <b>msg</b> containing <b>msg.topic, msg.payload, msg.qos</b> and <b>msg.retain</b>.</p>
     <p><b>msg.payload</b> is a String.</p>
@@ -1677,7 +1677,7 @@ return msg;"},
     });
 </script>
 
-<div class="red-template"data-template-name="mqtt out">
+<div class="red-template"  data-template-name="mqtt out">
     <div class="form-row">
         <label for="node-input-broker"><i class="icon-tag"></i> Broker</label>
         <input type="text" id="node-input-broker">
@@ -1692,7 +1692,7 @@ return msg;"},
     </div>
 </div>
 
-<div class="red-template"data-help-name="mqtt out">
+<div class="red-template" data-help-name="mqtt out">
     <p>Connects to a MQTT broker and publishes <b>msg.payload</b> either to the <b>msg.topic</b> OR to the topic specified in the edit window. The value in the edit window has precedence.</p>
     <p><b>msg.qos</b> and <b>msg.retain</b> may also optionally have been set. If not set they are set to 0 and false respectively.</p>
     <p>If <b>msg.payload</b> contains a buffer or an object it will be stringified before being sent.</p>
@@ -1720,7 +1720,7 @@ return msg;"},
     });
 </script>
 
-<div class="red-template"data-template-name="mqtt-broker">
+<div class="red-template"  data-template-name="mqtt-broker">
     <div class="form-row node-input-broker">
         <label for="node-config-input-broker"><i class="icon-bookmark"></i> Broker</label>
         <input class="input-append-left" type="text" id="node-config-input-broker" placeholder="Broker" style="width: 40%;" >
@@ -1808,7 +1808,7 @@ return msg;"},
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="http in">
+<div class="red-template"  data-template-name="http in">
     <div class="form-row">
         <label for="node-input-method"><i class="icon-tasks"></i> Method</label>
         <select type="text" id="node-input-method" style="width: 150px;">
@@ -1829,7 +1829,7 @@ return msg;"},
     <div id="node-input-tip" class="form-tips">The url will be relative to <code><span id="node-input-path"></span></code>.</div>
 </div>
 
-<div class="red-template"data-help-name="http in">
+<div class="red-template" data-help-name="http in">
 <p>Provides an input node for http requests, allowing the creation of simple web services.</p>
 <p>The resulting message has the following properties:
     <ul>
@@ -1898,7 +1898,7 @@ return msg;"},
     });
 </script>
 
-<div class="red-template"data-template-name="http response">
+<div class="red-template"  data-template-name="http response">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -1906,7 +1906,7 @@ return msg;"},
     <div class="form-tips">The messages sent to this node <b>must</b> originate from an <i>http input</i> node</div>
 </div>
 
-<div class="red-template"data-help-name="http response">
+<div class="red-template" data-help-name="http response">
 <p>Sends responses back to http requests received from an HTTP Input node.</p>
 <p>The response can be customised using the following message properties:</p>
 <ul>
@@ -1940,7 +1940,7 @@ return msg;"},
 
 
 
-<div class="red-template"data-template-name="http request">
+<div class="red-template"  data-template-name="http request">
     <div class="form-row">
         <label for="node-input-method"><i class="icon-tasks"></i> Method</label>
         <select type="text" id="node-input-method" style="width: 150px;">
@@ -1973,7 +1973,7 @@ return msg;"},
     </div>
 </div>
 
-<div class="red-template"data-help-name="http request">
+<div class="red-template" data-help-name="http request">
 <p>Provides a node for making http requests.</p>
 <p>The URL and HTTP method can be configured in the node, but also
    overridden by the incoming message:
@@ -2105,7 +2105,7 @@ The output message contains the following properties:
 -->
 
 <!-- WebSocket Input Node -->
-<div class="red-template"data-template-name="websocket in">
+<div class="red-template"  data-template-name="websocket in">
     <div class="form-row">
         <label for="node-input-server"><i class="icon-bookmark"></i> Path</label>
         <input type="text" id="node-input-server">
@@ -2116,7 +2116,7 @@ The output message contains the following properties:
     </div>
 </div>
 
-<div class="red-template"data-help-name="websocket in">
+<div class="red-template" data-help-name="websocket in">
     <p>WebSocket input node.</p>
     <p>By default, the data received from the WebSocket will be in <b>msg.payload</b>.
     The listener can be configured to expect a properly formed JSON string, in which
@@ -2145,7 +2145,7 @@ The output message contains the following properties:
 </script>
 
 <!-- WebSocket out Node -->
-<div class="red-template"data-template-name="websocket out">
+<div class="red-template"  data-template-name="websocket out">
     <div class="form-row">
         <label for="node-input-server"><i class="icon-bookmark"></i> Path</label>
         <input type="text" id="node-input-server">
@@ -2156,7 +2156,7 @@ The output message contains the following properties:
     </div>
 </div>
 
-<div class="red-template"data-help-name="websocket out">
+<div class="red-template" data-help-name="websocket out">
     <p>WebSocket out node.</p>
     <p>By default, <b>msg.payload</b> will be sent over the WebSocket. The listener
     can be configured to encode the entire message object as a JSON string and send that
@@ -2192,7 +2192,7 @@ The output message contains the following properties:
 </script>
 
 <!-- WebSocket Server configuration node -->
-<div class="red-template"data-template-name="websocket-listener">
+<div class="red-template"  data-template-name="websocket-listener">
     <div class="form-row">
         <label for="node-config-input-path"><i class="icon-bookmark"></i> Path</label>
         <input type="text" id="node-config-input-path" placeholder="/ws/example">
@@ -2211,7 +2211,7 @@ The output message contains the following properties:
     </div>
 </div>
 
-<div class="red-template"data-help-name="websocket-listener">
+<div class="red-template" data-help-name="websocket-listener">
    <p>This configuration node creates a WebSocket Server using the specified path</p>
 </div>
 
@@ -2257,7 +2257,7 @@ The output message contains the following properties:
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="tcp in">
+<div class="red-template"  data-template-name="tcp in">
     <div class="form-row">
         <label for="node-input-server"><i class="icon-resize-small"></i> Type</label>
         <select id="node-input-server" style="width:120px; margin-right:5px;">
@@ -2299,7 +2299,7 @@ The output message contains the following properties:
     </div>
 </div>
 
-<div class="red-template"data-help-name="tcp in">
+<div class="red-template" data-help-name="tcp in">
 <p>Provides a choice of tcp inputs. Can either connect to a remote tcp port,
    or accept incoming connections.</p>
 </script>
@@ -2358,7 +2358,7 @@ The output message contains the following properties:
     });
 </script>
 
-<div class="red-template"data-template-name="tcp out">
+<div class="red-template"  data-template-name="tcp out">
     <div class="form-row">
         <label for="node-input-beserver"><i class="icon-resize-small"></i> Type</label>
         <select id="node-input-beserver" style="width:150px; margin-right:5px;">
@@ -2385,7 +2385,7 @@ The output message contains the following properties:
     </div>
 </div>
 
-<div class="red-template"data-help-name="tcp out">
+<div class="red-template" data-help-name="tcp out">
 <p>Provides a choice of tcp outputs. Can either connect to a remote tcp port,
     accept incoming connections, or reply to messages received from a TCP In node.</p>
 <p>Only <b>msg.payload</b> is sent.</p>
@@ -2453,7 +2453,7 @@ before being sent.</p>
 -->
 
 <!--  The Input Node  -->
-<div class="red-template"data-template-name="udp in">
+<div class="red-template"  data-template-name="udp in">
     <div class="form-row">
         <label for="node-input-port"><i class="icon-inbox"></i> Listen</label>
         on port <input type="text" id="node-input-port" placeholder="Port" style="width: 45px">
@@ -2498,7 +2498,7 @@ before being sent.</p>
     </script>
 </div>
 
-<div class="red-template"data-help-name="udp in">
+<div class="red-template" data-help-name="udp in">
     <p>A udp input node, that produces a <b>msg.payload</b> containing a <i>BUFFER</i>, string, or base64 encoded string. Supports multicast.</p>
     <p>It also provides <b>msg.ip</b> and <b>msg.port</b> to the ip address and port from which the message was received.</b>
     <p>On some systems you may need to be root to use ports below 1024 and/or broadcast.</p>
@@ -2533,7 +2533,7 @@ before being sent.</p>
 
 
 <!--  The Output Node  -->
-<div class="red-template"data-template-name="udp out">
+<div class="red-template"  data-template-name="udp out">
     <div class="form-row">
         <label for="node-input-port"><i class="icon-envelope"></i> Send a</label>
         <select id="node-input-multicast" style='width:40%'>
@@ -2589,7 +2589,7 @@ before being sent.</p>
     </script>
 </div>
 
-<div class="red-template"data-help-name="udp out">
+<div class="red-template" data-help-name="udp out">
     <p>This node sends <b>msg.payload</b> to the designated udp host and port. Supports multicast.</p>
     <p>You may also use <b>msg.ip</b> and <b>msg.port</b> to set the destination values.<br/><b>Note</b>: the statically configured values have precedence.</p>
     <p>If you select broadcast either set the address to the local broadcast ip address, or maybe try 255.255.255.255, which is the global broadcast address.</p>
@@ -2665,7 +2665,7 @@ before being sent.</p>
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="switch">
+<div class="red-template"  data-template-name="switch">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -2688,7 +2688,7 @@ before being sent.</p>
     </div>
 </div>
 
-<div class="red-template"data-help-name="switch">
+<div class="red-template" data-help-name="switch">
     <p>A simple function node to route messages based on its properties.</p>
     <p>When a message arrives, the selected property is evaluated against each
     of the defined rules. The message is then sent to the output of <i>all</i>
@@ -2863,7 +2863,7 @@ before being sent.</p>
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="change">
+<div class="red-template"  data-template-name="change">
     <div>
         <select id="node-input-action" style="width:95%; margin-right:5px;">
             <option value="replace">Set the value of the message property</option>
@@ -2895,7 +2895,7 @@ before being sent.</p>
     </div>
 </div>
 
-<div class="red-template"data-help-name="change">
+<div class="red-template" data-help-name="change">
     <p>A simple function node to change, replace, add or delete properties of a message.</p>
     <p>When a message arrives, the selected property is modified by the defined rules.
     The message is then sent to the output.</p>
@@ -3002,7 +3002,7 @@ before being sent.</p>
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="range">
+<div class="red-template"  data-template-name="range">
     <div class="form-row">
         <select id="node-input-action" style="width:90%; margin-right:5px;">
             <option value="scale">Scale msg.payload</option>
@@ -3037,7 +3037,7 @@ before being sent.</p>
     <div class="form-tips" id="node-tip">Tip: This node ONLY works with numbers.</div>
 </div>
 
-<div class="red-template"data-help-name="range">
+<div class="red-template" data-help-name="range">
     <p>A simple function node to remap numeric input values to another scale.</p>
     <p>Currently only does a linear scaling.</p>
     <p><b>Note:</b> This only operates on <b>numbers</b>. Anything else will try to be made into a number and rejected if that fails.</p>
@@ -3083,7 +3083,7 @@ before being sent.</p>
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="device in">
+<div class="red-template"  data-template-name="device in">
     <div class="form-row">
         <label for="node-input-outputs"><i class="icon-tasks"></i> Directly to Me?</label>
         <input type="checkbox" id="node-input-directToMe" style="width: 30px; height: 1.7em;"> <span id="node-span-directToMe-uuid" class="selectable"></span>
@@ -3098,7 +3098,7 @@ before being sent.</p>
     </div>
 </div>
 
-<div class="red-template"data-help-name="device in">
+<div class="red-template" data-help-name="device in">
     <p>device input node.</p>
     <p>Outputs an object called <b>msg</b> containing <b>msg.topic</b> and <b>msg.payload</b>.</p>
     <p>The messages can come from any other device that sends messages directly to your <b>uuid</b>, or the messages can come from broadcasts made by other devices that you are subscribed to.</p>
@@ -3306,7 +3306,7 @@ before being sent.</p>
     }
 </script>
 
-<div class="red-template"data-template-name="device out">
+<div class="red-template"  data-template-name="device out">
     <div class="form-row">
         <label for="node-input-outputs"><i class="icon-tasks"></i> Out to Anyone?</label>
         <input type="checkbox" id="node-input-broadcast" style="width: 30px; height: 1.7em;"> <span>*</span>
@@ -3325,14 +3325,14 @@ before being sent.</p>
     </div>
 </div>
 
-<div class="red-template"data-help-name="device out">
+<div class="red-template" data-help-name="device out">
     <p>device output node</p>
     <p>Connects to Skynet and publishes <b>msg.payload</b> to a specific, selected <b>device</b> or broadcasts the payload out to any devices subcribed to your <b>uuid</b></p>
     <p>If a message is sent to a specific device, it may request a response and forward that response to the next node.
 </div>
 
 
-<div class="red-template"data-template-name="skynet-device">
+<div class="red-template"  data-template-name="skynet-device">
     <div class="form-row node-input-uuid">
         <label for="node-config-input-uuid"><i class="icon-bookmark"></i> UUID</label>
         <input class="input-append-left" type="text" id="node-config-input-uuid" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
@@ -3405,7 +3405,7 @@ before being sent.</p>
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="channel">
+<div class="red-template"  data-template-name="channel">
     <div class="form-row">
         <label for="node-input-api"><i class="icon-tasks"></i> Channels</label>
         <select type="text" id="node-input-api" style="display: inline-block; vertical-align: middle; width:60%;">
@@ -3461,7 +3461,7 @@ before being sent.</p>
 
 </div>
 
-<div class="red-template"data-template-name="query">
+<div class="red-template"  data-template-name="query">
     <div class="form-row node-config-input-name">
         <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-config-input-name" placeholder="Name">
@@ -3528,7 +3528,7 @@ before being sent.</p>
     </div>
 </div>
 
-<div class="red-template"data-template-name="header">
+<div class="red-template"  data-template-name="header">
     <div class="form-row">
         <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-config-input-name" placeholder="Name">
@@ -3586,7 +3586,7 @@ before being sent.</p>
 </div>
 
 
-<div class="red-template"data-template-name="apicreds">
+<div class="red-template"  data-template-name="apicreds">
     <div class="form-row">
         <label for="node-config-input-key"><i class="icon-tag"></i> key</label>
         <input type="text" id="node-config-input-key" placeholder="key" disabled="">
@@ -3601,7 +3601,7 @@ before being sent.</p>
     </div>
 </div>
 
-<div class="red-template"data-help-name="api">
+<div class="red-template" data-help-name="api">
 <p>Provides a node for making http requests.</p>
 <p>The URL and HTTP method can be configured in the node, but also
    overridden by the incoming message:
@@ -3855,7 +3855,7 @@ The output message contains the following properties:
 
 </script>
 
-<div class="red-template"data-template-name="microblu in">
+<div class="red-template"  data-template-name="microblu in">
     <div class="form-row" id="node-div-skynetRow">
         <label for="node-input-device"><i class="icon-tasks"></i> Microblu Firmware</label>
         <input type="text" id="node-input-skynetFirmware" placeholder="device">
@@ -3878,14 +3878,14 @@ The output message contains the following properties:
     <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
 </div>
 
-<div class="red-template"data-help-name="microblu in">
+<div class="red-template" data-help-name="microblu in">
     <p>microblu input node. Connects to remote Arduino and monitors the selected pin for changes. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
     <p>You can select either Digital or Analog input. Outputs the value read as <b>msg.payload</b> and the pin number as <b>msg.topic</b>.</p>
     <p>It only outputs on a change of value - fine for digital inputs, but you can get a lot of data from analogue pins which you must then handle.</p>
 </div>
 
 
-<div class="red-template"data-template-name="microblu out">
+<div class="red-template"  data-template-name="microblu out">
     <div class="form-row" id="node-div-skynetRow">
         <label for="node-input-device"><i class="icon-tasks"></i> Skynet Firmware</label>
         <input type="text" id="node-input-skynetFirmware" placeholder="device">
@@ -3909,7 +3909,7 @@ The output message contains the following properties:
     <div class="form-tips"><b>Note:</b> You cannot use the same pin for both output and input.</div>
 </div>
 
-<div class="red-template"data-help-name="microblu out">
+<div class="red-template" data-help-name="microblu out">
     <p>microblu output node. Connects to local Arduino and writes to the selected digital pin. Uses <a href="http://firmata.org/" target="_new"><i>Firmata</i>.</a></p>
     <p>You can select Digital, Analogue (PWM) or Servo type outputs. Expects a numeric value in <b>msg.payload</b>. The pin number is set in the properties panel.</p>
 </div>
@@ -3981,7 +3981,7 @@ RED.nodes.registerType('microblu out',{
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="twitter-credentials">
+<div class="red-template"  data-template-name="twitter-credentials">
     <div class="form-row" id="node-config-twitter-row"></div>
     <input type="hidden" id="node-config-input-screen_name">
 </div>
@@ -4068,7 +4068,7 @@ RED.nodes.registerType('microblu out',{
     });
 </script>
 
-<div class="red-template"data-template-name="twitter in">
+<div class="red-template"  data-template-name="twitter in">
     <div class="form-row">
         <label for="node-input-twitter"><i class="icon-user"></i> Log in as</label>
         <input type="text" id="node-input-twitter">
@@ -4095,7 +4095,7 @@ RED.nodes.registerType('microblu out',{
     <br/>Tweets of who you follow will include their retweets and favourites.</div>
 </div>
 
-<div class="red-template"data-help-name="twitter in">
+<div class="red-template" data-help-name="twitter in">
     <p>Twitter input node. Can be used to search either:
     <ul><li>the public or a user's stream for tweets containing the configured search term</li>
         <li>all tweets by specific users</li>
@@ -4163,7 +4163,7 @@ RED.nodes.registerType('microblu out',{
 </script>
 
 
-<div class="red-template"data-template-name="twitter out">
+<div class="red-template"  data-template-name="twitter out">
     <div class="form-row">
         <label for="node-input-twitter"><i class="icon-user"></i> Twitter</label>
         <input type="text" id="node-input-twitter">
@@ -4174,7 +4174,7 @@ RED.nodes.registerType('microblu out',{
     </div>
 </div>
 
-<div class="red-template"data-help-name="twitter out">
+<div class="red-template" data-help-name="twitter out">
     <p>Twitter out node. Tweets the <b>msg.payload</b>.</p>
 </div>
 
@@ -4211,7 +4211,7 @@ RED.nodes.registerType('microblu out',{
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="e-mail">
+<div class="red-template"  data-template-name="e-mail">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-envelope"></i> To</label>
         <input type="text" id="node-input-name" placeholder="email@address.com">
@@ -4265,7 +4265,7 @@ RED.nodes.registerType('microblu out',{
     <div class="form-tips" id="node-tip"><b>Note:</b> Using credentials from global emailkeys.js file.</div>
 </div>
 
-<div class="red-template"data-help-name="e-mail">
+<div class="red-template" data-help-name="e-mail">
     <p>Sends the <b>msg.payload</b> as an email, with a subject of <b>msg.topic</b>.</p>
     <p>It sends the message to the configured recipient <i>only</i>.</p>
     <p><b>msg.topic</b> is used to set the subject of the email, and <b>msg.payload</b> is the body text.</p>
@@ -4334,7 +4334,7 @@ RED.nodes.registerType('microblu out',{
 </script>
 
 
-<div class="red-template"data-template-name="e-mail in">
+<div class="red-template"  data-template-name="e-mail in">
     <div class="form-row node-input-repeat">
         <label for="node-input-repeat"><i class="icon-repeat"></i> Check Repeat (S)</label>
         <input type="text" id="node-input-repeat" placeholder="300">
@@ -4364,7 +4364,7 @@ RED.nodes.registerType('microblu out',{
     <div id="node-input-tip" class="form-tips">Tip: <b>ONLY</b> retrieves the single most recent email.</div>
 </div>
 
-<div class="red-template"data-help-name="e-mail in">
+<div class="red-template" data-help-name="e-mail in">
     <p>Repeatedly gets a <b>single email</b> from an IMAP server and forwards on as a msg if not already seen.</p>
     <p>The subject is loaded into <b>msg.topic</b> and <b>msg.payload</b> is the plain text body.
        If there is text/html then that is returned in <b>msg.html</b>. <b>msg.from</b> and <b>msg.date</b> are also set if you need them.</p>
@@ -4447,7 +4447,7 @@ RED.nodes.registerType('microblu out',{
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="irc in">
+<div class="red-template"  data-template-name="irc in">
     <div class="form-row">
         <label for="node-input-ircserver"><i class="icon-tasks"></i> IRC Server</label>
         <input type="text" id="node-input-ircserver">
@@ -4463,7 +4463,7 @@ RED.nodes.registerType('microblu out',{
     <div class="form-tips">The channel to join must start with a # (as per normal irc rules...)</div>
 </div>
 
-<div class="red-template"data-help-name="irc in">
+<div class="red-template" data-help-name="irc in">
     <p>Connects to a channel on an IRC server</p>
     <p>Any messages on that channel will appear on the <b>msg.payload</b> at the output, while <b>msg.topic</b> will contain who it is from.</p>
     <p>The second output provides a <b>msg.payload</b> that has any status messages such as joins, parts, kicks etc.</p>
@@ -4500,7 +4500,7 @@ RED.nodes.registerType('microblu out',{
 </script>
 
 
-<div class="red-template"data-template-name="irc out">
+<div class="red-template"  data-template-name="irc out">
     <div class="form-row">
         <label for="node-input-ircserver"><i class="icon-tasks"></i> IRC Server</label>
         <input type="text" id="node-input-ircserver">
@@ -4525,7 +4525,7 @@ RED.nodes.registerType('microblu out',{
     Sending the complete object will stringify the whole msg object before sending.</div>
 </div>
 
-<div class="red-template"data-help-name="irc out">
+<div class="red-template" data-help-name="irc out">
     <p>Sends messages to a channel on an IRC server</p>
     <p>You can send just the <b>msg.payload</b>, or the complete <b>msg</b> object to the selected channel,
     or you can select to use <b>msg.topic</b> to send the <b>msg.payload</b> to a specific user in the channel (private conversation).</p>
@@ -4562,7 +4562,7 @@ RED.nodes.registerType('microblu out',{
 </script>
 
 
-<div class="red-template"data-template-name="irc-server">
+<div class="red-template"  data-template-name="irc-server">
     <div class="form-row">
         <label for="node-config-input-server"><i class="icon-tasks"></i> IRC Server</label>
         <input type="text" id="node-config-input-server" placeholder="irc.freenode.net">
@@ -4601,7 +4601,7 @@ RED.nodes.registerType('microblu out',{
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="tail">
+<div class="red-template"  data-template-name="tail">
     <div class="form-row node-input-filename">
          <label for="node-input-filename"><i class="icon-file"></i> Filename</label>
          <input type="text" id="node-input-filename" placeholder="Filename">
@@ -4619,7 +4619,7 @@ RED.nodes.registerType('microblu out',{
     <div class="form-tips">WON'T work on Windows.</div>
 </div>
 
-<div class="red-template"data-help-name="tail">
+<div class="red-template" data-help-name="tail">
 <p>Tails (watches for things to be added) to the configured file. (Linux/Mac ONLY)</p>
 <p>This won't work on Windows filesystems (as it relies on the tail -f command) so we will probably have to hide it in future.</p>
 </div>
@@ -4660,7 +4660,7 @@ RED.nodes.registerType('microblu out',{
   limitations under the License.
 -->
 
-<div class="red-template"data-template-name="file">
+<div class="red-template"  data-template-name="file">
     <div class="form-row node-input-filename">
          <label for="node-input-filename"><i class="icon-file"></i> Filename</label>
          <input type="text" id="node-input-filename" placeholder="Filename">
@@ -4681,7 +4681,7 @@ RED.nodes.registerType('microblu out',{
     </div>
 </div>
 
-<div class="red-template"data-help-name="file">
+<div class="red-template" data-help-name="file">
     <p>Writes <b>msg.payload</b> to the file specified, e.g. to create a log.</p>
     <p>The filename can be overridden by the <code>.filename</code> property
     of the incoming message.</p>
