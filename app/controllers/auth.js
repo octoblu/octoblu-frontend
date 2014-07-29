@@ -164,8 +164,7 @@ module.exports = function (app, passport, config) {
     app.get('/api/auth/:id/custom', function (req, res) {
 
         Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
-
-            if (api.oauth.version == '2.0') {
+            if (api.oauth.version === '2.0') {
                 if (api.oauth.isManual) {
                     console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
                     // manually handle oauth...
@@ -377,7 +376,7 @@ module.exports = function (app, passport, config) {
                         } else {
                             user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + _id);
+                                console.log('saved oauth token: ' + api._id);
                                 res.redirect('/connect/nodes/channel/' + channelid);
                             });
                         }
