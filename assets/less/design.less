@@ -69,12 +69,12 @@
   .red-tabs-container {
     display: flex;
     flex-direction: row;
-    background: #e3e3e3;
   }
   .red-tabs {
     display: flex;
     flex-direction: row;
     flex: 1;
+    background: #e3e3e3;
     li:hover {
       background: #bbb;
     }
@@ -85,13 +85,20 @@
     }
   }
   .red-add-tab {
-    align-self: flex-end;
     width: 28px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background: #e3e3e3;
     &:hover {
       background: rgb(227, 227, 227);
+    }
+    a {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #999;
     }
   }
 
@@ -342,16 +349,11 @@
   .palette-header span {
     clear: both;
   }
-  #sidebar {
-    background: #fff;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
-  #sidebar.closing {
-    background: #eee;
-    border-color: #900;
-    border-style: dashed;
-  }
+//  #sidebar.closing {
+//    background: #eee;
+//    border-color: #900;
+//    border-style: dashed;
+//  }
 
   /* ---------- Layout ---------- */
   #main-container {
