@@ -73,8 +73,16 @@ RED.initializeTabConfig = function() {
                 RED.view.redraw();
             });
 
-            $('<div class="tab-config-list-label">'+label+'</div>').appendTo(entry);
-            $('<div class="tab-config-list-users">'+node.users.length+'</div>').appendTo(entry);
+            var html = '' +
+              '<a class="btn btn-primary btn-block">' +
+                label +
+                '<span class="badge pull-right">' +
+                  node.users.length +
+                '</span>' +
+              '</a>' +
+            '';
+
+            $(html).appendTo(entry);
         });
     }
     return {
