@@ -75,7 +75,7 @@
   .red-tabs-container {
     display: flex;
     flex-direction: row;
-    height: 28px;
+    min-height: 28px;
   }
   .red-tabs {
     display: flex;
@@ -352,10 +352,12 @@
 //  }
 
   /* ---------- Layout ---------- */
-  #main-container {
+  .main-container {
     display: flex;
     flex-direction: horizontal;
     flex: 1;
+    height: 80vh;
+    margin: 0;
   }
 
   #sidebar {
