@@ -253,22 +253,22 @@ module.exports = function (env, passport) {
 
         },
         function (req, token, tokenSecret, profile, done) {
-            return User.findOne({ 'github.id': profile.id }).exec()
-                .then(function (user) {
-                    if (user) {return user;} // user found, return that user
+            var query, updateParams;
 
-                    return User.create({
-                        username: profile.username,
-                        displayName: profile.displayName,
-                        email: profile.username,
-                        github: {
-                            id: profile.id
-                        }
-                    });
-                })
-                .then(function (user) {
+            query = {'github.id': profile.id};
+            updateParams = {
+                username: profile.username,
+                displayName: profile.displayName,
+                email: profile.username,
+                github: {
+                    id: profile.id
+                }
+            }
+
+            return User.findOneAndUpdate(query, {$set: updateParams}, {upsert: true, new: true}).exec()
+               .then(function (user) {
                     done(null, user);
-                }, function (err) {
+                }, function(){
                     done(err);
                 });
         }));
