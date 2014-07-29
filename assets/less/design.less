@@ -67,6 +67,10 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+
+    .chart-zoom-controls {
+      text-align:right;
+    }
   }
   .red-tabs-container {
     display: flex;
@@ -273,10 +277,6 @@
     overflow: auto;
     background: #e3e3e3;
     //    position: absolute;
-    bottom: 0px;
-    top: 30px;
-    left: 0px;
-    right: 0px;
   }
 
   #workspace-toolbar {
@@ -287,12 +287,6 @@
     right: 18px;
     padding: 5px;
     background: #f3f3f3;
-  }
-
-  #chart-zoom-controls {
-    padding-top: 3px;
-    text-align: right;
-    float: right;
   }
 
   .palette-scroll {
@@ -353,6 +347,7 @@
 //  #sidebar.closing {
 //    background: #eee;
 //    border-color: #900;
+//    border-color: #900;
 //    border-style: dashed;
 //  }
 
@@ -363,18 +358,6 @@
     flex: 1;
   }
 
-  //  #workspace {
-  //    margin: 0;
-  //    top: 5px;
-  //    left: 160px;
-  //    bottom: 10px;
-  //    right: 330px;
-  //  }
-  #chart-zoom-controls {
-    position: absolute;
-    bottom: 30px;
-    right: 350px;
-  }
   #sidebar {
     width: 305px;
     //    position: absolute;
@@ -396,12 +379,6 @@
   }
   .sidebar-closed > #sidebar-separator {
     display: none;
-  }
-  //  .sidebar-closed > #workspace {
-  //    right: 10px !important;
-  //  }
-  .sidebar-closed > #chart-zoom-controls {
-    right: 30px !important;
   }
 
   /* ---------- end layout ---------- */
@@ -441,7 +418,8 @@
     margin-left: 20px;
   }
 
-  #workspace, #palette, #sidebar {
+  .workspace, .palette, .sidebar {
+    border: 1px solid #000;
     border: 1px solid #000;
     border-radius: 3px;
   }
