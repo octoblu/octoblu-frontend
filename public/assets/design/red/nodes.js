@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-RED.nodes = function() {
+RED.nodes = function () {
 
     var node_defs = {};
     var nodes = [];
@@ -22,14 +22,14 @@ RED.nodes = function() {
     var defaultWorkspace;
     var workspaces = {};
 
-    function registerType(nt,def) {
+    function registerType(nt, def) {
         node_defs[nt] = def;
         // TODO: too tightly coupled into palette UI
-        RED.palette.add(nt,def);
+        RED.palette.add(nt, def);
     }
 
     function getID() {
-        return (1+Math.random()*4294967295).toString(16);
+        return (1 + Math.random() * 4294967295).toString(16);
     }
 
     function getType(type) {
@@ -62,9 +62,11 @@ RED.nodes = function() {
             }
         }
     }
+
     function addLink(l) {
         links.push(l);
     }
+
     function addConfig(c) {
         configNodes[c.id] = c;
     }
@@ -90,9 +92,13 @@ RED.nodes = function() {
         } else {
             var node = getNode(id);
             if (node) {
-                nodes.splice(nodes.indexOf(node),1);
-                removedLinks = links.filter(function(l) { return (l.source === node) || (l.target === node); });
-                removedLinks.map(function(l) {links.splice(links.indexOf(l), 1); });
+                nodes.splice(nodes.indexOf(node), 1);
+                removedLinks = links.filter(function (l) {
+                    return (l.source === node) || (l.target === node);
+                });
+                removedLinks.map(function (l) {
+                    links.splice(links.indexOf(l), 1);
+                });
             }
             var updatedConfigNode = false;
             for (var d in node._def.defaults) {
@@ -104,7 +110,7 @@ RED.nodes = function() {
                         if (configNode) {
                             updatedConfigNode = true;
                             var users = configNode.users;
-                            users.splice(users.indexOf(node),1);
+                            users.splice(users.indexOf(node), 1);
                         }
                     }
                 }
@@ -119,7 +125,7 @@ RED.nodes = function() {
     function removeLink(l) {
         var index = links.indexOf(l);
         if (index != -1) {
-            links.splice(index,1);
+            links.splice(index, 1);
         }
     }
 
@@ -132,9 +138,11 @@ RED.nodes = function() {
     function addWorkspace(ws) {
         workspaces[ws.id] = ws;
     }
+
     function getWorkspace(id) {
         return workspaces[id];
     }
+
     function removeWorkspace(id) {
         delete workspaces[id];
         var removedNodes = [];
@@ -149,7 +157,7 @@ RED.nodes = function() {
             var rmlinks = removeNode(removedNodes[n].id);
             removedLinks = removedLinks.concat(rmlinks);
         }
-        return {nodes:removedNodes,links:removedLinks};
+        return {nodes: removedNodes, links: removedLinks};
     }
 
     function getAllFlowNodes(node) {
@@ -157,11 +165,13 @@ RED.nodes = function() {
         visited[node.id] = true;
         var nns = [node];
         var stack = [node];
-        while(stack.length != 0) {
+        while (stack.length != 0) {
             var n = stack.shift();
-            var childLinks = links.filter(function(d) { return (d.source === n) || (d.target === n);});
+            var childLinks = links.filter(function (d) {
+                return (d.source === n) || (d.target === n);
+            });
             for (var i in childLinks) {
-                var child = (childLinks[i].source === n)?childLinks[i].target:childLinks[i].source;
+                var child = (childLinks[i].source === n) ? childLinks[i].target : childLinks[i].source;
                 if (!visited[child.id]) {
                     visited[child.id] = true;
                     nns.push(child);
@@ -188,10 +198,12 @@ RED.nodes = function() {
             node.y = n.y;
             node.z = n.z;
             node.wires = [];
-            for(var i=0;i<n.outputs;i++) {
+            for (var i = 0; i < n.outputs; i++) {
                 node.wires.push([]);
             }
-            var wires = links.filter(function(d){return d.source === n;});
+            var wires = links.filter(function (d) {
+                return d.source === n;
+            });
             for (var i in wires) {
                 var w = wires[i];
                 node.wires[w.sourcePort].push(w.target.id);
@@ -245,7 +257,7 @@ RED.nodes = function() {
         return nns;
     }
 
-    function importNodes(newNodesObj,createNewIds) {
+    function importNodes(newNodesObj, createNewIds) {
         try {
             var newNodes;
             if (typeof newNodesObj === "string") {
@@ -268,15 +280,15 @@ RED.nodes = function() {
                     // TODO: get this UI thing out of here! (see below as well)
                     n.name = n.type;
                     n.type = "unknown";
-                    if (unknownTypes.indexOf(n.name)==-1) {
+                    if (unknownTypes.indexOf(n.name) == -1) {
                         unknownTypes.push(n.name);
                     }
                 }
             }
             if (unknownTypes.length > 0) {
-                var typeList = "<ul><li>"+unknownTypes.join("</li><li>")+"</li></ul>";
-                var type = "type"+(unknownTypes.length > 1?"s":"");
-                RED.notify("<strong>Imported unrecognised "+type+":</strong>"+typeList,"error",false,10000);
+                var typeList = "<ul><li>" + unknownTypes.join("</li><li>") + "</li></ul>";
+                var type = "type" + (unknownTypes.length > 1 ? "s" : "");
+                RED.notify("<strong>Imported unrecognised " + type + ":</strong>" + typeList, "error", false, 10000);
                 //"DO NOT DEPLOY while in this state.<br/>Either, add missing types to Node-RED, restart and then reload page,<br/>or delete unknown "+n.name+", rewire as required, and then deploy.","error");
             }
 
@@ -295,7 +307,7 @@ RED.nodes = function() {
                 }
             }
             if (defaultWorkspace == null) {
-                defaultWorkspace = { type:"tab", id:getID(), label:"Sheet 1" };
+                defaultWorkspace = { type: "tab", id: getID(), label: "Sheet 1" };
                 addWorkspace(defaultWorkspace);
                 RED.view.addWorkspace(defaultWorkspace);
             }
@@ -311,7 +323,11 @@ RED.nodes = function() {
                     var def = getType(n.type);
                     if (def && def.category == "config") {
                         if (!RED.nodes.node(n.id)) {
-                            var configNode = {id:n.id,type:n.type,users:[]};
+                            var configNode = {
+                                id: n.id,
+                                type: n.type,
+                                users: []
+                            };
                             for (var d in def.defaults) {
                                 configNode[d] = n[d];
                             }
@@ -320,7 +336,7 @@ RED.nodes = function() {
                             RED.nodes.add(configNode);
                         }
                     } else {
-                        var node = {x:n.x,y:n.y,z:n.z,type:0,wires:n.wires,changed:false};
+                        var node = {x: n.x, y: n.y, z: n.z, type: 0, wires: n.wires, changed: false};
                         if (createNewIds) {
                             node.z = RED.view.getWorkspace();
                             node.id = getID();
@@ -334,14 +350,14 @@ RED.nodes = function() {
                         node._def = def;
                         if (!node._def) {
                             node._def = {
-                                color:"#fee",
+                                color: "#fee",
                                 defaults: {},
-                                label: "unknown: "+n.type,
+                                label: "unknown: " + n.type,
                                 labelStyle: "node_label_italic",
-                                outputs: n.outputs||n.wires.length
+                                outputs: n.outputs || n.wires.length
                             }
                         }
-                        node.outputs = n.outputs||node._def.outputs;
+                        node.outputs = n.outputs || node._def.outputs;
 
                         for (var d in node._def.defaults) {
                             node[d] = n[d];
@@ -357,10 +373,10 @@ RED.nodes = function() {
             for (var i in new_nodes) {
                 var n = new_nodes[i];
                 for (var w1 in n.wires) {
-                    var wires = (n.wires[w1] instanceof Array)?n.wires[w1]:[n.wires[w1]];
+                    var wires = (n.wires[w1] instanceof Array) ? n.wires[w1] : [n.wires[w1]];
                     for (var w2 in wires) {
                         if (wires[w2] in node_map) {
-                            var link = {source:n,sourcePort:w1,target:node_map[wires[w2]]};
+                            var link = {source: n, sourcePort: w1, target: node_map[wires[w2]]};
                             addLink(link);
                             new_links.push(link);
                         }
@@ -368,10 +384,10 @@ RED.nodes = function() {
                 }
                 delete n.wires;
             }
-            return [new_nodes,new_links];
-        } catch(error) {
+            return [new_nodes, new_links];
+        } catch (error) {
             //TODO: get this UI thing out of here! (see above as well)
-            RED.notify("<strong>Error</strong>: "+error,"error");
+            RED.notify("<strong>Error</strong>: " + error, "error");
             return null;
         }
 
@@ -388,17 +404,17 @@ RED.nodes = function() {
         addWorkspace: addWorkspace,
         removeWorkspace: removeWorkspace,
         workspace: getWorkspace,
-        eachNode: function(cb) {
+        eachNode: function (cb) {
             for (var n in nodes) {
                 cb(nodes[n]);
             }
         },
-        eachLink: function(cb) {
+        eachLink: function (cb) {
             for (var l in links) {
                 cb(links[l]);
             }
         },
-        eachConfig: function(cb) {
+        eachConfig: function (cb) {
             for (var id in configNodes) {
                 cb(configNodes[id]);
             }

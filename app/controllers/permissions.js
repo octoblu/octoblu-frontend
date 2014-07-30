@@ -337,7 +337,6 @@ var permissionsController = {
 
 
 module.exports = function (app) {
-
     permissionsController.skynetUrl = app.locals.skynetUrl;
     app.get('/api/permissions', permissionsController.getResourcePermissions);
     app.get('/api/permissions/groups', permissionsController.getGroupResourcePermissions);

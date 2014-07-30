@@ -549,7 +549,7 @@
         messages.id = "debug-content";
         content.appendChild(messages);
 
-        RED.sidebar.addTab("debug", content);
+//        RED.sidebar.addTab("debug", content);
 
         function getTimestamp() {
             var d = new Date();
@@ -981,6 +981,24 @@ return msg;"},
     RED.nodes.registerType('delay',{
         category: 'function',      // the palette category
         color:"#E6E0F8",
+        schema : {
+            type: "object",
+            properties: {
+                phoneNumber: {
+                    type: "string",
+                    required: true
+                },
+                plivoAuthId: {
+                    type: "string",
+                    required: true
+                },
+                plivoAuthToken: {
+                    type: "string",
+                    required: true
+                }
+            }
+        },
+
         defaults: {             // defines the editable properties of the node
             name: {value:""},   //  along with default values.
             pauseType: {value:"delay", required:true},

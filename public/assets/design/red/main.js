@@ -291,7 +291,6 @@ var initializeRED = function() {
     RED.view           = RED.initializeView();
     RED.sidebar        = RED.initializeSidebar();
     RED.palette        = RED.initializePalette();
-    RED.sidebar.info   = RED.initializeTabInfo();
     RED.sidebar.config = RED.initializeTabConfig();
     RED.editor         = RED.initializeEditor();
     RED.notify         = RED.initializeNotifications();

@@ -15,17 +15,6 @@
  **/
 RED.initializeSidebar = function() {
 
-    //$('#sidebar').tabs();
-    var sidebar_tabs = RED.tabs.create({
-        id:"sidebar-tabs",
-        onchange:function(tab) {
-            $("#sidebar-content").children().hide();
-            $("#"+tab.id).show();
-        },
-        onremove: function(tab) {
-            $("#"+tab.id).remove();
-        }
-    });
     function addTab(title,content,closeable) {
         $("#sidebar-content").append(content);
         $(content).hide();
