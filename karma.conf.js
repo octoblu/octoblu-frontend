@@ -43,6 +43,8 @@ module.exports = function(config) {
         "public/lib/angular-mocks/angular-mocks.js",
         "public/lib/chai/chai.js",
 
+        "public/assets/javascripts/skynet.bundle.js",
+
         "public/angular/**/*.js",
         "test/angular/test_helper.js",
         "test/angular/**/*-spec.js"

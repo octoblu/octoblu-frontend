@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, nodeRedService, currentUser) {
+    .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, nodeRedService, FlowService, currentUser) {
         var getSessionFlow = function () {
             return $http({method: 'GET', url: '/api/get/flow'})
                 .success(function (data, status, headers, config) {
@@ -19,7 +19,12 @@ angular.module('octobluApp')
             }, currentUser.skynet.uuid, currentUser.skynet.token, port);
         });
 
-        $scope.save = function () {
+        $scope.deploy = function () {
             RED.save();
         };
+
+        $scope.save = function () {
+            console.log(RED.nodes.createCompleteNodeSet());
+            FlowService.saveAllFlows(RED.nodes.createCompleteNodeSet());
+        }
     });
