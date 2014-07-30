@@ -132,7 +132,7 @@
 
         <div class="node-editor" ng-hide="!editingNode">
             <h3 class="node-editor-header" >
-                <input type="text" class="form-control" model="editingNode.name">
+                <input placeholder="name" type="text" class="form-control" model="editingNode.name">
             </h3>
             <schema-editor control="schemaControl"
                            model="editingNode.properties" allow-json-edit="true" additional-properties="true" schema="editingNode._def.schema"></schema-editor>
