@@ -19,13 +19,14 @@ angular.module('octobluApp')
 
     return _.map(justNodes, function(designerNode){
       return _.omit(designerNode, 'z');
-    })
+    });
   };
 
-  this.saveAllFlows = function(nodes){
-    var zs = _.uniq(_.pluck(nodes, 'z'));
-    _.each(zs, function(z){
-      $http.put("/api/flows/" + z);
+  this.saveAllFlows = function(designerNodes){
+    var flows = service.designerToFlows(designerNodes);
+
+    _.each(flows, function(flow){
+      $http.put("/api/flows/" + flow.id, flow);
     });
   };
 });

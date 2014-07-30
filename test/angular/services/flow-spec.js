@@ -19,31 +19,26 @@ describe('FlowService', function () {
   });
 
   describe('saveAllFlows', function () {
-    describe('when it receives one flow', function () {
-      it('call $http.get for each flow', function () {
+    describe('when it receives one workspace', function () {
+      it('call $http.put for each flow', function () {
         $httpBackend.expectPUT("/api/flows/d5fe412a.2a01c").respond(204);
-        sut.saveAllFlows([{z: 'd5fe412a.2a01c'}]);
+        var workspace = {id: "d5fe412a.2a01c", label: "Sheet 1", type: "tab"};
+        sut.saveAllFlows([workspace]);
         $httpBackend.flush();
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
       });
     });
 
-    describe('when it receives two flows with different z values', function () {
+    describe('when it receives two workspaces', function () {
       it('call $http.get for each flow', function () {
         $httpBackend.expectPUT("/api/flows/one.value").respond(204);
         $httpBackend.expectPUT("/api/flows/two.value").respond(204);
-        sut.saveAllFlows([{z: 'one.value'}, {z: 'two.value'}]);
-        $httpBackend.flush();
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
-      });
-    });
-
-    describe('when it receives two flows with the same z value', function () {
-      it('call $http.get for each flow', function () {
-        $httpBackend.expectPUT("/api/flows/only.value").respond(204);
-        sut.saveAllFlows([{z: 'only.value'}, {z: 'only.value'}]);
+        var workspaces = [
+          {id: "one.value", label: "Sheet 1", type: "tab"},
+          {id: "two.value", label: "Sheet 1", type: "tab"}
+        ];
+        sut.saveAllFlows(workspaces);
         $httpBackend.flush();
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
