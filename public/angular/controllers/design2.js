@@ -37,7 +37,12 @@ angular.module('octobluApp')
             }, currentUser.skynet.uuid, currentUser.skynet.token, port);
         });
 
-        $scope.save = function () {
+        $scope.deploy = function () {
             RED.save();
         };
+
+        $scope.save = function () {
+            console.log(RED.nodes.createCompleteNodeSet());
+            FlowService.saveAllFlows(RED.nodes.createCompleteNodeSet());
+        }
     });
