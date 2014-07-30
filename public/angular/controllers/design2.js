@@ -28,6 +28,7 @@ angular.module('octobluApp')
                 },
                 clear: function () {
                     $scope.editingNode = undefined;
+                    $scope.$apply();
                 }
             };
             RED.wsConnect(function () {

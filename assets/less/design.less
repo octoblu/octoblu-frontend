@@ -80,9 +80,15 @@
     }
   }
   .edit-panel {
+    min-width: 305px;
+    //    position: absolute;
+    right: 10px;
+    top: 5px;
+    bottom: 10px;
     /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
     background-color: #f3f3f3;
     .node-editor {
+      overflow-x:hidden;
       .well {
         border: none;
         background-color: inherit;
@@ -416,13 +422,6 @@
     }
   }
 
-  #sidebar {
-    width: 305px;
-    //    position: absolute;
-    right: 10px;
-    top: 5px;
-    bottom: 10px;
-  }
   #sidebar-separator {
     width: 10px;
     //    position: absolute;
