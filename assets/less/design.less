@@ -81,12 +81,16 @@
   }
   .edit-panel {
     /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
+    background-color: #f3f3f3;
     .node-editor {
-      margin: 10px 0;
+      border: 1px solid #999;
+      margin: 5px;
 
       .node-editor-header {
-        border-bottom: 1px;
+        text-align: center;
+        .text-muted;
       }
+
       display: flex;
       flex-direction: column;
       div[data-jsoneditor-editor] {
