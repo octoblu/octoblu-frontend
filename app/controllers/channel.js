@@ -7,7 +7,7 @@ var _ = require('underscore'),
     DeviceType = mongoose.model('DeviceType'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
-var ObjectId = require('mongoose').Types.ObjectId; 
+var ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = function (app) {
 
@@ -37,10 +37,8 @@ module.exports = function (app) {
     // List of active API channels
     app.get('/api/channels/active', isAuthenticated, function (req, res) {
         var user = req.user,
-            criteria = _.pluck(user.api, 'channelid');
-        var criteria = criteria.filter(function(item) {
-                return item;
-            });
+            criteria = _.compact(_.pluck(user.api, 'channelid'));
+            console.log(criteria);
 
         Api.find(
             { _id: { $in: criteria }, enabled: true },

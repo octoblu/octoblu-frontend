@@ -112,6 +112,7 @@ UserSchema.methods.acceptTerms = function (termsAccepted) {
     return defer.promise;
 };
 
+// Deprecated, use overwriteOrAddApiByChannelId
 UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, token, secret, verifier, custom_tokens) {
     this.api = this.api || [];
 

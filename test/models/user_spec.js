@@ -49,6 +49,11 @@ describe('User', function () {
         sut.overwriteOrAddApiByChannelId('asdf', {authtype: 'oauth'});
         expect(sut.api[0].authtype).to.equal('oauth');
       });
+
+      it('should add in the token attribute', function () {
+        sut.overwriteOrAddApiByChannelId('asdf', {token: 'yutu'});
+        expect(sut.api[0].token).to.equal('yutu');
+      });
     });
 
     describe('when there is already an api', function () {
