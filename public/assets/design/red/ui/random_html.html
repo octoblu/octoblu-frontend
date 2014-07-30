@@ -3268,8 +3268,6 @@ return msg;"},
 
 
 
-    getSkynetDevices();
-
     function getSkynetDevices () {
         var node = this;
         RED.rpc('skynetDevices', this.id, function(err,data) {
@@ -4714,4 +4712,8 @@ RED.nodes.registerType('microblu out',{
         }
     });
 
+</script>
+
+<script type="text/javascript">
+    window.random_html_ready();
 </script>

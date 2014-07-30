@@ -1,7 +1,7 @@
 angular.module('octobluApp')
     .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, nodeRedService, currentUser) {
         var getSessionFlow = function () {
-            $http({method: 'GET', url: '/api/get/flow'})
+            return $http({method: 'GET', url: '/api/get/flow'})
                 .success(function (data, status, headers, config) {
                     console.log('/api/get/flow', data);
                     if (data.flow) {

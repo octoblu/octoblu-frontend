@@ -137,36 +137,34 @@ var initializeRED = function() {
         });
     };
 
-    function loadSettings(scope, cb) {
+    function loadSettings(scope, callback) {
         RED.rpc('settings', function(err, data){
             console.log('settings', err, data);
             RED.settings = data;
-            loadNodes(scope, cb);
+            loadNodes(scope, callback);
             RED.library.loadFlowLibrary();
         });
     }
 
-    function loadNodes(scope, cb) {
-        RED.rpc('getNodes', function(err, data) {
-//            console.log(data);
-                $(".palette-spinner").hide();
-                $(".palette-scroll").show();
-                $("#palette-search").show();
-                scope.nodeTemplateLocation = '/assets/design/red/ui/random_html.html';
-                scope.$apply();
-            setTimeout(function(){
-                loadFlows();
-                cb();
-            }, 2000);
+    function loadNodes(scope, callback) {
+        $(".palette-spinner").hide();
+        $(".palette-scroll").show();
+        $("#palette-search").show();
 
-        });
+        window.random_html_ready = function(){
+            loadFlows(callback);
+        };
+
+        scope.nodeTemplateLocation = '/assets/design/red/ui/random_html.html';
+        scope.$apply();
     }
 
-    function loadFlows() {
+    function loadFlows(callback) {
         RED.rpc('getFlows',function(err, nodes) {
                 RED.nodes.import(nodes);
                 RED.view.dirty(false);
                 RED.view.redraw();
+                callback();
         });
     }
 
