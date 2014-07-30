@@ -127,8 +127,11 @@
 
 
     <div id="sidebar" class="sidebar">
-        <ul class="red-tabs" id="sidebar-tabs"></ul>
-        <div id="sidebar-content"></div>
+        <div class="node-editor" ng-hide="!editingNode">
+            <schema-editor control="schemaControl"
+                           model="editingNode.properties" allow-json-edit="true" additional-properties="true" schema="editingNode._def.schema"></schema-editor>
+            <button ng-click="saveNodeProperties()" class="btn btn-lg btn-success">Save</button>
+        </div>
     </div>
 
     <div id="sidebar-separator"></div>

@@ -22,7 +22,7 @@ RED.initializeTabs = function() {
     function createTabs(options) {
         var tabs = {};
 
-        var ul = $("#"+options.id)
+        var ul = $("#"+options.id);
         ul.addClass("red-ui-tabs");
         ul.children().first().addClass("active");
         ul.children().addClass("red-ui-tab");
