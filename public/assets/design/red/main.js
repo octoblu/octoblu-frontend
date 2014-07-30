@@ -155,7 +155,7 @@ var initializeRED = function() {
             loadFlows(callback);
         };
 
-        scope.nodeTemplateLocation = '/assets/design/red/ui/random_html.html';
+        scope.nodeTemplateLocation = '/assets/design/red/ui/designer-node-templates.html';
         scope.$apply();
     }
 
