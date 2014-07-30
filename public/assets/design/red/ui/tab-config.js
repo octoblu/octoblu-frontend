@@ -23,13 +23,13 @@ RED.initializeTabConfig = function() {
 
     var list = $("<ul>",{class:"tab-config-list"}).appendTo(content);
 
-    $("#btn-config-nodes").click(function(){
-        if (!RED.sidebar.containsTab("config")) {
-            RED.sidebar.addTab("config",content,true);
-        }
-        refresh();
-        RED.sidebar.show("config");
-    });
+//    $("#btn-config-nodes").click(function(){
+//        if (!RED.sidebar.containsTab("config")) {
+//            RED.sidebar.addTab("config",content,true);
+//        }
+//        refresh();
+//        RED.sidebar.show("config");
+//    });
 
     function refresh() {
         list.empty();

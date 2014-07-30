@@ -128,9 +128,16 @@
     </div>
 
 
-    <div id="sidebar" class="sidebar">
-        <ul class="red-tabs" id="sidebar-tabs"></ul>
-        <div id="sidebar-content"></div>
+    <div id="sidebar" class="edit-panel">
+
+        <div class="node-editor" ng-hide="!editingNode">
+            <h3 class="node-editor-header" >
+                <input placeholder="Name" type="text" class="form-control" ng-model="editingNode.name">
+            </h3>
+            <schema-editor control="schemaControl"
+                           model="editingNode.properties" allow-json-edit="true" additional-properties="true" schema="editingNode._def.schema"></schema-editor>
+            <button ng-click="updateNodeProperties()" class="btn btn-lg btn-primary save">Update Node</button>
+        </div>
     </div>
 
     <div id="sidebar-separator"></div>
