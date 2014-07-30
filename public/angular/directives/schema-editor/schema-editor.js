@@ -1,4 +1,4 @@
-angular.module('octobluApp')
+ angular.module('octobluApp')
     .directive('schemaEditor', function () {
         return {
             restrict: 'AE',
@@ -30,11 +30,12 @@ angular.module('octobluApp')
                     editor = new JSONEditor(element[0],
                         {schema: schema,
                             no_additional_properties: !scope.additionalProperties,
-                            theme: 'bootstrap3',
                             startval: scope.editingDevice,
                             disable_collapse: true,
                             required_by_default: true,
-                            disable_edit_json: !scope.allowJsonEdit
+                            disable_edit_json: !scope.allowJsonEdit,
+                            theme : 'bootstrap3',
+                            iconlib : 'font-awesome4'
                         });
 
                     editor.on('change', function () {
