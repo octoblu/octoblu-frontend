@@ -1,3 +1,6 @@
+var moment = require('moment');
+var _      = require('underscore');
+
 describe('User', function () {
   var User, sut;
 
@@ -23,25 +26,28 @@ describe('User', function () {
       });
 
       it('should insert a record into api', function () {
-        var api;
         sut.overwriteOrAddApiByChannelId('asdf');
-        api = sut.api[0];
-        expect(api.channelid).to.equal('asdf');
+        expect(sut.api[0].channelid).to.equal('asdf');
+      });
+
+      it('should set the "updated" timestamp', function () {
+        var updated, now;
+
+        sut.overwriteOrAddApiByChannelId('asdf');
+
+        updated = moment(sut.api[0].updated).valueOf();
+        now     = moment().valueOf();
+        expect(updated).to.be.closeTo(now, 1000);
       });
 
       it('should insert a record into api with a different channel id', function () {
-        var api;
         sut.overwriteOrAddApiByChannelId('1234');
-        api = sut.api[0];
-        expect(api.channelid).to.equal('1234');
+        expect(sut.api[0].channelid).to.equal('1234');
       });
 
       it('should add in the authtype attribute', function () {
-        var api;
         sut.overwriteOrAddApiByChannelId('asdf', {authtype: 'oauth'});
-
-        api = sut.api[0];
-        expect(api.authtype).to.equal('oauth');
+        expect(sut.api[0].authtype).to.equal('oauth');
       });
     });
 
@@ -56,8 +62,7 @@ describe('User', function () {
         });
 
         it('should update the existing api', function () {
-          var api = sut.api[0];
-          expect(api.authtype).to.equal('simple');
+          expect(sut.api[0].authtype).to.equal('simple');
         });
       });
 
@@ -67,8 +72,7 @@ describe('User', function () {
         });
 
         it('should insert a new record', function () {
-          var api = sut.api[1];
-          expect(api.authtype).to.equal('complex');
+          expect(sut.api[1].authtype).to.equal('complex');
         });
       });
     });
