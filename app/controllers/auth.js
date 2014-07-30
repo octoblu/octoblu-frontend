@@ -366,9 +366,9 @@ module.exports = function (app, passport, config) {
                         var token = data.access_token;
 
                         if (token) {
-                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
+                            user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + channelid);
+                                console.log('saved oauth token: ' + token);
                                 res.redirect('/connect/nodes/channel/' + channelid);
                             });
                         }
@@ -383,13 +383,16 @@ module.exports = function (app, passport, config) {
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     }, function (error, result) {
                         var token = result;
+
+                        token = token.access_token || token;
+
                         if (error) {
                             console.log('Access Token Error', error);
                             res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
                         } else {
-                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
+                            user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + api._id);
+                                console.log('saved oauth token: ' + token);
                                 res.redirect('/connect/nodes/channel/' + channelid);
                             });
                         }
