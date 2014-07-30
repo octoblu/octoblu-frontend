@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
     Resource = require('./mixins/resource'),
     moment = require('moment'),
     Q = require('q'),
+    _ = require('underscore'),
 
     configAuth = require('../../config/auth')(process.env.NODE_ENV),
     rest = require('rest'),
@@ -131,6 +132,7 @@ UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, t
         }
     }
 
+
     // at this point the match wasn't found, so add it..
     var item = {
         channelid: channelid,
@@ -146,7 +148,18 @@ UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, t
     this.api.push(item);
 };
 
-// generating a hash
+UserSchema.methods.overwriteOrAddApiByChannelId = function(channelid, options){
+    var old_api, new_api;
+
+    old_api  = _.findWhere(this.api, {channelid: channelid});
+    this.api = _.without(this.api, old_api);
+
+    new_api = options || {};
+    new_api.channelid = channelid;
+
+    this.api.push(new_api);
+};
+
 UserSchema.methods.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
