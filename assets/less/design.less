@@ -27,7 +27,7 @@
 }
 
 .design2.designer-container {
-  #node-red-templates{
+  #node-red-templates {
     display: none;
   }
   #debug-content {
@@ -76,8 +76,48 @@
     flex-direction: column;
 
     .chart-zoom-controls {
-      text-align:right;
+      text-align: right;
     }
+  }
+  .edit-panel {
+    /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
+    .node-editor {
+      margin: 10px 0;
+
+      .node-editor-header {
+        border-bottom: 1px;
+      }
+      display: flex;
+      flex-direction: column;
+      div[data-jsoneditor-editor] {
+        display: flex;
+        flex-direction: column;
+        h3 {
+          order: 1;
+          display: flex;
+          margin-top: 0;
+          & > .btn-group {
+            flex: 1;
+            &:nth-child(2) {
+              display: none;
+            }
+            &:last-child {
+              margin-right:10px;
+            }
+            button {
+              width: 100%
+            }
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+      .save {
+        margin : 10px;
+      }
+    }
+
   }
   .red-tabs-container {
     display: flex;
@@ -119,7 +159,6 @@
   ul.red-tabs li.active a.red-ui-tab-close {
     background: rgba(255, 255, 255, 0.8);
   }
-
 
   ul.red-tabs li.red-ui-add-tab a {
     padding: 2px 4px;
@@ -350,12 +389,6 @@
   .palette-header span {
     clear: both;
   }
-//  #sidebar.closing {
-//    background: #eee;
-//    border-color: #900;
-//    border-color: #900;
-//    border-style: dashed;
-//  }
 
   /* ---------- Layout ---------- */
   .main-container {
@@ -369,7 +402,6 @@
       margin: 0 10px;
     }
   }
-
 
   #sidebar {
     width: 305px;
@@ -431,10 +463,10 @@
     margin-left: 20px;
   }
 
-  .workspace, .palette, .sidebar {
+  .workspace, .palette, .edit-panel {
     border: 1px solid #000;
     border-radius: 3px;
-    overflow:scroll;
+    overflow: scroll;
   }
   #sidebar-content {
     font-size: 1.2em;
