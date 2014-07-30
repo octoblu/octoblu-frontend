@@ -13,9 +13,13 @@ angular.module('octobluApp')
                 });
         };
 
-        $scope.saveNodeProperties = function () {
+        $scope.updateNodeProperties = function () {
             if (!schemaControl.validate().length) {
-                $scope.editingNode.properties = schemaControl.getValue();
+                _.extend($scope.editingNode, schemaControl.getValue());
+                $scope.editingNode.name = $scope.editingNodeName;
+                $scope.editingNode.dirty = true;
+                $scope.editingNode.changed = true;
+                RED.view.dirty(true);
             }
         };
 
@@ -23,11 +27,14 @@ angular.module('octobluApp')
             initializeRED();
             RED.sidebar.info = {
                 refresh: function (node) {
-                    $scope.editingNode = node;
+                    $scope.editingNode = RED.nodes.convertNode(node, true);
+                    $scope.editingNodeName = $scope.editingNode.name;
+                    $scope.editingNodeSchema = node._def.schema;
                     $scope.$apply();
                 },
                 clear: function () {
                     $scope.editingNode = undefined;
+                    $scope.editingNodeName = undefined;
                     $scope.$apply();
                 }
             };

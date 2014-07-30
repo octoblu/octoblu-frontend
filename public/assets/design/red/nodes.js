@@ -57,9 +57,6 @@ RED.nodes = function () {
                     }
                 }
             }
-            if (updatedConfigNode) {
-                RED.sidebar.config.refresh();
-            }
         }
     }
 
@@ -114,9 +111,6 @@ RED.nodes = function () {
                         }
                     }
                 }
-            }
-            if (updatedConfigNode) {
-                RED.sidebar.config.refresh();
             }
         }
         return removedLinks;
@@ -421,6 +415,7 @@ RED.nodes = function () {
         },
         node: getNode,
         import: importNodes,
+        convertNode : convertNode,
         refreshValidation: refreshValidation,
         getAllFlowNodes: getAllFlowNodes,
         createExportableNodeSet: createExportableNodeSet,
