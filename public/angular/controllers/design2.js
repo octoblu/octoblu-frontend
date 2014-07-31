@@ -1,6 +1,8 @@
 angular.module('octobluApp')
     .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, FlowService, nodeRedService, currentUser) {
-        var schemaControl = {};
+        var schemaControl, originalNode;
+
+        schemaControl = {};
         $scope.schemaControl = schemaControl;
 
         var getSessionFlow = function () {
@@ -13,9 +15,13 @@ angular.module('octobluApp')
                 });
         };
 
-        $scope.saveNodeProperties = function () {
+        $scope.updateNodeProperties = function () {
             if (!schemaControl.validate().length) {
-                $scope.editingNode.properties = schemaControl.getValue();
+                originalNode.properties = schemaControl.getValue();
+                originalNode.name = $scope.editingNodeName;
+                originalNode.dirty = true;
+                originalNode.changed = true;
+                RED.view.dirty(true);
             }
         };
 
@@ -23,11 +29,16 @@ angular.module('octobluApp')
             initializeRED();
             RED.sidebar.info = {
                 refresh: function (node) {
-                    $scope.editingNode = node;
+                    originalNode = node;
+                    $scope.editingNode = originalNode.properties || {};
+                    $scope.editingNodeName = originalNode.name;
+                    $scope.editingNodeSchema = originalNode._def.schema;
                     $scope.$apply();
                 },
                 clear: function () {
                     $scope.editingNode = undefined;
+                    $scope.editingNodeName = undefined;
+                    $scope.editingNodeSchema = undefined;
                     $scope.$apply();
                 }
             };
