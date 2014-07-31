@@ -26,3 +26,6 @@ mongoose.model('Invitation', InvitationSchema);
 
 var NodeTypeSchema = require('./app/models/node-type');
 mongoose.model('NodeType', NodeTypeSchema);
+
+var FlowSchema = require('./app/models/flow');
+mongoose.model('Flow', FlowSchema);

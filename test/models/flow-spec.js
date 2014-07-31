@@ -20,12 +20,21 @@ describe('Flow', function () {
   describe('when a Flow is saved with a node and a link', function () {
     beforeEach(function (done) {
       var sut = new Flow();
+      sut.name = 'name 1';
       sut.resource.type = 'flow';
       sut.resource.owner.uuid = '1';
       sut.resource.owner.type = 'user';
       sut.nodes = [{foo: 'bar'}];
       sut.links = [{first: 'second'}];
       sut.save(done);
+    });
+
+    it('should store the flow name', function (done) {
+      Flow.findOne({}, function(err, flow){
+        expect(err).to.be.null;
+        expect(flow.name).to.deep.equal('name 1');
+        done();
+      });
     });
 
     it('should store the node', function (done) {
@@ -46,10 +55,6 @@ describe('Flow', function () {
   });
 
   describe('.updateOrCreateByFlowIdAndUser', function () {
-    it('should be a function', function () {
-      Flow.updateOrCreateByFlowIdAndUser();
-    });
-
     describe('when its called with flow id and user uuid', function () {
       beforeEach(function (done) {
         Flow.updateOrCreateByFlowIdAndUser('1', '2').then(function(){done()}, done);
@@ -77,6 +82,54 @@ describe('Flow', function () {
         Flow.findOne(query, function(err, flow){
           expect(flow).to.exist;
           done();
+        });
+      });
+    });
+
+    describe('when its called with flowData', function () {
+      beforeEach(function (done) {
+        var flowData = {nodes: [{foo: 'bar'}]};
+
+        Flow.updateOrCreateByFlowIdAndUser('6', '3', flowData).then(function(){done()}, done);
+      });
+
+      it('should store the flowData', function (done) {
+        var query = {flowId: '6', 'resource.owner.uuid': '3', 'resource.owner.type': 'user'};
+
+        Flow.findOne(query, function(err, flow){
+          expect(flow.nodes).include({foo: 'bar'});
+          done();
+        });
+      });
+    });
+
+    describe('when there is already a flow', function () {
+      beforeEach(function (done) {
+        Flow.create({
+          flowId: '2',
+          resource: {
+            type: 'flow',
+            owner: {
+              uuid: 'unique',
+              type: 'user'
+            }
+          }
+        }, done);
+      });
+
+      describe('and its called with the same id', function () {
+        beforeEach(function (done) {
+          Flow.updateOrCreateByFlowIdAndUser('2', 'unique', {name: 'Foo'})
+          .then(function(){done()}, done);
+        });
+
+        it('should update the existing flow', function (done) {
+          Flow.find({flowId: '2'}, function(err, flows){
+            expect(_.size(flows)).to.equal(1);
+            var flow = _.first(flows);
+            expect(flow.name).to.equal('Foo');
+            done();
+          });
         });
       });
     });
