@@ -9,7 +9,8 @@ angular.module('octobluApp')
       return {
         id:   workspace.id,
         name: workspace.label,
-        nodes: service.extractNodesByWorkspaceId(designerNodes, workspace.id)
+        nodes: service.extractNodesByWorkspaceId(designerNodes, workspace.id),
+        links: service.extractLinksByWorkspaceId(designerNodes, workspace.id)
       };
     });
   };
@@ -18,8 +19,20 @@ angular.module('octobluApp')
     var justNodes = _.where(designerNodes, {z: workspaceId});
 
     return _.map(justNodes, function(designerNode){
-      return _.omit(designerNode, 'z');
+      return _.omit(designerNode, 'z', 'wires');
     });
+  };
+
+  this.extractLinksByWorkspaceId = function(designerNodes, workspaceId){
+    var workspaceNodes = _.where(designerNodes, {z: workspaceId});
+
+    var links = [];
+    _.each(workspaceNodes, function(workspaceNode){
+      _.each(_.first(workspaceNode.wires), function(wire){
+        links.push({from: workspaceNode.id, to: wire});
+      });
+    });
+    return links;
   };
 
   this.saveAllFlows = function(designerNodes){

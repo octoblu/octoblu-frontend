@@ -6,10 +6,15 @@ var FlowSchema = new mongoose.Schema({
   flowId: String,
   name:   String,
   nodes: [],
-  links: []
+  links: [],
+  resource: {
+    nodeType: String,
+    owner: {
+      nodeType: String,
+      uuid:     String
+    }
+  }
 });
-
-resource.makeResourceModel({schema: FlowSchema});
 
 FlowSchema.statics.updateOrCreateByFlowIdAndUser = function (flowId, userUUID, flowData) {
   flowData = flowData || {};
@@ -18,10 +23,10 @@ FlowSchema.statics.updateOrCreateByFlowIdAndUser = function (flowId, userUUID, f
   var data = _.extend(_.clone(flowData), {
     flowId: flowId,
     resource: {
-      type: 'flow',
+      nodeType: 'flow',
       owner: {
         uuid: userUUID,
-        type: 'user'
+        nodeType: 'user'
       }
     }
   });
