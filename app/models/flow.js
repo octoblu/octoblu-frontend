@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 var resource = require('./mixins/resource');
 
 var FlowSchema = new mongoose.Schema({
-  flowId: String
+  flowId: String,
+  nodes: [],
+  links: []
 });
 
 resource.makeResourceModel({schema: FlowSchema});

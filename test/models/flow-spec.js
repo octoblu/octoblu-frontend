@@ -17,6 +17,34 @@ describe('Flow', function () {
     expect(new Flow()).to.exist;
   });
 
+  describe('when a Flow is saved with a node and a link', function () {
+    beforeEach(function (done) {
+      var sut = new Flow();
+      sut.resource.type = 'flow';
+      sut.resource.owner.uuid = '1';
+      sut.resource.owner.type = 'user';
+      sut.nodes = [{foo: 'bar'}];
+      sut.links = [{first: 'second'}];
+      sut.save(done);
+    });
+
+    it('should store the node', function (done) {
+      Flow.findOne({}, function(err, flow){
+        expect(err).to.be.null;
+        expect(_.first(flow.nodes)).to.deep.equal({foo: 'bar'});
+        done();
+      });
+    });
+
+    it('should have links', function (done) {
+      Flow.findOne({}, function(err, flow){
+        expect(err).to.be.null;
+        expect(_.first(flow.links)).to.deep.equal({first: 'second'});
+        done();
+      });
+    });
+  });
+
   describe('.updateOrCreateByFlowIdAndUser', function () {
     it('should be a function', function () {
       Flow.updateOrCreateByFlowIdAndUser();
