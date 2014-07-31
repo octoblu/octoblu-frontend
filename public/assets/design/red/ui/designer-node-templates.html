@@ -576,6 +576,9 @@
         $.subscribe('debug', function(event, o) {
             //console.log('debug', event, o);
             //console.log(msg);
+            console.log(event.type, o);
+            return;
+
             var msg = document.createElement("div");
             msg.onmouseover = function() {
                 msg.style.borderRightColor = "#999";
