@@ -2,7 +2,7 @@ var FlowController = require('../../app/controllers/flow');
 var _ = require('underscore');
 
 describe('FlowController', function () {
-  describe('findOrCreate', function () {
+  describe('updateOrCreate', function () {
     var sut, res;
 
     beforeEach(function () {
@@ -18,18 +18,19 @@ describe('FlowController', function () {
           },
           body: {
             foo: 'bar'
-          }
+          },
+          user: { skynet: {uuid: '233435'} }
         };
-        sut.findOrCreate(req, res);
+        sut.updateOrCreate(req, res);
       });
 
-      it('should call findOrCreateById on Flow', function () {
-        expect(FakeFlow.findOrCreateById.called).to.be.true;
+      it('should call updateOrCreateByFlowIdAndUser on Flow', function () {
+        expect(FakeFlow.updateOrCreateByFlowIdAndUser.called).to.be.true;
       });
 
-      it('should call findOrCreateById with the id and body', function () {
-        expect(FakeFlow.findOrCreateById.calledWith).to.deep.equal(
-          [123, {foo: 'bar'}]
+      it('should call updateOrCreateByFlowIdAndUser with the id and body', function () {
+        expect(FakeFlow.updateOrCreateByFlowIdAndUser.calledWith).to.deep.equal(
+          [123, '233435', {foo: 'bar'}]
         );
       });
 
@@ -39,7 +40,7 @@ describe('FlowController', function () {
 
       describe('when the Flow responds with a success', function () {
         beforeEach(function () {
-          FakeFlow.findOrCreateById.success();
+          FakeFlow.updateOrCreateByFlowIdAndUser.success();
         });
 
         it('should respond', function () {
@@ -53,7 +54,7 @@ describe('FlowController', function () {
 
       describe('when the Flow responds with a error', function () {
         beforeEach(function () {
-          FakeFlow.findOrCreateById.error();
+          FakeFlow.updateOrCreateByFlowIdAndUser.error();
         });
 
         it('respond with a 422', function () {
@@ -70,14 +71,15 @@ describe('FlowController', function () {
           },
           body: {
             foo: 'widget'
-          }
+          },
+          user: { skynet: {uuid: 'abcde'} }
         };
-        sut.findOrCreate(req, res);
+        sut.updateOrCreate(req, res);
       });
 
-      it('should call findOrCreateById with the id and body', function () {
-        expect(FakeFlow.findOrCreateById.calledWith).to.deep.equal(
-          [456, {foo: 'widget'}]
+      it('should call updateOrCreateByFlowIdAndUser with the id and body', function () {
+        expect(FakeFlow.updateOrCreateByFlowIdAndUser.calledWith).to.deep.equal(
+          [456, 'abcde', {foo: 'widget'}]
         );
       });
     });
@@ -85,14 +87,14 @@ describe('FlowController', function () {
 });
 
 var FakeFlow = function(){ return this; };
-FakeFlow.findOrCreateById = function(){
-  FakeFlow.findOrCreateById.called = true;
-  FakeFlow.findOrCreateById.calledWith = _.values(arguments);
+FakeFlow.updateOrCreateByFlowIdAndUser = function(){
+  FakeFlow.updateOrCreateByFlowIdAndUser.called = true;
+  FakeFlow.updateOrCreateByFlowIdAndUser.calledWith = _.values(arguments);
 
   return {
     then: function(successCallback, errorCallback){
-      FakeFlow.findOrCreateById.success = successCallback;
-      FakeFlow.findOrCreateById.error   = errorCallback;
+      FakeFlow.updateOrCreateByFlowIdAndUser.success = successCallback;
+      FakeFlow.updateOrCreateByFlowIdAndUser.error   = errorCallback;
     }
   };
 };

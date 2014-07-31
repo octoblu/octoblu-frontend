@@ -68,7 +68,7 @@
     "karma-phantomjs-launcher": "~0.1.4"
   },
   "scripts": {
-    "test": "mocha -r test/test_helper.js --recursive test/models",
+    "test": "mocha -r test/test_helper.js --recursive --reporter spec test/models test/controllers && karma start --single-run",
     "start": "node server.js"
   },
   "engines": {

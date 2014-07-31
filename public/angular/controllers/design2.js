@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, nodeRedService, currentUser) {
+    .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, FlowService, nodeRedService, currentUser) {
         var schemaControl = {};
         $scope.schemaControl = schemaControl;
 
