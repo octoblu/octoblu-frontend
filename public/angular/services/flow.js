@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function ($http) {
+.service('FlowService', function ($http, $q) {
   var service = this;
 
   this.designerToFlows = function(designerNodes){
@@ -36,10 +36,20 @@ angular.module('octobluApp')
   };
 
   this.saveAllFlows = function(designerNodes){
-    var flows = service.designerToFlows(designerNodes);
+    var flows, promises;
 
-    _.each(flows, function(flow){
-      $http.put("/api/flows/" + flow.id, flow);
+    flows = service.designerToFlows(designerNodes);
+
+    promises = _.map(flows, function(flow){
+      return $http.put("/api/flows/" + flow.id, flow);
+    });
+
+    return $q.all(promises);
+  };
+
+  this.saveAllFlowsAndDeploy = function(designerNodes){
+    return service.saveAllFlows(designerNodes).then(function(){
+      return $http.post("/api/flow_deploys");
     });
   };
 });

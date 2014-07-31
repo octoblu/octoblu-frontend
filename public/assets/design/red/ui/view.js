@@ -1037,13 +1037,12 @@ RED.initializeView = function() {
     RED.keyboard.add(/* i */ 73,{ctrl:true},function(){showImportNodesDialog();d3.event.preventDefault();});
 
     // TODO: 'dirty' should be a property of RED.nodes - with an event callback for ui hooks
-    function setDirty(d) {
-        dirty = d;
-        if (dirty) {
-            $("#btn-deploy").removeClass("disabled").removeClass("btn-default").addClass("btn-primary");
-        } else {
-            $("#btn-deploy").addClass("disabled").addClass("btn-default").removeClass("btn-primary");
-        }
+    function setDirty(dirty) {
+        var button;
+
+        button = $('#btn-deploy');
+        button.toggleClass('btn-default', !dirty);
+        button.toggleClass('btn-primary', dirty);
     }
 
     /**

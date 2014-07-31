@@ -20,29 +20,64 @@ describe('FlowService', function () {
 
   describe('saveAllFlows', function () {
     describe('when it receives one workspace', function () {
-      it('call $http.put for each flow', function () {
+      it('call $http.put for each flow', function (done) {
         $httpBackend.expectPUT("/api/flows/d5fe412a.2a01c").respond(204);
+
         var workspace = {id: "d5fe412a.2a01c", label: "Sheet 1", type: "tab"};
-        sut.saveAllFlows([workspace]);
+
+        sut.saveAllFlows([workspace]).then(function(){
+          done();
+        }, done);
+
         $httpBackend.flush();
+      });
+
+      afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
       });
     });
 
     describe('when it receives two workspaces', function () {
-      it('call $http.get for each flow', function () {
+      it('call $http.get for each flow', function (done) {
         $httpBackend.expectPUT("/api/flows/one.value").respond(204);
         $httpBackend.expectPUT("/api/flows/two.value").respond(204);
         var workspaces = [
           {id: "one.value", label: "Sheet 1", type: "tab"},
           {id: "two.value", label: "Sheet 1", type: "tab"}
         ];
-        sut.saveAllFlows(workspaces);
+
+        sut.saveAllFlows(workspaces).then(function(){
+          done();
+        }, done);
+
         $httpBackend.flush();
+      });
+
+      afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
       });
+    });
+  });
+
+  describe('saveAllFlowsAndDeploy', function () {
+    it('should $http.put for each flow', function (done) {
+      $httpBackend.expectPUT("/api/flows/d5fe412a.2a01c").respond(204);
+      $httpBackend.expectPOST("/api/flow_deploys").respond(201);
+
+      var workspace = {id: "d5fe412a.2a01c", label: "Sheet 1", type: "tab"};
+      sut.saveAllFlowsAndDeploy([workspace]).then(function(){
+        done();
+      }, done);
+
+      $httpBackend.flush();
+      $httpBackend.flush();
+    });
+
+    afterEach(function () {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
     });
   });
 
