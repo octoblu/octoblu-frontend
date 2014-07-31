@@ -4,13 +4,13 @@
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .service('skynetConfig', function($location){
         var config = {
-            host: 'skynet.im',
+            host: 'http://skynet.im',
             port: '80'
         };
 
         if($location.host() === 'localhost'){
-            config.host = 'skynet.im';
-            config.port = '443';
+            config.host = 'http://skynet.im';
+            config.port = '80';
         }
 
         return config;

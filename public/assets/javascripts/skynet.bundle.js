@@ -29,14 +29,14 @@ function Connection(opt){
   this.options.options.transports = this.options.options.transports || ['websocket'];
   this.options.forceNew = (opt.forceNew != null) ? opt.forceNew : false;
 
-  this.options.server = this.options.server || 'ws://skynet.im';
+  this.options.server = this.options.server || 'http://skynet.im';
   this.options.port = this.options.port || 80;
 
 
 
   // if(this.options.server && this.options.port){
      if(this.options.server.indexOf("http") === -1 && this.options.server.indexOf("ws") === -1 && this.options.server.indexOf("wss") === -1 ){
-       this.options.server = "ws://" + this.options.server;
+       this.options.server = "http://" + this.options.server;
      }
   //   network = this.options.server + ":" + this.options.port;
   // }
