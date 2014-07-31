@@ -9,8 +9,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
         };
 
         if($location.host() === 'localhost'){
-            config.host = 'ws://localhost';
-            config.port = '3000';
+            config.host = 'skynet.im';
+            config.port = '80';
         }
 
         return config;
