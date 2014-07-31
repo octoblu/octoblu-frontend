@@ -155,7 +155,7 @@ var initializeRED = function() {
             loadFlows(callback);
         };
 
-        scope.nodeTemplateLocation = '/assets/design/red/ui/random_html.html';
+        scope.nodeTemplateLocation = '/assets/design/red/ui/designer-node-templates.html';
         scope.$apply();
     }
 
@@ -291,7 +291,6 @@ var initializeRED = function() {
     RED.view           = RED.initializeView();
     RED.sidebar        = RED.initializeSidebar();
     RED.palette        = RED.initializePalette();
-    RED.sidebar.info   = RED.initializeTabInfo();
     RED.sidebar.config = RED.initializeTabConfig();
     RED.editor         = RED.initializeEditor();
     RED.notify         = RED.initializeNotifications();

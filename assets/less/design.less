@@ -27,7 +27,7 @@
 }
 
 .design2.designer-container {
-  #node-red-templates{
+  #node-red-templates {
     display: none;
   }
   #debug-content {
@@ -76,8 +76,64 @@
     flex-direction: column;
 
     .chart-zoom-controls {
-      text-align:right;
+      text-align: right;
     }
+  }
+  .edit-panel {
+    min-width: 305px;
+    //    position: absolute;
+    right: 10px;
+    top: 5px;
+    bottom: 10px;
+    /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
+    background-color: #f3f3f3;
+    .node-editor {
+      overflow-x:hidden;
+      .well {
+        border: none;
+        background-color: inherit;
+      }
+      .node-editor-header {
+        text-align: center;
+        margin: 20px 10px 10px;
+        .text-muted;
+        input {
+          font-size:24px;
+          height:auto;
+        }
+      }
+
+      display: flex;
+      flex-direction: column;
+      .schema-editor > div{
+        display: flex;
+        flex-direction: column;
+        h3 {
+          order: 1;
+          display: flex;
+          margin-top: 0;
+          & > .btn-group {
+            flex: 1;
+            &:nth-child(2) {
+              display: none;
+            }
+            &:last-child {
+              margin-right:10px;
+            }
+            button {
+              width: 100%
+            }
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+      .save {
+        margin : 10px;
+      }
+    }
+
   }
   .red-tabs-container {
     display: flex;
@@ -119,7 +175,6 @@
   ul.red-tabs li.active a.red-ui-tab-close {
     background: rgba(255, 255, 255, 0.8);
   }
-
 
   ul.red-tabs li.red-ui-add-tab a {
     padding: 2px 4px;
@@ -326,12 +381,15 @@
     padding-bottom: 3px;
   }
 
-  .palette-header {
+  .panel-header {
     background: #f3f3f3;
     border-radius: 3px;
     cursor: pointer;
     text-align: left;
     padding: 3px;
+  }
+  .palette-header {
+    .panel-header;
   }
   .palette-header i {
     float: right;
@@ -350,12 +408,6 @@
   .palette-header span {
     clear: both;
   }
-//  #sidebar.closing {
-//    background: #eee;
-//    border-color: #900;
-//    border-color: #900;
-//    border-style: dashed;
-//  }
 
   /* ---------- Layout ---------- */
   .main-container {
@@ -370,14 +422,6 @@
     }
   }
 
-
-  #sidebar {
-    width: 305px;
-    //    position: absolute;
-    right: 10px;
-    top: 5px;
-    bottom: 10px;
-  }
   #sidebar-separator {
     width: 10px;
     //    position: absolute;
@@ -431,10 +475,10 @@
     margin-left: 20px;
   }
 
-  .workspace, .palette, .sidebar {
-    border: 1px solid #000;
+  .workspace, .palette, .edit-panel {
     border: 1px solid #000;
     border-radius: 3px;
+    overflow: scroll;
   }
   #sidebar-content {
     font-size: 1.2em;

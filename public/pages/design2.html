@@ -6,9 +6,9 @@
 <div class="page-header">
     <div class="btn-group">
         <div class="btn-group dropdown-container">
-            <a class="dropdown-toggle btn btn-lg btn-default" data-toggle="dropdown" href>
+            <button class="dropdown-toggle btn btn-lg btn-default" data-toggle="dropdown">
                 <i class="fa fa-align-justify"></i> <span class="caret"></span>
-            </a>
+            </button>
             <ul class="dropdown-menu">
                 <li><a id="btn-sidebar" tabindex="-1" href><i class="fa fa-list-alt"></i> Toggle Sidebar</a></li>
                 <li><a id="btn-config-nodes" tabindex="-1" href><i class="fa fa-th-list"></i> Configure nodes</a></li>
@@ -31,10 +31,12 @@
                         class="fa fa-question"></i> Help</a></li>
             </ul>
         </div>
-        <div class="btn-group">
-            <a ng-click="save()" id="btn-deploy" class="btn btn-lg btn-default btn-deploy disabled" href><i
-                    class="fa fa-upload"></i> Deploy</a>
-        </div>
+        <button ng-click="save()" class="btn btn-lg btn-default">
+            <i class="fa fa-floppy-o"></i> Save
+        </button>
+        <button ng-click="deploy()" id="btn-deploy" class="btn btn-lg btn-default btn-deploy disabled">
+            <i class="fa fa-upload"></i> Deploy
+        </button>
     </div>
 </div>
 
@@ -126,9 +128,16 @@
     </div>
 
 
-    <div id="sidebar" class="sidebar">
-        <ul class="red-tabs" id="sidebar-tabs"></ul>
-        <div id="sidebar-content"></div>
+    <div id="sidebar" class="edit-panel">
+
+        <div class="node-editor" ng-hide="!editingNode">
+            <h3 class="node-editor-header" >
+                <input placeholder="Name" type="text" class="form-control" ng-model="editingNodeName">
+            </h3>
+            <schema-editor control="schemaControl"
+                           model="editingNode" allow-json-edit="true" additional-properties="true" schema="editingNodeSchema"></schema-editor>
+            <button ng-click="updateNodeProperties()" class="btn btn-lg btn-primary save">Update Node</button>
+        </div>
     </div>
 
     <div id="sidebar-separator"></div>

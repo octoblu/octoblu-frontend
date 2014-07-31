@@ -125,7 +125,7 @@ var record = {
     "clientId": "59e9b56517291cf40a87d3a60a5feb4febe402983e60c528182d32ee23b8576e",
     "scope": "",
     "secret": "ada2e03c69fdf4fb404098a5bb884fb83881912c4f28d52bf83c07ed8b42ae2f",
-    "tokenMethod": "token",
+    "tokenMethod": "access_token",
     "version": "2.0"
   },
   "useCustom": true
