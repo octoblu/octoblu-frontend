@@ -4,6 +4,8 @@ module.exports = function(app, passport) {
     var config = require('../config/auth')(env);
     var skynet = require('skynet');
     var security = require('./controllers/middleware/security');
+    var FlowController = require('./controllers/flow');
+    var flowController = new FlowController();
 
     //set the skynetUrl
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
@@ -49,6 +51,8 @@ module.exports = function(app, passport) {
         require('./controllers/node')(app);
         require('./controllers/designer')(app);
         require('./controllers/invitation')(app, passport, config);
+
+        app.put('/api/flows/:id', flowController.updateOrCreate);
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {
