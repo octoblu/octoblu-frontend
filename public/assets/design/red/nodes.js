@@ -179,14 +179,14 @@ RED.nodes = function () {
     /**
      * Converts a node to an exportable JSON Object
      **/
-    function convertNode(n, toExport) {
+    function convertNode(n) {
         var node = {};
         node.id = n.id;
         node.type = n.type;
-        for (var d in n._def.defaults) {
-            if (toExport && n._def.defaults[d].priv) continue;
-            node[d] = n[d];
-        }
+        _.extend(node, n.properties);
+        node.properties = n.properties;
+
+
         if (n._def.category != "config") {
             node.x = n.x;
             node.y = n.y;

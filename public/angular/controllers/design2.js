@@ -1,6 +1,6 @@
 angular.module('octobluApp')
     .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, nodeRedService, currentUser) {
-        var schemaControl = {};
+        var schemaControl = {}, originalNode;
         $scope.schemaControl = schemaControl;
 
         var getSessionFlow = function () {
@@ -15,10 +15,10 @@ angular.module('octobluApp')
 
         $scope.updateNodeProperties = function () {
             if (!schemaControl.validate().length) {
-                _.extend($scope.editingNode, schemaControl.getValue());
-                $scope.editingNode.name = $scope.editingNodeName;
-                $scope.editingNode.dirty = true;
-                $scope.editingNode.changed = true;
+                originalNode.properties = schemaControl.getValue();
+                originalNode.name = $scope.editingNodeName;
+                originalNode.dirty = true;
+                originalNode.changed = true;
                 RED.view.dirty(true);
             }
         };
@@ -27,14 +27,16 @@ angular.module('octobluApp')
             initializeRED();
             RED.sidebar.info = {
                 refresh: function (node) {
-                    $scope.editingNode = RED.nodes.convertNode(node, true);
-                    $scope.editingNodeName = $scope.editingNode.name;
-                    $scope.editingNodeSchema = node._def.schema;
+                    originalNode = node;
+                    $scope.editingNode = originalNode.properties || {};
+                    $scope.editingNodeName = originalNode.name;
+                    $scope.editingNodeSchema = originalNode._def.schema;
                     $scope.$apply();
                 },
                 clear: function () {
                     $scope.editingNode = undefined;
                     $scope.editingNodeName = undefined;
+                    $scope.editingNodeSchema = undefined;
                     $scope.$apply();
                 }
             };

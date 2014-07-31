@@ -15,7 +15,7 @@ angular.module('octobluApp')
             link: function (scope, element, attrs) {
                 var readOnlyKeys = ['name', 'type', 'subtype', 'uuid', 'token', 'resource', 'socketId', 'socketid', '_id', 'owner', 'timestamp', 'online', 'channel', 'protocol',
                         'localhost', 'secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
-                    originalDevice = scope.model, schema, editor;
+                    originalDevice, schema, editor;
 
                 scope.$watch('schema', initializeEditor);
                 scope.$watch('model', function(){
@@ -32,6 +32,7 @@ angular.module('octobluApp')
                     };
 
                     function initializeEditor() {
+                        originalDevice = scope.model;
                         console.log('schema is');
                         console.log(scope.schema);
                         scope.editingDevice = _.omit(angular.copy(originalDevice), readOnlyKeys);
