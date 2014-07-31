@@ -523,11 +523,11 @@ RED.initializeView = function() {
             RED.keyboard.add(/* c */ 67,{ctrl:true},function(){copySelection();d3.event.preventDefault();});
             RED.keyboard.add(/* x */ 88,{ctrl:true},function(){copySelection();deleteSelection();d3.event.preventDefault();});
         }
-        if (moving_set.length == 1) {
-            RED.sidebar.info.refresh(moving_set[0].n);
-        } else {
-            RED.sidebar.info.clear();
-        }
+//        if (moving_set.length == 1) {
+//            RED.sidebar.info.refresh(moving_set[0].n);
+//        } else {
+//            RED.sidebar.info.clear();
+//        }
     }
 
     function deleteSelection() {
@@ -1017,7 +1017,7 @@ RED.initializeView = function() {
                     " C "+(d.source.x+d.source.w/2+scale*node_width)+" "+(d.source.y+y+scaleY*node_height)+" "+
                     (d.target.x-d.target.w/2-scale*node_width)+" "+(d.target.y-scaleY*node_height)+" "+
                     (d.target.x-d.target.w/2)+" "+d.target.y;
-        })
+        });
 
         link.classed("link_selected", function(d) { return d === selected_link || d.selected; });
         link.classed("link_unknown",function(d) { return d.target.type == "unknown" || d.source.type == "unknown"});
