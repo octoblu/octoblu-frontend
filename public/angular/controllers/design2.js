@@ -13,7 +13,7 @@ angular.module('octobluApp')
 
         var getSessionFlow = function () {
             return $http({method: 'GET', url: '/api/get/flow'})
-                .success(function (data, status, headers, config) {
+                .success(function (data) {
                     console.log('/api/get/flow', data);
                     if (data.flow) {
                         RED.view.importFromCommunity(data.flow);
@@ -56,5 +56,10 @@ angular.module('octobluApp')
 
         $scope.save = function () {
             FlowService.saveAllFlows(RED.nodes.createCompleteNodeSet());
-        }
+        };
+
+        FlowService.getAllFlows()
+            .then(function(flows){
+                $scope.flows = flows;
+            });
     });
