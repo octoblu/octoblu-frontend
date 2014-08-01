@@ -27,6 +27,7 @@
   -khtml-user-drag: element;
   -webkit-user-drag: element;
 }
+
 .node-red-container {
   margin-top: 56px;
   iframe {
@@ -81,7 +82,7 @@
       }
     }
   }
-  .workspace {
+  .workspace-container {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -99,7 +100,7 @@
     /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
     background-color: #f3f3f3;
     .node-editor {
-      overflow-x:hidden;
+      overflow-x: hidden;
       .well {
         border: none;
         background-color: inherit;
@@ -109,14 +110,14 @@
         margin: 20px 10px 10px;
         .text-muted;
         input {
-          font-size:24px;
-          height:auto;
+          font-size: 24px;
+          height: auto;
         }
       }
 
       display: flex;
       flex-direction: column;
-      .schema-editor > div{
+      .schema-editor > div {
         display: flex;
         flex-direction: column;
         h3 {
@@ -129,7 +130,7 @@
               display: none;
             }
             &:last-child {
-              margin-right:10px;
+              margin-right: 10px;
             }
             button {
               width: 100%
@@ -141,7 +142,7 @@
         }
       }
       .save {
-        margin : 10px;
+        margin: 10px;
       }
     }
 
@@ -340,15 +341,9 @@
     padding-right: 10px;
   }
 
-  //  #workspace {
-  //    margin-left: 160px;
-  //    overflow: hidden;
-  //  }
-
-  #chart {
+  .chart {
     overflow: auto;
-    background: #e3e3e3;
-    //    position: absolute;
+    background: #white;
   }
 
   #workspace-toolbar {
@@ -423,7 +418,7 @@
     height: 80vh;
     margin: 0;
 
-    .workspace {
+    .workspace-container {
       margin: 0 10px;
     }
   }
@@ -481,10 +476,16 @@
     margin-left: 20px;
   }
 
-  .workspace, .palette, .edit-panel {
+  .workspace-container, .palette, .edit-panel {
     border: 1px solid #000;
     border-radius: 3px;
-    overflow: scroll;
+    .workspace {
+      .chart {
+        height: 5000px;
+        width: 5000px;
+      }
+      overflow: scroll;
+    }
   }
   #sidebar-content {
     font-size: 1.2em;
@@ -848,7 +849,7 @@
     vertical-align: text-top;
     margin-top: 0px;
     background: url(../../public/assets/design/spin.svg) no-repeat 50% 50%;
-    background-size: contain
+    background-size: contain;
   }
 }
 
