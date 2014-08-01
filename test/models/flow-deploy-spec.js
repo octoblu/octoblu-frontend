@@ -15,17 +15,30 @@ describe('FlowDeploy', function () {
 
   describe('redport', function () {
     describe('when sut has a userSkynetUuid of 1234', function () {
-      var sut, request;
+      var sut, request, callback;
 
       beforeEach(function () {
         var config = { host: 'http://designer.octoblu.com', port: 1025 };
         request = FakeRequest;
         sut = new FlowDeploy({userUUID: '1234', request: request, config: config});
-        sut.redport();
+        sut.redport(callback = sinon.spy());
       });
 
       it('should send a put request to the designer with the designer url', function () {
         expect(request.put.calledWith[0]).to.equal('http://designer.octoblu.com:1025/red/1234?asdf');
+      });
+
+      describe('when the request responds with 1024', function () {
+        beforeEach(function (done) {
+          _.defer(function(){
+            request.put.resolve(null, null, "1024");
+            done();
+          })
+        });
+
+        it('should call the callback with 1024', function () {
+          expect(callback).to.have.been.calledWith('1024');
+        });
       });
     });
 
@@ -47,7 +60,7 @@ describe('FlowDeploy', function () {
 });
 
 var FakeRequest = {
-  put: function(url, options, callback){
+  put: function(url, callback){
     FakeRequest.put.resolve = callback;
     FakeRequest.put.calledWith = _.values(arguments);
   }

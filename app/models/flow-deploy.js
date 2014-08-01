@@ -6,8 +6,10 @@ var FlowDeploy = function(options){
   _this.request  = options.request || require('request');
   _this.userUUID = options.userUUID;
 
-  _this.redport = function(){
-    _this.request.put(_this.designerUrl());
+  _this.redport = function(callback){
+    _this.request.put(_this.designerUrl(), function(err, res, body){
+      callback(body);
+    });
   };
 
   _this.designerUrl = function(){
