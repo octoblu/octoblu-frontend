@@ -443,7 +443,6 @@ RED.initializeView = function() {
                 }
                 RED.history.push({t:'add',nodes:[nn.id],dirty:dirty});
                 RED.nodes.add(nn);
-                RED.editor.validateNode(nn);
                 setDirty(true);
                 // auto select dropped node - so info shows (if visible)
                 clearSelection();
@@ -451,10 +450,6 @@ RED.initializeView = function() {
                 moving_set.push({n:nn});
                 updateSelection();
                 redraw();
-
-                if (nn._def.autoedit) {
-                    RED.editor.edit(nn);
-                }
             }
     });
 
@@ -523,11 +518,6 @@ RED.initializeView = function() {
             RED.keyboard.add(/* c */ 67,{ctrl:true},function(){copySelection();d3.event.preventDefault();});
             RED.keyboard.add(/* x */ 88,{ctrl:true},function(){copySelection();deleteSelection();d3.event.preventDefault();});
         }
-//        if (moving_set.length == 1) {
-//            RED.sidebar.info.refresh(moving_set[0].n);
-//        } else {
-//            RED.sidebar.info.clear();
-//        }
     }
 
     function deleteSelection() {
@@ -642,7 +632,7 @@ RED.initializeView = function() {
 
     function nodeMouseDown(d) {
         if (typeof d3.touches(this)[0] == "object") {
-            pressTimer = setTimeout(function() { RED.editor.edit(d); }, 1500);
+            console.log('I should be editing.');
         }
         if (mouse_mode == RED.state.IMPORT_DRAGGING) {
             RED.keyboard.remove(/* ESCAPE */ 27);
@@ -786,7 +776,7 @@ RED.initializeView = function() {
                         .attr("fill",function(d) { return d._def.color;})
                         .on("mousedown",nodeMouseDown)
                         .on("touchstart",nodeMouseDown)
-                        .on("dblclick",function(d) {RED.editor.edit(d);})
+                        .on("dblclick",function(d) {RED.edit(d);})
                         .on("mouseover",function(d) {
                                 if (mouse_mode == 0) {
                                     var node = d3.select(this);

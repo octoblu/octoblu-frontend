@@ -1,0 +1,18 @@
+<div class="palette">
+    <div class="palette-search">
+        <i class="fa fa-search"></i><input type="text" placeholder="filter"><a href><i class="fa fa-remove"></i></a></input>
+    </div>
+
+    <div class="text-center">
+        <i class="palette-spinner fa fa-spin fa-refresh fa-2x"></i>
+    </div>
+
+    <div class="palette-scroll">
+        <div class="palette-category" ng-repeat="(category, flowNodeTypes) in typesByCategory">
+            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>{{category}}</span></div>
+            <div class="palette-content" id="palette-skynet">
+                <div ng-include="getFlowNodeTypeTemplateUrl(flowNodeType)" ng-repeat="flowNodeType in flowNodeTypes"></div>
+            </div>
+        </div>
+    </div>
+</div>
