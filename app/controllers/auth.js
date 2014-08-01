@@ -139,7 +139,9 @@ module.exports = function (app, passport, config) {
     };
 
     var getOAuthCallbackUrl = function (req, channelid) {
-        return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        return (req.headers.host.indexOf('app.octoblu.com')>=0) ? req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom' 
+          : 'https://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        // return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
     };
 
     var handleApiCompleteRedirect = function (res, channelid, err) {
