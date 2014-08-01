@@ -8,52 +8,10 @@
     </div>
 
     <div class="palette-scroll">
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>skynet</span></div>
-            <div class="palette-content" id="palette-skynet"></div>
-        </div>
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>inputs</span></div>
-            <div class="palette-content" id="palette-input"></div>
-        </div>
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>outputs</span></div>
-            <div class="palette-content" id="palette-output"></div>
-        </div>
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>functions</span></div>
-            <div class="palette-content" id="palette-function"></div>
-        </div>
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>social</span></div>
-            <div class="palette-content">
-                <div id="palette-social-input"></div>
-                <div id="palette-social-output"></div>
-                <div id="palette-social-function"></div>
-            </div>
-        </div>
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>storage</span></div>
-            <div class="palette-content">
-                <div id="palette-storage-input"></div>
-                <div id="palette-storage-output"></div>
-                <div id="palette-storage-function"></div>
-            </div>
-        </div>
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>analysis</span></div>
-            <div class="palette-content">
-                <div id="palette-analysis-input"></div>
-                <div id="palette-analysis-output"></div>
-                <div id="palette-analysis-function"></div>
-            </div>
-        </div>
-        <div class="palette-category">
-            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>advanced</span></div>
-            <div class="palette-content">
-                <div id="palette-advanced-input"></div>
-                <div id="palette-advanced-output"></div>
-                <div id="palette-advanced-function"></div>
+        <div class="palette-category" ng-repeat="(category, flowNodeTypes) in typesByCategory">
+            <div class="palette-header"><i class="expanded fa fa-chevron-down"></i><span>{{category}}</span></div>
+            <div class="palette-content" id="palette-skynet">
+                <div ng-include="getFlowNodeTypeTemplateUrl(flowNodeType)" ng-repeat="flowNodeType in flowNodeTypes"></div>
             </div>
         </div>
     </div>

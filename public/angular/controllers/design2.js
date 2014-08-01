@@ -1,5 +1,11 @@
 angular.module('octobluApp')
-    .controller('design2Controller', function ($scope, $http, $location, FlowService, nodeRedService, currentUser) {
+    .controller('design2Controller', function ($scope, $http, $location, FlowService, FlowNodeTypeService, nodeRedService, currentUser) {
+
+        FlowNodeTypeService.getFlowNodeTypes()
+            .then(function(flowNodeTypes){
+                $scope.flowNodeTypes = flowNodeTypes;
+            });
+
         var schemaControl, originalNode;
 
         schemaControl = {};

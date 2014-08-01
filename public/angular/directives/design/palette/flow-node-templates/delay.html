@@ -1,0 +1,5 @@
+<div class="palette_node" ng-repeat="flowNodeType in flowNodeTypes"
+     ng-style="{'background-image' : 'url(' + flowNodeType.ui.icon + ')',
+                                    'background-color' : flowNodeType.ui.color}">
+    <div class="palette_label">{{flowNodeType.name}}</div>
+</div>
