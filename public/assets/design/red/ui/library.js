@@ -224,7 +224,6 @@ RED.library = function() {
                                     var field = options.fields[i];
                                     $("#node-input-"+field).val(selectedLibraryItem[field]);
                                 };
-                                options.editor.setText(libraryEditor.getText());
                             }
                             $( this ).dialog( "close" );
                         }

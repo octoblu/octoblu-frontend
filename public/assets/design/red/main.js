@@ -289,10 +289,6 @@ var initializeRED = function() {
     RED.keyboard       = RED.initializeKeyboard();
     RED.tabs           = RED.initializeTabs();
     RED.view           = RED.initializeView();
-    RED.sidebar        = RED.initializeSidebar();
-    RED.palette        = RED.initializePalette();
-    RED.sidebar.config = RED.initializeTabConfig();
-    RED.editor         = RED.initializeEditor();
     RED.notify         = RED.initializeNotifications();
 
     RED.keyboard.add(/* ? */ 191,{shift:true},function(){showHelp();d3.event.preventDefault();});

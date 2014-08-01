@@ -23,7 +23,7 @@ describe('Flow', function () {
       sut.name = 'name 1';
       sut.resource.type = 'flow';
       sut.resource.owner.uuid = '1';
-      sut.resource.owner.type = 'user';
+      sut.resource.owner.nodeType = 'user';
       sut.nodes = [{foo: 'bar'}];
       sut.links = [{first: 'second'}];
       sut.save(done);
@@ -61,7 +61,7 @@ describe('Flow', function () {
       });
 
       it('should save a record in the database', function (done) {
-        var query = {flowId: '1', 'resource.owner.uuid': '2', 'resource.owner.type': 'user'};
+        var query = {flowId: '1', 'resource.owner.uuid': '2', 'resource.owner.nodeType': 'user'};
 
         Flow.findOne(query, function(err, flow){
           expect(err).to.be.null;
@@ -77,7 +77,7 @@ describe('Flow', function () {
       });
 
       it('should save a record in the database', function (done) {
-        var query = {flowId: '6', 'resource.owner.uuid': '3', 'resource.owner.type': 'user'};
+        var query = {flowId: '6', 'resource.owner.uuid': '3', 'resource.owner.nodeType': 'user'};
 
         Flow.findOne(query, function(err, flow){
           expect(flow).to.exist;
@@ -94,7 +94,7 @@ describe('Flow', function () {
       });
 
       it('should store the flowData', function (done) {
-        var query = {flowId: '6', 'resource.owner.uuid': '3', 'resource.owner.type': 'user'};
+        var query = {flowId: '6', 'resource.owner.uuid': '3', 'resource.owner.nodeType': 'user'};
 
         Flow.findOne(query, function(err, flow){
           expect(flow.nodes).include({foo: 'bar'});
