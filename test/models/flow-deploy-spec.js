@@ -3,104 +3,121 @@ var mongoose = require('mongoose');
 var FlowDeploy = require('../../app/models/flow-deploy');
 
 describe('FlowDeploy', function () {
-  describe('.deploy', function () {
-    it('should have a callable deploy method', function () {
-      FlowDeploy.deploy();
+  var FakeRequest;
+
+  beforeEach(function () {
+    FakeRequest = {
+      post: sinon.spy()
+    };
+  });
+
+  describe('deployFlows', function () {
+    var sut;
+
+    describe('deploying to designer', function() {
+      beforeEach(function () {
+        var config = {host: 'http://designer.octoblu.com'};
+        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
+      });
+
+      it('should call post on the designer', function () {
+        sut.deployFlows([]);
+        expect(FakeRequest.post).to.have.been.calledWith('http://designer.octoblu.com:1880/library/flows', {json: []});
+      });
+    });
+
+    describe('deploying to staging', function() {
+      beforeEach(function () {
+        var config = {host: 'http://staging.octoblu.com'};
+        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1882'});
+      });
+      it('should call post on the designer, with FLOWS!!', function () {
+        sut.deployFlows([{the: 'flowiest', of: 'flows'}]);
+        expect(FakeRequest.post).to.have.been.calledWith('http://staging.octoblu.com:1882/library/flows', {json: [{the: 'flowiest', of: 'flows'}]});
+      });
     });
   });
 
-  it('should instantiate', function () {
-    expect(new FlowDeploy).to.exist;
-  });
+  describe('designerUrl', function (){
+    var sut;
 
-  describe('designerUrl', function () {
-    describe('when instantiated with a particular config and user', function () {
-      var sut;
-
+    describe('on a port', function () {
       beforeEach(function () {
-        var config = { host: 'http://designer.octoblu.com', port: 1025 };
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something'});
+        var config = {host: 'http://le.octobleau.com'};
+        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
       });
 
-      it('should generate a url', function () {
-        expect(sut.designerUrl()).to.equal('http://designer.octoblu.com:1025/red/3838?token=something');
+      it('should use the redport', function () {
+        expect(sut.designerUrl()).equal('http://le.octobleau.com:1880/library/flows');
       });
     });
 
-    describe('when instantiated with a different config and user', function () {
+    describe('on another port and host', function () {
       beforeEach(function () {
-        var config = { host: 'http://localhost', port: 1880 };
-        sut = new FlowDeploy({config: config, userUUID: '1234', userToken: 'something-else'});
+        var config = {host: 'http://blew.octo.com'};
+        sut = new FlowDeploy({config: config, userUUID: '535', userToken: 'something-else', port: '9999'});
       });
 
-      it('should generate a url', function () {
-        expect(sut.designerUrl()).to.equal('http://localhost:1880/red/1234?token=something-else');
+      it('should use the redport', function () {
+        expect(sut.designerUrl()).to.equal('http://blew.octo.com:9999/library/flows');
       });
     });
   });
 
-  describe('redport', function () {
-    describe('when called with the user', function () {
-      var sut, request, callback;
+  describe('convertFlows', function () {
+    var sut;
+    beforeEach(function () {
+      sut = new FlowDeploy();
+    });
 
-      beforeEach(function () {
-        var config = { host: 'http://designer.octoblu.com', port: 1025 };
-        request = FakeRequest;
-        sut = new FlowDeploy({userUUID: '1234', userToken: 'something', request: request, config: config});
-        sut.redport(callback = sinon.spy());
-      });
-
-      it('should send a put request to the designer with the designer url', function () {
-        expect(request.put.calledWith[0]).to.equal('http://designer.octoblu.com:1025/red/1234?token=something');
-      });
-
-      describe('when the request responds with 1024', function () {
-        beforeEach(function (done) {
-          _.defer(function(){
-            request.put.resolve(null, null, "1024");
-            done();
-          })
-        });
-
-        it('should call the callback with 1024', function () {
-          expect(callback).to.have.been.calledWith('1024');
-        });
-      });
-
-      describe('when the request responds with 1880', function () {
-        beforeEach(function (done) {
-          _.defer(function(){
-            request.put.resolve(null, null, "1880");
-            done();
-          })
-        });
-
-        it('should call the callback with 1880', function () {
-          expect(callback).to.have.been.calledWith('1880');
-        });
+    describe('when it is called with nothing', function () {
+      it('should return an empty array', function () {
+        expect(sut.convertFlows()).to.deep.equal([]);
       });
     });
 
-    describe('with a different config and uuid', function () {
-      var sut, request;
-
-      beforeEach(function () {
-        var config = { host: 'http://localhost', port: 1880 };
-        request = FakeRequest;
-        sut = new FlowDeploy({userUUID: 'hello', userToken: 'tolkein', request: request, config: config});
-        sut.redport();
+    describe('when it is called with one flow with no nodes or links', function () {
+      it('should return a converted flow', function () {
+        var flow = {flowId: '1234', name: 'mah flow', nodes:[], links: []};
+        expect(sut.convertFlows([flow])).to.deep.equal([{id: '1234', label: 'mah flow', type: 'tab'}]);
       });
+    });
 
-      it('should send a put request to the designer with the designer url', function () {
-        expect(request.put.calledWith[0]).to.equal('http://localhost:1880/red/hello?token=tolkein');
+    describe('when it is called with one flow with one node and no links', function () {
+      it('should return a converted flow', function () {
+        var node = {"id":"4848bef2.b7b74","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var flow = {flowId: '55235', name: 'mah notha flow', nodes:[node], links: []};
+
+        var convertedNode = {"id":"4848bef2.b7b74","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"55235","wires":[]};
+        expect(sut.convertFlows([flow])).to.deep.equal([{id: '55235', label: 'mah notha flow', type: 'tab'}, convertedNode]);
+      });
+    });
+
+    describe('when it is called with one flow with two node and no links', function () {
+      it('should return a converted flow', function () {
+        var node1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var node2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: []};
+
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
+      });
+    });
+
+    describe('when it is called with one flow with two node and one link', function () {
+      it('should return a converted flow', function () {
+        var node1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var node2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var link = {from: "node1", to: "node2"};
+        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: [link]};
+
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2']]};
+        var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
   });
 });
-
-var FakeRequest = {
-  put: function(url, callback){
-    FakeRequest.put.resolve = callback;
-    FakeRequest.put.calledWith = _.values(arguments);
-  }
-}
