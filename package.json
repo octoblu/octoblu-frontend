@@ -20,7 +20,7 @@
     "lodash": "^2.4.1",
     "lodash-node": "~2.4.1",
     "marked": "*",
-    "moment": "^2.5.1",
+    "moment": "2.5.1",
     "mongojs": "^0.10.1",
     "mongoose": "~3.8.12",
     "mongoose-pagination": "~1.0.0",
