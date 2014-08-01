@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .controller('design2Controller', function ($scope, $http, $location, FlowService, FlowNodeTypeService, nodeRedService, currentUser) {
 
         FlowNodeTypeService.getFlowNodeTypes()
-            .then(function(flowNodeTypes){
+            .then(function (flowNodeTypes) {
                 $scope.flowNodeTypes = flowNodeTypes;
             });
 
@@ -20,6 +20,13 @@ angular.module('octobluApp')
                     }
                 });
         };
+
+
+        FlowService.getAllFlows()
+            .then(function (flows) {
+                console.log(flows);
+                $scope.flows = flows;
+            });
 
         $scope.updateNodeProperties = function () {
             if (!schemaControl.validate().length) {
