@@ -32,22 +32,22 @@ angular.module('octobluApp')
         };
 
         nodeRedService.getPort(currentUser.skynet.uuid, currentUser.skynet.token, function (port) {
-            initializeRED();
-
-            RED.edit = function(node) {
-                originalNode = node;
-                RED.view.state(RED.state.EDITING);
-                $scope.editingNode = originalNode.node || {};
-                $scope.editingNodeName = originalNode.name;
-                $scope.editingNodeSchema = originalNode._def.schema;
-                $scope.$apply();
-            };
-
-            RED.wsConnect(function () {
-                RED.loadSettings($scope, function () {
-                    getSessionFlow();
-                });
-            }, currentUser.skynet.uuid, currentUser.skynet.token, port);
+//            initializeRED();
+//
+//            RED.edit = function(node) {
+//                originalNode = node;
+//                RED.view.state(RED.state.EDITING);
+//                $scope.editingNode = originalNode.node || {};
+//                $scope.editingNodeName = originalNode.name;
+//                $scope.editingNodeSchema = originalNode._def.schema;
+//                $scope.$apply();
+//            };
+//
+//            RED.wsConnect(function () {
+//                RED.loadSettings($scope, function () {
+//                    getSessionFlow();
+//                });
+//            }, currentUser.skynet.uuid, currentUser.skynet.token, port);
         });
 
         $scope.deploy = function () {
