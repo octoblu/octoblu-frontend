@@ -39,7 +39,6 @@ RED.nodes = function () {
     function addNode(n) {
         if (n._def.category == "config") {
             configNodes[n.id] = n;
-            RED.sidebar.config.refresh();
         } else {
             n.dirty = true;
             nodes.push(n);
@@ -85,7 +84,6 @@ RED.nodes = function () {
         var removedLinks = [];
         if (id in configNodes) {
             delete configNodes[id];
-            RED.sidebar.config.refresh();
         } else {
             var node = getNode(id);
             if (node) {
@@ -120,12 +118,6 @@ RED.nodes = function () {
         var index = links.indexOf(l);
         if (index != -1) {
             links.splice(index, 1);
-        }
-    }
-
-    function refreshValidation() {
-        for (var n in nodes) {
-            RED.editor.validateNode(nodes[n]);
         }
     }
 
@@ -358,7 +350,6 @@ RED.nodes = function () {
                         }
 
                         addNode(node);
-                        RED.editor.validateNode(node);
                         node_map[n.id] = node;
                         new_nodes.push(node);
                     }
@@ -416,7 +407,6 @@ RED.nodes = function () {
         node: getNode,
         import: importNodes,
         convertNode : convertNode,
-        refreshValidation: refreshValidation,
         getAllFlowNodes: getAllFlowNodes,
         createExportableNodeSet: createExportableNodeSet,
         createCompleteNodeSet: createCompleteNodeSet,

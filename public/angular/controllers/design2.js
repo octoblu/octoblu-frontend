@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .controller('design2Controller', function ($rootScope, $scope, $http, $injector, $location, FlowService, nodeRedService, currentUser) {
+    .controller('design2Controller', function ($scope, $http, $location, FlowService, nodeRedService, currentUser) {
         var schemaControl, originalNode;
 
         schemaControl = {};
@@ -28,7 +28,7 @@ angular.module('octobluApp')
         nodeRedService.getPort(currentUser.skynet.uuid, currentUser.skynet.token, function (port) {
             initializeRED();
 
-            RED.editor.edit = function(node) {
+            RED.edit = function(node) {
                 originalNode = node;
                 RED.view.state(RED.state.EDITING);
                 $scope.editingNode = originalNode.node || {};
