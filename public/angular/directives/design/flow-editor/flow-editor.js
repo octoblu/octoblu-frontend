@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .directive('palette', function () {
         return {
             restrict: 'E',
-            templateUrl: 'angular/directives/design/palette/palette.html',
+            templateUrl: 'angular/directives/design/flow-editor/flow-editor.html',
             replace: true,
             scope: {
                 flowNodeTypes: '='

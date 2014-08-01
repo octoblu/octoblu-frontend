@@ -16,6 +16,17 @@
 /*
   move to a style.less or similar.
 */
+
+/*This needs to go in a general less file.*/
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
 .node-red-container {
   margin-top: 56px;
   iframe {
@@ -44,7 +55,7 @@
     flex: 1;
   }
   .palette {
-    width: 150px;
+    min-width: 150px;
     display: flex;
     flex-direction: column;
     background: #f3f3f3;
