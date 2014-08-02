@@ -31,7 +31,7 @@ angular.module('octobluApp')
                         return angular.extend({}, originalDevice, scope.editingDevice);
                     };
 
-                    function initializeEditor() {
+                    var initializeEditor = function() {
                         originalDevice = scope.model;
                         console.log('schema is');
                         console.log(scope.schema);
