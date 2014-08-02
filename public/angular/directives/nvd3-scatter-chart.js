@@ -31,7 +31,7 @@ angular.module('octobluApp')
 
                 /*These lines are all chart setup.  Pick and choose which chart features you want to utilize. */
                 nv.addGraph(function () {
-                    var chart = nv.models.lineChart()
+                    var chart = nv.models.scatterChart()
                         .useInteractiveGuideline(true)  //We want nice looking tooltips and a guideline!
                         .transitionDuration(350)  //how fast do you want the lines to transition?
                         .showLegend(attr.showLegend === 'true')       //Show the legend, allowing users to turn on/off line series.
