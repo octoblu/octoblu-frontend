@@ -90,4 +90,11 @@ angular.module('octobluApp')
             return defer.promise;
         };
 
+        this.getSessionFlow = function () {
+            return $http({method: 'GET', url: '/api/get/flow'})
+                .then(function (response) {
+                    return response.data.flow;
+                });
+        };
+
     });

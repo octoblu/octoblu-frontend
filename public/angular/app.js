@@ -311,10 +311,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
                 templateUrl: 'pages/design.html',
                 controller: 'designController'
             })
-            .state('ob.design2', {
-                url: '/design2',
-                templateUrl: 'pages/design2.html',
-                controller: 'design2Controller'
+            .state('ob.flow', {
+                url: '/flow',
+                templateUrl: 'pages/flow.html',
+                controller: 'flowController'
             })
             .state('ob.docs', {
                 url: '/docs',

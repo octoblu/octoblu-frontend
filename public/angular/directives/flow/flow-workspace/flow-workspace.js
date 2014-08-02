@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .directive('flowWorkspace', function () {
         return {
             restrict: 'E',
-            templateUrl: '/angular/directives/design/flow-workspace/flow-workspace.html',
+            templateUrl: '/angular/directives/flow/flow-workspace/flow-workspace.html',
             replace: true,
             scope: {
                 flows: '='
