@@ -1,7 +1,7 @@
 <div class="palette">
     <div class="palette-search">
         <i class="fa fa-search"></i><input ng-model="paletteFilter" type="text" placeholder="filter"><a href><i
-            class="fa fa-remove"></i></a></input>
+            class="fa fa-remove"></i></a>
     </div>
     <div class="palette-scroll">
         <div class="palette-category" ng-repeat="(category, flowNodeTypes) in typesByCategory">
@@ -10,8 +10,8 @@
                 <span>{{category}}</span>
             </div>
             <div ng-hide="hideCategory" class="palette-content">
-                <div ng-repeat="flowNodeType in flowNodeTypes | filter: paletteFilter"
-                     ng-include="getFlowNodeTypeTemplateUrl(flowNodeType)"></div>
+                <svg class="palette_node" ng-repeat="flowNodeType in flowNodeTypes | filter: paletteFilter"
+                     ng-include="getFlowNodeTypeTemplateUrl(flowNodeType)"></svg>
             </div>
         </div>
     </div>

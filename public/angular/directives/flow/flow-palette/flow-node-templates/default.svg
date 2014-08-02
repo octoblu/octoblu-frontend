@@ -1,0 +1,5 @@
+<g class="node nodegroup" xmlns="http://www.w3.org/2000/svg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2000/svg">
+    <rect class="node node_selected" rx="6" ry="6" fill="{{flowNodeType.color}}" width="100" height="30"/>
+           style="pointer-events: none;"/>
+    <text class="node_label " x="30" dy=".35em" text-anchor="start" y="14">{{flowNodeType.name}}</text>
+</g>

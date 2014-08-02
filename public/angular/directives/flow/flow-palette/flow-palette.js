@@ -14,7 +14,7 @@ angular.module('octobluApp')
                 });
 
                 $scope.getFlowNodeTypeTemplateUrl = function (flowNodeType) {
-                    return flowNodeTypeTemplateUrl + 'default.html';
+                    return flowNodeTypeTemplateUrl + 'default.svg';
 //                    return flowNodeTypeTemplateUrl + flowNodeType.name + '.html';
                 };
             }

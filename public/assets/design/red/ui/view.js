@@ -23,7 +23,7 @@ RED.initializeView = function() {
         lasso = null,
         pressTimer = null;
 
-    var clipboard = "";
+   var clipboard = "";
 
     var outer = d3.select("#chart")
         .append("svg:svg")
