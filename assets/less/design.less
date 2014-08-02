@@ -18,23 +18,26 @@
 */
 
 /*This needs to go in a general less file.*/
-[draggable] {
+.no-user-select {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+[draggable] {
+  .no-user-select;
   /* Required to make elements draggable in old WebKit */
   -khtml-user-drag: element;
   -webkit-user-drag: element;
 }
 
 .center-children {
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 
 @red-tab-hover: #efefef;
 
@@ -66,7 +69,7 @@
     flex: 1;
   }
   .palette {
-    min-width: 150px;
+    min-width: 170px;
     display: flex;
     flex-direction: column;
     background: #f3f3f3;
@@ -93,10 +96,22 @@
     }
   }
   .workspace-container {
+    overflow: hidden;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    .workspace {
+      overflow: scroll;
+      .chart {
+        height: 5000px;
+        width: 5000px;
+      }
+    }
     .chart-zoom-controls {
       text-align: right;
-      position:absolute;
-      right:60px;
+      position: absolute;
+      right: 60px;
     }
   }
   .edit-panel {
@@ -158,25 +173,31 @@
   .red-tabs-container {
     display: flex;
     flex-direction: row;
-    height: 34px;
+    min-height: 34px;
   }
   .red-tabs {
+    .no-user-select;
     display: flex;
     flex-direction: row;
     flex: 1;
+    list-style-type: none;
+    padding: 5px 2px 0px 5px;
+    margin: 0;
+    border-bottom: 1px solid #999;
     background: #e3e3e3;
-    li:hover {
-      background: #bbb;
-    }
-    li.active {
-      background: #fff;
-      color: #333;
-      height:104%;
+    li {
+      &:hover {
+        background: #bbb;
+      }
+      &.active, &.active:hover {
+        background: #fff;
+        height:29px;
+      }
     }
   }
   .red-add-tab {
-    cursor:pointer;
-    width:33px;
+    cursor: pointer;
+    width: 33px;
     background: #e3e3e3;
     border-bottom: 1px solid #999;
     &:hover {
@@ -194,16 +215,8 @@
     padding: 2px 4px;
   }
 
-  ul.red-tabs {
-    height:100%;
-    list-style-type: none;
-    padding: 5px 2px 0px 5px;
-    margin: 0;
-    border-bottom: 1px solid #999;
-  }
-
   ul.red-tabs li {
-    cursor:pointer;
+    cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-left: 1px solid #999;
@@ -418,13 +431,8 @@
   .main-container {
     display: flex;
     flex-direction: horizontal;
-    flex: 1;
     height: 80vh;
     margin: 0;
-
-    .workspace-container {
-      margin: 0 10px;
-    }
   }
 
   #sidebar-separator {
@@ -483,13 +491,6 @@
   .workspace-container, .palette, .edit-panel {
     border: 1px solid #000;
     border-radius: 3px;
-    .workspace {
-      .chart {
-        height: 5000px;
-        width: 5000px;
-      }
-      overflow: scroll;
-    }
   }
   #sidebar-content {
     font-size: 1.2em;
