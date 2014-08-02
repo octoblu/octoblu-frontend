@@ -174,7 +174,7 @@ angular.module('octobluApp')
                     "scatter": _.map(data.aggregations.count_by_uuid.buckets, function(key) {
                         return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key),
                             "values": _.map(key.events_by_date.buckets, function(item){	
-                                return { item: item, x: item.key, size: item.value_count_terms.value, y: 200 } })
+                                return { item: item, x: item.key, size: item.value_count_terms.value, y: item.count_terms.buckets[0].key } })
                         };
                     })
 
