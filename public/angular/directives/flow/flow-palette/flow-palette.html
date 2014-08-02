@@ -10,8 +10,8 @@
                 <span>{{category}}</span>
             </div>
             <div ng-hide="hideCategory" class="palette-content">
-                <svg class="palette_node" ng-repeat="flowNodeType in flowNodeTypes | filter: paletteFilter"
-                     ng-include="getFlowNodeTypeTemplateUrl(flowNodeType)"></svg>
+                <div class="palette_node" draggable="true" ng-repeat="flowNodeType in flowNodeTypes | filter: paletteFilter"
+                     ng-include="getFlowNodeTypeTemplateUrl(flowNodeType)"></div>
             </div>
         </div>
     </div>
