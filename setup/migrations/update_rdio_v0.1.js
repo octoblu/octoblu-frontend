@@ -16,7 +16,15 @@ function update(api) {
 	db.apis.save(api);
 }
 
+// find Moheeb's version
 var api = db.apis.findOne({name: 'Rdio', owner: { $exists: true});
+
+//find old version
+var old = db.apis.findOne({name: 'Rdio', owner: { $exists: false});
+if(old && api && api.application && api.application.resources && api.aplication.resources.length>1) {
+	db.apis.remove(old);
+}
+
 if(api) {
 	update(api);
 }
