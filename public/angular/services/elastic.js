@@ -1,9 +1,11 @@
 angular.module('octobluApp')
 .service('elasticSearchConfig', function($location){
     return {
-        host: $location.host(),
-        port: $location.port(),
+        //host: $location.host(),
+        //port: $location.port(),
         path: '/api/elastic',
+        host: 'es.octoblu.com',
+	port: 80,
         es_index: 'skynet_trans_log',
         debug_logging: true
     };
@@ -20,10 +22,10 @@ angular.module('octobluApp')
     };
 
     this.buildDevices = function(myDevices) {
-        first = true;
+        this.first = true;
         deviceString = "";
         _.each(myDevices, function(data){
-            if (first && data.uuid) { first = false; deviceString += " _type:"+data.uuid; }
+            if (this.first && data.uuid) { this.first = false; deviceString += " _type:"+data.uuid; }
             else if (data.uuid) { deviceString += " OR _type:"+data.uuid;  }
         });
         return deviceString;
