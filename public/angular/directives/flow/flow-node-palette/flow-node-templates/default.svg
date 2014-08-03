@@ -1,11 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 30">
-    <g class="node nodegroup" width="100%" height="100%">
-        <rect class="node" rx="5%" ry="20%" x="3%" y="3%" fill="{{flowNodeType.color}}" width="94%" height="94%" />
-        <text class="node_label"
-              dy="0.3em"
-              y="50%"
-              x="50%"
-              text-anchor="middle">
+    <g class="node nodegroup" width="100" height="30">
+        <rect class="node" rx="6" ry="6" x="3" y="3" fill="{{flowNodeType.color}}" width="94" height="24" />
+        <text class="node_label" dy="0.3em" y="50%" x="50%" text-anchor="middle">
             {{flowNodeType.name}}
         </text>
     </g>
