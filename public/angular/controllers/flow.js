@@ -46,7 +46,8 @@ angular.module('octobluApp')
         };
 
         $scope.deploy = function () {
-            FlowService.saveAllFlowsAndDeploy(RED.nodes.createCompleteNodeSet());
+            // RED.nodes.createCompleteNodeSet()
+            FlowService.saveAllFlowsAndDeploy();
         };
 
         $scope.save = function () {

@@ -1,11 +1,12 @@
 var FlowDeploy = function(options){
-  var FlowDeploy, Redport, redport, _this;
+  var FlowDeploy, Redport, redport, _this, getRedport, mongoose, Flow, _;
 
   _this      = this;
   options    = options || {};
   FlowDeploy = options.FlowDeploy || require('../models/flow-deploy');
   Redport    = options.Redport    || require('../models/redport');
   mongoose   = options.mongoose   || require('mongoose');
+  _          = require('underscore');
   Flow       = mongoose.model('Flow');
 
   _this.create = function(req, res) {
@@ -24,10 +25,8 @@ var FlowDeploy = function(options){
 
   getRedport = function(userUUID, userToken, callback){
     var redport = new Redport({userUUID: userUUID, userToken: userToken});
-    redport.redport(function(port){
-      callback(null, port);
-    });
-  }
+    redport.redport(callback);
+  };
 
   _this.getFlows = function(userUUID, callback){
     Flow.find({'resource.owner.uuid': userUUID}, function(err, flows){
@@ -35,9 +34,9 @@ var FlowDeploy = function(options){
         return flow.toObject();
       }));
     });
-  }
+  };
 
   return this;
-}
+};
 
 module.exports = FlowDeploy;

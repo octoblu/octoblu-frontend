@@ -1,14 +1,15 @@
 var FlowDeploy = function(options){
-  var _this, config, request, userUUID, userToken, port;
+  var _this, config, request, userUUID, userToken, port, _;
   _this = this;
 
   options         = options || {};
 
   userUUID  = options.userUUID;
   userToken = options.userToken;
-  config    = options.config  || require('../../config/auth')[process.env.NODE_ENV];
+  config    = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
   request   = options.request || require('request');
   port      = options.port;
+  _         = require('underscore');
 
   _this.convertFlows = function(flows){
     var convertedNodes = [];
@@ -44,6 +45,7 @@ var FlowDeploy = function(options){
   };
 
   _this.deployFlows = function(flows){
+    console.log(_this.designerUrl());
     request.post(_this.designerUrl(), {json: flows});
   };
 

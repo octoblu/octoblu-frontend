@@ -57,9 +57,9 @@ angular.module('octobluApp')
         };
 
         this.saveAllFlowsAndDeploy = function (designerNodes) {
-            return service.saveAllFlows(designerNodes).then(function () {
+            // return service.saveAllFlows(designerNodes).then(function () {
                 return $http.post("/api/flow_deploys");
-            });
+            // });
         };
 
         this.getAllFlows = function () {
