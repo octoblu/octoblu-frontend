@@ -62,8 +62,8 @@
                     <input placeholder="Name" type="text" class="form-control" ng-model="editingNodeName">
                 </h3>
                 <schema-editor control="schemaControl"
-                               model="editingNode" allow-json-edit="true" additional-properties="true"
-                               schema="editingNodeSchema"></schema-editor>
+                               model="flowEditor.selectedNode" allow-json-edit="true" additional-properties="true"
+                               schema="flowEditor.flowNodeType.schema"></schema-editor>
                 <button ng-click="updateNodeProperties()" class="btn btn-lg btn-primary save">Update Node</button>
             </div>
         </div>

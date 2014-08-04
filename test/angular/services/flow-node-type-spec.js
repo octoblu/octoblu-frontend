@@ -20,7 +20,7 @@ describe('FlowNodeTypeService', function () {
 
     describe('.getFlowNodeType', function () {
         it('should return a single flowNodeType', function (done) {
-            $httpBackend.expectGET('/api/flow/node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+            $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
             sut.getFlowNodeType('function').then(function (flowNodeType) {
                 expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar'});
@@ -31,7 +31,7 @@ describe('FlowNodeTypeService', function () {
         });
 
         it('should return a single flowNodeType', function (done) {
-            $httpBackend.expectGET('/api/flow/node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+            $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
             sut.getFlowNodeType('inject').then(function (flowNodeType) {
                 expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo'});
@@ -44,7 +44,7 @@ describe('FlowNodeTypeService', function () {
 
     describe('.getFlowNodeTypes', function () {
         it('should return an array', function (done) {
-            $httpBackend.expectGET('/api/flow/node_types').respond(200, ['hi']);
+            $httpBackend.expectGET('/api/flow_node_types').respond(200, ['hi']);
 
             sut.getFlowNodeTypes().then(function (flows) {
                 expect(flows.length).to.eq(1);
@@ -54,7 +54,7 @@ describe('FlowNodeTypeService', function () {
             $httpBackend.flush();
         });
         it('should return an array with objects', function (done) {
-            $httpBackend.expectGET('/api/flow/node_types').respond(200, [{}]);
+            $httpBackend.expectGET('/api/flow_node_types').respond(200, [{}]);
 
             sut.getFlowNodeTypes().then(function (flows) {
                 expect(flows[0]).to.be.instanceof(Object);
