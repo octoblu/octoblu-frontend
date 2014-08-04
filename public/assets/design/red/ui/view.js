@@ -48,39 +48,6 @@ RED.initializeView = function() {
         .attr('height', space_height)
         .attr('fill','#fff');
 
-    //var gridScale = d3.scale.linear().range([0,2000]).domain([0,2000]);
-    //var grid = vis.append('g');
-    //
-    //grid.selectAll("line.horizontal").data(gridScale.ticks(100)).enter()
-    //    .append("line")
-    //        .attr(
-    //        {
-    //            "class":"horizontal",
-    //            "x1" : 0,
-    //            "x2" : 2000,
-    //            "y1" : function(d){ return gridScale(d);},
-    //            "y2" : function(d){ return gridScale(d);},
-    //            "fill" : "none",
-    //            "shape-rendering" : "crispEdges",
-    //            "stroke" : "#eee",
-    //            "stroke-width" : "1px"
-    //        });
-    //grid.selectAll("line.vertical").data(gridScale.ticks(100)).enter()
-    //    .append("line")
-    //        .attr(
-    //        {
-    //            "class":"vertical",
-    //            "y1" : 0,
-    //            "y2" : 2000,
-    //            "x1" : function(d){ return gridScale(d);},
-    //            "x2" : function(d){ return gridScale(d);},
-    //            "fill" : "none",
-    //            "shape-rendering" : "crispEdges",
-    //            "stroke" : "#eee",
-    //            "stroke-width" : "1px"
-    //        });
-
-
     var drag_line = vis.append("svg:path").attr("class", "drag_line");
 
     var workspace_tabs = RED.tabs.create({

@@ -1,3 +1,90 @@
+<div class="design2 designer-container">
+<link href="/assets/design/jquery/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" media="screen"/>
+<link rel="stylesheet" type="text/css" href="/assets/design/orion/built-editor.css"/>
+<!-- <link rel="stylesheet" href="/assets/design/style.css"/> -->
+
+<div class="page-header">
+    <div class="btn-group">
+        <div class="btn-group dropdown-container">
+            <button class="dropdown-toggle btn btn-lg btn-default" data-toggle="dropdown">
+                <i class="fa fa-align-justify"></i> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a id="btn-sidebar" tabindex="-1" href><i class="fa fa-list-alt"></i> Toggle Sidebar</a></li>
+                <li><a id="btn-config-nodes" tabindex="-1" href><i class="fa fa-th-list"></i> Configure nodes</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Import From</li>
+                <li><a id="btn-import" href><i class="fa fa-clipboard"></i> Clipboard</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Export To</li>
+                <li id="li-menu-export-clipboard">
+                    <a id="btn-export-clipboard" tabindex="-1" href><i class="fa fa-clipboard"></i> Clipboard</a>
+                </li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Workspace</li>
+                <li><a id="btn-workspace-add" href><i class="fa fa-plus"></i> Add</a></li>
+                <li><a id="btn-workspace-edit" href><i class="fa fa-edit"></i> Rename</a></li>
+                <li><a id="btn-workspace-delete" href><i class="fa fa-minus"></i> Delete</a></li>
+                <li class="divider"></li>
+                <li><a id="btn-keyboard-shortcuts" href><i class="fa fa-keyboard-o"></i> Keyboard Shortcuts</a></li>
+                <li><a id="btn-help" href="http://node-red.github.io/docs" target="_blank"><i
+                        class="fa fa-question"></i> Help</a></li>
+            </ul>
+        </div>
+        <button ng-click="save()" class="btn btn-lg btn-default">
+            <i class="fa fa-floppy-o"></i> Save
+        </button>
+        <button ng-click="deploy()" id="btn-deploy" class="btn btn-lg btn-default btn-deploy">
+            <i class="fa fa-upload"></i> Deploy
+        </button>
+    </div>
+</div>
+
+<div id="main-container" class="main-container sidebar-closed">
+    <palette flow-node-types="flowNodeTypes"></palette>
+
+    <div id="workspace" class="workspace">
+        <div class="red-tabs-container">
+            <ul class="red-tabs" id="workspace-tabs"></ul>
+            <div class="red-add-tab"><a id="btn-workspace-add-tab" href><i class="fa fa-plus"></i></a></div>
+        </div>
+        <div class="chart-zoom-controls" id="chart-zoom-controls">
+            <div class="btn-group">
+                <a class="btn btn-mini" id="btn-zoom-out" href><i class="fa fa-search-minus"></i></a>
+                <a class="btn btn-mini" id="btn-zoom-zero" href><i class="fa fa-th"></i></a>
+                <a class="btn btn-mini" id="btn-zoom-in" href><i class="fa fa-search-plus"></i></a>
+            </div>
+        </div>
+        <div id="chart"></div>
+        <div id="workspace-toolbar">
+            <div class="btn-group">
+                <a class="btn btn-small" href><i class="fa fa-search-minus"></i></a>
+                <a class="btn btn-small" href><i class="fa fa-th"></i></a>
+                <a class="btn btn-small" href><i class="fa fa-search-plus"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="sidebar" class="edit-panel">
+
+        <div class="node-editor" ng-hide="!editingNode">
+            <h3 class="node-editor-header" >
+                <input placeholder="Name" type="text" class="form-control" ng-model="editingNodeName">
+            </h3>
+            <schema-editor control="schemaControl"
+                           model="editingNode" allow-json-edit="true" additional-properties="true" schema="editingNodeSchema"></schema-editor>
+            <button ng-click="updateNodeProperties()" class="btn btn-lg btn-primary save">Update Node</button>
+        </div>
+    </div>
+
+    <div id="sidebar-separator"></div>
+</div>
+
+<div id="notifications"></div>
+<div id="dropTarget">
+    <div>Drop the flow here</div>
+</div>
 
 <div id="dialog">
     <form id="dialog-form" class="form-horizontal"></form>
@@ -190,3 +277,4 @@
 
 
 </script>
+</div>

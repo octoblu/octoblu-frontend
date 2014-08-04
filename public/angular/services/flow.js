@@ -61,99 +61,33 @@ angular.module('octobluApp')
                         name: 'Flow 1',
                         nodes: [
                             {
-                                "id": "7b8f181f8470e8",
+                                "id": "7b8f181f.8470e8",
                                 "type": "inject",
-                                "name": "Inject Node",
-                                "x": 44.8888854980469,
-                                "y": 181.88888549804688
+                                "name" : "Inject Node",
+                                "x": 440.8888854980469,
+                                "y": 181.88888549804688,
+                                "z": "9eb9aa60.614658"
                             },
                             {
-                                "id": "d71fffc928e",
+                                "id": "d71fffc9.28e",
                                 "type": "debug",
                                 "name": "Wait a sec",
                                 "phoneNumber": "aasdsadsad",
                                 "plivoAuthId": "dsa",
                                 "plivoAuthToken": "asd",
-                                "x": 125.888916015625,
-                                "y": 2.10415649414062
-                            }
-                        ],
-                        links: [
-                            { "from": '7b8f181f8470e8', "to": "d71fffc928e"  }
-                        ]
-                    },
-                    {
-                        name : 'Bigger Flow',
-                        "nodes": [
-                            {
-                                "id": "aade37cf5521c8",
-                                "type": "inject",
-                                "x": 441,
-                                "y": 233
-                            },
-                            {
-                                "id": "7c5fb40383a04c",
-                                "type": "debug",
-                                "x": 744.0000305175781,
-                                "y": 164
-                            },
-                            {
-                                "id": "955881926aa78",
-                                "type": "function",
-                                "x": 600.8888854980469,
-                                "y": 256.8888854980469
-                            },
-                            {
-                                "id": "7b8f181f8470e8",
-                                "type": "inject",
-                                "x": 440.8888854980469,
-                                "y": 181.88888549804688
-                            },
-                            {
-                                "id": "d71fffc928e",
-                                "type": "delay",
-                                "phoneNumber": "aasdsadsad",
-                                "plivoAuthId": "dsa",
-                                "plivoAuthToken": "asd",
-                                "properties": {
-                                    "phoneNumber": "aasdsadsad",
-                                    "plivoAuthId": "dsa",
-                                    "plivoAuthToken": "asd"
-                                },
                                 "x": 252.888916015625,
-                                "y": 251.10415649414062
+                                "y": 251.10415649414062,
+                                "z": "9eb9aa60.614658"
                             }
                         ],
-                        "links": [
-                            {
-                                "to": "7c5fb40383a04c",
-                                "from": "aade37cf5521c8"
-                            },
-                            {
-                                "from": "aade37cf5521c8",
-                                "to": "955881926aa78"
-                            },
-                            {
-                                "from": "955881926aa78",
-                                "to": "7c5fb40383a04c"
-                            },
-                            {
-                                "from": "7b8f181f8470e8",
-                                "to": "7c5fb40383a04c"
-                            }
+                        links : [
+                            { "from": '7b8f181f.8470e8', "to": "d71fffc9.28e"  }
                         ]
                     }
                 ]
             );
 
             return defer.promise;
-        };
-
-        this.getSessionFlow = function () {
-            return $http({method: 'GET', url: '/api/get/flow'})
-                .then(function (response) {
-                    return response.data.flow;
-                });
         };
 
     });
