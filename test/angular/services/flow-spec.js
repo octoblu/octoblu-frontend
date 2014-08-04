@@ -125,7 +125,7 @@ describe('FlowService', function () {
           id:    'workspace.id',
           name:  'Sheet',
           nodes: [{id: 'node1'}, {id: 'node2'}],
-          links: [{from: 'node1', to: 'node2'}]
+          links: [{from: 'node1', fromPort: '0', to: 'node2', toPort: '0'}]
         });
       });
     });
@@ -150,7 +150,7 @@ describe('FlowService', function () {
     });
   });
 
-  describe('extractLinksByWorkspaceId', function () {
+  describe.only('extractLinksByWorkspaceId', function () {
     describe('when its called with only a workspace and id', function () {
       it('should return an empty array', function () {
         var workspace = {id: "workspace.id", label: "Sheet", type: "tab"};
@@ -158,7 +158,7 @@ describe('FlowService', function () {
       });
     });
 
-    describe('when called with a workspace and two connected nodes', function () {
+    describe('when called with a workspace and two connected nodes (on the second port)', function () {
       it('return the wires', function () {
         var workspace = {id: "workspace.id", label: "Sheet", type: "tab"};
         var node1     = {id: 'foo', z: 'workspace.id', wires: [['bar']]};
@@ -166,7 +166,7 @@ describe('FlowService', function () {
         var designerNodes = [workspace, node1, node2];
 
         var result = sut.extractLinksByWorkspaceId(designerNodes, 'workspace.id');
-        expect(result).to.deep.equal([{from: 'foo', to: 'bar'}]);
+        expect(result).to.deep.equal([{from: 'foo', fromPort: '0', to: 'bar', toPort: '0'}]);
       });
     });
 
@@ -179,7 +179,10 @@ describe('FlowService', function () {
         var designerNodes = [workspace, node1, node2, node3];
 
         var result = sut.extractLinksByWorkspaceId(designerNodes, 'workspace.id');
-        expect(result).to.deep.equal([{from: 'foo', to: 'bar'}, {from: 'foo', to: 'baz'}]);
+        expect(result).to.deep.equal([
+          {from: 'foo', fromPort: '0', to: 'bar', toPort: '0'},
+          {from: 'foo', fromPort: '0', to: 'baz', toPort: '0'}
+        ]);
       });
     });
 
@@ -194,7 +197,19 @@ describe('FlowService', function () {
         var designerNodes = [workspace1, workspace2, node1, node2, node3, node4];
 
         var result = sut.extractLinksByWorkspaceId(designerNodes, 'workspace1.id');
-        expect(result).to.deep.equal([{from: 'foo', to: 'bar'}]);
+        expect(result).to.deep.equal([{from: 'foo', fromPort: '0', to: 'bar', toPort: '0'}]);
+      });
+    });
+
+    describe('when we have a workspace with 2 nodes and the wires connect to the second port', function(){
+      it('should mark the fromPort as "1"', function () {
+        var workspace1 = {id: "workspace1.id", label: "Sheet", type: "tab"};
+        var node1      = {id: 'foo', z: 'workspace1.id', wires: [[],['bar']]};
+        var node2      = {id: 'bar', z: 'workspace1.id', wires: []};
+        var designerNodes = [workspace1, node1, node2];
+
+        var result = sut.extractLinksByWorkspaceId(designerNodes, 'workspace1.id');
+        expect(result).to.deep.equal([{from: 'foo', fromPort: '1', to: 'bar', toPort: '0'}]);
       });
     });
   });

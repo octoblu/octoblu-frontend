@@ -3,5 +3,17 @@
   "undef": true,
   "unused": false,
   "scripturl": true,
-  "predef": [ "_", "angular", "require" ]
+  "expr": true,
+  "predef": [
+    "_",
+    "angular",
+    "require",
+    "describe",
+    "it",
+    "expect",
+    "beforeEach",
+    "afterEach",
+    "module",
+    "inject"
+  ]
 }
