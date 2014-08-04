@@ -1,5 +1,11 @@
 angular.module('octobluApp')
-    .service('FlowNodeRenderer', function () {
+    .service('FlowNodeRenderer', function (FlowNodeTypeService) {
+        var flowNodeTypes;
+        FlowNodeTypeService.getFlowNodeTypes()
+            .then(function (flowNodeTypes) {
+                flowNodeTypes = _.indexBy(flowNodeTypes, 'name');
+            });
+
         var nodeType = {
             width: 100,
             height: 35
@@ -62,6 +68,6 @@ angular.module('octobluApp')
 
             this.clear = function () {
                 renderScope.selectAll('.flow-node').remove();
-            }
+            };
         };
     });

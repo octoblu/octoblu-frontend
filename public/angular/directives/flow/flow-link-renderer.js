@@ -62,6 +62,6 @@ angular.module('octobluApp')
 
             this.clear = function () {
                 renderScope.select('.flow-link').remove();
-            }
+            };
         };
     });
