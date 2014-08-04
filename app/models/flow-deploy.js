@@ -27,17 +27,13 @@ var FlowDeploy = function(options){
   _this.convertNode = function(flow, node){
     var convertedNode, nodeLinks, groupedLinks, largestPort;
 
+    nodeLinks           = _.where(flow.links, {from: node.id});
+    groupedLinks        = _.groupBy(nodeLinks, 'fromPort');
+    largestPort         = _this.largestPortNumber(groupedLinks);
+
     convertedNode = _.clone(node);
     convertedNode.z = flow.flowId;
-    convertedNode.wires = [];
-
-    nodeLinks    = _.where(flow.links, {from: node.id});
-    groupedLinks = _.groupBy(nodeLinks, 'fromPort');
-    largestPort  = _this.largestPortNumber(groupedLinks);
-
-    _.each(_.range(largestPort), function(){
-      convertedNode.wires.push([]);
-    });
+    convertedNode.wires = _this.paddedArray(largestPort);
 
     _.each(groupedLinks, function(links, fromPort){
       var port = parseInt(fromPort);
@@ -59,6 +55,12 @@ var FlowDeploy = function(options){
     var portsKeys = _.keys(groupedLinks);
     var ports = _.map(portsKeys, function(portKey){ return parseInt(portKey); } );
     return _.max(ports);
+  };
+
+  _this.paddedArray = function(length){
+    return _.map(_.range(length), function(){
+      return [];
+    });
   };
 };
 
