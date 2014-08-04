@@ -48,6 +48,8 @@
     "d3": "~3.4.8"
   },
   "devDependencies": {
-    "chai": "~1.9.1"
+    "chai": "~1.9.1",
+    "sinon-chai": "~2.5.0",
+    "sinon": "~1.10.3"
   }
 }

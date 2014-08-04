@@ -14,10 +14,6 @@ describe('FlowService', function () {
     });
   });
 
-  it('should instantiate', function () {
-    expect(sut).to.exist;
-  });
-
   describe('saveAllFlows', function () {
     describe('when it receives one workspace', function () {
       it('call $http.put for each flow', function (done) {
