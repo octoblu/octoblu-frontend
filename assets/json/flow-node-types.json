@@ -181,7 +181,7 @@
             "icon": ""
         },
         {
-            "name" : "mqtt in",
+            "name" : "mqtt",
             "category": "input",
             "defaults": {
                 "name": {"value":""},
@@ -194,7 +194,7 @@
             "icon": "bridge.png"
         },
         {
-            "name" : "mqtt out",
+            "name" : "mqtt",
             "category": "output",
             "defaults": {
                 "name": {"value":""},
@@ -217,7 +217,7 @@
             }
         },
         {
-            "name" : "http in",
+            "name" : "http",
             "category": "input",
             "color":"rgb(231, 231, 174)",
             "defaults": {
@@ -256,7 +256,7 @@
             "icon": "white-globe.png"
         },
         {
-            "name" : "websocket in",
+            "name" : "websocket",
             "category": "input",
             "defaults": {
                 "name": {"value":""},
@@ -268,7 +268,7 @@
             "icon": "white-globe.png"
         },
         {
-            "name" : "websocket out",
+            "name" : "websocket",
             "category": "output",
             "defaults": {
                 "name": {"value":""},
@@ -291,7 +291,7 @@
             "outputs":0
         },
         {
-            "name" : "tcp in",
+            "name" : "tcp",
             "category": "input",
             "color":"Silver",
             "defaults": {
@@ -309,7 +309,7 @@
             "icon": "bridge-dash.png"
         },
         {
-            "name" : "tcp out",
+            "name" : "tcp",
             "category": "output",
             "color":"Silver",
             "defaults": {
@@ -325,7 +325,7 @@
             "align": "right"
         },
         {
-            "name" : "udp in",
+            "name" : "udp",
             "category": "input",
             "color":"Silver",
             "defaults": {
@@ -341,7 +341,7 @@
             "icon": "bridge-dash.png"
         },
         {
-            "name" : "udp out",
+            "name" : "udp",
             "category": "output",
             "color":"Silver",
             "defaults": {
