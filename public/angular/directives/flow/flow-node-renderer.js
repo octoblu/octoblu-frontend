@@ -11,7 +11,7 @@ angular.module('octobluApp')
             height: 35
         };
         return function (renderScope) {
-            var dispatch = d3.dispatch('nodeChanged', 'nodeMoved');
+            var dispatch = d3.dispatch('nodeChanged', 'nodeMoved', 'nodeClicked');
             var dragBehavior = d3.behavior.drag()
                 .on('dragstart', function () {
                     d3.event.sourceEvent.stopPropagation();
@@ -40,6 +40,13 @@ angular.module('octobluApp')
                     })
                     .attr('transform', function (node) {
                         return 'translate(' + node.x + ',' + node.y + ')';
+                    })
+                    .on('click', function(flowNode){
+                        if(d3.event.defaultPrevented){
+                            return;
+                        }
+
+                        dispatch.nodeClicked(flowNode);
                     })
                     .call(dragBehavior);
 

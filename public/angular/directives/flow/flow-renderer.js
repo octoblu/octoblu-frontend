@@ -1,7 +1,7 @@
 angular.module('octobluApp')
     .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer) {
         return function (renderScope) {
-            var dispatch = d3.dispatch('flowChanged');
+            var dispatch = d3.dispatch('flowChanged', 'nodeSelected');
             var linkRenderer = new FlowLinkRenderer(renderScope),
                 nodeRenderer = new FlowNodeRenderer(renderScope);
             this.render = function (flow) {
@@ -11,6 +11,9 @@ angular.module('octobluApp')
                     })
                     .on('nodeChanged', function (flowNode) {
                         dispatch.flowChanged(flow);
+                    })
+                    .on('nodeClicked', function(flowNode) {
+                        dispatch.nodeSelected(flowNode);
                     });
                 linkRenderer.render(flow.links);
                 return dispatch;

@@ -5,7 +5,8 @@ angular.module('octobluApp')
             templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
             replace: true,
             scope: {
-                flow: '='
+                flow: '=',
+                selectedNode: '='
             },
             link: function ($scope, element) {
                 var renderScope = d3.select(element.find('svg')[0]);
@@ -17,6 +18,10 @@ angular.module('octobluApp')
                     if (newFlow && newFlow.nodes) {
                         flowRenderer.render(newFlow)
                             .on('flowChanged', function(flow){
+                                $scope.$apply();
+                            })
+                            .on('nodeSelected', function(flowNode){
+                                $scope.selectedNode = flowNode;
                                 $scope.$apply();
                             });
                     }
