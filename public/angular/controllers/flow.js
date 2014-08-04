@@ -2,6 +2,9 @@ angular.module('octobluApp')
   .controller('flowController', function ($scope, $http, $location, FlowService, FlowNodeTypeService) {
     var schemaControl = {}, originalNode;
     $scope.schemaControl = schemaControl;
+    $scope.flowEditor = {
+      selectedNode: null
+    };
 
     FlowNodeTypeService.getFlowNodeTypes()
       .then(function (flowNodeTypes) {
@@ -50,6 +53,6 @@ angular.module('octobluApp')
     };
 
     $scope.save = function () {
-      FlowService.saveAllFlows(RED.nodes.createCompleteNodeSet());
+      FlowService.saveAllFlows($scope.flows);
     }
   });

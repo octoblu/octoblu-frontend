@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div id="main-container" class="main-container sidebar-closed">
+    <div id="main-container" class="main-container">
         <flow-node-palette flow-node-types="flowNodeTypes"></flow-node-palette>
         <div class="workspace-container">
             <div class="red-tabs-container">
@@ -53,11 +53,11 @@
                 </ul>
                 <div class="red-add-tab" ng-click="addFlow()"><i class="fa fa-plus"></i></div>
             </div>
-            <flow-editor flow="activeFlow"></flow-editor>
+            <flow-editor flow="activeFlow" selected-node="flowEditor.selectedNode"></flow-editor>
         </div>
-        <div id="sidebar" class="edit-panel">
 
-            <div class="node-editor" ng-hide="!editingNode">
+        <div id="sidebar" class="edit-panel" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">
+            <div class="node-editor">
                 <h3 class="node-editor-header">
                     <input placeholder="Name" type="text" class="form-control" ng-model="editingNodeName">
                 </h3>
