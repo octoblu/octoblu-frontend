@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .directive('flowEditor', function ($compile) {
+    .directive('flowEditor', function () {
         return {
             restrict: 'E',
             templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
@@ -22,7 +22,7 @@ angular.module('octobluApp')
                         d3.select(this).attr("transform",
                                 "translate(" + d3.event.x + "," + d3.event.y + ")");
                         d3.selectAll('.contains-node-' + flowNode.id).attr('d', renderPath);
-                    }).on('dragend', function(flowNode){
+                    }).on('dragend', function(){
                         $scope.$apply();
                     });
 
@@ -133,5 +133,4 @@ angular.module('octobluApp')
                 }
             }
         };
-    })
-;
+    });
