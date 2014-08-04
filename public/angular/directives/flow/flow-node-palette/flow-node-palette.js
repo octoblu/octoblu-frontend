@@ -1,20 +1,20 @@
 angular.module('octobluApp')
-    .directive('palette', function () {
+    .directive('flowNodePalette', function () {
         return {
             restrict: 'E',
-            templateUrl: 'angular/directives/design/palette/palette.html',
+            templateUrl: '/angular/directives/flow/flow-node-palette/flow-node-palette.html',
             replace: true,
             scope: {
                 flowNodeTypes: '='
             },
             controller: function ($scope) {
-                var flowNodeTypeTemplateUrl = '/angular/directives/design/palette/flow-node-templates/';
+                var flowNodeTypeTemplateUrl = '/angular/directives/flow/flow-node-palette/flow-node-templates/';
                 $scope.$watch('flowNodeTypes', function () {
                     $scope.typesByCategory = _.groupBy($scope.flowNodeTypes, 'category');
                 });
 
                 $scope.getFlowNodeTypeTemplateUrl = function (flowNodeType) {
-                    return flowNodeTypeTemplateUrl + 'default.html';
+                    return flowNodeTypeTemplateUrl + 'default.svg';
 //                    return flowNodeTypeTemplateUrl + flowNodeType.name + '.html';
                 };
             }
