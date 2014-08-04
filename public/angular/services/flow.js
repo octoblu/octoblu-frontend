@@ -63,10 +63,9 @@ angular.module('octobluApp')
                             {
                                 "id": "7b8f181f.8470e8",
                                 "type": "inject",
-                                "name" : "Inject Node",
-                                "x": 440.8888854980469,
-                                "y": 181.88888549804688,
-                                "z": "9eb9aa60.614658"
+                                "name": "Inject Node",
+                                "x": 44.8888854980469,
+                                "y": 181.88888549804688
                             },
                             {
                                 "id": "d71fffc9.28e",
@@ -75,13 +74,72 @@ angular.module('octobluApp')
                                 "phoneNumber": "aasdsadsad",
                                 "plivoAuthId": "dsa",
                                 "plivoAuthToken": "asd",
-                                "x": 252.888916015625,
-                                "y": 251.10415649414062,
-                                "z": "9eb9aa60.614658"
+                                "x": 125.888916015625,
+                                "y": 2.10415649414062
                             }
                         ],
-                        links : [
+                        links: [
                             { "from": '7b8f181f.8470e8', "to": "d71fffc9.28e"  }
+                        ]
+                    },
+                    {
+                        "nodes": [
+                            {
+                                "id": "aade37cf.5521c8",
+                                "type": "inject",
+                                "x": 441,
+                                "y": 233
+                            },
+                            {
+                                "id": "7c5fb403.83a04c",
+                                "type": "debug",
+                                "x": 744.0000305175781,
+                                "y": 164
+                            },
+                            {
+                                "id": "95588192.6aa78",
+                                "type": "function",
+                                "x": 600.8888854980469,
+                                "y": 256.8888854980469
+                            },
+                            {
+                                "id": "7b8f181f.8470e8",
+                                "type": "inject",
+                                "x": 440.8888854980469,
+                                "y": 181.88888549804688
+                            },
+                            {
+                                "id": "d71fffc9.28e",
+                                "type": "delay",
+                                "phoneNumber": "aasdsadsad",
+                                "plivoAuthId": "dsa",
+                                "plivoAuthToken": "asd",
+                                "properties": {
+                                    "phoneNumber": "aasdsadsad",
+                                    "plivoAuthId": "dsa",
+                                    "plivoAuthToken": "asd"
+                                },
+                                "x": 252.888916015625,
+                                "y": 251.10415649414062
+                            }
+                        ],
+                        "links": [
+                            {
+                                "to": "7c5fb403.83a04c",
+                                "from": "aade37cf.5521c8"
+                            },
+                            {
+                                "from": "aade37cf.5521c8",
+                                "to": "95588192.6aa78"
+                            },
+                            {
+                                "from": "95588192.6aa78",
+                                "to": "7c5fb403.83a04c"
+                            },
+                            {
+                                "from": "7b8f181f.8470e8",
+                                "to": "7c5fb403.83a04c"
+                            }
                         ]
                     }
                 ]

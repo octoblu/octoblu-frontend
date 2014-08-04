@@ -1,6 +1,6 @@
 angular.module('octobluApp')
     .controller('flowController', function ($scope, $http, $location, FlowService, FlowNodeTypeService) {
-        var activeFlow, schemaControl = {}, originalNode;
+        var schemaControl = {}, originalNode;
         $scope.schemaControl = schemaControl;
 
         FlowNodeTypeService.getFlowNodeTypes()
@@ -12,7 +12,7 @@ angular.module('octobluApp')
             .then(function (flows) {
                 $scope.flows = flows;
                 if (flows.length) {
-                    activeFlow = flows[0];
+                    $scope.activeFlow = flows[0];
                 }
             });
 
@@ -28,11 +28,11 @@ angular.module('octobluApp')
         };
 
         $scope.isActiveFlow = function (flow) {
-            return flow === activeFlow;
+            return flow === $scope.activeFlow;
         };
 
         $scope.setActiveFlow = function (flow) {
-            activeFlow = flow;
+            $scope.activeFlow = flow;
         };
 
         $scope.updateNodeProperties = function () {
