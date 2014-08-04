@@ -18,6 +18,6 @@ angular.module('octobluApp')
             this.clear = function () {
                 nodeRenderer.clear();
                 linkRenderer.clear();
-            }
+            };
         };
     });
