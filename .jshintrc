@@ -1,0 +1,7 @@
+{
+  "strict": false,
+  "undef": true,
+  "unused": false,
+  "scripturl": true,
+  "predef": [ "_", "angular", "require" ]
+}

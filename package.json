@@ -69,7 +69,8 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-spec-reporter": "0.0.13",
     "sinon": "^1.10.3",
-    "sinon-chai": "^2.5.0"
+    "sinon-chai": "^2.5.0",
+    "gulp-sourcemaps": "~1.1.0"
   },
   "scripts": {
     "test": "mocha -r test/test_helper.js --recursive --reporter spec test/models test/controllers && node_modules/karma/bin/karma start --single-run",

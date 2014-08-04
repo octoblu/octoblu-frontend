@@ -1,9 +1,10 @@
 angular.module('octobluApp')
     .service('NodeTypeService', function ($http, $q) {
+        'use strict';
         var myNodeTypes, service;
         myNodeTypes = [];
 
-        return service = {
+        service = {
             getNodeTypes : function(){
                 if(!_.isEmpty(myNodeTypes)) {
                     var defer = $q.defer();
@@ -23,5 +24,7 @@ angular.module('octobluApp')
                 });
             }
         };
+
+        return service;
     });
 
