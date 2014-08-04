@@ -92,6 +92,7 @@ describe('FlowService', function () {
 
       $httpBackend.flush();
     });
+
     it('should return an array with objects', function (done) {
       $httpBackend.expectGET('/api/flows').respond(200, [{}]);
 
