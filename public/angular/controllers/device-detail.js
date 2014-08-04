@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });

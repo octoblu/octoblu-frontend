@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('addNodeController', function($scope, $state, NodeTypeService) {
         NodeTypeService.getNodeTypes().then(function(nodeTypes){

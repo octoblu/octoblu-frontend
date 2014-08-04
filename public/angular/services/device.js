@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('deviceService', function ($q, $http, $rootScope, skynetService, PermissionsService, reservedProperties) {
         var myDevices = [];

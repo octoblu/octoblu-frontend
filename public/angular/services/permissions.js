@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp').
     service('PermissionsService', function ($http, $q) {
         return {

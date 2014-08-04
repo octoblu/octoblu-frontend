@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('MessagingDeviceController', function ($scope, AuthService,  deviceService, skynetService, PluginService) {
 

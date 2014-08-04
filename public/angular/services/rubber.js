@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
 .service('RubberService', function () {
   this.buildDevices = function(devices){

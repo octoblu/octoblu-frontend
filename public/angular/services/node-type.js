@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('NodeTypeService', function ($http, $q) {
         'use strict';

@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('AddEditSubDeviceController', function ($q, $scope, $modalInstance, hubs, subdevice, pluginName, availableNodeTypes, PluginService) {
         $scope.model = {

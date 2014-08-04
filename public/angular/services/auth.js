@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('AuthService', function ($q, $cookies,  $http, $window) {
         var service;

@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('DeviceDetailSharedController', function ($scope, $stateParams, $modal, currentUser, availableNodeTypes,
                                                           PermissionsService, deviceService) {

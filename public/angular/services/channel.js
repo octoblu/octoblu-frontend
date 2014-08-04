@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('channelService', function ($q, $http) {
         var customchannels = [];

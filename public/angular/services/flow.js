@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('FlowService', function ($http, $q) {
         var service = this;

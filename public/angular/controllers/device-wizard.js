@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('DeviceWizardController', function ($scope, $state,currentUser, availableNodeTypes,  unclaimedDevices, myDevices, deviceService) {
         $scope.getStateName = function () {

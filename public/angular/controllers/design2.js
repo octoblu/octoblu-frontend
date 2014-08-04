@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('design2Controller', function ($scope, $http, $location, FlowService, FlowNodeTypeService, nodeRedService, currentUser) {
 

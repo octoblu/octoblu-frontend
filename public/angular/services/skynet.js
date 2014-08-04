@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService) {
         var user, defer = $q.defer(), skynetPromise = defer.promise;

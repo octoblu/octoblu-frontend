@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('userService', function ($http, $q, elasticService) {
         this.getMessageGraph = function (uuid, from, interval, callback) {

@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('NodeService', function ($q, deviceService, channelService, NodeTypeService) {
 

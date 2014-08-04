@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
 .service('elasticSearchConfig', function($location){
     return {
