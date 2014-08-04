@@ -60,18 +60,19 @@
   },
   "devDependencies": {
     "bower": "^1.3.3",
+    "chai": "^1.9.1",
     "gulp": "~3.8.6",
     "gulp-concat": "~2.3.3",
     "gulp-less": "~1.3.1",
-    "karma": "~0.12.17",
+    "gulp-plumber": "~0.6.4",
+    "gulp-sourcemaps": "~1.1.0",
+    "karma": "^0.12.19",
     "karma-growl-reporter": "~0.1.1",
     "karma-mocha": "~0.1.6",
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-spec-reporter": "0.0.13",
     "sinon": "^1.10.3",
-    "sinon-chai": "^2.5.0",
-    "gulp-sourcemaps": "~1.1.0",
-    "gulp-plumber": "~0.6.4"
+    "sinon-chai": "^2.5.0"
   },
   "scripts": {
     "test": "mocha -r test/test_helper.js --recursive --reporter spec test/models test/controllers && node_modules/karma/bin/karma start --single-run",

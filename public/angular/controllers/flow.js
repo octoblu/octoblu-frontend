@@ -8,13 +8,8 @@ angular.module('octobluApp')
                 $scope.flowNodeTypes = flowNodeTypes;
             });
 
-        FlowService.getAllFlows()
-            .then(function (flows) {
-                $scope.flows = flows;
-                if (flows.length) {
-                    $scope.activeFlow = flows[0];
-                }
-            });
+        $scope.flows = FlowService.getAllFlows();
+        $scope.activeFlow = flows[0];
 
         FlowService.getSessionFlow()
             .then(function (sessionFlow) {
