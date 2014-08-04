@@ -431,9 +431,9 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.bootst
     })
     .run(function ($rootScope, $window, $state, $urlRouter, $location, AuthService) {
 
-        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams) {
-            console.log('error from ' + fromState.name + ' to ' + toState.name)
-            ;
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+            console.log('error from ' + fromState.name + ' to ' + toState.name, error);
+            console.log(error.stack);
         });
 
         $rootScope.$on('$stateChangeStart', function (event, toState) {

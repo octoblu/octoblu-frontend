@@ -1,6 +1,7 @@
 angular.module('octobluApp')
     .service('NodeTypeService', function ($http, $q) {
-        var myNodeTypes = [];
+        var myNodeTypes, service;
+        myNodeTypes = [];
 
         return service = {
             getNodeTypes : function(){
