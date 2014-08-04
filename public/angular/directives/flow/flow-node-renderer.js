@@ -24,7 +24,6 @@ angular.module('octobluApp')
                     dispatch.nodeMoved(flowNode);
                 })
                 .on('dragend', function (flowNode) {
-                    console.log(flowNode);
                     dispatch.nodeChanged(flowNode);
                 });
 

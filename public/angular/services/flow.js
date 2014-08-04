@@ -88,11 +88,11 @@ angular.module('octobluApp')
                             }
                         ],
                         links: [
-                            { "from": '7b8f181f8470e8', "to": "d71fffc928e"  }
+                            { "from": '7b8f181f8470e8', fromPort: 0, "to": "d71fffc928e", toPort: 0  }
                         ]
                     },
                     {
-                        name : 'Bigger Flow',
+                        name: 'Bigger Flow',
                         "nodes": [
                             {
                                 "id": "aade37cf5521c8",
@@ -135,20 +135,28 @@ angular.module('octobluApp')
                         ],
                         "links": [
                             {
+                                "from": "aade37cf5521c8",
+                                fromPort: 0,
                                 "to": "7c5fb40383a04c",
-                                "from": "aade37cf5521c8"
+                                toPort: 0
                             },
                             {
                                 "from": "aade37cf5521c8",
-                                "to": "955881926aa78"
+                                "fromPort": 0,
+                                "to": "955881926aa78",
+                                "toPort": 0
                             },
                             {
                                 "from": "955881926aa78",
-                                "to": "7c5fb40383a04c"
+                                "fromPort" : 0,
+                                "to": "7c5fb40383a04c",
+                                "toPort" : 0
                             },
                             {
                                 "from": "7b8f181f8470e8",
-                                "to": "7c5fb40383a04c"
+                                "fromPort" : 0,
+                                "to": "7c5fb40383a04c",
+                                "toPort" : 0
                             }
                         ]
                     }
