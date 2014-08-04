@@ -4,7 +4,7 @@ angular.module('octobluApp')
       width: 100,
       height: 35
     };
-    var dispatch = d3.dispatch('linkChanged');
+
     var renderLine = d3.svg.line()
       .x(function (coordinate) {
         return coordinate.x;
@@ -15,18 +15,9 @@ angular.module('octobluApp')
       .interpolate('basis');
 
     return function (renderScope) {
-      var linkRenderer = this;
+      var dispatch = d3.dispatch('linkChanged');
 
-      this.render = function (links) {
-        var linkData = renderScope.selectAll('.flow-link').data(links);
-        linkData.enter().append('path');
-
-        linkRenderer.update(linkData);
-        linkData.exit().remove();
-        return linkData;
-      };
-
-      this.update = function (links) {
+      function update(links) {
         links
           .attr('class', function (link) {
             var classes = [ 'flow-link' ];
@@ -55,18 +46,25 @@ angular.module('octobluApp')
 
             return renderLine([fromCoordinate, fromCoordinateCurveStart, toCoordinateCurveStart, toCoordinate]);
           });
-      };
+      }
 
-      this.updateLinks = function (links) {
-        this.render(links);
+      return {
+        render: function (links) {
+          var linkData = renderScope.selectAll('.flow-link').data(links);
+          linkData.enter().append('path');
+          update(linkData);
+          linkData.exit().remove();
+          return linkData;
+        },
+        updateLinks: function (links) {
+          this.render(links);
+        },
+        clear: function () {
+          renderScope.select('.flow-link').remove();
+        },
+        on: function (event, callback) {
+          return dispatch.on(event, callback);
+        }
       };
-
-      this.clear = function () {
-        renderScope.select('.flow-link').remove();
-      };
-
-      this.on = function (event, callback) {
-        return dispatch.on(event, callback);
-      };
-    };
+    }
   });
