@@ -46,6 +46,7 @@ angular.module('octobluApp')
                             return;
                         }
 
+                        d3.event.preventDefault();
                         dispatch.nodeClicked(flowNode);
                     })
                     .call(dragBehavior);

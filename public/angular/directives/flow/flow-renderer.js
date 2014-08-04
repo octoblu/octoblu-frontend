@@ -16,6 +16,13 @@ angular.module('octobluApp')
                         dispatch.nodeSelected(flowNode);
                     });
                 linkRenderer.render(flow.links);
+
+                renderScope.on('click', function(){
+                    if(d3.event.defaultPrevented){
+                        return;
+                    }
+                    dispatch.nodeSelected(null);
+                });
                 return dispatch;
             };
             this.clear = function () {
