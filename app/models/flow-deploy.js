@@ -1,5 +1,5 @@
 var FlowDeploy = function(options){
-  var _this, config, request, userUUID, userToken;
+  var _this, config, request, userUUID, userToken, port;
   _this = this;
 
   options         = options || {};
@@ -25,16 +25,25 @@ var FlowDeploy = function(options){
   };
 
   _this.convertNode = function(flow, node){
-    var convertedNode, links;
+    var convertedNode, nodeLinks, groupedLinks, largestPort;
 
     convertedNode = _.clone(node);
     convertedNode.z = flow.flowId;
     convertedNode.wires = [];
 
-    links = _.where(flow.links, {from: node.id});
-    if(!_.isEmpty(links)){
-      convertedNode.wires.push(_.pluck(links, 'to'));
-    }
+    nodeLinks    = _.where(flow.links, {from: node.id});
+    groupedLinks = _.groupBy(nodeLinks, 'fromPort');
+    largestPort  = _this.largestPortNumber(groupedLinks);
+
+    _.each(_.range(largestPort), function(){
+      convertedNode.wires.push([]);
+    });
+
+    _.each(groupedLinks, function(links, fromPort){
+      var port = parseInt(fromPort);
+      convertedNode.wires[port] = _.pluck(links, 'to');
+    });
+
     return convertedNode;
   };
 
@@ -44,6 +53,12 @@ var FlowDeploy = function(options){
 
   _this.designerUrl = function(){
     return config.host + ':' + port + '/library/flows';
+  };
+
+  _this.largestPortNumber = function(groupedLinks){
+    var portsKeys = _.keys(groupedLinks);
+    var ports = _.map(portsKeys, function(portKey){ return parseInt(portKey); } );
+    return _.max(ports);
   };
 };
 
