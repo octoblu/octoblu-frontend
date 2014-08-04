@@ -8,6 +8,7 @@ describe('flowNodeEditorController', function () {
 
     inject(function($controller, $rootScope){
       scope = $rootScope.$new();
+      scope.flowEditor = {}; // From parent
       sut = $controller('flowNodeEditorController', {$scope: scope, FlowNodeTypeService: FakeFlowNodeTypeService});
     });
   });
@@ -25,17 +26,13 @@ describe('flowNodeEditorController', function () {
     expect(sut).to.exist;
   });
 
-  it('should instantiate the selected node', function () {
-    expect(scope.selectedNode).to.be.null;
-  });
-
   it('should call not call getFlowNodeType', function () {
     expect(FakeFlowNodeTypeService.getFlowNodeType.called).to.be.false;
   });
 
   describe('when selectedNode gets set to a function node', function () {
     beforeEach(function () {
-      scope.selectedNode = {type: 'function'};
+      scope.flowEditor.selectedNode = {type: 'function'};
       scope.$apply();
     });
 
@@ -50,14 +47,14 @@ describe('flowNodeEditorController', function () {
       });
 
       it('set set the flowNodeType on the scope', function () {
-        expect(scope.flowNodeType).to.deep.equal({foo: 'bar'});
+        expect(scope.flowEditor.flowNodeType).to.deep.equal({foo: 'bar'});
       });
     });
   });
 
   describe('when selectedNode gets set to a function node', function () {
     beforeEach(function () {
-      scope.selectedNode = {type: 'inject'};
+      scope.flowEditor.selectedNode = {type: 'inject'};
       scope.$apply();
     });
 
@@ -72,24 +69,24 @@ describe('flowNodeEditorController', function () {
       });
 
       it('set set the flowNodeType on the scope', function () {
-        expect(scope.flowNodeType).to.deep.equal({bar: 'foo'});
+        expect(scope.flowEditor.flowNodeType).to.deep.equal({bar: 'foo'});
       });
     });
   });
 
   describe('when selectedNode gets set, resolves and then is then unset', function () {
     beforeEach(function () {
-      scope.selectedNode = {type: 'inject'};
+      scope.flowEditor.selectedNode = {type: 'inject'};
       scope.$apply();
 
       FakeFlowNodeTypeService.getFlowNodeType.resolve({foo: 'bar'});
 
-      scope.selectedNode = null;
+      scope.flowEditor.selectedNode = null;
       scope.$apply();
     });
 
     it('should clear the flowNodeType', function () {
-      expect(scope.flowNodeType).to.be.null;
+      expect(scope.flowEditor.flowNodeType).to.be.null;
     });
   });
 });

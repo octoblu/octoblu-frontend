@@ -18,6 +18,30 @@ describe('FlowNodeTypeService', function () {
         expect(sut).to.exist;
     });
 
+    describe('.getFlowNodeType', function () {
+        it('should return a single flowNodeType', function (done) {
+            $httpBackend.expectGET('/api/flow/node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+
+            sut.getFlowNodeType('function').then(function (flowNodeType) {
+                expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar'});
+                done();
+            }, done);
+
+            $httpBackend.flush();
+        });
+
+        it('should return a single flowNodeType', function (done) {
+            $httpBackend.expectGET('/api/flow/node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+
+            sut.getFlowNodeType('inject').then(function (flowNodeType) {
+                expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo'});
+                done();
+            }, done);
+
+            $httpBackend.flush();
+        });
+    });
+
     describe('.getFlowNodeTypes', function () {
         it('should return an array', function (done) {
             $httpBackend.expectGET('/api/flow/node_types').respond(200, ['hi']);

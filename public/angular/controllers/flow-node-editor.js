@@ -2,16 +2,14 @@ angular.module('octobluApp')
   .controller('flowNodeEditorController', function ($scope, FlowNodeTypeService) {
     'use strict';
 
-    $scope.selectedNode = null;
-
-    $scope.$watch('selectedNode', function(newFlowNode, oldFlowNode){
+    $scope.$watch('flowEditor.selectedNode', function(newFlowNode, oldFlowNode){
       if (!newFlowNode) {
-        $scope.flowNodeType = null;
+        $scope.flowEditor.flowNodeType = null;
         return;
       }
 
       FlowNodeTypeService.getFlowNodeType(newFlowNode.type).then(function(flowNodeType){
-        $scope.flowNodeType = flowNodeType;
+        $scope.flowEditor.flowNodeType = flowNodeType;
       });
     });
 });
