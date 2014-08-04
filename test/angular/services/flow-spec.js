@@ -150,7 +150,7 @@ describe('FlowService', function () {
     });
   });
 
-  describe.only('extractLinksByWorkspaceId', function () {
+  describe('extractLinksByWorkspaceId', function () {
     describe('when its called with only a workspace and id', function () {
       it('should return an empty array', function () {
         var workspace = {id: "workspace.id", label: "Sheet", type: "tab"};
