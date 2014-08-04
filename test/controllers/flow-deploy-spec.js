@@ -100,7 +100,7 @@ var FakeRedport = function(options){
   var port  = ports[options.userUUID][options.userToken];
 
   redflow.redport = function(callback){
-    callback(port);
+    callback(null, port);
   }
 
   return redflow;
