@@ -1,6 +1,7 @@
-'use strict';
 angular.module('octobluApp')
     .service('FlowService', function ($http, $q) {
+        'use strict';
+
         var service = this;
 
         this.designerToFlows = function (designerNodes) {
@@ -29,8 +30,15 @@ angular.module('octobluApp')
 
             var links = [];
             _.each(workspaceNodes, function (workspaceNode) {
-                _.each(_.first(workspaceNode.wires), function (wire) {
-                    links.push({from: workspaceNode.id, to: wire});
+                _.each(workspaceNode.wires, function(wires, portIndex){
+                    _.each(wires, function (wire) {
+                        links.push({
+                            from: workspaceNode.id,
+                            fromPort: ''+portIndex,
+                            to: wire,
+                            toPort: '0'
+                        });
+                    });
                 });
             });
             return links;

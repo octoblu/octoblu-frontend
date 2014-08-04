@@ -110,11 +110,40 @@ describe('FlowDeploy', function () {
       it('should return a converted flow', function () {
         var node1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var node2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
-        var link = {from: "node1", to: "node2"};
+        var link = {from: "node1", fromPort: "0", to: "node2", toPort: "0"};
         var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: [link]};
 
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
         var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2']]};
+        var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
+      });
+    });
+
+    describe('when it is called with one flow with two node and a link from both ports', function () {
+      it('should return a converted flow', function () {
+        var node1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var node2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var link1 = {from: "node1", fromPort: "0", to: "node2", toPort: "0"};
+        var link2 = {from: "node1", fromPort: "1", to: "node2", toPort: "0"};
+        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: [link1, link2]};
+
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2'], ['node2']]};
+        var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
+      });
+    });
+
+    describe('when it is called with one flow with two node and a link from only the second port', function () {
+      it('should return a converted flow', function () {
+        var node1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var node2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var link = {from: "node1", fromPort: "1", to: "node2", toPort: "0"};
+        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: [link]};
+
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[[], ['node2']]};
         var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
         expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
