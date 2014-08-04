@@ -14,7 +14,7 @@ gulp.task('javascript:concat', function(){
   gulp.src(['./public/angular/app.js', './public/angular/**/*.js'])
     .pipe(sourcemaps.init())
       .pipe(concat('application.js'))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
