@@ -101,14 +101,14 @@
     display: flex;
     flex-direction: column;
     align-content: stretch;
-    .workspace {
+    .flow-editor {
       overflow: scroll;
-      .chart {
+      .flow-editor-workspace {
         height: 5000px;
         width: 5000px;
       }
     }
-    .chart-zoom-controls {
+    .flow-editor-zoom-controls {
       text-align: right;
       position: absolute;
       right: 60px;
@@ -191,7 +191,7 @@
       }
       &.active, &.active:hover {
         background: #fff;
-        height:29px;
+        height: 29px;
       }
     }
   }
@@ -309,26 +309,6 @@
     padding: 1px 5px;
   }
 
-  #dropTarget {
-    //    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(100, 100, 100, 0.5);
-    display: table;
-    width: 100%;
-    height: 100%;
-    display: none;
-  }
-  #dropTarget div {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    font-size: 40px;
-    color: #fff;
-  }
-
   div.btn-group, a.btn {
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -352,25 +332,6 @@
   }
   a.brand img {
     height: 16px;
-  }
-
-  .navbar-inner > .container-fluid {
-    padding-right: 10px;
-  }
-
-  .chart {
-    overflow: auto;
-    background: #white;
-  }
-
-  #workspace-toolbar {
-    display: none;
-    //    position: absolute;
-    top: 30px;
-    left: 0;
-    right: 18px;
-    padding: 5px;
-    background: #f3f3f3;
   }
 
   .palette-scroll {
@@ -502,42 +463,6 @@
     bottom: 1px;
   }
 
-  .node_label_italic {
-    font-style: italic;
-  }
-  .node_label_unknown {
-    font-style: italic;
-    fill: #e00 !important;
-  }
-  .node_label_white {
-    fill: #eee !important;
-  }
-  .node_label {
-    stroke-width: 0;
-    fill: #333;
-    font-size: 12px;
-    pointer-events: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  .function_label {
-    font-size: 12px;
-  }
-  .node {
-    stroke: #999;
-    cursor: move;
-    stroke-width: 2;
-    font-size: 12px;
-  }
-  .node_unknown {
-    stroke-dasharray: 10, 4;
-    stroke: #f33;
-  }
   .tool_arrow {
     stroke-width: 1;
     stroke: #999;
@@ -559,10 +484,7 @@
     fill: inherit;
 
   }
-  .port {
-    fill: #ddd;
-    cursor: crosshair;
-  }
+
   .node_error {
     stroke: #ff0000;
     stroke-width: 2;
@@ -598,13 +520,6 @@
     stroke-width: 3;
     stroke-dasharray: 10, 4;
   }
-  .node_hovered {
-  }
-
-  .port_hovered {
-    stroke: #ff7f0e;
-    fill: #ff7f0e;
-  }
 
   .drag_line {
     stroke: #ff7f0e;
@@ -620,16 +535,6 @@
     fill: none;
   }
 
-  .link {
-    stroke: #7f7f7f;
-    stroke-width: 4;
-    cursor: crosshair;
-    fill: none;
-  }
-
-  .link_selected {
-    stroke: #ff7f0e;
-  }
   .link_unknown {
     stroke: #f00;
     stroke-width: 2;

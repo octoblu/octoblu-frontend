@@ -1,0 +1,71 @@
+.flow-node {
+  cursor: move;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  //base styles.
+  .flow-node-bg {
+    fill: gray;
+    stroke: #999;
+    stroke-width: 2;
+    font-size: 12px;
+  }
+
+  .flow-node-label {
+    cursor: move;
+    stroke-width: 0;
+    fill: #333;
+    font-size: 12px;
+  }
+
+  .flow-node-port {
+    fill: #ddd;
+    cursor: crosshair;
+    &:hover {
+      stroke: #ff7f0e;
+      fill: #ff7f0e;
+    }
+  }
+
+  //Specific nodes.
+
+  &.flow-node-inject {
+    .flow-node-bg {
+      fill: orange;
+    }
+  }
+
+  &.flow-node-debug {
+    .flow-node-bg {
+      fill: brown;
+    }
+    .flow-node-label {
+      fill: white;
+    }
+  }
+
+  &.flow-node-inject {
+    .flow-node-bg {
+      fill: orange;
+    }
+  }
+
+  &.flow-node-unknown {
+    stroke-dasharray: 10, 4;
+    stroke: #f33;
+  }
+}
+
+.flow-link {
+  stroke: #7f7f7f;
+  stroke-width: 4;
+  cursor: crosshair;
+  fill: none;
+  &.selected {
+    stroke: #ff7f0e;
+  }
+}

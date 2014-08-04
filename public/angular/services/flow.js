@@ -61,14 +61,14 @@ angular.module('octobluApp')
                         name: 'Flow 1',
                         nodes: [
                             {
-                                "id": "7b8f181f.8470e8",
+                                "id": "7b8f181f8470e8",
                                 "type": "inject",
                                 "name": "Inject Node",
                                 "x": 44.8888854980469,
                                 "y": 181.88888549804688
                             },
                             {
-                                "id": "d71fffc9.28e",
+                                "id": "d71fffc928e",
                                 "type": "debug",
                                 "name": "Wait a sec",
                                 "phoneNumber": "aasdsadsad",
@@ -79,37 +79,38 @@ angular.module('octobluApp')
                             }
                         ],
                         links: [
-                            { "from": '7b8f181f.8470e8', "to": "d71fffc9.28e"  }
+                            { "from": '7b8f181f8470e8', "to": "d71fffc928e"  }
                         ]
                     },
                     {
+                        name : 'Bigger Flow',
                         "nodes": [
                             {
-                                "id": "aade37cf.5521c8",
+                                "id": "aade37cf5521c8",
                                 "type": "inject",
                                 "x": 441,
                                 "y": 233
                             },
                             {
-                                "id": "7c5fb403.83a04c",
+                                "id": "7c5fb40383a04c",
                                 "type": "debug",
                                 "x": 744.0000305175781,
                                 "y": 164
                             },
                             {
-                                "id": "95588192.6aa78",
+                                "id": "955881926aa78",
                                 "type": "function",
                                 "x": 600.8888854980469,
                                 "y": 256.8888854980469
                             },
                             {
-                                "id": "7b8f181f.8470e8",
+                                "id": "7b8f181f8470e8",
                                 "type": "inject",
                                 "x": 440.8888854980469,
                                 "y": 181.88888549804688
                             },
                             {
-                                "id": "d71fffc9.28e",
+                                "id": "d71fffc928e",
                                 "type": "delay",
                                 "phoneNumber": "aasdsadsad",
                                 "plivoAuthId": "dsa",
@@ -125,20 +126,20 @@ angular.module('octobluApp')
                         ],
                         "links": [
                             {
-                                "to": "7c5fb403.83a04c",
-                                "from": "aade37cf.5521c8"
+                                "to": "7c5fb40383a04c",
+                                "from": "aade37cf5521c8"
                             },
                             {
-                                "from": "aade37cf.5521c8",
-                                "to": "95588192.6aa78"
+                                "from": "aade37cf5521c8",
+                                "to": "955881926aa78"
                             },
                             {
-                                "from": "95588192.6aa78",
-                                "to": "7c5fb403.83a04c"
+                                "from": "955881926aa78",
+                                "to": "7c5fb40383a04c"
                             },
                             {
-                                "from": "7b8f181f.8470e8",
-                                "to": "7c5fb403.83a04c"
+                                "from": "7b8f181f8470e8",
+                                "to": "7c5fb40383a04c"
                             }
                         ]
                     }
