@@ -9,7 +9,6 @@ angular.module('octobluApp')
       }
 
       FlowNodeTypeService.getFlowNodeType(newFlowNode.type).then(function(flowNodeType){
-        console.log('flowNodeType:', flowNodeType, newFlowNode);
         $scope.flowEditor.flowNodeType = flowNodeType;
       });
     });

@@ -28,7 +28,7 @@
     "modernizr": "~2.8.2",
     "fontawesome": "Font-Awesome#4.1.0",
     "angular-ui-utils": "~0.1.1",
-    "d3": "~3.4.8",
+    "d3": "~3.4.11",
     "jquery-migrate": "~1.2.1",
     "angular-bootstrap": "~0.11.0",
     "json-editor": "~0.7.4",
@@ -45,7 +45,8 @@
     "bootstrap": "~3.2.0"
   },
   "resolutions": {
-    "d3": "~3.4.8"
+    "d3": "~3.4.8",
+    "jquery": "~2.1.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",

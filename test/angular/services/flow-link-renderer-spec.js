@@ -1,111 +1,57 @@
-describe('FlowRenderer', function () {
-  var sut, flow, FakeFlowNodeRenderer, FakeFlowLinkRenderer, FakeDispatch;
+describe('FlowLinkRenderer', function () {
+  var sut, renderScope;
 
-
-  beforeEach(function () {
-    module('octobluApp', function ($provide) {
-      FakeDispatch = {
-        flowChanged: sinon.spy()
-      };
-
-      sinon.stub(d3, 'dispatch').returns(FakeDispatch);
-
-      FakeFlowNodeRenderer = {
-        eventListeners: {},
-        render: sinon.spy(),
-        on: function (eventName, callback) {
-          FakeFlowNodeRenderer.eventListeners[eventName] = callback;
-        }
-      };
-
-      $provide.value('FlowNodeRenderer', function () {
-        return FakeFlowNodeRenderer;
-      });
-
-      FakeFlowLinkRenderer = {
-        render: sinon.spy(),
-        updateLinks: sinon.spy()
-      };
-
-      $provide.value('FlowLinkRenderer', function () {
-        return FakeFlowLinkRenderer;
-      });
-
-    });
+  beforeEach(function(){
+    module('octobluApp');
+    renderScope = d3.select('body').append('svg');
   });
 
   afterEach(function(){
-    d3.dispatch.restore();
+    renderScope.remove();
   });
 
-  describe('when flow has empty nodes', function(){
-    beforeEach(function(){
-      inject(function (_FlowRenderer_) {
-        flow = {nodes: [], links: []};
-        sut = new _FlowRenderer_(d3.select('.foo'));
-        sut.render(flow);
+  describe('when flow has empty nodes', function () {
+    beforeEach(function () {
+      inject(function (_FlowLinkRenderer_) {
+        sut = _FlowLinkRenderer_(renderScope);
       });
     });
 
-    it('should call render on FlowNodeRenderer', function () {
-      expect(FakeFlowNodeRenderer.render).to.have.been.calledWith([]);
-    });
-
-    it('should call render on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith([]);
-    });
-
-    it('should listen for nodeMoved on FlowNodeRenderer', function () {
-      expect(FakeFlowNodeRenderer.eventListeners.nodeMoved).to.be.instanceof(Object);
-    });
-
-    it('should listen for nodeMoved on FlowNodeRenderer', function () {
-      expect(FakeFlowNodeRenderer.eventListeners.nodeMoved).to.be.instanceof(Object);
-    });
-
-    it('should call updateLinks when a node moves', function () {
-      FakeFlowNodeRenderer.eventListeners.nodeMoved([]);
-      expect(FakeFlowLinkRenderer.updateLinks).to.be.calledWith([]);
-    });
-
-    it('should listen for nodeChanged on FlowNodeRenderer', function () {
-      expect(FakeFlowNodeRenderer.eventListeners.nodeChanged).to.be.instanceof(Object);
-    });
-
-    it('should emit a flowChange event on dispatch', function () {
-      FakeFlowNodeRenderer.eventListeners.nodeChanged([]);
-      expect(FakeDispatch.flowChanged).to.be.calledWith(flow);
+    it('should return an array with an empty array for some reason', function () {
+      sut.render([]);
+      expect(renderScope.selectAll('.flow-link')[0].length).to.equal(0);
     });
   });
 
-  describe('when flow has two nodes', function() {
-    var node1, node2, link1, link2;
+  describe('when flow has an invalid node', function () {
+    beforeEach(function () {
+      inject(function (_FlowLinkRenderer_) {
+        sut = _FlowLinkRenderer_(renderScope);
+      });
+    });
+
+    it('should return an empty object', function () {
+      sut.render([{}]);
+      expect(renderScope.selectAll('.flow-link').empty()).to.equal(true);
+    });
+  });
+
+  describe('when flow has a valid node', function () {
 
     beforeEach(function () {
-      node1 = {id: '1'};
-      node2 = {id: '2'};
-      link1 = {from: '1'};
-      link2 = {from: '2'};
-      link3 = {to: '1'};
-      inject(function (_FlowRenderer_) {
-        flow = {nodes: [node1, node2], links: [link1, link2, link3]};
-        sut = new _FlowRenderer_(d3.select('.foo'));
-        sut.render(flow);
+      renderScope.append('g')
+        .data([{id: '1', x: 500, y: 500}])
+        .classed('flow-node', true);
+
+      inject(function (_FlowLinkRenderer_) {
+        sut = _FlowLinkRenderer_(renderScope);
       });
     });
 
-    it('should call render on FlowNodeRenderer', function () {
-      expect(FakeFlowNodeRenderer.render).to.have.been.calledWith([node1, node2]);
-    });
-
-    it('should call render on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith([link1, link2, link3]);
-    });
-
-    it('should call updateLinks when a node moves', function () {
-      FakeFlowNodeRenderer.eventListeners.nodeMoved(node1);
-      expect(FakeFlowLinkRenderer.updateLinks).to.be.calledWith([link1, link3]);
+    it('should return a link object', function () {
+      sut.add([{ from: '1', to: '1'}]);
+      console.log(renderScope.selectAll('.flow-link').data())
+      expect(renderScope.selectAll('.flow-link').length).to.deep.equal(1);
     });
   });
-
 });

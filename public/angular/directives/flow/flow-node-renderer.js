@@ -70,8 +70,6 @@ angular.module('octobluApp')
             });
 
           nodeData.exit().remove();
-
-          return nodeData;
         },
         clear: function () {
           renderScope.selectAll('.flow-node').remove();
