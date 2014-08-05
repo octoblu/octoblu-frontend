@@ -81,7 +81,7 @@ module.exports = function ( app, passport, config ) {
     });
   });
 
-  app.post('/api/signup', function(req, res, next) {
+  app.post('/api/auth/signup', function(req, res, next) {
     delete req.session.user;
     res.clearCookie('skynetuuid', {domain: config.domain});
     res.clearCookie('skynettoken', {domain: config.domain});

@@ -57,14 +57,14 @@
         </div>
 
         <div id="sidebar" class="edit-panel" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">
-            <div class="node-editor">
-                <h3 class="node-editor-header">
-                    <input placeholder="Name" type="text" class="form-control" ng-model="editingNodeName">
-                </h3>
-                <schema-editor control="schemaControl"
-                               model="flowEditor.selectedNode" allow-json-edit="true" additional-properties="true"
-                               schema="flowEditor.flowNodeType.schema"></schema-editor>
-                <button ng-click="updateNodeProperties()" class="btn btn-lg btn-primary save">Update Node</button>
+            <div class="node-editor panel panel-default">
+                <div class="panel-heading">Edit Node</div>
+                <div class="panel-body">
+                    <form ng-submit="updateNode()" class="form">
+                        <div ng-include="flowEditor.flowNodeType.formTemplatePath"></div>
+                        <button type="submit" class="btn btn-lg btn-block btn-primary">Update Node</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div id="sidebar-separator"></div>

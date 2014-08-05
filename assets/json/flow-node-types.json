@@ -5,377 +5,352 @@
         "category": "function",
         "inputs": 1,
         "outputs": 1,
-        "schema": {
+        "formTemplatePath": "/assets/node_forms/delay_form.html"
+    },
+    {
+        "name" : "function",
+        "color":"#fdd0a2",
+        "category": "function",
+        "defaults": {
+            "name": {"value":""},
+            "func": {},
+            "outputs": {"value":1}
+        },
+        "inputs":1,
+        "outputs":1,
+        "icon": "function.png",
+        "formTemplatePath": "/assets/node_forms/function_form.html"
+    },
+    {
+        "name" : "inject",
+        "category": "input",
+        "color":"#a6bbcf",
+        "defaults": {
+            "name": {"value":""},
+            "topic": {"value":""},
+            "payload": {"value":""},
+            "payloadType": {"value":"date"},
+            "repeat": {"value":""},
+            "crontab": {"value":""},
+            "once": {"value":false}
+        },
+        "inputs":0,
+        "outputs":1,
+        "icon": "inject.png",
+        "formTemplatePath": "/assets/node_forms/inject_form.html"
+    },
+    {
+        "name" : "sentiment",
+        "category": "analysis-function",
+        "color":"#E6E0F8",
+        "defaults": {
+            "name": {"value":""}
+        },
+        "inputs":1,
+        "outputs":1,
+        "icon": "arrow-in.png"
+    },
+    {
+        "name" : "xml2js",
+        "category": "advanced-function",
+        "color":"#E6E0F8",
+        "defaults": {
+            "name": {"value":""}
+        },
+        "inputs":1,
+        "outputs":1,
+        "icon": "arrow-in.png"
+    },
+    {
+        "name" : "debug",
+        "category": "output",
+        "defaults": {
+            "name": {"value":""},
+            "active": {"value":true},
+            "complete": {"value":false}
+        },
+        "color":"#87a980",
+        "inputs":1,
+        "outputs":0,
+        "icon": "debug.png",
+        "align": "right"
+    },
+    {
+        "name" : "exec",
+        "category": "advanced-function",
+        "color":"darksalmon",
+        "defaults": {
+            "command": {"value":"","required":true},
+            "append": {"value":""},
+            "useSpawn": {"value":""},
+            "name": {"value":""}
+        },
+        "inputs":1,
+        "outputs":3,
+        "icon": "arrow-in.png",
+        "align": "right"
+    },
+    {
+        "name" : "template",
+        "color":"rgb(243, 181, 103)",
+        "category": "function",
+        "defaults": {
+            "name": {"value":""},
+            "template": {"value":"This is the 'payload': {{payload}}!"}
+        },
+        "inputs":1,
+        "outputs":1,
+        "icon": "template.png"
+    },
+    {
+        "name" : "delay",
+        "category": "function",
+        "color":"#E6E0F8",
+        "schema" : {
             "type": "object",
             "properties": {
-                "timeout": {
-                    "title": "Length of Time",
-                    "type": "integer",
-                    "minimum": 1,
-                    "default": 1,
-                    "required": true
+                "phoneNumber": {
+                    "type": "string"
                 },
-                "timeoutUnits": {
-                    "title": "Unit of Time",
+                "plivoAuthId": {
+                    "type": "string"
+                },
+                "plivoAuthToken": {
                     "type": "string",
-                    "default:": "seconds",
-                    "required": true,
-                    "enum": [
-                        "milliseconds",
-                        "seconds",
-                        "minutes",
-                        "hours",
-                        "days"
-                    ]
-                },
-                "x":  {"type": "hidden"},
-                "y":  {"type": "hidden"},
-                "id": {"type": "hidden"}
+                    "required": true
+                }
             }
+        },
+
+        "defaults": {
+            "name": {"value":""},
+            "pauseType": {"value":"delay", "required":true},
+            "timeout": {"value":"5", "required":true},
+            "timeoutUnits": {"value":"seconds"},
+            "rate": {"value":"1", "required":true},
+            "rateUnits": {"value": "second"},
+            "randomFirst": {"value":"1", "required":true },
+            "randomLast": {"value":"5", "required":true},
+            "randomUnits": {"value": "seconds"}
+        },
+        "inputs":1,
+        "outputs":1,
+        "icon": "timer.png"
+    },
+    {
+        "name" : "comment",
+        "category": "function",
+        "color":"#ffffff",
+        "defaults": {
+            "name": {"value":""},
+            "info": {"value":""}
+        },
+        "inputs":0,
+        "outputs":0,
+        "icon": "file.png"
+    },
+    {
+        "name" : "unknown",
+        "category": "unknown",
+        "color":"#fff0f0",
+        "defaults": {
+            "name": {"value":""}
+        },
+        "inputs":1,
+        "outputs":1,
+        "icon": ""
+    },
+    {
+        "name" : "mqtt",
+        "category": "input",
+        "defaults": {
+            "name": {"value":""},
+            "topic": {"value":"","required":true},
+            "broker": {"type":"mqtt-broker", "required":true}
+        },
+        "color":"#d8bfd8",
+        "inputs":0,
+        "outputs":1,
+        "icon": "bridge.png"
+    },
+    {
+        "name" : "mqtt",
+        "category": "output",
+        "defaults": {
+            "name": {"value":""},
+            "topic": {"value":""},
+            "broker": {"type":"mqtt-broker", "required":true}
+        },
+        "color":"#d8bfd8",
+        "inputs":1,
+        "outputs":0,
+        "icon": "bridge.png",
+        "align": "right"
+    },
+    {
+        "name" : "mqtt-broker",
+        "category": "config",
+        "defaults": {
+            "broker": {"value":"localhost","required":true},
+            "port": {"value":1883,"required":true},
+            "clientid": { "value":"" }
         }
     },
-        {
-            "name" : "sentiment",
-            "category": "analysis-function",
-            "color":"#E6E0F8",
-            "defaults": {
-                "name": {"value":""}
-            },
-            "inputs":1,
-            "outputs":1,
-            "icon": "arrow-in.png"
+    {
+        "name" : "http",
+        "category": "input",
+        "color":"rgb(231, 231, 174)",
+        "defaults": {
+            "name": {"value":""},
+            "url": {"value":"","required":true},
+            "method": {"value":"get","required":true}
         },
-        {
-            "name" : "xml2js",
-            "category": "advanced-function",
-            "color":"#E6E0F8",
-            "defaults": {
-                "name": {"value":""}
-            },
-            "inputs":1,
-            "outputs":1,
-            "icon": "arrow-in.png"
+        "inputs":0,
+        "outputs":1,
+        "icon": "white-globe.png"
+    },
+    {
+        "name" : "http response",
+        "category": "output",
+        "color":"rgb(231, 231, 174)",
+        "defaults": {
+            "name": {"value":""}
         },
-        {
-            "name" : "inject",
-            "category": "input",
-            "color":"#a6bbcf",
-            "defaults": {
-                "name": {"value":""},
-                "topic": {"value":""},
-                "payload": {"value":""},
-                "payloadType": {"value":"date"},
-                "repeat": {"value":""},
-                "crontab": {"value":""},
-                "once": {"value":false}
-            },
-            "inputs":0,
-            "outputs":1,
-            "icon": "inject.png"
+        "inputs":1,
+        "outputs":0,
+        "align": "right",
+        "icon": "white-globe.png"
+    },
+    {
+        "name" : "http request",
+        "category": "function",
+        "color":"rgb(231, 231, 174)",
+        "defaults": {
+            "name": {"value":""},
+            "method":{"value":"GET"},
+            "url":{"value":""}
         },
-        {
-            "name" : "debug",
-            "category": "output",
-            "defaults": {
-                "name": {"value":""},
-                "active": {"value":true},
-                "complete": {"value":false}
-            },
-            "color":"#87a980",
-            "inputs":1,
-            "outputs":0,
-            "icon": "debug.png",
-            "align": "right"
+        "inputs":1,
+        "outputs":1,
+        "align": "right",
+        "icon": "white-globe.png"
+    },
+    {
+        "name" : "websocket",
+        "category": "input",
+        "defaults": {
+            "name": {"value":""},
+            "server": {"type":"websocket-listener"}
         },
-        {
-            "name" : "exec",
-            "category": "advanced-function",
-            "color":"darksalmon",
-            "defaults": {
-                "command": {"value":"","required":true},
-                "append": {"value":""},
-                "useSpawn": {"value":""},
-                "name": {"value":""}
-            },
-            "inputs":1,
-            "outputs":3,
-            "icon": "arrow-in.png",
-            "align": "right"
+        "color":"rgb(215, 215, 160)",
+        "inputs":0,
+        "outputs":1,
+        "icon": "white-globe.png"
+    },
+    {
+        "name" : "websocket",
+        "category": "output",
+        "defaults": {
+            "name": {"value":""},
+            "server": {"type":"websocket-listener", "required":true}
         },
-        {
-            "name" : "function",
-            "color":"#fdd0a2",
-            "category": "function",
-            "defaults": {
-                "name": {"value":""},
-                "func": {},
-                "outputs": {"value":1}
-            },
-            "inputs":1,
-            "outputs":1,
-            "icon": "function.png"
+        "color":"rgb(215, 215, 160)",
+        "inputs":1,
+        "outputs":0,
+        "icon": "white-globe.png",
+        "align": "right"
+    },
+    {
+        "name" : "websocket-listener",
+        "category": "config",
+        "defaults": {
+            "path": {"value":"","required":true },
+            "wholemsg": {"value":"false"}
         },
-        {
-            "name" : "template",
-            "color":"rgb(243, 181, 103)",
-            "category": "function",
-            "defaults": {
-                "name": {"value":""},
-                "template": {"value":"This is the 'payload': {{payload}}!"}
-            },
-            "inputs":1,
-            "outputs":1,
-            "icon": "template.png"
+        "inputs":0,
+        "outputs":0
+    },
+    {
+        "name" : "tcp",
+        "category": "input",
+        "color":"Silver",
+        "defaults": {
+            "server": {"value":"server","required":true},
+            "host": {"value":""},
+            "port": {"value":"","required":true},
+            "datamode":{"value":"stream"},
+            "datatype":{"value":"buffer"},
+            "newline":{"value":""},
+            "topic": {"value":""},
+            "name": {"value":""}
         },
-        {
-            "name" : "delay",
-            "category": "function",
-            "color":"#E6E0F8",
-            "schema" : {
-                "type": "object",
-                "properties": {
-                    "phoneNumber": {
-                        "type": "string"
-                    },
-                    "plivoAuthId": {
-                        "type": "string"
-                    },
-                    "plivoAuthToken": {
-                        "type": "string",
-                        "required": true
-                    }
-                }
-            },
-
-            "defaults": {
-                "name": {"value":""},
-                "pauseType": {"value":"delay", "required":true},
-                "timeout": {"value":"5", "required":true},
-                "timeoutUnits": {"value":"seconds"},
-                "rate": {"value":"1", "required":true},
-                "rateUnits": {"value": "second"},
-                "randomFirst": {"value":"1", "required":true },
-                "randomLast": {"value":"5", "required":true},
-                "randomUnits": {"value": "seconds"}
-            },
-            "inputs":1,
-            "outputs":1,
-            "icon": "timer.png"
+        "inputs":0,
+        "outputs":1,
+        "icon": "bridge-dash.png"
+    },
+    {
+        "name" : "tcp",
+        "category": "output",
+        "color":"Silver",
+        "defaults": {
+            "host": {"value":"" },
+            "port": {"value":""},
+            "beserver": {"value":"client","required":true},
+            "base64": {"value":false,"required":true},
+            "name": {"value":""}
         },
-        {
-            "name" : "comment",
-            "category": "function",
-            "color":"#ffffff",
-            "defaults": {
-                "name": {"value":""},
-                "info": {"value":""}
-            },
-            "inputs":0,
-            "outputs":0,
-            "icon": "file.png"
+        "inputs":1,
+        "outputs":0,
+        "icon": "bridge-dash.png",
+        "align": "right"
+    },
+    {
+        "name" : "udp",
+        "category": "input",
+        "color":"Silver",
+        "defaults": {
+            "name": {"value":""},
+            "iface": {"value":""},
+            "port": {"value":"","required":true},
+            "datatype": {"value":"buffer","required":true},
+            "multicast": {"value":"false"},
+            "group": {"value":"" }
         },
-        {
-            "name" : "unknown",
-            "category": "unknown",
-            "color":"#fff0f0",
-            "defaults": {
-                "name": {"value":""}
-            },
-            "inputs":1,
-            "outputs":1,
-            "icon": ""
+        "inputs":0,
+        "outputs":1,
+        "icon": "bridge-dash.png"
+    },
+    {
+        "name" : "udp",
+        "category": "output",
+        "color":"Silver",
+        "defaults": {
+            "name": {"value":""},
+            "addr": {"value":""},
+            "iface": {"value":""},
+            "port": {"value":""},
+            "outport": {"value":""},
+            "base64": {"value":false,"required":true},
+            "multicast": {"value":"false"}
         },
-        {
-            "name" : "mqtt",
-            "category": "input",
-            "defaults": {
-                "name": {"value":""},
-                "topic": {"value":"","required":true},
-                "broker": {"type":"mqtt-broker", "required":true}
-            },
-            "color":"#d8bfd8",
-            "inputs":0,
-            "outputs":1,
-            "icon": "bridge.png"
+        "inputs":1,
+        "outputs":0,
+        "icon": "bridge-dash.png",
+        "align": "right"
+    },
+    {
+        "name": "switch",
+        "color": "#E2D96E",
+        "category": "function",
+        "defaults": {
+            "name": {"value":""},
+            "property": {"value":"payload", "required":true},
+            "rules": {"value":[{"t":"eq", "v":""}]},
+            "checkall": {"value":"true", "required":true},
+            "outputs": {"value":1}
         },
-        {
-            "name" : "mqtt",
-            "category": "output",
-            "defaults": {
-                "name": {"value":""},
-                "topic": {"value":""},
-                "broker": {"type":"mqtt-broker", "required":true}
-            },
-            "color":"#d8bfd8",
-            "inputs":1,
-            "outputs":0,
-            "icon": "bridge.png",
-            "align": "right"
-        },
-        {
-            "name" : "mqtt-broker",
-            "category": "config",
-            "defaults": {
-                "broker": {"value":"localhost","required":true},
-                "port": {"value":1883,"required":true},
-                "clientid": { "value":"" }
-            }
-        },
-        {
-            "name" : "http",
-            "category": "input",
-            "color":"rgb(231, 231, 174)",
-            "defaults": {
-                "name": {"value":""},
-                "url": {"value":"","required":true},
-                "method": {"value":"get","required":true}
-            },
-            "inputs":0,
-            "outputs":1,
-            "icon": "white-globe.png"
-        },
-        {
-            "name" : "http response",
-            "category": "output",
-            "color":"rgb(231, 231, 174)",
-            "defaults": {
-                "name": {"value":""}
-            },
-            "inputs":1,
-            "outputs":0,
-            "align": "right",
-            "icon": "white-globe.png"
-        },
-        {
-            "name" : "http request",
-            "category": "function",
-            "color":"rgb(231, 231, 174)",
-            "defaults": {
-                "name": {"value":""},
-                "method":{"value":"GET"},
-                "url":{"value":""}
-            },
-            "inputs":1,
-            "outputs":1,
-            "align": "right",
-            "icon": "white-globe.png"
-        },
-        {
-            "name" : "websocket",
-            "category": "input",
-            "defaults": {
-                "name": {"value":""},
-                "server": {"type":"websocket-listener"}
-            },
-            "color":"rgb(215, 215, 160)",
-            "inputs":0,
-            "outputs":1,
-            "icon": "white-globe.png"
-        },
-        {
-            "name" : "websocket",
-            "category": "output",
-            "defaults": {
-                "name": {"value":""},
-                "server": {"type":"websocket-listener", "required":true}
-            },
-            "color":"rgb(215, 215, 160)",
-            "inputs":1,
-            "outputs":0,
-            "icon": "white-globe.png",
-            "align": "right"
-        },
-        {
-            "name" : "websocket-listener",
-            "category": "config",
-            "defaults": {
-                "path": {"value":"","required":true },
-                "wholemsg": {"value":"false"}
-            },
-            "inputs":0,
-            "outputs":0
-        },
-        {
-            "name" : "tcp",
-            "category": "input",
-            "color":"Silver",
-            "defaults": {
-                "server": {"value":"server","required":true},
-                "host": {"value":""},
-                "port": {"value":"","required":true},
-                "datamode":{"value":"stream"},
-                "datatype":{"value":"buffer"},
-                "newline":{"value":""},
-                "topic": {"value":""},
-                "name": {"value":""}
-            },
-            "inputs":0,
-            "outputs":1,
-            "icon": "bridge-dash.png"
-        },
-        {
-            "name" : "tcp",
-            "category": "output",
-            "color":"Silver",
-            "defaults": {
-                "host": {"value":"" },
-                "port": {"value":""},
-                "beserver": {"value":"client","required":true},
-                "base64": {"value":false,"required":true},
-                "name": {"value":""}
-            },
-            "inputs":1,
-            "outputs":0,
-            "icon": "bridge-dash.png",
-            "align": "right"
-        },
-        {
-            "name" : "udp",
-            "category": "input",
-            "color":"Silver",
-            "defaults": {
-                "name": {"value":""},
-                "iface": {"value":""},
-                "port": {"value":"","required":true},
-                "datatype": {"value":"buffer","required":true},
-                "multicast": {"value":"false"},
-                "group": {"value":"" }
-            },
-            "inputs":0,
-            "outputs":1,
-            "icon": "bridge-dash.png"
-        },
-        {
-            "name" : "udp",
-            "category": "output",
-            "color":"Silver",
-            "defaults": {
-                "name": {"value":""},
-                "addr": {"value":""},
-                "iface": {"value":""},
-                "port": {"value":""},
-                "outport": {"value":""},
-                "base64": {"value":false,"required":true},
-                "multicast": {"value":"false"}
-            },
-            "inputs":1,
-            "outputs":0,
-            "icon": "bridge-dash.png",
-            "align": "right"
-        },
-        {
-            "name": "switch",
-            "color": "#E2D96E",
-            "category": "function",
-            "defaults": {
-                "name": {"value":""},
-                "property": {"value":"payload", "required":true},
-                "rules": {"value":[{"t":"eq", "v":""}]},
-                "checkall": {"value":"true", "required":true},
-                "outputs": {"value":1}
-            },
-            "inputs": 1,
-            "outputs": 1,
-            "icon": "switch.png"
-        }
+        "inputs": 1,
+        "outputs": 1,
+        "icon": "switch.png"
+    }
 ]
