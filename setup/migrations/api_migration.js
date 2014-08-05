@@ -11,14 +11,19 @@ function ApiMigration(apiInfo) {
 	}
 
 	this.add = function() {
-		api = {};
-		api.enabled = true;
-		api.name = self.apiInfo.name; 
-		api.application = {};
+		api 				= {};
+		api.application 	= {};
 		api.application.resources = [];
-		api.auth = self.apiInfo.auth_type;
 
-		api.oauth = self.apiInfo.oauth;	
+		api.enabled 		= apiInfo.enabled || true;
+		api.name 			= self.apiInfo.name || ''; 
+		api.logo 			= self.apiInfo.logo || '';		
+		api.auth_strategy 	= apiInfo.auth_strategy || 'none';
+		api.description		= apiInfo.description || '';
+		api.documentation	= apiInfo.documentation || '';
+		api.useCustom		= apiInfo.useCustom || true;
+		api.oauth 			= self.apiInfo.oauth;
+
 		db.apis.save(api);
 		return api;
 	};
@@ -37,20 +42,22 @@ function ApiMigration(apiInfo) {
 		if(nodeType) {
 			printjson('updating nodeType...');
 			nodeType.channel = api;
+			nodeType.enabled = true;
 			db.nodetypes.save(nodeType);
 		} else {
 			printjson('adding nodeType...');
 			nodeType = {
-			    name : api.name || 'null',
+			    name 		: api.name || 'null',
+			    enabled 	: true,
 			    description : api.description || '',
-			    logo :  api.logo,
-			    category : 'channel',
-			    skynet : {
-			        type : 'channel' ,
+			    logo 		: api.logo,
+			    category 	: 'channel',
+			    skynet 		: {
+			        type 	: 'channel' ,
 			        subtype : api.name
 			    },
-			    enabled : api.enabled,
-			    channel: api
+			    enabled 	: api.enabled,
+			    channel 	: api
 			};
 			// printjson(api);
 			db.nodetypes.insert(nodeType);

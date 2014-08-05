@@ -3,7 +3,11 @@ load('api_migration.js');
 var apiInfo = {
 	name			: 'Rdio',
 	existing_id		: '53d15c363e304fe01a0851ee',
-	auth_type		: 'oauth',
+	auth_strategy	: 'oauth',
+	description		: '',
+	documentation	: '',
+	useCustom		: true,
+	logo			: 'https://rdio0img-a.akamaihd.net/user/press/rdio-icon.png',
 	oauth 			: {
 		version			: "1.0",
 		key 			: "8xrf6qedwvp2m5zmwrrhbb2j",
