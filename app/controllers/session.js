@@ -81,19 +81,19 @@ module.exports = function ( app, passport, config ) {
     });
   });
 
-	app.post('/signup', function(req, res, next) {
+  app.post('/api/signup', function(req, res, next) {
     delete req.session.user;
     res.clearCookie('skynetuuid', {domain: config.domain});
     res.clearCookie('skynettoken', {domain: config.domain});
 
-	  passport.authenticate('local-signup', function(err, user, info) {
+    passport.authenticate('local-signup', function(err, user, info) {
       console.log('err', err);
       console.log('user', user);
       console.log('info', info);
-	    if (err) { return next(err); }
-	    if (!user) { return res.redirect('/login'); }
-	    req.logIn(user, function(err) {
-	      if (err) { return next(err); }
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/login'); }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
 
         // Add user to Skynet'
 		    request.post( req.protocol + '://' + app.locals.skynetUrl + '/devices',
