@@ -18,6 +18,7 @@ angular.module('octobluApp')
         }
         //Elastic Search Time Format Dropdowns
         $scope.ESdateFormats = elasticService.getDateFormats();
+	$scope.EStimeModifiers = [ { value:"day", text:"Day" }];
 
         $scope.forms = {};
         // Get user devices
@@ -78,8 +79,10 @@ angular.module('octobluApp')
                 });
 
             }
+	    $scope.leg.myInterval = $scope.forms.EX_aggby;
+	    if ($scope.leg.myInterval == undefined) { $scope.leg.myInterval = "hour"; }
             $scope.leg.facets = { "eventCodes": {"terms": { "field": "eventCode" } },
-                'times': { 'date_histogram': { 'field': 'timestamp', 'interval': "hour"  }  },
+                'times': { 'date_histogram': { 'field': 'timestamp', 'interval': $scope.leg.myInterval  }  },
                 "uuids": { "terms":{"field":"_type"} }
             };
             $scope.leg.aggs = {
@@ -93,6 +96,14 @@ angular.module('octobluApp')
                         "field" : "eventCode"
                     }
                 },
+		"events_by_uuid" : {
+      			"terms": { "field": "_type"},
+      			"aggs" : {
+          			"count_terms": {
+            				"terms": { "field":"eventCode" }
+         			}
+      			}
+    		},
                 "count_by_uuid": {
                     "terms": {
                         "field": "_type"
@@ -101,7 +112,7 @@ angular.module('octobluApp')
                         "events_by_date": {
                             "date_histogram": {
                                 "field": "timestamp",
-                                "interval": "hour"
+                                "interval": $scope.leg.myInterval
                             },
                             "aggs": {
                                 "value_count_terms": {
@@ -154,7 +165,6 @@ angular.module('octobluApp')
                     })
                     };
                 });
-
                 $scope.leg = {"results": data,
                     "total": data.hits.total,
                     "dcEC": data.facets.eventCodes.terms.length,
@@ -171,6 +181,13 @@ angular.module('octobluApp')
                         })
                         };
                     }),
+ 		    "scatter_events_devices" : _.map(data.aggregations.events_by_uuid.buckets, function(key) {
+			return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key),
+				"values": _.map(key.count_terms.buckets, function(item) {
+					return { item:item, x: item.key, size: item.doc_count, y: key.key };
+				})
+			};
+		    }),
                     "scatter": _.map(data.aggregations.count_by_uuid.buckets, function(key) {
                         return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key),
                             "values": _.map(key.events_by_date.buckets, function(item){	

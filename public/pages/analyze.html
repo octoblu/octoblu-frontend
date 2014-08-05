@@ -103,6 +103,10 @@ COMMENTED OUT FOR WHITESPACE
                                     <option ng-repeat="df in ESdateFormats" value="{{df.value}}"
                                             >{{df.text}}</option>
                                 </select>
+				<label for="timebuckets">Aggregate by: </label><select class="form-control" ng-model="forms.EX_aggby">
+					<option selected value="hour">Hour</option>
+					<option ng-repeat="aggby in EStimeModifiers" value="{{aggby.value}}">{{aggby.text}}</option>
+				</select>
                                 </div>
                             </div>
                         </div>
@@ -168,6 +172,22 @@ COMMENTED OUT FOR WHITESPACE
                             <div ng-switch-default>
                                 <div nvd3-scatter-chart show-legend="True" axis-x-label="Hour" axis-x-type="date" axis-x-format="%-m/%-d %-H:%-M"
                                      data="leg.scatter" height="400" ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	    <div class="col-sm-8 dashboard-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Event Counts over Time</h3>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div ng-switch="!!leg ? 1 : 0">
+                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                            <div ng-switch-default>
+                                <div nvd3-scatter-chart y-scale="ordinal" show-legend="True" axis-x-label="Device"
+                                     data="leg.scatter_events_devices" height="400" ></div>
                             </div>
                         </div>
                     </div>
