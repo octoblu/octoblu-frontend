@@ -5,7 +5,7 @@
         "category": "function",
         "inputs": 1,
         "outputs": 1,
-        "templatePath": "/assets/node_forms/delay_form.html"
+        "formTemplatePath": "/assets/node_forms/delay_form.html"
     },
         {
             "name" : "sentiment",
