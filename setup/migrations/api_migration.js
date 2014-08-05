@@ -29,7 +29,9 @@ function ApiMigration(apiInfo) {
 	};
 
 	this.findCustomChannel = function() {
-		return db.apis.findOne({_id: ObjectId(self.apiInfo.existing_id)});
+		return (self.apiInfo.existing_id && self.apiInfo.existing_id.length>0) ?
+			db.apis.findOne({_id: ObjectId(self.apiInfo.existing_id)})
+			: db.apis.findOne({name: self.apiInfo.name, owner: {$exists: true} });
 	};
 
 	this.findCoreChannel = function() {
