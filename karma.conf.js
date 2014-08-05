@@ -39,6 +39,7 @@ module.exports = function(config) {
         "lib/elasticsearch/elasticsearch.angular.js",
         "lib/smoothie/smoothie.js",
         "lib/ng-table/ng-table.js",
+        "lib/angular-ui-ace/ui-ace.js",
 
         "lib/angular-mocks/angular-mocks.js",
 

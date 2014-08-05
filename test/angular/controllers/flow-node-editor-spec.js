@@ -112,8 +112,14 @@ describe('flowNodeEditorController', function () {
         });
 
         it('should updated the selectedNode', function () {
+          var selectedNode = scope.flowEditor.selectedNode;
           scope.updateNode();
-          expect(scope.flowEditor.selectedNode.name).to.equal('Boo');
+          expect(selectedNode.name).to.equal('Boo');
+        });
+
+        it('should clear the selected node', function () {
+          scope.updateNode();
+          expect(scope.flowEditor.selectedNode).to.be.null;
         });
       });
 

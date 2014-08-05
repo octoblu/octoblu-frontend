@@ -59,7 +59,7 @@ angular.module('octobluApp')
 
             signup: function (email, password) {
                 return $http.post('/api/auth/signup', {
-                    email: email,local-signup
+                    email: email,
                     password: password
                 }).then(loginHandler, function (err) {
                     logoutHandler(err);
