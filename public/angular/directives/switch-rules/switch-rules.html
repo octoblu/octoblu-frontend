@@ -1,0 +1,43 @@
+<fieldset>
+  <legend>
+    <div class="row">
+      <div class="col-xs-6">
+        Rules
+      </div>
+      <div class="col-xs-6 text-right">
+        <button type="button" ng-click="addRule()" class="btn btn-default">
+          <i class="fa fa-plus"></i> Add
+        </button>
+      </div>
+    </div>
+  </legend>
+
+  <div ng-repeat="rule in rules" class="form-group">
+    <div class="input-group">
+      <select ng-model="rule.t">
+        <option value="true">is true</option>
+        <option value="false">is false</option>
+        <option value="null">is null</option>
+        <option value="nnull">is not null</option>
+        <option value="else">otherwise</option>
+        <option value="eq">==</option>
+        <option value="neq">!=</option>
+        <option value="lt">&lt;</option>
+        <option value="lte">&lt;=</option>
+        <option value="gt">&gt;</option>
+        <option value="gte">&gt;=</option>
+        <option value="cont">contains</option>
+        <option value="regex">matches regex</option>
+        <option value="btwn" selected="selected">is between</option>
+      </select>
+    </div>
+
+    <div class="input-group" ng-hide="rule.v === undefined">
+      <input ng-model="rule.v">
+    </div>
+
+    <div class="input-group" ng-hide="rule.v2 === undefined">
+      <input ng-model="rule.v2">
+    </div>
+  </div>
+</fieldset>
