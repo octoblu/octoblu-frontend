@@ -5,34 +5,7 @@
         "category": "function",
         "inputs": 1,
         "outputs": 1,
-        "schema": {
-            "type": "object",
-            "properties": {
-                "timeout": {
-                    "title": "Length of Time",
-                    "type": "integer",
-                    "minimum": 1,
-                    "default": 1,
-                    "required": true
-                },
-                "timeoutUnits": {
-                    "title": "Unit of Time",
-                    "type": "string",
-                    "default:": "seconds",
-                    "required": true,
-                    "enum": [
-                        "milliseconds",
-                        "seconds",
-                        "minutes",
-                        "hours",
-                        "days"
-                    ]
-                },
-                "x":  {"type": "hidden"},
-                "y":  {"type": "hidden"},
-                "id": {"type": "hidden"}
-            }
-        }
+        "templatePath": "/assets/node_forms/delay_form.html"
     },
         {
             "name" : "sentiment",
