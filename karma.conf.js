@@ -43,6 +43,8 @@ module.exports = function(config) {
         "public/lib/angular-mocks/angular-mocks.js",
         "public/lib/chai/chai.js",
 
+        "public/assets/javascripts/skynet.bundle.js",
+
         "public/angular/**/*.js",
         "test/angular/test_helper.js",
         "test/angular/**/*-spec.js"
@@ -63,7 +65,8 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['dots', 'growl'],
+
 
 
     // web server port

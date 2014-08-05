@@ -5,6 +5,15 @@ module.exports = function(app, passport) {
     var skynet = require('skynet');
     var security = require('./controllers/middleware/security');
 
+    var FlowController = require('./controllers/flow');
+    var flowController = new FlowController();
+
+    var FlowDeployController = require('./controllers/flow-deploy');
+    var flowDeployController = new FlowDeployController();
+
+    var FlowNodeTypeController = require('./controllers/flow-node-type');
+    var flowNodeTypeController = new FlowNodeTypeController();
+
     //set the skynetUrl
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
 
@@ -40,7 +49,7 @@ module.exports = function(app, passport) {
         require('./controllers/device')(app, config);
         require('./controllers/elastic')(app);
         require('./controllers/message')(app, conn);
-        require('./controllers/redport')(app);
+        require('./controllers/redport')(app, config);
         require('./controllers/session')(app, passport, config);
         require('./controllers/unlink')(app);
         require('./controllers/user')(app);
@@ -49,6 +58,11 @@ module.exports = function(app, passport) {
         require('./controllers/node')(app);
         require('./controllers/designer')(app);
         require('./controllers/invitation')(app, passport, config);
+
+        app.put('/api/flows/:id', flowController.updateOrCreate);
+        app.post('/api/flow_deploys', flowDeployController.create);
+
+        app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {

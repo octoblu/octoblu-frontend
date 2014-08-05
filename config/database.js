@@ -24,6 +24,5 @@ var config = {
 };
 
 module.exports = function (environment) {
-    console.log(environment);
     return config[environment];
 };

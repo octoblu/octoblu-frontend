@@ -1,8 +1,8 @@
 {
   "name": "octoblu",
-  "version": "0.3.5-alpha",
-  "homepage": "https://github.com/skynetim/octoblu",
-  "description": "Octoblu is a device automation platform built on top of Skynet.im",
+  "version": "0.5.5",
+  "homepage": "https://github.com/octoblu/octoblu",
+  "description": "Octoblu is a device automation platform built on top of Meshblu",
   "appPath": "public",
   "keywords": [
     "octoblu",
@@ -15,22 +15,14 @@
   ],
   "license": "commercial",
   "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "public/lib",
-    "test",
-    "tests",
-    "design"
-  ],
   "dependencies": {
     "jquery": "~2.1.1",
-    "angular": "~1.2.20",
-    "angular-animate": "~1.2.20",
-    "angular-sanitize": "~1.2.20",
-    "angular-cookies": "~1.2.20",
-    "angular-resource": "~1.2.20",
-    "angular-mocks": "~1.2.20",
+    "angular": "~1.2.21",
+    "angular-animate": "~1.2.21",
+    "angular-sanitize": "~1.2.21",
+    "angular-cookies": "~1.2.21",
+    "angular-resource": "~1.2.21",
+    "angular-mocks": "~1.2.21",
     "jquery-ui": "~1.10.4",
     "angular-ui-router": "~0.2.10",
     "modernizr": "~2.8.2",
@@ -38,9 +30,8 @@
     "angular-ui-utils": "~0.1.1",
     "d3": "~3.4.8",
     "jquery-migrate": "~1.2.1",
-    "bootstrap-switch": "~3.0.1",
     "angular-bootstrap": "~0.11.0",
-    "json-editor": "~0.6.11",
+    "json-editor": "~0.7.4",
     "elastic.js": "~1.1.1",
     "elasticsearch": "~2.2.0",
     "smoothie": "https://github.com/joewalnes/smoothie.git",
@@ -54,8 +45,6 @@
     "bootstrap": "~3.2.0"
   },
   "resolutions": {
-    "jquery-ui": "~1.10.4",
-    "jquery": "~2.1.1",
     "d3": "~3.4.8"
   },
   "devDependencies": {

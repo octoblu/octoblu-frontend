@@ -26,6 +26,8 @@ module.exports = function (app, passport, config) {
         res.send(req.user);
     });
 
+    app.get('/auth/logout', logoutAndRedirectRoute);
+
     function loginRoute(req, res) {
         var user = req.user;
 
@@ -54,7 +56,18 @@ module.exports = function (app, passport, config) {
         if (req.logout) {
             req.logout();
         }
-        res.send(200);
+        res.send(204);
+    }
+
+    function logoutAndRedirectRoute(req, res) {
+        res.clearCookie('skynetuuid');
+        res.clearCookie('skynettoken');
+
+        if (req.logout) {
+            req.logout();
+        }
+
+        res.redirect('/');
     }
 
     function updatePassword (req, res) {
@@ -126,7 +139,9 @@ module.exports = function (app, passport, config) {
     };
 
     var getOAuthCallbackUrl = function (req, channelid) {
-        return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        return (req.headers.host.indexOf('octoblu.com')>=0) ? 'https://'+ req.headers.host + '/api/auth/' + channelid + '/callback/custom' 
+          : req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        // return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
     };
 
     var handleApiCompleteRedirect = function (res, channelid, err) {
@@ -164,8 +179,7 @@ module.exports = function (app, passport, config) {
     app.get('/api/auth/:id/custom', function (req, res) {
 
         Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
-
-            if (api.oauth.version == '2.0') {
+            if (api.oauth.version === '2.0') {
                 if (api.oauth.isManual) {
                     console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
                     // manually handle oauth...
@@ -354,9 +368,9 @@ module.exports = function (app, passport, config) {
                         var token = data.access_token;
 
                         if (token) {
-                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
+                            user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + channelid);
+                                console.log('saved oauth token: ' + token);
                                 res.redirect('/connect/nodes/channel/' + channelid);
                             });
                         }
@@ -371,13 +385,16 @@ module.exports = function (app, passport, config) {
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     }, function (error, result) {
                         var token = result;
+
+                        token = token.access_token || token;
+
                         if (error) {
                             console.log('Access Token Error', error);
                             res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
                         } else {
-                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
+                            user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + _id);
+                                console.log('saved oauth token: ' + token);
                                 res.redirect('/connect/nodes/channel/' + channelid);
                             });
                         }

@@ -137,29 +137,34 @@ var initializeRED = function() {
         });
     };
 
-    function loadSettings() {
+    function loadSettings(scope, callback) {
         RED.rpc('settings', function(err, data){
             console.log('settings', err, data);
             RED.settings = data;
-            loadNodes();
+            loadNodes(scope, callback);
             RED.library.loadFlowLibrary();
         });
     }
-    function loadNodes() {
-        RED.rpc('getNodes', function(err, data) {
-                $("body").append(data);
-                $(".palette-spinner").hide();
-                $(".palette-scroll").show();
-                $("#palette-search").show();
-                loadFlows();
-        });
+
+    function loadNodes(scope, callback) {
+        $(".palette-spinner").hide();
+        $(".palette-scroll").show();
+        $("#palette-search").show();
+
+        window.random_html_ready = function(){
+            loadFlows(callback);
+        };
+
+        scope.nodeTemplateLocation = '/assets/design/red/ui/designer-node-templates.html';
+        scope.$apply();
     }
 
-    function loadFlows() {
+    function loadFlows(callback) {
         RED.rpc('getFlows',function(err, nodes) {
                 RED.nodes.import(nodes);
                 RED.view.dirty(false);
                 RED.view.redraw();
+                callback();
         });
     }
 
@@ -191,13 +196,18 @@ var initializeRED = function() {
                 token = userToken;
                 port  = userPort;
             }
+            var protocol     = 'wss://';
+            var designerHost = 'designer.octoblu.com';
+
+            if(location.hostname === 'localhost'){
+                protocol     = 'ws://';
+                designerHost = 'localhost';
+            }
 
             var path = location.hostname+":"+location.port+document.location.pathname;
             //TODO place uuid/token and port in from $scope.currentUser.skynetuuid  $scope.currentUser.skynettoken $scope.redPort;
-             path = uuid + ':' + token + '@designer.octoblu.com:' + port;
+            path = protocol + uuid + ':' + token + '@' + designerHost + ':' + port + '/ws';
 //            path = 'localhost:1880';
-            path = path+(path.slice(-1) == "/"?"":"/")+"ws";
-            path = "wss://"+path;
 
             //if you want to point to a different backend host:
             //path = 'ws://localhost:1880/ws';
@@ -279,11 +289,6 @@ var initializeRED = function() {
     RED.keyboard       = RED.initializeKeyboard();
     RED.tabs           = RED.initializeTabs();
     RED.view           = RED.initializeView();
-    RED.sidebar        = RED.initializeSidebar();
-    RED.palette        = RED.initializePalette();
-    RED.sidebar.info   = RED.initializeTabInfo();
-    RED.sidebar.config = RED.initializeTabConfig();
-    RED.editor         = RED.initializeEditor();
     RED.notify         = RED.initializeNotifications();
 
     RED.keyboard.add(/* ? */ 191,{shift:true},function(){showHelp();d3.event.preventDefault();});

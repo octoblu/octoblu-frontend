@@ -13,8 +13,286 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+/*
+  move to a style.less or similar.
+*/
+
+/*This needs to go in a general less file.*/
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+.node-red-container {
+  margin-top: 56px;
+  iframe {
+    margin-top: 15px;
+  }
+  .node-red-spinner {
+    margin-top: 8px;
+  }
+}
+
+.design2.designer-container {
+  #node-red-templates {
+    display: none;
+  }
+  #debug-content {
+    position: inherit;
+  }
+
+  display: flex;
+  flex-direction: column;
+  .page-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex: 1;
+  }
+  .palette {
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    background: #f3f3f3;
+    .palette-search {
+      margin: 5px;
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      justify-content: center;
+      min-height: 28px;
+      border: 1px solid #999;
+      i {
+        padding: 5px;
+        text-align: center;
+      }
+      input {
+        flex: 1;
+        border: none;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  .workspace {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .chart-zoom-controls {
+      text-align: right;
+    }
+  }
+  .edit-panel {
+    min-width: 305px;
+    //    position: absolute;
+    right: 10px;
+    top: 5px;
+    bottom: 10px;
+    /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
+    background-color: #f3f3f3;
+    .node-editor {
+      overflow-x:hidden;
+      .well {
+        border: none;
+        background-color: inherit;
+      }
+      .node-editor-header {
+        text-align: center;
+        margin: 20px 10px 10px;
+        .text-muted;
+        input {
+          font-size:24px;
+          height:auto;
+        }
+      }
+
+      display: flex;
+      flex-direction: column;
+      .schema-editor > div{
+        display: flex;
+        flex-direction: column;
+        h3 {
+          order: 1;
+          display: flex;
+          margin-top: 0;
+          & > .btn-group {
+            flex: 1;
+            &:nth-child(2) {
+              display: none;
+            }
+            &:last-child {
+              margin-right:10px;
+            }
+            button {
+              width: 100%
+            }
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+      .save {
+        margin : 10px;
+      }
+    }
+
+  }
+  .red-tabs-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 28px;
+  }
+  .red-tabs {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    background: #e3e3e3;
+    li:hover {
+      background: #bbb;
+    }
+    li.active {
+      background: #fff;
+      border-bottom: 1px solid #fff;
+      color: #333;
+    }
+  }
+  .red-add-tab {
+    width: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: #e3e3e3;
+    &:hover {
+      background: rgb(227, 227, 227);
+    }
+    a {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #999;
+    }
+  }
+
+  ul.red-tabs li.active a.red-ui-tab-close {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  ul.red-tabs li.red-ui-add-tab a {
+    padding: 2px 4px;
+  }
+
+  ul.red-tabs {
+    list-style-type: none;
+    padding: 5px 2px 0px 5px;
+    margin: 0;
+    height: 28px;
+    border-bottom: 1px solid #999;
+  }
+
+  ul.red-tabs li {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    //    display: inline-block;
+    border-left: 1px solid #999;
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    background: #e3e3e3;
+    margin: 0 5px 0 0;
+    height: 23px;
+    line-height: 17px;
+    max-width: 150px;
+    width: 14%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  ul.red-tabs li a.red-ui-tab-label {
+    display: block;
+    padding: 3px 16px;
+    color: #666;
+  }
+  ul.red-tabs li {
+    position: relative;
+  }
+
+  ul.red-tabs li a.red-ui-tab-close {
+    background: rgba(227, 227, 227, 0.8);
+    //    position: absolute;
+    right: 2px;
+    top: 2px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0px;
+    border-radius: 5px;
+  }
+
+  ul.tab-config-list {
+    list-style-type: none;
+    padding: 3px;
+    margin: 0;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  ul.tab-config-list li {
+    max-width: 400px;
+    font-size: 13px;
+    background: #f3f3f3;
+    margin: 10px auto;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 3px 8px;
+  }
+  div.tab-config-list-type {
+  }
+
+  div.tab-config-list-entry {
+    position: relative;
+    margin: 4px 0;
+    padding: 8px 4px 8px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  div.tab-config-list-entry:hover {
+    background: #f6f6f6;
+  }
+
+  div.tab-config-list-label {
+  }
+  div.tab-config-list-users {
+    right: 3px;
+    top: 3px;
+    bottom: 3px;
+    line-height: 27px;
+    font-size: 11px;
+    background: #f6f6f6;
+    float: right;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 1px 5px;
+  }
+
   #dropTarget {
-    position: absolute;
+    //    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
@@ -62,24 +340,20 @@
     padding-right: 10px;
   }
 
-  #workspace {
-    margin-left: 160px;
-    overflow: hidden;
-  }
+  //  #workspace {
+  //    margin-left: 160px;
+  //    overflow: hidden;
+  //  }
 
   #chart {
     overflow: auto;
     background: #e3e3e3;
-    position: absolute;
-    bottom: 0px;
-    top: 30px;
-    left: 0px;
-    right: 0px;
+    //    position: absolute;
   }
 
   #workspace-toolbar {
     display: none;
-    position: absolute;
+    //    position: absolute;
     top: 30px;
     left: 0;
     right: 18px;
@@ -87,25 +361,9 @@
     background: #f3f3f3;
   }
 
-  #chart-zoom-controls {
-    padding-top: 3px;
-    text-align: right;
-    float: right;
-  }
-
-  #palette {
-    background: #f3f3f3;
-    width: 140px;
-    text-align: center;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
   .palette-scroll {
     display: none;
-    position: absolute;
+    //    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -118,42 +376,9 @@
   .palette-spinner {
     margin-top: 40px;
   }
-  #palette-search {
-    position: absolute;
-    display: none;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    background: #f3f3f3;
-    text-align: center;
-    height: 35px;
-    padding: 3px;
-    border-top: 1px solid #999;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
+
   #palette-search-clear {
     display: none;
-  }
-
-  #palette-search input {
-    border-radius: 0;
-    border: none;
-    width: 100%;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    padding: 3px 17px;
-    margin: 0px;
-    height: 30px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-
-  }
-  #palette-search input:focus {
-    border: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
   }
 
   .palette-category {
@@ -167,12 +392,15 @@
     padding-bottom: 3px;
   }
 
-  .palette-header {
+  .panel-header {
     background: #f3f3f3;
     border-radius: 3px;
     cursor: pointer;
     text-align: left;
     padding: 3px;
+  }
+  .palette-header {
+    .panel-header;
   }
   .palette-header i {
     float: right;
@@ -191,99 +419,23 @@
   .palette-header span {
     clear: both;
   }
-  .palette_label {
-    line-height: 25px;
-    text-align: center;
-
-  }
-  .palette_node {
-    cursor: move;
-    font-size: 13px;
-    background: #ddd;
-    margin: 10px auto;
-    height: 25px;
-    border-radius: 6px;
-    border: 2px solid #999;
-    background-position: 5% 50%;
-    background-repeat: no-repeat;
-    width: 90px;
-    background-size: contain;
-    position: relative;
-  }
-  .palette_node:hover {
-    border-color: #ff7f0e;
-    background-color: #eee;
-  }
-  .palette_port {
-    position: absolute;
-    top: 8px;
-    left: -5px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    background: #d9d9d9;
-    border-radius: 3px;
-    width: 10px;
-    height: 10px;
-    border: 1px solid #999;
-  }
-  .palette_port_output {
-    left: 85px;
-  }
-
-  .palette_node:hover .palette_port {
-    border-color: #999;
-    background-color: #eee;
-  }
-
-  #sidebar {
-    background: #fff;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-  }
-  #sidebar.closing {
-    background: #eee;
-    border-color: #900;
-    border-style: dashed;
-  }
 
   /* ---------- Layout ---------- */
-  #main-container {
-    position: absolute;
-    top: 140px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: hidden;
-  }
-  #palette {
-    position: absolute;
-    top: 5px;
-    left: 10px;
-    bottom: 10px;
-  }
-  #workspace {
-    position: absolute;
+  .main-container {
+    display: flex;
+    flex-direction: horizontal;
+    flex: 1;
+    height: 80vh;
     margin: 0;
-    top: 5px;
-    left: 160px;
-    bottom: 10px;
-    right: 330px;
+
+    .workspace {
+      margin: 0 10px;
+    }
   }
-  #chart-zoom-controls {
-    position: absolute;
-    bottom: 30px;
-    right: 350px;
-  }
-  #sidebar {
-    width: 305px;
-    position: absolute;
-    right: 10px;
-    top: 5px;
-    bottom: 10px;
-  }
+
   #sidebar-separator {
     width: 10px;
-    position: absolute;
+    //    position: absolute;
     right: 320px;
     top: 5px;
     bottom: 10px;
@@ -295,12 +447,6 @@
   }
   .sidebar-closed > #sidebar-separator {
     display: none;
-  }
-  .sidebar-closed > #workspace {
-    right: 10px !important;
-  }
-  .sidebar-closed > #chart-zoom-controls {
-    right: 30px !important;
   }
 
   /* ---------- end layout ---------- */
@@ -340,14 +486,15 @@
     margin-left: 20px;
   }
 
-  #workspace, #palette, #sidebar {
+  .workspace, .palette, .edit-panel {
     border: 1px solid #000;
     border-radius: 3px;
+    overflow: scroll;
   }
   #sidebar-content {
     font-size: 1.2em;
     overflow-y: auto;
-    position: absolute;
+    //    position: absolute;
     top: 30px;
     left: 0px;
     right: 0;
@@ -488,7 +635,7 @@
     stroke-dasharray: 10, 4;
   }
   #shade {
-    position: absolute;
+    //    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -693,164 +840,9 @@
     border-radius: 5px;
     overflow: hidden;
   }
-  #workspace-tabs {
-    margin-right: 28px;
-  }
-  #workspace-add-tab {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 29px;
-    width: 28px;
-    border-bottom: 1px solid #999;
-  }
-  #btn-workspace-add-tab {
-    display: inline-block;
-    width: 100%;
-    background: #e3e3e3;
-    height: 100%;
-    line-height: 28px;
-    text-align: center;
-  }
+
   #btn-workspace-add-tab:hover {
     background: #efefef;
-  }
-
-  ul.red-ui-tabs {
-    list-style-type: none;
-    padding: 5px 2px 0px 5px;
-    margin: 0;
-    display: block;
-    height: 28px;
-    border-bottom: 1px solid #999;
-    background: #e3e3e3;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  ul.red-ui-tabs li {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    display: inline-block;
-    border-left: 1px solid #999;
-    border-top: 1px solid #999;
-    border-right: 1px solid #999;
-    border-bottom: 1px solid #999;
-    background: #e3e3e3;
-    margin: 0 5px 0 0;
-    height: 23px;
-    line-height: 17px;
-    max-width: 150px;
-    width: 14%;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  ul.red-ui-tabs li a.red-ui-tab-label {
-    display: block;
-    padding: 3px 16px;
-    color: #666;
-  }
-  ul.red-ui-tabs li {
-    position: relative;
-  }
-
-  ul.red-ui-tabs li a.red-ui-tab-close {
-    background: rgba(227, 227, 227, 0.8);
-    position: absolute;
-    right: 2px;
-    top: 2px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    padding: 0px;
-    border-radius: 5px;
-  }
-  ul.red-ui-tabs li a.red-ui-tab-close:hover {
-    background: #bbb !important;
-  }
-  ul.red-ui-tabs li a:hover {
-    text-decoration: none;
-    background: #f0f0f0;
-  }
-
-  ul.red-ui-tabs li.active {
-    background: #fff;
-    border-bottom: 1px solid #fff;
-  }
-  ul.red-ui-tabs li.active a {
-    color: #333;
-  }
-  ul.red-ui-tabs li.active a.red-ui-tab-close {
-    background: rgba(255, 255, 255, 0.8);
-  }
-  ul.red-ui-tabs li.active a.red-ui-tab-label:hover {
-    background: #fff;
-  }
-  ul.red-ui-tabs li.red-ui-add-tab {
-    width: 25px;
-    border-top-right-radius: 15px;
-    line-height: 22px;
-  }
-  ul.red-ui-tabs li.red-ui-add-tab a {
-    padding: 2px 4px;
-  }
-
-  ul.tab-config-list {
-    list-style-type: none;
-    padding: 3px;
-    margin: 0;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  ul.tab-config-list li {
-    max-width: 400px;
-    font-size: 13px;
-    background: #f3f3f3;
-    margin: 10px auto;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    padding: 3px 8px;
-  }
-  div.tab-config-list-type {
-  }
-
-  div.tab-config-list-entry {
-    position: relative;
-    margin: 4px 0;
-    padding: 8px 4px 8px 10px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  div.tab-config-list-entry:hover {
-    background: #f6f6f6;
-  }
-
-  div.tab-config-list-label {
-  }
-  div.tab-config-list-users {
-    position: absolute;
-    right: 3px;
-    top: 3px;
-    bottom: 3px;
-    line-height: 27px;
-    font-size: 11px;
-    background: #f6f6f6;
-    float: right;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    padding: 1px 5px;
   }
 
   i.spinner {
@@ -863,5 +855,52 @@
     background: url(../../public/assets/design/spin.svg) no-repeat 50% 50%;
     background-size: contain
   }
+}
 
+.palette_node {
+  cursor: move;
+  font-size: 13px;
+  background: #ddd;
+  margin: 10px auto;
+  height: 28px;
+  border-radius: 6px;
+  border: 2px solid #999;
+  background-position: 5% 50%;
+  background-repeat: no-repeat;
+  width: 90px;
+  background-size: contain;
+  position: relative;
+}
+
+.palette_node:hover {
+  border-color: #ff7f0e;
+  background-color: #eee;
+
+  .palette_port {
+    border-color: #999;
+    background-color: #eee;
+  }
+}
+
+.palette_label {
+  line-height: 25px;
+  text-align: center;
+}
+
+.palette_port {
+  position: absolute;
+  top: 8px;
+  left: -5px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background: #d9d9d9;
+  border-radius: 3px;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #999;
+}
+
+.palette_port_output {
+  left: 85px;
+}
 

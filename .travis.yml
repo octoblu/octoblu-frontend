@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "0.10"
+services:
+  - mongodb
 cache:
   bundler: true
   directories:
@@ -25,6 +27,7 @@ deploy:
     app-id: 42f87aa6-8b69-47d5-b2a3-dcc9511281be
     on:
       repo: octoblu/octoblu
+      branch: master
   - provider: opsworks
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
     secret_access_key:
@@ -32,6 +35,7 @@ deploy:
     app-id: 6829c218-74d9-4ff4-a7dc-9b5f810a05fe
     on:
       repo: octoblu/octoblu
+      branch: master
   # staging
   - provider: s3
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
@@ -42,7 +46,7 @@ deploy:
     skip_cleanup: true
     local-dir: build
     on:
-      branch: 'develop'
+      branch: staging
   - provider: opsworks
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
     secret_access_key:
@@ -50,7 +54,7 @@ deploy:
     app-id: 1d628748-95d0-45bf-be4e-bf9d53630243
     on:
       repo: octoblu/octoblu
-      branch: 'develop'
+      branch: staging
   - provider: opsworks
     access_key_id: AKIAJCOOWS3NWOOZRDGQ
     secret_access_key:
@@ -58,12 +62,12 @@ deploy:
     app-id: dd136ea2-946d-4301-a74b-f19ea1ae2518
     on:
       repo: octoblu/octoblu
-      branch: 'develop'
+      branch: staging
 
 branches:
   only:
     - master
-    - develop
+    - staging
 before_script:
   - node_modules/.bin/gulp
   - node_modules/.bin/bower install

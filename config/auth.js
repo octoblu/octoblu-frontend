@@ -79,13 +79,18 @@ var config = {
             templateUrl : '/templates/invitation.jade'
         }
     },
-      'skynet' : {
-           'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
-          // 'host' : process.env.SKYNET_HOST || 'skynet.im',
-          // 'port' : process.env.SKYNET_PORT || 80
-          'host' : process.env.SKYNET_HOST || 'skynet.im',
-          'port' : process.env.SKYNET_PORT || 80
-      },
+    'skynet' : {
+         'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
+        // 'host' : process.env.SKYNET_HOST || 'skynet.im',
+        // 'port' : process.env.SKYNET_PORT || 80
+        'host' : process.env.SKYNET_HOST || 'skynet.im',
+        'port' : process.env.SKYNET_PORT || 80
+    },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.env.DESIGNER_DOCKER_PORT
+    },
     'port' : process.env.PORT || 8080,
     'sslPort' : process.env.SSL_PORT || 8081,
     'domain': null
@@ -177,11 +182,16 @@ var config = {
           }
       },
 
-      'skynet' : {
-           'host' : process.env.SKYNET_HOST || 'skynet.im',
-          'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
-           'port' : process.env.SKYNET_PORT || 80
-      },
+    'skynet' : {
+         'host' : process.env.SKYNET_HOST || 'skynet.im',
+        'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
+         'port' : process.env.SKYNET_PORT || 80
+    },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.DESIGNER_DOCKER_PORT
+    },
     'port' : process.env.PORT || 80,
     'sslPort' : process.env.SSL_PORT || 443,
     'domain': '.octoblu.com'
@@ -193,27 +203,19 @@ var config = {
       'callbackURL'   : 'http://staging.octoblu.com/auth/github/callback'
     },
     'facebookAuth' : {
-      'clientID'    : 'INSERT_SECERT_HERE', // your App ID
-      'clientSecret'  : 'INSERT_SECERT_HERE', // your App Secret
+      'clientID'    : '1476628102576653', // your App ID
+      'clientSecret'  : 'd7173aef0ca4636201b38f369e9bda5f', // your App Secret
       'callbackURL'   : 'http://staging.octoblu.com/auth/facebook/callback'
     },
-
     'twitterAuth' : {
       'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
       'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
       'callbackURL'     : 'http://staging.octoblu.com/auth/twitter/callback'
     },
-    // // Meshines
-    // 'googleAuth' : {
-    //   'clientID'    : '541059729530-bbt3n8qh5s8c8m5dm7dh6gojiqqrfrbg.apps.googleusercontent.com',
-    //   'clientSecret'  : 'SVTqhJ7RtsK6zqRcKUZrjxM6',
-    //   'callbackURL'   : 'http://staging.octoblu.com/auth/google/callback'
-    // },
-    // Octoblu
     'googleAuth' : {
-      'clientID'    : '369178117909-psv35jjicbu961aj4ups6h5s2mb08j6m.apps.googleusercontent.com',
-      'clientSecret'  : 'bgqPgsEjZC_F65rKDxp7PwRQ',
-      'callbackURL'   : 'http://staging.octoblu.com/auth/google/callback'
+      'clientID'    : '413378006378-c72poeh9lsab0ut86g9ejepr2ucjpsh8.apps.googleusercontent.com',
+      'clientSecret'  : 'sN79Qi65ykVRjSvZAUBnB5Pp',
+      'callbackURL'   : 'https://staging.octoblu.com/auth/google/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
@@ -256,25 +258,30 @@ var config = {
     'musixmatch' : {
       'base_url'       : 'http://api.musixmatch.com/ws/1.1/'
     },
-      email : {
-          'SMTP': {
-              'Gmail': {
-                  'user': 'octoblu@skynet.im',
-                  'password': 'hacktheplanet1'
-              }
+    email : {
+        'SMTP': {
+            'Gmail': {
+                'user': 'octoblu@skynet.im',
+                'password': 'hacktheplanet1'
+            }
 
-          },
+        },
 
-          invitation: {
-              templateUrl: '/templates/invitation.jade'
-          }
-      },
+        invitation: {
+            templateUrl: '/templates/invitation.jade'
+        }
+    },
 
-      'skynet' : {
-           'host' : process.env.SKYNET_HOST || 'skynet.im',
-          'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
-           'port' : process.env.SKYNET_PORT || 80
-      },
+    'skynet' : {
+         'host' : process.env.SKYNET_HOST || 'skynet.im',
+        'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
+         'port' : process.env.SKYNET_PORT || 80
+    },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.DESIGNER_DOCKER_PORT
+    },
     'port' : process.env.PORT || 80,
     'sslPort' : process.env.SSL_PORT || 443,
     'domain': '.octoblu.com'

@@ -56,6 +56,16 @@ angular.module('octobluApp')
                 });
             },
 
+            signup: function (email, password) {
+                return $http.post('/signup', {
+                    email: email,
+                    password: password
+                }).then(loginHandler, function (err) {
+                    logoutHandler(err);
+                    throw err;
+                });
+            },
+
             logout: function () {
                 return $http.delete('/api/auth').then(logoutHandler, logoutHandler);
             },

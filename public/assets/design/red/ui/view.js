@@ -65,39 +65,6 @@ RED.initializeView = function() {
         .attr('height', space_height)
         .attr('fill','#fff');
 
-    //var gridScale = d3.scale.linear().range([0,2000]).domain([0,2000]);
-    //var grid = vis.append('g');
-    //
-    //grid.selectAll("line.horizontal").data(gridScale.ticks(100)).enter()
-    //    .append("line")
-    //        .attr(
-    //        {
-    //            "class":"horizontal",
-    //            "x1" : 0,
-    //            "x2" : 2000,
-    //            "y1" : function(d){ return gridScale(d);},
-    //            "y2" : function(d){ return gridScale(d);},
-    //            "fill" : "none",
-    //            "shape-rendering" : "crispEdges",
-    //            "stroke" : "#eee",
-    //            "stroke-width" : "1px"
-    //        });
-    //grid.selectAll("line.vertical").data(gridScale.ticks(100)).enter()
-    //    .append("line")
-    //        .attr(
-    //        {
-    //            "class":"vertical",
-    //            "y1" : 0,
-    //            "y2" : 2000,
-    //            "x1" : function(d){ return gridScale(d);},
-    //            "x2" : function(d){ return gridScale(d);},
-    //            "fill" : "none",
-    //            "shape-rendering" : "crispEdges",
-    //            "stroke" : "#eee",
-    //            "stroke-width" : "1px"
-    //        });
-
-
     var drag_line = vis.append("svg:path").attr("class", "drag_line");
 
     var workspace_tabs = RED.tabs.create({
@@ -443,7 +410,6 @@ RED.initializeView = function() {
                 }
                 RED.history.push({t:'add',nodes:[nn.id],dirty:dirty});
                 RED.nodes.add(nn);
-                RED.editor.validateNode(nn);
                 setDirty(true);
                 // auto select dropped node - so info shows (if visible)
                 clearSelection();
@@ -451,10 +417,6 @@ RED.initializeView = function() {
                 moving_set.push({n:nn});
                 updateSelection();
                 redraw();
-
-                if (nn._def.autoedit) {
-                    RED.editor.edit(nn);
-                }
             }
     });
 
@@ -522,11 +484,6 @@ RED.initializeView = function() {
             RED.keyboard.add(/* delete */ 46,function(){deleteSelection();d3.event.preventDefault();});
             RED.keyboard.add(/* c */ 67,{ctrl:true},function(){copySelection();d3.event.preventDefault();});
             RED.keyboard.add(/* x */ 88,{ctrl:true},function(){copySelection();deleteSelection();d3.event.preventDefault();});
-        }
-        if (moving_set.length == 1) {
-            RED.sidebar.info.refresh(moving_set[0].n);
-        } else {
-            RED.sidebar.info.clear();
         }
     }
 
@@ -642,7 +599,7 @@ RED.initializeView = function() {
 
     function nodeMouseDown(d) {
         if (typeof d3.touches(this)[0] == "object") {
-            pressTimer = setTimeout(function() { RED.editor.edit(d); }, 1500);
+            console.log('I should be editing.');
         }
         if (mouse_mode == RED.state.IMPORT_DRAGGING) {
             RED.keyboard.remove(/* ESCAPE */ 27);
@@ -786,7 +743,7 @@ RED.initializeView = function() {
                         .attr("fill",function(d) { return d._def.color;})
                         .on("mousedown",nodeMouseDown)
                         .on("touchstart",nodeMouseDown)
-                        .on("dblclick",function(d) {RED.editor.edit(d);})
+                        .on("dblclick",function(d) {RED.edit(d);})
                         .on("mouseover",function(d) {
                                 if (mouse_mode == 0) {
                                     var node = d3.select(this);
@@ -1017,7 +974,7 @@ RED.initializeView = function() {
                     " C "+(d.source.x+d.source.w/2+scale*node_width)+" "+(d.source.y+y+scaleY*node_height)+" "+
                     (d.target.x-d.target.w/2-scale*node_width)+" "+(d.target.y-scaleY*node_height)+" "+
                     (d.target.x-d.target.w/2)+" "+d.target.y;
-        })
+        });
 
         link.classed("link_selected", function(d) { return d === selected_link || d.selected; });
         link.classed("link_unknown",function(d) { return d.target.type == "unknown" || d.source.type == "unknown"});
@@ -1037,13 +994,12 @@ RED.initializeView = function() {
     RED.keyboard.add(/* i */ 73,{ctrl:true},function(){showImportNodesDialog();d3.event.preventDefault();});
 
     // TODO: 'dirty' should be a property of RED.nodes - with an event callback for ui hooks
-    function setDirty(d) {
-        dirty = d;
-        if (dirty) {
-            $("#btn-deploy").removeClass("disabled").addClass("btn-primary");
-        } else {
-            $("#btn-deploy").addClass("disabled").removeClass("btn-primary");
-        }
+    function setDirty(dirty) {
+        var button;
+
+        button = $('#btn-deploy');
+        button.toggleClass('btn-default', !dirty);
+        button.toggleClass('btn-primary', dirty);
     }
 
     /**
