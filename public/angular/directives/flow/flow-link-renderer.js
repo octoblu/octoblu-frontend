@@ -19,16 +19,11 @@ angular.module('octobluApp')
 
       function update(links) {
         links
-          .attr('class', function (link) {
-            var classes = [ 'flow-link' ];
-            classes.push('contains-node-' + link.from);
-            classes.push('contains-node-' + link.to);
-
-            return classes.join(' ');
-          })
+          .classed('flow-link', true)
           .attr('d', function (link) {
-            var sourceNode = renderScope.select('.flow-node-' + link.from).data()[0],
-              targetNode = renderScope.select('.flow-node-' + link.to).data()[0];
+            var flowNodes = renderScope.selectAll('.flow-node').data(),
+              sourceNode = _.findWhere(flowNodes, {id: link.from}),
+              targetNode = _.findWhere(flowNodes, {id: link.to});
 
             var fromCoordinate = {
               x: sourceNode.x + nodeType.width,
@@ -57,7 +52,13 @@ angular.module('octobluApp')
           return linkData;
         },
         updateLinks: function (links) {
-          this.render(links);
+
+          var linkData = renderScope.selectAll('.flow-link')
+            .filter(function (d) {
+              return _.contains(links, d);
+            });
+
+          update(linkData);
         },
         clear: function () {
           renderScope.select('.flow-link').remove();

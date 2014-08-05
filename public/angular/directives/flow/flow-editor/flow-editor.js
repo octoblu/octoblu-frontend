@@ -16,11 +16,11 @@ angular.module('octobluApp')
                         flowRenderer.clear();
                     }
                     if (newFlow && newFlow.nodes) {
-                        flowRenderer.render(newFlow)
-                            .on('flowChanged', function(flow){
-                                $scope.$apply();
-                            })
-                            .on('nodeSelected', function(flowNode){
+                      flowRenderer.render(newFlow);
+                          flowRenderer.on('flowChanged', function(flow){
+                              $scope.$apply();
+                          });
+                      flowRenderer.on('nodeSelected', function(flowNode){
                                 $scope.selectedNode = flowNode;
                                 $scope.$apply();
                             });
