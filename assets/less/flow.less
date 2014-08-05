@@ -25,6 +25,10 @@
   user-select: none;
 }
 
+.code-editor {
+  height: 200px;
+}
+
 [draggable] {
   .no-user-select;
   /* Required to make elements draggable in old WebKit */
@@ -123,54 +127,6 @@
     /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
     background-color: #f3f3f3;
     overflow-y: scroll;
-
-    .node-editor {
-      overflow-x: hidden;
-      .well {
-        border: none;
-        background-color: inherit;
-      }
-      .node-editor-header {
-        text-align: center;
-        margin: 20px 10px 10px;
-        .text-muted;
-        input {
-          font-size: 24px;
-          height: auto;
-        }
-      }
-
-      display: flex;
-      flex-direction: column;
-      .schema-editor > div {
-        display: flex;
-        flex-direction: column;
-        h3 {
-          order: 1;
-          display: flex;
-          margin-top: 0;
-          & > .btn-group {
-            flex: 1;
-            &:nth-child(2) {
-              display: none;
-            }
-            &:last-child {
-              margin-right: 10px;
-            }
-            button {
-              width: 100%
-            }
-          }
-          span {
-            display: none;
-          }
-        }
-      }
-      .save {
-        margin: 10px;
-      }
-    }
-
   }
   .red-tabs-container {
     display: flex;

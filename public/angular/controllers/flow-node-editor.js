@@ -19,5 +19,6 @@ angular.module('octobluApp')
 
     $scope.updateNode = function(){
       _.extend($scope.flowEditor.selectedNode, $scope.flowEditor.editorNode);
+      $scope.flowEditor.selectedNode = null;
     };
 });

@@ -37,6 +37,7 @@ module.exports = function(app, passport) {
         console.log('SkyNet authentication: success');
 
         app.post('/api/auth', security.bypassAuth);
+        app.post('/api/auth/signup', security.bypassAuth);
         app.all('/api/auth', security.bypassTerms);
         app.all('/api/auth/*', security.bypassTerms);
         app.all('/api/*', security.isAuthenticated, security.enforceTerms);

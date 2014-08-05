@@ -8,6 +8,38 @@
         "formTemplatePath": "/assets/node_forms/delay_form.html"
     },
     {
+        "name" : "function",
+        "color":"#fdd0a2",
+        "category": "function",
+        "defaults": {
+            "name": {"value":""},
+            "func": {},
+            "outputs": {"value":1}
+        },
+        "inputs":1,
+        "outputs":1,
+        "icon": "function.png",
+        "formTemplatePath": "/assets/node_forms/function_form.html"
+    },
+    {
+        "name" : "inject",
+        "category": "input",
+        "color":"#a6bbcf",
+        "defaults": {
+            "name": {"value":""},
+            "topic": {"value":""},
+            "payload": {"value":""},
+            "payloadType": {"value":"date"},
+            "repeat": {"value":""},
+            "crontab": {"value":""},
+            "once": {"value":false}
+        },
+        "inputs":0,
+        "outputs":1,
+        "icon": "inject.png",
+        "formTemplatePath": "/assets/node_forms/inject_form.html"
+    },
+    {
         "name" : "sentiment",
         "category": "analysis-function",
         "color":"#E6E0F8",
@@ -28,23 +60,6 @@
         "inputs":1,
         "outputs":1,
         "icon": "arrow-in.png"
-    },
-    {
-        "name" : "inject",
-        "category": "input",
-        "color":"#a6bbcf",
-        "defaults": {
-            "name": {"value":""},
-            "topic": {"value":""},
-            "payload": {"value":""},
-            "payloadType": {"value":"date"},
-            "repeat": {"value":""},
-            "crontab": {"value":""},
-            "once": {"value":false}
-        },
-        "inputs":0,
-        "outputs":1,
-        "icon": "inject.png"
     },
     {
         "name" : "debug",
@@ -74,19 +89,6 @@
         "outputs":3,
         "icon": "arrow-in.png",
         "align": "right"
-    },
-    {
-        "name" : "function",
-        "color":"#fdd0a2",
-        "category": "function",
-        "defaults": {
-            "name": {"value":""},
-            "func": {},
-            "outputs": {"value":1}
-        },
-        "inputs":1,
-        "outputs":1,
-        "icon": "function.png"
     },
     {
         "name" : "template",
