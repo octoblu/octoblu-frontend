@@ -156,7 +156,7 @@ angular.module('octobluApp')
                 var defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.localdevices({}, function (result) {
+                    skynetConnection.devices({owner : null}, function (result) {
                         defer.resolve(_.where(result.devices, {online: true}));
                     });
                 });

@@ -31,6 +31,8 @@ FlowSchema.statics.updateOrCreateByFlowIdAndUser = function (flowId, userUUID, f
     }
   });
 
+  data = _.omit(data, '_id');
+
   return this.update(query, data, {upsert: true, new: true}).exec();
 };
 
