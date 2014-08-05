@@ -20,10 +20,10 @@ describe('FlowNodeTypeService', function () {
 
     describe('.getFlowNodeType', function () {
         it('should return a single flowNodeType', function (done) {
-            $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+            $httpBackend.expectGET('/api/flow_node_types').respond(200, [{name: 'function', foo: 'bar'}, {name: 'inject', bar: 'foo'}]);
 
             sut.getFlowNodeType('function').then(function (flowNodeType) {
-                expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar'});
+                expect(flowNodeType).to.deep.equal({name: 'function', foo: 'bar'});
                 done();
             }, done);
 
@@ -31,10 +31,10 @@ describe('FlowNodeTypeService', function () {
         });
 
         it('should return a single flowNodeType', function (done) {
-            $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
+            $httpBackend.expectGET('/api/flow_node_types').respond(200, [{name: 'function', foo: 'bar'}, {name: 'inject', bar: 'foo'}]);
 
             sut.getFlowNodeType('inject').then(function (flowNodeType) {
-                expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo'});
+                expect(flowNodeType).to.deep.equal({name: 'inject', bar: 'foo'});
                 done();
             }, done);
 

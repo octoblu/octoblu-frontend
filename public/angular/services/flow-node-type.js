@@ -5,7 +5,7 @@ angular.module('octobluApp')
 
         service.getFlowNodeType  = function(type){
           return service.getFlowNodeTypes().then(function(flowNodeTypes){
-            return _.findWhere(flowNodeTypes, {type : type});
+            return _.findWhere(flowNodeTypes, {name: type});
           });
         };
 
