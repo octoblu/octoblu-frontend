@@ -1,6 +1,6 @@
 describe('FlowRenderer', function () {
   var sut, flow, FakeFlowNodeRenderer, FakeFlowLinkRenderer, FakeDispatch;
-
+  var renderScope = d3.select('.foo');
 
   beforeEach(function () {
     module('octobluApp', function ($provide) {
@@ -23,13 +23,10 @@ describe('FlowRenderer', function () {
       });
 
       FakeFlowLinkRenderer = {
-        render: sinon.spy(),
-        add: sinon.spy()
+        render: sinon.spy()
       };
 
-      $provide.value('FlowLinkRenderer', function () {
-        return FakeFlowLinkRenderer;
-      });
+      $provide.value('FlowLinkRenderer', FakeFlowLinkRenderer);
 
     });
   });
@@ -42,7 +39,7 @@ describe('FlowRenderer', function () {
     beforeEach(function(){
       inject(function (_FlowRenderer_) {
         flow = {nodes: [], links: []};
-        sut = new _FlowRenderer_(d3.select('.foo'));
+        sut = new _FlowRenderer_(renderScope);
         sut.render(flow);
       });
     });
@@ -51,21 +48,12 @@ describe('FlowRenderer', function () {
       expect(FakeFlowNodeRenderer.render).to.have.been.calledWith([]);
     });
 
-    it('should call add on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.add).to.have.been.calledWith([]);
-    });
-
     it('should listen for nodeMoved on FlowNodeRenderer', function () {
       expect(FakeFlowNodeRenderer.eventListeners.nodeMoved).to.be.instanceof(Object);
     });
 
     it('should listen for nodeMoved on FlowNodeRenderer', function () {
       expect(FakeFlowNodeRenderer.eventListeners.nodeMoved).to.be.instanceof(Object);
-    });
-
-    it('should call updateLinks when a node moves', function () {
-      FakeFlowNodeRenderer.eventListeners.nodeMoved([]);
-      expect(FakeFlowLinkRenderer.render).to.be.calledWith([]);
     });
 
     it('should listen for nodeChanged on FlowNodeRenderer', function () {
@@ -89,7 +77,7 @@ describe('FlowRenderer', function () {
       link3 = {to: '1'};
       inject(function (_FlowRenderer_) {
         flow = {nodes: [node1, node2], links: [link1, link2, link3]};
-        sut = new _FlowRenderer_(d3.select('.foo'));
+        sut = new _FlowRenderer_(renderScope);
         sut.render(flow);
       });
     });
@@ -98,14 +86,19 @@ describe('FlowRenderer', function () {
       expect(FakeFlowNodeRenderer.render).to.have.been.calledWith([node1, node2]);
     });
 
-    it('should call add on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.add).to.have.been.calledWith([link1, link2, link3]);
+    it('should call render on FlowLinkRenderer', function () {
+      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link1, flow.nodes);
+      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link2, flow.nodes);
+      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link3, flow.nodes);
     });
 
-    it('should call render when a node moves', function () {
-      FakeFlowNodeRenderer.eventListeners.nodeMoved(node1);
-      expect(FakeFlowLinkRenderer.render).to.be.calledWith([link1, link3]);
+    describe('when a node moves', function(){
+      it('should call render when a node moves', function () {
+        FakeFlowNodeRenderer.eventListeners.nodeMoved(node1);
+        expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link1, flow.nodes);
+        expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link2, flow.nodes);
+        expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link3, flow.nodes);
+      });
     });
   });
-
 });
