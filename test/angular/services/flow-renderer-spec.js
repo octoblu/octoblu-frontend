@@ -24,7 +24,7 @@ describe('FlowRenderer', function () {
 
       FakeFlowLinkRenderer = {
         render: sinon.spy(),
-        updateLinks: sinon.spy()
+        add: sinon.spy()
       };
 
       $provide.value('FlowLinkRenderer', function () {
@@ -51,8 +51,8 @@ describe('FlowRenderer', function () {
       expect(FakeFlowNodeRenderer.render).to.have.been.calledWith([]);
     });
 
-    it('should call render on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith([]);
+    it('should call add on FlowLinkRenderer', function () {
+      expect(FakeFlowLinkRenderer.add).to.have.been.calledWith([]);
     });
 
     it('should listen for nodeMoved on FlowNodeRenderer', function () {
@@ -65,7 +65,7 @@ describe('FlowRenderer', function () {
 
     it('should call updateLinks when a node moves', function () {
       FakeFlowNodeRenderer.eventListeners.nodeMoved([]);
-      expect(FakeFlowLinkRenderer.updateLinks).to.be.calledWith([]);
+      expect(FakeFlowLinkRenderer.render).to.be.calledWith([]);
     });
 
     it('should listen for nodeChanged on FlowNodeRenderer', function () {
@@ -98,13 +98,13 @@ describe('FlowRenderer', function () {
       expect(FakeFlowNodeRenderer.render).to.have.been.calledWith([node1, node2]);
     });
 
-    it('should call render on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith([link1, link2, link3]);
+    it('should call add on FlowLinkRenderer', function () {
+      expect(FakeFlowLinkRenderer.add).to.have.been.calledWith([link1, link2, link3]);
     });
 
-    it('should call updateLinks when a node moves', function () {
+    it('should call render when a node moves', function () {
       FakeFlowNodeRenderer.eventListeners.nodeMoved(node1);
-      expect(FakeFlowLinkRenderer.updateLinks).to.be.calledWith([link1, link3]);
+      expect(FakeFlowLinkRenderer.render).to.be.calledWith([link1, link3]);
     });
   });
 

@@ -26,6 +26,10 @@ describe('flowNodeEditorController', function () {
     expect(sut).to.exist;
   });
 
+  it('should instatiate a schemaControl on the scope', function(){
+    expect(scope.schemaControl).to.exist;
+  });
+
   it('should call not call getFlowNodeType', function () {
     expect(FakeFlowNodeTypeService.getFlowNodeType.called).to.be.false;
   });
@@ -41,6 +45,11 @@ describe('flowNodeEditorController', function () {
       expect(FakeFlowNodeTypeService.getFlowNodeType.calledWith).to.equal('function');
     });
 
+    it('should attach a copy of the node to formFlowNode', function () {
+      expect(scope.flowEditor.editorNode).to.exist;
+      expect(scope.flowEditor.editorNode).not.to.equal(scope.flowEditor.selectedNode);
+    });
+
     describe('when getFlowNodeTypes resolves', function () {
       beforeEach(function () {
         FakeFlowNodeTypeService.getFlowNodeType.resolve({foo: 'bar'});
@@ -52,7 +61,7 @@ describe('flowNodeEditorController', function () {
     });
   });
 
-  describe('when selectedNode gets set to a function node', function () {
+  describe('when selectedNode gets set to an inject node', function () {
     beforeEach(function () {
       scope.flowEditor.selectedNode = {type: 'inject'};
       scope.$apply();
@@ -87,6 +96,38 @@ describe('flowNodeEditorController', function () {
 
     it('should clear the flowNodeType', function () {
       expect(scope.flowEditor.flowNodeType).to.be.null;
+    });
+  });
+
+  describe('updateNode', function () {
+    describe('when an object is selected', function () {
+      beforeEach(function () {
+        scope.flowEditor.selectedNode = {name: 'Bah'};
+        scope.$apply();
+      });
+
+      describe("when the editorNode is updated", function () {
+        beforeEach(function () {
+          scope.flowEditor.editorNode = {name: 'Boo'};
+        });
+
+        it('should updated the selectedNode', function () {
+          scope.updateNode();
+          expect(scope.flowEditor.selectedNode.name).to.equal('Boo');
+        });
+      });
+
+      describe("when schemaControl's getValue returns an updated name and timeout", function () {
+        beforeEach(function () {
+          scope.flowEditor.editorNode = {name: 'Delay', timeout: 2};
+        });
+
+        it('should updated the selectedNode', function () {
+          var selectedNode = scope.flowEditor.selectedNode;
+          scope.updateNode();
+          expect(selectedNode).to.deep.equal({name: 'Delay', timeout: 2});
+        });
+      });
     });
   });
 });
