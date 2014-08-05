@@ -88,7 +88,7 @@ COMMENTED OUT FOR WHITESPACE
                                                                                          ng-model="forms.EX_eventCode">
                                     <option value="all">All Event Codes</option>
                                     <option ng-repeat="event in events" value="{{event.code}}">
-                                        {{event.name}}
+                                        {{event.name}} ({{event.code}})
                                     </option>
                                 </select>
                                 </div>
@@ -152,48 +152,30 @@ COMMENTED OUT FOR WHITESPACE
                         <div ng-switch="!!leg ? 1 : 0">
                             <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                             <div ng-switch-default>
-                                <div nvd3-line-chart show-legend="True" axis-x-label="Hour" axis-x-type="date"
-                                     axis-x-format="%-m/%-d %-H:%-M" data="leg.uuid_counts" height="400" ></div>
+                                <div nvd3-line-with-focus-chart show-legend="True" axis-x-label="Hour" axis-x-type="date"
+                                     axis-x-format="%-m/%-d %H:%M" data="leg.uuid_counts" height="400" ></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <!--</div><!-- END OF GRAPH ROW -
-        <div class="row">-->
             <div class="col-sm-8 dashboard-panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Event Counts over Time</h3>
+                    <h3 class="panel-title">Count of Event Codes by Device</h3>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div ng-switch="!!leg ? 1 : 0">
                             <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                             <div ng-switch-default>
-                                <div nvd3-scatter-chart show-legend="True" axis-x-label="Hour" axis-x-type="date" axis-x-format="%-m/%-d %-H:%-M"
-                                     data="leg.scatter" height="400" ></div>
+                                <div nvd3-multibar-chart show-legend="True" axis-x-label="Event Code"  
+                                     data="leg.stacked.data" height="400"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-	    <div class="col-sm-8 dashboard-panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Event Counts over Time</h3>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div ng-switch="!!leg ? 1 : 0">
-                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-                            <div ng-switch-default>
-                                <div nvd3-scatter-chart y-scale="ordinal" show-legend="True" axis-x-label="Device"
-                                     data="leg.scatter_events_devices" height="400" ></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- END OF GRAPH ROW -->
+       </div><!--- END OF GRAPH ROW -->
     </div>
 </div>
 </tab>
