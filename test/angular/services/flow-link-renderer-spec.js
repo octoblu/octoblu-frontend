@@ -17,7 +17,7 @@ describe('FlowLinkRenderer', function () {
       });
     });
 
-    it('should return an array with an empty array for some reason', function () {
+    it('should render a link', function () {
       sut.render(renderScope, {from: '1', to: '1'}, [{id: '1'}]);
       expect(renderScope.selectAll('.flow-link').data().length).to.equal(1);
     });

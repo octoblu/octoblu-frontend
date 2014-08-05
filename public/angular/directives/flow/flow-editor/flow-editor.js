@@ -14,7 +14,6 @@ angular.module('octobluApp')
         $scope.$watch('flow.flowId', function (newFlowId, oldFlowId) {
 
           if (newFlowId !== oldFlowId ) {
-            flowRenderer.clear();
             flowRenderer.render($scope.flow);
             flowRenderer.on('nodeSelected', function (flowNode) {
               $scope.selectedNode = flowNode;
