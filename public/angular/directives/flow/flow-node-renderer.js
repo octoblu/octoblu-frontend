@@ -34,7 +34,11 @@ angular.module('octobluApp')
 
           var nodeGroup = nodeData.enter()
             .append('g')
-            .classed('flow-node', true)
+            .attr('class', function (node) {
+              var classes = ['flow-node'];
+              classes.push('flow-node-' + node.type);
+              return classes.join(' ');
+            })
             .attr('transform', function (node) {
               return 'translate(' + node.x + ',' + node.y + ')';
             })
