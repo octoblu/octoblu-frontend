@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: 'public',
 
 
     // frameworks to use
@@ -15,38 +15,39 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        "public/lib/jquery/dist/jquery.js",
-        "public/lib/jquery-ui/ui/jquery-ui.js",
+        "lib/jquery/dist/jquery.js",
+        "lib/jquery-ui/ui/jquery-ui.js",
 
-        "public/lib/angular/angular.js",
-        "public/lib/angular-animate/angular-animate.js",
-        "public/lib/angular-sanitize/angular-sanitize.js",
-        "public/lib/angular-cookies/angular-cookies.js",
-        "public/lib/angular-resource/angular-resource.js",
-        "public/lib/lodash/dist/lodash.js",
-        "public/lib/d3/d3.js",
-        "public/lib/nvd3/nv.d3.js",
+        "lib/angular/angular.js",
+        "lib/angular-animate/angular-animate.js",
+        "lib/angular-sanitize/angular-sanitize.js",
+        "lib/angular-cookies/angular-cookies.js",
+        "lib/angular-resource/angular-resource.js",
+        "lib/lodash/dist/lodash.js",
+        "lib/d3/d3.js",
+        "lib/nvd3/nv.d3.js",
 
-        "public/lib/angular-ui-router/release/angular-ui-router.js",
-        "public/lib/angular-ui-utils/ui-utils.js",
-        "public/lib/angular-google-analytics/src/angular-google-analytics.js",
-        "public/lib/modernizr/modernizr.js",
-        "public/lib/json-editor/dist/jsoneditor.js",
-        "public/lib/angular-bootstrap/ui-bootstrap.js",
-        "public/lib/angular-bootstrap/ui-bootstrap-tpls.js",
-        "public/lib/bootstrap-switch/dist/js/bootstrap-switch.js",
-        "public/lib/elastic.js/dist/elastic.js",
-        "public/lib/elasticsearch/elasticsearch.angular.js",
-        "public/lib/smoothie/smoothie.js",
-        "public/lib/ng-table/ng-table.js",
+        "lib/angular-ui-router/release/angular-ui-router.js",
+        "lib/angular-ui-utils/ui-utils.js",
+        "lib/angular-google-analytics/src/angular-google-analytics.js",
+        "lib/modernizr/modernizr.js",
+        "lib/json-editor/dist/jsoneditor.js",
+        "lib/angular-bootstrap/ui-bootstrap.js",
+        "lib/angular-bootstrap/ui-bootstrap-tpls.js",
+        "lib/bootstrap-switch/dist/js/bootstrap-switch.js",
+        "lib/elastic.js/dist/elastic.js",
+        "lib/elasticsearch/elasticsearch.angular.js",
+        "lib/smoothie/smoothie.js",
+        "lib/ng-table/ng-table.js",
 
-        "public/lib/angular-mocks/angular-mocks.js",
+        "lib/angular-mocks/angular-mocks.js",
 
-        "public/assets/javascripts/skynet.bundle.js",
+        "assets/javascripts/skynet.bundle.js",
 
-        "public/angular/**/*.js",
-        "test/angular/test_helper.js",
-        "test/angular/**/*-spec.js"
+        "angular/**/*.html",
+        "angular/**/*.js",
+        "../test/angular/test_helper.js",
+        "../test/angular/**/*-spec.js"
     ],
 
 
@@ -58,8 +59,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'angular/**/*.html': 'ng-html2js'
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
