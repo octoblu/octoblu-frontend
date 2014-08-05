@@ -96,8 +96,12 @@ var config = {
     'domain': null
   },
   test: {
-
-  },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.env.DESIGNER_DOCKER_PORT
+  }
+ },
   production: {
     'githubAuth' : {
       'clientID': 'INSERT_SECERT_HERE',
