@@ -1,9 +1,9 @@
 {
   "name": "octoblu",
-  "version": "0.5.4",
+  "version": "0.5.4.1",
   "description": "octoblu.com",
   "main": "server.js",
-  "author": "Chris Matthieu",
+  "author": "Octoblu Inc.",
   "dependencies": {
     "async": "*",
     "bcrypt-nodejs": "latest",
