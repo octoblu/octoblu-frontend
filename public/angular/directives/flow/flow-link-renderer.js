@@ -17,12 +17,13 @@ angular.module('octobluApp')
     return function (renderScope) {
       var dispatch = d3.dispatch('linkChanged');
 
-      function update(links) {
-        links
-          .classed('flow-link', true)
+      function render(links) {
+        var flowNodes = getFlowNodes(links);
+
+        renderScope.selectAll('.flow-link')
+          .data(links)
           .attr('d', function (link) {
-            var flowNodes = renderScope.selectAll('.flow-node').data(),
-              sourceNode = _.findWhere(flowNodes, {id: link.from}),
+            var sourceNode = _.findWhere(flowNodes, {id: link.from}),
               targetNode = _.findWhere(flowNodes, {id: link.to});
 
             var fromCoordinate = {
@@ -38,31 +39,40 @@ angular.module('octobluApp')
             var toCoordinate = {x: targetNode.x, y: targetNode.y + (nodeType.height / 2)};
 
             var toCoordinateCurveStart = {x: toCoordinate.x - nodeType.height, y: toCoordinate.y};
-
-            return renderLine([fromCoordinate, fromCoordinateCurveStart, toCoordinateCurveStart, toCoordinate]);
+            return renderLine([fromCoordinate, fromCoordinateCurveStart,
+              toCoordinateCurveStart, toCoordinate]);
           });
       }
 
+      function getFlowNodes() {
+        var nodeElements = renderScope.selectAll('.flow-node');
+
+        if (nodeElements.length) {
+          return nodeElements.data();
+        }
+
+        return [];
+      }
+
       return {
-        render: function (links) {
-          var linkData = renderScope.selectAll('.flow-link').data(links);
-          linkData.enter().append('path');
-          update(linkData);
-          linkData.exit().remove();
-          return linkData;
+        add: function (links) {
+          renderScope
+            .append('path')
+            .classed('flow-link', true)
+            .data(links);
+          render(links);
         },
-        updateLinks: function (links) {
 
-          var linkData = renderScope.selectAll('.flow-link')
-            .filter(function (d) {
-              return _.contains(links, d);
-            });
+        render: render,
 
-          update(linkData);
+        update: function (links) {
+          render(links);
         },
+
         clear: function () {
           renderScope.select('.flow-link').remove();
         },
+
         on: function (event, callback) {
           return dispatch.on(event, callback);
         }

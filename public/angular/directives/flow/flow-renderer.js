@@ -22,12 +22,12 @@ angular.module('octobluApp')
       return {
         render: function (flow) {
           nodeRenderer.render(flow.nodes);
-          linkRenderer.render(flow.links);
+          linkRenderer.add(flow.links);
 
           nodeRenderer
             .on('nodeMoved', function (flowNode) {
               var nodeLinks = getNodeLinks(flowNode.id, flow.links);
-              linkRenderer.updateLinks(nodeLinks);
+              linkRenderer.render(nodeLinks);
             });
 
           nodeRenderer
