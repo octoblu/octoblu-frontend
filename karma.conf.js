@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'sinon-chai'],
 
 
     // list of files / patterns to load in the browser
@@ -41,7 +41,6 @@ module.exports = function(config) {
         "public/lib/ng-table/ng-table.js",
 
         "public/lib/angular-mocks/angular-mocks.js",
-        "public/lib/chai/chai.js",
 
         "public/assets/javascripts/skynet.bundle.js",
 

@@ -60,9 +60,10 @@ module.exports = function(app, passport) {
         require('./controllers/invitation')(app, passport, config);
 
         app.put('/api/flows/:id', flowController.updateOrCreate);
+        app.get('/api/flows', flowController.getAllFlows);
         app.post('/api/flow_deploys', flowDeployController.create);
 
-        app.get('/api/flow/node_types', flowNodeTypeController.getFlowNodeTypes);
+        app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {

@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var Redport = require('../../app/models/redport');
 
 describe('Redport', function () {
@@ -38,6 +39,23 @@ describe('Redport', function () {
   });
 
   describe('redport', function () {
+    describe('when called with a designer.docker_port config', function () {
+      var sut;
+
+      beforeEach(function () {
+        var config = { docker_port: '1880' };
+        sut = new Redport({config: config});
+      });
+
+      it('should call the callback with the override port', function (done) {
+        sut.redport(function(error, port){
+          expect(error).to.be.null;
+          expect(port).to.equal('1880');
+          done();
+        });
+      });
+    });
+
     describe('when called with the user', function () {
       var sut, request, callback;
 

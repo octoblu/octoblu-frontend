@@ -1,14 +1,15 @@
 var FlowDeploy = function(options){
-  var _this, config, request, userUUID, userToken;
+  var _this, config, request, userUUID, userToken, port, _;
   _this = this;
 
   options         = options || {};
 
   userUUID  = options.userUUID;
   userToken = options.userToken;
-  config    = options.config  || require('../../config/auth')[process.env.NODE_ENV];
+  config    = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
   request   = options.request || require('request');
   port      = options.port;
+  _         = require('underscore');
 
   _this.convertFlows = function(flows){
     var convertedNodes = [];
@@ -25,25 +26,43 @@ var FlowDeploy = function(options){
   };
 
   _this.convertNode = function(flow, node){
-    var convertedNode, links;
+    var convertedNode, nodeLinks, groupedLinks, largestPort;
+
+    nodeLinks           = _.where(flow.links, {from: node.id});
+    groupedLinks        = _.groupBy(nodeLinks, 'fromPort');
+    largestPort         = _this.largestPortNumber(groupedLinks);
 
     convertedNode = _.clone(node);
     convertedNode.z = flow.flowId;
-    convertedNode.wires = [];
+    convertedNode.wires = _this.paddedArray(largestPort);
 
-    links = _.where(flow.links, {from: node.id});
-    if(!_.isEmpty(links)){
-      convertedNode.wires.push(_.pluck(links, 'to'));
-    }
+    _.each(groupedLinks, function(links, fromPort){
+      var port = parseInt(fromPort);
+      convertedNode.wires[port] = _.pluck(links, 'to');
+    });
+
     return convertedNode;
   };
 
   _this.deployFlows = function(flows){
+    console.log(_this.designerUrl());
     request.post(_this.designerUrl(), {json: flows});
   };
 
   _this.designerUrl = function(){
     return config.host + ':' + port + '/library/flows';
+  };
+
+  _this.largestPortNumber = function(groupedLinks){
+    var portsKeys = _.keys(groupedLinks);
+    var ports = _.map(portsKeys, function(portKey){ return parseInt(portKey); } );
+    return _.max(ports);
+  };
+
+  _this.paddedArray = function(length){
+    return _.map(_.range(length), function(){
+      return [];
+    });
   };
 };
 

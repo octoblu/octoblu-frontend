@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 describe('Flow', function () {
   var Flow;
 

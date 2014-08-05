@@ -8,13 +8,29 @@
         "schema": {
             "type": "object",
             "properties": {
+                "possiblePauseTypes": {
+                  "type": "array",
+                  "items": [{"label": "Delay", "value": "delay"}]
+                },
                 "pauseType": {
+                    "title": "Action",
                     "type": "string",
-                    "required": true
+                    "required": true,
+                    "watch": {
+                        "pauseTypes": "possiblePauseTypes"
+                    },
+                    "enumSource": {
+                        "source":  "pauseTypes",
+                        "value":   "{{item.value}}",
+                        "title":   "{{item.label}}"
+                    }
+
                 },
                 "timeout": {
+                    "title": "Timeout",
                     "type": "integer",
-                    "minimum": "1",
+                    "minimum": 1,
+                    "default": 1,
                     "required": true
                 },
                 "timeoutUnits": {
