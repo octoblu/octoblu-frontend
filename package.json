@@ -67,14 +67,17 @@
     "gulp-plumber": "~0.6.4",
     "gulp-sourcemaps": "~1.1.0",
     "karma": "^0.12.19",
+    "karma-blink1-reporter": "git://github.com/iamruinous/karma-blink1-reporter",
     "karma-growl-reporter": "~0.1.1",
     "karma-mocha": "~0.1.6",
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "karma-osx-reporter": "^0.1.0",
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-sinon-chai": "^0.2.0",
     "karma-spec-reporter": "0.0.13",
+    "shelljs": "^0.3.0",
     "sinon": "^1.10.3",
-    "sinon-chai": "^2.5.0",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "sinon-chai": "^2.5.0"
   },
   "scripts": {
     "test": "mocha -r test/test_helper.js --recursive --reporter spec test/models test/controllers && node_modules/karma/bin/karma start --single-run",
