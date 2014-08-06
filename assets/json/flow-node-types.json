@@ -144,6 +144,7 @@
         "category": "function",
         "input":0,
         "output":0,
-        "icon": "file.png"
+        "icon": "file.png",
+        "formTemplatePath": "/assets/node_forms/comment_form.html"
     }
 ]
