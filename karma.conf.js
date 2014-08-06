@@ -41,6 +41,7 @@ module.exports = function(config) {
         "lib/ng-table/ng-table.js",
         "lib/angular-ui-ace/ui-ace.js",
         "lib/angular-dragdrop-ganarajpr/draganddrop.js",
+        "lib/node-uuid/uuid.js",
 
         "lib/angular-mocks/angular-mocks.js",
 

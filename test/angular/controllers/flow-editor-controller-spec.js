@@ -61,6 +61,5 @@ var FakeFlowNodeTypeService = function(){
     return _this.createFlowNode.returnValue;
   });
 
-
   return _this;
 }

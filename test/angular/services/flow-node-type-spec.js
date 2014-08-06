@@ -1,8 +1,13 @@
 describe('FlowNodeTypeService', function () {
-  var sut, $httpBackend;
+  var sut, $httpBackend, fakeUUIDService;
 
   beforeEach(function () {
     module('octobluApp');
+
+    module('octobluApp', function($provide){
+      fakeUUIDService = new FakeUUIDService();
+      $provide.value('UUIDService', fakeUUIDService);
+    });
 
     inject(function (FlowNodeTypeService, _$httpBackend_) {
       sut = FlowNodeTypeService;
@@ -27,18 +32,64 @@ describe('FlowNodeTypeService', function () {
       var flowNodeType, expectedFlowNode;
 
       flowNodeType = {name: 't1000'};
-      flowNode     = {type: 't1000'};
+      flowNode     = sut.createFlowNode(flowNodeType);
 
-      expect(sut.createFlowNode(flowNodeType)).to.deep.equal(flowNode);
+      expect(flowNode.type).to.deep.equal('t1000');
     });
 
     it('should set the type to the flowNodeType name', function(){
-      var flowNodeType, expectedFlowNode;
+      var flowNodeType, flowNode;
 
       flowNodeType = {name: 't100'};
-      flowNode     = {type: 't100'};
+      flowNode     = sut.createFlowNode(flowNodeType);
 
-      expect(sut.createFlowNode(flowNodeType)).to.deep.equal(flowNode);
+      expect(flowNode.type).to.deep.equal('t100');
+    });
+
+    it('should set a uuid to the flowNodeType uuid', function(){
+      var flowNodeType, flowNode;
+
+      fakeUUIDService.v1.returns = 'something-special';
+      flowNode     = sut.createFlowNode({});
+
+      expect(flowNode.id).to.equal('something-special');
+    });
+
+    it('should set a uuid to the flowNodeType uuid', function(){
+      var flowNodeType, flowNode;
+
+      fakeUUIDService.v1.returns = 'something-different';
+      flowNode     = sut.createFlowNode({});
+
+      expect(flowNode.id).to.equal('something-different');
+    });
+
+    it('should clone the defaults to the node', function () {
+      var flowNodeType, flowNode;
+
+      flowNodeType = {defaults: {foo: 'bar'}};
+      flowNode = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.foo).to.equal('bar');
+    });
+
+    it('should clone the defaults to the node', function () {
+      var flowNodeType, flowNode;
+
+      flowNodeType = {defaults: {bar : 'foo'}};
+      flowNode = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.bar).to.equal('foo');
+    });
+
+    it('should deeeep clone the defaults to the node', function () {
+      var flowNodeType, flowNode;
+
+      flowNodeType = {defaults: {bar : {foo: 'baz'}}};
+      flowNode = sut.createFlowNode(flowNodeType);
+      flowNodeType.defaults.bar.foo = 'something else';
+
+      expect(flowNode.bar).to.deep.equal({foo: 'baz'});
     });
   });
 
@@ -89,3 +140,13 @@ describe('FlowNodeTypeService', function () {
     });
   });
 });
+
+var FakeUUIDService = function(){
+  var _this = this;
+
+  _this.v1 = sinon.spy(function(){
+    return _this.v1.returns;
+  });
+
+  return _this;
+}
