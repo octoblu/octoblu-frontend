@@ -1,4 +1,9 @@
 .flow-node {
+  background-color: #ccc;
+  line-height: 25px;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 6px;
   cursor: move;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -28,6 +33,22 @@
     &:hover {
       stroke: #ff7f0e;
       fill: #ff7f0e;
+    }
+  }
+
+  &.flow-node-debug {
+    background-color: #85cab0;
+
+    .flow-node-bg {
+      fill: #85cab0;
+    }
+  }
+
+  &.flow-node-comment {
+    background-color: #ffffff;
+
+    .flow-node-bg {
+      fill: #ffffff;
     }
   }
 }
