@@ -45,7 +45,7 @@ angular.module('octobluApp')
         var nodeElement = renderScope
           .append('g')
           .classed('flow-node', true)
-          .classed('flow-node-' + node.type, true)
+          .classed('flow-node-' + node.class, true)
           .attr('transform', 'translate(' + node.x + ',' + node.y + ')');
 
         nodeElement

@@ -28,7 +28,7 @@ angular.module('octobluApp')
           })
           .on('drag', function () {
             node.x = d3.event.x - (FlowNodeDimensions.width / 2);
-            node.y = d3.event.y - (FlowNodeDimensions.height / 2);
+            node.y = d3.event.y - (FlowNodeDimensions.minHeight / 2);
             d3.select(this)
               .attr("transform", "translate(" + node.x + "," + node.y + ")");
             renderLinks(flow);
