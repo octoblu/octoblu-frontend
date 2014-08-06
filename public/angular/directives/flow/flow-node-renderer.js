@@ -2,7 +2,9 @@ angular.module('octobluApp')
   .service('FlowNodeRenderer', function () {
     var nodeType = {
       width: 100,
-      height: 35
+      height: 40,
+      portHeight: 10,
+      portWidth: 10
     };
     return {
       render: function (renderScope, node) {
@@ -30,25 +32,34 @@ angular.module('octobluApp')
           .attr('alignment-baseline', 'central')
           .text(node.name || node.type);
 
+        var remainingSpace =
+          nodeType.height - (node.input * nodeType.portHeight);
+
+        var spaceBetweenPorts = remainingSpace / (node.input + 1);
+        var startPos = spaceBetweenPorts;
         _.times(node.input, function () {
+
           nodeElement
             .append('rect')
-            .attr('x', -5)
-            .attr('y', 12)
-            .attr('width', 10)
-            .attr('height', 10)
+            .attr('x', -(nodeType.portWidth / 2))
+            .attr('y', startPos)
+            .attr('width', nodeType.portWidth)
+            .attr('height', nodeType.portHeight)
             .classed('flow-node-port', true)
             .classed('flow-node-input-port', true);
+
+          startPos += spaceBetweenPorts + nodeType.portHeight;
+
         });
 
         _.times(node.output, function () {
           console.log('output', node.output);
           nodeElement
             .append('rect')
-            .attr('x', 95)
-            .attr('y', 12)
-            .attr('width', 10)
-            .attr('height', 10)
+            .attr('x', nodeType.width - (nodeType.portWidth / 2))
+            .attr('y', (nodeType.height / 2) - 5)
+            .attr('width', nodeType.portWidth)
+            .attr('height', nodeType.portHeight)
             .classed('flow-node-port', true)
             .classed('flow-node-output-port', true);
         });

@@ -3,7 +3,7 @@ angular.module('octobluApp')
     return function (renderScope) {
       var nodeType = {
         width: 100,
-        height: 35
+        height: 40
       };
 
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected');
