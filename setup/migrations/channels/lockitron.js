@@ -13,15 +13,15 @@ var record = {
         "path": "/v1/locks"
       },
       {
-        "displayName": "/v1/locks/lock_id/unlock",
+        "displayName": "/v1/locks/{lock_id}/unlock",
         "doc": {
           "t": "The unlock resource tells the specified Lockitron to unlock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it unlocked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
-          "url": "/v1/locks/lock_id/unlock"
+          "url": "/v1/locks/{lock_id}/unlock"
         },
         "httpMethod": "POST",
         "params": [
           {
-            "name": "lock_id",
+            "name": "{lock_id}",
             "required": true,
             "style": "query",
             "doc": {
@@ -29,18 +29,18 @@ var record = {
             }
           }
         ],
-        "path": "/v1/locks/lock_id/unlock"
+        "path": "/v1/locks/{lock_id}/unlock"
       },
       {
-        "displayName": "/v1/locks/lock_id/lock",
+        "displayName": "/v1/locks/{lock_id}/lock",
         "doc": {
           "t": "The lock resource tells the specified Lockitron to lock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it locked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
-          "url": "/v1/locks/lock_id/lock"
+          "url": "/v1/locks/{lock_id}/lock"
         },
         "httpMethod": "POST",
         "params": [
           {
-            "name": "lock_id",
+            "name": "{lock_id}",
             "required": true,
             "style": "query",
             "doc": {
@@ -48,18 +48,18 @@ var record = {
             }
           }
         ],
-        "path": "/v1/locks/lock_id/lock"
+        "path": "/v1/locks/{lock_id}/lock"
       },
       {
-        "displayName": "/v1/locks/lock_id/add",
+        "displayName": "/v1/locks/{lock_id}/add",
         "doc": {
           "t": "The invite resource will invite a user by email to a lock. If they already have a Lockitron account, it'll add the key to it. Otherwise, it'll send them an invitation to email. This resource returns the user's Key object and a status code of 200. If it fails, it'll return a 500. If the user isn't allowed to invite guests, it'll return a 403. Note that only locks with text message access activated may use the phone argument alone to invite users.",
-          "url": "/v1/locks/lock_id/add"
+          "url": "/v1/locks/{lock_id}/add"
         },
         "httpMethod": "POST",
         "params": [
           {
-            "name": "lock_id",
+            "name": "{lock_id}",
             "required": true,
             "style": "query",
             "doc": {
@@ -107,7 +107,7 @@ var record = {
             }
           }
         ],
-        "path": "/v1/locks/lock_id/add"
+        "path": "/v1/locks/{lock_id}/add"
       },
     ]
   },
@@ -122,10 +122,17 @@ var record = {
     "authTokenPath": "/oauth/token",
     "authTokenURL": "https://api.lockitron.com/oauth/authorize",
     "baseURL": "https://api.lockitron.com",
-    "clientId": "59e9b56517291cf40a87d3a60a5feb4febe402983e60c528182d32ee23b8576e",
+
+    // Production
+    "clientId": "938cd6030161ec9bfc5c4e78e277762145f9b23d7caf3bb66a9333c034b6f9b1",
+    "secret": "6a73aac43c7f1a25b5d5ce21d583d30f8278808e0faca81a5c8e34e885fb7c14",
+
+    // Development
+    // "clientId": "0b58a8b923eabf8c3ac9f8b19d9c5006198bb9aad8037a2e279eec6607668197",
+    // "secret": "d8d36ebd7509e64ee35f63c21beea032564683121a4b6ef52fed18588266ad83",
+
     "scope": "",
-    "secret": "ada2e03c69fdf4fb404098a5bb884fb83881912c4f28d52bf83c07ed8b42ae2f",
-    "tokenMethod": "access_token",
+    "tokenMethod": "access_token_query",
     "version": "2.0"
   },
   "useCustom": true
