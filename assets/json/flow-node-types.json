@@ -40,6 +40,37 @@
         "formTemplatePath": "/assets/node_forms/inject_form.html"
     },
     {
+        "name" : "http request",
+        "category": "function",
+        "color":"rgb(231, 231, 174)",
+        "defaults": {
+            "name": {"value":""},
+            "method":{"value":"GET"},
+            "url":{"value":""}
+        },
+        "inputs":1,
+        "outputs":1,
+        "align": "right",
+        "icon": "white-globe.png",
+        "formTemplatePath": "/assets/node_forms/http_request_form.html"
+    },
+    {
+        "name": "switch",
+        "color": "#E2D96E",
+        "category": "function",
+        "defaults": {
+            "name": {"value":""},
+            "property": {"value":"payload", "required":true},
+            "rules": {"value":[{"t":"eq", "v":""}]},
+            "checkall": {"value":"true", "required":true},
+            "outputs": {"value":1}
+        },
+        "inputs": 1,
+        "outputs": 1,
+        "icon": "switch.png",
+        "formTemplatePath": "/assets/node_forms/switch_form.html"
+    },
+    {
         "name" : "sentiment",
         "category": "analysis-function",
         "color":"#E6E0F8",
@@ -222,20 +253,6 @@
         "icon": "white-globe.png"
     },
     {
-        "name" : "http request",
-        "category": "function",
-        "color":"rgb(231, 231, 174)",
-        "defaults": {
-            "name": {"value":""},
-            "method":{"value":"GET"},
-            "url":{"value":""}
-        },
-        "inputs":1,
-        "outputs":1,
-        "align": "right",
-        "icon": "white-globe.png"
-    },
-    {
         "name" : "websocket",
         "category": "input",
         "defaults": {
@@ -337,20 +354,5 @@
         "outputs":0,
         "icon": "bridge-dash.png",
         "align": "right"
-    },
-    {
-        "name": "switch",
-        "color": "#E2D96E",
-        "category": "function",
-        "defaults": {
-            "name": {"value":""},
-            "property": {"value":"payload", "required":true},
-            "rules": {"value":[{"t":"eq", "v":""}]},
-            "checkall": {"value":"true", "required":true},
-            "outputs": {"value":1}
-        },
-        "inputs": 1,
-        "outputs": 1,
-        "icon": "switch.png"
     }
 ]

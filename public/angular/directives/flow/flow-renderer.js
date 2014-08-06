@@ -1,8 +1,12 @@
 angular.module('octobluApp')
   .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer) {
     return function (renderScope) {
+      var nodeType = {
+        width: 100,
+        height: 35
+      };
+
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected');
-      var nodeRenderer = FlowNodeRenderer(renderScope);
 
       renderScope.on('click', function () {
         if (d3.event.defaultPrevented) {
@@ -11,35 +15,55 @@ angular.module('octobluApp')
         dispatch.nodeSelected(null);
       });
 
+      function addClickBehavior(nodeElement, node) {
+        nodeElement.on('click', function () {
+          if (d3.event.defaultPrevented) {
+            return;
+          }
+          d3.event.preventDefault();
+          dispatch.nodeSelected(node);
+        });
+      }
+
+      function addDragBehavior(nodeElement, node, flow) {
+        var dragBehavior = d3.behavior.drag()
+          .on('dragstart', function () {
+            d3.event.sourceEvent.stopPropagation();
+          })
+          .on('drag', function () {
+            node.x = d3.event.x - (nodeType.width / 2);
+            node.y = d3.event.y - (nodeType.height / 2);
+            d3.select(this)
+              .attr("transform", "translate(" + node.x + "," + node.y + ")");
+            renderLinks(flow);
+          })
+          .on('dragend', function () {
+            dispatch.flowChanged(flow);
+          });
+
+        nodeElement.call(dragBehavior);
+      }
+
       function renderLinks(flow) {
         renderScope.selectAll('.flow-link').remove();
-        _.each(flow.links, function(link){
+        _.each(flow.links, function (link) {
           FlowLinkRenderer.render(renderScope, link, flow.nodes);
+        });
+      }
+
+      function renderNodes(flow) {
+        _.each(flow.nodes, function (node) {
+
+          var nodeElement = FlowNodeRenderer.render(renderScope, node);
+          addDragBehavior(nodeElement, node, flow);
+          addClickBehavior(nodeElement, node);
         });
       }
 
       return {
         render: function (flow) {
-          nodeRenderer.render(flow.nodes);
+          renderNodes(flow);
           renderLinks(flow);
-
-          nodeRenderer
-            .on('nodeMoved', function (flowNode) {
-              renderLinks(flow);
-            });
-
-          nodeRenderer
-            .on('nodeChanged', function (flowNode) {
-              dispatch.flowChanged(flow);
-            });
-
-          nodeRenderer
-            .on('nodeClicked', function (flowNode) {
-              dispatch.nodeSelected(flowNode);
-            });
-        },
-        clear: function () {
-          nodeRenderer.clear();
         },
         on: function (event, callback) {
           return dispatch.on(event, callback);

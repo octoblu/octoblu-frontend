@@ -1,0 +1,19 @@
+<div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input  id="name" class="form-control" type="text" ng-model="flowEditor.editorNode.name">
+  </div>
+
+  <div class="form-group">
+    <label for="property">Property to switch on</label>
+    <input  id="property" ng-model="flowEditor.editorNode.property" type="text" class="form-control" required>
+  </div>
+
+  <switch-rules ng-model="flowEditor.editorNode.rules">
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="flowEditor.editorNode.checkall"> Check all rules
+    </label>
+  </div>
+</div>
