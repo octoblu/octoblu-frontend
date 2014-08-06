@@ -9,37 +9,36 @@ angular.module('octobluApp')
         flow: '=',
         selectedNode: '='
       },
+
       link: function ($scope, element) {
         var renderScope = d3.select(element.find('svg')[0]);
         var flowRenderer = new FlowRenderer(renderScope);
         $scope.$watch('flow.flowId', function (newFlowId, oldFlowId) {
 
-          if (newFlowId !== oldFlowId ) {
+          if (newFlowId !== oldFlowId) {
             flowRenderer.render($scope.flow);
             flowRenderer.on('nodeSelected', function (flowNode) {
               $scope.selectedNode = flowNode;
               $scope.$apply();
             });
-
           }
         });
 
-
         element.on(
           'dragover',
-          function(e) {
+          function (e) {
             e.preventDefault();
             e.stopPropagation();
-          }
-        )
+          });
+
         element.on(
           'dragenter',
-          function(e) {
+          function (e) {
             e.preventDefault();
             e.stopPropagation();
-          }
-        )
-        element.on('drop', function(nodeType){
+          });
+
+        element.on('drop', function (nodeType) {
           console.log(nodeType);
         });
       }
