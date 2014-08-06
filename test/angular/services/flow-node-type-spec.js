@@ -64,6 +64,42 @@ describe('FlowNodeTypeService', function () {
       expect(flowNode.class).to.deep.equal('bork');
     });
 
+    it('should set the inputs to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {inputs: 1};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.inputs).to.equal(1);
+    });
+
+    it('should set the inputs to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {inputs: 2};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.inputs).to.equal(2);
+    });
+
+    it('should set the outputs to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {outputs: 2};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.outputs).to.equal(2);
+    });
+
+    it('should set the outputs to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {outputs: 3};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.outputs).to.equal(3);
+    });
+
     it('should set a uuid to the flowNodeType uuid', function(){
       var flowNodeType, flowNode;
 
