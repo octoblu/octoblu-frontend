@@ -1,9 +1,9 @@
 angular.module('octobluApp')
-  .controller('flowController', function ($scope, $http, $location, FlowService, FlowNodeTypeService) {
+  .controller('flowController', function ($scope, FlowService, FlowNodeTypeService) {
     var originalNode;
 
     $scope.flowEditor = {
-      selectedNode: null,
+      selectedNode: null
     };
 
     FlowNodeTypeService.getFlowNodeTypes()
@@ -43,7 +43,6 @@ angular.module('octobluApp')
         originalNode.name = $scope.editingNodeName;
         originalNode.dirty = true;
         originalNode.changed = true;
-        RED.view.dirty(true);
       }
     };
 

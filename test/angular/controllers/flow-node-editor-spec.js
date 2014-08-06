@@ -136,17 +136,16 @@ describe('flowNodeEditorController', function () {
       });
     });
   });
-});
-
-var FakeFlowNodeTypeService = {
-  getFlowNodeType: function(arg0){
-    FakeFlowNodeTypeService.getFlowNodeType.called     = true;
-    FakeFlowNodeTypeService.getFlowNodeType.calledWith = arg0;
-    return {
-      then: function(callback){
-        FakeFlowNodeTypeService.getFlowNodeType.resolve = callback;
+  var FakeFlowNodeTypeService = {
+    getFlowNodeType: function(arg0){
+      FakeFlowNodeTypeService.getFlowNodeType.called     = true;
+      FakeFlowNodeTypeService.getFlowNodeType.calledWith = arg0;
+      return {
+        then: function(callback){
+          FakeFlowNodeTypeService.getFlowNodeType.resolve = callback;
+        }
       }
     }
-  }
-}
+  };
 
+});
