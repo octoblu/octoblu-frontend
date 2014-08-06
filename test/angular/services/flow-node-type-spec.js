@@ -46,6 +46,24 @@ describe('FlowNodeTypeService', function () {
       expect(flowNode.type).to.deep.equal('t100');
     });
 
+    it('should set the class to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {class: 'spaz'};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.class).to.deep.equal('spaz');
+    });
+
+    it('should set the class to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {class: 'bork'};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.class).to.deep.equal('bork');
+    });
+
     it('should set a uuid to the flowNodeType uuid', function(){
       var flowNodeType, flowNode;
 

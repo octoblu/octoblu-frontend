@@ -7,8 +7,9 @@ angular.module('octobluApp')
           var defaults = _.cloneDeep(flowNodeType.defaults);
 
           return _.defaults({
-            id   : UUIDService.v1(),
-            type : flowNodeType.name
+            id    : UUIDService.v1(),
+            type  : flowNodeType.name,
+            class : flowNodeType.class
           }, defaults);
         };
 
