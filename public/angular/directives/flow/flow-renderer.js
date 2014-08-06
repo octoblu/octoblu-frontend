@@ -1,10 +1,6 @@
 angular.module('octobluApp')
-  .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer) {
+  .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
     return function (renderScope) {
-      var nodeType = {
-        width: 100,
-        height: 40
-      };
 
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected');
 
@@ -31,8 +27,8 @@ angular.module('octobluApp')
             d3.event.sourceEvent.stopPropagation();
           })
           .on('drag', function () {
-            node.x = d3.event.x - (nodeType.width / 2);
-            node.y = d3.event.y - (nodeType.height / 2);
+            node.x = d3.event.x - (FlowNodeDimensions.width / 2);
+            node.y = d3.event.y - (FlowNodeDimensions.height / 2);
             d3.select(this)
               .attr("transform", "translate(" + node.x + "," + node.y + ")");
             renderLinks(flow);
