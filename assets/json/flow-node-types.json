@@ -3,8 +3,8 @@
         "name": "delay",
         "color":"#E6E0F8",
         "category": "function",
-        "inputs": 1,
-        "outputs": 1,
+        "input": 1,
+        "output": 1,
         "formTemplatePath": "/assets/node_forms/delay_form.html"
     },
     {
@@ -12,10 +12,10 @@
         "color":"#fdd0a2",
         "category": "function",
         "defaults": {
-            "outputs": 1
+            "output": 1
         },
-        "inputs":1,
-        "outputs":1,
+        "input":1,
+        "output":1,
         "icon": "function.png",
         "formTemplatePath": "/assets/node_forms/function_form.html"
     },
@@ -27,8 +27,8 @@
             "payloadType": "date",
             "once": false
         },
-        "inputs":0,
-        "outputs":1,
+        "input":0,
+        "output":1,
         "icon": "inject.png",
         "formTemplatePath": "/assets/node_forms/inject_form.html"
     },
@@ -39,8 +39,8 @@
         "defaults": {
             "method":"GET"
         },
-        "inputs":1,
-        "outputs":1,
+        "input":1,
+        "output":1,
         "align": "right",
         "icon": "white-globe.png",
         "formTemplatePath": "/assets/node_forms/http_request_form.html"
@@ -53,10 +53,10 @@
             "property": "payload", "required":true,
             "rules": [{"t":"eq", "v":""}],
             "checkall": "true", "required":true,
-            "outputs": 1
+            "output": 1
         },
-        "inputs": 1,
-        "outputs": 1,
+        "input": 1,
+        "output": 1,
         "icon": "switch.png",
         "formTemplatePath": "/assets/node_forms/switch_form.html"
     },
@@ -66,8 +66,8 @@
         "color":"#E6E0F8",
         "defaults": {
         },
-        "inputs":1,
-        "outputs":1,
+        "input":1,
+        "output":1,
         "icon": "arrow-in.png"
     },
     {
@@ -76,8 +76,8 @@
         "color":"#E6E0F8",
         "defaults": {
         },
-        "inputs":1,
-        "outputs":1,
+        "input":1,
+        "output":1,
         "icon": "arrow-in.png"
     },
     {
@@ -88,8 +88,8 @@
             "complete": false
         },
         "color":"#87a980",
-        "inputs":1,
-        "outputs":0,
+        "input":1,
+        "output":0,
         "icon": "debug.png",
         "align": "right"
     },
@@ -100,8 +100,8 @@
         "defaults": {
             "template": "This is the 'payload': {{payload}!"
         },
-        "inputs": 1,
-        "outputs": 1,
+        "input": 1,
+        "output": 1,
         "icon": "template.png"
     },
     {
@@ -134,8 +134,8 @@
             "randomLast": "5", "required":true,
             "randomUnits":  "seconds"
         },
-        "inputs":1,
-        "outputs":1,
+        "input":1,
+        "output":1,
         "icon": "timer.png"
     },
     {
@@ -144,8 +144,8 @@
         "color":"#ffffff",
         "defaults": {
         },
-        "inputs":0,
-        "outputs":0,
+        "input":0,
+        "output":0,
         "icon": "file.png"
     }
 ]

@@ -64,40 +64,40 @@ describe('FlowNodeTypeService', function () {
       expect(flowNode.class).to.deep.equal('bork');
     });
 
-    it('should set the inputs to the flowNodeType class', function(){
+    it('should set the input to the flowNodeType class', function(){
       var flowNodeType, flowNode;
 
-      flowNodeType = {inputs: 1};
+      flowNodeType = {input: 1};
       flowNode     = sut.createFlowNode(flowNodeType);
 
-      expect(flowNode.inputs).to.equal(1);
+      expect(flowNode.input).to.equal(1);
     });
 
-    it('should set the inputs to the flowNodeType class', function(){
+    it('should set the input to the flowNodeType class', function(){
       var flowNodeType, flowNode;
 
-      flowNodeType = {inputs: 2};
+      flowNodeType = {input: 2};
       flowNode     = sut.createFlowNode(flowNodeType);
 
-      expect(flowNode.inputs).to.equal(2);
+      expect(flowNode.input).to.equal(2);
     });
 
-    it('should set the outputs to the flowNodeType class', function(){
+    it('should set the output to the flowNodeType class', function(){
       var flowNodeType, flowNode;
 
-      flowNodeType = {outputs: 2};
+      flowNodeType = {output: 2};
       flowNode     = sut.createFlowNode(flowNodeType);
 
-      expect(flowNode.outputs).to.equal(2);
+      expect(flowNode.output).to.equal(2);
     });
 
-    it('should set the outputs to the flowNodeType class', function(){
+    it('should set the output to the flowNodeType class', function(){
       var flowNodeType, flowNode;
 
-      flowNodeType = {outputs: 3};
+      flowNodeType = {output: 3};
       flowNode     = sut.createFlowNode(flowNodeType);
 
-      expect(flowNode.outputs).to.equal(3);
+      expect(flowNode.output).to.equal(3);
     });
 
     it('should set a uuid to the flowNodeType uuid', function(){
