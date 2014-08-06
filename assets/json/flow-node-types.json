@@ -140,10 +140,8 @@
     },
     {
         "name" : "comment",
+        "class": "comment",
         "category": "function",
-        "color":"#ffffff",
-        "defaults": {
-        },
         "input":0,
         "output":0,
         "icon": "file.png"
