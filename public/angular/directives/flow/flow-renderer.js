@@ -52,8 +52,8 @@ angular.module('octobluApp')
       }
 
       function renderNodes(flow) {
+        renderScope.selectAll('.flow-node').remove();
         _.each(flow.nodes, function (node) {
-
           var nodeElement = FlowNodeRenderer.render(renderScope, node);
           addDragBehavior(nodeElement, node, flow);
           addClickBehavior(nodeElement, node);
