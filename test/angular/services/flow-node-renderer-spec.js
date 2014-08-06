@@ -72,10 +72,24 @@ describe('FlowNodeRenderer', function () {
     it('should place 3 input ports evenly spaced on the left', function(){
       sut.render(renderScope, {id: '1', input: 3});
       var ports = renderScope.selectAll('.flow-node-input-port')[0];
+      var node = $(renderScope.selectAll('.flow-node > rect')[0]);
+      expect(node.attr('height')).to.equal('50');
+      expect(Math.round($(ports[0]).attr('y'))).to.equal(5);
+      expect(Math.round($(ports[1]).attr('y'))).to.equal(20);
+      expect(Math.round($(ports[2]).attr('y'))).to.equal(35);
+    });
 
-      expect(Math.round($(ports[0]).attr('y'))).to.equal(3);
-      expect(Math.round($(ports[1]).attr('y'))).to.equal(15);
-      expect(Math.round($(ports[2]).attr('y'))).to.equal(28);
+    it('should place 4 input ports evenly spaced on the left', function(){
+      sut.render(renderScope, {id: '1', input: 4});
+      var ports = renderScope.selectAll('.flow-node-input-port')[0];
+
+      var node = $(renderScope.selectAll('.flow-node > rect')[0]);
+      expect(node.attr('height')).to.equal('65');
+
+//      expect(Math.round($(ports[0]).attr('y'))).to.equal(3);
+//      expect(Math.round($(ports[1]).attr('y'))).to.equal(15);
+//      expect(Math.round($(ports[2]).attr('y'))).to.equal(28);
+//      expect(Math.round($(ports[3]).attr('y'))).to.equal(28);
     });
 
   });
