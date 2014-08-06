@@ -3,6 +3,10 @@ angular.module('octobluApp')
     .service('FlowNodeTypeService', function ($http) {
         var service = this;
 
+        service.createFlowNode = function(flowNodeType){
+          return {type : flowNodeType.name};
+        };
+
         service.getFlowNodeType  = function(type){
           return service.getFlowNodeTypes().then(function(flowNodeTypes){
             return _.findWhere(flowNodeTypes, {name: type});

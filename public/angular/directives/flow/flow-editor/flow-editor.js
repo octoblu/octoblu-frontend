@@ -37,10 +37,6 @@ angular.module('octobluApp')
             e.preventDefault();
             e.stopPropagation();
           });
-
-        element.on('drop', function (nodeType) {
-          console.log(nodeType);
-        });
       }
     };
   });
