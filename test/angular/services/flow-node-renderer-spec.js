@@ -62,21 +62,44 @@ describe('FlowNodeRenderer', function () {
     });
 
     it('should place 2 input ports evenly spaced on the left', function(){
-      sut.render(renderScope, {id: '1', input: 2});
+      var node = {id: '1', input: 2};
+      sut.render(renderScope, node);
       var ports = renderScope.selectAll('.flow-node-input-port')[0];
 
       expect(Math.round($(ports[0]).attr('y'))).to.equal(7);
       expect(Math.round($(ports[1]).attr('y'))).to.equal(23);
+      expect(Math.round(node.inputLocations[0])).to.equal(7);
+      expect(Math.round(node.inputLocations[1])).to.equal(23);
     });
 
     it('should place 3 input ports evenly spaced on the left', function(){
-      sut.render(renderScope, {id: '1', input: 3});
+      var node = {id: '1', input: 3};
+      sut.render(renderScope, node);
       var ports = renderScope.selectAll('.flow-node-input-port')[0];
-      var node = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(node.attr('height')).to.equal('50');
+      var nodeElement = $(renderScope.selectAll('.flow-node > rect')[0]);
+      expect(nodeElement.attr('height')).to.equal('50');
       expect(Math.round($(ports[0]).attr('y'))).to.equal(5);
       expect(Math.round($(ports[1]).attr('y'))).to.equal(20);
       expect(Math.round($(ports[2]).attr('y'))).to.equal(35);
+      expect(Math.round(node.inputLocations[0])).to.equal(5);
+      expect(Math.round(node.inputLocations[1])).to.equal(20);
+      expect(Math.round(node.inputLocations[2])).to.equal(35);
+
+    });
+
+    it('should place 3 output ports evenly spaced on the left', function(){
+      var node = {id: '1', output: 3};
+      sut.render(renderScope, node);
+      var ports = renderScope.selectAll('.flow-node-output-port')[0];
+      var nodeElement = $(renderScope.selectAll('.flow-node > rect')[0]);
+      expect(nodeElement.attr('height')).to.equal('50');
+      expect(Math.round($(ports[0]).attr('y'))).to.equal(5);
+      expect(Math.round($(ports[1]).attr('y'))).to.equal(20);
+      expect(Math.round($(ports[2]).attr('y'))).to.equal(35);
+      expect(Math.round(node.outputLocations[0])).to.equal(5);
+      expect(Math.round(node.outputLocations[1])).to.equal(20);
+      expect(Math.round(node.outputLocations[2])).to.equal(35);
+
     });
 
     it('should place 4 input ports evenly spaced on the left', function(){
