@@ -73,7 +73,7 @@
     {
         "name" : "xml2js",
         "category": "advanced-function",
-        "color":"#E6E0F8",
+        "formTemplatePath": "/assets/node_forms/xml2js_form.html",
         "defaults": {
         },
         "input":1,
