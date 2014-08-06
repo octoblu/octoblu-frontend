@@ -11,11 +11,11 @@ angular.module('octobluApp')
       var inputPorts = node.input || 0;
       var outputPorts = node.output || 0;
       var numPorts = inputPorts > outputPorts ? inputPorts : outputPorts;
-      
+
       var nodeHeight = nodeType.minHeight;
       var totalPortHeight = ((numPorts) * nodeType.portHeight);
       var totalPortSpacing = ((numPorts + 1) * nodeType.portHeight) / 2;
-      
+
       totalPortHeight += totalPortSpacing;
 
       if (totalPortHeight > nodeHeight) {
@@ -31,7 +31,7 @@ angular.module('octobluApp')
         var nodeElement = renderScope
           .append('g')
           .classed('flow-node', true)
-          .classed('flow-node-' + node.type, true)
+          .classed('flow-node-' + node.class, true)
           .attr('transform', 'translate(' + node.x + ',' + node.y + ')');
 
         nodeElement
