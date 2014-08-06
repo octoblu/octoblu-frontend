@@ -2,7 +2,7 @@ angular.module('octobluApp')
   .service('FlowLinkRenderer', function () {
     var nodeType = {
       width: 100,
-      height: 35
+      height: 40
     };
 
     var renderLine = d3.svg.line()

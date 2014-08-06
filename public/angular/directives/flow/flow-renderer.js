@@ -3,7 +3,7 @@ angular.module('octobluApp')
     return function (renderScope) {
       var nodeType = {
         width: 100,
-        height: 35
+        height: 40
       };
 
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected');
@@ -52,8 +52,8 @@ angular.module('octobluApp')
       }
 
       function renderNodes(flow) {
+        renderScope.selectAll('.flow-node').remove();
         _.each(flow.nodes, function (node) {
-
           var nodeElement = FlowNodeRenderer.render(renderScope, node);
           addDragBehavior(nodeElement, node, flow);
           addClickBehavior(nodeElement, node);
