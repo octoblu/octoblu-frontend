@@ -38,7 +38,7 @@ describe('FlowRenderer', function () {
   });
 
   describe('when flow has two nodes', function() {
-    var node1, node2, link1, link2;
+    var node1, node2, link1, link2, link3;
 
     beforeEach(function () {
       node1 = {id: '1'};
