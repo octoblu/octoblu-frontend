@@ -8,19 +8,21 @@ angular.module('octobluApp')
     };
 
     function getNodeHeight(node) {
+      var inputPorts = node.input || 0;
+      var outputPorts = node.output || 0;
+      var numPorts = inputPorts > outputPorts ? inputPorts : outputPorts;
+      
       var nodeHeight = nodeType.minHeight;
-      //height of the all the ports, without spaces
-      var inputPortHeight = ((node.input) * nodeType.portHeight);
-      //40
+      var totalPortHeight = ((numPorts) * nodeType.portHeight);
+      var totalPortSpacing = ((numPorts + 1) * nodeType.portHeight) / 2;
+      
+      totalPortHeight += totalPortSpacing;
 
-      var inputPortSpacing = ((node.input + 1) * nodeType.portHeight) / 2;
-      //25
-      inputPortHeight += inputPortSpacing;
-      if (inputPortHeight > nodeHeight) {
-        return inputPortHeight;
+      if (totalPortHeight > nodeHeight) {
+        return totalPortHeight;
       }
-      return nodeHeight;
 
+      return nodeHeight;
     }
 
     return {
@@ -70,7 +72,6 @@ angular.module('octobluApp')
         });
 
         _.times(node.output, function () {
-          console.log('output', node.output);
           nodeElement
             .append('rect')
             .attr('x', nodeType.width - (nodeType.portWidth / 2))
