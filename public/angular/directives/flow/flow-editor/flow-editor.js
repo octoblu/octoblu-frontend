@@ -2,7 +2,8 @@ angular.module('octobluApp')
   .directive('flowEditor', function (FlowRenderer) {
     return {
       restrict: 'E',
-      templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
+      controller: 'FlowEditorController',
+      templateUrl: 'angular/directives/flow/flow-editor/flow-editor.html',
       replace: true,
       scope: {
         flow: '=',
@@ -21,6 +22,25 @@ angular.module('octobluApp')
             });
 
           }
+        });
+
+
+        element.on(
+          'dragover',
+          function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        )
+        element.on(
+          'dragenter',
+          function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        )
+        element.on('drop', function(nodeType){
+          console.log(nodeType);
         });
       }
     };
