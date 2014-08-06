@@ -24,13 +24,8 @@
         "category": "input",
         "color":"#a6bbcf",
         "defaults": {
-            "name": {"value":""},
-            "topic": {"value":""},
-            "payload": {"value":""},
-            "payloadType": {"value":"date"},
-            "repeat": {"value":""},
-            "crontab": {"value":""},
-            "once": {"value":false}
+            "payloadType": "date",
+            "once": false
         },
         "inputs":0,
         "outputs":1,
@@ -42,9 +37,7 @@
         "category": "function",
         "color":"rgb(231, 231, 174)",
         "defaults": {
-            "name": {"value":""},
-            "method":{"value":"GET"},
-            "url":{"value":""}
+            "method":"GET"
         },
         "inputs":1,
         "outputs":1,
@@ -57,11 +50,10 @@
         "color": "#E2D96E",
         "category": "function",
         "defaults": {
-            "name": {"value":""},
-            "property": {"value":"payload", "required":true},
-            "rules": {"value":[{"t":"eq", "v":""}]},
-            "checkall": {"value":"true", "required":true},
-            "outputs": {"value":1}
+            "property": "payload", "required":true,
+            "rules": [{"t":"eq", "v":""}],
+            "checkall": "true", "required":true,
+            "outputs": 1
         },
         "inputs": 1,
         "outputs": 1,
@@ -73,7 +65,6 @@
         "category": "analysis-function",
         "color":"#E6E0F8",
         "defaults": {
-            "name": {"value":""}
         },
         "inputs":1,
         "outputs":1,
@@ -84,7 +75,6 @@
         "category": "advanced-function",
         "color":"#E6E0F8",
         "defaults": {
-            "name": {"value":""}
         },
         "inputs":1,
         "outputs":1,
@@ -94,9 +84,8 @@
         "name" : "debug",
         "category": "output",
         "defaults": {
-            "name": {"value":""},
-            "active": {"value":true},
-            "complete": {"value":false}
+            "active": true,
+            "complete": false
         },
         "color":"#87a980",
         "inputs":1,
@@ -109,10 +98,8 @@
         "category": "advanced-function",
         "color":"darksalmon",
         "defaults": {
-            "command": {"value":"","required":true},
-            "append": {"value":""},
-            "useSpawn": {"value":""},
-            "name": {"value":""}
+            "command": "",
+            "required":true
         },
         "inputs":1,
         "outputs":3,
@@ -124,11 +111,10 @@
         "color":"rgb(243, 181, 103)",
         "category": "function",
         "defaults": {
-            "name": {"value":""},
-            "template": {"value":"This is the 'payload': {{payload}}!"}
+            "template": "This is the 'payload': {{payload}!"
         },
-        "inputs":1,
-        "outputs":1,
+        "inputs": 1,
+        "outputs": 1,
         "icon": "template.png"
     },
     {
@@ -152,15 +138,14 @@
         },
 
         "defaults": {
-            "name": {"value":""},
-            "pauseType": {"value":"delay", "required":true},
-            "timeout": {"value":"5", "required":true},
-            "timeoutUnits": {"value":"seconds"},
-            "rate": {"value":"1", "required":true},
-            "rateUnits": {"value": "second"},
-            "randomFirst": {"value":"1", "required":true },
-            "randomLast": {"value":"5", "required":true},
-            "randomUnits": {"value": "seconds"}
+            "pauseType": "delay", "required":true,
+            "timeout": "5", "required":true,
+            "timeoutUnits": "seconds",
+            "rate": "1", "required":true,
+            "rateUnits":  "second",
+            "randomFirst": "1", "required":true ,
+            "randomLast": "5", "required":true,
+            "randomUnits":  "seconds"
         },
         "inputs":1,
         "outputs":1,
@@ -171,8 +156,6 @@
         "category": "function",
         "color":"#ffffff",
         "defaults": {
-            "name": {"value":""},
-            "info": {"value":""}
         },
         "inputs":0,
         "outputs":0,
@@ -183,7 +166,6 @@
         "category": "unknown",
         "color":"#fff0f0",
         "defaults": {
-            "name": {"value":""}
         },
         "inputs":1,
         "outputs":1,
@@ -193,8 +175,7 @@
         "name" : "mqtt",
         "category": "input",
         "defaults": {
-            "name": {"value":""},
-            "topic": {"value":"","required":true},
+            "topic": "","required":true,
             "broker": {"type":"mqtt-broker", "required":true}
         },
         "color":"#d8bfd8",
@@ -206,8 +187,6 @@
         "name" : "mqtt",
         "category": "output",
         "defaults": {
-            "name": {"value":""},
-            "topic": {"value":""},
             "broker": {"type":"mqtt-broker", "required":true}
         },
         "color":"#d8bfd8",
@@ -220,8 +199,8 @@
         "name" : "mqtt-broker",
         "category": "config",
         "defaults": {
-            "broker": {"value":"localhost","required":true},
-            "port": {"value":1883,"required":true},
+            "broker": "localhost","required":true,
+            "port": 1883,"required":true,
             "clientid": { "value":"" }
         }
     },
@@ -230,9 +209,8 @@
         "category": "input",
         "color":"rgb(231, 231, 174)",
         "defaults": {
-            "name": {"value":""},
-            "url": {"value":"","required":true},
-            "method": {"value":"get","required":true}
+            "url": "","required":true,
+            "method": "get","required":true
         },
         "inputs":0,
         "outputs":1,
@@ -243,7 +221,6 @@
         "category": "output",
         "color":"rgb(231, 231, 174)",
         "defaults": {
-            "name": {"value":""}
         },
         "inputs":1,
         "outputs":0,
@@ -254,7 +231,6 @@
         "name" : "websocket",
         "category": "input",
         "defaults": {
-            "name": {"value":""},
             "server": {"type":"websocket-listener"}
         },
         "color":"rgb(215, 215, 160)",
@@ -266,7 +242,6 @@
         "name" : "websocket",
         "category": "output",
         "defaults": {
-            "name": {"value":""},
             "server": {"type":"websocket-listener", "required":true}
         },
         "color":"rgb(215, 215, 160)",
@@ -279,8 +254,8 @@
         "name" : "websocket-listener",
         "category": "config",
         "defaults": {
-            "path": {"value":"","required":true },
-            "wholemsg": {"value":"false"}
+            "path": "","required":true ,
+            "wholemsg": "false"
         },
         "inputs":0,
         "outputs":0
@@ -290,14 +265,10 @@
         "category": "input",
         "color":"Silver",
         "defaults": {
-            "server": {"value":"server","required":true},
-            "host": {"value":""},
-            "port": {"value":"","required":true},
-            "datamode":{"value":"stream"},
-            "datatype":{"value":"buffer"},
-            "newline":{"value":""},
-            "topic": {"value":""},
-            "name": {"value":""}
+            "server": "server","required":true,
+            "port": "","required":true,
+            "datamode":"stream",
+            "datatype":"buffer"
         },
         "inputs":0,
         "outputs":1,
@@ -308,11 +279,9 @@
         "category": "output",
         "color":"Silver",
         "defaults": {
-            "host": {"value":"" },
-            "port": {"value":""},
-            "beserver": {"value":"client","required":true},
-            "base64": {"value":false,"required":true},
-            "name": {"value":""}
+            "host": "" ,
+            "beserver": "client","required":true,
+            "base64": false,"required":true
         },
         "inputs":1,
         "outputs":0,
@@ -324,12 +293,10 @@
         "category": "input",
         "color":"Silver",
         "defaults": {
-            "name": {"value":""},
-            "iface": {"value":""},
-            "port": {"value":"","required":true},
-            "datatype": {"value":"buffer","required":true},
-            "multicast": {"value":"false"},
-            "group": {"value":"" }
+            "port": "","required":true,
+            "datatype": "buffer","required":true,
+            "multicast": "false",
+            "group": ""
         },
         "inputs":0,
         "outputs":1,
@@ -340,13 +307,8 @@
         "category": "output",
         "color":"Silver",
         "defaults": {
-            "name": {"value":""},
-            "addr": {"value":""},
-            "iface": {"value":""},
-            "port": {"value":""},
-            "outport": {"value":""},
-            "base64": {"value":false,"required":true},
-            "multicast": {"value":"false"}
+            "base64": false,"required":true,
+            "multicast": "false"
         },
         "inputs":1,
         "outputs":0,
