@@ -1,43 +1,66 @@
 <fieldset>
-  <legend>
-    <div class="row">
-      <div class="col-xs-6">
-        Rules
+  <h4>
+    Rules
+  </h4>
+
+  <div ng-repeat="rule in rules">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-10">
+          <h5 class="text-muted">Port {{$index}}</h5>
+        </div>
+
+        <div class="col-xs-2 text-right">
+          <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
+        </div>
       </div>
-      <div class="col-xs-6 text-right">
-        <button type="button" ng-click="addRule()" class="btn btn-default">
-          <i class="fa fa-plus"></i> Add
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-6">
+          <select ng-model="rule.t" class="form-control">
+            <option value="true">Is true</option>
+            <option value="false">Is false</option>
+            <option value="null">Is null</option>
+            <option value="nnull">Is not null</option>
+            <option value="else">Otherwise</option>
+            <option value="eq">==</option>
+            <option value="neq">!=</option>
+            <option value="lt">&lt;</option>
+            <option value="lte">&lt;=</option>
+            <option value="gt">&gt;</option>
+            <option value="gte">&gt;=</option>
+            <option value="cont">Contains</option>
+            <option value="regex">Regex</option>
+            <option value="btwn">Is between</option>
+          </select>
+        </div>
+
+        <div class="col-xs-3">
+          <div class="input-group" ng-hide="rule.v === undefined">
+            <input ng-model="rule.v" class="form-control">
+          </div>
+        </div>
+
+        <div class="col-xs-3">
+          <div class="input-group" ng-hide="rule.v2 === undefined">
+            <input ng-model="rule.v2" class="form-control">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-xs-12 text-right">
+        <button type="button" ng-click="addRule()" class="btn btn-lg btn-default btn-block">
+          <i class="fa fa-plus"></i> Add Rule
         </button>
       </div>
-    </div>
-  </legend>
-
-  <div ng-repeat="rule in rules" class="form-group">
-    <div class="input-group">
-      <select ng-model="rule.t">
-        <option value="true">is true</option>
-        <option value="false">is false</option>
-        <option value="null">is null</option>
-        <option value="nnull">is not null</option>
-        <option value="else">otherwise</option>
-        <option value="eq">==</option>
-        <option value="neq">!=</option>
-        <option value="lt">&lt;</option>
-        <option value="lte">&lt;=</option>
-        <option value="gt">&gt;</option>
-        <option value="gte">&gt;=</option>
-        <option value="cont">contains</option>
-        <option value="regex">matches regex</option>
-        <option value="btwn" selected="selected">is between</option>
-      </select>
-    </div>
-
-    <div class="input-group" ng-hide="rule.v === undefined">
-      <input ng-model="rule.v">
-    </div>
-
-    <div class="input-group" ng-hide="rule.v2 === undefined">
-      <input ng-model="rule.v2">
     </div>
   </div>
 </fieldset>
