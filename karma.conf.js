@@ -40,6 +40,7 @@ module.exports = function(config) {
         "lib/smoothie/smoothie.js",
         "lib/ng-table/ng-table.js",
         "lib/angular-ui-ace/ui-ace.js",
+        "lib/angular-dragdrop-ganarajpr/draganddrop.js",
 
         "lib/angular-mocks/angular-mocks.js",
 

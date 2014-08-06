@@ -1,7 +1,7 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
+angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDrop', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .service('skynetConfig', function($location){
         var config = {
             host: 'wss://skynet.im',

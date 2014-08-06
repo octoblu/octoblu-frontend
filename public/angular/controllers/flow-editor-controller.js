@@ -1,8 +1,9 @@
 angular.module('octobluApp')
-.controller('FlowEditorController', function($scope){
+.controller('FlowEditorController', function($scope, FlowNodeTypeService){
   'use strict';
 
-  $scope.addNode = function(obj){
-    $scope.flow.nodes.push(obj);
+  $scope.addNode = function(flowNodeType){
+    var flowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
+    $scope.flow.nodes.push(flowNode);
   };
 });
