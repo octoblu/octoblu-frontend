@@ -12,9 +12,7 @@
         "color":"#fdd0a2",
         "category": "function",
         "defaults": {
-            "name": {"value":""},
-            "func": {},
-            "outputs": {"value":1}
+            "outputs": 1
         },
         "inputs":1,
         "outputs":1,

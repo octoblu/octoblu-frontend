@@ -91,6 +91,15 @@ describe('FlowNodeTypeService', function () {
 
       expect(flowNode.bar).to.deep.equal({foo: 'baz'});
     });
+
+    it('should not allow the defaults to override the name', function () {
+      var flowNodeType, flowNode;
+
+      flowNodeType = {name: 'foo', defaults: {name: 'bar'}};
+      flowNode = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.type).to.equal('foo');
+    });
   });
 
   describe('.getFlowNodeType', function () {

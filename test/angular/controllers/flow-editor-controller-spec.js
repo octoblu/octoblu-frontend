@@ -44,7 +44,21 @@ describe('FlowEditorController', function(){
       fakeFlowNodeTypeService.createFlowNode.returnValue = returnValue;
       scope.addNode({type: 'some-type'});
 
-      expect(scope.flow.nodes[0]).to.equal(returnValue);
+      expect(scope.flow.nodes[0].my).to.equal('return-value');
+    });
+
+    it('should add the events x and y coordinates to the flowNode', function () {
+      scope.addNode({type: 'some-type'}, 102, 12);
+
+      expect(scope.flow.nodes[0].x).to.equal(102);
+      expect(scope.flow.nodes[0].y).to.equal(12);
+    });
+
+    it('should add the events x and y coordinates to the flowNode', function () {
+      scope.addNode({type: 'some-type'}, 1, 2);
+
+      expect(scope.flow.nodes[0].x).to.equal(1);
+      expect(scope.flow.nodes[0].y).to.equal(2);
     });
 
     xit('should really add my node', function(){
@@ -58,7 +72,7 @@ var FakeFlowNodeTypeService = function(){
   var _this = this;
 
   _this.createFlowNode = sinon.spy(function(flowNodeType){
-    return _this.createFlowNode.returnValue;
+    return _this.createFlowNode.returnValue || {};
   });
 
   return _this;
