@@ -82,6 +82,7 @@
     },
     {
         "name" : "debug",
+        "class": "debug",
         "category": "output",
         "defaults": {
             "active": true,
