@@ -1,8 +1,8 @@
 angular.module('octobluApp')
-    .service('FlowService', function ($http, $q) {
+    .service('FlowService', function ($http, $q, UUIDService) {
         'use strict';
 
-        var service = this;
+        var _this = this;
 
         this.saveAllFlows = function (flows) {
             var promises;
@@ -15,8 +15,8 @@ angular.module('octobluApp')
         };
 
         this.saveAllFlowsAndDeploy = function (flows) {
-            return service.saveAllFlows(flows).then(function () {
-                return service.deploy();
+            return _this.saveAllFlows(flows).then(function () {
+                return _this.deploy();
             });
         };
 
@@ -26,6 +26,10 @@ angular.module('octobluApp')
 
         this.getAllFlows = function () {
             return $http.get("/api/flows").then(function(response){
+                if (_.isEmpty(response.data)) {
+                    return [_this.newFlow('Flow 1')];
+                }
+
                 return response.data;
             });
         };
@@ -35,5 +39,9 @@ angular.module('octobluApp')
                 .then(function (response) {
                     return response.data.flow;
                 });
+        };
+
+        this.newFlow = function(name) {
+            return {name: name, nodes: [], links: [], flowId: UUIDService.v1()};
         };
     });
