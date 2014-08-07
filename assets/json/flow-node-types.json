@@ -61,19 +61,6 @@
         "formTemplatePath": "/assets/node_forms/schedule_form.html"
     },
     {
-        "name" : "inject",
-        "class" : "inject",
-        "category": "input",
-        "defaults": {
-            "payloadType": "date",
-            "once": false
-        },
-        "input":0,
-        "output":1,
-        "icon": "inject.png",
-        "formTemplatePath": "/assets/node_forms/inject_form.html"
-    },
-    {
         "name" : "http request",
         "category": "function",
         "color":"rgb(231, 231, 174)",
@@ -88,7 +75,7 @@
     },
     {
         "name": "switch",
-        "color": "#E2D96E",
+        "class": "switch",
         "category": "function",
         "defaults": {
             "property": "payload", "required":true,
@@ -148,24 +135,8 @@
     },
     {
         "name" : "delay",
+        "class" : "delay",
         "category": "function",
-        "color":"#E6E0F8",
-        "schema" : {
-            "type": "object",
-            "properties": {
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "plivoAuthId": {
-                    "type": "string"
-                },
-                "plivoAuthToken": {
-                    "type": "string",
-                    "required": true
-                }
-            }
-        },
-
         "defaults": {
             "pauseType": "delay", "required":true,
             "timeout": "5", "required":true,
