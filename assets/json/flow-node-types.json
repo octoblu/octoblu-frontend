@@ -67,7 +67,7 @@
     {
         "name" : "http request",
         "category": "function",
-        "color":"rgb(231, 231, 174)",
+        "class" : "http-request",
         "defaults": {
             "method":"GET"
         },
@@ -95,16 +95,18 @@
     {
         "name" : "sentiment",
         "category": "analysis-function",
-        "color":"#E6E0F8",
+        "class" :"sentiment",
         "defaults": {
         },
         "input":1,
         "output":1,
-        "icon": "arrow-in.png"
+        "icon": "arrow-in.png",
+        "formTemplatePath": "/assets/node_forms/sentiment_form.html"
     },
     {
         "name" : "xml2js",
         "category": "advanced-function",
+        "class" : "xml2js",
         "formTemplatePath": "/assets/node_forms/xml2js_form.html",
         "defaults": {
         },
@@ -128,14 +130,15 @@
     },
     {
         "name" : "template",
-        "color":"rgb(243, 181, 103)",
+        "class" : "template",
         "category": "function",
         "defaults": {
-            "template": "This is the 'payload': {{payload}!"
+            "template": "This is the 'payload': {{payload}}!"
         },
         "input": 1,
         "output": 1,
-        "icon": "template.png"
+        "icon": "template.png",
+        "formTemplatePath": "/assets/node_forms/template_form.html"
     },
     {
         "name" : "comment",
