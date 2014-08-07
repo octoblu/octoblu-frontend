@@ -13,6 +13,7 @@ angular.module('octobluApp')
 
       function addClickBehavior(nodeElement, node) {
         nodeElement.on('click', function () {
+          console.log('node clicked');
           if (d3.event.defaultPrevented) {
             return;
           }
@@ -21,7 +22,7 @@ angular.module('octobluApp')
         });
       }
 
-      function addDragBehavior(nodeElement, node, flow) {
+      function addDragBehavior(draggedElement, node, flow) {
         var dragBehavior = d3.behavior.drag()
           .on('dragstart', function () {
             d3.event.sourceEvent.stopPropagation();
@@ -37,7 +38,7 @@ angular.module('octobluApp')
             dispatch.flowChanged(flow);
           });
 
-        nodeElement.call(dragBehavior);
+        draggedElement.call(dragBehavior);
       }
 
       function renderLinks(flow) {
