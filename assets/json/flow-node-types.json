@@ -1,8 +1,12 @@
 [
     {
         "name": "delay",
-        "color":"#E6E0F8",
+        "class" : "delay",
         "category": "function",
+        "defaults": {
+            "timeout": 5,
+            "timeoutUnits": "seconds"
+        },
         "input": 1,
         "output": 1,
         "formTemplatePath": "/assets/node_forms/delay_form.html"
@@ -132,24 +136,6 @@
         "input": 1,
         "output": 1,
         "icon": "template.png"
-    },
-    {
-        "name" : "delay",
-        "class" : "delay",
-        "category": "function",
-        "defaults": {
-            "pauseType": "delay", "required":true,
-            "timeout": "5", "required":true,
-            "timeoutUnits": "seconds",
-            "rate": "1", "required":true,
-            "rateUnits":  "second",
-            "randomFirst": "1", "required":true ,
-            "randomLast": "5", "required":true,
-            "randomUnits":  "seconds"
-        },
-        "input":1,
-        "output":1,
-        "icon": "timer.png"
     },
     {
         "name" : "comment",
