@@ -54,16 +54,18 @@ var UserSchema = new mongoose.Schema({
         },
         api: [
             {
-                name: String,
-                channelid: String,
-                authtype: String,
-                key: String,
-                token: String,
-                secret: String,
-                verifier: String,
-                updated: {
-                    type: Date,
-                    default: Date.now
+                name        : String,
+                channelid   : String,
+                authtype    : String,
+                key         : String,
+                token       : String,
+                user        : String, 
+                pass        : String, 
+                secret      : String,
+                verifier    : String,
+                updated     : {
+                    type    : Date,
+                    default : Date.now
                 },
                 custom_tokens: [
                     {
