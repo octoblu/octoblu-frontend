@@ -47,6 +47,20 @@
         "formTemplatePath": "/assets/node_forms/poll_form.html"
     },
     {
+        "name" : "schedule",
+        "class" : "schedule",
+        "category": "input",
+        "defaults": {
+            "payloadType": "date",
+            "crontab": "* * * * *",
+            "once": false
+        },
+        "input":0,
+        "output":1,
+        "icon": "schedule.png",
+        "formTemplatePath": "/assets/node_forms/schedule_form.html"
+    },
+    {
         "name" : "inject",
         "class" : "inject",
         "category": "input",
