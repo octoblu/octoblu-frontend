@@ -20,9 +20,36 @@
         "formTemplatePath": "/assets/node_forms/function_form.html"
     },
     {
-        "name" : "inject",
+        "name" : "button",
+        "class" : "button",
         "category": "input",
-        "color":"#a6bbcf",
+        "defaults": {
+            "payloadType": "date",
+            "once": true
+        },
+        "input":0,
+        "output":1,
+        "icon": "button.png",
+        "formTemplatePath": "/assets/node_forms/button_form.html"
+    },
+    {
+        "name" : "poll",
+        "class" : "poll",
+        "category": "input",
+        "defaults": {
+            "payloadType": "date",
+            "repeat": "1",
+            "once": false
+        },
+        "input":0,
+        "output":1,
+        "icon": "poll.png",
+        "formTemplatePath": "/assets/node_forms/poll_form.html"
+    },
+    {
+        "name" : "inject",
+        "class" : "inject",
+        "category": "input",
         "defaults": {
             "payloadType": "date",
             "once": false
