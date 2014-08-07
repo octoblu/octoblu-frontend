@@ -1,8 +1,13 @@
 describe('FlowService', function () {
-  var sut, $httpBackend;
+  var sut, $httpBackend, fakeUUIDService;
 
   beforeEach(function () {
     module('octobluApp');
+
+    module('octobluApp', function($provide){
+      fakeUUIDService = new FakeUUIDService();
+      $provide.value('UUIDService', fakeUUIDService);
+    });
 
     inject(function(FlowService, _$httpBackend_){
       sut          = FlowService;
@@ -99,5 +104,64 @@ describe('FlowService', function () {
 
       $httpBackend.flush();
     });
+
+    describe('when the server gives us zero flows', function(){
+      beforeEach(function(){
+        $httpBackend.expectGET('/api/flows').respond(200, []);
+      });
+
+      it('should inject an empty flow with a name and flowId', function(done){
+        fakeUUIDService.v1.returns = 'fakeFlowID';
+        sut.getAllFlows().then(function (flows) {
+          expect(flows[0].name).to.equal('Flow 1');
+          expect(flows[0].flowId).to.equal('fakeFlowID');
+          done();
+        }, done);
+
+        $httpBackend.flush();
+      });
+    });
   });
+
+  describe('#newFlow', function(){
+    it('should return an object', function(){
+      expect(sut.newFlow()).to.be.instanceof(Object);
+    });
+
+    it('should accept a default name', function(){
+      expect(sut.newFlow('foo').name).to.equal('foo');
+    });
+
+    it('should accept a default name', function(){
+      expect(sut.newFlow('food').name).to.equal('food');
+    });
+
+    it('should have nodes', function() {
+      expect(sut.newFlow().nodes).to.deep.equal([]);
+    });
+ 
+    it('should have links', function() {
+      expect(sut.newFlow().links).to.deep.equal([]);
+    });
+
+    it('should generate a flowId', function(){
+      fakeUUIDService.v1.returns = 'some-thing';
+      expect(sut.newFlow().flowId).to.deep.equal('some-thing');
+    });
+
+    it('should generate a flowId', function(){
+      fakeUUIDService.v1.returns = 'some-thing-else';
+      expect(sut.newFlow().flowId).to.deep.equal('some-thing-else');
+    });
+  });
+
+  var FakeUUIDService = function(){
+    var _this = this;
+
+    _this.v1 = sinon.spy(function(){
+      return _this.v1.returns;
+    });
+
+    return this;
+  };
 });
