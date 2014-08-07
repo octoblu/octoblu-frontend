@@ -1,4 +1,4 @@
-describe('FlowPotentialLinkRenderer', function () {
+describe('LinkRenderer', function () {
   var sut, renderScope;
 
   beforeEach(function () {
@@ -10,7 +10,7 @@ describe('FlowPotentialLinkRenderer', function () {
     renderScope.remove();
   });
 
-  xdescribe('A link positioned on an input', function () {
+  describe('A link positioned on an input', function () {
     var renderLine;
 
     function getPathEndpoints(path) {
@@ -32,7 +32,7 @@ describe('FlowPotentialLinkRenderer', function () {
     }
 
     beforeEach(function () {
-      inject(function (_FlowPotentialLinkRenderer_) {
+      inject(function (_LinkRenderer_) {
         renderLine = d3.svg.line()
           .x(function (coordinate) {
             return coordinate.x;
@@ -42,20 +42,22 @@ describe('FlowPotentialLinkRenderer', function () {
           })
           .interpolate('basis');
 
-        sut = _FlowPotentialLinkRenderer_;
+        sut = _LinkRenderer_;
       });
     });
 
     it('should render a link from the correct port', function () {
       sut.render(renderScope,
-        {from: '1', fromPort: '0', to: {x: 0, y: 0}},
-        {id: '1', outputLocations : [15], x: 0, y: 0}
+        {x: 2, y: 5},
+        {x: 1, y: 7}
       );
-      var link = $(renderScope.selectAll('.flow-potential-link')[0]);
+      var link = $(renderScope.selectAll('.flow-link')[0]);
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
-      expect(pathCoordinates[0].y).to.equal(20);
-      expect(pathCoordinates[1].y).to.equal(0);
+      expect(pathCoordinates[0].x).to.equal(2);
+      expect(pathCoordinates[0].y).to.equal(5);
+      expect(pathCoordinates[1].x).to.equal(1);
+      expect(pathCoordinates[1].y).to.equal(7);
     });
   });
 });

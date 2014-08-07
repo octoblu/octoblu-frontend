@@ -22,6 +22,69 @@ describe('FlowNodeRenderer', function () {
       });
     });
 
+    describe('findPortByCoordinate', function(){
+      describe('when no match is found', function(){
+        it('should not return a flownode', function(){
+          var node = {x: 10, y: 10, inputLocations: [15] };
+          expect(sut.findPortByCoordinate(1,1,[node])).to.be.undefined; 
+        });
+      });
+
+      describe('when a match is found', function(){
+        it('should return a match', function(){
+          var match = {id: '1', port: 0};
+          var node = {id: '1', x: 0, y: 0, inputLocations: [15] };
+          expect(sut.findPortByCoordinate(16,16,[node])).to.deep.equal(match);
+        });
+
+        it('should return a match', function(){
+          var match = {id: '1', port: 1};
+          var node = {id: '1', x: 0, y: 0, inputLocations: [15,30] };
+          expect(sut.findPortByCoordinate(31,31,[node])).to.deep.equal(match);
+        });
+
+        xit('should return a flowNode', function(){
+          var node1, node2 
+          node1 = {x : 0, y : 0}; 
+          node2 = {x : 50, y : 50}; 
+          var nodes = [node1, node2]; 
+          expect(sut.findPortByCoordinate(51,51,nodes)).to.deep.equal(node2);
+        });
+      });
+    });
+
+    describe('pointInsideRectangle', function(){
+      describe('when the point is inside the rectangle', function(){
+        it('should return true', function(){
+          expect(sut.pointInsideRectangle([1,1], [0,0,2,2])).to.be.true;
+        });
+      });
+
+      describe('when the point is outside the rectangle on the left', function(){
+        it('should return false', function(){
+          expect(sut.pointInsideRectangle([0,1], [1,0,2,2])).to.be.false;
+        });
+      });
+
+      describe('when the point is outside the rectangle on the right', function(){
+        it('should return false', function(){
+          expect(sut.pointInsideRectangle([3,1], [0,0,2,2])).to.be.false;
+        });
+      });
+
+      describe('when the point is outside the rectangle on the top', function(){
+        it('should return false', function(){
+          expect(sut.pointInsideRectangle([1,0], [0,1,2,2])).to.be.false;
+        });
+      });
+
+      describe('when the point is outside the rectangle on the bottom', function(){
+        it('should return false', function(){
+          expect(sut.pointInsideRectangle([1,3], [0,0,2,2])).to.be.false;
+        });
+      });
+    });
+
     it('should render a node', function () {
       sut.render(renderScope, {id: '1'});
       expect(renderScope.selectAll('.flow-node').data().length).to.equal(1);

@@ -25,8 +25,41 @@ angular.module('octobluApp')
       return nodeHeight;
     }
 
+    var pointInsideRectangle = function(point, rectangle){
+      var leftMatch, rightMatch, topMatch, bottomMatch;
+      leftMatch   = point[0] > rectangle[0];
+      rightMatch  = point[0] < rectangle[2];
+      topMatch    = point[1] > rectangle[1];
+      bottomMatch = point[1] < rectangle[3];
+      return leftMatch && rightMatch && topMatch && bottomMatch;
+    };
+
+    // var findPortByCoordinate()
+
     return {
-      render: function (renderScope, node) {
+      findPortByCoordinate : function(xCoordinate, yCoordinate, nodes ){
+        var point, rectangle, foundNodes;
+        point = [xCoordinate, yCoordinate]; 
+      
+        foundNodes = _.filter(nodes, function(flowNode) {
+          rectangle = [
+            flowNode.x, 
+            flowNode.y, 
+            flowNode.x + FlowNodeDimensions.width, 
+            flowNode.y + FlowNodeDimensions.minHeight
+          ]; 
+          if(pointInsideRectangle(point, rectangle)){
+            return flowNode; 
+          } 
+        });
+
+        if(_.first(foundNodes)){
+
+          var flowNode = _.first(foundNodes); 
+          return {id: '1', port: 0};
+        }
+      },
+      render: function (renderScope, node, flow) {
 
         function renderPort(nodeElement, className, x, y) {
           var portElement = nodeElement
@@ -57,14 +90,54 @@ angular.module('octobluApp')
                   (FlowNodeDimensions.portWidth / 2))
               };
               var to = {
-                x: from.x + 15,
-                y: from.y
+                x: (node.x + d3.event.x),
+                y: (node.y + d3.event.y)
               };
+
+              renderScope.selectAll('.flow-link').remove();
               LinkRenderer.render(renderScope, from, to);
             })
             .on('dragend', function () {
-              d3.event.sourceEvent.stopPropagation();
-              d3.event.sourceEvent.preventDefault();
+              var x, y, point, rectangle, portRect;
+
+              x = d3.event.sourceEvent.offsetX;
+              y = d3.event.sourceEvent.offsetY;
+
+              _.each(flow.nodes, function(flowNode) {
+                point = [x,y];
+                var grace = (FlowNodeDimensions.portWidth / 2);
+                rectangle = [
+                  flowNode.x,
+                  flowNode.y,
+                  flowNode.x + FlowNodeDimensions.width,
+                  flowNode.y + FlowNodeDimensions.minHeight
+                ];
+                _.each(flowNode.inputLocations || [], function(loc, index) {
+                  portRect = [
+                    rectangle[0] - grace,
+                    rectangle[1] + parseInt(loc),
+                    rectangle[0] + grace,
+                    rectangle[1] + loc + FlowNodeDimensions.portHeight
+                  ];
+                  if(pointInsideRectangle(point, portRect)) {
+                    var link = {from: node.id, fromPort: 0, to: flowNode.id, toPort: index};
+                    flow.links.push(link);
+                  }
+                });
+                _.each(flowNode.outputLocations || [], function(loc, index) {
+                  portRect = [
+                    rectangle[2] - grace,
+                    rectangle[1] + loc,
+                    rectangle[2] + grace,
+                    rectangle[1] + loc + FlowNodeDimensions.portHeight
+                  ];
+                  if(pointInsideRectangle(point, portRect)) {
+                    var link = {from: flowNode.id, fromPort: index, to: node.id, toPort: 0};
+                    flow.links.push(link);
+                  }
+                });
+
+              });
             });
 
           portElement.call(dragBehavior);
@@ -123,6 +196,7 @@ angular.module('octobluApp')
         });
 
         return nodeElement;
-      }
+      },
+      pointInsideRectangle: pointInsideRectangle
     };
   });
