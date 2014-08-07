@@ -16,7 +16,8 @@
         "color":"#fdd0a2",
         "category": "function",
         "defaults": {
-            "output": 1
+            "output": 1,
+            "func": "\nreturn msg;"
         },
         "input":1,
         "output":1,
