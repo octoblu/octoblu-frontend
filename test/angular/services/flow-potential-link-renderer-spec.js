@@ -10,7 +10,7 @@ describe('FlowPotentialLinkRenderer', function () {
     renderScope.remove();
   });
 
-  describe('A link positioned on an input', function () {
+  xdescribe('A link positioned on an input', function () {
     var renderLine;
 
     function getPathEndpoints(path) {
