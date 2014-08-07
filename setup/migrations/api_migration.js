@@ -77,7 +77,8 @@ function ApiMigration(apiInfo) {
 		// find current core channel....
 		var old = apiMigration.findCoreChannel();
 
-		if(old && old._id != ObjectId(apiInfo.existing_id) && db.apis.find({name: apiInfo.name}).count()>1) {
+		if(old && apiInfo.existing_id && old._id != ObjectId(apiInfo.existing_id) 
+			&& db.apis.find({name: apiInfo.name}).count()>1) {
 			db.apis.remove(old);
 		}
 
