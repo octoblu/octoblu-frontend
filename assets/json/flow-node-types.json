@@ -13,6 +13,7 @@
     },
     {
         "name" : "function",
+        "class" : "function",
         "category": "function",
         "defaults": {
             "output": 1,
