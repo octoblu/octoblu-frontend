@@ -34,31 +34,50 @@ angular.module('octobluApp')
       return leftMatch && rightMatch && topMatch && bottomMatch;
     };
 
-    // var findPortByCoordinate()
+    var findNodeByCoordinates = function(xCoordinate, yCoordinate, nodes){
+      var point, rectangle, foundNodes, foundNode;
+      point = [xCoordinate, yCoordinate];
+
+      foundNodes = _.filter(nodes, function(flowNode) {
+        rectangle = [
+          flowNode.x,
+          flowNode.y,
+          flowNode.x + FlowNodeDimensions.width,
+          flowNode.y + FlowNodeDimensions.minHeight
+        ];
+        if(pointInsideRectangle(point, rectangle)){
+          return flowNode;
+        };
+      });
+
+      return _.first(foundNodes);
+    };
+
+    var inputPortRightSideX = function(node) {
+      return FlowNodeDimensions.portWidth + node.x;
+    }
+
+    var findPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
+      var node, rightInputPortWall, port;
+
+      node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
+      if(!node){
+        return;
+      }
+
+      if(inputPortRightSideX(node) < xCoordinate){
+        return;
+      }
+
+      var port = _.findIndex(node.inputLocations, function(inputLocation){
+        var offsetInputLocation = inputLocation + node.y;
+        return offsetInputLocation <= yCoordinate && yCoordinate <= (offsetInputLocation + FlowNodeDimensions.portHeight);
+      });
+
+      return {id: '1', port: port, type: 'input'};
+    };
 
     return {
-      findPortByCoordinate : function(xCoordinate, yCoordinate, nodes ){
-        var point, rectangle, foundNodes;
-        point = [xCoordinate, yCoordinate]; 
-      
-        foundNodes = _.filter(nodes, function(flowNode) {
-          rectangle = [
-            flowNode.x, 
-            flowNode.y, 
-            flowNode.x + FlowNodeDimensions.width, 
-            flowNode.y + FlowNodeDimensions.minHeight
-          ]; 
-          if(pointInsideRectangle(point, rectangle)){
-            return flowNode; 
-          } 
-        });
-
-        if(_.first(foundNodes)){
-
-          var flowNode = _.first(foundNodes); 
-          return {id: '1', port: 0};
-        }
-      },
       render: function (renderScope, node, flow) {
 
         function renderPort(nodeElement, className, x, y) {
@@ -103,6 +122,8 @@ angular.module('octobluApp')
               x = d3.event.sourceEvent.offsetX;
               y = d3.event.sourceEvent.offsetY;
 
+              targetNode =
+
               _.each(flow.nodes, function(flowNode) {
                 point = [x,y];
                 var grace = (FlowNodeDimensions.portWidth / 2);
@@ -112,6 +133,7 @@ angular.module('octobluApp')
                   flowNode.x + FlowNodeDimensions.width,
                   flowNode.y + FlowNodeDimensions.minHeight
                 ];
+
                 _.each(flowNode.inputLocations || [], function(loc, index) {
                   portRect = [
                     rectangle[0] - grace,
@@ -120,10 +142,12 @@ angular.module('octobluApp')
                     rectangle[1] + loc + FlowNodeDimensions.portHeight
                   ];
                   if(pointInsideRectangle(point, portRect)) {
+                    console.log(loc);
                     var link = {from: node.id, fromPort: 0, to: flowNode.id, toPort: index};
                     flow.links.push(link);
                   }
                 });
+
                 _.each(flowNode.outputLocations || [], function(loc, index) {
                   portRect = [
                     rectangle[2] - grace,
@@ -197,6 +221,7 @@ angular.module('octobluApp')
 
         return nodeElement;
       },
+      findPortByCoordinate: findPortByCoordinate,
       pointInsideRectangle: pointInsideRectangle
     };
   });
