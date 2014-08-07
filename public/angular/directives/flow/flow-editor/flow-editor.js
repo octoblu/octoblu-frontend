@@ -13,16 +13,16 @@ angular.module('octobluApp')
       link: function ($scope, element) {
         var renderScope = d3.select(element.find('svg')[0]);
         var flowRenderer = new FlowRenderer(renderScope);
-        $scope.$watch('flow.flowId', function (newFlowId, oldFlowId) {
-
-          if (newFlowId !== oldFlowId) {
-            flowRenderer.render($scope.flow);
-            flowRenderer.on('nodeSelected', function (flowNode) {
-              $scope.selectedNode = flowNode;
-              $scope.$apply();
-            });
-          }
+        flowRenderer.on('nodeSelected', function (flowNode) {
+          $scope.selectedNode = flowNode;
+          $scope.$apply();
         });
+
+        $scope.$watch('flow', function (newFlow) {
+          if (newFlow) {
+            flowRenderer.render(newFlow);
+          }
+        }, true);
 
         element.on(
           'dragover',
@@ -37,10 +37,6 @@ angular.module('octobluApp')
             e.preventDefault();
             e.stopPropagation();
           });
-
-        element.on('drop', function (nodeType) {
-          console.log(nodeType);
-        });
       }
     };
   });

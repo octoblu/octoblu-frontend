@@ -10,9 +10,14 @@ describe('FlowRenderer', function () {
 
       sinon.stub(d3, 'dispatch').returns(FakeDispatch);
 
+      var selectStub = sinon.stub().returns({
+        call: sinon.spy()
+      });
+
       var FakeNodeElement = {
         call: sinon.spy(),
-        on: sinon.spy()
+        on: sinon.spy(),
+        select: selectStub
       };
 
       var renderStub = sinon.stub().returns(FakeNodeElement);

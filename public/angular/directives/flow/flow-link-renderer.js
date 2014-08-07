@@ -1,9 +1,5 @@
 angular.module('octobluApp')
-  .service('FlowLinkRenderer', function () {
-    var nodeType = {
-      width: 100,
-      height: 35
-    };
+  .service('FlowLinkRenderer', function (FlowNodeDimensions) {
 
     var renderLine = d3.svg.line()
       .x(function (coordinate) {
@@ -14,33 +10,52 @@ angular.module('octobluApp')
       })
       .interpolate('basis');
 
+    function getNodePortLocation(portStr, locations) {
+      if (!portStr) {
+        portStr = 0;
+      }
+      if (!locations) {
+        return 0;
+      }
+      return locations[parseInt(portStr)] || 0;
+    }
+
     function linkPath(link, flowNodes) {
       var sourceNode = _.findWhere(flowNodes, {id: link.from}),
         targetNode = _.findWhere(flowNodes, {id: link.to});
 
+      var sourcePortLocation = getNodePortLocation(link.fromPort, sourceNode.outputLocations);
+
       var fromCoordinate = {
-        x: sourceNode.x + nodeType.width,
-        y: sourceNode.y + (nodeType.height / 2)
+        x: sourceNode.x + FlowNodeDimensions.width,
+        y: sourceNode.y + sourcePortLocation + (FlowNodeDimensions.portHeight / 2)
       };
 
       var fromCoordinateCurveStart = {
-        x: fromCoordinate.x + nodeType.height,
+        x: fromCoordinate.x + FlowNodeDimensions.portHeight,
         y: fromCoordinate.y
       };
 
-      var toCoordinate = {x: targetNode.x, y: targetNode.y + (nodeType.height / 2)};
+      var targetPortLocation = getNodePortLocation(link.toPort, targetNode.inputLocations);
+      var toCoordinate = {
+        x: targetNode.x,
+        y: targetNode.y + targetPortLocation + (FlowNodeDimensions.portHeight / 2)
+      };
 
-      var toCoordinateCurveStart = {x: toCoordinate.x - nodeType.height, y: toCoordinate.y};
+      var toCoordinateCurveStart = {
+        x: toCoordinate.x - FlowNodeDimensions.portHeight,
+        y: toCoordinate.y
+      };
       return renderLine([fromCoordinate, fromCoordinateCurveStart,
         toCoordinateCurveStart, toCoordinate]);
     }
 
     return {
       render: function (renderScope, link, flowNodes) {
-            return renderScope
-              .append('path')
-              .classed('flow-link', true)
-              .attr('d', linkPath(link, flowNodes));
-        }
+        return renderScope
+          .append('path')
+          .classed('flow-link', true)
+          .attr('d', linkPath(link, flowNodes));
+      }
     };
   });

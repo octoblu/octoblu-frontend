@@ -7,16 +7,6 @@ angular.module('octobluApp')
             scope: {
                 flowNodeTypes: '='
             },
-            controller: function ($scope) {
-                var flowNodeTypeTemplateUrl = '/angular/directives/flow/flow-node-palette/flow-node-templates/';
-                $scope.$watch('flowNodeTypes', function () {
-                    $scope.typesByCategory = _.groupBy($scope.flowNodeTypes, 'category');
-                });
-
-                $scope.getFlowNodeTypeTemplateUrl = function (flowNodeType) {
-                    return flowNodeTypeTemplateUrl + 'default.svg';
-//                    return flowNodeTypeTemplateUrl + flowNodeType.name + '.html';
-                };
-            }
+            controller: 'FlowNodePaletteController'
         };
     });

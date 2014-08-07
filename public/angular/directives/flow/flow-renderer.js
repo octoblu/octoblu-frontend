@@ -1,10 +1,6 @@
 angular.module('octobluApp')
-  .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer) {
+  .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
     return function (renderScope) {
-      var nodeType = {
-        width: 100,
-        height: 35
-      };
 
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected');
 
@@ -17,6 +13,7 @@ angular.module('octobluApp')
 
       function addClickBehavior(nodeElement, node) {
         nodeElement.on('click', function () {
+          console.log('node clicked');
           if (d3.event.defaultPrevented) {
             return;
           }
@@ -25,14 +22,14 @@ angular.module('octobluApp')
         });
       }
 
-      function addDragBehavior(nodeElement, node, flow) {
+      function addDragBehavior(draggedElement, node, flow) {
         var dragBehavior = d3.behavior.drag()
           .on('dragstart', function () {
             d3.event.sourceEvent.stopPropagation();
           })
           .on('drag', function () {
-            node.x = d3.event.x - (nodeType.width / 2);
-            node.y = d3.event.y - (nodeType.height / 2);
+            node.x = d3.event.x - (FlowNodeDimensions.width / 2);
+            node.y = d3.event.y - (FlowNodeDimensions.minHeight / 2);
             d3.select(this)
               .attr("transform", "translate(" + node.x + "," + node.y + ")");
             renderLinks(flow);
@@ -41,7 +38,7 @@ angular.module('octobluApp')
             dispatch.flowChanged(flow);
           });
 
-        nodeElement.call(dragBehavior);
+        draggedElement.call(dragBehavior);
       }
 
       function renderLinks(flow) {
@@ -52,8 +49,8 @@ angular.module('octobluApp')
       }
 
       function renderNodes(flow) {
+        renderScope.selectAll('.flow-node').remove();
         _.each(flow.nodes, function (node) {
-
           var nodeElement = FlowNodeRenderer.render(renderScope, node);
           addDragBehavior(nodeElement, node, flow);
           addClickBehavior(nodeElement, node);
