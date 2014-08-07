@@ -1,8 +1,12 @@
 [
     {
         "name": "delay",
-        "color":"#E6E0F8",
+        "class" : "delay",
         "category": "function",
+        "defaults": {
+            "timeout": 5,
+            "timeoutUnits": "seconds"
+        },
         "input": 1,
         "output": 1,
         "formTemplatePath": "/assets/node_forms/delay_form.html"
@@ -12,7 +16,8 @@
         "color":"#fdd0a2",
         "category": "function",
         "defaults": {
-            "output": 1
+            "output": 1,
+            "func": "\nreturn msg;"
         },
         "input":1,
         "output":1,
@@ -20,22 +25,50 @@
         "formTemplatePath": "/assets/node_forms/function_form.html"
     },
     {
-        "name" : "inject",
+        "name" : "button",
+        "class" : "button",
         "category": "input",
-        "color":"#a6bbcf",
         "defaults": {
             "payloadType": "date",
+            "once": true
+        },
+        "input":0,
+        "output":1,
+        "icon": "button.png",
+        "formTemplatePath": "/assets/node_forms/button_form.html"
+    },
+    {
+        "name" : "poll",
+        "class" : "poll",
+        "category": "input",
+        "defaults": {
+            "payloadType": "date",
+            "repeat": "1",
             "once": false
         },
         "input":0,
         "output":1,
-        "icon": "inject.png",
-        "formTemplatePath": "/assets/node_forms/inject_form.html"
+        "icon": "poll.png",
+        "formTemplatePath": "/assets/node_forms/poll_form.html"
+    },
+    {
+        "name" : "schedule",
+        "class" : "schedule",
+        "category": "input",
+        "defaults": {
+            "payloadType": "date",
+            "crontab": "* * * * *",
+            "once": false
+        },
+        "input":0,
+        "output":1,
+        "icon": "schedule.png",
+        "formTemplatePath": "/assets/node_forms/schedule_form.html"
     },
     {
         "name" : "http request",
         "category": "function",
-        "color":"rgb(231, 231, 174)",
+        "class" : "http-request",
         "defaults": {
             "method":"GET"
         },
@@ -47,7 +80,7 @@
     },
     {
         "name": "switch",
-        "color": "#E2D96E",
+        "class": "switch",
         "category": "function",
         "defaults": {
             "property": "payload", "required":true,
@@ -63,17 +96,19 @@
     {
         "name" : "sentiment",
         "category": "analysis-function",
-        "color":"#E6E0F8",
+        "class" :"sentiment",
         "defaults": {
         },
         "input":1,
         "output":1,
-        "icon": "arrow-in.png"
+        "icon": "arrow-in.png",
+        "formTemplatePath": "/assets/node_forms/sentiment_form.html"
     },
     {
         "name" : "xml2js",
         "category": "advanced-function",
-        "color":"#E6E0F8",
+        "class" : "xml2js",
+        "formTemplatePath": "/assets/node_forms/xml2js_form.html",
         "defaults": {
         },
         "input":1,
@@ -96,48 +131,15 @@
     },
     {
         "name" : "template",
-        "color":"rgb(243, 181, 103)",
+        "class" : "template",
         "category": "function",
         "defaults": {
-            "template": "This is the 'payload': {{payload}!"
+            "template": "This is the 'payload': {{payload}}!"
         },
         "input": 1,
         "output": 1,
-        "icon": "template.png"
-    },
-    {
-        "name" : "delay",
-        "category": "function",
-        "color":"#E6E0F8",
-        "schema" : {
-            "type": "object",
-            "properties": {
-                "phoneNumber": {
-                    "type": "string"
-                },
-                "plivoAuthId": {
-                    "type": "string"
-                },
-                "plivoAuthToken": {
-                    "type": "string",
-                    "required": true
-                }
-            }
-        },
-
-        "defaults": {
-            "pauseType": "delay", "required":true,
-            "timeout": "5", "required":true,
-            "timeoutUnits": "seconds",
-            "rate": "1", "required":true,
-            "rateUnits":  "second",
-            "randomFirst": "1", "required":true ,
-            "randomLast": "5", "required":true,
-            "randomUnits":  "seconds"
-        },
-        "input":1,
-        "output":1,
-        "icon": "timer.png"
+        "icon": "template.png",
+        "formTemplatePath": "/assets/node_forms/template_form.html"
     },
     {
         "name" : "comment",
