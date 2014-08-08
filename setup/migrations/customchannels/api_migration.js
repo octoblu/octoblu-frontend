@@ -22,7 +22,8 @@ function ApiMigration(apiInfo) {
 		api.description		= apiInfo.description || '';
 		api.documentation	= apiInfo.documentation || '';
 		api.useCustom		= apiInfo.useCustom || true;
-		api.oauth 			= self.apiInfo.oauth;
+		if(self.apiInfo.oauth)
+			api.oauth 		= self.apiInfo.oauth;
 
 		db.apis.save(api);
 		return api;
