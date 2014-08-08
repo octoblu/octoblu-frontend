@@ -42,7 +42,7 @@ angular.module('octobluApp')
         rectangle = [
           flowNode.x,
           flowNode.y,
-          flowNode.x + FlowNodeDimensions.width,
+          flowNode.x + FlowNodeDimensions.width + (FlowNodeDimensions.portWidth / 2),
           flowNode.y + FlowNodeDimensions.minHeight
         ];
         if(pointInsideRectangle(point, rectangle)){
@@ -53,11 +53,15 @@ angular.module('octobluApp')
       return _.first(foundNodes);
     };
 
-    var inputPortRightSideX = function(node) {
-      return FlowNodeDimensions.portWidth + node.x;
+    var inputPortLeftSideX = function(node) {
+      return node.x + FlowNodeDimensions.width - FlowNodeDimensions.portWidth;
     }
 
-    var findPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
+    var inputPortRightSideX = function(node) {
+      return node.x + FlowNodeDimensions.portWidth;
+    }
+
+    var findInputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
       var node, rightInputPortWall, port;
 
       node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
@@ -74,7 +78,29 @@ angular.module('octobluApp')
         return offsetInputLocation <= yCoordinate && yCoordinate <= (offsetInputLocation + FlowNodeDimensions.portHeight);
       });
 
-      return {id: '1', port: port, type: 'input'};
+      return {id: '1', port: port};
+    };
+
+    var findOutputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
+      var node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
+      if(!node){
+        return;
+      }
+
+      if (yCoordinate < 2) {
+        return;
+      }
+
+      if(xCoordinate < inputPortLeftSideX(node)){
+        return;
+      }
+
+      var port = _.findIndex(node.outputLocations, function(outputLocation){
+        var offsetOutputLocation = outputLocation + node.y;
+        return offsetOutputLocation <= yCoordinate && yCoordinate <= (offsetOutputLocation + FlowNodeDimensions.portHeight);
+      });
+
+      return {id: '1', port: port};
     };
 
     return {
@@ -221,7 +247,8 @@ angular.module('octobluApp')
 
         return nodeElement;
       },
-      findPortByCoordinate: findPortByCoordinate,
+      findInputPortByCoordinate: findInputPortByCoordinate,
+      findOutputPortByCoordinate : findOutputPortByCoordinate,
       pointInsideRectangle: pointInsideRectangle
     };
   });
