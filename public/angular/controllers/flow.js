@@ -53,8 +53,12 @@ angular.module('octobluApp')
     };
 
     $scope.deleteSelection = function(){
-      if($scope.flowEditor.activeFlow){
-        _.pull($scope.flowEditor.activeFlow.nodes, $scope.flowEditor.selectedNode);
+      if($scope.activeFlow){
+        _.pull($scope.activeFlow.nodes, $scope.flowEditor.selectedNode);
+      }
+
+      if($scope.activeFlow){
+        _.pull($scope.activeFlow.links, $scope.flowEditor.selectedLink);
       }
 
       $scope.flowEditor.selectedNode = null;

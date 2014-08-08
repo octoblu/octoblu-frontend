@@ -13,6 +13,14 @@
   -ms-user-select: none;
   user-select: none;
 
+  &.selected {
+    stroke: #ff7f0e;
+
+    .flow-node-bg {
+      stroke: #ff7f0e;
+    }
+  }
+
   //base styles.
   .flow-node-bg {
     fill: gray;
@@ -140,6 +148,7 @@
   stroke-width: 4;
   cursor: crosshair;
   fill: none;
+
   &.selected {
     stroke: #ff7f0e;
   }

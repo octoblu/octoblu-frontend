@@ -11,59 +11,6 @@ describe('FlowDeploy', function () {
     };
   });
 
-  describe('deployFlows', function () {
-    var sut;
-
-    describe('deploying to designer', function() {
-      beforeEach(function () {
-        var config = {host: 'http://designer.octoblu.com'};
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
-      });
-
-      it('should call post on the designer', function () {
-        sut.deployFlows([]);
-        expect(FakeRequest.post).to.have.been.calledWith('http://designer.octoblu.com:1880/library/flows', {json: []});
-      });
-    });
-
-    describe('deploying to staging', function() {
-      beforeEach(function () {
-        var config = {host: 'http://staging.octoblu.com'};
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1882'});
-      });
-      it('should call post on the designer, with FLOWS!!', function () {
-        sut.deployFlows([{the: 'flowiest', of: 'flows'}]);
-        expect(FakeRequest.post).to.have.been.calledWith('http://staging.octoblu.com:1882/library/flows', {json: [{the: 'flowiest', of: 'flows'}]});
-      });
-    });
-  });
-
-  describe('designerUrl', function (){
-    var sut;
-
-    describe('on a port', function () {
-      beforeEach(function () {
-        var config = {host: 'http://le.octobleau.com'};
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
-      });
-
-      it('should use the redport', function () {
-        expect(sut.designerUrl()).equal('http://le.octobleau.com:1880/library/flows');
-      });
-    });
-
-    describe('on another port and host', function () {
-      beforeEach(function () {
-        var config = {host: 'http://blew.octo.com'};
-        sut = new FlowDeploy({config: config, userUUID: '535', userToken: 'something-else', port: '9999'});
-      });
-
-      it('should use the redport', function () {
-        expect(sut.designerUrl()).to.equal('http://blew.octo.com:9999/library/flows');
-      });
-    });
-  });
-
   describe('convertFlows', function () {
     var sut;
     beforeEach(function () {
@@ -149,4 +96,105 @@ describe('FlowDeploy', function () {
       });
     });
   });
+
+  describe('deployFlows', function () {
+    var sut;
+
+    describe('deploying to designer', function() {
+      beforeEach(function () {
+        var config = {host: 'http://designer.octoblu.com'};
+        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
+      });
+
+      it('should call post on the designer', function () {
+        sut.deployFlows([]);
+        expect(FakeRequest.post).to.have.been.calledWith('http://designer.octoblu.com:1880/library/flows', {json: []});
+      });
+    });
+
+    describe('deploying to staging', function() {
+      beforeEach(function () {
+        var config = {host: 'http://staging.octoblu.com'};
+        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1882'});
+      });
+      it('should call post on the designer, with FLOWS!!', function () {
+        sut.deployFlows([{the: 'flowiest', of: 'flows'}]);
+        expect(FakeRequest.post).to.have.been.calledWith('http://staging.octoblu.com:1882/library/flows', {json: [{the: 'flowiest', of: 'flows'}]});
+      });
+    });
+  });
+
+  describe('designerUrl', function (){
+    var sut;
+
+    describe('on a port', function () {
+      beforeEach(function () {
+        var config = {host: 'http://le.octobleau.com'};
+        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
+      });
+
+      it('should use the redport', function () {
+        expect(sut.designerUrl()).equal('http://le.octobleau.com:1880/library/flows');
+      });
+    });
+
+    describe('on another port and host', function () {
+      beforeEach(function () {
+        var config = {host: 'http://blew.octo.com'};
+        sut = new FlowDeploy({config: config, userUUID: '535', userToken: 'something-else', port: '9999'});
+      });
+
+      it('should use the redport', function () {
+        expect(sut.designerUrl()).to.equal('http://blew.octo.com:9999/library/flows');
+      });
+    });
+  });
+
+  describe('registerFlows', function () {
+    var sut, fakeMeshblu;
+
+    beforeEach(function () {
+      fakeMeshblu = new FakeMeshblu();
+      sut = new FlowDeploy({meshblu: fakeMeshblu, userUUID: 'useruuid'});
+    });
+
+    it('should be have a <function></function>', function () {
+      sut.registerFlows();
+    });
+
+    describe('when a flow', function(){
+      beforeEach(function () {
+        sut.registerFlows([{flowId: 'hello.world'}]);
+      });
+
+      it('should call register', function () {
+        expect(fakeMeshblu.register).to.have.been.calledOnce;
+      });
+
+      it('should call register with the flowId', function () {
+        expect(fakeMeshblu.register).to.have.been.calledWith({uuid: 'hello.world', type: 'octoblu:flow', owner: 'useruuid'});
+      });
+    });
+
+    describe('when an owl', function(){
+      beforeEach(function () {
+        sut.registerFlows([{flowId: 'something'}, {flowId: 'else'}]);
+      });
+
+      it('should call register twice', function () {
+        expect(fakeMeshblu.register).to.have.been.calledTwice;
+      });
+
+      it('should call register with the flowId', function () {
+        expect(fakeMeshblu.register).to.have.been.calledWith({uuid: 'something', type: 'octoblu:flow', owner: 'useruuid'});
+        expect(fakeMeshblu.register).to.have.been.calledWith({uuid: 'else', type: 'octoblu:flow', owner: 'useruuid'});
+      });
+    });
+  });
 });
+
+var FakeMeshblu = function(){
+  var _this = this;
+  _this.register = sinon.spy();
+  return _this;
+}

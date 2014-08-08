@@ -7,7 +7,8 @@ angular.module('octobluApp')
       replace: true,
       scope: {
         flow: '=',
-        selectedNode: '='
+        selectedNode: '=',
+        selectedLink: '='
       },
 
       link: function ($scope, element) {

@@ -38,7 +38,7 @@ describe('flowController', function () {
 
       beforeEach(function () {
         node1 = {some: 'node'};
-        scope.flowEditor.activeFlow = {flowId: '123', nodes: [node1], links: []};
+        scope.activeFlow = {flowId: '123', nodes: [node1], links: []};
         scope.flowEditor.selectedNode = node1;
       });
 
@@ -49,13 +49,13 @@ describe('flowController', function () {
 
       it('should delete the node from flow.nodes', function () {
         scope.deleteSelection();
-        expect(scope.flowEditor.activeFlow.nodes).to.be.empty;
+        expect(scope.activeFlow.nodes).to.be.empty;
       });
 
       describe('when there are multiple nodes in the flow', function () {
         beforeEach(function () {
           node2 = {some : 'otherNode'};
-          scope.flowEditor.activeFlow = {flowId : '123', nodes: [node1, node2], links: []};
+          scope.activeFlow = {flowId : '123', nodes: [node1, node2], links: []};
         });
 
         describe('when node1 is selected', function () {
@@ -65,8 +65,8 @@ describe('flowController', function () {
 
           it('should delete node1', function () {
             scope.deleteSelection();
-            expect(scope.flowEditor.activeFlow.nodes).not.to.include(node1);
-            expect(scope.flowEditor.activeFlow.nodes).to.include(node2);
+            expect(scope.activeFlow.nodes).not.to.include(node1);
+            expect(scope.activeFlow.nodes).to.include(node2);
           });
         });
 
@@ -77,8 +77,8 @@ describe('flowController', function () {
 
           it('should delete node2', function () {
             scope.deleteSelection();
-            expect(scope.flowEditor.activeFlow.nodes).to.include(node1);
-            expect(scope.flowEditor.activeFlow.nodes).not.to.include(node2);
+            expect(scope.activeFlow.nodes).to.include(node1);
+            expect(scope.activeFlow.nodes).not.to.include(node2);
           });
         });
       });
@@ -86,12 +86,50 @@ describe('flowController', function () {
 
     describe('when there is a selectedLink', function () {
       beforeEach(function () {
-        scope.flowEditor.selectedLink = {some : 'link'};
+        link1 = {some: 'link'};
+        scope.activeFlow = {flowId: '123', nodes: [], links: [link1]};
+        scope.flowEditor.selectedLink = link1;
       });
 
       it('should clear the selected link', function () {
         scope.deleteSelection();
         expect(scope.flowEditor.selectedLink).to.be.null;
+      });
+
+      it('should delete the link from flow.links', function () {
+        scope.deleteSelection();
+        expect(scope.activeFlow.links).to.be.empty;
+      });
+
+      describe('when there are multiple links in the flow', function () {
+        beforeEach(function () {
+          link2 = {some : 'otherLink'};
+          scope.activeFlow.links.push(link2);
+        });
+
+        describe('when link1 is selected', function () {
+          beforeEach(function () {
+            scope.flowEditor.selectedLink = link1;
+          });
+
+          it('should delete link1', function () {
+            scope.deleteSelection();
+            expect(scope.activeFlow.links).not.to.include(link1);
+            expect(scope.activeFlow.links).to.include(link2);
+          });
+        });
+
+        describe('when link2 is selected', function () {
+          beforeEach(function () {
+            scope.flowEditor.selectedLink = link2;
+          });
+
+          it('should delete link2', function () {
+            scope.deleteSelection();
+            expect(scope.activeFlow.links).to.include(link1);
+            expect(scope.activeFlow.links).not.to.include(link2);
+          });
+        });
       });
     });
   });

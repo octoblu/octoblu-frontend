@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 describe('flowDeployController', function () {
   describe('create', function () {
-    var sut, res, db, Flow, FakeFlowDeploy;
+    var sut, res, db, Flow, FakeFlowDeploy, fakeMeshblu;
 
     before(function (done) {
       db = mongoose.createConnection();
@@ -22,10 +22,12 @@ describe('flowDeployController', function () {
           FakeFlowDeploy.deploy.calledWith = _.values(arguments);
         }
       }
+
+      fakeMeshblu = new FakeMeshBlu();
     });
 
     beforeEach(function () {
-      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, Redport: FakeRedport, mongoose: db});
+      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, Redport: FakeRedport, mongoose: db, meshblu: fakeMeshblu});
       res = new FakeResponse();
     });
 
@@ -69,6 +71,7 @@ describe('flowDeployController', function () {
           expect(FakeFlowDeploy.deploy.calledWith[1]).to.equal('some.hobit');
           expect(FakeFlowDeploy.deploy.calledWith[2]).to.equal('1880');
           expect(FakeFlowDeploy.deploy.calledWith[3]).to.deep.equal([{flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}}]);
+          expect(FakeFlowDeploy.deploy.calledWith[4]).to.equal(fakeMeshblu);
         });
       });
     });
@@ -88,10 +91,15 @@ describe('flowDeployController', function () {
         expect(FakeFlowDeploy.deploy.calledWith[1]).to.equal('smog');
         expect(FakeFlowDeploy.deploy.calledWith[2]).to.equal('12');
         expect(FakeFlowDeploy.deploy.calledWith[3]).to.deep.equal([]);
+        expect(FakeFlowDeploy.deploy.calledWith[4]).to.equal(fakeMeshblu);
       });
     });
   });
 });
+
+var FakeMeshBlu = function(){
+  return this;
+}
 
 var FakeRedport = function(options){
   var redflow = this;

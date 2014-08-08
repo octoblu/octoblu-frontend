@@ -4,10 +4,14 @@ angular.module('octobluApp')
 
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected');
 
+      var clearSelection = function () {
+        renderScope.selectAll('.selected').classed('selected', false);
+      }
       renderScope.on('click', function () {
         if (d3.event.defaultPrevented) {
           return;
         }
+        clearSelection();
         dispatch.nodeSelected(null);
       });
 
@@ -17,6 +21,8 @@ angular.module('octobluApp')
             return;
           }
           d3.event.preventDefault();
+          clearSelection();
+          nodeElement.classed('selected', true);
           dispatch.nodeSelected(node);
         });
       };
@@ -27,6 +33,8 @@ angular.module('octobluApp')
             return;
           }
           d3.event.preventDefault();
+          clearSelection();
+          linkElement.classed('selected', true);
           dispatch.linkSelected(link);
         });
       }

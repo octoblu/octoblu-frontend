@@ -1,5 +1,5 @@
 var FlowDeploy = function(options){
-  var _this, config, request, userUUID, userToken, port, _;
+  var _this, config, request, userUUID, userToken, port, _, meshblu;
   _this = this;
 
   options         = options || {};
@@ -9,6 +9,7 @@ var FlowDeploy = function(options){
   config    = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
   request   = options.request || require('request');
   port      = options.port;
+  meshblu   = options.meshblu;
   _         = require('underscore');
 
   _this.convertFlows = function(flows){
@@ -64,13 +65,20 @@ var FlowDeploy = function(options){
       return [];
     });
   };
+
+  _this.registerFlows = function(flows) {
+    _.each(flows, function(flow){
+      meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID})
+    });
+  };
 };
 
-FlowDeploy.deploy = function(userUUID, userToken, port, flows){
+FlowDeploy.deploy = function(userUUID, userToken, port, flows, meshblu){
   var data, flowDeploy;
 
-  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, port: port});
-  data       = flowDeploy.convertFlows(flows);
+  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, port: port, meshblu: meshblu});
+  flowDeploy.registerFlows(flows);
+  data = flowDeploy.convertFlows(flows);
 
   flowDeploy.deployFlows(data);
 };
