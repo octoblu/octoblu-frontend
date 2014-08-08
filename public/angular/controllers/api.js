@@ -61,9 +61,14 @@ angular.module('octobluApp')
                 return;
             }
 
-            $scope.has_user_channel = false;
-            channelService.getActiveChannels(true);
-            channelService.getAvailableChannels(true);
+            // $scope.has_user_channel = false;
+            // channelService.getActiveChannels(true);
+            // channelService.getAvailableChannels(true);
+            userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
+                $scope.has_user_channel = false;
+                channelService.getActiveChannels(true);
+                channelService.getAvailableChannels(true);
+            });
         };
 
         $scope.isActivated = function () {

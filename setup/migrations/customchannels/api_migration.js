@@ -22,7 +22,8 @@ function ApiMigration(apiInfo) {
 		api.description		= apiInfo.description || '';
 		api.documentation	= apiInfo.documentation || '';
 		api.useCustom		= apiInfo.useCustom || true;
-		api.oauth 			= self.apiInfo.oauth;
+		if(self.apiInfo.oauth)
+			api.oauth 		= self.apiInfo.oauth;
 
 		db.apis.save(api);
 		return api;
@@ -77,7 +78,8 @@ function ApiMigration(apiInfo) {
 		// find current core channel....
 		var old = apiMigration.findCoreChannel();
 
-		if(old && old._id != ObjectId(apiInfo.existing_id) && db.apis.find({name: apiInfo.name}).count()>1) {
+		if(old && apiInfo.existing_id && old._id != ObjectId(apiInfo.existing_id) 
+			&& db.apis.find({name: apiInfo.name}).count()>1) {
 			db.apis.remove(old);
 		}
 

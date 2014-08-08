@@ -5,6 +5,7 @@ angular.module('octobluApp')
         var AUTH_DESTINATIONS = {
             'none':   'ob.nodewizard.addchannel.noauth',
             'simple': 'ob.nodewizard.addchannel.simple',
+            'basic':  'ob.nodewizard.addchannel.basic',
             'oauth':  'ob.nodewizard.addchannel.oauth'
         };
 
