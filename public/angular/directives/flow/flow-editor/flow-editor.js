@@ -14,7 +14,14 @@ angular.module('octobluApp')
         var renderScope = d3.select(element.find('svg')[0]);
         var flowRenderer = new FlowRenderer(renderScope);
         flowRenderer.on('nodeSelected', function (flowNode) {
+          $scope.selectedLink = null;
           $scope.selectedNode = flowNode;
+          $scope.$apply();
+        });
+
+        flowRenderer.on('linkSelected', function (flowLink) {
+          $scope.selectedNode = null;
+          $scope.selectedLink = flowLink;
           $scope.$apply();
         });
 
