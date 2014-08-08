@@ -52,6 +52,15 @@ angular.module('octobluApp')
       FlowService.deploy();
     };
 
+    $scope.deleteSelection = function(){
+      if($scope.flowEditor.activeFlow){
+        _.pull($scope.flowEditor.activeFlow.nodes, $scope.flowEditor.selectedNode);
+      }
+
+      $scope.flowEditor.selectedNode = null;
+      $scope.flowEditor.selectedLink = null;
+    };
+
     $scope.save = function () {
       FlowService.saveAllFlows($scope.flows);
     }
