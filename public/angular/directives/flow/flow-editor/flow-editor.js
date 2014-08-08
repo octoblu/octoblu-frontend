@@ -18,7 +18,8 @@ angular.module('octobluApp')
           $scope.$apply();
         });
 
-        $scope.$watch('flow', function (newFlow) {
+        $scope.$watch('flow', function (newFlow, oldFlow) {
+          window.flow = newFlow;
           if (newFlow) {
             flowRenderer.render(newFlow);
           }
