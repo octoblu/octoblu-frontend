@@ -54,7 +54,11 @@ COMMENTED OUT FOR WHITESPACE
 	</tab>
 <tab heading="Explore">
     <div class="container-fluid">
-        <div class="row">
+	  <div ng-switch="!!ExploreIsCollapsed ? 1 : 0" ng-click="ExploreIsCollapsed = !ExploreIsCollapsed">
+                                <div ng-switch-when="0" style="font-size: 1.5em;"><i class="fa fa-caret-square-o-up fa-3"></i> Explore Options</div>
+                                <div ng-switch-default style="font-size: 1.5em;"><i  class="fa fa-caret-square-o-down fa-3"></i> Explore Options</div>
+          </div>
+	  <div collapse="ExploreIsCollapsed">
             <form novalidate>
                 <div class="col-md-4 dashboard-panel">
                     <div class="panel-heading">
@@ -139,44 +143,65 @@ COMMENTED OUT FOR WHITESPACE
                             </div>
                         </div>
                     </div>
+		</div>
             </form>
-        </div>
+	  </div> <!--end Collapse Section -->
         <!-- end Choices Div Row -->
-        <div class="row" style='height:400px'>
-            <div class="col-sm-8 dashboard-panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Event Counts over Time</h3>
-                </div>
+	<!--Experimental
+	<div class="row" style='height:400px' ng-repeat="panel in leg.panels">
+		<div class="col-lg-12 dashboard-panel">
+			<div class="panel-heading"><h3 class="panel-title">{{panel.title}}</h3></div>
+			<div class="panel panel-default"><div class="panel-body">
+			<div ng-switch="!!panel.data ? 1: 0">
+				<div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+				<div ng-switch-default><div nvd3-ng-repeat graph="panel.graph" graphoptions="panel.graph_options" data="panel.data" height="400"></div></div>
+			</div>
+			</div></div>
+		</div>	
+	</div>-->
+  <div ng-switch="!!leg.panels ? 1 : 0">
+    <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+    <div ng-switch-default>
+	<div ng-switch="!!leg.panels.ecot.isCollapsed ? 1 : 0" ng-click="leg.panels.ecot.isCollapsed = !leg.panels.ecot.isCollapsed">
+                                <div ng-switch-when="0" style="font-size: 1.5em;"><i class="fa fa-caret-square-o-up fa-3"></i> {{leg.panels.ecot.title}}</div>
+                                <div ng-switch-default style="font-size: 1.5em;"><i  class="fa fa-caret-square-o-down fa-3"></i> {{leg.panels.ecot.title}}</div>
+          </div>
+        <div class="row" style='height:400px' collapse="leg.panels.ecot.isCollapsed">
+            <div class="col-lg-12 dashboard-panel">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div ng-switch="!!leg ? 1 : 0">
                             <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                             <div ng-switch-default>
-                                <div nvd3-line-with-focus-chart show-legend="True" axis-x-label="Hour" axis-x-type="date"
-                                     axis-x-format="%-m/%-d %H:%M" data="leg.uuid_counts" height="400" ></div>
+                                <div nvd3-line-with-focus-chart show-legend="True" axis-x-label="{{leg.myInterval}}" axis-x-type="date"
+                                     axis-x-format="%-m/%-d %H:%M" data="leg.panels.ecot.data" height="400" ></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8 dashboard-panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Count of Event Codes by Device</h3>
-                </div>
+	</div>
+	<div ng-switch="!!leg.panels.ec_by_uuid.isCollapsed ? 1 : 0" ng-click="leg.panels.ec_by_uuid.isCollapsed = !leg.panels.ec_by_uuid.isCollapsed">
+                                <div ng-switch-when="0" style="font-size: 1.5em;"><i class="fa fa-caret-square-o-up fa-3"></i> {{leg.panels.ec_by_uuid.title}}</div>
+                                <div ng-switch-default style="font-size: 1.5em;"><i  class="fa fa-caret-square-o-down fa-3"></i> {{leg.panels.ec_by_uuid.title}}</div>
+          </div>
+	<div class="row" style='height:400px' collapse="leg.panels.ec_by_uuid.isCollapsed">
+            <div class="col-lg-12 dashboard-panel">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div ng-switch="!!leg ? 1 : 0">
                             <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
                             <div ng-switch-default>
                                 <div nvd3-multibar-chart show-legend="True" axis-x-label="Event Code"  
-                                     data="leg.stacked.data" height="400"></div>
+                                     data="leg.panels.ec_by_uuid.data" height="400"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-       </div><!--- END OF GRAPH ROW -->
-    </div>
+        </div><!--- END OF GRAPH ROW -->
+    </div><!-- End Default Ng-Switch -->
+   </div><!-- End Ng-Switch -->
 </div>
 </tab>
 	<tab heading="Search">

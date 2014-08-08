@@ -18,9 +18,15 @@ angular.module('octobluApp')
         }
         //Elastic Search Time Format Dropdowns
         $scope.ESdateFormats = elasticService.getDateFormats();
-	$scope.EStimeModifiers = [ { value:"day", text:"Day" }];
+	$scope.EStimeModifiers = [ { value:"second", text:"Second"},
+				   { value:"minute",text:"Minute"},
+				   { value:"day", text:"Day"},
+                                   { value:"week", text:"Week"},
+                                   { value:"month", text:"Month"}
+				 ];
 
         $scope.forms = {};
+	$scope.ExploreIsCollapsed = false;
         // Get user devices
 
         $log.log("currentUser");
@@ -53,6 +59,7 @@ angular.module('octobluApp')
         $scope.eGCharts.push({      text: "Line"    });
         $scope.eGCharts.push({    text: "Bar" });
 
+	$scope.leg = {};
         $scope.loadExploreGraph = function () {
             $scope.eGstartDate = $scope.forms.EX_starting;
             $scope.eGendDate = $scope.forms.EX_ending;
@@ -61,7 +68,6 @@ angular.module('octobluApp')
             $log.log("Ending: " + $scope.eGendDate + ", Starting: " + $scope.eGstartDate + ", EventCodes: " + $scope.eGEC + ", Selected Devices: " + $scope.eGselectDevices);
             $scope.legFirst = true;
             $scope.myAdditionalQuery = "";
-            $scope.leg = {};
             if (!$scope.eGendDate) { $scope.eGendDate = "now"; }
             if (!$scope.eGstartDate) { $scope.eGstartDate = "now-30d/d"; }
             $scope.leg.config = { "contains_uuid" : "false", "contains_ec" : "false" };
@@ -104,6 +110,7 @@ angular.module('octobluApp')
          			}
       			}
     		},
+		"uuid_by_events": { "terms": { "field":"eventCode"}, "aggs": {"count_terms": { "terms":{"field":"_type"}}} },
                 "count_by_uuid": {
                     "terms": {
                         "field": "_type"
@@ -165,8 +172,11 @@ angular.module('octobluApp')
                     })
                     };
                 });
+		var stackedDomain = [];
+		var myTmpInterval = $scope.leg.myInterval;
                 $scope.leg = {"results": data,
                     "total": data.hits.total,
+		    "myInterval": myTmpInterval,
                     "dcEC": data.facets.eventCodes.terms.length,
                     "dcUUIDs" : data.facets.uuids.terms.length,
                     "eventCounts": [
@@ -188,6 +198,14 @@ angular.module('octobluApp')
 				})
 			};
 		    }),
+		    "stacked": { "domain":[], "data": _.map(data.aggregations.events_by_uuid.buckets, function(key) {
+			return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key), 
+				 "values": _.map(key.count_terms.buckets, function(item){
+					stackedDomain.push(item.key);
+					return { size: item.doc_count, series: key.key, x: item.key, y: item.doc_count };
+				})
+			};
+		    })},
                     "scatter": _.map(data.aggregations.count_by_uuid.buckets, function(key) {
                         return { "key": ($scope.deviceLookup[key.key] ? $scope.deviceLookup[key.key] : key.key),
                             "values": _.map(key.events_by_date.buckets, function(item){	
@@ -196,6 +214,16 @@ angular.module('octobluApp')
                     })
 
                 };
+		$scope.leg.stacked.domain = stackedDomain;
+		$scope.leg.panels = { "ecot" : { "title": "Event Counts over Time", "isCollapsed" :false, "data" : $scope.leg.uuid_counts },
+				      "ec_by_uuid" : { "title" : "Count of Event Codes by Device", "isCollapsed":false, "data" :$scope.leg.stacked.data }
+		};
+		/*$scope.leg.panels.push({ "title" : "Event Counts Over Time",
+                  			 "graph": "nvd3-line-with-focus-chart",
+                  			 "graph_options" : 'show-legend="True" axis-x-label="'+$scope.leg.myInterval+'" axis-x-type="date" axis-x-format="%-m/%-d %H:%M"',
+					 "data": $scope.leg.uuid_counts
+                });*/
+		$log.log("leg object");
                 $log.log($scope.leg);
             });
         };

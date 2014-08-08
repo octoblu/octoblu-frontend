@@ -3,18 +3,25 @@
 angular.module('octobluApp')
     .directive('nvd3NgRepeat', function () {
         return {
-            restrict: 'A',
+            restrict: 'AE',
             replace: true,
-            template: '<div {{graph}} {{graph_options}} data="{{data}}" ></div>',
-            scope: {
-                data: '=',
-		graph: '=',
-		graph_options: '='
-            },
+	    template: '<div {{panel.graph}} {{panel.graphoptions}} data="panel.data" height="400px"></div>',
             link: function (scope, element, attr) {
-		scope.graph = attr.graph;
-		scope.graph_options = attr.graph_options;
-		scope.data = attr.data;
-            }
+	        scope.graph = attr.graph;
+		console.log("scope graph");console.log(scope.graph);
+		scope.myGraphOptions = attr.graphoptions;
+		console.log("scope option");console.log(scope.myGraphOptions);
+		console.log(scope.graph);
+            },
+	    compile: function CompilingFunction($templateElement, $templateAttributes) {
+       	   	$templateElement.replaceWith(this.template);
+	        return function LinkingFunction($scope, $element, $attrs) {
+			$scope.graph = $attrs.graph;
+                console.log("scope graph");console.log($scope.graph);
+                $scope.myGraphOptions = $attrs.graphoptions;
+                console.log("scope option");console.log($scope.myGraphOptions);
+
+          	};
+      	    }
         }
     });
