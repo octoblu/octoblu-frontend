@@ -12,28 +12,28 @@
           </div>
 
           <div class="field">
-            <label for="resource_resourcename">Base URL</label>
+            <label for="resource_base">Base URL</label>
             <input class="form-control" type="text" placeholder="API Base URL" ng-model="channel.application.base" />
           </div>
 
           <div class="field">
-            <label for="resource_resourcename">Doc URL</label>
+            <label for="resource_documentation">Doc URL</label>
             <input class="form-control" type="text" placeholder="API Doc URL" ng-model="channel.documentation" />
           </div>
 
           <div class="field">
-            <label for="resource_resourcename">Image URL</label>
+            <label for="resource_logo">Image URL</label>
             <input class="form-control" type="text" placeholder="API Image URL" ng-model="channel.logo" />
           </div>
 
           <div class="field">
-            <label for="resource_resourcename" style="vertical-align:top;">Description</label>
+            <label for="resource_description" style="vertical-align:top;">Description</label>
             <textarea class="form-control" cols="60" rows="10" type="text" placeholder="API Description" ng-model="channel.description" >
             </textarea>
           </div>
 
           <div class="field">
-            <label for="resource_resourcename">Private API</label>
+            <label for="resource_private">Private API</label>
             <input class="form-control" type="checkbox" ng-model="channel.private" ng-true-value="true" ng-false-value="false" />
           </div>
 
@@ -53,79 +53,84 @@
             </div>
 
             <div class="field">
-            <label for="resource_resourcename">Use Custom</label>
+            <label for="resource_useCustom">Use Custom</label>
             <input class="form-control" type="checkbox" ng-model="channel.oauth.useCustom" ng-true-value="true" ng-false-value="false" />
           </div>
 
             <div class="field">
-              <label for="resource_resourcename">Version</label>
+              <label for="resource_version">Version</label>
               <select class="form-control" ng-model="channel.oauth.version" ng-options="a for a in ['1.0', '2.0']">
               </select>
             </div>
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Consumer Key</label>
+              <label for="resource_consumerkey">Consumer Key</label>
               <input class="form-control" type="text" placeholder="Consumer Key" ng-model="channel.oauth.key" />
             </div>
 
             <div class="field" ng-show="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Client Id</label>
+              <label for="resource_clientid">Client Id</label>
               <input class="form-control" type="text" placeholder="Client Id" ng-model="channel.oauth.clientId" />
             </div>
 
             <div class="field">
-              <label for="resource_resourcename">Secret</label>
+              <label for="resource_secret">Secret</label>
               <input class="form-control" type="text" placeholder="Secret" ng-model="channel.oauth.secret" />
             </div>
 
             <div class="field" ng-show="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Token Key</label>
+              <label for="resource_sessionkey">Token Key</label>
               <input class="form-control" type="text" placeholder="Token Key" ng-model="channel.oauth.sessionKey" />
             </div>
 
             <div class="field">
-              <label for="resource_resourcename">Access Token URL</label>
+              <label for="resource_accesstokenurl">Access Token URL</label>
               <input class="form-control" type="text" placeholder="Access Token URL" ng-model="channel.oauth.accessTokenURL" />
             </div>            
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Request Token URL</label>
+              <label for="resource_requesttokenurl">Request Token URL</label>
               <input class="form-control" type="text" placeholder="Request Token URL" ng-model="channel.oauth.requestTokenURL" />
             </div>
 
             <div class="field">
-              <label for="resource_resourcename">Authorize Token URL</label>
+              <label for="resource_authorizetokenurl">Authorize Token URL</label>
               <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.authTokenURL" />
             </div>
 
             <div class="field" ng-show="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Auth Token Path</label>
+              <label for="resource_authtokenpath">Auth Token Path</label>
               <input class="form-control" type="text" placeholder="Auth Token Path" ng-model="channel.oauth.authTokenPath" />
             </div>
       
             <div class="field" ng-show="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">Host</label>
+              <label for="resource_host">Host</label>
               <input class="form-control" type="text" placeholder="Host" ng-model="channel.oauth.host" />
             </div>
       
             <div class="field" ng-show="channel.oauth.version=='2.0'">
-              <label for="resource_resourcename">tokenQueryParam</label>
+              <label for="resource_tokenQueryParam">tokenQueryParam</label>
               <input class="form-control" type="text" placeholder="Host" ng-model="channel.oauth.tokenQueryParam" />
             </div>
 
             <div class="field">
-              <label for="resource_resourcename">Grant Type</label>
+              <label for="resource_authTokenPath">Grant Type</label>
               <input class="form-control" type="text" placeholder="authorization_code" ng-model="channel.oauth.authTokenPath" />
             </div>
 
             <div class="field">
-              <label for="resource_resourcename">Scope</label>
+              <label for="resource_scope">Scope</label>
               <input class="form-control" type="text" placeholder="Scope" ng-model="channel.oauth.scope" />
             </div>
 
             <div class="field">
-              <label for="resource_resourcename">Token Method</label>
+              <label for="resource_tokenMethod">Token Method</label>
               <input class="form-control" type="text" placeholder="Token Method" ng-model="channel.oauth.tokenMethod" />
+            </div>
+
+            <div class="field">
+              <label for="resource_is0LegAuth">Is 0-Leg Auth</label>
+              <input class="form-control" type="checkbox" placeholder="Is 0-Leg Auth" ng-model="channel.oauth.is0LegAuth" />
             </div>
 
           </span>
@@ -134,17 +139,17 @@
 
         <div ng-show="!isNew && !isEdit">
           <div class="field">
-            <label for="resource_resourcename">Name</label>
+            <label for="resource_name">Name</label>
             <span class="form-control" type="text" ng-bind="channel.name" />
           </div>
 
           <div class="field">
-            <label for="resource_resourcename">Base URL</label>
+            <label for="resource_baseurl">Base URL</label>
             <span class="form-control" type="text" ng-bind="channel.application.base" />
           </div>
 
           <div class="field">
-            <label for="resource_resourcename">Doc URL</label>
+            <label for="resource_docurl">Doc URL</label>
             <span class="form-control" type="text" ng-bind="channel.documentation" />
           </div>
         </div>
