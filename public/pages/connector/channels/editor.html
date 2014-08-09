@@ -2,7 +2,7 @@
         <h3>{{channel.name}}
         &nbsp;&nbsp;
         <a class="btn btn-danger" ng-show="!isNew" ng-click="confirmDeleteApi()">Delete</a>
-        </h3>
+        </h3>        
 
         <fieldset ng-show="isEdit || isNew">
 
@@ -47,6 +47,15 @@
           <span ng-show="channel.auth_strategy=='oauth'">
             <h3>oAuth Settings</h3>
             <br/>
+            <div>              
+              <h4>redirect_uri: {{redirectUri()}}</h4>
+              <br/>
+            </div>
+
+            <div class="field">
+            <label for="resource_resourcename">Use Custom</label>
+            <input class="form-control" type="checkbox" ng-model="channel.oauth.useCustom" ng-true-value="true" ng-false-value="false" />
+          </div>
 
             <div class="field">
               <label for="resource_resourcename">Version</label>
@@ -74,19 +83,49 @@
               <input class="form-control" type="text" placeholder="Token Key" ng-model="channel.oauth.sessionKey" />
             </div>
 
-            <div class="field" ng-hide="channel.oauth.version=='2.0'">
+            <div class="field">
               <label for="resource_resourcename">Access Token URL</label>
-              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.accessTokenURL" />
-            </div>
+              <input class="form-control" type="text" placeholder="Access Token URL" ng-model="channel.oauth.accessTokenURL" />
+            </div>            
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_resourcename">Request Token URL</label>
-              <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.requestTokenURL" />
+              <input class="form-control" type="text" placeholder="Request Token URL" ng-model="channel.oauth.requestTokenURL" />
             </div>
 
             <div class="field">
               <label for="resource_resourcename">Authorize Token URL</label>
               <input class="form-control" type="text" placeholder="Authorize Token URL" ng-model="channel.oauth.authTokenURL" />
+            </div>
+
+            <div class="field" ng-show="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Auth Token Path</label>
+              <input class="form-control" type="text" placeholder="Auth Token Path" ng-model="channel.oauth.authTokenPath" />
+            </div>
+      
+            <div class="field" ng-show="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">Host</label>
+              <input class="form-control" type="text" placeholder="Host" ng-model="channel.oauth.host" />
+            </div>
+      
+            <div class="field" ng-show="channel.oauth.version=='2.0'">
+              <label for="resource_resourcename">tokenQueryParam</label>
+              <input class="form-control" type="text" placeholder="Host" ng-model="channel.oauth.tokenQueryParam" />
+            </div>
+
+            <div class="field">
+              <label for="resource_resourcename">Grant Type</label>
+              <input class="form-control" type="text" placeholder="authorization_code" ng-model="channel.oauth.authTokenPath" />
+            </div>
+
+            <div class="field">
+              <label for="resource_resourcename">Scope</label>
+              <input class="form-control" type="text" placeholder="Scope" ng-model="channel.oauth.scope" />
+            </div>
+
+            <div class="field">
+              <label for="resource_resourcename">Token Method</label>
+              <input class="form-control" type="text" placeholder="Token Method" ng-model="channel.oauth.tokenMethod" />
             </div>
 
           </span>
