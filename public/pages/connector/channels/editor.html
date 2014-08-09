@@ -2,7 +2,7 @@
         <h3>{{channel.name}}
         &nbsp;&nbsp;
         <a class="btn btn-danger" ng-show="!isNew" ng-click="confirmDeleteApi()">Delete</a>
-        </h3>
+        </h3>        
 
         <fieldset ng-show="isEdit || isNew">
 
@@ -47,6 +47,10 @@
           <span ng-show="channel.auth_strategy=='oauth'">
             <h3>oAuth Settings</h3>
             <br/>
+            <div>              
+              <h4>redirect_uri: {{redirectUri()}}</h4>
+              <br/>
+            </div>
 
             <div class="field">
             <label for="resource_resourcename">Use Custom</label>
