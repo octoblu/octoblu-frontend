@@ -1,5 +1,6 @@
 angular.module('octobluApp')
   .service('FlowLinkRenderer', function (FlowNodeDimensions) {
+    var _this = this;
 
     var renderLine = d3.svg.line()
       .x(function (coordinate) {
@@ -48,14 +49,13 @@ angular.module('octobluApp')
       };
       return renderLine([fromCoordinate, fromCoordinateCurveStart,
         toCoordinateCurveStart, toCoordinate]);
-    }
-
-    return {
-      render: function (renderScope, link, flowNodes) {
-        return renderScope
-          .append('path')
-          .classed('flow-link', true)
-          .attr('d', linkPath(link, flowNodes));
-      }
     };
+
+    _this.render = function (renderScope, link, flowNodes) {
+      return renderScope.append('path')
+                        .classed('flow-link', true)
+                        .attr('d', linkPath(link, flowNodes));
+    };
+
+    return _this;
   });

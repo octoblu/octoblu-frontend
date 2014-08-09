@@ -5,15 +5,6 @@ module.exports = function(app, passport) {
     var skynet = require('skynet');
     var security = require('./controllers/middleware/security');
 
-    var FlowController = require('./controllers/flow');
-    var flowController = new FlowController();
-
-    var FlowDeployController = require('./controllers/flow-deploy');
-    var flowDeployController = new FlowDeployController();
-
-    var FlowNodeTypeController = require('./controllers/flow-node-type');
-    var flowNodeTypeController = new FlowNodeTypeController();
-
     //set the skynetUrl
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
 
@@ -28,12 +19,22 @@ module.exports = function(app, passport) {
         "protocol" : "websocket"
     });
 
+    var FlowController = require('./controllers/flow');
+    var flowController = new FlowController();
+
+    var FlowDeployController = require('./controllers/flow-deploy');
+    var flowDeployController = new FlowDeployController({meshblu: conn});
+
+    var FlowNodeTypeController = require('./controllers/flow-node-type');
+    var flowNodeTypeController = new FlowNodeTypeController();
+
     conn.on('notReady', function(data){
         console.log('SkyNet authentication: failed');
     });
 
     // Attach additional routes
     conn.on('ready', function(data){
+
         console.log('SkyNet authentication: success');
 
         app.post('/api/auth', security.bypassAuth);

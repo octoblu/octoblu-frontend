@@ -6,9 +6,10 @@ angular.module('octobluApp')
 .controller('switchRulesController', function($scope, NO_PARAM_RULES, SINGLE_PARAM_RULES, DOUBLE_PARAM_RULES) {
   'use strict';
 
-  $scope.$watch('rules', function(newRules, oldRules) {
+  $scope.$watch('node.rules', function(newRules, oldRules) {
     var changedRules = _.difference(newRules, oldRules);
 
+    $scope.node.output = _.size($scope.node.rules);
     _.each(changedRules, function(rule){
       if (_.contains(NO_PARAM_RULES, rule.t)) {
         delete rule.v;
@@ -31,7 +32,7 @@ angular.module('octobluApp')
   }, true);
 
   $scope.addRule = function(){
-    $scope.rules.push({t : 'eq', v :''});
+    $scope.node.rules.push({t : 'eq', v :''});
   };
 
 });

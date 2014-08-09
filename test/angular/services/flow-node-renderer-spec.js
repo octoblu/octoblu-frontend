@@ -31,10 +31,23 @@ describe('FlowNodeRenderer', function () {
         });
       });
 
+      describe('when no match is found', function(){
+        it('should not return a flownode', function(){
+          var node = {x: 10, y: 10, inputLocations: [15] };
+          expect(sut.findInputPortByCoordinate(1,1,[node])).to.be.undefined;
+        });
+      });
+
       describe('when a match is found', function(){
         it('should return a match', function(){
           var node = {id: '1', x: 0, y: 0, inputLocations: [15] };
           var match = {id: '1', port: 0};
+          expect(sut.findInputPortByCoordinate(2,16,[node])).to.deep.equal(match);
+        });
+
+        it('should return the id of the node', function(){
+          var node = {id: 't1000', x: 0, y: 0, inputLocations: [15] };
+          var match = {id: 't1000', port: 0};
           expect(sut.findInputPortByCoordinate(2,16,[node])).to.deep.equal(match);
         });
 
@@ -74,6 +87,21 @@ describe('FlowNodeRenderer', function () {
               });
             });
           });
+
+          describe('when the x and y coordinates in port 0, but just to the left of the node', function () {
+            var node;
+            beforeEach(function () {
+              node = {id: '1', x: 100, y: 0, inputLocations: [15,30] };
+            });
+
+            describe('when the x and y coordinates are in the first port', function () {
+              it('should return a match', function(){
+                var match = {id: '1', port: 0};
+                var port = sut.findInputPortByCoordinate(99,16,[node]);
+                expect(port).to.deep.equal(match);
+              });
+            });
+          });
         });
 
         describe('when the node is offset by 100 pixels to the down', function () {
@@ -95,7 +123,6 @@ describe('FlowNodeRenderer', function () {
           });
         });
 
-
         describe('when the x and y coordinates are too far to the right of the input port', function () {
           it('should return a match', function(){
             var node = {id: '1', x: 0, y: 0, inputLocations: [15] };
@@ -103,15 +130,6 @@ describe('FlowNodeRenderer', function () {
             var port = sut.findInputPortByCoordinate(11,16,[node]);
             expect(port).to.be.undefined;
           });
-        });
-
-
-        xit('should return a flowNode', function(){
-          var node1, node2
-          node1 = {x : 0, y : 0};
-          node2 = {x : 50, y : 50};
-          var nodes = [node1, node2];
-          expect(sut.findInputPortByCoordinate(51,51,nodes)).to.deep.equal(node2);
         });
       });
     });
@@ -124,10 +142,25 @@ describe('FlowNodeRenderer', function () {
         });
       });
 
+      describe('when no match is found', function(){
+        it('should not return a flownode', function(){
+          var node = {x: 0, y: 0, outputLocations: [15] };
+          var port = sut.findOutputPortByCoordinate(FlowNodeDimensions.width, 3,[node])
+          expect(port).to.be.undefined;
+        });
+      });
+
       describe('when a match is found', function(){
         it('should return a match', function(){
           var node = {id: '1', x: 0, y: 0, outputLocations: [15] };
           var match = {id: '1', port: 0};
+          var port = sut.findOutputPortByCoordinate(FlowNodeDimensions.width + 2,16,[node]);
+          expect(port).to.deep.equal(match);
+        });
+
+        it("should return the matching node's id", function(){
+          var node = {id: 'john.connor', x: 0, y: 0, outputLocations: [15] };
+          var match = {id: 'john.connor', port: 0};
           var port = sut.findOutputPortByCoordinate(FlowNodeDimensions.width + 2,16,[node]);
           expect(port).to.deep.equal(match);
         });
