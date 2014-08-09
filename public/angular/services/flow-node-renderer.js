@@ -187,6 +187,7 @@ angular.module('octobluApp')
           .append('g')
           .classed('flow-node', true)
           .classed('flow-node-' + node.class, true)
+          .attr('id', 'node-' + node.id)
           .attr('transform', 'translate(' + node.x + ',' + node.y + ')');
 
         nodeElement

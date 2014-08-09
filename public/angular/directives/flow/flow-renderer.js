@@ -62,7 +62,9 @@ angular.module('octobluApp')
         renderScope.selectAll('.flow-link').remove();
         _.each(flow.links, function (link) {
           var linkElement = FlowLinkRenderer.render(renderScope, link, flow.nodes);
-          addLinkClickBehavior(linkElement, link);
+          if (linkElement) {
+            addLinkClickBehavior(linkElement, link);
+          }
         });
       }
 

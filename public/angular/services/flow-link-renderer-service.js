@@ -23,7 +23,11 @@ angular.module('octobluApp')
 
     function linkPath(link, flowNodes) {
       var sourceNode = _.findWhere(flowNodes, {id: link.from}),
-        targetNode = _.findWhere(flowNodes, {id: link.to});
+        targetNode   = _.findWhere(flowNodes, {id: link.to});
+
+      if (!sourceNode || !targetNode) {
+        return;
+      }
 
       var sourcePortLocation = getNodePortLocation(link.fromPort, sourceNode.outputLocations);
 
@@ -52,9 +56,13 @@ angular.module('octobluApp')
     };
 
     _this.render = function (renderScope, link, flowNodes) {
+      var path = linkPath(link, flowNodes)
+      if (!path){
+        return;
+      }
       return renderScope.append('path')
                         .classed('flow-link', true)
-                        .attr('d', linkPath(link, flowNodes));
+                        .attr('d', path);
     };
 
     return _this;

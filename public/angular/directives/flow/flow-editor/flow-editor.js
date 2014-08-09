@@ -1,5 +1,24 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer) {
+  .directive('flowEditor', function (FlowRenderer, skynetService) {
+    skynetService.getSkynetConnection().then(function(skynetConnection){
+      skynetConnection.on('message', function(message){
+        if(message.topic != 'pulse') {
+          return;
+        }
+
+        var element = d3.select('#node-' + message.payload.node + ' > rect');
+        element.transition()
+               .style('stroke-width', 3)
+               .style('stroke', '#000')
+               .duration(250)
+        element.transition()
+               .delay(250)
+               .style('stroke-width', 2)
+               .style('stroke', '#999')
+               .duration(250);
+      });
+    });
+
     return {
       restrict: 'E',
       controller: 'FlowEditorController',
@@ -27,8 +46,12 @@ angular.module('octobluApp')
         });
 
         $scope.$watch('flow', function (newFlow, oldFlow) {
-          window.flow = newFlow;
+
           if (newFlow) {
+            skynetService.getSkynetConnection().then(function(skynetConnection){
+              skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
+            });
+
             flowRenderer.render(newFlow);
           }
         }, true);
