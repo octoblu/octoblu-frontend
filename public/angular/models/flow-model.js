@@ -13,6 +13,14 @@ angular.module('octobluApp')
         nodes.push(node);
       },
 
+      removeNode: function (nodeToRemove) {
+        nodes = _.reject(nodes, function (node) {
+          return node.id === nodeToRemove;
+        });
+        links = _.difference(links, FlowModel.getLinksForNode(nodeToRemove));
+        return nodes;
+      },
+
       getLinks: function () {
         return links;
       },
@@ -30,7 +38,7 @@ angular.module('octobluApp')
       },
 
       removeLink: function (linkToRemove) {
-        links = _.reject(function (link) {
+        links = _.reject(links, function (link) {
           return _.isEqual(linkToRemove, link);
         });
 
