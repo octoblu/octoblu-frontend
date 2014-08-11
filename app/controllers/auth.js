@@ -177,9 +177,20 @@ module.exports = function (app, passport, config) {
 
     // working on custom oauth handling here.....
     app.get('/api/auth/:id/custom', function (req, res) {
+        var channelid = req.params.id;
+        var user = req.user;
 
         Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
-            if (api.oauth.version === '2.0') {
+            if(api.oauth.version==='1.0' && api.oauth.is0LegAuth==true) {
+                // add api to user record
+                var token = '0LegAuth';
+                user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
+                user.save(function (err) {
+                    console.log('saved oauth token: ' + token);
+                    res.redirect('/connect/nodes/channel/' + api._id);
+                });
+
+            } else if (api.oauth.version === '2.0') {
                 if (api.oauth.isManual) {
                     console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
                     // manually handle oauth...

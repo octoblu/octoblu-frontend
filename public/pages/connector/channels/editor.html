@@ -133,6 +133,16 @@
               <input class="form-control" type="checkbox" placeholder="Is 0-Leg Auth" ng-model="channel.oauth.is0LegAuth" />
             </div>
 
+            <div class="field" ng-show="channel.oauth.is0LegAuth">
+              <label for="resource_tokenMethod">0Leg Access Token</label>
+              <input class="form-control" type="text" placeholder="Token" ng-model="channel.oauth.accessToken" />
+            </div>
+
+            <div class="field" ng-show="channel.oauth.is0LegAuth">
+              <label for="resource_tokenMethod">0Leg Access Secret</label>
+              <input class="form-control" type="text" placeholder="Token" ng-model="channel.oauth.accessSecret" />
+            </div>
+
           </span>
 
         </fieldset>
