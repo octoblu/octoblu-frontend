@@ -22,22 +22,24 @@ describe('FlowModel', function () {
   });
 
   describe('add links', function () {
-
-
-    it('should exist', function () {
-      expect(sut.addLink).to.exist;
+    beforeEach(function () {
+      sut.addNode({ id: '1'});
+      sut.addLink({ from: '2', to: '3' });
+      sut.addLink({ from: '2', to: '1' , fromPort: '0', toPort: '1'});
+      sut.addLink({ from: '1', to: '2' });
     });
 
     it('should add a link to the list of flow links', function () {
-      sut.addLink({});
-      expect(sut.getLinks().length).to.equal(1);
+      expect(sut.getLinks().length).to.equal(3);
     });
 
     it('should return links for a specified node', function () {
-      sut.addNode({ id: '1'});
-      sut.addLink({ from: '1', to: '1' });
-      sut.addLink({ from: '2', to: '2' });
-      expect(sut.getLinks({forNode: '1'}).length).to.equal(1);
+      expect(sut.getLinksForNode('1').length).to.equal(2);
+    });
+
+    xit('should remove a specified link', function () {
+      sut.removeLink({from: '2', fromPort: '0', to: '1', toPort: '1'});
+      expect(sut.getLinks().length).to.equal(2);
     });
 
   });
