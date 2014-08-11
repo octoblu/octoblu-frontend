@@ -33,13 +33,15 @@ var ApiSchema = new mongoose.Schema({
         scope            : String,
         useOAuthParams   : Boolean,
         accessTokenIncludeClientInfo : Boolean,
-        tokenMethod     : String,
-        passTokenInQuery: Boolean,
-        tokenQueryParam: String,
+        tokenMethod      : String,
+        passTokenInQuery : Boolean,
+        tokenQueryParam  : String,
         checkCSRFOnCallback: Boolean,
         auth_use_client_id_value    :String,
-        auth_use_api_key    :Boolean,
-        is0LegAuth          :Boolean
+        auth_use_api_key :Boolean,
+        is0LegAuth       :Boolean,
+        accessToken  :String,
+        accessSecret :String
     },
     documentation: String,
     application: { base: String, resources: [] }
