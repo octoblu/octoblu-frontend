@@ -47,7 +47,20 @@ var FlowDeploy = function(options){
 
   _this.deployFlows = function(flows){
     console.log(_this.designerUrl());
-    request.post(_this.designerUrl(), {json: flows});
+    meshblu.devices({}, function(data){
+      noderedDevices = _.where(data.devices, {type: 'nodered-docker'});
+      devices = _.pluck(noderedDevices, 'uuid');
+      var msg = {
+                devices: devices,
+                topic: "flows",
+                qos: 0
+            };
+            msg.payload = {
+                flows: flows
+            };
+      meshblu.message(msg);
+    });
+    // request.post(_this.designerUrl(), {json: flows});
   };
 
   _this.designerUrl = function(){
