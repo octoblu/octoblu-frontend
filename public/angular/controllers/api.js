@@ -175,6 +175,16 @@ angular.module('octobluApp')
             }
         };
 
+        $scope.redirectUri = function() {
+            if($scope.channel._id==undefined) {
+                return 'not available until record is saved';
+            }
+            var h = $location.host();
+            if($location.port()!='80')
+                h += ':' + $location.port();
+            return $location.protocol() + '://' + h + '/api/auth/' + $scope.channel._id + '/callback/custom';
+        }
+
         $scope.setEditMode = function () {
             $scope.isEdit = true;
         };

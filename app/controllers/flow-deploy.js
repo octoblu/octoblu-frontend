@@ -1,11 +1,12 @@
 var FlowDeploy = function(options){
-  var FlowDeploy, Redport, redport, _this, getRedport, mongoose, Flow, _;
+  var FlowDeploy, Redport, redport, _this, getRedport, mongoose, Flow, _, meshblu;
 
   _this      = this;
   options    = options || {};
   FlowDeploy = options.FlowDeploy || require('../models/flow-deploy');
   Redport    = options.Redport    || require('../models/redport');
   mongoose   = options.mongoose   || require('mongoose');
+  meshblu    = options.meshblu
   _          = require('underscore');
   Flow       = mongoose.model('Flow');
 
@@ -16,7 +17,7 @@ var FlowDeploy = function(options){
     userToken = req.user.skynet.token;
     getRedport(userUUID, userToken, function(error, port){
       _this.getFlows(userUUID, function(flows){
-        FlowDeploy.deploy(userUUID, userToken, port, flows);
+        FlowDeploy.deploy(userUUID, userToken, port, flows, meshblu);
       });
     });
 

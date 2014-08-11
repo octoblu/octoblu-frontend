@@ -5,7 +5,7 @@ angular.module('octobluApp')
     restrict: 'E',
     controller: 'switchRulesController',
     scope: {
-      rules: '=ngModel'
+      node: '=ngModel'
     },
     templateUrl: 'angular/directives/switch-rules/switch-rules.html',
     replace: true

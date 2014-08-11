@@ -59,6 +59,7 @@ describe('FlowLinkRenderer', function () {
         sut = _FlowLinkRenderer_;
       });
     });
+
     it('should render a link from the correct port', function () {
       sut.render(renderScope,
         {from: '1', to: '1', fromPort: '0'},

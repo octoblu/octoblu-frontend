@@ -2,23 +2,40 @@ angular.module('octobluApp')
   .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
     return function (renderScope) {
 
-      var dispatch = d3.dispatch('flowChanged', 'nodeSelected');
+      var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected');
 
+      var clearSelection = function () {
+        renderScope.selectAll('.selected').classed('selected', false);
+      }
       renderScope.on('click', function () {
         if (d3.event.defaultPrevented) {
           return;
         }
+        clearSelection();
         dispatch.nodeSelected(null);
       });
 
-      function addClickBehavior(nodeElement, node) {
+      function addNodeClickBehavior(nodeElement, node) {
         nodeElement.on('click', function () {
-          console.log('node clicked');
           if (d3.event.defaultPrevented) {
             return;
           }
           d3.event.preventDefault();
+          clearSelection();
+          nodeElement.classed('selected', true);
           dispatch.nodeSelected(node);
+        });
+      };
+
+      function addLinkClickBehavior(linkElement, link) {
+        linkElement.on('click', function () {
+          if (d3.event.defaultPrevented) {
+            return;
+          }
+          d3.event.preventDefault();
+          clearSelection();
+          linkElement.classed('selected', true);
+          dispatch.linkSelected(link);
         });
       }
 
@@ -44,7 +61,10 @@ angular.module('octobluApp')
       function renderLinks(flow) {
         renderScope.selectAll('.flow-link').remove();
         _.each(flow.links, function (link) {
-          FlowLinkRenderer.render(renderScope, link, flow.nodes);
+          var linkElement = FlowLinkRenderer.render(renderScope, link, flow.nodes);
+          if (linkElement) {
+            addLinkClickBehavior(linkElement, link);
+          }
         });
       }
 
@@ -53,7 +73,7 @@ angular.module('octobluApp')
         _.each(flow.nodes, function (node) {
           var nodeElement = FlowNodeRenderer.render(renderScope, node, flow);
           addDragBehavior(nodeElement, node, flow);
-          addClickBehavior(nodeElement, node);
+          addNodeClickBehavior(nodeElement, node);
         });
       }
 

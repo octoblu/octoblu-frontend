@@ -51,9 +51,10 @@
                         <span class="red-tab-label">{{flow.name}}</span>
                     </li>
                 </ul>
+                <div class="red-add-tab" ng-click="deleteSelection()"><i class="fa fa-trash-o"></i></div>
                 <div class="red-add-tab" ng-click="addFlow()"><i class="fa fa-plus"></i></div>
             </div>
-            <flow-editor flow="activeFlow" selected-node="flowEditor.selectedNode"></flow-editor>
+            <flow-editor flow="activeFlow" selected-node="flowEditor.selectedNode" selected-link="flowEditor.selectedLink"></flow-editor>
         </div>
 
         <div id="sidebar" class="edit-panel" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">

@@ -20,17 +20,26 @@ describe('FlowRenderer', function () {
         select: selectStub
       };
 
-      var renderStub = sinon.stub().returns(FakeNodeElement);
+      var nodeRenderStub = sinon.stub().returns(FakeNodeElement);
 
       FakeFlowNodeRenderer = {
-        render: renderStub,
+        render: nodeRenderStub,
         on: sinon.spy()
       };
 
       $provide.value('FlowNodeRenderer', FakeFlowNodeRenderer);
 
+      var FakeLinkElement = {
+        call: sinon.spy(),
+        on: sinon.spy(),
+        select: selectStub
+      };
+
+      var linkRenderStub = sinon.stub().returns(FakeLinkElement);
+
       FakeFlowLinkRenderer = {
-        render: sinon.spy()
+        render: linkRenderStub,
+        on: sinon.spy()
       };
 
       $provide.value('FlowLinkRenderer', FakeFlowLinkRenderer);
