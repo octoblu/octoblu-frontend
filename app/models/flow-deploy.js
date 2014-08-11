@@ -1,4 +1,10 @@
 var FlowDeploy = function(options){
+  var LEGACY_TYPES = {
+    'button'   : 'inject',
+    'poll'     : 'inject',
+    'schedule' : 'inject'
+  };
+
   var _this, config, request, userUUID, userToken, port, _, meshblu;
   _this = this;
 
@@ -37,6 +43,8 @@ var FlowDeploy = function(options){
     convertedNode.z = flow.flowId;
     convertedNode.wires = _this.paddedArray(largestPort);
 
+    convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.type;
+
     _.each(groupedLinks, function(links, fromPort){
       var port = parseInt(fromPort);
       convertedNode.wires[port] = _.pluck(links, 'to');
@@ -46,8 +54,19 @@ var FlowDeploy = function(options){
   };
 
   _this.deployFlows = function(flows){
-    console.log(_this.designerUrl());
-    request.post(_this.designerUrl(), {json: flows});
+    meshblu.devices({}, function(data){
+      noderedDevices = _.where(data.devices, {type: 'nodered-docker'});
+      devices = _.pluck(noderedDevices, 'uuid');
+      var msg = {
+                devices: devices,
+                topic: "flows",
+                qos: 0
+            };
+            msg.payload = {
+                flows: flows
+            };
+      meshblu.message(msg);
+    });
   };
 
   _this.designerUrl = function(){
