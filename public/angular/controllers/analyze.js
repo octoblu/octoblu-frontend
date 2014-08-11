@@ -220,14 +220,30 @@ angular.module('octobluApp')
 
                 };
 		$scope.leg.stacked.domain = stackedDomain;
-		$scope.leg.panels = { "ecot" : { "title": "Event Counts over Time", "isCollapsed" :false, "data" : $scope.leg.uuid_counts },
+		/*$scope.leg.panels = { "ecot" : { "title": "Event Counts over Time", "isCollapsed" :false, "data" : $scope.leg.uuid_counts },
 				      "ec_by_uuid" : { "title" : "Count of Event Codes by Device", "isCollapsed":false, "data" :$scope.leg.stacked.data }
-		};
-		/*$scope.leg.panels.push({ "title" : "Event Counts Over Time",
-                  			 "graph": "nvd3-line-with-focus-chart",
-                  			 "graph_options" : 'show-legend="True" axis-x-label="'+$scope.leg.myInterval+'" axis-x-type="date" axis-x-format="%-m/%-d %H:%M"',
-					 "data": $scope.leg.uuid_counts
-                });*/
+		};*/
+		var myDateFormat = "%-m/%-d %H:%M";
+		$scope.leg.panels = [ {"title": "Event Counts over Time", 
+					"isCollapsed" :false, 
+					"data" : $scope.leg.uuid_counts, 
+					"graph" : "nvd3-line-with-focus-chart" ,
+					"showLegend" : true,
+					"axisXLabel" : myTmpInterval ,
+					"axisXType" : "date",
+					"axisXFormat": myDateFormat,
+					"myInterval":myTmpInterval 
+				       },
+                                       {"title" : "Count of Event Codes by Device", 
+					"isCollapsed":false, 
+					"data" :$scope.leg.stacked.data , 
+					"graph": "nvd3-multibar-chart",
+					"showLegend": true,
+					"axisXLabel": "Event Code",
+					"myInterval": myTmpInterval
+				      }
+				     ];
+
 		$log.log("leg object");
                 $log.log($scope.leg);
             });

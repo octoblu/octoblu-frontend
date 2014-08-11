@@ -3,7 +3,7 @@
 angular.module('octobluApp')
     .directive('nvd3LineChart', function () {
         return {
-            restrict: 'A',
+            restrict: 'AE',
             replace: true,
             template: '<div class="chart"></div>',
             scope: {
