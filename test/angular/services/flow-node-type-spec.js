@@ -212,4 +212,4 @@ var FakeUUIDService = function(){
   });
 
   return _this;
-}
+};
