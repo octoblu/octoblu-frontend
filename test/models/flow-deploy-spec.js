@@ -95,6 +95,35 @@ describe('FlowDeploy', function () {
         expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
+
+    describe('dealing with legacy nodes', function () {
+      describe('when its called with a button node', function () {
+        it('should remap the type to inject', function () {
+          var node = {"id":"buttonNode","type":"button","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+          var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
+          var convertedNode = sut.convertFlows([flow])[1];
+          expect(convertedNode.type).to.equal('inject');
+        });
+      });
+
+      describe('when its called with a poll node', function () {
+        it('should remap the type to inject', function () {
+          var node = {"id":"pollNode","type":"poll","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+          var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
+          var convertedNode = sut.convertFlows([flow])[1];
+          expect(convertedNode.type).to.equal('inject');
+        });
+      });
+
+      describe('when its called with a schedule node', function () {
+        it('should remap the type to inject', function () {
+          var node = {"id":"scheduleNode","type":"schedule","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+          var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
+          var convertedNode = sut.convertFlows([flow])[1];
+          expect(convertedNode.type).to.equal('inject');
+        });
+      });
+    });
   });
 
   describe('deployFlows', function () {
