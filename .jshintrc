@@ -16,6 +16,7 @@
     "module",
     "inject",
     "process",
-    "sinon"
+    "sinon",
+    "casper"
   ]
 }
