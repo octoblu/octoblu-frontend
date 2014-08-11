@@ -6,7 +6,7 @@ angular.module('octobluApp')
 
       var clearSelection = function () {
         renderScope.selectAll('.selected').classed('selected', false);
-      }
+      };
       renderScope.on('click', function () {
         if (d3.event.defaultPrevented) {
           return;
@@ -25,7 +25,7 @@ angular.module('octobluApp')
           nodeElement.classed('selected', true);
           dispatch.nodeSelected(node);
         });
-      };
+      }
 
       function addLinkClickBehavior(linkElement, link) {
         linkElement.on('click', function () {
