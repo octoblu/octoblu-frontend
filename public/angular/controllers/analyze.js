@@ -60,7 +60,9 @@ angular.module('octobluApp')
         $scope.eGCharts.push({    text: "Bar" });
 
 	$scope.leg = {};
+	$scope.leg.isLoading = true;
         $scope.loadExploreGraph = function () {
+	    $scope.leg.isLoading = true;
             $scope.eGstartDate = $scope.forms.EX_starting;
             $scope.eGendDate = $scope.forms.EX_ending;
             $scope.eGselectDevices = $scope.forms.EX_graphDevices;
@@ -175,10 +177,13 @@ angular.module('octobluApp')
 		var stackedDomain = [];
 		var myTmpInterval = $scope.leg.myInterval;
                 $scope.leg = {"results": data,
-                    "total": data.hits.total,
+		    "isLoading": false,
+		    "stats": [
+			{ "title": "Different Event Codes", "value": data.facets.eventCodes.terms.length },
+			{ "title": "Different UUIDs", "value" : data.facets.uuids.terms.length },
+			{ "title": "Total Events Returned", "value": data.hits.total }
+		    ],			
 		    "myInterval": myTmpInterval,
-                    "dcEC": data.facets.eventCodes.terms.length,
-                    "dcUUIDs" : data.facets.uuids.terms.length,
                     "eventCounts": [
                         { key: "Event Count",
                             values: _.map(data.facets.times.entries, function(item) {
