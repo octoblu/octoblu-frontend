@@ -130,25 +130,17 @@ describe('FlowDeploy', function () {
     var sut;
 
     describe('deploying to designer', function() {
+      var fakeMeshblu;
+
       beforeEach(function () {
         var config = {host: 'http://designer.octoblu.com'};
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
+        fakeMeshblu = new FakeMeshblu();
+        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880', meshblu: fakeMeshblu});
       });
 
       it('should call post on the designer', function () {
         sut.deployFlows([]);
-        expect(FakeRequest.post).to.have.been.calledWith('http://designer.octoblu.com:1880/library/flows', {json: []});
-      });
-    });
-
-    describe('deploying to staging', function() {
-      beforeEach(function () {
-        var config = {host: 'http://staging.octoblu.com'};
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1882'});
-      });
-      it('should call post on the designer, with FLOWS!!', function () {
-        sut.deployFlows([{the: 'flowiest', of: 'flows'}]);
-        expect(FakeRequest.post).to.have.been.calledWith('http://staging.octoblu.com:1882/library/flows', {json: [{the: 'flowiest', of: 'flows'}]});
+        expect(fakeMeshblu.message).to.have.been.called;
       });
     });
   });
@@ -225,5 +217,9 @@ describe('FlowDeploy', function () {
 var FakeMeshblu = function(){
   var _this = this;
   _this.register = sinon.spy();
+  _this.devices  = sinon.spy(function(arg0, callback){
+    callback({});
+  });
+  _this.message = sinon.spy();
   return _this;
 }
