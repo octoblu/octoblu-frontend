@@ -17,6 +17,11 @@
     "inject",
     "process",
     "sinon",
-    "casper"
+    "casper",
+    "console",
+    "$",
+    "xdescribe",
+    "ObjectId",
+    "db"
   ]
 }

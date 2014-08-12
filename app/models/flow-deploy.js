@@ -1,7 +1,7 @@
 var FlowDeploy = function(options){
   var LEGACY_TYPES = {
     'button'   : 'inject',
-    'poll'     : 'inject',
+    'interval' : 'inject',
     'schedule' : 'inject'
   };
 

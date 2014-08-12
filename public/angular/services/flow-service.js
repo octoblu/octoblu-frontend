@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-    .service('FlowService', function ($http, $q, UUIDService) {
+    .service('FlowService', function ($http, $q, FlowModel) {
         'use strict';
 
         var _this = this;
@@ -42,6 +42,6 @@ angular.module('octobluApp')
         };
 
         this.newFlow = function(name) {
-            return {name: name, nodes: [], links: [], flowId: UUIDService.v1()};
+            return FlowModel(name);
         };
     });

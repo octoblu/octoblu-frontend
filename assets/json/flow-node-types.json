@@ -1,153 +1,160 @@
 [
-    {
-        "name": "delay",
-        "class" : "delay",
-        "category": "function",
-        "defaults": {
-            "timeout": 5,
-            "timeoutUnits": "seconds"
-        },
-        "input": 1,
-        "output": 1,
-        "formTemplatePath": "/assets/node_forms/delay_form.html"
+  {
+    "name": "delay",
+    "class": "delay",
+    "category": "function",
+    "defaults": {
+      "timeout": 5,
+      "timeoutUnits": "seconds"
     },
-    {
-        "name" : "function",
-        "class" : "function",
-        "category": "function",
-        "defaults": {
-            "output": 1,
-            "func": "\nreturn msg;"
-        },
-        "input":1,
-        "output":1,
-        "icon": "function.png",
-        "formTemplatePath": "/assets/node_forms/function_form.html"
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/assets/node_forms/delay_form.html"
+  },
+  {
+    "name": "function",
+    "class": "function",
+    "category": "function",
+    "defaults": {
+      "output": 1,
+      "func": "\nreturn msg;"
     },
-    {
-        "name" : "button",
-        "class" : "button",
-        "category": "input",
-        "defaults": {
-            "payloadType": "date",
-            "once": true
-        },
-        "input":0,
-        "output":1,
-        "icon": "button.png",
-        "formTemplatePath": "/assets/node_forms/button_form.html"
+    "input": 1,
+    "output": 1,
+    "icon" : "/assets/node_icons/function.png",
+    "formTemplatePath": "/assets/node_forms/function_form.html"
+  },
+  {
+    "name": "button",
+    "class": "button",
+    "category": "input",
+    "defaults": {
+      "payloadType": "date",
+      "once": true
     },
-    {
-        "name" : "poll",
-        "class" : "poll",
-        "category": "input",
-        "defaults": {
-            "payloadType": "date",
-            "repeat": "1",
-            "once": false
-        },
-        "input":0,
-        "output":1,
-        "icon": "poll.png",
-        "formTemplatePath": "/assets/node_forms/poll_form.html"
+    "input": 0,
+    "output": 1,
+    "icon" : "/assets/node_icons/button.png",
+    "formTemplatePath": "/assets/node_forms/button_form.html"
+  },
+  {
+    "name": "interval",
+    "class": "interval",
+    "category": "input",
+    "defaults": {
+      "payloadType": "date",
+      "repeat": "1",
+      "once": false
     },
-    {
-        "name" : "schedule",
-        "class" : "schedule",
-        "category": "input",
-        "defaults": {
-            "payloadType": "date",
-            "crontab": "* * * * *",
-            "once": false
-        },
-        "input":0,
-        "output":1,
-        "icon": "schedule.png",
-        "formTemplatePath": "/assets/node_forms/schedule_form.html"
+    "input": 0,
+    "output": 1,
+    "icon" : "/assets/node_icons/interval.png",
+    "formTemplatePath": "/assets/node_forms/interval_form.html"
+  },
+  {
+    "name": "schedule",
+    "class": "schedule",
+    "category": "input",
+    "defaults": {
+      "payloadType": "date",
+      "crontab": "* * * * *",
+      "once": false
     },
-    {
-        "name" : "http request",
-        "category": "function",
-        "class" : "http-request",
-        "defaults": {
-            "method":"GET"
-        },
-        "input":1,
-        "output":1,
-        "align": "right",
-        "icon": "white-globe.png",
-        "formTemplatePath": "/assets/node_forms/http_request_form.html"
+    "input": 0,
+    "output": 1,
+    "icon" : "/assets/node_icons/schedule.png",
+    "formTemplatePath": "/assets/node_forms/schedule_form.html"
+  },
+  {
+    "name": "http request",
+    "category": "function",
+    "class": "http-request",
+    "defaults": {
+      "method": "GET"
     },
-    {
-        "name": "switch",
-        "class": "switch",
-        "category": "function",
-        "defaults": {
-            "property": "payload", "required":true,
-            "rules": [{"t":"eq", "v":""}],
-            "checkall": "true", "required":true,
-            "output": 1
-        },
-        "input": 1,
-        "output": 1,
-        "icon": "switch.png",
-        "formTemplatePath": "/assets/node_forms/switch_form.html"
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "icon" : "/assets/node_icons/white-globe.png",
+    "formTemplatePath": "/assets/node_forms/http_request_form.html"
+  },
+  {
+    "name": "switch",
+    "class": "switch",
+    "category": "function",
+    "defaults": {
+      "property": "payload",
+      "required": true,
+      "rules": [
+        {
+          "t": "eq",
+          "v": ""
+        }
+      ],
+      "checkall": "true",
+      "required": true,
+      "output": 1
     },
-    {
-        "name" : "sentiment",
-        "category": "analysis-function",
-        "class" :"sentiment",
-        "defaults": {
-        },
-        "input":1,
-        "output":1,
-        "icon": "arrow-in.png",
-        "formTemplatePath": "/assets/node_forms/sentiment_form.html"
+    "input": 1,
+    "output": 1,
+    "icon" : "/assets/node_icons/switch.png",
+    "formTemplatePath": "/assets/node_forms/switch_form.html"
+  },
+  {
+    "name": "sentiment",
+    "category": "analysis-function",
+    "class": "sentiment",
+    "defaults": {
     },
-    {
-        "name" : "xml2js",
-        "category": "advanced-function",
-        "class" : "xml2js",
-        "formTemplatePath": "/assets/node_forms/xml2js_form.html",
-        "defaults": {
-        },
-        "input":1,
-        "output":1,
-        "icon": "arrow-in.png"
+    "input": 1,
+    "output": 1,
+    "icon" : "/assets/node_icons/arrow-in.png",
+    "formTemplatePath": "/assets/node_forms/sentiment_form.html"
+  },
+  {
+    "name": "xml2js",
+    "category": "advanced-function",
+    "class": "xml2js",
+    "formTemplatePath": "/assets/node_forms/xml2js_form.html",
+    "defaults": {
     },
-    {
-        "name" : "debug",
-        "class": "debug",
-        "category": "output",
-        "defaults": {
-            "active": true,
-            "complete": false
-        },
-        "color":"#87a980",
-        "input":1,
-        "output":0,
-        "icon": "debug.png",
-        "align": "right"
+    "input": 1,
+    "output": 1,
+    "icon" : "/assets/node_icons/arrow-in.png"
+  },
+  {
+    "name": "debug",
+    "class": "debug",
+    "category": "output",
+    "defaults": {
+      "active": true,
+      "complete": false
     },
-    {
-        "name" : "template",
-        "class" : "template",
-        "category": "function",
-        "defaults": {
-            "template": "This is the 'payload': {{payload}}!"
-        },
-        "input": 1,
-        "output": 1,
-        "icon": "template.png",
-        "formTemplatePath": "/assets/node_forms/template_form.html"
+    "color": "#87a980",
+    "input": 1,
+    "output": 0,
+    "icon" : "/assets/node_icons/debug.png",
+    "align": "right"
+  },
+  {
+    "name": "template",
+    "class": "template",
+    "category": "function",
+    "defaults": {
+      "template": "This is the 'payload': {{payload}}!"
     },
-    {
-        "name" : "comment",
-        "class": "comment",
-        "category": "function",
-        "input":0,
-        "output":0,
-        "icon": "file.png",
-        "formTemplatePath": "/assets/node_forms/comment_form.html"
-    }
+    "input": 1,
+    "output": 1,
+    "icon" : "/assets/node_icons/template.png",
+    "formTemplatePath": "/assets/node_forms/template_form.html"
+  },
+  {
+    "name": "comment",
+    "class": "comment",
+    "category": "function",
+    "input": 0,
+    "output": 0,
+    "icon" : "/assets/node_icons/file.png",
+    "formTemplatePath": "/assets/node_forms/comment_form.html"
+  }
 ]
