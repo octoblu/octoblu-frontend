@@ -1,5 +1,5 @@
 describe('FlowController', function () {
-  var sut, scope, $httpBackend, FlowModel;
+  var sut, scope, $httpBackend, FlowModel, FakeWindow;
 
   beforeEach(function () {
     module('octobluApp');
@@ -7,10 +7,16 @@ describe('FlowController', function () {
     inject(function ($controller, $rootScope) {
       scope = $rootScope.$new();
       scope.flow = {}; // From parent
+
+      FakeWindow = {
+        confirm : sinon.stub()
+      };
+      FakeWindow.confirm.returns(true);
       sut = $controller('FlowController', {
         $scope: scope,
         FlowService: FakeFlowService,
-        FlowNodeTypeService: FakeFlowNodeTypeService
+        FlowNodeTypeService: FakeFlowNodeTypeService,
+        $window : FakeWindow
       });
     });
   });
@@ -30,20 +36,38 @@ describe('FlowController', function () {
   });
 
   describe('deleteFlow', function(){
-    var flow1;
+    var flow1, flow2;
     beforeEach(function(){
-
-      flow1 = FlowModel('flow1');
+      flow1 = FlowModel('Test Flow');
       scope.flows = [flow1];
-
-
     });
 
-    it('should delete flow1 from the list of flows', function(){
+    it('should delete a flow', function(){
+      var flow2 = FlowModel('Second Flow');
+      scope.flows.push(flow2);
       scope.deleteFlow(flow1);
-      expect(scope.flows.length).to.eq(1);
-      expect(scope.flows[0]).to.not.eq(flow1);
+      expect(scope.flows[0]).to.eq(flow2);
     });
+
+    it('should ask for confirmation', function(){
+      scope.deleteFlow(flow1);
+      expect(FakeWindow.confirm).to.be.called;
+    });
+
+    it('should not delete a flow if the user cancels', function(){
+      FakeWindow.confirm.returns(false);
+      scope.deleteFlow(flow1);
+      expect(scope.flows[0]).to.eq(flow1);
+    });
+    it('should create a blank flow if the last flow is deleted', function(){
+      scope.deleteFlow(flow1);
+      expect(scope.flows.length).to.equal(1);
+      expect(scope.flows[0]).to.not.equal(flow1);
+    });
+
+
+
+
 
   });
   describe('deleteSelection', function () {
@@ -181,6 +205,10 @@ describe('FlowController', function () {
     },
     newFlow : function(name){
       return FlowModel(name);
+    },
+    deleteFlow : function(flow){
+
     }
   };
+
 });

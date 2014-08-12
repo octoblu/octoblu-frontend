@@ -44,4 +44,10 @@ angular.module('octobluApp')
         this.newFlow = function(name) {
             return FlowModel(name);
         };
+
+        this.deleteFlow = function(flowId){
+          return $http.delete('/api/flows/' + flowId).then(function(response){
+            return response.data;
+          });
+        }
     });

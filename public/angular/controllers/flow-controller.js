@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ($scope, FlowService, FlowNodeTypeService) {
+  .controller('FlowController', function ($modal, $scope, $window,  FlowService, FlowNodeTypeService) {
     var originalNode;
 
     $scope.flowEditor = {
@@ -39,14 +39,19 @@ angular.module('octobluApp')
     };
 
     $scope.deleteFlow = function (flow) {
-      $scope.flows = _.without($scope.flows, flow);
+      var deleteFlowConfirmed =  $window.confirm('Are you sure you want to delete ' + flow.name + '?');
+      if(deleteFlowConfirmed){
+        $scope.flows = _.without($scope.flows, flow);
 
-      if($scope.flows.length === 0) {
-        $scope.addFlow();
-      }
+        if($scope.flows.length === 0) {
+          $scope.addFlow();
+        }
 
-      if ($scope.activeFlow === flow) {
-        $scope.activeFlow = $scope.flows[0];
+        if ($scope.activeFlow === flow) {
+          $scope.activeFlow = $scope.flows[0];
+        }
+
+        FlowService.deleteFlow(flow);
       }
     };
 

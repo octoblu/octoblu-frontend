@@ -82,7 +82,7 @@ describe('FlowService', function () {
     });
   });
 
-  describe('.getAllFlows', function () {
+  describe('#getAllFlows', function () {
     it('should return an array', function (done) {
       $httpBackend.expectGET('/api/flows').respond(200, ['hi']);
 
@@ -152,6 +152,16 @@ describe('FlowService', function () {
     it('should generate a flowId', function(){
       fakeUUIDService.v1.returns = 'some-thing-else';
       expect(sut.newFlow().flowId).to.deep.equal('some-thing-else');
+    });
+  });
+
+  describe('#deleteFlow', function(){
+
+    it('should exist', function(){
+      var flowId = '123456';
+      $httpBackend.expectDELETE('/api/flows/' + flowId).respond(200);
+      sut.deleteFlow(flowId);
+      $httpBackend.flush();
     });
   });
 
