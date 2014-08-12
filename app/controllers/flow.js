@@ -33,5 +33,9 @@ module.exports = function(options) {
     });
   };
 
+  _this.delete = function(){
+    Flow.deleteByFlowId();
+  };
+
   return _this;
 };

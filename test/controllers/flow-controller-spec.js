@@ -2,13 +2,14 @@ var FlowController = require('../../app/controllers/flow');
 var _ = require('underscore');
 
 describe('FlowController', function () {
-  describe('updateOrCreate', function () {
-    var sut, res;
 
-    beforeEach(function () {
-      sut = new FlowController({Flow: FakeFlow})
-      res = new FakeResponse();
-    });
+  var sut, res;
+  beforeEach(function () {
+    sut = new FlowController({Flow: FakeFlow})
+    res = new FakeResponse();
+  });
+
+  describe('updateOrCreate', function () {
 
     describe('when called with 123 and foo: bar', function () {
       beforeEach(function () {
@@ -84,6 +85,46 @@ describe('FlowController', function () {
       });
     });
   });
+
+  describe('delete', function () {
+    describe('when called with 123', function () {
+      beforeEach(function () {
+        var req = {
+          params: {
+            id: 123
+          },
+          user: { skynet: {uuid: '233435'} }
+        };
+        sut.delete(req, res);
+      });
+
+      it('should call deleteByFlowId on Flow', function () {
+        expect(FakeFlow.deleteByFlowId.called).to.be.true;
+      });
+    });
+
+    describe('when called with 456 and foo: widget', function () {
+      beforeEach(function () {
+        var req = {
+          params: {
+            id: 456
+          },
+          body: {
+            foo: 'widget'
+          },
+          user: { skynet: {uuid: 'abcde'} }
+        };
+        sut.updateOrCreate(req, res);
+      });
+
+      it('should call updateOrCreateByFlowIdAndUser with the id and body', function () {
+        expect(FakeFlow.updateOrCreateByFlowIdAndUser.calledWith).to.deep.equal(
+          [456, 'abcde', {foo: 'widget'}]
+        );
+      });
+    });
+  });
+
 });
 
 var FakeFlow = function(){ return this; };
@@ -95,6 +136,18 @@ FakeFlow.updateOrCreateByFlowIdAndUser = function(){
     then: function(successCallback, errorCallback){
       FakeFlow.updateOrCreateByFlowIdAndUser.success = successCallback;
       FakeFlow.updateOrCreateByFlowIdAndUser.error   = errorCallback;
+    }
+  };
+
+};
+
+FakeFlow.deleteByFlowId = function() {
+  FakeFlow.deleteByFlowId.called = true;
+  FakeFlow.deleteByFlowId.calledWith = _.values(arguments);
+  return {
+    then: function (successCallback, errorCallback) {
+      FakeFlow.deleteByFlowId.success = successCallback;
+      FakeFlow.deleteByFlowId.error = errorCallback;
     }
   };
 };
