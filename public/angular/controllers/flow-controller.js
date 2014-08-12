@@ -38,6 +38,18 @@ angular.module('octobluApp')
       $scope.activeFlow = flow;
     };
 
+    $scope.deleteFlow = function (flow) {
+      $scope.flows = _.without($scope.flows, flow);
+
+      if($scope.flows.length === 0) {
+        $scope.addFlow();
+      }
+
+      if ($scope.activeFlow === flow) {
+        $scope.activeFlow = $scope.flows[0];
+      }
+    };
+
     $scope.updateNodeProperties = function () {
       if (!schemaControl.validate().length) {
         originalNode.node = schemaControl.getValue();
@@ -52,12 +64,12 @@ angular.module('octobluApp')
       FlowService.deploy();
     };
 
-    $scope.deleteSelection = function(){
-      if($scope.activeFlow){
+    $scope.deleteSelection = function () {
+      if ($scope.activeFlow) {
         _.pull($scope.activeFlow.nodes, $scope.flowEditor.selectedNode);
       }
 
-      if($scope.activeFlow){
+      if ($scope.activeFlow) {
         _.pull($scope.activeFlow.links, $scope.flowEditor.selectedLink);
       }
 

@@ -49,6 +49,7 @@
                     <li ng-repeat="flow in flows"
                         ng-class="{active : isActiveFlow(flow)}" ng-click="setActiveFlow(flow)">
                         <span class="red-tab-label">{{flow.name}}</span>
+                            <span class="delete-flow fa" ng-click="deleteFlow(flow)"></span>
                     </li>
                 </ul>
                 <div class="red-add-tab" ng-click="deleteSelection()"><i class="fa fa-trash-o"></i></div>
