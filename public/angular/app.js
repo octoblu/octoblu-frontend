@@ -4,7 +4,7 @@
 angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDrop', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable'])
     .service('skynetConfig', function($location){
         var config = {
-            host: 'wss://skynet.im',
+            host: 'wss://meshblu.octoblu.com',
             port: '443'
         };
 
