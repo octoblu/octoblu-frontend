@@ -21,7 +21,7 @@
     },
     "input": 1,
     "output": 1,
-    "icon" : "/assets/node_icons/function.png",
+    "icon": "/assets/node_icons/function.png",
     "formTemplatePath": "/assets/node_forms/function_form.html"
   },
   {
@@ -34,7 +34,7 @@
     },
     "input": 0,
     "output": 1,
-    "icon" : "/assets/node_icons/button.png",
+    "icon": "/assets/node_icons/button.png",
     "formTemplatePath": "/assets/node_forms/button_form.html"
   },
   {
@@ -48,7 +48,7 @@
     },
     "input": 0,
     "output": 1,
-    "icon" : "/assets/node_icons/interval.png",
+    "icon": "/assets/node_icons/interval.png",
     "formTemplatePath": "/assets/node_forms/interval_form.html"
   },
   {
@@ -62,7 +62,7 @@
     },
     "input": 0,
     "output": 1,
-    "icon" : "/assets/node_icons/schedule.png",
+    "icon": "/assets/node_icons/schedule.png",
     "formTemplatePath": "/assets/node_forms/schedule_form.html"
   },
   {
@@ -75,7 +75,7 @@
     "input": 1,
     "output": 1,
     "align": "right",
-    "icon" : "/assets/node_icons/white-globe.png",
+    "icon": "/assets/node_icons/white-globe.png",
     "formTemplatePath": "/assets/node_forms/http_request_form.html"
   },
   {
@@ -97,7 +97,7 @@
     },
     "input": 1,
     "output": 1,
-    "icon" : "/assets/node_icons/switch.png",
+    "icon": "/assets/node_icons/switch.png",
     "formTemplatePath": "/assets/node_forms/switch_form.html"
   },
   {
@@ -108,7 +108,7 @@
     },
     "input": 1,
     "output": 1,
-    "icon" : "/assets/node_icons/arrow-in.png",
+    "icon": "/assets/node_icons/arrow-in.png",
     "formTemplatePath": "/assets/node_forms/sentiment_form.html"
   },
   {
@@ -120,7 +120,7 @@
     },
     "input": 1,
     "output": 1,
-    "icon" : "/assets/node_icons/arrow-in.png"
+    "icon": "/assets/node_icons/arrow-in.png"
   },
   {
     "name": "debug",
@@ -128,12 +128,13 @@
     "category": "output",
     "defaults": {
       "active": true,
+      "debug": true,
       "complete": false
     },
     "color": "#87a980",
     "input": 1,
     "output": 0,
-    "icon" : "/assets/node_icons/debug.png",
+    "icon": "/assets/node_icons/debug.png",
     "align": "right"
   },
   {
@@ -145,7 +146,7 @@
     },
     "input": 1,
     "output": 1,
-    "icon" : "/assets/node_icons/template.png",
+    "icon": "/assets/node_icons/template.png",
     "formTemplatePath": "/assets/node_forms/template_form.html"
   },
   {
@@ -154,7 +155,7 @@
     "category": "function",
     "input": 0,
     "output": 0,
-    "icon" : "/assets/node_icons/file.png",
+    "icon": "/assets/node_icons/file.png",
     "formTemplatePath": "/assets/node_forms/comment_form.html"
   }
 ]
