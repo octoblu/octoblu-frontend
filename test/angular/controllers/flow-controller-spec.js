@@ -1,4 +1,4 @@
-describe('flowController', function () {
+describe('FlowController', function () {
   var sut, scope, $httpBackend;
 
   beforeEach(function () {
@@ -7,7 +7,7 @@ describe('flowController', function () {
     inject(function ($controller, $rootScope) {
       scope = $rootScope.$new();
       scope.flow = {}; // From parent
-      sut = $controller('flowController', {
+      sut = $controller('FlowController', {
         $scope: scope,
         FlowService: FakeFlowService,
         FlowNodeTypeService: FakeFlowNodeTypeService

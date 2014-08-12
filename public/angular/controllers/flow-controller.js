@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('flowController', function ($scope, FlowService, FlowNodeTypeService) {
+  .controller('FlowController', function ($scope, FlowService, FlowNodeTypeService) {
     var originalNode;
 
     $scope.flowEditor = {

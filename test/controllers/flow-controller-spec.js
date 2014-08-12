@@ -105,7 +105,7 @@ var FakeResponse = function(){
   response.send = function(status){
     response.send.called = true;
     response.send.calledWith = status;
-  }
+  };
 
   return response;
 };
