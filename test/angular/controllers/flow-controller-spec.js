@@ -43,7 +43,7 @@ describe('FlowController', function () {
       scope.deleteFlow(flow1);
       expect(scope.flows.length).to.eq(1);
       expect(scope.flows[0]).to.not.eq(flow1);
-    })
+    });
 
   });
   describe('deleteSelection', function () {
