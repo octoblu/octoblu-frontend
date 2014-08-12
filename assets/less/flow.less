@@ -18,6 +18,19 @@
 */
 
 /*This needs to go in a general less file.*/
+
+.fa-times-circle {
+  &:before {
+    content: "\f057";
+  }
+}
+
+.fa-times {
+  &:before {
+    content: "\f00d";
+  }
+}
+
 .no-user-select {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -68,7 +81,6 @@
   }
 }
 
-
 .design2.designer-container {
   #node-red-templates {
     display: none;
@@ -87,6 +99,7 @@
     flex: 1;
   }
   .palette {
+    .no-user-select;
     min-width: 170px;
     display: flex;
     flex-direction: column;
@@ -158,12 +171,41 @@
     border-bottom: 1px solid #999;
     background: #e3e3e3;
     li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-left: 1px solid #999;
+      border-top: 1px solid #999;
+      border-right: 1px solid #999;
+      background: #e3e3e3;
+      margin: 0 5px 0 0;
+      line-height: 17px;
+      max-width: 150px;
+      width: 14%;
+      overflow: hidden;
+      white-space: nowrap;
       &:hover {
-        background: #bbb;
+        background: @red-tab-hover;
       }
+
       &.active, &.active:hover {
         background: #fff;
         height: 29px;
+      }
+      span {
+        margin: 5px;
+      }
+      .delete-flow {
+        .fa-times;
+        cursor: pointer;
+        &:hover {
+          .fa-times-circle;
+          .text-danger;
+          font-size: 1.3em;
+        }
       }
     }
   }
@@ -177,108 +219,6 @@
       border-left: 1px solid #999;
     }
     .center-children;
-  }
-
-  ul.red-tabs li.active a.red-ui-tab-close {
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  ul.red-tabs li.red-ui-add-tab a {
-    padding: 2px 4px;
-  }
-
-  ul.red-tabs li {
-    cursor: pointer;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-left: 1px solid #999;
-    border-top: 1px solid #999;
-    border-right: 1px solid #999;
-    background: #e3e3e3;
-    margin: 0 5px 0 0;
-    line-height: 17px;
-    max-width: 150px;
-    width: 14%;
-    overflow: hidden;
-    white-space: nowrap;
-    .center-children;
-    &:hover {
-      background: @red-tab-hover;
-    }
-  }
-
-  ul.red-tabs li a.red-ui-tab-label {
-    display: block;
-    padding: 3px 16px;
-    color: #666;
-  }
-  ul.red-tabs li {
-    position: relative;
-  }
-
-  ul.red-tabs li a.red-ui-tab-close {
-    background: rgba(227, 227, 227, 0.8);
-    //    position: absolute;
-    right: 2px;
-    top: 2px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    padding: 0px;
-    border-radius: 5px;
-  }
-
-  ul.tab-config-list {
-    list-style-type: none;
-    padding: 3px;
-    margin: 0;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  ul.tab-config-list li {
-    max-width: 400px;
-    font-size: 13px;
-    background: #f3f3f3;
-    margin: 10px auto;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    padding: 3px 8px;
-  }
-  div.tab-config-list-type {
-  }
-
-  div.tab-config-list-entry {
-    position: relative;
-    margin: 4px 0;
-    padding: 8px 4px 8px 10px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  div.tab-config-list-entry:hover {
-    background: #f6f6f6;
-  }
-
-  div.tab-config-list-label {
-  }
-  div.tab-config-list-users {
-    right: 3px;
-    top: 3px;
-    bottom: 3px;
-    line-height: 27px;
-    font-size: 11px;
-    background: #f6f6f6;
-    float: right;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    padding: 1px 5px;
   }
 
   div.btn-group, a.btn {
