@@ -1,5 +1,5 @@
 describe('FlowController', function () {
-  var sut, scope, $httpBackend;
+  var sut, scope, $httpBackend, FlowModel;
 
   beforeEach(function () {
     module('octobluApp');
@@ -16,7 +16,8 @@ describe('FlowController', function () {
   });
 
   beforeEach(function () {
-    inject(function (_$httpBackend_, $rootScope) {
+    inject(function (_$httpBackend_, $rootScope, _FlowModel_) {
+      FlowModel = _FlowModel_;
       $httpBackend = _$httpBackend_;
       $httpBackend.whenGET('/api/auth').respond(200);
       $httpBackend.whenGET('pages/octoblu.html').respond(200);
@@ -28,6 +29,23 @@ describe('FlowController', function () {
     expect(sut).to.exist;
   });
 
+  describe('deleteFlow', function(){
+    var flow1;
+    beforeEach(function(){
+
+      flow1 = FlowModel('flow1');
+      scope.flows = [flow1];
+
+
+    });
+
+    it('should delete flow1 from the list of flows', function(){
+      scope.deleteFlow(flow1);
+      expect(scope.flows.length).to.eq(1);
+      expect(scope.flows[0]).to.not.eq(flow1);
+    });
+
+  });
   describe('deleteSelection', function () {
     it('should be callable', function () {
       scope.deleteSelection();
@@ -160,6 +178,9 @@ describe('FlowController', function () {
           FakeFlowService.getSessionFlow.resolve = callback;
         }
       }
+    },
+    newFlow : function(name){
+      return FlowModel(name);
     }
   };
 });

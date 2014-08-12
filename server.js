@@ -39,8 +39,13 @@ require('./config/passport')(env, passport); // pass passport for configuration
 // set up our express application
 app.use(morgan('dev', {immediate:false})); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
+
+
 // app.use(express.bodyParser()); // get information from html forms
-app.use(bodyParser());
+// app.use(bodyParser());
+// increasing body size for resources
+app.use(bodyParser({limit: '50mb'}));
+
 app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
 
 // app.set('view engine', 'jade'); // set up jade for templating
