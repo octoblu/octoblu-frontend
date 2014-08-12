@@ -47,7 +47,7 @@ angular.module('octobluApp')
         ];
         if(pointInsideRectangle(point, rectangle)){
           return flowNode;
-        };
+        }
       });
 
       return _.first(foundNodes);
@@ -55,16 +55,15 @@ angular.module('octobluApp')
 
     var inputPortLeftSideX = function(node) {
       return node.x + FlowNodeDimensions.width - FlowNodeDimensions.portWidth;
-    }
+    };
 
     var inputPortRightSideX = function(node) {
       return node.x + FlowNodeDimensions.portWidth;
-    }
+    };
 
     var findInputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
-      var node, rightInputPortWall, port;
+      var node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
 
-      node = findNodeByCoordinates(xCoordinate, yCoordinate, nodes);
       if(!node){
         return;
       }
