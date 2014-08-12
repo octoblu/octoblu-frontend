@@ -6,12 +6,12 @@ describe('UUIDService', function () {
 
     module('octobluApp', function($provide) {
       fakeUUID = new FakeUUID();
-      $provide.value('$window', {uuid: fakeUUID});
-    })
+      $provide.value('$window', {uuid: fakeUUID, console: {}});
+    });
 
     inject(function(UUIDService){
       sut = UUIDService;
-    })
+    });
   });
 
   it('should exist', function () {
@@ -39,4 +39,4 @@ var FakeUUID = function(){
   });
 
   return this;
-}
+};

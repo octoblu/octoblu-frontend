@@ -113,6 +113,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         templateUrl: 'pages/profile.html',
         controller: 'profileController'
       })
+      .state('ob.clearauth', {
+        url: '/clearauth',
+        templateUrl: 'pages/clear-auth.html',
+        controller:  'clearAuthController'
+      })
       .state('ob.process', {
         url: '/process',
         templateUrl: 'pages/process.html',

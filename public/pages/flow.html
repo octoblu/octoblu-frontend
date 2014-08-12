@@ -57,13 +57,13 @@
             <flow-editor flow="activeFlow" selected-node="flowEditor.selectedNode" selected-link="flowEditor.selectedLink"></flow-editor>
         </div>
 
-        <div id="sidebar" class="edit-panel" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">
+        <div id="sidebar" class="edit-panel flow-node-editor flow-node-editor-{{flowEditor.selectedNode.type}}" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">
             <div class="node-editor panel panel-default">
                 <div class="panel-heading">Edit Node</div>
                 <div class="panel-body">
                     <form ng-submit="updateNode()" class="form">
                         <div ng-include="flowEditor.flowNodeType.formTemplatePath"></div>
-                        <div class="form-group">
+                        <div class="form-group debug-node-form">
                             <label for="debug-node">Debug</label>
                             <input  id="debug-node" class="form-control" type="checkbox"
                                     ng-model="flowEditor.editorNode.debug">

@@ -33,14 +33,21 @@ angular.module('octobluApp')
               .style('stroke-width', 2)
               .style('stroke', '#999')
               .duration(250);
+          });
+        });
 
-            if ($scope.flow) {
-              var pulsedNode = _.findWhere($scope.flow.nodes, { id: message.payload.node });
-              if (pulsedNode && pulsedNode.debug) {
-                $log.log(message);
-              }
+        skynetService.getSkynetConnection().then(function (skynetConnection) {
+          skynetConnection.on('message', function (message) {
+            if (message.topic !== 'debug') {
+              return;
             }
 
+              if ($scope.flow) {
+                  var debugNode = _.findWhere($scope.flow.nodes, { id: message.payload.node });
+                  if (debugNode && debugNode.debug) {
+                      $log.log(message.payload);
+                  }
+              }
           });
         });
 
