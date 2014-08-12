@@ -1,28 +1,39 @@
+
 casper.test.begin('login to the app', function(test){
   casper
-  .start('http://localhost:8080')
+  .start('http://staging.octoblu.com')
   .then(function(){
+    casper.fill('form', {
+      'email':    'john.connor@mailinator.com',
+      'password': 'judgementday'
+    });
 
-    // this.fill('form', {
-    //   'email':    'john.connor@mailinator.com',
-    //   'password': 'judgementday'
-    // });
 
-    this.evaluate(function(){
-      $('input[name=email]').val('john.connor@mailinator.com').trigger('input');
-      $('input[name=password]').val('judgementday').trigger('input');
+    casper.options.onResourceRequested = function(casper, options){
+      if(options.method !== 'POST') { return; }
+
+      console.log(options.method, options.url, JSON.stringify(options.headers));
+    }
+
+    casper.options.onResourceReceived = function(casper, options){
+      console.log(options.url, options.status);
+    }
+
+    casper.evaluate(function(){
       $('.btn-primary').click();
     });
 
-    casper.waitForText('Welcome to Octoblu!', function(){
-      casper.capture('/tmp/render.png');
-      test.assertTextExists('Welcome to Octoblu!');
-    }, function(){
-      casper.capture('/tmp/render.png');
-      test.fail('Logging in to Octoblu timed out');
-    }, 10000);
-
-  }).run(function(){
+    return casper.wait(5000);
+  })
+  .then(function(){
+    casper.capture('/tmp/render.png');
+    return casper.waitForText('Welcome to Octoblu!');
+  })
+  .then(function(){
+    casper.capture('/tmp/render.png');
+    test.assertTextExists('Welcome to Octoblu!');
+  })
+  .run(function(){
     test.done();
   });
 });
