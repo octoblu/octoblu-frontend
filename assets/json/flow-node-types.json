@@ -38,8 +38,8 @@
         "formTemplatePath": "/assets/node_forms/button_form.html"
     },
     {
-        "name" : "poll",
-        "class" : "poll",
+        "name" : "interval",
+        "class" : "interval",
         "category": "input",
         "defaults": {
             "payloadType": "date",
@@ -48,8 +48,8 @@
         },
         "input":0,
         "output":1,
-        "icon": "poll.png",
-        "formTemplatePath": "/assets/node_forms/poll_form.html"
+        "icon": "interval.png",
+        "formTemplatePath": "/assets/node_forms/interval_form.html"
     },
     {
         "name" : "schedule",

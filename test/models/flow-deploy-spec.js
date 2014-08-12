@@ -106,9 +106,9 @@ describe('FlowDeploy', function () {
         });
       });
 
-      describe('when its called with a poll node', function () {
+      describe('when its called with a interval node', function () {
         it('should remap the type to inject', function () {
-          var node = {"id":"pollNode","type":"poll","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+          var node = {"id":"intervalNode","type":"interval","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
           var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
           var convertedNode = sut.convertFlows([flow])[1];
           expect(convertedNode.type).to.equal('inject');
@@ -222,4 +222,4 @@ var FakeMeshblu = function(){
   });
   _this.message = sinon.spy();
   return _this;
-}
+};

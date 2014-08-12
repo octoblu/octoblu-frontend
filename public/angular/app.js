@@ -314,7 +314,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
             .state('ob.flow', {
                 url: '/flow',
                 templateUrl: 'pages/flow.html',
-                controller: 'flowController'
+                controller: 'FlowController'
             })
             .state('ob.docs', {
                 url: '/docs',
