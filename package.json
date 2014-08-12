@@ -78,7 +78,9 @@
     "shelljs": "^0.3.0",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
-    "casperjs": "~1.1.0-beta3"
+    "casperjs": "~1.1.0-beta3",
+    "selenium-webdriver": "~2.42.1",
+    "webdriverjs": "~1.7.4"
   },
   "scripts": {
     "test": "NODE_ENV=test mocha -r test/test_helper.js --recursive --reporter spec test/models test/controllers && node_modules/karma/bin/karma start --single-run",

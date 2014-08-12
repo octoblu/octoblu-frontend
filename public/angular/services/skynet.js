@@ -49,7 +49,6 @@ angular.module('octobluApp')
                 return skynetPromise.then(function (skynetConnection) {
                     return skynetConnection;
                 });
-
             },
 
             sendMessage: function (options) {
