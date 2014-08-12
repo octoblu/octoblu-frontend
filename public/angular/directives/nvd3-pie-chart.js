@@ -3,7 +3,7 @@
 angular.module('octobluApp')
     .directive('nvd3PieChart', function () {
         return {
-            restrict: 'A',
+            restrict: 'AE',
             replace: true,
             template: '<div class="chart"></div>',
             scope: {
@@ -49,18 +49,20 @@ angular.module('octobluApp')
                     }
 
                     // Watch data for any changes.
+		    console.log('before pie watcher');
                     scope.$watch('data', function (newVal) {
                         if (newVal) {
 			    console.log("piechart new data");
 			    console.log(newVal);
-			    svg.empty();
                             svg.datum(scope.data).call(scope.chart); // Populate the <svg> element with chart data... and render!
-                        }
+                        } else { console.log('piechart no new data'); }
                     });
+		    console.log('after pie watcher');
 
                     //Update the chart when window resizes.
                     nv.utils.windowResize(chart.update);
 		    scope.chart = chart;
+		    if(scope.data){ svg.datum(scope.data).call(scope.chart); }
                     return chart;
                 });
             }
