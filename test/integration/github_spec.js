@@ -21,6 +21,7 @@ describe('Octoblu Login', function () {
       server.stop();
     });
 
+
     describe('going to skynet', function () {
       beforeEach(function (done) {
         client = webdriverjs.remote({
@@ -34,44 +35,76 @@ describe('Octoblu Login', function () {
         client.endAll(done);
       });
 
-      describe('when navigating to the login page', function () {
+      describe('when the app has been deauthorized on github', function () {
         beforeEach(function (done) {
           client
+          .url('https://github.com')
+          .deleteCookie('user_session')
+          .url('https://github.com')
+          .waitFor('*=Sign in', 20000)
+          .click('*=Sign in')
+          .waitFor('input[name="login"]', 20000)
+          .setValue('input[name="login"]', 'square-root-of-saturn')
+          .setValue('input[name="password"]', 'INSERT_SECRET_HERE')
+          .click('input[name="commit"]')
+          .waitFor('#account_settings', 20000) // login finished
+          .url('https://github.com/settings/applications')
+          .waitFor('*=Revoke all')
+          .click('*=Revoke all')
+          .pause(2000)
+          .setValue('.facebox .input-block', 'square-root-of-saturn')
+          .click('.facebox button.danger') // Push the danger button
+          .pause(5000)
+          .click('.sign-out-button')
+          .pause(5000)
           .call(done);
         });
 
-        describe('Getting to the add github page', function () {
+        describe('when navigating to the login page', function () {
           beforeEach(function (done) {
             client
-            .url('http://app.octoblu.com/login')
-            .waitFor('input[name=email]')
-            .setValue('input[name=email]', 'sqrt@octoblu.com')
-            .setValue('input[name=password]', 'asdf')
-            .submitForm('form')
-            .waitFor('i.fa-code-fork', 2000) // Home page has loaded
-            .url('http://app.octoblu.com/node-wizard')
-            .waitFor('a div[title=Github]', 20000)
-            .click('a div[title=Github]')
             .call(done);
           });
 
-          describe('when navigating to the wizard', function () {
-            describe('when I activate', function () {
-              beforeEach(function (done) {
-                client
-                .waitFor('.btn-primary', 20000)
-                .pause(5000)
-                .click('.btn-primary')
-                .waitFor('input[name="login"]', 20000)
-                .setValue('input[name="login"]', 'square-root-of-saturn')
-                .setValue('input[name="password"]', 'INSERT_SECRET_HERE')
-                .click('input[name="commit"]')
-                .waitFor('*=Authorize')
-                .call(done);
-              });
+          describe('Getting to the add github page', function () {
+            beforeEach(function (done) {
+              client
+              .url('http://app.octoblu.com/login')
+              .waitFor('input[name=email]')
+              .setValue('input[name=email]', 'sqrt@octoblu.com')
+              .setValue('input[name=password]', 'asdf')
+              .submitForm('form')
+              .waitFor('i.fa-code-fork', 2000) // Home page has loaded
+              .url('http://app.octoblu.com/node-wizard')
+              .waitFor('a div[title=Github]', 20000)
+              .click('a div[title=Github]')
+              .call(done);
+            });
 
-              it('should take a screenshot', function (done) {
-                client.saveScreenshot('/tmp/render.png').call(done);
+            describe('when navigating to the wizard', function () {
+              describe('when I activate', function () {
+                beforeEach(function (done) {
+                  client
+                  .waitFor('.btn-primary', 20000)
+                  .pause(5000)
+                  .click('.btn-primary')
+                  .waitFor('input[name="login"]', 20000)
+                  .setValue('input[name="login"]', 'square-root-of-saturn')
+                  .setValue('input[name="password"]', 'INSERT_SECRET_HERE')
+                  .click('input[name="commit"]')
+                  .waitFor('.button.primary')
+                  .click('.button.primary')
+                  .call(done);
+                });
+
+                it('should have a btn-success', function (done) {
+                  client
+                  .waitFor('.fa-code-fork', 20000)
+                  .getText('.pull-right > .btn', function(text){
+                    expect(text).to.equal('Active');
+                  })
+                  .call(done);
+                });
               });
             });
           });
