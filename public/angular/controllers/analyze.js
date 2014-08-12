@@ -60,7 +60,9 @@ angular.module('octobluApp')
         $scope.eGCharts.push({    text: "Bar" });
 
 	$scope.leg = {};
+	$scope.leg.isLoading = true;
         $scope.loadExploreGraph = function () {
+	    $scope.leg.isLoading = true;
             $scope.eGstartDate = $scope.forms.EX_starting;
             $scope.eGendDate = $scope.forms.EX_ending;
             $scope.eGselectDevices = $scope.forms.EX_graphDevices;
@@ -175,10 +177,13 @@ angular.module('octobluApp')
 		var stackedDomain = [];
 		var myTmpInterval = $scope.leg.myInterval;
                 $scope.leg = {"results": data,
-                    "total": data.hits.total,
+		    "isLoading": false,
+		    "stats": [
+			{ "title": "Different Event Codes", "value": data.facets.eventCodes.terms.length },
+			{ "title": "Different UUIDs", "value" : data.facets.uuids.terms.length },
+			{ "title": "Total Events Returned", "value": data.hits.total }
+		    ],			
 		    "myInterval": myTmpInterval,
-                    "dcEC": data.facets.eventCodes.terms.length,
-                    "dcUUIDs" : data.facets.uuids.terms.length,
                     "eventCounts": [
                         { key: "Event Count",
                             values: _.map(data.facets.times.entries, function(item) {
@@ -215,14 +220,30 @@ angular.module('octobluApp')
 
                 };
 		$scope.leg.stacked.domain = stackedDomain;
-		$scope.leg.panels = { "ecot" : { "title": "Event Counts over Time", "isCollapsed" :false, "data" : $scope.leg.uuid_counts },
+		/*$scope.leg.panels = { "ecot" : { "title": "Event Counts over Time", "isCollapsed" :false, "data" : $scope.leg.uuid_counts },
 				      "ec_by_uuid" : { "title" : "Count of Event Codes by Device", "isCollapsed":false, "data" :$scope.leg.stacked.data }
-		};
-		/*$scope.leg.panels.push({ "title" : "Event Counts Over Time",
-                  			 "graph": "nvd3-line-with-focus-chart",
-                  			 "graph_options" : 'show-legend="True" axis-x-label="'+$scope.leg.myInterval+'" axis-x-type="date" axis-x-format="%-m/%-d %H:%M"',
-					 "data": $scope.leg.uuid_counts
-                });*/
+		};*/
+		var myDateFormat = "%-m/%-d %H:%M";
+		$scope.leg.panels = [ {"title": "Event Counts over Time", 
+					"isCollapsed" :false, 
+					"data" : $scope.leg.uuid_counts, 
+					"graph" : "nvd3-line-with-focus-chart" ,
+					"showLegend" : true,
+					"axisXLabel" : myTmpInterval ,
+					"axisXType" : "date",
+					"axisXFormat": myDateFormat,
+					"myInterval":myTmpInterval 
+				       },
+                                       {"title" : "Count of Event Codes by Device", 
+					"isCollapsed":false, 
+					"data" :$scope.leg.stacked.data , 
+					"graph": "nvd3-multibar-chart",
+					"showLegend": true,
+					"axisXLabel": "Event Code",
+					"myInterval": myTmpInterval
+				      }
+				     ];
+
 		$log.log("leg object");
                 $log.log($scope.leg);
             });
