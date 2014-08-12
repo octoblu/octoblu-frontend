@@ -46,7 +46,7 @@ describe('Octoblu Login', function () {
           .setValue('input[name=email]', 'sqrt@octoblu.com')
           .setValue('input[name=password]', 'asdf')
           .submitForm('form')
-          .waitFor('i.fa-code-fork', 2000) // Home page has loaded
+          .waitFor('i.fa-code-fork', 20000) // Home page has loaded
           .call(done);
         });
 
@@ -56,7 +56,7 @@ describe('Octoblu Login', function () {
             .url(octoblu_host + '/clearauth')
             .waitFor('.btn-extreme-danger', 20000)
             .click('.btn-extreme-danger')
-            .waitFor('h1.channels-cleared', 2000)
+            .waitFor('h1.channels-cleared', 20000)
             .call(done);
           });
 
@@ -113,7 +113,7 @@ describe('Octoblu Login', function () {
                   it('should have a btn-success', function (done) {
                     client
                     .waitFor('.fa-code-fork', 20000)
-                    .getText('.pull-right > .btn', function(text){
+                    .getText('.pull-right .btn', function(error,text){
                       expect(text).to.equal('Active');
                     })
                     .call(done);
