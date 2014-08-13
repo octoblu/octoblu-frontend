@@ -1,11 +1,11 @@
-var FlowController = require('../../app/controllers/flow');
+var FlowController = require('../../app/controllers/flow-controller');
 var _ = require('underscore');
 
 describe('FlowController', function () {
 
   var sut, res, flow;
   beforeEach(function () {
-    sut = new FlowController({Flow: FakeFlow})
+    sut = new FlowController({Flow: FakeFlow});
     res = new FakeResponse();
   });
 
@@ -20,7 +20,7 @@ describe('FlowController', function () {
           body: {
             foo: 'bar'
           },
-          user: { skynet: {uuid: '233435'} }
+          user: { resource: {uuid: '233435'} }
         };
         sut.updateOrCreate(req, res);
       });
@@ -73,7 +73,7 @@ describe('FlowController', function () {
           body: {
             foo: 'widget'
           },
-          user: { skynet: {uuid: 'abcde'} }
+          user: { resource: {uuid: 'abcde'} }
         };
         sut.updateOrCreate(req, res);
       });
@@ -98,15 +98,15 @@ describe('FlowController', function () {
       res = new FakeResponse();
     });
 
-    it('should call deleteByFlowId on Flow', function () {
+    it('should call deleteByUserIdAndFlowId on Flow', function () {
       var req = {
         params: {
           id: '5'
         },
-        user: { skynet: {uuid: '1'} }
+        user: { resource: {uuid: '1'} }
       };
       sut.delete(req, res);
-      expect(FakeFlow.deleteByFlowId.called).to.be.true;
+      expect(FakeFlow.deleteByUserIdAndFlowId.called).to.be.true;
     });
 
     it('should return an error', function () {
@@ -122,55 +122,57 @@ describe('FlowController', function () {
     it('should return an error if the user doesn\'t own a flow', function () {
       var req = {
         params: { id: '5'},
-        user: { skynet: {uuid: '2'}}
+        user: { resource: {uuid: '2'}}
       };
 
       sut.delete(req, res);
       expect(res.send.calledWith).to.equal(401);
     });
   });
-});
-
-var FakeFlow = function () {
-  return this;
-};
-
-FakeFlow.updateOrCreateByFlowIdAndUser = function () {
-  FakeFlow.updateOrCreateByFlowIdAndUser.called = true;
-  FakeFlow.updateOrCreateByFlowIdAndUser.calledWith = _.values(arguments);
-
-  return {
-    then: function (successCallback, errorCallback) {
-      FakeFlow.updateOrCreateByFlowIdAndUser.success = successCallback;
-      FakeFlow.updateOrCreateByFlowIdAndUser.error = errorCallback;
-    }
+  var FakeFlow = function () {
+    return this;
   };
 
-};
+  FakeFlow.updateOrCreateByFlowIdAndUser = function () {
+    FakeFlow.updateOrCreateByFlowIdAndUser.called = true;
+    FakeFlow.updateOrCreateByFlowIdAndUser.calledWith = _.values(arguments);
 
-FakeFlow.deleteByFlowId = function (ownerUUID, flowId) {
-  FakeFlow.deleteByFlowId.called = true;
-  FakeFlow.deleteByFlowId.calledWith = _.values(arguments);
-  return {
-    then: function (successCallback, errorCallback) {
-      FakeFlow.deleteByFlowId.success = successCallback;
-      FakeFlow.deleteByFlowId.error = errorCallback;
-      if (ownerUUID === flow.resource.owner.uuid) {
-        successCallback();
-      } else {
-        errorCallback();
+    return {
+      then: function (successCallback, errorCallback) {
+        FakeFlow.updateOrCreateByFlowIdAndUser.success = successCallback;
+        FakeFlow.updateOrCreateByFlowIdAndUser.error = errorCallback;
       }
-    }
-  };
-};
+    };
 
-var FakeResponse = function () {
-  var response = this;
-
-  response.send = function (status) {
-    response.send.called = true;
-    response.send.calledWith = status;
   };
 
-  return response;
-};
+  FakeFlow.deleteByUserIdAndFlowId = function (ownerUUID, flowId) {
+    FakeFlow.deleteByUserIdAndFlowId.called = true;
+    FakeFlow.deleteByUserIdAndFlowId.calledWith = _.values(arguments);
+    return {
+      then: function (successCallback, errorCallback) {
+        FakeFlow.deleteByUserIdAndFlowId.success = successCallback;
+        FakeFlow.deleteByUserIdAndFlowId.error = errorCallback;
+        if (ownerUUID === flow.resource.owner.uuid) {
+          if (successCallback)
+            successCallback();
+        } else {
+          if (errorCallback)
+            errorCallback();
+        }
+      }
+    };
+  };
+
+  var FakeResponse = function () {
+    var response = this;
+
+    response.send = function (status) {
+      response.send.called = true;
+      response.send.calledWith = status;
+    };
+
+    return response;
+  };
+
+});

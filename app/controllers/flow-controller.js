@@ -9,7 +9,7 @@ module.exports = function (options) {
   Flow = options.Flow || mongoose.model('Flow');
 
   _this.updateOrCreate = function (req, res) {
-    Flow.updateOrCreateByFlowIdAndUser(req.params.id, req.user.skynet.uuid, req.body).then(function () {
+    Flow.updateOrCreateByFlowIdAndUser(req.params.id, req.user.resource.uuid, req.body).then(function () {
       res.send(204);
     }, function (error) {
       res.send(422, error);
@@ -17,7 +17,7 @@ module.exports = function (options) {
   };
 
   _this.getAllFlows = function (req, res) {
-    return _this.getFlows(req.user.skynet.uuid, function (error, flows) {
+    return _this.getFlows(req.user.resource.uuid, function (error, flows) {
       if (error) {
         return res.send(500, error);
       }
@@ -34,18 +34,16 @@ module.exports = function (options) {
   };
 
   _this.delete = function (req, res) {
-    if(!req.user  || ! req.user.skynet.uuid ){
+    if (!req.user || !req.user.resource.uuid) {
       return res.send(401);
     }
-    Flow.find({'resource.owner.uuid' : req.user.skynet.uuid}, function(err, flows){
-      if(err){
-        return res.send(401);
-      }
-    });
     if (!req.params.id) {
-      res.send(422);
+      res.send(422)
     }
-     Flow.deleteByFlowId();
+    Flow.deleteByUserIdAndFlowId(req.user.resource.uuid, req.id)
+      .then(null, function (err) {
+        res.send(401);
+      });
   };
 
   return _this;
