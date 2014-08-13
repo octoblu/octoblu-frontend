@@ -13,6 +13,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       port: '443'
     };
 
+    if ($location.host() === 'staging.octoblu.com') {
+      config.host = 'wss://meshblu-staging.octoblu.com';
+      config.port = '443';
+    }
+
     if ($location.host() === 'localhost') {
       config.host = 'ws://localhost';
       config.port = '3000';
