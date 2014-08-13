@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 describe('FlowController', function () {
 
-  var sut, res;
+  var sut, res, flow;
   beforeEach(function () {
     sut = new FlowController({Flow: FakeFlow})
     res = new FakeResponse();
@@ -87,75 +87,87 @@ describe('FlowController', function () {
   });
 
   describe('delete', function () {
-    describe('when called with 123', function () {
-      beforeEach(function () {
-        var req = {
-          params: {
-            id: 123
-          },
-          user: { skynet: {uuid: '233435'} }
-        };
-        sut.delete(req, res);
-      });
-
-      it('should call deleteByFlowId on Flow', function () {
-        expect(FakeFlow.deleteByFlowId.called).to.be.true;
-      });
+    var res;
+    beforeEach(function () {
+      flow = {
+        flowId: '5',
+        resource: {
+          owner: {uuid: '1'}
+        }
+      };
+      res = new FakeResponse();
     });
 
-    describe('when called with 456 and foo: widget', function () {
-      beforeEach(function () {
-        var req = {
-          params: {
-            id: 456
-          },
-          body: {
-            foo: 'widget'
-          },
-          user: { skynet: {uuid: 'abcde'} }
-        };
-        sut.updateOrCreate(req, res);
-      });
+    it('should call deleteByFlowId on Flow', function () {
+      var req = {
+        params: {
+          id: '5'
+        },
+        user: { skynet: {uuid: '1'} }
+      };
+      sut.delete(req, res);
+      expect(FakeFlow.deleteByFlowId.called).to.be.true;
+    });
 
-      it('should call updateOrCreateByFlowIdAndUser with the id and body', function () {
-        expect(FakeFlow.updateOrCreateByFlowIdAndUser.calledWith).to.deep.equal(
-          [456, 'abcde', {foo: 'widget'}]
-        );
-      });
+    it('should return an error', function () {
+      var req = {
+        params: {},
+        user: { resource: {uuid: '1'}}
+      };
+
+      sut.delete(req, res);
+      expect(res.send.calledWith).to.equal(422);
+    });
+
+    it('should return an error if the user doesn\'t own a flow', function () {
+      var req = {
+        params: { id: '5'},
+        user: { skynet: {uuid: '2'}}
+      };
+
+      sut.delete(req, res);
+      expect(res.send.calledWith).to.equal(401);
     });
   });
-
 });
 
-var FakeFlow = function(){ return this; };
-FakeFlow.updateOrCreateByFlowIdAndUser = function(){
+var FakeFlow = function () {
+  return this;
+};
+
+FakeFlow.updateOrCreateByFlowIdAndUser = function () {
   FakeFlow.updateOrCreateByFlowIdAndUser.called = true;
   FakeFlow.updateOrCreateByFlowIdAndUser.calledWith = _.values(arguments);
 
   return {
-    then: function(successCallback, errorCallback){
+    then: function (successCallback, errorCallback) {
       FakeFlow.updateOrCreateByFlowIdAndUser.success = successCallback;
-      FakeFlow.updateOrCreateByFlowIdAndUser.error   = errorCallback;
+      FakeFlow.updateOrCreateByFlowIdAndUser.error = errorCallback;
     }
   };
 
 };
 
-FakeFlow.deleteByFlowId = function() {
+FakeFlow.deleteByFlowId = function (ownerUUID, flowId) {
   FakeFlow.deleteByFlowId.called = true;
   FakeFlow.deleteByFlowId.calledWith = _.values(arguments);
   return {
     then: function (successCallback, errorCallback) {
       FakeFlow.deleteByFlowId.success = successCallback;
       FakeFlow.deleteByFlowId.error = errorCallback;
+      if (ownerUUID === flow.resource.owner.uuid) {
+        successCallback();
+      } else {
+        errorCallback();
+      }
     }
   };
 };
 
-var FakeResponse = function(){
+var FakeResponse = function () {
   var response = this;
 
-  response.send = function(status){
+  response.send = function (status) {
     response.send.called = true;
     response.send.calledWith = status;
   };
