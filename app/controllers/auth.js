@@ -1,5 +1,3 @@
-'use strict';
-
 var request = require('request'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
@@ -139,7 +137,7 @@ module.exports = function (app, passport, config) {
     };
 
     var getOAuthCallbackUrl = function (req, channelid) {
-        return (req.headers.host.indexOf('octoblu.com')>=0) ? 'https://'+ req.headers.host + '/api/auth/' + channelid + '/callback/custom' 
+        return (req.headers.host.indexOf('octoblu.com')>=0) ? 'https://'+ req.headers.host + '/api/auth/' + channelid + '/callback/custom'
           : req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
         // return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
     };
@@ -175,7 +173,6 @@ module.exports = function (app, passport, config) {
     app.get('/auth/github', storeReferrer, passport.authenticate('github', { scope: ['user:email'] }));
     app.get('/auth/github/callback', passport.authenticate('github'), restoreReferrer, completeLogin);
 
-    // working on custom oauth handling here.....
     app.get('/api/auth/:id/custom', function (req, res) {
         var channelid = req.params.id;
         var user = req.user;
@@ -271,8 +268,7 @@ module.exports = function (app, passport, config) {
                         req.session.oauth.token_secret = oauth_token_secret;
                         var callbackURL = getOAuthCallbackUrl(req, api._id);
 
-                        var authURL = api.oauth.authTokenURL + '?oauth_token='
-                            + oauth_token;
+                        var authURL = api.oauth.authTokenURL + '?oauth_token=' + oauth_token;
 
                         if (api.name != 'Tumblr') {
                             authURL += '&oauth_consumer_key=' + api.oauth.key
