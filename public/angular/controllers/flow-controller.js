@@ -32,7 +32,7 @@ angular.module('octobluApp')
 
     $scope.addFlow = function () {
       var name = 'Flow ' + ($scope.flows.length + 1);
-      $scope.flows.push(FlowService.newFlow(name));
+      $scope.flows.push(FlowService.newFlow({name: name}));
     };
 
     $scope.isActiveFlow = function (flow) {
