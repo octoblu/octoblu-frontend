@@ -18,8 +18,6 @@ describe('FlowModel', function () {
 
   describe('constructor', function () {
     it('should have default zoom settings', function () {
-      expect(sut.zoomCenterX).to.equal(1);
-      expect(sut.zoomCenterY).to.equal(1);
       expect(sut.zoomScale).to.equal(1);
     });
   });

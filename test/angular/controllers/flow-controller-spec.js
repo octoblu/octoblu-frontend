@@ -1,5 +1,5 @@
 describe('FlowController', function () {
-  var sut, scope, $httpBackend, FlowModel, FakeWindow;
+  var sut, scope, fakeFlowService, fakeFlowNodeTypeService, fakeWindow;
 
   beforeEach(function () {
     module('octobluApp');
@@ -8,23 +8,21 @@ describe('FlowController', function () {
       scope = $rootScope.$new();
       scope.flow = {}; // From parent
 
-      FakeWindow = {
-        confirm : sinon.stub()
-      };
-      FakeWindow.confirm.returns(true);
+      fakeWindow              = new FakeWindow();
+      fakeFlowService         = new FakeFlowService();
+      fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
+
       sut = $controller('FlowController', {
         $scope: scope,
-        FlowService: FakeFlowService,
-        FlowNodeTypeService: FakeFlowNodeTypeService,
-        $window : FakeWindow
+        $window : fakeWindow,
+        FlowService: fakeFlowService,
+        FlowNodeTypeService: fakeFlowNodeTypeService
       });
     });
   });
 
   beforeEach(function () {
-    inject(function (_$httpBackend_, $rootScope, _FlowModel_) {
-      FlowModel = _FlowModel_;
-      $httpBackend = _$httpBackend_;
+    inject(function ($httpBackend) {
       $httpBackend.whenGET('/api/auth').respond(200);
       $httpBackend.whenGET('pages/octoblu.html').respond(200);
       $httpBackend.whenGET('pages/home.html').respond(200);
@@ -36,40 +34,46 @@ describe('FlowController', function () {
   });
 
   describe('deleteFlow', function(){
-    var flow1, flow2;
-    beforeEach(function(){
-      flow1 = FlowModel('Test Flow');
-      scope.flows = [flow1];
+
+    describe('when the user confirms the delete', function () {
+      beforeEach(function(){
+        fakeWindow.confirm.returns = true;
+      });
+
+      it('should call delete flow on the flow service', function(){
+        var flow1 = {flowId: 'flowEyeD'};
+        scope.deleteFlow(flow1);
+        expect(fakeFlowService.deleteFlow).to.have.been.calledWith('flowEyeD');
+      });
     });
 
-    it('should delete a flow', function(){
-      var flow2 = FlowModel('Second Flow');
-      scope.flows.push(flow2);
-      scope.deleteFlow(flow1);
-      expect(scope.flows[0]).to.eq(flow2);
+    describe('when the use does not confirm the delete', function () {
+      beforeEach(function(){
+        fakeWindow.confirm.returns = false;
+      });
+
+      it('should call delete flow on the flow service', function(){
+        var flow1 = {flowId: 'flowEyeD'};
+        scope.deleteFlow(flow1);
+        expect(fakeFlowService.deleteFlow).not.to.have.been.called;
+      });
     });
 
-    it('should ask for confirmation', function(){
-      scope.deleteFlow(flow1);
-      expect(FakeWindow.confirm).to.be.called;
+    describe('when the flow service responds', function () {
+      beforeEach(function(){
+        var flow1 = {flowId: 'flowEyeD'};
+        fakeWindow.confirm.returns = true;
+        fakeFlowService.getAllFlows.reset();
+        scope.deleteFlow(flow1)
+        fakeFlowService.deleteFlow.successCallback();
+      });
+
+      it('should call getAllFlows on the FlowService', function () {
+        expect(fakeFlowService.getAllFlows).to.have.been.called;
+      });
     });
-
-    it('should not delete a flow if the user cancels', function(){
-      FakeWindow.confirm.returns(false);
-      scope.deleteFlow(flow1);
-      expect(scope.flows[0]).to.eq(flow1);
-    });
-    it('should create a blank flow if the last flow is deleted', function(){
-      scope.deleteFlow(flow1);
-      expect(scope.flows.length).to.equal(1);
-      expect(scope.flows[0]).to.not.equal(flow1);
-    });
-
-
-
-
-
   });
+
   describe('deleteSelection', function () {
     it('should be callable', function () {
       scope.deleteSelection();
@@ -176,39 +180,53 @@ describe('FlowController', function () {
     });
   });
 
-  var FakeFlowNodeTypeService = {
-    getFlowNodeTypes: function(arg0){
-      FakeFlowNodeTypeService.getFlowNodeTypes.called     = true;
-      FakeFlowNodeTypeService.getFlowNodeTypes.calledWith = arg0;
+  var FakeFlowNodeTypeService = function(){
+    var _this = this;
+
+    _this.getFlowNodeTypes = sinon.spy(function(){
       return {
         then: function(callback){
-          FakeFlowNodeTypeService.getFlowNodeTypes.resolve = callback;
+          _this.getFlowNodeTypes.resolve = callback;
         }
-      }
-    }
+      };
+    });
+
+    return _this;
   };
 
-  var FakeFlowService = {
-    getAllFlows: function(arg0){
-      return {
-        then: function(callback){
-          FakeFlowService.getAllFlows.resolve = callback;
-        }
-      }
-    },
-    getSessionFlow: function(arg0){
-      return {
-        then: function(callback){
-          FakeFlowService.getSessionFlow.resolve = callback;
-        }
-      }
-    },
-    newFlow : function(name){
-      return FlowModel(name);
-    },
-    deleteFlow : function(flow){
+  var FakeFlowService = function(){
+    var _this = this;
 
+    _this.deleteFlow = sinon.spy(function(){
+      return {
+        then: function(successCallback){
+          _this.deleteFlow.successCallback = successCallback;
+        }
+      }
+    });
+
+    _this.getAllFlows = sinon.spy(function(){
+      return {
+        then: function(){}
+      };
+    });
+
+    _this.getSessionFlow = function(){
+      return {
+        then: function(){}
+      };
     }
+
+    return _this;
   };
 
+  var FakeWindow = function(){
+    var _this = this;
+
+    _this.confirm = sinon.spy(function(){
+      return _this.confirm.returns;
+    });
+
+    return _this;
+  };
 });

@@ -43,8 +43,8 @@ angular.module('octobluApp')
                 });
         };
 
-        this.newFlow = function(name) {
-            return FlowModel({name: name});
+        this.newFlow = function(options) {
+            return FlowModel(options);
         };
 
         this.deleteFlow = function(flowId){

@@ -7,10 +7,10 @@ angular.module('octobluApp')
       selectedNode: null
     };
 
-      FlowNodeTypeService.getFlowNodeTypes()
-        .then(function (flowNodeTypes) {
-          $scope.flowNodeTypes = flowNodeTypes;
-        });
+    FlowNodeTypeService.getFlowNodeTypes()
+      .then(function (flowNodeTypes) {
+        $scope.flowNodeTypes = flowNodeTypes;
+      });
 
 
     var refreshFlows = function(){
