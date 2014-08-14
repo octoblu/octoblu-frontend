@@ -187,7 +187,7 @@ var config = {
       },
 
     'skynet' : {
-         'host' : process.env.SKYNET_HOST || 'skynet.im',
+         'host' : process.env.SKYNET_HOST || 'meshblu.octoblu.com',
         'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
          'port' : process.env.SKYNET_PORT || 80
     },
@@ -277,7 +277,7 @@ var config = {
     },
 
     'skynet' : {
-         'host' : process.env.SKYNET_HOST || 'skynet.im',
+         'host' : process.env.SKYNET_HOST || 'meshblu-staging.octoblu.com',
         'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
          'port' : process.env.SKYNET_PORT || 80
     },
