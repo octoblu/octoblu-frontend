@@ -66,8 +66,11 @@ angular.module('octobluApp')
           $scope.$apply();
         });
 
-        $scope.$watch('flow', function (newFlow) {
+        flowRenderer.on('flowChanged', function(newFlow){
+          $scope.$apply();
+        });
 
+        $scope.$watch('flow', function (newFlow, oldFlow) {
           if (newFlow) {
             skynetService.getSkynetConnection().then(function (skynetConnection) {
               skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});

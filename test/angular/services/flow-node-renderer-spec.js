@@ -357,6 +357,5 @@ describe('FlowNodeRenderer', function () {
       var node = $(renderScope.selectAll('.flow-node > rect')[0]);
       expect(node.attr('height')).to.equal('80');
     });
-
   });
 });

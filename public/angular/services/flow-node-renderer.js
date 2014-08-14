@@ -135,9 +135,9 @@ angular.module('octobluApp')
               renderScope.selectAll('.flow-potential-link').remove();
               var from = {
                 x: node.x + ( parseFloat(portElement.attr('x')) +
-                  (FlowNodeDimensions.portHeight / 2)),
+                  (portElement.attr('height') / 2)),
                 y: node.y + ( parseFloat(portElement.attr('y')) +
-                  (FlowNodeDimensions.portWidth / 2))
+                  (portElement.attr('width') / 2))
               };
               var to = {
                 x: (node.x + d3.event.x),

@@ -84,13 +84,13 @@ angular.module('octobluApp')
     };
 
     $scope.zoomIn = function () {
-      if ($scope.zoomLevel < 4) {
-        $scope.zoomLevel++;
+      if ($scope.activeFlow.zoomScale + 0.25 <= 2) {
+        $scope.activeFlow.zoomScale += 0.25;
       }
     };
     $scope.zoomOut = function () {
-      if ($scope.zoomLevel > -4) {
-        $scope.zoomLevel--;
+      if ($scope.activeFlow.zoomScale - 0.25 >= 0.25) {
+        $scope.activeFlow.zoomScale -= 0.25;
       }
     };
 

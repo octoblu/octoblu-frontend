@@ -1,12 +1,50 @@
 'use strict';
 angular.module('octobluApp')
   .factory('FlowModel', function (UUIDService) {
-    return function (name) {
-      var nodes = [], links = [];
+    return function (options) {
+      var flowId, name, nodes, links, zoomCenterX, zoomCenterY, zoomScale;
+      options = options || {};
+
+      flowId = options.flowId || UUIDService.v1();
+      name  = options.name;
+      nodes = options.nodes || [];
+      links = options.links || [];
+      zoomCenterX = 1;
+      zoomCenterY = 1;
+      zoomScale   = 1;
 
       var FlowModel = {
-        flowId: UUIDService.v1(),
-        name: name,
+        getFlowId: function(){
+          return flowId;
+        },
+
+        getName: function(){
+          return name;
+        },
+
+        getZoomCenterX: function(){
+          return zoomCenterX;
+        },
+
+        setZoomCenterX: function(newZoomCenterX){
+          zoomCenterX = newZoomCenterX;
+        },
+
+        getZoomCenterY: function(){
+          return zoomCenterY;
+        },
+
+        setZoomCenterY: function(newZoomCenterY){
+          zoomCenterY = newZoomCenterY;
+        },
+
+        getZoomScale: function(){
+          return zoomScale;
+        },
+
+        setZoomScale: function(newZoomScale){
+          zoomScale = newZoomScale;
+        },
 
         getNodes: function () {
           return nodes;
@@ -51,6 +89,9 @@ angular.module('octobluApp')
 
       //Shim so things that expect array primitives still work.
 
+      FlowModel.__defineGetter__('flowId', FlowModel.getFlowId);
+      FlowModel.__defineGetter__('name', FlowModel.getName);
+
       FlowModel.__defineGetter__('nodes', function () {
         return FlowModel.getNodes();
       });
@@ -74,6 +115,13 @@ angular.module('octobluApp')
         links = newLinks;
       });
 
+      FlowModel.__defineGetter__('zoomCenterX', FlowModel.getZoomCenterX);
+      FlowModel.__defineGetter__('zoomCenterY', FlowModel.getZoomCenterY);
+      FlowModel.__defineGetter__('zoomScale', FlowModel.getZoomScale);
+
+      FlowModel.__defineSetter__('zoomCenterX', FlowModel.setZoomCenterX);
+      FlowModel.__defineSetter__('zoomCenterY', FlowModel.setZoomCenterY);
+      FlowModel.__defineSetter__('zoomScale', FlowModel.setZoomScale);
 
       return FlowModel;
     };

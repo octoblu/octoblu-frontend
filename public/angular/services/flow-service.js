@@ -27,10 +27,12 @@ angular.module('octobluApp')
         this.getAllFlows = function () {
             return $http.get("/api/flows").then(function(response){
                 if (_.isEmpty(response.data)) {
-                    return [_this.newFlow('Flow 1')];
+                    return [_this.newFlow({name: 'Flow 1'})];
                 }
 
-                return response.data;
+                return _.map(response.data, function(data) {
+                    return new FlowModel(data);
+                });
             });
         };
 
