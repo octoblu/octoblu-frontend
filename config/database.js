@@ -11,9 +11,9 @@ var config = {
     },
     staging: {
         // url : 'mongodb://[user]:[password]@dharma.mongohq.com:10040/meshines'
-        url : 'mongodb://172.31.44.170:27017/meshines',
-        skynetUrl: 'mongodb://172.31.44.146:27017/skynet',
-        redisSessionUrl: 'redis://meshblu-redis.csy8op.0001.usw2.cache.amazonaws.com'
+        url : 'mongodb://172.31.33.28:27017/octoblu-staging',
+        skynetUrl: 'mongodb://172.31.33.28:27017/meshblu-staging',
+        redisSessionUrl: 'redis://staging-redis.csy8op.0001.usw2.cache.amazonaws.com'
     },
     production: {
         // url : 'mongodb://[user]:[password]@dharma.mongohq.com:10040/meshines'

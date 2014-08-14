@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
         "protocol" : "websocket"
     });
 
-    var FlowController = require('./controllers/flow');
+    var FlowController = require('./controllers/flow-controller');
     var flowController = new FlowController();
 
     var FlowDeployController = require('./controllers/flow-deploy');
