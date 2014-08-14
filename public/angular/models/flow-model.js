@@ -2,16 +2,14 @@
 angular.module('octobluApp')
   .factory('FlowModel', function (UUIDService) {
     return function (options) {
-      var flowId, name, nodes, links, zoomCenterX, zoomCenterY, zoomScale;
+      var flowId, name, nodes, links, zoomScale;
       options = options || {};
 
       flowId = options.flowId || UUIDService.v1();
       name  = options.name;
       nodes = options.nodes || [];
       links = options.links || [];
-      zoomCenterX = 1;
-      zoomCenterY = 1;
-      zoomScale   = 1;
+      zoomScale = options.zoomScale || 1;
 
       var FlowModel = {
         getFlowId: function(){
@@ -20,22 +18,6 @@ angular.module('octobluApp')
 
         getName: function(){
           return name;
-        },
-
-        getZoomCenterX: function(){
-          return zoomCenterX;
-        },
-
-        setZoomCenterX: function(newZoomCenterX){
-          zoomCenterX = newZoomCenterX;
-        },
-
-        getZoomCenterY: function(){
-          return zoomCenterY;
-        },
-
-        setZoomCenterY: function(newZoomCenterY){
-          zoomCenterY = newZoomCenterY;
         },
 
         getZoomScale: function(){
@@ -115,12 +97,7 @@ angular.module('octobluApp')
         links = newLinks;
       });
 
-      FlowModel.__defineGetter__('zoomCenterX', FlowModel.getZoomCenterX);
-      FlowModel.__defineGetter__('zoomCenterY', FlowModel.getZoomCenterY);
       FlowModel.__defineGetter__('zoomScale', FlowModel.getZoomScale);
-
-      FlowModel.__defineSetter__('zoomCenterX', FlowModel.setZoomCenterX);
-      FlowModel.__defineSetter__('zoomCenterY', FlowModel.setZoomCenterY);
       FlowModel.__defineSetter__('zoomScale', FlowModel.setZoomScale);
 
       return FlowModel;

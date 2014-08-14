@@ -59,7 +59,6 @@ angular.module('octobluApp')
       function addZoomBehaviour(flow){
         var zoomBehavior = d3.behavior.zoom()
           .scale(flow.zoomScale)
-          .translate([flow.zoomCenterX, flow.zoomCenterY])
           .scaleExtent([0.25, 2])
           .on('zoom', function(){
             updateFlowZoomLevel(flow);
@@ -87,22 +86,17 @@ angular.module('octobluApp')
       }
 
       function updateFlowZoomLevel(flow) {
-        flow.zoomCenterX = d3.event.translate[0];
-        flow.zoomCenterY = d3.event.translate[1];
         flow.zoomScale  = d3.event.scale;
         dispatch.flowChanged(flow);
       }
 
       function zoom(flow) {
-        var translate, scale;
-        translate = [flow.zoomCenterX, flow.zoomCenterY];
-        scale     = flow.zoomScale;
-        renderScope.attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+        var scale     = flow.zoomScale;
+        renderScope.attr("transform", "scale(" + scale + ")");
       }
 
       return {
         render: function (flow) {
-          addZoomBehaviour(flow);
           renderNodes(flow);
           renderLinks(flow);
           zoom(flow);

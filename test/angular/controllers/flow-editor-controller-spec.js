@@ -7,8 +7,7 @@ describe('FlowEditorController', function () {
     inject(function($controller, $rootScope){
       fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
       scope = $rootScope.$new();
-      scope.flow = {nodes: []};
-      scope.zoomLevel = 0;
+      scope.flow = {nodes: [], zoomScale: 1};
 
       sut = $controller('FlowEditorController', {
         $scope: scope,
@@ -37,11 +36,12 @@ describe('FlowEditorController', function () {
 
     it('should translate the x and y by the scaleFactor', function () {
       scope.zoomLevel = 1;
+      scope.flow.zoomScale = 2;
       scope.addNode({}, 10, 10);
       var node = _.first(scope.flow.nodes);
 
-      expect(node.x).to.equal(8);
-      expect(node.y).to.equal(8);
+      expect(node.x).to.equal(5);
+      expect(node.y).to.equal(5);
     });
   });
 
