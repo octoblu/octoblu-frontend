@@ -17,19 +17,6 @@ angular.module('octobluApp')
         var renderScope = d3
           .select(element.find('.flow-editor-render-area')[0]);
 
-        $scope.getScaleFactor = function() {
-          var scaleFactor = 1 + ($scope.zoomLevel * 0.25);
-
-          if(scaleFactor > 2.5) {
-            return 2.5;
-          }
-          if(scaleFactor <= 0) {
-            return 0.25;
-          }
-
-          return scaleFactor;
-        };
-
         var flowRenderer = new FlowRenderer(renderScope);
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
@@ -79,8 +66,11 @@ angular.module('octobluApp')
           $scope.$apply();
         });
 
-        $scope.$watch('flow', function (newFlow) {
+        flowRenderer.on('flowChanged', function(newFlow){
+          $scope.$apply();
+        });
 
+        $scope.$watch('flow', function (newFlow, oldFlow) {
           if (newFlow) {
             skynetService.getSkynetConnection().then(function (skynetConnection) {
               skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});

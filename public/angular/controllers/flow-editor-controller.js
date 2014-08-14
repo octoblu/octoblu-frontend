@@ -6,8 +6,8 @@ angular.module('octobluApp')
     var flowNode;
 
     flowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
-    flowNode.x = x;
-    flowNode.y = y;
+    flowNode.x = x / $scope.flow.zoomScale;
+    flowNode.y = y / $scope.flow.zoomScale;
 
     $scope.flow.nodes.push(flowNode);
   };

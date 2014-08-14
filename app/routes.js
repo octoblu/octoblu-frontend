@@ -66,6 +66,7 @@ module.exports = function(app, passport) {
         require('./controllers/invitation')(app, passport, config);
 
         app.put('/api/flows/:id', flowController.updateOrCreate);
+        app.delete('/api/flows/:id', flowController.delete);
         app.get('/api/flows', flowController.getAllFlows);
         app.post('/api/flow_deploys', flowDeployController.create);
 

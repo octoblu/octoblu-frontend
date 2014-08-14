@@ -5,6 +5,7 @@ var resource = require('./mixins/resource');
 var FlowSchema = new mongoose.Schema({
   flowId: String,
   name:   String,
+  zoomScale: Number,
   nodes: [],
   links: [],
   resource: {
@@ -16,7 +17,7 @@ var FlowSchema = new mongoose.Schema({
   }
 });
 
-FlowSchema.statics.deleteByFlowIdAndUser = function(flowId, userUUID){
+FlowSchema.statics.deleteByFlowIdAndUserUUID = function(flowId, userUUID){
   return this.remove({flowId : flowId, 'resource.owner.uuid' : userUUID }).exec();
 };
 

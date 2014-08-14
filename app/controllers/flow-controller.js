@@ -34,15 +34,11 @@ module.exports = function (options) {
   };
 
   _this.delete = function (req, res) {
-    if (!req.user || !req.user.resource.uuid) {
-      return res.send(401);
-    }
-    if (!req.params.id) {
-      res.send(422);
-    }
-    Flow.deleteByFlowIdAndUser(req.id, req.user)
-      .then(null, function (err) {
-        res.send(401);
+    Flow.deleteByFlowIdAndUserUUID(req.params.id, req.user.resource.uuid)
+      .then(function(){
+        res.send(204);
+      }, function (err) {
+        res.send(500, err);
       });
   };
 

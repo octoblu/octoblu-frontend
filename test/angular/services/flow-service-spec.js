@@ -129,17 +129,17 @@ describe('FlowService', function () {
     });
 
     it('should accept a default name', function(){
-      expect(sut.newFlow('foo').name).to.equal('foo');
+      expect(sut.newFlow({name: 'foo'}).name).to.equal('foo');
     });
 
     it('should accept a default name', function(){
-      expect(sut.newFlow('food').name).to.equal('food');
+      expect(sut.newFlow({name: 'food'}).name).to.equal('food');
     });
 
     it('should have nodes', function() {
       expect(sut.newFlow().nodes).to.deep.equal([]);
     });
- 
+
     it('should have links', function() {
       expect(sut.newFlow().links).to.deep.equal([]);
     });

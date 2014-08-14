@@ -16,6 +16,14 @@ describe('FlowModel', function () {
     expect(sut).to.exist;
   });
 
+  describe('constructor', function () {
+    it('should have default zoom settings', function () {
+      expect(sut.zoomCenterX).to.equal(1);
+      expect(sut.zoomCenterY).to.equal(1);
+      expect(sut.zoomScale).to.equal(1);
+    });
+  });
+
   describe('edit links and nodes', function () {
     beforeEach(function () {
       sut.addNode({ id: '1'});

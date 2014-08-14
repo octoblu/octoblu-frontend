@@ -51,11 +51,19 @@ angular.module('octobluApp')
               .attr("transform", "translate(" + node.x + "," + node.y + ")");
             renderLinks(flow);
           })
-          .on('dragend', function () {
-            dispatch.flowChanged(flow);
-          });
+          .on('dragend', function () {});
 
         draggedElement.call(dragBehavior);
+      }
+
+      function addZoomBehaviour(flow){
+        var zoomBehavior = d3.behavior.zoom()
+          .scale(flow.zoomScale)
+          .scaleExtent([0.25, 2])
+          .on('zoom', function(){
+            updateFlowZoomLevel(flow);
+          });
+        renderScope.call(zoomBehavior);
       }
 
       function renderLinks(flow) {
@@ -77,10 +85,21 @@ angular.module('octobluApp')
         });
       }
 
+      function updateFlowZoomLevel(flow) {
+        flow.zoomScale  = d3.event.scale;
+        dispatch.flowChanged(flow);
+      }
+
+      function zoom(flow) {
+        var scale     = flow.zoomScale;
+        renderScope.attr("transform", "scale(" + scale + ")");
+      }
+
       return {
         render: function (flow) {
           renderNodes(flow);
           renderLinks(flow);
+          zoom(flow);
         },
         on: function (event, callback) {
           return dispatch.on(event, callback);
