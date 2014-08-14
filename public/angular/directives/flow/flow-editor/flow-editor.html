@@ -1,3 +1,5 @@
 <div class="flow-editor" ui-on-drop="addNode($data, $event.originalEvent.offsetX, $event.originalEvent.offsetY)">
-  <svg class="flow-editor-workspace" xmlns="http://www.w3.org/2000/svg" version="1.1" width="5000" height="5000" pointer-events="all"></svg>
+  <svg class="flow-editor-workspace" xmlns="http://www.w3.org/2000/svg" version="1.1" width="5000" height="5000" pointer-events="all">
+      <g ng-attr-transform="scale({{getScaleFactor()}},{{getScaleFactor()}})" class="flow-editor-render-area"></g>
+  </svg>
 </div>

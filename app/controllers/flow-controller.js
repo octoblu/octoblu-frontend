@@ -38,9 +38,9 @@ module.exports = function (options) {
       return res.send(401);
     }
     if (!req.params.id) {
-      res.send(422)
+      res.send(422);
     }
-    Flow.deleteByUserIdAndFlowId(req.user.resource.uuid, req.id)
+    Flow.deleteByFlowIdAndUser(req.id, req.user)
       .then(null, function (err) {
         res.send(401);
       });

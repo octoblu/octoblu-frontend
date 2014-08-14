@@ -3,12 +3,13 @@
 var mongoose      = require('mongoose'),
     nodemailer    = require('nodemailer'),
     request       = require('request'),
+    security      = require('./middleware/security'),
     generateUrlSafeToken = require('../models/mixins/resource').generateUrlSafeToken,
     User          = mongoose.model('User');
 
 module.exports = function ( app, passport, config ) {
 
-  app.post('/api/reset', function(req, res, next) {
+  app.post('/api/reset', security.bypassAuth, security.bypassTerms, function(req, res, next) {
     var user;
     User.findByEmail(req.body.email)
       .then(function(dbUser){

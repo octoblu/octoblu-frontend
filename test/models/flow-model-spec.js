@@ -136,4 +136,28 @@ describe('Flow', function () {
       });
     });
   });
+  describe('.deleteByFlowIdAndUser', function(){
+    describe('when it is given a valid flowId and User', function () {
+      beforeEach(function (done) {
+        Flow.create({
+          flowId: '657',
+          resource: {
+            type: 'flow',
+            owner: {
+              uuid: 'unique-uuid',
+              type: 'user'
+            }
+          }
+        }, done);
+      });
+
+      it('should remove the record from the database', function (done) {
+        var query = {flowId: '657', 'resource.owner.uuid': 'unique-uuid', 'resource.owner.nodeType': 'user'};
+        Flow.findOne(query, function(err, flow){
+          expect(flow).to.be.null;
+          done();
+        });
+      });
+    });
+  });
 });

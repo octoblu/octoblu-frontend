@@ -16,6 +16,10 @@ var FlowSchema = new mongoose.Schema({
   }
 });
 
+FlowSchema.statics.deleteByFlowIdAndUser = function(flowId, userUUID){
+  return this.remove({flowId : flowId, 'resource.owner.uuid' : userUUID }).exec();
+};
+
 FlowSchema.statics.updateOrCreateByFlowIdAndUser = function (flowId, userUUID, flowData) {
   flowData = flowData || {};
   var query = {flowId: flowId, 'resource.owner.uuid': userUUID};

@@ -52,10 +52,18 @@
                             <span class="delete-flow fa" ng-click="deleteFlow(flow)"></span>
                     </li>
                 </ul>
-                <div class="red-add-tab" ng-click="deleteSelection()"><i class="fa fa-trash-o"></i></div>
+                <div ng-click="zoomIn()" class="red-add-tab">
+                    <i class="fa fa-search-plus"></i>
+                </div>
+                <div ng-click="zoomOut()" class="red-add-tab">
+                    <i class="fa fa-search-minus"></i>
+                </div>
+                <div ng-click="deleteSelection()" class="red-add-tab">
+                    <i class="fa fa-trash-o"></i>
+                </div>
                 <div class="red-add-tab" ng-click="addFlow()"><i class="fa fa-plus"></i></div>
             </div>
-            <flow-editor flow="activeFlow" selected-node="flowEditor.selectedNode" selected-link="flowEditor.selectedLink"></flow-editor>
+            <flow-editor zoom-level="zoomLevel" flow="activeFlow" selected-node="flowEditor.selectedNode" selected-link="flowEditor.selectedLink"></flow-editor>
         </div>
 
         <div id="sidebar" class="edit-panel flow-node-editor flow-node-editor-{{flowEditor.selectedNode.type}}" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">

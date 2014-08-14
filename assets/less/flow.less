@@ -172,6 +172,9 @@
     background: #e3e3e3;
     li {
       display: flex;
+      flex: 1;
+      min-width: 100px;
+      max-width: 300px;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
@@ -183,8 +186,6 @@
       background: #e3e3e3;
       margin: 0 5px 0 0;
       line-height: 17px;
-      max-width: 150px;
-      width: 14%;
       overflow: hidden;
       white-space: nowrap;
       &:hover {
@@ -210,6 +211,7 @@
     }
   }
   .red-add-tab {
+    .no-user-select;
     cursor: pointer;
     width: 33px;
     background: #e3e3e3;

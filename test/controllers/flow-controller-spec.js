@@ -98,7 +98,7 @@ describe('FlowController', function () {
       res = new FakeResponse();
     });
 
-    it('should call deleteByUserIdAndFlowId on Flow', function () {
+    it('should call deleteByFlowIdAndUser on Flow', function () {
       var req = {
         params: {
           id: '5'
@@ -106,7 +106,7 @@ describe('FlowController', function () {
         user: { resource: {uuid: '1'} }
       };
       sut.delete(req, res);
-      expect(FakeFlow.deleteByUserIdAndFlowId.called).to.be.true;
+      expect(FakeFlow.deleteByFlowIdAndUser.called).to.be.true;
     });
 
     it('should return an error', function () {
@@ -146,14 +146,14 @@ describe('FlowController', function () {
 
   };
 
-  FakeFlow.deleteByUserIdAndFlowId = function (ownerUUID, flowId) {
-    FakeFlow.deleteByUserIdAndFlowId.called = true;
-    FakeFlow.deleteByUserIdAndFlowId.calledWith = _.values(arguments);
+  FakeFlow.deleteByFlowIdAndUser = function (flowId, user) {
+    FakeFlow.deleteByFlowIdAndUser.called = true;
+    FakeFlow.deleteByFlowIdAndUser.calledWith = _.values(arguments);
     return {
       then: function (successCallback, errorCallback) {
-        FakeFlow.deleteByUserIdAndFlowId.success = successCallback;
-        FakeFlow.deleteByUserIdAndFlowId.error = errorCallback;
-        if (ownerUUID === flow.resource.owner.uuid) {
+        FakeFlow.deleteByFlowIdAndUser.success = successCallback;
+        FakeFlow.deleteByFlowIdAndUser.error = errorCallback;
+        if (user.resource.uuid === flow.resource.owner.uuid) {
           if (successCallback)
             successCallback();
         } else {

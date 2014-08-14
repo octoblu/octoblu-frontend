@@ -1,6 +1,7 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ($modal, $scope, $window,  FlowService, FlowNodeTypeService) {
+  .controller('FlowController', function ($modal, $scope, $window, FlowService, FlowNodeTypeService) {
     var originalNode;
+    $scope.zoomLevel = 0;
 
     $scope.flowEditor = {
       selectedNode: null
@@ -39,11 +40,11 @@ angular.module('octobluApp')
     };
 
     $scope.deleteFlow = function (flow) {
-      var deleteFlowConfirmed =  $window.confirm('Are you sure you want to delete ' + flow.name + '?');
-      if(deleteFlowConfirmed){
+      var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
+      if (deleteFlowConfirmed) {
         $scope.flows = _.without($scope.flows, flow);
 
-        if($scope.flows.length === 0) {
+        if ($scope.flows.length === 0) {
           $scope.addFlow();
         }
 
@@ -80,6 +81,17 @@ angular.module('octobluApp')
 
       $scope.flowEditor.selectedNode = null;
       $scope.flowEditor.selectedLink = null;
+    };
+
+    $scope.zoomIn = function () {
+      if ($scope.zoomLevel < 4) {
+        $scope.zoomLevel++;
+      }
+    };
+    $scope.zoomOut = function () {
+      if ($scope.zoomLevel > -4) {
+        $scope.zoomLevel--;
+      }
     };
 
     $scope.save = function () {
