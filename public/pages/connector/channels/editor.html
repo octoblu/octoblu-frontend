@@ -2,7 +2,7 @@
         <h3>{{channel.name}}
         &nbsp;&nbsp;
         <a class="btn btn-danger" ng-show="!isNew" ng-click="confirmDeleteApi()">Delete</a>
-        </h3>        
+        </h3>
 
         <fieldset ng-show="isEdit || isNew">
 
@@ -47,7 +47,7 @@
           <span ng-show="channel.auth_strategy=='oauth'">
             <h3>oAuth Settings</h3>
             <br/>
-            <div>              
+            <div>
               <h4>redirect_uri: {{redirectUri()}}</h4>
               <br/>
             </div>
@@ -86,7 +86,7 @@
             <div class="field">
               <label for="resource_accesstokenurl">Access Token URL</label>
               <input class="form-control" type="text" placeholder="Access Token URL" ng-model="channel.oauth.accessTokenURL" />
-            </div>            
+            </div>
 
             <div class="field" ng-hide="channel.oauth.version=='2.0'">
               <label for="resource_requesttokenurl">Request Token URL</label>
@@ -102,12 +102,12 @@
               <label for="resource_authtokenpath">Auth Token Path</label>
               <input class="form-control" type="text" placeholder="Auth Token Path" ng-model="channel.oauth.authTokenPath" />
             </div>
-      
+
             <div class="field" ng-show="channel.oauth.version=='2.0'">
               <label for="resource_host">Host</label>
               <input class="form-control" type="text" placeholder="Host" ng-model="channel.oauth.host" />
             </div>
-      
+
             <div class="field" ng-show="channel.oauth.version=='2.0'">
               <label for="resource_tokenQueryParam">tokenQueryParam</label>
               <input class="form-control" type="text" placeholder="Host" ng-model="channel.oauth.tokenQueryParam" />
@@ -209,7 +209,7 @@
 
           <div class="field">
             <label for="resource_resourcename">HTTP Method</label>
-            <select class="form-control" ng-model="selectedResource.httpMethod" ng-options="a for a in ['GET', 'POST', 'PUT', 'DELETE']"></select>
+            <select class="form-control" ng-model="selectedResource.httpMethod" ng-options="a for a in ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']"></select>
           </div>
 
           <div class="field">
@@ -256,7 +256,7 @@
                 <label>Required</label>
               </div>
               &nbsp;&nbsp;
-              <a href ng-click="removeParam($index)"> <i class="icon-minus"></i></a>
+              <a href ng-click="removeParam($index)"> <i class="glyphicon glyphicon-minus" style="font-size:2em"></i></a>
 
             </div>
 
