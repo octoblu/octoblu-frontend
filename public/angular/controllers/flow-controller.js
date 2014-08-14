@@ -7,16 +7,20 @@ angular.module('octobluApp')
       selectedNode: null
     };
 
-    FlowNodeTypeService.getFlowNodeTypes()
-      .then(function (flowNodeTypes) {
-        $scope.flowNodeTypes = flowNodeTypes;
-      });
+      FlowNodeTypeService.getFlowNodeTypes()
+        .then(function (flowNodeTypes) {
+          $scope.flowNodeTypes = flowNodeTypes;
+        });
 
-    $scope.flows = FlowService.getAllFlows()
-      .then(function (flows) {
-        $scope.flows = flows;
-        $scope.activeFlow = flows[0];
-      });
+
+    var refreshFlows = function(){
+      $scope.flows = FlowService.getAllFlows()
+        .then(function (flows) {
+          $scope.flows = flows;
+          $scope.activeFlow = flows[0];
+        });
+    }
+    refreshFlows();
 
 
     FlowService.getSessionFlow()
@@ -42,17 +46,9 @@ angular.module('octobluApp')
     $scope.deleteFlow = function (flow) {
       var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
       if (deleteFlowConfirmed) {
-        $scope.flows = _.without($scope.flows, flow);
-
-        if ($scope.flows.length === 0) {
-          $scope.addFlow();
-        }
-
-        if ($scope.activeFlow === flow) {
-          $scope.activeFlow = $scope.flows[0];
-        }
-
-        FlowService.deleteFlow(flow);
+        FlowService.deleteFlow(flow.flowId).then(function(){
+          refreshFlows();
+        });
       }
     };
 

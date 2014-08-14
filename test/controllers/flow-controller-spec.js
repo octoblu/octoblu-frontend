@@ -2,15 +2,15 @@ var FlowController = require('../../app/controllers/flow-controller');
 var _ = require('underscore');
 
 describe('FlowController', function () {
+  var sut, res, flow, fakeFlow;
 
-  var sut, res, flow;
   beforeEach(function () {
-    sut = new FlowController({Flow: FakeFlow});
+    fakeFlow = new FakeFlow();
+    sut = new FlowController({Flow: fakeFlow});
     res = new FakeResponse();
   });
 
   describe('updateOrCreate', function () {
-
     describe('when called with 123 and foo: bar', function () {
       beforeEach(function () {
         var req = {
@@ -26,13 +26,11 @@ describe('FlowController', function () {
       });
 
       it('should call updateOrCreateByFlowIdAndUser on Flow', function () {
-        expect(FakeFlow.updateOrCreateByFlowIdAndUser.called).to.be.true;
+        expect(fakeFlow.updateOrCreateByFlowIdAndUser).to.have.been.called;
       });
 
       it('should call updateOrCreateByFlowIdAndUser with the id and body', function () {
-        expect(FakeFlow.updateOrCreateByFlowIdAndUser.calledWith).to.deep.equal(
-          [123, '233435', {foo: 'bar'}]
-        );
+        expect(fakeFlow.updateOrCreateByFlowIdAndUser).to.have.been.calledWith(123, '233435', {foo: 'bar'});
       });
 
       it('should not call response.send', function () {
@@ -41,25 +39,21 @@ describe('FlowController', function () {
 
       describe('when the Flow responds with a success', function () {
         beforeEach(function () {
-          FakeFlow.updateOrCreateByFlowIdAndUser.success();
+          fakeFlow.updateOrCreateByFlowIdAndUser.successCallback();
         });
 
-        it('should respond', function () {
-          expect(res.send.called).to.be.true;
-        });
-
-        it('respond with a 204', function () {
-          expect(res.send.calledWith).to.equal(204);
+        it('should respond with a 204', function () {
+          expect(res.send).to.have.been.calledWith(204);
         });
       });
 
       describe('when the Flow responds with a error', function () {
         beforeEach(function () {
-          FakeFlow.updateOrCreateByFlowIdAndUser.error();
+          fakeFlow.updateOrCreateByFlowIdAndUser.errorCallback();
         });
 
         it('respond with a 422', function () {
-          expect(res.send.calledWith).to.equal(422);
+          expect(res.send).to.have.been.calledWith(422);
         });
       });
     });
@@ -79,100 +73,74 @@ describe('FlowController', function () {
       });
 
       it('should call updateOrCreateByFlowIdAndUser with the id and body', function () {
-        expect(FakeFlow.updateOrCreateByFlowIdAndUser.calledWith).to.deep.equal(
-          [456, 'abcde', {foo: 'widget'}]
-        );
+        expect(fakeFlow.updateOrCreateByFlowIdAndUser).to.have.been.calledWith(456, 'abcde', {foo: 'widget'});
       });
     });
   });
 
   describe('delete', function () {
-    var res;
     beforeEach(function () {
-      flow = {
-        flowId: '5',
-        resource: {
-          owner: {uuid: '1'}
-        }
-      };
-      res = new FakeResponse();
-    });
-
-    it('should call deleteByFlowIdAndUser on Flow', function () {
       var req = {
-        params: {
-          id: '5'
-        },
-        user: { resource: {uuid: '1'} }
+        params: {id: '5'},
+        user:   { resource: {uuid: '1'} }
       };
       sut.delete(req, res);
-      expect(FakeFlow.deleteByFlowIdAndUser.called).to.be.true;
     });
 
-    it('should return an error', function () {
-      var req = {
-        params: {},
-        user: { resource: {uuid: '1'}}
-      };
-
-      sut.delete(req, res);
-      expect(res.send.calledWith).to.equal(422);
+    it('should call deleteByFlowIdAndUserUUID on Flow', function () {
+      expect(fakeFlow.deleteByFlowIdAndUserUUID).to.be.have.been.calledWith('5', '1');
     });
 
-    it('should return an error if the user doesn\'t own a flow', function () {
-      var req = {
-        params: { id: '5'},
-        user: { resource: {uuid: '2'}}
-      };
+    describe('when fake flow calls the success callback', function () {
+      beforeEach(function(){
+        fakeFlow.deleteByFlowIdAndUserUUID.successCallback('some error');
+      });
 
-      sut.delete(req, res);
-      expect(res.send.calledWith).to.equal(401);
+      it('should response with a 204 and no content', function () {
+        expect(res.send).to.have.been.calledWith(204);
+      });
+    });
+
+    describe('when fake flow calls the error callback', function () {
+      beforeEach(function(){
+        fakeFlow.deleteByFlowIdAndUserUUID.errorCallback('some error');
+      });
+
+      it('should response with a 500 and the error', function () {
+        expect(res.send).to.have.been.calledWith(500, 'some error');
+      });
     });
   });
+
   var FakeFlow = function () {
-    return this;
-  };
+    var _this = this;
 
-  FakeFlow.updateOrCreateByFlowIdAndUser = function () {
-    FakeFlow.updateOrCreateByFlowIdAndUser.called = true;
-    FakeFlow.updateOrCreateByFlowIdAndUser.calledWith = _.values(arguments);
-
-    return {
-      then: function (successCallback, errorCallback) {
-        FakeFlow.updateOrCreateByFlowIdAndUser.success = successCallback;
-        FakeFlow.updateOrCreateByFlowIdAndUser.error = errorCallback;
-      }
-    };
-
-  };
-
-  FakeFlow.deleteByFlowIdAndUser = function (flowId, user) {
-    FakeFlow.deleteByFlowIdAndUser.called = true;
-    FakeFlow.deleteByFlowIdAndUser.calledWith = _.values(arguments);
-    return {
-      then: function (successCallback, errorCallback) {
-        FakeFlow.deleteByFlowIdAndUser.success = successCallback;
-        FakeFlow.deleteByFlowIdAndUser.error = errorCallback;
-        if (user.resource.uuid === flow.resource.owner.uuid) {
-          if (successCallback)
-            successCallback();
-        } else {
-          if (errorCallback)
-            errorCallback();
+    _this.updateOrCreateByFlowIdAndUser = sinon.spy(function () {
+      return {
+        then: function (successCallback, errorCallback) {
+          _this.updateOrCreateByFlowIdAndUser.successCallback = successCallback;
+          _this.updateOrCreateByFlowIdAndUser.errorCallback   = errorCallback;
         }
-      }
-    };
+      };
+    });
+
+    _this.deleteByFlowIdAndUserUUID = sinon.spy(function () {
+      return {
+        then: function (successCallback, errorCallback) {
+          _this.deleteByFlowIdAndUserUUID.successCallback = successCallback;
+          _this.deleteByFlowIdAndUserUUID.errorCallback   = errorCallback;
+        }
+      };
+    });
+
+    return _this;
   };
+
 
   var FakeResponse = function () {
-    var response = this;
-
-    response.send = function (status) {
-      response.send.called = true;
-      response.send.calledWith = status;
-    };
-
-    return response;
+    var _this = this;
+    _this.send = sinon.spy();
+    return _this;
   };
 
 });

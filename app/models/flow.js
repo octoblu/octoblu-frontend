@@ -17,7 +17,7 @@ var FlowSchema = new mongoose.Schema({
   }
 });
 
-FlowSchema.statics.deleteByFlowIdAndUser = function(flowId, userUUID){
+FlowSchema.statics.deleteByFlowIdAndUserUUID = function(flowId, userUUID){
   return this.remove({flowId : flowId, 'resource.owner.uuid' : userUUID }).exec();
 };
 
