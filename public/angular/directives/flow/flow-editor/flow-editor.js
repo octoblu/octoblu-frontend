@@ -27,14 +27,12 @@ angular.module('octobluApp')
 
             var element = d3.select('#node-' + message.payload.node + ' > rect');
             element.transition()
-              .style('stroke-width', 3)
-              .style('stroke', '#000')
+              .style('stroke-width', 4)
               .duration(250);
 
             element.transition()
               .delay(250)
               .style('stroke-width', 2)
-              .style('stroke', '#999')
               .duration(250);
           });
         });
