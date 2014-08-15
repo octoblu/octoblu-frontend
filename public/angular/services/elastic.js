@@ -23,10 +23,15 @@ angular.module('octobluApp')
     };
 
     this.buildDevices = function(myDevices) {
-        this.first = true;
-        deviceString = "";
+        var _this = this;
+
+        _this.first = true;
+        var deviceString = "";
         _.each(myDevices, function(data){
-            if (this.first && data.uuid) { this.first = false; deviceString += " _type:"+data.uuid; }
+            if (_this.first && data.uuid) {
+                _this.first = false;
+                deviceString += " _type:" + data.uuid;
+            }
             else if (data.uuid) { deviceString += " OR _type:"+data.uuid;  }
         });
         return deviceString;
@@ -69,10 +74,10 @@ angular.module('octobluApp')
 
     this.paramSearch = function (pConfig, myDevices, callback) {
         this.log("starting function=paramSearch");
-        myQuery = "";
+        var myQuery = "";
         if (pConfig.query.length > 0) { myQuery = " AND " + pConfig.query; }
 
-        baseSearchObject = {"size":pConfig.size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+this.devices.logic+"') "+myQuery }},{"range": {"timestamp": {"from": pConfig.from,"to": pConfig.to}}}]}}}}},"facets": pConfig.facet, "aggs": pConfig.aggs};
+        var baseSearchObject = {"size":pConfig.size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "('"+this.devices.logic+"') "+myQuery }},{"range": {"timestamp": {"from": pConfig.from,"to": pConfig.to}}}]}}}}},"facets": pConfig.facet, "aggs": pConfig.aggs};
         if (pConfig.size < 1) { delete baseSearchObject.size; }
         this.log(JSON.stringify(baseSearchObject));
         service.client.search({ index: elasticSearchConfig.es_index, body: baseSearchObject}, function(error,response) { callback(error, response); });
