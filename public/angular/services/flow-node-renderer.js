@@ -5,7 +5,7 @@ angular.module('octobluApp')
     portHeight: 10,
     portWidth: 10
   })
-  .service('FlowNodeRenderer', function (FlowNodeDimensions, LinkRenderer) {
+  .service('FlowNodeRenderer', function (FlowNodeDimensions, LinkRenderer, IconCodes) {
 
     function getNodeHeight(node) {
       var inputPorts = node.input || 0;
@@ -197,6 +197,8 @@ angular.module('octobluApp')
           .attr('ry', 6)
           .classed('flow-node-bg', true);
 
+        console.log(node.icon);
+        var label = node.name || node.type;
         nodeElement
           .append('text')
           .classed('flow-node-label', true)
@@ -204,7 +206,8 @@ angular.module('octobluApp')
           .attr('x', FlowNodeDimensions.width / 2)
           .attr('text-anchor', 'middle')
           .attr('alignment-baseline', 'central')
-          .text(node.name || node.type);
+          .attr('font-family', 'FontAwesome')
+          .text(IconCodes[node.icon] + " " + label);
 
         var remainingSpace =
           nodeHeight - (node.input * FlowNodeDimensions.portHeight);
