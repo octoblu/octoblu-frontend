@@ -100,6 +100,24 @@ describe('FlowNodeTypeService', function () {
       expect(flowNode.output).to.equal(3);
     });
 
+    it('should set the icon to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {icon: 'fa-spin'};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.icon).to.equal('fa-spin');
+    });
+
+    it('should set the icon to the flowNodeType class', function(){
+      var flowNodeType, flowNode;
+
+      flowNodeType = {icon: 'fa-fire'};
+      flowNode     = sut.createFlowNode(flowNodeType);
+
+      expect(flowNode.icon).to.equal('fa-fire');
+    });
+
     it('should set a uuid to the flowNodeType uuid', function(){
       var flowNodeType, flowNode;
 

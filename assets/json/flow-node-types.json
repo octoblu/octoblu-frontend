@@ -2,6 +2,7 @@
   {
     "name": "delay",
     "class": "delay",
+    "icon": "fa-clock-o",
     "category": "function",
     "defaults": {
       "timeout": 5,
@@ -14,6 +15,7 @@
   {
     "name": "function",
     "class": "function",
+    "icon": "fa-terminal",
     "category": "function",
     "defaults": {
       "output": 1,
@@ -21,12 +23,12 @@
     },
     "input": 1,
     "output": 1,
-    "icon": "/assets/node_icons/function.png",
     "formTemplatePath": "/assets/node_forms/function_form.html"
   },
   {
     "name": "button",
     "class": "button",
+    "icon": "fa-play",
     "category": "input",
     "defaults": {
       "payloadType": "date",
@@ -34,12 +36,12 @@
     },
     "input": 0,
     "output": 1,
-    "icon": "/assets/node_icons/button.png",
     "formTemplatePath": "/assets/node_forms/button_form.html"
   },
   {
     "name": "interval",
     "class": "interval",
+    "icon": "fa-history",
     "category": "input",
     "defaults": {
       "payloadType": "date",
@@ -48,12 +50,12 @@
     },
     "input": 0,
     "output": 1,
-    "icon": "/assets/node_icons/interval.png",
     "formTemplatePath": "/assets/node_forms/interval_form.html"
   },
   {
     "name": "schedule",
     "class": "schedule",
+    "icon": "fa-calendar",
     "category": "input",
     "defaults": {
       "payloadType": "date",
@@ -62,25 +64,25 @@
     },
     "input": 0,
     "output": 1,
-    "icon": "/assets/node_icons/schedule.png",
     "formTemplatePath": "/assets/node_forms/schedule_form.html"
   },
   {
     "name": "http request",
     "category": "function",
     "class": "http-request",
+    "icon": "fa-globe",
     "defaults": {
       "method": "GET"
     },
     "input": 1,
     "output": 1,
     "align": "right",
-    "icon": "/assets/node_icons/white-globe.png",
     "formTemplatePath": "/assets/node_forms/http_request_form.html"
   },
   {
     "name": "switch",
     "class": "switch",
+    "icon": "fa-sitemap",
     "category": "function",
     "defaults": {
       "property": "payload",
@@ -97,34 +99,34 @@
     },
     "input": 1,
     "output": 1,
-    "icon": "/assets/node_icons/switch.png",
     "formTemplatePath": "/assets/node_forms/switch_form.html"
   },
   {
     "name": "sentiment",
     "category": "analysis-function",
     "class": "sentiment",
+    "icon": "fa-comments-o",
     "defaults": {
     },
     "input": 1,
     "output": 1,
-    "icon": "/assets/node_icons/arrow-in.png",
     "formTemplatePath": "/assets/node_forms/sentiment_form.html"
   },
   {
     "name": "xml2js",
     "category": "advanced-function",
     "class": "xml2js",
+    "icon": "fa-code",
     "formTemplatePath": "/assets/node_forms/xml2js_form.html",
     "defaults": {
     },
     "input": 1,
-    "output": 1,
-    "icon": "/assets/node_icons/arrow-in.png"
+    "output": 1
   },
   {
     "name": "debug",
     "class": "debug",
+    "icon": "fa-eye",
     "category": "output",
     "defaults": {
       "active": true,
@@ -134,28 +136,27 @@
     "color": "#87a980",
     "input": 1,
     "output": 0,
-    "icon": "/assets/node_icons/debug.png",
     "align": "right"
   },
   {
     "name": "template",
     "class": "template",
+    "icon": "fa-file-text",
     "category": "function",
     "defaults": {
       "template": "This is the 'payload': {{payload}}!"
     },
     "input": 1,
     "output": 1,
-    "icon": "/assets/node_icons/template.png",
     "formTemplatePath": "/assets/node_forms/template_form.html"
   },
   {
     "name": "comment",
     "class": "comment",
+    "icon":  "fa-comment",
     "category": "function",
     "input": 0,
     "output": 0,
-    "icon": "/assets/node_icons/file.png",
     "formTemplatePath": "/assets/node_forms/comment_form.html"
   }
 ]

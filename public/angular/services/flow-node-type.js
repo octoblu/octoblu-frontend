@@ -10,6 +10,7 @@ angular.module('octobluApp')
             id      : UUIDService.v1(),
             type    : flowNodeType.name,
             class   : flowNodeType.class,
+            icon    : flowNodeType.icon,
             input   : flowNodeType.input,
             output  : flowNodeType.output
           }, defaults);
