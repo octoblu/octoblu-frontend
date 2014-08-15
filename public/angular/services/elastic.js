@@ -23,10 +23,10 @@ angular.module('octobluApp')
     };
 
     this.buildDevices = function(myDevices) {
-        this.first = true;
+        var first = true;
         var deviceString = "";
         _.each(myDevices, function(data){
-            if (this.first && data.uuid) { this.first = false; deviceString += " _type:"+data.uuid; }
+            if (first && data.uuid) { first = false; deviceString += " _type:"+data.uuid; }
             else if (data.uuid) { deviceString += " OR _type:"+data.uuid;  }
         });
         return deviceString;
