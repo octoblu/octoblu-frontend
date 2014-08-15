@@ -14,7 +14,7 @@ angular.module('octobluApp')
                 }
 
                 return $http.get('/api/nodetype').then(function(res){
-                    angular.copy(res.data, myNodeTypes);
+                    myNodeTypes.push.apply(myNodeTypes, res.data);
                     return myNodeTypes;
                 });
             },

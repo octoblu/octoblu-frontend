@@ -23,7 +23,7 @@ angular.module('octobluApp')
             logoutHandler(result.data);
                throw result.data;
             }
-            angular.copy(result.data, currentUser);
+            _.extend(currentUser, result.data);
             $cookies.skynetuuid = currentUser.skynetuuid;
             $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);

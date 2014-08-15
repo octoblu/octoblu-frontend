@@ -77,11 +77,13 @@ angular.module('octobluApp')
                 return defer.promise;
             } else {
                 return $http.get('/api/channels/active').then(function (res) {
-                   angular.copy(res.data, activechannels);
+                   activechannels.length = 0;
+                   activechannels.push.apply(activechannels, res.data);
                    return activechannels;
                 }, function (err) {
                     console.log(err);
-                    return angular.copy([], activechannels);
+                    activechannels.length = 0;
+                    return activechannels;
                 });
             }
         };
@@ -108,11 +110,13 @@ angular.module('octobluApp')
                 return defer.promise;
             } else {
                 return $http.get('/api/channels/available').then(function (res) {
-                   angular.copy(res.data, availablechannels);
-                   return availablechannels;
+                    availablechannels.length = 0;
+                    availablechannels.push.apply(availablechannels, res.data);
+                    return availablechannels;
                 }, function (err) {
                     console.log(err);
-                    return angular.copy([], availablechannels);
+                    availablechannels.length = 0;
+                    return availablechannels;
                 });
             }
         };

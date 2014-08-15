@@ -49,7 +49,8 @@ angular.module('octobluApp')
         var service = {
             getAllNodes: function () {
                 return NodeTypeService.getNodeTypes().then(function (nodeTypes) {
-                    angular.copy(nodeTypes, allNodeTypes);
+                    allNodeTypes.length = 0;
+                    allNodeTypes.push.apply(allNodeTypes, nodeTypes);
                     return deviceService.getDevices();
                 }).then(function (devices) {
                     nodes = getDeviceNodes(devices, allNodeTypes);
@@ -62,7 +63,8 @@ angular.module('octobluApp')
 
             getSharedNodes: function () {
                 return NodeTypeService.getNodeTypes().then(function (nodeTypes) {
-                    angular.copy(nodeTypes, allNodeTypes);
+                    allNodeTypes.length = 0;
+                    allNodeTypes.push.apply(allNodeTypes, nodeTypes);
                     return deviceService.getSharedDevices();
                 }).then(function (devices) {
                     return getDeviceNodes(devices, allNodeTypes);
