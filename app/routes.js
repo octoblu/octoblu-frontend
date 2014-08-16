@@ -19,6 +19,9 @@ module.exports = function(app, passport) {
         "protocol" : "websocket"
     });
 
+    var NodeTypeController = require('./controllers/node');
+    var nodeTypeController = new NodeTypeController();
+
     var FlowController = require('./controllers/flow-controller');
     var flowController = new FlowController();
 
@@ -71,6 +74,8 @@ module.exports = function(app, passport) {
         app.post('/api/flow_deploys', flowDeployController.create);
 
         app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
+
+        app.get('/api/nodetype', nodeTypeController.getNodeTypes);
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {
