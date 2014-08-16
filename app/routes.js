@@ -28,7 +28,7 @@ module.exports = function(app, passport) {
     var FlowDeployController = require('./controllers/flow-deploy');
     var flowDeployController = new FlowDeployController({meshblu: conn});
 
-    var FlowNodeTypeController = require('./controllers/flow-node-type');
+    var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
     var flowNodeTypeController = new FlowNodeTypeController();
 
     conn.on('notReady', function(data){
