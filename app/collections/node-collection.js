@@ -2,8 +2,10 @@ var _ = require('lodash');
 var when = require('when');
 var ChannelCollection = require('./channel-collection');
 var DeviceCollection = require('./device-collection');
+var config = require('../../config/auth')();
+
 var NodeCollection = function (userUUID) {
-  var self = this;
+  var self = this, timeout = config.promiseTimeout;
 
   self.fetch = function () {
     var deviceCollection = self.getDeviceCollection();
@@ -13,7 +15,7 @@ var NodeCollection = function (userUUID) {
       .then(function (devices) {
         return _.map(devices, self.convertDeviceToNode);
       })
-      .timeout(1000)
+      .timeout(timeout)
       .catch(function (err) {
         return [];
       });
@@ -22,7 +24,7 @@ var NodeCollection = function (userUUID) {
       .then(function (channels) {
         return _.map(channels, self.convertChannelToNode);
       })
-      .timeout(1000)
+      .timeout(timeout)
       .catch(function (err) {
         return [];
       });
