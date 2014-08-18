@@ -9,7 +9,9 @@ module.exports = function (options) {
   NodeType = options.NodeType || mongoose.model('NodeType');
 
   _this.getNodeTypes = function (req, res) {
-        NodeType.find({ enabled: true }).exec().then(function (nodeTypes) {
+        NodeType.find({ enabled: true,
+          $or:[ {"channel.owner":{$exists:false}}, {"channel.owner":new String(req.user._id)}] })
+          .exec().then(function (nodeTypes) {
             res.send(nodeTypes);
         }, function (error) {
             console.log(error);
