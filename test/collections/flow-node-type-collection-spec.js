@@ -81,15 +81,74 @@ describe('FlowNodeTypeCollection', function () {
 
     describe('when getNodeCollection resolves', function () {
       it('should map the response to node types', function (done) {
-        var node1 = {name : 'node1'};
+        var node1 = {name : 'moscow-mule', type: 'channel'};
         var nodes = [node1];
 
         sut.fromNodes().then(function(responseNodes){
-          expect(nodes).to.deep.equal(responseNodes);
-        }).finally(done);
+          expect(_.first(responseNodes).name).to.equal('moscow-mule');
+          expect(_.first(responseNodes).icon).to.equal('fa-dot-circle-o');
+          done();
+        }).catch(done);
 
         fakeNodeCollection.fetch.resolve(nodes);
       });
+    });
+  });
+
+  describe('convertNode', function(){
+    it('should look like this', function(){
+      var flowNodeType = {
+        "name": "lockitino",
+        "class": "lockitino",
+        "icon": "fa-dot-circle-o",
+        "category": "channel",
+        "defaults": {
+          name: 'lockitino',
+          type: 'channel'
+        },
+        "input": 1,
+        "output": 1,
+        "formTemplatePath": "/assets/node_forms/channel_form.html"
+      };
+      var node = {name: 'lockitino', type: 'channel'};
+      expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
+    });
+
+    it('should look like this and like that', function(){
+      var flowNodeType = {
+        "name": "mockitama",
+        "class": "mockitama",
+        "icon": "fa-dot-circle-o",
+        "category": "channel",
+        "defaults": {
+          name: 'mockitama',
+          type: 'channel'
+        },
+        "input": 1,
+        "output": 1,
+        "formTemplatePath": "/assets/node_forms/channel_form.html"
+      };
+      var node = {name: 'mockitama', type: 'channel'};
+      expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
+    });
+
+    it('should merge some stuff into this', function(){
+      var flowNodeType = {
+        "name": "margarita",
+        "class": "margarita",
+        "icon": "fa-dot-circle-o",
+        "category": "channel",
+        "defaults": {
+          type: 'channel',
+          name: 'margarita',
+          fooCount: 'barnone'
+        },
+        "input": 1,
+        "output": 1,
+        "formTemplatePath": "/assets/node_forms/channel_form.html"
+      };
+      var node = {type: 'channel', name: 'margarita', fooCount: 'barnone'};
+      expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
   });
 });

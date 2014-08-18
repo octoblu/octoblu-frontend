@@ -51,7 +51,7 @@ describe('NodeCollection', function () {
 
       it('should fulfill an an empty promise', function (done) {
         result.then(function(nodes){
-          expect(nodes).to.deep.equal([{}, {}]);
+          expect(nodes).to.deep.equal([{type: 'channel'}, {type: 'channel'}]);
           done();
         }).catch(done);
       });

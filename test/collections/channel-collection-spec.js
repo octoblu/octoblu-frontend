@@ -1,11 +1,22 @@
-var when = require('when');
+var when              = require('when');
 var ChannelCollection = require('../../app/collections/channel-collection');
+var mongoose          = require('mongoose');
 
 describe('ChannelCollection', function () {
-  var sut, getUser, fetchByIds, defer, channelDefer, result;
+  var sut, getUser, fetchByIds, defer, channelDefer, result, db;
 
   beforeEach(function(){
-    sut     = new ChannelCollection('uselessUUID');
+    var mongoose   = require('mongoose');
+    var ApiSchema  = require('../../app/models/api');
+    var UserSchema = require('../../app/models/user');
+
+    db = mongoose.createConnection();
+    db.model('Api', ApiSchema);
+    db.model('User', UserSchema);
+  });
+
+  beforeEach(function(){
+    sut     = new ChannelCollection('uselessUUID', {mongoose: db});
     defer = when.defer();
     getUser = sinon.stub(sut, 'getUser');
     getUser.returns(defer.promise);
