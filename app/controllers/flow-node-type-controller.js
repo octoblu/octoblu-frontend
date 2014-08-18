@@ -5,7 +5,7 @@ module.exports = function (options) {
   this.getFlowNodeTypes = function (req, res) {
     var flowNodeTypeCollection = self.getFlowNodeTypeCollection(req.user.resource.uuid);
     flowNodeTypeCollection.fetch().then(function (flowNodeTypes) {
-      res.send(flowNodeTypes[0]);
+      res.send(flowNodeTypes);
     });
   };
 

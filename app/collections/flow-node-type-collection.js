@@ -13,7 +13,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
   self.fetch = function(){
     var collection = self.getNodeCollection(userUUID);
 
-    return when.all([ self.fromFile()]).then(function(responseArrays){
+    return when.all([/*collection.fetch(),*/ self.fromFile()]).then(function(responseArrays){
       return _.flatten(responseArrays, true);
     });
   };
@@ -21,7 +21,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
   self.fromFile = function(){
     var promise = when.promise(function(resolve){
       fs.readFile('assets/json/flow-node-types.json', {encoding: 'utf8'}, function(error, nodeTypes){
-        resolve(nodeTypes);
+        resolve(JSON.parse(nodeTypes));
       });
     });
 
