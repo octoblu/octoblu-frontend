@@ -81,7 +81,7 @@ describe('FlowNodeTypeCollection', function () {
 
     describe('when getNodeCollection resolves', function () {
       it('should map the response to node types', function (done) {
-        var node1 = {name : 'node1', type: 'moscow-mule'};
+        var node1 = {name : 'moscow-mule', type: 'channel'};
         var nodes = [node1];
 
         sut.fromNodes().then(function(responseNodes){
@@ -101,15 +101,16 @@ describe('FlowNodeTypeCollection', function () {
         "name": "lockitino",
         "class": "lockitino",
         "icon": "fa-dot-circle-o",
-        "category": "nodes",
+        "category": "channel",
         "defaults": {
-          type: 'lockitino'
+          name: 'lockitino',
+          type: 'channel'
         },
         "input": 1,
         "output": 1,
-        "formTemplatePath": "/assets/node_forms/lockitino_form.html"
+        "formTemplatePath": "/assets/node_forms/channel_form.html"
       };
-      var node = {type: 'lockitino'};
+      var node = {name: 'lockitino', type: 'channel'};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
 
@@ -118,34 +119,35 @@ describe('FlowNodeTypeCollection', function () {
         "name": "mockitama",
         "class": "mockitama",
         "icon": "fa-dot-circle-o",
-        "category": "nodes",
+        "category": "channel",
         "defaults": {
-          type: 'mockitama'
+          name: 'mockitama',
+          type: 'channel'
         },
         "input": 1,
         "output": 1,
-        "formTemplatePath": "/assets/node_forms/mockitama_form.html"
+        "formTemplatePath": "/assets/node_forms/channel_form.html"
       };
-      var node = {type: 'mockitama'};
+      var node = {name: 'mockitama', type: 'channel'};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
 
     it('should merge some stuff into this', function(){
       var flowNodeType = {
-        "name": "mockitama",
-        "class": "mockitama",
+        "name": "margarita",
+        "class": "margarita",
         "icon": "fa-dot-circle-o",
-        "category": "nodes",
+        "category": "channel",
         "defaults": {
-          type: 'mockitama',
-          name: 'Makarina',
+          type: 'channel',
+          name: 'margarita',
           fooCount: 'barnone'
         },
         "input": 1,
         "output": 1,
-        "formTemplatePath": "/assets/node_forms/mockitama_form.html"
+        "formTemplatePath": "/assets/node_forms/channel_form.html"
       };
-      var node = {type: 'mockitama', name: 'Makarina', fooCount: 'barnone'};
+      var node = {type: 'channel', name: 'margarita', fooCount: 'barnone'};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
   });

@@ -12,10 +12,10 @@ var FlowNodeTypeCollection = function(userUUID, options){
 
   self.convertNode = function(node){
     return {
-      "name": node.type,
-      "class": node.type,
+      "name": node.name,
+      "class": node.name,
       "icon": "fa-dot-circle-o",
-      "category": "nodes",
+      "category": node.type,
       "defaults": node,
       "input": 1,
       "output": 1,
