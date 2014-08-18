@@ -19,9 +19,9 @@ var FlowNodeTypeCollection = function(userUUID, options){
   };
 
   self.fromFile = function(){
-    var promise = when.promise(function(){
-      fs.readFile('assets/json/flow-node-types.json', function(error, nodeTypes){
-        when.resolve(nodeTypes);
+    var promise = when.promise(function(resolve){
+      fs.readFile('assets/json/flow-node-types.json', {encoding: 'utf8'}, function(error, nodeTypes){
+        resolve(nodeTypes);
       });
     });
 
