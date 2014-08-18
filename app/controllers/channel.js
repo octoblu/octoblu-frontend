@@ -4,6 +4,7 @@ var _ = require('underscore'),
     request = require('request'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),
+    NodeType = mongoose.model('NodeType'),
     DeviceType = mongoose.model('DeviceType'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
@@ -84,22 +85,50 @@ module.exports = function (app) {
         });
     });
 
+    var addUpdateNodeTypeFromChannel = function(channelId, callback) {
+        Api.findOne({_id: new ObjectId(channelId)}, function (err, channel) {
+            if(err) {
+                callback(err);
+            } else {
+                var nodeType = {
+                  name: channel.name,
+                  logo: channel.logo,
+                  description: channel.description,
+                  skynet: { subtype: channel.name, type: "channel" },
+                  category: "channel", enabled: true, display: true //,
+                  // channel: channel
+                };
+                console.log('about to upsert NodeType: ', nodeType);
+                // NodeType.update(
+                //     {name: channel.name, "channel._id": channelId},
+                //     nodeType,
+                //     {upsert: true},
+                //     function (er) {
+                //         if(er) console.log(er);
+                //         callback(er);
+                //     });
+                callback();
+            }
+        });
+        // callback();
+    };
+
     app.put('/api/channels', function (req, res) {
         var channel = req.body;
         if (channel._id) {
             var id = channel._id;
             var query = {_id: id};
-            delete channel._id;
-            console.log(channel);
-
-            Api.update(query, channel, {upsert: true}, function (err) {
+            // delete channel._id;
+            Api.update(query, channel, {upsert: true}, function (err, doc) {
                 if (err) {
                     console.log('error saving api');
                     console.log(err);
                     res.send(err);
                 } else {
                     channel['_id'] = id;
-                    res.json(channel);
+                    addUpdateNodeTypeFromChannel(id, function(er) {
+                        res.json(channel);
+                    });
                 }
             });
 
@@ -111,7 +140,9 @@ module.exports = function (app) {
                     console.log(err);
                     res.send(err);
                 } else {
-                    res.json(n);
+                    addUpdateNodeTypeFromChannel(n._id, function(er) {
+                        res.json(n);
+                    });
                 }
             });
         }
