@@ -1,5 +1,6 @@
 var NodeCollection = require('./node-collection');
 var when = require('when');
+var _ = require('lodash');
 
 var FlowNodeTypeCollection = function(userUUID, options){
   var self, fs, userUUID;
@@ -12,15 +13,15 @@ var FlowNodeTypeCollection = function(userUUID, options){
   self.fetch = function(){
     var collection = self.getNodeCollection(userUUID);
 
-    return when.all([collection.fetch(), self.fromFile()]).then(function(responseArrays){
+    return when.all([ self.fromFile()]).then(function(responseArrays){
       return _.flatten(responseArrays, true);
     });
   };
 
   self.fromFile = function(){
-    var promise = when.promise(function(resolve){
+    var promise = when.promise(function(){
       fs.readFile('assets/json/flow-node-types.json', function(error, nodeTypes){
-        resolve(nodeTypes);
+        when.resolve(nodeTypes);
       });
     });
 
