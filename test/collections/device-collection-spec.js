@@ -6,14 +6,17 @@ describe('DeviceCollection', function () {
 
   beforeEach(function () {
     users = {
-      '1' : {
-        uuid: '1'
+      'u1': {
+        skynetuuid: 'u1',
+        skynettoken: 't1'
       },
-      '2' : {
-        uuid: '2'
+      'u2': {
+        skynetuuid: 'u2',
+        skynettoken: 't2'
       }
     };
-    sut = new DeviceCollection('1');
+
+    sut = new DeviceCollection('u1');
 
     getUser = sinon.stub(sut, 'getUser', function (userId) {
       return when.resolve(users[userId]);
@@ -24,10 +27,6 @@ describe('DeviceCollection', function () {
   });
 
   describe('fetch', function () {
-    beforeEach(function () {
-
-    });
-
     it('should call getUser', function () {
       result = sut.fetch();
       expect(getUser).to.have.been.called;
@@ -45,11 +44,12 @@ describe('DeviceCollection', function () {
     it('should return a list of devices that the user owns', function (done) {
       sut.fetch()
         .then(function (results) {
-          expect(getDevicesByOwner).to.have.been.calledWith(users['1']);
+          expect(getDevicesByOwner).to.have.been.calledWith(users['u1']);
           done();
         })
         .catch(done);
     });
+
   });
 
 });
