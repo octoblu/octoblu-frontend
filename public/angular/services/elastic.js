@@ -1,12 +1,12 @@
-'use strict';
 angular.module('octobluApp')
 .service('elasticSearchConfig', function($location){
     return {
-        //host: $location.host(),
-        //port: $location.port(),
+        host: $location.host(),
+        port: $location.port(),
         path: '/api/elastic',
-        host: 'es.octoblu.com',
-	port: 80,
+	//path: '',
+        //host: 'es.octoblu.com',
+	//port: 80,
         es_index: 'skynet_trans_log',
         debug_logging: true
     };
@@ -49,19 +49,21 @@ angular.module('octobluApp')
             "12_hours_ago" : { "text": "12 Hours Ago", "value":"now-12h/h" },
             "24_hours_ago" : { "text": "24 Hours Ago", "value":"now-24h/h" },
             "this_week" : { "text": "Week to date", "value" : "now-1w/w" },
-            "30_days" : {"text" : "30 Days Ago", "value" : "now-30d/d", "ssel":"selected=selected"}
+            "30_days" : {"text" : "30 Days Ago", "value" : "now-30d/d", "ssel":"selected=selected"},
+	    "1_month" : {"text" : "1 Month Ago", "value" : "now-1M/M" },
+	    "6_month" : {"text" : "6 Months Ago", "value" : "now-6M/M" }
         };
     };
 
     this.search = function (myDevices, queryText, ownerUuid, page, eventCode, callback) {
         this.log('starting function=search');
-        fromPage = (page * 10) / 10;
-        eCode = "";
+        var fromPage = (page * 10) / 10;
+        var eCode = "";
         if(eventCode){
           eCode = ' , _type:' + eventCode;
         }
         this.log(queryText);
-        secondaryString = queryText + ', owner:' + ownerUuid + eCode;
+        var secondaryString = queryText + ', owner:' + ownerUuid + eCode;
         this.log(secondaryString);
         service.client.search({
             index: elasticSearchConfig.es_index,
@@ -86,7 +88,7 @@ angular.module('octobluApp')
     this.facetSearch = function (from, to, ownerUuid, size, facet, callback) {
         this.log("starting function=facetSearch");
         this.log(ownerUuid);
-        baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "(fromUuid.owner = '"+ownerUuid+"' OR toUuid.owner = '"+ownerUuid+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
+        var baseSearchObject = {"size":size,"query": {"filtered": {"filter": {"query": {"bool": {"must": [{"query_string": {"query": "(fromUuid.owner = '"+ownerUuid+"' OR toUuid.owner = '"+ownerUuid+"')"}},{"range": {"timestamp": {"from": from,"to": to}}}]}}}}},"facets": facet};
         this.log(baseSearchObject);
         service.client.search({
             index: elasticSearchConfig.es_index,
