@@ -10,10 +10,21 @@ var FlowNodeTypeCollection = function(userUUID, options){
   fs       = options.fs || require('fs');
   userUUID = userUUID;
 
-  self.fetch = function(){
-    var nodeCollection = self.getNodeCollection(userUUID);
+  self.convertNode = function(node){
+    return {
+      "name": node.type,
+      "class": node.type,
+      "icon": "fa-dot-circle-o",
+      "category": "nodes",
+      "defaults": node,
+      "input": 1,
+      "output": 1,
+      "formTemplatePath": "/assets/node_forms/"+node.type+"_form.html"
+    };
+  };
 
-    return when.all([nodeCollection.fetch(), self.fromFile()]).then(function(responseArrays){
+  self.fetch = function(){
+    return when.all([self.fromNodes(), self.fromFile()]).then(function(responseArrays){
       return _.flatten(responseArrays, true);
     });
   };
@@ -29,10 +40,10 @@ var FlowNodeTypeCollection = function(userUUID, options){
   };
 
   self.fromNodes = function(){
-    var nodeCollection = self.getNodeCollection();
+    var nodeCollection = self.getNodeCollection(userUUID);
 
     return nodeCollection.fetch().then(function(nodes){
-      return nodes;
+      return _.map(nodes, self.convertNode);
     });
   };
 

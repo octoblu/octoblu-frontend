@@ -81,15 +81,72 @@ describe('FlowNodeTypeCollection', function () {
 
     describe('when getNodeCollection resolves', function () {
       it('should map the response to node types', function (done) {
-        var node1 = {name : 'node1'};
+        var node1 = {name : 'node1', type: 'moscow-mule'};
         var nodes = [node1];
 
         sut.fromNodes().then(function(responseNodes){
-          expect(nodes).to.deep.equal(responseNodes);
-        }).finally(done);
+          expect(_.first(responseNodes).name).to.equal('moscow-mule');
+          expect(_.first(responseNodes).icon).to.equal('fa-dot-circle-o');
+          done();
+        }).catch(done);
 
         fakeNodeCollection.fetch.resolve(nodes);
       });
+    });
+  });
+
+  describe('convertNode', function(){
+    it('should look like this', function(){
+      var flowNodeType = {
+        "name": "lockitino",
+        "class": "lockitino",
+        "icon": "fa-dot-circle-o",
+        "category": "nodes",
+        "defaults": {
+          type: 'lockitino'
+        },
+        "input": 1,
+        "output": 1,
+        "formTemplatePath": "/assets/node_forms/lockitino_form.html"
+      };
+      var node = {type: 'lockitino'};
+      expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
+    });
+
+    it('should look like this and like that', function(){
+      var flowNodeType = {
+        "name": "mockitama",
+        "class": "mockitama",
+        "icon": "fa-dot-circle-o",
+        "category": "nodes",
+        "defaults": {
+          type: 'mockitama'
+        },
+        "input": 1,
+        "output": 1,
+        "formTemplatePath": "/assets/node_forms/mockitama_form.html"
+      };
+      var node = {type: 'mockitama'};
+      expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
+    });
+
+    it('should merge some stuff into this', function(){
+      var flowNodeType = {
+        "name": "mockitama",
+        "class": "mockitama",
+        "icon": "fa-dot-circle-o",
+        "category": "nodes",
+        "defaults": {
+          type: 'mockitama',
+          name: 'Makarina',
+          fooCount: 'barnone'
+        },
+        "input": 1,
+        "output": 1,
+        "formTemplatePath": "/assets/node_forms/mockitama_form.html"
+      };
+      var node = {type: 'mockitama', name: 'Makarina', fooCount: 'barnone'};
+      expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
   });
 });

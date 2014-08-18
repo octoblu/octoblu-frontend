@@ -197,7 +197,6 @@ angular.module('octobluApp')
           .attr('ry', 6)
           .classed('flow-node-bg', true);
 
-        console.log(node.icon);
         var label = node.name || node.type;
         nodeElement
           .append('text')

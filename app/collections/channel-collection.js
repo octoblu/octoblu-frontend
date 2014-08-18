@@ -2,11 +2,13 @@ var _        = require('lodash');
 var when     = require('when');
 var mongoose = require('mongoose');
 
-var Api  = mongoose.model('Api');
-var User = mongoose.model('User');
-
-var ChannelCollection = function(userUUID){
+var ChannelCollection = function(userUUID, options){
   var self = this;
+
+  options  = options || {};
+  mongoose = options.mongoose || mongoose;
+  var Api  = mongoose.model('Api');
+  var User = mongoose.model('User');
 
   self.fetch = function() {
     var userApis;
