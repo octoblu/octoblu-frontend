@@ -13,7 +13,7 @@ describe('DeviceCollection', function () {
         uuid: '2'
       }
     };
-    sut = new DeviceCollection('uselessUUID');
+    sut = new DeviceCollection('1');
 
     getUser = sinon.stub(sut, 'getUser', function (userId) {
       return when.resolve(users[userId]);
@@ -42,11 +42,10 @@ describe('DeviceCollection', function () {
         .catch(done);
     });
 
-    xit('should return a list of devices that the user owns', function (done) {
-      when.all([sut.fetch('1'), sut.fetch('2')])
+    it('should return a list of devices that the user owns', function (done) {
+      sut.fetch()
         .then(function (results) {
-          expect(getDevicesByOwner).to.have.been.called.with(users['1']);
-          expect(getDevicesByOwner).to.have.been.called.with(users['2']);
+          expect(getDevicesByOwner).to.have.been.calledWith(users['1']);
           done();
         })
         .catch(done);

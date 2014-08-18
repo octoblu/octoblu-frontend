@@ -5,13 +5,13 @@ var DeviceCollection = function (userUUID) {
   var collection = this;
 
   collection.fetch = function () {
-    return collection.getUser()
+    return collection.getUser(userUUID)
       .then(function (user) {
         return collection.getDevicesByOwner(user);
       });
   };
 
-  collection.getUser = function () {
+  collection.getUser = function (userUUID) {
     return User.findBySkynetUUID(userUUID);
   };
 
