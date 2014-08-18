@@ -11,9 +11,9 @@ var FlowNodeTypeCollection = function(userUUID, options){
   userUUID = userUUID;
 
   self.fetch = function(){
-    var collection = self.getNodeCollection(userUUID);
+    var nodeCollection = self.getNodeCollection(userUUID);
 
-    return when.all([collection.fetch(), self.fromFile()]).then(function(responseArrays){
+    return when.all([nodeCollection.fetch(), self.fromFile()]).then(function(responseArrays){
       return _.flatten(responseArrays, true);
     });
   };

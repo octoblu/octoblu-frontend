@@ -1,7 +1,9 @@
-var _    = require('lodash');
-var when = require('when');
-var User = require('../models/user');
-var Api  = require('../models/api');
+var _        = require('lodash');
+var when     = require('when');
+var mongoose = require('mongoose');
+
+var Api  = mongoose.model('Api');
+var User = mongoose.model('User');
 
 var ChannelCollection = function(userUUID){
   var self = this;

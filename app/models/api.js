@@ -51,7 +51,7 @@ ApiSchema.index({ name: 1 });
 ApiSchema.index({ name: 1, enabled: 1 });
 
 ApiSchema.statics.findByIds = function(ids){
-    return db.api.find({_id: {$in: ids}});
+    return this.find({_id: {$in: ids}}).exec();
 };
 
 module.exports = ApiSchema;
