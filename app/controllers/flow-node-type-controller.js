@@ -1,15 +1,17 @@
 var FlowNodeTypeCollection = require('../collections/flow-node-type-collection');
 
-module.exports = function(options) {
-
-  this.getFlowNodeTypes = function(req, res) {
-    var flowNodeTypeCollection = this.getFlowNodeTypeCollection('1234');
-    flowNodeTypeCollection.fetch().then(res.send);
+module.exports = function (options) {
+  var self = this;
+  this.getFlowNodeTypes = function (req, res) {
+    var flowNodeTypeCollection = self.getFlowNodeTypeCollection(req.user.resource.uuid);
+    flowNodeTypeCollection.fetch().then(function (flowNodeTypes) {
+      res.send(flowNodeTypes);
+    });
   };
 
-  this.getFlowNodeTypeCollection = function(userUUID){
+  this.getFlowNodeTypeCollection = function (userUUID) {
     return new FlowNodeTypeCollection(userUUID);
   };
 
-  return this;
+  return self;
 };
