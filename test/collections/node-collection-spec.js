@@ -1,21 +1,25 @@
-var when           = require('when');
+var when = require('when');
 var NodeCollection = require('../../app/collections/node-collection');
 
 describe('NodeCollection', function () {
-  var sut;
-  var fakeChannelCollection;
+  var sut, fakeChannelCollection, fakeDeviceCollection, channelStub, deviceStub;
 
   beforeEach(function () {
     var userUUID = 'lskdfj';
     sut = new NodeCollection(userUUID);
+
     fakeChannelCollection = new FakeChannelCollection();
-    stub = sinon.stub(sut, 'getChannelCollection');
-    stub.returns(fakeChannelCollection);
+    channelStub = sinon.stub(sut, 'getChannelCollection');
+    channelStub.returns(fakeChannelCollection);
+
+    fakeDeviceCollection = new FakeDeviceCollection();
+    deviceStub = sinon.stub(sut, 'getDeviceCollection');
+    deviceStub.returns(fakeDeviceCollection);
   });
 
   describe('#fetch', function () {
     var result;
-    beforeEach(function(){
+    beforeEach(function () {
       result = sut.fetch();
     });
 
@@ -31,27 +35,33 @@ describe('NodeCollection', function () {
       expect(fakeChannelCollection.fetch).to.have.been.called;
     });
 
-    describe('when ChannelCollection responds with no channels', function (){
+    describe('when ChannelCollection responds with no channels', function () {
       beforeEach(function () {
         fakeChannelCollection.fetch.successCallback([]);
       });
 
       it('should fulfill an an empty promise', function (done) {
-        result.then(function(nodes){
+        result.then(function (nodes) {
           expect(nodes).to.deep.equal([]);
           done();
         }).catch(done);
       });
     });
 
-    describe('when ChannelCollection responds with an (N) channels', function (){
+    describe('when ChannelCollection responds with an (N) channels', function () {
       beforeEach(function () {
-        fakeChannelCollection.fetch.successCallback([{}, {}]);
+        fakeChannelCollection.fetch.successCallback([
+          {},
+          {}
+        ]);
       });
 
       it('should fulfill an an empty promise', function (done) {
-        result.then(function(nodes){
-          expect(nodes).to.deep.equal([{type: 'channel'}, {type: 'channel'}]);
+        result.then(function (nodes) {
+          expect(nodes).to.deep.equal([
+            {type: 'channel'},
+            {type: 'channel'}
+          ]);
           done();
         }).catch(done);
       });
@@ -59,10 +69,22 @@ describe('NodeCollection', function () {
   });
 });
 
-var FakeChannelCollection = function(){
+var FakeChannelCollection = function () {
   var self = this;
 
-  self.fetch = sinon.spy(function(){
+  self.fetch = sinon.spy(function () {
+    var defer = when.defer();
+    self.fetch.successCallback = defer.resolve;
+    return defer.promise;
+  });
+
+  return self;
+};
+
+var FakeDeviceCollection = function () {
+  var self = this;
+
+  self.fetch = sinon.spy(function () {
     var defer = when.defer();
     self.fetch.successCallback = defer.resolve;
     return defer.promise;

@@ -1,7 +1,7 @@
 var _                 = require('lodash');
 var when              = require('when');
 var ChannelCollection = require('./channel-collection');
-
+var DeviceCollection = require('./device-collection');
 var NodeCollection = function(userUUID){
   var self = this;
 
@@ -23,6 +23,9 @@ var NodeCollection = function(userUUID){
     return _.defaults(channel, {type: 'channel'});
   };
 
+  self.getDeviceCollection = function(){
+    return new DeviceCollection(userUUID);
+  };
   return self;
 };
 

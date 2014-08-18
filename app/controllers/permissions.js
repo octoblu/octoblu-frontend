@@ -24,14 +24,6 @@ var permissionsController = {
         });
     },
 
-    /**
-     * inputs :
-     *   - owner : the resource that owns the permission
-     *   - source: the resource that will be granted permission to the target
-     *   - target: the target resource
-     * @param req
-     * @param res
-     */
     createResourcePermission: function (req, res) {
         var user = req.user;
         var resourcePermission = new ResourcePermission({
@@ -54,17 +46,7 @@ var permissionsController = {
             res.send(200, rscPermission);
         });
     },
-    /**
-     *
-     * inputs:
-     *  - resourcePermision:
-     *  object containing the updated resource permission
-     *  fields in resource permission that can be updated:
-     *    - source, target, permission
-     *  unmodifiable fields: grantedBy
-     * @param req
-     * @param res
-     */
+
     updateGroupResourcePermission: function (req, res) {
         var user = req.user,
             skynetUrl = req.protocol + '://' + permissionsController.skynetUrl,
@@ -137,16 +119,6 @@ var permissionsController = {
         });
     },
 
-    /**
-     * Find the resource permission with the given UUID and remove it
-     * if the user owns it.
-     *
-     * TODO - This may need to be modified if we introduce the concept of roles to
-     * see if the user owns the ResourcePermission or if the user has admin / super user
-     * privileges.
-     * @param req
-     * @param res
-     */
     deleteResourcePermission: function (req, res) {
         var user = req.user,
             skynetUrl = req.protocol + '://' + permissionsController.skynetUrl,
@@ -196,15 +168,6 @@ var permissionsController = {
         );
     },
 
-    /**
-     * getResourcePermission finds all the ResourcePermissions
-     * that the user has granted as an owner.
-     *
-     * TODO - This may need to be updated in the future to also include the list
-     * of resource permissions that you can see by role
-     * @param req
-     * @param res
-     */
     getResourcePermissions: function (req, res) {
         var user = req.user;
         ResourcePermission.find({
@@ -232,6 +195,7 @@ var permissionsController = {
                 res.send(400, err);
             });
     },
+
     getPermissionsByTarget: function (req, res) {
         ResourcePermission.findPermissionsOnResource({
             ownerUUID: req.user.resource.uuid,
@@ -276,6 +240,7 @@ var permissionsController = {
             }
         );
     },
+
     getPermissionsBySource: function (req, res) {
         ResourcePermission.findPermissionsOnResource({
             ownerUUID: req.user.resource.uuid,
@@ -354,7 +319,6 @@ module.exports = function (app) {
     app.post('/api/permissions', permissionsController.createResourcePermission);
 
     app.get('/api/permissions/shared/:type?', permissionsController.getMySharedResourceTargets);
-
 };
 
 
