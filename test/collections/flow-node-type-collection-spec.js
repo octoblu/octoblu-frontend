@@ -39,7 +39,7 @@ describe('FlowNodeTypeCollection', function () {
         flowNodeType1 = {name : 'flowNodeType1'};
         flowNodeType2 = {name : 'flowNodeType2'};
 
-        fakeFS.readFile.resolve(null, [flowNodeType1]);
+        fakeFS.readFile.resolve(null, JSON.stringify([flowNodeType1]));
         fakeNodeCollection.fetch.resolve([flowNodeType2]);
 
         promise.then(function(flowNodeTypes){
@@ -63,7 +63,7 @@ describe('FlowNodeTypeCollection', function () {
       });
 
       _.defer(function(){
-        fakeFS.readFile.resolve(null, [{}, {}]);
+        fakeFS.readFile.resolve(null, JSON.stringify([{}, {}]));
       });
     });
   });
@@ -97,7 +97,7 @@ describe('FlowNodeTypeCollection', function () {
 var FakeFS = function(){
   var self = this;
 
-  self.readFile = sinon.spy(function(filename, callback){
+  self.readFile = sinon.spy(function(filename, options, callback){
     self.readFile.resolve = callback;
   });
 
