@@ -15,7 +15,23 @@ var NodeTypeSchema = new mongoose.Schema({
     },
     category: { type: String, enum: ['device', 'subdevice', 'channel', 'gateway'], index: 1},
     enabled: {type: Boolean, index: 1},
-    display: {type: Boolean, index: 1}
+    display: {type: Boolean, index: 1},
+    channel: {
+        name             : String,
+        owner            : String,
+        description      : String,
+        enabled          : Boolean,
+        logo             : String,
+        logobw           : String,
+        auth_strategy    : String,
+        custom_tokens    : [{name: String}],
+        useCustom        : Boolean,
+        oauth            : {
+            version          : String
+        },
+        documentation: String,
+        application: { base: String, resources: [] }
+    }
 });
 
 module.exports = NodeTypeSchema;
