@@ -1,6 +1,7 @@
 'use strict';
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+  when = require('when');
 
 // define the schema for our user model
 var ApiSchema = new mongoose.Schema({
@@ -51,7 +52,7 @@ ApiSchema.index({ name: 1 });
 ApiSchema.index({ name: 1, enabled: 1 });
 
 ApiSchema.statics.findByIds = function(ids){
-    return this.find({_id: {$in: ids}}).lean().exec();
+    return when(this.find({_id: {$in: ids}}).lean().exec());
 };
 
 module.exports = ApiSchema;

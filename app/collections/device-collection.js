@@ -1,4 +1,5 @@
 var config = require('../../config/auth')(),
+  mongoose = require('mongoose'),
   _ = require('lodash'),
   when = require('when'),
   rest = require('rest'),
@@ -8,6 +9,7 @@ var config = require('../../config/auth')(),
 
 DeviceCollection = function (userUUID) {
   var collection = this;
+  var User = mongoose.model('User');
 
   collection.fetch = function () {
     return collection.getUser(userUUID)
@@ -21,7 +23,7 @@ DeviceCollection = function (userUUID) {
   };
 
   collection.getDevicesByOwner = function (user) {
-    client({
+    return client({
       method: 'GET',
       path: 'http://' + config.skynet.host + ':' +
         config.skynet.port + '/mydevices',

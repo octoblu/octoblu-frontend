@@ -1,21 +1,41 @@
-var _                 = require('lodash');
-var when              = require('when');
+var _ = require('lodash');
+var when = require('when');
 var ChannelCollection = require('./channel-collection');
 var DeviceCollection = require('./device-collection');
-var NodeCollection = function(userUUID){
-  var self = this;
+var config = require('../../config/auth')();
 
-  self.fetch = function(){
-    var collection = self.getChannelCollection();
+var NodeCollection = function (userUUID) {
+  var self = this, timeout = config.promiseTimeout;
 
-    return collection.fetch().then(function(channels){
-      return _.map(channels, function(channel){
-        return self.convertChannelToNode(channel);
+  self.fetch = function () {
+    var deviceCollection = self.getDeviceCollection();
+    var channelCollection = self.getChannelCollection();
+
+    var devicePromise = deviceCollection.fetch()
+      .then(function (devices) {
+        return _.map(devices, self.convertDeviceToNode);
+      })
+      .timeout(timeout)
+      .catch(function (err) {
+        return [];
       });
+
+    var channelPromise = channelCollection.fetch()
+      .then(function (channels) {
+        return _.map(channels, self.convertChannelToNode);
+      })
+      .timeout(timeout)
+      .catch(function (err) {
+        return [];
+      });
+
+    return when.all([devicePromise, channelPromise]).then(function (nodeResults) {
+      return _.flatten(nodeResults, true);
     });
+
   };
 
-  self.getChannelCollection = function() {
+  self.getChannelCollection = function () {
     return new ChannelCollection(userUUID);
   };
 
@@ -23,9 +43,14 @@ var NodeCollection = function(userUUID){
     return _.extend({}, channel, {type: 'channel'});
   };
 
-  self.getDeviceCollection = function(){
+  self.convertDeviceToNode = function (device) {
+    return _.defaults(device, {type: 'device'});
+  };
+
+  self.getDeviceCollection = function () {
     return new DeviceCollection(userUUID);
   };
+
   return self;
 };
 

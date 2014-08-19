@@ -2,6 +2,7 @@ var config = {
   rh: {
   },
   development: {
+    'promiseTimeout' : 1000,
     'githubAuth' : {
       'clientID': 'eb5bb208bc4dba9e8c13',
       'clientSecret': 'ce1d5cb7487b0974e970c0c76f5c9c76412309e9',
@@ -96,6 +97,7 @@ var config = {
     'domain': null
   },
   test: {
+    'promiseTimeout' : 100,
     'designer': {
       'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
       'port': process.env.DESIGNER_PORT || 1025,
@@ -103,6 +105,7 @@ var config = {
   }
  },
   production: {
+    'promiseTimeout' : 5000,
     'githubAuth' : {
       'clientID': 'INSERT_SECERT_HERE',
       'clientSecret': 'INSERT_SECERT_HERE',
@@ -201,6 +204,7 @@ var config = {
     'domain': '.octoblu.com'
   },
   staging: {
+    'promiseTimeout' : 5000,
     'githubAuth' : {
       'clientID': 'INSERT_SECERT_HERE',
       'clientSecret': 'INSERT_SECERT_HERE',
@@ -293,5 +297,5 @@ var config = {
 };
 
 module.exports = function (environment) {
-  return config[environment || process.env];
+  return config[environment || process.env.NODE_ENV];
 };
