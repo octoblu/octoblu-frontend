@@ -8,7 +8,7 @@ describe('FlowChannelFormController', function () {
       scope = $rootScope.$new();
       firstResource = {path: '/adams', httpMethod: 'PATCH'};
       secondResource = {path: '/42', httpMethod: 'WAIT'};
-      scope.flowEditor = {editorNode: {application: {resources: [firstResource, secondResource]}}};
+      scope.node = {application: {resources: [firstResource, secondResource]}};
       sut   = $controller('FlowChannelFormController', {$scope: scope});
     });
   });
@@ -22,15 +22,15 @@ describe('FlowChannelFormController', function () {
   });
 
   it('should add an empty params hash to the editorNode', function () {
-    expect(scope.flowEditor.editorNode.params).to.deep.equal({});
+    expect(scope.node.params).to.deep.equal({});
   });
 
-  describe('when the scope.flowEditor.editorNode.application.resources changes', function () {
+  describe('when the scope.node.application.resources changes', function () {
     var resource;
 
     beforeEach(function(){
       resource = {path: '/api/v1/devices', httpMethod: 'GET'};
-      scope.flowEditor.editorNode.application.resources.push(resource);
+      scope.node.application.resources.push(resource);
       scope.$digest();
     });
 
@@ -44,21 +44,16 @@ describe('FlowChannelFormController', function () {
   });
 
   describe('when scope.flowEditor.sortedIndex.application.resources has two devices', function () {
-    var resource1, resource2;
-
     beforeEach(function(){
-      resource1 = {path: '/api/v1/devices', httpMethod: 'GET'};
-      resource2 = {path: '/api/v2/more_devices', httpMethod: 'POST'};
-      scope.flowEditor.editorNode.application.resources.push(resource1);
-      scope.flowEditor.editorNode.application.resources.push(resource2);
-      scope.flowEditor.editorNode.path   = '/api/v2/more_devices';
-      scope.flowEditor.editorNode.method = 'POST';
+      scope.$digest();
+      scope.node.path   = '/42';
+      scope.node.method = 'WAIT';
       scope.$digest();
     });
 
     it('should select the second resource', function () {
-      expect(scope.selectedEndpoint.label).to.deep.equal('POST /api/v2/more_devices');
-      expect(scope.selectedEndpoint).to.deep.equal({label: 'POST /api/v2/more_devices', value: resource2});
+      expect(scope.selectedEndpoint.label).to.deep.equal('WAIT /42');
+      expect(scope.selectedEndpoint).to.deep.equal({label: 'WAIT /42', value: secondResource});
     });
   });
 
@@ -67,17 +62,17 @@ describe('FlowChannelFormController', function () {
 
     beforeEach(function(){
       resource3 = {path: '/api/v42/do', httpMethod: 'DANCE'};
-      scope.flowEditor.editorNode.application.resources.push(resource3);
+      scope.node.application.resources.push(resource3);
       scope.selectedEndpoint = {value: resource3};
       scope.$digest();
     });
 
-    it('should set path on scope.flowEditor.editorNode', function () {
-      expect(scope.flowEditor.editorNode.path).to.equal('/api/v42/do');
+    it('should set path on scope.node', function () {
+      expect(scope.node.path).to.equal('/api/v42/do');
     });
 
-    it('should set method on scope.flowEditor.editorNode', function () {
-      expect(scope.flowEditor.editorNode.method).to.equal('DANCE');
+    it('should set method on scope.node', function () {
+      expect(scope.node.method).to.equal('DANCE');
     });
   });
 
@@ -87,12 +82,12 @@ describe('FlowChannelFormController', function () {
       scope.$digest();
     });
 
-    it('should set path on scope.flowEditor.editorNode', function () {
-      expect(scope.flowEditor.editorNode.path).to.equal('/42');
+    it('should set path on scope.node', function () {
+      expect(scope.node.path).to.equal('/42');
     });
 
-    it('should set method on scope.flowEditor.editorNode', function () {
-      expect(scope.flowEditor.editorNode.method).to.equal('WAIT');
+    it('should set method on scope.node', function () {
+      expect(scope.node.method).to.equal('WAIT');
     });
   });
 });

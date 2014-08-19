@@ -2,11 +2,14 @@ angular.module('octobluApp')
 .controller('FlowChannelFormController', function($scope) {
   'use strict';
 
-  $scope.flowEditor.editorNode.params = {};
+  $scope.node.params = {};
 
   $scope.endpoints = [];
   var updateEndpoints = function(){
-    $scope.endpoints = _.map($scope.flowEditor.editorNode.application.resources, function(resource){
+    if (_.isUndefined($scope.node.application)){
+      return;
+    }
+    $scope.endpoints = _.map($scope.node.application.resources, function(resource){
       return {
         label: resource.httpMethod + ' ' + resource.path,
         value: resource
@@ -15,22 +18,21 @@ angular.module('octobluApp')
   };
 
   var selectEndpoint = function(){
-    var node = $scope.flowEditor.editorNode;
+    var node = $scope.node;
     $scope.selectedEndpoint = _.find($scope.endpoints, function(endpoint){
       return endpoint.value.path === node.path && endpoint.value.httpMethod === node.method;
     });
-    // throw new Error(JSON.stringify($scope.endpoints));
 
     $scope.selectedEndpoint = $scope.selectedEndpoint || _.first($scope.endpoints);
   };
 
   $scope.$watch('selectedEndpoint', function(){
-    $scope.flowEditor.editorNode.path   = $scope.selectedEndpoint.value.path;
-    $scope.flowEditor.editorNode.method = $scope.selectedEndpoint.value.httpMethod;
+    $scope.node.path   = $scope.selectedEndpoint.value.path;
+    $scope.node.method = $scope.selectedEndpoint.value.httpMethod;
   }, true);
 
-  $scope.$watch('flowEditor.editorNode.application.resources', updateEndpoints, true);
+  $scope.$watch('node.application.resources', updateEndpoints, true);
   updateEndpoints();
-  $scope.$watch('flowEditor.editorNode', selectEndpoint, true);
+  $scope.$watch('node', selectEndpoint, true);
   selectEndpoint();
 });
