@@ -25,7 +25,9 @@ var ChannelCollection = function(userUUID, options){
   };
 
   self.getUser = function() {
-    return User.findBySkynetUUID(userUUID);
+    return User.findBySkynetUUID(userUUID).then(function(user){
+      return user.toObject();
+    });
   };
 
   self.fetchByIds = function(channelIds) {
@@ -34,7 +36,7 @@ var ChannelCollection = function(userUUID, options){
 
   self.mergeChannelsAndApis = function(channels, apis){
     return _.map(apis, function(api){
-      var channel = _.findWhere(channels, {channelid: api._id});
+      var channel = _.findWhere(channels, {channelid: ""+api._id});
       return _.defaults(api, channel);
     });
   };

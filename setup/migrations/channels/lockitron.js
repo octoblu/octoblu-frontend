@@ -3,20 +3,20 @@ var record = {
     "base": "https://api.lockitron.com",
     "resources": [
       {
-        "displayName": "/v1/locks",
+        "displayName": "/v2/locks",
         "doc": {
           "t": "Locks returns a list of the users available keys as well as data about those keys including their start and expiration times.",
           "url": "/docs"
         },
         "httpMethod": "GET",
         "params": [],
-        "path": "/v1/locks"
+        "path": "/v2/locks"
       },
       {
-        "displayName": "/v1/locks/{lock_id}/unlock",
+        "displayName": "/v2/locks/{lock_id}/unlock",
         "doc": {
           "t": "The unlock resource tells the specified Lockitron to unlock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it unlocked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
-          "url": "/v1/locks/{lock_id}/unlock"
+          "url": "/v2/locks/{lock_id}/unlock"
         },
         "httpMethod": "POST",
         "params": [
@@ -29,13 +29,13 @@ var record = {
             }
           }
         ],
-        "path": "/v1/locks/{lock_id}/unlock"
+        "path": "/v2/locks/{lock_id}/unlock"
       },
       {
-        "displayName": "/v1/locks/{lock_id}/lock",
+        "displayName": "/v2/locks/{lock_id}/lock",
         "doc": {
           "t": "The lock resource tells the specified Lockitron to lock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it locked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
-          "url": "/v1/locks/{lock_id}/lock"
+          "url": "/v2/locks/{lock_id}/lock"
         },
         "httpMethod": "POST",
         "params": [
@@ -48,13 +48,13 @@ var record = {
             }
           }
         ],
-        "path": "/v1/locks/{lock_id}/lock"
+        "path": "/v2/locks/{lock_id}/lock"
       },
       {
-        "displayName": "/v1/locks/{lock_id}/add",
+        "displayName": "/v2/locks/{lock_id}/add",
         "doc": {
           "t": "The invite resource will invite a user by email to a lock. If they already have a Lockitron account, it'll add the key to it. Otherwise, it'll send them an invitation to email. This resource returns the user's Key object and a status code of 200. If it fails, it'll return a 500. If the user isn't allowed to invite guests, it'll return a 403. Note that only locks with text message access activated may use the phone argument alone to invite users.",
-          "url": "/v1/locks/{lock_id}/add"
+          "url": "/v2/locks/{lock_id}/add"
         },
         "httpMethod": "POST",
         "params": [
@@ -107,13 +107,13 @@ var record = {
             }
           }
         ],
-        "path": "/v1/locks/{lock_id}/add"
+        "path": "/v2/locks/{lock_id}/add"
       },
     ]
   },
   "auth_strategy": "oauth",
   "description" : "Lockitron lets you replace your keys with your phone.",
-  "documentation": "https://api.lockitron.com/v1/docs",
+  "documentation": "https://api.lockitron.com/v2/docs",
   "enabled": true,
   "logo": "https://s3-us-west-2.amazonaws.com/octoblu-icons/lockitron.png",
   "logobw": "https://s3-us-west-2.amazonaws.com/octoblu-icons/lockitron-bw.png",
