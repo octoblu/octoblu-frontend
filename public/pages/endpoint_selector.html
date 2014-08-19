@@ -6,6 +6,6 @@
 
   <div class="form-group" ng-repeat="param in selectedEndpoint.value.params">
     <label for="{{param.name}}">{{param.name}}</label>
-    <input  id="{{param.name}}" type="text" class="form-control" ng-model="flowEditor.editorNode.params[param.name]">
+    <input  id="{{param.name}}" type="text" class="form-control" ng-model="node.params[param.name]">
   </div>
 </div>

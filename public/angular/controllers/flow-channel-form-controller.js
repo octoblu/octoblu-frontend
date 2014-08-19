@@ -2,8 +2,6 @@ angular.module('octobluApp')
 .controller('FlowChannelFormController', function($scope) {
   'use strict';
 
-  $scope.node.params = {};
-
   $scope.endpoints = [];
   var updateEndpoints = function(){
     if (_.isUndefined($scope.node.application)){

@@ -21,10 +21,6 @@ describe('FlowChannelFormController', function () {
     expect(scope.endpoints).to.include({label: 'PATCH /adams', value: firstResource});
   });
 
-  it('should add an empty params hash to the editorNode', function () {
-    expect(scope.node.params).to.deep.equal({});
-  });
-
   describe('when the scope.node.application.resources changes', function () {
     var resource;
 
