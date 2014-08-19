@@ -4,6 +4,7 @@ angular.module('octobluApp')
 
   $scope.flowEditor.editorNode.params = {};
 
+  $scope.endpoints = [];
   var updateEndpoints = function(){
     $scope.endpoints = _.map($scope.flowEditor.editorNode.application.resources, function(resource){
       return {
@@ -13,6 +14,16 @@ angular.module('octobluApp')
     });
   };
 
+  var selectEndpoint = function(){
+    var node = $scope.flowEditor.editorNode;
+    $scope.selectedEndpoint = _.find($scope.endpoints, function(endpoint){
+      return endpoint.value.path === node.path && endpoint.value.httpMethod === node.method;
+    });
+    // throw new Error(JSON.stringify($scope.endpoints));
+
+    $scope.selectedEndpoint = $scope.selectedEndpoint || _.first($scope.endpoints);
+  };
+
   $scope.$watch('selectedEndpoint', function(){
     $scope.flowEditor.editorNode.path   = $scope.selectedEndpoint.value.path;
     $scope.flowEditor.editorNode.method = $scope.selectedEndpoint.value.httpMethod;
@@ -20,5 +31,6 @@ angular.module('octobluApp')
 
   $scope.$watch('flowEditor.editorNode.application.resources', updateEndpoints, true);
   updateEndpoints();
-  $scope.selectedEndpoint = _.first($scope.endpoints);
+  $scope.$watch('flowEditor.editorNode', selectEndpoint, true);
+  selectEndpoint();
 });

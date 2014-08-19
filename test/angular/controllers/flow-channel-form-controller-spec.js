@@ -1,5 +1,5 @@
 describe('FlowChannelFormController', function () {
-  var scope, sut, firstResource;
+  var scope, sut, firstResource, secondResource;
 
   beforeEach(function () {
     module('octobluApp');
@@ -7,7 +7,8 @@ describe('FlowChannelFormController', function () {
     inject(function($controller, $rootScope){
       scope = $rootScope.$new();
       firstResource = {path: '/adams', httpMethod: 'PATCH'};
-      scope.flowEditor = {editorNode: {application: {resources: [firstResource]}}};
+      secondResource = {path: '/42', httpMethod: 'WAIT'};
+      scope.flowEditor = {editorNode: {application: {resources: [firstResource, secondResource]}}};
       sut   = $controller('FlowChannelFormController', {$scope: scope});
     });
   });
@@ -42,9 +43,32 @@ describe('FlowChannelFormController', function () {
     });
   });
 
-  describe('when the scope.selectedEndpoint changes', function () {
+  describe('when scope.flowEditor.sortedIndex.application.resources has two devices', function () {
+    var resource1, resource2;
+
     beforeEach(function(){
-      scope.selectedEndpoint = {value: {path: '/api/v42/do', httpMethod: 'DANCE'}};
+      resource1 = {path: '/api/v1/devices', httpMethod: 'GET'};
+      resource2 = {path: '/api/v2/more_devices', httpMethod: 'POST'};
+      scope.flowEditor.editorNode.application.resources.push(resource1);
+      scope.flowEditor.editorNode.application.resources.push(resource2);
+      scope.flowEditor.editorNode.path   = '/api/v2/more_devices';
+      scope.flowEditor.editorNode.method = 'POST';
+      scope.$digest();
+    });
+
+    it('should select the second resource', function () {
+      expect(scope.selectedEndpoint.label).to.deep.equal('POST /api/v2/more_devices');
+      expect(scope.selectedEndpoint).to.deep.equal({label: 'POST /api/v2/more_devices', value: resource2});
+    });
+  });
+
+  describe('when the scope.selectedEndpoint changes', function () {
+    var resource3;
+
+    beforeEach(function(){
+      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE'};
+      scope.flowEditor.editorNode.application.resources.push(resource3);
+      scope.selectedEndpoint = {value: resource3};
       scope.$digest();
     });
 
