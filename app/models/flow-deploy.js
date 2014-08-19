@@ -5,18 +5,18 @@ var FlowDeploy = function(options){
     'schedule' : 'inject'
   };
 
-  var _this, config, request, userUUID, userToken, port, _, meshblu;
+  var _this, config, request, userUUID, userToken, _, meshblu, tranformations;
   _this = this;
 
   options         = options || {};
 
-  userUUID  = options.userUUID;
-  userToken = options.userToken;
-  config    = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
-  request   = options.request || require('request');
-  port      = options.port;
-  meshblu   = options.meshblu;
-  _         = require('underscore');
+  userUUID        = options.userUUID;
+  userToken       = options.userToken;
+  config          = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
+  request         = options.request || require('request');
+  meshblu         = options.meshblu;
+  _               = require('underscore');
+  transformations = options.transformations || require('./node-red-transformations');
 
   _this.convertFlows = function(flows){
     var convertedNodes = [];
@@ -50,7 +50,7 @@ var FlowDeploy = function(options){
       convertedNode.wires[port] = _.pluck(links, 'to');
     });
 
-    return convertedNode;
+    return _this.finalTransformation(convertedNode);
   };
 
   _this.deployFlows = function(flows){
@@ -69,8 +69,11 @@ var FlowDeploy = function(options){
     });
   };
 
-  _this.designerUrl = function(){
-    return config.host + ':' + port + '/library/flows';
+  _this.finalTransformation = function(node){
+    var func = transformations[node.type];
+    if(!func){ return node; }
+
+    return func(node);
   };
 
   _this.largestPortNumber = function(groupedLinks){
@@ -92,10 +95,10 @@ var FlowDeploy = function(options){
   };
 };
 
-FlowDeploy.deploy = function(userUUID, userToken, port, flows, meshblu){
+FlowDeploy.deploy = function(userUUID, userToken, flows, meshblu){
   var data, flowDeploy;
 
-  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, port: port, meshblu: meshblu});
+  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
   flowDeploy.registerFlows(flows);
   data = flowDeploy.convertFlows(flows);
 

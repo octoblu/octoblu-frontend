@@ -20,7 +20,7 @@ var NodeCollection = function(userUUID){
   };
 
   self.convertChannelToNode = function(channel) {
-    return _.defaults(channel, {type: 'channel'});
+    return _.extend({}, channel, {type: 'channel'});
   };
 
   self.getDeviceCollection = function(){

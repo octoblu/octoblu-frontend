@@ -40,55 +40,20 @@ describe('flowNodeEditorController', function () {
       scope.$apply();
     });
 
-    it('should call getFlowNodeType with the flowNodeType', function () {
-      expect(FakeFlowNodeTypeService.getFlowNodeType.called).to.be.true;
-      expect(FakeFlowNodeTypeService.getFlowNodeType.calledWith).to.equal('function');
-    });
-
     it('should attach a copy of the node to formFlowNode', function () {
       expect(scope.flowEditor.editorNode).to.exist;
       expect(scope.flowEditor.editorNode).not.to.equal(scope.flowEditor.selectedNode);
     });
 
-    describe('when getFlowNodeTypes resolves', function () {
-      beforeEach(function () {
-        FakeFlowNodeTypeService.getFlowNodeType.resolve({foo: 'bar'});
-      });
-
-      it('set set the flowNodeType on the scope', function () {
-        expect(scope.flowEditor.flowNodeType).to.deep.equal({foo: 'bar'});
-      });
+    it('set set the flowNodeType on the scope', function () {
+      expect(scope.flowEditor.flowNodeType).to.deep.equal({type: 'function'});
     });
   });
 
-  describe('when selectedNode gets set to an inject node', function () {
+  describe('when selectedNode gets set, and then is then unset', function () {
     beforeEach(function () {
       scope.flowEditor.selectedNode = {type: 'inject'};
       scope.$apply();
-    });
-
-    it('should call getFlowNodeType with the flowNodeType', function () {
-      expect(FakeFlowNodeTypeService.getFlowNodeType.called).to.be.true;
-      expect(FakeFlowNodeTypeService.getFlowNodeType.calledWith).to.equal('inject');
-    });
-
-    describe('when getFlowNodeTypes resolves', function () {
-      beforeEach(function () {
-        FakeFlowNodeTypeService.getFlowNodeType.resolve({bar: 'foo'});
-      });
-
-      it('set set the flowNodeType on the scope', function () {
-        expect(scope.flowEditor.flowNodeType).to.deep.equal({bar: 'foo'});
-      });
-    });
-  });
-
-  describe('when selectedNode gets set, resolves and then is then unset', function () {
-    beforeEach(function () {
-      scope.flowEditor.selectedNode = {type: 'inject'};
-      scope.$apply();
-
-      FakeFlowNodeTypeService.getFlowNodeType.resolve({foo: 'bar'});
 
       scope.flowEditor.selectedNode = null;
       scope.$apply();

@@ -1,5 +1,5 @@
 var FlowDeploy = function(options){
-  var FlowDeploy, Redport, redport, _this, getRedport, mongoose, Flow, _, meshblu;
+  var FlowDeploy, Redport, redport, _this, mongoose, Flow, _, meshblu;
 
   _this      = this;
   options    = options || {};
@@ -7,7 +7,7 @@ var FlowDeploy = function(options){
   Redport    = options.Redport    || require('../models/redport');
   mongoose   = options.mongoose   || require('mongoose');
   meshblu    = options.meshblu
-  _          = require('underscore');
+  _          = require('lodash');
   Flow       = mongoose.model('Flow');
 
   _this.create = function(req, res) {
@@ -15,18 +15,12 @@ var FlowDeploy = function(options){
 
     userUUID = req.user.skynet.uuid;
     userToken = req.user.skynet.token;
-    getRedport(userUUID, userToken, function(error, port){
-      _this.getFlows(userUUID, function(flows){
-        FlowDeploy.deploy(userUUID, userToken, port, flows, meshblu);
-      });
+
+    _this.getFlows(userUUID, function(flows){
+      FlowDeploy.deploy(userUUID, userToken, flows, meshblu);
     });
 
     res.send(201);
-  };
-
-  getRedport = function(userUUID, userToken, callback){
-    var redport = new Redport({userUUID: userUUID, userToken: userToken});
-    redport.redport(callback);
   };
 
   _this.getFlows = function(userUUID, callback){

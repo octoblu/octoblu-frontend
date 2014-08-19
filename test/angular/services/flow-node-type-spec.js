@@ -28,24 +28,6 @@ describe('FlowNodeTypeService', function () {
       sut.createFlowNode({});
     });
 
-    it('setting the type', function () {
-      var flowNodeType, expectedFlowNode;
-
-      flowNodeType = {name: 't1000'};
-      flowNode     = sut.createFlowNode(flowNodeType);
-
-      expect(flowNode.type).to.deep.equal('t1000');
-    });
-
-    it('should set the type to the flowNodeType name', function(){
-      var flowNodeType, flowNode;
-
-      flowNodeType = {name: 't100'};
-      flowNode     = sut.createFlowNode(flowNodeType);
-
-      expect(flowNode.type).to.deep.equal('t100');
-    });
-
     it('should set the class to the flowNodeType class', function(){
       var flowNodeType, flowNode;
 
@@ -100,7 +82,7 @@ describe('FlowNodeTypeService', function () {
       expect(flowNode.output).to.equal(3);
     });
 
-    it('should set the icon to the flowNodeType class', function(){
+    it('should set the icon to the flowNodeType icon', function(){
       var flowNodeType, flowNode;
 
       flowNodeType = {icon: 'fa-spin'};
@@ -162,15 +144,6 @@ describe('FlowNodeTypeService', function () {
       flowNodeType.defaults.bar.foo = 'something else';
 
       expect(flowNode.bar).to.deep.equal({foo: 'baz'});
-    });
-
-    it('should not allow the defaults to override the name', function () {
-      var flowNodeType, flowNode;
-
-      flowNodeType = {name: 'foo', defaults: {name: 'bar'}};
-      flowNode = sut.createFlowNode(flowNodeType);
-
-      expect(flowNode.type).to.equal('foo');
     });
   });
 

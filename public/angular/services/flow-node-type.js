@@ -6,14 +6,7 @@ angular.module('octobluApp')
         service.createFlowNode = function(flowNodeType){
           var defaults = _.cloneDeep(flowNodeType.defaults);
 
-          return _.defaults({
-            id      : UUIDService.v1(),
-            type    : flowNodeType.name,
-            class   : flowNodeType.class,
-            icon    : flowNodeType.icon,
-            input   : flowNodeType.input,
-            output  : flowNodeType.output
-          }, defaults);
+          return _.defaults({id: UUIDService.v1()}, flowNodeType, defaults);
         };
 
         service.getFlowNodeType  = function(type){

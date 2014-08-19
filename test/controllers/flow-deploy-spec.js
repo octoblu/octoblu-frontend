@@ -27,7 +27,7 @@ describe('flowDeployController', function () {
     });
 
     beforeEach(function () {
-      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, Redport: FakeRedport, mongoose: db, meshblu: fakeMeshblu});
+      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, mongoose: db, meshblu: fakeMeshblu});
       res = new FakeResponse();
     });
 
@@ -69,29 +69,9 @@ describe('flowDeployController', function () {
         it('should call FlowDeploy.deploy with the user uuid and token', function () {
           expect(FakeFlowDeploy.deploy.calledWith[0]).to.equal('some.uuid');
           expect(FakeFlowDeploy.deploy.calledWith[1]).to.equal('some.hobit');
-          expect(FakeFlowDeploy.deploy.calledWith[2]).to.equal('1880');
-          expect(FakeFlowDeploy.deploy.calledWith[3]).to.deep.equal([{flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}}]);
-          expect(FakeFlowDeploy.deploy.calledWith[4]).to.equal(fakeMeshblu);
+          expect(FakeFlowDeploy.deploy.calledWith[2]).to.deep.equal([{flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}}]);
+          expect(FakeFlowDeploy.deploy.calledWith[3]).to.equal(fakeMeshblu);
         });
-      });
-    });
-
-    xdescribe('another authorized request', function () {
-      beforeEach(function () {
-        var req = {user: {skynet: {uuid: 'guiiiid', token: 'smog'}}};
-        sut.create(req, res);
-      });
-
-      it('should return a 201', function() {
-        expect(res.send.calledWith[0]).to.equal(201);
-      });
-
-      it('should call FlowDeploy.deploy with the user uuid and token', function () {
-        expect(FakeFlowDeploy.deploy.calledWith[0]).to.equal('guiiiid');
-        expect(FakeFlowDeploy.deploy.calledWith[1]).to.equal('smog');
-        expect(FakeFlowDeploy.deploy.calledWith[2]).to.equal('12');
-        expect(FakeFlowDeploy.deploy.calledWith[3]).to.deep.equal([]);
-        expect(FakeFlowDeploy.deploy.calledWith[4]).to.equal(fakeMeshblu);
       });
     });
   });
@@ -99,19 +79,6 @@ describe('flowDeployController', function () {
 
 var FakeMeshBlu = function(){
   return this;
-}
-
-var FakeRedport = function(options){
-  var redflow = this;
-  var ports = {'some.uuid': {'some.hobit': '1880'},
-               'guiiiid':   {'smog':       '12'}};
-  var port  = ports[options.userUUID][options.userToken];
-
-  redflow.redport = function(callback){
-    callback(null, port);
-  }
-
-  return redflow;
 }
 
 var FakeResponse = function(){

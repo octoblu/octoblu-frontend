@@ -145,28 +145,30 @@ describe('FlowDeploy', function () {
     });
   });
 
-  describe('designerUrl', function (){
-    var sut;
-
-    describe('on a port', function () {
-      beforeEach(function () {
-        var config = {host: 'http://le.octobleau.com'};
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880'});
+  describe('finalTransformation', function () {
+    describe('when the transformations have no matches', function () {
+      beforeEach(function(){
+        var transformations = {};
+        sut = new FlowDeploy({transformations: transformations});
       });
 
-      it('should use the redport', function () {
-        expect(sut.designerUrl()).equal('http://le.octobleau.com:1880/library/flows');
+      it('should pass the node through', function () {
+        expect(sut.finalTransformation({foo: 'bar'})).to.deep.equal({foo: 'bar'});
       });
     });
 
-    describe('on another port and host', function () {
-      beforeEach(function () {
-        var config = {host: 'http://blew.octo.com'};
-        sut = new FlowDeploy({config: config, userUUID: '535', userToken: 'something-else', port: '9999'});
+    describe('when the transformations has a match', function () {
+      beforeEach(function(){
+        var schanelTransformation = function(node){
+          node.schanel = 'lenahcs';
+          return node;
+        }
+        var transformations = {schanel: schanelTransformation};
+        sut = new FlowDeploy({transformations: transformations});
       });
 
-      it('should use the redport', function () {
-        expect(sut.designerUrl()).to.equal('http://blew.octo.com:9999/library/flows');
+      it('should alter the node', function () {
+        expect(sut.finalTransformation({blarg: 'jorb', type: 'schanel'})).to.deep.equal({blarg : 'jorb', schanel: 'lenahcs', type : 'schanel'});
       });
     });
   });
