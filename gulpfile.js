@@ -19,8 +19,10 @@ gulp.task('bower', function() {
 gulp.task('less:compile', function(){
   gulp.src('./assets/less/manifest.less')
     .pipe(plumber())
+    // .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(concat('styles.css'))
+    // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./public/assets/stylesheets/dist/'));
 });
 
