@@ -71,4 +71,3 @@ branches:
     - staging
 before_script:
   - node_modules/.bin/gulp
-  - node_modules/.bin/bower install
