@@ -61,12 +61,43 @@ angular.module('octobluApp')
       }
     };
 
-    $scope.deploy = function () {
-      // RED.nodes.createCompleteNodeSet()
+    $scope.copySelection = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
+      if ($scope.activeFlow && $scope.flowEditor.selectedNode) {
+        $scope.copiedNode = JSON.stringify($scope.flowEditor.selectedNode);
+      }
+    };
+
+    $scope.cutSelection = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
+      if ($scope.activeFlow) {
+        $scope.copiedNode = JSON.stringify($scope.flowEditor.selectedNode);
+        _.pull($scope.activeFlow.nodes, $scope.flowEditor.selectedNode);
+      }
+
+      if ($scope.activeFlow) {
+        _.pull($scope.activeFlow.links, $scope.flowEditor.selectedLink);
+      }
+
+      $scope.flowEditor.selectedNode = null;
+      $scope.flowEditor.selectedLink = null;
+    };
+
+    $scope.deploy = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
       FlowService.deploy();
     };
 
-    $scope.deleteSelection = function () {
+    $scope.deleteSelection = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
       if ($scope.activeFlow) {
         _.pull($scope.activeFlow.nodes, $scope.flowEditor.selectedNode);
       }
@@ -79,18 +110,48 @@ angular.module('octobluApp')
       $scope.flowEditor.selectedLink = null;
     };
 
-    $scope.zoomIn = function () {
+    $scope.pasteSelection = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
+      if ($scope.activeFlow && $scope.copiedNode) {
+        var node = JSON.parse($scope.copiedNode);
+        node.x = $scope.currentMouseX;
+        node.y = $scope.currentMouseY;
+        $scope.activeFlow.addNode(node);
+      }
+
+      $scope.flowEditor.selectedNode = null;
+      $scope.flowEditor.selectedLink = null;
+    };
+
+    $scope.zoomIn = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
       if ($scope.activeFlow.zoomScale + 0.25 <= 2) {
         $scope.activeFlow.zoomScale += 0.25;
       }
     };
-    $scope.zoomOut = function () {
+
+    $scope.zoomOut = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
       if ($scope.activeFlow.zoomScale - 0.25 >= 0.25) {
         $scope.activeFlow.zoomScale -= 0.25;
       }
     };
 
-    $scope.save = function () {
+    $scope.save = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
       FlowService.saveAllFlows($scope.flows);
-    }
+    };
+
+    $scope.setMousePosition = function(e) {
+      $scope.currentMouseX = e.offsetX / $scope.activeFlow.zoomScale;
+      $scope.currentMouseY = e.offsetY / $scope.activeFlow.zoomScale;
+    };
   });
