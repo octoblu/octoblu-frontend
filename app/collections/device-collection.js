@@ -23,7 +23,7 @@ DeviceCollection = function (userUUID) {
   };
 
   collection.getDevicesByOwner = function (user) {
-    client({
+    return client({
       method: 'GET',
       path: 'http://' + config.skynet.host + ':' +
         config.skynet.port + '/mydevices',
