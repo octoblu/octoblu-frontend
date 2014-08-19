@@ -59,6 +59,14 @@
     "sinon": "~1.10.3"
   },
   "overrides": {
+    "ace-builds": {
+      "main": [
+        "src-noconflict/ace.js",
+        "src-noconflict/mode-javascript.js",
+        "src-noconflict/theme-chrome.js",
+        "src-noconflict/worker-javascript.js"
+      ]
+    },
     "elasticsearch": {
       "main": "elasticsearch.angular.js"
     },
