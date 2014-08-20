@@ -2,7 +2,7 @@ angular.module('octobluApp')
   .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
     return function (renderScope) {
 
-      var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected');
+      var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
 
       var clearSelection = function () {
         renderScope.selectAll('.selected').classed('selected', false);
@@ -26,6 +26,14 @@ angular.module('octobluApp')
           dispatch.nodeSelected(node);
         });
       }
+
+      function addButtonClickBehavior(nodeElement, node) {
+        if (node.type == 'button') {
+          nodeElement.selectAll('.flow-node-button').on('click', function () {
+            dispatch.nodeButtonClicked(node);
+          });
+        }
+      };
 
       function addLinkClickBehavior(linkElement, link) {
         linkElement.on('click', function () {
@@ -82,6 +90,7 @@ angular.module('octobluApp')
           var nodeElement = FlowNodeRenderer.render(renderScope, node, flow);
           addDragBehavior(nodeElement, node, flow);
           addNodeClickBehavior(nodeElement, node);
+          addButtonClickBehavior(nodeElement, node);
         });
       }
 

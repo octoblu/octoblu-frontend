@@ -68,6 +68,20 @@ angular.module('octobluApp')
           $scope.$apply();
         });
 
+        flowRenderer.on('nodeButtonClicked', function(flowNode) {
+          skynetService.getSkynetConnection().then(function (skynetConnection) {
+            var msg = {
+              devices: $scope.flow.flowId,
+              topic: 'button',
+              qos: 0,
+              payload: {
+                from: flowNode.id
+              }
+            };
+            skynetConnection.message(msg);
+          });
+        });
+
         $scope.$watch('flow', function (newFlow, oldFlow) {
           if (newFlow) {
             skynetService.getSkynetConnection().then(function (skynetConnection) {

@@ -14,7 +14,7 @@ angular.module('octobluApp')
     function linkPath(from, to) {
 
       var fromCoordinateCurveStart = {
-        x: from.x,
+        x: from.x + 20,
         y: from.y
       };
 
@@ -24,7 +24,7 @@ angular.module('octobluApp')
       };
 
       var toCoordinateCurveStart = {
-        x: toCoordinate.x - 10,
+        x: toCoordinate.x - 20,
         y: toCoordinate.y
       };
 

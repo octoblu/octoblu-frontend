@@ -197,6 +197,18 @@ angular.module('octobluApp')
           .attr('ry', 6)
           .classed('flow-node-bg', true);
 
+        if (node.type == 'button') {
+          nodeElement
+            .append('rect')
+            .attr('width', 20)
+            .attr('height', 20)
+            .attr('rx', 8)
+            .attr('ry', 8)
+            .attr('x', 6)
+            .attr('y', (nodeHeight / 2) - 10)
+            .classed('flow-node-button', true);
+        }
+
         var label = node.name || node.type;
         nodeElement
           .append('text')

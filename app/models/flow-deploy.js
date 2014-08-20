@@ -90,7 +90,7 @@ var FlowDeploy = function(options){
 
   _this.registerFlows = function(flows) {
     _.each(flows, function(flow){
-      meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID})
+      meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID});
     });
   };
 };

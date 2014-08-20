@@ -116,8 +116,12 @@ angular.module('octobluApp')
       }
       if ($scope.activeFlow && $scope.copiedNode) {
         var node = JSON.parse($scope.copiedNode);
-        node.x = $scope.currentMouseX;
-        node.y = $scope.currentMouseY;
+        if ($scope.currentMouseX) {
+          node.x = $scope.currentMouseX;
+        }
+        if ($scope.currentMouseY) {
+          node.y = $scope.currentMouseY;
+        }
         $scope.activeFlow.addNode(node);
       }
 
@@ -153,5 +157,10 @@ angular.module('octobluApp')
     $scope.setMousePosition = function(e) {
       $scope.currentMouseX = e.offsetX / $scope.activeFlow.zoomScale;
       $scope.currentMouseY = e.offsetY / $scope.activeFlow.zoomScale;
+    };
+
+    $scope.clearMousePosition = function() {
+      $scope.currentMouseX = null;
+      $scope.currentMouseY = null;
     };
   });
