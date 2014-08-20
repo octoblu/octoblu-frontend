@@ -2,35 +2,39 @@ angular.module('octobluApp')
 .controller('FlowChannelFormController', function($scope) {
   'use strict';
 
-  $scope.endpoints = [];
-  var updateEndpoints = function(){
-    if (_.isUndefined($scope.node.application)){
-      return;
-    }
-    $scope.endpoints = _.map($scope.node.application.resources, function(resource){
-      return {
-        label: resource.httpMethod + ' ' + resource.path,
-        value: resource
-      }
-    });
-  };
+  $scope.getEndpointLabel = function(resource) {
+    return resource.httpMethod + ' ' + resource.path;
+  }
 
   var selectEndpoint = function(){
-    var node = $scope.node;
-    $scope.selectedEndpoint = _.find($scope.endpoints, function(endpoint){
-      return endpoint.value.path === node.path && endpoint.value.httpMethod === node.method;
-    });
+    var node, resources, selectedEndpoint;
 
-    $scope.selectedEndpoint = $scope.selectedEndpoint || _.first($scope.endpoints);
+    node = $scope.node;
+    resources = node.application.resources;
+
+    selectedEndpoint = _.findWhere(resources, {path: node.path, httpMethod: node.method});
+
+    $scope.selectedEndpoint = selectedEndpoint || _.first(resources);
+  };
+
+  var transformParams = function(oldParams){
+    var paramNames = _.pluck(oldParams, 'name');
+    var newParams = {};
+    _.each(paramNames, function(paramName){
+      newParams[paramName] = '';
+    });
+    return _.defaults(_.pick($scope.node.params, paramNames), newParams);
   };
 
   $scope.$watch('selectedEndpoint', function(){
-    $scope.node.path   = $scope.selectedEndpoint.value.path;
-    $scope.node.method = $scope.selectedEndpoint.value.httpMethod;
-  }, true);
+    if(!$scope.selectedEndpoint){
+      return;
+    }
+    $scope.node.path   = $scope.selectedEndpoint.path;
+    $scope.node.method = $scope.selectedEndpoint.httpMethod;
+    $scope.node.params = transformParams($scope.selectedEndpoint.params);
+  });
 
-  $scope.$watch('node.application.resources', updateEndpoints, true);
-  updateEndpoints();
-  $scope.$watch('node', selectEndpoint, true);
-  selectEndpoint();
+  $scope.$watch('node.path',   selectEndpoint);
+  $scope.$watch('node.method', selectEndpoint);
 });
