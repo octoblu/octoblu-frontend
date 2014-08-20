@@ -7,13 +7,14 @@ var gulp         = require('gulp'),
   sourcemaps     = require('gulp-sourcemaps');
 
 gulp.task('bower', function() {
-  bower('./public/lib');
-  return gulp.src(mainBowerFiles({filter: /\.js/}))
+  bower('./public/lib')
+  .pipe(
+    gulp.src(mainBowerFiles({filter: /\.js/}))
     .pipe(plumber())
     .pipe(sourcemaps.init())
       .pipe(concat('dependencies.js'))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./public/assets/javascripts/dist/'));
+    .pipe(gulp.dest('./public/assets/javascripts/dist/')));
 });
 
 gulp.task('less:compile', function(){
