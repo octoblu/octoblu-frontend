@@ -20,14 +20,14 @@ describe('NodeCollection', function () {
     fakeDeviceCollection = new FakeDeviceCollection();
     deviceStub = sinon.stub(sut, 'getDeviceCollection');
     deviceStub.returns(fakeDeviceCollection);
-
-    result = sut.fetch();
   });
 
   describe('#fetch', function () {
+    beforeEach(function(){
+      result = sut.fetch();
+    });
 
     it('should return a promise', function () {
-      result = sut.fetch();
       expect(result.then).to.exist;
     });
 
@@ -45,6 +45,36 @@ describe('NodeCollection', function () {
 
     it('should call fetch on DeviceCollection', function () {
       expect(fakeDeviceCollection.fetch).to.have.been.called;
+    });
+
+    describe('when DeviceCollection and ChannelCollection has nodes', function () {
+      var channels, devices;
+      beforeEach(function () {
+        channels = [
+          { name: 'BBC One', type: 'channel' },
+          { name: 'C2', type: 'channel'}];
+        devices = [
+          { name: 'NetDuino 1', type: 'device' },
+          { name: 'Buffy the Vampire Slayer', type: 'device'}
+        ];
+
+        fakeChannelCollection.fetch.successCallback(channels);
+        fakeDeviceCollection.fetch.successCallback(devices);
+      });
+
+      it('should fulfill an an empty promise', function (done) {
+        result.then(function (nodes) {
+          expect(nodes).to.deep.equal(_.union(devices, channels));
+          done();
+        }).catch(done);
+      });
+    });
+  });
+
+
+  describe('#getChannels', function () {
+    beforeEach(function () {
+      result = sut.getChannels();
     });
 
     describe('when ChannelCollection responds with no channels', function () {
@@ -78,7 +108,13 @@ describe('NodeCollection', function () {
         }).catch(done);
       });
     });
-    
+  });
+
+  describe('#getDevices', function () {
+    beforeEach(function(){
+      result = sut.getDevices();
+    });
+
     describe('when DeviceCollection responds with no devices', function () {
       beforeEach(function () {
         fakeDeviceCollection.fetch.successCallback([]);
@@ -109,30 +145,6 @@ describe('NodeCollection', function () {
           done();
         }).catch(done);
       });
-    });
-
-    describe('when DeviceCollection and ChannelCollection has nodes', function () {
-      var channels, devices;
-      beforeEach(function () {
-        channels = [
-          { name: 'BBC One', type: 'channel' },
-          { name: 'C2', type: 'channel'}];
-        devices = [
-          { name: 'NetDuino 1', type: 'device' },
-          { name: 'Buffy the Vampire Slayer', type: 'device'}
-        ];
-
-        fakeChannelCollection.fetch.successCallback(channels);
-        fakeDeviceCollection.fetch.successCallback(devices);
-      });
-
-      it('should fulfill an an empty promise', function (done) {
-        result.then(function (nodes) {
-          expect(nodes).to.deep.equal(_.union(devices, channels));
-          done();
-        }).catch(done);
-      });
-
     });
   });
 });
