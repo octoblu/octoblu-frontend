@@ -22,6 +22,12 @@ DeviceCollection = function (userUUID) {
     return User.findBySkynetUUID(userUUID);
   };
 
+  collection.filterDevices = function (devices) {
+    return _.reject(devices, function(device){
+      return device.type == 'octoblu:flow';
+    });
+  };
+
   collection.getDevicesByOwner = function (user) {
     return client({
       method: 'GET',
@@ -33,7 +39,7 @@ DeviceCollection = function (userUUID) {
       }
     })
       .then(function (result) {
-        return result.entity.devices;
+        return collection.filterDevices(result.entity.devices);
       })
       .catch(function () {
         return [];
