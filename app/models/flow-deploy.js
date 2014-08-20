@@ -66,6 +66,19 @@ var FlowDeploy = function(options){
                 flows: flows
             };
       meshblu.message(msg);
+
+      managerDevices = _.where(data.devices, {type: 'nodered-docker-manager'});
+      devices = _.pluck(managerDevices, 'uuid');
+      var msg = {
+                devices: devices,
+                topic: "nodered-instance",
+                qos: 0
+            };
+            msg.payload = {
+              uuid: userUUID,
+              token: userToken
+            };
+      meshblu.message(msg);
     });
   };
 
