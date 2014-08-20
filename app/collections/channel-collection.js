@@ -37,7 +37,7 @@ var ChannelCollection = function(userUUID, options){
   self.mergeChannelsAndApis = function(channels, apis){
     return _.map(apis, function(api){
       var channel = _.findWhere(channels, {channelid: ""+api._id});
-      return _.defaults({params: {}}, api, channel);
+      return _.defaults({}, api, channel);
     });
   };
 

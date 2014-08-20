@@ -13,53 +13,15 @@ var record = {
         "path": "/v2/locks"
       },
       {
-        "displayName": "/v2/locks/{lock_id}/unlock",
+        "displayName": "/v2/locks/:lock_id",
         "doc": {
-          "t": "The unlock resource tells the specified Lockitron to unlock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it unlocked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
+          "t": "This method will lock or unlock the user's door. It blocks until locking/unlocking is finished. If the Lockitron is asleep, it can take several minutes. Failures return standard errors.",
           "url": "/v2/locks/{lock_id}/unlock"
         },
-        "httpMethod": "POST",
+        "httpMethod": "PUT",
         "params": [
           {
-            "name": "{lock_id}",
-            "required": true,
-            "style": "query",
-            "doc": {
-              "t": "the id of the Lockitron to lock"
-            }
-          }
-        ],
-        "path": "/v2/locks/{lock_id}/unlock"
-      },
-      {
-        "displayName": "/v2/locks/{lock_id}/lock",
-        "doc": {
-          "t": "The lock resource tells the specified Lockitron to lock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it locked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
-          "url": "/v2/locks/{lock_id}/lock"
-        },
-        "httpMethod": "POST",
-        "params": [
-          {
-            "name": "{lock_id}",
-            "required": true,
-            "style": "query",
-            "doc": {
-              "t": "the id of the Lockitron to lock"
-            }
-          }
-        ],
-        "path": "/v2/locks/{lock_id}/lock"
-      },
-      {
-        "displayName": "/v2/locks/{lock_id}/add",
-        "doc": {
-          "t": "The invite resource will invite a user by email to a lock. If they already have a Lockitron account, it'll add the key to it. Otherwise, it'll send them an invitation to email. This resource returns the user's Key object and a status code of 200. If it fails, it'll return a 500. If the user isn't allowed to invite guests, it'll return a 403. Note that only locks with text message access activated may use the phone argument alone to invite users.",
-          "url": "/v2/locks/{lock_id}/add"
-        },
-        "httpMethod": "POST",
-        "params": [
-          {
-            "name": "{lock_id}",
+            "name": ":lock_id",
             "required": true,
             "style": "query",
             "doc": {
@@ -67,48 +29,16 @@ var record = {
             }
           },
           {
-            "name": "phone",
+            "name": "state",
             "required": true,
-            "style": "query",
+            "style": "body",
             "doc": {
-              "t": "the phone of the user to invite"
-            }
-          },
-          {
-            "name": "fullname",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "a suggested full name for the user being invited"
-            }
-          },
-          {
-            "name": "role",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "the desired role for the user - guest or admin"
-            }
-          },
-          {
-            "name": "start",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "the desired start time for the key as a Unix timestamp"
-            }
-          },
-          {
-            "name": "expiration",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "the desired expiration time for the key as a Unix timestamp"
+              "t": "Possible states include: \"lock\", \"unlock\", or \"toggle\""
             }
           }
         ],
-        "path": "/v2/locks/{lock_id}/add"
-      },
+        "path": "/v2/locks/:lock_id"
+      }
     ]
   },
   "auth_strategy": "oauth",

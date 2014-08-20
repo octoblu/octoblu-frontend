@@ -31,7 +31,7 @@ describe('FlowChannelFormController', function () {
 
     beforeEach(function(){
       // [{"name":"{lock_id}","required":true,"style":"query","doc":{"t":"the id of the Lockitron to lock"}}]
-      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE', params: [{name: 'foo'}]};
+      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE', params: [{name: 'foo', style: 'query'}]};
       scope.node.application.resources.push(resource3);
       scope.selectedEndpoint = resource3;
       scope.$digest();
@@ -45,8 +45,8 @@ describe('FlowChannelFormController', function () {
       expect(scope.node.method).to.equal('DANCE');
     });
 
-    it('should set params on the node', function () {
-      expect(scope.node.params).to.deep.equal({foo: ''});
+    it('should set queryParams on the node', function () {
+      expect(scope.node.queryParams).to.deep.equal({foo: ''});
     });
   });
 
@@ -54,7 +54,7 @@ describe('FlowChannelFormController', function () {
     var resource3;
 
     beforeEach(function(){
-      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar'}]};
+      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar', style: 'query'}]};
       scope.node.application.resources.push(resource3);
       scope.selectedEndpoint = resource3;
       scope.$digest();
@@ -68,8 +68,12 @@ describe('FlowChannelFormController', function () {
       expect(scope.node.method).to.equal('ASDF');
     });
 
-    it('should set different params on the node', function () {
-      expect(scope.node.params).to.deep.equal({bar: ''});
+    it('should set different queryParams on the node', function () {
+      expect(scope.node.queryParams).to.deep.equal({bar: ''});
+    });
+
+    it('should set not set the body params on the node', function () {
+      expect(scope.node.bodyParams).to.deep.equal({});
     });
   });
 
@@ -77,15 +81,51 @@ describe('FlowChannelFormController', function () {
     var resource3;
 
     beforeEach(function(){
-      scope.node.params = {bar: 'something'};
-      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar'}]};
+      scope.node.queryParams = {bar: 'something'};
+      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar', style: 'query'}]};
       scope.node.application.resources.push(resource3);
       scope.selectedEndpoint = resource3;
       scope.$digest();
     });
 
     it('should use the existing bar value', function () {
-      expect(scope.node.params).to.deep.equal({bar: 'something'});
+      expect(scope.node.queryParams).to.deep.equal({bar: 'something'});
+    });
+  });
+
+  describe('when the scope.selectedEndpoint changes and we already have a body param value', function () {
+    var resource3;
+
+    beforeEach(function(){
+      scope.node.bodyParams = {bar: 'something'};
+      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar', style: 'body'}]};
+      scope.node.application.resources.push(resource3);
+      scope.selectedEndpoint = resource3;
+      scope.$digest();
+    });
+
+    it('should use the existing bar value', function () {
+      expect(scope.node.bodyParams).to.deep.equal({bar: 'something'});
+    });
+  });
+
+  describe('when the resource has a body param', function () {
+    var resource3;
+
+    beforeEach(function(){
+      // [{"name":"{lock_id}","required":true,"style":"query","doc":{"t":"the id of the Lockitron to lock"}}]
+      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE', params: [{name: 'foo', style: 'body'}]};
+      scope.node.application.resources.push(resource3);
+      scope.selectedEndpoint = resource3;
+      scope.$digest();
+    });
+
+    it('should set the body params on the node', function () {
+      expect(scope.node.bodyParams).to.deep.equal({foo: ''});
+    });
+
+    it('should set the query params on the node to an empty map', function () {
+      expect(scope.node.queryParams).to.deep.equal({});
     });
   });
 });

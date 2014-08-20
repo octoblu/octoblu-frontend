@@ -4,8 +4,13 @@
     <select id="selectedEndpoint" ng-model="selectedEndpoint" ng-options="getEndpointLabel(endpoint) for endpoint in node.application.resources" class="form-control"></select>
   </div>
 
-  <div class="form-group" ng-repeat="(key, value) in node.params">
+  <div class="form-group" ng-repeat="(key, value) in node.queryParams">
     <label for="{{key}}">{{key}}</label>
-    <input  id="{{key}}" type="text" class="form-control" ng-model="node.params[key]">
+    <input  id="{{key}}" type="text" class="form-control" ng-model="node.queryParams[key]">
+  </div>
+
+  <div class="form-group" ng-repeat="(key, value) in node.bodyParams">
+    <label for="{{key}}">{{key}}</label>
+    <input  id="{{key}}" type="text" class="form-control" ng-model="node.bodyParams[key]">
   </div>
 </div>

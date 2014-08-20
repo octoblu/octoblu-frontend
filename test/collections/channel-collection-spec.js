@@ -76,7 +76,7 @@ describe('ChannelCollection', function () {
 
         it('should merge the channel in with the user api', function (done) {
           result.then(function(apis){
-            expect(apis).to.deep.equal([{_id: '123', name: 'FooNetwork', channelid: '123', whatever: 'somethingelse', whoosawhatsit: 'floosenhousen', params: {}}]);
+            expect(apis).to.deep.equal([{_id: '123', name: 'FooNetwork', channelid: '123', whatever: 'somethingelse', whoosawhatsit: 'floosenhousen'}]);
             done();
           }).catch(done);
         });
