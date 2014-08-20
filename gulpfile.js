@@ -7,14 +7,16 @@ var gulp         = require('gulp'),
   sourcemaps     = require('gulp-sourcemaps');
 
 gulp.task('bower', function() {
-  bower('./public/lib')
-  .pipe(
-    gulp.src(mainBowerFiles({filter: /\.js/}))
+  bower('./public/lib');
+});
+
+gulp.task('bower:concat', ['bower'], function(){
+  return gulp.src(mainBowerFiles({filter: /\.js/}))
     .pipe(plumber())
     .pipe(sourcemaps.init())
       .pipe(concat('dependencies.js'))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./public/assets/javascripts/dist/')));
+    .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
 gulp.task('less:compile', function(){
@@ -36,7 +38,7 @@ gulp.task('javascript:concat', function(){
     .pipe(gulp.dest('./public/assets/javascripts/dist/'));
 });
 
-gulp.task('default', ['bower', 'less:compile', 'javascript:concat'], function() {
+gulp.task('default', ['bower:concat', 'less:compile', 'javascript:concat'], function() {
 });
 
 gulp.task('watch', ['default'], function() {
