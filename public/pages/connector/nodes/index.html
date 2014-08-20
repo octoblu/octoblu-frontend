@@ -27,7 +27,7 @@
 
 <div class="row">
     <div ng-if="nodes.length != 0">
-        <div ng-repeat="node in nodes | filter: {name:nodeSearch} | orderBy: 'name'"
+        <div ng-repeat="node in nodes | filter : type !== 'octoblu:flow'| filter: {name:nodeSearch} | orderBy: 'name'"
              class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
             <h4 class="text-center">
                 <a href ng-href="{{nextStepUrl(node)}}" class="">
