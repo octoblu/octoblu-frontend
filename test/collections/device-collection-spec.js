@@ -26,6 +26,16 @@ describe('DeviceCollection', function () {
       .returns([]);
   });
 
+  describe('filterDevices', function() {
+    it('should not return any octoblu:flow', function(){
+      expect(sut.filterDevices([{type: 'octoblu:flow'}])).to.deep.equal([]);
+    });
+    
+    it('should not return any octoblu:flow', function(){
+      expect(sut.filterDevices([{type: 'other'},{type: 'octoblu:flow'}])).to.deep.equal([{type: 'other'}]);
+    });
+  });
+
   describe('fetch', function () {
     it('should call getUser', function () {
       result = sut.fetch();
