@@ -17,8 +17,6 @@ angular.module('octobluApp')
 
     $scope.updateNode = function(){
       _.extend($scope.flowEditor.selectedNode, $scope.flowEditor.editorNode);
-      console.log(JSON.stringify($scope.flowEditor.editorNode.params));
-      console.log(JSON.stringify($scope.flowEditor.selectedNode.params));
       $scope.flowEditor.selectedNode = null;
     };
 });
