@@ -33,6 +33,10 @@ angular.module('octobluApp')
         },
 
         addNode: function (node) {
+          var match = _.findWhere(nodes, {id: node.id});
+          if (match) {
+            node.id = UUIDService.v1();
+          }
           nodes.push(node);
         },
 
