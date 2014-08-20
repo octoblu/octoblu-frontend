@@ -104,12 +104,48 @@ angular.module('octobluApp')
         renderScope.attr("transform", "scale(" + scale + ")");
       }
 
+      function renderGrid() {
+        var width = 5000;
+        var height = 5000;
+        var x = d3.scale.linear().range([0, width]);
+        var y = d3.scale.linear().range([height, 0]);
+        function make_x_axis() {
+          return d3.svg.axis()
+          .scale(x)
+          .orient("bottom")
+          .ticks(250);
+        }
+
+        function make_y_axis() {
+          return d3.svg.axis()
+          .scale(y)
+          .orient("left")
+          .ticks(250);
+        }
+
+        renderScope.append("g")
+          .attr("class", "grid")
+          .attr("transform", "translate(0," + height + ")")
+          .call(make_x_axis()
+            .tickSize(-height, 0, 0)
+            .tickFormat("")
+            );
+
+        renderScope.append("g")
+          .attr("class", "grid")
+          .call(make_y_axis()
+            .tickSize(-width, 0, 0)
+            .tickFormat("")
+            );
+      }
+
       return {
         render: function (flow) {
           renderNodes(flow);
           renderLinks(flow);
           zoom(flow);
         },
+        renderGrid: renderGrid,
         on: function (event, callback) {
           return dispatch.on(event, callback);
         }
