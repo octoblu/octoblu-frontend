@@ -82,11 +82,14 @@ angular.module('octobluApp')
           });
         });
 
+        flowRenderer.renderGrid();
+
         $scope.$watch('flow', function (newFlow, oldFlow) {
           if (newFlow) {
             skynetService.getSkynetConnection().then(function (skynetConnection) {
               skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
             });
+
 
             flowRenderer.render(newFlow);
           }
