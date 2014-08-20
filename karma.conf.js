@@ -15,33 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        "lib/jquery/dist/jquery.js",
-        "lib/jquery-ui/ui/jquery-ui.js",
-
-        "lib/angular/angular.js",
-        "lib/angular-animate/angular-animate.js",
-        "lib/angular-sanitize/angular-sanitize.js",
-        "lib/angular-cookies/angular-cookies.js",
-        "lib/angular-resource/angular-resource.js",
-        "lib/lodash/dist/lodash.js",
-        "lib/d3/d3.js",
-        "lib/nvd3/nv.d3.js",
-
-        "lib/angular-ui-router/release/angular-ui-router.js",
-        "lib/angular-ui-utils/ui-utils.js",
-        "lib/angular-google-analytics/src/angular-google-analytics.js",
-        "lib/modernizr/modernizr.js",
-        "lib/json-editor/dist/jsoneditor.js",
-        "lib/angular-bootstrap/ui-bootstrap.js",
-        "lib/angular-bootstrap/ui-bootstrap-tpls.js",
-        "lib/bootstrap-switch/dist/js/bootstrap-switch.js",
-        "lib/elastic.js/dist/elastic.js",
-        "lib/elasticsearch/elasticsearch.angular.js",
-        "lib/smoothie/smoothie.js",
-        "lib/ng-table/ng-table.js",
-        "lib/angular-ui-ace/ui-ace.js",
-        "lib/angular-dragdrop-ganarajpr/draganddrop.js",
-        "lib/node-uuid/uuid.js",
+        "assets/javascripts/dist/dependencies.js",
 
         "lib/angular-mocks/angular-mocks.js",
 
