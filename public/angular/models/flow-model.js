@@ -20,6 +20,10 @@ angular.module('octobluApp')
           return name;
         },
 
+        setName : function(newName){
+          name = newName;
+        },
+
         getZoomScale: function(){
           return zoomScale;
         },
@@ -77,6 +81,7 @@ angular.module('octobluApp')
 
       FlowModel.__defineGetter__('flowId', FlowModel.getFlowId);
       FlowModel.__defineGetter__('name', FlowModel.getName);
+      FlowModel.__defineSetter__('name', FlowModel.setName);
 
       FlowModel.__defineGetter__('nodes', function () {
         return FlowModel.getNodes();
