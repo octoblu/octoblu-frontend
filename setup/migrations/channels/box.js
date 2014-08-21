@@ -121,10 +121,10 @@ var record = {
         },
         "params" : [
           {
-            "name" : "None are taken",
+            "name" : "{folder id}",
             "type" : "",
-            "required" : false,
-            "style" : "query",
+            "required" : true,
+            "style" : "url",
             "curl" : "",
             "category" : "",
             "authentication" : {

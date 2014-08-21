@@ -832,14 +832,13 @@ var record = {
     "requestTokenURL" : "https://api-ssl.bitly.com/",
     "authTokenURL" : "https://bitly.com/oauth/authorize",
     "tokenMethod" : "access_token_query",
+    "tokenQueryParam" : "access_token",
     "authTokenPath" : "/oauth/authorize",
     "accessTokenIncludeClientInfo" : true,
     "grant_type" : "authorization_code",
     "scope" : "",
     "protocol" : "https",
     "host" : "bitly.com",
-    "passTokenInQuery" : false,
-    "tokenQueryParam" : "oauth2_access_token",
     "useOAuthLib" : true
   }
 };
