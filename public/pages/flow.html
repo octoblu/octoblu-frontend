@@ -45,14 +45,7 @@
         <flow-node-palette flow-node-types="flowNodeTypes"></flow-node-palette>
         <div class="workspace-container">
             <div class="red-tabs-container">
-                <ul class="red-tabs" id="workspace-tabs">
-                    <li ng-repeat="flow in flows"
-                        ng-class="{active : isActiveFlow(flow)}" ng-click="setActiveFlow(flow)">
-                        <a href ng-click="editFlowName = true" ng-hide="editFlowName" class="red-tab-label" >{{flow.name}}</a>
-                        <input ng-model="flow.name" type="text" ng-hide="!editFlowName" ng-show="editFlowName" ng-blur="editFlowName = false"  >
-                        <span class="delete-flow fa" ng-click="deleteFlow(flow)"></span>
-                    </li>
-                </ul>
+                <flow-tabs tabs="flows" id="workspace-tabs" close-tab="deleteFlow" active-tab="activeFlow"></flow-tabs>
                 <div w-mousetrap="{'+': zoomIn}"
                      ng-click="zoomIn()" class="red-add-tab">
                     <i class="fa fa-search-plus"></i>

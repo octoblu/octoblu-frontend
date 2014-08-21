@@ -1,0 +1,13 @@
+<ul class="red-tabs">
+    <li ng-repeat="tab in tabs" ng-click="setActiveTab(tab)" ng-class="{active : isActiveTab(tab)}">
+
+        <a href ng-click="flowTabs.editingTab = tab" ng-hide="flowTabs.editingTab === tab" class="red-tab-label" >{{tab.name}}</a>
+
+        <form ng-submit="flowTabs.editingTab = undefined" ng-hide="flowTabs.editingTab !== tab" ng-show="flowTabs.editingTab === tab">
+            <input ng-model="tab.name" type="text" ng-blur="flowTabs.editingTab = undefined" autofocus>
+        </form>
+
+        <span class="delete-flow fa" ng-click="closeTab(tab)"></span>
+    </li>
+
+</ul>
