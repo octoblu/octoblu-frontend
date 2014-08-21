@@ -2,6 +2,7 @@ angular.module('octobluApp')
   .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
     return function (renderScope) {
 
+      console.log(renderScope);
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
 
       var clearSelection = function () {
@@ -96,12 +97,17 @@ angular.module('octobluApp')
 
       function updateFlowZoomLevel(flow) {
         flow.zoomScale  = d3.event.scale;
+        flow.zoomX  = d3.event.translate[0];
+        flow.zoomY  = d3.event.translate[1];
         dispatch.flowChanged(flow);
       }
 
       function zoom(flow) {
-        var scale     = flow.zoomScale;
-        renderScope.attr("transform", "scale(" + scale + ")");
+        var scale, x, y;
+        scale = flow.zoomScale;
+        x     = flow.zoomX;
+        y     = flow.zoomY;
+        renderScope.attr("transform", "translate(" + [x,y] + ")scale(" + scale + ")");
       }
 
       function renderGrid() {
