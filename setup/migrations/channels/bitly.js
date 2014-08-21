@@ -231,7 +231,16 @@ var record = {
         },
         "httpMethod" : "GET",
         "curl" : "curl -X ",
-        "params" : [ ]
+        "params" : [
+          {
+            "doc" : {
+              "url" : "http://dev.bitly.com/links.html#v3_shorten"
+            },
+            "style" : "query",
+            "type" : "string",
+            "name" : "longUrl"
+          }
+        ]
       },
       {
         "path" : "/v3/user/link_edit",
