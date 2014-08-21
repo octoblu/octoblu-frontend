@@ -59,7 +59,7 @@ var FlowDeploy = function(options){
       devices = _.pluck(managerDevices, 'uuid');
       var msg = {
         devices: devices,
-        topic: "nodered-instance",
+        topic: "nodered-instance-restart",
         qos: 0
       };
       msg.payload = {
