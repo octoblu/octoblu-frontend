@@ -48,26 +48,28 @@
                 <ul class="red-tabs" id="workspace-tabs">
                     <li ng-repeat="flow in flows"
                         ng-class="{active : isActiveFlow(flow)}" ng-click="setActiveFlow(flow)">
-                        <span class="red-tab-label">{{flow.name}}</span>
-                            <span class="delete-flow fa" ng-click="deleteFlow(flow)"></span>
+                        <a href ng-click="editFlowName = true" ng-hide="editFlowName" class="red-tab-label" >{{flow.name}}</a>
+                        <input ng-model="flow.name" type="text" ng-hide="!editFlowName" ng-show="editFlowName" ng-blur="editFlowName = false"  >
+                        <span class="delete-flow fa" ng-click="deleteFlow(flow)"></span>
                     </li>
                 </ul>
-                <div w-mousetrap="{'+': zoomIn}" ng-click="zoomIn()" class="red-add-tab">
+                <div w-mousetrap="{'+': zoomIn}"
+                     ng-click="zoomIn()" class="red-add-tab">
                     <i class="fa fa-search-plus"></i>
                 </div>
                 <div w-mousetrap="{'-': zoomOut}" ng-click="zoomOut()" class="red-add-tab">
                     <i class="fa fa-search-minus"></i>
                 </div>
-                <div w-mousetrap="{'ctrl+c': copySelection, 'meta+c':copySelection}" ng-click="copySelection()" class="red-add-tab">
+                <div w-mousetrap="{'mod+c': copySelection, 'meta+c':copySelection}" ng-click="copySelection()" class="red-add-tab">
                     <i class="fa fa-files-o"></i>
                 </div>
-                <div w-mousetrap="{'ctrl+x': cutSelection, 'meta+x':cutSelection}" ng-click="cutSelection()" class="red-add-tab">
+                <div w-mousetrap="{'mod+x': cutSelection, 'meta+x':cutSelection}" ng-click="cutSelection()" class="red-add-tab">
                     <i class="fa fa-scissors"></i>
                 </div>
-                <div w-mousetrap="{'ctrl+v': pasteSelection, 'meta+v':pasteSelection}" ng-click="pasteSelection()" class="red-add-tab">
+                <div w-mousetrap="{'mod+v': pasteSelection, 'meta+v':pasteSelection}" ng-click="pasteSelection()" class="red-add-tab">
                     <i class="fa fa-clipboard"></i>
                 </div>
-                <div w-mousetrap="{del: deleteSelection, backspace: deleteSelection}" ng-click="deleteSelection()" class="red-add-tab">
+                <div w-mousetrap="{'mod+del': deleteSelection, 'mod+backspace': deleteSelection}" ng-click="deleteSelection()" class="red-add-tab">
                     <i class="fa fa-trash-o"></i>
                 </div>
                 <div w-mousetrap="{'ctrl+n': addFlow}" ng-click="addFlow()" class="red-add-tab"><i class="fa fa-plus"></i></div>
