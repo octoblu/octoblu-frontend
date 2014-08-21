@@ -109,31 +109,61 @@ angular.module('octobluApp')
         var height = 5000;
         var x = d3.scale.linear().range([0, width]);
         var y = d3.scale.linear().range([height, 0]);
-        function make_x_axis() {
+        function make_light_x_axis() {
           return d3.svg.axis()
           .scale(x)
           .orient("bottom")
           .ticks(250);
         }
 
-        function make_y_axis() {
+        function make_light_y_axis() {
           return d3.svg.axis()
           .scale(y)
           .orient("left")
           .ticks(250);
         }
 
+        function make_dark_x_axis() {
+          return d3.svg.axis()
+          .scale(x)
+          .orient("bottom")
+          .ticks(50);
+        }
+
+        function make_dark_y_axis() {
+          return d3.svg.axis()
+          .scale(y)
+          .orient("left")
+          .ticks(50);
+        }
+
+
         renderScope.append("g")
           .attr("class", "grid")
           .attr("transform", "translate(0," + height + ")")
-          .call(make_x_axis()
+          .call(make_light_x_axis()
             .tickSize(-height, 0, 0)
             .tickFormat("")
             );
 
         renderScope.append("g")
           .attr("class", "grid")
-          .call(make_y_axis()
+          .call(make_light_y_axis()
+            .tickSize(-width, 0, 0)
+            .tickFormat("")
+            );
+
+        renderScope.append("g")
+          .attr("class", "grid")
+          .attr("transform", "translate(0," + height + ")")
+          .call(make_dark_x_axis()
+            .tickSize(-height, 0, 0)
+            .tickFormat("")
+            );
+
+        renderScope.append("g")
+          .attr("class", "grid")
+          .call(make_dark_y_axis()
             .tickSize(-width, 0, 0)
             .tickFormat("")
             );
