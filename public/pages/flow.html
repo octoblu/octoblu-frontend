@@ -1,42 +1,21 @@
 <div class="design2 designer-container">
-    <link href="/assets/design/jquery/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/assets/design/orion/built-editor.css"/>
+    <!--<link href="/assets/design/jquery/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" media="screen"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="/assets/design/orion/built-editor.css"/>-->
     <!-- <link rel="stylesheet" href="/assets/design/style.css"/> -->
 
     <div class="page-header">
         <div class="btn-group">
-            <div class="btn-group" dropdown>
-                <button class="dropdown-toggle btn btn-lg btn-default">
-                    <i class="fa fa-align-justify"></i> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a id="btn-sidebar" tabindex="-1" href><i class="fa fa-list-alt"></i> Toggle Sidebar</a></li>
-                    <li><a id="btn-config-nodes" tabindex="-1" href><i class="fa fa-th-list"></i> Configure nodes</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Import From</li>
-                    <li><a id="btn-import" href><i class="fa fa-clipboard"></i> Clipboard</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Export To</li>
-                    <li id="li-menu-export-clipboard">
-                        <a id="btn-export-clipboard" tabindex="-1" href><i class="fa fa-clipboard"></i> Clipboard</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Workspace</li>
-                    <li><a id="btn-workspace-add" href><i class="fa fa-plus"></i> Add</a></li>
-                    <li><a id="btn-workspace-edit" href><i class="fa fa-edit"></i> Rename</a></li>
-                    <li><a id="btn-workspace-delete" href><i class="fa fa-minus"></i> Delete</a></li>
-                    <li class="divider"></li>
-                    <li><a id="btn-keyboard-shortcuts" href><i class="fa fa-keyboard-o"></i> Keyboard Shortcuts</a></li>
-                    <li><a id="btn-help" href="http://node-red.github.io/docs" target="_blank"><i
-                            class="fa fa-question"></i> Help</a></li>
-                </ul>
-            </div>
-            <button w-mousetrap="{'ctrl+s': save}" ng-click="save()" class="btn btn-lg btn-default">
-                <i class="fa fa-floppy-o"></i> Save
+            <!--<button w-mousetrap="{'ctrl+s': save}" ng-click="save()" class="btn btn-lg btn-default">-->
+                <!--<i class="fa fa-floppy-o"></i> Save-->
+            <!--</button>-->
+            <button ng-click="restart()" id="btn-deploy" class="btn btn-primary btn-deploy">
+                <i class="fa fa-repeat"></i> Restart
             </button>
-            <button ng-click="deploy()" id="btn-deploy" class="btn btn-lg btn-default btn-deploy">
-                <i class="fa fa-upload"></i> Deploy
+            <button ng-click="stop()" id="btn-deploy" class="btn btn-danger btn-deploy">
+                <i class="fa fa-stop"></i> Stop
+            </button>
+            <button ng-click="deploy()" id="btn-deploy" class="btn btn-success btn-deploy">
+                <i class="fa fa-play"></i> Run
             </button>
         </div>
     </div>
@@ -70,21 +49,21 @@
             <flow-editor zoom-level="zoomLevel" flow="activeFlow" selected-node="flowEditor.selectedNode" selected-link="flowEditor.selectedLink"></flow-editor>
         </div>
 
-        <div id="sidebar" class="edit-panel flow-node-editor flow-node-editor-{{flowEditor.selectedNode.type}}" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">
-            <div class="node-editor panel panel-default">
-                <div class="panel-heading">Edit Node</div>
-                <div class="panel-body">
-                    <form ng-submit="updateNode()" class="form">
-                        <div ng-include="flowEditor.flowNodeType.formTemplatePath"></div>
-                        <div class="form-group debug-node-form">
-                            <label for="debug-node">Debug</label>
-                            <input  id="debug-node" class="form-control" type="checkbox"
-                                    ng-model="flowEditor.editorNode.debug">
-                        </div>
-                        <button type="submit" class="btn btn-lg btn-block btn-primary">Update Node</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <!--<div id="sidebar" class="edit-panel flow-node-editor flow-node-editor-{{flowEditor.selectedNode.type}}" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">-->
+            <!--<div class="node-editor panel panel-default">-->
+                <!--<div class="panel-heading">Edit Node</div>-->
+                <!--<div class="panel-body">-->
+                    <!--<form ng-submit="updateNode()" class="form">-->
+                        <!--<div ng-include="flowEditor.flowNodeType.formTemplatePath"></div>-->
+                        <!--<div class="form-group debug-node-form">-->
+                            <!--<label for="debug-node">Debug</label>-->
+                            <!--<input  id="debug-node" class="form-control" type="checkbox"-->
+                                    <!--ng-model="flowEditor.editorNode.debug">-->
+                        <!--</div>-->
+                        <!--<button type="submit" class="btn btn-lg btn-block btn-primary">Update Node</button>-->
+                    <!--</form>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
