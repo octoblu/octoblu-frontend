@@ -23,7 +23,7 @@ var record = {
           {
             "name": ":lock_id",
             "required": true,
-            "style": "query",
+            "style": "url",
             "doc": {
               "t": "the id of the Lockitron to lock"
             }

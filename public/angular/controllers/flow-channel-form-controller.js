@@ -38,6 +38,7 @@ angular.module('octobluApp')
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
     $scope.node.queryParams = transformParams(_.where($scope.selectedEndpoint.params, {style: 'query'}), $scope.node.queryParams);
     $scope.node.bodyParams  = transformParams(_.where($scope.selectedEndpoint.params, {style: 'body'}),  $scope.node.bodyParams);
+    $scope.node.urlParams   = transformParams(_.where($scope.selectedEndpoint.params, {style: 'url'}),   $scope.node.urlParams);
   });
 
   $scope.$watch('node.path',   selectEndpoint);

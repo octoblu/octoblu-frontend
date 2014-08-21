@@ -128,4 +128,24 @@ describe('FlowChannelFormController', function () {
       expect(scope.node.queryParams).to.deep.equal({});
     });
   });
+
+  describe('when the resource has a url param', function () {
+    var resource3;
+
+    beforeEach(function(){
+      // [{"name":"{lock_id}","required":true,"style":"query","doc":{"t":"the id of the Lockitron to lock"}}]
+      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE', params: [{name: 'foo', style: 'url'}]};
+      scope.node.application.resources.push(resource3);
+      scope.selectedEndpoint = resource3;
+      scope.$digest();
+    });
+
+    it('should set the url params on the node', function () {
+      expect(scope.node.urlParams).to.deep.equal({foo: ''});
+    });
+
+    it('should set the query params on the node to an empty map', function () {
+      expect(scope.node.queryParams).to.deep.equal({});
+    });
+  });
 });
