@@ -49,7 +49,9 @@
                     <li ng-repeat="flow in flows"
                         ng-class="{active : isActiveFlow(flow)}" ng-click="setActiveFlow(flow)">
                         <a href ng-click="editFlowName = true" ng-hide="editFlowName" class="red-tab-label" >{{flow.name}}</a>
-                        <input ng-model="flow.name" type="text" ng-hide="!editFlowName" ng-show="editFlowName" ng-blur="editFlowName = false"  >
+                        <form ng-submit="editFlowName = false" ng-hide="!editFlowName" ng-show="editFlowName">
+                            <input ng-model="flow.name" type="text" ng-blur="editFlowName = false" autofocus >
+                        </form>
                         <span class="delete-flow fa" ng-click="deleteFlow(flow)"></span>
                     </li>
                 </ul>
