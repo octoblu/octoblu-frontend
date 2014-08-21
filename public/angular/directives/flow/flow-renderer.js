@@ -1,7 +1,6 @@
 angular.module('octobluApp')
   .service('FlowRenderer', function (FlowNodeRenderer, FlowLinkRenderer, FlowNodeDimensions) {
     return function (renderScope) {
-
       var dispatch = d3.dispatch('flowChanged', 'nodeSelected', 'linkSelected', 'nodeButtonClicked');
 
       var clearSelection = function () {
@@ -65,8 +64,10 @@ angular.module('octobluApp')
       }
 
       function addZoomBehaviour(flow){
+
+          // .scale(flow.zoomScale)
+          // .center(flow.zoomX, flow.zoomY)
         var zoomBehavior = d3.behavior.zoom()
-          .scale(flow.zoomScale)
           .scaleExtent([0.25, 2])
           .on('zoom', function(){
             updateFlowZoomLevel(flow);
@@ -95,16 +96,21 @@ angular.module('octobluApp')
       }
 
       function updateFlowZoomLevel(flow) {
-        flow.zoomScale  = d3.event.scale;
+        flow.zoomScale  *= d3.event.scale;
+        flow.zoomX  += (d3.event.translate[0] * flow.zoomScale);
+        flow.zoomY  += (d3.event.translate[1] * flow.zoomScale);
         dispatch.flowChanged(flow);
       }
 
       function zoom(flow) {
-        var scale     = flow.zoomScale;
-        renderScope.attr("transform", "scale(" + scale + ")");
+        var scale, x, y;
+        scale = flow.zoomScale;
+        x     = flow.zoomX || 0;
+        y     = flow.zoomY || 0;
+        renderScope.attr("transform", "translate(" + x + "," + y + ") scale(" + scale + ")");
       }
 
-      function renderGrid() {
+      function renderBackground() {
         var width = 5000;
         var height = 5000;
         var x = d3.scale.linear().range([0, width]);
@@ -137,6 +143,10 @@ angular.module('octobluApp')
           .ticks(50);
         }
 
+        renderScope.append('rect')
+          .attr('class', 'overlay')
+          .attr('width', width)
+          .attr('height', height);
 
         renderScope.append("g")
           .attr("class", "grid")
@@ -171,11 +181,12 @@ angular.module('octobluApp')
 
       return {
         render: function (flow) {
+          addZoomBehaviour(flow);
           renderNodes(flow);
           renderLinks(flow);
           zoom(flow);
         },
-        renderGrid: renderGrid,
+        renderGrid: renderBackground,
         on: function (event, callback) {
           return dispatch.on(event, callback);
         }
