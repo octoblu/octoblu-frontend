@@ -15,7 +15,7 @@
                 </button>
                 <ul class="dropdown-menu flow-menu" role="menu">
                     <li class="flow-menu-item" ng-repeat="flow in flows">
-                        <a href>{{flow.name}}</a>
+                        <a href ng-click="setActiveFlow(flow)">{{flow.name}}</a>
                     </li>
                 </ul>
             </div>
