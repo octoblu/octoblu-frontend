@@ -45,9 +45,7 @@
         <flow-node-palette flow-node-types="flowNodeTypes"></flow-node-palette>
         <div class="workspace-container">
             <div class="red-tabs-container">
-                <ul class="red-tabs" id="workspace-tabs">
-                    <flow-tab ng-repeat="flow in flows" ng-click="setActiveFlow(flow)" ng-class="{active : isActiveFlow(flow)}"></flow-tab>
-                </ul>
+                <flow-tabs tabs="flows" id="workspace-tabs" close-tab="deleteFlow" active-tab="activeFlow"></flow-tabs>
                 <div w-mousetrap="{'+': zoomIn}"
                      ng-click="zoomIn()" class="red-add-tab">
                     <i class="fa fa-search-plus"></i>

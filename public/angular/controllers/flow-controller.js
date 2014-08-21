@@ -19,7 +19,8 @@ angular.module('octobluApp')
           $scope.flows = flows;
           $scope.activeFlow = flows[0];
         });
-    }
+    };
+
     refreshFlows();
 
 
@@ -37,10 +38,6 @@ angular.module('octobluApp')
 
     $scope.isActiveFlow = function (flow) {
       return flow === $scope.activeFlow;
-    };
-
-    $scope.setActiveFlow = function (flow) {
-      $scope.activeFlow = flow;
     };
 
     $scope.deleteFlow = function (flow) {

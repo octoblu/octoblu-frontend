@@ -1,7 +1,0 @@
-<li>
-    <a href ng-click="editName = true" ng-hide="editName" class="red-tab-label" >{{flow.name}}</a>
-    <form ng-submit="editName = false" ng-hide="!editName" ng-show="editName">
-        <input ng-model="flow.name" type="text" ng-blur="editName = false">
-    </form>
-    <span class="delete-flow fa" ng-click="closeTab(flow)"></span>
-</li>
