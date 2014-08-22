@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta content="text/html;charset=utf-8" http-equiv="content-type">
+    <meta name="description" content="Octoblu - Internet of Everything!">
+    <meta name="author" content="Octoblu">
+    <link href="/assets/images/meta_icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/assets/images/meta_icons/apple-touch-icon.png" rel="apple-touch-icon-precomposed">
+    <link href="/assets/images/meta_icons/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
+    <link href="/assets/images/meta_icons/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72">
+    <link href="/assets/images/meta_icons/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114">
+    <link href="/assets/images/meta_icons/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+  <link href="assets/stylesheets/style.css" rel="stylesheet" media="screen">
+  <link href="assets/stylesheets/animation.css" rel="stylesheet">
+  <link href="/assets/stylesheets/dist/styles.css" rel="stylesheet" type="text/css"/>
+  <link href="/lib/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+  <link href="/lib/nvd3/nv.d3.css" rel="stylesheet"/>
+  <style type="text/css">
+      .reveal-animation.ng-enter {
+          -webkit-animation: enter_sequence 1s linear;
+          animation: enter_sequence 1s linear;
+      }
+      @-webkit-keyframes enter_sequence {
+          from { opacity:0; }
+          to { opacity:1; }
+      }
+      @keyframes enter_sequence {
+          from { opacity:0; }
+          to { opacity:1; }
+      }
+      @media (min-width: 1200px) {
+          .full-screen {
+              width: 100%;
+          }
+      }
+  </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <defs>
+      <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+        <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/>
+      </pattern>
+      <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+        <rect width="80" height="80" fill="url(#smallGrid)"/>
+        <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/>
+      </pattern>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#grid)"></rect>
+  </svg>
+
+  <script src="/assets/javascripts/skynet.bundle.js"></script>
+  <script src="/assets/javascripts/dist/dependencies.js"></script>
+  <script src="/assets/javascripts/dist/application.js"></script>
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(100764712);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100764712ns.gif" /></p></noscript>
+</body>
+</html>
