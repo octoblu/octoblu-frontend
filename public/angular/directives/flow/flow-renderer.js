@@ -122,6 +122,13 @@ angular.module('octobluApp')
       }
 
       return {
+        centerOnSelectedFlowNode: function(flow){
+          var width = ($(window).width()/flow.zoomScale)/2;
+          var height = ($(window).height()/flow.zoomScale)/2;
+
+          flow.zoomX = -flow.selectedFlowNode.x + width;
+          flow.zoomY = -flow.selectedFlowNode.y + height;
+        },
         render: function (flow) {
           addZoomBehaviour(flow);
           renderNodes(flow);

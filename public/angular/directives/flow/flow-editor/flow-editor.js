@@ -82,7 +82,7 @@ angular.module('octobluApp')
         flowRenderer.renderGrid();
 
         $scope.$watch('flow', function (newFlow, oldFlow) {
-          if (newFlow) {
+          if (newFlow && newFlow !== oldFlow) {
             skynetService.getSkynetConnection().then(function (skynetConnection) {
               skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
             });
@@ -91,6 +91,12 @@ angular.module('octobluApp')
             flowRenderer.render(newFlow);
           }
         }, true);
+
+        $scope.$watch('flow.selectedFlowNode', function(){
+          if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }
+
+          flowRenderer.centerOnSelectedFlowNode($scope.flow);
+        });
 
         element.on(
           'dragover',
