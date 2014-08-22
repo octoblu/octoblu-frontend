@@ -113,70 +113,17 @@ angular.module('octobluApp')
       function renderBackground() {
         var width = 5000;
         var height = 5000;
-        var x = d3.scale.linear().range([0, width]);
-        var y = d3.scale.linear().range([height, 0]);
-        function make_light_x_axis() {
-          return d3.svg.axis()
-          .scale(x)
-          .orient("bottom")
-          .ticks(250);
-        }
-
-        function make_light_y_axis() {
-          return d3.svg.axis()
-          .scale(y)
-          .orient("left")
-          .ticks(250);
-        }
-
-        function make_dark_x_axis() {
-          return d3.svg.axis()
-          .scale(x)
-          .orient("bottom")
-          .ticks(50);
-        }
-
-        function make_dark_y_axis() {
-          return d3.svg.axis()
-          .scale(y)
-          .orient("left")
-          .ticks(50);
-        }
+        var leftEdge = 0 - (width / 2);
+        var rightEdge = 0 + (width / 2);
+        var topEdge   = 0 - (height / 2);
+        var bottomEdge   = 0 + (height / 2);
 
         renderScope.append('rect')
           .attr('class', 'overlay')
           .attr('width', width)
-          .attr('height', height);
-
-        renderScope.append("g")
-          .attr("class", "grid")
-          .attr("transform", "translate(0," + height + ")")
-          .call(make_light_x_axis()
-            .tickSize(-height, 0, 0)
-            .tickFormat("")
-            );
-
-        renderScope.append("g")
-          .attr("class", "grid")
-          .call(make_light_y_axis()
-            .tickSize(-width, 0, 0)
-            .tickFormat("")
-            );
-
-        renderScope.append("g")
-          .attr("class", "grid")
-          .attr("transform", "translate(0," + height + ")")
-          .call(make_dark_x_axis()
-            .tickSize(-height, 0, 0)
-            .tickFormat("")
-            );
-
-        renderScope.append("g")
-          .attr("class", "grid")
-          .call(make_dark_y_axis()
-            .tickSize(-width, 0, 0)
-            .tickFormat("")
-            );
+          .attr('height', height)
+          .attr('x', leftEdge)
+          .attr('y', topEdge);
       }
 
       return {
