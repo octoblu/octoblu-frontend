@@ -84,11 +84,31 @@ angular.module('octobluApp')
       $scope.activeFlow.selectedLink = null;
     };
 
-    $scope.deploy = function (e) {
+    $scope.start = function (e) {
       if (e) {
         e.preventDefault();
       }
-      FlowService.deploy();
+      if ($scope.activeFlow){
+        FlowService.start($scope.activeFlow);
+      }
+    };
+
+    $scope.stop = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
+      if ($scope.activeFlow){
+        FlowService.stop($scope.activeFlow);
+      }
+    };
+
+    $scope.restart = function (e) {
+      if (e) {
+        e.preventDefault();
+      }
+      if ($scope.activeFlow){
+        FlowService.restart($scope.activeFlow);
+      }
     };
 
     $scope.deleteSelection = function (e) {
