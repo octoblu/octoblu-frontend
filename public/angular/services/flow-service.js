@@ -4,21 +4,11 @@ angular.module('octobluApp')
 
         var _this = this;
 
-        this.saveAllFlows = function (flows) {
-            var promises;
-
-            promises = _.map(flows, function (flow) {
-                return $http.put("/api/flows/" + flow.flowId, flow);
-            });
-
-            return $q.all(promises);
+        this.saveFlow = function (flow) {
+            return $http.put("/api/flows/" + flow.flowId, flow);
         };
 
-        this.saveAllFlowsAndDeploy = function (flows) {
-            return _this.saveAllFlows(flows).then(function () {
-                return _this.deploy();
-            });
-        };
+        this.debouncedSaveFlow = _.debounce(this.saveFlow, 1000);
 
         this.deploy = function(){
             return $http.post("/api/flow_deploys");

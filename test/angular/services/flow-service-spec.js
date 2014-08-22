@@ -19,69 +19,6 @@ describe('FlowService', function () {
     });
   });
 
-  describe('saveAllFlows', function () {
-    describe('when it receives one workspace', function () {
-      it('call $http.put for each flow', function (done) {
-        $httpBackend.expectPUT("/api/flows/my-uuid").respond(204);
-
-        var workspace = {flowId: "my-uuid", name: "Sheet 1", nodes: [], links: []};
-
-        sut.saveAllFlows([workspace]).then(function(){
-          done();
-        }, done);
-
-        $httpBackend.flush();
-      });
-
-      afterEach(function () {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
-      });
-    });
-
-    describe('when it receives two workspaces', function () {
-      it('call $http.get for each flow', function (done) {
-        $httpBackend.expectPUT("/api/flows/one-value").respond(204);
-        $httpBackend.expectPUT("/api/flows/two-value").respond(204);
-        var workspaces = [
-          {flowId: "one-value", name: "Sheet 1", nodes: [], links: []},
-          {flowId: "two-value", name: "Sheet 1", nodes: [], links: []}
-        ];
-
-        sut.saveAllFlows(workspaces).then(function(){
-          done();
-        }, done);
-
-        $httpBackend.flush();
-      });
-
-      afterEach(function () {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
-      });
-    });
-  });
-
-  describe('saveAllFlowsAndDeploy', function () {
-    it('should $http.put for each flow', function (done) {
-      $httpBackend.expectPUT("/api/flows/my-uuid").respond(204);
-      $httpBackend.expectPOST("/api/flow_deploys").respond(201);
-
-      var workspace = {flowId: "my-uuid", name: "Sheet 1", nodes: [], links: []};
-      sut.saveAllFlowsAndDeploy([workspace]).then(function(){
-        done();
-      }, done);
-
-      $httpBackend.flush();
-      $httpBackend.flush();
-    });
-
-    afterEach(function () {
-      $httpBackend.verifyNoOutstandingExpectation();
-      $httpBackend.verifyNoOutstandingRequest();
-    });
-  });
-
   describe('#getAllFlows', function () {
     it('should return an array', function (done) {
       $httpBackend.expectGET('/api/flows').respond(200, ['hi']);

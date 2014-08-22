@@ -146,7 +146,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      FlowService.saveAllFlows($scope.flows);
+      FlowService.saveFlow($scope.activeFlow);
     };
 
     $scope.setMousePosition = function(e) {
@@ -158,4 +158,6 @@ angular.module('octobluApp')
       $scope.currentMouseX = null;
       $scope.currentMouseY = null;
     };
+
+    $scope.$watch('activeFlow', FlowService.debouncedSaveFlow, true);
   });
