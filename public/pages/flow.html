@@ -44,20 +44,20 @@
                 <button type="button" class="btn btn-default dropdown-toggle button-shadow" data-toggle="dropdown" tooltip="Other Flows" tooltip-placement="bottom">
                    <i class="fa fa-th-large fa-lg"></i>
                 </button>
-                <ul class="dropdown-menu flow-menu" role="menu">
+                <ul class="dropdown-menu dropdown-menu-right flow-menu" role="menu">
                     <li class="flow-menu-item" ng-repeat="flow in flows">
                         <a href ng-click="setActiveFlow(flow)">{{flow.name}}</a>
                     </li>
                 </ul>
             </div>
             <div class="btn-group">
-                <button ng-click="restart()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" tooltip="Restart" tooltip-placement="bottom">
+                <button ng-click="restart()" class="btn btn-default button-shadow" tooltip="Restart" tooltip-placement="bottom">
                     <i class="fa fa-repeat"></i>
                 </button>
-                <button ng-click="stop()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" tooltip="Stop" tooltip-placement="bottom">
+                <button ng-click="stop()" class="btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
                     <i class="fa fa-stop"></i>
                 </button>
-                <button ng-click="deploy()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" tooltip="Start" tooltip-placement="bottom">
+                <button ng-click="start()" class="btn btn-default button-shadow" tooltip="Start" tooltip-placement="bottom">
                    <i class="fa fa-play"></i>
                </button>
            </div>

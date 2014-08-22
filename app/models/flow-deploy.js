@@ -53,13 +53,25 @@ var FlowDeploy = function(options){
     return self.finalTransformation(convertedNode);
   };
 
-  self.deployFlow = function(flow, token){
+  self.startFlow = function(flow, token){
+    self.sendMessage(flow, token, 'nodered-instance-start');
+  };
+
+  self.stopFlow = function(flow, token){
+    self.sendMessage(flow, token, 'nodered-instance-stop');
+  };
+
+  self.restartFlow = function(flow, token){
+    self.sendMessage(flow, token, 'nodered-instance-restart');
+  };
+
+  self.sendMessage = function(flow, token, topic) {
     meshblu.devices({}, function(data){
       managerDevices = _.where(data.devices, {type: 'nodered-docker-manager'});
       devices = _.pluck(managerDevices, 'uuid');
       var msg = {
         devices: devices,
-        topic: "nodered-instance-restart",
+        topic: topic,
         qos: 0
       };
       msg.payload = {
@@ -93,25 +105,48 @@ var FlowDeploy = function(options){
   self.registerFlow = function(flow, callback) {
     meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID}, callback);
   };
+
+  self.unregisterFlow = function(flow, token) {
+    meshblu.unregister({uuid: flow.flowId, token: token});
+  };
 };
 
-FlowDeploy.deploy = function(userUUID, userToken, flows, meshblu){
+FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
   var flowDeploy;
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
   deviceCollection = new DeviceCollection(userUUID);
   deviceCollection.fetch().then(function(myDevices){
-    _.each(flows, function(flow){
-      flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
-      if (flowDevice) {
-        flowDeploy.deployFlow(flow, flowDevice.token);
-      } else {
-        flowDeploy.registerFlow(flow, function(flowDevice){
-          flowDeploy.deployFlow(flow, flowDevice.token);
-        });
-      }
-    });
+    flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
+    if (flowDevice) {
+      flowDeploy.startFlow(flow, flowDevice.token);
+    } else {
+      flowDeploy.registerFlow(flow, function(flowDevice){
+        flowDeploy.startFlow(flow, flowDevice.token);
+      });
+    }
   });
+};
+
+FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
+  var flowDeploy;
+
+  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
+  deviceCollection = new DeviceCollection(userUUID);
+  deviceCollection.fetch().then(function(myDevices){
+    flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
+    if (flowDevice) {
+      flowDeploy.stopFlow(flow, flowDevice.token);
+      flowDeploy.unregisterFlow(flow);
+    }
+  });
+};
+
+FlowDeploy.restart = function(userUUID, userToken, flow, meshblu){
+  var flowDeploy;
+
+  FlowDeploy.stop(userUUID, userToken, flow, meshblu);
+  FlowDeploy.start(userUUID, userToken, flow, meshblu);
 };
 
 module.exports = FlowDeploy;

@@ -3,24 +3,18 @@ var _ = require('underscore');
 var mongoose = require('mongoose');
 
 describe('flowDeployController', function () {
-  describe('create', function () {
-    var sut, res, db, Flow, FakeFlowDeploy, fakeMeshblu;
+  describe('startInstance', function () {
+    var sut, res, db, Flow, FlowSchema, FakeFlowDeploy, fakeMeshblu;
 
-    before(function (done) {
+    before(function () {
       db = mongoose.createConnection();
-      Flow = db.model('Flow', require('../../app/models/flow'));
-      db.open('localhost', 'octoblu_test', done);
-    });
-
-    beforeEach(function (done) {
-      Flow.remove(done);
+      FlowSchema = db.model('Flow', require('../../app/models/flow'));
+      Flow = db.model('Flow', FlowSchema);
     });
 
     beforeEach(function () {
       FakeFlowDeploy = {
-        deploy: function(){
-          FakeFlowDeploy.deploy.calledWith = _.values(arguments);
-        }
+        start: sinon.spy()
       }
 
       fakeMeshblu = new FakeMeshBlu();
@@ -32,34 +26,22 @@ describe('flowDeployController', function () {
     });
 
     describe('with a flow owned by the user', function () {
-      beforeEach(function (done) {
-        var flow = new Flow({
-          flowId: 'fake',
-          resource: {
-            owner: {
-              uuid: 'some.uuid'
-            }
-          }
-        });
-        flow.save(done);
-
-        fakeGetFlows = function(uuid, callback){
-          callback([{
-            flowId: 'fake',
-            resource: {
-              owner: {
-                uuid: 'some.uuid'
-              }
-            }
-          }]);
-        }
-        sinon.stub(sut, 'getFlows', fakeGetFlows);
+      var stub, fakeFindOne;
+      beforeEach(function () {
+        fakeFindOne = function(flow, callback) {
+          callback({}, {flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}})
+        };
+        stub = sinon.stub(Flow, 'findOne', fakeFindOne);
       });
+
+      afterEach(function(){
+        Flow.findOne.restore();
+      })
 
       describe('an authorized request', function () {
         beforeEach(function () {
-          var req = {user: {skynet: {uuid: 'some.uuid', token: 'some.hobit'}}};
-          sut.create(req, res);
+          var req = {params: {id: 'fake'}, user: {skynet: {uuid: 'some.uuid', token: 'some.hobit'}}};
+          sut.startInstance(req, res);
         });
 
         it('should return a 201', function() {
@@ -67,10 +49,12 @@ describe('flowDeployController', function () {
         });
 
         it('should call FlowDeploy.deploy with the user uuid and token', function () {
-          expect(FakeFlowDeploy.deploy.calledWith[0]).to.equal('some.uuid');
-          expect(FakeFlowDeploy.deploy.calledWith[1]).to.equal('some.hobit');
-          expect(FakeFlowDeploy.deploy.calledWith[2]).to.deep.equal([{flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}}]);
-          expect(FakeFlowDeploy.deploy.calledWith[3]).to.equal(fakeMeshblu);
+          expect(FakeFlowDeploy.start).to.be.calledWith(
+            'some.uuid',
+            'some.hobit',
+            {flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}},
+            fakeMeshblu
+          );
         });
       });
     });
