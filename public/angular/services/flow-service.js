@@ -10,8 +10,16 @@ angular.module('octobluApp')
 
         this.debouncedSaveFlow = _.debounce(this.saveFlow, 1000);
 
-        this.deploy = function(){
-            return $http.post("/api/flow_deploys");
+        this.start = function(flow){
+            return $http.post("/api/flows/" + flow.flowId + '/instance');
+        };
+
+        this.stop = function(flow){
+            return $http.delete("/api/flows/" + flow.flowId + '/instance');
+        };
+
+        this.restart = function(flow){
+            return $http.put("/api/flows/" + flow.flowId + '/instance');
         };
 
         this.getAllFlows = function () {
