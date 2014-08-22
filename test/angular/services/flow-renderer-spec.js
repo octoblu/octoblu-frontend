@@ -73,9 +73,9 @@ describe('FlowRenderer', function () {
     });
 
     it('should call render on FlowLinkRenderer', function () {
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link1, flow.nodes);
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link2, flow.nodes);
-      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link3, flow.nodes);
+      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link1, flow);
+      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link2, flow);
+      expect(FakeFlowLinkRenderer.render).to.have.been.calledWith(renderScope, link3, flow);
     });
   });
 });

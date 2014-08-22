@@ -55,13 +55,14 @@ angular.module('octobluApp')
         toCoordinateCurveStart, toCoordinate]);
     };
 
-    _this.render = function (renderScope, link, flowNodes) {
-      var path = linkPath(link, flowNodes)
+    _this.render = function (renderScope, link, flow) {
+      var path = linkPath(link, flow.nodes)
       if (!path){
         return;
       }
       return renderScope.append('path')
                         .classed('flow-link', true)
+                        .classed('selected', (link === flow.selectedLink))
                         .attr('d', path);
     };
 
