@@ -17,9 +17,13 @@ angular.module('octobluApp')
           }
         });
 
-        scope.$watch('selectedFlowNodeType', function(newFlowNodeType, oldFlowNodeType){
-          if (_.isObject(newFlowNodeType)) {
-            var newFlowNode = FlowNodeTypeService.createFlowNode(newFlowNodeType);
+        scope.$watch('omniSearch', function(newItem){
+          if (!_.isObject(newItem)){ return; }
+
+          if(newItem.id){
+            scope.flow.selectedFlowNode = newItem;
+          } else {
+            var newFlowNode = FlowNodeTypeService.createFlowNode(newItem);
             scope.flow.addNode(newFlowNode);
           }
         });
