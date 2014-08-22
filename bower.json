@@ -51,7 +51,9 @@
     "mousetrap": "~1.4.6"
   },
   "resolutions": {
-    "d3": "~3.4.8"
+    "d3": "~3.4.8",
+    "jquery-ui": "~1.10.4",
+    "jquery": "~2.1.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",

@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .service('LinkRenderer', function () {
+  .service('LinkRenderer', function (FlowNodeDimensions) {
 
     var renderLine = d3.svg.line()
       .x(function (coordinate) {
@@ -14,7 +14,7 @@ angular.module('octobluApp')
     function linkPath(from, to) {
 
       var fromCoordinateCurveStart = {
-        x: from.x + 20,
+        x: from.x + FlowNodeDimensions.minHeight,
         y: from.y
       };
 
@@ -24,7 +24,7 @@ angular.module('octobluApp')
       };
 
       var toCoordinateCurveStart = {
-        x: toCoordinate.x - 20,
+        x: toCoordinate.x - FlowNodeDimensions.minHeight,
         y: toCoordinate.y
       };
 

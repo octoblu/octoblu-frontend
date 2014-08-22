@@ -5,7 +5,7 @@ var DeviceCollection = require('./device-collection');
 var config = require('../../config/auth')();
 
 var NodeCollection = function (userUUID) {
-  var self = this, timeout = config.promiseTimeout;
+  var self = this;
 
   self.fetch = function () {
     return when.all([self.getDevices(), self.getChannels()]).then(function (nodeResults) {
@@ -25,7 +25,7 @@ var NodeCollection = function (userUUID) {
       .then(function (devices) {
         return _.map(devices, self.convertDeviceToNode);
       });
-  }
+  };
 
   self.getChannels = function () {
     var channelCollection = self.getChannelCollection();
@@ -34,7 +34,7 @@ var NodeCollection = function (userUUID) {
       .then(function (channels) {
         return _.map(channels, self.convertChannelToNode);
       });
-  }
+  };
 
   self.convertChannelToNode = function(channel) {
     return _.extend({}, channel, {type: 'channel'});

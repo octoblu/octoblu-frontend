@@ -37,7 +37,7 @@ angular.module('octobluApp')
       };
 
       var fromCoordinateCurveStart = {
-        x: fromCoordinate.x + FlowNodeDimensions.portHeight,
+        x: fromCoordinate.x + FlowNodeDimensions.minHeight,
         y: fromCoordinate.y
       };
 
@@ -48,7 +48,7 @@ angular.module('octobluApp')
       };
 
       var toCoordinateCurveStart = {
-        x: toCoordinate.x - FlowNodeDimensions.portHeight,
+        x: toCoordinate.x - FlowNodeDimensions.minHeight,
         y: toCoordinate.y
       };
       return renderLine([fromCoordinate, fromCoordinateCurveStart,
