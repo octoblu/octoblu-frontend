@@ -5,4 +5,9 @@
       <button class="btn btn-primary button-shadow" type="button"><i class="fa fa-search"></i></button>
     </span>
   </div>
-</div>
+
+  <div ng-show="flow.selectedFlowNode">
+    <br>
+    <flow-node-editor flow-node="flow.selectedFlowNode" ></flow-node-editor>
+  </div>
+ </div>

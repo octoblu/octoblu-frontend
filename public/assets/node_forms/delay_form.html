@@ -1,16 +1,16 @@
 <div class="form-group">
   <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowEditor.editorNode.name">
+  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
 </div>
 
 <div class="form-group">
   <label for="timeout">Timeout</label>
-  <input  id="timeout" class="form-control" type="number" ng-model="flowEditor.editorNode.timeout" required>
+  <input  id="timeout" class="form-control" type="number" ng-model="flowNode.timeout" required>
 </div>
 
 <div class="form-group">
   <label for="timeoutUnits">Units</label>
-  <select id="timeoutUnits" name="timeoutUnits" class="form-control" ng-model="flowEditor.editorNode.timeoutUnits" required>
+  <select id="timeoutUnits" name="timeoutUnits" class="form-control" ng-model="flowNode.timeoutUnits" required>
     <option value="milliseconds">Milliseconds</option>
     <option value="seconds">Seconds</option>
     <option value="minutes">Minutes</option>

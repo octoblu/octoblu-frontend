@@ -79,18 +79,18 @@ describe('FlowController', function () {
       scope.deleteSelection();
     });
 
-    describe('when there is a selectedNode', function () {
+    describe('when there is a selectedFlowNode', function () {
       var node1;
 
       beforeEach(function () {
         node1 = {some: 'node'};
         scope.activeFlow = {flowId: '123', nodes: [node1], links: []};
-        scope.flowEditor.selectedNode = node1;
+        scope.activeFlow.selectedFlowNode = node1;
       });
 
-      it('should set the selectedNode to null', function () {
+      it('should set the selectedFlowNode to null', function () {
         scope.deleteSelection();
-        expect(scope.flowEditor.selectedNode).to.be.null;
+        expect(scope.activeFlow.selectedFlowNode).to.be.null;
       });
 
       it('should delete the node from flow.nodes', function () {
@@ -106,7 +106,7 @@ describe('FlowController', function () {
 
         describe('when node1 is selected', function () {
           beforeEach(function () {
-            scope.flowEditor.selectedNode = node1;
+            scope.activeFlow.selectedFlowNode = node1;
           });
 
           it('should delete node1', function () {
@@ -118,7 +118,7 @@ describe('FlowController', function () {
 
         describe('when node2 is selected', function () {
           beforeEach(function () {
-            scope.flowEditor.selectedNode = node2;
+            scope.activeFlow.selectedFlowNode = node2;
           });
 
           it('should delete node2', function () {
@@ -134,12 +134,12 @@ describe('FlowController', function () {
       beforeEach(function () {
         link1 = {some: 'link'};
         scope.activeFlow = {flowId: '123', nodes: [], links: [link1]};
-        scope.flowEditor.selectedLink = link1;
+        scope.activeFlow.selectedLink = link1;
       });
 
       it('should clear the selected link', function () {
         scope.deleteSelection();
-        expect(scope.flowEditor.selectedLink).to.be.null;
+        expect(scope.activeFlow.selectedLink).to.be.null;
       });
 
       it('should delete the link from flow.links', function () {
@@ -155,7 +155,7 @@ describe('FlowController', function () {
 
         describe('when link1 is selected', function () {
           beforeEach(function () {
-            scope.flowEditor.selectedLink = link1;
+            scope.activeFlow.selectedLink = link1;
           });
 
           it('should delete link1', function () {
@@ -167,7 +167,7 @@ describe('FlowController', function () {
 
         describe('when link2 is selected', function () {
           beforeEach(function () {
-            scope.flowEditor.selectedLink = link2;
+            scope.activeFlow.selectedLink = link2;
           });
 
           it('should delete link2', function () {

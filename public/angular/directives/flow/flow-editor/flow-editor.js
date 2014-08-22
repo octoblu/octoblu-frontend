@@ -7,10 +7,7 @@ angular.module('octobluApp')
       templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
       replace: true,
       scope: {
-        flow: '=',
-        selectedNode: '=',
-        selectedLink: '=',
-        zoomLevel : '='
+        flow: '='
       },
 
       link: function ($scope, element) {
@@ -53,14 +50,14 @@ angular.module('octobluApp')
         });
 
         flowRenderer.on('nodeSelected', function (flowNode) {
-          $scope.selectedLink = null;
-          $scope.selectedNode = flowNode;
+          $scope.flow.selectedLink = null;
+          $scope.flow.selectedFlowNode = flowNode;
           $scope.$apply();
         });
 
         flowRenderer.on('linkSelected', function (flowLink) {
-          $scope.selectedNode = null;
-          $scope.selectedLink = flowLink;
+          $scope.flow.selectedFlowNode = null;
+          $scope.flow.selectedLink = flowLink;
           $scope.$apply();
         });
 

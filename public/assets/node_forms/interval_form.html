@@ -1,28 +1,28 @@
 <div class="form-group">
   <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowEditor.editorNode.name">
+  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
 </div>
 
 <div class="form-group">
   <label for="repeat">Interval (in seconds)</label>
-  <input  id="repeat" class="form-control" type="number" ng-model="flowEditor.editorNode.repeat" required>
+  <input  id="repeat" class="form-control" type="number" ng-model="flowNode.repeat" required>
 </div>
 
 <div class="form-group">
   <label for="payloadType">Payload</label>
-  <select id="payloadType" name="payloadType" ng-model="flowEditor.editorNode.payloadType" class="form-control" required>
+  <select id="payloadType" name="payloadType" ng-model="flowNode.payloadType" class="form-control" required>
     <option value="date">Timestamp</option>
     <option value="none">Blank</option>
     <option value="string">String</option>
   </select>
 </div>
 
-<div class="form-group" ng-show="flowEditor.editorNode.payloadType === 'string'">
+<div class="form-group" ng-show="flowNode.payloadType === 'string'">
   <label for="payload">Payload</label>
-  <input  id="payload" class="form-control" type="text" ng-model="flowEditor.editorNode.payload">
+  <input  id="payload" class="form-control" type="text" ng-model="flowNode.payload">
 </div>
 
 <div class="form-group">
   <label for="topic">Topic</label>
-  <input  id="topic" class="form-control" type="text" ng-model="flowEditor.editorNode.topic">
+  <input  id="topic" class="form-control" type="text" ng-model="flowNode.topic">
 </div>
