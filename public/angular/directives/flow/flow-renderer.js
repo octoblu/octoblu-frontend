@@ -27,7 +27,7 @@ angular.module('octobluApp')
             dispatch.nodeButtonClicked(node);
           });
         }
-      };
+      }
 
       function addLinkClickBehavior(linkElement, link) {
         linkElement.on('click', function () {
