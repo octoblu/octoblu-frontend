@@ -36,6 +36,10 @@ angular.module('octobluApp')
       $scope.flows.push(FlowService.newFlow({name: name}));
     };
 
+    $scope.setActiveFlow = function(flow){
+      $scope.activeFlow = flow;
+    };
+
     $scope.isActiveFlow = function (flow) {
       return flow === $scope.activeFlow;
     };

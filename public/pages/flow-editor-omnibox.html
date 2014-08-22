@@ -1,0 +1,3 @@
+<div>
+    <input type="text" ng-model="selectedNode" placeholder="Search" typeahead="nodeName as node.name for node in nodes | filter : {name : $viewValue }" typeahead-template-url="pages/omnibox-item.html" class="form-control">
+</div>

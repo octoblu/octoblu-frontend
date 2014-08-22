@@ -1,4 +1,4 @@
-<div class="design2 designer-container full-height">
+<div class="design2 designer-container">
     <!--<link href="/assets/design/jquery/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" media="screen"/>-->
     <!--<link rel="stylesheet" type="text/css" href="/assets/design/orion/built-editor.css"/>-->
     <!-- <link rel="stylesheet" href="/assets/design/style.css"/> -->
@@ -14,7 +14,7 @@
                 </button>
                 <ul class="dropdown-menu flow-menu" role="menu">
                     <li class="flow-menu-item" ng-repeat="flow in flows">
-                        <a href>{{flow.name}}</a>
+                        <a href ng-click="setActiveFlow(flow)">{{flow.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -37,26 +37,11 @@
     </div>
 
     <div class="full-height" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
+        <flow-editor-omnibox nodes="flowNodeTypes"></flow-editor-omnibox>
+    <!--<div id="main-container" class="main-container" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">-->
         <!--<flow-node-palette flow-node-types="flowNodeTypes"></flow-node-palette>-->
         <div class="workspace-container">
             <flow-editor zoom-level="zoomLevel" flow="activeFlow" selected-node="flowEditor.selectedNode" selected-link="flowEditor.selectedLink"></flow-editor>
         </div>
-
-        <!--<div id="sidebar" class="edit-panel flow-node-editor flow-node-editor-{{flowEditor.selectedNode.type}}" ng-controller="flowNodeEditorController" ng-show="flowEditor.selectedNode">-->
-            <!--<div class="node-editor panel panel-default">-->
-                <!--<div class="panel-heading">Edit Node</div>-->
-                <!--<div class="panel-body">-->
-                    <!--<form ng-submit="updateNode()" class="form">-->
-                        <!--<div ng-include="flowEditor.flowNodeType.formTemplatePath"></div>-->
-                        <!--<div class="form-group debug-node-form">-->
-                            <!--<label for="debug-node">Debug</label>-->
-                            <!--<input  id="debug-node" class="form-control" type="checkbox"-->
-                                    <!--ng-model="flowEditor.editorNode.debug">-->
-                        <!--</div>-->
-                        <!--<button type="submit" class="btn btn-lg btn-block btn-primary">Update Node</button>-->
-                    <!--</form>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </div>
