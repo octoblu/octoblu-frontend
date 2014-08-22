@@ -198,6 +198,7 @@ angular.module('octobluApp')
           .append('g')
           .classed('flow-node', true)
           .classed('flow-node-' + node.class, true)
+          .classed('selected', (node === flow.selectedFlowNode))
           .attr('id', 'node-' + node.id)
           .attr('transform', 'translate(' + node.x + ',' + node.y + ')');
 

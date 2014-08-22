@@ -18,12 +18,12 @@ describe('FlowLinkRenderer', function () {
     });
 
     it('should render a link', function () {
-      sut.render(renderScope, {from: '1', to: '1'}, [
-        {id: '1'}
-      ]);
+      var flow = {nodes: [{id: '1'} ]};
+      sut.render(renderScope, {from: '1', to: '1'}, flow);
       expect(renderScope.selectAll('.flow-link').data().length).to.equal(1);
     });
   });
+
   describe('A link positioned on an input', function () {
     var renderLine;
 
@@ -61,11 +61,10 @@ describe('FlowLinkRenderer', function () {
     });
 
     it('should render a link from the correct port', function () {
-      sut.render(renderScope,
-        {from: '1', to: '1', fromPort: '0'},
-        [
-          {id: '1', x: 0, y: 0, inputLocations: [15], outputLocations: [15]}
-        ]);
+      var flow = {nodes: [
+        {id: '1', x: 0, y: 0, inputLocations: [15], outputLocations: [15]}
+      ]};
+      sut.render(renderScope, {from: '1', to: '1', fromPort: '0'}, flow);
       var link = $(renderScope.selectAll('.flow-link')[0]);
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
@@ -74,12 +73,12 @@ describe('FlowLinkRenderer', function () {
     });
 
     it('should render a link from the correct port when 2 nodes', function () {
-      sut.render(renderScope,
-        {from: '1', to: '2', fromPort: '0', toPort: '1'},
-        [
-          {id: '1', x: 0, y: 0, outputLocations: [15]},
-          {id: '2', x: 0, y: 0, inputLocations: [15,30]}
-        ]);
+      var flow = {nodes: [
+        {id: '1', x: 0, y: 0, outputLocations: [15]},
+        {id: '2', x: 0, y: 0, inputLocations: [15,30]}
+      ]};
+
+      sut.render(renderScope, {from: '1', to: '2', fromPort: '0', toPort: '1'}, flow);
       var link = $(renderScope.selectAll('.flow-link')[0]);
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
@@ -88,12 +87,12 @@ describe('FlowLinkRenderer', function () {
     });
 
     it('should render a link from the correct port when 2 nodes are not at 0,0', function () {
-      sut.render(renderScope,
-        {from: '1', to: '2', fromPort: '0', toPort: '1'},
-        [
-          {id: '1', x: 100, y: 100, outputLocations: [15]},
-          {id: '2', x: 200, y: 200, inputLocations: [15,30]}
-        ]);
+      var flow = {nodes: [
+        {id: '1', x: 100, y: 100, outputLocations: [15]},
+        {id: '2', x: 200, y: 200, inputLocations: [15,30]}
+      ]};
+
+      sut.render(renderScope, {from: '1', to: '2', fromPort: '0', toPort: '1'}, flow);
       var link = $(renderScope.selectAll('.flow-link')[0]);
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
