@@ -5,16 +5,20 @@ angular.module('octobluApp')
       replace: true,
       templateUrl: '/pages/flow-editor-omnibox.html',
       scope : {
-        nodes : '='
+        flowNodeTypes : '=',
+        flow : '='
       },
       link: function (scope, element) {
         scope.filterResults = function(searchText){
           var filterRegex = new RegExp(searchText);
-          var filteredNodes = _.filter(scope.nodes, function(node){
-            return filterRegex.test(node.defaults.type) || filterRegex.test(node.category) || filterRegex.test(node.name);
+          return _.filter(scope.flowNodeTypes, function(flowNodeType){
+            return filterRegex.test(flowNodeType.defaults.type) || filterRegex.test(flowNodeType.category) || filterRegex.test(flowNodeType.name);
           });
-          return filteredNodes;
-        }
+        };
+
+        scope.$watch('selectedFlowNodeType', function(newFlowNodeType, oldFlowNodeType){
+          console.log("selected", newFlowNodeType);
+        });
       }
     };
   });
