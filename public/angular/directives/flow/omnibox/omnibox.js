@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditorOmnibox', function () {
+  .directive('flowEditorOmnibox', function (FlowNodeTypeService) {
     return {
       restrict: 'E',
       replace: true,
@@ -17,7 +17,10 @@ angular.module('octobluApp')
         };
 
         scope.$watch('selectedFlowNodeType', function(newFlowNodeType, oldFlowNodeType){
-          console.log("selected", newFlowNodeType);
+          if (_.isObject(newFlowNodeType)) {
+            var newFlowNode = FlowNodeTypeService.createFlowNode(newFlowNodeType);
+            scope.flow.addNode(newFlowNode);
+          }
         });
       }
     };
