@@ -6,22 +6,42 @@
 
     <div class="zoom-toolbar">
         <div class="btn-group-vertical">
-                <button ng-click="zoomIn()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" title="Zoom In" tooltip="Zoom In" tooltip-placement="left">
+                <button ng-click="zoomIn()" class="btn btn-default button-shadow" tooltip="Zoom In" tooltip-placement="left">
                         <i class="fa fa-plus"></i>
                 </button>
-                <button ng-click="zoomOut()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" title="Zoom Out" tooltip="Zoom Out" tooltip-placement="left">
+                <button ng-click="zoomOut()" class="btn btn-default button-shadow" tooltip="Zoom Out" tooltip-placement="left">
                     <i class="fa fa-minus"></i>
                 </button>
         </div>
     </div>
 
+    <div class="logo-toolbar">
+        <img src="/assets/images/octoblu.png" height="50px"/>
+    </div>
+
     <div class="flow-toolbar">
         <div class="btn-toolbar">
-            <!--<button w-mousetrap="{'ctrl+s': save}" ng-click="save()" class="btn btn-lg btn-default">-->
-                <!--<i class="fa fa-floppy-o"></i> Save-->
-            <!--</button>-->
+
+          <div class="btn-group">
+            <a class="btn btn-default button-shadow" href ui-sref="ob.connector.nodes.all" tooltip="Connect" tooltip-placement="bottom">
+              <i class="fa fa-code-fork fa-lg"></i>
+            </a>
+            <a class="btn btn-default button-shadow" href ui-sref="ob.process" tooltip="Process" tooltip-placement="bottom">
+              <i class="fa fa-tasks fa-lg"></i>
+            </a>
+            <a class="btn btn-default button-shadow" href ui-sref="ob.analyze" tooltip="Analyze" tooltip-placement="bottom">
+              <i class="fa fa-bar-chart-o fa-lg"></i>
+            </a>
+            <a class="btn btn-default button-shadow" href ui-sref="ob.admin.all" tooltip="Admin" tooltip-placement="bottom">
+              <i class="fa fa-lock fa-lg"></i>
+            </a>
+            <a class="btn btn-default button-shadow" href ui-sref="ob.community" tooltip="Community" tooltip-placement="bottom">
+              <i class="fa fa-group fa-lg"></i>
+            </a>
+          </div>
+
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle button-shadow" data-toggle="dropdown" title="Flows" tooltip="Other Flows" tooltip-placement="bottom">
+                <button type="button" class="btn btn-default dropdown-toggle button-shadow" data-toggle="dropdown" tooltip="Other Flows" tooltip-placement="bottom">
                    <i class="fa fa-th-large fa-lg"></i>
                 </button>
                 <ul class="dropdown-menu flow-menu" role="menu">
@@ -31,13 +51,13 @@
                 </ul>
             </div>
             <div class="btn-group">
-                <button ng-click="restart()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" title="Restart" tooltip="Restart" tooltip-placement="bottom">
+                <button ng-click="restart()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" tooltip="Restart" tooltip-placement="bottom">
                     <i class="fa fa-repeat"></i>
                 </button>
-                <button ng-click="stop()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" title="Stop" tooltip="Stop" tooltip-placement="bottom">
+                <button ng-click="stop()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" tooltip="Stop" tooltip-placement="bottom">
                     <i class="fa fa-stop"></i>
                 </button>
-                <button ng-click="deploy()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" title="Start" tooltip="Start" tooltip-placement="bottom">
+                <button ng-click="deploy()" id="btn-deploy" class="btn btn-default btn-deploy button-shadow" tooltip="Start" tooltip-placement="bottom">
                    <i class="fa fa-play"></i>
                </button>
            </div>

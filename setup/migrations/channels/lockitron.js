@@ -54,12 +54,12 @@ var record = {
     "baseURL": "https://api.lockitron.com",
 
     // Production
-    "clientId": "938cd6030161ec9bfc5c4e78e277762145f9b23d7caf3bb66a9333c034b6f9b1",
-    "secret": "6a73aac43c7f1a25b5d5ce21d583d30f8278808e0faca81a5c8e34e885fb7c14",
+    // "clientId": "938cd6030161ec9bfc5c4e78e277762145f9b23d7caf3bb66a9333c034b6f9b1",
+    // "secret": "6a73aac43c7f1a25b5d5ce21d583d30f8278808e0faca81a5c8e34e885fb7c14",
 
     // Development
-    // "clientId": "0b58a8b923eabf8c3ac9f8b19d9c5006198bb9aad8037a2e279eec6607668197",
-    // "secret": "d8d36ebd7509e64ee35f63c21beea032564683121a4b6ef52fed18588266ad83",
+    "clientId": "0b58a8b923eabf8c3ac9f8b19d9c5006198bb9aad8037a2e279eec6607668197",
+    "secret": "d8d36ebd7509e64ee35f63c21beea032564683121a4b6ef52fed18588266ad83",
 
     "scope": "",
     "tokenMethod": "access_token_query",
