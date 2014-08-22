@@ -11,22 +11,16 @@ describe('FlowDeploy', function () {
     };
   });
 
-  describe('convertFlows', function () {
+  describe('convertFlow', function () {
     var sut;
     beforeEach(function () {
       sut = new FlowDeploy();
     });
 
-    describe('when it is called with nothing', function () {
-      it('should return an empty array', function () {
-        expect(sut.convertFlows()).to.deep.equal([]);
-      });
-    });
-
     describe('when it is called with one flow with no nodes or links', function () {
       it('should return a converted flow', function () {
         var flow = {flowId: '1234', name: 'mah flow', nodes:[], links: []};
-        expect(sut.convertFlows([flow])).to.deep.equal([{id: '1234', label: 'mah flow', type: 'tab'}]);
+        expect(sut.convertFlow(flow)).to.deep.equal([{id: '1234', label: 'mah flow', type: 'tab'}]);
       });
     });
 
@@ -36,7 +30,7 @@ describe('FlowDeploy', function () {
         var flow = {flowId: '55235', name: 'mah notha flow', nodes:[node], links: []};
 
         var convertedNode = {"id":"4848bef2.b7b74","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"55235","wires":[]};
-        expect(sut.convertFlows([flow])).to.deep.equal([{id: '55235', label: 'mah notha flow', type: 'tab'}, convertedNode]);
+        expect(sut.convertFlow(flow)).to.deep.equal([{id: '55235', label: 'mah notha flow', type: 'tab'}, convertedNode]);
       });
     });
 
@@ -49,7 +43,7 @@ describe('FlowDeploy', function () {
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
         var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
         var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
-        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
+        expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
 
@@ -63,7 +57,7 @@ describe('FlowDeploy', function () {
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
         var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2']]};
         var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
-        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
+        expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
 
@@ -78,7 +72,7 @@ describe('FlowDeploy', function () {
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
         var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2'], ['node2']]};
         var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
-        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
+        expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
 
@@ -92,7 +86,7 @@ describe('FlowDeploy', function () {
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
         var convertedNode1 = {"id":"node1","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[[], ['node2']]};
         var convertedNode2 = {"id":"node2","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
-        expect(sut.convertFlows([flow])).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
+        expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
 
@@ -101,7 +95,7 @@ describe('FlowDeploy', function () {
         it('should remap the type to inject', function () {
           var node = {"id":"buttonNode","type":"button","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
           var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
-          var convertedNode = sut.convertFlows([flow])[1];
+          var convertedNode = sut.convertFlow(flow)[1];
           expect(convertedNode.type).to.equal('inject');
         });
       });
@@ -110,7 +104,7 @@ describe('FlowDeploy', function () {
         it('should remap the type to inject', function () {
           var node = {"id":"intervalNode","type":"interval","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
           var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
-          var convertedNode = sut.convertFlows([flow])[1];
+          var convertedNode = sut.convertFlow(flow)[1];
           expect(convertedNode.type).to.equal('inject');
         });
       });
@@ -119,28 +113,9 @@ describe('FlowDeploy', function () {
         it('should remap the type to inject', function () {
           var node = {"id":"scheduleNode","type":"schedule","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
           var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
-          var convertedNode = sut.convertFlows([flow])[1];
+          var convertedNode = sut.convertFlow(flow)[1];
           expect(convertedNode.type).to.equal('inject');
         });
-      });
-    });
-  });
-
-  describe('deployFlows', function () {
-    var sut;
-
-    describe('deploying to designer', function() {
-      var fakeMeshblu;
-
-      beforeEach(function () {
-        var config = {host: 'http://designer.octoblu.com'};
-        fakeMeshblu = new FakeMeshblu();
-        sut = new FlowDeploy({config: config, userUUID: '3838', userToken: 'something', request: FakeRequest, port: '1880', meshblu: fakeMeshblu});
-      });
-
-      it('should call post on the designer', function () {
-        sut.deployFlows([]);
-        expect(fakeMeshblu.message).to.have.been.called;
       });
     });
   });
@@ -173,7 +148,7 @@ describe('FlowDeploy', function () {
     });
   });
 
-  describe('registerFlows', function () {
+  describe('registerFlow', function () {
     var sut, fakeMeshblu;
 
     beforeEach(function () {
@@ -181,13 +156,9 @@ describe('FlowDeploy', function () {
       sut = new FlowDeploy({meshblu: fakeMeshblu, userUUID: 'useruuid'});
     });
 
-    it('should be have a <function></function>', function () {
-      sut.registerFlows();
-    });
-
     describe('when a flow', function(){
       beforeEach(function () {
-        sut.registerFlows([{flowId: 'hello.world'}]);
+        sut.registerFlow({flowId: 'hello.world'});
       });
 
       it('should call register', function () {
@@ -199,17 +170,12 @@ describe('FlowDeploy', function () {
       });
     });
 
-    describe('when an owl', function(){
+    describe('when another flow', function(){
       beforeEach(function () {
-        sut.registerFlows([{flowId: 'something'}, {flowId: 'else'}]);
-      });
-
-      it('should call register twice', function () {
-        expect(fakeMeshblu.register).to.have.been.calledTwice;
+        sut.registerFlow({flowId: 'else'});
       });
 
       it('should call register with the flowId', function () {
-        expect(fakeMeshblu.register).to.have.been.calledWith({uuid: 'something', type: 'octoblu:flow', owner: 'useruuid'});
         expect(fakeMeshblu.register).to.have.been.calledWith({uuid: 'else', type: 'octoblu:flow', owner: 'useruuid'});
       });
     });

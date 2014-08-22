@@ -1,3 +1,6 @@
+var _ = require('lodash'),
+DeviceCollection = require('../collections/device-collection');
+
 var FlowDeploy = function(options){
   var LEGACY_TYPES = {
     'button'   : 'inject',
@@ -5,8 +8,8 @@ var FlowDeploy = function(options){
     'schedule' : 'inject'
   };
 
-  var _this, config, request, userUUID, userToken, _, meshblu, tranformations;
-  _this = this;
+  var self, config, request, userUUID, userToken, meshblu, tranformations;
+  self = this;
 
   options         = options || {};
 
@@ -15,33 +18,30 @@ var FlowDeploy = function(options){
   config          = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
   request         = options.request || require('request');
   meshblu         = options.meshblu;
-  _               = require('underscore');
   transformations = options.transformations || require('./node-red-transformations');
 
-  _this.convertFlows = function(flows){
+  self.convertFlow = function(flow){
     var convertedNodes = [];
 
-    _.each(flows, function(flow){
-      convertedNodes.push({id: flow.flowId, label: flow.name, type: 'tab'});
+    convertedNodes.push({id: flow.flowId, label: flow.name, type: 'tab'});
 
-      _.each(flow.nodes, function(node){
-        convertedNodes.push(_this.convertNode(flow, node));
-      });
+    _.each(flow.nodes, function(node){
+      convertedNodes.push(self.convertNode(flow, node));
     });
 
     return convertedNodes;
   };
 
-  _this.convertNode = function(flow, node){
+  self.convertNode = function(flow, node){
     var convertedNode, nodeLinks, groupedLinks, largestPort;
 
     nodeLinks           = _.where(flow.links, {from: node.id});
     groupedLinks        = _.groupBy(nodeLinks, 'fromPort');
-    largestPort         = _this.largestPortNumber(groupedLinks);
+    largestPort         = self.largestPortNumber(groupedLinks);
 
     convertedNode = _.clone(node);
     convertedNode.z = flow.flowId;
-    convertedNode.wires = _this.paddedArray(largestPort);
+    convertedNode.wires = self.paddedArray(largestPort);
 
     convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.type;
 
@@ -50,72 +50,68 @@ var FlowDeploy = function(options){
       convertedNode.wires[port] = _.pluck(links, 'to');
     });
 
-    return _this.finalTransformation(convertedNode);
+    return self.finalTransformation(convertedNode);
   };
 
-  _this.deployFlows = function(flows){
+  self.deployFlow = function(flow, token){
     meshblu.devices({}, function(data){
-      noderedDevices = _.where(data.devices, {type: 'nodered-docker'});
-      devices = _.pluck(noderedDevices, 'uuid');
-      var msg = {
-                devices: devices,
-                topic: "flows",
-                qos: 0
-            };
-            msg.payload = {
-                flows: flows
-            };
-      meshblu.message(msg);
-
       managerDevices = _.where(data.devices, {type: 'nodered-docker-manager'});
       devices = _.pluck(managerDevices, 'uuid');
       var msg = {
-                devices: devices,
-                topic: "nodered-instance",
-                qos: 0
-            };
-            msg.payload = {
-              uuid: userUUID,
-              token: userToken
-            };
+        devices: devices,
+        topic: "nodered-instance-restart",
+        qos: 0
+      };
+      msg.payload = {
+        uuid: flowDevice.uuid,
+        token: token,
+        flow: self.convertFlow(flow)
+      };
       meshblu.message(msg);
     });
   };
 
-  _this.finalTransformation = function(node){
+  self.finalTransformation = function(node){
     var func = transformations[node.type];
     if(!func){ return node; }
 
     return func(node);
   };
 
-  _this.largestPortNumber = function(groupedLinks){
+  self.largestPortNumber = function(groupedLinks){
     var portsKeys = _.keys(groupedLinks);
     var ports = _.map(portsKeys, function(portKey){ return parseInt(portKey); } );
     return _.max(ports);
   };
 
-  _this.paddedArray = function(length){
+  self.paddedArray = function(length){
     return _.map(_.range(length), function(){
       return [];
     });
   };
 
-  _this.registerFlows = function(flows) {
-    _.each(flows, function(flow){
-      meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID});
-    });
+  self.registerFlow = function(flow, callback) {
+    meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID}, callback);
   };
 };
 
 FlowDeploy.deploy = function(userUUID, userToken, flows, meshblu){
-  var data, flowDeploy;
+  var flowDeploy;
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
-  flowDeploy.registerFlows(flows);
-  data = flowDeploy.convertFlows(flows);
-
-  flowDeploy.deployFlows(data);
+  deviceCollection = new DeviceCollection(userUUID);
+  deviceCollection.fetch().then(function(myDevices){
+    _.each(flows, function(flow){
+      flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
+      if (flowDevice) {
+        flowDeploy.deployFlow(flow, flowDevice.token);
+      } else {
+        flowDeploy.registerFlow(flow, function(flowDevice){
+          flowDeploy.deployFlow(flow, flowDevice.token);
+        });
+      }
+    });
+  });
 };
 
 module.exports = FlowDeploy;
