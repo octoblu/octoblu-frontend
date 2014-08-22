@@ -106,8 +106,8 @@ var FlowDeploy = function(options){
     meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID}, callback);
   };
 
-  self.unregisterFlow = function(flow, token, callback) {
-    meshblu.unregister({uuid: flow.flowId, token: token}, callback);
+  self.unregisterFlow = function(flow, token) {
+    meshblu.unregister({uuid: flow.flowId, token: token});
   };
 };
 
@@ -136,9 +136,8 @@ FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
   deviceCollection.fetch().then(function(myDevices){
     flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
     if (flowDevice) {
-      flowDeploy.unregisterFlow(flow, function(flowDevice){
-        flowDeploy.stopFlow(flow, flowDevice.token);
-      });
+      flowDeploy.stopFlow(flow, flowDevice.token);
+      flowDeploy.unregisterFlow(flow);
     }
   });
 };
