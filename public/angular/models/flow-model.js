@@ -31,6 +31,12 @@ angular.module('octobluApp')
         },
 
         setZoomScale: function(newZoomScale){
+          if(newZoomScale > 8) {
+            return zoomScale = 8;
+          }
+          if (newZoomScale < 0.25) {
+            return zoomScale = 0.25;
+          }
           zoomScale = newZoomScale;
         },
 

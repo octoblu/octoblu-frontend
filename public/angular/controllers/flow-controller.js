@@ -150,6 +150,7 @@ angular.module('octobluApp')
     };
 
     $scope.setMousePosition = function(e) {
+      if(!$scope.activeFlow) { return; }
       $scope.currentMouseX = e.offsetX / $scope.activeFlow.zoomScale;
       $scope.currentMouseY = e.offsetY / $scope.activeFlow.zoomScale;
     };

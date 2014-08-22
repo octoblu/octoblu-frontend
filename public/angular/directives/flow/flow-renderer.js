@@ -57,9 +57,6 @@ angular.module('octobluApp')
       }
 
       function addZoomBehaviour(flow){
-
-          // .scale(flow.zoomScale)
-          // .center(flow.zoomX, flow.zoomY)
         var zoomBehavior = d3.behavior.zoom()
           .scaleExtent([0.25, 2])
           .on('zoom', function(){
@@ -109,8 +106,8 @@ angular.module('octobluApp')
       }
 
       function renderBackground() {
-        var width = 5000;
-        var height = 5000;
+        var width =  5000000;
+        var height = 5000000;
         var leftEdge = 0 - (width / 2);
         var rightEdge = 0 + (width / 2);
         var topEdge   = 0 - (height / 2);
