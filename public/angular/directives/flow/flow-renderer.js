@@ -61,6 +61,10 @@ angular.module('octobluApp')
           .scaleExtent([0.25, 2])
           .on('zoom', function(){
             updateFlowZoomLevel(flow);
+          }).on('zoomstart', function(){
+            renderScope.classed('grabby-hand', true);
+          }).on('zoomend', function(){
+            renderScope.classed('grabby-hand', false);
           });
         renderScope.call(zoomBehavior);
       }
