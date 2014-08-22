@@ -6,10 +6,10 @@
 
     <div class="zoom-toolbar">
         <div class="btn-group-vertical">
-                <button ng-click="zoomIn()" class="btn btn-default button-shadow" tooltip="Zoom In" tooltip-placement="left">
+                <button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}" class="btn btn-default button-shadow" tooltip="Zoom In" tooltip-placement="left">
                         <i class="fa fa-plus"></i>
                 </button>
-                <button ng-click="zoomOut()" class="btn btn-default button-shadow" tooltip="Zoom Out" tooltip-placement="left">
+                <button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}" class="btn btn-default button-shadow" tooltip="Zoom Out" tooltip-placement="left">
                     <i class="fa fa-minus"></i>
                 </button>
         </div>
