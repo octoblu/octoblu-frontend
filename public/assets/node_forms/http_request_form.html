@@ -1,11 +1,11 @@
 <div class="form-group">
   <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowEditor.editorNode.name">
+  <input  id="name" class="form-control" type="text" ng-model="selectedFlowNode.name">
 </div>
 
 <div class="form-group">
   <label for="method">Method</label>
-  <select id="method" name="method" ng-model="flowEditor.editorNode.method" class="form-control" required>
+  <select id="method" name="method" ng-model="selectedFlowNode.method" class="form-control" required>
     <option value="GET">GET</option>
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
@@ -15,5 +15,5 @@
 
 <div class="form-group">
   <label for="url">Url</label>
-  <input  id="url" class="form-control" ng-model="flowEditor.editorNode.url" placeholder="http://example.com" type="url" required>
+  <input  id="url" class="form-control" ng-model="selectedFlowNode.url" placeholder="http://example.com" type="url" required>
 </div>

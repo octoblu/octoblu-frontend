@@ -1,0 +1,16 @@
+<div class="flow-node-editor flow-node-editor-{{flowNodeType.type}}">
+  <div class="node-editor panel panel-default">
+    <div class="panel-heading">Edit Node</div>
+    <div class="panel-body">
+      <form class="form">
+        <div ng-include="flowNodeType.formTemplatePath"></div>
+
+        <div class="form-group debug-node-form">
+          <label for="debug-node">Debug</label>
+          <input  id="debug-node" class="form-control" type="checkbox" ng-model="flowNode.debug">
+        </div>
+        <button type="submit" class="btn btn-lg btn-block btn-primary">Update Node</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ angular.module('octobluApp')
       replace: true,
       templateUrl: '/pages/flow-editor-omnibox.html',
       scope : {
+        flow: '=',
         nodes : '='
       },
       link: function (scope, element) {

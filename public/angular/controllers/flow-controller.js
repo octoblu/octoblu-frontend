@@ -3,10 +3,6 @@ angular.module('octobluApp')
     var originalNode;
     $scope.zoomLevel = 0;
 
-    $scope.flowEditor = {
-      selectedNode: null
-    };
-
     FlowNodeTypeService.getFlowNodeTypes()
       .then(function (flowNodeTypes) {
         $scope.flowNodeTypes = flowNodeTypes;
@@ -66,8 +62,8 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow && $scope.flowEditor.selectedNode) {
-        $scope.copiedNode = JSON.stringify($scope.flowEditor.selectedNode);
+      if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
+        $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
       }
     };
 
@@ -76,16 +72,16 @@ angular.module('octobluApp')
         e.preventDefault();
       }
       if ($scope.activeFlow) {
-        $scope.copiedNode = JSON.stringify($scope.flowEditor.selectedNode);
-        _.pull($scope.activeFlow.nodes, $scope.flowEditor.selectedNode);
+        $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
+        _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
       }
 
       if ($scope.activeFlow) {
-        _.pull($scope.activeFlow.links, $scope.flowEditor.selectedLink);
+        _.pull($scope.activeFlow.links, $scope.activeFlow.selectedLink);
       }
 
-      $scope.flowEditor.selectedNode = null;
-      $scope.flowEditor.selectedLink = null;
+      $scope.activeFlow.selectedFlowNode = null;
+      $scope.activeFlow.selectedLink = null;
     };
 
     $scope.deploy = function (e) {
@@ -99,16 +95,14 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow) {
-        _.pull($scope.activeFlow.nodes, $scope.flowEditor.selectedNode);
-      }
 
-      if ($scope.activeFlow) {
-        _.pull($scope.activeFlow.links, $scope.flowEditor.selectedLink);
-      }
+      if (!$scope.activeFlow) { return; }
 
-      $scope.flowEditor.selectedNode = null;
-      $scope.flowEditor.selectedLink = null;
+      _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
+      _.pull($scope.activeFlow.links, $scope.activeFlow.selectedLink);
+
+      $scope.activeFlow.selectedFlowNode = null;
+      $scope.activeFlow.selectedLink = null;
     };
 
     $scope.pasteSelection = function (e) {
@@ -126,8 +120,8 @@ angular.module('octobluApp')
         $scope.activeFlow.addNode(node);
       }
 
-      $scope.flowEditor.selectedNode = null;
-      $scope.flowEditor.selectedLink = null;
+      $scope.activeFlow.selectedFlowNode = null;
+      $scope.activeFlow.selectedLink = null;
     };
 
     $scope.zoomIn = function (e) {
