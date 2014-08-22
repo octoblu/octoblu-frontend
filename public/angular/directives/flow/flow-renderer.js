@@ -99,6 +99,11 @@ angular.module('octobluApp')
         flow.zoomScale  *= d3.event.scale;
         flow.zoomX  += (d3.event.translate[0] * flow.zoomScale);
         flow.zoomY  += (d3.event.translate[1] * flow.zoomScale);
+
+        var scale, x, y;
+        scale = flow.zoomScale;
+        x     = flow.zoomX || 0;
+        y     = flow.zoomY || 0;
         dispatch.flowChanged(flow);
       }
 

@@ -182,6 +182,18 @@ angular.module('octobluApp')
         node.inputLocations = [];
         node.outputLocations = [];
 
+        if (!node.x) {
+          var width = ($(window).width()/flow.zoomScale)/2;
+          var height = ($(window).height()/flow.zoomScale)/2;
+          var zoomX = flow.zoomX / flow.zoomScale;
+          var zoomY = flow.zoomY / flow.zoomScale;
+
+
+          node.x = width - zoomX;
+          node.y = height - zoomY; 
+        }
+
+
         var nodeElement = renderScope
           .append('g')
           .classed('flow-node', true)
