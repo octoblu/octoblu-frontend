@@ -11,8 +11,9 @@ angular.module('octobluApp')
 
 
         scope.filterResults = function(searchText){
-          var filteredNodes = _.filter(nodes, function(node){
-
+          var filterRegex = new RegExp(searchText);
+          var filteredNodes = _.filter(scope.nodes, function(node){
+            return filterRegex.test(node.defaults.type) || filterRegex.test(node.category) || filterRegex.test(node.name);
           });
           return filteredNodes;
         }
