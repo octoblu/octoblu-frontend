@@ -4,7 +4,7 @@ angular.module('octobluApp')
     return {
       restrict: 'E',
       controller: 'FlowEditorController',
-      templateUrl: 'angular/directives/flow/flow-editor/flow-editor.html',
+      templateUrl: '/angular/directives/flow/flow-editor/flow-editor.html',
       replace: true,
       scope: {
         flow: '=',

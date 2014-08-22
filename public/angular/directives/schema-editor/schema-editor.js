@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .directive('schemaEditor', function () {
         return {
             restrict: 'AE',
-            templateUrl: 'angular/directives/schema-editor/schema-editor.html',
+            templateUrl: '/angular/directives/schema-editor/schema-editor.html',
             replace: true,
             scope: {
                 schema: '=',
