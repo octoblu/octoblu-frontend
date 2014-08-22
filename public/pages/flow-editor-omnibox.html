@@ -1,8 +1,8 @@
 <div class="floating-omnibox col-xs-12 col-md-4">
   <div class="input-group">
-    <input type="text" ng-model="selectedNode" placeholder="Search" typeahead="nodeName as node.name for node in nodes | filter : {name : $viewValue }" typeahead-template-url="pages/omnibox-item.html" class="form-control omnibox input-lg">
+    <input type="text" ng-model="selectedNode" placeholder="Search" typeahead="nodeName as node.name for node in nodes | filter : {name : $viewValue }" typeahead-template-url="pages/omnibox-item.html" class="form-control omnibox input button-shadow">
     <span class="input-group-btn">
-      <button class="btn btn-lg btn-primary" type="button"><i class="fa fa-search"></i></button>
+      <button class="btn btn-primary button-shadow" type="button"><i class="fa fa-search"></i></button>
     </span>
   </div>
 </div>
