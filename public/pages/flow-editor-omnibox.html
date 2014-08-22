@@ -1,6 +1,6 @@
 <div class="floating-omnibox col-xs-12 col-md-4">
   <div class="input-group">
-    <input type="text" ng-model="selectedFlowNodeType" placeholder="Search" typeahead="flowNodeType as flowNodeType.name for flowNodeType in flowNodeTypes | filter : {name : $viewValue }" typeahead-template-url="pages/omnibox-item.html" class="form-control omnibox input button-shadow">
+    <input type="text" ng-model="omniSearch" placeholder="Search" typeahead="item as item.name for item in omniList | filter : {name : $viewValue }" typeahead-template-url="pages/omnibox-item.html" class="form-control omnibox input button-shadow">
     <span class="input-group-btn">
       <button class="btn btn-primary button-shadow" type="button"><i class="fa fa-search"></i></button>
     </span>

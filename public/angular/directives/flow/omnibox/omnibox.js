@@ -9,19 +9,25 @@ angular.module('octobluApp')
         flow : '='
       },
       link: function (scope, element) {
-        scope.filterResults = function(searchText){
-          var filterRegex = new RegExp(searchText);
-          return _.filter(scope.flowNodeTypes, function(flowNodeType){
-            return filterRegex.test(flowNodeType.defaults.type) || filterRegex.test(flowNodeType.category) || filterRegex.test(flowNodeType.name);
-          });
-        };
 
-        scope.$watch('selectedFlowNodeType', function(newFlowNodeType, oldFlowNodeType){
-          if (_.isObject(newFlowNodeType)) {
-            var newFlowNode = FlowNodeTypeService.createFlowNode(newFlowNodeType);
+        scope.$watch(function(){
+          scope.omniList = _.union([], scope.flowNodeTypes);
+          if(scope.flow) {
+            scope.omniList = _.union(scope.omniList, scope.flow.nodes);
+          }
+        });
+
+        scope.$watch('omniSearch', function(newItem){
+          if (!_.isObject(newItem)){ return; }
+
+          if(newItem.id){
+            scope.flow.selectedFlowNode = newItem;
+          } else {
+            var newFlowNode = FlowNodeTypeService.createFlowNode(newItem);
             scope.flow.addNode(newFlowNode);
           }
         });
+
       }
     };
   });
