@@ -63,6 +63,16 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
     });
 
     $stateProvider
+      .state('flow', {
+        url: '/flow',
+        templateUrl: 'pages/flow.html',
+        controller: 'FlowController',
+        resolve: {
+          currentUser: function (AuthService) {
+            return AuthService.getCurrentUser();
+          }
+        }
+      })
       .state('ob', {
         abstract: true,
         controller: 'OctobluController',
@@ -325,11 +335,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         url: '/design',
         templateUrl: 'pages/design.html',
         controller: 'designController'
-      })
-      .state('ob.flow', {
-        url: '/flow',
-        templateUrl: 'pages/flow.html',
-        controller: 'FlowController'
       })
       .state('ob.docs', {
         url: '/docs',

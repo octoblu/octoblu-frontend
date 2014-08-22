@@ -3,8 +3,7 @@
     <!--<link rel="stylesheet" type="text/css" href="/assets/design/orion/built-editor.css"/>-->
     <!-- <link rel="stylesheet" href="/assets/design/style.css"/> -->
 
-    <div class="page-header">
-
+    <div class="flow-toolbar">
         <div class="btn-toolbar">
             <!--<button w-mousetrap="{'ctrl+s': save}" ng-click="save()" class="btn btn-lg btn-default">-->
                 <!--<i class="fa fa-floppy-o"></i> Save-->
@@ -36,8 +35,10 @@
            </div>
         </div>
     </div>
-    <flow-editor-omnibox nodes="flowNodeTypes"></flow-editor-omnibox>
-    <div id="main-container" class="main-container" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
+
+    <div class="full-height" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
+        <flow-editor-omnibox nodes="flowNodeTypes"></flow-editor-omnibox>
+    <!--<div id="main-container" class="main-container" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">-->
         <!--<flow-node-palette flow-node-types="flowNodeTypes"></flow-node-palette>-->
         <div class="workspace-container">
 
