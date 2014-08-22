@@ -3,7 +3,7 @@ angular.module('octobluApp')
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'angular/directives/message-grapher/message-grapher.html',
+            templateUrl: '/angular/directives/message-grapher/message-grapher.html',
             scope: {
                 device: '=',
                 width: '='

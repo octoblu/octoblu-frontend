@@ -7,7 +7,7 @@ angular.module('octobluApp')
     scope: {
       node: '=ngModel'
     },
-    templateUrl: 'angular/directives/switch-rules/switch-rules.html',
+    templateUrl: '/angular/directives/switch-rules/switch-rules.html',
     replace: true
   };
 });

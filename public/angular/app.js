@@ -65,7 +65,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
     $stateProvider
       .state('flow', {
         url: '/flow',
-        templateUrl: 'pages/flow.html',
+        templateUrl: '/pages/flow.html',
         controller: 'FlowController',
         resolve: {
           currentUser: function (AuthService) {
@@ -76,7 +76,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob', {
         abstract: true,
         controller: 'OctobluController',
-        templateUrl: "pages/octoblu.html",
+        templateUrl: "/pages/octoblu.html",
         resolve: {
           currentUser: function (AuthService) {
             return AuthService.getCurrentUser();
@@ -97,7 +97,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('accept_terms', {
         url: '/accept_terms',
-        templateUrl: 'pages/accept_terms.html',
+        templateUrl: '/pages/accept_terms.html',
         controller: 'acceptTermsController',
         resolve: {
           currentUser: function (AuthService) {
@@ -107,40 +107,40 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('terms', {
         url: '/terms',
-        templateUrl: 'pages/terms.html',
+        templateUrl: '/pages/terms.html',
         controller: 'termsController',
         unsecured: true
       })
       .state('ob.about', {
         url: '/about',
-        templateUrl: 'pages/about.html',
+        templateUrl: '/pages/about.html',
         controller: 'aboutController',
         unsecured: true
       })
       .state('contact', {
         url: '/contact',
-        templateUrl: 'pages/contact.html',
+        templateUrl: '/pages/contact.html',
         controller: 'contactController',
         unsecured: true
       })
       .state('ob.profile', {
         url: '/profile',
-        templateUrl: 'pages/profile.html',
+        templateUrl: '/pages/profile.html',
         controller: 'profileController'
       })
       .state('ob.clearauth', {
         url: '/clearauth',
-        templateUrl: 'pages/clear-auth.html',
+        templateUrl: '/pages/clear-auth.html',
         controller:  'clearAuthController'
       })
       .state('ob.process', {
         url: '/process',
-        templateUrl: 'pages/process.html',
+        templateUrl: '/pages/process.html',
         controller: 'processController'
       })
       .state('ob.connector', {
         url: '/connect',
-        templateUrl: 'pages/connector/index.html',
+        templateUrl: '/pages/connector/index.html',
         resolve: {
           availableNodeTypes: function (NodeTypeService) {
             return NodeTypeService.getNodeTypes();
@@ -155,28 +155,28 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.connector.nodes.all', {
         url: '/',
         controller: 'NodeController',
-        templateUrl: 'pages/connector/nodes/index.html'
+        templateUrl: '/pages/connector/nodes/index.html'
       })
       .state('ob.connector.nodes.device-detail', {
         url: '/device/:uuid',
         controller: 'DeviceDetailController',
-        templateUrl: 'pages/connector/devices/detail/index.html'
+        templateUrl: '/pages/connector/devices/detail/index.html'
       })
       .state('ob.connector.nodes.shared-device-detail', {
         url: '/device-shared/:uuid',
         controller: 'DeviceDetailSharedController',
-        templateUrl: 'pages/connector/devices/detail/index.html'
+        templateUrl: '/pages/connector/devices/detail/index.html'
       })
       .state('ob.connector.nodes.channel-detail', {
         url: '/channel/:id',
-        templateUrl: 'pages/connector/channels/detail.html',
+        templateUrl: '/pages/connector/channels/detail.html',
         controller: 'apiController'
       })
       .state('ob.connector.devices.wizard', {
         url: '/wizard',
         abstract: true,
         controller: 'DeviceWizardController',
-        templateUrl: 'pages/connector/devices/wizard/index.html',
+        templateUrl: '/pages/connector/devices/wizard/index.html',
         resolve: {
           unclaimedDevices: function (deviceService) {
             return deviceService.getUnclaimedNodes();
@@ -185,11 +185,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('ob.connector.devices.wizard.instructions', {
         url: '/instructions?claim',
-        templateUrl: 'pages/connector/devices/wizard/hub-install-instructions.html'
+        templateUrl: '/pages/connector/devices/wizard/hub-install-instructions.html'
       })
       .state('ob.connector.devices.wizard.finddevice', {
         url: '/finddevice?claim',
-        templateUrl: 'pages/connector/devices/wizard/find-device.html'
+        templateUrl: '/pages/connector/devices/wizard/find-device.html'
       })
       //begin refactor states
       .state('ob.connector.channels', {
@@ -209,28 +209,28 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('ob.connector.channels.index', {
         url: '',
-        templateUrl: 'pages/connector/channels/index.html'
+        templateUrl: '/pages/connector/channels/index.html'
       })
 
       .state('ob.connector.channels.resources', {
         url: '/resources',
-        templateUrl: 'pages/connector/channels/resources/index.html',
+        templateUrl: '/pages/connector/channels/resources/index.html',
         controller: 'apiResourcesController'
       })
       .state('ob.connector.channels.resources.detail', {
         url: '/:id',
-        templateUrl: 'pages/connector/channels/resources/detail.html',
+        templateUrl: '/pages/connector/channels/resources/detail.html',
         controller: 'apiResourcesController'
       })
       .state('ob.connector.advanced', {
         url: '/advanced',
-        templateUrl: 'pages/connector/advanced/index.html'
+        templateUrl: '/pages/connector/advanced/index.html'
       })
       .state('ob.connector.advanced.channels', {
         // abstract: true,
         url: '/custom_channels',
         // template: '<ui-view />',
-        templateUrl: 'pages/connector/advanced/channels.html',
+        templateUrl: '/pages/connector/advanced/channels.html',
         controller: 'CustomChannelController',
         resolve: {
           customChannels: function (channelService) {
@@ -240,13 +240,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('ob.connector.advanced.channels.editor', {
         url: '/editor/:id',
-        templateUrl: 'pages/connector/channels/editor.html',
+        templateUrl: '/pages/connector/channels/editor.html',
         controller: 'apiEditorController'
       })
       .state('ob.connector.advanced.messaging', {
         url: '/messaging',
         controller: 'MessagingController',
-        templateUrl: 'pages/connector/advanced/messaging.html',
+        templateUrl: '/pages/connector/advanced/messaging.html',
         resolve: {
           myGateways: function (myDevices, deviceService) {
             var gateways = _.filter(myDevices, {type: 'gateway', online: true });
@@ -276,7 +276,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.admin', {
         abstract: true,
         url: '/admin',
-        templateUrl: 'pages/admin/index.html',
+        templateUrl: '/pages/admin/index.html',
         controller: 'adminController',
         resolve: {
           operatorsGroup: function (GroupService) {
@@ -292,11 +292,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('ob.admin.all', {
         url: '/groups',
-        templateUrl: 'pages/admin/groups/all.html'
+        templateUrl: '/pages/admin/groups/all.html'
       })
       .state('ob.admin.detail', {
         url: '/groups/:uuid',
-        templateUrl: 'pages/admin/groups/detail.html',
+        templateUrl: '/pages/admin/groups/detail.html',
         controller: 'adminGroupDetailController',
         resolve: {
           resourcePermission: function (allGroupResourcePermissions, $stateParams) {
@@ -312,66 +312,66 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('login', {
         url: '/login',
-        templateUrl: 'pages/login.html',
+        templateUrl: '/pages/login.html',
         controller: 'loginController',
         unsecured: true
       })
       .state('forgot', {
         url: '/forgot',
-        templateUrl: 'pages/forgot.html',
+        templateUrl: '/pages/forgot.html',
         controller: 'forgotController',
         unsecured: true
       })
       .state('ob.analyze', {
         url: '/analyze',
-        templateUrl: 'pages/analyze.html',
+        templateUrl: '/pages/analyze.html',
         controller: 'analyzeController'
       })
       .state('ob.community', {
         url: '/community',
-        templateUrl: 'pages/community.html'
+        templateUrl: '/pages/community.html'
       })
       .state('ob.design', {
         url: '/design',
-        templateUrl: 'pages/design.html',
+        templateUrl: '/pages/design.html',
         controller: 'designController'
       })
       .state('ob.docs', {
         url: '/docs',
-        templateUrl: 'pages/docs.html',
+        templateUrl: '/pages/docs.html',
         controller: 'docsController'
       })
       .state('ob.faqs', {
         url: '/faqs',
-        templateUrl: 'pages/faqs.html',
+        templateUrl: '/pages/faqs.html',
         controller: 'faqsController'
       })
       .state('ob.home', {
         url: '/home',
-        templateUrl: 'pages/home.html',
+        templateUrl: '/pages/home.html',
         controller: 'homeController'
       })
       .state('ob.services', {
         url: '/services',
-        templateUrl: 'pages/services.html',
+        templateUrl: '/pages/services.html',
         controller: 'servicesController'
       })
       .state('ob.nodewizard', {
         url: '/node-wizard',
         abstract: true,
         controller: 'nodeWizardController',
-        templateUrl: 'pages/node-wizard/index.html'
+        templateUrl: '/pages/node-wizard/index.html'
       })
       .state('ob.nodewizard.addnode', {
         url: '',
         controller: 'addNodeController',
-        templateUrl: 'pages/node-wizard/add-node.html'
+        templateUrl: '/pages/node-wizard/add-node.html'
       })
 
       .state('ob.nodewizard.addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
         controller: 'addChannelController',
-        templateUrl: 'pages/node-wizard/add-channel/index.html',
+        templateUrl: '/pages/node-wizard/add-channel/index.html',
         abstract: true,
         resolve: {
           nodeType: function ($stateParams, NodeTypeService) {
@@ -382,68 +382,68 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.nodewizard.addchannel.existing', {
         url: '',
         controller: 'addChannelExistingController',
-        templateUrl: 'pages/node-wizard/add-channel/existing.html'
+        templateUrl: '/pages/node-wizard/add-channel/existing.html'
       })
       .state('ob.nodewizard.addchannel.noauth', {
         url: '/noauth',
         controller: 'addChannelNoauthController',
-        templateUrl: 'pages/node-wizard/add-channel/noauth.html'
+        templateUrl: '/pages/node-wizard/add-channel/noauth.html'
       })
       .state('ob.nodewizard.addchannel.oauth', {
         url: '/oauth',
         controller: 'addChannelOauthController',
-        templateUrl: 'pages/node-wizard/add-channel/oauth.html'
+        templateUrl: '/pages/node-wizard/add-channel/oauth.html'
       })
       .state('ob.nodewizard.addchannel.simple', {
         url: '/simple',
         controller: 'addChannelSimpleController',
-        templateUrl: 'pages/node-wizard/add-channel/simple.html'
+        templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
       .state('ob.nodewizard.addchannel.basic', {
         url: '/basic',
         controller: 'addChannelBasicController',
-        templateUrl: 'pages/node-wizard/add-channel/basic.html'
+        templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
       .state('ob.nodewizard.adddevice', {
         url: '/add-device/:nodeTypeId',
         controller: 'addDeviceController',
-        templateUrl: 'pages/node-wizard/add-device/index.html'
+        templateUrl: '/pages/node-wizard/add-device/index.html'
       })
       .state('ob.nodewizard.addgateway', {
         url: '/add-gateway/:nodeTypeId',
         controller: 'addDeviceController',
-        templateUrl: 'pages/node-wizard/add-device/index.html'
+        templateUrl: '/pages/node-wizard/add-device/index.html'
       })
       .state('ob.nodewizard.addsubdevice', {
         url: '/add-subdevice/:nodeTypeId',
         controller: 'addSubdeviceController',
-        templateUrl: 'pages/node-wizard/add-subdevice/index.html',
+        templateUrl: '/pages/node-wizard/add-subdevice/index.html',
         abstract: true
       })
       .state('ob.nodewizard.addsubdevice.addGateway', {
         url: '/add-gateway',
         controller: 'addSubdeviceAddGatewayController',
-        templateUrl: 'pages/node-wizard/add-device/index.html'
+        templateUrl: '/pages/node-wizard/add-device/index.html'
       })
       .state('ob.nodewizard.addsubdevice.selectgateway', {
         url: '',
         controller: 'addSubdeviceSelectGatewayController',
-        templateUrl: 'pages/node-wizard/add-subdevice/select-gateway.html'
+        templateUrl: '/pages/node-wizard/add-subdevice/select-gateway.html'
       })
       .state('ob.nodewizard.addsubdevice.form', {
         url: '/gateways/:gatewayId',
         controller: 'addSubdeviceFormController',
-        templateUrl: 'pages/node-wizard/add-subdevice/form.html'
+        templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })
       .state('signup', {
         url: '/signup',
-        templateUrl: 'pages/signup.html',
+        templateUrl: '/pages/signup.html',
         controller: 'signupController',
         unsecured: true
       })
       .state('reset', {
         url: '/reset/:resetToken',
-        templateUrl: 'pages/reset/reset.html',
+        templateUrl: '/pages/reset/reset.html',
         controller: 'resetController',
         unsecured: true
       });

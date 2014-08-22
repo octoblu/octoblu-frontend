@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .directive('devicePropertyEditor', function () {
         return {
             restrict: 'AE',
-            templateUrl: 'angular/directives/device-property-editor/device-property-editor.html',
+            templateUrl: '/angular/directives/device-property-editor/device-property-editor.html',
             replace: true,
             scope: {
                 deviceToEdit: '=', 
