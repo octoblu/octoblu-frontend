@@ -1,23 +1,23 @@
 <div class="form-group">
   <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="selectedFlowNode.name">
+  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
 </div>
 
 <div class="form-group">
   <label for="payloadType">Payload</label>
-  <select id="payloadType" name="payloadType" ng-model="selectedFlowNode.payloadType" class="form-control" required>
+  <select id="payloadType" name="payloadType" ng-model="flowNode.payloadType" class="form-control" required>
     <option value="date">Timestamp</option>
     <option value="none">Blank</option>
     <option value="string">String</option>
   </select>
 </div>
 
-<div class="form-group" ng-show="selectedFlowNode.payloadType === 'string'">
+<div class="form-group" ng-show="flowNode.payloadType === 'string'">
   <label for="payload">Payload</label>
-  <input  id="payload" class="form-control" type="text" ng-model="selectedFlowNode.payload">
+  <input  id="payload" class="form-control" type="text" ng-model="flowNode.payload">
 </div>
 
 <div class="form-group">
   <label for="topic">Topic</label>
-  <input  id="topic" class="form-control" type="text" ng-model="selectedFlowNode.topic">
+  <input  id="topic" class="form-control" type="text" ng-model="flowNode.topic">
 </div>
