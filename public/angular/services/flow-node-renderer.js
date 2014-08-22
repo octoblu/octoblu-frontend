@@ -150,7 +150,9 @@ angular.module('octobluApp')
               var x, y, point, rectangle, portRect;
 
               x = d3.event.sourceEvent.offsetX / flow.zoomScale;
+              x = x - (flow.zoomX / flow.zoomScale);
               y = d3.event.sourceEvent.offsetY / flow.zoomScale;
+              y = y - (flow.zoomY / flow.zoomScale);
 
               if (sourcePortType == 'output') {
                 var inputPort = findInputPortByCoordinate(x, y, flow.nodes);
@@ -190,7 +192,7 @@ angular.module('octobluApp')
 
 
           node.x = width - zoomX;
-          node.y = height - zoomY; 
+          node.y = height - zoomY;
         }
 
 
