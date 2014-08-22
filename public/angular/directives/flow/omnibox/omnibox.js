@@ -8,8 +8,6 @@ angular.module('octobluApp')
         nodes : '='
       },
       link: function (scope, element) {
-
-
         scope.filterResults = function(searchText){
           var filterRegex = new RegExp(searchText);
           var filteredNodes = _.filter(scope.nodes, function(node){
@@ -17,8 +15,6 @@ angular.module('octobluApp')
           });
           return filteredNodes;
         }
-
       }
     };
-
   });

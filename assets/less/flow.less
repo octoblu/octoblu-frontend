@@ -569,23 +569,6 @@
     display: none;
   }
 
-  .dropdown-menu * .fa-ok {
-    display: none;
-  }
-  .dropdown-menu * a.active > .fa-ok {
-    display: inline-block;
-  }
-
-  /** Fix for unreachable dropdown menu **/
-  .dropdown-menu {
-    width: 200px !important;
-  }
-  .dropdown-menu > li > a {
-    padding-left: 28px;
-    text-indent: -8px;
-    white-space: normal !important;
-  }
-
   .navbar-fixed-top, .navbar-fixed-bottom {
     z-index: 1000;
   }
@@ -728,5 +711,9 @@
   position: fixed;
   left: 20px;
   top:  20px;
+
+  .dropdown-menu {
+    width: 100%;
+  }
 }
 
