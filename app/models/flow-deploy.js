@@ -66,7 +66,7 @@ var FlowDeploy = function(options){
   };
 
   self.sendMessage = function(flow, token, topic) {
-    meshblu.devices({}, function(data){
+    meshblu.mydevices({}, function(data){
       managerDevices = _.where(data.devices, {type: 'nodered-docker-manager'});
       devices = _.pluck(managerDevices, 'uuid');
       var msg = {

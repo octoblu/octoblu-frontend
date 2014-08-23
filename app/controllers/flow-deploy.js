@@ -11,7 +11,7 @@ var FlowDeploy = function(options){
   Flow       = mongoose.model('Flow');
 
   self.startInstance = function(req, res) {
-    self.runOnInstance(req, FlowDeploy.start)
+    self.runOnInstance(req, FlowDeploy.start);
     res.send(201);
   };
 
