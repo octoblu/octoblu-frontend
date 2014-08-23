@@ -3,8 +3,10 @@
     <div class="panel-heading">Edit Node</div>
     <div class="panel-body">
       <form class="form">
-        <div ng-include="flowNodeType.formTemplatePath"></div>
-
+        <div ng-if="flowNodeType" ng-include="flowNodeType.formTemplatePath"></div>
+        <div ng-if="flowNode.type === 'channel'">
+            <endpoint-selector ng-model="flowNode"></endpoint-selector>
+        </div>
         <div class="form-group debug-node-form">
           <label for="debug-node">Debug</label>
           <input  id="debug-node" class="form-control" type="checkbox" ng-model="flowNode.debug">

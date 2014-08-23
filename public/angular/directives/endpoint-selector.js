@@ -7,7 +7,7 @@ angular.module('octobluApp')
     scope: {
       node: '=ngModel'
     },
-    templateUrl: 'pages/endpoint_selector.html',
+    templateUrl: '/pages/endpoint_selector.html',
     replace: true
   };
 });

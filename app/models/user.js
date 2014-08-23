@@ -96,6 +96,7 @@ UserSchema.methods.findApiByName = function (name) {
 };
 
 UserSchema.methods.acceptTerms = function (termsAccepted) {
+  var user = this;
   if (!termsAccepted) {
     return when.reject("termsAccepted must be true");
   }
@@ -103,7 +104,7 @@ UserSchema.methods.acceptTerms = function (termsAccepted) {
   this.terms_accepted_at = new Date();
 
   return when.promise(function (resolve, reject) {
-    this.save(function (error, user) {
+    user.save(function (error, user) {
       if (error) {
         return reject(error);
       }
