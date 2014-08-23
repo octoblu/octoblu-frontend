@@ -87,7 +87,6 @@ module.exports = function (app, passport, config) {
             return res.send(204);
         })
         .catch(function(err){
-            console.log(err);
             return res.send(422, {errors: {accept_terms: ['must be true']}});
         })
     }
