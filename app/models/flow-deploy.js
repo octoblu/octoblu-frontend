@@ -29,7 +29,7 @@ var FlowDeploy = function(options){
     convertedNodes.push({id: flow.flowId, label: flow.name, type: 'tab'});
 
     _.each(flow.nodes, function(node){
-      convertedNodes.push(self.convertNode(flow, node));
+        convertedNodes.push(self.convertNode(flow, node));
     });
 
     return convertedNodes;
@@ -91,11 +91,16 @@ var FlowDeploy = function(options){
         topic: topic,
         qos: 0
       };
-      msg.payload = {
-        uuid: flowDevice.uuid,
-        token: token,
-        flow: self.convertFlow(flow)
-      };
+      try {
+        msg.payload = {
+          uuid: flow.uuid,
+          token: token,
+          flow: self.convertFlow(flow)
+        };
+      } catch (e) {
+        console.log('Error', e.stack);
+        throw e;
+      }
       meshblu.message(msg);
     });
   };
@@ -129,7 +134,7 @@ var FlowDeploy = function(options){
 };
 
 FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
-  var flowDeploy, mergedFlow;
+  var flowDeploy, mergedFlow, flowDevice;
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
   return flowDeploy.getUser(userUUID).then(function(user){
@@ -150,7 +155,7 @@ FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
 };
 
 FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
-  var flowDeploy;
+  var flowDeploy, flowDevice;
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
   deviceCollection = new DeviceCollection(userUUID);
