@@ -1,6 +1,12 @@
 angular.module('octobluApp')
-.controller('FlowChannelFormController', function($scope) {
+.controller('FlowChannelFormController', function($scope, channelService) {
   'use strict';
+
+  var getResources = function(){
+    channelService.getById($scope.node.channelid).then(function(channel){
+      $scope.resources = channel.application.resources;
+    });
+  }
 
   $scope.getEndpointLabel = function(resource) {
     return resource.httpMethod + ' ' + resource.path;
@@ -8,16 +14,11 @@ angular.module('octobluApp')
 
   var selectEndpoint = function(){
     var node, resources, selectedEndpoint;
+
     node = $scope.node;
-
-    if(!node.application) {
-      return;
-    }
-
-    resources = node.application.resources;
+    resources = $scope.resources
 
     selectedEndpoint = _.findWhere(resources, {path: node.path, httpMethod: node.method});
-
     $scope.selectedEndpoint = selectedEndpoint || _.first(resources);
   };
 
@@ -41,6 +42,8 @@ angular.module('octobluApp')
     $scope.node.urlParams   = transformParams(_.where($scope.selectedEndpoint.params, {style: 'url'}),   $scope.node.urlParams);
   });
 
+  $scope.$watch('node',        getResources);
   $scope.$watch('node.path',   selectEndpoint);
   $scope.$watch('node.method', selectEndpoint);
+  $scope.$watch('resources',   selectEndpoint);
 });
