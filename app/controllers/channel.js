@@ -16,7 +16,7 @@ module.exports = function (app) {
     app.get('/api/channels', function (req, res) {
         Api.find({owner: {$exists: false}, enabled: true}, function (err, apis) {
             if (err) {
-                res.send(err);
+                res.send(500, err);
             } else {
                 res.json(apis);
             }
@@ -28,7 +28,7 @@ module.exports = function (app) {
     app.get('/api/devicetypes', function (req, res) {
         DeviceType.find({}, function (err, apis) {
             if (err) {
-                res.send(err);
+                res.send(500, err);
             } else {
                 res.json(apis);
             }

@@ -1,15 +1,21 @@
 describe('FlowChannelFormController', function () {
-  var scope, sut, resource1, resource2;
+  var scope, sut, channel, resource1, resource2, resource3, fakeChannelService;
 
   beforeEach(function () {
     module('octobluApp');
 
-    inject(function($controller, $rootScope){
+    inject(function($controller, $rootScope, $q){
       scope = $rootScope.$new();
-      resource1 = {path: '/adams', httpMethod: 'PATCH'};
-      resource2 = {path: '/42', httpMethod: 'WAIT'};
-      scope.node = {application: {resources: [resource1, resource2]}};
-      sut   = $controller('FlowChannelFormController', {$scope: scope});
+      scope.node = {};
+      resource1  = {path: '/adams', httpMethod: 'PATCH', params: [{name: 'bar', style: 'query'}, {name: 'bparam', style: 'body'}]};
+      resource2  = {path: '/42',    httpMethod: 'WAIT',  params: [{name: 'foo', style: 'query'}, {name: 'uparam', style: 'url'}]};
+      resource3  = {path: '/asdf',  httpMethod: 'ASDF',  params: [{name: 'bar', style: 'query'}, {name: 'bparam', style: 'body'}]};
+      channel    = {application: {resources: [resource1, resource2]}};
+
+      fakeChannelService = new FakeChannelService($q);
+      fakeChannelService.getById.resolve(channel);
+
+      sut   = $controller('FlowChannelFormController', {$scope: scope, channelService: fakeChannelService});
       scope.$digest();
     });
   });
@@ -27,22 +33,17 @@ describe('FlowChannelFormController', function () {
   });
 
   describe('when the scope.selectedEndpoint changes', function () {
-    var resource3;
-
     beforeEach(function(){
-      // [{"name":"{lock_id}","required":true,"style":"query","doc":{"t":"the id of the Lockitron to lock"}}]
-      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE', params: [{name: 'foo', style: 'query'}]};
-      scope.node.application.resources.push(resource3);
-      scope.selectedEndpoint = resource3;
+      scope.selectedEndpoint = resource2;
       scope.$digest();
     });
 
     it('should set path on scope.node', function () {
-      expect(scope.node.path).to.equal('/api/v42/do');
+      expect(scope.node.path).to.equal(resource2.path);
     });
 
     it('should set method on scope.node', function () {
-      expect(scope.node.method).to.equal('DANCE');
+      expect(scope.node.method).to.equal(resource2.httpMethod);
     });
 
     it('should set queryParams on the node', function () {
@@ -50,40 +51,9 @@ describe('FlowChannelFormController', function () {
     });
   });
 
-  describe('when the scope.selectedEndpoint changes', function () {
-    var resource3;
-
-    beforeEach(function(){
-      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar', style: 'query'}]};
-      scope.node.application.resources.push(resource3);
-      scope.selectedEndpoint = resource3;
-      scope.$digest();
-    });
-
-    it('should set path on scope.node', function () {
-      expect(scope.node.path).to.equal('/asdf');
-    });
-
-    it('should set method on scope.node', function () {
-      expect(scope.node.method).to.equal('ASDF');
-    });
-
-    it('should set different queryParams on the node', function () {
-      expect(scope.node.queryParams).to.deep.equal({bar: ''});
-    });
-
-    it('should set not set the body params on the node', function () {
-      expect(scope.node.bodyParams).to.deep.equal({});
-    });
-  });
-
   describe('when the scope.selectedEndpoint changes and we already have a param value', function () {
-    var resource3;
-
     beforeEach(function(){
       scope.node.queryParams = {bar: 'something'};
-      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar', style: 'query'}]};
-      scope.node.application.resources.push(resource3);
       scope.selectedEndpoint = resource3;
       scope.$digest();
     });
@@ -94,38 +64,29 @@ describe('FlowChannelFormController', function () {
   });
 
   describe('when the scope.selectedEndpoint changes and we already have a body param value', function () {
-    var resource3;
-
     beforeEach(function(){
-      scope.node.bodyParams = {bar: 'something'};
-      resource3 = {path: '/asdf', httpMethod: 'ASDF', params: [{name: 'bar', style: 'body'}]};
-      scope.node.application.resources.push(resource3);
+      scope.node.bodyParams = {bparam: 'something'};
       scope.selectedEndpoint = resource3;
       scope.$digest();
     });
 
-    it('should use the existing bar value', function () {
-      expect(scope.node.bodyParams).to.deep.equal({bar: 'something'});
+    it('should use the existing bparam value', function () {
+      expect(scope.node.bodyParams).to.deep.equal({bparam: 'something'});
     });
   });
 
   describe('when the resource has a body param', function () {
-    var resource3;
-
     beforeEach(function(){
-      // [{"name":"{lock_id}","required":true,"style":"query","doc":{"t":"the id of the Lockitron to lock"}}]
-      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE', params: [{name: 'foo', style: 'body'}]};
-      scope.node.application.resources.push(resource3);
       scope.selectedEndpoint = resource3;
       scope.$digest();
     });
 
     it('should set the body params on the node', function () {
-      expect(scope.node.bodyParams).to.deep.equal({foo: ''});
+      expect(scope.node.bodyParams).to.deep.equal({bparam: ''});
     });
 
-    it('should set the query params on the node to an empty map', function () {
-      expect(scope.node.queryParams).to.deep.equal({});
+    it('should set the query params on the node', function () {
+      expect(scope.node.queryParams).to.deep.equal({bar: ''});
     });
   });
 
@@ -133,19 +94,23 @@ describe('FlowChannelFormController', function () {
     var resource3;
 
     beforeEach(function(){
-      // [{"name":"{lock_id}","required":true,"style":"query","doc":{"t":"the id of the Lockitron to lock"}}]
-      resource3 = {path: '/api/v42/do', httpMethod: 'DANCE', params: [{name: 'foo', style: 'url'}]};
-      scope.node.application.resources.push(resource3);
-      scope.selectedEndpoint = resource3;
+      scope.selectedEndpoint = resource2;
       scope.$digest();
     });
 
     it('should set the url params on the node', function () {
-      expect(scope.node.urlParams).to.deep.equal({foo: ''});
-    });
-
-    it('should set the query params on the node to an empty map', function () {
-      expect(scope.node.queryParams).to.deep.equal({});
+      expect(scope.node.urlParams).to.deep.equal({uparam: ''});
     });
   });
+
+  var FakeChannelService = function($q){
+    var q = $q.defer();
+
+    this.getById = function(){
+      return q.promise;
+    }
+
+    this.getById.resolve = q.resolve;
+    return this;
+  }
 });
