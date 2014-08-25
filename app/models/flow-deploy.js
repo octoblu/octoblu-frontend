@@ -1,5 +1,6 @@
 var _ = require('lodash'),
-DeviceCollection = require('../collections/device-collection');
+    DeviceCollection = require('../collections/device-collection'),
+    mongoose = require('mongoose');
 
 var FlowDeploy = function(options){
   var LEGACY_TYPES = {
@@ -7,6 +8,8 @@ var FlowDeploy = function(options){
     'interval' : 'inject',
     'schedule' : 'inject'
   };
+
+  var User = mongoose.model('User');
 
   var self, config, request, userUUID, userToken, meshblu, tranformations;
   self = this;
@@ -51,6 +54,20 @@ var FlowDeploy = function(options){
     });
 
     return self.finalTransformation(convertedNode);
+  };
+
+  self.getUser = function (userUUID) {
+    return User.findBySkynetUUID(userUUID);
+  };
+
+  self.mergeFlowTokens = function(flow, apis) {
+    _.each(flow.nodes, function(node){
+      var match = _.findWhere(apis, {'_id':node.channelActivationId});
+      if (match) {
+        node.token = match.token;
+      }
+    });
+    return flow;
   };
 
   self.startFlow = function(flow, token){
@@ -102,29 +119,33 @@ var FlowDeploy = function(options){
     });
   };
 
-  self.registerFlow = function(flow, callback) {
-    meshblu.register({uuid: flow.flowId, type: 'octoblu:flow', owner: userUUID}, callback);
+  self.registerFlow = function(flowId, callback) {
+    meshblu.register({uuid: flowId, type: 'octoblu:flow', owner: userUUID}, callback);
   };
 
-  self.unregisterFlow = function(flow, token) {
-    meshblu.unregister({uuid: flow.flowId, token: token});
+  self.unregisterFlow = function(flowId, token) {
+    meshblu.unregister({uuid: flowId, token: token});
   };
 };
 
 FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
-  var flowDeploy;
+  var flowDeploy, mergedFlow;
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
-  deviceCollection = new DeviceCollection(userUUID);
-  deviceCollection.fetch().then(function(myDevices){
-    flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
-    if (flowDevice) {
-      flowDeploy.startFlow(flow, flowDevice.token);
-    } else {
-      flowDeploy.registerFlow(flow, function(flowDevice){
-        flowDeploy.startFlow(flow, flowDevice.token);
-      });
-    }
+  return flowDeploy.getUser(userUUID).then(function(user){
+    mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api);
+
+    deviceCollection = new DeviceCollection(userUUID);
+    deviceCollection.fetch().then(function(myDevices){
+      flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
+      if (flowDevice) {
+        flowDeploy.startFlow(mergedFlow, flowDevice.token);
+      } else {
+        flowDeploy.registerFlow(flow.flowId, function(flowDevice){
+          flowDeploy.startFlow(mergedFlow, flowDevice.token);
+        });
+      }
+    });
   });
 };
 
@@ -137,16 +158,15 @@ FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
     flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
     if (flowDevice) {
       flowDeploy.stopFlow(flow, flowDevice.token);
-      flowDeploy.unregisterFlow(flow);
+      flowDeploy.unregisterFlow(flow.flowId);
     }
   });
 };
 
 FlowDeploy.restart = function(userUUID, userToken, flow, meshblu){
   var flowDeploy;
-
   FlowDeploy.stop(userUUID, userToken, flow, meshblu);
-  FlowDeploy.start(userUUID, userToken, flow, meshblu);
+  FlowDeploy.start(userUUID, userToken, flow, user.api, meshblu);
 };
 
 module.exports = FlowDeploy;

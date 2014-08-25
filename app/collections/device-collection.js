@@ -7,22 +7,22 @@ var config = require('../../config/auth')(),
   errorCode = require('rest/interceptor/errorCode'),
   client = rest.wrap(mime).wrap(errorCode);
 
-DeviceCollection = function (userUUID) {
-  var collection = this;
+var DeviceCollection = function (userUUID) {
+  var self = this;
   var User = mongoose.model('User');
 
-  collection.fetch = function () {
-    return collection.getUser(userUUID)
+  self.fetch = function () {
+    return self.getUser(userUUID)
       .then(function (user) {
-        return collection.getDevicesByOwner(user);
+        return self.getDevicesByOwner(user);
       });
   };
 
-  collection.getUser = function (userUUID) {
+  self.getUser = function (userUUID) {
     return User.findBySkynetUUID(userUUID);
   };
 
-  collection.getDevicesByOwner = function (user) {
+  self.getDevicesByOwner = function (user) {
     return client({
       method: 'GET',
       path: 'http://' + config.skynet.host + ':' +

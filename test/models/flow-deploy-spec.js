@@ -12,9 +12,13 @@ describe('FlowDeploy', function () {
   });
 
   describe('convertFlow', function () {
-    var sut;
+    var sut, getUser;
     beforeEach(function () {
       sut = new FlowDeploy();
+
+      getUser = sinon.stub(sut, 'getUser', function (userId) {
+        return when.resolve({api:[]});
+      });
     });
 
     describe('when it is called with one flow with no nodes or links', function () {
@@ -148,6 +152,29 @@ describe('FlowDeploy', function () {
     });
   });
 
+  describe('mergeFlowTokens', function () {
+    var sut, fakeMeshblu, getUser;
+
+    beforeEach(function () {
+      fakeMeshblu = new FakeMeshblu();
+      sut = new FlowDeploy({meshblu: fakeMeshblu, userUUID: 'useruuid'});
+      getUser = sinon.stub(sut, 'getUser', function (userId) {
+        return when.resolve({});
+      });
+    });
+
+    describe('when a flow', function(){
+      var result;
+      beforeEach(function () {
+        result = sut.mergeFlowTokens({nodes: [{category:'channel', channelActivationId:'match'}]}, [{'_id':'match', token: 'this-is-a-token'}]);
+      });
+
+      it('should merge the api values into the flow', function(){
+        expect(_.first(result.nodes)).to.deep.equal({category:'channel', channelActivationId:'match', token: 'this-is-a-token'});
+      });
+    });
+  });
+
   describe('registerFlow', function () {
     var sut, fakeMeshblu;
 
@@ -158,7 +185,7 @@ describe('FlowDeploy', function () {
 
     describe('when a flow', function(){
       beforeEach(function () {
-        sut.registerFlow({flowId: 'hello.world'});
+        sut.registerFlow('hello.world');
       });
 
       it('should call register', function () {
@@ -172,7 +199,7 @@ describe('FlowDeploy', function () {
 
     describe('when another flow', function(){
       beforeEach(function () {
-        sut.registerFlow({flowId: 'else'});
+        sut.registerFlow('else');
       });
 
       it('should call register with the flowId', function () {
