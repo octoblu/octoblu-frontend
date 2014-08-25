@@ -58,7 +58,7 @@ describe('ChannelCollection', function () {
     describe('when the user returns an api(s)', function(){
       var fakeUser;
       beforeEach(function () {
-        fakeUser = {api: [{channelid: '123', whatever: 'somethingelse', whoosawhatsit: 'floosenhousen'}]};
+        fakeUser = {api: [{_id: '321', channelid: '123', whatever: 'somethingelse', whoosawhatsit: 'floosenhousen'}]};
         defer.resolve(fakeUser);
       });
 
@@ -76,7 +76,7 @@ describe('ChannelCollection', function () {
 
         it('should merge the channel in with the user api', function (done) {
           result.then(function(apis){
-            expect(apis).to.deep.equal([{_id: '123', name: 'FooNetwork', channelid: '123', whatever: 'somethingelse', whoosawhatsit: 'floosenhousen'}]);
+            expect(apis).to.deep.equal([{channelid: '123', name: 'FooNetwork', channelActivationId: '321'}]);
             done();
           }).catch(done);
         });
@@ -86,7 +86,7 @@ describe('ChannelCollection', function () {
     describe('when the user returns an api(s)', function(){
       var fakeUser;
       beforeEach(function () {
-        fakeUser = {api: [{channelid: '888', whatever: 'something'}]};
+        fakeUser = {api: [{_id: '999', channelid: '888', whatever: 'something'}]};
         defer.resolve(fakeUser);
       });
 
@@ -104,7 +104,7 @@ describe('ChannelCollection', function () {
 
         it('should merge the channel in with the user api', function (done) {
           result.then(function(apis){
-            expect(apis).to.deep.equal([{_id: '888', name: 'TheOcho', channelid: '888', whatever: 'something', params: {}}]);
+            expect(apis).to.deep.equal([{channelid: '888', name: 'TheOcho', channelActivationId: '999'}]);
             done();
           }).catch(done);
         });
