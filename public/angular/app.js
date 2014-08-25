@@ -63,8 +63,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
     });
 
     $stateProvider
-      .state('flow', {
-        url: '/flow',
+      .state('design', {
+        url: '/design',
         templateUrl: '/pages/flow.html',
         controller: 'FlowController',
         resolve: {
@@ -330,16 +330,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.community', {
         url: '/community',
         templateUrl: '/pages/community.html'
-      })
-      .state('ob.design', {
-        url: '/design',
-        templateUrl: '/pages/design.html',
-        controller: 'designController'
-      })
-      .state('ob.docs', {
-        url: '/docs',
-        templateUrl: '/pages/docs.html',
-        controller: 'docsController'
       })
       .state('ob.faqs', {
         url: '/faqs',
