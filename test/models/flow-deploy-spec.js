@@ -1,11 +1,11 @@
-var _  = require('underscore');
+var _          = require('underscore');
 var FlowDeploy = require('../../app/models/flow-deploy');
 
 describe('FlowDeploy', function () {
-  var FakeRequest;
+  var FakeRequest, mongoose;
 
   before(function(done){
-    var mongoose   = require('mongoose');
+    mongoose   = require('mongoose');
     var UserSchema = require('../../app/models/user');
     var ApiSchema  = require('../../app/models/api');
     var db = mongoose.createConnection();
@@ -175,20 +175,20 @@ describe('FlowDeploy', function () {
     describe('when a flow', function(){
       var result;
       beforeEach(function () {
-        var flow = {nodes: [{category:'channel', channelActivationId:'match', channelid: 'othermatch'}]};
-        var userApis = [{'_id':'match', token: 'this-is-a-token'}];
-        var channelApis = [{_id: 'othermatch', application: {base: 'http://api.com'}}];
+        var flow = {nodes: [{category:'channel', channelActivationId:'222222222222', channelid: '111111111111'}]};
+        var userApis = [{_id: mongoose.Types.ObjectId('222222222222'), token: 'this-is-a-token'}];
+        var channelApis = [{_id: mongoose.Types.ObjectId('111111111111'), application: {base: 'http://api.com'}}];
         result = sut.mergeFlowTokens(flow, userApis, channelApis);
       });
 
       it('should merge the api values into the flow', function(){
         expect(_.first(result.nodes)).to.deep.equal(
           {
+            application: {base: 'http://api.com'},
             category:'channel',
-            channelActivationId:'match',
-            channelid: 'othermatch',
-            token: 'this-is-a-token',
-            application: {base: 'http://api.com'}
+            channelActivationId:'222222222222',
+            channelid: '111111111111',
+            token: 'this-is-a-token'
           }
         );
       });
