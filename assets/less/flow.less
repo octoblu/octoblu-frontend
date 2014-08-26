@@ -700,6 +700,36 @@
   left: 85px;
 }
 
+.flow-browser {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  width: 100%;
+  border: 2px solid green;
+  ul {
+    flex: 1;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    overflow-x: scroll;
+    li {
+      cursor: pointer;
+      display: flex;
+      flex-direction:column;
+      align-content: stretch;
+      flex: 1;
+      margin: 10px;
+      background-color: white;
+      box-shadow:  rgba(0, 0, 0, 0.298039) 0px 2px 1px 0px;;
+      min-width: 200px;
+    }
+    .flow-node-type {
+
+    }
+  }
+
+}
 
 
 
