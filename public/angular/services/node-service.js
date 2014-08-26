@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('NodeService', function ($q, deviceService, channelService, NodeTypeService) {
+    .service('NodeService', function ($q, deviceService, channelService, NodeTypeService, $http) {
 
         var nodes, allNodeTypes = [];
 
@@ -47,6 +47,12 @@ angular.module('octobluApp')
         }
 
         var service = {
+            getNodes: function() {
+                return $http.get('/api/nodes').then(function(results){
+                    return results.data;
+                });
+            },
+
             getAllNodes: function () {
                 return NodeTypeService.getNodeTypes().then(function (nodeTypes) {
                     allNodeTypes.length = 0;

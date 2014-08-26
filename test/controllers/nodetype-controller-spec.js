@@ -1,4 +1,4 @@
-var NodeTypeController = require('../../app/controllers/node');
+var NodeTypeController = require('../../app/controllers/node-type-controller');
 var _ = require('underscore');
 
 describe('NodeTypeController', function () {

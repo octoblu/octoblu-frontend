@@ -22,6 +22,9 @@ module.exports = function(app, passport) {
     var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
 
+    var NodeController = require('./controllers/node-controller');
+    var nodeController = new NodeController();
+
     var FlowController = require('./controllers/flow-controller');
     var flowController = new FlowController();
 
@@ -76,6 +79,7 @@ module.exports = function(app, passport) {
         app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
 
         app.get('/api/node_types', nodeTypeController.getNodeTypes);
+        app.get('/api/nodes', nodeController.index);
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {

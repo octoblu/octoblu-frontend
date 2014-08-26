@@ -26,7 +26,7 @@
 <hr>
 
 <div class="row">
-    <div ng-if="nodes.length != 0">
+    <div ng-if="nodes.length">
         <div ng-repeat="node in nodes | filter : type !== 'octoblu:flow'| filter: {name:nodeSearch} | orderBy: 'name'"
              class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
             <h4 class="text-center">
@@ -46,31 +46,5 @@
                 <i class="fa fa-ban fa-stack-2x text-danger"></i>
              </span>
             You currently have no Active Nodes</p>
-
-    </div>
-</div>
-<div class="row node-container" ng-if="sharedNodes.length != 0">
-    <hr>
-    <h2 class="text-center">
-    <span class="fa-stack fa-lg">
-        <i class="fa fa-square-o fa-stack-2x"></i>
-        <i class="fa fa-share-alt fa-stack-1x"></i>
-    </span>
-        Shared With Me
-    </h2>
-
-    <div>
-        <div ng-repeat="node in sharedNodes | filter: {name:nodeSearch} | orderBy: 'name'"
-             class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <h4 class="text-center">
-                <a href ui-sref="^.shared-device-detail({uuid: node.resource.uuid})" class="">
-                    <div title="{{node.name}}" class="node-thumbnail animated-popout"
-                         ng-style="{'background-image': 'url('+node.nodeType.logo+')'}" title="{{node.name}}"
-                         ng-class="{faded: !node.online}"></div>
-                    <div class="muted-link">{{node.name}}</div>
-                    <!--<small class="node-shared-by">Shared by {{node.owner.displayName}}</small>-->
-                </a>
-            </h4>
-        </div>
     </div>
 </div>
