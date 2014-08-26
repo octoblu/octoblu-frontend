@@ -76,7 +76,8 @@ describe('ChannelCollection', function () {
 
         it('should merge the channel in with the user api', function (done) {
           result.then(function(apis){
-            expect(apis).to.deep.equal([{channelid: '123', name: 'FooNetwork', channelActivationId: '321'}]);
+            var expected = JSON.stringify([{channelid: '123', channelActivationId: '321', name: 'FooNetwork'}]);
+            expect(JSON.stringify(apis)).to.deep.equal(expected);
             done();
           }).catch(done);
         });
@@ -104,7 +105,8 @@ describe('ChannelCollection', function () {
 
         it('should merge the channel in with the user api', function (done) {
           result.then(function(apis){
-            expect(apis).to.deep.equal([{channelid: '888', name: 'TheOcho', channelActivationId: '999'}]);
+            var expected = JSON.stringify([{channelid: '888', channelActivationId: '999', name: 'TheOcho'}]);
+            expect(JSON.stringify(apis)).to.deep.equal(expected);
             done();
           }).catch(done);
         });
