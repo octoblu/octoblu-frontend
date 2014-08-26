@@ -3,6 +3,7 @@ var request = require('request'),
     Api = mongoose.model('Api'),
     crypto = require('crypto'),
     url = require('url'),
+    _ = require('lodash'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
 var ObjectId = require('mongoose').Types.ObjectId;
@@ -129,6 +130,7 @@ module.exports = function (app, passport, config) {
     };
 
     var getOAuthCredentials = function(oauth) {
+        console.log('getOAuthCredentials:', process.env.NODE_ENV, _.keys(oauth));
         return oauth[process.env.NODE_ENV] || oauth;
     }
 
@@ -193,7 +195,6 @@ module.exports = function (app, passport, config) {
                     console.log('saved oauth token: ' + token);
                     res.redirect('/connect/nodes/channel/' + api._id);
                 });
-
             } else if (creds.version === '2.0') {
                 if (creds.isManual) { // shoot yourself
                     console.log(creds.protocol, creds.host, creds.authTokenPath)
@@ -259,7 +260,6 @@ module.exports = function (app, passport, config) {
                     console.log('oauth2 redirect: ' + authorization_uri);
                     res.redirect(authorization_uri);
                 }
-
             } else {
                 // oauth 1.0..
                 var oa = getOauth1Instance(req, api);
@@ -285,7 +285,6 @@ module.exports = function (app, passport, config) {
                         res.redirect(authURL);
                     }
                 });
-
             }
 
         });

@@ -154,6 +154,12 @@ angular.module('octobluApp')
             }
         };
 
+        this.getChannelActivationById = function(channelId){
+            return this.getActiveChannels().then(function(channels){
+                return _.findWhere(channels, {channelid: channelId});
+            });
+        };
+
         this.getById = function(channelId){
             return $http.get('/api/channels/' + channelId).then(function(response){
                 return response.data;

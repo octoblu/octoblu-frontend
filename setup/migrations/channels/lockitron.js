@@ -49,21 +49,36 @@ var record = {
   "logobw": "https://s3-us-west-2.amazonaws.com/octoblu-icons/lockitron-bw.png",
   "name": "Lockitron",
   "oauth": {
-    "authTokenPath": "/oauth/token",
-    "authTokenURL": "https://api.lockitron.com/oauth/authorize",
-    "baseURL": "https://api.lockitron.com",
-
-    // Production
-    // "clientId": "938cd6030161ec9bfc5c4e78e277762145f9b23d7caf3bb66a9333c034b6f9b1",
-    // "secret": "6a73aac43c7f1a25b5d5ce21d583d30f8278808e0faca81a5c8e34e885fb7c14",
-
-    // Development
-    "clientId": "0b58a8b923eabf8c3ac9f8b19d9c5006198bb9aad8037a2e279eec6607668197",
-    "secret": "d8d36ebd7509e64ee35f63c21beea032564683121a4b6ef52fed18588266ad83",
-
-    "scope": "",
-    "tokenMethod": "access_token_query",
-    "version": "2.0"
+    "development": {
+      "authTokenPath": "/oauth/token",
+      "authTokenURL": "https://api.lockitron.com/oauth/authorize",
+      "baseURL": "https://api.lockitron.com",
+      "clientId": "59e9b56517291cf40a87d3a60a5feb4febe402983e60c528182d32ee23b8576e",
+      "secret": "ada2e03c69fdf4fb404098a5bb884fb83881912c4f28d52bf83c07ed8b42ae2f",
+      "scope": "",
+      "tokenMethod": "access_token_query",
+      "version": "2.0"
+    },
+    "production": {
+      "authTokenPath": "/oauth/token",
+      "authTokenURL": "https://api.lockitron.com/oauth/authorize",
+      "baseURL": "https://api.lockitron.com",
+      "clientId": "47386cc5bb78cfb3d785904a3c82bbaaf39f50ea24119d43c692313292b23ea0",
+      "secret": "40f69716b8eb3bced057220dbe1c7bf3bc9d55b8eed538be78ecfe94dcdc4c61",
+      "scope": "",
+      "tokenMethod": "access_token_query",
+      "version": "2.0"
+    },
+    "staging": {
+      "authTokenPath": "/oauth/token",
+      "authTokenURL": "https://api.lockitron.com/oauth/authorize",
+      "baseURL": "https://api.lockitron.com",
+      "clientId": "78c93f5c1f5467b74b5736997eb8a73881ecc4dafacf20563b8c83290f85c5e0",
+      "secret": "21e255ba632c8c54ce8201fa049261f7db986b0ac110d2f9f6f97f4eb4e7896f",
+      "scope": "",
+      "tokenMethod": "access_token_query",
+      "version": "2.0"
+    }
   },
   "useCustom": true
 }
