@@ -38,7 +38,9 @@ var ChannelCollection = function(userUUID, options){
       return {
         channelid : api._id,
         channelActivationId : channel._id,
-        name : api.name
+        name : api.name,
+        type : api.type,
+        online: true
       };
     });
   };

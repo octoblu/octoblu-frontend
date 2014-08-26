@@ -7,6 +7,7 @@ var NodeTypeSchema = new mongoose.Schema({
     name: {type: String, unique: true, index: 1},
     plugin: String,
     logo: String,
+    type: String,
     description: String,
     skynet: {
         plugin: {type: String},

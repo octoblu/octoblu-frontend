@@ -8,6 +8,7 @@ var ApiSchema = new mongoose.Schema({
 
     name             : String,
     owner            : String,
+    type             : String,
     description      : String,
     enabled          : Boolean,
     logo             : String,

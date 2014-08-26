@@ -35,7 +35,6 @@ var DeviceCollection = function (userUUID) {
     };
 
     return client(requestParams).then(function (result) {
-      console.log(JSON.stringify(result.entity.devices));
       return result.entity.devices;
     }).catch(function () {
       return [];

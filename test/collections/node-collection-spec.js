@@ -5,21 +5,27 @@ describe('NodeCollection', function () {
   var sut,
     channelStub,
     deviceStub,
+    nodeTypeCollectionStub,
     fakeChannelCollection,
     result,
-    fakeDeviceCollection;
+    fakeDeviceCollection,
+    fakeNodeTypeCollection;
 
   beforeEach(function () {
     var userUUID = 'u1';
     sut = new NodeCollection(userUUID);
 
-    fakeChannelCollection = new FakeChannelCollection();
+    fakeChannelCollection = new FakeCollection();
     channelStub = sinon.stub(sut, 'getChannelCollection');
     channelStub.returns(fakeChannelCollection);
 
-    fakeDeviceCollection = new FakeDeviceCollection();
+    fakeDeviceCollection = new FakeCollection();
     deviceStub = sinon.stub(sut, 'getDeviceCollection');
     deviceStub.returns(fakeDeviceCollection);
+
+    fakeNodeTypeCollection = new FakeCollection();
+    nodeTypeCollectionStub = sinon.stub(sut, 'getNodeTypeCollection');
+    nodeTypeCollectionStub.returns(fakeNodeTypeCollection);
   });
 
   describe('#fetch', function () {
@@ -51,22 +57,45 @@ describe('NodeCollection', function () {
       var channels, devices;
       beforeEach(function () {
         channels = [
-          { name: 'BBC One', type: 'channel' },
-          { name: 'C2', type: 'channel'}];
+          { name: 'BBC One', category: 'channel', type: 'channel:bbc'},
+          { name: 'C2', category: 'channel', type: 'channel:c2'}];
         devices = [
-          { name: 'NetDuino 1', type: 'device' },
-          { name: 'Buffy the Vampire Slayer', type: 'device'}
+          { name: 'NetDuino 1', category: 'device', type: 'netduino' },
+          { name: 'Buffy the Vampire Slayer', category: 'device', type: 'buffy'}
         ];
 
         fakeChannelCollection.fetch.successCallback(channels);
         fakeDeviceCollection.fetch.successCallback(devices);
       });
 
-      it('should fulfill an an empty promise', function (done) {
-        result.then(function (nodes) {
-          expect(nodes).to.deep.equal(_.union(devices, channels));
-          done();
-        }).catch(done);
+      describe('when nodetypes come back', function () {
+        beforeEach(function () {
+          var nodeTypes = [
+            {skynet: {type: 'channel:bbc'}, logo: 'bbc.ping'},
+            {skynet: {type: 'channel:c2'}, logo: 'c2.pee-een-ghee'},
+            {skynet: {type: 'netduino'}, logo: 'netduino.jif'},
+            {skynet: {type: 'buffy'}, logo: 'buffy.tiffany'},
+          ];
+          fakeNodeTypeCollection.fetch.successCallback(nodeTypes);
+        });
+
+
+        it('should fulfill an an empty promise', function (done) {
+          expectedResult = [
+            { name: 'BBC One', type: 'channel:bbc', category: 'channel', nodeType: {logo: 'bbc.ping'}},
+            { name: 'C2', type: 'channel:c2', category: 'channel', nodeType: {logo: 'c2.pee-een-ghee'}},
+            { name: 'NetDuino 1', type: 'netduino', category: 'device', nodeType: {logo: 'netduino.jif'}},
+            { name: 'Buffy the Vampire Slayer', type: 'buffy', category: 'device', nodeType: {logo: 'buffy.tiffany'}}
+          ];
+
+          result.then(function (nodes) {
+            expect(nodes).to.contain(expectedResult[0]);
+            expect(nodes).to.contain(expectedResult[1]);
+            expect(nodes).to.contain(expectedResult[2]);
+            expect(nodes).to.contain(expectedResult[3]);
+            done();
+          }).catch(done);
+        });
       });
     });
   });
@@ -101,8 +130,8 @@ describe('NodeCollection', function () {
       it('should fulfill a promise with 2 items', function (done) {
         result.then(function (nodes) {
           expect(nodes).to.deep.equal([
-            {type: 'channel'},
-            {type: 'channel'}
+            {category: 'channel'},
+            {category: 'channel'}
           ]);
           done();
         }).catch(done);
@@ -139,8 +168,8 @@ describe('NodeCollection', function () {
       it('should fulfill a promise with 2 items', function (done) {
         result.then(function (nodes) {
           expect(nodes).to.deep.equal([
-            {type: 'device'},
-            {type: 'device'}
+            {category: 'device'},
+            {category: 'device'}
           ]);
           done();
         }).catch(done);
@@ -149,19 +178,7 @@ describe('NodeCollection', function () {
   });
 });
 
-var FakeChannelCollection = function () {
-  var self = this;
-
-  self.fetch = sinon.spy(function () {
-    var defer = when.defer();
-    self.fetch.successCallback = defer.resolve;
-    return defer.promise;
-  });
-
-  return self;
-};
-
-var FakeDeviceCollection = function () {
+var FakeCollection = function () {
   var self = this;
 
   self.fetch = sinon.spy(function () {
