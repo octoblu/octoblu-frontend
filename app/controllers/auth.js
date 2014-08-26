@@ -116,23 +116,29 @@ module.exports = function (app, passport, config) {
 
     var getOauth1Instance = function (req, api) {
         var OAuth = require('oauth');
+        var creds = getOAuthCredentials(api.oauth);
         return new OAuth.OAuth(
-            api.oauth.requestTokenURL,
-            api.oauth.accessTokenURL,
-            api.oauth.key,
-            api.oauth.secret,
-            api.oauth.version,
+            creds.requestTokenURL,
+            creds.accessTokenURL,
+            creds.key,
+            creds.secret,
+            creds.version,
             getOAuthCallbackUrl(req, api._id),
             'HMAC-SHA1'
         );
     };
 
+    var getOAuthCredentials = function(oauth) {
+        return oauth[process.env.NODE_ENV] || oauth;
+    }
+
     var getOauth2Instance = function (api) {
+        var creds = getOAuthCredentials(api.oauth);
         return require('simple-oauth2')({
-            clientID: api.oauth.clientId,
-            clientSecret: api.oauth.secret,
-            site: api.oauth.baseURL,
-            tokenPath: api.oauth.authTokenPath
+            clientID: creds.clientId,
+            clientSecret: creds.secret,
+            site: creds.baseURL,
+            tokenPath: creds.authTokenPath
         });
     };
 
@@ -178,7 +184,8 @@ module.exports = function (app, passport, config) {
         var user = req.user;
 
         Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
-            if(api.oauth.version==='1.0' && api.oauth.is0LegAuth==true) {
+            var creds = getOAuthCredentials(api.oauth);
+            if(creds.version==='1.0' && creds.is0LegAuth==true) {
                 // add api to user record
                 var token = '0LegAuth';
                 user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
@@ -187,9 +194,9 @@ module.exports = function (app, passport, config) {
                     res.redirect('/connect/nodes/channel/' + api._id);
                 });
 
-            } else if (api.oauth.version === '2.0') {
-                if (api.oauth.isManual) {
-                    console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
+            } else if (creds.version === '2.0') {
+                if (creds.isManual) { // shoot yourself
+                    console.log(creds.protocol, creds.host, creds.authTokenPath)
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
                     var timestamp = (new Date()).getTime();
@@ -197,9 +204,9 @@ module.exports = function (app, passport, config) {
 
                     res.cookie('csrf', csrfToken);
                     var query;
-                    if (api.oauth.useOAuthParams) {
+                    if (creds.useOAuthParams) {
                         query = {
-                            oauth_consumer_key: api.oauth.clientId,
+                            oauth_consumer_key: creds.clientId,
                             response_type: 'code',
                             oauth_signature: csrfToken,
                             oauth_signature_method: 'HMAC-SHA1',
@@ -209,35 +216,35 @@ module.exports = function (app, passport, config) {
                         };
                     } else {
                         query = {
-                            client_id: api.oauth.clientId,
+                            client_id: creds.clientId,
                             response_type: 'code',
                             state: csrfToken,
                             redirect_uri: getOAuthCallbackUrl(req, api._id)
                         };
                     }
 
-                    if(api.oauth.auth_use_client_id_value) {
-                        query.client_id = api.oauth.auth_use_client_id_value;
+                    if(creds.auth_use_client_id_value) {
+                        query.client_id = creds.auth_use_client_id_value;
                     }
-                    if(api.oauth.auth_use_api_key==true && api.oauth.clientId) {
-                        query.api_key = api.oauth.clientId;
+                    if(creds.auth_use_api_key==true && creds.clientId) {
+                        query.api_key = creds.clientId;
                     }
 
-                    if (api.oauth.scope.length > 0) {
-                        query.scope = api.oauth.scope;
+                    if (creds.scope.length > 0) {
+                        query.scope = creds.scope;
                     }
 
                     var redirectURL = url.format({
-                        protocol: api.oauth.protocol,
-                        hostname: api.oauth.host,
-                        pathname: api.oauth.authTokenPath,
+                        protocol: creds.protocol,
+                        hostname: creds.host,
+                        pathname: creds.authTokenPath,
                         query: query
                     });
                     console.log(redirectURL);
                     res.redirect(url.format({
-                        protocol: api.oauth.protocol,
-                        hostname: api.oauth.host,
-                        pathname: api.oauth.authTokenPath,
+                        protocol: creds.protocol,
+                        hostname: creds.host,
+                        pathname: creds.authTokenPath,
                         query: query
                     }));
 
@@ -245,10 +252,10 @@ module.exports = function (app, passport, config) {
                     var oauth2 = getOauth2Instance(api);
                     var authorization_uri = oauth2.AuthCode.authorizeURL({
                         redirect_uri: getOAuthCallbackUrl(req, api._id),
-                        scope: api.oauth.scope,
+                        scope: creds.scope,
                         state: '3(#0/!~'
                     });
-                    console.log(api.oauth);
+                    console.log(creds);
                     console.log('oauth2 redirect: ' + authorization_uri);
                     res.redirect(authorization_uri);
                 }
@@ -268,10 +275,10 @@ module.exports = function (app, passport, config) {
                         req.session.oauth.token_secret = oauth_token_secret;
                         var callbackURL = getOAuthCallbackUrl(req, api._id);
 
-                        var authURL = api.oauth.authTokenURL + '?oauth_token=' + oauth_token;
+                        var authURL = creds.authTokenURL + '?oauth_token=' + oauth_token;
 
                         if (api.name != 'Tumblr') {
-                            authURL += '&oauth_consumer_key=' + api.oauth.key
+                            authURL += '&oauth_consumer_key=' + creds.key
                                 + '&callback=' + callbackURL;
                         }
                         console.log(authURL);
@@ -290,49 +297,50 @@ module.exports = function (app, passport, config) {
         var user = req.user;
 
         Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
+            var creds = getOAuthCredentials(api.oauth);
             if (err) {
                 console.log(error);
                 res.redirect(500, '/apis/' + api._id);
-            } else if (api.oauth.version == '2.0') {
-                if (api.oauth.isManual) {
+            } else if (creds.version == '2.0') {
+                if (creds.isManual) {
                     console.log('handling manual callback');
                     if (req.query.error) {
                         console.log('error position 1');
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
                     // check CSRF token
-                    if (api.oauth.checkCSRFOnCallback && (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf) < 0)) {
+                    if (creds.checkCSRFOnCallback && (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf) < 0)) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
 
                     var form = {
                         code: req.query.code,
-                        grant_type: api.oauth.grant_type,
+                        grant_type: creds.grant_type,
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     };
                     if (api.name === 'Bitly') {
                         delete form.grant_type;
                     }
-                    if (api.oauth.accessTokenIncludeClientInfo || api.name === 'Box' || api.name === 'GoogleDrive' || api.name == 'Facebook') {
-                        form.client_id = api.oauth.clientId;
-                        form.client_secret = api.oauth.secret;
+                    if (creds.accessTokenIncludeClientInfo || api.name === 'Box' || api.name === 'GoogleDrive' || api.name == 'Facebook') {
+                        form.client_id = creds.clientId;
+                        form.client_secret = creds.secret;
                     }
                     if (api.name === 'Smartsheet') {
-                        form.client_id = api.oauth.clientId;
-                        form.hash = getApiHashCode(api.oauth.secret, req.query.code);
+                        form.client_id = creds.clientId;
+                        form.hash = getApiHashCode(creds.secret, req.query.code);
                     }
 
                     var auth = {
-                        user: api.oauth.clientId,
-                        pass: api.oauth.secret
+                        user: creds.clientId,
+                        pass: creds.secret
                     };
 
                     var query = {};
-                    if(api.oauth.auth_use_client_id_value) {
-                        form.client_id = api.oauth.auth_use_client_id_value;
+                    if(creds.auth_use_client_id_value) {
+                        form.client_id = creds.auth_use_client_id_value;
                     }
-                    if(api.oauth.auth_use_api_key==true && api.oauth.clientId) {
-                        query.api_key = api.oauth.clientId;
+                    if(creds.auth_use_api_key==true && creds.clientId) {
+                        query.api_key = creds.clientId;
                     }
 
                     if (api.name === 'Bitly') auth = null;
@@ -347,8 +355,8 @@ module.exports = function (app, passport, config) {
                         auth: auth,
                         qs: query
                     };
-                    console.log(api.oauth.accessTokenURL, opts);
-                    request.post(api.oauth.accessTokenURL, opts, function (error, response, body) {
+                    console.log(creds.accessTokenURL, opts);
+                    request.post(creds.accessTokenURL, opts, function (error, response, body) {
                         console.log(response.statusCode);
                         var data;
 

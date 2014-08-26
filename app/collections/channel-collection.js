@@ -25,9 +25,7 @@ var ChannelCollection = function(userUUID, options){
   };
 
   self.getUser = function() {
-    return User.findBySkynetUUID(userUUID).then(function(user){
-      return user.toObject();
-    });
+    return User.findLeanBySkynetUUID(userUUID);
   };
 
   self.fetchByIds = function(channelIds) {

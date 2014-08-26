@@ -9,13 +9,12 @@ angular.module('octobluApp')
             'oauth':  'ob.nodewizard.addchannel.oauth'
         };
 
-        channelService.getActiveChannelByName(nodeType.name)
-        .then(function(channel){
+        channelService.getById(nodeType.channelid).then(function(channel){
             $scope.existingChannel = channel;
 
             if($scope.existingChannel){return;}
 
-            var auth_strategy = nodeType.channel.auth_strategy;
+            var auth_strategy = channel.auth_strategy;
             return $state.go(AUTH_DESTINATIONS[auth_strategy], {}, {location: 'replace'});
         });
     });

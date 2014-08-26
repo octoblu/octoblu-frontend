@@ -25,7 +25,7 @@ angular.module('octobluApp')
             if (node.category === 'device') {
                 params.uuid = node.resource.uuid;
             } else if (node.category === 'channel') {
-                params.id = node.nodeType.channel._id;
+                params.id = node.nodeType.channelid;
             }
             return $state.href(sref, params);
         };

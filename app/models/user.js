@@ -220,6 +220,10 @@ UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
   return when(this.findOne({'skynet.uuid': skynetuuid}).exec());
 };
 
+UserSchema.statics.findLeanBySkynetUUID = function (skynetuuid) {
+  return when(this.findOne({'skynet.uuid': skynetuuid}).lean().exec());
+};
+
 UserSchema.statics.findByEmail = function (email) {
   return when(this.findOne({ email: email }).exec());
 };

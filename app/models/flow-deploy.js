@@ -57,14 +57,18 @@ var FlowDeploy = function(options){
   };
 
   self.getUser = function (userUUID) {
-    return User.findBySkynetUUID(userUUID);
+    return User.findLeanBySkynetUUID(userUUID);
   };
 
-  self.mergeFlowTokens = function(flow, apis) {
+  self.mergeFlowTokens = function(flow, userApis, channelApis) {
     _.each(flow.nodes, function(node){
-      var match = _.findWhere(apis, {'_id':node.channelActivationId});
-      if (match) {
-        node.token = match.token;
+      var userApiMatch = _.findWhere(userApis, {'_id': new mongoose.Types.ObjectId(node.channelActivationId)});
+      if (userApiMatch) {
+        node.token = userApiMatch.token;
+      }
+      var channelApiMatch = _.findWhere(channelApis, {'_id': new mongoose.Types.ObjectId(node.channelid)});
+      if (channelApiMatch) {
+        node.application = {base: channelApiMatch.application.base};
       }
     });
     return flow;
@@ -91,16 +95,11 @@ var FlowDeploy = function(options){
         topic: topic,
         qos: 0
       };
-      try {
-        msg.payload = {
-          uuid: flow.uuid,
-          token: token,
-          flow: self.convertFlow(flow)
-        };
-      } catch (e) {
-        console.log('Error', e.stack);
-        throw e;
-      }
+      msg.payload = {
+        uuid: flow.flowId,
+        token: token,
+        flow: self.convertFlow(flow)
+      };
       meshblu.message(msg);
     });
   };
@@ -134,11 +133,15 @@ var FlowDeploy = function(options){
 };
 
 FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
-  var flowDeploy, mergedFlow, flowDevice;
+  var flowDeploy, mergedFlow, flowDevice, user;
+  var Api  = mongoose.model('Api');
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
-  return flowDeploy.getUser(userUUID).then(function(user){
-    mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api);
+  return flowDeploy.getUser(userUUID).then(function(theUser){
+    user = theUser;
+    return Api.findAll();
+  }).then(function(channels){
+    mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api, channels);
 
     deviceCollection = new DeviceCollection(userUUID);
     deviceCollection.fetch().then(function(myDevices){
@@ -151,6 +154,9 @@ FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
         });
       }
     });
+  }, function(error){
+    console.log('Error', error);
+    throw new Error(error);
   });
 };
 

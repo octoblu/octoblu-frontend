@@ -1,9 +1,18 @@
 var _  = require('underscore');
-var mongoose = require('mongoose');
 var FlowDeploy = require('../../app/models/flow-deploy');
 
 describe('FlowDeploy', function () {
   var FakeRequest;
+
+  before(function(done){
+    var mongoose   = require('mongoose');
+    var UserSchema = require('../../app/models/user');
+    var ApiSchema  = require('../../app/models/api');
+    var db = mongoose.createConnection();
+    User = db.model('User', UserSchema);
+    Api  = db.model('Api', ApiSchema);
+    db.open('localhost', 'octoblu_test', done);
+  });
 
   beforeEach(function () {
     FakeRequest = {
@@ -166,11 +175,22 @@ describe('FlowDeploy', function () {
     describe('when a flow', function(){
       var result;
       beforeEach(function () {
-        result = sut.mergeFlowTokens({nodes: [{category:'channel', channelActivationId:'match'}]}, [{'_id':'match', token: 'this-is-a-token'}]);
+        var flow = {nodes: [{category:'channel', channelActivationId:'match', channelid: 'othermatch'}]};
+        var userApis = [{'_id':'match', token: 'this-is-a-token'}];
+        var channelApis = [{_id: 'othermatch', application: {base: 'http://api.com'}}];
+        result = sut.mergeFlowTokens(flow, userApis, channelApis);
       });
 
       it('should merge the api values into the flow', function(){
-        expect(_.first(result.nodes)).to.deep.equal({category:'channel', channelActivationId:'match', token: 'this-is-a-token'});
+        expect(_.first(result.nodes)).to.deep.equal(
+          {
+            category:'channel',
+            channelActivationId:'match',
+            channelid: 'othermatch',
+            token: 'this-is-a-token',
+            application: {base: 'http://api.com'}
+          }
+        );
       });
     });
   });

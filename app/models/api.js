@@ -55,4 +55,8 @@ ApiSchema.statics.findByIds = function(ids){
     return when(this.find({_id: {$in: ids}}).lean().exec());
 };
 
+ApiSchema.statics.findAll = function(){
+    return when(this.find().lean().exec());
+};
+
 module.exports = ApiSchema;
