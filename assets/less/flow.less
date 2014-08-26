@@ -137,7 +137,6 @@
     align-content: stretch;
     .flow-editor {
       .flow-editor-workspace {
-        height: 100%;
         width: 100%;
       }
     }
@@ -461,7 +460,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     text-align: center;
     display: none;
@@ -701,34 +699,40 @@
 }
 
 .flow-browser {
-  display: flex;
-  flex-direction: column;
-  min-height: 200px;
-  width: 100%;
-  border: 2px solid green;
-  ul {
-    flex: 1;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    align-content: stretch;
-    overflow-x: scroll;
-    li {
-      cursor: pointer;
-      display: flex;
-      flex-direction:column;
-      align-content: stretch;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .flow-browser-drawer {
+    min-height: 270px;
+    width: 100%;
+    border: 2px solid green;
+    ul {
       flex: 1;
-      margin: 10px;
-      background-color: white;
-      box-shadow:  rgba(0, 0, 0, 0.298039) 0px 2px 1px 0px;;
-      min-width: 200px;
-    }
-    .flow-node-type {
+      list-style: none;
+      margin: 0 10px;
+      padding: 0;
 
+      display: flex;
+      flex-direction: row;
+      align-content: stretch;
+      overflow-x: scroll;
+      li {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-content: stretch;
+        flex: 1;
+        margin: 10px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.298039) 0px 2px 1px 0px;;
+        min-width: 200px;
+      }
+      .flow-node-type {
+
+      }
     }
   }
-
 }
 
 

@@ -1,8 +1,23 @@
 <div class="flow-browser">
-    <ul>
-        <li class="flow-node-type" ng-repeat="flowNodeType in flowNodeTypes" ng-click="addFlowNodeType(flowNodeType)">
-            <div class="node-thumbnail animated-popout" style="background-image: url(http://octoblu-devices.s3.amazonaws.com/beaglebone.png);"></div>
-            <label class="text-center">{{flowNodeType.name || flowNodeType.type}}</label>
-        </li>
-    </ul>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <button>
+                <i class="fa fa-plus"></i>
+            </button>
+            <button>
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="flow-browser-drawer">
+        <ul>
+            <li class="flow-node-type" ng-repeat="flowNodeType in flowNodeTypes"
+                ng-click="addFlowNodeType(flowNodeType)">
+                <div class="node-thumbnail animated-popout"
+                     style="background-image: url(http://octoblu-devices.s3.amazonaws.com/beaglebone.png);"></div>
+                <label class="text-center">{{flowNodeType.name || flowNodeType.type}}</label>
+            </li>
+        </ul>
+    </div>
 </div>
