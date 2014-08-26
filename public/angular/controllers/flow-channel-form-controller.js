@@ -3,6 +3,10 @@ angular.module('octobluApp')
   'use strict';
 
   var getResources = function(){
+    if(!$scope.node.channelid){
+      return $scope.resources = null;
+    }
+
     channelService.getById($scope.node.channelid).then(function(channel){
       $scope.resources = channel.application.resources;
     });

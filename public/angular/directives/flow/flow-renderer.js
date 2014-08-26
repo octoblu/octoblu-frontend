@@ -22,7 +22,7 @@ angular.module('octobluApp')
       }
 
       function addButtonClickBehavior(nodeElement, node) {
-        if (node.type == 'button') {
+        if (node.category == 'button') {
           nodeElement.selectAll('.flow-node-button').on('click', function () {
             dispatch.nodeButtonClicked(node);
           });

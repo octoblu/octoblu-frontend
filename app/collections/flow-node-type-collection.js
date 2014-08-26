@@ -12,14 +12,15 @@ var FlowNodeTypeCollection = function(userUUID, options){
 
   self.convertNode = function(node){
     return {
-      "name": node.name,
-      "class": node.name,
-      "icon": "fa-dot-circle-o",
-      "category": node.type,
-      "defaults": node,
-      "input": 1,
-      "output": 1,
-      "formTemplatePath": "/assets/node_forms/"+node.type+"_form.html"
+      name: node.name,
+      class: node.name,
+      type: node.type,
+      icon: "fa-dot-circle-o",
+      category: node.category,
+      defaults: node,
+      input: 1,
+      output: 1,
+      formTemplatePath: "/assets/node_forms/"+node.category+"_form.html"
     };
   };
 

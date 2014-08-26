@@ -46,7 +46,7 @@ var FlowDeploy = function(options){
     convertedNode.z = flow.flowId;
     convertedNode.wires = self.paddedArray(largestPort);
 
-    convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.type;
+    convertedNode.type = LEGACY_TYPES[convertedNode.category] || convertedNode.category;
 
     _.each(groupedLinks, function(links, fromPort){
       var port = parseInt(fromPort);
@@ -105,7 +105,7 @@ var FlowDeploy = function(options){
   };
 
   self.finalTransformation = function(node){
-    var func = transformations[node.type];
+    var func = transformations[node.category];
     if(!func){ return node; }
 
     return func(node);

@@ -3,9 +3,8 @@
     "name": "delay",
     "class": "delay",
     "icon": "fa-clock-o",
-    "category": "function",
     "defaults": {
-      "type": "delay",
+      "category": "delay",
       "timeout": 5,
       "timeoutUnits": "seconds"
     },
@@ -17,9 +16,8 @@
     "name": "function",
     "class": "function",
     "icon": "fa-terminal",
-    "category": "function",
     "defaults": {
-      "type": "function",
+      "category": "function",
       "output": 1,
       "func": "\nreturn msg;"
     },
@@ -31,9 +29,8 @@
     "name": "button",
     "class": "button",
     "icon": "fa-play",
-    "category": "input",
     "defaults": {
-      "type": "button",
+      "category": "button",
       "payloadType": "date",
       "once": false
     },
@@ -45,9 +42,8 @@
     "name": "interval",
     "class": "interval",
     "icon": "fa-history",
-    "category": "input",
     "defaults": {
-      "type": "interval",
+      "category": "interval",
       "payloadType": "date",
       "repeat": "1",
       "once": false
@@ -60,9 +56,8 @@
     "name": "schedule",
     "class": "schedule",
     "icon": "fa-calendar",
-    "category": "input",
     "defaults": {
-      "type": "schedule",
+      "category": "schedule",
       "payloadType": "date",
       "crontab": "* * * * *",
       "once": false
@@ -73,11 +68,10 @@
   },
   {
     "name": "http request",
-    "category": "function",
     "class": "http-request",
     "icon": "fa-globe",
     "defaults": {
-      "type": "http request",
+      "category": "http request",
       "method": "GET"
     },
     "input": 1,
@@ -89,9 +83,8 @@
     "name": "switch",
     "class": "switch",
     "icon": "fa-sitemap",
-    "category": "function",
     "defaults": {
-      "type": "switch",
+      "category": "switch",
       "property": "payload",
       "required": true,
       "rules": [
@@ -110,11 +103,10 @@
   },
   {
     "name": "sentiment",
-    "category": "analysis-function",
     "class": "sentiment",
     "icon": "fa-comments-o",
     "defaults": {
-      "type": "sentiment"
+      "category": "sentiment"
     },
     "input": 1,
     "output": 1,
@@ -122,13 +114,12 @@
   },
   {
     "name": "xml2js",
-    "category": "advanced-function",
     "class": "xml2js",
     "icon": "fa-code",
     "formTemplatePath": "/assets/node_forms/xml2js_form.html",
 
     "defaults": {
-      "type": "xml2js"
+      "category": "xml2js"
     },
     "input": 1,
     "output": 1
@@ -137,9 +128,8 @@
     "name": "debug",
     "class": "debug",
     "icon": "fa-eye",
-    "category": "output",
     "defaults": {
-      "type": "debug",
+      "category": "debug",
       "active": true,
       "debug": true,
       "complete": false
@@ -153,9 +143,8 @@
     "name": "template",
     "class": "template",
     "icon": "fa-file-text",
-    "category": "function",
     "defaults": {
-      "type": "template",
+      "category": "template",
       "template": "This is the 'payload': {{payload}}!"
     },
     "input": 1,
@@ -166,9 +155,8 @@
     "name": "comment",
     "class": "comment",
     "icon":  "fa-comment",
-    "category": "function",
     "defaults": {
-      "type": "comment"
+      "category": "comment"
     },
     "input": 0,
     "output": 0,
