@@ -29,7 +29,9 @@ angular.module('octobluApp')
 
     $scope.addFlow = function () {
       var name = 'Flow ' + ($scope.flows.length + 1);
-      $scope.flows.push(FlowService.newFlow({name: name}));
+      var newFlow = FlowService.newFlow({name: name});
+      $scope.flows.push(newFlow);
+      $scope.setActiveFlow(newFlow);
     };
 
     $scope.setActiveFlow = function(flow){
