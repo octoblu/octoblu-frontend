@@ -7,24 +7,28 @@
     <div class="flow-toolbar">
         <div class="input-group flow-name" dropdown>
             <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name">
+            <span class="input-group-addon btn btn-sm btn-danger" ng-click="deleteFlow(activeFlow)">
+                    <i class="fa fa-lg fa-trash-o"></i>
+            </span>
             <span class="input-group-addon flow-dropdown" dropdown-toggle>
                 <i class="fa fa-lg fa-angle-down"></i>
             </span>
             <ul class="dropdown-menu" role="menu">
                 <li class="text-center" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
                 <li role="presentation" class="divider"></li>
-                <li class="text-center" ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'"><a href>{{flow.name}}</a></li>
+                <li class="text-center" ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'"><a
+                        href>{{flow.name}}</a></li>
             </ul>
         </div>
 
 
         <div class="btn-group">
             <button ng-click="zoomIn()" w-mousetrap="{'+' : zoomIn, '=' : zoomIn}"
-                    class="btn btn-default button-shadow" tooltip="Zoom In" tooltip-placement="left">
+                    class="btn btn-default button-shadow" tooltip="Zoom In" tooltip-placement="bottom">
                 <i class="fa fa-plus"></i>
             </button>
             <button ng-click="zoomOut()" w-mousetrap="{'-' : zoomOut, '_' : zoomOut}"
-                    class="btn btn-default button-shadow" tooltip="Zoom Out" tooltip-placement="left">
+                    class="btn btn-default button-shadow" tooltip="Zoom Out" tooltip-placement="bottom">
                 <i class="fa fa-minus"></i>
             </button>
         </div>
