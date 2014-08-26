@@ -18,6 +18,9 @@
 */
 
 /*This needs to go in a general less file.*/
+.flow-font {
+  font-size: 1.25em;
+}
 
 .fa-times-circle {
   &:before {
@@ -40,6 +43,42 @@
 
 .code-editor {
   height: 200px;
+}
+
+.flow-toolbar {
+  .flow-name {
+    width: 300px;
+    .button-shadow;
+    .flow-dropdown {
+      cursor: pointer;
+    }
+    input {
+      .flow-font;
+    }
+    .dropdown-menu {
+      width: 100%;
+      .flow-font;
+    }
+  }
+  display: flex;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  .btn-group {
+    margin: 0 5px;
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+.logo-toolbar {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+
+  img {
+    opacity: 0.5;
+  }
 }
 
 [draggable] {
@@ -69,27 +108,8 @@
   }
 }
 
-@red-tab-hover: #efefef;
-
-.node-red-container {
-  margin-top: 56px;
-  iframe {
-    margin-top: 15px;
-  }
-  .node-red-spinner {
-    margin-top: 8px;
-  }
-}
-
 .design2.designer-container {
   margin: 0 -25px;
-
-  #node-red-templates {
-    display: none;
-  }
-  #debug-content {
-    position: inherit;
-  }
 
   display: flex;
   flex-direction: column;
@@ -100,35 +120,7 @@
     justify-content: flex-end;
     flex: 1;
   }
-  .palette {
-    .no-user-select;
-    min-width: 170px;
-    max-width: 170px;
-    display: flex;
-    flex-direction: column;
-    background: #f3f3f3;
-    .palette-search {
-      margin: 5px;
-      background-color: white;
-      display: flex;
-      flex-direction: row;
-      align-content: center;
-      justify-content: center;
-      min-height: 28px;
-      border: 1px solid #999;
-      i {
-        padding: 5px;
-        text-align: center;
-      }
-      input {
-        flex: 1;
-        border: none;
-        &:focus {
-          outline: none;
-        }
-      }
-    }
-  }
+
   .workspace-container {
     overflow: hidden;
     margin: 0 10px;
@@ -155,73 +147,6 @@
     /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
     background-color: #f3f3f3;
     overflow-y: scroll;
-  }
-  .red-tabs-container {
-    display: flex;
-    flex-direction: row;
-    min-height: 34px;
-  }
-  .red-tabs {
-    .no-user-select;
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    list-style-type: none;
-    padding: 5px 2px 0px 5px;
-    margin: 0;
-    border-bottom: 1px solid #999;
-    background: #e3e3e3;
-    li {
-      display: flex;
-      flex: 1;
-      min-width: 100px;
-      max-width: 300px;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-      border-left: 1px solid #999;
-      border-top: 1px solid #999;
-      border-right: 1px solid #999;
-      background: #e3e3e3;
-      margin: 0 5px 0 0;
-      line-height: 17px;
-      overflow: hidden;
-      white-space: nowrap;
-      &:hover {
-        background: @red-tab-hover;
-      }
-
-      &.active, &.active:hover {
-        background: #fff;
-        height: 29px;
-      }
-      span, a, form {
-        margin: 5px;
-      }
-      .delete-flow {
-        .fa-times;
-        cursor: pointer;
-        &:hover {
-          .fa-times-circle;
-          .text-danger;
-          font-size: 1.3em;
-        }
-      }
-    }
-  }
-  .red-add-tab {
-    .no-user-select;
-    cursor: pointer;
-    width: 33px;
-    background: #e3e3e3;
-    border-bottom: 1px solid #999;
-    &:hover {
-      background: @red-tab-hover;
-      border-left: 1px solid #999;
-    }
-    .center-children;
   }
 
   div.btn-group, a.btn {
@@ -696,7 +621,7 @@
 
 .flow-browser {
   box-shadow: rgba(0, 0, 0, 0.298039) 3px 0 0 0;
-  background-color: rgba(245,245,245,0.8);
+  background-color: rgba(245, 245, 245, 0.8);
   position: fixed;
   left: 5px;
   right: 5px;
@@ -711,7 +636,7 @@
     transition: height 0.2s;
     height: 0px;
     &.maximized {
-      height: 280px;
+      height: 250px;
     }
 
     width: 100%;
@@ -741,7 +666,6 @@
 
       }
     }
-
   }
 }
 
