@@ -1,0 +1,8 @@
+<ul>
+    <li class="flow-node-type" ng-repeat="flowNodeType in flowNodeTypes"
+        ng-click="addFlowNodeType(flowNodeType)">
+        <div class="node-thumbnail"
+             style="background-image: url(http://octoblu-devices.s3.amazonaws.com/beaglebone.png);"></div>
+        <label class="text-center">{{flowNodeType.name || flowNodeType.type}}</label>
+    </li>
+</ul>
