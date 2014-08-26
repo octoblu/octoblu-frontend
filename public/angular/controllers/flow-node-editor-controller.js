@@ -2,7 +2,7 @@ angular.module('octobluApp')
 .controller('FlowNodeEditorController', function ($scope, FlowNodeTypeService) {
   'use strict';
 
-  var setFlowNodeType = function(){
+  var setFlowNodeType = function() {
     if(!$scope.flowNode) {
       $scope.flowNodeType = null;
       return;

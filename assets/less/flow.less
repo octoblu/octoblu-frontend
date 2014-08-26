@@ -642,7 +642,7 @@
     }
 
     width: 100%;
-    ul {
+    ul.flow-browser-nodes {
       flex: 1;
       list-style: none;
       margin: 0 10px;
@@ -664,8 +664,17 @@
         box-shadow: rgba(0, 0, 0, 0.298039) 0px 2px 1px 0px;
         min-width: 200px;
       }
-      .flow-node-type {
-
+    }
+    ul.flow-browser-debug {
+      overflow-y: scroll;
+      list-style: none;
+      margin: 5px;
+      padding: 0;
+      li {
+        margin: 10px;
+        pre {
+          background-color: white;
+        }
       }
     }
   }

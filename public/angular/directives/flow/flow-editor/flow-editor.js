@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function ($log, FlowRenderer, skynetService) {
+  .directive('flowEditor', function (FlowRenderer, skynetService) {
 
     return {
       restrict: 'E',
@@ -43,7 +43,7 @@ angular.module('octobluApp')
             if ($scope.flow) {
               var debugNode = _.findWhere($scope.flow.nodes, { id: message.payload.node });
               if (debugNode && debugNode.debug) {
-                $log.log(message.payload);
+                $scope.$emit('flow-node-debug', {node: debugNode, message: message.payload})
               }
             }
           });
@@ -61,7 +61,7 @@ angular.module('octobluApp')
           $scope.$apply();
         });
 
-        flowRenderer.on('flowChanged', function (newFlow) {
+        flowRenderer.on('flowChanged', function (newFlow) {;
           $scope.$apply();
         });
 

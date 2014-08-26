@@ -7,11 +7,16 @@ angular.module('octobluApp')
       replace: true,
       scope: {
         flowNodeTypes : '=',
-        flow: '='
+        flow: '=',
+        debugLines: '='
       },
 
       controller: function ($scope, FlowNodeTypeService) {
         var tabs = {
+          debug: {
+            name: 'debug',
+            template: '/angular/directives/flow/flow-browser/flow-browser-debug.html'
+          },
           nodes: {
             name: 'nodes',
             template: '/angular/directives/flow/flow-browser/flow-browser-nodes.html'

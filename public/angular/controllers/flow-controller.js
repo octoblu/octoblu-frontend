@@ -1,7 +1,9 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ($modal, $scope, $window, FlowService, FlowNodeTypeService) {
+  .controller('FlowController', function ($log, $modal, $scope, $window, FlowService, FlowNodeTypeService) {
     var originalNode;
+
     $scope.zoomLevel = 0;
+    $scope.debugLines = [];
 
     FlowNodeTypeService.getFlowNodeTypes()
       .then(function (flowNodeTypes) {
@@ -9,7 +11,7 @@ angular.module('octobluApp')
       });
 
 
-    var refreshFlows = function(){
+    var refreshFlows = function () {
       $scope.flows = FlowService.getAllFlows()
         .then(function (flows) {
           $scope.flows = flows;
@@ -27,6 +29,14 @@ angular.module('octobluApp')
         }
       });
 
+    $scope.$on('flow-node-debug', function (event, message) {
+      $log.debug(message.message);
+      $scope.debugLines.push(message.message);
+      if ($scope.debugLines.length > 100) {
+        $scope.debugLines.shift();
+      }
+    });
+
     $scope.addFlow = function () {
       var name = 'Flow ' + ($scope.flows.length + 1);
       var newFlow = FlowService.newFlow({name: name});
@@ -34,7 +44,7 @@ angular.module('octobluApp')
       $scope.setActiveFlow(newFlow);
     };
 
-    $scope.setActiveFlow = function(flow){
+    $scope.setActiveFlow = function (flow) {
       $scope.activeFlow = flow;
     };
 
@@ -45,7 +55,7 @@ angular.module('octobluApp')
     $scope.deleteFlow = function (flow) {
       var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
       if (deleteFlowConfirmed) {
-        FlowService.deleteFlow(flow.flowId).then(function(){
+        FlowService.deleteFlow(flow.flowId).then(function () {
           refreshFlows();
         });
       }
@@ -81,7 +91,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow){
+      if ($scope.activeFlow) {
         FlowService.start($scope.activeFlow);
       }
     };
@@ -90,7 +100,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow){
+      if ($scope.activeFlow) {
         FlowService.stop($scope.activeFlow);
       }
     };
@@ -99,7 +109,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow){
+      if ($scope.activeFlow) {
         FlowService.restart($scope.activeFlow);
       }
     };
@@ -109,7 +119,9 @@ angular.module('octobluApp')
         e.preventDefault();
       }
 
-      if (!$scope.activeFlow) { return; }
+      if (!$scope.activeFlow) {
+        return;
+      }
 
       _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
       _.pull($scope.activeFlow.links, $scope.activeFlow.selectedLink);
@@ -162,13 +174,15 @@ angular.module('octobluApp')
       FlowService.saveFlow($scope.activeFlow);
     };
 
-    $scope.setMousePosition = function(e) {
-      if(!$scope.activeFlow) { return; }
+    $scope.setMousePosition = function (e) {
+      if (!$scope.activeFlow) {
+        return;
+      }
       $scope.currentMouseX = e.offsetX / $scope.activeFlow.zoomScale;
       $scope.currentMouseY = e.offsetY / $scope.activeFlow.zoomScale;
     };
 
-    $scope.clearMousePosition = function() {
+    $scope.clearMousePosition = function () {
       $scope.currentMouseX = null;
       $scope.currentMouseY = null;
     };
