@@ -12,10 +12,11 @@ var DeviceCollection = function (userUUID) {
   var User = mongoose.model('User');
 
   self.fetch = function () {
-    return self.getUser(userUUID)
-      .then(function (user) {
-        return self.getDevicesByOwner(user);
-      });
+    return self.getUser(userUUID).then(function (user) {
+      return self.getDevicesByOwner(user).then(function(devices){
+        return _.reject(devices, {type: 'octoblu:flow'});
+      })
+    });
   };
 
   self.getUser = function (userUUID) {
@@ -23,7 +24,7 @@ var DeviceCollection = function (userUUID) {
   };
 
   self.getDevicesByOwner = function (user) {
-    return client({
+    var requestParams = {
       method: 'GET',
       path: 'http://' + config.skynet.host + ':' +
         config.skynet.port + '/mydevices',
@@ -31,13 +32,14 @@ var DeviceCollection = function (userUUID) {
         skynet_auth_uuid: user.skynetuuid,
         skynet_auth_token: user.skynettoken
       }
-    })
-      .then(function (result) {
-        return result.entity.devices;
-      })
-      .catch(function () {
-        return [];
-      });
+    };
+
+    return client(requestParams).then(function (result) {
+      console.log(JSON.stringify(result.entity.devices));
+      return result.entity.devices;
+    }).catch(function () {
+      return [];
+    });
   };
 };
 
