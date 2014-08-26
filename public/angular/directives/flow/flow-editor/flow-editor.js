@@ -40,12 +40,12 @@ angular.module('octobluApp')
               return;
             }
 
-              if ($scope.flow) {
-                  var debugNode = _.findWhere($scope.flow.nodes, { id: message.payload.node });
-                  if (debugNode && debugNode.debug) {
-                      $log.log(message.payload);
-                  }
+            if ($scope.flow) {
+              var debugNode = _.findWhere($scope.flow.nodes, { id: message.payload.node });
+              if (debugNode && debugNode.debug) {
+                $log.log(message.payload);
               }
+            }
           });
         });
 
@@ -61,11 +61,11 @@ angular.module('octobluApp')
           $scope.$apply();
         });
 
-        flowRenderer.on('flowChanged', function(newFlow){
+        flowRenderer.on('flowChanged', function (newFlow) {
           $scope.$apply();
         });
 
-        flowRenderer.on('nodeButtonClicked', function(flowNode) {
+        flowRenderer.on('nodeButtonClicked', function (flowNode) {
           skynetService.getSkynetConnection().then(function (skynetConnection) {
             var msg = {
               devices: $scope.flow.flowId,
@@ -82,14 +82,16 @@ angular.module('octobluApp')
         flowRenderer.renderGrid();
 
         $scope.$watch('flow', function (newFlow, oldFlow) {
-          if (newFlow && newFlow !== oldFlow) {
-            skynetService.getSkynetConnection().then(function (skynetConnection) {
-              skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
-            });
-
+          if (!newFlow) {
+            return;
+          }
+            if (!oldFlow || (newFlow.flowId !== oldFlow.flowId)) {
+              skynetService.getSkynetConnection().then(function (skynetConnection) {
+                skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
+              });
+            }
 
             flowRenderer.render(newFlow);
-          }
         }, true);
 
         $scope.$watch('flow.selectedFlowNode', function(){

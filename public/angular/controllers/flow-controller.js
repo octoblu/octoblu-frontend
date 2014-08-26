@@ -49,15 +49,6 @@ angular.module('octobluApp')
       }
     };
 
-    $scope.updateNodeProperties = function () {
-      if (!schemaControl.validate().length) {
-        originalNode.node = schemaControl.getValue();
-        originalNode.name = $scope.editingNodeName;
-        originalNode.dirty = true;
-        originalNode.changed = true;
-      }
-    };
-
     $scope.copySelection = function (e) {
       if (e) {
         e.preventDefault();
