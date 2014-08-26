@@ -11,7 +11,6 @@ angular.module('octobluApp')
       },
 
       controller: function ($scope, FlowNodeTypeService) {
-        
         $scope.addFlowNodeType = function(flowNodeType) {
             var newFlowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
             $scope.flow.addNode(newFlowNode);

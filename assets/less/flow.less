@@ -360,10 +360,6 @@
     user-select: none;
   }
 
-  .pull-right {
-    margin-left: 20px;
-  }
-
   .workspace-container, .palette, .edit-panel {
     border: 1px solid #000;
     border-radius: 3px;
@@ -699,14 +695,26 @@
 }
 
 .flow-browser {
+  box-shadow: rgba(0, 0, 0, 0.298039) 3px 0 0 0;
+  background-color: rgba(245,245,245,0.8);
   position: fixed;
-  left: 0;
-  right: 0;
+  left: 5px;
+  right: 5px;
   bottom: 0;
-  .flow-browser-drawer {
-    min-height: 270px;
+  .drawer-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 5px;
+  }
+  .drawer {
+    transition: height 0.2s;
+    height: 0px;
+    &.maximized {
+      height: 280px;
+    }
+
     width: 100%;
-    border: 2px solid green;
     ul {
       flex: 1;
       list-style: none;
@@ -718,6 +726,7 @@
       align-content: stretch;
       overflow-x: scroll;
       li {
+        .animated-popout;
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -725,13 +734,14 @@
         flex: 1;
         margin: 10px;
         background-color: white;
-        box-shadow: rgba(0, 0, 0, 0.298039) 0px 2px 1px 0px;;
+        box-shadow: rgba(0, 0, 0, 0.298039) 0px 2px 1px 0px;
         min-width: 200px;
       }
       .flow-node-type {
 
       }
     }
+
   }
 }
 
