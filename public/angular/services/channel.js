@@ -128,7 +128,7 @@ angular.module('octobluApp')
          * @returns {defer.promise|*} a promise that will eventually resolve to an array of smart devices
          */
           this.getNodeTypes = function() {
-            return $http.get('/api/nodetypes')
+            return $http.get('/api/node_types')
                 .then(function(result){
                     return result.data;
                 });

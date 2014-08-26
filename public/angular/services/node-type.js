@@ -13,7 +13,7 @@ angular.module('octobluApp')
                     return defer.promise;
                 }
 
-                return $http.get('/api/nodetype').then(function(res){
+                return $http.get('/api/node_types').then(function(res){
                     myNodeTypes.push.apply(myNodeTypes, res.data);
                     return myNodeTypes;
                 });

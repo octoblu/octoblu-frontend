@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
         "protocol" : "websocket"
     });
 
-    var NodeTypeController = require('./controllers/node');
+    var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
 
     var FlowController = require('./controllers/flow-controller');
@@ -37,7 +37,6 @@ module.exports = function(app, passport) {
 
     // Attach additional routes
     conn.on('ready', function(data){
-
         console.log('SkyNet authentication: success');
 
         app.post('*', function(request, response, next){
@@ -64,7 +63,6 @@ module.exports = function(app, passport) {
         require('./controllers/user')(app);
         require('./controllers/group')(app);
         require('./controllers/permissions')(app);
-        require('./controllers/node')(app);
         require('./controllers/designer')(app);
         require('./controllers/invitation')(app, passport, config);
 
@@ -77,7 +75,7 @@ module.exports = function(app, passport) {
 
         app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
 
-        app.get('/api/nodetype', nodeTypeController.getNodeTypes);
+        app.get('/api/node_types', nodeTypeController.getNodeTypes);
 
         // show the home page (will also have our login links)
         app.get('/*', function(req, res) {
