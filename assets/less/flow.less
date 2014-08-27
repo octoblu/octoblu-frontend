@@ -631,8 +631,16 @@
   .drawer-controls {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     margin: 5px;
+
+    .context-controls {
+    }
+
+    .tab-controls {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
   .drawer {
     transition: height 0.2s;

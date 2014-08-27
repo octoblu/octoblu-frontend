@@ -14,11 +14,13 @@ angular.module('octobluApp')
         var tabs = {
           debug: {
             name: 'debug',
-            template: '/pages/flow-browser-debug.html'
+            template: '/pages/flow-browser-debug.html',
+            controlsTemplate: '/pages/flow-browser-debug-controls.html'
           },
           nodes: {
             name: 'nodes',
-            template: '/pages/flow-browser-nodes.html'
+            template: '/pages/flow-browser-nodes.html',
+            controlsTemplate: '/pages/flow-browser-nodes-controls.html'
           }
         };
 
@@ -32,6 +34,14 @@ angular.module('octobluApp')
         $scope.addFlowNodeType = function(flowNodeType) {
             var newFlowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
             $scope.flow.addNode(newFlowNode);
+
+        };
+
+        $scope.toggleDrawer = function(){
+          $scope.maximized = !$scope.maximized;
+          if(!$scope.maximized) {
+            $scope.activeTab = null;
+          }
         };
       }
   };
