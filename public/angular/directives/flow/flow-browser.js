@@ -7,6 +7,7 @@ angular.module('octobluApp')
       replace: true,
       scope: {
         flowNodeTypes : '=',
+        nodeTypes : '=',
         flow: '=',
         debugLines: '='
       },
@@ -20,6 +21,11 @@ angular.module('octobluApp')
           nodes: {
             name: 'nodes',
             template: '/pages/flow-browser-nodes.html',
+            controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+          },
+          unconfigurednodes: {
+            name: 'unconfigurednodes',
+            template: '/pages/flow-browser-unconfigured-nodes.html',
             controlsTemplate: '/pages/flow-browser-nodes-controls.html'
           }
         };

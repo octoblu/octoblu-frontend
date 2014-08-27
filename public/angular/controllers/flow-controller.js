@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ($log, $modal, $scope, $window, FlowService, FlowNodeTypeService) {
+  .controller('FlowController', function ($log, $modal, $scope, $window, FlowService, FlowNodeTypeService, NodeTypeService) {
     var originalNode;
 
     $scope.zoomLevel = 0;
@@ -10,6 +10,10 @@ angular.module('octobluApp')
         $scope.flowNodeTypes = flowNodeTypes;
       });
 
+    NodeTypeService.getNodeTypes()
+      .then(function (nodeTypes) {
+        $scope.nodeTypes = nodeTypes;
+      });
 
     var refreshFlows = function () {
       $scope.flows = FlowService.getAllFlows()
