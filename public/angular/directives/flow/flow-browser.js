@@ -3,7 +3,7 @@ angular.module('octobluApp')
 
     return {
       restrict: 'E',
-      templateUrl: '/angular/directives/flow/flow-browser/flow-browser.html',
+      templateUrl: '/pages/flow-browser.html',
       replace: true,
       scope: {
         flowNodeTypes : '=',
@@ -15,11 +15,11 @@ angular.module('octobluApp')
         var tabs = {
           debug: {
             name: 'debug',
-            template: '/angular/directives/flow/flow-browser/flow-browser-debug.html'
+            template: '/pages/flow-browser-debug.html'
           },
           nodes: {
             name: 'nodes',
-            template: '/angular/directives/flow/flow-browser/flow-browser-nodes.html'
+            template: '/pages/flow-browser-nodes.html'
           }
         };
 
