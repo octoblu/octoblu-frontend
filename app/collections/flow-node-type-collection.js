@@ -15,6 +15,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
       name: node.name,
       class: node.name,
       type: node.type,
+      logo: node.nodeType.logo,
       icon: "fa-dot-circle-o",
       category: node.category,
       defaults: node,

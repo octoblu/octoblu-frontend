@@ -75,7 +75,7 @@
 .logo-toolbar {
   position: fixed;
   left: 20px;
-  bottom: 20px;
+  bottom: 40px;
 
   img {
     opacity: 0.5;
@@ -636,6 +636,7 @@
   }
   .drawer {
     transition: height 0.2s;
+    overflow-y: scroll;
     height: 0px;
     &.maximized {
       height: 250px;
@@ -666,7 +667,6 @@
       }
     }
     ul.flow-browser-debug {
-      overflow-y: scroll;
       list-style: none;
       margin: 5px;
       padding: 0;

@@ -3,6 +3,7 @@
     "name": "delay",
     "class": "delay",
     "icon": "fa-clock-o",
+    "type": "delay",
     "defaults": {
       "category": "delay",
       "timeout": 5,
@@ -16,6 +17,7 @@
     "name": "function",
     "class": "function",
     "icon": "fa-terminal",
+    "type": "function",
     "defaults": {
       "category": "function",
       "output": 1,
@@ -29,6 +31,7 @@
     "name": "button",
     "class": "button",
     "icon": "fa-play",
+    "type": "button",
     "defaults": {
       "category": "button",
       "payloadType": "date",
@@ -42,6 +45,7 @@
     "name": "interval",
     "class": "interval",
     "icon": "fa-history",
+    "type": "interval",
     "defaults": {
       "category": "interval",
       "payloadType": "date",
@@ -56,6 +60,7 @@
     "name": "schedule",
     "class": "schedule",
     "icon": "fa-calendar",
+    "type": "schedule",
     "defaults": {
       "category": "schedule",
       "payloadType": "date",
@@ -70,6 +75,7 @@
     "name": "http request",
     "class": "http-request",
     "icon": "fa-globe",
+    "type": "http request",
     "defaults": {
       "category": "http request",
       "method": "GET"
@@ -83,6 +89,7 @@
     "name": "switch",
     "class": "switch",
     "icon": "fa-sitemap",
+    "type": "switch",
     "defaults": {
       "category": "switch",
       "property": "payload",
@@ -105,6 +112,7 @@
     "name": "sentiment",
     "class": "sentiment",
     "icon": "fa-comments-o",
+    "type": "sentiment",
     "defaults": {
       "category": "sentiment"
     },
@@ -118,6 +126,7 @@
     "icon": "fa-code",
     "formTemplatePath": "/assets/node_forms/xml2js_form.html",
 
+    "type": "xml2js",
     "defaults": {
       "category": "xml2js"
     },
@@ -128,6 +137,7 @@
     "name": "debug",
     "class": "debug",
     "icon": "fa-eye",
+    "type": "debug",
     "defaults": {
       "category": "debug",
       "active": true,
@@ -143,6 +153,7 @@
     "name": "template",
     "class": "template",
     "icon": "fa-file-text",
+    "type": "template",
     "defaults": {
       "category": "template",
       "template": "This is the 'payload': {{payload}}!"
@@ -155,6 +166,7 @@
     "name": "comment",
     "class": "comment",
     "icon":  "fa-comment",
+    "type": "comment",
     "defaults": {
       "category": "comment"
     },
