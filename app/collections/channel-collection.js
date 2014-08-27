@@ -16,7 +16,7 @@ var ChannelCollection = function(userUUID, options){
       var channelIds;
 
       userApis   = user.api;
-      channelIds = _.pluck(userApis, 'channelid');
+      channelIds = _.compact(_.pluck(userApis, 'channelid'));
 
       return self.fetchByIds(channelIds);
     }).then(function(apis){
