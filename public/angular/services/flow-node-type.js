@@ -1,26 +1,27 @@
-'use strict';
 angular.module('octobluApp')
-    .service('FlowNodeTypeService', function ($http, UUIDService) {
-        var self = this;
+.service('FlowNodeTypeService', function ($http, UUIDService) {
+  'use strict';
 
-        self.createFlowNode = function(flowNodeType){
-          var defaults = _.cloneDeep(flowNodeType.defaults);
+  var self = this;
 
-          return _.defaults({id: UUIDService.v1()}, flowNodeType, defaults);
-        };
+  self.createFlowNode = function(flowNodeType){
+    var defaults = _.cloneDeep(flowNodeType.defaults);
 
-        self.getFlowNodeType  = function(type){
-          return self.getFlowNodeTypes().then(function(flowNodeTypes){
-            return _.findWhere(flowNodeTypes, {type: type});
-          });
-        };
+    return _.defaults({id: UUIDService.v1()}, flowNodeType, defaults);
+  };
 
-        self.getFlowNodeTypes = function () {
-          return $http.get('/api/flow_node_types', {cache: true}).then(function(res){
-            return res.data;
-          });
-        };
-
-        return self;
+  self.getFlowNodeType  = function(type){
+    return self.getFlowNodeTypes().then(function(flowNodeTypes){
+      return _.findWhere(flowNodeTypes, {type: type});
     });
+  };
+
+  self.getFlowNodeTypes = function () {
+    return $http.get('/api/flow_node_types', {cache: true}).then(function(res){
+      return res.data;
+    });
+  };
+
+  return self;
+});
 

@@ -22,6 +22,7 @@ describe('FlowChannelFormController', function () {
 
   describe('when scope.node.path and method are updated', function () {
     beforeEach(function(){
+      scope.resources   = channel.application.resources;
       scope.node.path   = resource2.path;
       scope.node.method = resource2.httpMethod;
       scope.$digest();

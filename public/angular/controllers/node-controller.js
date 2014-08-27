@@ -3,7 +3,6 @@ angular.module('octobluApp')
     'use strict';
 
     NodeService.getNodes().then(function(nodes){
-        console.log(nodes);
         $scope.nodes = nodes;
     });
 
@@ -11,7 +10,7 @@ angular.module('octobluApp')
         var sref = 'ob.connector.nodes.' + node.category + '-detail';
         var params = {};
         if (node.category === 'device') {
-            params.uuid = node.resource.uuid;
+            params.uuid = node.uuid;
         } else if (node.category === 'channel') {
             params.id = node.channelid;
         }

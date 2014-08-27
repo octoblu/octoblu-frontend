@@ -21,7 +21,7 @@ angular.module('octobluApp')
 
     node = $scope.node;
     resources = $scope.resources
-
+    console.log(resources);
     selectedEndpoint = _.findWhere(resources, {path: node.path, httpMethod: node.method});
     $scope.selectedEndpoint = selectedEndpoint || _.first(resources);
   };

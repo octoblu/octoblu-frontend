@@ -31,7 +31,7 @@ angular.module('octobluApp')
 
     $scope.$on('flow-node-debug', function (event, message) {
       $log.debug(message);
-      $scope.debugLines.push(message.message);
+      $scope.debugLines.push(_.clone(message.message));
       if ($scope.debugLines.length > 100) {
         $scope.debugLines.shift();
       }
