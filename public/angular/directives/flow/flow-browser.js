@@ -10,7 +10,6 @@ angular.module('octobluApp')
         flow: '=',
         debugLines: '='
       },
-
       controller: function ($scope, FlowNodeTypeService) {
         var tabs = {
           debug: {

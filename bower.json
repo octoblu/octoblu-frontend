@@ -48,7 +48,8 @@
     "node-uuid": "~1.4.1",
     "async": "~0.9.0",
     "mgo-mousetrap": "git://github.com/mgonto/mgo-mousetrap.git#~0.1.2",
-    "mousetrap": "~1.4.6"
+    "mousetrap": "~1.4.6",
+    "prism": "gh-pages"
   },
   "resolutions": {
     "d3": "~3.4.8",
@@ -64,10 +65,15 @@
       "main": [
         "src-noconflict/ace.js",
         "src-noconflict/mode-javascript.js",
+        "src-noconflict/mode-json.js",
         "src-noconflict/theme-chrome.js",
         "src-noconflict/worker-javascript.js"
       ]
     },
+    "prism": [
+      "prism.js",
+      "components/prism-javascript"
+    ],
     "elasticsearch": {
       "main": "elasticsearch.angular.js"
     },
