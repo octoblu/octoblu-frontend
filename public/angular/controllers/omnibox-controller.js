@@ -1,18 +1,16 @@
 angular.module('octobluApp')
-.controller('OmniboxController', function($scope, FlowNodeTypeService, NodeTypeService) {
+.controller('OmniboxController', function($scope, OmniService) {
   'use strict';
 
-  $scope.omniList = [];
+  var fetchFlowNodes = function(flowNodes){
+    OmniService.fetch(flowNodes).then(function(omniList){
+      $scope.omniList = omniList;
+    });
+  }
 
-  NodeTypeService.getNodeTypes().then(function(nodeTypes){
-    $scope.omniList = _.union($scope.omniList, nodeTypes);
-  });
+  $scope.$watch('flowNodes', fetchFlowNodes);
 
-  FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
-    $scope.omniList = _.union($scope.omniList, flowNodeTypes);
-  });
-
-  $scope.$watchCollection($scope.flowNodes, function(){
-    $scope.omniList = _.union($scope.omniList, $scope.flowNodes);
-  });
+  $scope.itemSelected = function(newItem) {
+    $scope.flowNodes.push(newItem);
+  };
 });
