@@ -28,12 +28,22 @@ angular.module('octobluApp')
   };
 
   self.selectItem = function(item){
-    if(_.contains(flowNodeTypes, item)){
+    var flowNodeType, flowNode;
+
+    flowNodeType = _.find(flowNodeTypes, function(flowNodeType){
+      return _.isEqual(angular.toJson(item), angular.toJson(flowNodeType));
+    });
+
+    if(flowNodeType){
       FlowService.addNodeFromFlowNodeType(item);
       return $q.when(null);
     }
 
-    if(_.contains(flowNodes, item)) {
+    flowNode = _.find(flowNodes, function(flowNode){
+      return _.isEqual(angular.toJson(item), angular.toJson(flowNode));
+    });
+
+    if(flowNode) {
       FlowService.selectNode(item);
       return $q.when(null);
     }
