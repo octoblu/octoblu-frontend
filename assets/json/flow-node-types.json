@@ -2,8 +2,8 @@
   {
     "name": "delay",
     "class": "delay",
-    "icon": "fa-clock-o",
     "type": "delay",
+    "logo": "/assets/images/designer/delay.svg", 
     "defaults": {
       "category": "delay",
       "timeout": 5,
@@ -16,7 +16,7 @@
   {
     "name": "function",
     "class": "function",
-    "icon": "fa-terminal",
+    "logo": "/assets/images/designer/function.svg", 
     "type": "function",
     "defaults": {
       "category": "function",
@@ -30,7 +30,7 @@
   {
     "name": "button",
     "class": "button",
-    "icon": "fa-play",
+    "logo": "/assets/images/designer/button.svg", 
     "type": "button",
     "defaults": {
       "category": "button",
@@ -44,7 +44,7 @@
   {
     "name": "interval",
     "class": "interval",
-    "icon": "fa-history",
+    "logo": "/assets/images/designer/interval.svg", 
     "type": "interval",
     "defaults": {
       "category": "interval",
@@ -59,7 +59,7 @@
   {
     "name": "schedule",
     "class": "schedule",
-    "icon": "fa-calendar",
+    "logo": "/assets/images/designer/schedule.svg", 
     "type": "schedule",
     "defaults": {
       "category": "schedule",
@@ -74,7 +74,7 @@
   {
     "name": "http request",
     "class": "http-request",
-    "icon": "fa-globe",
+    "logo": "/assets/images/designer/http.svg", 
     "type": "http request",
     "defaults": {
       "category": "http request",
@@ -88,7 +88,7 @@
   {
     "name": "switch",
     "class": "switch",
-    "icon": "fa-sitemap",
+    "logo": "/assets/images/designer/switch.svg", 
     "type": "switch",
     "defaults": {
       "category": "switch",
@@ -111,7 +111,7 @@
   {
     "name": "sentiment",
     "class": "sentiment",
-    "icon": "fa-comments-o",
+    "logo": "/assets/images/designer/sentiment.svg", 
     "type": "sentiment",
     "defaults": {
       "category": "sentiment"
@@ -123,7 +123,7 @@
   {
     "name": "xml2js",
     "class": "xml2js",
-    "icon": "fa-code",
+    "logo": "/assets/images/designer/xml2js.svg", 
     "formTemplatePath": "/assets/node_forms/xml2js_form.html",
 
     "type": "xml2js",
@@ -136,7 +136,7 @@
   {
     "name": "debug",
     "class": "debug",
-    "icon": "fa-eye",
+    "logo": "/assets/images/designer/debug.svg", 
     "type": "debug",
     "defaults": {
       "category": "debug",
@@ -152,7 +152,7 @@
   {
     "name": "template",
     "class": "template",
-    "icon": "fa-file-text",
+    "logo": "/assets/images/designer/template.svg", 
     "type": "template",
     "defaults": {
       "category": "template",
@@ -165,7 +165,7 @@
   {
     "name": "comment",
     "class": "comment",
-    "icon":  "fa-comment",
+    "logo": "/assets/images/designer/comment.svg", 
     "type": "comment",
     "defaults": {
       "category": "comment"
