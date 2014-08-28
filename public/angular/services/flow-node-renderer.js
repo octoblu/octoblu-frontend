@@ -1,7 +1,7 @@
 angular.module('octobluApp')
   .constant('FlowNodeDimensions', {
-    width: 100,
-    minHeight: 40,
+    width: 80,
+    minHeight: 70,
     portHeight: 10,
     portWidth: 10
   })
@@ -209,8 +209,13 @@ angular.module('octobluApp')
           .attr('width', FlowNodeDimensions.width)
           .attr('height', nodeHeight)
           .attr('rx', 6)
-          .attr('ry', 6)
-          .classed('flow-node-bg', true);
+          .attr('ry', 6);
+
+        nodeElement
+          .append("svg:image")
+          .attr('width', FlowNodeDimensions.width)
+          .attr('height', nodeHeight)
+          .attr("xlink:href",node.logo);
 
         if (node.category == 'button') {
           nodeElement
@@ -228,12 +233,11 @@ angular.module('octobluApp')
         nodeElement
           .append('text')
           .classed('flow-node-label', true)
-          .attr('y', nodeHeight / 2)
+          .attr('y', nodeHeight + 10)
           .attr('x', FlowNodeDimensions.width / 2)
           .attr('text-anchor', 'middle')
           .attr('alignment-baseline', 'central')
-          .attr('font-family', 'FontAwesome')
-          .text(IconCodes[node.icon] + " " + label);
+          .text(label);
 
         var remainingSpace =
           nodeHeight - (node.input * FlowNodeDimensions.portHeight);
