@@ -2,8 +2,8 @@ describe('FlowNodeRenderer', function () {
   var sut, renderScope, FlowNodeDimensions;
 
   var nodeType = {
-    width: 100,
-    height: 40
+    width: 80,
+    height: 70
   };
 
   beforeEach(function () {
@@ -291,7 +291,7 @@ describe('FlowNodeRenderer', function () {
       sut.render(renderScope, {id: '1', input: 1}, {});
       var port = renderScope.selectAll('.flow-node-input-port');
       expect(port.attr('x')).to.equal('-5');
-      expect(port.attr('y')).to.equal(15 + '');
+      expect(port.attr('y')).to.equal('30');
       expect(port.attr('width')).to.equal('10');
       expect(port.attr('height')).to.equal('10');
     });
@@ -310,10 +310,10 @@ describe('FlowNodeRenderer', function () {
       sut.render(renderScope, node, {});
       var ports = renderScope.selectAll('.flow-node-input-port')[0];
 
-      expect(Math.round($(ports[0]).attr('y'))).to.equal(7);
-      expect(Math.round($(ports[1]).attr('y'))).to.equal(23);
-      expect(Math.round(node.inputLocations[0])).to.equal(7);
-      expect(Math.round(node.inputLocations[1])).to.equal(23);
+      expect(Math.round($(ports[0]).attr('y'))).to.equal(17);
+      expect(Math.round($(ports[1]).attr('y'))).to.equal(43);
+      expect(Math.round(node.inputLocations[0])).to.equal(17);
+      expect(Math.round(node.inputLocations[1])).to.equal(43);
     });
 
     it('should place 3 input ports evenly spaced on the left', function(){
@@ -321,13 +321,13 @@ describe('FlowNodeRenderer', function () {
       sut.render(renderScope, node, {});
       var ports = renderScope.selectAll('.flow-node-input-port')[0];
       var nodeElement = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(nodeElement.attr('height')).to.equal('50');
-      expect(Math.round($(ports[0]).attr('y'))).to.equal(5);
-      expect(Math.round($(ports[1]).attr('y'))).to.equal(20);
-      expect(Math.round($(ports[2]).attr('y'))).to.equal(35);
-      expect(Math.round(node.inputLocations[0])).to.equal(5);
-      expect(Math.round(node.inputLocations[1])).to.equal(20);
-      expect(Math.round(node.inputLocations[2])).to.equal(35);
+      expect(nodeElement.attr('height')).to.equal('70');
+      expect(Math.round($(ports[0]).attr('y'))).to.equal(10);
+      expect(Math.round($(ports[1]).attr('y'))).to.equal(30);
+      expect(Math.round($(ports[2]).attr('y'))).to.equal(50);
+      expect(Math.round(node.inputLocations[0])).to.equal(10);
+      expect(Math.round(node.inputLocations[1])).to.equal(30);
+      expect(Math.round(node.inputLocations[2])).to.equal(50);
 
     });
 
@@ -336,20 +336,20 @@ describe('FlowNodeRenderer', function () {
       sut.render(renderScope, node, {});
       var ports = renderScope.selectAll('.flow-node-output-port')[0];
       var nodeElement = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(nodeElement.attr('height')).to.equal('50');
-      expect(Math.round($(ports[0]).attr('y'))).to.equal(5);
-      expect(Math.round($(ports[1]).attr('y'))).to.equal(20);
-      expect(Math.round($(ports[2]).attr('y'))).to.equal(35);
-      expect(Math.round(node.outputLocations[0])).to.equal(5);
-      expect(Math.round(node.outputLocations[1])).to.equal(20);
-      expect(Math.round(node.outputLocations[2])).to.equal(35);
+      expect(nodeElement.attr('height')).to.equal('70');
+      expect(Math.round($(ports[0]).attr('y'))).to.equal(10);
+      expect(Math.round($(ports[1]).attr('y'))).to.equal(30);
+      expect(Math.round($(ports[2]).attr('y'))).to.equal(50);
+      expect(Math.round(node.outputLocations[0])).to.equal(10);
+      expect(Math.round(node.outputLocations[1])).to.equal(30);
+      expect(Math.round(node.outputLocations[2])).to.equal(50);
 
     });
 
     it('should place 4 input ports evenly spaced on the left', function(){
       sut.render(renderScope, {id: '1', input: 4}, {});
       var node = $(renderScope.selectAll('.flow-node > rect')[0]);
-      expect(node.attr('height')).to.equal('65');
+      expect(node.attr('height')).to.equal('70');
     });
 
     it('should place 5 output ports evenly spaced on the left', function(){
