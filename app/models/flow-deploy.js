@@ -1,5 +1,5 @@
 var _ = require('lodash'),
-    DeviceCollection = require('../collections/device-collection'),
+    FlowDeviceCollection = require('../collections/flow-device-collection'),
     mongoose = require('mongoose');
 
 var FlowDeploy = function(options){
@@ -143,7 +143,7 @@ FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
   }).then(function(channels){
     mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api, channels);
 
-    deviceCollection = new DeviceCollection(userUUID);
+    deviceCollection = new FlowDeviceCollection(userUUID);
     deviceCollection.fetch().then(function(myDevices){
       flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
       if (flowDevice) {
@@ -163,15 +163,22 @@ FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
 FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
   var flowDeploy, flowDevice;
 
+  try {
+    console.log("FOWIEFJOWIEFJOWIEFJOIWEOJFIEWJF");
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
-  deviceCollection = new DeviceCollection(userUUID);
+  deviceCollection = new FlowDeviceCollection(userUUID);
   deviceCollection.fetch().then(function(myDevices){
     flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
+    console.log('flow', flowDevice);
     if (flowDevice) {
       flowDeploy.stopFlow(flow, flowDevice.token);
       flowDeploy.unregisterFlow(flow.flowId);
     }
   });
+} catch (err) {
+  console.log(err);
+  throw err;
+}
 };
 
 FlowDeploy.restart = function(userUUID, userToken, flow, meshblu){
