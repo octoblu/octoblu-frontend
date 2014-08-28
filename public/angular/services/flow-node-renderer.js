@@ -219,7 +219,7 @@ angular.module('octobluApp')
             .attr('height', 20)
             .attr('rx', 2)
             .attr('ry', 2)
-            .attr('x', 6)
+            .attr('x', -15)
             .attr('y', (nodeHeight / 2) - 10)
             .classed('flow-node-button', true);
         }

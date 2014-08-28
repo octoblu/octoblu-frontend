@@ -6,7 +6,8 @@ angular.module('octobluApp')
       templateUrl: '/pages/flow-editor-omnibox.html',
       controller: 'OmniboxController',
       scope : {
-        flowNodes : '='
+        flowNodes : '=',
+        omniSearch: '='
       },
       link: function (scope, element) {
         scope.$watch('omniSearch', function(newItem){

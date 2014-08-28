@@ -7,6 +7,7 @@ angular.module('octobluApp')
       replace: true,
       scope: {
         flowNodeTypes : '=',
+        nodeTypes : '=',
         flow: '=',
         debugLines: '='
       },
@@ -21,6 +22,11 @@ angular.module('octobluApp')
             name: 'nodes',
             template: '/pages/flow-browser-nodes.html',
             controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+          },
+          unconfigurednodes: {
+            name: 'unconfigurednodes',
+            template: '/pages/flow-browser-unconfigured-nodes.html',
+            controlsTemplate: '/pages/flow-browser-nodes-controls.html'
           }
         };
 
@@ -32,9 +38,7 @@ angular.module('octobluApp')
         };
 
         $scope.addFlowNodeType = function(flowNodeType) {
-            var newFlowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
-            $scope.flow.addNode(newFlowNode);
-
+          $scope.$emit('flow-node-type-selected', flowNodeType);
         };
 
         $scope.toggleDrawer = function(){

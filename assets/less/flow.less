@@ -644,13 +644,14 @@
   }
   .drawer {
     transition: height 0.2s;
-    overflow-y: scroll;
     height: 0px;
+    overflow-y: scroll;
     &.maximized {
-      height: 250px;
+      height: 40vh;
     }
 
     width: 100%;
+    background-color: white;
     ul.flow-browser-nodes {
       flex: 1;
       list-style: none;
@@ -658,20 +659,23 @@
       padding: 0;
 
       display: flex;
-      flex-direction: row;
-      align-content: stretch;
-      overflow-x: scroll;
+      flex-flow: row wrap;
+      align-content: space-around;
+      justify-content: space-around;
       li {
         .animated-popout;
         cursor: pointer;
         display: flex;
         flex-direction: column;
         align-content: stretch;
+        margin: 10px 10px;
         flex: 1;
-        margin: 10px;
-        background-color: white;
-        box-shadow: rgba(0, 0, 0, 0.298039) 0px 2px 1px 0px;
-        min-width: 200px;
+        min-width: 125px;
+        max-width: 125px;
+        .node-thumbnail {
+          min-height: 125px;
+          height: 125px;
+        }
       }
     }
     ul.flow-browser-debug {
