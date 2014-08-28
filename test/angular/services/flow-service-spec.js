@@ -118,6 +118,30 @@ describe('FlowService', function () {
 
   });
 
+  describe('#addNodeFromFlowNodeType', function(){
+
+    var flow;
+
+    describe('when it is called', function(){
+
+      beforeEach(function(){
+        flow = { nodes: [], links: [] };
+
+        sut.setActiveFlow(flow);
+        sut.addNodeFromFlowNodeType({type: 'function'});
+      });
+
+      it('should set add a node to the flow', function(){
+        expect(flow.nodes).to.not.be.empty;
+      });
+
+      it('should add a node to the flow with the correct type', function(){
+        expect(flow.nodes[0].type).to.equal('function');
+      });
+
+    });
+  });
+
   var FakeUUIDService = function(){
     var _this = this;
 

@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function ($http, $q, FlowModel) {
+.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService) {
   'use strict';
   var self, activeFlow;
   self = this;
@@ -14,8 +14,10 @@ angular.module('octobluApp')
     activeFlow.selectedNode = flowNode;
   };
 
-  self.addNodeFromFlowNodeType = function(){
-
+  self.addNodeFromFlowNodeType = function(flowNodeType){
+    var newFlowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
+    activeFlow.nodes.push(newFlowNode);
+    activeFlow.selectedNode = newFlowNode;
   };
 
   self.setActiveFlow = function(flow){

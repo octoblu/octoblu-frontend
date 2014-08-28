@@ -204,7 +204,7 @@ describe('OmniService', function () {
     var self = this;
     self.addNodeFromFlowNodeType = sinon.spy();
     self.selectNode = sinon.spy();
-  }
+  };
 
   var FakeNodeTypeService = function(){
     var self = this;
