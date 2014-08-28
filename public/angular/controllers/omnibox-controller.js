@@ -8,11 +8,12 @@ angular.module('octobluApp')
     });
   };
 
-  $scope.$watch('flowNodes', fetchFlowNodes);
+  $scope.$watchCollection('flowNodes', fetchFlowNodes);
 
   $scope.selectItem = function(item) {
     OmniService.selectItem(item).then(function(nodeType){
       $scope.nodeType = nodeType;
+//      fetchFlowNodes($scope.flowNodes);
     });
   };
 });
