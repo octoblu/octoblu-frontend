@@ -103,17 +103,17 @@ describe('FlowService', function () {
   });
 
   describe('#selectNode', function(){
-    var selectedNode, flow;
+    var selectedFlowNode, flow;
     beforeEach(function(){
       flow = { nodes: [], links: [] };
-      selectedNode = { type: 'crow' };
+      selectedFlowNode = { type: 'crow' };
 
       sut.setActiveFlow(flow);
-      sut.selectNode(selectedNode);
+      sut.selectNode(selectedFlowNode);
     });
 
-    it('should set selectedNode on the flow', function(){
-      expect(flow.selectedNode).to.equal(selectedNode);
+    it('should set selectedFlowNode on the flow', function(){
+      expect(flow.selectedFlowNode).to.equal(selectedFlowNode);
     });
 
   });

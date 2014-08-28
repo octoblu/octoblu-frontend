@@ -11,13 +11,13 @@ angular.module('octobluApp')
   self.debouncedSaveFlow = _.debounce(self.saveActiveFlow, 1000);
 
   self.selectNode = function(flowNode){
-    activeFlow.selectedNode = flowNode;
+    activeFlow.selectedFlowNode = flowNode;
   };
 
   self.addNodeFromFlowNodeType = function(flowNodeType){
     var newFlowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
     activeFlow.nodes.push(newFlowNode);
-    activeFlow.selectedNode = newFlowNode;
+    activeFlow.selectedFlowNode = newFlowNode;
   };
 
   self.setActiveFlow = function(flow){

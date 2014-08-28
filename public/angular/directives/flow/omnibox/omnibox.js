@@ -7,6 +7,7 @@ angular.module('octobluApp')
       controller: 'OmniboxController',
       scope : {
         flowNodes : '=',
+        selectedFlowNode: '=',
         omniSearch: '='
       },
       link: function (scope, element) {

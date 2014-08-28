@@ -6,7 +6,7 @@ angular.module('octobluApp')
     OmniService.fetch(flowNodes).then(function(omniList){
       $scope.omniList = omniList;
     });
-  }
+  };
 
   $scope.$watch('flowNodes', fetchFlowNodes);
 
