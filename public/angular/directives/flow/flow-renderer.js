@@ -19,6 +19,10 @@ angular.module('octobluApp')
           d3.event.preventDefault();
           dispatch.nodeSelected(node);
         });
+        nodeElement.on('dblclick', function(){
+          d3.event.preventDefault();
+          d3.event.stopPropagation();
+        });
       }
 
       function addButtonClickBehavior(nodeElement, node) {
@@ -27,6 +31,10 @@ angular.module('octobluApp')
             dispatch.nodeButtonClicked(node);
           });
         }
+        nodeElement.on('dblclick', function(){
+          d3.event.preventDefault();
+          d3.event.stopPropagation();
+        });
       }
 
       function addLinkClickBehavior(linkElement, link) {
@@ -36,6 +44,10 @@ angular.module('octobluApp')
           }
           d3.event.preventDefault();
           dispatch.linkSelected(link);
+        });
+        linkElement.on('dblclick', function(){
+          d3.event.preventDefault();
+          d3.event.stopPropagation();
         });
       }
 

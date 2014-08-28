@@ -16,4 +16,9 @@ angular.module('octobluApp')
 //      fetchFlowNodes($scope.flowNodes);
     });
   };
+
+  $scope.getOmniboxItemTemplate = function(item) {
+    console.log('categ', item.category);
+    return '/pages/omnibox-item-' + item.category + '.html';
+  };
 });

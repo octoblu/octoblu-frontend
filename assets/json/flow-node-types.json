@@ -3,9 +3,9 @@
     "name": "delay",
     "class": "delay",
     "type": "delay",
+    "category" : "operation",
     "logo": "/assets/images/designer/delay.svg", 
     "defaults": {
-      "category": "delay",
       "timeout": 5,
       "timeoutUnits": "seconds"
     },
@@ -16,10 +16,10 @@
   {
     "name": "function",
     "class": "function",
+    "category" : "operation",
     "logo": "/assets/images/designer/function.svg", 
     "type": "function",
     "defaults": {
-      "category": "function",
       "output": 1,
       "func": "\nreturn msg;"
     },
@@ -30,10 +30,10 @@
   {
     "name": "button",
     "class": "button",
+    "category" : "operation",
     "logo": "/assets/images/designer/button.svg", 
     "type": "button",
     "defaults": {
-      "category": "button",
       "payloadType": "date",
       "once": false
     },
@@ -44,10 +44,10 @@
   {
     "name": "interval",
     "class": "interval",
+    "category" : "operation",
     "logo": "/assets/images/designer/interval.svg", 
     "type": "interval",
     "defaults": {
-      "category": "interval",
       "payloadType": "date",
       "repeat": "1",
       "once": false
@@ -59,10 +59,10 @@
   {
     "name": "schedule",
     "class": "schedule",
+    "category" : "operation",
     "logo": "/assets/images/designer/schedule.svg", 
     "type": "schedule",
     "defaults": {
-      "category": "schedule",
       "payloadType": "date",
       "crontab": "* * * * *",
       "once": false
@@ -74,10 +74,10 @@
   {
     "name": "http request",
     "class": "http-request",
+    "category" : "operation",
     "logo": "/assets/images/designer/http.svg", 
     "type": "http request",
     "defaults": {
-      "category": "http request",
       "method": "GET"
     },
     "input": 1,
@@ -88,10 +88,10 @@
   {
     "name": "switch",
     "class": "switch",
+    "category" : "operation",
     "logo": "/assets/images/designer/switch.svg", 
     "type": "switch",
     "defaults": {
-      "category": "switch",
       "property": "payload",
       "required": true,
       "rules": [
@@ -111,10 +111,10 @@
   {
     "name": "sentiment",
     "class": "sentiment",
+    "category" : "operation",
     "logo": "/assets/images/designer/sentiment.svg", 
     "type": "sentiment",
     "defaults": {
-      "category": "sentiment"
     },
     "input": 1,
     "output": 1,
@@ -123,12 +123,12 @@
   {
     "name": "xml2js",
     "class": "xml2js",
+    "category" : "operation",
     "logo": "/assets/images/designer/xml2js.svg", 
     "formTemplatePath": "/assets/node_forms/xml2js_form.html",
 
     "type": "xml2js",
     "defaults": {
-      "category": "xml2js"
     },
     "input": 1,
     "output": 1
@@ -136,10 +136,10 @@
   {
     "name": "debug",
     "class": "debug",
+    "category" : "operation",
     "logo": "/assets/images/designer/debug.svg", 
     "type": "debug",
     "defaults": {
-      "category": "debug",
       "active": true,
       "debug": true,
       "complete": false
@@ -152,10 +152,10 @@
   {
     "name": "template",
     "class": "template",
+    "category" : "operation",
     "logo": "/assets/images/designer/template.svg", 
     "type": "template",
     "defaults": {
-      "category": "template",
       "template": "This is the 'payload': {{payload}}!"
     },
     "input": 1,
@@ -165,10 +165,10 @@
   {
     "name": "comment",
     "class": "comment",
+    "category" : "operation",
     "logo": "/assets/images/designer/comment.svg", 
     "type": "comment",
     "defaults": {
-      "category": "comment"
     },
     "input": 0,
     "output": 0,
