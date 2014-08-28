@@ -6,22 +6,15 @@ angular.module('octobluApp')
       templateUrl: '/pages/flow-editor-omnibox.html',
       controller: 'OmniboxController',
       scope : {
-        flow : '=',
+        flowNodes : '=',
+        selectedFlowNode: '=',
         omniSearch: '='
       },
       link: function (scope, element) {
-
         scope.$watch('omniSearch', function(newItem){
-          if (!_.isObject(newItem)){ return; }
-
-          if(newItem.id){
-            scope.flow.selectedFlowNode = newItem;
-          } else {
-            var newFlowNode = FlowNodeTypeService.createFlowNode(newItem);
-            scope.flow.addNode(newFlowNode);
-          }
+          if(!_.isObject(newItem)) { return; }
+          scope.selectItem(newItem);
         });
-
       }
     };
   });

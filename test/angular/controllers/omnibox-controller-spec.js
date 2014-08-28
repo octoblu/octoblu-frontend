@@ -1,20 +1,29 @@
 describe('OmniboxController', function () {
-  var scope, sut, fakeFlowNodeTypeService, fakeNodeTypeService;
+  var scope, sut, omniService, $q, $rootScope;
 
   beforeEach(function () {
     module('octobluApp');
 
-    inject(function($rootScope, $controller){
+    inject(function(_$httpBackend_){
+      var $httpBackend = _$httpBackend_;
+      $httpBackend.whenGET('/api/auth').respond(200);
+      $httpBackend.whenGET('/pages/octoblu.html').respond(200);
+      $httpBackend.whenGET('/pages/home.html').respond(200);
+      $httpBackend.flush();
+    });
+
+    inject(function(_$rootScope_, _$q_, $controller){
+      $q = _$q_;
+      $rootScope = _$rootScope_;
+
       scope = $rootScope.$new();
-      fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
-      fakeNodeTypeService = new FakeNodeTypeService();
+
+      omniService = new FakeOmniService();
 
       sut = $controller('OmniboxController', {
         $scope: scope,
-        FlowNodeTypeService: fakeFlowNodeTypeService,
-        NodeTypeService: fakeNodeTypeService
+        OmniService: omniService
       });
-
     });
   });
 
@@ -22,138 +31,74 @@ describe('OmniboxController', function () {
     expect(sut).to.exist;
   });
 
-  describe('when scope.flowNodes has a node', function () {
+  describe('when items are added to scope.flowNodes', function () {
     beforeEach(function () {
-      scope.flowNodes = [{ type: 'liter' }];
+      scope.flowNodes = [{type: 'flowNode'}];
       scope.$digest();
     });
 
-    it('should put it in the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(scope.flowNodes);
+    it('should call OmniService.fetch with flowNodes', function () {
+      expect(omniService.fetch).to.have.been.calledWith(scope.flowNodes);
+    });
+
+    describe('when OmniService.fetch resolves', function () {
+      beforeEach(function () {
+        omniService.fetch.resolve([{type: 'flowNode'}, {type: 'nodeType'}]);
+        $rootScope.$apply();
+      });
+
+      it('should add the omniItems to the omniList', function () {
+        expect(scope.omniList).to.deep.contain({type: 'flowNode'});
+        expect(scope.omniList).to.deep.contain({type: 'nodeType'});
+      });
     });
   });
 
-  describe('when flowNodes has different nodes', function () {
-    beforeEach(function () {
-      scope.flowNodes = [{ type: 'liter' }, {type: 'lighter'}];
-      scope.$digest();
+  describe('selectItem', function () {
+
+    beforeEach(function(){
+        scope.selectItem({type: 'item'});
     });
 
-    it('should put them in the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(scope.flowNodes);
-    });
-  });
-
-  describe('when the FlowNodeTypeService responds', function () {
-    var flowNodeTypes;
-
-    beforeEach(function () {
-      flowNodeTypes = [{ type: 'function'}];
-      fakeFlowNodeTypeService.getFlowNodeTypes.successCallback(flowNodeTypes);
+    it('should call OmniService.selectItem with the item', function () {
+      expect(omniService.selectItem).to.have.been.called;
     });
 
-    it('should inject them into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(flowNodeTypes);
-    });
-  });
+    describe('when OmniService.selectItem resolves with an item', function () {
+      var selectedItem
 
-  describe('when the FlowNodeTypeService responds with a "thee bug" node', function () {
-    var flowNodeTypes;
+      beforeEach(function(){
+        selectedItem = {type: 'flowNode'};
+        omniService.selectItem.resolve(selectedItem);
+        $rootScope.$apply();
+      });
 
-    beforeEach(function () {
-      flowNodeTypes = [{ type: 'thee bug'}];
-      fakeFlowNodeTypeService.getFlowNodeTypes.successCallback(flowNodeTypes);
-    });
-
-    it('should inject it into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(flowNodeTypes);
+      it('should set the returned item on the scope', function(){
+        expect(scope.nodeType).to.equal(selectedItem);
+      });
     });
   });
 
-  describe('when the NodeTypeService responds with a "Bitly" node', function () {
-    var flowNodeTypes;
+  // describe('when the OmniService emits a selected item', function () {
+  //   beforeEach(function () {
 
-    beforeEach(function () {
-      nodeTypes = [{ type: 'channel:bitly'}];
-      fakeNodeTypeService.getNodeTypes.successCallback(nodeTypes);
-    });
+  //   });
+  // });
 
-    it('should inject it into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(nodeTypes);
-    });
-  });
-
-  describe('when the NodeTypeService responds with a "taco_bell" node', function () {
-    var flowNodeTypes;
-
-    beforeEach(function () {
-      nodeTypes = [{ type: 'channel:taco_bell'}];
-      fakeNodeTypeService.getNodeTypes.successCallback(nodeTypes);
-    });
-
-    it('should inject it into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(nodeTypes);
-    });
-  });
-
-  describe('when the NodeTypeService and FlowNodeTypeService respond with data', function () {
-    var flowNodeTypes, nodeTypes;
-
-    beforeEach(function () {
-      nodeTypes = [{ type: 'channel:taco_bell'}];
-      fakeNodeTypeService.getNodeTypes.successCallback(nodeTypes);
-
-      flowNodeTypes = [{ type: 'thee bug'}];
-      fakeFlowNodeTypeService.getFlowNodeTypes.successCallback(flowNodeTypes);
-    });
-
-    it('should inject nodeTypes into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(nodeTypes);
-    });
-
-    it('should inject flowNodeTypes into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(flowNodeTypes);
-    });
-  });
-
-  describe('when flowNodes has nodes and the NodeTypeService responds', function () {
-    beforeEach(function () {
-      nodeTypes = [{ type: 'channel:taco_bell'}];
-      fakeNodeTypeService.getNodeTypes.successCallback(nodeTypes);
-
-      scope.flowNodes = [{ type: 'liter' }];
-      scope.$digest();
-    });
-
-    it('should put flowNodes into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(scope.flowNodes);
-    });
-
-    it('should inject nodeTypes into the omniList', function () {
-      expect(scope.omniList).to.deep.contain.members(nodeTypes);
-    });
-  });
-
-  var FakeFlowNodeTypeService = function(){
+  var FakeOmniService = function(){
     var self = this;
-    self.getFlowNodeTypes = function() {
-      return {
-        then: function(successCallback){
-          self.getFlowNodeTypes.successCallback = successCallback;
-        }
-      };
-    };
-  };
 
-  var FakeNodeTypeService = function(){
-    var self = this;
-    self.getNodeTypes = function() {
-      return {
-        then: function(successCallback){
-          self.getNodeTypes.successCallback = successCallback;
-        }
-      };
-    };
-  };
+    self.fetch = sinon.spy(function(){
+      var deferred = $q.defer();
+      self.fetch.resolve = deferred.resolve;
+      return deferred.promise;
+    });
 
+    self.selectItem = sinon.spy(function(){
+      var deferred = $q.defer();
+      self.selectItem.resolve = deferred.resolve;
+      return deferred.promise;
+    });
+
+  };
 });

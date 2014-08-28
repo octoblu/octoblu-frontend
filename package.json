@@ -84,7 +84,8 @@
     "shelljs": "^0.3.0",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0",
-    "webdriverjs": "~1.7.4"
+    "webdriverjs": "~1.7.4",
+    "karma-chai-plugins": "~0.2.3"
   },
   "scripts": {
     "test": "NODE_ENV=test mocha -r test/test_helper.js --recursive --reporter spec test/models test/controllers test/collections && node_modules/karma/bin/karma start --single-run",
