@@ -102,6 +102,22 @@ describe('FlowService', function () {
     });
   });
 
+  describe('#selectNode', function(){
+    var selectedNode, flow;
+    beforeEach(function(){
+      flow = { nodes: [], links: [] };
+      selectedNode = { type: 'crow' };
+
+      sut.setActiveFlow(flow);
+      sut.selectNode(selectedNode);
+    });
+
+    it('should set selectedNode on the flow', function(){
+      expect(flow.selectedNode).to.equal(selectedNode);
+    });
+
+  });
+
   var FakeUUIDService = function(){
     var _this = this;
 

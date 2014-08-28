@@ -11,7 +11,7 @@ angular.module('octobluApp')
       link: function (scope, element) {
         scope.$watch('omniSearch', function(newItem){
           if(!_.isObject(newItem)) { return; }
-          scope.itemSelected(newItem);
+          scope.selectItem(newItem);
         });
       }
     };

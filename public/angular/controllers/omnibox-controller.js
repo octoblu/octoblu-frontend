@@ -10,7 +10,9 @@ angular.module('octobluApp')
 
   $scope.$watch('flowNodes', fetchFlowNodes);
 
-  $scope.itemSelected = function(newItem) {
-    $scope.flowNodes.push(newItem);
+  $scope.selectItem = function(item) {
+    OmniService.selectItem(item).then(function(nodeType){
+      $scope.nodeType = nodeType;
+    });
   };
 });

@@ -1,5 +1,5 @@
 describe('OmniService', function () {
-  var sut, fakeFlowNodeTypeService, fakeNodeTypeService, $rootScope, $q;
+  var sut, fakeFlowNodeTypeService, fakeFlowService, fakeNodeTypeService, $rootScope, $q;
 
   beforeEach(function () {
     module('octobluApp');
@@ -7,9 +7,11 @@ describe('OmniService', function () {
     module('octobluApp', function($provide){
       fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
       fakeNodeTypeService = new FakeNodeTypeService();
+      fakeFlowService = new FakeFlowService();
 
       $provide.value('FlowNodeTypeService', fakeFlowNodeTypeService);
       $provide.value('NodeTypeService', fakeNodeTypeService);
+      $provide.value('FlowService', fakeFlowService);
     });
 
     inject(function(_$httpBackend_){
@@ -45,7 +47,11 @@ describe('OmniService', function () {
       });
 
       it('should keep its promise with an empty thing', function (done) {
-        expect(promise).to.eventually.deep.equal([]).and.notify(done);
+        promise.then(function(result){
+          expect(result).to.deep.equal([]);
+          done();
+        }).catch(done);
+
         $rootScope.$apply();
       });
     });
@@ -92,6 +98,98 @@ describe('OmniService', function () {
     });
   });
 
+  describe('selectItem', function () {
+    describe('when FlowNodeTypeService and NodeTypeService respond with something', function () {
+      var flowNode, flowNodeType, nodeType;
+
+      beforeEach(function (done) {
+        flowNode     = {type: 'flowNode'};
+        flowNodeType = {type: 'flowNodeType'};
+        nodeType     = {type: 'nodeType'};
+
+        sut.fetch([flowNode]).then(function(){ done() });
+        fakeFlowNodeTypeService.getFlowNodeTypes.resolve([flowNodeType]);
+        fakeNodeTypeService.getNodeTypes.resolve([nodeType]);
+        $rootScope.$apply();
+      });
+
+      describe('when the selectedItem is a flowNode', function () {
+        var promise;
+
+        beforeEach(function () {
+          promise = sut.selectItem(flowNode);
+        });
+
+        it('should select the node in the flow', function () {
+          expect(fakeFlowService.selectNode).to.have.been.calledWith(flowNode);
+        });
+
+        it('should not call FlowService.addNodeFromFlowNodeType', function () {
+          expect(fakeFlowService.addNodeFromFlowNodeType).not.to.have.been.called;
+        });
+
+        it('should resolve with the a null item', function (done) {
+          promise.then(function(item){
+            expect(item).to.be.null;
+            done();
+          });
+
+          $rootScope.$apply();
+        });
+      });
+
+      describe('when the selectedItem is a flowNodeType', function () {
+        var promise;
+
+        beforeEach(function () {
+          promise = sut.selectItem(flowNodeType);
+        });
+
+        it('should call FlowService.addNodeFromFlowNodeType', function () {
+          expect(fakeFlowService.addNodeFromFlowNodeType).to.have.been.calledWith(flowNodeType);
+        });
+
+        it('should not call FlowService.selectNode', function () {
+          expect(fakeFlowService.selectNode).not.to.have.been.called;
+        });
+
+        it('should resolve with the a null item', function (done) {
+          promise.then(function(item){
+            expect(item).to.be.null;
+            done();
+          });
+
+          $rootScope.$apply();
+        });
+      });
+
+      describe('when the selectItem is a nodeType', function () {
+        var promise;
+
+        beforeEach(function() {
+          promise = sut.selectItem(nodeType);
+        });
+
+        it('should not call FlowService.selectNode', function () {
+          expect(fakeFlowService.selectNode).not.to.have.been.calledWith(nodeType);
+        });
+
+        it('should not call FlowService.addNodeFromFlowNodeType', function () {
+          expect(fakeFlowService.addNodeFromFlowNodeType).not.to.have.been.called;
+        });
+
+        it('should resolve with the original item', function (done) {
+          promise.then(function(item){
+            expect(item).to.equal(nodeType);
+            done();
+          });
+
+          $rootScope.$apply();
+        });
+      });
+    });
+  });
+
   var FakeFlowNodeTypeService = function(){
     var self = this;
     self.getFlowNodeTypes = function() {
@@ -101,6 +199,12 @@ describe('OmniService', function () {
     };
     self.getFlowNodeTypes.resolve = function(){};
   };
+
+  var FakeFlowService = function(){
+    var self = this;
+    self.addNodeFromFlowNodeType = sinon.spy();
+    self.selectNode = sinon.spy();
+  }
 
   var FakeNodeTypeService = function(){
     var self = this;

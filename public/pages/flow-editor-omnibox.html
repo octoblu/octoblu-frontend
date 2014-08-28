@@ -6,6 +6,12 @@
     </span>
   </div>
 
+  <div ng-show="nodeType">
+    <br>
+    <h1>THIS NODE REQUIRES ACTIVATION!!!!!!!!!!</h1>
+    <button class="btn btn-primary btn-lg">Activate</button>
+  </div>
+
   <div ng-show="flow.selectedFlowNode">
     <br>
     <flow-node-editor flow-node="flow.selectedFlowNode" ></flow-node-editor>

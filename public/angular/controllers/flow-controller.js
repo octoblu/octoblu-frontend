@@ -15,7 +15,7 @@ angular.module('octobluApp')
       $scope.flows = FlowService.getAllFlows()
         .then(function (flows) {
           $scope.flows = flows;
-          $scope.activeFlow = flows[0];
+          $scope.setActiveFlow(flows[0]);
         });
     };
 
@@ -44,8 +44,13 @@ angular.module('octobluApp')
       $scope.setActiveFlow(newFlow);
     };
 
+    $scope.getActiveFlow = function(){
+      return FlowService.getActiveFlow();
+    };
+
     $scope.setActiveFlow = function (flow) {
       $scope.activeFlow = flow;
+      FlowService.setActiveFlow($scope.activeFlow);
     };
 
     $scope.isActiveFlow = function (flow) {
@@ -91,27 +96,21 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow) {
-        FlowService.start($scope.activeFlow);
-      }
+      FlowService.start();
     };
 
     $scope.stop = function (e) {
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow) {
-        FlowService.stop($scope.activeFlow);
-      }
+      FlowService.stop();
     };
 
     $scope.restart = function (e) {
       if (e) {
         e.preventDefault();
       }
-      if ($scope.activeFlow) {
-        FlowService.restart($scope.activeFlow);
-      }
+      FlowService.restart();
     };
 
     $scope.deleteSelection = function (e) {
@@ -171,7 +170,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
-      FlowService.saveFlow($scope.activeFlow);
+      FlowService.saveActiveFlow();
     };
 
     $scope.setMousePosition = function (e) {
