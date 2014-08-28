@@ -41,6 +41,10 @@ angular.module('octobluApp')
       }
     });
 
+    $scope.$on('flow-node-type-selected', function(event, flowNodeType){
+      $scope.omniSearch = flowNodeType;
+    });
+
     $scope.addFlow = function () {
       var name = 'Flow ' + ($scope.flows.length + 1);
       var newFlow = FlowService.newFlow({name: name});

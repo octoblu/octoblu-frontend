@@ -38,9 +38,7 @@ angular.module('octobluApp')
         };
 
         $scope.addFlowNodeType = function(flowNodeType) {
-            var newFlowNode = FlowNodeTypeService.createFlowNode(flowNodeType);
-            $scope.flow.addNode(newFlowNode);
-
+          $scope.$emit('flow-node-type-selected', flowNodeType);
         };
 
         $scope.toggleDrawer = function(){
