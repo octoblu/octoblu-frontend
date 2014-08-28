@@ -7,15 +7,8 @@ angular.module('octobluApp')
 
         service = {
             getNodeTypes : function(){
-                if(!_.isEmpty(myNodeTypes)) {
-                    var defer = $q.defer();
-                    defer.resolve(myNodeTypes);
-                    return defer.promise;
-                }
-
                 return $http.get('/api/node_types').then(function(res){
-                    myNodeTypes.push.apply(myNodeTypes, res.data);
-                    return myNodeTypes;
+                    return res.data;
                 });
             },
 

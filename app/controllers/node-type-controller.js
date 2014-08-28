@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var _ = require('underscore');
+var _ = require('lodash');
 
 module.exports = function (options) {
   var _this, NodeType;

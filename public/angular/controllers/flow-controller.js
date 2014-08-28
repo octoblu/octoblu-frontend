@@ -12,6 +12,7 @@ angular.module('octobluApp')
 
     NodeTypeService.getNodeTypes()
       .then(function (nodeTypes) {
+        console.log(nodeTypes);
         $scope.nodeTypes = nodeTypes;
       });
 
