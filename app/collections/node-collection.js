@@ -47,8 +47,10 @@ var NodeCollection = function (userUUID) {
         var logo, nodeType;
 
         nodeType = _.findWhere(nodeTypes, function(nodeType) {
-          console.log(node.name, nodeType.type, node.type);
-          return nodeType.type == node.type;
+          if(node.subtype){
+            return nodeType.type === node.subtype;
+          }
+          return nodeType.type === node.type;
         });
 
         if (nodeType) {
