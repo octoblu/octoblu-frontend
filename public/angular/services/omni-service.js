@@ -1,31 +1,34 @@
 angular.module('octobluApp')
-.service('OmniService', function(FlowNodeTypeService, NodeTypeService, FlowService, $q) {
-  'use strict';
-  var self, flowNodes, flowNodeTypes, nodeTypes;
-  self = this;
+  .service('OmniService', function (FlowNodeTypeService, NodeTypeService, FlowService, $q) {
+    'use strict';
+    var self, flowNodes, flowNodeTypes, nodeTypes;
+    self = this;
 
-  flowNodes     = [];
-  flowNodeTypes = [];
-  nodeTypes     = [];
+    flowNodes = [];
+    flowNodeTypes = [];
+    nodeTypes = [];
 
-  self.fetch = function(omniItems) {
-    var getFlowNodeTypes, getNodeTypes;
+    self.fetch = function (omniItems) {
+      var getFlowNodeTypes, getNodeTypes;
 
-    getNodeTypes     = NodeTypeService.getNodeTypes();
+      getNodeTypes = NodeTypeService.getNodeTypes();
 
-    flowNodes = omniItems;
+      flowNodes = omniItems;
 
-    return $q.all([self.getFlowNodeTypes(), getNodeTypes]).then(function(results){
-      return _.union(omniItems, _.flatten(results, true));
-    });
-  };
+      return $q.all([self.getFlowNodeTypes(), getNodeTypes]).then(function (results) {
+        return _.map(_.union(omniItems, results[0], results[1]), function (omniboxItem) {
+          omniboxItem.listItemTemplate = '/pages/omnibox-item-' + omniboxItem.category + '.html';
+          return omniboxItem;
+        });
+      });
+    };
 
-  self.getFlowNodeTypes = function(){
-    return FlowNodeTypeService.getFlowNodeTypes().then(function(theFlowNodeTypes){
-      flowNodeTypes = theFlowNodeTypes;
-      return flowNodeTypes;
-    });
-  };
+    self.getFlowNodeTypes = function () {
+      return FlowNodeTypeService.getFlowNodeTypes().then(function (theFlowNodeTypes) {
+        flowNodeTypes = theFlowNodeTypes;
+        return flowNodeTypes;
+      });
+    };
 
   self.selectItem = function(item){
     var flowNodeType, flowNode;
@@ -48,6 +51,6 @@ angular.module('octobluApp')
       return $q.when(null);
     }
 
-    return $q.when(item);
-  };
-});
+      return $q.when(item);
+    };
+  });

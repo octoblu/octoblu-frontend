@@ -1,1 +1,8 @@
-<h1>Channel</h1>
+<div class="col-lg-10">
+    <h5 class="media-heading">{{match.model.name || match.model.defaults.type}}</h5>
+     <p><pre>{{match.model}}</pre></p>
+</div>
+<div class="col-lg-2">
+    <button ng-if="!match.model.defaults.uuid"  class="btn btn-small btn-primary">+</button>
+</div>
+</div>

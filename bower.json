@@ -52,8 +52,7 @@
     "prism": "gh-pages"
   },
   "resolutions": {
-    "d3": "~3.4.8",
-    "jquery": "~2.1.1"
+    "d3": "~3.4.8"
   },
   "devDependencies": {
     "chai": "~1.9.1",
