@@ -164,12 +164,10 @@ FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
   var flowDeploy, flowDevice;
 
   try {
-    console.log("FOWIEFJOWIEFJOWIEFJOIWEOJFIEWJF");
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
   deviceCollection = new FlowDeviceCollection(userUUID);
   deviceCollection.fetch().then(function(myDevices){
     flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
-    console.log('flow', flowDevice);
     if (flowDevice) {
       flowDeploy.stopFlow(flow, flowDevice.token);
       flowDeploy.unregisterFlow(flow.flowId);

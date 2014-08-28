@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer, skynetService) {
+  .directive('flowEditor', function (FlowRenderer, skynetService, FlowNodeDimensions) {
 
     return {
       restrict: 'E',
@@ -21,15 +21,16 @@ angular.module('octobluApp')
             if (message.topic !== 'pulse') {
               return;
             }
-
-            var element = d3.select('#node-' + message.payload.node + ' > rect');
+            var element = d3.select('#node-' + message.payload.node + ' > image');
             element.transition()
-              .style('stroke-width', 4)
+              .attr('width', FlowNodeDimensions.width * 1.1)
+              .attr('height', FlowNodeDimensions.minHeight * 1.1)
               .duration(250);
 
             element.transition()
               .delay(250)
-              .style('stroke-width', 2)
+              .attr('width', FlowNodeDimensions.width)
+              .attr('height', FlowNodeDimensions.minHeight)
               .duration(250);
           });
         });
