@@ -126,10 +126,11 @@ angular.module('octobluApp')
         function addDragBehavior(portElement, sourcePortNumber, sourcePortType) {
           var dragBehavior = d3.behavior.drag()
             .on('dragstart', function () {
+              if(!d3.event){return};
               d3.event.sourceEvent.stopPropagation();
               d3.event.sourceEvent.preventDefault();
             })
-            .on('drag', function (event) {
+            .on('drag', function () {
               d3.event.sourceEvent.stopPropagation();
               d3.event.sourceEvent.preventDefault();
               renderScope.selectAll('.flow-potential-link').remove();
