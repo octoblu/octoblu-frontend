@@ -1,8 +1,6 @@
-var moment = require('moment');
-var _      = require('underscore');
-
 describe('User', function () {
   var User, sut;
+  var moment = require('moment');
 
   before(function () {
     var mongoose   = require('mongoose');

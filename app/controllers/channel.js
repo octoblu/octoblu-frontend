@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore'),
+var _ = require('lodash'),
     request = require('request'),
     mongoose = require('mongoose'),
     Api = mongoose.model('Api'),

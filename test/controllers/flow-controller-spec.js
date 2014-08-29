@@ -1,5 +1,5 @@
 var FlowController = require('../../app/controllers/flow-controller');
-var _ = require('underscore');
+var _ = require('lodash');
 
 describe('FlowController', function () {
   var sut, res, flow, fakeFlow;

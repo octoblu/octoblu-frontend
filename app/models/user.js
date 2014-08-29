@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
   Resource = require('./mixins/resource'),
   moment = require('moment'),
   when = require('when'),
-  _ = require('underscore'),
+  _ = require('lodash'),
   uuid = require('node-uuid'),
 
   configAuth = require('../../config/auth')(process.env.NODE_ENV),

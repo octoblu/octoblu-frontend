@@ -1,4 +1,4 @@
-var _        = require('underscore');
+var _        = require('lodash');
 var mongoose = require('mongoose');
 var resource = require('./mixins/resource');
 

@@ -2,7 +2,7 @@ var Redport = function(options){
   var _this, config, request, userUUID, userToken;
 
   _this     = this;
-  _         = require('underscore');
+  _         = require('lodash');
   config    = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
   request   = options.request || require('request');
   userUUID  = options.userUUID;
