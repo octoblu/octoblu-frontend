@@ -9,3 +9,5 @@ coverage
 .idea
 *.iml
 atlassian-ide-plugin.xml
+assets/lib
+public/assets/stylesheets/fonts
