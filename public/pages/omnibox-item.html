@@ -3,8 +3,8 @@
     <div class="media-object pull-left">
       <img width="40" src="{{match.model.logo}}">
     </div>
-    <div class="media-body" ng-include="match.model.listItemTemplate">
 
-    </div>
+    <div class="media-body" ng-include="'/pages/omnibox-' + match.model.omniType +'.html'"></div>
+    <small>{{'/pages/omnibox-' + match.model.omniType +'.html'}}</small>
   </div>
 </div>
