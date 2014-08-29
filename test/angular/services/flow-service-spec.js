@@ -139,6 +139,9 @@ describe('FlowService', function () {
         expect(flow.nodes[0].type).to.equal('function');
       });
 
+      it('should add a resourceType of flow-node', function(){
+        expect(flow.nodes[0].resourceType).to.equal('flow-node');
+      });
     });
   });
 

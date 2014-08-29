@@ -12,7 +12,6 @@ angular.module('octobluApp')
 
     NodeTypeService.getNodeTypes()
       .then(function (nodeTypes) {
-        console.log(nodeTypes);
         $scope.nodeTypes = nodeTypes;
       });
 
@@ -26,13 +25,6 @@ angular.module('octobluApp')
 
     refreshFlows();
 
-
-    FlowService.getSessionFlow()
-      .then(function (sessionFlow) {
-        if (sessionFlow) {
-          RED.view.importFromCommunity(sessionFlow);
-        }
-      });
 
     $scope.$on('flow-node-debug', function (event, message) {
       $log.debug(message);

@@ -51,13 +51,6 @@ angular.module('octobluApp')
     });
   };
 
-  self.getSessionFlow = function () {
-    return $http({method: 'GET', url: '/api/get/flow'})
-    .then(function (response) {
-      return response.data.flow;
-    });
-  };
-
   self.newFlow = function(options) {
     return FlowModel(options);
   };
