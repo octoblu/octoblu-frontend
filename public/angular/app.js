@@ -358,6 +358,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         templateUrl: '/pages/node-wizard/add-node.html'
       })
 
+      .state('ob.nodewizard.add', {
+        url: '/add/:nodeTypeId',
+        controller: 'AddNodeWizardController',
+        templateUrl: '/pages/node-wizard/add.html'
+      })
+
       .state('ob.nodewizard.addchannel', {
         url: '/node-wizard/add-channel/:nodeTypeId',
         controller: 'addChannelController',

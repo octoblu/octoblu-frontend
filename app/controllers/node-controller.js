@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 var NodeController = function(options){
   var self, NodeController, addResourceType;
   self = this;
