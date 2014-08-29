@@ -385,7 +385,7 @@ module.exports = function (app, passport, config) {
                             user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
                                 console.log('saved oauth token: ' + token);
-                                res.redirect('/connect/nodes/channel/' + channelid);
+                                res.redirect('/design');
                             });
                         }
                     });
@@ -409,7 +409,7 @@ module.exports = function (app, passport, config) {
                             user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
                                 console.log('saved oauth token: ' + token);
-                                res.redirect('/connect/nodes/channel/' + channelid);
+                                res.redirect('/design');
                             });
                         }
                     });
