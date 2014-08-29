@@ -1,8 +1,8 @@
 var FlowDeployController = require('../../app/controllers/flow-deploy');
-var _ = require('underscore');
 var mongoose = require('mongoose');
 
 describe('flowDeployController', function () {
+
   describe('startInstance', function () {
     var sut, res, db, Flow, FlowSchema, FakeFlowDeploy, fakeMeshblu;
 
@@ -59,18 +59,20 @@ describe('flowDeployController', function () {
       });
     });
   });
-});
 
-var FakeMeshBlu = function(){
-  return this;
-}
-
-var FakeResponse = function(){
-  var response = this;
-
-  this.send = function(){
-    response.send.calledWith = _.values(arguments);
+  var FakeMeshBlu = function(){
+    return this;
   }
 
-  return response;
-};
+  var FakeResponse = function(){
+    var response = this;
+
+    this.send = function(){
+      response.send.calledWith = _.values(arguments);
+    }
+
+    return response;
+  };
+
+});
+

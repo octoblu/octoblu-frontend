@@ -1,5 +1,5 @@
-var _          = require('underscore');
 var FlowDeploy = require('../../app/models/flow-deploy');
+var _ = require('lodash');
 
 describe('FlowDeploy', function () {
   var FakeRequest, mongoose;

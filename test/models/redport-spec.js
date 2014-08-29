@@ -1,4 +1,4 @@
-var _ = require('underscore');
+var _ = require('lodash');
 var Redport = require('../../app/models/redport');
 
 describe('Redport', function () {
