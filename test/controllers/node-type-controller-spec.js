@@ -6,7 +6,7 @@ describe('NodeTypeController', function () {
 
   beforeEach(function () {
     nodeTypeCollection = new NodeTypeCollection();
-    sut = new NodeTypeController({NodeTypeCollection: nodeTypeCollection});
+    sut = new NodeTypeController({nodeTypeCollection: nodeTypeCollection});
   });
 
   it('should instantiate', function () {

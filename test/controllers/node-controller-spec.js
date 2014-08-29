@@ -29,8 +29,8 @@ describe('NodeController', function () {
         fakeNodeCollection.fetch.successCallback([{}, {}]);
       });
 
-      it('should return 200 and an O.w.L.', function(){
-        expect(fakeResponse.send).to.have.been.calledWith(200, [{},{}]);
+      it('should return 200 and a resourceful O.w.L.', function(){
+        expect(fakeResponse.send).to.have.been.calledWith(200, [{resourceType: 'node'},{resourceType: 'node'}]);
       });
     });
 
@@ -40,7 +40,7 @@ describe('NodeController', function () {
       });
 
       it('should return 200 and sauron', function(){
-        expect(fakeResponse.send).to.have.been.calledWith(200, [{}]);
+        expect(fakeResponse.send).to.have.been.calledWith(200, [{resourceType: 'node'}]);
       });
     });
 

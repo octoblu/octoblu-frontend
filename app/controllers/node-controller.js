@@ -1,11 +1,12 @@
 var NodeController = function(options){
-  var self = this;
-  var NodeCollection = require('../collections/node-collection');
+  var self, NodeController, addResourceType;
+  self = this;
+  NodeCollection = require('../collections/node-collection');
 
   self.index = function(req, res){
     var collection = self.getNodeCollection(req.user.skynet.uuid);
     collection.fetch().then(function(nodes){
-      res.send(200, nodes);
+      res.send(200, addResourceType(nodes));
     });
   };
 
@@ -13,7 +14,11 @@ var NodeController = function(options){
     return new NodeCollection(uuid);
   }
 
-  return self;
+  addResourceType = function(items){
+    return _.map(items, function(item){
+      return _.extend({resourceType: 'node'}, item);
+    });
+  }
 }
 
 module.exports = NodeController;

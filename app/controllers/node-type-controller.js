@@ -1,12 +1,12 @@
 var NodeTypeController = function(options){
-  var self, NodeTypeCollection, addResourceType;
+  var self, nodeTypeCollection, addResourceType;
   self = this;
 
   options = options || {};
-  NodeTypeCollection = options.NodeTypeCollection;
+  nodeTypeCollection = options.nodeTypeCollection || new require('../collections/node-type-collection');
 
   self.index = function(req, res){
-    NodeTypeCollection.fetch().then(function(nodeTypes){
+    nodeTypeCollection.fetch().then(function(nodeTypes){
       res.send(200, addResourceType(nodeTypes));
     }, function(error){
       res.send(500, error);
