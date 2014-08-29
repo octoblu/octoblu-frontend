@@ -11,7 +11,7 @@ var NodeTypeCollection = function(options){
 
 
   self.fetch = function(userId) {
-    return when(NodeType.find(query(userId)).exec());
+    return when(NodeType.find(query(userId)).lean().exec());
   };
 
   query = function(userId){
