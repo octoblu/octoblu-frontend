@@ -1,9 +1,9 @@
 {
   "name": "octoblu",
-  "version": "0.9.0",
+  "version": "0.5.5",
   "homepage": "https://github.com/octoblu/octoblu",
   "description": "Octoblu is a device automation platform built on top of Meshblu",
-  "appPath": "assets",
+  "appPath": "public",
   "keywords": [
     "octoblu",
     "skynet",
@@ -11,7 +11,7 @@
     "automation"
   ],
   "authors": [
-    "Octoblu, Inc."
+    "Octoblu Inc"
   ],
   "license": "commercial",
   "private": true,

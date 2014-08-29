@@ -147,8 +147,8 @@ angular.module('octobluApp')
         },
         render: function (flow) {
           addZoomBehaviour(flow);
-          renderLinks(flow);
           renderNodes(flow);
+          renderLinks(flow);
           zoom(flow);
         },
         renderGrid: renderBackground,
