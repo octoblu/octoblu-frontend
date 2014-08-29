@@ -14,10 +14,11 @@ describe('NodeTypeController', function () {
   });
 
   describe('index', function () {
-    var response;
+    var response, request;
     beforeEach(function () {
+      request = {user: {uuid: '1234'}};
       response = new Response();
-      sut.index({}, response);
+      sut.index(request, response);
     });
 
     it('should call NodeTypeCollection.fetch', function () {

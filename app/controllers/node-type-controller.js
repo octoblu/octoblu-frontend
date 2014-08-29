@@ -1,12 +1,15 @@
+var _ = require('lodash');
+var NodeTypeCollection = require('../collections/node-type-collection');
+
 var NodeTypeController = function(options){
   var self, nodeTypeCollection, addResourceType;
   self = this;
 
   options = options || {};
-  nodeTypeCollection = options.nodeTypeCollection || new require('../collections/node-type-collection');
+  nodeTypeCollection = options.nodeTypeCollection || new NodeTypeCollection();
 
   self.index = function(req, res){
-    nodeTypeCollection.fetch().then(function(nodeTypes){
+    nodeTypeCollection.fetch(req.user._id).then(function(nodeTypes){
       res.send(200, addResourceType(nodeTypes));
     }, function(error){
       res.send(500, error);
@@ -21,33 +24,3 @@ var NodeTypeController = function(options){
 };
 
 module.exports = NodeTypeController;
-
-// var mongoose = require('mongoose');
-// var _ = require('lodash');
-// var NodeTypeCollection = require('../collections/node-type-collection');
-
-// module.exports = function (options) {
-//   var _this, NodeType;
-//   _this = this;
-
-//   options = options || {};
-//   NodeType = options.NodeType || mongoose.model('NodeType');
-
-//   // _this.getNodeTypes = function (req, res) {
-
-//   //       NodeType.find({ enabled: true,
-//   //         $or:[ {"channel.owner":{$exists:false}}, {"channel.owner":new String(req.user._id)}] })
-//   //         .exec().then(function (nodeTypes) {
-//   //           res.send(nodeTypes);
-//   //       }, function (error) {
-//   //           console.log(error);
-//   //           res.send(500, {error: 'Error searching for NodeTypes'});
-//   //       });
-//   //   };
-
-//   return _this;
-// };
-
-// // module.exports = function (app) {
-// //     app.get('/api/nodetype', nodeTypeController.getNodeTypes);
-// };

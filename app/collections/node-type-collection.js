@@ -9,17 +9,20 @@ var NodeTypeCollection = function(options){
   mongoose = options.mongoose || mongoose;
   NodeType = mongoose.model('NodeType');
 
-  query    = {
-    enabled: true,
-    $or: [
-      { "channel.owner": { $exists: false } },
-      { "channel.owner": new String(req.user._id) }
-    ]
-  }
 
-  self.fetch = function() {
-    return when(NodeType.find(query).exec());
+  self.fetch = function(userId) {
+    return when(NodeType.find(query(userId)).exec());
   };
+
+  query = function(userId){
+    return {
+      enabled: true,
+      $or: [
+        { "channel.owner": { $exists: false } },
+        { "channel.owner": new String(userId) }
+      ]
+    }
+  }
 
   return self;
 };
