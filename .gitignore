@@ -4,8 +4,10 @@
 node_modules
 dist
 public/lib
+assets/lib
 npm-*.log
 coverage
 .idea
 *.iml
 atlassian-ide-plugin.xml
+public/assets/stylesheets/fonts
