@@ -1,9 +1,11 @@
 <div class="omnibox-item flow-node-{{match.model.class}}">
   <div class="row">
-    <div class="col-xs-1">
-      <img width="40" src="{{match.model.logo}}">
+    <div class="col-xs-2 text-center">
+      <h4>
+        <img width="40" src="{{match.model.logo}}">
+      </h4>
     </div>
 
-    <div class="col-xs-11" ng-include="'/pages/omnibox-' + match.model.resourceType +'.html'"></div>
+    <div class="col-xs-10" ng-include="'/pages/omnibox-' + match.model.resourceType +'.html'"></div>
   </div>
 </div>
