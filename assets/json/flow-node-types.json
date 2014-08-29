@@ -4,7 +4,8 @@
     "class": "delay",
     "type": "delay",
     "category" : "operation",
-    "logo": "/assets/images/designer/delay.svg", 
+    "uuid": "37e73da4-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/delay.svg",
     "defaults": {
       "timeout": 5,
       "timeoutUnits": "seconds"
@@ -14,10 +15,12 @@
     "formTemplatePath": "/assets/node_forms/delay_form.html"
   },
   {
+
     "name": "function",
     "class": "function",
     "category" : "operation",
-    "logo": "/assets/images/designer/function.svg", 
+    "uuid": "37f0a3a8-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/function.svg",
     "type": "function",
     "defaults": {
       "output": 1,
@@ -28,10 +31,12 @@
     "formTemplatePath": "/assets/node_forms/function_form.html"
   },
   {
+
     "name": "button",
     "class": "button",
     "category" : "operation",
-    "logo": "/assets/images/designer/button.svg", 
+    "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/button.svg",
     "type": "button",
     "defaults": {
       "payloadType": "date",
@@ -42,10 +47,12 @@
     "formTemplatePath": "/assets/node_forms/button_form.html"
   },
   {
+
     "name": "interval",
     "class": "interval",
     "category" : "operation",
-    "logo": "/assets/images/designer/interval.svg", 
+    "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/interval.svg",
     "type": "interval",
     "defaults": {
       "payloadType": "date",
@@ -57,10 +64,12 @@
     "formTemplatePath": "/assets/node_forms/interval_form.html"
   },
   {
+
     "name": "schedule",
     "class": "schedule",
     "category" : "operation",
-    "logo": "/assets/images/designer/schedule.svg", 
+    "uuid": "37f0ac4a-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/schedule.svg",
     "type": "schedule",
     "defaults": {
       "payloadType": "date",
@@ -72,10 +81,12 @@
     "formTemplatePath": "/assets/node_forms/schedule_form.html"
   },
   {
+
     "name": "http request",
     "class": "http-request",
     "category" : "operation",
-    "logo": "/assets/images/designer/http.svg", 
+    "uuid": "37f0aefc-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/http.svg",
     "type": "http request",
     "defaults": {
       "method": "GET"
@@ -86,10 +97,12 @@
     "formTemplatePath": "/assets/node_forms/http_request_form.html"
   },
   {
+
     "name": "switch",
     "class": "switch",
     "category" : "operation",
-    "logo": "/assets/images/designer/switch.svg", 
+    "uuid": "37f0b172-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/switch.svg",
     "type": "switch",
     "defaults": {
       "property": "payload",
@@ -109,10 +122,12 @@
     "formTemplatePath": "/assets/node_forms/switch_form.html"
   },
   {
+
     "name": "sentiment",
     "class": "sentiment",
     "category" : "operation",
-    "logo": "/assets/images/designer/sentiment.svg", 
+    "uuid": "37f0b3f2-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/sentiment.svg",
     "type": "sentiment",
     "defaults": {
     },
@@ -121,10 +136,12 @@
     "formTemplatePath": "/assets/node_forms/sentiment_form.html"
   },
   {
+
     "name": "xml2js",
     "class": "xml2js",
     "category" : "operation",
-    "logo": "/assets/images/designer/xml2js.svg", 
+    "uuid": "37f0b636-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/xml2js.svg",
     "formTemplatePath": "/assets/node_forms/xml2js_form.html",
 
     "type": "xml2js",
@@ -134,10 +151,12 @@
     "output": 1
   },
   {
+
     "name": "debug",
     "class": "debug",
     "category" : "operation",
-    "logo": "/assets/images/designer/debug.svg", 
+    "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/debug.svg",
     "type": "debug",
     "defaults": {
       "active": true,
@@ -150,10 +169,12 @@
     "align": "right"
   },
   {
+
     "name": "template",
     "class": "template",
     "category" : "operation",
-    "logo": "/assets/images/designer/template.svg", 
+    "uuid": "37f0bbb8-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/template.svg",
     "type": "template",
     "defaults": {
       "template": "This is the 'payload': {{payload}}!"
@@ -163,10 +184,12 @@
     "formTemplatePath": "/assets/node_forms/template_form.html"
   },
   {
+
     "name": "comment",
     "class": "comment",
     "category" : "operation",
-    "logo": "/assets/images/designer/comment.svg", 
+    "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
+    "logo": "/assets/images/designer/comment.svg",
     "type": "comment",
     "defaults": {
     },

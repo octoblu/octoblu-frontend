@@ -38,6 +38,7 @@ var ChannelCollection = function(userUUID, options){
       return {
         channelid : api._id,
         channelActivationId : channel._id,
+        uuid: channel.uuid,
         name : api.name,
         type : api.type
       };

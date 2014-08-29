@@ -102,8 +102,10 @@ describe('FlowNodeTypeCollection', function () {
         "class": "lockitino",
         "icon": "fa-dot-circle-o",
         "category": "channel",
+        "uuid": "1",
         "defaults": {
           category: 'channel',
+          uuid: "1",
           name: 'lockitino',
           type: 'channel',
           nodeType: {
@@ -116,7 +118,7 @@ describe('FlowNodeTypeCollection', function () {
         "type":"channel",
         "formTemplatePath": "/assets/node_forms/channel_form.html"
       };
-      var node = {name: 'lockitino', type: 'channel', category: 'channel', nodeType: {logo: 'foo.png'}};
+      var node = {name: 'lockitino', type: 'channel', category: 'channel', uuid: '1', nodeType: {logo: 'foo.png'}};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
 
@@ -126,8 +128,10 @@ describe('FlowNodeTypeCollection', function () {
         "class": "mockitama",
         "icon": "fa-dot-circle-o",
         "category": "channel",
+        "uuid": "1",
         "defaults": {
           category: 'channel',
+          uuid: '1',
           name: 'mockitama',
           type: 'channel',
           nodeType: {
@@ -140,7 +144,7 @@ describe('FlowNodeTypeCollection', function () {
         "type":"channel",
         "formTemplatePath": "/assets/node_forms/channel_form.html"
       };
-      var node = {name: 'mockitama', type: 'channel', category: 'channel', nodeType: {logo: 'bar.png'}};
+      var node = {name: 'mockitama', type: 'channel', category: 'channel', uuid: '1', nodeType: {logo: 'bar.png'}};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
 
@@ -150,6 +154,7 @@ describe('FlowNodeTypeCollection', function () {
         "class": "margarita",
         "icon": "fa-dot-circle-o",
         "category": "channel",
+        "uuid": "lksdflksdfj",
         "defaults": {
           category: 'channel',
           type: 'channel',
@@ -157,7 +162,8 @@ describe('FlowNodeTypeCollection', function () {
           fooCount: 'barnone',
           nodeType: {
             'logo': 'baz.png'
-          }
+          },
+          uuid: 'lksdflksdfj'
         },
         "logo":"baz.png",
         "input": 1,
@@ -165,7 +171,7 @@ describe('FlowNodeTypeCollection', function () {
         "type":"channel",
         "formTemplatePath": "/assets/node_forms/channel_form.html"
       };
-      var node = {type: 'channel', name: 'margarita', category: 'channel', fooCount: 'barnone', nodeType:{logo:'baz.png'}};
+      var node = {type: 'channel', name: 'margarita', uuid: 'lksdflksdfj', category: 'channel', fooCount: 'barnone', nodeType:{logo:'baz.png'}};
       expect(sut.convertNode(node)).to.deep.equal(flowNodeType);
     });
   });

@@ -16,23 +16,7 @@ angular.module('octobluApp')
       flowNodes = omniItems;
 
       return $q.all([self.getFlowNodeTypes(), getNodeTypes]).then(function (results) {
-        omniItems = _.map(omniItems, function (omniItem) {
-        var newOmniItem = _.clone(omniItem);
-          newOmniItem.omniType = 'flow-node';
-          return newOmniItem;
-        });
-
-        var flowNodeTypes = _.map(results[0], function (flowNodeType) {
-          flowNodeType.omniType = 'flow-node-type';
-          return flowNodeType;
-        });
-
-        var nodeTypes = _.map(results[1], function (nodeType) {
-          nodeType.omniType = 'node-type';
-          return nodeType;
-        });
-
-        return _.union(omniItems, flowNodeTypes, nodeTypes);
+        return _.union(omniItems, _.flatten(results, true));
       });
     };
 
@@ -46,18 +30,13 @@ angular.module('octobluApp')
     self.selectItem = function (item) {
       var flowNodeType, flowNode;
 
-      flowNodeType = _.find(flowNodeTypes, function (flowNodeType) {
-        return _.isEqual(angular.toJson(item), angular.toJson(flowNodeType));
-      });
+      flowNodeType = _.findWhere(flowNodeTypes, {uuid: item.uuid});
+      flowNode     = _.findWhere(flowNodes,     {uuid: item.uuid});
 
       if (flowNodeType) {
         FlowService.addNodeFromFlowNodeType(item);
         return $q.when(null);
       }
-
-      flowNode = _.find(flowNodes, function (flowNode) {
-        return _.isEqual(angular.toJson(item), angular.toJson(flowNode));
-      });
 
       if (flowNode) {
         FlowService.selectNode(item);

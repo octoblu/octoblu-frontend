@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
   moment = require('moment'),
   when = require('when'),
   _ = require('underscore'),
+  uuid = require('node-uuid'),
 
   configAuth = require('../../config/auth')(process.env.NODE_ENV),
   rest = require('rest'),
@@ -55,6 +56,10 @@ var UserSchema = new mongoose.Schema({
     api: [
       {
         name: String,
+        uuid: {
+          type: String,
+          default: uuid.v1
+        },
         channelid: String,
         authtype: String,
         key: String,

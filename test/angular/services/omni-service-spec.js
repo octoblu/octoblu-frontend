@@ -60,8 +60,8 @@ describe('OmniService', function () {
       var flowNodeType, nodeType;
 
       beforeEach(function () {
-        flowNodeType = {type: 'flowNodeType'};
-        nodeType     = {type: 'nodeType'};
+        flowNodeType = {type: 'flowNodeType', uuid: '1'};
+        nodeType     = {type: 'nodeType', uuid: '2'};
         fakeFlowNodeTypeService.getFlowNodeTypes.resolve([flowNodeType]);
         fakeNodeTypeService.getNodeTypes.resolve([nodeType]);
       });
@@ -81,7 +81,7 @@ describe('OmniService', function () {
     var promise, nodes;
 
     beforeEach(function () {
-      nodes   = [{type: 'node1'}, {type: 'node2'}];
+      nodes   = [{type: 'node1', uuid: '1'}, {type: 'node2', uuid: '2'}];
       promise = sut.fetch(nodes);
     });
 
@@ -103,9 +103,9 @@ describe('OmniService', function () {
       var flowNode, flowNodeType, nodeType;
 
       beforeEach(function (done) {
-        flowNode     = {type: 'flowNode'};
-        flowNodeType = {type: 'flowNodeType'};
-        nodeType     = {type: 'nodeType'};
+        flowNode     = {type: 'flowNode', uuid: '1'};
+        flowNodeType = {type: 'flowNodeType', uuid: '2'};
+        nodeType     = {type: 'nodeType', uuid: '3'};
 
         sut.fetch([flowNode]).then(function(){ done() });
         fakeFlowNodeTypeService.getFlowNodeTypes.resolve([flowNodeType]);
