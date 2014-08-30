@@ -39,10 +39,10 @@ describe('FlowDeploy', function () {
 
     describe('when it is called with one flow with one node and no links', function () {
       it('should return a converted flow', function () {
-        var node = {"id":"4848bef2.b7b74","category":"inject","type":"inject","category":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+        var node = {"id":"4848bef2.b7b74","category":"operation","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var flow = {flowId: '55235', name: 'mah notha flow', nodes:[node], links: []};
 
-        var convertedNode = {"id":"4848bef2.b7b74","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"55235","wires":[]};
+        var convertedNode = {"id":"4848bef2.b7b74","category":"operation","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"55235","wires":[]};
         expect(sut.convertFlow(flow)).to.deep.equal([{id: '55235', label: 'mah notha flow', type: 'tab'}, convertedNode]);
       });
     });
@@ -106,7 +106,7 @@ describe('FlowDeploy', function () {
     describe('dealing with legacy nodes', function () {
       describe('when its called with a button node', function () {
         it('should remap the type to inject', function () {
-          var node = {"id":"buttonNode","category":"button","type":"button","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+          var node = {"id":"buttonNode","category":"operation","type":"button","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
           var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
           var convertedNode = sut.convertFlow(flow)[1];
           expect(convertedNode.type).to.equal('inject');
@@ -115,7 +115,7 @@ describe('FlowDeploy', function () {
 
       describe('when its called with a interval node', function () {
         it('should remap the type to inject', function () {
-          var node = {"id":"intervalNode","category":"interval","type":"interval","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+          var node = {"id":"intervalNode","category":"operation","type":"interval","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
           var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
           var convertedNode = sut.convertFlow(flow)[1];
           expect(convertedNode.type).to.equal('inject');
@@ -124,7 +124,7 @@ describe('FlowDeploy', function () {
 
       describe('when its called with a schedule node', function () {
         it('should remap the type to inject', function () {
-          var node = {"id":"scheduleNode","category":"schedule","type":"schedule","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
+          var node = {"id":"scheduleNode","category":"operation","type":"schedule","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
           var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
           var convertedNode = sut.convertFlow(flow)[1];
           expect(convertedNode.type).to.equal('inject');
