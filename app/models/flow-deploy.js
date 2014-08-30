@@ -45,8 +45,10 @@ var FlowDeploy = function(options){
     convertedNode = _.clone(node);
     convertedNode.z = flow.flowId;
     convertedNode.wires = self.paddedArray(largestPort);
-    if (convertedNode.category !== 'operation') {
-      convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.category;
+    if (convertedNode.category === 'operation') {
+      convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.type
+    } else {
+      convertedNode.type = convertedNode.category;
     }
 
     _.each(groupedLinks, function(links, fromPort){
