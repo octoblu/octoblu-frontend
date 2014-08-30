@@ -41,49 +41,53 @@ module.exports = function(app, passport) {
     // Attach additional routes
     conn.on('ready', function(data){
         console.log('SkyNet authentication: success');
+        try {
+            app.post('*', function(request, response, next){
+                console.log(request.body);
+                next();
+            });
+            app.post('/api/auth', security.bypassAuth);
+            app.post('/api/auth/signup', security.bypassAuth);
+            app.all('/api/auth', security.bypassTerms);
+            app.all('/api/auth/*', security.bypassTerms);
+            app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
-        app.post('*', function(request, response, next){
-            console.log(request.body);
-            next();
-        });
-        app.post('/api/auth', security.bypassAuth);
-        app.post('/api/auth/signup', security.bypassAuth);
-        app.all('/api/auth', security.bypassTerms);
-        app.all('/api/auth/*', security.bypassTerms);
-        app.all('/api/*', security.isAuthenticated, security.enforceTerms);
+            // Initialize Controllers
+            require('./controllers/auth')(app, passport, config);
+            require('./controllers/channel')(app);
+            require('./controllers/connect')(app, passport, config);
+            require('./controllers/cors')(app);
+            require('./controllers/device')(app, config);
+            require('./controllers/elastic')(app);
+            require('./controllers/message')(app, conn);
+            require('./controllers/redport')(app, config);
+            require('./controllers/session')(app, passport, config);
+            require('./controllers/unlink')(app);
+            require('./controllers/user')(app);
+            require('./controllers/group')(app);
+            require('./controllers/permissions')(app);
+            require('./controllers/designer')(app);
+            require('./controllers/invitation')(app, passport, config);
 
-        // Initialize Controllers
-        require('./controllers/auth')(app, passport, config);
-        require('./controllers/channel')(app);
-        require('./controllers/connect')(app, passport, config);
-        require('./controllers/cors')(app);
-        require('./controllers/device')(app, config);
-        require('./controllers/elastic')(app);
-        require('./controllers/message')(app, conn);
-        require('./controllers/redport')(app, config);
-        require('./controllers/session')(app, passport, config);
-        require('./controllers/unlink')(app);
-        require('./controllers/user')(app);
-        require('./controllers/group')(app);
-        require('./controllers/permissions')(app);
-        require('./controllers/designer')(app);
-        require('./controllers/invitation')(app, passport, config);
+            app.put('/api/flows/:id', flowController.updateOrCreate);
+            app.delete('/api/flows/:id', flowController.delete);
+            app.get('/api/flows', flowController.getAllFlows);
+            app.post('/api/flows/:id/instance', flowDeployController.startInstance);
+            app.delete('/api/flows/:id/instance', flowDeployController.stopInstance);
+            app.put('/api/flows/:id/instance', flowDeployController.restartInstance);
 
-        app.put('/api/flows/:id', flowController.updateOrCreate);
-        app.delete('/api/flows/:id', flowController.delete);
-        app.get('/api/flows', flowController.getAllFlows);
-        app.post('/api/flows/:id/instance', flowDeployController.startInstance);
-        app.delete('/api/flows/:id/instance', flowDeployController.stopInstance);
-        app.put('/api/flows/:id/instance', flowDeployController.restartInstance);
+            app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
 
-        app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
+            app.get('/api/node_types', nodeTypeController.index);
+            app.get('/api/nodes', nodeController.index);
 
-        app.get('/api/node_types', nodeTypeController.index);
-        app.get('/api/nodes', nodeController.index);
-
-        // show the home page (will also have our login links)
-        app.get('/*', function(req, res) {
-            res.sendfile('./public/index.html');
-        });
+            // show the home page (will also have our login links)
+            app.get('/*', function(req, res) {
+                res.sendfile('./public/index.html');
+            });
+        } catch(err) {
+            console.log(err.stack);
+            throw err;
+        }
     }); // end skynet
 };
