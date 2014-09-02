@@ -3,36 +3,49 @@
 <br>
 
 <div class="row">
-  <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" class="node-thumbnail"></div>
-  </div>
+    <div class="col-xs-12 col-md-offset-4 col-md-4">
+        <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" class="node-thumbnail"></div>
+    </div>
 </div>
 
 <br>
 <br>
 
 <div class="row">
-  <div class="col-xs-12 col-md-offset-3 col-md-6">
-    <form class="form" ng-submit="addDevice()">
-      <div class="form-group">
-        <select class="form-control input-lg" ng-model="newDevice.selectedDevice" ng-options="device.uuid + '(' + (device.type || 'device') + ')' for device in newDevice.unclaimedDevices">
-          <option value="">Add New</option>
-        </select>
-      </div>
-      <div class="form-group" ng-class="{'has-error': errorMessage}">
-        <label for="name" class="control-label">Name</label>
-        <input type="text" ng-model="newDevice.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
-        <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
-      </div>
+    <div class="col-xs-12 col-md-offset-3 col-md-6">
+        <form class="form" ng-submit="addDevice()">
+            <div class="form-group">
+                <select class="form-control input-lg" ng-model="newDevice.selectedDevice"
+                        ng-options="getDeviceLabel(device) for device in newDevice.unclaimedDevices">
+                    <option value="">Add New</option>
+                </select>
+            </div>
+            <div ng-show="newDevice.selectedDevice.type === 'existing'">
+                <div class="form-group">
+                    <label class="control-label">UUID</label>
+                    <input type="text" ng-model="existingDevice.uuid" class="form-control input-lg">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Token</label>
+                    <input type="text" ng-model="existingDevice.token" class="form-control input-lg">
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': errorMessage}">
+                <label for="name" class="control-label">Name</label>
+                <input type="text" ng-model="newDevice.name" class="form-control input-lg" id="name"
+                       placeholder="My {{nodeType.name}}" required>
 
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-plus"></i>
-          Add
-        </button>
-      </div>
-    </form>
-  </div>
+                <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <i class="fa fa-plus"></i>
+                    Add
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 
 
