@@ -98,7 +98,7 @@ angular.module('octobluApp')
         $scope.$watch('flow.selectedFlowNode', function(){
           if(!$scope.flow || !$scope.flow.selectedFlowNode) { return; }
 
-          flowRenderer.centerOnSelectedFlowNode($scope.flow);
+          //flowRenderer.centerOnSelectedFlowNode($scope.flow);
         });
 
         element.on(
