@@ -176,8 +176,8 @@ describe('FlowDeploy', function () {
       var result;
       beforeEach(function () {
         var flow = {nodes: [{category:'channel', channelActivationId:'222222222222', channelid: '111111111111'}]};
-        var userApis = [{_id: mongoose.Types.ObjectId('222222222222'), token: 'this-is-a-token'}];
-        var channelApis = [{_id: mongoose.Types.ObjectId('111111111111'), application: {base: 'http://api.com'}}];
+        var userApis = [{_id: mongoose.Types.ObjectId('222222222222'), oauth:{access_token: 'this-is-a-token'}}];
+        var channelApis = [{_id: mongoose.Types.ObjectId('111111111111'), application: {base: 'http://api.com'}, oauth:{access_token: 'this-is-a-token'}}];
         result = sut.mergeFlowTokens(flow, userApis, channelApis);
       });
 
@@ -188,7 +188,9 @@ describe('FlowDeploy', function () {
             category:'channel',
             channelActivationId:'222222222222',
             channelid: '111111111111',
-            token: 'this-is-a-token'
+            oauth: {
+              access_token: 'this-is-a-token'
+            }
           }
         );
       });
