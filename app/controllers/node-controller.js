@@ -1,8 +1,8 @@
 var _ = require('lodash');
 
 var NodeController = function(options){
-  var self, NodeController, addResourceType;
-  self = this;
+  var self, NodeController, addResourceType,
+  self = this,
   NodeCollection = require('../collections/node-collection');
 
   self.index = function(req, res){
@@ -14,13 +14,13 @@ var NodeController = function(options){
 
   self.getNodeCollection = function(uuid){
     return new NodeCollection(uuid);
-  }
+  };
 
   addResourceType = function(items){
     return _.map(items, function(item){
       return _.extend({resourceType: 'node'}, item);
     });
   }
-}
+};
 
 module.exports = NodeController;
