@@ -65,13 +65,17 @@ var FlowDeploy = function(options){
 
   self.mergeFlowTokens = function(flow, userApis, channelApis) {
     _.each(flow.nodes, function(node){
+      node.oauth = {};
       var userApiMatch = _.findWhere(userApis, {'_id': new mongoose.Types.ObjectId(node.channelActivationId)});
       if (userApiMatch) {
-        node.token = userApiMatch.token;
+        node.oauth.access_token = userApiMatch.token;
+        node.oauth.access_token_secret = userApiMatch.secret;
       }
       var channelApiMatch = _.findWhere(channelApis, {'_id': new mongoose.Types.ObjectId(node.channelid)});
       if (channelApiMatch) {
+        var channelOauth = channelApiMatch.oauth[process.env.NODE_ENV] || channelApiMatch.oauth;
         node.application = {base: channelApiMatch.application.base};
+        node.oauth = _.defaults(node.oauth, channelOauth);
       }
     });
     return flow;

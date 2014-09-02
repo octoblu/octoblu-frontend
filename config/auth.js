@@ -16,9 +16,9 @@ var config = {
     },
 
     'twitterAuth' : {
-      'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
-      'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
-      'callbackURL'     : 'http://localhost:8080/auth/twitter/callback'
+      'consumerKey'     : 'QR33u9b7OvczwT1UomvVbjnDS',
+      'consumerSecret'  : 's52fmqtw7M21sxKeaOoLdFBdsnQYuimkp5Pd0GR7ShpakNER90',
+      'callbackURL'     : 'http://127.0.0.1:8080/auth/twitter/callback'
     },
 
     'googleAuth' : {
@@ -118,9 +118,9 @@ var config = {
     },
 
     'twitterAuth' : {
-      'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
-      'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
-      'callbackURL'     : 'http://app.octoblu.com/auth/twitter/callback'
+      'consumerKey'     : 'di4CBlZkwJp7rJoaqP6fBA0yC',
+      'consumerSecret'  : '2Ndg7hDyGR0Roe3P2AQ5ttL7yG6lRmU1UQ9mjFn40HtBc5C073',
+      'callbackURL'     : 'https://app.octoblu.com/auth/twitter/callback'
     },
     // // Meshines
     // 'googleAuth' : {
@@ -216,9 +216,9 @@ var config = {
       'callbackURL'   : 'http://staging.octoblu.com/auth/facebook/callback'
     },
     'twitterAuth' : {
-      'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
-      'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
-      'callbackURL'     : 'http://staging.octoblu.com/auth/twitter/callback'
+      'consumerKey'     : '97w9x63DUmWcuYoKy4p8epWFu',
+      'consumerSecret'  : 'n0b5smHWGP1cNpBT02sGqlg6JRQ2LZOrRtfM6X2I4DbegYuiLy',
+      'callbackURL'     : 'https://staging.octoblu.com/auth/twitter/callback'
     },
     'googleAuth' : {
       'clientID'    : '413378006378-c72poeh9lsab0ut86g9ejepr2ucjpsh8.apps.googleusercontent.com',

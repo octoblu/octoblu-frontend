@@ -218,7 +218,7 @@ angular.module('octobluApp')
           .attr('height', nodeHeight)
           .attr("xlink:href",node.logo);
 
-        if (node.category == 'button') {
+        if (node.type === 'button') {
           nodeElement
             .append('rect')
             .attr('width', 20)
