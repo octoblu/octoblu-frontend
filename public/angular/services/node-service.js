@@ -17,7 +17,7 @@ angular.module('octobluApp')
               "method": "configurationDetails"
             })
               .then(function (response) {
-                return  response.result ? response.result.subdevices : [];
+                return response.result ? response.result.subdevices : [];
               }, function (err) {
                 return [];
               });
