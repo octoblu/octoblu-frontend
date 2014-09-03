@@ -182,16 +182,8 @@ describe('FlowDeploy', function () {
       });
 
       it('should merge the api values into the flow', function(){
-        expect(_.first(result.nodes)).to.deep.equal(
-          {
-            application: {base: 'http://api.com'},
-            category:'channel',
-            channelActivationId:'222222222222',
-            channelid: '111111111111',
-            oauth: {
-              access_token: 'this-is-a-token'
-            }
-          }
+        expect(JSON.stringify(_.first(result.nodes))).to.deep.equal(
+          JSON.stringify({"category":"channel","channelActivationId":"222222222222","channelid":"111111111111","oauth":{"access_token":"this-is-a-token"},"application":{"base":"http://api.com"}})
         );
       });
     });
