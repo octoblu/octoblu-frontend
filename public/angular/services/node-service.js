@@ -20,10 +20,25 @@ angular.module('octobluApp')
                 return response.result ? response.result.subdevices : [];
               }, function (err) {
                 return [];
+              })
+              .then(function(subdevices){
+                return _.map(subdevices, function(subdevice){
+                  //subdevice
+                  subdevice.category = 'subdevice';
+                  subdevice.online = true;
+
+                  subdevice.nodeType = {
+                    logo: "https://s3-us-west-2.amazonaws.com/octoblu-icons/generic-device.png"
+                  };
+
+                  return subdevice;
+                });
               });
           }))
             .then(function (results) {
-              return _.union(devices, _.flatten(results));
+              var nodes = _.union(devices, _.flatten(results));
+              console.log(nodes);
+              return nodes;
             });
         });
     };
