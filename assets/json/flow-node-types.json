@@ -15,6 +15,19 @@
     "formTemplatePath": "/assets/node_forms/delay_form.html"
   },
   {
+    "name": "demultiplexer",
+    "class": "demultiplexer",
+    "type": "demultiplexer",
+    "category" : "operation",
+    "uuid": "99b84aa0-338b-11e4-8c21-0800200c9a66",
+    "logo": "/assets/images/designer/demultiplexer.svg",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/assets/node_forms/demultiplexer_form.html"
+  },
+  {
 
     "name": "function",
     "class": "function",
@@ -95,31 +108,6 @@
     "output": 1,
     "align": "right",
     "formTemplatePath": "/assets/node_forms/http_request_form.html"
-  },
-  {
-
-    "name": "switch",
-    "class": "switch",
-    "category" : "operation",
-    "uuid": "37f0b172-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/switch.svg",
-    "type": "switch",
-    "defaults": {
-      "property": "payload",
-      "required": true,
-      "rules": [
-        {
-          "t": "eq",
-          "v": ""
-        }
-      ],
-      "checkall": "true",
-      "required": true,
-      "output": 1
-    },
-    "input": 1,
-    "output": 1,
-    "formTemplatePath": "/assets/node_forms/switch_form.html"
   },
   {
 
