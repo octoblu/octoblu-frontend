@@ -1,5 +1,19 @@
 [
   {
+    "name": "debounce",
+    "class": "debounce",
+    "type": "debounce",
+    "category" : "operation",
+    "uuid": "52a55b44-923d-4f56-9ad4-e7aa1262c6cb",
+    "logo": "/assets/images/designer/debounce.svg",
+    "defaults": {
+      "interval": 1000
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/assets/node_forms/debounce_form.html"
+  },
+  {
     "name": "delay",
     "class": "delay",
     "type": "delay",
@@ -92,6 +106,20 @@
     "input": 0,
     "output": 1,
     "formTemplatePath": "/assets/node_forms/schedule_form.html"
+  },
+  {
+    "name": "throttle",
+    "class": "throttle",
+    "type": "throttle",
+    "category" : "operation",
+    "uuid": "794922ff-3792-4e4e-a0e2-a0823ed6b82e",
+    "logo": "/assets/images/designer/throttle.svg",
+    "defaults": {
+      "interval": 1000
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/assets/node_forms/throttle_form.html"
   },
   {
 
