@@ -83,8 +83,8 @@
     "type": "interval",
     "defaults": {
       "payloadType": "date",
-      "repeat": "1",
-      "once": false
+      "repeat": 1000,
+      "once": true
     },
     "input": 0,
     "output": 1,
