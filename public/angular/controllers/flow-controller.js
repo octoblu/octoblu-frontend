@@ -32,6 +32,7 @@ angular.module('octobluApp')
       if ($scope.debugLines.length > 100) {
         $scope.debugLines.shift();
       }
+      $scope.$apply();
     });
 
     $scope.$on('flow-node-type-selected', function(event, flowNodeType){
