@@ -1,21 +1,16 @@
 angular.module('octobluApp')
   .service('OmniService', function (FlowNodeTypeService, NodeTypeService, FlowService, $q) {
     'use strict';
-    var self, flowNodes, flowNodeTypes, nodeTypes;
+    var self, flowNodes, flowNodeTypes;
     self = this;
 
     flowNodes = [];
     flowNodeTypes = [];
-    nodeTypes = [];
 
     self.fetch = function (omniItems) {
-      var getFlowNodeTypes, getNodeTypes;
-
-      getNodeTypes = NodeTypeService.getNodeTypes();
-
       flowNodes = omniItems;
 
-      return $q.all([self.getFlowNodeTypes(), getNodeTypes]).then(function (results) {
+      return $q.all([self.getFlowNodeTypes(), NodeTypeService.getNodeTypes()]).then(function (results) {
         return _.union(omniItems, _.flatten(results, true));
       });
     };
@@ -29,9 +24,8 @@ angular.module('octobluApp')
 
     self.selectItem = function (item) {
       var flowNodeType, flowNode;
-
       flowNodeType = _.findWhere(flowNodeTypes, {uuid: item.uuid});
-      flowNode     = _.findWhere(flowNodes,     {uuid: item.uuid});
+      flowNode     = _.findWhere(flowNodes,     {id: item.id});
 
       if (flowNode) {
         FlowService.selectNode(item);

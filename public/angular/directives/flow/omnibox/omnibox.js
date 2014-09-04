@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditorOmnibox', function (FlowNodeTypeService) {
+  .directive('flowEditorOmnibox', function () {
     return {
       restrict: 'E',
       replace: true,
@@ -10,7 +10,7 @@ angular.module('octobluApp')
         selectedFlowNode: '=',
         omniSearch: '='
       },
-      link: function (scope, element) {
+      link: function (scope) {
         scope.$watch('omniSearch', function(newItem){
           if(!_.isObject(newItem)) { return; }
           scope.selectItem(newItem);
