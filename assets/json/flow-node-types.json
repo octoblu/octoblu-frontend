@@ -186,21 +186,6 @@
   },
   {
 
-    "name": "template",
-    "class": "template",
-    "category" : "operation",
-    "uuid": "37f0bbb8-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/template.svg",
-    "type": "template",
-    "defaults": {
-      "template": "This is the 'payload': {{payload}}!"
-    },
-    "input": 1,
-    "output": 1,
-    "formTemplatePath": "/assets/node_forms/template_form.html"
-  },
-  {
-
     "name": "comment",
     "class": "comment",
     "category" : "operation",
