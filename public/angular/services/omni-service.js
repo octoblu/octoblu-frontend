@@ -33,13 +33,13 @@ angular.module('octobluApp')
       flowNodeType = _.findWhere(flowNodeTypes, {uuid: item.uuid});
       flowNode     = _.findWhere(flowNodes,     {uuid: item.uuid});
 
-      if (flowNodeType) {
-        FlowService.addNodeFromFlowNodeType(item);
+      if (flowNode) {
+        FlowService.selectNode(item);
         return $q.when(null);
       }
 
-      if (flowNode) {
-        FlowService.selectNode(item);
+      if (flowNodeType) {
+        FlowService.addNodeFromFlowNodeType(item);
         return $q.when(null);
       }
 
