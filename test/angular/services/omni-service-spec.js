@@ -1,4 +1,4 @@
-describe('OmniService', function () {
+describe.only('OmniService', function () {
   var sut, fakeFlowNodeTypeService, fakeFlowService, fakeNodeTypeService, $rootScope, $q;
 
   beforeEach(function () {
@@ -27,10 +27,6 @@ describe('OmniService', function () {
       sut = OmniService;
       $rootScope = _$rootScope_;
     });
-  });
-
-  it('should exist', function () {
-    expect(sut).to.exist;
   });
 
   describe('when fetch is called with no nodes', function () {
@@ -103,7 +99,7 @@ describe('OmniService', function () {
       var flowNode, flowNodeType, nodeType;
 
       beforeEach(function (done) {
-        flowNode     = {type: 'flowNode', uuid: '1'};
+        flowNode     = {type: 'flowNode', id: '1'};
         flowNodeType = {type: 'flowNodeType', uuid: '2'};
         nodeType     = {type: 'nodeType', uuid: '3'};
 
