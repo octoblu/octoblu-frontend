@@ -141,22 +141,22 @@ module.exports = function (env, passport) {
         function (req, token, refreshToken, profile, done) {
             User.findOne({ 'facebook.id': profile.id }).exec()
                 .then(function (user) {
-                    if (user) {
+//                    if (user) {
                         return user; // user found, return that user
-                    } else {
-                        // if there is no user, create them
-                        return User.create({
-                            displayName: profile.name.givenName + ' ' + profile.name.familyName,
-                            email: profile.emails[0].value,
-                            username: profile.emails[0].value,
-                            facebook: {
-                                id: profile.id,
-                                token: token,
-                                username: profile.emails[0].value,
-                                displayName: profile.name.givenName + ' ' + profile.name.familyName
-                            }
-                        });
-                    }
+//                    } else {
+//                        if there is no user, create them
+//                        return User.create({
+//                            displayName: profile.name.givenName + ' ' + profile.name.familyName,
+//                            email: profile.emails[0].value,
+//                            username: profile.emails[0].value,
+//                            facebook: {
+//                                id: profile.id,
+//                                token: token,
+//                                username: profile.emails[0].value,
+//                                displayName: profile.name.givenName + ' ' + profile.name.familyName
+//                            }
+//                        });
+//                    }
                 })
                 .then(function (user) {
                     done(null, user);
@@ -179,22 +179,23 @@ module.exports = function (env, passport) {
         function (req, token, tokenSecret, profile, done) {
             User.findOne({ 'twitter.id': profile.id }).exec()
                 .then(function (user) {
-                    if (user) {
+//                    if (user) {
                         return user; // user found, return that user
-                    } else {
-                        // if there is no user, create them
-                        return User.create({
-                            displayName: profile.displayName,
-                            email: profile.displayName + '@twitter',
-                            username: profile.username,
-                            twitter: {
-                                id: profile.id,
-                                token: token,
-                                username: profile.username,
-                                displayName: profile.displayName
-                            }
-                        });
-                    }
+//                    }
+//                    else {
+//                        // if there is no user, create them
+//                        return User.create({
+//                            displayName: profile.displayName,
+//                            email: profile.displayName + '@twitter',
+//                            username: profile.username,
+//                            twitter: {
+//                                id: profile.id,
+//                                token: token,
+//                                username: profile.username,
+//                                displayName: profile.displayName
+//                            }
+//                        });
+//                    }
                 })
                 .then(function (user) {
                     done(null, user);
@@ -217,22 +218,23 @@ module.exports = function (env, passport) {
         function (req, token, tokenSecret, profile, done) {
             User.findOne({ 'google.id': profile.id }).exec()
                 .then(function (user) {
-                    if (user) {
+//                    if (user) {
                         return user; // user found, return that user
-                    } else {
+//                    }
+//                    else {
                         // if there is no user, create them
-                        return User.create({
-                            username: profile.emails[0].value,
-                            displayName: profile.displayName,
-                            email: profile.emails[0].value,
-                            google: {
-                                id: profile.id,
-                                token: token,
-                                username: profile.emails[0].value,
-                                displayName: profile.displayName
-                            }
-                        });
-                    }
+//                        return User.create({
+//                            username: profile.emails[0].value,
+//                            displayName: profile.displayName,
+//                            email: profile.emails[0].value,
+//                            google: {
+//                                id: profile.id,
+//                                token: token,
+//                                username: profile.emails[0].value,
+//                                displayName: profile.displayName
+//                            }
+//                        });
+//                    }
                 })
                 .then(function (user) {
                     done(null, user);
@@ -265,7 +267,7 @@ module.exports = function (env, passport) {
                 }
             }
 
-            return User.findOneAndUpdate(query, {$set: updateParams}, {upsert: true, new: true}).exec()
+            return User.findOneAndUpdate(query, {$set: updateParams}, {upsert: false, new: false}).exec()
                .then(function (user) {
                     done(null, user);
                 }, function(){
