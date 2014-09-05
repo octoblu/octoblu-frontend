@@ -47,6 +47,12 @@ angular.module('octobluApp')
             $scope.activeTab = null;
           }
         };
+
+        $scope.$watch('maximized', function(){
+          _.delay(function(){
+            $('.flow-browser').trigger($.Event('resize'));
+          }, 300);
+        });
       }
   };
   });
