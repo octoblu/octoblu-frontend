@@ -4,18 +4,18 @@
     <select id="selectedEndpoint" ng-model="selectedEndpoint" ng-options="getEndpointLabel(endpoint) for endpoint in resources" class="form-control"></select>
   </div>
 
-  <div class="form-group" ng-repeat="(key, value) in node.urlParams">
-    <label for="{{key}}">{{key}}</label>
-    <input  id="{{key}}" type="text" class="form-control" ng-model="node.urlParams[key]">
+  <div class="form-group" ng-repeat="paramDefinition in urlParamDefinitions">
+    <label for="{{paramDefinition.name}}">{{paramDefinition.name}}</label>
+    <input  id="{{paramDefinition.name}}" type="text" class="form-control" ng-model="node.urlParams[paramDefinition.name]">
   </div>
 
-  <div class="form-group" ng-repeat="(key, value) in node.queryParams">
-    <label for="{{key}}">{{key}}</label>
-    <input  id="{{key}}" type="text" class="form-control" ng-model="node.queryParams[key]">
+  <div class="form-group" ng-repeat="paramDefinition in queryParamDefinitions">
+    <label for="{{paramDefinition.name}}">{{paramDefinition.name}}</label>
+    <input  id="{{paramDefinition.name}}" type="text" class="form-control" ng-model="node.queryParams[paramDefinition.name]">
   </div>
 
-  <div class="form-group" ng-repeat="(key, value) in node.bodyParams">
-    <label for="{{key}}">{{key}}</label>
-    <input  id="{{key}}" type="text" class="form-control" ng-model="node.bodyParams[key]">
+  <div class="form-group" ng-repeat="paramDefinition in bodyParamDefinitions">
+    <label for="{{paramDefinition.name}}">{{paramDefinition.name}}</label>
+    <input  id="{{paramDefinition.name}}" type="text" class="form-control" ng-model="node.bodyParams[paramDefinition.name]">
   </div>
 </div>
