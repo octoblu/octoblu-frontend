@@ -12,7 +12,6 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
-
     app.post('/api/auth', passport.authenticate('local-login'), loginRoute);
     app.get('/api/auth/login', passport.authenticate('local-login'), loginRoute);
 
@@ -130,18 +129,30 @@ module.exports = function (app, passport, config) {
     };
 
     var getOAuthCredentials = function(oauth) {
-        console.log('getOAuthCredentials:', process.env.NODE_ENV, _.keys(oauth));
         return oauth[process.env.NODE_ENV] || oauth;
     }
 
-    var getOauth2Instance = function (api) {
+    var getOauth2AccessInstance = function (api) {
         var creds = getOAuthCredentials(api.oauth);
-        return require('simple-oauth2')({
-            clientID: creds.clientId,
+        var oauth_creds = {
+            clientID: creds.clientId || creds.key,
             clientSecret: creds.secret,
             site: creds.baseURL,
-            tokenPath: creds.authTokenPath
-        });
+            tokenPath: creds.accessTokenPath
+        };
+        return require('simple-oauth2')(oauth_creds);
+    };
+
+    var getOauth2Instance = function (api) {
+        var creds = getOAuthCredentials(api.oauth);
+        var oauth_creds = {
+            clientID: creds.clientId || creds.key,
+            clientSecret: creds.secret,
+            site: creds.baseURL,
+            tokenPath: creds.authTokenPath,
+            scope: creds.scope
+        };
+        return require('simple-oauth2')(oauth_creds);
     };
 
     var getOAuthCallbackUrl = function (req, channelid) {
@@ -185,19 +196,17 @@ module.exports = function (app, passport, config) {
         var channelid = req.params.id;
         var user = req.user;
 
-        Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
+        Api.findOne({_id: new ObjectId(channelid)}, function (err, api) {
             var creds = getOAuthCredentials(api.oauth);
             if(creds.version==='1.0' && creds.is0LegAuth==true) {
                 // add api to user record
                 var token = '0LegAuth';
                 user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                 user.save(function (err) {
-                    console.log('saved oauth token: ' + token);
                     res.redirect('/connect/nodes/channel/' + api._id);
                 });
             } else if (creds.version === '2.0') {
                 if (creds.isManual) { // shoot yourself
-                    console.log(creds.protocol, creds.host, creds.authTokenPath)
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
                     var timestamp = (new Date()).getTime();
@@ -241,7 +250,6 @@ module.exports = function (app, passport, config) {
                         pathname: creds.authTokenPath,
                         query: query
                     });
-                    console.log(redirectURL);
                     res.redirect(url.format({
                         protocol: creds.protocol,
                         hostname: creds.host,
@@ -256,8 +264,6 @@ module.exports = function (app, passport, config) {
                         scope: creds.scope,
                         state: '3(#0/!~'
                     });
-                    console.log(creds);
-                    console.log('oauth2 redirect: ' + authorization_uri);
                     res.redirect(authorization_uri);
                 }
             } else {
@@ -269,7 +275,6 @@ module.exports = function (app, passport, config) {
                         res.send('yeah no. didn\'t work.')
                     }
                     else {
-                        console.log(error, oauth_token, oauth_token_secret, results);
                         req.session.oauth = {};
                         req.session.oauth.token = oauth_token;
                         req.session.oauth.token_secret = oauth_token_secret;
@@ -281,7 +286,6 @@ module.exports = function (app, passport, config) {
                             authURL += '&oauth_consumer_key=' + creds.key
                                 + '&callback=' + callbackURL;
                         }
-                        console.log(authURL);
                         res.redirect(authURL);
                     }
                 });
@@ -295,16 +299,15 @@ module.exports = function (app, passport, config) {
         var channelid = req.params.id;
         var user = req.user;
 
-        Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
+        Api.findOne({_id: new ObjectId(channelid)}, function (err, api) {
             var creds = getOAuthCredentials(api.oauth);
             if (err) {
                 console.log(error);
-                res.redirect(500, '/apis/' + api._id);
-            } else if (creds.version == '2.0') {
+                return res.redirect(500, '/apis/' + api._id);
+            }
+            if (creds.version == '2.0') {
                 if (creds.isManual) {
-                    console.log('handling manual callback');
                     if (req.query.error) {
-                        console.log('error position 1');
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
                     // check CSRF token
@@ -314,7 +317,7 @@ module.exports = function (app, passport, config) {
 
                     var form = {
                         code: req.query.code,
-                        grant_type: creds.grant_type,
+                        grant_type: creds.grant_type || 'client_credentials',
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     };
                     if (api.name === 'Bitly') {
@@ -354,13 +357,10 @@ module.exports = function (app, passport, config) {
                         auth: auth,
                         qs: query
                     };
-                    console.log(creds.accessTokenURL, opts);
                     request.post(creds.accessTokenURL, opts, function (error, response, body) {
-                        console.log(response.statusCode);
                         var data;
 
                         if (response.statusCode != '200') {
-                            console.log(body);
                             return res.send('ERROR: HTTP Status ' + response.statusCode);
 
                         } else if (body == 'INVALID_LOGIN') {
@@ -374,7 +374,6 @@ module.exports = function (app, passport, config) {
                         }
 
                         if (data.error) {
-                            console.log('error position 2');
                             return res.send('ERROR: ' + data.error);
                         }
 
@@ -384,31 +383,25 @@ module.exports = function (app, passport, config) {
                         if (token) {
                             user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + token);
                                 res.redirect('/design');
                             });
                         }
                     });
                 } else {
-                    var OAuth2 = getOauth2Instance(api);
-                    var code = req.query.code;
-                    console.log('oauth2 lib getting token...');
-
+                    var OAuth2 = getOauth2AccessInstance(api);
                     OAuth2.AuthCode.getToken({
-                        code: code,
+                        code: req.query.code,
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     }, function (error, result) {
                         var token = result;
-
-                        token = token.access_token || token;
 
                         if (error) {
                             console.log('Access Token Error', error);
                             res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
                         } else {
+                            token = token.access_token || token;
                             user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + token);
                                 res.redirect('/design');
                             });
                         }
@@ -417,7 +410,6 @@ module.exports = function (app, passport, config) {
 
             } else {
                 // oauth 1.0 here
-                console.log('oauth 1.0 callback');
                 req.session.oauth.verifier = req.query.oauth_verifier;
                 var oauth = req.session.oauth;
 
@@ -431,7 +423,6 @@ module.exports = function (app, passport, config) {
                             user.addOrUpdateApiByChannelId(channelid, 'oauth', null,
                                 oauth_access_token, oauth_access_token_secret, null, null);
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + channelid);
                                 return handleApiCompleteRedirect(res, channelid, err);
                             });
                         }
