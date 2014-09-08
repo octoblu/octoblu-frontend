@@ -189,7 +189,7 @@ FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
 FlowDeploy.restart = function(userUUID, userToken, flow, meshblu){
   var flowDeploy;
   FlowDeploy.stop(userUUID, userToken, flow, meshblu);
-  FlowDeploy.start(userUUID, userToken, flow, user.api, meshblu);
+  FlowDeploy.start(userUUID, userToken, flow, meshblu);
 };
 
 module.exports = FlowDeploy;
