@@ -21,7 +21,7 @@ angular.module('octobluApp')
 
         $scope.addSubDevice = function(){
             var errors = $scope.newSubdevice.schemaEditor.validate();
-            if (errors.length) {
+            if (errors && errors.length) {
                 return;
             }
 

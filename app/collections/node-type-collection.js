@@ -1,6 +1,7 @@
 var when     = require('when');
 var mongoose = require('mongoose');
-
+var dummyNodeTypes = require('./dummy-node-types');
+var _ = require('lodash');
 var NodeTypeCollection = function(options){
   var self, query, NodeType;
   self = this;
@@ -11,7 +12,9 @@ var NodeTypeCollection = function(options){
 
 
   self.fetch = function(userId) {
-    return when(NodeType.find(query(userId)).lean().exec());
+    return when(NodeType.find(query(userId)).lean().exec()).then(function(nodetypes){
+      return _.union(nodetypes, dummyNodeTypes);
+    });
   };
 
   query = function(userId){
