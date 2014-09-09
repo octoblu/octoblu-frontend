@@ -5,7 +5,8 @@ var request = require('request'),
     url = require('url'),
     _ = require('lodash'),
     User = mongoose.model('User'),
-    isAuthenticated = require('./middleware/security').isAuthenticated;
+    isAuthenticated = require('./middleware/security').isAuthenticated,
+    querystring = require('querystring');
 var ObjectId = require('mongoose').Types.ObjectId;
 
 // Using MongoJS on SkyNet database queries to avoid schemas
@@ -156,9 +157,11 @@ module.exports = function (app, passport, config) {
     };
 
     var getOAuthCallbackUrl = function (req, channelid) {
-        return (req.headers.host.indexOf('octoblu.com')>=0) ? 'https://'+ req.headers.host + '/api/auth/' + channelid + '/callback/custom'
-          : req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
-        // return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        var protocol = req.protocol;
+        if (req.headers.host.indexOf('octoblu.com')>=0) {
+            protocol =  'https';
+        }
+        return protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
     };
 
     var handleApiCompleteRedirect = function (res, channelid, err) {
@@ -394,12 +397,14 @@ module.exports = function (app, passport, config) {
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     }, function (error, result) {
                         var token = result;
+                        if(_.contains(result, 'access_token')) {
+                            token = querystring.parse(result).access_token;
+                        }
 
                         if (error) {
                             console.log('Access Token Error', error);
                             res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
                         } else {
-                            token = token.access_token || token;
                             user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
                                 res.redirect('/design');
