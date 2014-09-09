@@ -90,7 +90,31 @@ module.exports = [
     display: true,
     enabled: true,
     logo: "https://s3-us-west-2.amazonaws.com/octoblu-icons/salesforce.png",
-    name: "ADP",
+    name: "Sales Force",
+    resourceType: "node-type",
+    skynet: {type:"device"},
+    type: "device"
+  },
+  {
+    _id : '61d4ee6e261c4dbeb6434b591de54479',
+    category: "device",
+    description: "SAP",
+    display: true,
+    enabled: true,
+    logo: "https://s3-us-west-2.amazonaws.com/octoblu-icons/sap.png",
+    name: "SAP",
+    resourceType: "node-type",
+    skynet: {type:"device"},
+    type: "device"
+  },
+  {
+    _id : '432f095b7bbd4bd2a055aa87bb74793a',
+    category: "device",
+    description: "Workday",
+    display: true,
+    enabled: true,
+    logo: "https://s3-us-west-2.amazonaws.com/octoblu-icons/workday.png",
+    name: "Workday",
     resourceType: "node-type",
     skynet: {type:"device"},
     type: "device"
