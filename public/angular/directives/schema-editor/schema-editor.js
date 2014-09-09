@@ -27,6 +27,7 @@ angular.module('octobluApp')
                         editor.destroy();
                     }
 
+
                     editor = new JSONEditor(element[0],
                         {schema: schema,
                             no_additional_properties: !scope.additionalProperties,

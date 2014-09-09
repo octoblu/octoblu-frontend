@@ -136,7 +136,7 @@ angular.module('octobluApp')
         
         $scope.editSubdevice = function (subdevice) {
             var subdeviceModal = $modal.open({
-                templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
+                templateUrl: '/pages/connector/devices/subdevice/add-edit.html',
                 controller: 'AddEditSubDeviceController',
                 backdrop: true,
                 resolve: {

@@ -31,7 +31,7 @@
     "d3": "~3.4.11",
     "jquery-migrate": "~1.2.1",
     "angular-bootstrap": "~0.11.0",
-    "json-editor": "~0.7.4",
+    "json-editor": "~0.7.9",
     "elastic.js": "~1.1.1",
     "elasticsearch": "~2.2.0",
     "smoothie": "https://github.com/joewalnes/smoothie.git",
