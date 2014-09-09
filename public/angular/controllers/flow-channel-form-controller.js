@@ -21,7 +21,6 @@ angular.module('octobluApp')
 
     node = $scope.node;
     resources = $scope.resources
-    console.log(resources);
     selectedEndpoint = _.findWhere(resources, {path: node.path, httpMethod: node.method});
     $scope.selectedEndpoint = selectedEndpoint || _.first(resources);
   };
@@ -41,10 +40,33 @@ angular.module('octobluApp')
     }
     $scope.node.path   = $scope.selectedEndpoint.path;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
-    $scope.node.queryParams = transformParams(_.where($scope.selectedEndpoint.params, {style: 'query'}), $scope.node.queryParams);
-    $scope.node.bodyParams  = transformParams(_.where($scope.selectedEndpoint.params, {style: 'body'}),  $scope.node.bodyParams);
-    $scope.node.urlParams   = transformParams(_.where($scope.selectedEndpoint.params, {style: 'url'}),   $scope.node.urlParams);
+
+    $scope.queryParamDefinitions = _.where($scope.selectedEndpoint.params, {style: 'query'});
+    $scope.bodyParamDefinitions  = _.where($scope.selectedEndpoint.params, {style: 'body'})
+    $scope.urlParamDefinitions   = _.where($scope.selectedEndpoint.params, {style: 'url'})
+
+    $scope.node.queryParams      = transformParams($scope.queryParamDefinitions, $scope.node.queryParams);
+    $scope.node.bodyParams       = transformParams($scope.bodyParamDefinitions,  $scope.node.bodyParams);
+    $scope.node.urlParams        = transformParams($scope.urlParamDefinitions,   $scope.node.urlParams);
   });
+
+  $scope.$watch('node.queryParams', function(){
+    $scope.node.queryParams = _.pick($scope.node.queryParams, function(value){
+      return value !== '';
+    });
+  }, true);
+
+  $scope.$watch('node.bodyParams', function(){
+    $scope.node.bodyParams = _.pick($scope.node.bodyParams, function(value){
+      return value !== '';
+    });
+  }, true);
+
+  $scope.$watch('node.urlParams', function(){
+    $scope.node.urlParams = _.pick($scope.node.urlParams, function(value){
+      return value !== '';
+    });
+  }, true);
 
   $scope.$watch('node',        getResources);
   $scope.$watch('node.path',   selectEndpoint);

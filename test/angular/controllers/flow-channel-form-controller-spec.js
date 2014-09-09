@@ -48,7 +48,7 @@ describe('FlowChannelFormController', function () {
     });
 
     it('should set queryParams on the node', function () {
-      expect(scope.node.queryParams).to.deep.equal({foo: ''});
+      expect(scope.queryParamDefinitions).to.deep.equal([{ name: 'foo', style: 'query' }]);
     });
   });
 
@@ -82,12 +82,12 @@ describe('FlowChannelFormController', function () {
       scope.$digest();
     });
 
-    it('should set the body params on the node', function () {
-      expect(scope.node.bodyParams).to.deep.equal({bparam: ''});
+    it('should set the body param definitions', function () {
+      expect(scope.bodyParamDefinitions).to.deep.equal([ { name: 'bparam', style: 'body' } ]);
     });
 
-    it('should set the query params on the node', function () {
-      expect(scope.node.queryParams).to.deep.equal({bar: ''});
+    it('should set the query params definitions', function () {
+      expect(scope.queryParamDefinitions).to.deep.equal( [ { name: 'bar', style: 'query' } ]);
     });
   });
 
@@ -99,8 +99,8 @@ describe('FlowChannelFormController', function () {
       scope.$digest();
     });
 
-    it('should set the url params on the node', function () {
-      expect(scope.node.urlParams).to.deep.equal({uparam: ''});
+    it('should set the url param definitions', function () {
+      expect(scope.urlParamDefinitions).to.deep.equal([ { name: 'uparam', style: 'url' } ]);
     });
   });
 
