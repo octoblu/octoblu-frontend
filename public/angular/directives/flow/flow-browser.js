@@ -53,6 +53,14 @@ angular.module('octobluApp')
             $('.flow-browser').trigger($.Event('resize'));
           }, 300);
         });
+
+        $scope.filterNonOperators = function(flowNodeType){
+          return flowNodeType && (flowNodeType.category === 'device' || flowNodeType.category === 'channel');
+        };
+
+        $scope.filterOperators = function(flowNodeType){
+          return flowNodeType && (flowNodeType.category !== 'device' && flowNodeType.category !== 'channel');
+        };
       }
   };
   });
