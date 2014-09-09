@@ -1,4 +1,4 @@
-describe.only('OmniService', function () {
+describe('OmniService', function () {
   var sut, fakeFlowNodeTypeService, fakeFlowService, fakeNodeTypeService, $rootScope, $q;
 
   beforeEach(function () {
