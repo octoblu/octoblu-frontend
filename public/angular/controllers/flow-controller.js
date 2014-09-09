@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ($log, $modal, $scope, $window, FlowService, FlowNodeTypeService, NodeTypeService) {
+  .controller('FlowController', function ($rootScope, $log, $modal, $state, $scope, $window, AuthService,  FlowService, FlowNodeTypeService, NodeTypeService) {
     var originalNode;
 
     $scope.zoomLevel = 0;
@@ -25,6 +25,12 @@ angular.module('octobluApp')
 
     refreshFlows();
 
+    $scope.logout = function(){
+      AuthService.logout()
+        .then(function () {
+          $state.go('login');
+        });
+    };
 
     $scope.$on('flow-node-debug', function (event, message) {
       $log.debug(message);
