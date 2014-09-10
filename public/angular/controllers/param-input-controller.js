@@ -4,15 +4,15 @@ angular.module('octobluApp')
   var compactModel, filterModel, generateDefaults, setParamDefinitions;
 
   compactModel = function(){
-    $scope.model = _.pick($scope.model, function(value){
+    $scope.ngModel = _.pick($scope.ngModel, function(value){
       return value !== '';
     });
   };
 
   filterModel = function(){
     var names = _.pluck($scope.paramDefinitions, 'name');
-    $scope.model = _.pick($scope.model, names);
-    _.defaults($scope.model, generateDefaults($scope.paramDefinitions));
+    $scope.ngModel = _.pick($scope.ngModel, names);
+    _.defaults($scope.ngModel, generateDefaults($scope.paramDefinitions));
   };
 
   generateDefaults = function(paramDefinitions){
@@ -31,5 +31,5 @@ angular.module('octobluApp')
 
   $scope.$watch('selectedEndpoint', setParamDefinitions);
   $scope.$watch('paramDefinitions', filterModel);
-  $scope.$watch('model', compactModel, true);
+  $scope.$watch('ngModel', compactModel, true);
 });

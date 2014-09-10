@@ -25,6 +25,7 @@ describe('FlowChannelFormController', function () {
       scope.resources   = channel.application.resources;
       scope.node.path   = resource2.path;
       scope.node.method = resource2.httpMethod;
+      scope.channel = { application : {base: ''}};
       scope.$digest();
     });
 
@@ -36,11 +37,12 @@ describe('FlowChannelFormController', function () {
   describe('when the scope.selectedEndpoint changes', function () {
     beforeEach(function(){
       scope.selectedEndpoint = resource2;
+      scope.channel = { application : {base: ''}};
       scope.$digest();
     });
 
-    it('should set path on scope.node', function () {
-      expect(scope.node.path).to.equal(resource2.path);
+    it('should set url on scope.node', function () {
+      expect(scope.node.url).to.equal(resource2.path);
     });
 
     it('should set method on scope.node', function () {

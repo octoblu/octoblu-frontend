@@ -12,7 +12,7 @@ describe('ParamInputController', function () {
 
   describe('Given a param style of query and a selected endpoint', function () {
     beforeEach(function () {
-      scope.model = {};
+      scope.ngModel = {};
       scope.paramStyle = 'query'
       scope.selectedEndpoint = {params: [queryParam, urlParam]};
       scope.$digest();
@@ -29,7 +29,7 @@ describe('ParamInputController', function () {
 
   describe('Given a param style of url and a selected endpoint', function () {
     beforeEach(function () {
-      scope.model = {};
+      scope.ngModel = {};
       scope.paramStyle = 'url'
       scope.selectedEndpoint = {params: [queryParam, urlParam]};
       scope.$digest();
@@ -44,67 +44,67 @@ describe('ParamInputController', function () {
     });
   });
 
-  describe('Given the model has a property not in the current style params', function () {
+  describe('Given the ngModel has a property not in the current style params', function () {
     beforeEach(function () {
-      scope.model = {foo: 'bar'};
+      scope.ngModel = {foo: 'bar'};
       scope.paramStyle = 'query';
       scope.selectedEndpoint = {params: [queryParam, urlParam]};
       scope.$digest();
     });
 
-    it('should remove the property from model', function () {
-      expect(scope.model).not.to.have.property('foo');
+    it('should remove the property from ngModel', function () {
+      expect(scope.ngModel).not.to.have.property('foo');
     });
   });
 
-  describe('Given the model has a property that is in the urlParams', function () {
+  describe('Given the ngModel has a property that is in the urlParams', function () {
     beforeEach(function () {
-      scope.model = {foo: 'bar'};
+      scope.ngModel = {foo: 'bar'};
       scope.paramStyle = 'url'
       scope.selectedEndpoint = {params: [queryParam, urlParam]};
       scope.$digest();
     });
 
-    it('should leave the property in the model', function () {
-      expect(scope.model).to.have.property('foo');
+    it('should leave the property in the ngModel', function () {
+      expect(scope.ngModel).to.have.property('foo');
     });
   });
 
-  describe('Given model has no params and there is a default', function () {
+  describe('Given ngModel has no params and there is a default', function () {
     beforeEach(function () {
-      scope.model = {};
+      scope.ngModel = {};
       scope.paramStyle = 'query'
       scope.selectedEndpoint = {params: [queryParam, urlParam]};
       scope.$digest();
     });
 
-    it('should set the property on model to the default', function () {
-      expect(scope.model).to.have.property('m');
-      expect(scope.model.m).to.equal('foursquare');
+    it('should set the property on ngModel to the default', function () {
+      expect(scope.ngModel).to.have.property('m');
+      expect(scope.ngModel.m).to.equal('foursquare');
     });
   });
 
-  describe("Given model has a value and doesn't need the default", function () {
+  describe("Given ngModel has a value and doesn't need the default", function () {
     beforeEach(function () {
-      scope.model = {'m': 'swarm'};
+      scope.ngModel = {'m': 'swarm'};
       scope.paramStyle = 'query'
       scope.selectedEndpoint = {params: [queryParam, urlParam]};
       scope.$digest();
     });
 
-    it('should set the property on model to the default', function () {
-      expect(scope.model).to.have.property('m');
-      expect(scope.model.m).to.equal('swarm');
+    it('should set the property on ngModel to the default', function () {
+      expect(scope.ngModel).to.have.property('m');
+      expect(scope.ngModel.m).to.equal('swarm');
     });
 
     describe('when the value is set to empty string', function () {
       beforeEach(function () {
-        scope.model.m = '';
+        scope.ngModel.m = '';
         scope.$digest();
       });
 
-      it('should remove the property from the model', function () {
-        expect(_.keys(scope.model)).not.to.include('m');
+      it('should remove the property from the ngModel', function () {
+        expect(_.keys(scope.ngModel)).not.to.include('m');
       });
     });
   });

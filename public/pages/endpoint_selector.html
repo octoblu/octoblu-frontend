@@ -4,7 +4,7 @@
     <select id="selectedEndpoint" ng-model="selectedEndpoint" ng-options="getEndpointLabel(endpoint) for endpoint in resources" class="form-control"></select>
   </div>
 
-  <param-input param-style="url"   model="node.urlParams"   selected-endpoint="selectedEndpoint"></param-input>
-  <param-input param-style="query" model="node.queryParams" selected-endpoint="selectedEndpoint"></param-input>
-  <param-input param-style="body"  model="node.bodyParams"  selected-endpoint="selectedEndpoint"></param-input>
+  <param-input param-style="url"   ng-model="node.urlParams"   selected-endpoint="selectedEndpoint"></param-input>
+  <param-input param-style="query" ng-model="node.queryParams" selected-endpoint="selectedEndpoint"></param-input>
+  <param-input param-style="body"  ng-model="node.bodyParams"  selected-endpoint="selectedEndpoint"></param-input>
 </div>

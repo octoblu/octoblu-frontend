@@ -5,22 +5,11 @@ angular.module('octobluApp')
     restrict: 'E',
     controller: 'ParamInputController',
     scope: {
-      model: '=',
+      ngModel: '=',
       paramStyle: '@',
       selectedEndpoint: '='
     },
     templateUrl: '/pages/param-input.html',
-    replace: true,
-    link: function(scope, element, attr, ngModel){
-      function fromUser(text) {
-          return (text || '').toUpperCase();
-      }
-
-      function toUser(text) {
-          return (text || '').toLowerCase();
-      }
-      ngModel.$parsers.push(fromUser);
-      ngModel.$formatters.push(toUser);
-    }
+    replace: true
   };
 });
