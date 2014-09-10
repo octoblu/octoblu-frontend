@@ -10,6 +10,17 @@ angular.module('octobluApp')
       selectedEndpoint: '='
     },
     templateUrl: '/pages/param-input.html',
-    replace: true
+    replace: true,
+    link: function(scope, element, attr, ngModel){
+      function fromUser(text) {
+          return (text || '').toUpperCase();
+      }
+
+      function toUser(text) {
+          return (text || '').toLowerCase();
+      }
+      ngModel.$parsers.push(fromUser);
+      ngModel.$formatters.push(toUser);
+    }
   };
 });
