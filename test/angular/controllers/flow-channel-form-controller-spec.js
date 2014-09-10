@@ -46,63 +46,8 @@ describe('FlowChannelFormController', function () {
     it('should set method on scope.node', function () {
       expect(scope.node.method).to.equal(resource2.httpMethod);
     });
-
-    it('should set queryParams on the node', function () {
-      expect(scope.queryParamDefinitions).to.deep.equal([{ name: 'foo', style: 'query' }]);
-    });
   });
 
-  describe('when the scope.selectedEndpoint changes and we already have a param value', function () {
-    beforeEach(function(){
-      scope.node.queryParams = {bar: 'something'};
-      scope.selectedEndpoint = resource3;
-      scope.$digest();
-    });
-
-    it('should use the existing bar value', function () {
-      expect(scope.node.queryParams).to.deep.equal({bar: 'something'});
-    });
-  });
-
-  describe('when the scope.selectedEndpoint changes and we already have a body param value', function () {
-    beforeEach(function(){
-      scope.node.bodyParams = {bparam: 'something'};
-      scope.selectedEndpoint = resource3;
-      scope.$digest();
-    });
-
-    it('should use the existing bparam value', function () {
-      expect(scope.node.bodyParams).to.deep.equal({bparam: 'something'});
-    });
-  });
-
-  describe('when the resource has a body param', function () {
-    beforeEach(function(){
-      scope.selectedEndpoint = resource3;
-      scope.$digest();
-    });
-
-    it('should set the body param definitions', function () {
-      expect(scope.bodyParamDefinitions).to.deep.equal([ { name: 'bparam', style: 'body' } ]);
-    });
-
-    it('should set the query params definitions', function () {
-      expect(scope.queryParamDefinitions).to.deep.equal( [ { name: 'bar', style: 'query' } ]);
-    });
-  });
-
-  describe('when the resource has a url param', function () {
-    var resource3;
-
-    beforeEach(function(){
-      scope.selectedEndpoint = resource2;
-      scope.$digest();
-    });
-
-    it('should set the url param definitions', function () {
-      expect(scope.urlParamDefinitions).to.deep.equal([ { name: 'uparam', style: 'url' } ]);
-    });
-  });
 
   var FakeChannelService = function($q){
     var q = $q.defer();

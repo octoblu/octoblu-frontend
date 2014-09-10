@@ -88,7 +88,10 @@ describe('OmniService', function () {
       });
 
       it('should keep its promise with the original nodes', function (done) {
-        expect(promise).to.eventually.deep.equal(nodes).and.notify(done);
+        promise.then(function(returnedNodes){
+          expect(returnedNodes).to.deep.equal(nodes);
+          done();
+        });
         $rootScope.$apply();
       });
     });
