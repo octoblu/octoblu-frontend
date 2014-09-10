@@ -76,8 +76,11 @@ describe('ChannelCollection', function () {
 
         it('should merge the channel in with the user api', function (done) {
           result.then(function(apis){
-            var expected = JSON.stringify([{channelid: '123', channelActivationId: '321', name: 'FooNetwork'}]);
-            expect(JSON.stringify(apis)).to.deep.equal(expected);
+            var api = _.first(apis);
+            expect(apis).to.have.a.lengthOf(1);
+            expect(api.channelid).to.equal('123');
+            expect(api.channelActivationId).to.equal('321');
+            expect(api.name).to.equal('FooNetwork');
             done();
           }).catch(done);
         });
@@ -93,7 +96,8 @@ describe('ChannelCollection', function () {
 
       describe('when fetchByChannelIds resolves with a channel', function () {
         beforeEach(function(){
-          channelDefer.resolve([{_id: '888', name: 'TheOcho', params: {}}]);
+          var channel = {_id: '888', name: 'TheOcho', params: {}};
+          channelDefer.resolve([channel]);
         });
 
         it('should have called fetchByChannelIds on channel', function (done) {
@@ -105,8 +109,11 @@ describe('ChannelCollection', function () {
 
         it('should merge the channel in with the user api', function (done) {
           result.then(function(apis){
-            var expected = JSON.stringify([{channelid: '888', channelActivationId: '999', name: 'TheOcho'}]);
-            expect(JSON.stringify(apis)).to.deep.equal(expected);
+            var api = _.first(apis);
+            expect(apis).to.have.a.lengthOf(1);
+            expect(api.channelid).to.equal('888');
+            expect(api.channelActivationId).to.equal('999');
+            expect(api.name).to.equal('TheOcho');
             done();
           }).catch(done);
         });
