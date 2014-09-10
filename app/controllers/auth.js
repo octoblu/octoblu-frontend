@@ -396,20 +396,21 @@ module.exports = function (app, passport, config) {
                         code: req.query.code,
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     }, function (error, result) {
+                        if (error) {
+                            console.log('Access Token Error', error);
+                            return res.send(500, error);
+                        }
+
                         var token = result;
+                        token = token.access_token || token;
                         if(_.contains(result, 'access_token')) {
                             token = querystring.parse(result).access_token;
                         }
 
-                        if (error) {
-                            console.log('Access Token Error', error);
-                            res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
-                        } else {
-                            user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
-                            user.save(function (err) {
-                                res.redirect('/design');
-                            });
-                        }
+                        user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
+                        user.save(function (err) {
+                            res.redirect('/design');
+                        });
                     });
                 }
 
