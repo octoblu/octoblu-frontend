@@ -144,6 +144,17 @@ module.exports = function (app, passport, config) {
         return require('simple-oauth2')(oauth_creds);
     };
 
+    var getOauth2TokenInstance = function (api) {
+        var creds = getOAuthCredentials(api.oauth);
+        var oauth_creds = {
+            clientID: creds.clientId || creds.key,
+            clientSecret: creds.secret,
+            site: creds.tokenBaseURL || creds.baseURL,
+            tokenPath: creds.authTokenPath
+        };
+        return require('simple-oauth2')(oauth_creds);
+    };
+
     var getOauth2Instance = function (api) {
         var creds = getOAuthCredentials(api.oauth);
         var oauth_creds = {
@@ -390,10 +401,12 @@ module.exports = function (app, passport, config) {
                         }
                     });
                 } else {
-                    var OAuth2 = getOauth2AccessInstance(api);
+                    var OAuth2 = getOauth2TokenInstance(api);
                     OAuth2.AuthCode.getToken({
                         code: req.query.code,
-                        redirect_uri: getOAuthCallbackUrl(req, api._id)
+                        redirect_uri: getOAuthCallbackUrl(req, api._id),
+                        client_id : creds.clientId || creds.key,
+                        client_secret : creds.secret
                     }, function (error, result) {
                         if (error) {
                             console.log('Access Token Error', error);

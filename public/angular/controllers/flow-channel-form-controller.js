@@ -30,6 +30,7 @@ angular.module('octobluApp')
       return;
     }
     $scope.node.path   = $scope.selectedEndpoint.path;
+    $scope.node.endpoint = $scope.selectedEndpoint.fullURL;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
   });
 

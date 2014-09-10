@@ -6,7 +6,7 @@ var FlowDeploy = function(options){
   FlowDeploy = options.FlowDeploy || require('../models/flow-deploy');
   Redport    = options.Redport    || require('../models/redport');
   mongoose   = options.mongoose   || require('mongoose');
-  meshblu    = options.meshblu
+  meshblu    = options.meshblu;
   _          = require('lodash');
   Flow       = mongoose.model('Flow');
 
@@ -34,7 +34,7 @@ var FlowDeploy = function(options){
     Flow.findOne({flowId: req.params.id}, function(err, flow){
       cmd(userUUID, userToken, flow, meshblu);
     });
-  }
+  };
 
   return this;
 };
