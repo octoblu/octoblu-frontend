@@ -5,8 +5,7 @@ var request = require('request'),
     url = require('url'),
     _ = require('lodash'),
     User = mongoose.model('User'),
-    isAuthenticated = require('./middleware/security').isAuthenticated,
-    querystring = require('querystring');
+    isAuthenticated = require('./middleware/security').isAuthenticated;
 var ObjectId = require('mongoose').Types.ObjectId;
 
 // Using MongoJS on SkyNet database queries to avoid schemas
@@ -151,17 +150,16 @@ module.exports = function (app, passport, config) {
             clientSecret: creds.secret,
             site: creds.baseURL,
             tokenPath: creds.authTokenPath,
-            scope: creds.scope
+            scope: creds.scope,
+            authorizationPath : creds.accessTokenPath
         };
         return require('simple-oauth2')(oauth_creds);
     };
 
     var getOAuthCallbackUrl = function (req, channelid) {
-        var protocol = req.protocol;
-        if (req.headers.host.indexOf('octoblu.com')>=0) {
-            protocol =  'https';
-        }
-        return protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        return (req.headers.host.indexOf('octoblu.com')>=0) ? 'https://'+ req.headers.host + '/api/auth/' + channelid + '/callback/custom'
+          : req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        // return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
     };
 
     var handleApiCompleteRedirect = function (res, channelid, err) {
@@ -243,7 +241,7 @@ module.exports = function (app, passport, config) {
                         query.api_key = creds.clientId;
                     }
 
-                    if (creds.scope.length > 0) {
+                    if (creds.scope && creds.scope.length > 0) {
                         query.scope = creds.scope;
                     }
 
@@ -397,14 +395,12 @@ module.exports = function (app, passport, config) {
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     }, function (error, result) {
                         var token = result;
-                        if(_.contains(result, 'access_token')) {
-                            token = querystring.parse(result).access_token;
-                        }
 
                         if (error) {
                             console.log('Access Token Error', error);
-                            res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
+                            res.send(500, error);
                         } else {
+                            token = token.access_token || token;
                             user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
                                 res.redirect('/design');
