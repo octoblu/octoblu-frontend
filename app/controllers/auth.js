@@ -4,6 +4,7 @@ var request = require('request'),
     crypto = require('crypto'),
     url = require('url'),
     _ = require('lodash'),
+    querystring = require('querystring'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
 var ObjectId = require('mongoose').Types.ObjectId;
@@ -237,7 +238,7 @@ module.exports = function (app, passport, config) {
                     if(creds.auth_use_client_id_value) {
                         query.client_id = creds.auth_use_client_id_value;
                     }
-                    if(creds.auth_use_api_key==true && creds.clientId) {
+                    if(creds.auth_use_api_key === true && creds.clientId) {
                         query.api_key = creds.clientId;
                     }
 
@@ -342,7 +343,7 @@ module.exports = function (app, passport, config) {
                     if(creds.auth_use_client_id_value) {
                         form.client_id = creds.auth_use_client_id_value;
                     }
-                    if(creds.auth_use_api_key==true && creds.clientId) {
+                    if(creds.auth_use_api_key === true && creds.clientId) {
                         query.api_key = creds.clientId;
                     }
 
