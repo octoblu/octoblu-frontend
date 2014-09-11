@@ -19,7 +19,7 @@ var NodeCollection = function (userUUID) {
   };
 
   self.getChannelCollection = function () {
-    return new ChannelCollection(userUUID);
+    return new ChannelCollection();
   };
 
   self.getDevices = function () {
@@ -34,7 +34,7 @@ var NodeCollection = function (userUUID) {
   self.getChannels = function () {
     var channelCollection = self.getChannelCollection();
 
-    return channelCollection.fetch()
+    return channelCollection.fetch(userUUID)
     .then(function (channels) {
       return _.map(channels, self.convertChannelToNode);
     });

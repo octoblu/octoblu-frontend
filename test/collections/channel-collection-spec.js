@@ -3,7 +3,7 @@ var ChannelCollection = require('../../app/collections/channel-collection');
 var mongoose          = require('mongoose');
 
 describe('ChannelCollection', function () {
-  var sut, getUser, fetchByIds, defer, channelDefer, result, db;
+  var sut, fetchApisByIds, getUser, result, db;
 
   beforeEach(function(){
     var mongoose   = require('mongoose');
@@ -16,18 +16,88 @@ describe('ChannelCollection', function () {
   });
 
   beforeEach(function(){
-    sut     = new ChannelCollection('uselessUUID', {mongoose: db});
-    defer = when.defer();
+    var getUserDefer, fetchApiByIdDefer, fetchApisByIdsDefer;
+
+    sut     = new ChannelCollection({mongoose: db});
+
+    fetchApiByIdDefer = when.defer();
+    sinon.stub(sut, 'fetchApiById').returns(fetchApiByIdDefer.promise);
+    sut.fetchApiById.reject  = fetchApiByIdDefer.reject;
+    sut.fetchApiById.resolve = fetchApiByIdDefer.resolve;
+
+    fetchApisByIdsDefer = when.defer();
+    fetchApisByIds = sinon.stub(sut, 'fetchApisByIds');
+    fetchApisByIds.returns(fetchApisByIdsDefer.promise);
+    fetchApisByIds.resolve = fetchApisByIdsDefer.resolve;
+
+    getUserDefer = when.defer();
     getUser = sinon.stub(sut, 'getUser');
-    getUser.returns(defer.promise);
-    fetchByIds = sinon.stub(sut, 'fetchByIds');
-    channelDefer = when.defer();
-    fetchByIds.returns(channelDefer.promise);
+    getUser.returns(getUserDefer.promise);
+    getUser.resolve = getUserDefer.resolve;
+  });
+
+  describe('get', function () {
+    describe('when called with a uuid and channel id', function () {
+      var promise;
+
+      beforeEach(function () {
+        promise = sut.get('uselessUUID', '123');
+      });
+
+      describe('when getUser and fetchApiById resolve/reject with no apis', function () {
+        beforeEach(function () {
+          fakeUser = {api: []};
+          getUser.resolve(fakeUser);
+          sut.fetchApiById.reject();
+        });
+
+        it('should reject its promise', function (done) {
+          promise.catch(function(){
+            done();
+          });
+        });
+      });
+
+      describe('when getUser and fetchApiById resolves with 1 api', function () {
+        beforeEach(function () {
+          fakeUser = {api: [{_id : '1234567', channelid : '980123'}]};
+          getUser.resolve(fakeUser);
+          sut.fetchApiById.resolve({_id: '980123', name: 'FooNetwork'});
+        });
+
+        it('should resolve its promise with the mashup of the channel and channelActivation', function (done) {
+          promise.then(function(channel){
+            expect(channel.name).to.equal('FooNetwork');
+            expect(channel.channelid).to.equal('980123');
+            expect(channel.channelActivationId).to.equal('1234567');
+            done();
+          }).catch(done);
+        });
+      });
+
+      describe('when getUser and fetchApiById resolves with more than one api', function () {
+        beforeEach(function () {
+          fakeUser = {api: [{_id : '7654321', channelid : '321089'}]};
+          getUser.resolve(fakeUser);
+          sut.fetchApiById.resolve({_id: '321089', name: 'BarNetwork'});
+        });
+
+        it('should resolve its promise with the mashup of the channel and channelActivation', function (done) {
+          promise.then(function(channel){
+            expect(channel.name).to.equal('BarNetwork');
+            expect(channel.channelid).to.equal('7654321');
+            expect(channel.channelActivationId).to.equal('321089');
+            done();
+          }).catch(done);
+        });
+      });
+    });
   });
 
   describe('fetch', function () {
+
     beforeEach(function () {
-      result = sut.fetch();
+      result = sut.fetch('uselessUUID');
     });
 
     it('should getUser', function () {
@@ -38,12 +108,12 @@ describe('ChannelCollection', function () {
       var fakeUser;
       beforeEach(function () {
         fakeUser = {api: []};
-        defer.resolve(fakeUser);
+        getUser.resolve(fakeUser);
       });
 
       describe('when fetchByChannelIds resolves with no channel', function () {
         beforeEach(function(){
-          channelDefer.resolve([]);
+          fetchApisByIds.resolve([]);
         });
 
         it('should be empty', function(done){
@@ -59,17 +129,17 @@ describe('ChannelCollection', function () {
       var fakeUser;
       beforeEach(function () {
         fakeUser = {api: [{_id: '321', channelid: '123', whatever: 'somethingelse', whoosawhatsit: 'floosenhousen'}]};
-        defer.resolve(fakeUser);
+        getUser.resolve(fakeUser);
       });
 
       describe('when fetchByChannelIds resolves with a channel', function () {
         beforeEach(function(){
-          channelDefer.resolve([{_id: '123', name: 'FooNetwork'}]);
+          fetchApisByIds.resolve([{_id: '123', name: 'FooNetwork'}]);
         });
 
         it('should have called fetchByChannelIds on channel', function (done) {
           result.then(function(apis){
-            expect(fetchByIds).to.have.been.calledWith(['123']);
+            expect(fetchApisByIds).to.have.been.calledWith(['123']);
             done();
           }).catch(done);
         });
@@ -91,18 +161,18 @@ describe('ChannelCollection', function () {
       var fakeUser;
       beforeEach(function () {
         fakeUser = {api: [{_id: '999', channelid: '888', whatever: 'something'}]};
-        defer.resolve(fakeUser);
+        getUser.resolve(fakeUser);
       });
 
       describe('when fetchByChannelIds resolves with a channel', function () {
         beforeEach(function(){
           var channel = {_id: '888', name: 'TheOcho', params: {}};
-          channelDefer.resolve([channel]);
+          fetchApisByIds.resolve([channel]);
         });
 
         it('should have called fetchByChannelIds on channel', function (done) {
           result.then(function(apis){
-            expect(fetchByIds).to.have.been.calledWith(['888']);
+            expect(fetchApisByIds).to.have.been.calledWith(['888']);
             done();
           }).catch(done);
         });

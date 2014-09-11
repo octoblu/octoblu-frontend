@@ -2,7 +2,7 @@ var _        = require('lodash');
 var when     = require('when');
 var mongoose = require('mongoose');
 
-var ChannelCollection = function(userUUID, options){
+var ChannelCollection = function(options){
   var self = this;
 
   options  = options || {};
@@ -10,26 +10,44 @@ var ChannelCollection = function(userUUID, options){
   var Api  = mongoose.model('Api');
   var User = mongoose.model('User');
 
-  self.fetch = function() {
+  self.fetch = function(userUUID) {
     var userApis;
-    return self.getUser().then(function(user){
+    return self.getUser(userUUID).then(function(user){
       var channelIds;
 
       userApis   = user.api;
       channelIds = _.compact(_.pluck(userApis, 'channelid'));
 
-      return self.fetchByIds(channelIds);
+      return self.fetchApisByIds(channelIds);
     }).then(function(apis){
       return self.mergeChannelsAndApis(userApis, apis);
     });
   };
 
-  self.getUser = function() {
-    return User.findLeanBySkynetUUID(userUUID);
+  self.fetchApiById = function(channelId) {
+    return Api.findByIds(channelId);
   };
 
-  self.fetchByIds = function(channelIds) {
+  self.fetchApisByIds = function(channelIds) {
     return Api.findByIds(channelIds);
+  };
+
+  self.get = function(userUUID, channelId){
+    var user;
+    return self.getUser(userUUID).then(function(theUser){
+      user = theUser;
+      return self.fetchApiById(channelId);
+    }).then(function(api){
+      return {
+        channelid: api._id,
+        channelActivationId: user.api[0]._id,
+        name: api.name
+      }
+    });
+  };
+
+  self.getUser = function(userUUID) {
+    return User.findLeanBySkynetUUID(userUUID);
   };
 
   self.mergeChannelsAndApis = function(channels, apis){

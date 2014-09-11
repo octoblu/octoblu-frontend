@@ -10,7 +10,6 @@ var ChannelController = function(){
   self.getChannelCollection = function(){
     return new ChannelCollection();
   };
-
 };
 
 module.exports = ChannelController;
