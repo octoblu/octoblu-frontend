@@ -25,6 +25,9 @@ module.exports = function(app, passport) {
     var NodeController = require('./controllers/node-controller');
     var nodeController = new NodeController();
 
+    var DropboxController = require('./controllers/dropbox-controller');
+    var dropboxController = new DropboxController();
+
     var FlowController = require('./controllers/flow-controller');
     var flowController = new FlowController();
 
@@ -68,6 +71,9 @@ module.exports = function(app, passport) {
             require('./controllers/permissions')(app);
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
+
+            app.get('/api/oauth/dropbox',          dropboxController.authorize);
+            app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);

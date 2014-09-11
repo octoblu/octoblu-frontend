@@ -35,6 +35,7 @@ var RedisStore = connectRedis(expressSession);
 require('./initializeModels.js');
 
 require('./config/passport')(env, passport); // pass passport for configuration
+passport.use(require('./config/dropbox'));
 
 // set up our express application
 app.use(morgan('dev', {immediate:false})); // log every request to the console
