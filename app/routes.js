@@ -37,6 +37,10 @@ module.exports = function(app, passport) {
     var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
     var flowNodeTypeController = new FlowNodeTypeController();
 
+    var InvitationController = require('./controllers/invitation-controller');
+    var invitationController = new InvitationController(config.betaInvites);
+
+
     conn.on('notReady', function(data){
         console.log('SkyNet authentication: failed');
     });
@@ -53,6 +57,7 @@ module.exports = function(app, passport) {
             app.post('/api/auth/signup', security.bypassAuth);
             app.all('/api/auth', security.bypassTerms);
             app.all('/api/auth/*', security.bypassTerms);
+            app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms, invitationController.requestInvite);
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
             // Initialize Controllers
@@ -70,7 +75,6 @@ module.exports = function(app, passport) {
             require('./controllers/group')(app);
             require('./controllers/permissions')(app);
             require('./controllers/designer')(app);
-            require('./controllers/invitation')(app, passport, config);
 
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
@@ -86,6 +90,8 @@ module.exports = function(app, passport) {
 
             app.get('/api/node_types', nodeTypeController.index);
             app.get('/api/nodes', nodeController.index);
+
+
 
             // show the home page (will also have our login links)
             app.get('/*', function(req, res) {

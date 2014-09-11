@@ -322,6 +322,30 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'forgotController',
         unsecured: true
       })
+      .state('invitation', {
+        url: '/invitation',
+        templateUrl : '/pages/invitation/index.html',
+        abstract : true,
+        unsecured: true
+      })
+      .state('invitation.accept', {
+        url : '/accept',
+        templateUrl : '/pages/invitation/accept.html',
+        controller: 'InvitationAcceptController',
+        unsecured: true
+      })
+      .state('invitation.request', {
+        url : '/request',
+        templateUrl : '/pages/invitation/request.html',
+        controller: 'InvitationRequestController',
+        unsecured: true
+      })
+      .state('invitation.sent', {
+        url : '/sent',
+        templateUrl : '/pages/invitation/sent.html',
+        unsecured: true
+      })
+
       .state('ob.analyze', {
         url: '/analyze',
         templateUrl: '/pages/analyze.html',
