@@ -74,23 +74,6 @@ describe('ChannelCollection', function () {
           }).catch(done);
         });
       });
-
-      describe('when getUser and fetchApiById resolves with more than one api', function () {
-        beforeEach(function () {
-          fakeUser = {api: [{_id : '7654321', channelid : '321089'}]};
-          getUser.resolve(fakeUser);
-          sut.fetchApiById.resolve({_id: '321089', name: 'BarNetwork'});
-        });
-
-        it('should resolve its promise with the mashup of the channel and channelActivation', function (done) {
-          promise.then(function(channel){
-            expect(channel.name).to.equal('BarNetwork');
-            expect(channel.channelid).to.equal('7654321');
-            expect(channel.channelActivationId).to.equal('321089');
-            done();
-          }).catch(done);
-        });
-      });
     });
   });
 
