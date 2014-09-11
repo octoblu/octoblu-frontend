@@ -15,7 +15,7 @@ angular.module('octobluApp')
 
     node = $scope.node;
     resources = $scope.resources
-    selectedEndpoint = _.findWhere(resources, {path: node.path, httpMethod: node.method});
+    selectedEndpoint = _.findWhere(resources, {url: node.url, httpMethod: node.method});
     $scope.selectedEndpoint = selectedEndpoint || _.first(resources);
   };
 
@@ -23,7 +23,7 @@ angular.module('octobluApp')
     if(!$scope.selectedEndpoint){
       return;
     }
-    $scope.node.path   = $scope.selectedEndpoint.path;
+    $scope.node.url    = $scope.selectedEndpoint.url;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
 
     $scope.queryParamDefinitions = _.where($scope.selectedEndpoint.params, {style: 'query'});
