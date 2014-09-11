@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
 
 // define the schema for our user model
 var ApiSchema = new mongoose.Schema({
-
     name             : String,
     owner            : String,
     type             : String,
@@ -16,6 +15,7 @@ var ApiSchema = new mongoose.Schema({
     auth_strategy    : String, // options: oauth, simple (user enters token), custom (use custom tokens), none (requires no authorization)
     custom_tokens    : [{name: String}],
     useCustom        : Boolean,
+    isPassport       : Boolean,
     oauth            : {},
     documentation: String,
     application: { base: String, resources: [] }
