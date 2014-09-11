@@ -6,8 +6,7 @@ angular.module('octobluApp')
     controller: 'ParamInputController',
     scope: {
       ngModel: '=',
-      paramStyle: '@',
-      selectedEndpoint: '='
+      paramDefinitions: '='
     },
     templateUrl: '/pages/param-input.html',
     replace: true

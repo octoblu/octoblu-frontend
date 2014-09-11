@@ -1,6 +1,6 @@
 <div>
   <div class="form-group" ng-repeat="paramDefinition in paramDefinitions">
     <label for="{{paramDefinition.name}}">{{paramDefinition.name}}</label>
-    <input  id="{{paramDefinition.name}}" type="text" class="form-control" ng-model="model[paramDefinition.name]">
+    <input  id="{{paramDefinition.name}}" type="text" class="form-control" ng-model="ngModel[paramDefinition.name]">
   </div>
 </div>
