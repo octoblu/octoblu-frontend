@@ -30,8 +30,8 @@ module.exports = function (app) {
     });
 
     app.get('/api/channels/:id', function (req, res) {
-        Channel.findById(req.params.id).then(function(channels){
-            res.send(channels)
+        Channel.findById(req.params.id).then(function(channel){
+            res.send(channel)
         });
     });
 };
