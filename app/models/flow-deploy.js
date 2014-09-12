@@ -71,10 +71,11 @@ var FlowDeploy = function(options){
         node.oauth.access_token = userApiMatch.token;
         node.oauth.access_token_secret = userApiMatch.secret;
       }
-      var channelApiMatch = _.findWhere(channelApis, {'_id': new mongoose.Types.ObjectId(node.channelid)});
+      var channelApiMatch = _.findWhere(channelApis, {'_id': node.channelid});
       if (channelApiMatch) {
         var channelOauth = channelApiMatch.oauth[process.env.NODE_ENV] || channelApiMatch.oauth;
         node.application = {base: channelApiMatch.application.base};
+        node.bodyFormat = channelApiMatch.bodyFormat;
         node.oauth = _.defaults(node.oauth, channelOauth);
       }
     });

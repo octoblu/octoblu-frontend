@@ -26,7 +26,23 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/repos/:owner/:repo/events"
+        "url" : "https://api.github.com/repos/:owner/:repo/events",
+        "params": [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/repos/:owner/:repo/issues/events",
@@ -38,7 +54,23 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/events"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/events",
+        "params": [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/networks/:owner/:repo/events",
@@ -50,7 +82,23 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/networks/:owner/:repo/events"
+        "url" : "https://api.github.com/networks/:owner/:repo/events",
+        "params": [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/orgs/:org/events",
@@ -62,7 +110,16 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/orgs/:org/events"
+        "url" : "https://api.github.com/orgs/:org/events",
+        "params": [
+          {
+            "name" : ":org",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/users/:username/received_events",
@@ -74,7 +131,16 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/users/:username/received_events"
+        "url" : "https://api.github.com/users/:username/received_events",
+        "params": [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/users/:username/received_events/public",
@@ -86,7 +152,16 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/users/:username/received_events/public"
+        "url" : "https://api.github.com/users/:username/received_events/public",
+        "params": [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "displayName" : "/users/:username/events",
@@ -98,7 +173,16 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/users/:username/events"
+        "url" : "https://api.github.com/users/:username/events",
+        "params": [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/users/:username/events/public",
@@ -110,7 +194,16 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/users/:username/events/public"
+        "url" : "https://api.github.com/users/:username/events/public",
+        "params": [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/users/:username/events/orgs/:org",
@@ -122,7 +215,23 @@
           "url" : "https://developer.github.com/v3/activity/events/"
         },
         "httpMethod" : "GET",
-        "url" : "https://api.github.com/users/:username/events/orgs/:org"
+        "url" : "https://api.github.com/users/:username/events/orgs/:org",
+        "params": [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":org",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -183,6 +292,20 @@
         "path" : "/repos/:owner/:repo/notifications",
         "params" : [
           {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
             "name" : "all",
             "style" : "query",
             "type" : "boolean",
@@ -238,6 +361,20 @@
         "displayName" : "/repos/:owner/:repo/notifications",
         "path" : "/repos/:owner/:repo/notifications",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "last_read_at",
             "style" : "body",
@@ -5341,10 +5478,34 @@
     ]
   },
   "auth_strategy" : "oauth",
+  "bodyFormat": "json",
+  "oauth": {
+    "production": {
+      "accessTokenPath" : "/oauth/access_token",
+      "authTokenURL" : "https://github.com/login",
+      "baseURL" : "https://github.com/login",
+      "clientId" : "d67367e23f89dcb0fdbe",
+      "secret" : "c2b1741e8a8ff08673607b3b67753b2dc8778d71",
+      "tokenMethod" : "access_token_query",
+      "version" : "2.0",
+      "scope" : "user,repo,repo_deployment,notifications,gist"
+    },
+    "development": {
+      "accessTokenPath" : "/oauth/access_token",
+      "authTokenURL" : "https://github.com/login",
+      "baseURL" : "https://github.com/login",
+      "clientId" : "463a8c25ee407035cd1c",
+      "secret" : "fdccd7d4fa72cda2746dc3db787e5558b8bb3837",
+      "tokenMethod" : "access_token_query",
+      "version" : "2.0",
+      "scope" : "user,repo,repo_deployment,notifications,gist"
+    }
+  },
   "custom_tokens" : [ ],
   "description" : "",
   "documentation" : "https://developer.github.com/v3/",
   "enabled" : true,
+  "isPassport" : true,
   "logo" : "http://www.revive-adserver.com/media/GitHub.jpg",
   "name" : "Github",
   "type" : "channel:github"
