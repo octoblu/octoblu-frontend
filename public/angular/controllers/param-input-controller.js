@@ -27,6 +27,13 @@ angular.module('octobluApp')
     // console.log('ngModel changed', JSON.stringify($scope.ngModel));
   };
 
+  $scope.inputType = function(type){
+    if(type === 'boolean'){
+      return 'checkbox';
+    }
+    return 'text';
+  };
+
   $scope.$watch('paramDefinitions', instantiateParams);
   $scope.$watch('params', copyParamsToNgModel, true);
 });

@@ -395,10 +395,19 @@
         },
         "displayName" : "/notifications/threads/:id",
         "path" : "/notifications/threads/:id",
-        "url" : "https://api.github.com/notifications/threads/:id"
+        "url" : "https://api.github.com/notifications/threads/:id",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
-        "httpMethod" : "PUT",
+        "httpMethod" : "PATCH",
         "doc" : {
           "url" : "https://developer.github.com/v3/activity/notifications/",
           "t" : "PATCH"
@@ -408,7 +417,16 @@
         },
         "displayName" : "/notifications/threads/:id",
         "path" : "/notifications/threads/:id",
-        "url" : "https://api.github.com/notifications/threads/:id"
+        "url" : "https://api.github.com/notifications/threads/:id",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -420,7 +438,16 @@
         },
         "displayName" : "/notifications/threads/:id/subscription",
         "path" : "/notifications/threads/:id/subscription",
-        "url" : "https://api.github.com/notifications/threads/:id/subscription"
+        "url" : "https://api.github.com/notifications/threads/:id/subscription",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "PUT",
@@ -433,6 +460,13 @@
         "displayName" : "/notifications/threads/:id/subscription",
         "path" : "/notifications/threads/:id/subscription",
         "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "subscribed",
             "style" : "body",
@@ -460,7 +494,16 @@
         },
         "displayName" : "/notifications/threads/:id/subscription",
         "path" : "/notifications/threads/:id/subscription",
-        "url" : "https://api.github.com/notifications/threads/:id/subscription"
+        "url" : "https://api.github.com/notifications/threads/:id/subscription",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -472,7 +515,23 @@
         },
         "displayName" : "/repos/:owner/:repo/stargazers",
         "path" : "/repos/:owner/:repo/stargazers",
-        "url" : "https://api.github.com/repos/:owner/:repo/stargazers"
+        "url" : "https://api.github.com/repos/:owner/:repo/stargazers",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -484,7 +543,16 @@
         },
         "displayName" : "/users/:username/starred",
         "path" : "/users/:username/starred",
-        "url" : "https://api.github.com/users/:username/starred"
+        "url" : "https://api.github.com/users/:username/starred",
+        "params" : [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -524,7 +592,23 @@
         },
         "displayName" : "/user/starred/:owner/:repo",
         "path" : "/user/starred/:owner/:repo",
-        "url" : "https://api.github.com/user/starred/:owner/:repo"
+        "url" : "https://api.github.com/user/starred/:owner/:repo",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "PUT",
@@ -536,7 +620,23 @@
         },
         "displayName" : "/user/starred/:owner/:repo",
         "path" : "/user/starred/:owner/:repo",
-        "url" : "https://api.github.com/user/starred/:owner/:repo"
+        "url" : "https://api.github.com/user/starred/:owner/:repo",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "DELETE",
@@ -548,7 +648,23 @@
         },
         "displayName" : "/user/starred/:owner/:repo",
         "path" : "/user/starred/:owner/:repo",
-        "url" : "https://api.github.com/user/starred/:owner/:repo"
+        "url" : "https://api.github.com/user/starred/:owner/:repo",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -560,7 +676,23 @@
         },
         "displayName" : "/repos/:owner/:repo/subscribers",
         "path" : "/repos/:owner/:repo/subscribers",
-        "url" : "https://api.github.com/repos/:owner/:repo/subscribers"
+        "url" : "https://api.github.com/repos/:owner/:repo/subscribers",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -572,7 +704,16 @@
         },
         "displayName" : "/users/:username/subscriptions",
         "path" : "/users/:username/subscriptions",
-        "url" : "https://api.github.com/users/:username/subscriptions"
+        "url" : "https://api.github.com/users/:username/subscriptions",
+        "params" : [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -596,7 +737,23 @@
         },
         "displayName" : "/repos/:owner/:repo/subscription",
         "path" : "/repos/:owner/:repo/subscription",
-        "url" : "https://api.github.com/repos/:owner/:repo/subscription"
+        "url" : "https://api.github.com/repos/:owner/:repo/subscription",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "PUT",
@@ -609,6 +766,20 @@
         "displayName" : "/repos/:owner/:repo/subscription",
         "path" : "/repos/:owner/:repo/subscription",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "subscribed",
             "style" : "body",
@@ -636,43 +807,23 @@
         },
         "displayName" : "/repos/:owner/:repo/subscription",
         "path" : "/repos/:owner/:repo/subscription",
-        "url" : "https://api.github.com/repos/:owner/:repo/subscription"
-      },
-      {
-        "httpMethod" : "GET",
-        "doc" : {
-          "url" : "https://developer.github.com/v3/activity/watching/"
-        },
-        "authentication" : {
-          "required" : "true"
-        },
-        "displayName" : "/user/subscriptions/:owner/:repo",
-        "path" : "/user/subscriptions/:owner/:repo",
-        "url" : "https://api.github.com/user/subscriptions/:owner/:repo"
-      },
-      {
-        "httpMethod" : "PUT",
-        "doc" : {
-          "url" : "https://developer.github.com/v3/activity/watching/"
-        },
-        "authentication" : {
-          "required" : "true"
-        },
-        "displayName" : "/user/subscriptions/:owner/:repo",
-        "path" : "/user/subscriptions/:owner/:repo",
-        "url" : "https://api.github.com/user/subscriptions/:owner/:repo"
-      },
-      {
-        "httpMethod" : "DELETE",
-        "doc" : {
-          "url" : "https://developer.github.com/v3/activity/watching/"
-        },
-        "authentication" : {
-          "required" : "true"
-        },
-        "displayName" : "/user/subscriptions/:owner/:repo",
-        "path" : "/user/subscriptions/:owner/:repo",
-        "url" : "https://api.github.com/user/subscriptions/:owner/:repo"
+        "url" : "https://api.github.com/repos/:owner/:repo/subscription",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -684,7 +835,16 @@
         },
         "displayName" : "/users/:username/gists",
         "path" : "/users/:username/gists",
-        "url" : "https://api.github.com/users/:username/gists"
+        "url" : "https://api.github.com/users/:username/gists",
+        "params" : [
+          {
+            "name" : ":username",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -727,13 +887,6 @@
             "type" : "string",
             "value" : "",
             "required" : "false"
-          },
-          {
-            "name" : "",
-            "style" : "",
-            "type" : "string",
-            "value" : "",
-            "required" : "false"
           }
         ],
         "url" : "https://api.github.com/gists/starred"
@@ -748,85 +901,16 @@
         },
         "displayName" : "/gists/:id",
         "path" : "/gists/:id",
-        "url" : "https://api.github.com/gists/:id"
-      },
-      {
-        "httpMethod" : "POST",
-        "doc" : {
-          "url" : "https://developer.github.com/v3/gists/"
-        },
-        "authentication" : {
-          "required" : "true"
-        },
-        "displayName" : "/gists",
-        "path" : "/gists",
+        "url" : "https://api.github.com/gists/:id",
         "params" : [
           {
-            "name" : "files",
-            "style" : "body",
+            "name" : ":id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
             "required" : "true"
-          },
-          {
-            "name" : "description",
-            "style" : "body",
-            "type" : "string",
-            "value" : "",
-            "required" : "false"
-          },
-          {
-            "name" : "public",
-            "style" : "body",
-            "type" : "boolean",
-            "value" : "",
-            "required" : "false"
           }
-        ],
-        "url" : "https://api.github.com/gists"
-      },
-      {
-        "httpMethod" : "PUT",
-        "doc" : {
-          "t" : "patch",
-          "url" : "https://developer.github.com/v3/gists/"
-        },
-        "authentication" : {
-          "required" : "true"
-        },
-        "displayName" : "/gists/:id",
-        "path" : "/gists/:id",
-        "params" : [
-          {
-            "name" : "description",
-            "style" : "body",
-            "type" : "string",
-            "value" : "",
-            "required" : "false"
-          },
-          {
-            "name" : "files",
-            "style" : "body",
-            "type" : "string",
-            "value" : "",
-            "required" : "false"
-          },
-          {
-            "name" : "content",
-            "style" : "body",
-            "type" : "string",
-            "value" : "",
-            "required" : "false"
-          },
-          {
-            "name" : "filename",
-            "style" : "body",
-            "type" : "string",
-            "value" : "",
-            "required" : "false"
-          }
-        ],
-        "url" : "https://api.github.com/gists/:id"
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -838,7 +922,16 @@
         },
         "displayName" : "/gists/:id/commits",
         "path" : "/gists/:id/commits",
-        "url" : "https://api.github.com/gists/:id/commits"
+        "url" : "https://api.github.com/gists/:id/commits",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "PUT",
@@ -850,7 +943,16 @@
         },
         "displayName" : "/gists/:id/star",
         "path" : "/gists/:id/star",
-        "url" : "https://api.github.com/gists/:id/star"
+        "url" : "https://api.github.com/gists/:id/star",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "DELETE",
@@ -862,7 +964,16 @@
         },
         "displayName" : "/gists/:id/star",
         "path" : "/gists/:id/star",
-        "url" : "https://api.github.com/gists/:id/star"
+        "url" : "https://api.github.com/gists/:id/star",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -874,7 +985,16 @@
         },
         "displayName" : "/gists/:id/star",
         "path" : "/gists/:id/star",
-        "url" : "https://api.github.com/gists/:id/star"
+        "url" : "https://api.github.com/gists/:id/star",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -886,7 +1006,16 @@
         },
         "displayName" : "/gists/:id/forks",
         "path" : "/gists/:id/forks",
-        "url" : "https://api.github.com/gists/:id/forks"
+        "url" : "https://api.github.com/gists/:id/forks",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -898,7 +1027,16 @@
         },
         "displayName" : "/gists/:id/forks",
         "path" : "/gists/:id/forks",
-        "url" : "https://api.github.com/gists/:id/forks"
+        "url" : "https://api.github.com/gists/:id/forks",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "DELETE",
@@ -910,7 +1048,16 @@
         },
         "displayName" : "/gists/:id",
         "path" : "/gists/:id",
-        "url" : "https://api.github.com/gists/:id"
+        "url" : "https://api.github.com/gists/:id",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -922,7 +1069,16 @@
         },
         "displayName" : "/gists/:gist_id/comments",
         "path" : "/gists/:gist_id/comments",
-        "url" : "https://api.github.com/gists/:gist_id/comments"
+        "url" : "https://api.github.com/gists/:gist_id/comments",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -934,7 +1090,16 @@
         },
         "displayName" : "/gists/:gist_id/comments/:id",
         "path" : "/gists/:gist_id/comments/:id",
-        "url" : "https://api.github.com/gists/:gist_id/comments/:id"
+        "url" : "https://api.github.com/gists/:gist_id/comments/:id",
+        "params" : [
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -947,6 +1112,13 @@
         "displayName" : "/gists/:gist_id/comments",
         "path" : "/gists/:gist_id/comments",
         "params" : [
+          {
+            "name" : ":gist_id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "body",
             "style" : "body",
@@ -970,6 +1142,20 @@
         "path" : "/gists/:gist_id/comments/:id",
         "params" : [
           {
+            "name" : ":gist_id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
             "name" : "body",
             "style" : "body",
             "type" : "string",
@@ -989,7 +1175,23 @@
         },
         "displayName" : "/gists/:gist_id/comments/:id",
         "path" : "/gists/:gist_id/comments/:id",
-        "url" : "https://api.github.com/gists/:gist_id/comments/:id"
+        "url" : "https://api.github.com/gists/:gist_id/comments/:id",
+        "params" : [
+          {
+            "name" : ":gist_id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1001,7 +1203,30 @@
         },
         "displayName" : "/repos/:owner/:repo/git/blobs/:sha",
         "path" : "/repos/:owner/:repo/git/blobs/:sha",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/blobs/:sha"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/blobs/:sha",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":sha",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1013,7 +1238,23 @@
         },
         "displayName" : "/repos/:owner/:repo/git/blobs",
         "path" : "/repos/:owner/:repo/git/blobs",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/blobs"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/blobs",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1025,7 +1266,30 @@
         },
         "displayName" : "/repos/:owner/:repo/git/commits/:sha",
         "path" : "/repos/:owner/:repo/git/commits/:sha",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/commits/:sha"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/commits/:sha",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":sha",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1038,6 +1302,20 @@
         "displayName" : "/repos/:owner/:repo/git/commits",
         "path" : "/repos/:owner/:repo/git/commits",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "message",
             "style" : "body",
@@ -1093,19 +1371,30 @@
         },
         "displayName" : "/repos/:owner/:repo/git/refs/:ref",
         "path" : "/repos/:owner/:repo/git/refs/:ref",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/refs/:ref"
-      },
-      {
-        "httpMethod" : "GET",
-        "doc" : {
-          "url" : "https://developer.github.com/v3/git/refs/"
-        },
-        "authentication" : {
-          "required" : "true"
-        },
-        "displayName" : "/repos/:owner/:repo/git/refs/heads/skunkworkz/featureA",
-        "path" : "/repos/:owner/:repo/git/refs/heads/skunkworkz/featureA",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/refs/heads/skunkworkz/featureA"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/refs/:ref",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":ref",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1117,7 +1406,23 @@
         },
         "displayName" : "/repos/:owner/:repo/git/refs",
         "path" : "/repos/:owner/:repo/git/refs",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/refs"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/refs",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1129,7 +1434,23 @@
         },
         "displayName" : "/repos/:owner/:repo/git/refs/tags",
         "path" : "/repos/:owner/:repo/git/refs/tags",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/refs/tags"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/refs/tags",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1142,6 +1463,20 @@
         "displayName" : "/repos/:owner/:repo/git/refs",
         "path" : "/repos/:owner/:repo/git/refs",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "ref",
             "style" : "body",
@@ -1172,6 +1507,27 @@
         "path" : "/repos/:owner/:repo/git/refs/:ref",
         "params" : [
           {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":ref",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
             "name" : "sha",
             "style" : "body",
             "type" : "string",
@@ -1198,7 +1554,30 @@
         },
         "displayName" : "/repos/:owner/:repo/git/refs/:ref",
         "path" : "/repos/:owner/:repo/git/refs/:ref",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/refs/:ref"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/refs/:ref",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":ref",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1210,7 +1589,30 @@
         },
         "displayName" : "/repos/:owner/:repo/git/tags/:sha",
         "path" : "/repos/:owner/:repo/git/tags/:sha",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/tags/:sha"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/tags/:sha",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":sha",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1223,6 +1625,20 @@
         "displayName" : "/repos/:owner/:repo/git/tags",
         "path" : "/repos/:owner/:repo/git/tags",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "tag",
             "style" : "body",
@@ -1292,19 +1708,30 @@
         },
         "displayName" : "/repos/:owner/:repo/git/trees/:sha",
         "path" : "/repos/:owner/:repo/git/trees/:sha",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/trees/:sha"
-      },
-      {
-        "httpMethod" : "GET",
-        "doc" : {
-          "url" : "https://developer.github.com/v3/git/trees/"
-        },
-        "authentication" : {
-          "required" : "true"
-        },
-        "displayName" : "/repos/:owner/:repo/git/trees/:sha?recursive=1",
-        "path" : "/repos/:owner/:repo/git/trees/:sha?recursive=1",
-        "url" : "https://api.github.com/repos/:owner/:repo/git/trees/:sha?recursive=1"
+        "url" : "https://api.github.com/repos/:owner/:repo/git/trees/:sha",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":sha",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1317,6 +1744,20 @@
         "displayName" : "/repos/:owner/:repo/git/trees",
         "path" : "/repos/:owner/:repo/git/trees",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "tree",
             "style" : "body",
@@ -1405,6 +1846,13 @@
         "path" : "/orgs/:org/issues",
         "params" : [
           {
+            "name" : ":org",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
             "name" : "filter",
             "style" : "query",
             "type" : "string",
@@ -1460,6 +1908,20 @@
         "displayName" : "/repos/:owner/:repo/issues",
         "path" : "/repos/:owner/:repo/issues",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "milestone",
             "style" : "query",
@@ -1536,7 +1998,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/:number",
         "path" : "/repos/:owner/:repo/issues/:number",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number",
+        "params": [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":number",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1549,6 +2034,20 @@
         "displayName" : "/repos/:owner/:repo/issues",
         "path" : "/repos/:owner/:repo/issues",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "title",
             "style" : "body",
@@ -1599,6 +2098,27 @@
         "displayName" : "/repos/:owner/:repo/issues/:number",
         "path" : "/repos/:owner/:repo/issues/:number",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":number",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "title",
             "style" : "body",
@@ -1654,7 +2174,23 @@
         },
         "displayName" : "/repos/:owner/:repo/assignees",
         "path" : "/repos/:owner/:repo/assignees",
-        "url" : "https://api.github.com/repos/:owner/:repo/assignees"
+        "url" : "https://api.github.com/repos/:owner/:repo/assignees",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1666,7 +2202,30 @@
         },
         "displayName" : "/repos/:owner/:repo/assignees/:assignee",
         "path" : "/repos/:owner/:repo/assignees/:assignee",
-        "url" : "https://api.github.com/repos/:owner/:repo/assignees/:assignee"
+        "url" : "https://api.github.com/repos/:owner/:repo/assignees/:assignee",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":assignee",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1678,7 +2237,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/:number/comments",
         "path" : "/repos/:owner/:repo/issues/:number/comments",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number/comments"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number/comments",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":number",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1691,6 +2273,20 @@
         "displayName" : "/repos/:owner/:repo/issues/comments",
         "path" : "/repos/:owner/:repo/issues/comments",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "sort",
             "style" : "query",
@@ -1725,7 +2321,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/comments/:id",
         "path" : "/repos/:owner/:repo/issues/comments/:id",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/comments/:id"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/comments/:id",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1738,6 +2357,27 @@
         "displayName" : "/repos/:owner/:repo/issues/:number/comments",
         "path" : "/repos/:owner/:repo/issues/:number/comments",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":number",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "body",
             "style" : "body",
@@ -1761,6 +2401,27 @@
         "path" : "/repos/:owner/:repo/issues/comments/:id",
         "params" : [
           {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
             "name" : "body",
             "style" : "body",
             "type" : "string",
@@ -1780,7 +2441,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/comments/:id",
         "path" : "/repos/:owner/:repo/issues/comments/:id",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/comments/:id"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/comments/:id",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1792,7 +2476,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/:issue_number/events",
         "path" : "/repos/:owner/:repo/issues/:issue_number/events",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/:issue_number/events"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/:issue_number/events",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":issue_number",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1804,7 +2511,23 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/events",
         "path" : "/repos/:owner/:repo/issues/events",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/events"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/events",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1816,7 +2539,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/events/:id",
         "path" : "/repos/:owner/:repo/issues/events/:id",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/events/:id"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/events/:id",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1828,7 +2574,23 @@
         },
         "displayName" : "/repos/:owner/:repo/labels",
         "path" : "/repos/:owner/:repo/labels",
-        "url" : "https://api.github.com/repos/:owner/:repo/labels"
+        "url" : "https://api.github.com/repos/:owner/:repo/labels",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1840,7 +2602,30 @@
         },
         "displayName" : "/repos/:owner/:repo/labels/:name",
         "path" : "/repos/:owner/:repo/labels/:name",
-        "url" : "https://api.github.com/repos/:owner/:repo/labels/:name"
+        "url" : "https://api.github.com/repos/:owner/:repo/labels/:name",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":name",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1853,6 +2638,20 @@
         "displayName" : "/repos/:owner/:repo/labels",
         "path" : "/repos/:owner/:repo/labels",
         "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
           {
             "name" : "name",
             "style" : "body",
@@ -1883,6 +2682,27 @@
         "path" : "/repos/:owner/:repo/labels/:name",
         "params" : [
           {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":name",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
             "name" : "name",
             "style" : "body",
             "type" : "string",
@@ -1909,7 +2729,30 @@
         },
         "displayName" : "/repos/:owner/:repo/labels/:name",
         "path" : "/repos/:owner/:repo/labels/:name",
-        "url" : "https://api.github.com/repos/:owner/:repo/labels/:name"
+        "url" : "https://api.github.com/repos/:owner/:repo/labels/:name",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":name",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "GET",
@@ -1921,7 +2764,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/:number/labels",
         "path" : "/repos/:owner/:repo/issues/:number/labels",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number/labels"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number/labels",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":name",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "httpMethod" : "POST",
@@ -1933,7 +2799,30 @@
         },
         "displayName" : "/repos/:owner/:repo/issues/:number/labels",
         "path" : "/repos/:owner/:repo/issues/:number/labels",
-        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number/labels"
+        "url" : "https://api.github.com/repos/:owner/:repo/issues/:number/labels",
+        "params" : [
+          {
+            "name" : ":owner",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":repo",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          },
+          {
+            "name" : ":name",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : "true"
+          }
+        ]
       },
       {
         "path" : "/repos/:owner/:repo/issues/:number/labels/:name",
