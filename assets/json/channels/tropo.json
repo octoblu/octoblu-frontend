@@ -1,0 +1,359 @@
+{
+  "_id": "52f97e98a9909344830004f7",
+  "application": {
+    "base": "https://api.tropo.com/v1/",
+    "resources": [
+      {
+        "path": "/applications/{AppId}/addresses",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "This method will show how to add an IM account to your application - we'll use AIM as our example. The same method can be used to add YAHOO, MSN, JABBER, GTALK and SKYPE - just change the value in type.",
+          "url": "https://www.tropo.com/docs/rest/prov_add_im.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"type\":\"aim\", \"username\":\"tropocloud\", \"password\":\"password01\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications/{AppId}/addresses",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "This example will add a voice token to your application; you can add a messaging token just by changing the channel to \"messaging\" instead of \"voice\".",
+          "url": "https://www.tropo.com/docs/rest/prov_add_token.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"type\":\"token\", \"channel\":\"voice\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications/{AppId}/addresses",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "doc": {
+          "t": "Sometimes you'll need to view all the addresses associated with a specific application. Using a GET on the addresses folder will provide you with the information you need; running a GET on a specific address type folder, such as addresses/number or addresses/aim, will get you a list of all the addresses that match that type for this application.",
+          "url": "https://www.tropo.com/docs/rest/prov_view_app_addresses.htm"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tropo.com/applications/{AppId}/addresses",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "doc": {
+          "t": "Sometimes you'll need to view all the addresses associated with a specific application. Using a GET on the addresses folder will provide you with the information you need; running a GET on a specific address type folder, such as addresses/number or addresses/aim, will get you a list of all the addresses that match that type for this application.",
+          "url": "https://www.tropo.com/docs/rest/prov_view_app_addresses.htm"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tropo.com/applications/{AppId}/addresses/number/{AddressId}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "doc": {
+          "t": "You can remove a phone number, IM account or token from an application. If you remove a phone number, it will become available for use by someone else, so it's not recommended to delete a phone number unless you're absolutely sure you have no further need for it. If you want to move a phone number between applications, there's an easier way. Check out the Adding a Specific Number/Moving a Number> example for more info.",
+          "url": "https://www.tropo.com/docs/rest/prov_delete_address.htm"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.tropo.com/applications/{AppId}/addresses/number/{AddressId}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_DELETE",
+        "httpMethod": "DELETE",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "This method will add a number to the application, based on a specified prefix. While the prefix is not necessary, if it's omitted you will be provisioned a randomly selected U.S. number.",
+          "url": "https://www.tropo.com/docs/rest/prov_add_number.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"type\":\"number\", \"prefix\":\"1407\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications/{AppId}/addresses",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "This method will add a toll free number to the application, based on a specified prefix. This is essentially the same process as the one you would use to add a standard U.S. phone number , however you must already having billing setup for Tropo or you will receive a 400 response code, as all toll free numbers require a production account. Possible values include 855, 866, 877 and 888; if there are no available numbers with the prefix specified, you will receive a 503 response code, at which point you can try one of the other options.",
+          "url": "https://www.tropo.com/docs/rest/prov_add_toll_free.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"type\":\"number\", \"prefix\":\"1866\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications/{AppId}/addresses",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "This method will add an international number, based on a specified country code prefix. Currently, you cannot select a specific area code prefix for International numbers, just the country code (so you can't select 31+20 for Amsterdam - you might get 31+10 for Rotterdam instead). If there are no available numbers with the prefix specified, you will receive a 503 response code.",
+          "url": "https://www.tropo.com/docs/rest/prov_add_international.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"type\":\"number\", \"prefix\":\"31\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications/{AppId}/addresses",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications/{AppId}/addresses",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "The ability to add a specific number is really only used when you need to move a number from one application to another. You would use this method on the destination application - the one where you want the phone number to go. You don't need to do anything to the original application. The two applications do need to exist on the same account - you can't use this method to move a phone number between two different accounts.",
+          "url": "https://www.tropo.com/docs/rest/prov_add_specific_num.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"type\":\"number\", \"number\":\"4075551235\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications/{AppId}/addresses",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Addresses",
+        "displayName": "Addresses_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//applications/{AppId}/addresses"
+      },
+      {
+        "path": "/applications",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "Use this method to add a brand new application. You can define a voice and messaging URL in the Request Body, but this method won't assign any addresses. You'll need to update the application once it's created to add a phone number or IM account.",
+          "url": "https://www.tropo.com/docs/rest/prov_new_app.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"name\":\"new app\", \"voiceUrl\":\"http://website.com\", \"messagingUrl\":\"http://website2.com\", \"platform\":\"scripting\", \"partition\":\"staging\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Applications",
+        "displayName": "Applications_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//applications"
+      },
+      {
+        "path": "/applications",
+        "doc": {
+          "t": "Sometimes you need to access a list of the applications associated with your account; maybe you need to find a particular application's ID number or need to verify whether it's a Scripting or WebAPI application. Using a GET on the applications folder will provide you with the information you need.",
+          "url": "https://www.tropo.com/docs/rest/prov_view_apps.htm"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tropo.com/applications",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Applications",
+        "displayName": "Applications_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tropo.com/v1//applications"
+      },
+      {
+        "path": "/applications",
+        "doc": {
+          "t": "Sometimes you need to access a list a specific application.",
+          "url": "https://www.tropo.com/docs/rest/prov_view_apps.htm"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tropo.com/applications/{AppId}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Applications",
+        "displayName": "Applications_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tropo.com/v1//applications"
+      },
+      {
+        "path": "/applications",
+        "doc": {
+          "t": "Use this method to remove an application. This cannot be undone; once an application has been deleted, it cannot be restored without recreating it from scratch.",
+          "url": "https://www.tropo.com/docs/rest/prov_deleting_app.htm"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.tropo.com/applications/{AppId}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Applications",
+        "displayName": "Applications_DELETE",
+        "httpMethod": "DELETE",
+        "url": "https://api.tropo.com/v1//applications"
+      },
+      {
+        "path": "/applications",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "When you want to change the name, platform or partition of an application, just run a PUT on the application specific folder and specify the new details. The old information will be removed and the new information entered in its place. Note that if you do not have a production Tropo account, you will not be able to change the partition to production.",
+          "url": "https://www.tropo.com/docs/rest/prov_update_name.htm"
+        },
+        "curl": "curl -X PUT -u 'username:password' -d '{ \"name\":\"new app updated\", \"platform\":\"webapi\", \"partition\":\"production\" }' -h 'Content-Type: application/json' http://api.tropo.com/applications/{AppId}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Applications",
+        "displayName": "Applications_PUT",
+        "httpMethod": "PUT",
+        "url": "https://api.tropo.com/v1//applications"
+      },
+      {
+        "path": "/exchanges",
+        "doc": {
+          "t": "Exchanges identify the locations and prefixes for phone numbers; using the following method will allow you to view the exchanges available to you (e.g., if you're still in staging, toll free numbers won't be displayed). The results are abbreviated for ease of viewing; there's typically many, many more available.",
+          "url": "https://www.tropo.com/docs/rest/prov_view_exchanges.htm"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tropo.com/exchanges",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Exchanges",
+        "displayName": "Exchanges_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tropo.com/v1//exchanges"
+      },
+      {
+        "path": "/sessions",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "The following example shows how to kick off an \"outbound session\" using a token and the REST API, which then launches the application, makes a call and plays a message. It will also show how to pass additional parameters into your application when initiating the Tropo Scripting session. To find your token, login to your Tropo account, display the application configuration screen, and look down under the phone numbers",
+          "url": "https://www.tropo.com/docs/rest/starting_session.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"token\":\"TOKEN\", \"customerName\":\"Chris Matthieu\", \"numberToDial\":\"4075551212\", \"msg\":\"hello superman.\" }' -h 'Content-Type: application/json' http://api.tropo.com/sessions",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Sessions",
+        "displayName": "Sessions_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//sessions"
+      },
+      {
+        "path": "/sessions",
+        "params": [
+          {
+            "name": "Content-Type",
+            "type": "xsd:string",
+            "style": "header",
+            "default": "application/json",
+            "required": "true"
+          }
+        ],
+        "doc": {
+          "t": "Say you want to play some hold music, then interrupt it later. In order to interrupt, you would give a the say that's playing the hold music a signal using the allowSignals parameter. You can then make a web service call using that name and Tropo will stop running that function. If the function has already run and completed, your interrupt request will be ignored. If it has not run yet, it will be queued until the function runs. Note: transfer and conference must include the terminator parameter for signaling to work.",
+          "url": "https://www.tropo.com/docs/rest/interrupting_code_one_signal.htm"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '{ \"value\":\"exit\" }' -h 'Content-Type: application/json' http://api.tropo.com/sessions/{session-id}/signals",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Sessions",
+        "displayName": "Sessions_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tropo.com/v1//sessions"
+      }
+    ]
+  },
+  "auth_strategy": "simple",
+  "enabled": false,
+  "logo": "https://pbs.twimg.com/profile_images/1635826227/tropo-glyph.png",
+  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/tropo.png",
+  "name": "Tropo",
+  "type": "channel:tropo"
+}

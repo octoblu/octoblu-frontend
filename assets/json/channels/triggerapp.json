@@ -1,0 +1,308 @@
+{
+  "_id": "53c459c7e6fab66e2180cc3f",
+  "__v": 0,
+  "application": {
+    "base": "https://www.triggerapp.com/api/v1/me",
+    "resources": [
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://www.triggerapp.com/developers/companies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "Companies",
+        "path": "companies",
+        "params": [
+          {
+            "name": "name",
+            "style": "header",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "billable",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "address1",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "address2",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "city",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "state",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "phone",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "country",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "currency_symbol",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "custom_currency_symbol",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "task_rate",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.triggerapp.com/api/v1/mecompanies"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": ""
+          }
+        ],
+        "path": "companies",
+        "displayName": "Get companies",
+        "httpMethod": "GET",
+        "url": "https://www.triggerapp.com/api/v1/mecompanies"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "description"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "due_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "billable"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "billable_type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "fixed_rate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "task_rate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "estimated_time"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "accessible_to_clients"
+          }
+        ],
+        "path": "companies/company_id/projects",
+        "displayName": "Projects",
+        "httpMethod": "POST",
+        "url": "https://www.triggerapp.com/api/v1/mecompanies/company_id/projects"
+      },
+      {
+        "path": "companies/company_id/projects/project_id",
+        "displayName": "Destroy an existing project",
+        "httpMethod": "DELETE",
+        "url": "https://www.triggerapp.com/api/v1/mecompanies/company_id/projects/project_id"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "project_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": ""
+          }
+        ],
+        "path": "tasks",
+        "displayName": "Tasks",
+        "httpMethod": "GET",
+        "url": "https://www.triggerapp.com/api/v1/metasks"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "title"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "description"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "assignee_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "priority"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "billable"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "hourly_rate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "flat_fee"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "recurring_type"
+          }
+        ],
+        "path": "tasks",
+        "displayName": "Post Tasks",
+        "httpMethod": "POST",
+        "url": "https://www.triggerapp.com/api/v1/metasks"
+      }
+    ]
+  },
+  "auth_strategy": "basic",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://www.triggerapp.com/developers",
+  "enabled": true,
+  "logo": "",
+  "name": "triggerapp",
+  "owner": "01f45d00-0611-11e4-83bd-196bfd08cd39",
+  "type": "channel:triggerapp"
+}

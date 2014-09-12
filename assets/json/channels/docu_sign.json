@@ -1,0 +1,17 @@
+{
+  "_id": "53dfe0138656bd840ebe0e5a",
+  "__v": 0,
+  "application": {
+    "base": "",
+    "resources": []
+  },
+  "auth_strategy": "none",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://iodocs.docusign.com",
+  "enabled": true,
+  "logo": "http://iianc.com/images/Logos/DocuSign-Logo.jpeg",
+  "name": "DocuSign",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:docu_sign"
+}

@@ -1,0 +1,198 @@
+{
+  "_id": "5337a38d76a65b9693bc2a9f",
+  "application": {
+    "base": "http://api.openweathermap.org/",
+    "resources": [
+      {
+        "doc": {
+          "t": "current weather by city",
+          "url": "http://openweathermap.org/API#weather"
+        },
+        "displayName": "current weather by city",
+        "path": "/data/2.5/weather",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "q",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "city, country parameter"
+            }
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "units"
+            }
+          }
+        ],
+        "url": "http://api.openweathermap.org//data/2.5/weather"
+      },
+      {
+        "doc": {
+          "t": "current weather by lat/long",
+          "url": "http://openweathermap.org/API#weather"
+        },
+        "displayName": "current weather by lat,lon",
+        "path": "/data/2.5/weather",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "lat",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "lattitude parameter"
+            }
+          },
+          {
+            "name": "lon",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "longitude parameter"
+            }
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "units"
+            }
+          }
+        ],
+        "url": "http://api.openweathermap.org//data/2.5/weather"
+      },
+      {
+        "doc": {
+          "t": "current weather by CityID",
+          "url": "http://openweathermap.org/API#weather"
+        },
+        "displayName": "current weather by city id",
+        "path": "/data/2.5/weather",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "city id parameter"
+            }
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "units"
+            }
+          }
+        ],
+        "url": "http://api.openweathermap.org//data/2.5/weather"
+      },
+      {
+        "doc": {
+          "t": "weather forecast by city",
+          "url": "http://openweathermap.org/API#forecast"
+        },
+        "displayName": "weather forecast by city",
+        "path": "/data/2.5/forecast",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "q",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "city, country parameter"
+            }
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "units"
+            }
+          }
+        ],
+        "url": "http://api.openweathermap.org//data/2.5/forecast"
+      },
+      {
+        "doc": {
+          "t": "weather forecast by lat/long",
+          "url": "http://openweathermap.org/API#forecast"
+        },
+        "displayName": "weather forecast by lat,lon",
+        "path": "/data/2.5/forecast",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "lat",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "lattitude parameter"
+            }
+          },
+          {
+            "name": "lon",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "longitude parameter"
+            }
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "units"
+            }
+          }
+        ],
+        "url": "http://api.openweathermap.org//data/2.5/forecast"
+      },
+      {
+        "doc": {
+          "t": "weather forecast by CityId",
+          "url": "http://openweathermap.org/API#forecast"
+        },
+        "displayName": "weather forecast by city id",
+        "path": "/data/2.5/forecast",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "city id parameter"
+            }
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "units"
+            }
+          }
+        ],
+        "url": "http://api.openweathermap.org//data/2.5/forecast"
+      }
+    ]
+  },
+  "auth_strategy": "none",
+  "documentation": "http://openweathermap.org/API",
+  "enabled": true,
+  "logo": "http://icons.iconarchive.com/icons/custom-icon-design/weather/256/Sunny-Interval-icon.png",
+  "name": "Weather",
+  "type": "channel:weather"
+}

@@ -1,0 +1,1446 @@
+{
+  "_id": "53eb9f4cdfc4201817c77acf",
+  "__v": 0,
+  "application": {
+    "base": "https://agilezen.com/api/v1/",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/attachments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/attachments",
+        "path": "/attachments",
+        "params": [
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//attachments"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/attachments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/attachments",
+        "path": "/attachments",
+        "url": "https://agilezen.com/api/v1//attachments"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/attachments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{attachmentid}",
+        "path": "/{attachmentid}",
+        "url": "https://agilezen.com/api/v1//{attachmentid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/attachments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{attachmentid}",
+        "path": "/{attachmentid}",
+        "params": [
+          {
+            "name": "filename",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//{attachmentid}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/attachments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{attachmentid}",
+        "path": "/{attachmentid}",
+        "url": "https://agilezen.com/api/v1//{attachmentid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/comments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/comments",
+        "path": "/comments",
+        "url": "https://agilezen.com/api/v1//comments"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/comments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/comments",
+        "path": "/comments",
+        "params": [
+          {
+            "name": "text",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//comments"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/comments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{commentid}",
+        "path": "/{commentid}",
+        "url": "https://agilezen.com/api/v1//{commentid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/comments.html"
+        },
+        "authentication": {
+          "required": "false"
+        },
+        "displayName": "/{commentid}",
+        "path": "/{commentid}",
+        "params": [
+          {
+            "name": "text",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//{commentid}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/comments.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{commentid}",
+        "path": "/{commentid}",
+        "url": "https://agilezen.com/api/v1//{commentid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/invites.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/invites",
+        "path": "/invites",
+        "url": "https://agilezen.com/api/v1//invites"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/invites.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{inviteid}",
+        "path": "/{inviteid}",
+        "url": "https://agilezen.com/api/v1//{inviteid}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/invites.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/invites",
+        "path": "/invites",
+        "params": [
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "role",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//invites"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/invites.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{inviteid}",
+        "path": "/{inviteid}",
+        "url": "https://agilezen.com/api/v1//{inviteid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/me.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/me",
+        "path": "/me",
+        "url": "https://agilezen.com/api/v1//me"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/me.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/me",
+        "path": "/me",
+        "params": [
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "bio",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//me"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/me.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/me/stories",
+        "displayName": "/me/stories",
+        "url": "https://agilezen.com/api/v1//me/stories"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/me.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/me?with=stories",
+        "path": "/me?with=stories",
+        "url": "https://agilezen.com/api/v1//me?with=stories"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/phases",
+        "path": "/phases",
+        "url": "https://agilezen.com/api/v1//phases"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": "name",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "description",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "index",
+            "style": "",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "displayName": "/phases",
+        "path": "/phases",
+        "url": "https://agilezen.com/api/v1//phases"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/phases/{phaseid}",
+        "path": "/phases/{phaseid}",
+        "url": "https://agilezen.com/api/v1//phases/{phaseid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/phases/{phaseid}",
+        "path": "/phases/{phaseid}",
+        "params": [
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "index",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//phases/{phaseid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/phases",
+        "path": "/phases",
+        "url": "https://agilezen.com/api/v1//phases"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/phases/{phaseid}",
+        "path": "/phases/{phaseid}",
+        "url": "https://agilezen.com/api/v1//phases/{phaseid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/phases/{phaseid}/stories",
+        "path": "/phases/{phaseid}/stories",
+        "url": "https://agilezen.com/api/v1//phases/{phaseid}/stories"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/phases.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/phases/{phaseid}/stories",
+        "path": "/phases/{phaseid}/stories",
+        "url": "https://agilezen.com/api/v1//phases/{phaseid}/stories"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects",
+        "path": "/projects",
+        "url": "https://agilezen.com/api/v1//projects"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{projectid}",
+        "path": "/projects/{projectid}",
+        "url": "https://agilezen.com/api/v1//projects/{projectid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{projectid}",
+        "path": "/projects/{projectid}",
+        "params": [
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "details",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "owner",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//projects/{projectid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{projectid}/members",
+        "path": "/projects/{projectid}/members",
+        "url": "https://agilezen.com/api/v1//projects/{projectid}/members"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{projectid}/members",
+        "path": "/projects/{projectid}/members",
+        "url": "https://agilezen.com/api/v1//projects/{projectid}/members"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{projectid}/members",
+        "path": "/projects/{projectid}/members",
+        "url": "https://agilezen.com/api/v1//projects/{projectid}/members"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": "description"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": "details"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "",
+            "name": "id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "",
+            "name": "owner"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": "owner"
+          }
+        ],
+        "path": "/projects/{projectid}/members/{userid}",
+        "displayName": "/projects/{projectid}/members/{userid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://agilezen.com/api/v1//projects/{projectid}/members/{userid}"
+      },
+      {
+        "path": "/...?with=details",
+        "displayName": "/...?with=details",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//...?with=details"
+      },
+      {
+        "path": "/...?with=invites",
+        "displayName": "/...?with=invites",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//...?with=invites"
+      },
+      {
+        "path": "/...?with=members",
+        "displayName": "/...?with=members",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//...?with=members"
+      },
+      {
+        "path": "/...?with=metrics",
+        "displayName": "/...?with=metrics",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//...?with=metrics"
+      },
+      {
+        "path": "/...?with=phases",
+        "displayName": "/...?with=phases",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//...?with=phases"
+      },
+      {
+        "path": "/...?with=roles",
+        "displayName": "/...?with=roles",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/projects.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//...?with=roles"
+      },
+      {
+        "path": "/tags",
+        "displayName": "/tags",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//tags"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "name"
+          }
+        ],
+        "path": "/tags",
+        "displayName": "/tags",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "POST",
+        "url": "https://agilezen.com/api/v1//tags"
+      },
+      {
+        "path": "/tags/{tag}",
+        "displayName": "/tags/{tag}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//tags/{tag}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "name"
+          }
+        ],
+        "path": "/tags/{tag}",
+        "displayName": "/tags/{tag}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "PUT",
+        "url": "https://agilezen.com/api/v1//tags/{tag}"
+      },
+      {
+        "path": "/tags/{tag}",
+        "displayName": "/tags/{tag}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://agilezen.com/api/v1//tags/{tag}"
+      },
+      {
+        "path": "/tags/{tag}/stories",
+        "displayName": "/tags/{tag}/stories",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//tags/{tag}/stories"
+      },
+      {
+        "path": "/tags/{tag}/stories",
+        "displayName": "/tags/{tag}/stories",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "POST",
+        "url": "https://agilezen.com/api/v1//tags/{tag}/stories"
+      },
+      {
+        "path": "/tags/{tag}/stories",
+        "displayName": "/tags/{tag}/stories",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "PUT",
+        "url": "https://agilezen.com/api/v1//tags/{tag}/stories"
+      },
+      {
+        "path": "/tags/{tag}/stories/{storyid}",
+        "displayName": "/tags/{tag}/stories/{storyid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tags.html"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://agilezen.com/api/v1//tags/{tag}/stories/{storyid}"
+      },
+      {
+        "path": "/tasks",
+        "displayName": "/tasks",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tasks.html"
+        },
+        "httpMethod": "GET",
+        "url": "https://agilezen.com/api/v1//tasks"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "text"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "status"
+          }
+        ],
+        "path": "/tasks",
+        "displayName": "/tasks",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tasks.html"
+        },
+        "httpMethod": "POST",
+        "url": "https://agilezen.com/api/v1//tasks"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tasks.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/tasks",
+        "path": "/tasks",
+        "url": "https://agilezen.com/api/v1//tasks"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tasks.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/tasks/{taskid}",
+        "path": "/tasks/{taskid}",
+        "url": "https://agilezen.com/api/v1//tasks/{taskid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tasks.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/tasks/{taskid}",
+        "path": "/tasks/{taskid}",
+        "params": [
+          {
+            "name": "text",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//tasks/{taskid}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/tasks.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/tasks/{taskid}",
+        "path": "/tasks/{taskid}",
+        "url": "https://agilezen.com/api/v1//tasks/{taskid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles",
+        "path": "/roles",
+        "url": "https://agilezen.com/api/v1//roles"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles",
+        "path": "/roles",
+        "params": [
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "access",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//roles"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles/{roleid}",
+        "path": "/roles/{roleid}",
+        "url": "https://agilezen.com/api/v1//roles/{roleid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles/{roleid}",
+        "path": "/roles/{roleid}",
+        "params": [
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "access",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//roles/{roleid}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles/{roleid}",
+        "path": "/roles/{roleid}",
+        "url": "https://agilezen.com/api/v1//roles/{roleid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles/{roleid}/members",
+        "path": "/roles/{roleid}/members",
+        "url": "https://agilezen.com/api/v1//roles/{roleid}/members"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles/{roleid}/members",
+        "path": "/roles/{roleid}/members",
+        "url": "https://agilezen.com/api/v1//roles/{roleid}/members"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles/{roleid}/members",
+        "path": "/roles/{roleid}/members",
+        "url": "https://agilezen.com/api/v1//roles/{roleid}/members"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/roles.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/roles/{roleid}/members/{userid}",
+        "path": "/roles/{roleid}/members/{userid}",
+        "params": [
+          {
+            "name": "name",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//roles/{roleid}/members/{userid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories",
+        "path": "/stories",
+        "url": "https://agilezen.com/api/v1//stories"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories",
+        "path": "/stories",
+        "params": [
+          {
+            "name": "text",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "details",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "size",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "priority",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "color",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "phase",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "owner",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tags",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tasks",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//stories"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}",
+        "path": "/stories/{storyid}",
+        "url": "https://agilezen.com/api/v1//stories/{storyid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}",
+        "path": "/stories/{storyid}",
+        "params": [
+          {
+            "name": "text",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "details",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "size",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "priority",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "color",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "blockedReason",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "phase",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "owner",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://agilezen.com/api/v1//stories/{storyid}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}",
+        "path": "/stories/{storyid}",
+        "url": "https://agilezen.com/api/v1//stories/{storyid}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories?where={filter}",
+        "path": "/stories?where={filter}",
+        "url": "https://agilezen.com/api/v1//stories?where={filter}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories?where={filter}",
+        "path": "/stories?where={filter}",
+        "url": "https://agilezen.com/api/v1//stories?where={filter}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}/tags",
+        "path": "/stories/{storyid}/tags",
+        "url": "https://agilezen.com/api/v1//stories/{storyid}/tags"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}/tags",
+        "path": "/stories/{storyid}/tags",
+        "url": "https://agilezen.com/api/v1//stories/{storyid}/tags"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}/tags",
+        "path": "/stories/{storyid}/tags",
+        "url": "https://agilezen.com/api/v1//stories/{storyid}/tags"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}/tags",
+        "path": "/stories/{storyid}/tags",
+        "url": "https://agilezen.com/api/v1//stories/{storyid}/tags"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/stories/{storyid}/tags/{tag}",
+        "path": "/stories/{storyid}/tags/{tag}",
+        "url": "https://agilezen.com/api/v1//stories/{storyid}/tags/{tag}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/...?with=comments",
+        "path": "/...?with=comments",
+        "url": "https://agilezen.com/api/v1//...?with=comments"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/...?with=details",
+        "path": "/...?with=details",
+        "url": "https://agilezen.com/api/v1//...?with=details"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/...?with=metrics",
+        "path": "/...?with=metrics",
+        "url": "https://agilezen.com/api/v1//...?with=metrics"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/...?with=milestones",
+        "path": "/...?with=milestones",
+        "url": "https://agilezen.com/api/v1//...?with=milestones"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/...?with=steps",
+        "path": "/...?with=steps",
+        "url": "https://agilezen.com/api/v1//...?with=steps"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/...?with=tags",
+        "path": "/...?with=tags",
+        "url": "https://agilezen.com/api/v1//...?with=tags"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://dev.agilezen.com/resources/stories.html"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/...?with=tasks",
+        "path": "/...?with=tasks",
+        "url": "https://agilezen.com/api/v1//...?with=tasks"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://dev.agilezen.com",
+  "enabled": true,
+  "logo": "http://www.agilezen.com/content/css/content/images/external/logo-NEW.png",
+  "name": "AgileZen",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:agile_zen"
+}

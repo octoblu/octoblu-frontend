@@ -1,0 +1,2420 @@
+{
+  "_id": "53ee9881bacd88b6355f4504",
+  "__v": 0,
+  "application": {
+    "base": "https://api.telapi.com/v2/",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/accounts/view/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}",
+        "path": "/Accounts/{AccountSid}",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/usage/view/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Usages/{UsageSid}",
+        "path": "/Accounts/{AccountSid}/Usages/{UsageSid}",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Usages/{UsageSid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/usage/list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Usages",
+        "path": "/Accounts/{AccountSid}/Usages",
+        "params": [
+          {
+            "name": "Day",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Month",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Year",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Product",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Usages"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/sms/view/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/SMS/Messages/{SMSMessageSid}",
+        "path": "/Accounts/{AccountSid}/SMS/Messages/{SMSMessageSid}",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/SMS/Messages/{SMSMessageSid}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/sms/list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/SMS/Messages",
+        "path": "/Accounts/{AccountSid}/SMS/Messages",
+        "params": [
+          {
+            "name": "To",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "From",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "DateSent",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Page",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/SMS/Messages"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/sms/send/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/SMS/Messages",
+        "path": "/Accounts/{AccountSid}/SMS/Messages",
+        "params": [
+          {
+            "name": "To",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "From",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Body",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "StatusCallback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "StatusCallbackMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/SMS/Messages"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/view/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}",
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Calls",
+        "path": "/Accounts/{AccountSid}/Calls",
+        "params": [
+          {
+            "name": "To",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "From",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "StartTime",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/make/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Calls",
+        "path": "/Accounts/{AccountSid}/Calls",
+        "params": [
+          {
+            "name": "To",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "From",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Method",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "FallbackUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "FallbackMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "StatusCallback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "StatusCallbackMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "HeartbeatUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "HeartbeatMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ForwardedFrom",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PlayDtmf",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Timeout",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "HideCallerId",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Record",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "RecordCallback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "RecordCallbackMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Transcribe",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TranscribeQuality",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TranscribeCallback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "StraightToVoicemail",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "IfMachine",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "IfMachineUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "IfMachineMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/interrupt/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}",
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}",
+        "params": [
+          {
+            "name": "Url",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Method",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/play-audio/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Play",
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Play",
+        "params": [
+          {
+            "name": "AudioUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Length",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Direction",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Loop",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Mix",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Play"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/voice-effects/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Effect",
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Effect",
+        "params": [
+          {
+            "name": "AudioDirection",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Pitch",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PitchSemiTones",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PitchOctaves",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Rate",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Tempo",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Effect"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/record/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "params": [
+          {
+            "name": "Record",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Direction",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TimeLimit",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "CallbackUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "FileFormat",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TrimSilence",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Transcribe",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TranscribeQuality",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TranscribeCallback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Digits",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "RecordDuration",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "RecordingUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Recordings"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}",
+        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/conferences/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "FriendlyName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "DateCreate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "DateUpdated"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Conferences",
+        "displayName": "/Accounts/{AccountSid}/Conferences",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/conferences/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
+        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/conferences/view-participant/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Muted"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Deaf"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants",
+        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/conferences/list-participants/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Muted"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Deaf"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participant/{ParticipantSid}",
+        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participant/{ParticipantSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/conferences/deaf-or-mute/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participant/{ParticipantSid}"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
+        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/conferences/hangup-participant/"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AudioUrl"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}/Play",
+        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}/Play",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/conferences/play-audio/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}/Play"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/applications/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "FriendlyName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Applications",
+        "displayName": "/Accounts/{AccountSid}/Applications",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/applications/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FriendlyName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceCallerIdLookup"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallbackMethod"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Applications",
+        "displayName": "/Accounts/{AccountSid}/Applications",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/applications/create/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FriendlyName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceCallerIdLookup"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallbackMethod"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/applications/update/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/applications/delete/"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/{ClientSid}",
+        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/{ClientSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/application-clients/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/{ClientSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients",
+        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/application-clients/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Nickname"
+          }
+        ],
+        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/Tokens",
+        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/Tokens",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/application-clients/create/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/Tokens"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
+        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Contains"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "FriendlyName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers",
+        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FriendlyName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceCallerIdLookup"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallbackMethod"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
+        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/update/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "PhoneNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AreaCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FriendlyName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "VoiceCallerIdLookup"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SmsFallbackMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HeartbeatMethod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HangupCallbackMethod"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers/",
+        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/add-or-delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Contains"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "AreaCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "InRegion"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "InPostalCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/{Local/TollFree}",
+        "displayName": "/Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/{Local/TollFree}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/available-phone-numbers/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/{Local/TollFree}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Record"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Direction"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TimeLimit"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CallbackUrl"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FileFormat"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TrimSilence"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Transcribe"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TranscribeQuality"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TranscribeCallback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Digits"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "RecordDuration"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "RecordingUrl"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/calls/record/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Recordings"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
+        "displayName": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/recordings/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings/{RecordingSid}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "CallSid"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "DateCreated"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Recordings",
+        "displayName": "/Accounts/{AccountSid}/Recordings",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/recordings/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "CallSid"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "DateCreated"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/recordings/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Recordings"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
+        "displayName": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/recordings/delete/"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings/{RecordingSid}"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Notifications/{NotificationSid}",
+        "displayName": "/Accounts/{AccountSid}/Notifications/{NotificationSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/notifications/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Notifications/{NotificationSid}"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Notifications",
+        "displayName": "/Accounts/{AccountSid}/Notifications",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/notifications/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Notifications"
+      },
+      {
+        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Notifications",
+        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Notifications",
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Log"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PageSize"
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/notifications/list/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Notifications"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}",
+        "displayName": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/transcriptions/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}"
+      },
+      {
+        "path": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.txt",
+        "displayName": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.txt",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/transcriptions/view/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.txt"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/transcriptions/list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Transcriptions/",
+        "path": "/Accounts/{AccountSid}/Transcriptions/",
+        "params": [
+          {
+            "name": "Status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "DateTranscribed",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions/"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/transcriptions/list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/{RecordingSid}/Transcriptions",
+        "path": "/Accounts/{AccountSid}/{RecordingSid}/Transcriptions",
+        "params": [
+          {
+            "name": "Status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "DateTranscribed",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/{RecordingSid}/Transcriptions"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/transcriptions/transcribe-audio-url/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Transcriptions",
+        "path": "/Accounts/{AccountSid}/Transcriptions",
+        "params": [
+          {
+            "name": "AudioUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "TranscribeCallback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SliceStart",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SliceDuration",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "CallbackMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Quality",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/transcriptions/transcribe-recording/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions",
+        "path": "/Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions",
+        "params": [
+          {
+            "name": "TranscribeCallback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "CallbackMethod",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SliceStart",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SliceDuration",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Quality",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TranscriptionStatus",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TranscriptionSid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "RecordingUrl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "RecordingSid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TranscriptionText",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/carrier-services/carrier-lookup/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Lookups/Carrier",
+        "path": "/Accounts/{AccountSid}/Lookups/Carrier",
+        "params": [
+          {
+            "name": "PhoneNumber",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Carrier"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/carrier-services/carrier-lookup-list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Lookups/Carrier",
+        "path": "/Accounts/{AccountSid}/Lookups/Carrier",
+        "params": [
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Carrier"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/carrier-services/cnam-lookup/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Lookups/Cnam",
+        "path": "/Accounts/{AccountSid}/Lookups/Cnam",
+        "params": [
+          {
+            "name": "PhoneNumber",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Cnam"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/carrier-services/cnam-lookup-list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Lookups/Cnam",
+        "path": "/Accounts/{AccountSid}/Lookups/Cnam",
+        "params": [
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Cnam"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/carrier-services/bna-lookup/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Lookups/Bna",
+        "path": "/Accounts/{AccountSid}/Lookups/Bna",
+        "params": [
+          {
+            "name": "PhoneNumber",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Bna"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/carrier-services/bna-lookup-list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Lookups/Bna",
+        "path": "/Accounts/{AccountSid}/Lookups/Bna",
+        "params": [
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Bna"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/fraud-control/list/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Fraud",
+        "path": "/Accounts/{AccountSid}/Fraud",
+        "params": [
+          {
+            "name": "Page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "PageSize",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/fraud-control/authorize/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Fraud/Authorize/{CountryCode}",
+        "path": "/Accounts/{AccountSid}/Fraud/Authorize/{CountryCode}",
+        "params": [
+          {
+            "name": "MobileEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "LandlineEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SmsEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Authorize/{CountryCode}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/fraud-control/block/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Fraud/Block/{CountryCode}",
+        "path": "/Accounts/{AccountSid}/Fraud/Block/{CountryCode}",
+        "params": [
+          {
+            "name": "MobileEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "LandlineEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SmsEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Block/{CountryCode}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/fraud-control/extend/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Fraud/Extend/{CountryCode}",
+        "path": "/Accounts/{AccountSid}/Fraud/Extend/{CountryCode}",
+        "params": [
+          {
+            "name": "MobileEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "LandlineEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SmsEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Extend/{CountryCode}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://www.telapi.com/docs/api/rest/fraud-control/whitelist/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/{AccountSid}/Fraud/Whitelist/{CountryCode}",
+        "path": "/Accounts/{AccountSid}/Fraud/Whitelist/{CountryCode}",
+        "params": [
+          {
+            "name": "MobileEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "LandlineEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SmsEnabled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Whitelist/{CountryCode}"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://www.telapi.com/docs/api/rest/",
+  "enabled": true,
+  "logo": "https://s3.amazonaws.com/toolatlas/logos/telapi.png",
+  "name": "TELAPI",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:telapi"
+}

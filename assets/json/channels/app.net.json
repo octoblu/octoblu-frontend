@@ -1,0 +1,1432 @@
+{
+  "_id": "5393128e59745965b10fc541",
+  "logo": "http://www.adnstatus.net/images/logo.png",
+  "name": "App.net",
+  "auth_strategy": "oauth",
+  "description": "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
+  "documentation": "",
+  "enabled": true,
+  "useCustom": true,
+  "oauth": {
+    "development": {
+      "version": "2.0",
+      "key": "INSERT_SECERT_HERE",
+      "secret": "INSERT_SECERT_HERE",
+      "accessTokenPath": "/oauth/access_token",
+      "authTokenPath": "/oauth/authenticate",
+      "baseURL": "https://account.app.net",
+      "tokenMethod": "access_token_query",
+      "scope": "basic stream write_post follow public_messages"
+    },
+    "staging": {
+      "version": "2.0",
+      "key": "INSERT_SECERT_HERE",
+      "secret": "INSERT_SECERT_HERE",
+      "accessTokenPath": "/oauth/access_token",
+      "authTokenPath": "/oauth/authenticate",
+      "baseURL": "https://account.app.net",
+      "tokenMethod": "access_token_query",
+      "scope": "basic stream write_post follow public_messages"
+    },
+    "production": {
+      "version": "2.0",
+      "key": "INSERT_SECERT_HERE",
+      "secret": "INSERT_SECERT_HERE",
+      "accessTokenPath": "/oauth/access_token",
+      "authTokenPath": "/oauth/authenticate",
+      "baseURL": "https://account.app.net",
+      "tokenMethod": "access_token_query",
+      "scope": "basic stream write_post follow public_messages"
+    }
+  },
+  "application": {
+    "base": "https://api.app.net/",
+    "resources": [
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The user id. If the user id is me the current authenticated user will be used. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/1558\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/lookup/#retrieve-a-user"
+        },
+        "displayName": "/users/{user_id}",
+        "path": "/users/{user_id}",
+        "url": "https://api.app.net//users/{user_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "PATCH",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/users/me"
+            }
+          }
+        ],
+        "curl": "curl -X PUT -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"name\\\": \\\"@adnapi has a new name\\\",\n  \\\"locale\\\": \\\"en\\\",\n  \\\"timezone\\\": \\\"US/Central\\\",\n  \\\"description\\\": {\n    \\\"text\\\": \\\"new description\\\"\n  },\n  \\\"annotations\\\": [\n    {\n      \\\"type\\\": \\\"net.app.core.directory.blog\\\",\n      \\\"value\\\": {\n        \\\"url\\\": \\\"http://mynewblog.com\\\"\n      }\n    }\n  ]\n}\" \\\n    \"https://api.app.net/users/me?include_user_annotations=1\"",
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/#update-a-user"
+        },
+        "displayName": "/users/me",
+        "path": "/users/me",
+        "url": "https://api.app.net//users/me"
+      },
+      {
+        "params": [
+          {
+            "name": "GET",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/users/{user_id}/avatar"
+            }
+          }
+        ],
+        "curl": "curl -X PATCH -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"name\\\": \\\"Mark Thurman 3\\\"\n}\" \\\n    \"https://api.app.net/users/me\"",
+        "httpMethod": "PATCH",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/#partially-update-a-user"
+        },
+        "displayName": "/users/me",
+        "path": "/users/me",
+        "url": "https://api.app.net//users/me"
+      },
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The user id to be followed. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/1558/follow\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/#follow-a-user"
+        },
+        "displayName": "/users/{user_id}/follow",
+        "path": "/users/{user_id}/follow",
+        "url": "https://api.app.net//users/{user_id}/follow"
+      },
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The user id to stop following. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/1558/follow\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/#unfollow-a-user"
+        },
+        "displayName": "/users/{user_id}/follow",
+        "path": "/users/{user_id}/follow",
+        "url": "https://api.app.net//users/{user_id}/follow"
+      },
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the User to mute. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/1558/mute\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/#mute-a-user"
+        },
+        "displayName": "/users/{user_id}/mute",
+        "path": "/users/{user_id}/mute",
+        "url": "https://api.app.net//users/{user_id}/mute"
+      },
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the User to mute. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/1558/mute\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/#unmute-a-user"
+        },
+        "displayName": "/users/{user_id}/mute",
+        "path": "/users/{user_id}/mute",
+        "url": "https://api.app.net//users/{user_id}/mute"
+      },
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the User to block. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/1558/block\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/#block-a-user"
+        },
+        "displayName": "/users/{user_id}/block",
+        "path": "/users/{user_id}/block",
+        "url": "https://api.app.net//users/{user_id}/block"
+      },
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the User to block. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/1558/block\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/#unblock-a-user"
+        },
+        "displayName": "/users/{user_id}/block",
+        "path": "/users/{user_id}/block",
+        "url": "https://api.app.net//users/{user_id}/block"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of User ids to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users?ids=1,2\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/lookup/#retrieve-multiple-users"
+        },
+        "displayName": "/users",
+        "path": "/users",
+        "url": "https://api.app.net//users"
+      },
+      {
+        "params": [
+          {
+            "name": "q",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The search query. Supports @username or #tag searches as well as normal search terms. Searches username, display name, bio information. Does not search posts."
+            }
+          },
+          {
+            "name": "count",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "(Optional) The number of Users to return, up to a maximum of 200. Defaults to 20 if not specified."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/search?q=%23api\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/search/#search-for-users"
+        },
+        "displayName": "/users/search",
+        "path": "/users/search",
+        "url": "https://api.app.net//users/search"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of User ids to retrieve muted User ids for."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR APP TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/muted/ids?ids=1,2\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/#retrieve-muted-user-ids-for-multiple-users"
+        },
+        "displayName": "/users/muted/ids",
+        "path": "/users/muted/ids",
+        "url": "https://api.app.net//users/muted/ids"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of User ids to retrieve blocked User ids for."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR APP TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/blocked/ids?ids=1,2\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/#retrieve-blocked-user-ids-for-multiple-users"
+        },
+        "displayName": "/users/blocked/ids",
+        "path": "/users/blocked/ids",
+        "url": "https://api.app.net//users/blocked/ids"
+      },
+      {
+        "params": [
+          {
+            "name": "text",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The raw text of the post."
+            }
+          },
+          {
+            "name": "reply_to",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "(Optional) The id of the Post that this new Post is replying to."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/x-www-form-urlencoded\" -d \"text=If you're in San Francisco on Saturday October 20 and Sunday October 21 come to the first #adnhack => http://appnet.eventbrite.com/\" \\\n    \"https://api.app.net/posts\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lifecycle/#create-a-post"
+        },
+        "displayName": "/posts",
+        "path": "/posts",
+        "url": "https://api.app.net//posts"
+      },
+      {
+        "params": [
+          {
+            "name": "post_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Post to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/914440\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lookup/#retrieve-a-post"
+        },
+        "displayName": "/posts/{post_id}",
+        "path": "/posts/{post_id}",
+        "url": "https://api.app.net//posts/{post_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "post_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Post to delete."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/914440\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lifecycle/#delete-a-post"
+        },
+        "displayName": "/posts/{post_id}",
+        "path": "/posts/{post_id}",
+        "url": "https://api.app.net//posts/{post_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "post_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Post to repost."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/914440/repost\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/reposts/#repost-a-post"
+        },
+        "displayName": "/posts/{post_id}/repost",
+        "path": "/posts/{post_id}/repost",
+        "url": "https://api.app.net//posts/{post_id}/repost"
+      },
+      {
+        "params": [
+          {
+            "name": "post_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Post to unrepost."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/914440/repost\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/reposts/#unrepost-a-post"
+        },
+        "displayName": "/posts/{post_id}/repost",
+        "path": "/posts/{post_id}/repost",
+        "url": "https://api.app.net//posts/{post_id}/repost"
+      },
+      {
+        "params": [
+          {
+            "name": "post_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Post to star."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/914440/star\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/stars/#star-a-post"
+        },
+        "displayName": "/posts/{post_id}/star",
+        "path": "/posts/{post_id}/star",
+        "url": "https://api.app.net//posts/{post_id}/star"
+      },
+      {
+        "params": [
+          {
+            "name": "post_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Post to unstar."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/914440/star\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/stars/#unstar-a-post"
+        },
+        "displayName": "/posts/{post_id}/star",
+        "path": "/posts/{post_id}/star",
+        "url": "https://api.app.net//posts/{post_id}/star"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of ids of Posts to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts?ids=914440,2\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lookup/#retrieve-multiple-posts"
+        },
+        "displayName": "/posts",
+        "path": "/posts",
+        "url": "https://api.app.net//posts"
+      },
+      {
+        "params": [
+          {
+            "name": "user_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The user id. If the user id is me the current authenticated user will be used. You can also specify @username as a user_id."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/2/mentions\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/#retrieve-posts-mentioning-a-user"
+        },
+        "displayName": "/users/{user_id}/mentions",
+        "path": "/users/{user_id}/mentions",
+        "url": "https://api.app.net//users/{user_id}/mentions"
+      },
+      {
+        "params": [
+          {
+            "name": "GET",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/users/{user_id}/posts"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/stream/global\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/#retrieve-the-global-stream"
+        },
+        "displayName": "/posts/stream/global",
+        "path": "/posts/stream/global",
+        "url": "https://api.app.net//posts/stream/global"
+      },
+      {
+        "params": [
+          {
+            "name": "post_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Post to report."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/914440/report\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/report/#report-a-post"
+        },
+        "displayName": "/posts/{post_id}/report",
+        "path": "/posts/{post_id}/report",
+        "url": "https://api.app.net//posts/{post_id}/report"
+      },
+      {
+        "params": [
+          {
+            "name": "index",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "Optional"
+            }
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "Optional"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/search?hashtags=adnhack&count=-1\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/search/#search-for-posts"
+        },
+        "displayName": "/posts/search",
+        "path": "/posts/search",
+        "url": "https://api.app.net//posts/search"
+      },
+      {
+        "params": [
+          {
+            "name": "PUT",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/channels/{channel_id}"
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"type\\\": \\\"com.example.channel\\\",\n  \\\"writers\\\": {\n    \\\"user_ids\\\": [\n      \\\"@berg\\\",\n      \\\"1\\\"\n    ]\n  }\n}\" \\\n    \"https://api.app.net/channels\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lifecycle/#create-a-channel"
+        },
+        "displayName": "/channels",
+        "path": "/channels",
+        "url": "https://api.app.net//channels"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-a-channel"
+        },
+        "displayName": "/channels/{channel_id}",
+        "path": "/channels/{channel_id}",
+        "url": "https://api.app.net//channels/{channel_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of ids of Channels to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels?ids=1,2,6502\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-multiple-channels"
+        },
+        "displayName": "/channels",
+        "path": "/channels",
+        "url": "https://api.app.net//channels"
+      },
+      {
+        "params": [
+          {
+            "name": "GET",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/users/me/channels/pm/num_unread"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/me/channels\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-my-channels"
+        },
+        "displayName": "/users/me/channels",
+        "path": "/users/me/channels",
+        "url": "https://api.app.net//users/me/channels"
+      },
+      {
+        "params": [
+          {
+            "name": "GET",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/users/me/channels/broadcast/num_unread"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/me/channels/pm/num_unread\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-number-of-unread-pm-channels"
+        },
+        "displayName": "/users/me/channels/pm/num_unread",
+        "path": "/users/me/channels/pm/num_unread",
+        "url": "https://api.app.net//users/me/channels/pm/num_unread"
+      },
+      {
+        "params": [
+          {
+            "name": "DELETE",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/users/me/channels/broadcast/num_unread"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/users/me/channels/broadcast/num_unread\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/#retrieve-number-of-unread-broadcast-channels"
+        },
+        "displayName": "/users/me/channels/broadcast/num_unread",
+        "path": "/users/me/channels/broadcast/num_unread",
+        "url": "https://api.app.net//users/me/channels/broadcast/num_unread"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to update."
+            }
+          }
+        ],
+        "curl": "curl -X PUT -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"readers\\\": {\n    \\\"public\\\": true\n  }\n}\" \\\n    \"https://api.app.net/channels/1\"",
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lifecycle/#update-a-channel"
+        },
+        "displayName": "/channels/{channel_id}",
+        "path": "/channels/{channel_id}",
+        "url": "https://api.app.net//channels/{channel_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to delete."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lifecycle/#deactivate-a-channel"
+        },
+        "displayName": "/channels/{channel_id}",
+        "path": "/channels/{channel_id}",
+        "url": "https://api.app.net//channels/{channel_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to subscribe to."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/subscribe\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/#subscribe-to-a-channel"
+        },
+        "displayName": "/channels/{channel_id}/subscribe",
+        "path": "/channels/{channel_id}/subscribe",
+        "url": "https://api.app.net//channels/{channel_id}/subscribe"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to unsubscribe from."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/subscribe\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/#unsubscribe-from-a-channel"
+        },
+        "displayName": "/channels/{channel_id}/subscribe",
+        "path": "/channels/{channel_id}/subscribe",
+        "url": "https://api.app.net//channels/{channel_id}/subscribe"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to retrieve subscribers for."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/subscribers\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/#retrieve-users-subscribed-to-a-channel"
+        },
+        "displayName": "/channels/{channel_id}/subscribers",
+        "path": "/channels/{channel_id}/subscribers",
+        "url": "https://api.app.net//channels/{channel_id}/subscribers"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to retrieve subscriber ids for."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/subscribers/ids\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/#retrieve-user-ids-subscribed-to-a-channel"
+        },
+        "displayName": "/channels/{channel_id}/subscribers/ids",
+        "path": "/channels/{channel_id}/subscribers/ids",
+        "url": "https://api.app.net//channels/{channel_id}/subscribers/ids"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of Channel ids to retrieve subscriber ids for."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/subscribers/ids?ids=1,2,3,5\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/#retrieve-user-ids-subscribed-to-a-channel"
+        },
+        "displayName": "/channels/subscribers/ids",
+        "path": "/channels/subscribers/ids",
+        "url": "https://api.app.net//channels/subscribers/ids"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to mute."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/mute\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/muting/#mute-a-channel"
+        },
+        "displayName": "/channels/{channel_id}/mute",
+        "path": "/channels/{channel_id}/mute",
+        "url": "https://api.app.net//channels/{channel_id}/mute"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to unmute."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/mute\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/muting/#unmute-a-channel"
+        },
+        "displayName": "/channels/{channel_id}/mute",
+        "path": "/channels/{channel_id}/mute",
+        "url": "https://api.app.net//channels/{channel_id}/mute"
+      },
+      {
+        "params": [
+          {
+            "name": "order",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "Optional"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/search?q=kerbal&order=popularity\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/search/#search-for-channels"
+        },
+        "displayName": "/channels/search",
+        "path": "/channels/search",
+        "url": "https://api.app.net//channels/search"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel to retrieve Messages from."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/messages\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lifecycle/#retrieve-the-messages-in-a-channel"
+        },
+        "displayName": "/channels/{channel_id}/messages",
+        "path": "/channels/{channel_id}/messages",
+        "url": "https://api.app.net//channels/{channel_id}/messages"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel in which to create the Message. Alternatively, you can specify pm to auto-create/reuse a net.app.core.pm private message channel."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"text\\\": \\\"Hello channel!\\\"\n}\" \\\n    \"https://api.app.net/channels/1/messages\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lifecycle/#create-a-message"
+        },
+        "displayName": "/channels/{channel_id}/messages",
+        "path": "/channels/{channel_id}/messages",
+        "url": "https://api.app.net//channels/{channel_id}/messages"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel containing the Message."
+            }
+          },
+          {
+            "name": "message_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Message to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/messages/1\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lookup/#retrieve-a-message"
+        },
+        "displayName": "/channels/{channel_id}/messages/{message_id}",
+        "path": "/channels/{channel_id}/messages/{message_id}",
+        "url": "https://api.app.net//channels/{channel_id}/messages/{message_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of ids of the Messages to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/messages?ids=1,2\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lookup/#retrieve-multiple-messages"
+        },
+        "displayName": "/channels/messages",
+        "path": "/channels/messages",
+        "url": "https://api.app.net//channels/messages"
+      },
+      {
+        "params": [
+          {
+            "name": "channel_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Channel this Message belongs to."
+            }
+          },
+          {
+            "name": "message_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Message to delete."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/1/messages/1\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lifecycle/#delete-a-message"
+        },
+        "displayName": "/channels/{channel_id}/messages/{message_id}",
+        "path": "/channels/{channel_id}/messages/{message_id}",
+        "url": "https://api.app.net//channels/{channel_id}/messages/{message_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "index",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "Optional"
+            }
+          },
+          {
+            "name": "order",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "Optional"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/channels/messages/search?query=hello&channel_ids=1&count=1\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/search/#search-for-messages"
+        },
+        "displayName": "/channels/messages/search",
+        "path": "/channels/messages/search",
+        "url": "https://api.app.net//channels/messages/search"
+      },
+      {
+        "params": [
+          {
+            "name": "PUT",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/files/{file_id}"
+            }
+          }
+        ],
+        "curl": "echo '{\n  \"type\": \"com.example.test\",\n  \"annotations\": [\n    {\n      \"type\": \"com.example.annotation\",\n      \"value\": {\n        \"foo\": \"bar\"\n      }\n    }\n  ]\n}' | \\\n    curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -F \"metadata=@-;type=application/json\" -F \"content=@filename.jpg\" \\\n    \"https://api.app.net/files\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lifecycle/#create-a-file"
+        },
+        "displayName": "/files",
+        "path": "/files",
+        "url": "https://api.app.net//files"
+      },
+      {
+        "params": [
+          {
+            "name": "file_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the File to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/files/1\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lookup/#retrieve-a-file"
+        },
+        "displayName": "/files/{file_id}",
+        "path": "/files/{file_id}",
+        "url": "https://api.app.net//files/{file_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "ids",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "A comma separated list of File ids to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/files?ids=1,2,6502\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lookup/#retrieve-multiple-files"
+        },
+        "displayName": "/files",
+        "path": "/files",
+        "url": "https://api.app.net//files"
+      },
+      {
+        "params": [
+          {
+            "name": "file_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the File to delete."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/files/1\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lifecycle/#delete-a-file"
+        },
+        "displayName": "/files/{file_id}",
+        "path": "/files/{file_id}",
+        "url": "https://api.app.net//files/{file_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "file_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the File to update."
+            }
+          }
+        ],
+        "curl": "curl -X PUT -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"name\\\": \\\"update_filename.jpg\\\"\n}\" \\\n    \"https://api.app.net/files/1\"",
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lifecycle/#update-a-file"
+        },
+        "displayName": "/files/{file_id}",
+        "path": "/files/{file_id}",
+        "url": "https://api.app.net//files/{file_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "file_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the File to retrieve content for."
+            }
+          }
+        ],
+        "curl": "curl -X PUT -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"Content-Type: image/png\" \\\n    --data-binary \"@filename.png\" \"https://api.app.net/files/1/content\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/content/#get-file-content"
+        },
+        "displayName": "/files/{file_id}/content",
+        "path": "/files/{file_id}/content",
+        "url": "https://api.app.net//files/{file_id}/content"
+      },
+      {
+        "params": [
+          {
+            "name": "file_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the File to set content for."
+            }
+          }
+        ],
+        "curl": "curl -X PUT -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"Content-Type: image/png\" \\\n    --data-binary \"@filename.png\" \"https://api.app.net/files/1/content\"",
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/content/#set-file-content"
+        },
+        "displayName": "/files/{file_id}/content",
+        "path": "/files/{file_id}/content",
+        "url": "https://api.app.net//files/{file_id}/content"
+      },
+      {
+        "params": [
+          {
+            "name": "file_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the File to set content for."
+            }
+          },
+          {
+            "name": "derived_file_key",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The key identifying the derived file you want to create."
+            }
+          }
+        ],
+        "curl": "curl -X PUT -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"Content-Type: image/png\" \\\n    --data-binary \"@filename.png\" \"https://api.app.net/files/1/content/thumbnail_png\"",
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/content/#set-derived-file-content"
+        },
+        "displayName": "/files/{file_id}/content/{derived_file_key}",
+        "path": "/files/{file_id}/content/{derived_file_key}",
+        "url": "https://api.app.net//files/{file_id}/content/{derived_file_key}"
+      },
+      {
+        "params": [
+          {
+            "name": "connection_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The connection id of the User Stream to delete."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" \"https://api.app.net/streams/sxousNClc4Cq12du3f6GTZXNUvaHoJnFnjdOt6fH2xhJolPdDfR3rOxxjdPfPOIf\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/#delete-a-user-stream"
+        },
+        "displayName": "/users/me/streams/{connection_id}",
+        "path": "/users/me/streams/{connection_id}",
+        "url": "https://api.app.net//users/me/streams/{connection_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "connection_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The connection id of the User Stream the subscription belongs to."
+            }
+          },
+          {
+            "name": "subscription_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The subscription id of the subscription to cancel"
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" \"https://api.app.net/streams/sxousNClc4Cq12du3f6GTZXNUvaHoJnFnjdOt6fH2xhJolPdDfR3rOxxjdPfPOIf/bf42ca05-e67e-4e26-8bd0-8b042dd5b04c\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/#delete-a-user-stream-subscription"
+        },
+        "displayName": "/users/me/streams/{connection_id}/{subscription_id}",
+        "path": "/users/me/streams/{connection_id}/{subscription_id}",
+        "url": "https://api.app.net//users/me/streams/{connection_id}/{subscription_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "GET",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/filters/{filter_id}"
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"clauses\\\": [\n    {\n      \\\"field\\\": \\\"/data/entities/hashtags/*/name\\\",\n      \\\"object_type\\\": \\\"post\\\",\n      \\\"operator\\\": \\\"matches\\\",\n      \\\"value\\\": \\\"rollout\\\"\n    }\n  ],\n  \\\"match_policy\\\": \\\"include_any\\\",\n  \\\"name\\\": \\\"Posts about rollouts\\\"\n}\" \\\n    \"https://api.app.net/filters\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/#create-a-filter"
+        },
+        "displayName": "/filters",
+        "path": "/filters",
+        "url": "https://api.app.net//filters"
+      },
+      {
+        "params": [
+          {
+            "name": "filter_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Filter to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/filters/1\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/#retrieve-a-filter"
+        },
+        "displayName": "/filters/{filter_id}",
+        "path": "/filters/{filter_id}",
+        "url": "https://api.app.net//filters/{filter_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "filter_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Filter to update."
+            }
+          }
+        ],
+        "curl": "curl -X PUT -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"match_policy\\\": \\\"include_any\\\",\n  \\\"clauses\\\": [\n    {\n      \\\"operator\\\": \\\"matches\\\",\n      \\\"field\\\": \\\"/data/entities/hashtags/*/name\\\",\n      \\\"object_type\\\": \\\"post\\\",\n      \\\"value\\\": \\\"rollout\\\"\n    },\n    {\n      \\\"operator\\\": \\\"matches\\\",\n      \\\"field\\\": \\\"/data/entities/hashtags/*/name\\\",\n      \\\"object_type\\\": \\\"post\\\",\n      \\\"value\\\": \\\"bug\\\"\n    }\n  ],\n  \\\"name\\\": \\\"Posts about rollouts or bugs\\\"\n}\" \\\n    \"https://api.app.net/filters/1\"",
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/#update-a-filter"
+        },
+        "displayName": "/filters/{filter_id}",
+        "path": "/filters/{filter_id}",
+        "url": "https://api.app.net//filters/{filter_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "filter_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The id of the Filter to delete."
+            }
+          }
+        ],
+        "curl": "curl -X DELETE -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/filters/1\"",
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/#delete-a-filter"
+        },
+        "displayName": "/filters/{filter_id}",
+        "path": "/filters/{filter_id}",
+        "url": "https://api.app.net//filters/{filter_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "text",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The raw text to process."
+            }
+          }
+        ],
+        "curl": "curl -X POST -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    -H \"Content-Type: application/json\" -d \"{\n  \\\"text\\\": \\\"This is #awesome tell @voidfiles about http://google.com\\\"\n}\" \\\n    \"https://api.app.net/text/process\"",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/text-processor/"
+        },
+        "displayName": "/text/process",
+        "path": "/text/process",
+        "url": "https://api.app.net//text/process"
+      },
+      {
+        "params": [
+          {
+            "name": "GET",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/apps/me/tokens"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR APP TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/apps/me/tokens/user_ids\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/token/#retrieve-authorized-user-ids-for-an-app"
+        },
+        "displayName": "/apps/me/tokens/user_ids",
+        "path": "/apps/me/tokens/user_ids",
+        "url": "https://api.app.net//apps/me/tokens/user_ids"
+      },
+      {
+        "params": [
+          {
+            "name": "factual_id",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The Factual id of the Place to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/places/19931850-dc2f-012e-561d-003048cad9da\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/place/#retrieve-a-place"
+        },
+        "displayName": "/places/{factual_id}",
+        "path": "/places/{factual_id}",
+        "url": "https://api.app.net//places/{factual_id}"
+      },
+      {
+        "params": [
+          {
+            "name": "GET",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "https://api.app.net/posts/stream/explore/{slug}"
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/stream/explore\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/explore/#retrieve-all-explore-streams"
+        },
+        "displayName": "/posts/stream/explore",
+        "path": "/posts/stream/explore",
+        "url": "https://api.app.net//posts/stream/explore"
+      },
+      {
+        "params": [
+          {
+            "name": "slug",
+            "type": "string",
+            "style": "query",
+            "doc": {
+              "t": "The slug of the Explore Stream to retrieve."
+            }
+          }
+        ],
+        "curl": "curl -H \"Authorization: Bearer <YOUR ACCESS TOKEN>\" -H \"X-ADN-Pretty-JSON: 1\" \\\n    \"https://api.app.net/posts/stream/explore/photos\"",
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/explore/#retrieve-an-explore-stream"
+        },
+        "displayName": "/posts/stream/explore/{slug}",
+        "path": "/posts/stream/explore/{slug}",
+        "url": "https://api.app.net//posts/stream/explore/{slug}"
+      }
+    ]
+  },
+  "type": "channel:app.net"
+}

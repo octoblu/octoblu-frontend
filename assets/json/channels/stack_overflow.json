@@ -1,0 +1,794 @@
+{
+  "_id": "52f9b35c9f713b92e5000001",
+  "application": {
+    "base": "http://api.stackoverflow.com/1.1",
+    "resources": [
+      {
+        "path": "/answers/{ids}/comments",
+        "doc": {
+          "t": "Get comments on the answers identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/answer-comments-by-ids"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/answers/{ids}/comments",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Answers",
+        "displayName": "Answers_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/answers/{ids}/comments"
+      },
+      {
+        "path": "/answers",
+        "doc": {
+          "t": "Get all answers on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/answers"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/answers",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Answers",
+        "displayName": "Answers_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/answers"
+      },
+      {
+        "path": "/answers/{ids}",
+        "doc": {
+          "t": "Get answers identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/answers-by-ids"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/answers/{ids}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Answers",
+        "displayName": "Answers_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/answers/{ids}"
+      },
+      {
+        "path": "/badges/name",
+        "doc": {
+          "t": "Get all non-tagged-based badges in alphabetical order.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/badges-by-name"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges/name",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Badges",
+        "displayName": "Badges_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/badges/name"
+      },
+      {
+        "path": "/badges/tags",
+        "doc": {
+          "t": "Get all tagged-based badges in alphabetical order.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/tag-badges"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges/tags",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Badges",
+        "displayName": "Badges_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/badges/tags"
+      },
+      {
+        "path": "/badges",
+        "doc": {
+          "t": "Get all badges on the site, in alphabetical order.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/badges"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Badges",
+        "displayName": "Badges_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/badges"
+      },
+      {
+        "path": "/badges/{ids}",
+        "doc": {
+          "t": "Get all users who have been awarded the badges identified by ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/badge-recipients"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/badges/{ids}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Badges",
+        "displayName": "Badges_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/badges/{ids}"
+      },
+      {
+        "path": "/comments",
+        "doc": {
+          "t": "Get all comments on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/comments"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/comments",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Comments",
+        "displayName": "Comments_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/comments"
+      },
+      {
+        "path": "/comments/{ids}",
+        "doc": {
+          "t": "Get comments identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/comments-by-ids"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/comments/{ids}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Comments",
+        "displayName": "Comments_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/comments/{ids}"
+      },
+      {
+        "path": "/posts/{ids}/comments",
+        "doc": {
+          "t": "Get comments on the posts (question or answer) identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/comments-on-posts"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/posts/{ids}/comments",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Comments",
+        "displayName": "Comments_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/posts/{ids}/comments"
+      },
+      {
+        "path": "/errors/{id}",
+        "doc": {
+          "t": "Simulate an API error for testing purposes.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/errors"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/errors/{id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Errors",
+        "displayName": "Errors_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/errors/{id}"
+      },
+      {
+        "path": "/privileges",
+        "doc": {
+          "t": "Get all the privileges available on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/privileges"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/privileges",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Privileges",
+        "displayName": "Privileges_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/privileges"
+      },
+      {
+        "path": "/questions/unanswered",
+        "doc": {
+          "t": "Get all questions the site considers unanswered.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/unanswered-questions"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/unanswered",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/unanswered"
+      },
+      {
+        "path": "/questions",
+        "doc": {
+          "t": "Get all questions on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/questions"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions"
+      },
+      {
+        "path": "/questions/{ids}",
+        "doc": {
+          "t": "Get the questions identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/questions-by-ids"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/{ids}"
+      },
+      {
+        "path": "/questions/{ids}/answers",
+        "doc": {
+          "t": "Get the answers to the questions identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/question-answers"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/answers",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/{ids}/answers"
+      },
+      {
+        "path": "/questions/{ids}/comments",
+        "doc": {
+          "t": "Get the comments on the questions identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/question-comments"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/comments",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/{ids}/comments"
+      },
+      {
+        "path": "/questions/{ids}/linked",
+        "doc": {
+          "t": "Get the questions that link to the questions identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/linked-questions"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/linked",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/{ids}/linked"
+      },
+      {
+        "path": "/questions/{ids}/related",
+        "doc": {
+          "t": "Get the questions that are related to the questions identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/related-questions"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/related",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/{ids}/related"
+      },
+      {
+        "path": "/questions/{ids}/timeline",
+        "doc": {
+          "t": "Get the timelines of the questions identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/question-timelines"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/{ids}/timeline",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/{ids}/timeline"
+      },
+      {
+        "path": "/questions/no-answers",
+        "doc": {
+          "t": "Get all questions on the site with no answers.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/questions-with-no-answers"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/questions/no-answers",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Questions",
+        "displayName": "Questions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/questions/no-answers"
+      },
+      {
+        "path": "/revisions/{ids}",
+        "doc": {
+          "t": "Get all revisions for posts identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/revisions"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/revisions/{ids}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Revisions",
+        "displayName": "Revisions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/revisions/{ids}"
+      },
+      {
+        "path": "/revisions/{id}/{revisionguid}",
+        "doc": {
+          "t": "Get a specific revision identified by a post id and a revision guid.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/specific-revision"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/revisions/{ids}/{revisionguid}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Revisions",
+        "displayName": "Revisions_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/revisions/{id}/{revisionguid}"
+      },
+      {
+        "path": "/search",
+        "doc": {
+          "t": "Search the site for questions meeting certain criteria.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/search"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/search?tagged={tags}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Search",
+        "displayName": "Search_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/search"
+      },
+      {
+        "path": "/similar",
+        "doc": {
+          "t": "Search the site based on similarity to a title.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/similar"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/similar",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Search",
+        "displayName": "Search_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/similar"
+      },
+      {
+        "path": "/stats",
+        "doc": {
+          "t": "Get a set of statistics for the entire site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/stats"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/stats",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Stats",
+        "displayName": "Stats_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/stats"
+      },
+      {
+        "path": "/tags/synonyms",
+        "doc": {
+          "t": "Get all the tag synonyms on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/tag-synonyms"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/synonyms",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tags",
+        "displayName": "Tags_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/tags/synonyms"
+      },
+      {
+        "path": "/tags/{tags}/synonyms",
+        "doc": {
+          "t": "Get the synonyms for a specific set of tags.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/synonyms-for-tags"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tags}/synonyms",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tags",
+        "displayName": "Tags_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/tags/{tags}/synonyms"
+      },
+      {
+        "path": "/tags/{tags}/wikis",
+        "doc": {
+          "t": "Get the wiki entries for a set of tags.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/wikis-for-tags"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tags}/wikis",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tags",
+        "displayName": "Tags_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/tags/{tags}/wikis"
+      },
+      {
+        "path": "/tags/{tag}/top-answerers/{period}",
+        "doc": {
+          "t": "Get the top answer posters in a specific tag, either in the last month or for all time. Returns the top 30 answerers.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/top-answerers-in-tag"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tag}/top-answerers/{period}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tags",
+        "displayName": "Tags_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/tags/{tag}/top-answerers/{period}"
+      },
+      {
+        "path": "/tags/{tag}/top-askers/{period}",
+        "doc": {
+          "t": "Get the top question askers in a specific tag, either in the last month or for all time. Returns the top 30 question askers.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/top-askers-in-tag"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags/{tag}/top-askers/{period}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tags",
+        "displayName": "Tags_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/tags/{tag}/top-askers/{period}"
+      },
+      {
+        "path": "/tags",
+        "doc": {
+          "t": "Get the tags on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/tags"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/tags",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tags",
+        "displayName": "Tags_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/tags"
+      },
+      {
+        "path": "/users/{ids}/comments/{toid}",
+        "doc": {
+          "t": "Get the comments posted by a set of users in reply to another user.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-comments-to-user"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/comments",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/comments/{toid}"
+      },
+      {
+        "path": "/users/{ids}/favorites",
+        "doc": {
+          "t": "Get the questions favorited by users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-favorites"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/favorites",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/favorites"
+      },
+      {
+        "path": "/users/{ids}/favorites",
+        "doc": {
+          "t": "Get the comments that mention one of the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-mentioned"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/mentioned",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/favorites"
+      },
+      {
+        "path": "/users/{ids}/questions",
+        "doc": {
+          "t": "Get the questions asked by the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/questions"
+      },
+      {
+        "path": "/users/{ids}/questions/no-answers",
+        "doc": {
+          "t": "Get the questions asked by a set of users, which have no answers.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions-no-answers"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions/no-answers",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/questions/no-answers"
+      },
+      {
+        "path": "/users/{ids}/questions/unaccepted",
+        "doc": {
+          "t": "Get the questions asked by a set of users, which have at least one answer but no accepted answer.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions-unaccepted"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions/unaccepted",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/questions/unaccepted"
+      },
+      {
+        "path": "/users/{ids}/questions/unanswered",
+        "doc": {
+          "t": "Get the questions asked by a set of users, which are not considered to be adequately answered.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-questions-unanswered"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/questions/unanswered",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/questions/unanswered"
+      },
+      {
+        "path": "/users/{ids}/reputation",
+        "doc": {
+          "t": "Get a subset of the reputation changes experienced by the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-reputation-changes"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/reputation",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/reputation"
+      },
+      {
+        "path": "/users/{ids}/tags",
+        "doc": {
+          "t": "Get the tags that the users (identified by a set of ids) have been active in.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-tags"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/tags",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/tags"
+      },
+      {
+        "path": "/users/{id}/tags/{tags}/top-answers",
+        "doc": {
+          "t": "Get the top answers a user has posted on questions with a set of tags.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-tagged-answers"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/tags/{tags}/top-answers",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{id}/tags/{tags}/top-answers"
+      },
+      {
+        "path": "/users/{id}/tags/{tags}/top-questions",
+        "doc": {
+          "t": "Get the top questions a user has posted on questions with a set of tags.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-tagged-questions"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/tags/{tags}/top-questions",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{id}/tags/{tags}/top-questions"
+      },
+      {
+        "path": "/users/{ids}/timeline",
+        "doc": {
+          "t": "Get a subset of the actions of that have been taken by the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-timelines"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/timeline",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/timeline"
+      },
+      {
+        "path": "/users/{id}/top-answer-tags",
+        "doc": {
+          "t": "Get the top 30 tags (by score) a single user has posted answers in.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-answer-tags"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/top-answer-tags",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{id}/top-answer-tags"
+      },
+      {
+        "path": "/users/moderators",
+        "doc": {
+          "t": "Get the users who have moderation powers on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/moderators"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/moderators",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/moderators"
+      },
+      {
+        "path": "/users/{id}/top-question-tags",
+        "doc": {
+          "t": "Get the top 30 tags (by score) a single user has asked questions in.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-top-question-tags"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{id}/top-question-tags",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{id}/top-question-tags"
+      },
+      {
+        "path": "/users",
+        "doc": {
+          "t": "Get all users on the site.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/users"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users"
+      },
+      {
+        "path": "/users/{ids}",
+        "doc": {
+          "t": "Get the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/users-by-ids"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}"
+      },
+      {
+        "path": "/users/{ids}/answers",
+        "doc": {
+          "t": "Get the answers posted by the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-answers"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/answers",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/answers"
+      },
+      {
+        "path": "/users/{ids}/badges",
+        "doc": {
+          "t": "Get the badges earned by the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-badges"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/badges",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/badges"
+      },
+      {
+        "path": "/users/{ids}/comments",
+        "doc": {
+          "t": "Get the comments posted by the users identified by a set of ids.",
+          "url": "http://api.stackoverflow.com/1.1/usage/methods/user-comments"
+        },
+        "curl": "curl -X GET  http://api.stackoverflow.com/1.1/users/{ids}/comments",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Users",
+        "displayName": "Users_GET",
+        "httpMethod": "GET",
+        "url": "http://api.stackoverflow.com/1.1/users/{ids}/comments"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "enabled": false,
+  "logo": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/t5/372919_11239244970_618032642_n.jpg",
+  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/stackoverflow.png",
+  "name": "StackOverflow",
+  "type": "channel:stack_overflow"
+}

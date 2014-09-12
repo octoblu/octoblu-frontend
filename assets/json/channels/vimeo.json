@@ -1,0 +1,53 @@
+{
+  "_id": "52f97d3c0db568444400040e",
+  "application": {
+    "base": "http://vimeo.com/api/v2",
+    "resources": [
+      {
+        "curl": "curl http://vimeo.com/api/v2/sunnythaper/info.json",
+        "authentication": {
+          "required": "false"
+        },
+        "path": "/{username}/info.json",
+        "displayName": "User Info_GET",
+        "httpMethod": "GET",
+        "doc": {
+          "t": "User info. Contains full URLs for the avatar and other user resources."
+        },
+        "category": "User Info",
+        "url": "http://vimeo.com/api/v2/{username}/info.json"
+      },
+      {
+        "curl": "curl http://vimeo.com/api/v2/sunnythaper/videos.json",
+        "authentication": {
+          "required": "false"
+        },
+        "path": "/{username}/videos.json",
+        "displayName": "Videos_GET",
+        "httpMethod": "GET",
+        "doc": {
+          "t": "Returns up to 20 videos from a given user, starting with the most recent. The root object is an array."
+        },
+        "category": "Videos",
+        "url": "http://vimeo.com/api/v2/{username}/videos.json"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/vimeo.png",
+  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/vimeo.png",
+  "name": "Vimeo",
+  "enabled": true,
+  "useCustom": true,
+  "oauth": {
+    "version": "1.0",
+    "key": "450b10e7d2abf68021beb0c7a584175c93064729",
+    "secret": "dcee7ecfc313c5fb8f7a59498a123c1ff6a9d4d8",
+    "accessTokenURL": "https://vimeo.com/oauth/access_token",
+    "requestTokenURL": "https://vimeo.com/oauth/request_token",
+    "authTokenURL": "https://vimeo.com/oauth/authorize",
+    "tokenMethod": "",
+    "scope": ""
+  },
+  "type": "channel:vimeo"
+}

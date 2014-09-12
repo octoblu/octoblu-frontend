@@ -1,0 +1,820 @@
+{
+  "_id": "52f97cc5a9909344830004ec",
+  "application": {
+    "base": "http://api.fitbit.com/1",
+    "resources": [
+      {
+        "path": "/user/-/activities/frequent.json",
+        "doc": {
+          "t": "Get a list of a user's frequent activities in the format requested using units in the unit system which corresponds to the Accept-Language header provided. A frequent activity record contains the distance and duration values recorded the last time the activity was logged. The record retrieved can therefore be used to log the activity via the Log Activity with the same or adjusted values for distance and duration.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Frequent-Activities"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/activities/frequent.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/activities/frequent.json"
+      },
+      {
+        "path": "/user/{user-id}/activities/date/{date}.json",
+        "doc": {
+          "t": "Get a summary and list of a user's activities and activity log entries for a given day in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Activities"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/activities/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/activities/date/{date}.json"
+      },
+      {
+        "path": "/user/-/activities.json",
+        "doc": {
+          "t": "Create log entry for an activity using units in the unit system which corresponds to the Accept-Language header provided (or using optional custom distanceUnit).",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Activity"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/activities.{format}?activityId=90009&startTime=12:20&durationMillis=600000&date=2011-07-11&distance=1.5",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/activities.json"
+      },
+      {
+        "path": "/user/-/activities/log/favorite/{id}.json",
+        "doc": {
+          "t": "Delete the activity with the given id from user's list of favorite activities.",
+          "url": "http://wiki.fitbit.com/display/API/API-Delete-Favorite-Activity"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/activities/log/favorite/90009.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/activities/log/favorite/{id}.json"
+      },
+      {
+        "path": "/user/-/activities/log/favorite/{id}.json",
+        "doc": {
+          "t": "Adds the activity with the given id to user's list of favorite activities.",
+          "url": "http://wiki.fitbit.com/display/API/API-Add-Favorite-Activity"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/activities/log/favorite/90009.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/activities/log/favorite/{id}.json"
+      },
+      {
+        "path": "/user/-/activities/{activity-log-id}.json",
+        "doc": {
+          "t": "Delete user's activity log entry with the given id.",
+          "url": "http://wiki.fitbit.com/display/API/API-Delete-Activity-Log"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/activites/{activity-log-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/activities/{activity-log-id}.json"
+      },
+      {
+        "path": "/user/-/activities.json",
+        "doc": {
+          "t": "Get user's activity statistics in the format requested using units in the unit system which corresponds to the Accept-Language header provided. Response contains both lifetime statistics from the tracker device and total numbers including the manual activity log entries as seen on the Fitbit website dashboard.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Activity-Stats"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/activities.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/activities.json"
+      },
+      {
+        "path": "/user/{user-id}/activities/log/calories/date/{start-date|end-date}/{end-date|period}.json",
+        "doc": {
+          "t": "Get time series in the specified range for a given resource in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Time-Series"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/activities/log/calories/date/{end-date}/7d.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/activities/log/calories/date/{start-date|end-date}/{end-date|period}.json"
+      },
+      {
+        "path": "/user/-/activities/recent.json",
+        "doc": {
+          "t": "Get a list of a user's recent activities in the format requested using units in the unit system which corresponds to the Accept-Language header provided. A recent activity record contains the distance and duration values recorded the last time the activity was logged. The record retrieved can therefore be used to log the activity via the Log Activity with the same or adjusted values for distance and duration.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Recent-Activities"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/activities/recent.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/activities/recent.json"
+      },
+      {
+        "path": "/user/-/activities/favorite.json",
+        "doc": {
+          "t": "Get a list of a user's favorite activities in the format requested. A user marks an activity as favorite on the user's Activities Tab. The activity ids in the list can be used to create a new activity log entry via the Log Activity.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Recent-Activities"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/activities/favorite.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "ACTIVITIES",
+        "displayName": "ACTIVITIES_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/activities/favorite.json"
+      },
+      {
+        "path": "/user/{user-id}/body/weight/date/{start-date|end-date}/{end-date|period}.json",
+        "doc": {
+          "t": "Get time series in the specified range for a given resource in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Time-Series"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/body/weight/date/{end-date}/7d.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "BODY",
+        "displayName": "BODY_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/body/weight/date/{start-date|end-date}/{end-date|period}.json"
+      },
+      {
+        "path": "/user/{user-id}/body/date/{date}.json",
+        "doc": {
+          "t": "Get a summary of a user's body measurements for a given day in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Body-Measurements"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/body/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "BODY",
+        "displayName": "BODY_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/body/date/{date}.json"
+      },
+      {
+        "path": "/user/-/body.json",
+        "doc": {
+          "t": "Log body measurements using units in the unit system that corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Body-Measurements"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/body.{format}?date=2011-10-27&weight=150&fat=14.4",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "BODY",
+        "displayName": "BODY_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/body.json"
+      },
+      {
+        "path": "/user/-/bp.json",
+        "doc": {
+          "t": "Create log entry for a blood pressure measurement and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Blood-Pressure"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/bp.{format}?systolic=120&diastolic=80&date=2011-07-06",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "BP",
+        "displayName": "BP_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/bp.json"
+      },
+      {
+        "path": "/user/-/bp/{bp-log-id}.json",
+        "doc": {
+          "t": "Delete user's blood pressure log entry with the given id.",
+          "url": "http://wiki.fitbit.com/display/API/API-Delete-Blood-Pressure-Log"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/bp/{bp-log-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "BP",
+        "displayName": "BP_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/bp/{bp-log-id}.json"
+      },
+      {
+        "path": "/user/-/bp/date/{date}.json",
+        "doc": {
+          "t": "Get an average value and a list of user's blood pressure log entries for a given day in the format requested. Blood pressure log entries are available only to authorized user. Blood pressure log entries in response are sorted exactly the same as they are presented on the Fitbit website.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Blood-Pressure"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/bp/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "BP",
+        "displayName": "BP_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/bp/date/{date}.json"
+      },
+      {
+        "path": "/user/-/devices.json",
+        "doc": {
+          "t": "Retrieve the list of Fitbit devices for a user in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Devices"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/devices.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "DEVICES",
+        "displayName": "DEVICES_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/devices.json"
+      },
+      {
+        "path": "/user/-/foods/log/frequent.json",
+        "doc": {
+          "t": "Get a list of a user's frequent foods in the format requested. A frequent food in the list provides a quick way to log the food via the Log Food endpoint.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Frequent-Foods"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/frequent.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/frequent.json"
+      },
+      {
+        "path": "/user/{user-id}/foods/log/date/{date}.json",
+        "doc": {
+          "t": "Get a summary and list of a user's food log entries for a given day in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Foods"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/foods/log/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/foods/log/date/{date}.json"
+      },
+      {
+        "path": "/foods.json",
+        "doc": {
+          "t": "Create new private food for a user and get a response in a format requested. Created private food could be found in results of Search Foods call.",
+          "url": "http://wiki.fitbit.com/display/API/API-Create-Food"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/foods.{format}?name=Icecream,big&defaultFoodMeasurementUnitId=147&defaultServingSize=1&calories=500",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/foods.json"
+      },
+      {
+        "path": "/user/-/foods/log/water/{water-log-id}.json",
+        "doc": {
+          "t": "Delete user's water log entry with the given id.",
+          "url": "http://wiki.fitbit.com/display/API/Delete-Water-Log"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/water/{water-log-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/water/{water-log-id}.json"
+      },
+      {
+        "path": "/user/-/foods/log/{food-log-id}.json",
+        "doc": {
+          "t": "Delete the user's food log entry with the given id.",
+          "url": "http://wiki.fitbit.com/display/API/API-Delete-Food-Log"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/{food-log-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/{food-log-id}.json"
+      },
+      {
+        "path": "/user/-/foods/log/water/date/{date}.json",
+        "doc": {
+          "t": "Get a summary and list of a user's water log entries for a given day in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Water"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/water/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/water/date/{date}.json"
+      },
+      {
+        "path": "/user/-/foods/log/water.json",
+        "doc": {
+          "t": "Create log entry for a water using units in the unit system that corresponds to the Accept-Language header provided (or waterUnit) and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Water"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/water.{format}?amount=300&date=2011-07-06",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/water.json"
+      },
+      {
+        "path": "/user/-/foods/log/favorite/{id}.json",
+        "doc": {
+          "t": "Delete the food with the given id from user's list of favorite foods.",
+          "url": "http://wiki.fitbit.com/display/API/API-Delete-Favorite-Food"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/favorite/30414.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/favorite/{id}.json"
+      },
+      {
+        "path": "/user/-/foods/log.json",
+        "doc": {
+          "t": "Create log entry for a food. You need to select one of the unit ids to create a food log entry. It is possible to fetch unit ids allowed for specific food via previous calls to endpoints that retrieve food lists of the user. Each unit id maps to a unit in the list returned via the Get Food Units API call.",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Food"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/foods/log.{format}?foodId=30414&mealTypeId=1&unitId=147&amount=1&date=2011-07-06",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/foods/log.json"
+      },
+      {
+        "path": "/user/-/foods/log/favorite/{id}.json",
+        "doc": {
+          "t": "Add the food with the given id to user's list of favorite foods.",
+          "url": "http://wiki.fitbit.com/display/API/API-Add-Favorite-Food"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/favorite/30414.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/favorite/{id}.json"
+      },
+      {
+        "path": "/user/-/foods/log/recent.json",
+        "doc": {
+          "t": "Get a list of a user's recent foods in the format requested. A recent food provides a quick way to log the food via the Log Food endpoint.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Recent-Foods"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/recent.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/foods/log/recent.json"
+      },
+      {
+        "path": "/user/{user-id}/foods/log/caloriesIn/date/{start-date|end-date}/{end-date|period}.json",
+        "doc": {
+          "t": "Get time series in the specified range for a given resource in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Time-Series"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/foods/log/caloriesIn/date/{end-date}/7d.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/foods/log/caloriesIn/date/{start-date|end-date}/{end-date|period}.json"
+      },
+      {
+        "path": "/user/-/activities/favorite.json",
+        "doc": {
+          "t": "Get a list of a user's favorite foods in the format requested. A user marks a food as favorite on the user's Food Tab tab. A favorite food in the list provides a quick way to log the food via the Log Food endpoint.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Favorite-Foods"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/foods/log/favorite.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "FOODS",
+        "displayName": "FOODS_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/activities/favorite.json"
+      },
+      {
+        "path": "/foods/{food-id}.json",
+        "doc": {
+          "t": "Get the details of a specific food in Fitbit Food database (or private food for the user) in the format requested. Note, that nutritional values currently included in response only for the private foods.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Food"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/foods/30414.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "GENERAL",
+        "displayName": "GENERAL_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/foods/{food-id}.json"
+      },
+      {
+        "path": "/activities.json",
+        "doc": {
+          "t": "Get a tree of all valid Fitbit public activities from the activities catalog as well as private custom activities the user created in the format requested. If activity has levels, also get a list of activity level details.",
+          "url": "http://wiki.fitbit.com/display/API/API-Browse-Activities"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/activities.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "GENERAL",
+        "displayName": "GENERAL_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/activities.json"
+      },
+      {
+        "path": "/activities/{id}.json",
+        "doc": {
+          "t": "Get the details of a specific activity in Fitbit activities database in the format requested. If activity has levels, also get list of activity level details.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Activity"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/activities/90009.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "GENERAL",
+        "displayName": "GENERAL_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/activities/{id}.json"
+      },
+      {
+        "path": "/foods/search.json?query={query}",
+        "doc": {
+          "t": "Given a search query, get a list of public foods from Fitbit foods database and private foods the user created in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Activity"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/foods/search.{format}?query=Icecream",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "GENERAL",
+        "displayName": "GENERAL_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/foods/search.json?query={query}"
+      },
+      {
+        "path": "/foods/units.json",
+        "doc": {
+          "t": "Get list of all valid Fitbit food units in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Food-Units"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/foods/units.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "GENERAL",
+        "displayName": "GENERAL_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/foods/units.json"
+      },
+      {
+        "path": "/user/-/glucose/date/{date}.json",
+        "doc": {
+          "t": "Get a list of user's blood glucose and HbA1C measurements for a given day in the format requested using units in the unit system which corresponds to the Accept-Language header provided. Glucose measurement log entries are available only to authorized user. We always include all glucose trackers in the response body (with zero glucose value for the days with no measurements) to allow to seamlessly fetch a list of all additional user created custom trackers.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Glucose"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/glucose/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "GLUCOSE",
+        "displayName": "GLUCOSE_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/glucose/date/{date}.json"
+      },
+      {
+        "path": "/user/-/glucose.json",
+        "doc": {
+          "t": "Create log entry for a blood glucose measurement and/or HbA1c using units in the unit system which corresponds to the Accept-Language header provided and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Glucose"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/glucose.{format}?hba1c=4.5&tracker=Afternoon&glucose=3&time=12:30&date=2011-07-06",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "GLUCOSE",
+        "displayName": "GLUCOSE_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/glucose.json"
+      },
+      {
+        "path": "/user/-/heart.json",
+        "doc": {
+          "t": "Create log entry for a heart rate measurement and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Heart-Rate"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/heart.{format}?tracker=Running&heartRate=80&date=2011-07-06",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "HEART",
+        "displayName": "HEART_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/heart.json"
+      },
+      {
+        "path": "/user/-/heart/date/{date}.json",
+        "doc": {
+          "t": "Get an average values and a list of user's heart rate log entries for a given day in the format requested. Heart rate data available only to the authorized user. Heart rate log entries in response are sorted exactly the same as they are presented on the Fitbit website. We always include all heart rate trackers in the \"average\" section of the response body (with zero average values for the days with no measurements) to allow to seamlessly fetch a list of all additional user created custom trackers.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Heart-Rate"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/heart/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "HEART",
+        "displayName": "HEART_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/heart/date/{date}.json"
+      },
+      {
+        "path": "/user/-/heart/{heart-log-id}.json",
+        "doc": {
+          "t": "Delete user's heart rate log entry with the given id.",
+          "url": "http://wiki.fitbit.com/display/API/API-Delete-Heart-Rate-Log"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/heart/{heart-log-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "HEART",
+        "displayName": "HEART_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/heart/{heart-log-id}.json"
+      },
+      {
+        "path": "/user/-/profile.json",
+        "doc": {
+          "t": "Update user's profile using units in the unit system that corresponds to the Accept-Language header provided and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Update-User-Info"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/profile.{format}?gender=FEMALE",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "PROFILE",
+        "displayName": "PROFILE_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/profile.json"
+      },
+      {
+        "path": "/user/{user-id}/profile.json",
+        "doc": {
+          "t": "Get user's profile in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-User-Info"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/profile.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "PROFILE",
+        "displayName": "PROFILE_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/profile.json"
+      },
+      {
+        "path": "/user/-/sleep/{sleep-log-id}.json",
+        "doc": {
+          "t": "Delete user's sleep log entry with the given id.",
+          "url": "http://wiki.fitbit.com/display/API/Delete-Sleep-Log"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/sleep/{sleep-log-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SLEEP",
+        "displayName": "SLEEP_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/sleep/{sleep-log-id}.json"
+      },
+      {
+        "path": "/user/{user-id}/sleep/date/{date}.json",
+        "doc": {
+          "t": "Get a summary and list of a user's sleep log entries for a given day in the format requested. Endpoint returns summary for all sleep log entries for the given day (including naps). If you need data only for the main sleep you can fetch entry with \"isMainSleep\" = true or use Get-Time-Series calls.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Sleep"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/sleep/date/{date}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SLEEP",
+        "displayName": "SLEEP_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/sleep/date/{date}.json"
+      },
+      {
+        "path": "/user/{user-id}/sleep/minutesAsleep/date/{start-date|end-date}/{end-date|period}.json",
+        "doc": {
+          "t": "Get time series in the specified range for a given resource in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Time-Series"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/sleep/minutesAsleep/date/{end-date}/7d.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SLEEP",
+        "displayName": "SLEEP_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/sleep/minutesAsleep/date/{start-date|end-date}/{end-date|period}.json"
+      },
+      {
+        "path": "/user/-/sleep.json",
+        "doc": {
+          "t": "Create log entry for a sleep and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/API-Log-Sleep"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/sleep.{format}?startTime=08:20&duration=24000000&date=2011-07-06",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SLEEP",
+        "displayName": "SLEEP_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/sleep.json"
+      },
+      {
+        "path": "/user/{user-id}/friends.json",
+        "doc": {
+          "t": "Get user's friends in the format requested using units in the unit system which corresponds to the Accept-Language header provided.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Friends"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/{user-id}/friends.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SOCIAL",
+        "displayName": "SOCIAL_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/{user-id}/friends.json"
+      },
+      {
+        "path": "/user/-/friends/invitations.json",
+        "doc": {
+          "t": "Invite a user to become friends with authorized user. If you provide invitedUserEmail parameter with the request, standard friendship invitation email will be sent to the invited user, that he can accept later. Contrary, invitedUserId parameter creates an invite silently, so it could only be fetched through the Get Invites endpoint. You can accept or reject both invitation types on behalf of the authorized user via Accept Invite API call.",
+          "url": "http://wiki.fitbit.com/display/API/API-Create-Invite"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/friends/invitations.{format}?invitedUserEmail={invitedUserEmail}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SOCIAL",
+        "displayName": "SOCIAL_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/friends/invitations.json"
+      },
+      {
+        "path": "/user/-/friends/invitations/{from-user-id}.json",
+        "doc": {
+          "t": "Accept or reject an invite to become friends with inviting user.",
+          "url": "http://wiki.fitbit.com/display/API/API-Accept-Invite"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/friends/invitations/{from-user-id}.{format}?accept=true",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SOCIAL",
+        "displayName": "SOCIAL_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/friends/invitations/{from-user-id}.json"
+      },
+      {
+        "path": "/user/-/friends/leaders/{period}.json",
+        "doc": {
+          "t": "Get a leaderboard of user's friends progress in the format requested using units in the unit system which corresponds to the Accept-Language header provided. Authorized user himself is also included in the response.",
+          "url": "http://wiki.fitbit.com/display/API/API-Get-Friends"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/friends/leaders/7d.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SOCIAL",
+        "displayName": "SOCIAL_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/friends/leaders/{period}.json"
+      },
+      {
+        "path": "/user/-/{collection-path}/apiSubscriptions.json",
+        "doc": {
+          "t": "Get a list of user's subscriptions for your application in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/Subscriptions-API#Subscriptions-API-Listexistingsubscriptions"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.fitbit.com/1/user/-/apiSubscriptions.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SUBSCRIPTIONS-API",
+        "displayName": "SUBSCRIPTIONS-API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.fitbit.com/1/user/-/{collection-path}/apiSubscriptions.json"
+      },
+      {
+        "path": "/user/-/{collection-path}/apiSubscriptions/{subscription-id}.json",
+        "doc": {
+          "t": "Delete a subscription for the user and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/Subscriptions-API#Subscriptions-API-Removeasubscription"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.fitbit.com/1/user/-/apiSubscriptions/{subscription-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SUBSCRIPTIONS-API",
+        "displayName": "SUBSCRIPTIONS-API_DELETE",
+        "httpMethod": "DELETE",
+        "url": "http://api.fitbit.com/1/user/-/{collection-path}/apiSubscriptions/{subscription-id}.json"
+      },
+      {
+        "path": "/user/-/{collection-path}/apiSubscriptions/{subscription-id}.json",
+        "doc": {
+          "t": "Add a subscription for the user to get notifications and get a response in the format requested.",
+          "url": "http://wiki.fitbit.com/display/API/Subscriptions-API#Subscriptions-API-Addasubscription"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.fitbit.com/1/user/-/apiSubscriptions/{subscription-id}.{format}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "SUBSCRIPTIONS-API",
+        "displayName": "SUBSCRIPTIONS-API_POST",
+        "httpMethod": "POST",
+        "url": "http://api.fitbit.com/1/user/-/{collection-path}/apiSubscriptions/{subscription-id}.json"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "enabled": true,
+  "logo": "http://ecx.images-amazon.com/images/I/516a1%2BMjQML._SL500_AA300_.png",
+  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/fitbit.png",
+  "name": "FitBit",
+  "oauth": {
+    "version": "1.0",
+    "key": "2757456acad54cdabf6414926303421d",
+    "secret": "a3648d726d0e4ea091fe2d40ecc1b55b",
+    "accessTokenURL": "https://api.fitbit.com/oauth/access_token",
+    "requestTokenURL": "https://api.fitbit.com/oauth/request_token",
+    "authTokenURL": "https://www.fitbit.com/oauth/authorize",
+    "tokenMethod": "oauth_signed",
+    "scope": "r_basicprofile, r_emailaddress"
+  },
+  "useCustom": true,
+  "type": "channel:fit_bit"
+}

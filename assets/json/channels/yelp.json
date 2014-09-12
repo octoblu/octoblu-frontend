@@ -1,0 +1,99 @@
+{
+  "_id": "53dab882993d558f4a859a6b",
+  "__v": 0,
+  "application": {
+    "base": "http://api.yelp.com/v2/",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://www.yelp.com/developers/documentation/v2/search_api"
+        },
+        "displayName": "Search",
+        "path": "search",
+        "params": [
+          {
+            "name": "term",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "category_filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "radius_filter",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "deals_filter",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "location",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://api.yelp.com/v2/search"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://www.yelp.com/developers/documentation/",
+  "enabled": true,
+  "logo": "http://www.greathillsent.com/images/yelp.png",
+  "name": "Yelp",
+  "oauth": {
+    "key": "w5Ds7zP3v1JFIKo9r4pVVQ",
+    "secret": "HuZn98JS3aMXdDjsNfqH3qz1Y00",
+    "accessTokenURL": "WOGT8hmmsJwfsjQZISh6XG2pBIfR-7G7",
+    "version": "2.0",
+    "clientId": "w5Ds7zP3v1JFIKo9r4pVVQ"
+  },
+  "owner": "01f45d00-0611-11e4-83bd-196bfd08cd39",
+  "type": "channel:yelp"
+}

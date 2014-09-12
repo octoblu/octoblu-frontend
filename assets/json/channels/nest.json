@@ -1,0 +1,314 @@
+{
+  "_id": "53c403b467605b33c1d4b09b",
+  "name": "Nest",
+  "auth_strategy": "oauth",
+  "documentation": "https://developer.nest.com/documentation",
+  "enabled": true,
+  "useCustom": true,
+  "logo": "https://nest.com/images/social/nest_thermostat_share_icon.jpg",
+  "oauth": {
+    "production": {
+      "version": "2.0",
+      "clientId": "7b86404d-c06d-4890-9671-e878216761da",
+      "secret": "AIDRmuhzwphNP2zV7GzrLbWCm",
+      "authTokenURL": "https://home.nest.com/login/oauth2",
+      "baseURL": "https://home.nest.com",
+      "authTokenPath": "/login/oauth2",
+      "key": "",
+      "accessTokenURL": "https://api.home.nest.com/oauth2/access_token",
+      "requestTokenURL": "",
+      "isManual": true,
+      "scope": "",
+      "protocol": "https",
+      "host": "home.nest.com",
+      "grant_type": "authorization_code",
+      "accessTokenIncludeClientInfo": true,
+      "tokenQueryParam": "auth",
+      "tokenMethod": "access_token_query",
+      "passTokenInQuery": true,
+      "useOAuthLib": false
+    },
+    "development": {
+      "version": "2.0",
+      "clientId": "INSERT_SECERT_HERE",
+      "secret": "INSERT_SECERT_HERE",
+      "authTokenURL": "https://home.nest.com/login/oauth2",
+      "baseURL": "https://home.nest.com",
+      "authTokenPath": "/login/oauth2",
+      "key": "",
+      "accessTokenURL": "https://api.home.nest.com/oauth2/access_token",
+      "requestTokenURL": "",
+      "isManual": true,
+      "scope": "",
+      "protocol": "https",
+      "host": "home.nest.com",
+      "grant_type": "authorization_code",
+      "accessTokenIncludeClientInfo": true,
+      "tokenQueryParam": "auth",
+      "tokenMethod": "access_token_query",
+      "passTokenInQuery": true,
+      "useOAuthLib": false
+    }
+  },
+  "application": {
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "fullURL": "https://developer-api.nest.com/devices.json",
+        "path": "/devices.json",
+        "displayName": "/devices.json",
+        "doc": {
+          "t": "Retrieves information about your Nest devices."
+        },
+        "url": "https://developer-api.nest.com/devices.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "fullURL": "https://developer-api.nest.com/structures/:device_id",
+        "path": "/structures/:device_id",
+        "displayName": "/structures/:device_id",
+        "doc": {
+          "t": "Update information on your Nest devices."
+        },
+        "params": [
+          {
+            "name": ":device_id",
+            "required": true,
+            "style": "url",
+            "doc": {
+              "t": "Device Id"
+            }
+          },
+          {
+            "name": "locale",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "en-US"
+            }
+          },
+          {
+            "name": "software_version",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "4.0"
+            }
+          },
+          {
+            "name": "structure_id",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "VqFabWH21nwVyd4RWgJgNb292wa7hG_dUwo2i2SG7j3-BOLY0BA4sw"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Hallway (upstairs)"
+            }
+          },
+          {
+            "name": "name_long",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Hallway Thermostat (upstairs)"
+            }
+          },
+          {
+            "name": "last_connection",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "2014-03-02T23:20:19+00:00"
+            }
+          },
+          {
+            "name": "is_online",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "can_cool",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "can_heat",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "is_using_emergency_heat",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "has_fan",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "fan_timer_active",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "fan_timer_timeout",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "2014-03-02T23:20:19+00:00"
+            }
+          },
+          {
+            "name": "has_leaf",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "temperature_scale",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "C"
+            }
+          },
+          {
+            "name": "target_temperature_f",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 72
+            }
+          },
+          {
+            "name": "target_temperature_c",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 21.5
+            }
+          },
+          {
+            "name": "target_temperature_high_f",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 72
+            }
+          },
+          {
+            "name": "target_temperature_high_c",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 21.5
+            }
+          },
+          {
+            "name": "target_temperature_low_f",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 64
+            }
+          },
+          {
+            "name": "target_temperature_low_c",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 17.5
+            }
+          },
+          {
+            "name": "away_temperature_high_f",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 72
+            }
+          },
+          {
+            "name": "away_temperature_high_c",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 21.5
+            }
+          },
+          {
+            "name": "away_temperature_low_f",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 64
+            }
+          },
+          {
+            "name": "away_temperature_low_c",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 17.5
+            }
+          },
+          {
+            "name": "hvac_mode",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "heat"
+            }
+          },
+          {
+            "name": "ambient_temperature_f",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 72
+            }
+          },
+          {
+            "name": "ambient_temperature_c",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": 21
+            }
+          }
+        ],
+        "url": "https://developer-api.nest.com/structures/:device_id"
+      }
+    ],
+    "base": "https://developer-api.nest.com"
+  },
+  "requestTokenURL": "",
+  "type": "channel:nest"
+}

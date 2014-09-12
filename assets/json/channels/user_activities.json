@@ -1,0 +1,17 @@
+{
+  "_id": "53e4be588e3257fb7d6fdadd",
+  "owner": "c301a2f0-1e0d-11e4-8e9e-0b07725414db",
+  "auth_strategy": "",
+  "logo": "",
+  "name": "User Activities",
+  "description": "test Fitbit",
+  "documentation": "http://api.fitbit.com/1/user/-/activities/frequent.json",
+  "enabled": true,
+  "application": {
+    "base": "http://api.fitbit.com/1",
+    "resources": []
+  },
+  "custom_tokens": [],
+  "__v": 0,
+  "type": "channel:user_activities"
+}

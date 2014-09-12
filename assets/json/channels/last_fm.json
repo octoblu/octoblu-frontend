@@ -1,0 +1,1278 @@
+{
+  "_id": "52f9b59edfeb5678c700000b",
+  "application": {
+    "base": "http://ws.audioscrobbler.com/2.0",
+    "resources": [
+      {
+        "path": "/?method=album.search",
+        "doc": {
+          "t": "Search for an album by name. Returns album matches sorted by relevance.",
+          "url": "http://www.last.fm/api/show?service=357"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=album.search&album={album}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Album",
+        "displayName": "Album_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=album.search"
+      },
+      {
+        "path": "/?method=album.getTopTags",
+        "doc": {
+          "t": "Get the top tags for an album on Last.fm, ordered by popularity.",
+          "url": "http://www.last.fm/api/show?service=438"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=album.gettoptags&artist={artist}&album={album}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Album",
+        "displayName": "Album_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=album.getTopTags"
+      },
+      {
+        "path": "/?method=album.getShouts",
+        "doc": {
+          "t": "Get shouts for this album. Also available as an rss feed.",
+          "url": "http://www.last.fm/api/show?service=450"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=album.getshouts&artist={artist}&album={album}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Album",
+        "displayName": "Album_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=album.getShouts"
+      },
+      {
+        "path": "/?method=album.getInfo",
+        "doc": {
+          "t": "Get the metadata for an album on Last.fm using the album name or a musicbrainz id. See playlist.fetch on how to get the album playlist.",
+          "url": "http://www.last.fm/api/show?service=290"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist={artist}&album={album}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Album",
+        "displayName": "Album_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=album.getInfo"
+      },
+      {
+        "path": "/?method=album.getBuyLinks",
+        "doc": {
+          "t": "Get a list of Buy Links for a particular Album. It is required that you supply either the artist and track params or the mbid param.",
+          "url": "http://www.last.fm/api/show?service=429"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=album.getbuylinks&artist={artist}&album={album}&country={country}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Album",
+        "displayName": "Album_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=album.getBuyLinks"
+      },
+      {
+        "path": "/?method=artist.getEvents",
+        "doc": {
+          "t": "Get a list of upcoming events for this artist. Easily integratable into calendars, using the ical standards.",
+          "url": "http://www.last.fm/api/show?service=117"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getEvents"
+      },
+      {
+        "path": "/?method=artist.getShouts",
+        "doc": {
+          "t": "Get shouts for this artist. Also available as an rss feed.",
+          "url": "http://www.last.fm/api/show?service=397"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getshouts&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getShouts"
+      },
+      {
+        "path": "/?method=artist.getPodcast",
+        "doc": {
+          "t": "Get a podcast of free mp3s based on an artist.",
+          "url": "http://www.last.fm/api/show?service=118"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getpodcast&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getPodcast"
+      },
+      {
+        "path": "/?method=artist.getPastEvents",
+        "doc": {
+          "t": "Get a paginated list of all the events this artist has played at in the past.",
+          "url": "http://www.last.fm/api/show?service=428"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getpastevents&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getPastEvents"
+      },
+      {
+        "path": "/?method=artist.getInfo",
+        "doc": {
+          "t": "Get the metadata for an artist. Includes biography.",
+          "url": "http://www.last.fm/api/show?service=267"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getInfo"
+      },
+      {
+        "path": "/?method=artist.getCorrection",
+        "doc": {
+          "t": "Use the last.fm corrections data to check whether the supplied artist has a correction to a canonical artist.",
+          "url": "http://www.last.fm/api/show?service=446"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getcorrection&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getCorrection"
+      },
+      {
+        "path": "/?method=artist.getImages",
+        "doc": {
+          "t": "Get Images for this artist in a variety of sizes.",
+          "url": "http://www.last.fm/api/show?service=407"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getimages&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getImages"
+      },
+      {
+        "path": "/?method=artist.search",
+        "doc": {
+          "t": "Search for an artist by name. Returns artist matches sorted by relevance.",
+          "url": "http://www.last.fm/api/show?service=272"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.search&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.search"
+      },
+      {
+        "path": "/?method=artist.getTopTracks",
+        "doc": {
+          "t": "Get the top tracks by an artist on Last.fm, ordered by popularity.",
+          "url": "http://www.last.fm/api/show?service=277"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getTopTracks"
+      },
+      {
+        "path": "/?method=artist.getTopTags",
+        "doc": {
+          "t": "Get the top tags for an artist on Last.fm, ordered by popularity.",
+          "url": "http://www.last.fm/api/show?service=288"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.gettoptags&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getTopTags"
+      },
+      {
+        "path": "/?method=artist.getTopFans",
+        "doc": {
+          "t": "Get the top fans for an artist on Last.fm, based on listening data.",
+          "url": "http://www.last.fm/api/show?service=310"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.gettopfans&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getTopFans"
+      },
+      {
+        "path": "/?method=artist.getTopAlbums",
+        "doc": {
+          "t": "Get the top albums for an artist on Last.fm, ordered by popularity.",
+          "url": "http://www.last.fm/api/show?service=287"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getTopAlbums"
+      },
+      {
+        "path": "/?method=artist.getSimilar",
+        "doc": {
+          "t": "Get all the artists similar to this artist.",
+          "url": "http://www.last.fm/api/show?service=119"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Artist",
+        "displayName": "Artist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=artist.getSimilar"
+      },
+      {
+        "path": "/?method=chart.getHypedArtists",
+        "doc": {
+          "t": "Get the hyped artists chart.",
+          "url": "http://www.last.fm/api/show?service=493"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=chart.gethypedartists&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Chart",
+        "displayName": "Chart_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=chart.getHypedArtists"
+      },
+      {
+        "path": "/?method=chart.getHypedTracks",
+        "doc": {
+          "t": "Get the hyped tracks chart.",
+          "url": "http://www.last.fm/api/show?service=494"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=chart.gethypedtracks&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Chart",
+        "displayName": "Chart_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=chart.getHypedTracks"
+      },
+      {
+        "path": "/?method=chart.getLovedTracks",
+        "doc": {
+          "t": "Get the most loved tracks chart.",
+          "url": "http://www.last.fm/api/show?service=495"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=chart.getlovedtracks&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Chart",
+        "displayName": "Chart_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=chart.getLovedTracks"
+      },
+      {
+        "path": "/?method=chart.getTopArtists",
+        "doc": {
+          "t": "Get the top artists chart.",
+          "url": "http://www.last.fm/api/show?service=496"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Chart",
+        "displayName": "Chart_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=chart.getTopArtists"
+      },
+      {
+        "path": "/?method=chart.getTopTags",
+        "doc": {
+          "t": "Get the top tags chart.",
+          "url": "http://www.last.fm/api/show?service=497"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=chart.gettoptags&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Chart",
+        "displayName": "Chart_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=chart.getTopTags"
+      },
+      {
+        "path": "/?method=chart.getTopTracks",
+        "doc": {
+          "t": "Get the top tracks chart.",
+          "url": "http://www.last.fm/api/show?service=498"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Chart",
+        "displayName": "Chart_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=chart.getTopTracks"
+      },
+      {
+        "path": "/?method=event.getInfo",
+        "doc": {
+          "t": "Get the metadata for an event on Last.fm. Includes attendance and lineup information.",
+          "url": "http://www.last.fm/api/show?service=292"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=event.getinfo&event={event}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Event",
+        "displayName": "Event_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=event.getInfo"
+      },
+      {
+        "path": "/?method=event.getAttendees",
+        "doc": {
+          "t": "Get a list of attendees for an event.",
+          "url": "http://www.last.fm/api/show?service=391"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=event.getattendees&event={event}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Event",
+        "displayName": "Event_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=event.getAttendees"
+      },
+      {
+        "path": "/?method=event.getShouts",
+        "doc": {
+          "t": "Get shouts for this event. Also available as an rss feed.",
+          "url": "http://www.last.fm/api/show?service=399"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=event.getshouts&event={event}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Event",
+        "displayName": "Event_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=event.getShouts"
+      },
+      {
+        "path": "/?method=geo.getMetroWeeklyChartList",
+        "doc": {
+          "t": "Get a list of available chart periods for this metro, expressed as date ranges which can be sent to the chart services.",
+          "url": "http://www.last.fm/api/show?service=426"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetroweeklychartlist&metro={metro}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetroWeeklyChartList"
+      },
+      {
+        "path": "/?method=geo.getMetros",
+        "doc": {
+          "t": "Get a list of valid countries and metros for use in the other webservices.",
+          "url": "http://www.last.fm/api/show?service=435"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetros&country={country}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetros"
+      },
+      {
+        "path": "/?method=geo.getTopArtists",
+        "doc": {
+          "t": "Get the most popular artists on Last.fm by country.",
+          "url": "http://www.last.fm/api/show?service=297"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country={country}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getTopArtists"
+      },
+      {
+        "path": "/?method=geo.getTopTracks",
+        "doc": {
+          "t": "Get the most popular tracks on Last.fm last week by country.",
+          "url": "http://www.last.fm/api/show?service=298"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country={country}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getTopTracks"
+      },
+      {
+        "path": "/?method=geo.getMetroHypeTrackChart",
+        "doc": {
+          "t": "Get a chart of hyped tracks for a metro.",
+          "url": "http://www.last.fm/api/show?service=422"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetrohypetrackchart&country={country}&metro={metro}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetroHypeTrackChart"
+      },
+      {
+        "path": "/?method=geo.getMetroTrackChart",
+        "doc": {
+          "t": "Get a chart of tracks for a metro.",
+          "url": "http://www.last.fm/api/show?service=423"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetrotrackchart&country={country}&metro={metro}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetroTrackChart"
+      },
+      {
+        "path": "/?method=geo.getEvents",
+        "doc": {
+          "t": "Get all events in a specific location by country or city name.",
+          "url": "http://www.last.fm/api/show?service=270"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getevents&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getEvents"
+      },
+      {
+        "path": "/?method=geo.getMetroArtistChart",
+        "doc": {
+          "t": "Get a chart of artists for a metro.",
+          "url": "http://www.last.fm/api/show?service=421"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetroartistchart&country={country}&metro={metro}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetroArtistChart"
+      },
+      {
+        "path": "/?method=geo.getMetroHypeArtistChart",
+        "doc": {
+          "t": "Get a chart of hyped (up and coming) artists for a metro.",
+          "url": "http://www.last.fm/api/show?service=420"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetrohypeartistchart&country={country}&metro={metro}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetroHypeArtistChart"
+      },
+      {
+        "path": "/?method=geo.getMetroUniqueArtistChart",
+        "doc": {
+          "t": "Get a chart of the artists which make that metro unique.",
+          "url": "http://www.last.fm/api/show?service=424"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetrouniqueartistchart&country={country}&metro={metro}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetroUniqueArtistChart"
+      },
+      {
+        "path": "/?method=geo.getMetroUniqueTrackChart",
+        "doc": {
+          "t": "Get a chart of tracks for a metro.",
+          "url": "http://www.last.fm/api/show?service=425"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=geo.getmetrouniquetrackchart&country={country}&metro={metro}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Geo",
+        "displayName": "Geo_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=geo.getMetroUniqueTrackChart"
+      },
+      {
+        "path": "/?method=group.getWeeklyArtistChart",
+        "doc": {
+          "t": "Get an artist chart for a group, for a given date range. If no date range is supplied, it will return the most recent album chart for this group.",
+          "url": "http://www.last.fm/api/show?service=294"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=group.getweeklyartistchart&group={group}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Group",
+        "displayName": "Group_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=group.getWeeklyArtistChart"
+      },
+      {
+        "path": "/?method=group.getWeeklyTrackChart",
+        "doc": {
+          "t": "Get a track chart for a group, for a given date range. If no date range is supplied, it will return the most recent album chart for this group.",
+          "url": "http://www.last.fm/api/show?service=296"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=group.getweeklytrackchart&group={group}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Group",
+        "displayName": "Group_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=group.getWeeklyTrackChart"
+      },
+      {
+        "path": "/?method=group.getWeeklyChartList",
+        "doc": {
+          "t": "Get a list of available charts for this group, expressed as date ranges which can be sent to the chart services.",
+          "url": "http://www.last.fm/api/show?service=295"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=group.getweeklychartlist&group={group}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Group",
+        "displayName": "Group_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=group.getWeeklyChartList"
+      },
+      {
+        "path": "/?method=group.getMembers",
+        "doc": {
+          "t": "Get a list of members for this group.",
+          "url": "http://www.last.fm/api/show?service=379"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=group.getmembers&group={group}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Group",
+        "displayName": "Group_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=group.getMembers"
+      },
+      {
+        "path": "/?method=group.getHype",
+        "doc": {
+          "t": "Get the hype list for a group.",
+          "url": "http://www.last.fm/api/show?service=259"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=group.gethype&group={group}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Group",
+        "displayName": "Group_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=group.getHype"
+      },
+      {
+        "path": "/?method=group.getWeeklyAlbumChart",
+        "doc": {
+          "t": "Get a list of members for this group.",
+          "url": "http://www.last.fm/api/show?service=293"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=group.getweeklyalbumchart&group={group}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Group",
+        "displayName": "Group_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=group.getWeeklyAlbumChart"
+      },
+      {
+        "path": "/?method=library.getArtists",
+        "doc": {
+          "t": "A paginated list of all the artists in a user's library, with play counts and tag counts.",
+          "url": "http://www.last.fm/api/show?service=322"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=library.getartists&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Library",
+        "displayName": "Library_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=library.getArtists"
+      },
+      {
+        "path": "/?method=library.getAlbums",
+        "doc": {
+          "t": "A paginated list of all the albums in a user's library, with play counts and tag counts.",
+          "url": "http://www.last.fm/api/show?service=321"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=library.getalbums&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Library",
+        "displayName": "Library_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=library.getAlbums"
+      },
+      {
+        "path": "/?method=library.getTracks",
+        "doc": {
+          "t": "A paginated list of all the tracks in a user's library, with play counts and tag counts.",
+          "url": "http://www.last.fm/api/show?service=323"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=library.gettracks&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Library",
+        "displayName": "Library_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=library.getTracks"
+      },
+      {
+        "path": "/?method=playlist.fetch",
+        "doc": {
+          "t": "Fetch XSPF playlists using a lastfm playlist url.",
+          "url": "http://www.last.fm/api/show?service=271"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=playlist.fetch&playlistURL={playlistURL}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Playlist",
+        "displayName": "Playlist_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=playlist.fetch"
+      },
+      {
+        "path": "/?method=radio.search",
+        "doc": {
+          "t": "Resolve the name of a resource into a station depending on which resource it is most likely to represent.",
+          "url": "http://www.last.fm/api/show?service=418"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=radio.search&name={name}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Radio",
+        "displayName": "Radio_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=radio.search"
+      },
+      {
+        "path": "/?method=tag.getWeeklyChartList",
+        "doc": {
+          "t": "Get a list of available charts for this tag, expressed as date ranges which can be sent to the chart services.",
+          "url": "http://www.last.fm/api/show?service=359"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.getweeklychartlist&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getWeeklyChartList"
+      },
+      {
+        "path": "/?method=tag.getInfo",
+        "doc": {
+          "t": "Get the metadata for a tag.",
+          "url": "http://www.last.fm/api/show?service=452"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.getinfo&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getInfo"
+      },
+      {
+        "path": "/?method=tag.getSimilar",
+        "doc": {
+          "t": "Search for tags similar to this one. Returns tags ranked by similarity, based on listening data.",
+          "url": "http://www.last.fm/api/show?service=311"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.getsimilar&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getSimilar"
+      },
+      {
+        "path": "/?method=tag.getTopAlbums",
+        "doc": {
+          "t": "Get the top albums tagged by this tag, ordered by tag count.",
+          "url": "http://www.last.fm/api/show?service=283"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums"
+      },
+      {
+        "path": "/?method=tag.getTopArtists",
+        "doc": {
+          "t": "Get the top artists tagged by this tag, ordered by tag count.",
+          "url": "http://www.last.fm/api/show?service=284"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getTopArtists"
+      },
+      {
+        "path": "/?method=tag.getTopTags",
+        "doc": {
+          "t": "Fetches the top global tags on Last.fm, sorted by popularity (number of times used).",
+          "url": "http://www.last.fm/api/show?service=276"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.gettoptags&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getTopTags"
+      },
+      {
+        "path": "/?method=tag.getTopTracks",
+        "doc": {
+          "t": "Get the top tracks tagged by this tag, ordered by tag count.",
+          "url": "http://www.last.fm/api/show?service=285"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getTopTracks"
+      },
+      {
+        "path": "/?method=tag.getWeeklyArtistChart",
+        "doc": {
+          "t": "Get an artist chart for a tag, for a given date range. If no date range is supplied, it will return the most recent artist chart for this tag.",
+          "url": "http://www.last.fm/api/show?service=358"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.getweeklyartistchart&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.getWeeklyArtistChart"
+      },
+      {
+        "path": "/?method=tag.search",
+        "doc": {
+          "t": "Search for a tag by name. Returns matches sorted by relevance.",
+          "url": "http://www.last.fm/api/show?service=273"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=tag.search&tag={tag}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Tag",
+        "displayName": "Tag_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=tag.search"
+      },
+      {
+        "path": "/?method=track.getBuyLinks",
+        "doc": {
+          "t": "Get a list of Buy Links for a particular Track. It is required that you supply either the artist and track params or the mbid param.",
+          "url": "http://www.last.fm/api/show?service=431"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.getbuylinks&artist={artist}&track={track}&country={country}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getBuyLinks"
+      },
+      {
+        "path": "/?method=track.getFingerprintMetadata",
+        "doc": {
+          "t": "Retrieve track metadata associated with a fingerprint id generated by the Last.fm Fingerprinter. Returns track elements, along with a 'rank' value between 0 and 1 reflecting the confidence for each match. See this blog post for more info.",
+          "url": "http://www.last.fm/api/show?service=441"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.getfingerprintmetadata&fingerprintid={fingerprintid}&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getFingerprintMetadata"
+      },
+      {
+        "path": "/?method=track.getInfo",
+        "doc": {
+          "t": "Get the metadata for a track on Last.fm using the artist/track name or a musicbrainz id.",
+          "url": "http://www.last.fm/api/show?service=356"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.getinfo&artist={artist}&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getInfo"
+      },
+      {
+        "path": "/?method=track.getShouts",
+        "doc": {
+          "t": "Get shouts for this track. Also available as an rss feed.",
+          "url": "http://www.last.fm/api/show?service=453"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.getshouts&artist={artist}&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getShouts"
+      },
+      {
+        "path": "/?method=track.getSimilar",
+        "doc": {
+          "t": "Get the similar tracks for this track on Last.fm, based on listening data.",
+          "url": "http://www.last.fm/api/show?service=319"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist={artist}&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getSimilar"
+      },
+      {
+        "path": "/?method=track.getTopFans",
+        "doc": {
+          "t": "Get the top fans for this track on Last.fm, based on listening data. Supply either track and artist name or musicbrainz id.",
+          "url": "http://www.last.fm/api/show?service=312"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.gettopfans&artist={artist}&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getTopFans"
+      },
+      {
+        "path": "/?method=track.getTopTags",
+        "doc": {
+          "t": "Get the top tags for this track on Last.fm, ordered by tag count. Supply either track and artist name or musicbrainz id.",
+          "url": "http://www.last.fm/api/show?service=289"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.gettoptags&artist={artist}&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getTopTags"
+      },
+      {
+        "path": "/?method=track.getCorrection",
+        "doc": {
+          "t": "Use the last.fm corrections data to check whether the supplied track has a correction to a canonical track.",
+          "url": "http://www.last.fm/api/show?service=447"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.getcorrection&artist={artist}&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.getCorrection"
+      },
+      {
+        "path": "/?method=track.search",
+        "doc": {
+          "t": "Search for a track by track name. Returns track matches sorted by relevance.",
+          "url": "http://www.last.fm/api/show?service=286"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=track.search&track={track}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Track",
+        "displayName": "Track_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=track.search"
+      },
+      {
+        "path": "/?method=user.getWeeklyAlbumChart",
+        "doc": {
+          "t": "Get an album chart for a user profile, for a given date range. If no date range is supplied, it will return the most recent album chart for this user.",
+          "url": "http://www.last.fm/api/show?service=300"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getweeklyalbumchart&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getWeeklyAlbumChart"
+      },
+      {
+        "path": "/?method=user.getTopTracks",
+        "doc": {
+          "t": "Get the top tracks listened to by a user. You can stipulate a time period. Sends the overall chart by default.",
+          "url": "http://www.last.fm/api/show?service=300"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getTopTracks"
+      },
+      {
+        "path": "/?method=user.getTopTags",
+        "doc": {
+          "t": "Get the top tags used by this user.",
+          "url": "http://www.last.fm/api/show?service=123"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.gettoptags&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getTopTags"
+      },
+      {
+        "path": "/?method=user.getTopArtists",
+        "doc": {
+          "t": "Get the top artists listened to by a user. You can stipulate a time period. Sends the overall chart by default.",
+          "url": "http://www.last.fm/api/show?service=300"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getTopArtists"
+      },
+      {
+        "path": "/?method=user.getTopAlbums",
+        "doc": {
+          "t": "Get the top albums listened to by a user. You can stipulate a time period. Sends the overall chart by default.",
+          "url": "http://www.last.fm/api/show?service=401"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getTopAlbums"
+      },
+      {
+        "path": "/?method=user.getShouts",
+        "doc": {
+          "t": "Get shouts for this user. Also available as an rss feed.",
+          "url": "http://www.last.fm/api/show?service=401"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getshouts&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getShouts"
+      },
+      {
+        "path": "/?method=user.getRecentTracks",
+        "doc": {
+          "t": "Get a list of the recent tracks listened to by this user. Also includes the currently playing track with the nowplaying=\"true\" attribute if the user is currently listening.",
+          "url": "http://www.last.fm/api/show?service=278"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks"
+      },
+      {
+        "path": "/?method=user.getPastEvents",
+        "doc": {
+          "t": "Get a paginated list of all events a user has attended in the past.",
+          "url": "http://www.last.fm/api/show?service=329"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getpastevents&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getPastEvents"
+      },
+      {
+        "path": "/?method=user.getPlaylists",
+        "doc": {
+          "t": "Get a list of a user's playlists on Last.fm.",
+          "url": "http://www.last.fm/api/show?service=313"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getplaylists&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getPlaylists"
+      },
+      {
+        "path": "/?method=user.getNewReleases",
+        "doc": {
+          "t": "Get a list of a user's neighbours on Last.fm.",
+          "url": "http://www.last.fm/api/show?service=444"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getnewreleases&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getNewReleases"
+      },
+      {
+        "path": "/?method=user.getNeighbours",
+        "doc": {
+          "t": "Get a list of a user's neighbours on Last.fm.",
+          "url": "http://www.last.fm/api/show?service=264"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getneighbours&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getNeighbours"
+      },
+      {
+        "path": "/?method=user.getLovedTracks",
+        "doc": {
+          "t": "Get the last 50 tracks loved by a user.",
+          "url": "http://www.last.fm/api/show?service=329"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getlovedtracks&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getLovedTracks"
+      },
+      {
+        "path": "/?method=user.getInfo",
+        "doc": {
+          "t": "Get information about a user profile.",
+          "url": "http://www.last.fm/api/show?service=344"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getInfo"
+      },
+      {
+        "path": "/?method=user.getFriends",
+        "doc": {
+          "t": "Get a list of the user's friends on Last.fm.",
+          "url": "http://www.last.fm/api/show?service=263"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getfriends&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getFriends"
+      },
+      {
+        "path": "/?method=user.getEvents",
+        "doc": {
+          "t": "Get a list of upcoming events that this user is attending. Easily integratable into calendars, using the ical standard.",
+          "url": "http://www.last.fm/api/show?service=291"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getevents&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getEvents"
+      },
+      {
+        "path": "/?method=user.getBannedTracks",
+        "doc": {
+          "t": "Returns the tracks banned by the user.",
+          "url": "http://www.last.fm/api/show?service=448"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getbannedtracks&user={user}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getBannedTracks"
+      },
+      {
+        "path": "/?method=user.getArtistTracks",
+        "doc": {
+          "t": "Get a list of tracks by a given artist scrobbled by this user, including scrobble time. Can be limited to specific timeranges, defaults to all time.",
+          "url": "http://www.last.fm/api/show?service=432"
+        },
+        "curl": "curl -X GET  http://ws.audioscrobbler.com/2.0/?method=user.getartisttracks&user={user}&artist={artist}&api_key=9b6009eca365ded3a03c2b9673d54eb9",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "http://ws.audioscrobbler.com/2.0/?method=user.getArtistTracks"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "enabled": false,
+  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/lastfm.png",
+  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/lastfm.png",
+  "name": "LastFM",
+  "oauth": {
+    "key": "c034d4839dfa3e855f610145d1ecb819",
+    "tokenMethod": "apikey_app_query"
+  },
+  "type": "channel:last_fm"
+}
