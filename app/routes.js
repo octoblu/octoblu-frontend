@@ -37,6 +37,9 @@ module.exports = function(app, passport) {
     var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
     var flowNodeTypeController = new FlowNodeTypeController();
 
+    var GithubController = require('./controllers/github-controller');
+    var githubController = new GithubController();
+
     conn.on('notReady', function(data){
         console.log('SkyNet authentication: failed');
     });
@@ -74,6 +77,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
+
+            app.get('/api/oauth/github',          githubController.authorize);
+            app.get('/api/oauth/github/callback', githubController.callback, githubController.redirectToDesigner);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);

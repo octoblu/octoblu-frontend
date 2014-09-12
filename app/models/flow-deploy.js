@@ -141,12 +141,12 @@ var FlowDeploy = function(options){
 
 FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
   var flowDeploy, mergedFlow, flowDevice, user;
-  var Api  = mongoose.model('Api');
+  var Channel = require('../models/channel');
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
   return flowDeploy.getUser(userUUID).then(function(theUser){
     user = theUser;
-    return Api.findAll();
+    return Channel.findAll();
   }).then(function(channels){
     mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api, channels);
 

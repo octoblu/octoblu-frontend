@@ -36,6 +36,7 @@ require('./initializeModels.js');
 
 require('./config/passport')(env, passport); // pass passport for configuration
 passport.use(require('./config/dropbox'));
+passport.use(require('./config/github'));
 
 // set up our express application
 app.use(morgan('dev', {immediate:false})); // log every request to the console
