@@ -4,7 +4,6 @@ var _ = require('lodash'),
     moment = require('moment'),
     events = require('../lib/skynetdb').collection('events'),
     mongoose = require('mongoose'),
-    Api = mongoose.model('Api'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request');
