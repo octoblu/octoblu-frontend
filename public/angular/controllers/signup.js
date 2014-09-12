@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('signupController', function($scope, $state, AuthService) {
+    .controller('SignupController', function($scope, $state, $location,  AuthService) {
 
-
+        var signupParams = $location.search();
         $scope.errorMsg = '';
 
         $scope.signupUser = function(){
@@ -15,7 +15,9 @@ angular.module('octobluApp')
 
             AuthService.signup(
                 $scope.email,
-                $scope.password
+                $scope.password,
+                signupParams.email,
+                signupParams.invitation_code
             ).then(function(){
                     $state.go('ob.home');
                 }, function(){
