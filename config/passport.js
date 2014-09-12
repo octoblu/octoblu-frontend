@@ -242,36 +242,4 @@ module.exports = function (env, passport) {
                     done(err);
                 });
         }));
-
-    // =========================================================================
-    // GITHUB ==================================================================
-    // =========================================================================
-    passport.use(new GithubStrategy({
-
-            clientID: configAuth.githubAuth.clientID,
-            clientSecret: configAuth.githubAuth.clientSecret,
-            callbackURL: configAuth.githubAuth.callbackURL,
-            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
-        },
-        function (req, token, tokenSecret, profile, done) {
-            var query, updateParams;
-
-            query = {'github.id': profile.id};
-            updateParams = {
-                username: profile.username,
-                displayName: profile.displayName,
-                email: profile.username,
-                github: {
-                    id: profile.id
-                }
-            }
-
-            return User.findOneAndUpdate(query, {$set: updateParams}, {upsert: false, new: false}).exec()
-               .then(function (user) {
-                    done(null, user);
-                }, function(){
-                    done(err);
-                });
-        }));
 };

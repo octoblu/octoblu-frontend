@@ -56,6 +56,8 @@ module.exports = function(app, passport) {
             app.post('/api/auth/signup', security.bypassAuth);
             app.all('/api/auth', security.bypassTerms);
             app.all('/api/auth/*', security.bypassTerms);
+            app.get('/api/oauth/github', security.bypassAuth, security.bypassTerms);
+            app.get('/api/oauth/github/callback', security.bypassAuth, security.bypassTerms);
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
             // Initialize Controllers
