@@ -458,7 +458,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('signup', {
         url: '/signup',
         templateUrl: '/pages/signup.html',
-        controller: 'signupController',
+        controller: 'SignupController',
         unsecured: true
       })
       .state('reset', {

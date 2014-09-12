@@ -57,10 +57,12 @@ angular.module('octobluApp')
                 });
             },
 
-            signup: function (email, password) {
+            signup: function (email, password, invitationEmail, invitationCode) {
                 return $http.post('/api/auth/signup', {
                     email: email,
-                    password: password
+                    password: password,
+                    invitationEmail : invitationEmail,
+                    invitationCode : invitationCode
                 }).then(loginHandler, function (err) {
                     logoutHandler(err);
                     throw err;
