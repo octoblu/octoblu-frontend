@@ -3,9 +3,6 @@
 
 var mongoose = require('mongoose');
 
-var ApiSchema = require('./app/models/api');
-mongoose.model('Api', ApiSchema);
-
 var ResourcePermissionSchema = require('./app/models/resourcePermission');
 mongoose.model('ResourcePermission', ResourcePermissionSchema);
 

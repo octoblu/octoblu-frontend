@@ -7,10 +7,8 @@ describe('FlowDeploy', function () {
   before(function(done){
     mongoose   = require('mongoose');
     var UserSchema = require('../../app/models/user');
-    var ApiSchema  = require('../../app/models/api');
     var db = mongoose.createConnection();
     User = db.model('User', UserSchema);
-    Api  = db.model('Api', ApiSchema);
     db.open('localhost', 'octoblu_test', done);
   });
 

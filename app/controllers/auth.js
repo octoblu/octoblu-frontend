@@ -1,11 +1,11 @@
 var request = require('request'),
     mongoose = require('mongoose'),
-    Api = mongoose.model('Api'),
     crypto = require('crypto'),
     url = require('url'),
     _ = require('lodash'),
     querystring = require('querystring'),
     User = mongoose.model('User'),
+    Channel = require('../models/channel'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
 var ObjectId = require('mongoose').Types.ObjectId;
 
@@ -209,7 +209,7 @@ module.exports = function (app, passport, config) {
         var channelid = req.params.id;
         var user = req.user;
 
-        Api.findOne({_id: new ObjectId(channelid)}, function (err, api) {
+        Channel.findById(channelid).then(function (api) {
             var creds = getOAuthCredentials(api.oauth);
             if(creds.version==='1.0' && creds.is0LegAuth==true) {
                 // add api to user record
@@ -312,12 +312,8 @@ module.exports = function (app, passport, config) {
         var channelid = req.params.id;
         var user = req.user;
 
-        Api.findOne({_id: new ObjectId(channelid)}, function (err, api) {
+        Channel.findById(channelid).then(function (api) {
             var creds = getOAuthCredentials(api.oauth);
-            if (err) {
-                console.log(error);
-                return res.redirect(500, '/apis/' + api._id);
-            }
             if (creds.version == '2.0') {
                 if (creds.isManual) {
                     if (req.query.error) {

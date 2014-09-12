@@ -37,6 +37,9 @@ module.exports = function(app, passport) {
     var FlowNodeTypeController = require('./controllers/flow-node-type-controller');
     var flowNodeTypeController = new FlowNodeTypeController();
 
+    var GithubController = require('./controllers/github-controller');
+    var githubController = new GithubController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -57,6 +60,8 @@ module.exports = function(app, passport) {
             app.post('/api/auth/signup', security.bypassAuth);
             app.all('/api/auth', security.bypassTerms);
             app.all('/api/auth/*', security.bypassTerms);
+            app.get('/api/oauth/github', security.bypassAuth, security.bypassTerms);
+            app.get('/api/oauth/github/callback', security.bypassAuth, security.bypassTerms);
             app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms, invitationController.requestInvite);
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
@@ -75,9 +80,13 @@ module.exports = function(app, passport) {
             require('./controllers/group')(app);
             require('./controllers/permissions')(app);
             require('./controllers/designer')(app);
+            require('./controllers/invitation')(app, passport, config);
 
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
+
+            app.get('/api/oauth/github',          githubController.authorize);
+            app.get('/api/oauth/github/callback', githubController.callback, githubController.redirectToDesigner);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);
@@ -90,8 +99,6 @@ module.exports = function(app, passport) {
 
             app.get('/api/node_types', nodeTypeController.index);
             app.get('/api/nodes', nodeController.index);
-
-
 
             // show the home page (will also have our login links)
             app.get('/*', function(req, res) {

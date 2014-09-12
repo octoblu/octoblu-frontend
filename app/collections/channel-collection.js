@@ -1,13 +1,13 @@
 var _        = require('lodash');
 var when     = require('when');
 var mongoose = require('mongoose');
+var Channel  = require('../models/channel');
 
 var ChannelCollection = function(options){
   var self = this;
 
   options  = options || {};
   mongoose = options.mongoose || mongoose;
-  var Api  = mongoose.model('Api');
   var User = mongoose.model('User');
 
   self.fetch = function(userUUID) {
@@ -18,47 +18,29 @@ var ChannelCollection = function(options){
       userApis   = user.api;
       channelIds = _.compact(_.pluck(userApis, 'channelid'));
 
-      return self.fetchApisByIds(channelIds);
-    }).then(function(apis){
-      return self.mergeChannelsAndApis(userApis, apis);
+      return self.fetchChannelsByIds(channelIds);
+    }).then(function(channels){
+      return self.mergeChannelsAndApis(userApis, channels);
     });
   };
 
-  self.fetchApiById = function(channelId) {
-    return Api.findByIds(channelId);
-  };
-
-  self.fetchApisByIds = function(channelIds) {
-    return Api.findByIds(channelIds);
-  };
-
-  self.get = function(userUUID, channelId){
-    var user;
-    return self.getUser(userUUID).then(function(theUser){
-      user = theUser;
-      return self.fetchApiById(channelId);
-    }).then(function(api){
-      return {
-        channelid: api._id,
-        channelActivationId: user.api[0]._id,
-        name: api.name
-      }
-    });
+  self.fetchChannelsByIds = function(channelIds) {
+    return Channel.findByIds(channelIds);
   };
 
   self.getUser = function(userUUID) {
     return User.findLeanBySkynetUUID(userUUID);
   };
 
-  self.mergeChannelsAndApis = function(channels, apis){
-    return _.map(apis, function(api){
-      var channel = _.findWhere(channels, {channelid: ""+api._id});
+  self.mergeChannelsAndApis = function(apis, channels){
+    return _.map(channels, function(channel){
+      var api = _.findWhere(apis, {channelid: ""+channel._id});
       return {
-        channelid : api._id,
-        channelActivationId : channel._id,
-        uuid: channel.uuid,
-        name : api.name,
-        type : api.type
+        channelid : channel._id,
+        channelActivationId : api._id,
+        uuid: api.uuid,
+        name : channel.name,
+        type : channel.type
       };
     });
   };
