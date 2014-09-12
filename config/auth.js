@@ -3,6 +3,11 @@ var config = {
   },
   development: {
     'promiseTimeout' : 1000,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
     'githubAuth' : {
       'clientID': 'eb5bb208bc4dba9e8c13',
       'clientSecret': 'ce1d5cb7487b0974e970c0c76f5c9c76412309e9',
@@ -98,6 +103,11 @@ var config = {
   },
   test: {
     'promiseTimeout' : 100,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
     'designer': {
       'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
       'port': process.env.DESIGNER_PORT || 1025,
@@ -106,6 +116,11 @@ var config = {
  },
   production: {
     'promiseTimeout' : 5000,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
     'githubAuth' : {
       'clientID': 'INSERT_SECERT_HERE',
       'clientSecret': 'INSERT_SECERT_HERE',
@@ -205,6 +220,11 @@ var config = {
   },
   staging: {
     'promiseTimeout' : 5000,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
     'githubAuth' : {
       'clientID': 'INSERT_SECERT_HERE',
       'clientSecret': 'INSERT_SECERT_HERE',

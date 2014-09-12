@@ -40,6 +40,10 @@ module.exports = function(app, passport) {
     var GithubController = require('./controllers/github-controller');
     var githubController = new GithubController();
 
+    var InvitationController = require('./controllers/invitation-controller');
+    var invitationController = new InvitationController(config.betaInvites);
+
+
     conn.on('notReady', function(data){
         console.log('SkyNet authentication: failed');
     });
@@ -58,6 +62,7 @@ module.exports = function(app, passport) {
             app.all('/api/auth/*', security.bypassTerms);
             app.get('/api/oauth/github', security.bypassAuth, security.bypassTerms);
             app.get('/api/oauth/github/callback', security.bypassAuth, security.bypassTerms);
+            app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms, invitationController.requestInvite);
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
             // Initialize Controllers
