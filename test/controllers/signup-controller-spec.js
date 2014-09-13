@@ -7,56 +7,62 @@ describe('SignupController', function () {
   var sut, res;
 
   beforeEach(function () {
-
      sut = new SignupController();
-
-     sut.prefinery = {
-       getTester : sinon.spy()
-     };
-
+     sut.prefinery = new Prefinery();
   });
 
   it('exists', function(){
     expect(sut).to.exist;
   });
 
-  describe('signup without any data', function(){
+  describe('signup with an email, password, testerId, and invitationCode', function(){
+    var req;
     beforeEach(function () {
-      var req = { body: {}};
+      req = { body: { email: 'a@mailinator.com', password: 'b', testerId: '1', invitationCode: 'c' }};
       res = new FakeResponse();
-      sut.signup(req, res);
     });
 
-    it('should return a 401', function(){
-      expect(res.send).to.have.been.calledWith(401);
-    });
+    describe('when an invitationEmail and invitationCode is provided', function(){
+      beforeEach(function(){
+        sut.signup(req, res);
+      });
 
-  });
-
-  describe('signup with an email, password, invitationEmail, and invitationCode', function(){
-    beforeEach(function () {
-      var req = { body: { email: 'a@mailinator.com',
-        password: 'b', invitationEmail: 'i@mailinator.com', invitationCode: 'c' }};
-      res = new FakeResponse();
-      sut.signup(req, res);
-    });
-
-    it('it should try to get the tester', function(){
-      expect(sut.prefinery.getTester).to.have.been.called;
-    });
-
-      describe('prefinery tester', function(){
-
-        beforeEach(function(){
-          sut.prefinery.getTester = function() {
-            return when.reject('user not found');
-          }
-        });
-
-        it('should return a 401 if the tester does not exist', function(){
-
+      it('should call getTester with those values', function(){
+        expect(sut.prefinery.getTester).to.have.been.calledWith({
+          testerId: req.body.testerId,
+          code: req.body.invitationCode
         });
       });
+    });
+
+    describe('prefinery tester', function(){
+      describe('when the tester does not exist', function () {
+        beforeEach(function(done){
+          sut.signup(req, res);
+          sut.prefinery.getTester.reject('user not found');
+          sut.prefinery.getTester.promise.finally(done);
+        });
+
+        it('should return a 401', function(){
+          expect(res.send).to.have.been.calledWith(401);
+        });
+      });
+
+      describe('when the tester does exist', function () {
+        beforeEach(function(){
+          sut.signup(req, res);
+          sut.prefinery.getTester.resolve('something')
+        });
+
+        it('should return a 201', function(){
+          sut.prefinery.getTester.promise.finally(function(){
+            expect(res.send).to.have.been.calledWith(201);
+          });
+        });
+
+      });
+
+    });
   });
 
 });
@@ -68,3 +74,20 @@ var FakeResponse = function(){
 
   return response;
 };
+
+var Prefinery = function() {
+  var prefinery =  {
+    getTester : function(){
+      var defer = when.defer();
+
+      prefinery.getTester.resolve = defer.resolve;
+      prefinery.getTester.reject  = defer.reject;
+      prefinery.getTester.finally = defer.promise.finally;
+      prefinery.getTester.promise = defer.promise;
+
+      return defer.promise;
+    }
+  };
+  prefinery.getTester = sinon.spy(prefinery.getTester);
+  return prefinery;
+}

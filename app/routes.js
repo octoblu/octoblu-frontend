@@ -1,11 +1,10 @@
 module.exports = function(app, passport) {
-    // Setup config
+    // setting env to app.settings.env
     var env = app.settings.env;
     var config = require('../config/auth')(env);
     var skynet = require('skynet');
     var security = require('./controllers/middleware/security');
 
-    //set the skynetUrl
     app.locals.skynetUrl = config.skynet.host + ':' + config.skynet.port;
 
     console.log('Connecting to SkyNet...');
@@ -43,6 +42,8 @@ module.exports = function(app, passport) {
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
+    var SignupController = require('./controllers/signup-controller');
+    var signupController = new SignupController();
 
     conn.on('notReady', function(data){
         console.log('SkyNet authentication: failed');
@@ -52,20 +53,15 @@ module.exports = function(app, passport) {
     conn.on('ready', function(data){
         console.log('SkyNet authentication: success');
         try {
-            app.post('*', function(request, response, next){
-                console.log(request.body);
-                next();
-            });
             app.post('/api/auth', security.bypassAuth);
-            app.post('/api/auth/signup', security.bypassAuth);
             app.all('/api/auth', security.bypassTerms);
-            app.all('/api/auth/*', security.bypassTerms);
-            app.get('/api/oauth/github', security.bypassAuth, security.bypassTerms);
-            app.get('/api/oauth/github/callback', security.bypassAuth, security.bypassTerms);
-            app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms, invitationController.requestInvite);
+            app.all('/api/auth/*', security.bypassAuth, security.bypassTerms);
+            app.all('/api/oauth/*', security.bypassAuth, security.bypassTerms);
+            app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms);
+
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
-            // Initialize Controllers
+
             require('./controllers/auth')(app, passport, config);
             require('./controllers/channel')(app);
             require('./controllers/connect')(app, passport, config);
@@ -82,11 +78,7 @@ module.exports = function(app, passport) {
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
 
-            app.get('/api/oauth/dropbox',          dropboxController.authorize);
-            app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
-
-            app.get('/api/oauth/github',          githubController.authorize);
-            app.get('/api/oauth/github/callback', githubController.callback, githubController.redirectToDesigner);
+            app.post('/api/auth/signup', signupController.signup);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);
@@ -97,10 +89,17 @@ module.exports = function(app, passport) {
 
             app.get('/api/flow_node_types', flowNodeTypeController.getFlowNodeTypes);
 
+            app.post('/api/invitation/request', invitationController.requestInvite);
+
             app.get('/api/node_types', nodeTypeController.index);
             app.get('/api/nodes', nodeController.index);
 
-            // show the home page (will also have our login links)
+            app.get('/api/oauth/dropbox',          dropboxController.authorize);
+            app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
+
+            app.get('/api/oauth/github',          githubController.authorize);
+            app.get('/api/oauth/github/callback', githubController.callback, githubController.redirectToDesigner);
+
             app.get('/*', function(req, res) {
                 res.sendfile('./public/index.html');
             });
@@ -108,5 +107,5 @@ module.exports = function(app, passport) {
             console.log(err.stack);
             throw err;
         }
-    }); // end skynet
+    }); // end skynet (and everything else)
 };

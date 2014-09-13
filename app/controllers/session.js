@@ -82,62 +82,62 @@ module.exports = function ( app, passport, config ) {
     });
   });
 
-  app.post('/api/auth/signup', function(req, res, next) {
-    delete req.session.user;
-    res.clearCookie('skynetuuid', {domain: config.domain});
-    res.clearCookie('skynettoken', {domain: config.domain});
+ //  app.post('/api/auth/signup', function(req, res, next) {
+ //    delete req.session.user;
+ //    res.clearCookie('skynetuuid', {domain: config.domain});
+ //    res.clearCookie('skynettoken', {domain: config.domain});
 
-    passport.authenticate('local-signup', function(err, user, info) {
-      console.log('err', err);
-      console.log('user', user);
-      console.log('info', info);
-      if (err) { return next(err); }
-      if (!user) { return res.redirect('/login'); }
-      req.logIn(user, function(err) {
-        if (err) { return next(err); }
+ //    passport.authenticate('local-signup', function(err, user, info) {
+ //      console.log('err', err);
+ //      console.log('user', user);
+ //      console.log('info', info);
+ //      if (err) { return next(err); }
+ //      if (!user) { return res.redirect('/login'); }
+ //      req.logIn(user, function(err) {
+ //        if (err) { return next(err); }
 
-        // Add user to Skynet'
-		    request.post( req.protocol + '://' + app.locals.skynetUrl + '/devices',
-		    	{form: {"type":"user", "email": user.local.email}}
-			  , function (error, response, body) {
-			  		// console.log(response.statusCode, body);
-			      if(response.statusCode == 200){
+ //        // Add user to Skynet'
+	// 	    request.post( req.protocol + '://' + app.locals.skynetUrl + '/devices',
+	// 	    	{form: {"type":"user", "email": user.local.email}}
+	// 		  , function (error, response, body) {
+	// 		  		// console.log(response.statusCode, body);
+	// 		      if(response.statusCode == 200){
 
-			      	var data = JSON.parse(body);
+	// 		      	var data = JSON.parse(body);
 
-			        User.update({_id: user._id},
-			        	{local: {email: user.local.email, password: user.local.password, skynetuuid: data.uuid, skynettoken: data.token}}
-			        , function(err) {
-                            if (!err) {
-                                console.log("user " + data.uuid + " updated");
-                                res.cookie('skynetuuid', data.uuid, {
-                                    maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                    domain: config.domain,
-                                    httpOnly: false
-                                });
-                                res.cookie('skynettoken', data.token, {
-                                    maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-                                    domain: config.domain,
-                                    httpOnly: false
-                                });
-                                req.session.user = user;
-                                res.send(201, user);
-                            } else {
-                                console.log("Error: could not update user - error " + err);
-                                return res.send(422, {});
-                            }
-                        });
+	// 		        User.update({_id: user._id},
+	// 		        	{local: {email: user.local.email, password: user.local.password, skynetuuid: data.uuid, skynettoken: data.token}}
+	// 		        , function(err) {
+ //                            if (!err) {
+ //                                console.log("user " + data.uuid + " updated");
+ //                                res.cookie('skynetuuid', data.uuid, {
+ //                                    maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+ //                                    domain: config.domain,
+ //                                    httpOnly: false
+ //                                });
+ //                                res.cookie('skynettoken', data.token, {
+ //                                    maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
+ //                                    domain: config.domain,
+ //                                    httpOnly: false
+ //                                });
+ //                                req.session.user = user;
+ //                                res.send(201, user);
+ //                            } else {
+ //                                console.log("Error: could not update user - error " + err);
+ //                                return res.send(422, {});
+ //                            }
+ //                        });
 
-			      } else {
-			            console.log('error: '+ response.statusCode);
-			            console.log(error);
+	// 		      } else {
+	// 		            console.log('error: '+ response.statusCode);
+	// 		            console.log(error);
 
-                        res.send(422, {});
-			      }
-			    }
-			  )
+ //                        res.send(422, {});
+	// 		      }
+	// 		    }
+	// 		  )
 
-	    });
-	  })(req, res, next);
-	});
+	//     });
+	//   })(req, res, next);
+	// });
 };
