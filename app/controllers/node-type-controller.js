@@ -14,7 +14,7 @@ var NodeTypeController = function(options){
     }, function(error){
       res.send(500, error);
     });
-  }
+  };
 
   addResourceType = function(items){
     return _.map(items, function(item){
