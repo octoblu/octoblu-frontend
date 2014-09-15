@@ -8,6 +8,18 @@ var CONFIG = {
     clientSecret: 'INSERT_SECERT_HERE',
     callbackURL:    'http://localhost:8080/api/oauth/dropbox/callback',
     passReqToCallback: true
+  },
+  production: {
+    clientID:     'INSERT_SECERT_HERE',
+    clientSecret: 'INSERT_SECERT_HERE',
+    callbackURL:    'https://app.octoblu.com/api/oauth/dropbox/callback',
+    passReqToCallback: true
+  },
+  staging: {
+    clientID:     'INSERT_SECERT_HERE',
+    clientSecret: 'INSERT_SECERT_HERE',
+    callbackURL:    'https://staging.octoblu.com/api/oauth/dropbox/callback',
+    passReqToCallback: true
   }
 }[process.env.NODE_ENV];
 
