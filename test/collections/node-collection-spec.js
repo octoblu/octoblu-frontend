@@ -78,24 +78,6 @@ describe('NodeCollection', function () {
           ];
           fakeNodeTypeCollection.fetch.successCallback(nodeTypes);
         });
-
-
-        xit('should fulfill an an empty promise', function (done) {
-          expectedResult = [
-            { name: 'BBC One', type: 'channel:bbc', category: 'channel', nodeType: {logo: 'bbc.ping'}, online: true},
-            { name: 'C2', type: 'channel:c2', category: 'channel', nodeType: {logo: 'c2.pee-een-ghee'}, online: true},
-            { name: 'NetDuino 1', type: 'netduino', category: 'device', nodeType: {logo: 'netduino.jif'}},
-            { name: 'Buffy the Vampire Slayer', type: 'buffy', category: 'device', nodeType: {logo: 'buffy.tiffany'}}
-          ];
-
-          result.then(function (nodes) {
-            expect(nodes).to.contain(expectedResult[0]);
-            expect(nodes).to.contain(expectedResult[1]);
-            expect(nodes).to.contain(expectedResult[2]);
-            expect(nodes).to.contain(expectedResult[3]);
-            done();
-          }).catch(done);
-        });
       });
     });
   });

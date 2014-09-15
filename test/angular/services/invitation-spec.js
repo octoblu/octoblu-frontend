@@ -13,24 +13,4 @@ describe('InvitationService', function () {
       $httpBackend.flush();
     });
   });
-
-  describe('requestInvite', function (){
-
-    it('should call POST /api/invitation/request', function(){
-      $httpBackend.expectPOST('/api/invitation/request').respond(200);
-      sut.requestInvite('foo', 'bar', 'joe@example.com');
-      $httpBackend.flush();
-    });
-
-    xit('should return a promise for an Invitation Request', function(done){
-      $httpBackend.expectPOST('/api/invitation/request').respond(200, {blarg: 1234});
-
-      sut.getById(1234).then(function(Invitation){
-        expect(Invitation).to.deep.equal({blarg: 1234});
-        done();
-      }).catch(done);
-
-      $httpBackend.flush();
-    });
-  });
 });
