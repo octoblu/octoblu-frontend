@@ -1,4 +1,5 @@
-var _    = require('lodash');
+var _         = require('lodash');
+var passport  = require('passport');
 var Prefinery = require('../models/prefinery');
 
 var SignupController = function () {
@@ -6,19 +7,42 @@ var SignupController = function () {
   self = this;
   self.prefinery = new Prefinery();
 
-  self.signup = function (req, res) {
-    var testerPromise = self.prefinery.getTester({
-      testerId:       req.body.testerId,
-      invitationCode: req.body.code
+  self.checkInTester = function(req, res, next) {
+    var checkInPromise = self.prefinery.checkInTester(req.body.testerId);
+
+    checkInPromise.then(function(){
+      req.user.testerId = req.body.testerId;
+      req.user.save(function(error) {
+        if(error){
+          throw error;
+        }
+        next();
+      });
     });
 
-    testerPromise.then(function(tester){
-      res.send(201, tester);
+    checkInPromise.catch(function(error){
+      res.send(422, error);
+    });
+  };
+
+  self.createUser = passport.authenticate('local');
+
+  this.returnUser = function(req, res){
+    res.send(201, req.user);
+  };
+
+  self.verifyInvitationCode = function (req, res, next) {
+    var testerPromise = self.prefinery.getTester({
+      testerId:       req.body.testerId,
+      invitationCode: req.body.invitationCode
+    });
+
+    testerPromise.then(function(){
+      next();
     });
 
     testerPromise.catch(function(error){
-      console.log('Darn');
-      res.send(401, error);
+      res.send(422, error);
     });
   };
 };

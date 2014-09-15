@@ -13,8 +13,8 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
-    app.post('/api/auth', passport.authenticate('local-login'), loginRoute);
-    app.get('/api/auth/login', passport.authenticate('local-login'), loginRoute);
+    app.post('/api/auth', passport.authenticate('local'), loginRoute);
+    app.get('/api/auth/login', passport.authenticate('local'), loginRoute);
 
     app.delete('/api/auth', logoutRoute);
     app.get('/api/auth/logout', logoutRoute);

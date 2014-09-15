@@ -78,7 +78,7 @@ module.exports = function(app, passport) {
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
 
-            app.post('/api/auth/signup', signupController.signup);
+            app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.checkInTester, signupController.returnUser);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);

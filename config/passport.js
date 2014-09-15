@@ -14,7 +14,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var GithubStrategy = require('passport-github').Strategy;
 
 // load up the user model
 var mongoose = require('mongoose');
@@ -42,47 +41,6 @@ module.exports = function (env, passport) {
             done(err, user);
         });
     });
-
-    // =========================================================================
-    // LOCAL LOGIN =============================================================
-    // =========================================================================
-    passport.use('local-login', new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
-            usernameField: 'email',
-            passwordField: 'password',
-            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-        },
-        function (req, email, password, done) {
-
-            // asynchronous
-            User.findOne({ 'local.email': email }, function (err, user) {
-                // if there are any errors, return the error
-                if (err) {
-                    console.log('auth error');
-                    return done(null, false, { message : "Internal Server Error"});
-                }
-
-                // if no user is found, return the message
-                if (!user) {
-                    console.log('auth user not found');
-                    return done(null, false,  {message : 'No User Found'});
-                }
-
-                if (!user.validPassword(password)) {
-                    console.log('auth password doesnt match');
-                    return done(null, false, {message : 'Invalid Password!'});
-                }
-
-
-                // all is well, return user
-                else {
-                    console.log('auth good');
-                    return done(null, user);
-                }
-
-            });
-
-        }));
 
     // =========================================================================
     // LOCAL SIGNUP ============================================================

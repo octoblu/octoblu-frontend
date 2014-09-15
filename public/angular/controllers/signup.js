@@ -1,27 +1,36 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('SignupController', function($scope, $state, $location,  AuthService) {
+.controller('SignupController', function($scope, $state, $location,  AuthService) {
 
-        var signupParams = $location.search();
-        $scope.errorMsg = '';
+  var signupParams = $location.search();
+  $scope.errorMsg = '';
 
-        $scope.signupUser = function(){
+  var comparePasswords = function(){
+    if($scope.password !== $scope.password_confirmation){
+      $scope.errorMsg = 'Passwords Don\'t Match';
+      return false;
+    }
 
-            if($scope.password !== $scope.password_confirmation){
-                $scope.errorMsg = 'Passwords Don\'t Match';
-                return;
-            }
+    $scope.errorMsg = undefined;
+    return true;
+  };
 
-            AuthService.signup(
-                $scope.email,
-                $scope.password,
-                signupParams.email,
-                signupParams.invitation_code
-            ).then(function(){
-                    $state.go('ob.home');
-                }, function(){
-                    $scope.errorMsg = 'Error creating user';
-                });
-        };
+  $scope.$watch('password', comparePasswords);
+  $scope.$watch('password_confirmation', comparePasswords);
+
+  $scope.signupUser = function(){
+    if(!comparePasswords()) { return; }
+
+    AuthService.signup(
+      $scope.email,
+      $scope.password,
+      signupParams.testerId,
+      signupParams.code
+    ).then(function(){
+      $state.go('ob.home');
+    }, function(error){
+      $scope.errorMsg = error;
     });
+  };
+});

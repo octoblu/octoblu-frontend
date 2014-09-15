@@ -20,11 +20,10 @@ angular.module('octobluApp')
 
         function loginHandler(result) {
             if(result.status >= 400){
-            logoutHandler(result.data);
                throw result.data;
             }
             _.extend(currentUser, result.data);
-            $cookies.skynetuuid = currentUser.skynetuuid;
+            $cookies.skynetuuid  = currentUser.skynetuuid;
             $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);
             return currentUser;
@@ -57,15 +56,14 @@ angular.module('octobluApp')
                 });
             },
 
-            signup: function (email, password, invitationEmail, invitationCode) {
+            signup: function (email, password, testerId, invitationCode) {
                 return $http.post('/api/auth/signup', {
                     email: email,
                     password: password,
-                    invitationEmail : invitationEmail,
+                    testerId : testerId,
                     invitationCode : invitationCode
-                }).then(loginHandler, function (err) {
-                    logoutHandler(err);
-                    throw err;
+                }).then(function(result){
+                    return loginHandler(result);
                 });
             },
 

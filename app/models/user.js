@@ -24,6 +24,7 @@ var UserSchema = new mongoose.Schema({
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     terms_accepted_at: Date,
+    testerId: String,
     skynet: {
       uuid: {type: String, unique: true, required: true},
       token: { type: String, required: true}
@@ -220,6 +221,31 @@ UserSchema.virtual('skynettoken').get(function () {
 //
 //    return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
 //});
+UserSchema.statics.findOrCreateByEmailAndPassword = function(email, password){
+  var self = this;
+
+  return when.promise(function(resolve, reject){
+    self.findByEmail(email).then(function(user){
+      if(user && user.validPassword(password)){
+        return resolve(user);
+      };
+
+      if(user) {
+        return reject("User with that email address already exists");
+      };
+
+      var userParams = {
+        email: email,
+        local: {
+          email: email,
+          password: self.generateHash(password)
+        }
+      };
+
+      return self.create(userParams);
+    });
+  });
+};
 
 UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
   return when(this.findOne({'skynet.uuid': skynetuuid}).exec());
@@ -246,6 +272,10 @@ UserSchema.statics.findByResetToken = function (resetToken) {
 
 UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
   return when(this.findOne({'skynet.uuid': skynetuuid, 'skynet.token': skynettoken}).exec());
+};
+
+UserSchema.statics.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 UserSchema.pre('validate', function (next) {
