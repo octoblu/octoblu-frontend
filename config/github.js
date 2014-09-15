@@ -3,16 +3,22 @@ var mongoose = require('mongoose');
 var User     = mongoose.model('User');
 
 var CONFIG = {
-  production: {
-    clientID: "d67367e23f89dcb0fdbe",
-    clientSecret: "c2b1741e8a8ff08673607b3b67753b2dc8778d71",
-    callbackURL:    'http://localhost:8080/api/oauth/github/callback',
-    passReqToCallback: true
-  },
   development: {
     clientID: "463a8c25ee407035cd1c",
     clientSecret: "fdccd7d4fa72cda2746dc3db787e5558b8bb3837",
     callbackURL:    'http://localhost:8080/api/oauth/github/callback',
+    passReqToCallback: true
+  },
+  production: {
+    clientID: "INSERT_SECERT_HERE",
+    clientSecret: "INSERT_SECERT_HERE",
+    callbackURL:    'https://app.octoblu.com/api/oauth/github/callback',
+    passReqToCallback: true
+  },
+  production: {
+    clientID: "INSERT_SECERT_HERE",
+    clientSecret: "INSERT_SECERT_HERE",
+    callbackURL:    'https://staging.octoblu.com/api/oauth/github/callback',
     passReqToCallback: true
   }
 }[process.env.NODE_ENV];
