@@ -9,6 +9,8 @@ cache:
     - node_modules
     - public/lib
 env: NODE_ENV=test
+notifications:
+  flowdock: e7454f5285e7b9ab67009802d5560490
 before_deploy: "mkdir -p build && tar czf build/public.tar.gz public"
 deploy:
   # production
