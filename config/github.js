@@ -15,7 +15,7 @@ var CONFIG = {
     callbackURL:    'https://app.octoblu.com/api/oauth/github/callback',
     passReqToCallback: true
   },
-  production: {
+  staging: {
     clientID: "INSERT_SECERT_HERE",
     clientSecret: "INSERT_SECERT_HERE",
     callbackURL:    'https://staging.octoblu.com/api/oauth/github/callback',
