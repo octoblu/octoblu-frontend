@@ -15,7 +15,7 @@ describe('SignupController', function () {
     expect(sut).to.exist;
   });
 
-  describe('signup with an email, password, testerId, and invitationCode', function(){
+  describe('verifyInvitationCode with an email, password, testerId, and invitationCode', function(){
     var req;
     beforeEach(function () {
       req = { body: { email: 'a@mailinator.com', password: 'b', testerId: '1', invitationCode: 'c' }};
@@ -24,13 +24,13 @@ describe('SignupController', function () {
 
     describe('when an invitationEmail and invitationCode is provided', function(){
       beforeEach(function(){
-        sut.signup(req, res);
+        sut.verifyInvitationCode(req, res);
       });
 
       it('should call getTester with those values', function(){
         expect(sut.prefinery.getTester).to.have.been.calledWith({
           testerId: req.body.testerId,
-          code: req.body.invitationCode
+          invitationCode: req.body.invitationCode
         });
       });
     });
@@ -38,30 +38,15 @@ describe('SignupController', function () {
     describe('prefinery tester', function(){
       describe('when the tester does not exist', function () {
         beforeEach(function(done){
-          sut.signup(req, res);
+          sut.verifyInvitationCode(req, res);
           sut.prefinery.getTester.reject('user not found');
           sut.prefinery.getTester.promise.finally(done);
         });
 
-        it('should return a 401', function(){
-          expect(res.send).to.have.been.calledWith(401);
+        it('should return a 422', function(){
+          expect(res.send).to.have.been.calledWith(422);
         });
       });
-
-      describe('when the tester does exist', function () {
-        beforeEach(function(){
-          sut.signup(req, res);
-          sut.prefinery.getTester.resolve('something')
-        });
-
-        it('should return a 201', function(){
-          sut.prefinery.getTester.promise.finally(function(){
-            expect(res.send).to.have.been.calledWith(201);
-          });
-        });
-
-      });
-
     });
   });
 

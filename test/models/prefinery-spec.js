@@ -39,18 +39,18 @@ describe('Prefinery', function () {
     });
 
     it('should have a function called "getTester"', function () {
-      var qs = {access_token: 'UrswKVa4CaC6aaXtN6Zh', invitation_code: '8675309'};
+      var qs = {api_key: 'UrswKVa4CaC6aaXtN6Zh', invitation_code: '8675309'};
       expect(sut.request).to.have.been.calledWith({url: VERIFY_TESTER_URL1, qs: qs});
     });
 
     describe('when the request resolves', function () {
       beforeEach(function () {
-        sut.request.resolve(null, null, {});
+        sut.request.resolve(null, {statusCode: 200}, '{"invitation_code": "8675309", "status": "invited"}');
       });
 
       it('should resolve the promise with mah empty hash', function (done) {
         promise.then(function(result){
-          expect(result).to.deep.equal({});
+          expect(result).to.deep.equal({"invitation_code": "8675309", "status": "invited"});
           done();
         }).catch(done);
       });
@@ -76,7 +76,7 @@ describe('Prefinery', function () {
     });
 
     it('should have a function called "getTester"', function () {
-      var qs = {access_token: 'UrswKVa4CaC6aaXtN6Zh', invitation_code : '1337'};
+      var qs = {api_key: 'UrswKVa4CaC6aaXtN6Zh', invitation_code : '1337'};
       expect(sut.request).to.have.been.calledWith({url: VERIFY_TESTER_URL2, qs: qs});
     });
   });
