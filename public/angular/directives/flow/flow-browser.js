@@ -18,6 +18,11 @@ angular.module('octobluApp')
             template: '/pages/flow-browser-debug.html',
             controlsTemplate: '/pages/flow-browser-debug-controls.html'
           },
+          operators : {
+            name: 'operators',
+            template: '/pages/flow-browser-operators.html',
+            controlsTemplate: '/pages/flow-browser-operators-controls.html'
+          },
           nodes: {
             name: 'nodes',
             template: '/pages/flow-browser-nodes.html',
