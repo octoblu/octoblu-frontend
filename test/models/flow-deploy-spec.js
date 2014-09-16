@@ -38,9 +38,9 @@ describe('FlowDeploy', function () {
     describe('when it is called with one flow with one node and no links', function () {
       it('should return a converted flow', function () {
         var node = {"id":"4848bef2.b7b74","category":"operation","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
-        var flow = {flowId: '55235', name: 'mah notha flow', nodes:[node], links: []};
+        var flow = {flowId: '55235', name: 'mah notha flow', hash: 'thehash', nodes:[node], links: []};
 
-        var convertedNode = {"id":"4848bef2.b7b74","category":"operation","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"55235","wires":[]};
+        var convertedNode = {"id":"4848bef2.b7b74","category":"operation","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"55235","wires":[],"hash":"thehash"};
         expect(sut.convertFlow(flow)).to.deep.equal([{id: '55235', label: 'mah notha flow', type: 'tab'}, convertedNode]);
       });
     });
@@ -49,11 +49,11 @@ describe('FlowDeploy', function () {
       it('should return a converted flow', function () {
         var node1 = {"id":"node1","category":"inject", "type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var node2 = {"id":"node2","category":"debug", "type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
-        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: []};
+        var flow = {flowId: 'flowid', name: 'flowname', hash: 'ahash', nodes:[node1, node2], links: []};
 
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
-        var convertedNode1 = {"id":"node1","category":"inject", "type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
-        var convertedNode2 = {"id":"node2","category":"debug", "type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        var convertedNode1 = {"id":"node1","category":"inject", "type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"ahash"};
+        var convertedNode2 = {"id":"node2","category":"debug", "type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"ahash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
@@ -63,11 +63,11 @@ describe('FlowDeploy', function () {
         var node1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var node2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var link = {from: "node1", fromPort: "0", to: "node2", toPort: "0"};
-        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: [link]};
+        var flow = {flowId: 'flowid', name: 'flowname', hash:'bhash', nodes:[node1, node2], links: [link]};
 
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
-        var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2']]};
-        var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2']],"hash":"bhash"};
+        var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"bhash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
@@ -78,11 +78,11 @@ describe('FlowDeploy', function () {
         var node2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var link1 = {from: "node1", fromPort: "0", to: "node2", toPort: "0"};
         var link2 = {from: "node1", fromPort: "1", to: "node2", toPort: "0"};
-        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: [link1, link2]};
+        var flow = {flowId: 'flowid', name: 'flowname', hash: 'chash', nodes:[node1, node2], links: [link1, link2]};
 
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
-        var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2'], ['node2']]};
-        var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2'], ['node2']],"hash":"chash"};
+        var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"chash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
@@ -92,11 +92,11 @@ describe('FlowDeploy', function () {
         var node1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var node2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var link = {from: "node1", fromPort: "1", to: "node2", toPort: "0"};
-        var flow = {flowId: 'flowid', name: 'flowname', nodes:[node1, node2], links: [link]};
+        var flow = {flowId: 'flowid', name: 'flowname', hash: "dhash", nodes:[node1, node2], links: [link]};
 
         var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
-        var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[[], ['node2']]};
-        var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[]};
+        var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[[], ['node2']],"hash":"dhash"};
+        var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"dhash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });

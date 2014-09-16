@@ -44,6 +44,7 @@ var FlowDeploy = function(options){
 
     convertedNode = _.clone(node);
     convertedNode.z = flow.flowId;
+    convertedNode.hash = flow.hash;
     convertedNode.wires = self.paddedArray(largestPort);
     if (convertedNode.category === 'operation') {
       convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.type
