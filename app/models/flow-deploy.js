@@ -72,7 +72,7 @@ var FlowDeploy = function(options){
         node.oauth.access_token_secret = userApiMatch.secret;
       }
       var channelApiMatch = _.findWhere(channelApis, {'_id': node.channelid});
-      if (channelApiMatch) {
+      if (channelApiMatch && channelApiMatch.oauth) {
         var channelOauth = channelApiMatch.oauth[process.env.NODE_ENV] || channelApiMatch.oauth;
         node.application = {base: channelApiMatch.application.base};
         node.bodyFormat = channelApiMatch.bodyFormat;
