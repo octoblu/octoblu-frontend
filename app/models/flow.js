@@ -8,6 +8,7 @@ var FlowSchema = new mongoose.Schema({
   zoomScale: Number,
   zoomX: Number,
   zoomY: Number,
+  hash:  String,
   nodes: [],
   links: [],
   resource: {

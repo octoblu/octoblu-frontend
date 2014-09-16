@@ -26,7 +26,7 @@ var FlowDeploy = function(options){
   self.convertFlow = function(flow){
     var convertedNodes = [];
 
-    convertedNodes.push({id: flow.flowId, label: flow.name, type: 'tab'});
+    convertedNodes.push({id: flow.flowId, label: flow.name, type: 'tab', hash: flow.hash});
 
     _.each(flow.nodes, function(node){
         convertedNodes.push(self.convertNode(flow, node));

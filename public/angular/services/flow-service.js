@@ -7,7 +7,8 @@ angular.module('octobluApp')
   self.saveActiveFlow = function () {
     if(!activeFlow){return;}
     var flow = _.clone(activeFlow);
-    flow.hash = dcodeIO.bcrypt.hashSync(JSON.stringify(flow));
+    var hashableFlow = _.pick(flow, ['links', 'nodes']);
+    flow.hash = XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
     return $http.put("/api/flows/" + flow.flowId, flow);
   };
   self.debouncedSaveFlow = _.debounce(self.saveActiveFlow, 1000);

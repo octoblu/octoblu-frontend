@@ -30,8 +30,8 @@ describe('FlowDeploy', function () {
 
     describe('when it is called with one flow with no nodes or links', function () {
       it('should return a converted flow', function () {
-        var flow = {flowId: '1234', name: 'mah flow', nodes:[], links: []};
-        expect(sut.convertFlow(flow)).to.deep.equal([{id: '1234', label: 'mah flow', type: 'tab'}]);
+        var flow = {flowId: '1234', name: 'mah flow', hash: 'zhash', nodes:[], links: []};
+        expect(sut.convertFlow(flow)).to.deep.equal([{id: '1234', label: 'mah flow', type: 'tab', hash: 'zhash'}]);
       });
     });
 
@@ -41,7 +41,7 @@ describe('FlowDeploy', function () {
         var flow = {flowId: '55235', name: 'mah notha flow', hash: 'thehash', nodes:[node], links: []};
 
         var convertedNode = {"id":"4848bef2.b7b74","category":"operation","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"55235","wires":[],"hash":"thehash"};
-        expect(sut.convertFlow(flow)).to.deep.equal([{id: '55235', label: 'mah notha flow', type: 'tab'}, convertedNode]);
+        expect(sut.convertFlow(flow)).to.deep.equal([{id: '55235', label: 'mah notha flow', type: 'tab', hash: 'thehash'}, convertedNode]);
       });
     });
 
@@ -51,7 +51,7 @@ describe('FlowDeploy', function () {
         var node2 = {"id":"node2","category":"debug", "type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
         var flow = {flowId: 'flowid', name: 'flowname', hash: 'ahash', nodes:[node1, node2], links: []};
 
-        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab', hash: 'ahash'};
         var convertedNode1 = {"id":"node1","category":"inject", "type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"ahash"};
         var convertedNode2 = {"id":"node2","category":"debug", "type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"ahash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
@@ -65,7 +65,7 @@ describe('FlowDeploy', function () {
         var link = {from: "node1", fromPort: "0", to: "node2", toPort: "0"};
         var flow = {flowId: 'flowid', name: 'flowname', hash:'bhash', nodes:[node1, node2], links: [link]};
 
-        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab', hash: 'bhash'};
         var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2']],"hash":"bhash"};
         var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"bhash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
@@ -80,7 +80,7 @@ describe('FlowDeploy', function () {
         var link2 = {from: "node1", fromPort: "1", to: "node2", toPort: "0"};
         var flow = {flowId: 'flowid', name: 'flowname', hash: 'chash', nodes:[node1, node2], links: [link1, link2]};
 
-        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab', hash: 'chash'};
         var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[['node2'], ['node2']],"hash":"chash"};
         var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"chash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
@@ -94,7 +94,7 @@ describe('FlowDeploy', function () {
         var link = {from: "node1", fromPort: "1", to: "node2", toPort: "0"};
         var flow = {flowId: 'flowid', name: 'flowname', hash: "dhash", nodes:[node1, node2], links: [link]};
 
-        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab'};
+        var convertedWorkspace1 = {id: 'flowid', label: 'flowname', type: 'tab', hash: 'dhash'};
         var convertedNode1 = {"id":"node1","category":"inject","type":"inject","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[[], ['node2']],"hash":"dhash"};
         var convertedNode2 = {"id":"node2","category":"debug","type":"debug", "name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159,"z":"flowid","wires":[],"hash":"dhash"};
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);

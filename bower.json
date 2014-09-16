@@ -49,7 +49,7 @@
     "mgo-mousetrap": "git://github.com/mgonto/mgo-mousetrap.git#~0.1.2",
     "mousetrap": "~1.4.6",
     "prism": "gh-pages",
-    "bcryptjs": "~2.0.2"
+    "xxhash": "*"
   },
   "resolutions": {
     "d3": "~3.4.8"
