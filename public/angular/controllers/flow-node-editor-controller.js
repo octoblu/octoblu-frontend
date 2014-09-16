@@ -13,6 +13,10 @@ angular.module('octobluApp')
     });
   };
 
+  $scope.close = function(){
+    $scope.flowNode = null;
+  };
+
   setFlowNodeType();
   $scope.$watch('flowNode', setFlowNodeType);
 });

@@ -20,11 +20,9 @@
     </div>
   </div>
 
-  <div ng-if="selectedFlowNode">
+  <div>
     <br>
     <!-- Force flow-node-editor to reinitialize every time -->
-    <div ng-repeat="flowNode in [selectedFlowNode]">
-      <flow-node-editor flow-node="flowNode" ></flow-node-editor>
-    </div>
+    <flow-node-editor flow-node="selectedFlowNode"></flow-node-editor>
   </div>
  </div>
