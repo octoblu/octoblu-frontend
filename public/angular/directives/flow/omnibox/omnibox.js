@@ -10,10 +10,16 @@ angular.module('octobluApp')
         selectedFlowNode: '=',
         omniSearch: '='
       },
-      link: function (scope) {
+      link: function (scope, element) {
         scope.$watch('omniSearch', function(newItem){
           if(!_.isObject(newItem)) { return; }
           scope.selectItem(newItem);
+          scope.omniSearch = null;
+        });
+
+        element.find('input.omnibox').on('blur', function(){
+          scope.omniSearch = null;
+          scope.$apply();
         });
       }
     };
