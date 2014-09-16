@@ -252,11 +252,15 @@ UserSchema.statics.findByEmailAndPassword = function(email, password){
 
   return when.promise(function(resolve, reject){
     self.findByEmail(email).then(function(user){
-      if(user && user.validPassword(password)){
-        return resolve(user);
-      };
+      try {
+        if(user && user.validPassword(password)){
+          return resolve(user);
+        }
+      } catch (error) {
+        return reject(error);
+      }
 
-      return reject("Invalid email or password");
+      return reject();
     });
   });
 };

@@ -6,7 +6,7 @@ var findByEmailAndPassword = function(email, password, done){
   User.findByEmailAndPassword(email, password).then(function(user){
     done(null, user);
   }).catch(function(error){
-    done();
+    done(error);
   });
 };
 
