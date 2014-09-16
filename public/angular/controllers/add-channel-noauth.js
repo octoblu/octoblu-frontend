@@ -4,7 +4,6 @@ angular.module('octobluApp')
   .controller('addChannelNoauthController', function ($scope, $state, nodeType, currentUser, userService, channelService) {
     $scope.activate = function () {
       userService.activateNoAuthChannel(currentUser.skynetuuid, nodeType.channelid, function (data) {
-        console.log(data);
         channelService.getActiveChannels(true);
         channelService.getAvailableChannels(true);
         $state.go('design');
