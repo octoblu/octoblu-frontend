@@ -37,6 +37,7 @@ require('./initializeModels.js');
 require('./config/passport')(env, passport); // pass passport for configuration
 passport.use(require('./config/dropbox'));
 passport.use(require('./config/github'));
+passport.use(require('./config/twitter'));
 passport.use(require('./config/local'));
 
 // set up our express application

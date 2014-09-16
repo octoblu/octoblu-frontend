@@ -39,6 +39,9 @@ module.exports = function(app, passport) {
     var GithubController = require('./controllers/github-controller');
     var githubController = new GithubController();
 
+    var TwitterController = require('./controllers/twitter-controller');
+    var twitterController = new TwitterController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -100,6 +103,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/github',          githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, githubController.redirectToDesigner);
 
+            app.get('/api/oauth/twitter',          twitterController.authorize);
+            app.get('/api/oauth/twitter/callback', twitterController.callback, twitterController.redirectToDesigner);
+          
             app.get('/*', function(req, res) {
                 res.sendfile('./public/index.html');
             });

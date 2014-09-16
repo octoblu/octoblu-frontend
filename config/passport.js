@@ -12,7 +12,6 @@ var rest = require('rest'),
 
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
@@ -112,45 +111,6 @@ module.exports = function (env, passport) {
 //                                token: token,
 //                                username: profile.emails[0].value,
 //                                displayName: profile.name.givenName + ' ' + profile.name.familyName
-//                            }
-//                        });
-//                    }
-                })
-                .then(function (user) {
-                    done(null, user);
-                }, function (err) {
-                    done(err);
-                });
-        }));
-
-    // =========================================================================
-    // TWITTER =================================================================
-    // =========================================================================
-    passport.use(new TwitterStrategy({
-
-            consumerKey: configAuth.twitterAuth.consumerKey,
-            consumerSecret: configAuth.twitterAuth.consumerSecret,
-            callbackURL: configAuth.twitterAuth.callbackURL,
-            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
-        },
-        function (req, token, tokenSecret, profile, done) {
-            User.findOne({ 'twitter.id': profile.id }).exec()
-                .then(function (user) {
-//                    if (user) {
-                        return user; // user found, return that user
-//                    }
-//                    else {
-//                        // if there is no user, create them
-//                        return User.create({
-//                            displayName: profile.displayName,
-//                            email: profile.displayName + '@twitter',
-//                            username: profile.username,
-//                            twitter: {
-//                                id: profile.id,
-//                                token: token,
-//                                username: profile.username,
-//                                displayName: profile.displayName
 //                            }
 //                        });
 //                    }

@@ -196,14 +196,8 @@ module.exports = function (app, passport, config) {
     app.get('/auth/facebook', storeReferrer, passport.authenticate('facebook', { scope: 'email' }));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile', 'email']}), restoreReferrer, completeLogin);
 
-    app.get('/auth/twitter', storeReferrer, passport.authenticate('twitter', { scope: 'email' }));
-    app.get('/auth/twitter/callback', passport.authenticate('twitter'), restoreReferrer, completeLogin);
-
     app.get('/auth/google', storeReferrer, passport.authenticate('google', { scope: ['profile', 'email'] }));
     app.get('/auth/google/callback', passport.authenticate('google'), restoreReferrer, completeLogin);
-
-    app.get('/auth/github', storeReferrer, passport.authenticate('github', { scope: ['user:email'] }));
-    app.get('/auth/github/callback', passport.authenticate('github'), restoreReferrer, completeLogin);
 
     app.get('/api/auth/:id/custom', function (req, res) {
         var channelid = req.params.id;

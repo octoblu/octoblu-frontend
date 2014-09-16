@@ -4421,13 +4421,42 @@
       }
     ]
   },
+  "oauth": {
+    "development" : {
+      "version" : "1.0",
+      "key" : "jJtghQn41kzvaIdyjPA7by2W5",
+      "secret" : "jt4tMJOFXazArxYu3efsv9WJ5aO2eWiQdtC0t05XzHAllqvuSW",
+      "accessTokenURL" : "https://api.twitter.com/oauth/access_token",
+      "requestTokenURL" : "https://api.twitter.com/oauth/request_token",
+      "authTokenURL" : "https://api.twitter.com/oauth/authorize",
+      "tokenMethod" : "oauth_signed"
+    },
+    "staging" : {
+      "version" : "1.0",
+      "key" : "97w9x63DUmWcuYoKy4p8epWFu",
+      "secret" : "n0b5smHWGP1cNpBT02sGqlg6JRQ2LZOrRtfM6X2I4DbegYuiLy",
+      "accessTokenURL" : "https://api.twitter.com/oauth/access_token",
+      "requestTokenURL" : "https://api.twitter.com/oauth/request_token",
+      "authTokenURL" : "https://api.twitter.com/oauth/authorize",
+      "tokenMethod" : "oauth_signed"
+    },
+    "production" : {
+      "version" : "1.0",
+      "key" : "di4CBlZkwJp7rJoaqP6fBA0yC",
+      "secret" : "2Ndg7hDyGR0Roe3P2AQ5ttL7yG6lRmU1UQ9mjFn40HtBc5C073",
+      "accessTokenURL" : "https://api.twitter.com/oauth/access_token",
+      "requestTokenURL" : "https://api.twitter.com/oauth/request_token",
+      "authTokenURL" : "https://api.twitter.com/oauth/authorize",
+      "tokenMethod" : "oauth_signed"
+    }
+  },
   "auth_strategy": "oauth",
-  "custom_tokens": [],
+  "custom_tokens": [ ],
   "description": "",
   "documentation": "https://dev.twitter.com/docs/api/1.1",
   "enabled": true,
+  "isPassport": true,
   "logo": "http://nyobetabeat.files.wordpress.com/2014/05/twitter-logo.png",
   "name": "Twitter",
-  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:twitter"
 }
