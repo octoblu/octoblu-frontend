@@ -1,31 +1,14 @@
-var when     = require('when');
-var mongoose = require('mongoose');
-var dummyNodeTypes = require('./dummy-node-types');
-var _ = require('lodash');
+var NodeType = require('../models/node-type');
 var NodeTypeCollection = function(options){
-  var self, query, NodeType;
+  var self;
   self = this;
 
   options  = options || {};
-  mongoose = options.mongoose || mongoose;
-  NodeType = mongoose.model('NodeType');
 
 
-  self.fetch = function(userId) {
-    return when(NodeType.find(query(userId)).lean().exec()).then(function(nodetypes){
-      return _.union(nodetypes, dummyNodeTypes);
-    });
+  self.fetch = function() {
+    return NodeType.findAll();
   };
-
-  query = function(userId){
-    return {
-      enabled: true,
-      $or: [
-        { "channel.owner": { $exists: false } },
-        { "channel.owner": new String(userId) }
-      ]
-    }
-  }
 
   return self;
 };

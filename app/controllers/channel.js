@@ -2,8 +2,6 @@
 
 var _ = require('lodash'),
     mongoose = require('mongoose'),
-    NodeType = mongoose.model('NodeType'),
-    DeviceType = mongoose.model('DeviceType'),
     User = mongoose.model('User'),
     Channel = require('../models/channel'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
