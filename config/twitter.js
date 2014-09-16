@@ -23,32 +23,37 @@ var CONFIG = {
   }
 }[process.env.NODE_ENV];
 
-var ensureUser = function(user, profile, callback){
+var ensureUser = function(req, user, profile, callback){
   if(user){ return callback(null, user); }
+  var query, userParams, upsert;
 
-  var query, userParams;
+  upsert = false;
+
+  if(req.session.testerId) {
+    upsert = true;
+  }
 
   query = {'twitter.id': profile.id};
   userParams = {
     username:    profile.username,
-    displayName: profile.displayName,
+    displayName: profile.username,
     email:       profile.username,
     twitter: {
       id: profile.id
     }
   };
 
-  User.findOneAndUpdate(query, {$set: userParams}, {upsert: false, new: false}).exec()
-    .then(function (user) {
-      callback(null, user);
-    }, function(){
-      callback(err);
-    });
+  User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
+  .then(function (user) {
+    callback(null, user);
+  }, function(err){
+    callback(err);
+  });
 }
 
 var twitterStrategy = new TwitterStrategy(CONFIG,
   function (req, token, secret, profile, done) {
-  ensureUser(req.user, profile, function(err, user){
+  ensureUser(req, req.user, profile, function(err, user){
     if(err){ return done(err, user); }
 
     var channelId = new mongoose.Types.ObjectId('5409f79403f1d8b163401370');

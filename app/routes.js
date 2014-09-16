@@ -87,6 +87,7 @@ module.exports = function(app, passport) {
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
             app.get('/api/oauth/github/signup', signupController.verifyInvitationCode, signupController.storeTesterId, githubController.authorize);
+            app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);
@@ -112,7 +113,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
-            app.get('/api/oauth/twitter/callback', twitterController.callback, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
+            app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
 
             app.get('/*', function(req, res) {
                 res.sendfile('./public/index.html');
