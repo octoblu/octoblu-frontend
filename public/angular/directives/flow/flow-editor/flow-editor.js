@@ -19,23 +19,6 @@ angular.module('octobluApp')
 
         skynetService.getSkynetConnection().then(function (skynetConnection) {
           skynetConnection.on('message', function (message) {
-            if (!message.payload.flowHash) {
-              return;
-            }
-            var hashableFlow = _.pick($scope.flow, ['links', 'nodes']);
-            var deployedFlowHash = message.payload.flowHash;
-            var latestFlowHash = XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
-
-            if(deployedFlowHash !== latestFlowHash) {
-              $scope.grid = 'red-grid';
-              return;
-            }
-            $scope.grid = 'blue-grid';
-          });
-        });
-
-        skynetService.getSkynetConnection().then(function (skynetConnection) {
-          skynetConnection.on('message', function (message) {
             if (message.topic !== 'pulse') {
               return;
             }
