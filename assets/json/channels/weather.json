@@ -21,7 +21,7 @@
             }
           },
           {
-            "name": "unit",
+            "name": "units",
             "type": "string",
             "style": "query",
             "doc": {
@@ -57,7 +57,7 @@
             }
           },
           {
-            "name": "unit",
+            "name": "units",
             "type": "string",
             "style": "query",
             "doc": {
@@ -85,7 +85,7 @@
             }
           },
           {
-            "name": "unit",
+            "name": "units",
             "type": "string",
             "style": "query",
             "doc": {
@@ -113,7 +113,7 @@
             }
           },
           {
-            "name": "unit",
+            "name": "units",
             "type": "string",
             "style": "query",
             "doc": {
@@ -149,7 +149,7 @@
             }
           },
           {
-            "name": "unit",
+            "name": "units",
             "type": "string",
             "style": "query",
             "doc": {
@@ -177,7 +177,7 @@
             }
           },
           {
-            "name": "unit",
+            "name": "units",
             "type": "string",
             "style": "query",
             "doc": {
