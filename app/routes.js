@@ -48,6 +48,8 @@ module.exports = function(app, passport) {
     var SignupController = require('./controllers/signup-controller');
     var signupController = new SignupController();
 
+    var referrer = require('./controllers/middleware/referrer.js');
+
     conn.on('notReady', function(data){
         console.log('SkyNet authentication: failed');
     });
@@ -99,12 +101,12 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
 
-            app.get('/api/oauth/github',          githubController.authorize);
-            app.get('/api/oauth/github/callback', githubController.callback, githubController.redirectToDesigner);
+            app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
+            app.get('/api/oauth/github/callback', githubController.callback, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
 
-            app.get('/api/oauth/twitter',          twitterController.authorize);
-            app.get('/api/oauth/twitter/callback', twitterController.callback, twitterController.redirectToDesigner);
-          
+            app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
+            app.get('/api/oauth/twitter/callback', twitterController.callback, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
+
             app.get('/*', function(req, res) {
                 res.sendfile('./public/index.html');
             });

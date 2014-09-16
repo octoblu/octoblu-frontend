@@ -3,6 +3,7 @@ var request = require('request'),
     crypto = require('crypto'),
     url = require('url'),
     _ = require('lodash'),
+    referrer = require('./middleware/referrer.js'),
     querystring = require('querystring'),
     User = mongoose.model('User'),
     Channel = require('../models/channel'),
@@ -120,7 +121,7 @@ module.exports = function (app, passport, config) {
 
     var getOAuthCredentials = function(oauth) {
         return oauth[process.env.NODE_ENV] || oauth;
-    }
+    };
 
     var getOauth2AccessInstance = function (api) {
         var creds = getOAuthCredentials(api.oauth);
@@ -182,11 +183,11 @@ module.exports = function (app, passport, config) {
         return result;
     };
 
-    app.get('/auth/facebook', storeReferrer, passport.authenticate('facebook', { scope: 'email' }));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile', 'email']}), restoreReferrer, completeLogin);
+    app.get('/auth/facebook', referrer.storeReferrer, passport.authenticate('facebook', { scope: 'email' }));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile', 'email']}), referrer.restoreReferrer, referrer.redirectToReferrer, completeLogin);
 
-    app.get('/auth/google', storeReferrer, passport.authenticate('google', { scope: ['profile', 'email'] }));
-    app.get('/auth/google/callback', passport.authenticate('google'), restoreReferrer, completeLogin);
+    app.get('/auth/google', referrer.storeReferrer, passport.authenticate('google', { scope: ['profile', 'email'] }));
+    app.get('/auth/google/callback', passport.authenticate('google'), referrer.restoreReferrer, referrer.redirectToReferrer, completeLogin);
 
     app.get('/api/auth/:id/custom', function (req, res) {
         var channelid = req.params.id;
@@ -429,45 +430,7 @@ module.exports = function (app, passport, config) {
         });
 
     });
-
-    //Keep the referrer in the session as briefly as possible - this prevents the login infinite redirect error.
-    function storeReferrer(req, res, next) {
-        req.session.referrer = req.query.referrer;
-        req.session.mobile = req.query.mobile;
-        delete req.query.referrer;
-        delete req.query.mobile;
-        next();
-    }
-
-    function restoreReferrer(req, res, next) {
-        req.referrer = req.session.referrer;
-        req.mobile = req.session.mobiler;
-        delete req.session.referrer;
-        delete req.session.mobile;
-        next();
-    }
-
-    function completeLogin(req, res) {
-        var user = req.user;
-        res.cookie('skynetuuid', user.skynet.uuid, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
-        res.cookie('skynettoken', user.skynet.token, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
-
-        if (req.referrer) {
-            if (req.session.js || req.mobile) {
-                res.send('<script>window.location.href="' + req.referrer + '?uuid=' + encodeURIComponent(user.skynet.uuid) + '&token=' + encodeURIComponent(user.skynet.token) + '"</script>');
-            } else {
-                res.redirect(req.referrer + '?uuid=' + encodeURIComponent(user.skynet.uuid) + '&token=' + encodeURIComponent(user.skynet.token));
-            }
-        } else {
-            res.redirect('/home');
-        }
+    function completeLogin(req, res){
+        res.redirect('/home');
     }
 };
