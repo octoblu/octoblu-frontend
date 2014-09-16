@@ -886,25 +886,25 @@
   "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/bitly.png",
   "name": "Bitly",
   "oauth": {
-    "isManual": true,
-    "version": "2.0",
-    "clientId": "INSERT_SECERT_HERE",
-    "secret": "INSERT_SECERT_HERE",
-    "baseURL": "https://bitly.com",
-    "accessTokenURL": "https://api-ssl.bitly.com/oauth/access_token",
-    "requestTokenURL": "https://api-ssl.bitly.com/",
-    "authTokenURL": "https://bitly.com/oauth/authorize",
-    "tokenMethod": "access_token_query",
-    "authTokenPath": "/oauth/authorize",
-    "accessTokenIncludeClientInfo": true,
-    "grant_type": "authorization_code",
-    "scope": "",
-    "protocol": "https",
-    "host": "bitly.com",
-    "passTokenInQuery": false,
-    "tokenQueryParam": "oauth2_access_token",
-    "useOAuthLib": true
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/bitly/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/bitly/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/bitly/callback",
+      "tokenMethod": "access_token_query"
+    }
   },
-  "useCustom": true,
+  "isPassport" : true,
   "type": "channel:bitly"
 }

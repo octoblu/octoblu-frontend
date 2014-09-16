@@ -27,6 +27,9 @@ module.exports = function(app, passport) {
     var AppNetController = require('./controllers/app-net-controller');
     var appNetController = new AppNetController();
 
+    var BitlyController = require('./controllers/bitly-controller');
+    var bitlyController = new BitlyController();
+
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
@@ -104,6 +107,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/app.net',          appNetController.authorize);
             app.get('/api/oauth/app.net/callback', appNetController.callback, appNetController.redirectToDesigner);
+
+            app.get('/api/oauth/bitly',          bitlyController.authorize);
+            app.get('/api/oauth/bitly/callback', bitlyController.callback, bitlyController.redirectToDesigner);
 
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);

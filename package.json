@@ -42,7 +42,7 @@
     "oauth": "~0.9.11",
     "passport": "~0.2.0",
     "passport-appdotnet": "^0.1.1",
-    "passport-bitly": "^0.1.0",
+    "passport-bitly": "^0.1.1",
     "passport-dropbox-oauth2": "~0.1.6",
     "passport-facebook": "^1.0.3",
     "passport-fitbit": "^0.1.2",

@@ -712,7 +712,7 @@
 		"category" : "channel",
 		"description" : null,
 		"display" : true,
-		"enabled" : false,
+		"enabled" : true,
 		"logo" : "http://www.indiesunlimited.com/wp-content/uploads/2013/05/bitly-puffer-fish.png",
 		"name" : "Bitly",
 		"skynet" : {
