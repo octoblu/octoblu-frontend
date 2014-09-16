@@ -28,6 +28,8 @@ angular.module('octobluApp')
       function addButtonClickBehavior(nodeElement, node) {
         if (node.type === 'button') {
           nodeElement.selectAll('.flow-node-button').on('click', function () {
+            d3.event.preventDefault();
+            d3.event.stopPropagation();
             dispatch.nodeButtonClicked(node);
           });
         }
