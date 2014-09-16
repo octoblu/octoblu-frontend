@@ -247,6 +247,20 @@ UserSchema.statics.findOrCreateByEmailAndPassword = function(email, password){
   });
 };
 
+UserSchema.statics.findByEmailAndPassword = function(email, password){
+  var self = this;
+
+  return when.promise(function(resolve, reject){
+    self.findByEmail(email).then(function(user){
+      if(user && user.validPassword(password)){
+        return resolve(user);
+      };
+
+      return reject("Invalid email or password");
+    });
+  });
+};
+
 UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
   return when(this.findOne({'skynet.uuid': skynetuuid}).exec());
 };

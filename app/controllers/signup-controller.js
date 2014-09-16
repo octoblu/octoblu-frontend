@@ -25,7 +25,15 @@ var SignupController = function () {
     });
   };
 
-  self.createUser = passport.authenticate('local');
+  self.createUser = function(user) {
+    User.findOrCreateByEmailAndPassword(email, password).then(function(user){
+      done(null, user);
+    }).catch(function(error){
+      done(error);
+    });
+  };
+
+  self.loginUser = passport.authenticate('local');
 
   this.returnUser = function(req, res){
     res.send(201, req.user);
