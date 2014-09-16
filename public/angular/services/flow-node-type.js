@@ -17,7 +17,7 @@ angular.module('octobluApp')
   };
 
   self.getFlowNodeTypes = function () {
-    return $http.get('/api/flow_node_types', {cache: true}).then(function(res){
+    return $http.get('/api/flow_node_types',{cache : false}).then(function(res){
       return res.data;
     });
   };

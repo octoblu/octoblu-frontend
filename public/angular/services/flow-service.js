@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService) {
+.service('FlowService', function ($http, $q, FlowModel, FlowNodeTypeService, skynetService, AuthService) {
   'use strict';
   var self, activeFlow;
   self = this;
@@ -29,7 +29,17 @@ angular.module('octobluApp')
 
   self.start = function(){
     if(!activeFlow){return;}
-    return $http.post("/api/flows/" + activeFlow.flowId + '/instance');
+    var currentUser;
+
+    $http.post("/api/flows/" + activeFlow.flowId + '/instance');
+    AuthService.getCurrentUser().then(function(user){
+      currentUser = user;
+      return skynetService.getSkynetConnection();
+    }).then(function (conn) {
+      conn.register({uuid: activeFlow.flowId, type: 'octoblu:flow', owner: currentUser.resource.uuid}, function(){
+        conn.subscribe({uuid: activeFlow.flowId});
+      });
+    });
   };
 
   self.stop = function(){

@@ -24,7 +24,7 @@
     "angular-resource": "~1.2.21",
     "angular-mocks": "~1.2.21",
     "jquery-ui": "~1.10.4",
-    "angular-ui-router": "~0.2.10",
+    "angular-ui-router": "~0.2.11",
     "modernizr": "~2.8.2",
     "fontawesome": "~4.2",
     "angular-ui-utils": "~0.1.1",
