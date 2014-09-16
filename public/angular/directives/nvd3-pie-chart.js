@@ -49,15 +49,11 @@ angular.module('octobluApp')
                     }
 
                     // Watch data for any changes.
-		    console.log('before pie watcher');
                     scope.$watch('data', function (newVal) {
                         if (newVal) {
-			    console.log("piechart new data");
-			    console.log(newVal);
                             svg.datum(scope.data).call(scope.chart); // Populate the <svg> element with chart data... and render!
-                        } else { console.log('piechart no new data'); }
+                        }
                     });
-		    console.log('after pie watcher');
 
                     //Update the chart when window resizes.
                     nv.utils.windowResize(chart.update);

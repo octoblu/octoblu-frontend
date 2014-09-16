@@ -8560,25 +8560,23 @@
   "auth_strategy": "oauth",
   "bodyFormat": "json",
   "oauth": {
-    "production": {
-      "accessTokenPath": "/oauth/access_token",
-      "authTokenURL": "https://github.com/login",
-      "baseURL": "https://github.com/login",
-      "clientId": "d67367e23f89dcb0fdbe",
-      "secret": "c2b1741e8a8ff08673607b3b67753b2dc8778d71",
-      "tokenMethod": "access_token_query",
-      "version": "2.0",
-      "scope": "user,repo,repo_deployment,notifications,gist"
-    },
     "development": {
-      "accessTokenPath": "/oauth/access_token",
-      "authTokenURL": "https://github.com/login",
-      "baseURL": "https://github.com/login",
-      "clientId": "463a8c25ee407035cd1c",
-      "secret": "fdccd7d4fa72cda2746dc3db787e5558b8bb3837",
-      "tokenMethod": "access_token_query",
-      "version": "2.0",
-      "scope": "user,repo,repo_deployment,notifications,gist"
+      "clientID": "463a8c25ee407035cd1c",
+      "clientSecret": "fdccd7d4fa72cda2746dc3db787e5558b8bb3837",
+      "callbackURL":    "http://localhost:8080/api/oauth/github/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://app.octoblu.com/api/oauth/github/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://staging.octoblu.com/api/oauth/github/callback",
+      "tokenMethod": "access_token_query"
     }
   },
   "custom_tokens": [],

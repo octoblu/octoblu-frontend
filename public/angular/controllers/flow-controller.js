@@ -114,13 +114,6 @@ angular.module('octobluApp')
       FlowService.stop();
     };
 
-    $scope.restart = function (e) {
-      if (e) {
-        e.preventDefault();
-      }
-      FlowService.restart();
-    };
-
     $scope.deleteSelection = function (e) {
       if (e) {
         e.preventDefault();
