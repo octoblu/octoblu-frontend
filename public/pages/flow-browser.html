@@ -4,6 +4,9 @@
 
     <div class="tab-controls">
       <div class="btn-group">
+          <button class="btn btn-default btn-sm" ng-click="setActiveTab('operators')" ng-class="{'active' : activeTab.name === 'operators'}" tooltip="Operator Nodes" tooltip-placement="top" >
+              <i class="fa fa-plug fa-lg"></i>
+          </button>
         <button class="btn btn-default btn-sm" ng-click="setActiveTab('nodes')" ng-class="{'active' : activeTab.name === 'nodes'}" tooltip="Configured Nodes" tooltip-placement="top" >
           <i class="fa fa-code-fork fa-lg"></i>
         </button>
