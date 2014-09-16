@@ -21,7 +21,7 @@ module.exports = function (app, passport, config) {
     app.put('/api/auth/accept_terms', isAuthenticated, updateTerms);
     app.put('/api/auth/password', isAuthenticated, updatePassword);
 
-    app.get('/api/auth', isAuthenticated, function (req, res) {
+    app.get('/api/auth', function (req, res) {
         res.send(req.user);
     });
 
@@ -34,17 +34,6 @@ module.exports = function (app, passport, config) {
             res.send(401, {error: 'unauthorized'});
             return;
         }
-        res.cookie('skynetuuid', user.skynet.uuid, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
-
-        res.cookie('skynettoken', user.skynet.token, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
         res.send(user);
     }
 
