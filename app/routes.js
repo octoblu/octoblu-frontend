@@ -61,7 +61,6 @@ module.exports = function(app, passport) {
 
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
-
             require('./controllers/auth')(app, passport, config);
             require('./controllers/channel')(app);
             require('./controllers/connect')(app, passport, config);
@@ -78,7 +77,7 @@ module.exports = function(app, passport) {
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
 
-            app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.checkInTester, signupController.returnUser);
+            app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);
