@@ -22,6 +22,8 @@ angular.module('octobluApp')
   $scope.signupUser = function(){
     if(!comparePasswords()) { return; }
 
+    $scope.loading = true;
+
     AuthService.signup(
       $scope.email,
       $scope.password,
@@ -30,7 +32,13 @@ angular.module('octobluApp')
     ).then(function(){
       $state.go('ob.home');
     }, function(error){
+      $scope.loading = false;
       $scope.errorMsg = error;
     });
+  };
+
+
+  $scope.getSignupUrl = function (baseUrl) {
+    return baseUrl + '?' + $.param({invitationCode: signupParams.code, testerId: signupParams.testerId});
   };
 });

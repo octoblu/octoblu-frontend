@@ -1,5 +1,7 @@
 var _         = require('lodash');
 var passport  = require('passport');
+var mongoose  = require('mongoose');
+var User      = mongoose.model('User');
 var Prefinery = require('../models/prefinery');
 
 var SignupController = function () {
@@ -8,10 +10,16 @@ var SignupController = function () {
   self.prefinery = new Prefinery();
 
   self.checkInTester = function(req, res, next) {
-    var checkInPromise = self.prefinery.checkInTester(req.body.testerId);
+    var testerId = req.param('testerId') || req.session.testerId;
+    if(!testerId){
+      return next();
+    }
+    delete req.session.testerId;
+
+    var checkInPromise = self.prefinery.checkInTester(testerId);
 
     checkInPromise.then(function(){
-      req.user.testerId = req.body.testerId;
+      req.user.testerId = testerId;
       req.user.save(function(error) {
         if(error){
           throw error;
@@ -25,11 +33,12 @@ var SignupController = function () {
     });
   };
 
-  self.createUser = function(user) {
-    User.findOrCreateByEmailAndPassword(email, password).then(function(user){
-      done(null, user);
+  self.createUser = function(req, res, next) {
+    User.findOrCreateByEmailAndPassword(req.body.email, req.body.password).then(function(user){
+      req.user = user;
+      next();
     }).catch(function(error){
-      done(error);
+      res.send(422, error);
     });
   };
 
@@ -39,10 +48,15 @@ var SignupController = function () {
     res.send(201, req.user);
   };
 
+  this.storeTesterId = function(req, res, next){
+    req.session.testerId       = req.param('testerId');
+    next();
+  };
+
   self.verifyInvitationCode = function (req, res, next) {
     var testerPromise = self.prefinery.getTester({
-      testerId:       req.body.testerId,
-      invitationCode: req.body.invitationCode
+      testerId:       req.param('testerId'),
+      invitationCode: req.param('invitationCode')
     });
 
     testerPromise.then(function(){

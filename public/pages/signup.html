@@ -22,37 +22,64 @@
                 <form ng-submit="signupUser()">
                   <div class='form-group'>
                     <div class='controls with-icon-over-input'>
-                      <input ng-model="email" placeholder="E-mail" class="form-control" type="email" />
+                      <input ng-model="email" placeholder="E-mail" class="form-control" type="email" ng-disabled="loading" />
                       <i class='icon-user text-muted'></i>
                     </div>
                   </div>
                   <div class='form-group'>
                     <div class='controls with-icon-over-input'>
-                      <input ng-model="password" placeholder="Password" class="form-control" type="password" />
+                      <input ng-model="password" placeholder="Password" class="form-control" type="password" ng-disabled="loading" />
                       <i class='icon-lock text-muted'></i>
                     </div>
                   </div>
                   <div class='form-group'>
                     <div class='controls with-icon-over-input'>
-                      <input ng-model="password_confirmation" placeholder="Password confirmation" class="form-control" type="password" />
+                      <input ng-model="password_confirmation" placeholder="Password confirmation" class="form-control" type="password" ng-disabled="loading" />
                       <i class='icon-lock text-muted'></i>
                     </div>
                   </div>
-                  <div class='checkbox'>
-                    <label for='agreement'>
-                      <input id='agreement' name='agreement' type='checkbox' value='1'>
-                      I accept
-                      <a href='#'>user agreements</a>
-                    </label>
-                  </div>
-                  <button class='btn btn-block'>Sign up</button>
+                  <button class='btn btn-block btn-primary'>Sign up <i class="fa fa-spin fa-refresh" ng-if="loading"></i></button>
                 </form>
+
+                <br>
+                <br>
+
+                <div class="row text-center">
+                  <div class="col-xs-12 col-lg-6">
+                    <p>
+                      <a class="btn-lg btn-block btn-github" href="{{getSignupUrl('/api/oauth/github/signup')}}" target="_self">
+                        <span class="fa fa-github"> Github</span>
+                      </a>
+                    </p><br>
+                  </div>
+                  <div class="col-xs-12 col-lg-6 hidden">
+                    <p>
+                      <a class="btn-lg btn-block btn-facebook" href="{{getSignupUrl('/auth/facebook')}}" target="_self">
+                        <span class="fa fa-facebook"> Facebook</span>
+                      </a>
+                    </p><br>
+                  </div>
+                  <div class="col-xs-12 col-lg-6 hidden">
+                    <p>
+                      <a class="btn-lg btn-block btn-twitter" href="{{getSignupUrl('/api/oauth/twitter')}}" target="_self">
+                        <span class="fa fa-twitter"> Twitter</span>
+                      </a>
+                    </p><br>
+                  </div>
+                  <div class="col-xs-12 col-lg-6 hidden">
+                    <p>
+                      <a class="btn-lg btn-block btn-google-plus" href="{{getSignupUrl('/auth/google')}}" target="_self">
+                        <span class="fa fa-google-plus"> Google+</span>
+                      </a>
+                    </p><br>
+                  </div>
+                </div>
 
                 <div class='text-center'>
                   <hr class='hr-normal'>
                   <a href='/login'>
                     <i class='icon-chevron-left'></i>
-                    Go back to sign in
+                    Go back to login page
                   </a>
                 </div>
               </div>
