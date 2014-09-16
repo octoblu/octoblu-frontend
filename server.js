@@ -35,6 +35,7 @@ var RedisStore = connectRedis(expressSession);
 require('./initializeModels.js');
 
 require('./config/passport')(env, passport); // pass passport for configuration
+passport.use(require('./config/app-net'));
 passport.use(require('./config/dropbox'));
 passport.use(require('./config/github'));
 passport.use(require('./config/twitter'));
