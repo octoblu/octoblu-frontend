@@ -24,6 +24,9 @@ module.exports = function(app, passport) {
     var NodeController = require('./controllers/node-controller');
     var nodeController = new NodeController();
 
+    var AppNetController = require('./controllers/app-net-controller');
+    var appNetController = new AppNetController();
+
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
@@ -97,6 +100,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/node_types', nodeTypeController.index);
             app.get('/api/nodes', nodeController.index);
+
+            app.get('/api/oauth/app.net',          appNetController.authorize);
+            app.get('/api/oauth/app.net/callback', appNetController.callback, appNetController.redirectToDesigner);
 
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
