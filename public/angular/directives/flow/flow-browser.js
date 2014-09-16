@@ -48,7 +48,9 @@ angular.module('octobluApp')
 
         $scope.toggleDrawer = function(){
           $scope.maximized = !$scope.maximized;
-          if(!$scope.maximized) {
+          if($scope.maximized) {
+            $scope.activeTab = tabs['debug'];
+          } else {
             $scope.activeTab = null;
           }
         };
