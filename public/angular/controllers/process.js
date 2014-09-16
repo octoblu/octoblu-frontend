@@ -16,5 +16,4 @@ angular.module('octobluApp')
             $scope.messages = data
         });
         $scope.devices = myDevices;
-        console.log(myDevices);
     });
