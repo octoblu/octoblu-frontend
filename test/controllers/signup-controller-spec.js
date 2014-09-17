@@ -1,10 +1,15 @@
 var request    = require('request');
 var when = require('when');
 var SignupController = require('../../app/controllers/signup-controller');
+var mongoose = require('mongoose');
 
 describe('SignupController', function () {
-
   var sut, res;
+
+  before(function () {
+    db = mongoose.createConnection();
+    db.model('User', require('../../app/models/user'));
+  });
 
   beforeEach(function () {
      sut = new SignupController();
@@ -18,7 +23,7 @@ describe('SignupController', function () {
   describe('verifyInvitationCode with an email, password, testerId, and invitationCode', function(){
     var req;
     beforeEach(function () {
-      req = { body: { email: 'a@mailinator.com', password: 'b', testerId: '1', invitationCode: 'c' }};
+      req = new FakeRequest({ body: { email: 'a@mailinator.com', password: 'b', testerId: '1', invitationCode: 'c' }});
       res = new FakeResponse();
     });
 
@@ -29,8 +34,8 @@ describe('SignupController', function () {
 
       it('should call getTester with those values', function(){
         expect(sut.prefinery.getTester).to.have.been.calledWith({
-          testerId: req.body.testerId,
-          invitationCode: req.body.invitationCode
+          testerId: req.param('testerId'),
+          invitationCode: req.param('invitationCode')
         });
       });
     });
@@ -52,12 +57,19 @@ describe('SignupController', function () {
 
 });
 
-var FakeResponse = function(){
-  var response = this;
+var FakeRequest = function(attributes){
+  this.session = {};
+  this.param = function(key){
+    return attributes[key];
+  }
 
+  return this;
+};
+
+var FakeResponse = function(){
   this.send = sinon.spy();
 
-  return response;
+  return this;
 };
 
 var Prefinery = function() {
