@@ -374,7 +374,7 @@
 		"_id" : "53c9b834f400e177dca325b6",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/fitbit.png",
 		"name" : "FitBit",
 		"skynet" : {

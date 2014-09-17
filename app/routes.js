@@ -36,6 +36,9 @@ module.exports = function(app, passport) {
     var FacebookController = require('./controllers/facebook-controller');
     var facebookController = new FacebookController();
 
+    var FitbitController = require('./controllers/fitbit-controller');
+    var fitbitController = new FitbitController();
+
     var FlowController = require('./controllers/flow-controller');
     var flowController = new FlowController();
 
@@ -128,6 +131,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/facebook',          referrer.storeReferrer, facebookController.authorize);
             app.get('/api/oauth/facebook/callback', facebookController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, facebookController.redirectToDesigner);
+
+            app.get('/api/oauth/fitbit',          fitbitController.authorize);
+            app.get('/api/oauth/fitbit/callback', fitbitController.callback, fitbitController.redirectToDesigner);
 
             app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
