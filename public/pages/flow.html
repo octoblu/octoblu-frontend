@@ -11,9 +11,9 @@
         <i class="fa fa-lg fa-angle-down"></i>
       </span>
       <ul class="dropdown-menu" role="menu">
-        <li class="text-center" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
-        <li role="presentation" class="divider"></li>
-        <li class="text-center" ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'">
+        <li class="text-center" dropdown-toggle ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
+        <li role="presentation"  class="divider"></li>
+        <li class="text-center" dropdown-toggle ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'">
           <a href>{{flow.name}}</a>
         </li>
       </ul>
