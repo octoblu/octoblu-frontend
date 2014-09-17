@@ -326,7 +326,7 @@
 			"subtype" : "StockPrice"
 		},
 		"channelid" : "53275d4841da719147d9e36a",
-		"type" : "channel:stock_price"
+		"type" : "channel:stock-price"
 	},
 	{
 		"_id" : "53c9b837f400e177dca325bf",
@@ -368,7 +368,7 @@
 			"subtype" : "LinkedIn"
 		},
 		"channelid" : "52f97c5ba990930c8c0003ca",
-		"type" : "channel:linked_in"
+		"type" : "channel:linked-in"
 	},
 	{
 		"_id" : "53c9b834f400e177dca325b6",
@@ -382,7 +382,7 @@
 			"subtype" : "FitBit"
 		},
 		"channelid" : "52f97cc5a9909344830004ec",
-		"type" : "channel:fit_bit"
+		"type" : "channel:fit-bit"
 	},
 	{
 		"_id" : "53c9b834f400e177dca325b7",
@@ -438,7 +438,7 @@
 			"subtype" : "StackOverflow"
 		},
 		"channelid" : "52f9b35c9f713b92e5000001",
-		"type" : "channel:stack_overflow"
+		"type" : "channel:stack-overflow"
 	},
 	{
 		"_id" : "53c9b835f400e177dca325bb",
@@ -452,7 +452,7 @@
 			"subtype" : "NewYorkTimes"
 		},
 		"channelid" : "52f9b454e641dbb25d00000c",
-		"type" : "channel:new_york_times"
+		"type" : "channel:new-york-times"
 	},
 	{
 		"_id" : "53c9b836f400e177dca325bc",
@@ -466,7 +466,7 @@
 			"subtype" : "MusixMatch"
 		},
 		"channelid" : "52f9b53cebbb407a9400000b",
-		"type" : "channel:musix_match"
+		"type" : "channel:musix-match"
 	},
 	{
 		"_id" : "53c9b836f400e177dca325be",
@@ -579,7 +579,7 @@
 			"subtype" : "Survey Monkey"
 		},
 		"channelid" : "53cd8a5ad3a4442658086a56",
-		"type" : "channel:survey_monkey"
+		"type" : "channel:survey-monkey"
 	},
 	{
 		"_id" : "53c9b839f400e177dca325c7",
@@ -649,7 +649,7 @@
 			"subtype" : "GoogleDrive"
 		},
 		"channelid" : "5333aefee5c02952f1c33089",
-		"type" : "channel:google_drive"
+		"type" : "channel:google-drive"
 	},
 	{
 		"_id" : "53c9b83bf400e177dca325cc",
@@ -691,7 +691,7 @@
 			"subtype" : "FourSquare"
 		},
 		"channelid" : "52f9b628ebbb409983000001",
-		"type" : "channel:four_square"
+		"type" : "channel:four-square"
 	},
 	{
 		"_id" : "53c9b83cf400e177dca325cf",
@@ -705,7 +705,7 @@
 			"subtype" : "LastFM"
 		},
 		"channelid" : "52f9b59edfeb5678c700000b",
-		"type" : "channel:last_fm"
+		"type" : "channel:last-fm"
 	},
 	{
 		"_id" : "53c9b83df400e177dca325d0",
@@ -748,7 +748,7 @@
 			"subtype" : "ElasticLogs"
 		},
 		"channelid" : "53a26faf0ced4e00501e05b0",
-		"type" : "channel:elastic_logs"
+		"type" : "channel:elastic-logs"
 	},
 	{
 		"_id" : "53ea57ee2522c76ff9298af9",
