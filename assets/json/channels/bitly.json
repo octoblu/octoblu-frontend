@@ -740,7 +740,12 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "client_id",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/oauth/app"
       },
       {
@@ -751,7 +756,15 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "login"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "full_name"
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/info"
       },
       {
@@ -762,7 +775,59 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "link"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "limit"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "offset"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "created_before"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "created_after"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "modified_after"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "expand_client_id"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "archived"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "private"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "user"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "exact_domain"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "root_domain"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "query"
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/link_history"
       },
       {
@@ -773,7 +838,23 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "integer",
+          "name": "offset"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "expand_client_id"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "expand_user"
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/network_history"
       },
       {
