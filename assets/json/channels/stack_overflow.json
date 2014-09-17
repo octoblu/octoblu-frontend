@@ -790,5 +790,5 @@
   "logo": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc1/t5/372919_11239244970_618032642_n.jpg",
   "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/stackoverflow.png",
   "name": "StackOverflow",
-  "type": "channel:stack_overflow"
+  "type": "channel:stack-overflow"
 }

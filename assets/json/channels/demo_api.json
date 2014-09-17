@@ -26,5 +26,5 @@
   "logo": "DemoAPI.com/DEMO.png",
   "name": "Demo API",
   "owner": "5c2dd8d1-f254-11e3-ba2e-0b078550b2fe",
-  "type": "channel:demo_api"
+  "type": "channel:demo-api"
 }

@@ -600,5 +600,5 @@
     "tokenQueryParam": "oauth2_access_token"
   },
   "useCustom": true,
-  "type": "channel:linked_in"
+  "type": "channel:linked-in"
 }

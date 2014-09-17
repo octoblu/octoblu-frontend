@@ -2778,5 +2778,5 @@
   "logo": "http://danielbachhuber.com/content/uploads/sites/2/2013/10/logo.png",
   "name": "WP REMOTE",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:wp_remote"
+  "type": "channel:wp-remote"
 }

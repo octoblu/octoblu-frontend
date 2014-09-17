@@ -826,5 +826,5 @@
     }
   },
   "isPassport": true,
-  "type": "channel:fit_bit"
+  "type": "channel:fit-bit"
 }

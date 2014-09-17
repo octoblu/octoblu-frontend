@@ -3318,5 +3318,5 @@
   "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/nytimes.png",
   "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/nytimes.png",
   "name": "NewYorkTimes",
-  "type": "channel:new_york_times"
+  "type": "channel:new-york-times"
 }

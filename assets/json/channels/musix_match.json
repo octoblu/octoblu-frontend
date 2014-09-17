@@ -411,5 +411,5 @@
   "oauth": {
     "tokenMethod": "apikey_query"
   },
-  "type": "channel:musix_match"
+  "type": "channel:musix-match"
 }
