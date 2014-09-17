@@ -191,8 +191,17 @@ angular.module('octobluApp')
                     _.omit(options, reservedProperties)));
             },
             
-            logoUrl: function(device) {
-              return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + device.type.replace(':', '/') + '.svg';
+            addLogoUrl: function(data) {
+                if (data && data.type) {
+                    data.logo = logoUrl(data);
+                }
+                return data;
+            },
+
+            logoUrl: function(data) {
+                if (data && data.type) {
+                    return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+                }
             }
         };
 

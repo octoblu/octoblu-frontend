@@ -3,12 +3,6 @@ var _ = require('lodash'),
     mongoose = require('mongoose');
 
 var FlowDeploy = function(options){
-  var LEGACY_TYPES = {
-    'trigger'  : 'inject',
-    'interval' : 'inject',
-    'schedule' : 'inject'
-  };
-
   var User = mongoose.model('User');
 
   var self, config, request, userUUID, userToken, meshblu, tranformations;
@@ -47,7 +41,7 @@ var FlowDeploy = function(options){
     convertedNode.hash = flow.hash;
     convertedNode.wires = self.paddedArray(largestPort);
     if (convertedNode.category === 'operation') {
-      convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.type
+      convertedNode.type = convertedNode.type.replace('operation:', '');
     } else {
       convertedNode.type = convertedNode.category;
     }
