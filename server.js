@@ -39,6 +39,7 @@ passport.use(require('./config/app-net'));
 passport.use(require('./config/bitly'));
 passport.use(require('./config/dropbox'));
 passport.use(require('./config/github'));
+passport.use(require('./config/rdio'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/local'));
 

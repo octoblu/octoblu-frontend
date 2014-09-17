@@ -45,6 +45,9 @@ module.exports = function(app, passport) {
     var GithubController = require('./controllers/github-controller');
     var githubController = new GithubController();
 
+    var RdioController = require('./controllers/rdio-controller');
+    var rdioController = new RdioController();
+
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
@@ -116,6 +119,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
+
+            app.get('/api/oauth/rdio',          rdioController.authorize);
+            app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
