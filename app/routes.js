@@ -45,6 +45,9 @@ module.exports = function(app, passport) {
     var GithubController = require('./controllers/github-controller');
     var githubController = new GithubController();
 
+    var GoogleController = require('./controllers/google-controller');
+    var googleController = new GoogleController();
+
     var RdioController = require('./controllers/rdio-controller');
     var rdioController = new RdioController();
 
@@ -93,6 +96,8 @@ module.exports = function(app, passport) {
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
             app.get('/api/oauth/github/signup', signupController.verifyInvitationCode, signupController.storeTesterId, githubController.authorize);
+            app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
+            app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
             app.delete('/api/flows/:id', flowController.delete);
@@ -120,11 +125,14 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
 
+            app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
-            app.get('/api/oauth/twitter/callback', twitterController.callback, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
+            app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
 
             app.get('/*', function(req, res) {
                 res.sendfile('./public/index.html');
