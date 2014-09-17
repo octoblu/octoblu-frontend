@@ -2,7 +2,7 @@
   "_id": "53d15c363e304fe01a0851ee",
   "__v": 0,
   "application": {
-    "base": null,
+    "base": "http://api.rdio.com/1/",
     "resources": [
       {
         "path": "/?method=getActivityStream",
@@ -26,16 +26,22 @@
         "category": "Activity and Statistics",
         "displayName": "Activity and Statistics_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getActivityStream"
+        "url": "http://api.rdio.com/1/?method=getActivityStream"
       },
       {
         "path": "/?method=getTopCharts",
         "params": [
           {
-            "name": "Content-Type",
-            "type": "xsd:string",
-            "style": "header",
-            "default": "application/x-www-form-urlencoded",
+            "name": "method",
+            "style": "body",
+            "hidden": true,
+            "default": "getTopCharts",
+            "required": "true"
+          },
+          {
+            "name": "type",
+            "style": "body",
+            "default": "Album",
             "required": "true"
           }
         ],
@@ -50,7 +56,7 @@
         "category": "Activity and Statistics",
         "displayName": "Activity and Statistics_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getTopCharts"
+        "url": "http://api.rdio.com/1/"
       },
       {
         "path": "/?method=getNewReleases",
@@ -74,7 +80,7 @@
         "category": "Activity and Statistics",
         "displayName": "Activity and Statistics_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getNewReleases"
+        "url": "http://api.rdio.com/1/?method=getNewReleases"
       },
       {
         "path": "/?method=getHeavyRotation",
@@ -98,7 +104,7 @@
         "category": "Activity and Statistics",
         "displayName": "Activity and Statistics_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getHeavyRotation"
+        "url": "http://api.rdio.com/1/?method=getHeavyRotation"
       },
       {
         "path": "/?method=getAlbumsForArtist",
@@ -122,7 +128,7 @@
         "category": "Catalog",
         "displayName": "Catalog_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getAlbumsForArtist"
+        "url": "http://api.rdio.com/1/?method=getAlbumsForArtist"
       },
       {
         "path": "/?method=getTracksByISRC",
@@ -146,7 +152,7 @@
         "category": "Catalog",
         "displayName": "Catalog_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getTracksByISRC"
+        "url": "http://api.rdio.com/1/?method=getTracksByISRC"
       },
       {
         "path": "/?method=getTracksForArtist",
@@ -170,7 +176,7 @@
         "category": "Catalog",
         "displayName": "Catalog_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getTracksForArtist"
+        "url": "http://api.rdio.com/1/?method=getTracksForArtist"
       },
       {
         "path": "/?method=search",
@@ -194,7 +200,7 @@
         "category": "Catalog",
         "displayName": "Catalog_POST",
         "httpMethod": "POST",
-        "url": "null/?method=search"
+        "url": "http://api.rdio.com/1/?method=search"
       },
       {
         "path": "/?method=searchSuggestions",
@@ -218,7 +224,7 @@
         "category": "Catalog",
         "displayName": "Catalog_POST",
         "httpMethod": "POST",
-        "url": "null/?method=searchSuggestions"
+        "url": "http://api.rdio.com/1/?method=searchSuggestions"
       },
       {
         "path": "/?method=getAlbumsByUPC",
@@ -242,7 +248,7 @@
         "category": "Catalog",
         "displayName": "Catalog_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getAlbumsByUPC"
+        "url": "http://api.rdio.com/1/?method=getAlbumsByUPC"
       },
       {
         "path": "/?method=addToCollection",
@@ -266,7 +272,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=addToCollection"
+        "url": "http://api.rdio.com/1/?method=addToCollection"
       },
       {
         "path": "/?method=getAlbumsInCollection",
@@ -290,7 +296,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getAlbumsInCollection"
+        "url": "http://api.rdio.com/1/?method=getAlbumsInCollection"
       },
       {
         "path": "/?method=getArtistsInCollection",
@@ -314,7 +320,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getArtistsInCollection"
+        "url": "http://api.rdio.com/1/?method=getArtistsInCollection"
       },
       {
         "path": "/?method=getTracksForAlbumInCollection",
@@ -338,7 +344,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getTracksForAlbumInCollection"
+        "url": "http://api.rdio.com/1/?method=getTracksForAlbumInCollection"
       },
       {
         "path": "/?method=getTracksForArtistInCollection",
@@ -362,7 +368,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getTracksForArtistInCollection"
+        "url": "http://api.rdio.com/1/?method=getTracksForArtistInCollection"
       },
       {
         "path": "/?method=getTracksInCollection",
@@ -386,7 +392,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getTracksInCollection"
+        "url": "http://api.rdio.com/1/?method=getTracksInCollection"
       },
       {
         "path": "/?method=removeFromCollection",
@@ -410,7 +416,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=removeFromCollection"
+        "url": "http://api.rdio.com/1/?method=removeFromCollection"
       },
       {
         "path": "/?method=setAvailableOffline",
@@ -434,7 +440,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=setAvailableOffline"
+        "url": "http://api.rdio.com/1/?method=setAvailableOffline"
       },
       {
         "path": "/?method=getAlbumsForArtistInCollection",
@@ -458,7 +464,7 @@
         "category": "Collection",
         "displayName": "Collection_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getAlbumsForArtistInCollection"
+        "url": "http://api.rdio.com/1/?method=getAlbumsForArtistInCollection"
       },
       {
         "path": "/?method=getObjectFromShortCode",
@@ -482,7 +488,7 @@
         "category": "Core",
         "displayName": "Core_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getObjectFromShortCode"
+        "url": "http://api.rdio.com/1/?method=getObjectFromShortCode"
       },
       {
         "path": "/?method=getObjectFromUrl",
@@ -506,7 +512,7 @@
         "category": "Core",
         "displayName": "Core_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getObjectFromUrl"
+        "url": "http://api.rdio.com/1/?method=getObjectFromUrl"
       },
       {
         "path": "/?method=get",
@@ -530,7 +536,7 @@
         "category": "Core",
         "displayName": "Core_POST",
         "httpMethod": "POST",
-        "url": "null/?method=get"
+        "url": "http://api.rdio.com/1/?method=get"
       },
       {
         "path": "/?method=getPlaybackToken",
@@ -554,7 +560,7 @@
         "category": "Playback",
         "displayName": "Playback_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getPlaybackToken"
+        "url": "http://api.rdio.com/1/?method=getPlaybackToken"
       },
       {
         "path": "/?method=setPlaylistCollaborating",
@@ -578,7 +584,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=setPlaylistCollaborating"
+        "url": "http://api.rdio.com/1/?method=setPlaylistCollaborating"
       },
       {
         "path": "/?method=setPlaylistCollaborationMode",
@@ -602,7 +608,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=setPlaylistCollaborationMode"
+        "url": "http://api.rdio.com/1/?method=setPlaylistCollaborationMode"
       },
       {
         "path": "/?method=setPlaylistFields",
@@ -626,7 +632,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=setPlaylistFields"
+        "url": "http://api.rdio.com/1/?method=setPlaylistFields"
       },
       {
         "path": "/?method=setPlaylistOrder",
@@ -650,7 +656,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=setPlaylistOrder"
+        "url": "http://api.rdio.com/1/?method=setPlaylistOrder"
       },
       {
         "path": "/?method=removeFromPlaylist",
@@ -674,7 +680,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=removeFromPlaylist"
+        "url": "http://api.rdio.com/1/?method=removeFromPlaylist"
       },
       {
         "path": "/?method=getPlaylists",
@@ -698,7 +704,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=getPlaylists"
+        "url": "http://api.rdio.com/1/?method=getPlaylists"
       },
       {
         "path": "/?method=deletePlaylist",
@@ -722,7 +728,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=deletePlaylist"
+        "url": "http://api.rdio.com/1/?method=deletePlaylist"
       },
       {
         "path": "/?method=createPlaylist",
@@ -746,7 +752,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=createPlaylist"
+        "url": "http://api.rdio.com/1/?method=createPlaylist"
       },
       {
         "path": "/?method=addToPlaylist",
@@ -770,7 +776,7 @@
         "category": "Playlists",
         "displayName": "Playlists_POST",
         "httpMethod": "POST",
-        "url": "null/?method=addToPlaylist"
+        "url": "http://api.rdio.com/1/?method=addToPlaylist"
       },
       {
         "path": "/?method=userFollowing",
@@ -794,7 +800,7 @@
         "category": "Social Network",
         "displayName": "Social Network_POST",
         "httpMethod": "POST",
-        "url": "null/?method=userFollowing"
+        "url": "http://api.rdio.com/1/?method=userFollowing"
       },
       {
         "path": "/?method=addFriend",
@@ -818,7 +824,7 @@
         "category": "Social Network",
         "displayName": "Social Network_POST",
         "httpMethod": "POST",
-        "url": "null/?method=addFriend"
+        "url": "http://api.rdio.com/1/?method=addFriend"
       },
       {
         "path": "/?method=currentUser",
@@ -842,7 +848,7 @@
         "category": "Social Network",
         "displayName": "Social Network_POST",
         "httpMethod": "POST",
-        "url": "null/?method=currentUser"
+        "url": "http://api.rdio.com/1/?method=currentUser"
       },
       {
         "path": "/?method=findUser",
@@ -866,7 +872,7 @@
         "category": "Social Network",
         "displayName": "Social Network_POST",
         "httpMethod": "POST",
-        "url": "null/?method=findUser"
+        "url": "http://api.rdio.com/1/?method=findUser"
       },
       {
         "path": "/?method=removeFriend",
@@ -890,7 +896,7 @@
         "category": "Social Network",
         "displayName": "Social Network_POST",
         "httpMethod": "POST",
-        "url": "null/?method=removeFriend"
+        "url": "http://api.rdio.com/1/?method=removeFriend"
       },
       {
         "path": "/?method=userFollowers",
@@ -914,7 +920,7 @@
         "category": "Social Network",
         "displayName": "Social Network_POST",
         "httpMethod": "POST",
-        "url": "null/?method=userFollowers"
+        "url": "http://api.rdio.com/1/?method=userFollowers"
       }
     ]
   },
@@ -927,15 +933,25 @@
   "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/rdio.png",
   "name": "Rdio",
   "oauth": {
-    "version": "1.0",
-    "key": "8xrf6qedwvp2m5zmwrrhbb2j",
-    "secret": "E5EbEc5vdf",
-    "accessTokenURL": "http://api.rdio.com/oauth/access_token",
-    "requestTokenURL": "http://api.rdio.com/oauth/request_token",
-    "authTokenURL": "https://www.rdio.com/oauth/authorize",
-    "tokenMethod": "oauth_signed",
-    "scope": "user"
+    "development" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/rdio/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "staging" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/rdio/callback",
+      "tokenMethod": "oauth_signed"
+    },
+    "production" : {
+      "consumerKey": "jrpmrtppjtps6k3277dzb7yq",
+      "consumerSecret": "WKRnJg7cWa",
+      "callbackURL": "https://app.octoblu.com/api/oauth/rdio/callback",
+      "tokenMethod": "oauth_signed"
+    }
   },
-  "useCustom": false,
+  "isPassport": true,
   "type": "channel:rdio"
 }

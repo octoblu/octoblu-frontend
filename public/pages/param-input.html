@@ -1,5 +1,5 @@
 <div>
-  <div class="form-group" ng-repeat="paramDefinition in paramDefinitions">
+  <div class="form-group" ng-repeat="paramDefinition in paramDefinitions" ng-hide="paramDefinition.hidden">
     <label for="{{paramDefinition.name}}">{{paramDefinition.name}}</label>
     <input  id="{{paramDefinition.name}}" type="{{inputType(paramDefinition.type)}}" class="form-control" ng-model="params[paramDefinition.name]">
   </div>
