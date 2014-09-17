@@ -30,7 +30,7 @@
 		"category" : "subdevice",
 		"description" : "Phillips Hue light bulbs",
 		"display" : true,
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Phillips Hue",
 		"skynet" : {
 			"type" : "device",
@@ -44,7 +44,7 @@
 		"category" : "subdevice",
 		"description" : "Belkin Wemo home automation",
 		"display" : true,
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Belkin Wemo",
 		"skynet" : {
 			"type" : "device",
@@ -72,7 +72,7 @@
 		"category" : "subdevice",
 		"description" : "Insteon home automation",
 		"display" : true,
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Insteon",
 		"skynet" : {
 			"type" : "device",
@@ -86,7 +86,7 @@
 		"category" : "subdevice",
 		"description" : "Blink1 USB LED",
 		"display" : true,
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Blink(1)",
 		"skynet" : {
 			"type" : "device",
@@ -176,7 +176,7 @@
 	{
 		"_id" : "53c9b831f400e177dca325ae",
 		"category" : "device",
-		"description" : "Apple IOS Device",
+		"description" : "Apple iOS Device",
 		"display" : true,
 		"enabled" : true,
 		"name" : "Apple",
@@ -298,7 +298,7 @@
 		"_id" : "53c9b836f400e177dca325bd",
 		"category" : "channel",
 		"description" : "Get YAHOO! Finance stock price",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "StockPrice",
 		"skynet" : {
 			"type" : "channel",
@@ -441,7 +441,7 @@
 		"_id" : "53c9b836f400e177dca325be",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Weather",
 		"skynet" : {
 			"type" : "channel",
