@@ -9,7 +9,6 @@ angular.module('octobluApp')
     link: function(scope, element, attr){
       _.defer(function(){
         var codeElement = element.find('code')[0];
-        if($(codeElement).text().length > 10000) { return; }
         $window.Prism.highlightElement(codeElement);
       });
     }
