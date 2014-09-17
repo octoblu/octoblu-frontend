@@ -33,6 +33,9 @@ module.exports = function(app, passport) {
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
+    var FacebookController = require('./controllers/facebook-controller');
+    var facebookController = new FacebookController();
+
     var FlowController = require('./controllers/flow-controller');
     var flowController = new FlowController();
 
@@ -92,6 +95,7 @@ module.exports = function(app, passport) {
             require('./controllers/invitation')(app, passport, config);
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
+            app.get('/api/oauth/facebook/signup', signupController.verifyInvitationCode, signupController.storeTesterId, facebookController.authorize);
             app.get('/api/oauth/github/signup', signupController.verifyInvitationCode, signupController.storeTesterId, githubController.authorize);
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
@@ -118,6 +122,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
+
+            app.get('/api/oauth/facebook',          referrer.storeReferrer, facebookController.authorize);
+            app.get('/api/oauth/facebook/callback', facebookController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, facebookController.redirectToDesigner);
 
             app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);

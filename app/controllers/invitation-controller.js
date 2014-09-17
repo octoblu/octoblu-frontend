@@ -23,11 +23,8 @@ var InvitationController = function (options) {
       json: betaTesterData,
     }, function (error, response, body) {
       if (error) {
-        console.log('There was an error', error);
         res.send(500, error);
       } else {
-        console.log('The invitation response is', response);
-        console.log('The invitation response body', body);
         res.send(response.statusCode);
       }
     });

@@ -38,7 +38,7 @@ var ensureUser = function(req, user, profile, callback){
     username:    profile.emails[0].value,
     displayName: profile.displayName,
     email:       profile.emails[0].value,
-    twitter: {
+    google: {
       id: profile.id
     }
   };
