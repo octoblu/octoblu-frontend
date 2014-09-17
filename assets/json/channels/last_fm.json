@@ -1274,5 +1274,5 @@
     "key": "c034d4839dfa3e855f610145d1ecb819",
     "tokenMethod": "apikey_app_query"
   },
-  "type": "channel:last_fm"
+  "type": "channel:last-fm"
 }

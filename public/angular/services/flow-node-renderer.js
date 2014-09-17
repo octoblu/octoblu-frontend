@@ -218,7 +218,7 @@ angular.module('octobluApp')
           .attr('height', nodeHeight)
           .attr("xlink:href",'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + node.type.replace(':', '/') + '.svg');
 
-        if (node.type === 'button') {
+        if (node.type === 'trigger') {
           nodeElement
             .append('rect')
             .attr('width', 20)
@@ -230,7 +230,7 @@ angular.module('octobluApp')
             .classed('flow-node-button', true);
         }
 
-        var label = node.name || node.category;
+        var label = node.name || node.class;
         nodeElement
           .append('text')
           .classed('flow-node-label', true)

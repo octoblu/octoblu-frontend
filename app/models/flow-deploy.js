@@ -4,7 +4,7 @@ var _ = require('lodash'),
 
 var FlowDeploy = function(options){
   var LEGACY_TYPES = {
-    'button'   : 'inject',
+    'trigger'  : 'inject',
     'interval' : 'inject',
     'schedule' : 'inject'
   };

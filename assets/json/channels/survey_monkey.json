@@ -362,5 +362,5 @@
   "logo": "http://blog.leadsquared.com/wp-content/uploads/2013/07/SurveyMOnkey-edited.jpg",
   "name": "SURVEY MONKEY",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:survey_monkey"
+  "type": "channel:survey-monkey"
 }

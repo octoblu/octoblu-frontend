@@ -1570,5 +1570,5 @@
     "version": "2.0"
   },
   "useCustom": true,
-  "type": "channel:four_square"
+  "type": "channel:four-square"
 }

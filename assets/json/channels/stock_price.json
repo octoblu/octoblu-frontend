@@ -49,5 +49,5 @@
       }
     ]
   },
-  "type": "channel:stock_price"
+  "type": "channel:stock-price"
 }
