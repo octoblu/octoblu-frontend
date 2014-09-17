@@ -45,6 +45,9 @@ module.exports = function(app, passport) {
     var GithubController = require('./controllers/github-controller');
     var githubController = new GithubController();
 
+    var GoogleController = require('./controllers/google-controller');
+    var googleController = new GoogleController();
+
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
@@ -90,6 +93,7 @@ module.exports = function(app, passport) {
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
             app.get('/api/oauth/github/signup', signupController.verifyInvitationCode, signupController.storeTesterId, githubController.authorize);
+            app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
             app.put('/api/flows/:id', flowController.updateOrCreate);
@@ -117,6 +121,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
+
+            app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);

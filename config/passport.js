@@ -12,7 +12,6 @@ var rest = require('rest'),
 
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
 var mongoose = require('mongoose');
@@ -111,45 +110,6 @@ module.exports = function (env, passport) {
 //                                token: token,
 //                                username: profile.emails[0].value,
 //                                displayName: profile.name.givenName + ' ' + profile.name.familyName
-//                            }
-//                        });
-//                    }
-                })
-                .then(function (user) {
-                    done(null, user);
-                }, function (err) {
-                    done(err);
-                });
-        }));
-
-    // =========================================================================
-    // GOOGLE ==================================================================
-    // =========================================================================
-    passport.use(new GoogleStrategy({
-
-            clientID: configAuth.googleAuth.clientID,
-            clientSecret: configAuth.googleAuth.clientSecret,
-            callbackURL: configAuth.googleAuth.callbackURL,
-            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
-        },
-        function (req, token, tokenSecret, profile, done) {
-            User.findOne({ 'google.id': profile.id }).exec()
-                .then(function (user) {
-//                    if (user) {
-                        return user; // user found, return that user
-//                    }
-//                    else {
-                        // if there is no user, create them
-//                        return User.create({
-//                            username: profile.emails[0].value,
-//                            displayName: profile.displayName,
-//                            email: profile.emails[0].value,
-//                            google: {
-//                                id: profile.id,
-//                                token: token,
-//                                username: profile.emails[0].value,
-//                                displayName: profile.displayName
 //                            }
 //                        });
 //                    }
