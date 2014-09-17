@@ -8,8 +8,7 @@ angular.module('octobluApp')
       return $http.get('/api/nodes')
         .then(function (results) {
           var devices = _.map(results.data, function(device){
-            device.logo = deviceService.logoUrl(device);
-            return device;
+            return deviceService.addLogoUrl(device);
           });
 
           var gateways = _.filter(devices, {type: 'gateway', online: true});

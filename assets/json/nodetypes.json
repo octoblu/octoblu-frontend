@@ -10,7 +10,7 @@
 			"type" : "skynet",
 			"subtype" : "cloud"
 		},
-		"type" : "cloud"
+		"type" : "device:cloud"
 	},
 	{
 		"_id" : "53c9b82ef400e177dca325a2",
@@ -23,7 +23,7 @@
 			"type" : "device",
 			"subtype" : "arduino"
 		},
-		"type" : "arduino"
+		"type" : "device:arduino"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a3",
@@ -34,10 +34,10 @@
 		"name" : "Phillips Hue",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "phillips hue",
+			"subtype" : "phillips-hue",
 			"plugin" : "skynet-hue"
 		},
-		"type" : "phillips_hue"
+		"type" : "device:phillips-hue"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a4",
@@ -51,7 +51,7 @@
 			"subtype" : "wemo",
 			"plugin" : "skynet-wemo"
 		},
-		"type" : "wemo"
+		"type" : "device:wemo"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a5",
@@ -65,7 +65,7 @@
 			"subtype" : "nest",
 			"plugin" : "skynet-nest"
 		},
-		"type" : "nest"
+		"type" : "device:nest"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a6",
@@ -79,7 +79,7 @@
 			"subtype" : "insteon",
 			"plugin" : "skynet-insteon"
 		},
-		"type" : "insteon"
+		"type" : "device:insteon"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a7",
@@ -93,7 +93,7 @@
 			"subtype" : "blink1",
 			"plugin" : "skynet-blink1"
 		},
-		"type" : "blink1"
+		"type" : "device:blink1"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325a8",
@@ -106,7 +106,7 @@
 			"type" : "device",
 			"subtype" : "raspberrypi"
 		},
-		"type" : "raspberrypi"
+		"type" : "device:raspberrypi"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325a9",
@@ -119,7 +119,7 @@
 			"type" : "device",
 			"subtype" : "galileo"
 		},
-		"type" : "galileo"
+		"type" : "device:galileo"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325aa",
@@ -132,7 +132,7 @@
 			"type" : "device",
 			"subtype" : "beaglebone"
 		},
-		"type" : "beaglebone"
+		"type" : "device:beaglebone"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325ab",
@@ -145,7 +145,7 @@
 			"type" : "device",
 			"subtype" : "spark"
 		},
-		"type" : "spark"
+		"type" : "device:spark"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325ac",
@@ -158,7 +158,7 @@
 			"type" : "device",
 			"subtype" : "pinoccio"
 		},
-		"type" : "pinoccio"
+		"type" : "device:pinoccio"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325ad",
@@ -171,7 +171,7 @@
 			"type" : "device",
 			"subtype" : "tessel"
 		},
-		"type" : "tessel"
+		"type" : "device:tessel"
 	},
 	{
 		"_id" : "53c9b831f400e177dca325ae",
@@ -184,7 +184,7 @@
 			"type" : "octobluMobile",
 			"subtype" : "apple"
 		},
-		"type" : "apple"
+		"type" : "device:apple"
 	},
 	{
 		"_id" : "53c9b831f400e177dca325af",
@@ -196,7 +196,7 @@
 			"type" : "octobluMobile",
 			"subtype" : "android"
 		},
-		"type" : "android"
+		"type" : "device:android"
 	},
 	{
 		"_id" : "53c9b831f400e177dca325b0",
@@ -208,7 +208,7 @@
 		"skynet" : {
 			"type" : "gateway"
 		},
-		"type" : "gateway"
+		"type" : "device:gateway"
 	},
 	{
 		"_id" : "53c9b831f400e177dca325b1",
@@ -237,7 +237,7 @@
 		"skynet" : {
 			"type" : "inboundSMS"
 		},
-		"type" : "inbound_sms"
+		"type" : "device:inbound-sms"
 	},
 	{
 		"_id" : "53c9b831f400e177dca325b2",
@@ -266,7 +266,7 @@
 		"skynet" : {
 			"type" : "outboundSMS"
 		},
-		"type" : "outbound_sms"
+		"type" : "device:outbound-sms"
 	},
 	{
 		"_id" : "53c9b832f400e177dca325b3",
@@ -279,7 +279,7 @@
 			"type" : "device",
 			"subtype" : "other"
 		},
-		"type" : "other"
+		"type" : "device:other"
 	},
 	{
 		"_id" : "53c9b833f400e177dca325b4",

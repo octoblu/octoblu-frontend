@@ -196,6 +196,12 @@ angular.module('octobluApp')
           node.y = height - zoomY;
         }
 
+        var logoUrl = function(data) {
+          if (data && data.type) {
+            return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+          }
+        }
+
 
         var nodeElement = renderScope
           .append('g')
@@ -216,7 +222,7 @@ angular.module('octobluApp')
           .append("svg:image")
           .attr('width', FlowNodeDimensions.width)
           .attr('height', nodeHeight)
-          .attr("xlink:href",'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + node.type.replace(':', '/') + '.svg');
+          .attr("xlink:href",logoUrl(node));
 
         if (node.type === 'operation:trigger') {
           nodeElement
