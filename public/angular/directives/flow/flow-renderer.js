@@ -27,7 +27,7 @@ angular.module('octobluApp')
       }
 
       function addButtonClickBehavior(nodeElement, node) {
-        if (node.type === 'trigger') {
+        if (node.type === 'operation:trigger') {
           nodeElement.selectAll('.flow-node-button').on('click', function () {
             d3.event.preventDefault();
             d3.event.stopPropagation();

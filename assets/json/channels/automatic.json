@@ -72,7 +72,6 @@
   "description": "",
   "documentation": "https://www.automatic.com/developer/documentation/",
   "enabled": true,
-  "logo": "http://www.swaroopch.com/files/images/2013/08/automatic_rgb_vertical_logo-d73eccede466.jpg",
   "name": "Automatic",
   "oauth": {
     "version": "1.0",

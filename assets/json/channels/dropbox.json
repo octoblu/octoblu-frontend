@@ -621,7 +621,6 @@
   "auth_strategy": "oauth",
   "documentation": "https://www.dropbox.com/developers/core/docs",
   "enabled": true,
-  "logo": "http://cdn.appstorm.net/windows.appstorm.net/files/2012/10/dropbox-logo.jpg",
   "name": "Dropbox",
   "oauth": {
     "accessTokenPath": "/oauth2/authorize",

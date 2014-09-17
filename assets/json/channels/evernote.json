@@ -7,7 +7,6 @@
   "auth_strategy": "oauth",
   "documentation": "http://dev.evernote.com/doc/reference/",
   "enabled": false,
-  "logo": "http://icons.iconarchive.com/icons/emey87/social-button/256/evernote-icon.png",
   "name": "Evernote",
   "oauth": {
     "accessTokenURL": "https://www.evernote.com/oauth",

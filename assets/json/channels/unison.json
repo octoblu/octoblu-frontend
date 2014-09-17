@@ -186,7 +186,6 @@
   "description": "",
   "documentation": "https://developers.unison.com/v1/explorer/",
   "enabled": true,
-  "logo": "http://www.trademarkia.com/services/logo.ashx?sid=77753715",
   "name": "Unison",
   "oauth": {},
   "type": "channel:unison"

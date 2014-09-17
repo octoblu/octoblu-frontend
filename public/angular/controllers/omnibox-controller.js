@@ -13,15 +13,10 @@ angular.module('octobluApp')
   $scope.selectItem = function(item) {
     OmniService.selectItem(item).then(function(nodeType){
       $scope.nodeType = nodeType;
-//      fetchFlowNodes($scope.flowNodes);
     });
   };
 
   $scope.getOmniboxItemTemplate = function(item) {
     return '/pages/omnibox-item-' + item.category + '.html';
   };
-
-  $scope.logoUrl = function(node) {
-    return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + node.type.replace(':', '/') + '.svg';
-  }
 });

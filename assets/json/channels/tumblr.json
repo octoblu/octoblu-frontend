@@ -1181,8 +1181,6 @@
   },
   "auth_strategy": "oauth",
   "enabled": true,
-  "logo": "http://zachis.it/wp-content/themes/zachisit/images/tumblr-icon.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/tumblr.png",
   "name": "Tumblr",
   "oauth": {
     "accessTokenURL": "http://www.tumblr.com/oauth/access_token",

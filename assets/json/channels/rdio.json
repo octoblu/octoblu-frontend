@@ -929,8 +929,6 @@
   "description": "",
   "documentation": "",
   "enabled": false,
-  "logo": "http://cdn.appstorm.net/web.appstorm.net/files/2011/12/App-Store-Rdio.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/rdio.png",
   "name": "Rdio",
   "oauth": {
     "development" : {

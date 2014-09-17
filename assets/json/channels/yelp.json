@@ -85,7 +85,6 @@
   "description": "",
   "documentation": "http://www.yelp.com/developers/documentation/",
   "enabled": true,
-  "logo": "http://www.greathillsent.com/images/yelp.png",
   "name": "Yelp",
   "oauth": {
     "key": "w5Ds7zP3v1JFIKo9r4pVVQ",

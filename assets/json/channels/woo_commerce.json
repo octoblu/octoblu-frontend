@@ -260,7 +260,6 @@
   "description": "",
   "documentation": "http://woothemes.github.io/woocommerce/rest-api/#endpoints",
   "enabled": true,
-  "logo": "http://colorlib.com/wp/wp-content/uploads/2013/07/woocommerce-travelify.jpg",
   "name": "WooCommerce",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:woo-commerce"

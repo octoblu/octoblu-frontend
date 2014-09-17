@@ -2650,7 +2650,6 @@
   "auth_strategy": "oauth",
   "documentation": "http://developers.box.com/docs/",
   "enabled": true,
-  "logo": "http://cloudtimes.org/wp-content/uploads/2011/08/box_logo.png",
   "name": "Box",
   "oauth": {
     "accessTokenURL": "https://www.box.com/api/oauth2/token",

@@ -4456,7 +4456,6 @@
   "documentation": "https://dev.twitter.com/docs/api/1.1",
   "enabled": true,
   "isPassport": true,
-  "logo": "https://s3-us-west-2.amazonaws.com/octoblu-icons/twitter.png",
   "name": "Twitter",
   "type": "channel:twitter"
 }

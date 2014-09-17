@@ -152,8 +152,6 @@
     ]
   },
   "auth_strategy": "oauth",
-  "logo": "https://lh3.ggpht.com/eeTyBW3zE2RE63KcXwHdaC1eM6oL70vArWu_JAQ-uuDBujPvB3XUocy2nXMj42eXG0nd=w300",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/spotify.png",
   "name": "Spotify",
   "enabled": true,
   "type": "channel:spotify",

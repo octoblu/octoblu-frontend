@@ -2536,8 +2536,6 @@
     ]
   },
   "auth_strategy": "oauth",
-  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/etsy.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/etsy.png",
   "name": "Etsy",
   "enabled": true,
   "oauth": {

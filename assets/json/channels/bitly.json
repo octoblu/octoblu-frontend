@@ -882,8 +882,6 @@
   "custom_tokens": [],
   "documentation": "http://api.bitly.com/v1",
   "enabled": true,
-  "logo": "http://www.indiesunlimited.com/wp-content/uploads/2013/05/bitly-puffer-fish.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/bitly.png",
   "name": "Bitly",
   "oauth": {
     "development" : {

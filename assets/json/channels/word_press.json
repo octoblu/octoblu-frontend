@@ -5275,7 +5275,6 @@
   "description": "",
   "documentation": "https://developer.wordpress.com/docs/api/",
   "enabled": true,
-  "logo": "http://winebloggersconference.org/america/wp-content/uploads/2013/06/Wordpress.com-LOGO-use-this.jpg",
   "name": "WordPress",
   "oauth": {
     "version": "2.0"

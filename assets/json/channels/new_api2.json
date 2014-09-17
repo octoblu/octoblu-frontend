@@ -10,7 +10,6 @@
   "description": "blah blah2",
   "documentation": "test2",
   "enabled": true,
-  "logo": "test2",
   "name": "new api2",
   "owner": "d31d1861-abb0-11e3-b70b-e5c6606573a1",
   "type": "channel:new-api2"

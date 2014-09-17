@@ -352,8 +352,6 @@
   },
   "auth_strategy": "simple",
   "enabled": false,
-  "logo": "https://pbs.twimg.com/profile_images/1635826227/tropo-glyph.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/tropo.png",
   "name": "Tropo",
   "type": "channel:tropo"
 }

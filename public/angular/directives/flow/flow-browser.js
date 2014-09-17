@@ -68,10 +68,6 @@ angular.module('octobluApp')
       $scope.filterOperators = function(flowNodeType){
         return flowNodeType && (flowNodeType.category !== 'device' && flowNodeType.category !== 'channel');
       };
-
-      $scope.logoUrl = function(flowNodeType) {
-        return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + flowNodeType.type.replace(':', '/') + '.svg';
-      };
     }
   };
 });

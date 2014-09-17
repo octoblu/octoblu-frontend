@@ -48,6 +48,9 @@ angular.module('octobluApp')
                         $scope.has_user_channel = false;
                         channelService.getActiveChannels(true);
                         channelService.getAvailableChannels(true);
+                        _.defer(function(){
+                            window.location = '/design';
+                        })
                     });
                 }
             }, function () {
@@ -149,10 +152,6 @@ angular.module('octobluApp')
                 location.href = loc;
             }
         };
-
-        $scope.logo_url = function () {
-            return channelService.logoUrl($scope.channel);
-        };
     })
     .controller('apiEditorController', function ($rootScope, $scope, $http, $injector, $location, $stateParams,
             $modal, $log, $state, channelService, userService, currentUser) {
@@ -247,10 +246,6 @@ angular.module('octobluApp')
                 var loc = '/api/auth/' + channel.name;
                 location.href = loc;
             }
-        };
-
-        $scope.logo_url = function () {
-            return channelService.logoUrl($scope.channel);
         };
 
         $scope.confirmDeleteResource = function (index) {
@@ -489,10 +484,6 @@ angular.module('octobluApp')
                 location.href = loc;
             }
         };
-
-        $scope.logo_url = function () {
-            return channelService.logoUrl($scope.channel);
-        };
     })
     .controller('apiResourceDetailController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, currentUser, channelService, userService) {
         $scope.skynetStatus = false;
@@ -575,9 +566,5 @@ angular.module('octobluApp')
                 var loc = '/api/auth/' + channel.name;
                 location.href = loc;
             }
-        };
-
-        $scope.logo_url = function () {
-            return channelService.logoUrl($scope.channel);
         };
     });

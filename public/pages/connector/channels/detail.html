@@ -1,48 +1,33 @@
-<h2>{{channel.name}}</h2>
+<h2 class="text-center">Manage {{channel.name}}</h2>
+<br>
 
-<img src="{{logo_url()}}" height="100px" width="100px" /> &nbsp; 
-<div ng-show="channel.owner">
-  <button class="btn btn-large btn-success" ng-click="editCustom()">Edit</button>
-</div>
-
-<div ng-show="isActivated()">
-  <button class="btn btn-large btn-danger" ng-click="setDeactivate()">Deactivate</button>
-</div>
-
-<div ng-show="isSimpleAuth() && !isActivated()">
-  <div class="clearfix">
-    <label>Key</label>
-    <div class="input">
-      <input type="text" class="span3" placeholder="key" ng-model="user_channel.key">
-    </div>
-  </div>
-
-  <div class="clearfix" ng-hide="hideSecretField()">
-    <label>Token</label>
-    <div class="input">
-      <input type="text" class="span3" placeholder="token" ng-model="user_channel.token">
-    </div>
-  </div>
-
-  <br/>
-  <div class="clearfix">
-    <button class="btn btn-default" ng-click="save()">Save</button>
+<div class="row">
+  <div class="col-xs-12 col-md-offset-4 col-md-4">
+    <div ng-style="{'background-image': 'url('+channel.logo+')'}" class="node-thumbnail"></div>
   </div>
 </div>
 
-<div class="pull-right" ng-show="isCustomAuth() && !isActivated()">
-  <div class="clearfix" ng-repeat="custom in custom_tokens | orderBy:'name'">
-    <label>{{custom.name}}</label>
-    <div class="input">
-      <input type="text" class="span3" placeholder="{{custom.name}}" ng-model="custom.value">
-    </div>
-  </div>
+<br>
+<br>
 
-  <br/>
-  <div class="clearfix">
-    <button class="btn btn-default" ng-click="save()">Save</button>
+<div class="row">
+  <div class="col-xs-12 col-md-offset-3 col-md-6 text-center">
+    <h2>Deactivating this channel will disable any flows using this channel.</h2>
+    <br>
+
+    <button class="btn btn-large btn-danger" ng-click="setDeactivate()">
+      Deactivate Channel
+    </button>
   </div>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
 <script type="text/ng-template" id="myModalContent.html">
   <div class="modal-body">

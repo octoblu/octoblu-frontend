@@ -218,7 +218,7 @@ angular.module('octobluApp')
           .attr('height', nodeHeight)
           .attr("xlink:href",'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + node.type.replace(':', '/') + '.svg');
 
-        if (node.type === 'trigger') {
+        if (node.type === 'operation:trigger') {
           nodeElement
             .append('rect')
             .attr('width', 20)

@@ -2808,7 +2808,6 @@
   "description": "",
   "documentation": "http://api.sharefile.com/rest/doc.aspx",
   "enabled": true,
-  "logo": "http://infotechlead.com/wp-content/uploads/2013/11/Sharefile-Citrix.jpg",
   "name": "CITRIX SHAREFILE",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:citrix-sharefile"

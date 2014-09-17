@@ -964,7 +964,6 @@
   "auth_strategy": "oauth",
   "documentation": "http://www.smartsheet.com/developers/api-documentation",
   "enabled": true,
-  "logo": "http://media-cache-ec0.pinimg.com/avatars/smartsheet_1355263281_140.jpg",
   "name": "Smartsheet",
   "oauth": {
     "accessTokenURL": "https://api.smartsheet.com/1.1/token",

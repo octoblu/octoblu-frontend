@@ -44,7 +44,6 @@
   "description": "",
   "documentation": "https://www.connectsense.com/developer/user_devices_list",
   "enabled": true,
-  "logo": "http://postscapes.com/internet-of-things-award/wp-content/uploads/2014/01/connectsense-logo-663x378.jpg",
   "name": "Connect Sense",
   "oauth": {
     "version": "1.0"

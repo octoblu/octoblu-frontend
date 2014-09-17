@@ -234,7 +234,6 @@
   "description": "",
   "documentation": "http://developer.nytimes.com/docs/",
   "enabled": true,
-  "logo": "http://foodtank.com/assets/images/head/new-york-times-ipad-icon.png",
   "name": "The New York Times",
   "owner": "01f45d00-0611-11e4-83bd-196bfd08cd39",
   "type": "channel:the-new-york-times"

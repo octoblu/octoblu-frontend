@@ -10,7 +10,6 @@
   "description": "nodejs paas",
   "documentation": "http://nodester.com/docs",
   "enabled": false,
-  "logo": "http://fc01.deviantart.net/images/large/indyart/vector/Rocketeer_WIP.gif",
   "name": "nodester",
   "owner": "5d6e9c91-820e-11e3-a399-f5b85b6b9fd0",
   "type": "channel:nodester"

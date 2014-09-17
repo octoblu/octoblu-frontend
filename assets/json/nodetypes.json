@@ -5,7 +5,6 @@
 		"description" : "SkyNet cloud",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/meshblu.png",
 		"name" : "Meshblu",
 		"skynet" : {
 			"type" : "skynet",
@@ -19,7 +18,6 @@
 		"description" : "Arduino microcontroller",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/arduino.png",
 		"name" : "Arduino",
 		"skynet" : {
 			"type" : "device",
@@ -33,7 +31,6 @@
 		"description" : "Phillips Hue light bulbs",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/hue.png",
 		"name" : "Phillips Hue",
 		"skynet" : {
 			"type" : "device",
@@ -48,7 +45,6 @@
 		"description" : "Belkin Wemo home automation",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/wemo.png",
 		"name" : "Belkin Wemo",
 		"skynet" : {
 			"type" : "device",
@@ -63,7 +59,6 @@
 		"description" : "Nest thermostat and protect home automation",
 		"display" : true,
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/nest.png",
 		"name" : "Nest",
 		"skynet" : {
 			"type" : "device",
@@ -78,7 +73,6 @@
 		"description" : "Insteon home automation",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/insteon.png",
 		"name" : "Insteon",
 		"skynet" : {
 			"type" : "device",
@@ -93,7 +87,6 @@
 		"description" : "Blink1 USB LED",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/blink1.png",
 		"name" : "Blink(1)",
 		"skynet" : {
 			"type" : "device",
@@ -108,7 +101,6 @@
 		"description" : "Raspberry Pi",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/raspberry-pi.png",
 		"name" : "RaspberryPi",
 		"skynet" : {
 			"type" : "device",
@@ -122,7 +114,6 @@
 		"description" : "Intel Galileo",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/galileo.png",
 		"name" : "Intel Galileo",
 		"skynet" : {
 			"type" : "device",
@@ -136,7 +127,6 @@
 		"description" : "Beagle Bone",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/beaglebone.png",
 		"name" : "BeagleBone",
 		"skynet" : {
 			"type" : "device",
@@ -150,7 +140,6 @@
 		"description" : "Spark device",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/spark.png",
 		"name" : "Spark",
 		"skynet" : {
 			"type" : "device",
@@ -164,7 +153,6 @@
 		"description" : "Pinoccio device",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/pinoccio.png",
 		"name" : "Pinoccio",
 		"skynet" : {
 			"type" : "device",
@@ -178,7 +166,6 @@
 		"description" : "Tessel device",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/tessel.png",
 		"name" : "Tessel",
 		"skynet" : {
 			"type" : "device",
@@ -192,7 +179,6 @@
 		"description" : "Apple IOS Device",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/iphone.png",
 		"name" : "Apple",
 		"skynet" : {
 			"type" : "octobluMobile",
@@ -205,7 +191,6 @@
 		"category" : "device",
 		"description" : "Android Device",
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/android.png",
 		"name" : "Android",
 		"skynet" : {
 			"type" : "octobluMobile",
@@ -219,7 +204,6 @@
 		"description" : "Skynet Hub",
 		"display" : false,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/gateblu.png",
 		"name" : "Gateblu",
 		"skynet" : {
 			"type" : "gateway"
@@ -232,7 +216,6 @@
 		"description" : "Inbound SMS phone number",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/sms.png",
 		"name" : "SMS inbound",
 		"optionsSchema" : {
 			"type" : "object",
@@ -262,7 +245,6 @@
 		"description" : "Outbound SMS phone number",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/sms.png",
 		"name" : "SMS outbound",
 		"optionsSchema" : {
 			"type" : "object",
@@ -292,7 +274,6 @@
 		"description" : "Other Generic Device",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/generic-device.png",
 		"name" : "Generic Device",
 		"skynet" : {
 			"type" : "device",
@@ -305,7 +286,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/spotify.png",
 		"name" : "Spotify",
 		"skynet" : {
 			"type" : "channel",
@@ -319,7 +299,6 @@
 		"category" : "channel",
 		"description" : "Get YAHOO! Finance stock price",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/yahoo-finance.png",
 		"name" : "StockPrice",
 		"skynet" : {
 			"type" : "channel",
@@ -333,7 +312,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/evernote.png",
 		"name" : "Evernote",
 		"skynet" : {
 			"type" : "channel",
@@ -347,7 +325,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/vimeo.png",
 		"name" : "Vimeo",
 		"skynet" : {
 			"type" : "channel",
@@ -361,7 +338,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/linkedin.png",
 		"name" : "LinkedIn",
 		"skynet" : {
 			"type" : "channel",
@@ -375,21 +351,19 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/fitbit.png",
 		"name" : "FitBit",
 		"skynet" : {
 			"type" : "channel",
 			"subtype" : "FitBit"
 		},
 		"channelid" : "52f97cc5a9909344830004ec",
-		"type" : "channel:fit-bit"
+		"type" : "channel:fitbit"
 	},
 	{
 		"_id" : "53c9b834f400e177dca325b7",
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/tumblr.png",
 		"name" : "Tumblr",
 		"skynet" : {
 			"type" : "channel",
@@ -403,7 +377,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/twilio.png",
 		"name" : "Twilio",
 		"skynet" : {
 			"type" : "channel",
@@ -417,7 +390,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/tropo.png",
 		"name" : "Tropo",
 		"skynet" : {
 			"type" : "channel",
@@ -431,7 +403,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/stack-overflow.png",
 		"name" : "StackOverflow",
 		"skynet" : {
 			"type" : "channel",
@@ -445,7 +416,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/ny-times.png",
 		"name" : "NewYorkTimes",
 		"skynet" : {
 			"type" : "channel",
@@ -459,7 +429,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/musix-match.png",
 		"name" : "MusixMatch",
 		"skynet" : {
 			"type" : "channel",
@@ -473,7 +442,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/weather.png",
 		"name" : "Weather",
 		"skynet" : {
 			"type" : "channel",
@@ -488,7 +456,6 @@
 		"description" : "",
 		"display" : true,
 		"enabled" : true,
-		"logo" : "http://cdn.appstorm.net/web.appstorm.net/files/2011/12/App-Store-Rdio.png",
 		"name" : "Rdio",
 		"skynet" : {
 			"subtype" : "Rdio",
@@ -502,7 +469,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/readability.png",
 		"name" : "Readability",
 		"skynet" : {
 			"type" : "channel",
@@ -516,7 +482,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/delicious.png",
 		"name" : "Delicious",
 		"skynet" : {
 			"type" : "channel",
@@ -530,7 +495,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/paypal.png",
 		"name" : "Paypal",
 		"skynet" : {
 			"type" : "channel",
@@ -544,7 +508,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/nest.png",
 		"name" : "Nest",
 		"skynet" : {
 			"type" : "channel",
@@ -558,7 +521,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/etsy.png",
 		"name" : "Etsy",
 		"skynet" : {
 			"type" : "channel",
@@ -572,7 +534,6 @@
 		"category" : "channel",
 		"description" : "Give your entire team access to our powerful online survey platform. SurveyMonkey Enterprise helps anyone in any function use surveys to make smarter decisions, while your organization gets complete control of your data, users and billing.",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/survey-monkey.png",
 		"name" : "Survey Monkey",
 		"skynet" : {
 			"type" : "channel",
@@ -586,7 +547,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/twitter.png",
 		"name" : "Twitter",
 		"skynet" : {
 			"type" : "channel",
@@ -600,7 +560,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/github.png",
 		"name" : "Github",
 		"skynet" : {
 			"type" : "channel",
@@ -614,7 +573,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/dropbox.png",
 		"name" : "Dropbox",
 		"skynet" : {
 			"type" : "channel",
@@ -628,7 +586,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/box.png",
 		"name" : "Box",
 		"skynet" : {
 			"type" : "channel",
@@ -642,7 +599,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/google-drive.png",
 		"name" : "GoogleDrive",
 		"skynet" : {
 			"type" : "channel",
@@ -656,7 +612,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/facebook.png",
 		"name" : "Facebook",
 		"skynet" : {
 			"type" : "channel",
@@ -670,7 +625,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/smartsheet.png",
 		"name" : "Smartsheet",
 		"skynet" : {
 			"type" : "channel",
@@ -684,7 +638,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/foursquare.png",
 		"name" : "FourSquare",
 		"skynet" : {
 			"type" : "channel",
@@ -698,7 +651,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/lastfm.png",
 		"name" : "LastFM",
 		"skynet" : {
 			"type" : "channel",
@@ -713,7 +665,6 @@
 		"description" : null,
 		"display" : true,
 		"enabled" : true,
-		"logo" : "http://www.indiesunlimited.com/wp-content/uploads/2013/05/bitly-puffer-fish.png",
 		"name" : "Bitly",
 		"skynet" : {
 			"subtype" : "Bitly",
@@ -727,7 +678,6 @@
 		"category" : "channel",
 		"description" : "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
 		"enabled" : true,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/app-net.png",
 		"name" : "App.net",
 		"skynet" : {
 			"type" : "channel",
@@ -741,7 +691,6 @@
 		"category" : "channel",
 		"description" : "Parse skynet data logged to ElasticSearch",
 		"enabled" : false,
-		"logo" : "https://s3-us-west-2.amazonaws.com/octoblu-icons/elastic-search.png",
 		"name" : "ElasticLogs",
 		"skynet" : {
 			"type" : "channel",
@@ -755,7 +704,6 @@
 		"category" : "channel",
 		"description" : "",
 		"enabled" : false,
-		"logo" : "http://www.trademarkia.com/services/logo.ashx?sid=77753715",
 		"name" : "Unison",
 		"skynet" : {
 			"type" : "channel",

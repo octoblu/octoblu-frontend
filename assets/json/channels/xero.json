@@ -3642,7 +3642,6 @@
   "description": "",
   "documentation": "http://developer.xero.com/documentation/",
   "enabled": true,
-  "logo": "http://upload.wikimedia.org/wikipedia/commons/5/57/Xero-logo-hires-RGB.png",
   "name": "Xero",
   "oauth": {
     "version": "1.0",

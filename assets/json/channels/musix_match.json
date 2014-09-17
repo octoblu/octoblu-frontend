@@ -404,8 +404,6 @@
     ]
   },
   "auth_strategy": "simple",
-  "logo": "https://lh4.ggpht.com/tNQz5tVEyZi9QGNVh--pPohvsvf-VT-EgeLdkkwt7WsQnLxZjUuPUtTamop_YfgEj8w=w300",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/musixmatch.png",
   "name": "MusixMatch",
   "enabled": true,
   "oauth": {

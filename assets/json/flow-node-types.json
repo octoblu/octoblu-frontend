@@ -2,10 +2,9 @@
   {
     "name": "debounce",
     "class": "debounce",
-    "type": "debounce",
+    "type": "operation:debounce",
     "category" : "operation",
     "uuid": "52a55b44-923d-4f56-9ad4-e7aa1262c6cb",
-    "logo": "/assets/images/designer/debounce.svg",
     "defaults": {
       "interval": 1000
     },
@@ -16,10 +15,9 @@
   {
     "name": "delay",
     "class": "delay",
-    "type": "delay",
+    "type": "operation:delay",
     "category" : "operation",
     "uuid": "37e73da4-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/delay.svg",
     "defaults": {
       "timeout": 5,
       "timeoutUnits": "seconds"
@@ -29,12 +27,11 @@
     "formTemplatePath": "/assets/node_forms/delay_form.html"
   },
   {
-    "name": "demultiplexer",
-    "class": "demultiplexer",
-    "type": "demultiplexer",
+    "name": "demultiplex",
+    "class": "demultiplex",
+    "type": "operation:demultiplex",
     "category" : "operation",
     "uuid": "99b84aa0-338b-11e4-8c21-0800200c9a66",
-    "logo": "/assets/images/designer/demultiplexer.svg",
     "defaults": {
     },
     "input": 1,
@@ -42,13 +39,11 @@
     "formTemplatePath": "/assets/node_forms/demultiplexer_form.html"
   },
   {
-
     "name": "function",
     "class": "function",
     "category" : "operation",
     "uuid": "37f0a3a8-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/function.svg",
-    "type": "function",
+    "type": "operation:function",
     "defaults": {
       "output": 1,
       "func": "\nreturn msg;"
@@ -58,13 +53,11 @@
     "formTemplatePath": "/assets/node_forms/function_form.html"
   },
   {
-
     "name": "trigger",
     "class": "trigger",
     "category" : "operation",
     "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/button.svg",
-    "type": "trigger",
+    "type": "operation:trigger",
     "defaults": {
       "payloadType": "date",
       "once": false
@@ -74,13 +67,11 @@
     "formTemplatePath": "/assets/node_forms/button_form.html"
   },
   {
-
     "name": "interval",
     "class": "interval",
     "category" : "operation",
     "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/interval.svg",
-    "type": "interval",
+    "type": "operation:interval",
     "defaults": {
       "payloadType": "date",
       "repeat": 1000,
@@ -91,13 +82,11 @@
     "formTemplatePath": "/assets/node_forms/interval_form.html"
   },
   {
-
     "name": "schedule",
     "class": "schedule",
     "category" : "operation",
     "uuid": "37f0ac4a-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/schedule.svg",
-    "type": "schedule",
+    "type": "operation:schedule",
     "defaults": {
       "payloadType": "date",
       "crontab": "* * * * *",
@@ -110,10 +99,9 @@
   {
     "name": "throttle",
     "class": "throttle",
-    "type": "throttle",
+    "type": "operation:throttle",
     "category" : "operation",
     "uuid": "794922ff-3792-4e4e-a0e2-a0823ed6b82e",
-    "logo": "/assets/images/designer/throttle.svg",
     "defaults": {
       "interval": 1000
     },
@@ -122,13 +110,11 @@
     "formTemplatePath": "/assets/node_forms/throttle_form.html"
   },
   {
-
     "name": "http request",
     "class": "http-request",
     "category" : "operation",
     "uuid": "37f0aefc-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/http.svg",
-    "type": "http request",
+    "type": "operation:http-request",
     "defaults": {
       "method": "GET"
     },
@@ -138,13 +124,11 @@
     "formTemplatePath": "/assets/node_forms/http_request_form.html"
   },
   {
-
     "name": "sentiment",
     "class": "sentiment",
     "category" : "operation",
     "uuid": "37f0b3f2-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/sentiment.svg",
-    "type": "sentiment",
+    "type": "operation:sentiment",
     "defaults": {
     },
     "input": 1,
@@ -152,28 +136,23 @@
     "formTemplatePath": "/assets/node_forms/sentiment_form.html"
   },
   {
-
     "name": "xml2js",
     "class": "xml2js",
     "category" : "operation",
     "uuid": "37f0b636-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/xml2js.svg",
     "formTemplatePath": "/assets/node_forms/xml2js_form.html",
-
-    "type": "xml2js",
+    "type": "operation:xml2js",
     "defaults": {
     },
     "input": 1,
     "output": 1
   },
   {
-
     "name": "debug",
     "class": "debug",
     "category" : "operation",
     "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/debug.svg",
-    "type": "debug",
+    "type": "operation:debug",
     "defaults": {
       "active": true,
       "debug": true,
@@ -185,13 +164,11 @@
     "align": "right"
   },
   {
-
     "name": "comment",
     "class": "comment",
     "category" : "operation",
     "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
-    "logo": "/assets/images/designer/comment.svg",
-    "type": "comment",
+    "type": "operation:comment",
     "defaults": {
     },
     "input": 0,

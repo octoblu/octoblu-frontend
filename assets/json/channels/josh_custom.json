@@ -128,7 +128,6 @@
   "description": "test",
   "documentation": "test",
   "enabled": true,
-  "logo": "http://www.trashedgraphics.com/images/default_icon.png",
   "name": "Josh Custom",
   "oauth": {
     "version": "1.0",

@@ -134,7 +134,10 @@ angular.module('octobluApp')
           this.getNodeTypes = function() {
             return $http.get('/api/node_types')
                 .then(function(result){
-                    return result.data;
+                    return _.map(result.data, function(data) {
+                        data.logo = this.logoUrl(data);
+                        return data;
+                    });
                 });
         };
 
@@ -165,14 +168,19 @@ angular.module('octobluApp')
         };
 
         this.getById = function(channelId){
+            var logoUrl = this.logoUrl;
             return $http.get('/api/channels/' + channelId).then(function(response){
-                return response.data;
+                var data = response.data;
+                data.logo = logoUrl(data);
+                return data;
             });
         };
 
         this.get = function(id, callback) {
+            var logoUrl = this.logoUrl;
             $http.get('/api/channels/'+id, { cache: false})
                 .success(function(data) {
+                    data.logo = logoUrl(data);
                     callback(data);
                 })
                 .error(function(data) {

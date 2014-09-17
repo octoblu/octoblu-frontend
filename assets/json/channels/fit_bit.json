@@ -802,8 +802,6 @@
   },
   "auth_strategy": "oauth",
   "enabled": true,
-  "logo": "http://ecx.images-amazon.com/images/I/516a1%2BMjQML._SL500_AA300_.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/fitbit.png",
   "name": "FitBit",
   "oauth": {
     "development" : {
@@ -826,5 +824,5 @@
     }
   },
   "isPassport": true,
-  "type": "channel:fit-bit"
+  "type": "channel:fitbit"
 }

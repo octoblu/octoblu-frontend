@@ -34,8 +34,6 @@
     ]
   },
   "auth_strategy": "oauth",
-  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/vimeo.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/vimeo.png",
   "name": "Vimeo",
   "enabled": true,
   "useCustom": true,

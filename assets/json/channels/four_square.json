@@ -1547,8 +1547,6 @@
   },
   "auth_strategy": "oauth",
   "enabled": true,
-  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/foursquare.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/foursquare.png",
   "name": "FourSquare",
   "oauth": {
     "accessTokenIncludeClientInfo": true,

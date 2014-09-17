@@ -1585,7 +1585,6 @@
   "description": "",
   "documentation": "https://developers.google.com/youtube/v3/docs/",
   "enabled": true,
-  "logo": "https://developers.google.com/youtube/images/YouTube_logo_standard_white.png",
   "name": "YouTube",
   "oauth": {
     "version": "2.0"

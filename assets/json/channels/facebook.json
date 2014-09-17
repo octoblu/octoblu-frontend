@@ -4006,7 +4006,6 @@
   "auth_strategy": "oauth",
   "documentation": "https://developers.facebook.com/docs/graph-api/reference/",
   "enabled": true,
-  "logo": "http://appshopper.com/blog/wp-content/uploads/2010/08/facebook-icon-150x148.png",
   "name": "Facebook",
   "oauth": {
     "accessTokenURL": "https://graph.facebook.com/oauth/access_token",

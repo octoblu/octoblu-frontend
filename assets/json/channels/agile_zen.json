@@ -1439,7 +1439,6 @@
   "description": "",
   "documentation": "http://dev.agilezen.com",
   "enabled": true,
-  "logo": "http://www.agilezen.com/content/css/content/images/external/logo-NEW.png",
   "name": "AgileZen",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:agile-zen"

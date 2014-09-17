@@ -192,7 +192,6 @@
   "auth_strategy": "none",
   "documentation": "http://openweathermap.org/API",
   "enabled": true,
-  "logo": "http://icons.iconarchive.com/icons/custom-icon-design/weather/256/Sunny-Interval-icon.png",
   "name": "Weather",
   "type": "channel:weather"
 }
