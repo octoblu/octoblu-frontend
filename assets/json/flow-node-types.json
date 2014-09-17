@@ -59,12 +59,12 @@
   },
   {
 
-    "name": "button",
-    "class": "button",
+    "name": "trigger",
+    "class": "trigger",
     "category" : "operation",
     "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
     "logo": "/assets/images/designer/button.svg",
-    "type": "button",
+    "type": "trigger",
     "defaults": {
       "payloadType": "date",
       "once": false
