@@ -12,5 +12,5 @@ angular.module('octobluApp')
 
   $scope.logoUrl = function(nodeType) {
     return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + nodeType.type.replace(':', '/') + '.svg';
-  }
+  };
 });

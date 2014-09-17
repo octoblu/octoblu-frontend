@@ -250,8 +250,7 @@ angular.module('octobluApp')
         };
 
         $scope.logo_url = function () {
-            if (!$scope.channel || !$scope.channel.logo) return '';
-            return $scope.channel.logo;
+            return channelService.logoUrl($scope.channel);
         };
 
         $scope.confirmDeleteResource = function (index) {
@@ -492,9 +491,7 @@ angular.module('octobluApp')
         };
 
         $scope.logo_url = function () {
-            if (!$scope.channel || !$scope.channel.logo) return '';
-
-            return $scope.channel.logo;
+            return channelService.logoUrl($scope.channel);
         };
     })
     .controller('apiResourceDetailController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, currentUser, channelService, userService) {
@@ -581,8 +578,6 @@ angular.module('octobluApp')
         };
 
         $scope.logo_url = function () {
-            if (!$scope.channel || !$scope.channel.logo) return '';
-
-            return $scope.channel.logo;
+            return channelService.logoUrl($scope.channel);
         };
     });

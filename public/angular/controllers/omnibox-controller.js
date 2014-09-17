@@ -20,4 +20,8 @@ angular.module('octobluApp')
   $scope.getOmniboxItemTemplate = function(item) {
     return '/pages/omnibox-item-' + item.category + '.html';
   };
+
+  $scope.logoUrl = function(node) {
+    return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + node.type.replace(':', '/') + '.svg';
+  }
 });
