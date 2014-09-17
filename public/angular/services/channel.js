@@ -5,6 +5,10 @@ angular.module('octobluApp')
         var activechannels = [];
         var availablechannels = [];
 
+        this.logoUrl = function(channel) {
+          return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + channel.type.replace(':', '/') + '.svg';
+        }
+
         this.getList = function(callback) {
             $http.get('/api/channels', { cache: true})
                 .success(function(data) { callback(data); })

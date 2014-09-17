@@ -151,8 +151,7 @@ angular.module('octobluApp')
         };
 
         $scope.logo_url = function () {
-            if (!$scope.channel || !$scope.channel.logo) return '';
-            return $scope.channel.logo;
+            return channelService.logoUrl($scope.channel);
         };
     })
     .controller('apiEditorController', function ($rootScope, $scope, $http, $injector, $location, $stateParams,

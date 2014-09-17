@@ -216,7 +216,7 @@ angular.module('octobluApp')
           .append("svg:image")
           .attr('width', FlowNodeDimensions.width)
           .attr('height', nodeHeight)
-          .attr("xlink:href",node.logo);
+          .attr("xlink:href",'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + node.type.replace(':', '/') + '.svg');
 
         if (node.type === 'button') {
           nodeElement

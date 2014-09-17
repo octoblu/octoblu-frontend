@@ -4,8 +4,8 @@ var User     = mongoose.model('User');
 
 var CONFIG = {
   development: {
-    clientID: "463a8c25ee407035cd1c",
-    clientSecret: "fdccd7d4fa72cda2746dc3db787e5558b8bb3837",
+    clientID: "INSERT_SECERT_HERE",
+    clientSecret: "INSERT_SECERT_HERE",
     callbackURL:    'http://localhost:8080/api/oauth/github/callback',
     passReqToCallback: true
   },
