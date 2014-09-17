@@ -13,9 +13,6 @@
         "curl": "curl -X GET /v3/highvalue?access_token=ACCESS_TOKEN&limit=2",
         "params": [
           {
-            "doc": {
-              "url": "http://dev.bitly.com/data_apis.html#v3_highvalue"
-            },
             "style": "query",
             "type": "string",
             "name": "limit"
