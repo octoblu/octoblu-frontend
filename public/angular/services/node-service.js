@@ -32,6 +32,7 @@ angular.module('octobluApp')
             });
         });
     };
+    
     function subdevicesToDevices(gatewayUuid, gatewayConfig) {
       
       if(!gatewayConfig) {

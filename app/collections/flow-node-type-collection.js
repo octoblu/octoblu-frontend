@@ -16,13 +16,12 @@ var FlowNodeTypeCollection = function(userUUID, options){
       class: node.name,
       type: node.type,
       logo: node.nodeType.logo,
-      icon: "fa-dot-circle-o",
       category: node.category,
       uuid: node.uuid,
       defaults: node,
       input: 1,
       output: 1,
-      formTemplatePath: "/assets/node_forms/"+node.category+"_form.html"
+      formTemplatePath: "/assets/node_forms/" + node.category + "_form.html"
     };
   };
 

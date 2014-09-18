@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('FlowNodeTypeService', function ($http, UUIDService) {
+.service('FlowNodeTypeService', function ($http, $q, UUIDService, NodeService) {
   'use strict';
 
   var self = this;
@@ -17,14 +17,44 @@ angular.module('octobluApp')
   };
 
   self.getFlowNodeTypes = function () {
-    return $http.get('/api/flow_node_types',{cache : false}).then(function(res){
-      return _.map(res.data, function(data){
+      
+    return $q.all([getServerSideFlowNodeTypes(), getSubdeviceFlowNodeTypes()])
+      .then(function(results){
+        return _.flatten(results);  
+      });
+  };
+
+  function getServerSideFlowNodeTypes() {
+    return $http.get('/api/flow_node_types').then(function(res){
+      return _.map(res.data, function(data){        
         if (data && data.type) {
-          data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+          data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';          
         }
         return data;
       });
     });
+  }
+
+  function getSubdeviceFlowNodeTypes() {
+    var defer = $q.defer();
+    defer.resolve([]);
+    return defer.promise;
+  }
+
+  //"borrowed" from the back end until we can query subdevices on the backend.
+  self.convertSubdevice = function(node){
+    return {
+      name: node.name,
+      class: node.name,
+      type: node.type,
+      logo: node.nodeType.logo,   
+      category: node.category,
+      uuid: node.uuid,
+      defaults: node,
+      input: 1,
+      output: 1,
+      formTemplatePath: "/assets/node_forms/" + node.category + "_form.html"
+    };
   };
 
   return self;
