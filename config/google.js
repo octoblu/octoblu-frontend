@@ -1,27 +1,12 @@
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var mongoose = require('mongoose');
 var User     = mongoose.model('User');
+var Channel = require('../app/models/channel');
 
-var CONFIG = {
-  development: {
-    clientID     : 'INSERT_SECERT_HERE',
-    clientSecret : 'INSERT_SECERT_HERE',
-    callbackURL  : 'http://localhost:8080/api/oauth/google/callback',
-    passReqToCallback: true
-  },
-  production: {
-    clientID     : 'INSERT_SECERT_HERE',
-    clientSecret : 'INSERT_SECERT_HERE',
-    callbackURL  : 'https://app.octoblu.com/api/oauth/google/callback',
-    passReqToCallback: true
-  },
-  staging: {
-    clientID     : 'INSERT_SECERT_HERE',
-    clientSecret : 'INSERT_SECERT_HERE',
-    callbackURL  : 'https://staging.octoblu.com/api/oauth/google/callback',
-    passReqToCallback: true
-  }
-}[process.env.NODE_ENV];
+var channel = Channel.syncFindByType('channel:google-drive');
+var CONFIG = channel.oauth[process.env.NODE_ENV];
+
+CONFIG.passReqToCallback = true;
 
 var ensureUser = function(req, user, profile, callback){
   if(user){ return callback(null, user); }
@@ -54,7 +39,14 @@ var ensureUser = function(req, user, profile, callback){
 var googleStrategy = new GoogleStrategy(CONFIG,
   function (req, token, secret, profile, done) {
   ensureUser(req, req.user, profile, function(err, user){
-    done(err, user);
+    if(err){ return done(err, user); }
+
+    var channelId = new mongoose.Types.ObjectId(channel._id);
+
+    user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: token});
+    user.save(function (err) {
+      done(err, user);
+    });
   });
 });
 
