@@ -37,6 +37,8 @@ require('./initializeModels.js');
 require('./config/passport')(env, passport); // pass passport for configuration
 passport.use(require('./config/app-net'));
 passport.use(require('./config/bitly'));
+passport.use(require('./config/box'));
+passport.use(require('./config/delicious'));
 passport.use(require('./config/dropbox'));
 passport.use(require('./config/facebook'));
 passport.use(require('./config/fitbit'));
