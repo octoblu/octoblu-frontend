@@ -33,9 +33,6 @@ module.exports = function(app, passport) {
     var BoxController = require('./controllers/box-controller');
     var boxController = new BoxController();
 
-    var DeliciousController = require('./controllers/delicious-controller');
-    var deliciousController = new DeliciousController();
-
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
@@ -131,9 +128,6 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/app.net',          appNetController.authorize);
             app.get('/api/oauth/app.net/callback', appNetController.callback, appNetController.redirectToDesigner);
-
-            app.get('/api/oauth/delicious',          deliciousController.authorize);
-            app.get('/api/oauth/delicious/callback', deliciousController.callback, deliciousController.redirectToDesigner);
 
             app.get('/api/oauth/bitly',          bitlyController.authorize);
             app.get('/api/oauth/bitly/callback', bitlyController.callback, bitlyController.redirectToDesigner);
