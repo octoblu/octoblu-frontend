@@ -30,6 +30,9 @@ module.exports = function(app, passport) {
     var BitlyController = require('./controllers/bitly-controller');
     var bitlyController = new BitlyController();
 
+    var BoxController = require('./controllers/box-controller');
+    var boxController = new BoxController();
+
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
@@ -62,6 +65,9 @@ module.exports = function(app, passport) {
 
     var InstagramController = require('./controllers/instagram-controller');
     var instagramController = new InstagramController();
+
+    var NestController = require('./controllers/nest-controller');
+    var nestController = new NestController();
 
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
@@ -129,6 +135,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/bitly',          bitlyController.authorize);
             app.get('/api/oauth/bitly/callback', bitlyController.callback, bitlyController.redirectToDesigner);
 
+            app.get('/api/oauth/box',          boxController.authorize);
+            app.get('/api/oauth/box/callback', boxController.callback, boxController.redirectToDesigner);
+
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
 
@@ -149,6 +158,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/instagram',          instagramController.authorize);
             app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
+
+            app.get('/api/oauth/nest',          nestController.authorize);
+            app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);

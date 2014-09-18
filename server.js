@@ -37,6 +37,7 @@ require('./initializeModels.js');
 require('./config/passport')(env, passport); // pass passport for configuration
 passport.use(require('./config/app-net'));
 passport.use(require('./config/bitly'));
+passport.use(require('./config/box'));
 passport.use(require('./config/dropbox'));
 passport.use(require('./config/facebook'));
 passport.use(require('./config/fitbit'));
@@ -45,6 +46,7 @@ passport.use(require('./config/google'));
 passport.use(require('./config/rdio'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/instagram'));
+passport.use(require('./config/nest'));
 passport.use(require('./config/local'));
 
 // set up our express application

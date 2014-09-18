@@ -10,9 +10,7 @@ CONFIG.passReqToCallback = true;
 var rdioStrategy = new RdioStrategy(CONFIG, function(req, accessToken, secret, profile, done){
   var channelId = new mongoose.Types.ObjectId('53d15c363e304fe01a0851ee');
 
-  console.log('sec', accessToken, secret);
   req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken, secret: secret});
-  console.log(req.user);
   req.user.save(function (err) {
     return done(err, req.user);
   });

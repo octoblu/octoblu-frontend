@@ -1,5 +1,28 @@
 {
   "_id": "5333294ab64eb201df08a5b3",
+  "name": "Box",
+  "auth_strategy": "oauth",
+  "oauth": {
+    "development": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":  "http://localhost:8080/api/oauth/box/callback",
+      "tokenMethod":  "access_token_bearer"
+    },
+    "staging": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":  "https://staging.octoblu.com/api/oauth/box/callback",
+      "tokenMethod":  "access_token_bearer"
+    },
+    "production": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":  "https://app.octoblu.com/api/oauth/box/callback",
+      "tokenMethod":  "access_token_bearer"
+    }
+  },
+  "type": "channel:box",
   "application": {
     "base": "https://api.box.com/2.0",
     "resources": [
@@ -2646,30 +2669,5 @@
         "url": "https://api.box.com/2.0/task_assignments/{id}"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "documentation": "http://developers.box.com/docs/",
-  "enabled": true,
-  "name": "Box",
-  "oauth": {
-    "accessTokenURL": "https://www.box.com/api/oauth2/token",
-    "apiKey": "dzi6sr2jw0kgcmkbb8bdjhe9zvaps8b1",
-    "authTokenPath": "/api/oauth2/authorize",
-    "authTokenURL": "https://www.box.com/api/oauth2/authorize",
-    "baseURL": "https://www.box.com/api",
-    "clientId": "dzi6sr2jw0kgcmkbb8bdjhe9zvaps8b1",
-    "grant_type": "authorization_code",
-    "host": "www.box.com",
-    "isManual": true,
-    "key": "",
-    "protocol": "https",
-    "requestTokenURL": "",
-    "scope": "",
-    "secret": "wimCRfl5cuC2Em8L3vGUZTplxUQWxt6o",
-    "tokenMethod": "access_token_bearer",
-    "useOAuthLib": false,
-    "version": "2.0"
-  },
-  "useCustom": true,
-  "type": "channel:box"
+  }
 }
