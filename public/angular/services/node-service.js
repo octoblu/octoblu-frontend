@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .service('NodeService', function ($q, $http, deviceService) {
+  .service('NodeService', function ($q, $http, deviceService, NodeTypeService) {
     'use strict';
 
     var self = this;
@@ -20,30 +20,36 @@ angular.module('octobluApp')
               "method": "configurationDetails"
             })
               .then(function (response) {
-                return response.result ? response.result.subdevices : [];
+                return subdevicesToDevices(gateway.uuid, response.result);
               }, function (err) {
                 return [];
-              })
-              .then(function(subdevices){
-                return _.map(subdevices, function(subdevice){
-                  //subdevice
-                  subdevice.category = 'subdevice';
-                  subdevice.online = true;
-
-                  subdevice.nodeType = {
-                    logo: "https://s3-us-west-2.amazonaws.com/octoblu-icons/generic-device.png"
-                  };
-
-                  return subdevice;
-                });
-              });
+              });              
           }))
             .then(function (results) {
               var nodes = _.union(devices, _.flatten(results));
+              console.log(nodes);
               return nodes;
             });
         });
     };
+    function subdevicesToDevices(gatewayUuid, gatewayConfig) {
+      
+      if(!gatewayConfig) {
+        return [];
+      }
 
+      return _.map(gatewayConfig.subdevices, function(subdevice){
+          var newSubdevice = _.clone(subdevice);
+
+          newSubdevice.uuid =  gatewayUuid + '/' + subdevice.uuid;
+          newSubdevice.category = 'subdevice';
+          newSubdevice.online = true;
+
+          newSubdevice.type = 'subdevice:' +  subdevice.type.replace('skynet-', '');
+          newSubdevice = deviceService.addLogoUrl(newSubdevice);
+
+          return newSubdevice;
+      });
+    }
     return self;
   });
