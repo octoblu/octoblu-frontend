@@ -323,7 +323,7 @@
 		"_id" : "53c9b833f400e177dca325b5",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "LinkedIn",
 		"skynet" : {
 			"type" : "channel",
@@ -503,6 +503,19 @@
 		"type" : "channel:nest"
 	},
 	{
+		"_id" : "541b5072025549193cb8293a",
+		"category" : "channel",
+		"description" : "",
+		"enabled" : true,
+		"name" : "Instagram",
+		"skynet" : {
+			"type" : "channel",
+			"subtype" : "Instagram"
+		},
+		"channelid" : "541b21fe025549193cb82939",
+		"type" : "channel:instagram"
+	},
+	{
 		"_id" : "53c9b838f400e177dca325c6",
 		"category" : "channel",
 		"description" : "",
@@ -584,8 +597,8 @@
 		"_id" : "53c9b83bf400e177dca325cb",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
-		"name" : "GoogleDrive",
+		"enabled" : true,
+		"name" : "Google Drive",
 		"skynet" : {
 			"type" : "channel",
 			"subtype" : "GoogleDrive"
