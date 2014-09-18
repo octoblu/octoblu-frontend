@@ -100,35 +100,6 @@ describe('FlowDeploy', function () {
         expect(sut.convertFlow(flow)).to.deep.equal([convertedWorkspace1, convertedNode1, convertedNode2]);
       });
     });
-
-    describe('dealing with legacy nodes', function () {
-      describe('when its called with a trigger node', function () {
-        it('should remap the type to inject', function () {
-          var node = {"id":"triggerNode","category":"operation","type":"trigger","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
-          var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
-          var convertedNode = sut.convertFlow(flow)[1];
-          expect(convertedNode.type).to.equal('inject');
-        });
-      });
-
-      describe('when its called with a interval node', function () {
-        it('should remap the type to inject', function () {
-          var node = {"id":"intervalNode","category":"operation","type":"interval","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
-          var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
-          var convertedNode = sut.convertFlow(flow)[1];
-          expect(convertedNode.type).to.equal('inject');
-        });
-      });
-
-      describe('when its called with a schedule node', function () {
-        it('should remap the type to inject', function () {
-          var node = {"id":"scheduleNode","category":"operation","type":"schedule","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":167,"y":159};
-          var flow = {flowId: 'flowid', name: 'flowname', nodes:[node], links: []};
-          var convertedNode = sut.convertFlow(flow)[1];
-          expect(convertedNode.type).to.equal('inject');
-        });
-      });
-    });
   });
 
   describe('finalTransformation', function () {

@@ -5,8 +5,11 @@ angular.module('octobluApp')
         var activechannels = [];
         var availablechannels = [];
 
-        this.logoUrl = function(channel) {
-          return 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + channel.type.replace(':', '/') + '.svg';
+        this.addLogoUrl = function(data) {
+            if (data && data.type) {
+                data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+            }
+            return data;
         }
 
         this.getList = function(callback) {
@@ -132,11 +135,11 @@ angular.module('octobluApp')
          * @returns {defer.promise|*} a promise that will eventually resolve to an array of smart devices
          */
           this.getNodeTypes = function() {
+            var addLogoUrl = this.addLogoUrl;
             return $http.get('/api/node_types')
                 .then(function(result){
                     return _.map(result.data, function(data) {
-                        data.logo = this.logoUrl(data);
-                        return data;
+                        return addLogoUrl(data);
                     });
                 });
         };
@@ -168,19 +171,19 @@ angular.module('octobluApp')
         };
 
         this.getById = function(channelId){
-            var logoUrl = this.logoUrl;
+            var addLogoUrl = this.addLogoUrl;
             return $http.get('/api/channels/' + channelId).then(function(response){
                 var data = response.data;
-                data.logo = logoUrl(data);
+                data = addLogoUrl(data);
                 return data;
             });
         };
 
         this.get = function(id, callback) {
-            var logoUrl = this.logoUrl;
+            var addLogoUrl = this.addLogoUrl;
             $http.get('/api/channels/'+id, { cache: false})
                 .success(function(data) {
-                    data.logo = logoUrl(data);
+                    data.logo = addLogoUrl(data);
                     callback(data);
                 })
                 .error(function(data) {

@@ -44,7 +44,7 @@ var NodeCollection = function (userUUID) {
     var nodeTypeCollection = self.getNodeTypeCollection();
     return nodeTypeCollection.fetch().then(function(nodeTypes){
       return _.map(nodes, function(node){
-        var nodeType;
+        var logo, nodeType;
 
         nodeType = _.findWhere(nodeTypes, function(nodeType) {
           if(node.subtype){
@@ -64,15 +64,13 @@ var NodeCollection = function (userUUID) {
   self.convertChannelToNode = function(channel) {
     return _.extend({}, channel, {
       category: 'channel',
-      online: true,
-      logo: 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + channel.type.replace(':', '/') + '.svg'
+      online: true
     });
   };
 
   self.convertDeviceToNode = function (device) {
     return _.extend({}, device, {
-      category: 'device',
-      logo: 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + device.type.replace(':', '/') + '.svg'
+      category: 'device'
     });
   };
 
