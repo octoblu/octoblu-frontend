@@ -1,5 +1,16 @@
 {
   "_id": "52f9b75bdfeb56fca700000d",
+  "name": "Delicious",
+  "type": "channel:delicious",
+  "auth_strategy": "oauth",
+  "oauth": {
+    "development": {
+      "consumerKey":    "dj0yJmk9WElNZkpSN3FOQlN1JmQ9WVdrOU5WQktZVTVOTlRZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0xMw--",
+      "consumerSecret": "e3ac15fb687be3a2323432bf7da536a618cfafd7",
+      "callbackURL":    "http://localhost:8080/api/oauth/rdio/callback",
+      "tokenMethod":    "oauth_signed"
+    }
+  },
   "application": {
     "base": "https://api.del.icio.us/v1",
     "resources": [
@@ -471,31 +482,5 @@
         "url": "https://api.del.icio.us/v1/posts/update"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "enabled": false,
-  "name": "Delicious",
-  "oauth": {
-    "isManual": false,
-    "version": "2.0",
-    "clientId": "e9e36c5c7ab86dd3a33cccafa2c9afbb",
-    "secret": "fc69b39b321995c141ecf4e30207b0a2",
-    "baseURL": "https://delicious.com/",
-    "accessTokenURL": "https://avosapi.delicious.com/api/v1/oauth/token",
-    "requestTokenURL": "https://avosapi.delicious.com/api/v1/",
-    "authTokenURL": "https://delicious.com/auth/authorize",
-    "tokenMethod": "bearer",
-    "authTokenPath": "/auth/authorize",
-    "accessTokenIncludeClientInfo": true,
-    "grant_type": "code",
-    "scope": "",
-    "protocol": "https",
-    "host": "delicious.com",
-    "passTokenInQuery": false,
-    "tokenQueryParam": "oauth2_access_token",
-    "checkCSRFOnCallback": false,
-    "useOAuthLib": true
-  },
-  "useCustom": false,
-  "type": "channel:delicious"
+  }
 }
