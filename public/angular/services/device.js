@@ -33,7 +33,7 @@ angular.module('octobluApp')
                     skynetPromise
                         .then(function (skynetConnection) {
                             skynetConnection.mydevices({}, function (result) {
-                                angular.copy([], myDevices);
+                                myDevices.length = 0;
                                 _.each(result.devices, function (device) {
                                     addDevice(device);
                                 });

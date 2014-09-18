@@ -46,6 +46,7 @@ passport.use(require('./config/google'));
 passport.use(require('./config/rdio'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/instagram'));
+passport.use(require('./config/nest'));
 passport.use(require('./config/local'));
 
 // set up our express application
