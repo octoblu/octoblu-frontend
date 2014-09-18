@@ -150,6 +150,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
+            app.get('/api/oauth/google-drive',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/google-drive/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
 

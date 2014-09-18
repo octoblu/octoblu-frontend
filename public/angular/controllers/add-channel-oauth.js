@@ -6,7 +6,7 @@ angular.module('octobluApp')
 
   channelPromise = channelService.getById(nodeType.channelid);
   getPath = function(channel){
-    return '/api/oauth/' + channel.name.toLowerCase();
+    return '/api/oauth/' + channel.type.replace('channel:', '');
   };
 
   $scope.activate = function(){

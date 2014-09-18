@@ -598,8 +598,8 @@
 		"_id" : "53c9b83bf400e177dca325cb",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
-		"name" : "GoogleDrive",
+		"enabled" : true,
+		"name" : "Google Drive",
 		"skynet" : {
 			"type" : "channel",
 			"subtype" : "GoogleDrive"
