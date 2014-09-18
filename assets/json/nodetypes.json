@@ -323,7 +323,7 @@
 		"_id" : "53c9b833f400e177dca325b5",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "LinkedIn",
 		"skynet" : {
 			"type" : "channel",
@@ -501,6 +501,19 @@
 		},
 		"channelid" : "53c403b467605b33c1d4b09b",
 		"type" : "channel:nest"
+	},
+	{
+		"_id" : "541b5072025549193cb8293a",
+		"category" : "channel",
+		"description" : "",
+		"enabled" : true,
+		"name" : "Instagram",
+		"skynet" : {
+			"type" : "channel",
+			"subtype" : "Instagram"
+		},
+		"channelid" : "541b21fe025549193cb82939",
+		"type" : "channel:instagram"
 	},
 	{
 		"_id" : "53c9b838f400e177dca325c6",
