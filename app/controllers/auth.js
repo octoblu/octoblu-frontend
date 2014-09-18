@@ -183,9 +183,6 @@ module.exports = function (app, passport, config) {
         return result;
     };
 
-    app.get('/auth/facebook', referrer.storeReferrer, passport.authenticate('facebook', { scope: 'email' }));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile', 'email']}), referrer.restoreReferrer, referrer.redirectToReferrer, completeLogin);
-
     app.get('/api/auth/:id/custom', function (req, res) {
         var channelid = req.params.id;
         var user = req.user;

@@ -189,6 +189,13 @@ angular.module('octobluApp')
             deleteSubdevice: function (options) {
                 return service.gatewayConfig(_.extend({ method: 'deleteSubdevice' },
                     _.omit(options, reservedProperties)));
+            },
+            
+            addLogoUrl: function(data) {
+                if (data && data.type) {
+                    data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+                }
+                return data;
             }
         };
 

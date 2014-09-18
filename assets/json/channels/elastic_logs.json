@@ -5485,8 +5485,7 @@
   "description": "Parse skynet data logged to ElasticSearch",
   "documentation": "http://www.elasticsearch.org/resources/",
   "enabled": true,
-  "logo": "http://nest.azurewebsites.net/images/elasticsearch-net-nuget-icon.png",
   "name": "ElasticLogs",
   "oauth": {},
-  "type": "channel:elastic_logs"
+  "type": "channel:elastic-logs"
 }

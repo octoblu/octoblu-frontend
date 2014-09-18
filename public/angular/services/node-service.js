@@ -7,7 +7,10 @@ angular.module('octobluApp')
     self.getNodes = function () {
       return $http.get('/api/nodes')
         .then(function (results) {
-          var devices = results.data;
+          var devices = _.map(results.data, function(device){
+            return deviceService.addLogoUrl(device);
+          });
+
           var gateways = _.filter(devices, {type: 'gateway', online: true});
 
           return $q.all(_.map(gateways, function (gateway) {
@@ -37,7 +40,6 @@ angular.module('octobluApp')
           }))
             .then(function (results) {
               var nodes = _.union(devices, _.flatten(results));
-              console.log(nodes);
               return nodes;
             });
         });

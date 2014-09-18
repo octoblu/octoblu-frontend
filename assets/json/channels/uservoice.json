@@ -3875,7 +3875,6 @@
   "description": "",
   "documentation": "https://developer.uservoice.com/docs/api/reference",
   "enabled": true,
-  "logo": "http://b1.splcdn.net/wp-content/uploads/2009/03/uservoice-logo.jpg",
   "name": "USERVOICE",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:uservoice"

@@ -19,8 +19,11 @@
 
 <div class="row">
   <div ng-repeat="nodeType in nodeTypes | filter: {name:nodeTypeSearch} | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-    <a class="" ng-href="{{nextStepUrl(nodeType)}}">
-      <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" title="{{nodeType.name}}" class="node-thumbnail animated-popout"></div>
-    </a>
+    <h4 class="text-center">
+      <a class="" ng-href="{{nextStepUrl(nodeType)}}">
+        <div ng-style="{'background-image': 'url('+nodeType.logo+')'}" title="{{nodeType.name}}" class="node-thumbnail animated-popout"></div>
+        <strong class="muted-link">{{nodeType.name}}</strong>
+      </a>
+    </h4>
   </div>
 </div>

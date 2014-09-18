@@ -679,7 +679,6 @@
   "auth_strategy": "oauth",
   "documentation": "https://developer.paypal.com/webapps/developer/docs/api/",
   "enabled": false,
-  "logo": "https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_74x46.jpg",
   "name": "Paypal",
   "oauth": {
     "isManual": true,

@@ -261,7 +261,6 @@
   "description": "",
   "documentation": "http://support.crisply.com/customer/portal/articles/250733-overview",
   "enabled": true,
-  "logo": "http://s3.amazonaws.com/FirmPlay/companies/logos/000/000/008/original/new-crisply-logo.png?1403819571",
   "name": "Crisply",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:crisply"

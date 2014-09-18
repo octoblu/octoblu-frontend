@@ -2203,7 +2203,6 @@
   "description": "",
   "documentation": "https://developer.redbooth.com/api-docs/",
   "enabled": true,
-  "logo": "https://chartio.com/hmedia/images/customers/logo_redbooth.png",
   "name": "REDBOOTH",
   "oauth": {
     "version": "2.0"

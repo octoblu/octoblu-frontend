@@ -44,11 +44,10 @@
   "description": "",
   "documentation": "https://www.connectsense.com/developer/user_devices_list",
   "enabled": true,
-  "logo": "http://postscapes.com/internet-of-things-award/wp-content/uploads/2014/01/connectsense-logo-663x378.jpg",
   "name": "Connect Sense",
   "oauth": {
     "version": "1.0"
   },
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:connect_sense"
+  "type": "channel:connect-sense"
 }

@@ -474,8 +474,6 @@
   },
   "auth_strategy": "oauth",
   "enabled": false,
-  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/delicious.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/delicious.png",
   "name": "Delicious",
   "oauth": {
     "isManual": false,

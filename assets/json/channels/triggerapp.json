@@ -301,7 +301,6 @@
   "description": "",
   "documentation": "https://www.triggerapp.com/developers",
   "enabled": true,
-  "logo": "",
   "name": "triggerapp",
   "owner": "01f45d00-0611-11e4-83bd-196bfd08cd39",
   "type": "channel:triggerapp"

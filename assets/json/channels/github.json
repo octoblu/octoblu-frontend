@@ -8584,7 +8584,6 @@
   "documentation": "https://developer.github.com/v3/",
   "enabled": true,
   "isPassport": true,
-  "logo": "http://www.revive-adserver.com/media/GitHub.jpg",
   "name": "Github",
   "type": "channel:github"
 }

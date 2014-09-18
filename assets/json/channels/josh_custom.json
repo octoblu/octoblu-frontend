@@ -128,7 +128,6 @@
   "description": "test",
   "documentation": "test",
   "enabled": true,
-  "logo": "http://www.trashedgraphics.com/images/default_icon.png",
   "name": "Josh Custom",
   "oauth": {
     "version": "1.0",
@@ -141,5 +140,5 @@
     "scope": "user"
   },
   "owner": "d982ad81-8e98-11e3-b224-23fcd9c1f8ad",
-  "type": "channel:josh_custom"
+  "type": "channel:josh-custom"
 }

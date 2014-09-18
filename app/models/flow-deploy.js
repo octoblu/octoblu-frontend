@@ -3,12 +3,6 @@ var _ = require('lodash'),
     mongoose = require('mongoose');
 
 var FlowDeploy = function(options){
-  var LEGACY_TYPES = {
-    'button'   : 'inject',
-    'interval' : 'inject',
-    'schedule' : 'inject'
-  };
-
   var User = mongoose.model('User');
 
   var self, config, request, userUUID, userToken, meshblu, tranformations;
@@ -47,7 +41,7 @@ var FlowDeploy = function(options){
     convertedNode.hash = flow.hash;
     convertedNode.wires = self.paddedArray(largestPort);
     if (convertedNode.category === 'operation') {
-      convertedNode.type = LEGACY_TYPES[convertedNode.type] || convertedNode.type
+      convertedNode.type = convertedNode.type.replace('operation:', '');
     } else {
       convertedNode.type = convertedNode.category;
     }
@@ -78,6 +72,8 @@ var FlowDeploy = function(options){
         node.application = {base: channelApiMatch.application.base};
         node.bodyFormat = channelApiMatch.bodyFormat;
         node.oauth = _.defaults(node.oauth, channelOauth);
+        node.oauth.key = node.oauth.key || node.oauth.clientID || node.oauth.consumerKey;
+        node.oauth.secret = node.oauth.secret || node.oauth.clientSecret || node.oauth.consumerSecret;
       }
     });
     return flow;

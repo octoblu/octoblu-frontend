@@ -161,7 +161,7 @@ describe('FlowNodeTypeService', function () {
       $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('function').then(function (flowNodeType) {
-        expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar'});
+        expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar', logo: 'https://s3-us-west-2.amazonaws.com/octoblu-icons/function.svg'});
         done();
       }, done);
 
@@ -172,7 +172,7 @@ describe('FlowNodeTypeService', function () {
       $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('inject').then(function (flowNodeType) {
-        expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo'});
+        expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo', logo: 'https://s3-us-west-2.amazonaws.com/octoblu-icons/inject.svg'});
         done();
       }, done);
 

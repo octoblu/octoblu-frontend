@@ -188,8 +188,6 @@
   "auth_strategy": "oauth",
   "disabled": true,
   "enabled": true,
-  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/readability.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/readability.png",
   "name": "Readability",
   "oauth": {
     "accessTokenURL": "https://www.readability.com/api/rest/v1/oauth/access_token",

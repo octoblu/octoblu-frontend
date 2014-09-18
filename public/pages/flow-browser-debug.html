@@ -1,5 +1,5 @@
 <ul class="flow-browser-debug">
-  <li ng-repeat="debug in debugLines">
+  <li ng-repeat="debug in debugLines | filter : {node: flow.selectedFlowNode.id}">
     <prism code="debug"></prism>
   </li>
 </ul>

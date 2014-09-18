@@ -576,8 +576,6 @@
     ]
   },
   "auth_strategy": "oauth",
-  "logo": "http://www.ekaterinawalter.com/wp-content/uploads/2013/07/linkedinblog.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/linkedin.png",
   "name": "LinkedIn",
   "enabled": true,
   "oauth": {
@@ -600,5 +598,5 @@
     "tokenQueryParam": "oauth2_access_token"
   },
   "useCustom": true,
-  "type": "channel:linked_in"
+  "type": "channel:linked-in"
 }

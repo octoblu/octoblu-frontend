@@ -18,7 +18,12 @@ angular.module('octobluApp')
 
   self.getFlowNodeTypes = function () {
     return $http.get('/api/flow_node_types',{cache : false}).then(function(res){
-      return res.data;
+      return _.map(res.data, function(data){
+        if (data && data.type) {
+          data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+        }
+        return data;
+      });
     });
   };
 

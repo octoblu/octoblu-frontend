@@ -62,11 +62,16 @@ var NodeCollection = function (userUUID) {
   };
 
   self.convertChannelToNode = function(channel) {
-    return _.extend({}, channel, {category: 'channel', online: true});
+    return _.extend({}, channel, {
+      category: 'channel',
+      online: true
+    });
   };
 
   self.convertDeviceToNode = function (device) {
-    return _.defaults(device, {category: 'device'});
+    return _.extend({}, device, {
+      category: 'device'
+    });
   };
 
   self.getDeviceCollection = function () {

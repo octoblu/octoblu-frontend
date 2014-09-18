@@ -1267,12 +1267,10 @@
   },
   "auth_strategy": "oauth",
   "enabled": false,
-  "logo": "http://octoblu-api-logos.s3.amazonaws.com/color/lastfm.png",
-  "logobw": "http://octoblu-api-logos.s3.amazonaws.com/bw/lastfm.png",
   "name": "LastFM",
   "oauth": {
     "key": "c034d4839dfa3e855f610145d1ecb819",
     "tokenMethod": "apikey_app_query"
   },
-  "type": "channel:last_fm"
+  "type": "channel:last-fm"
 }

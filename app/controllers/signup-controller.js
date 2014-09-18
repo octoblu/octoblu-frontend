@@ -1,13 +1,14 @@
 var _         = require('lodash');
 var passport  = require('passport');
-var mongoose  = require('mongoose');
-var User      = mongoose.model('User');
 var Prefinery = require('../models/prefinery');
 
 var SignupController = function () {
-  var self;
+  var self, mongoose, User;
   self = this;
   self.prefinery = new Prefinery();
+
+  mongoose  = require('mongoose');
+  User      = mongoose.model('User');
 
   self.checkInTester = function(req, res, next) {
     var testerId = req.param('testerId') || req.session.testerId;

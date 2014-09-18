@@ -23,5 +23,4 @@ angular.module('octobluApp')
         }
         return true;
     };
-
 });

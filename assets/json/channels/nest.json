@@ -5,8 +5,7 @@
   "documentation": "https://developer.nest.com/documentation",
   "enabled": true,
   "useCustom": true,
-  "logo": "https://nest.com/images/social/nest_thermostat_share_icon.jpg",
-  "oauth": {
+    "oauth": {
     "production": {
       "version": "2.0",
       "clientId": "7b86404d-c06d-4890-9671-e878216761da",

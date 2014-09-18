@@ -8,7 +8,14 @@ angular.module('octobluApp')
 
   self.getNodeTypes = function(){
     return $http.get('/api/node_types').then(function(res){
-      return res.data;
+      var nodeTypes = _.filter(res.data, function(data){
+        return data.enabled;
+      });
+
+      return _.map(nodeTypes, function(data){
+        data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+        return data;
+      });
     });
   };
 
