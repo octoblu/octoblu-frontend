@@ -30,7 +30,7 @@
 		"category" : "subdevice",
 		"description" : "Phillips Hue light bulbs",
 		"display" : true,
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Phillips Hue",
 		"skynet" : {
 			"type" : "device",
@@ -44,7 +44,7 @@
 		"category" : "subdevice",
 		"description" : "Belkin Wemo home automation",
 		"display" : true,
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Belkin Wemo",
 		"skynet" : {
 			"type" : "device",
@@ -58,7 +58,7 @@
 		"category" : "subdevice",
 		"description" : "Nest thermostat and protect home automation",
 		"display" : true,
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Nest",
 		"skynet" : {
 			"type" : "device",
@@ -72,7 +72,7 @@
 		"category" : "subdevice",
 		"description" : "Insteon home automation",
 		"display" : true,
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Insteon",
 		"skynet" : {
 			"type" : "device",
@@ -86,7 +86,7 @@
 		"category" : "subdevice",
 		"description" : "Blink1 USB LED",
 		"display" : true,
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Blink(1)",
 		"skynet" : {
 			"type" : "device",
