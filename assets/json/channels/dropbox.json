@@ -5,17 +5,6 @@
     "resources": [
       {
         "doc": {
-          "t": "Disables the access token used to authenticate the call. This method works for OAuth 1 and OAuth 2 tokens."
-        },
-        "displayName": "/disable_access_token",
-        "path": "/disable_access_token",
-        "fullURL": "https://api.dropbox.com/1/disable_access_token",
-        "httpMethod": "POST",
-        "params": [],
-        "url": "https://www.dropbox.com/1/disable_access_token"
-      },
-      {
-        "doc": {
           "t": "Retrieves information about the user's account."
         },
         "displayName": "/account/info ",
@@ -615,6 +604,17 @@
           }
         ],
         "url": "https://www.dropbox.com/1/fileops/move "
+      },
+      {
+        "doc": {
+          "t": "Disables the access token used to authenticate the call. This method works for OAuth 1 and OAuth 2 tokens."
+        },
+        "displayName": "/disable_access_token",
+        "path": "/disable_access_token",
+        "fullURL": "https://api.dropbox.com/1/disable_access_token",
+        "httpMethod": "POST",
+        "params": [],
+        "url": "https://www.dropbox.com/1/disable_access_token"
       }
     ]
   },
