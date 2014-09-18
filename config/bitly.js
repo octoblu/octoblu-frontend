@@ -11,7 +11,6 @@ var bitlyStrategy = new BitlyStrategy(CONFIG, function(req, accessToken, refresh
   var channelId = new mongoose.Types.ObjectId('52f9b79febbb40641600000b');
 
   req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-  console.log(req.user);
   req.user.save(function (err) {
     return done(err, req.user);
   });

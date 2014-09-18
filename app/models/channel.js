@@ -6,9 +6,6 @@ var _    = require('lodash');
 var channels = JSON.parse(fs.readFileSync('assets/json/channels.json'));
 
 var Channel = {
-  syncFindById: function(id){
-    return _.findWhere(channels, {_id: id});
-  },
 
   findById: function(id){
     return when(_.findWhere(channels, {_id: id}));
@@ -32,6 +29,14 @@ var Channel = {
     return when(_.filter(channels, function(channel){
       return !channel.owner && channel.enabled;
     }));
+  },
+
+  syncFindById: function(id){
+    return _.findWhere(channels, {_id: id});
+  },
+
+  syncFindByType: function(type){
+    return _.findWhere(channels, {type: type});
   }
 };
 

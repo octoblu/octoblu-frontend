@@ -1,0 +1,34 @@
+{
+  "_id": "541b21fe025549193cb82939",
+  "application": {
+    "base": "https://api.instagram.com",
+    "resources": []
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "documentation": "http://instagram.com/developer/",
+  "enabled": true,
+  "name": "Instagram",
+  "oauth": {
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/instagram/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/instagram/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/instagram/callback",
+      "tokenMethod": "access_token_query"
+    }
+  },
+  "isPassport" : true,
+  "type": "channel:instagram"
+}

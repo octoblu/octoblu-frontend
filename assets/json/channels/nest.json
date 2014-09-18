@@ -4,49 +4,25 @@
   "auth_strategy": "oauth",
   "documentation": "https://developer.nest.com/documentation",
   "enabled": true,
-  "useCustom": true,
-    "oauth": {
-    "production": {
-      "version": "2.0",
-      "clientId": "7b86404d-c06d-4890-9671-e878216761da",
-      "secret": "AIDRmuhzwphNP2zV7GzrLbWCm",
-      "authTokenURL": "https://home.nest.com/login/oauth2",
-      "baseURL": "https://home.nest.com",
-      "authTokenPath": "/login/oauth2",
-      "key": "",
-      "accessTokenURL": "https://api.home.nest.com/oauth2/access_token",
-      "requestTokenURL": "",
-      "isManual": true,
-      "scope": "",
-      "protocol": "https",
-      "host": "home.nest.com",
-      "grant_type": "authorization_code",
-      "accessTokenIncludeClientInfo": true,
-      "tokenQueryParam": "auth",
-      "tokenMethod": "access_token_query",
-      "passTokenInQuery": true,
-      "useOAuthLib": false
+  "isPassport" : true,
+  "oauth": {
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/nest/callback",
+      "tokenMethod": "access_token_query"
     },
-    "development": {
-      "version": "2.0",
-      "clientId": "INSERT_SECERT_HERE",
-      "secret": "INSERT_SECERT_HERE",
-      "authTokenURL": "https://home.nest.com/login/oauth2",
-      "baseURL": "https://home.nest.com",
-      "authTokenPath": "/login/oauth2",
-      "key": "",
-      "accessTokenURL": "https://api.home.nest.com/oauth2/access_token",
-      "requestTokenURL": "",
-      "isManual": true,
-      "scope": "",
-      "protocol": "https",
-      "host": "home.nest.com",
-      "grant_type": "authorization_code",
-      "accessTokenIncludeClientInfo": true,
-      "tokenQueryParam": "auth",
-      "tokenMethod": "access_token_query",
-      "passTokenInQuery": true,
-      "useOAuthLib": false
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/nest/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/nest/callback",
+      "tokenMethod": "access_token_query"
     }
   },
   "application": {
