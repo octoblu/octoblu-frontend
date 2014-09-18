@@ -2666,7 +2666,7 @@
     "requestTokenURL": "",
     "scope": "",
     "secret": "wimCRfl5cuC2Em8L3vGUZTplxUQWxt6o",
-    "tokenMethod": "bearer",
+    "tokenMethod": "access_token_bearer",
     "useOAuthLib": false,
     "version": "2.0"
   },
