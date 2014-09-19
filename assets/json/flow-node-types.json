@@ -163,18 +163,6 @@
     "formTemplatePath": "/pages/node_forms/sentiment_form.html"
   },
   {
-    "name": "xml2js",
-    "class": "xml2js",
-    "category" : "operation",
-    "uuid": "37f0b636-2f17-11e4-9617-a6c5e4d22fb7",
-    "formTemplatePath": "/pages/node_forms/xml2js_form.html",
-    "type": "operation:xml2js",
-    "defaults": {
-    },
-    "input": 1,
-    "output": 1
-  },
-  {
     "name": "debug",
     "class": "debug",
     "category" : "operation",
