@@ -2124,7 +2124,12 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "domain",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/bitly_pro_domain"
       },
       {
@@ -2135,7 +2140,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "domain",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/tracking_domain_clicks"
       },
       {
@@ -2146,7 +2181,42 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "domain",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/tracking_domain_shorten_counts"
       }
     ]
