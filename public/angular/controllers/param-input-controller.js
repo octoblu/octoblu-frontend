@@ -22,14 +22,14 @@ angular.module('octobluApp')
     $scope.ngModel = _.pick($scope.params, function(value){
       return value !== '';
     });
-
-    // console.log('params changed', JSON.stringify($scope.params));
-    // console.log('ngModel changed', JSON.stringify($scope.ngModel));
   };
 
   $scope.inputType = function(type){
     if(type === 'boolean'){
       return 'checkbox';
+    }
+    if(type === 'number'){
+      return 'number';
     }
     return 'text';
   };
