@@ -207,7 +207,7 @@ describe('FlowController', function () {
 
     _this.getAllFlows = sinon.spy(function(){
       return {
-        then: function(){}
+        then: function(){ return {then: function(){}}}
       };
     });
 
