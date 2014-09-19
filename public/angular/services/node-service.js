@@ -33,6 +33,12 @@ angular.module('octobluApp')
         });
     };
     
+    self.getSubdeviceNodes = function() {
+      return self.getNodes().then(function(results){
+        return _.filter(results, {category: 'subdevice'});
+      })
+    }
+
     function subdevicesToDevices(gatewayUuid, gatewayConfig) {
       
       if(!gatewayConfig) {

@@ -228,10 +228,10 @@ describe('FlowNodeTypeService', function () {
         $httpBackend.flush();        
       });
       
-      it('should add a category of subdevice to the flow node type', function(done){
+      it('should add an input property', function(done){
         sut.getFlowNodeTypes().then(function (flowNodeTypes) {
           var subFlowNodeType = _.findWhere(flowNodeTypes, {type: 'subdevice:hue'}); 
-          expect(subFlowNodeType.category).to.equal('subdevice');
+          expect(subFlowNodeType.input).to.equal(1);
           done();
         }, done);
 
