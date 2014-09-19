@@ -178,6 +178,10 @@ module.exports = function(app, passport) {
                 res.send(404);
             });
 
+            app.get('/pages/*', function(req, res) {
+                res.send(404);
+            });
+
             app.get('/*', function(req, res) {
                 res.sendfile('./public/index.html');
             });
