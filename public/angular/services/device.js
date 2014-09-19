@@ -79,7 +79,6 @@ angular.module('octobluApp')
                     device.owner = skynetConnection.options.uuid;
 
                     skynetConnection.register(device, function (result) {
-                        console.log('registered device!');
                         myDevices.push(result);
                         defer.resolve(result);
                     });
@@ -120,7 +119,6 @@ angular.module('octobluApp')
 
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.unregister(device, function (result) {
-                        console.log('unregistered device:' , result);
                         service.getDevices(true).then(function(devices){
                             defer.resolve(devices);
                         });

@@ -31,7 +31,6 @@ angular.module('octobluApp')
             var defer = $q.defer();
             $http.get('/api/channels', { cache: true})
                 .success(function(data) {
-                  // console.log('ALLCHANNELS', data);
                     defer.resolve(data);
                 })
                 .error(function(error) {
@@ -88,7 +87,9 @@ angular.module('octobluApp')
                    activechannels.push.apply(activechannels, res.data);
                    return activechannels;
                 }, function (err) {
-                    console.log(err);
+                    if (err) {
+                        console.log(err);
+                    }
                     activechannels.length = 0;
                     return activechannels;
                 });
@@ -121,7 +122,9 @@ angular.module('octobluApp')
                     availablechannels.push.apply(availablechannels, res.data);
                     return availablechannels;
                 }, function (err) {
-                    console.log(err);
+                    if (err) {
+                        console.log(err);
+                    }
                     availablechannels.length = 0;
                     return availablechannels;
                 });
@@ -158,7 +161,9 @@ angular.module('octobluApp')
                    angular.copy(res.data, customchannels);
                    return customchannels;
                 }, function (err) {
-                    console.log(err);
+                    if (err) {
+                        console.log(err);
+                    }
                     return angular.copy([], customchannels);
                 });
             }

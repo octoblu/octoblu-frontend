@@ -14,8 +14,6 @@ angular.module('octobluApp')
                     originalDevice;
 
                 $scope.$watch('deviceToEdit', function (newDevice, oldDevice) {
-                    console.log('device changed!');
-                    console.log(newDevice);
                     if (newDevice) {
                         originalDevice = newDevice;
                         if(newDevice.type === 'gateway' || newDevice.type === 'octobluMobile'){

@@ -14,8 +14,7 @@ angular.module('octobluApp')
             });
 
             conn.on('ready', function (data) {
-                console.log(data);
-                console.log('Connected to skynet');
+                console.log('Connected to skynet', data);
                 defer.resolve(conn);
             });
 
@@ -57,9 +56,7 @@ angular.module('octobluApp')
                     var defer = $q.defer(), promise = defer.promise;
 
                     skynetPromise.then(function () {
-                        console.log('sending message.');
                         skynetConnection.message(options, function (result) {
-                            console.log('meshblu response:', result);
                             defer.resolve(result);
                         });
                     });

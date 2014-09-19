@@ -28,7 +28,6 @@ angular.module('octobluApp')
                         return PluginService.getInstalledPlugins($scope.model.hub);
                     })
                     .then(function (result) {
-                        console.log(result);
                         newHub.plugins = result;
                         $scope.model.plugin = _.findWhere(newHub.plugins, {name: pluginName})
                     });
