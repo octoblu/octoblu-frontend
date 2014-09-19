@@ -86,7 +86,6 @@ describe('FlowNodeTypeCollection', function () {
 
         sut.fromNodes().then(function(responseNodes){
           expect(_.first(responseNodes).name).to.equal('moscow-mule');
-          expect(_.first(responseNodes).icon).to.equal('fa-dot-circle-o');
           done();
         }).catch(done);
 
@@ -99,8 +98,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this', function(){
       var flowNodeType = {
         "name": "lockitino",
-        "class": "lockitino",
-        "icon": "fa-dot-circle-o",
+        "class": "lockitino",      
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -125,8 +123,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should look like this and like that', function(){
       var flowNodeType = {
         "name": "mockitama",
-        "class": "mockitama",
-        "icon": "fa-dot-circle-o",
+        "class": "mockitama",        
         "category": "channel",
         "uuid": "1",
         "defaults": {
@@ -151,8 +148,7 @@ describe('FlowNodeTypeCollection', function () {
     it('should merge some stuff into this', function(){
       var flowNodeType = {
         "name": "margarita",
-        "class": "margarita",
-        "icon": "fa-dot-circle-o",
+        "class": "margarita",        
         "category": "channel",
         "uuid": "lksdflksdfj",
         "defaults": {

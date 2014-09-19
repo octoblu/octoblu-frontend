@@ -579,24 +579,28 @@
   "name": "LinkedIn",
   "enabled": true,
   "oauth": {
-    "isManual": true,
-    "version": "2.0",
-    "clientId": "75athujre0gp76",
-    "secret": "hwApG57HKsQrBYAL",
-    "baseURL": "https://www.linkedin.com/uas",
-    "accessTokenURL": "https://api.linkedin.com/uas/oauth2/accessToken",
-    "requestTokenURL": "https://api.linkedin.com/uas/oauth2/requestToken",
-    "authTokenURL": "https://www.linkedin.com/uas/oauth2/authorization",
-    "tokenMethod": "",
-    "authTokenPath": "/uas/oauth2/authorization",
-    "accessTokenIncludeClientInfo": true,
-    "grant_type": "authorization_code",
-    "scope": "",
-    "protocol": "https",
-    "host": "www.linkedin.com",
-    "passTokenInQuery": true,
-    "tokenQueryParam": "oauth2_access_token"
+    "development" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/linkedin/callback",
+      "scope": ["r_emailaddress", "r_basicprofile"],
+      "tokenMethod": "access_token_query"
+    },
+    "staging" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/linkedin/callback",
+      "scope": ["r_emailaddress", "r_basicprofile"],
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/linkedin/callback",
+      "scope": ["r_emailaddress", "r_basicprofile"],
+      "tokenMethod": "access_token_query"
+    }
   },
-  "useCustom": true,
+  "isPassport": true,
   "type": "channel:linked-in"
 }
