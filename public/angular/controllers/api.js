@@ -214,12 +214,9 @@ angular.module('octobluApp')
 
         $scope.save = function () {
             $scope.isEdit = false;
-            // console.log($scope.channel);
             if (!$scope.channel) return;
             if(!$scope.channel.owner) $scope.channel.owner = currentUser.skynetuuid;
-            // $log.info($scope.channel);
             channelService.save($scope.channel, function (data) {
-                // $log.info('completed save call............');
                 if (data) {
                     $scope.channel = data;
                     $scope.isEdit = false;
@@ -333,11 +330,7 @@ angular.module('octobluApp')
                     };
                     $scope.removeParam = function (index) {
                         if (!$scope.selectedResource.params) $scope.selectedResource.params = [];
-                        console.log('length = ' + $scope.selectedResource.params.length);
-                        //remove all null items
                         for (var l = $scope.selectedResource.params.length - 1; l >= 0; l--) {
-                            console.log('index = ' + l);
-                            console.log($scope.selectedResource.params[l] == null);
                             if ($scope.selectedResource.params[l] == null) $scope.selectedResource.params.splice(l, 1);
                         }
                         if (index >= $scope.selectedResource.params.length) return;
@@ -457,12 +450,6 @@ angular.module('octobluApp')
         };
 
         $scope.save = function () {
-            if (!$scope.channel) return;
-            // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
-            //   function(data) {
-            //     console.log('saved');
-            //     $scope.has_user_channel = true;
-            //   });
             return;
         };
 
@@ -538,14 +525,6 @@ angular.module('octobluApp')
         };
 
         $scope.save = function () {
-            if (!$scope.channel) return;
-
-            // userService.saveConnection($scope.skynetuuid, $scope.channel.name, $scope.key, $scope.token, $scope.custom_tokens,
-            //   function(data) {
-            //     console.log('saved');
-            //     $scope.has_user_channel = true;
-            //   });
-
             return;
         };
 

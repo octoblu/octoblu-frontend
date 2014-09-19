@@ -28,12 +28,13 @@ angular.module('octobluApp')
                    var device = $scope.model.device;
                    return deviceService.updateDevice(device);
                 }).then(function (result) {
-                    console.log(result);
                     return deviceService.getDevices(true);
                 }).then(function(){
                     $state.go('ob.connector.nodes.all', {}, {reload : true});
                 }, function (error) {
-                    console.log(error);
+                    if (error) {
+                        console.log(error);
+                    }
                     $state.go('ob.connector.nodes.all');
                 });
         };

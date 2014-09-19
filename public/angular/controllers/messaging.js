@@ -59,7 +59,6 @@ angular.module('octobluApp')
                             return PluginService.getInstalledPlugins($scope.model.device);
                         })
                         .then(function (result) {
-                            console.log(result);
                             $scope.model.device.plugins = result;
                             $scope.model.plugin = _.findWhere($scope.model.device.plugins, {name: newSubdevice.type});
                             $scope.model.schema = $scope.model.plugin.messageSchema;
