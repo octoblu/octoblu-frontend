@@ -14,7 +14,7 @@
         <li class="text-center" dropdown-toggle ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
         <li role="presentation"  class="divider"></li>
         <li class="" dropdown-toggle ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'">
-          <a href>{{flow.name}}</a>
+          <a ui-sref="flow({flowId: flow.flowId})">{{flow.name}}</a>
         </li>
       </ul>
     </div>

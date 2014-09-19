@@ -65,6 +65,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
     $stateProvider
       .state('design', {
         url: '/design',
+        controller: 'DesignerController'
+      })
+      .state('flow', {
+        url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
         controller: 'FlowController',
         resolve: {

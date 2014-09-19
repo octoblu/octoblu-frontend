@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ($rootScope, $log, $modal, $state, $scope, $window, AuthService,  FlowService, FlowNodeTypeService, NodeTypeService) {
+  .controller('FlowController', function ($rootScope, $log, $modal, $state, $stateParams, $scope, $window, AuthService,  FlowService, FlowNodeTypeService, NodeTypeService) {
     var originalNode;
 
     $scope.zoomLevel = 0;
@@ -16,14 +16,16 @@ angular.module('octobluApp')
       });
 
     var refreshFlows = function () {
-      $scope.flows = FlowService.getAllFlows()
+      return FlowService.getAllFlows()
         .then(function (flows) {
           $scope.flows = flows;
-          $scope.setActiveFlow(flows[0]);
-        });
+      });
     };
 
-    refreshFlows();
+    refreshFlows().then(function(){
+      var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
+      $scope.setActiveFlow(activeFlow);
+    });
 
     $scope.logout = function(){
       AuthService.logout()
@@ -48,8 +50,9 @@ angular.module('octobluApp')
     $scope.addFlow = function () {
       var name = 'Flow ' + ($scope.flows.length + 1);
       var newFlow = FlowService.newFlow({name: name});
-      $scope.flows.push(newFlow);
-      $scope.setActiveFlow(newFlow);
+      FlowService.saveFlow(newFlow).then(function(){
+        $state.go('flow', {flowId: newFlow.flowId});
+      });
     };
 
     $scope.getActiveFlow = function(){

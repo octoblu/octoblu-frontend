@@ -9,7 +9,7 @@ angular.module('octobluApp')
   return {
     restrict: 'E',
     controller: 'FlowNodeEditorController',
-    templateUrl: 'pages/flow-node-editor.html',
+    templateUrl: '/pages/flow-node-editor.html',
     replace: true,
     scope: {
       flowNode: '='
