@@ -183,7 +183,7 @@ angular.module('octobluApp')
             var addLogoUrl = this.addLogoUrl;
             $http.get('/api/channels/'+id, { cache: false})
                 .success(function(data) {
-                    data.logo = addLogoUrl(data);
+                    data = addLogoUrl(data);
                     callback(data);
                 })
                 .error(function(data) {
