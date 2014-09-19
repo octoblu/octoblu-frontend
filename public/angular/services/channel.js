@@ -171,7 +171,7 @@ angular.module('octobluApp')
 
         this.getChannelActivationById = function(channelId){
             return this.getActiveChannels().then(function(channels){
-                return _.findWhere(channels, {channelid: channelId});
+                return _.findWhere(channels, {_id: channelId});
             });
         };
 
