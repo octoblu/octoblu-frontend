@@ -35,23 +35,47 @@ angular.module('octobluApp')
         }
       };
 
-      $scope.activeTab = tabs.node;
-
-      $scope.setActiveTab = function(tabName) {
-        $scope.maximized = true;
-        $scope.activeTab = tabs[tabName];
+      $scope.toggleActiveTab = function(name) {
+        if ($scope.activeTab.name === name) {
+          $scope.minimize();
+        } else {
+          $scope.maximize();
+          $scope.setActiveTab(name);
+        }
       };
 
       $scope.addFlowNodeType = function(flowNodeType) {
         $scope.$emit('flow-node-type-selected', flowNodeType);
       };
 
-      $scope.toggleDrawer = function(){
+      $scope.maximize = function() {
+        $scope.maximized = true;
+      };
+
+      $scope.minimize = function() {
+        $scope.maximized = false;
+      };
+
+      $scope.clearActiveTab = function() {
+        $scope.activeTab = {};
+      };
+
+      $scope.setActiveTab = function(name) {
+        $scope.activeTab = tabs[name];
+      };
+
+      $scope.hasActiveTab = function() {
+        return !_.isEmpty($scope.activeTab);
+      }
+
+      $scope.toggleMaximize = function() {
         $scope.maximized = !$scope.maximized;
-        if($scope.maximized) {
-          $scope.activeTab = tabs['debug'];
-        } else {
-          $scope.activeTab = null;
+      };
+
+      $scope.toggleDrawer = function(){
+        $scope.toggleMaximize();
+        if (!$scope.hasActiveTab()) {
+          $scope.setActiveTab('debug');
         }
       };
 
@@ -68,6 +92,8 @@ angular.module('octobluApp')
       $scope.filterOperators = function(flowNodeType){
         return flowNodeType && (flowNodeType.category !== 'device' && flowNodeType.category !== 'channel');
       };
+
+      $scope.clearActiveTab();
     }
   };
 });
