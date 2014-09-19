@@ -106,6 +106,20 @@ angular.module('octobluApp')
       return {id: node.id, port: port};
     };
 
+    function wrapLines(text) {
+      var text = d3.select(this),
+          lines = text.text().split(/\n+/),
+          lineNumber = 0,
+          lineHeight = 1.1, // ems
+          y = text.attr("y"),
+          dy = parseFloat(text.attr("dy")),
+          tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+
+      _.each(lines, function(line){
+        text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(line);
+      });
+    };
+
     return {
       render: function (renderScope, node, flow) {
 
@@ -237,14 +251,17 @@ angular.module('octobluApp')
         }
 
         var label = node.name || node.class;
-        nodeElement
-          .append('text')
-          .classed('flow-node-label', true)
-          .attr('y', nodeHeight + 10)
-          .attr('x', FlowNodeDimensions.width / 2)
-          .attr('text-anchor', 'middle')
-          .attr('alignment-baseline', 'central')
-          .text(label);
+        var lines = label.split("\n");
+        _.each(lines, function(line, i){
+          nodeElement
+            .append('text')
+            .classed('flow-node-label', true)
+            .attr('y', nodeHeight + 10 + (i * 15))
+            .attr('x', FlowNodeDimensions.width / 2)
+            .attr('text-anchor', 'middle')
+            .attr('alignment-baseline', 'central')
+            .text(line);
+        });
 
         var remainingSpace =
           nodeHeight - (node.input * FlowNodeDimensions.portHeight);
