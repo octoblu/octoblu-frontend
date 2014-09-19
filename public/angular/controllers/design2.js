@@ -15,7 +15,6 @@ angular.module('octobluApp')
         var getSessionFlow = function () {
             return $http({method: 'GET', url: '/api/get/flow'})
                 .success(function (data) {
-                    console.log('/api/get/flow', data);
                     if (data.flow) {
                         RED.view.importFromCommunity(data.flow);
                     }

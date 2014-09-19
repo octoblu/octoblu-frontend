@@ -148,7 +148,8 @@
     bottom: 10px;
     /* sadly, this has to be non-semantic because the html in the editor is auto-generated. */
     background-color: #f3f3f3;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   div.btn-group, a.btn {
@@ -500,7 +501,7 @@
   .ui-autocomplete {
     max-height: 250px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .leftButton {
@@ -645,7 +646,8 @@
   .drawer {
     transition: height 0.2s;
     height: 0px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     &.maximized {
       height: 40vh;
     }
@@ -697,9 +699,8 @@
   }
 }
 
-
-
 .panel-scrollable {
   max-height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

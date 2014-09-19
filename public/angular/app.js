@@ -263,8 +263,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
                   gateway.plugins = response.result.plugins || [];
                 }
               }, function () {
-                console.log('couldn\'t get data for: ');
-                console.log(gateway);
+                console.log('couldn\'t get data for: ', gateway);
               });
             });
             return gateways;

@@ -34,7 +34,6 @@ angular.module('octobluApp')
                                     color: lineColors.pop()
                                 };
                                 smoothie.addTimeSeries(messageLines[key].line, { strokeStyle: messageLines[key].color, lineWidth: 3 });
-                                console.log('added line for: ' + key);
                             }
                         });
                     }

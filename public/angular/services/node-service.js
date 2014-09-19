@@ -27,7 +27,6 @@ angular.module('octobluApp')
           }))
             .then(function (results) {
               var nodes = _.union(devices, _.flatten(results));
-              console.log(nodes);
               return nodes;
             });
         });

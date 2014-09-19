@@ -86,15 +86,6 @@ angular.module('octobluApp')
                     scope.owl.data('owlCarousel').destroy();
                     scope.owl = undefined;
                 });
-
-
-                scope.$watchCollection('hub.subdevices' , function(newSubdevices, oldSubdevices){
-                    //TODO
-                    console.log('new subdevices');
-                    console.log(JSON.stringify(newSubdevices));
-                    console.log('old subdevices');
-                    console.log(JSON.stringify(oldSubdevices));
-                });
             }
         }
     });
