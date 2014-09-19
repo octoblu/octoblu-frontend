@@ -10,7 +10,7 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/debounce_form.html"
+    "formTemplatePath": "/pages/node_forms/debounce_form.html"
   },
   {
     "name": "delay",
@@ -24,7 +24,7 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/delay_form.html"
+    "formTemplatePath": "/pages/node_forms/delay_form.html"
   },
   {
     "name": "demultiplex",
@@ -36,7 +36,7 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/demultiplexer_form.html"
+    "formTemplatePath": "/pages/node_forms/demultiplexer_form.html"
   },
   {
     "name": "function",
@@ -50,7 +50,7 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/function_form.html"
+    "formTemplatePath": "/pages/node_forms/function_form.html"
   },
   {
     "name": "pluck",
@@ -63,7 +63,7 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/pluck_form.html"
+    "formTemplatePath": "/pages/node_forms/pluck_form.html"
   },
   {
     "name": "trigger",
@@ -77,7 +77,7 @@
     },
     "input": 0,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/button_form.html"
+    "formTemplatePath": "/pages/node_forms/button_form.html"
   },
   {
     "name": "interval",
@@ -92,7 +92,7 @@
     },
     "input": 0,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/interval_form.html"
+    "formTemplatePath": "/pages/node_forms/interval_form.html"
   },
   {
     "name": "schedule",
@@ -107,7 +107,7 @@
     },
     "input": 0,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/schedule_form.html"
+    "formTemplatePath": "/pages/node_forms/schedule_form.html"
   },
   {
     "name": "throttle",
@@ -120,7 +120,7 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/throttle_form.html"
+    "formTemplatePath": "/pages/node_forms/throttle_form.html"
   },
   {
     "name": "http request",
@@ -134,7 +134,7 @@
     "input": 1,
     "output": 1,
     "align": "right",
-    "formTemplatePath": "/assets/node_forms/http_request_form.html"
+    "formTemplatePath": "/pages/node_forms/http_request_form.html"
   },
   {
     "name": "sentiment",
@@ -146,14 +146,14 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/sentiment_form.html"
+    "formTemplatePath": "/pages/node_forms/sentiment_form.html"
   },
   {
     "name": "xml2js",
     "class": "xml2js",
     "category" : "operation",
     "uuid": "37f0b636-2f17-11e4-9617-a6c5e4d22fb7",
-    "formTemplatePath": "/assets/node_forms/xml2js_form.html",
+    "formTemplatePath": "/pages/node_forms/xml2js_form.html",
     "type": "operation:xml2js",
     "defaults": {
     },
@@ -186,6 +186,6 @@
     },
     "input": 0,
     "output": 0,
-    "formTemplatePath": "/assets/node_forms/comment_form.html"
+    "formTemplatePath": "/pages/node_forms/comment_form.html"
   }
 ]
