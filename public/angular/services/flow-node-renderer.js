@@ -250,7 +250,7 @@ angular.module('octobluApp')
             .classed('flow-node-button', true);
         }
 
-        var label = node.name || node.class;
+        var label = node.name || node.class || '';
         var lines = label.split("\n");
         _.each(lines, function(line, i){
           nodeElement
