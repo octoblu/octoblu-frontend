@@ -44,7 +44,7 @@ angular.module('octobluApp')
   }
 
   //"borrowed" from the back end until we can query subdevices on the backend.
-  self.convertSubdevice = function(node){
+  self.convertSubdevice = function(node) {
     return {
       name: node.name,
       category: 'device',
@@ -59,7 +59,7 @@ angular.module('octobluApp')
       },
       input: 1,
       output: 1
-      // formTemplatePath: "/assets/node_forms/" + "debug" + "_form.html"
+      formTemplatePath: "/pages/node_forms/subdevice_form.html"
     };
   };
 
