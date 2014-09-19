@@ -39,6 +39,20 @@
     "formTemplatePath": "/assets/node_forms/demultiplexer_form.html"
   },
   {
+    "name": "filter",
+    "class": "filter",
+    "category" : "operation",
+    "uuid": "2bebd428-4818-48ea-b1f5-88a32199f17b",
+    "type": "operation:filter",
+    "defaults": {
+      "key": "",
+      "value": ""
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/assets/node_forms/filter_form.html"
+  },
+  {
     "name": "function",
     "class": "function",
     "category" : "operation",
@@ -56,7 +70,7 @@
     "name": "pluck",
     "class": "pluck",
     "category" : "operation",
-    "uuid": "37f0a3a8-2f17-11e4-9617-a6c5e4d22fb7",
+    "uuid": "86aef89e-6dfd-435f-863e-6deac12fc6ec",
     "type": "operation:pluck",
     "defaults": {
       "key": ""
