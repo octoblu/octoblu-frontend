@@ -876,7 +876,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/clicks"
       },
       {
@@ -887,7 +917,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/countries"
       },
       {
@@ -898,7 +958,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "domain",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/popular_earned_by_clicks"
       },
       {
@@ -909,7 +999,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "domain",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/popular_earned_by_shortens"
       },
       {
@@ -920,7 +1040,32 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/popular_links"
       },
       {
@@ -931,7 +1076,42 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "domain",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "subaccount",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/popular_owned_by_clicks"
       },
       {
@@ -942,7 +1122,42 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "domain",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "subaccount",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/popular_owned_by_shortens"
       },
       {
@@ -953,7 +1168,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/referrers"
       },
       {
@@ -964,7 +1209,46 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "exclude_social_networks",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "login"
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/referring_domains"
       },
       {
@@ -975,7 +1259,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/share_counts"
       },
       {
@@ -986,7 +1300,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/share_counts_by_share_type"
       },
       {
@@ -997,7 +1341,37 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "unit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "units",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "timezone",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "rollup",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "limit",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "unit_reference_ts",
+          "required": true
+        }],
         "url": "https://api-ssl.bitly.com/v3/user/shorten_counts"
       },
       {
