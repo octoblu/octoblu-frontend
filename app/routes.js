@@ -174,11 +174,7 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
 
-            app.get('/api/*', function(req, res) {
-                res.send(404);
-            });
-
-            app.get('/pages/*', function(req, res) {
+            app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404);
             });
 
