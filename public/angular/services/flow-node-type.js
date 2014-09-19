@@ -37,8 +37,7 @@ angular.module('octobluApp')
   function getSubdeviceFlowNodeTypes() {
     return NodeService.getSubdeviceNodes().then(function(subdevices){
       return _.map(subdevices, function(subdevice){
-        subdevice.category = 'subdevice';
-        return subdevice;
+        return self.convertSubdevice(subdevice);
       });
 
     });
@@ -48,15 +47,19 @@ angular.module('octobluApp')
   self.convertSubdevice = function(node){
     return {
       name: node.name,
+      category: 'device',
       class: node.name,
       type: node.type,
-      logo: node.nodeType.logo,   
-      category: node.category,
-      uuid: node.uuid,
-      defaults: node,
+      logo: node.logo,   
+      defaults: {
+        logo: node.logo,
+        category: 'device',
+        uuid: node.uuid,
+        type: node.type
+      },
       input: 1,
-      output: 1,
-      formTemplatePath: "/assets/node_forms/" + node.category + "_form.html"
+      output: 1
+      // formTemplatePath: "/assets/node_forms/" + "debug" + "_form.html"
     };
   };
 
