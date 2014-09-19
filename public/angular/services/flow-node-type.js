@@ -17,7 +17,6 @@ angular.module('octobluApp')
   };
 
   self.getFlowNodeTypes = function () {
-      
     return $q.all([getServerSideFlowNodeTypes(), getSubdeviceFlowNodeTypes()])
       .then(function(results){
         return _.flatten(results);  
@@ -36,9 +35,13 @@ angular.module('octobluApp')
   }
 
   function getSubdeviceFlowNodeTypes() {
-    var defer = $q.defer();
-    defer.resolve([]);
-    return defer.promise;
+    return NodeService.getSubdeviceNodes().then(function(subdevices){
+      return _.map(subdevices, function(subdevice){
+        subdevice.category = 'subdevice';
+        return subdevice;
+      });
+
+    });
   }
 
   //"borrowed" from the back end until we can query subdevices on the backend.
