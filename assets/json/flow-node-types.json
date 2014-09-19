@@ -53,6 +53,19 @@
     "formTemplatePath": "/assets/node_forms/function_form.html"
   },
   {
+    "name": "pluck",
+    "class": "pluck",
+    "category" : "operation",
+    "uuid": "37f0a3a8-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:pluck",
+    "defaults": {
+      "key": ""
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/assets/node_forms/pluck_form.html"
+  },
+  {
     "name": "trigger",
     "class": "trigger",
     "category" : "operation",
