@@ -127,7 +127,6 @@ angular.module('octobluApp')
             userService.saveConnection(currentUser.skynetuuid, $scope.channel._id, $scope.user_channel.key,
                 $scope.user_channel.token, $scope.custom_tokens,
                 function (data) {
-                    console.log('saved');
                     // currentUser = data;
                     $scope.has_user_channel = true;
                 });
