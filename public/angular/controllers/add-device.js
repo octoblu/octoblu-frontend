@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-  .controller('addDeviceController', function ($scope, $state, $stateParams, NodeTypeService, deviceService) {
+  .controller('addDeviceController', function ($scope, $state, $stateParams, currentUser, NodeTypeService, deviceService) {
     $scope.newDevice = {};
     $scope.existingDevice = {};
 
@@ -38,11 +38,13 @@ angular.module('octobluApp')
         if ($scope.newDevice.selectedDevice.type === 'existing') {
           deviceOptions.uuid = $scope.existingDevice.uuid;
           deviceOptions.token = $scope.existingDevice.token;
+          deviceOptions.owner = currentUser.skynet.uuid;
+          deviceOptions.isChanged = true;
+          promise = deviceService.updateDevice(deviceOptions);
         } else {
           deviceOptions.uuid = $scope.newDevice.selectedDevice.uuid;
+          promise = deviceService.claimDevice(deviceOptions);
         }
-
-        promise = deviceService.claimDevice(deviceOptions);
       } else {
         promise = deviceService.registerDevice(deviceOptions);
       }
