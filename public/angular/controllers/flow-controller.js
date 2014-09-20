@@ -77,6 +77,10 @@ angular.module('octobluApp')
       }
     };
 
+    $scope.unMousetrap = function (e) {
+
+    };
+
     $scope.copySelection = function (e) {
       if (e) {
         e.preventDefault();

@@ -1,4 +1,4 @@
-<div class="design2 designer-container full-height" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}">
+<div class="design2 designer-container full-height">
   <div class="logo-toolbar">
     <img src="/assets/images/octoblu.png" height="50px"/>
   </div>
@@ -63,9 +63,9 @@
   <flow-editor-omnibox omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
 
   <div class="full-height" ng-mousemove="setMousePosition($event)" ng-mouseout="clearMousePosition()">
-    <div class="workspace-container full-height">
+    <div class="workspace-container full-height" w-mousetrap="{'mod+c':copySelection, 'mod+x': cutSelection, 'mod+v':pasteSelection, 'backspace': deleteSelection, 'del': deleteSelection}">
       <flow-editor flow="activeFlow"></flow-editor>
     </div>
   </div>
-  <flow-browser flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes"></flow-browser>
+  <flow-browser w-mousetrap="{'mod+c':unMousetrap}" flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes"></flow-browser>
 </div>
