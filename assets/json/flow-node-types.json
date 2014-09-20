@@ -137,7 +137,20 @@
     "formTemplatePath": "/pages/node_forms/throttle_form.html"
   },
   {
-    "name": "RSS",
+    "name": "Meshblu device",
+    "class": "device",
+    "category" : "operation",
+    "uuid": "be0d21d3-f6b0-4f21-ae3b-484d69f6063a",
+    "type": "operation:device",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/generic_device_form.html"
+  },
+  {
+    "name": "RSS request",
     "class": "rss",
     "category" : "operation",
     "uuid": "2aac8e4a-7695-4269-ba98-3678581f7a59",
