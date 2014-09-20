@@ -36,7 +36,7 @@ angular.module('octobluApp')
       };
 
       $scope.toggleActiveTab = function(name) {
-        if ($scope.activeTab.name === name) {
+        if ($scope.maximized && $scope.activeTab.name === name) {
           $scope.minimize();
         } else {
           $scope.maximize();
