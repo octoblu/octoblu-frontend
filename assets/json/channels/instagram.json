@@ -105,7 +105,7 @@
         },{
           "style": "query",
           "type": "string",
-          "name": "CLIENT_ID"
+          "name": "CLIENT_ID",
           "required": true
         },{
           "style": "query",
@@ -149,7 +149,7 @@
         "params": [{
           "style": "query",
           "type": "string",
-          "name": "Q",
+          "name": "Q"
         },{
           "style": "query",
           "type": "string",
@@ -264,7 +264,7 @@
         "params": [{
           "style": "query",
           "type": "string",
-          "name": "LAT"
+          "name": "LAT",
           "required": true
         },{
           "style": "query",
@@ -273,7 +273,7 @@
         },{
           "style": "query",
           "type": "string",
-          "name": "LNG"
+          "name": "LNG",
           "required": true
         },{
           "style": "query",
@@ -324,7 +324,7 @@
         },{
           "style": "body",
           "type": "string",
-          "name": "TEXT",
+          "name": "TEXT"
         }],
         "url": "http://instagram.com/developer/endpoints/comments/"
       },
@@ -409,7 +409,7 @@
         "params": [{
           "style": "query",
           "type": "string",
-          "name": "COUNT",
+          "name": "COUNT"
         },{
           "style": "query",
           "type": "string",
@@ -530,3 +530,6 @@
           }],
         "url": "http://instagram.com/developer/endpoints/geographies/"
       }
+      ]
+  }
+}
