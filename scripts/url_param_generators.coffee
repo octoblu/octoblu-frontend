@@ -8,7 +8,7 @@ class UrlParamGenerator
     @channel_filename = options.channel_filename
 
   channel: =>
-    JSON.parse fs.readFileSync 'github.json'
+    JSON.parse fs.readFileSync @channel_filename
 
   run: =>
     channel = @channel()
@@ -28,7 +28,7 @@ class UrlParamGenerator
       resource.params = _.union params, new_params
 
     prettyChannel = JSON.stringify channel, null, 2
-    fs.writeFileSync 'github.json', prettyChannel
+    fs.writeFileSync @channel_filename, prettyChannel
 
 commander
   .version 0.1
@@ -38,5 +38,4 @@ commander
 commander.help() unless commander.filename?
 
 generator = new UrlParamGenerator channel_filename: commander.filename
-console.log generator.channel_filename
-# generator.run()
+generator.run()
