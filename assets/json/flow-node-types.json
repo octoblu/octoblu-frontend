@@ -50,7 +50,7 @@
     },
     "input": 1,
     "output": 1,
-    "formTemplatePath": "/assets/node_forms/filter_form.html"
+    "formTemplatePath": "/pages/node_forms/filter_form.html"
   },
   {
     "name": "function",
