@@ -21,7 +21,7 @@ var FlowNodeTypeCollection = function(userUUID, options){
       defaults: node,
       input: 1,
       output: 1,
-      formTemplatePath: "/assets/node_forms/" + node.category + "_form.html"
+      formTemplatePath: "/pages/node_forms/" + node.category + "_form.html"
     };
   };
 
