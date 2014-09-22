@@ -72,6 +72,9 @@ module.exports = function(app, passport) {
     var NestController = require('./controllers/nest-controller');
     var nestController = new NestController();
 
+    var VimeoController = require('./controllers/vimeo-controller');
+    var vimeoController = new VimeoController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -167,6 +170,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
+
+            app.get('/api/oauth/vimeo',          vimeoController.authorize);
+            app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
 
             app.get('/api/oauth/linkedin',          linkedinController.authorize);
             app.get('/api/oauth/linkedin/callback', linkedinController.callback, linkedinController.redirectToDesigner);
