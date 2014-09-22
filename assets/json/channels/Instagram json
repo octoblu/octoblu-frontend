@@ -345,116 +345,47 @@
         "url": "http://instagram.com/developer/endpoints/comments/"
       },
       {
-        "path": "/v3/user/save_custom_domain_keyword",
-        "displayName": "/v3/user/save_custom_domain_keyword",
+        "path": "/media/media-id/likes",
+        "displayName": "/media/media-id/likes",
         "doc": {
-          "url": "http://dev.bitly.com/links.html"
+          "url": "http://instagram.com/developer/endpoints/likes/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "keyword_link",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "target_link",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "overwrite"
-        }],
-        "url": "https://api-ssl.bitly.com/v3/user/save_custom_domain_keyword"
+        "params": [],
+        "url": "http://instagram.com/developer/endpoints/likes/"
       },
       {
-        "path": "/v3/link/clicks",
-        "displayName": "/v3/link/clicks",
+        "path": "/media/media-id/likes",
+        "displayName": "/media/media-id/likes",
         "doc": {
-          "url": "http://dev.bitly.com/link_metrics.html"
+          "url": "http://instagram.com/developer/endpoints/likes/"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "body",
           "type": "string",
-          "name": "link",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "unit",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "units",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "timezone",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "rollup",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "limit",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "unit_reference_ts",
+          "name": "ACCESS_TOKEN",
           "required": true
         }],
-        "url": "https://api-ssl.bitly.com/v3/link/clicks"
+        "url": "http://instagram.com/developer/endpoints/likes/"
       },
       {
-        "path": "/v3/link/countries",
-        "displayName": "/v3/link/countries",
+        "path": "/media/media-id/likes",
+        "displayName": "/media/media-id/likes",
         "doc": {
-          "url": "http://dev.bitly.com/link_metrics.html"
+          "url": "http://instagram.com/developer/endpoints/likes/"
         },
-        "httpMethod": "GET",
+        "httpMethod": "DELETE",
         "curl": "curl -X ",
         "params": [{
-          "style": "query",
+          "style": "",
           "type": "string",
-          "name": "link",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "unit",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "units",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "timezone",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "limit",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "unit_reference_ts",
+          "name": "ACCESS_TOKEN",
           "required": true
         }],
-        "url": "https://api-ssl.bitly.com/v3/link/countries"
+        "url": "http://instagram.com/developer/endpoints/likes/"
       },
       {
         "path": "/v3/link/encoders",
