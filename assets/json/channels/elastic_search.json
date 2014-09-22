@@ -1,7 +1,14 @@
 {
   "_id": "1c1160a3-3814-4411-99a0-e7c6a40792e4",
+  "name": "ElasticLogs",
+  "auth_strategy": "oauth",
+  "oauth": {
+    "tokenMethod": "access_token_query",
+    "tokenQueryParam": "owner"
+  },
+  "type": "channel:elastic-logs",
   "application": {
-    "base": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com",
+    "base": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com",
     "resources": [
       {
         "doc": {
@@ -18,8 +25,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_bench/abort/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_bench/abort/:name"
       },
       {
         "doc": {
@@ -38,8 +44,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_bench"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_bench"
       },
       {
         "doc": {
@@ -103,8 +108,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_bulk"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_bulk"
       },
       {
         "doc": {
@@ -159,8 +163,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/aliases"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/aliases"
       },
       {
         "doc": {
@@ -224,8 +227,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/allocation"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/allocation"
       },
       {
         "doc": {
@@ -280,8 +282,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/count"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/count"
       },
       {
         "doc": {
@@ -354,8 +355,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/fielddata"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/fielddata"
       },
       {
         "doc": {
@@ -419,8 +419,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/health"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/health"
       },
       {
         "doc": {
@@ -439,8 +438,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat"
       },
       {
         "doc": {
@@ -513,8 +511,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/indices"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/indices"
       },
       {
         "doc": {
@@ -569,8 +566,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/master"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/master"
       },
       {
         "doc": {
@@ -625,8 +621,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/nodes"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/nodes"
       },
       {
         "doc": {
@@ -681,8 +676,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/pending_tasks"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/pending_tasks"
       },
       {
         "doc": {
@@ -737,8 +731,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/plugins"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/plugins"
       },
       {
         "doc": {
@@ -793,8 +786,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/recovery"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/recovery"
       },
       {
         "doc": {
@@ -849,8 +841,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/shards"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/shards"
       },
       {
         "doc": {
@@ -914,8 +905,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/thread_pool"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cat/thread_pool"
       },
       {
         "doc": {
@@ -932,8 +922,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_search/scroll/:scroll_id"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_search/scroll/:scroll_id"
       },
       {
         "doc": {
@@ -970,8 +959,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/settings"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/settings"
       },
       {
         "doc": {
@@ -1053,8 +1041,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/health"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/health"
       },
       {
         "doc": {
@@ -1082,8 +1069,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/pending_tasks"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/pending_tasks"
       },
       {
         "doc": {
@@ -1102,8 +1088,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/settings"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/settings"
       },
       {
         "doc": {
@@ -1158,8 +1143,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/reroute"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/reroute"
       },
       {
         "doc": {
@@ -1196,8 +1180,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/state"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/state"
       },
       {
         "doc": {
@@ -1225,8 +1208,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/stats"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cluster/stats"
       },
       {
         "doc": {
@@ -1299,8 +1281,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_count"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_count"
       },
       {
         "doc": {
@@ -1405,8 +1386,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_percolate/count"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_percolate/count"
       },
       {
         "doc": {
@@ -1509,8 +1489,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id"
       },
       {
         "doc": {
@@ -1635,8 +1614,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_query"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_query"
       },
       {
         "doc": {
@@ -1712,8 +1690,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id"
       },
       {
         "doc": {
@@ -1879,8 +1856,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_explain"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_explain"
       },
       {
         "doc": {
@@ -2010,8 +1986,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id"
       },
       {
         "doc": {
@@ -2132,8 +2107,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_source"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_source"
       },
       {
         "doc": {
@@ -2256,8 +2230,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type"
       },
       {
         "doc": {
@@ -2348,8 +2321,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_analyze"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_analyze"
       },
       {
         "doc": {
@@ -2476,8 +2448,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_cache/clear"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_cache/clear"
       },
       {
         "doc": {
@@ -2539,8 +2510,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_close"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_close"
       },
       {
         "doc": {
@@ -2575,8 +2545,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index"
       },
       {
         "doc": {
@@ -2611,8 +2580,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index"
       },
       {
         "doc": {
@@ -2654,8 +2622,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_alias/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_alias/:name"
       },
       {
         "doc": {
@@ -2688,8 +2655,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_mapping"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_mapping"
       },
       {
         "doc": {
@@ -2724,8 +2690,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
       },
       {
         "doc": {
@@ -2767,8 +2732,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_warmer/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_warmer/:name"
       },
       {
         "doc": {
@@ -2821,8 +2785,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index"
       },
       {
         "doc": {
@@ -2875,8 +2838,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_alias/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_alias/:name"
       },
       {
         "doc": {
@@ -2902,8 +2864,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
       },
       {
         "doc": {
@@ -2963,8 +2924,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type"
       },
       {
         "doc": {
@@ -3019,8 +2979,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_flush"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_flush"
       },
       {
         "doc": {
@@ -3066,8 +3025,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_alias/"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_alias/"
       },
       {
         "doc": {
@@ -3095,8 +3053,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_aliases"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_aliases"
       },
       {
         "doc": {
@@ -3158,8 +3115,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_mapping/field/:field"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_mapping/field/:field"
       },
       {
         "doc": {
@@ -3205,8 +3161,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_mapping"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_mapping"
       },
       {
         "doc": {
@@ -3261,8 +3216,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_settings"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_settings"
       },
       {
         "doc": {
@@ -3297,8 +3251,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
       },
       {
         "doc": {
@@ -3344,8 +3297,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_warmer"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_warmer"
       },
       {
         "doc": {
@@ -3407,8 +3359,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_open"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_open"
       },
       {
         "doc": {
@@ -3499,8 +3450,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_optimize"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_optimize"
       },
       {
         "doc": {
@@ -3542,8 +3492,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_alias/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_alias/:name"
       },
       {
         "doc": {
@@ -3621,8 +3570,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_mapping"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_mapping"
       },
       {
         "doc": {
@@ -3677,8 +3625,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_settings"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_settings"
       },
       {
         "doc": {
@@ -3740,8 +3687,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_template/:name"
       },
       {
         "doc": {
@@ -3801,8 +3747,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_warmer/:name"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/_warmer/:name"
       },
       {
         "doc": {
@@ -3839,8 +3784,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_recovery"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_recovery"
       },
       {
         "doc": {
@@ -3895,8 +3839,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_refresh"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_refresh"
       },
       {
         "doc": {
@@ -3951,8 +3894,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_segments"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_segments"
       },
       {
         "doc": {
@@ -4025,8 +3967,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_stats"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_stats"
       },
       {
         "doc": {
@@ -4054,8 +3995,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_aliases"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_aliases"
       },
       {
         "doc": {
@@ -4128,8 +4068,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_validate/query"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_validate/query"
       },
       {
         "doc": {
@@ -4138,8 +4077,7 @@
         "path": "/skynet_trans_log/",
         "httpMethod": "GET",
         "params": [],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/"
       },
       {
         "doc": {
@@ -4148,8 +4086,7 @@
         "path": "/skynet_trans_log/_bench",
         "httpMethod": "GET",
         "params": [],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_bench"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_bench"
       },
       {
         "doc": {
@@ -4222,8 +4159,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_mget"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_mget"
       },
       {
         "doc": {
@@ -4425,8 +4361,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_mlt"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_mlt"
       },
       {
         "doc": {
@@ -4463,8 +4398,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_mpercolate"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_mpercolate"
       },
       {
         "doc": {
@@ -4483,8 +4417,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_msearch"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_msearch"
       },
       {
         "doc": {
@@ -4584,8 +4517,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_mtermvectors"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_mtermvectors"
       },
       {
         "doc": {
@@ -4631,8 +4563,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_nodes/hot_threads"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_nodes/hot_threads"
       },
       {
         "doc": {
@@ -4660,8 +4591,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_nodes"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_nodes"
       },
       {
         "doc": {
@@ -4689,8 +4619,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_shutdown"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_shutdown"
       },
       {
         "doc": {
@@ -4763,8 +4692,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_nodes/stats"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_nodes/stats"
       },
       {
         "doc": {
@@ -4878,8 +4806,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_percolate"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_percolate"
       },
       {
         "doc": {
@@ -4888,8 +4815,7 @@
         "path": "/skynet_trans_log/",
         "httpMethod": "HEAD",
         "params": [],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/"
       },
       {
         "doc": {
@@ -4917,7 +4843,7 @@
             "required": false
           }
         ],
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_search/scroll"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_search/scroll"
       },
       {
         "doc": {
@@ -5206,7 +5132,7 @@
             "required": false
           }
         ],
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_search"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_search"
       },
       {
         "doc": {
@@ -5284,8 +5210,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_search_shards"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/_search_shards"
       },
       {
         "doc": {
@@ -5358,7 +5283,7 @@
             "required": false
           }
         ],
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_search/template"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_search/template"
       },
       {
         "doc": {
@@ -5400,8 +5325,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot"
       },
       {
         "doc": {
@@ -5436,8 +5360,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository"
       },
       {
         "doc": {
@@ -5470,8 +5393,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot"
       },
       {
         "doc": {
@@ -5506,8 +5428,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository"
       },
       {
         "doc": {
@@ -5540,8 +5461,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot"
       },
       {
         "doc": {
@@ -5569,8 +5489,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot"
       },
       {
         "doc": {
@@ -5612,8 +5531,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot/_restore"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/:repository/:snapshot/_restore"
       },
       {
         "doc": {
@@ -5632,8 +5550,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/_status"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_snapshot/_status"
       },
       {
         "doc": {
@@ -5697,8 +5614,7 @@
             "required": false
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/_suggest"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_suggest"
       },
       {
         "doc": {
@@ -5810,8 +5726,7 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_termvector"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_termvector"
       },
       {
         "doc": {
@@ -5968,17 +5883,8 @@
             "required": "true"
           }
         ],
-        "disabled": true,
-        "url": "http://internal-octoblu-elasticsearch-870143150.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_update"
+        "url": "dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/:index/:type/:id/_update"
       }
     ]
-  },
-  "auth_strategy": "none",
-  "description": "Parse skynet data logged to ElasticSearch",
-  "documentation": "http://www.elasticsearch.org/resources/",
-  "enabled": true,
-  "logo": "http://nest.azurewebsites.net/images/elasticsearch-net-nuget-icon.png",
-  "name": "ElasticLogs",
-  "oauth": {},
-  "type": "channel:elastic_logs"
+  }
 }
