@@ -310,7 +310,7 @@
 		"_id" : "53c9b837f400e177dca325c2",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Vimeo",
 		"skynet" : {
 			"type" : "channel",
