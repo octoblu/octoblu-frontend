@@ -232,76 +232,70 @@
         "url": "http://instagram.com/developer/endpoints/users/"
       },
       {
-        "path": "/v3/expand",
-        "displayName": "/v3/expand",
+        "path": "/media/media-id",
+        "displayName": "/media/media-id",
         "doc": {
-          "url": "http://dev.bitly.com/links.html"
+          "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "shortUrl",
-          "required": true
-        }],
-        "url": "https://api-ssl.bitly.com/v3/expand"
+        "params": [],
+        "url": "http://instagram.com/developer/endpoints/users/"
       },
       {
-        "path": "/v3/info",
-        "displayName": "/v3/info",
+        "path": "/media/shortcode/shortcode",
+        "displayName": "/media/shortcode/shortcode",
         "doc": {
-          "url": "http://dev.bitly.com/links.html"
+          "url": "http://instagram.com/developer/endpoints/users/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://instagram.com/developer/endpoints/users/"
+      },
+      {
+        "path": "/media/search",
+        "displayName": "/media/search",
+        "doc": {
+          "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
           "style": "query",
           "type": "string",
-          "name": "shortUrl",
+          "name": "LAT"
           "required": true
         },{
           "style": "query",
           "type": "string",
-          "name": "expand_user"
-        }],
-        "url": "https://api-ssl.bitly.com/v3/info"
-      },
-      {
-        "path": "/v3/link/lookup",
-        "displayName": "/v3/link/lookup",
-        "doc": {
-          "url": "http://dev.bitly.com/links.html"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X ",
-        "params": [{
+          "name": "MIN_TIMESTAMP"
+        },{
           "style": "query",
           "type": "string",
-          "name": "url",
-          "required": true
-        }],
-        "url": "https://api-ssl.bitly.com/v3/link/lookup"
-      },
-      {
-        "path": "/v3/shorten",
-        "displayName": "/v3/shorten",
-        "doc": {
-          "url": "http://dev.bitly.com/links.html"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "longUrl",
+          "name": "LNG"
           "required": true
         },{
           "style": "query",
           "type": "string",
-          "name": "domain"
+          "name": "MAX_TIMESTAMP"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "DISTANCE"
         }],
-        "url": "https://api-ssl.bitly.com/v3/shorten"
+        "url": "http://instagram.com/developer/endpoints/users/"
+      },
+      {
+        "path": "/media/popular",
+        "displayName": "/media/popular",
+        "doc": {
+          "url": "http://instagram.com/developer/endpoints/users/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "http://instagram.com/developer/endpoints/users/"
       },
       {
         "path": "/v3/user/link_edit",
