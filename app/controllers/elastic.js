@@ -16,7 +16,7 @@ module.exports = function (app) {
 
   app.all('/api/elastic/skynet_trans_log/_search', function(req, res){
     request({
-      url:    'http://dmz-elb-elasticsearch-1064045065.us-west-2.elb.amazonaws.com/skynet_trans_log/_search',
+      url:    'http://54.68.191.122/skynet_trans_log/_search',
       method: req.method,
       json:   req.body
     }, function(error, incomingMessage, response){
