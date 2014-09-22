@@ -437,127 +437,79 @@
         "url": "http://instagram.com/developer/endpoints/tags/"
       },
       {
-        "path": "/v3/link/referrers",
-        "displayName": "/v3/link/referrers",
+        "path": "/locations/location-id",
+        "displayName": "/locations/location-id",
         "doc": {
-          "url": "http://dev.bitly.com/link_metrics.html"
+          "url": "http://instagram.com/developer/endpoints/locations/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "link",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "unit",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "units",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "timezone",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "limit",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "unit_reference_ts",
-          "required": true
-        }],
-        "url": "https://api-ssl.bitly.com/v3/link/referrers"
+        "params": [],
+        "url": "http://instagram.com/developer/endpoints/locations/"
       },
       {
-        "path": "/v3/link/referrers_by_domain",
-        "displayName": "/v3/link/referrers_by_domain",
+        "path": "/locations/location-id/media/recent",
+        "displayName": "/locations/location-id/media/recent",
         "doc": {
-          "url": "http://dev.bitly.com/link_metrics.html"
+          "url": "http://instagram.com/developer/endpoints/locations/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
           "style": "query",
           "type": "string",
-          "name": "link",
-          "required": true
+          "name": "MIN_TIMESTAMP"
         },{
           "style": "query",
           "type": "string",
-          "name": "unit",
-          "required": true
+          "name": "MIN_ID"
         },{
           "style": "query",
           "type": "integer",
-          "name": "units",
-          "required": true
+          "name": "MAX_ID"
         },{
           "style": "query",
           "type": "integer",
-          "name": "timezone",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "limit",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "unit_reference_ts",
-          "required": true
+          "name": "MAX_TIMESTAMP"
         }],
-        "url": "https://api-ssl.bitly.com/v3/link/referrers_by_domain"
+        "url": "http://instagram.com/developer/endpoints/locations/"
       },
       {
-        "path": "/v3/link/referring_domains",
-        "displayName": "/v3/link/referring_domains",
+        "path": "/locations/search",
+        "displayName": "/locations/search",
         "doc": {
-          "url": "http://dev.bitly.com/link_metrics.html"
+          "url": "http://instagram.com/developer/endpoints/locations/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [{
           "style": "query",
           "type": "string",
-          "name": "link",
-          "required": true
+          "name": "DISTANCE"
         },{
           "style": "query",
           "type": "string",
-          "name": "unit",
-          "required": true
+          "name": "FACEBOOK_PLACES_ID"
         },{
           "style": "query",
           "type": "integer",
-          "name": "units",
-          "required": true
+          "name": "FOURSQUARE_ID"
         },{
           "style": "query",
           "type": "integer",
-          "name": "timezone",
+          "name": "LAT",
           "required": true
         },{
           "style": "query",
           "type": "string",
-          "name": "limit",
+          "name": "LNG",
           "required": true
         },{
           "style": "query",
           "type": "string",
-          "name": "unit_reference_ts",
-          "required": true
+          "name": "FOURSQUARE_V2_ID"
         }],
-        "url": "https://api-ssl.bitly.com/v3/link/referring_domains"
+        "url": "http://instagram.com/developer/endpoints/locations/"
       },
       {
         "path": "/v3/link/shares",
