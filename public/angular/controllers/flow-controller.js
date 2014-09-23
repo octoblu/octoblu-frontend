@@ -16,15 +16,17 @@ angular.module('octobluApp')
       });
 
     var refreshFlows = function () {
-      return FlowService.getAllFlows()
-        .then(function (flows) {
+      return FlowService.getAllFlows().then(function (flows) {
           $scope.flows = flows;
       });
     };
 
     refreshFlows().then(function(){
       var activeFlow = _.findWhere($scope.flows, {flowId: $stateParams.flowId});
-      $scope.setActiveFlow(activeFlow);
+      if(activeFlow){
+        return $scope.setActiveFlow(activeFlow);
+      }
+      $state.go('design');
     });
 
     $scope.logout = function(){
@@ -71,8 +73,13 @@ angular.module('octobluApp')
     $scope.deleteFlow = function (flow) {
       var deleteFlowConfirmed = $window.confirm('Are you sure you want to delete ' + flow.name + '?');
       if (deleteFlowConfirmed) {
-        FlowService.deleteFlow(flow.flowId).then(function () {
-          refreshFlows();
+        FlowService.deleteFlow(flow.flowId).then(function(){
+          refreshFlows().then(function(){
+            var newActiveFlow = _.first($scope.flows);
+            FlowService.saveFlow(newActiveFlow).then(function(){
+              $state.go('flow', {flowId: newActiveFlow.flowId});
+            });
+          });
         });
       }
     };
