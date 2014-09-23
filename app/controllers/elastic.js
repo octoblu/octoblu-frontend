@@ -20,7 +20,11 @@ module.exports = function (app) {
       method: req.method,
       json:   req.body
     }, function(error, incomingMessage, response){
-      res.send(incomingMessage.statusCode, response);
+      try{
+        res.send(incomingMessage.statusCode, response);
+      } catch(e){
+        console.log("no statusCode on incoming message");
+      }
     });
   });
 };
