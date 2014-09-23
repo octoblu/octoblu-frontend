@@ -7,11 +7,10 @@ angular.module('octobluApp')
     self.getNodes = function () {
       return $http.get('/api/nodes')
         .then(function (results) {
-          return $q.all(_.map(results.data, function(device){
+          var devices = _.map(results.data, function(device){
             return deviceService.addLogoUrl(device);
-          }));
-        }).then(function(results){
-          var devices = _.flatten(results, true);
+          });
+
           var gateways = _.filter(devices, {type: 'gateway', online: true});
 
           return $q.all(_.map(gateways, function (gateway) {
@@ -19,17 +18,15 @@ angular.module('octobluApp')
               "uuid": gateway.uuid,
               "token": gateway.token,
               "method": "configurationDetails"
-            })
-              .then(function (response) {
-                return subdevicesToDevices(gateway.uuid, response.result);
-              }, function (err) {
-                return [];
-              });
-          }))
-            .then(function (results) {
-              var nodes = _.union(devices, _.flatten(results));
-              return nodes;
+            }).then(function (response) {
+              return subdevicesToDevices(gateway.uuid, response.result);
+            }, function (err) {
+              return [];
             });
+          })).then(function (results) {
+            var nodes = _.union(devices, _.flatten(results));
+            return nodes;
+          });
         });
     };
 

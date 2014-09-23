@@ -7,7 +7,7 @@ angular.module('octobluApp')
 
         this.addLogoUrl = function(data) {
             if (data && data.type) {
-                data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+                data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
             }
             return data;
         }
