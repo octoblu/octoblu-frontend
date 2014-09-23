@@ -4,7 +4,7 @@ var LinkedinController = function(){
   this.authorize = passport.authenticate('linkedin');
   this.callback  = passport.authenticate('linkedin', { failureRedirect: '/home' });
   this.redirectToDesigner = function(req, res){
-    res.redirect('/design');
+    res.redirect('/home');
   };
 };
 
