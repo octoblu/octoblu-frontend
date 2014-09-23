@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, FlowService, FlowNodeTypeService, NodeTypeService) {
+  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService) {
     var originalNode;
 
     $scope.zoomLevel = 0;
