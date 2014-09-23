@@ -23,14 +23,14 @@
     <div class="row">
         <div class="col-sm-4 dashboard-panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Devices</h3>
+                <h3 class="panel-title">Nodes</h3>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div ng-switch="!!devices ? devices.length : 0">
                         <h1>
                             <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
-                            <div ng-switch-default><a href="" ui-sref="^.connector.devices.all">{{devices.length}}</a>
+                            <div ng-switch-default><a href="" ui-sref="^.connector.devices.all">{{devices.length + channels.length}}</a>
                             </div>
                         </h1>
                     </div>
@@ -39,21 +39,22 @@
         </div>
         <div class="col-sm-4 dashboard-panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Active Channels</h3>
+                <h3 class="panel-title">Message Types</h3>
             </div>
             <div class="panel panel-default">
-
-                <div class="panel-body">
-                    <div ng-switch="!!channels ? 1 : 0">
-                        <h1>
-                            <div ng-switch-when="0"><i class="fa fa-cog fa-spin"></i></div>
-                            <div ng-switch-default><a href ui-sref="ob.connector.channels.index">{{channels.length}}</a>
+                <a href="" ui-sref="^.analyzer">
+                    <div class="panel-body">
+                        <div ng-switch="!!messages ? 1 : 0">
+                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
+                            <div ng-switch-default>
+                                <div nvd3-pie-chart data="messages.types" height="300"></div>
                             </div>
-                        </h1>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
+
         <div class="col-sm-4 dashboard-panel">
             <div class="panel-heading">
                 <h3 class="panel-title">Total Messages (30 days)</h3>
@@ -71,7 +72,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-8 dashboard-panel">
+        <div class="col-sm-12 dashboard-panel">
             <div class="panel-heading">
                 <h3 class="panel-title">Messages</h3>
             </div>
@@ -83,23 +84,6 @@
                             <div ng-switch-default>
                                 <div nvd3-line-chart show-legend="false" axis-x-label="Day" axis-x-type="date"
                                      axis-x-format="%-m/%-d" data="messages.times" height="300"></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-4 dashboard-panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">Message Types</h3>
-            </div>
-            <div class="panel panel-default">
-                <a href="" ui-sref="^.analyzer">
-                    <div class="panel-body">
-                        <div ng-switch="!!messages ? 1 : 0">
-                            <div ng-switch-when="0"><h1><i class="fa fa-cog fa-spin"></i></h1></div>
-                            <div ng-switch-default>
-                                <div nvd3-pie-chart data="messages.types" height="300"></div>
                             </div>
                         </div>
                     </div>

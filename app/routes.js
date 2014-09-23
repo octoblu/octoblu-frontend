@@ -63,14 +63,17 @@ module.exports = function(app, passport) {
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
-    var InstagramController = require('./controllers/instagram-controller');
-    var instagramController = new InstagramController();
+//    var InstagramController = require('./controllers/instagram-controller');
+//    var instagramController = new InstagramController();
 
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
 
     var NestController = require('./controllers/nest-controller');
     var nestController = new NestController();
+
+    var VimeoController = require('./controllers/vimeo-controller');
+    var vimeoController = new VimeoController();
 
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
@@ -162,11 +165,14 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
 
-            app.get('/api/oauth/instagram',          instagramController.authorize);
-            app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
+//            app.get('/api/oauth/instagram',          instagramController.authorize);
+//            app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
+
+            app.get('/api/oauth/vimeo',          vimeoController.authorize);
+            app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
 
             app.get('/api/oauth/linkedin',          linkedinController.authorize);
             app.get('/api/oauth/linkedin/callback', linkedinController.callback, linkedinController.redirectToDesigner);

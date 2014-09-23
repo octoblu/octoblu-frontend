@@ -18,20 +18,18 @@ angular.module('octobluApp')
               "uuid": gateway.uuid,
               "token": gateway.token,
               "method": "configurationDetails"
-            })
-              .then(function (response) {
-                return subdevicesToDevices(gateway.uuid, response.result);
-              }, function (err) {
-                return [];
-              });              
-          }))
-            .then(function (results) {
-              var nodes = _.union(devices, _.flatten(results));
-              return nodes;
+            }).then(function (response) {
+              return subdevicesToDevices(gateway.uuid, response.result);
+            }, function (err) {
+              return [];
             });
+          })).then(function (results) {
+            var nodes = _.union(devices, _.flatten(results));
+            return nodes;
+          });
         });
     };
-    
+
     self.getSubdeviceNodes = function() {
       return self.getNodes().then(function(results){
         return _.filter(results, {category: 'subdevice'});
@@ -39,7 +37,7 @@ angular.module('octobluApp')
     }
 
     function subdevicesToDevices(gatewayUuid, gatewayConfig) {
-      
+
       if(!gatewayConfig) {
         return [];
       }

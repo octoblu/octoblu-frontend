@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .service('deviceService', function ($q, $http, $rootScope, skynetService, PermissionsService, reservedProperties) {
+    .service('deviceService', function ($q, $rootScope, skynetService, PermissionsService, reservedProperties) {
         var myDevices = [];
         var skynetPromise = skynetService.getSkynetConnection();
 
@@ -188,10 +188,12 @@ angular.module('octobluApp')
                 return service.gatewayConfig(_.extend({ method: 'deleteSubdevice' },
                     _.omit(options, reservedProperties)));
             },
-            
+
             addLogoUrl: function(data) {
-                if (data && data.type) {
-                    data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';
+                if(data && data.type){
+                    data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
+                } else {
+                    data.logo = 'https://ds78apnml6was.cloudfront.net/device/other.svg';
                 }
                 return data;
             }

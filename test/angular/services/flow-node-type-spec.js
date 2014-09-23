@@ -4,7 +4,7 @@ describe('FlowNodeTypeService', function () {
   beforeEach(function () {
     module('octobluApp');
 
-    module('octobluApp', function($provide){      
+    module('octobluApp', function($provide){
       fakeUUIDService = new FakeUUIDService();
       $provide.value('UUIDService', fakeUUIDService);
 
@@ -86,7 +86,7 @@ describe('FlowNodeTypeService', function () {
       expect(flowNode.output).to.equal(3);
     });
 
-    
+
     it('should set a uuid to the flowNodeType uuid', function(){
       var flowNodeType, flowNode;
 
@@ -148,7 +148,7 @@ describe('FlowNodeTypeService', function () {
       $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('function').then(function (flowNodeType) {
-        expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar', logo: 'https://s3-us-west-2.amazonaws.com/octoblu-icons/function.svg'});
+        expect(flowNodeType).to.deep.equal({type: 'function', foo: 'bar', logo: 'https://ds78apnml6was.cloudfront.net/function.svg'});
         done();
       }, done);
 
@@ -159,7 +159,7 @@ describe('FlowNodeTypeService', function () {
       $httpBackend.expectGET('/api/flow_node_types').respond(200, [{type: 'function', foo: 'bar'}, {type: 'inject', bar: 'foo'}]);
 
       sut.getFlowNodeType('inject').then(function (flowNodeType) {
-        expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo', logo: 'https://s3-us-west-2.amazonaws.com/octoblu-icons/inject.svg'});
+        expect(flowNodeType).to.deep.equal({type: 'inject', bar: 'foo', logo: 'https://ds78apnml6was.cloudfront.net/inject.svg'});
         done();
       }, done);
 
@@ -168,7 +168,7 @@ describe('FlowNodeTypeService', function () {
   });
 
   describe('.getFlowNodeTypes', function () {
-    
+
     beforeEach(function(){
       $httpBackend.expectGET('/api/flow_node_types').respond(200, [{}]);
     });
@@ -191,7 +191,7 @@ describe('FlowNodeTypeService', function () {
 
       $httpBackend.flush();
     });
-    
+
     it('should call NodeService.getSubdeviceNodes', function (done) {
 
       sut.getFlowNodeTypes().then(function (flows) {
@@ -202,7 +202,7 @@ describe('FlowNodeTypeService', function () {
       $httpBackend.flush();
 
     });
-    
+
     describe('when we have subdevices', function() {
       beforeEach(function(){
           fakeNodeService.getSubdeviceNodes = function(){
@@ -216,7 +216,7 @@ describe('FlowNodeTypeService', function () {
           done();
         }, done);
 
-        $httpBackend.flush();        
+        $httpBackend.flush();
       });
 
       it('should return an item with the correct type', function(done){
@@ -225,21 +225,21 @@ describe('FlowNodeTypeService', function () {
           done();
         }, done);
 
-        $httpBackend.flush();        
+        $httpBackend.flush();
       });
-      
+
       it('should add an input property', function(done){
         sut.getFlowNodeTypes().then(function (flowNodeTypes) {
-          var subFlowNodeType = _.findWhere(flowNodeTypes, {type: 'subdevice:hue'}); 
+          var subFlowNodeType = _.findWhere(flowNodeTypes, {type: 'subdevice:hue'});
           expect(subFlowNodeType.input).to.equal(1);
           done();
         }, done);
 
-        $httpBackend.flush();        
+        $httpBackend.flush();
       });
 
 
-  });    
+  });
 
   describe('when we have different subdevices', function() {
       beforeEach(function(){
@@ -254,7 +254,7 @@ describe('FlowNodeTypeService', function () {
             done();
           }, done);
 
-          $httpBackend.flush();        
+          $httpBackend.flush();
         });
       });
   });
