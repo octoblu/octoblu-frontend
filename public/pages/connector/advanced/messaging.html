@@ -4,12 +4,14 @@
     <h2 class="col-lg-6 col-sm-12"><i class="fa fa-send-o"></i> Message Devices</h2><br/>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8">
         <form class="form-horizontal" role="form">
-            <div class="form-group">
+<!--             <div class="form-group">
                 <label  class="col-sm-2 control-label">FROM</label>
                 <div class="col-sm-10">
                     <select ng-model="model.fromDevice" ng-options="device.name for device in model.devices" class="form-control" id="fromDevice"></select>
                 </div>
             </div>
+ -->        
+            <input  ng-model="model.fromDevice" type="hidden" id="fromDevice" ng-value="model.devices[0].name">
             <div class="form-group">
                 <label class="col-sm-2 control-label">TO</label>
                 <div class="col-sm-10">
@@ -41,7 +43,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <button ng-click="sendMessage()" class="btn btn-primary btn-lg pull-right" ng-class="{'disabled': !model.fromDevice }"><i class="fa fa-send fa-inverse"></i>Send</button>
+                    <button ng-click="sendMessage()" class="btn btn-primary btn-lg pull-right" ng-class="{'disabled': !model.device }"><i class="fa fa-send fa-inverse"></i>Send</button>
                 </div>
             </div>
         </form>
