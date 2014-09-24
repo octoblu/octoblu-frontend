@@ -174,8 +174,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/vimeo',          vimeoController.authorize);
             app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
 
-            app.get('/api/oauth/linkedin',          linkedinController.authorize);
-            app.get('/api/oauth/linkedin/callback', linkedinController.callback, linkedinController.redirectToDesigner);
+            app.get('/api/oauth/linked-in',          linkedinController.authorize);
+            app.get('/api/oauth/linked-in/callback', linkedinController.callback, linkedinController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);

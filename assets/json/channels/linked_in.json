@@ -582,23 +582,23 @@
     "development" : {
       "consumerKey": "INSERT_SECERT_HERE",
       "consumerSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "http://localhost:8080/api/oauth/linkedin/callback",
-      "scope": ["r_emailaddress", "r_basicprofile"],
-      "tokenMethod": "access_token_query"
+      "callbackURL": "http://localhost:8080/api/oauth/linked-in/callback",
+      "scope": ["r_emailaddress", "r_basicprofile", "r_network", "r_contactinfo", "rw_groups", "w_messages", "rw_company_admin", "rw_nus", "r_fullprofile"],
+      "tokenMethod": "access_token_bearer"
     },
     "staging" : {
       "consumerKey": "INSERT_SECERT_HERE",
       "consumerSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/linkedin/callback",
-      "scope": ["r_emailaddress", "r_basicprofile"],
-      "tokenMethod": "access_token_query"
+      "callbackURL": "https://staging.octoblu.com/api/oauth/linked-in/callback",
+      "scope": ["r_emailaddress", "r_basicprofile", "r_network", "r_contactinfo", "rw_groups", "w_messages", "rw_company_admin", "rw_nus", "r_fullprofile"],
+      "tokenMethod": "access_token_bearer"
     },
     "production" : {
       "consumerKey": "INSERT_SECERT_HERE",
       "consumerSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "https://app.octoblu.com/api/oauth/linkedin/callback",
-      "scope": ["r_emailaddress", "r_basicprofile"],
-      "tokenMethod": "access_token_query"
+      "callbackURL": "https://app.octoblu.com/api/oauth/linked-in/callback",
+      "scope": ["r_emailaddress", "r_basicprofile", "r_network", "r_contactinfo", "rw_groups", "w_messages", "rw_company_admin", "rw_nus", "r_fullprofile"],
+      "tokenMethod": "access_token_bearer"
     }
   },
   "isPassport": true,
