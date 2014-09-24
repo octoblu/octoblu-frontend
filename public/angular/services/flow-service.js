@@ -36,14 +36,6 @@ angular.module('octobluApp')
     var currentUser;
 
     $http.post("/api/flows/" + activeFlow.flowId + '/instance');
-    AuthService.getCurrentUser().then(function(user){
-      currentUser = user;
-      return skynetService.getSkynetConnection();
-    }).then(function (conn) {
-      conn.register({uuid: activeFlow.flowId, type: 'octoblu:flow', owner: currentUser.resource.uuid}, function(){
-        conn.subscribe({uuid: activeFlow.flowId});
-      });
-    });
   };
 
   self.stop = function(){
