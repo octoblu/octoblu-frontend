@@ -51,6 +51,7 @@ angular.module('octobluApp')
       class: node.name,
       type: node.type,
       logo: node.logo,
+      uuid: node.uuid,
       defaults: {
         logo: node.logo,
         category: 'device',
