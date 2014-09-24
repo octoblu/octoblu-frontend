@@ -121,6 +121,19 @@
 		"type" : "device:beaglebone"
 	},
 	{
+		"_id" : "3a919b7f-1883-4705-a3fb-7d00c1f8a3c7",
+		"category" : "device",
+		"description" : "Lightblue Bean",
+		"display" : true,
+		"enabled" : true,
+		"name" : "Lightblue Bean",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "lightblue-bean"
+		},
+		"type" : "device:lightblue-bean"
+	},
+	{
 		"_id" : "53c9b830f400e177dca325ab",
 		"category" : "device",
 		"description" : "Spark device",
