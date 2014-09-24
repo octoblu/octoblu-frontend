@@ -17,7 +17,6 @@ if(!config.clientSecret){
 
 var linkedinStrategy = new LinkedinController(config, function(req, accessToken, refreshToken, profile, done){
   var channelId = new mongoose.Types.ObjectId('52f97c5ba990930c8c0003ca');
-  console.log('AccessToken', accessToken);
   req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
   req.user.save(function (err) {
     return done(err, req.user);
