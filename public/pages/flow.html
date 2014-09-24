@@ -35,10 +35,10 @@
     </div>
 
     <div class="btn-group">
-      <button ng-click="stop()" class="btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
+      <button ng-click="stop()" ng-class="{ stopping: stopping }" class="stop-button btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
         <i class="fa fa-stop"></i>
       </button>
-      <button ng-click="start()" class="btn btn-default button-shadow" tooltip="Start" tooltip-placement="bottom">
+      <button ng-click="start()" ng-class="{ deploying: deploying }" class="start-button btn btn-default button-shadow" tooltip="Start" tooltip-placement="bottom">
         <i class="fa fa-play"></i>
       </button>
     </div>

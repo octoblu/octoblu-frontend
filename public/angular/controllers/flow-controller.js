@@ -1,9 +1,19 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService) {
+  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService) {
     var originalNode;
 
     $scope.zoomLevel = 0;
     $scope.debugLines = [];
+
+    skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.on('message', function (message) {
+        if (message.topic !== 'nodered-instance') {
+          return;
+        }
+        $scope.deploying = false;
+        $scope.stopping = false;
+      });
+    });
 
     FlowNodeTypeService.getFlowNodeTypes()
       .then(function (flowNodeTypes) {
@@ -118,6 +128,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
+      $scope.deploying = true;
       FlowService.start();
     };
 
@@ -127,6 +138,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
+      $scope.stopping = true;
       FlowService.stop();
     };
 
