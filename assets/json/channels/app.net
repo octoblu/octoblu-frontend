@@ -1,0 +1,456 @@
+ _id: "hfhsjsfjsdlfsfsdij-sf-sdf23rwer",
+  "application": {
+    "base": "https://api.app.net",
+    "resources": [
+      {
+        "path": "/users/{user_id}",
+        "displayName": "/users/{user_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/lookup/"
+      },
+      {
+        "path": "/users",
+        "displayName": "/users",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/lookup/"
+      },
+      {
+        "path": "/users/me",
+        "displayName": "/users/me",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/me",
+        "displayName": "/users/me",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "PATCH",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/{user_id}/avatar",
+        "displayName": "/users/{user_id}/avatar",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/me/avatar",
+        "displayName": "/users/me/avatar",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "avatar",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/{user_id}/cover",
+        "displayName": "/users/{user_id}/cover",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id",
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/me/cover",
+        "displayName": "/users/me/cover",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "cover",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/{user_id}/follow",
+        "displayName": "/users/{user_id}/follow",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/follow",
+        "displayName": "/users/{user_id}/follow",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "ACCESS_TOKEN",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/following",
+        "displayName": "/users/{user_id}/following",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/followers",
+        "displayName": "/users/{user_id}/followers",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/following/ids",
+        "displayName": "/users/{user_id}/following/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/followers/ids",
+        "displayName": "/users/{user_id}/followers/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/mute",
+        "displayName": "/users/{user_id}/mute",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/{user_id}/mute",
+        "displayName": "/users/{user_id}/mute",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/{user_id}/muted",
+        "displayName": "/users/{user_id}/muted",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/muted/ids",
+        "displayName": "/users/muted/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/{user_id}/block",
+        "displayName": "/users/{user_id}/block",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/users/{user_id}/block",
+        "displayName": "/users/{user_id}/block",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/users/{user_id}/blocked",
+        "displayName": "/users/{user_id}/blocked",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/users/blocked/ids",
+        "displayName": "/users/blocked/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/posts/{post_id}/reposters",
+        "displayName": "/posts/{post_id}/reposters",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "post_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+      },
+      {
+        "path": "/posts/{post_id}/stars",
+        "displayName": "/posts/{post_id}/stars",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "post_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+      },
+      {
+        "path": "/users/search",
+        "displayName": "/users/search",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/search/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "q"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "count"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/search/"
+      },
+      {
+        "path": "/locations/location-id/media/recent",
+        "displayName": "/locations/location-id/media/recent",
+        "doc": {
+          "url": "http://instagram.com/developer/endpoints/locations/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "MIN_TIMESTAMP"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "MIN_ID"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "MAX_ID"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "MAX_TIMESTAMP"
+        }],
+        "url": "http://instagram.com/developer/endpoints/locations/"
+      },
+      {
+        "path": "/locations/search",
+        "displayName": "/locations/search",
+        "doc": {
+          "url": "http://instagram.com/developer/endpoints/locations/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "DISTANCE"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "FACEBOOK_PLACES_ID"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "FOURSQUARE_ID"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "LAT",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "LNG",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "FOURSQUARE_V2_ID"
+        }],
+        "url": "http://instagram.com/developer/endpoints/locations/"
+      },
+      {
+        "path": "/geographies/geo-id/media/recent",
+        "displayName": "/geographies/geo-id/media/recent",
+        "doc": {
+          "url": "http://instagram.com/developer/endpoints/geographies/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "COUNT"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "MIN_ID"
+          }]
