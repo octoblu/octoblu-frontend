@@ -94,7 +94,8 @@ angular.module('octobluApp')
 
             if ($scope.model.subdevice) {
                 skynetService.sendMessage({
-                    fromUuid: sender.uuid,
+                    // fromUuid: sender.uuid,
+                    fromUuid: currentUser.skynetuuid,
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
                     subdevice: $scope.model.subdevice.uuid || $scope.model.subdevice.name,
                     payload: $scope.model.schemaEditor.getValue()
@@ -109,7 +110,8 @@ angular.module('octobluApp')
                 });
             } else {
                 skynetService.sendMessage({
-                    fromUuid: sender.uuid,
+                    // fromUuid: sender.uuid,
+                    fromUuid: currentUser.skynetuuid,
                     devices: $scope.model.sendUuid || $scope.model.device.uuid,
                     payload: $scope.model.schemaEditor.getValue()
                 }).then(function (response) {

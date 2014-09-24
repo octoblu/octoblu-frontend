@@ -19,15 +19,15 @@ angular.module('octobluApp')
   self.getFlowNodeTypes = function () {
     return $q.all([getServerSideFlowNodeTypes(), getSubdeviceFlowNodeTypes()])
       .then(function(results){
-        return _.flatten(results);  
+        return _.flatten(results);
       });
   };
 
   function getServerSideFlowNodeTypes() {
-    return $http.get('/api/flow_node_types').then(function(res){
-      return _.map(res.data, function(data){        
+    return $http.get('/api/flow_node_types', {cache: true}).then(function(res){
+      return _.map(res.data, function(data){
         if (data && data.type) {
-          data.logo = 'https://s3-us-west-2.amazonaws.com/octoblu-icons/' + data.type.replace(':', '/') + '.svg';          
+          data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
         }
         return data;
       });
@@ -50,7 +50,7 @@ angular.module('octobluApp')
       category: 'device',
       class: node.name,
       type: node.type,
-      logo: node.logo,   
+      logo: node.logo,
       defaults: {
         logo: node.logo,
         category: 'device',

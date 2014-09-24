@@ -70,12 +70,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('flow', {
         url: '/design/:flowId',
         templateUrl: '/pages/flow.html',
-        controller: 'FlowController',
-        resolve: {
-          currentUser: function (AuthService) {
-            return AuthService.getCurrentUser();
-          }
-        }
+        controller: 'FlowController'
       })
       .state('ob', {
         abstract: true,

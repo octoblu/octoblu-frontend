@@ -46,7 +46,7 @@ describe('NodeService', function () {
 
       it('should keep its promise with both eyes', function (done) {
         sut.getNodes().then(function(nodes){
-          expect(nodes).to.deep.equal(    [{}, {}]    );
+          expect(nodes).to.deep.equal(    [{logo: 'https://ds78apnml6was.cloudfront.net/device/other.svg'}, {logo: 'https://ds78apnml6was.cloudfront.net/device/other.svg'}]    );
           done();
         });
         $httpBackend.flush();

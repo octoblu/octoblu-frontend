@@ -527,4 +527,6 @@
           "style": "query",
           "type": "string",
           "name": "MIN_ID"
-          }]
+          }],
+          "url": "http://instagram.com/developer/endpoints/locations/"
+        }
