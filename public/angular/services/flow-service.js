@@ -59,7 +59,9 @@ angular.module('octobluApp')
   self.getAllFlows = function () {
     return $http.get("/api/flows").then(function(response){
       if (_.isEmpty(response.data)) {
-        return [self.newFlow({name: 'Flow 1'})];
+        return self.createFlow().then(function(flow){
+          return [flow];
+        });
       }
 
       return _.map(response.data, function(data) {
@@ -68,9 +70,11 @@ angular.module('octobluApp')
     });
   };
 
-  self.newFlow = function(options) {
-    return FlowModel(options);
-  };
+  self.createFlow = function(options) {
+    return $http.post('/api/flows').then(function(response) {
+      return new FlowModel(response.data);
+    });
+  }
 
   self.deleteFlow = function(flowId){
     return $http.delete('/api/flows/' + flowId).then(function(response){

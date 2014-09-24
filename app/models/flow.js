@@ -36,6 +36,7 @@ var registerFlow = function(meshblu, userUUID){
 var mergeFlowData = function(userUUID, flowData, device) {
   var data = {
     flowId: device.uuid,
+    name: 'Flow ' + device.uuid.substr(0, 8),
     resource: {
       nodeType: 'flow',
       owner: {
