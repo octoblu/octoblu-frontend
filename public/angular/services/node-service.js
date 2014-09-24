@@ -52,6 +52,8 @@ angular.module('octobluApp')
           newSubdevice.type = 'subdevice:' +  subdevice.type.replace('skynet-', '');
           newSubdevice = deviceService.addLogoUrl(newSubdevice);
 
+          newSubdevice.plugin = _.findWhere(gatewayConfig.plugins, { name: subdevice.type });
+          
           return newSubdevice;
       });
     }

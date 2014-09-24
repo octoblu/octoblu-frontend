@@ -1,0 +1,18 @@
+<div class="form">
+    <div class="form-group">
+	    <label for="name">Name</label>
+	    <input  id="name" class="form-control" type="text" ng-model="flowNode.name">    
+	</div>
+	<div class="form-group">
+		<div class="col-xs-11">
+		    <label for="use-static-message">Use Static Message</label>
+	    </div>
+	    <div class="col-xs-1">
+	    	<input  id="use-static-message" type="checkbox" ng-model="flowNode.useStaticMessage">
+		</div>
+	</div>
+	<br><br>
+	<div ng-if="flowNode.useStaticMessage">
+     	<schema-editor schema="flowNode.schema" model="flowNode.staticMessage" allow-json-edit="true" additional-properties="true"></schema-editor>
+    </div>
+</div>

@@ -55,6 +55,8 @@ angular.module('octobluApp')
         logo: node.logo,
         category: 'device',
         uuid: node.uuid,
+        schema: node && node.plugin ? node.plugin.messageSchema : {},
+        staticMessage: {},
         type: node.type
       },
       input: 1,
