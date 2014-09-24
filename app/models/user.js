@@ -127,7 +127,6 @@ UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, t
 
   for (var l = 0; l < this.api.length; l++) {
     if (this.api[l].channelid == channelid) {
-      console.log('updating existing');
       this.api[l].key = key;
       this.api[l].authtype = type;
       this.api[l].token = token;
@@ -239,7 +238,11 @@ UserSchema.statics.findOrCreateByEmailAndPassword = function(email, password){
         local: {
           email: email,
           password: self.generateHash(password)
-        }
+        },
+        api: [
+          {channelid: '5337a38d76a65b9693bc2a9f', 'authtype': 'none'}, // weather
+          {channelid: '53275d4841da719147d9e36a', 'authtype': 'none'} // stock_price
+        ]
       };
 
       return self.create(userParams);
