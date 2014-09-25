@@ -11,7 +11,6 @@ var instagramStrategy = new InstagramStrategy(CONFIG, function(req, accessToken,
   var channelId = new mongoose.Types.ObjectId('541b21fe025549193cb82939');
 
   req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-  console.log(req.user);
   req.user.save(function (err) {
     return done(err, req.user);
   });

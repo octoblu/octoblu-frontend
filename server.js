@@ -45,7 +45,7 @@ passport.use(require('./config/github'));
 passport.use(require('./config/google'));
 passport.use(require('./config/rdio'));
 passport.use(require('./config/twitter'));
-//passport.use(require('./config/instagram'));
+passport.use(require('./config/instagram'));
 passport.use(require('./config/nest'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/linked-in'));
