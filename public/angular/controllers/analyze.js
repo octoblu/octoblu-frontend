@@ -34,16 +34,14 @@ angular.module('octobluApp')
         $log.log("getting devices from ownerService");
         $log.log(myDevices);
 
-        $scope.devices = _.filter(myDevices, function (device) {
-            return device.type !== 'gateway';
+        $scope.devices = _.reject(myDevices, function (device) {
+            return device.type === 'gateway' || /^octoblu/.test(device.type);
         });
         $scope.logic_devices = "";
         $scope.deviceLookup = {};
         _.each($scope.devices, function (device) {
-            if (!/^octoblu:/.test(device.type)) {
-                $scope.logic_devices += device.uuid + " OR ";
-                $scope.deviceLookup[device.uuid] = device.name;
-            }
+            $scope.logic_devices += device.uuid + " OR ";
+            $scope.deviceLookup[device.uuid] = device.name;
         });
 
         //$scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices", "uuid": "*" };
