@@ -69,7 +69,7 @@ FlowSchema.statics.deleteByFlowIdAndUserUUID = function(flowId, userUUID, meshbl
   self = this;
   query = {flowId : flowId};
   
-  self.findOne(query, function(err, flow){
+  return self.findOne(query).exec().then(function(flow){
     FlowDeploy.stop(userUUID, flow, meshblu);
     return unregisterFlow(meshblu, flow.flowId, flow.token).then(function(){
       return self.remove(query).exec();
