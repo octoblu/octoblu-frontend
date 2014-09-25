@@ -33,7 +33,7 @@ angular.module('octobluApp')
         });
         $scope.deviceLookup = {};
         _.each($scope.devices, function (device) {
-            $scope.deviceLookup[device.uuid] = device.name;
+            $scope.deviceLookup[device.uuid] = device.name || (device.uuid + ' (' + device.type + ')');
         });
         $scope.currentPage = 0;
         elasticService.setOwnedDevices($scope.devices);
