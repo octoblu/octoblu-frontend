@@ -15,16 +15,19 @@
         "params": [
           {
             "name": "city",
+            "displayName": "City",
             "type": "string",
             "style": "query"
           },
           {
             "name": "state",
+            "displayName": "State",
             "type": "string",
             "style": "query"
           },
           {
             "name": "country",
+            "displayName": "Country",
             "type": "string",
             "style": "query"
           }
