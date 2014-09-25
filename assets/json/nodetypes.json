@@ -14,7 +14,7 @@
 	},
 	{
 		"_id" : "53c9b82ef400e177dca325a2",
-		"category" : "device",
+		"category" : "microblu",
 		"description" : "Arduino microcontroller",
 		"display" : true,
 		"enabled" : true,

@@ -30,6 +30,10 @@ angular.module('octobluApp')
         name: $scope.newDevice.name
       };
 
+      if($scope.nodeType.skynet.subtype) {
+        deviceOptions.type += ':' + $scope.nodeType.skynet.subtype;
+      }
+
       if ($scope.newDevice.selectedDevice) {
         if ($scope.newDevice.selectedDevice.type === 'existing') {
           deviceOptions.uuid = $scope.existingDevice.uuid;
