@@ -2,312 +2,311 @@
   "name": "Demo Flow",
   "nodes": [
     {
-      "id": "a0cefd00-4436-11e4-a23b-b971de77de9b",
-      "resourceType": "flow-node",
-      "payloadType": "date",
-      "repeat": 1000,
-      "once": true,
-      "name": "heartbeat",
-      "class": "interval",
-      "category": "operation",
-      "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:interval",
-      "defaults": {
-        "payloadType": "date",
-        "repeat": 1000,
-        "once": true
-      },
-      "input": 0,
-      "output": 1,
-      "formTemplatePath": "/pages/node_forms/interval_form.html",
+      "y": 190.8440704345703,
+      "x": 327.961181640625,
+      "outputLocations": [
+        30
+      ],
+      "inputLocations": [],
       "logo": "https://ds78apnml6was.cloudfront.net/operation/interval.svg",
-      "inputLocations": [],
-      "outputLocations": [
-        30
-      ],
-      "x": 334.39111328125,
-      "y": 196.2089385986328
-    },
-    {
-      "id": "93645370-4447-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "nodeType": {},
-      "channelid": "53275d4841da719147d9e36a",
-      "channelActivationId": "54092746c16098000058dd3a",
-      "uuid": "12da6a45-379b-11e4-b94f-515f9772f0f1",
-      "name": "StockPrice",
-      "type": "channel:stock-price",
-      "category": "channel",
-      "online": true,
-      "class": "StockPrice",
-      "defaults": {
-        "nodeType": {},
-        "channelid": "53275d4841da719147d9e36a",
-        "channelActivationId": "54092746c16098000058dd3a",
-        "uuid": "12da6a45-379b-11e4-b94f-515f9772f0f1",
-        "name": "StockPrice",
-        "type": "channel:stock-price",
-        "category": "channel",
-        "online": true
-      },
-      "input": 1,
+      "formTemplatePath": "/pages/node_forms/interval_form.html",
       "output": 1,
-      "formTemplatePath": "/pages/node_forms/channel_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/channel/stock-price.svg",
-      "inputLocations": [
-        30
-      ],
-      "outputLocations": [
-        30
-      ],
-      "x": 749.4615478515625,
-      "y": 390.4808349609375,
-      "urlParams": {},
-      "queryParams": {
-        "s": "l10",
-        "f": "GOOG"
-      },
-      "bodyParams": {},
-      "url": "http://download.finance.yahoo.com//d/quotes.csv",
-      "method": "GET"
-    },
-    {
-      "id": "95b60ba0-4447-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "nodeType": {},
-      "channelid": "5337a38d76a65b9693bc2a9f",
-      "channelActivationId": "540927f9c16098000058dd3b",
-      "uuid": "12da6a46-379b-11e4-b94f-515f9772f0f1",
-      "name": "Weather",
-      "type": "channel:weather",
-      "category": "channel",
-      "online": true,
-      "class": "Weather",
+      "input": 0,
       "defaults": {
-        "nodeType": {},
-        "channelid": "5337a38d76a65b9693bc2a9f",
-        "channelActivationId": "540927f9c16098000058dd3b",
-        "uuid": "12da6a46-379b-11e4-b94f-515f9772f0f1",
-        "name": "Weather",
-        "type": "channel:weather",
-        "category": "channel",
-        "online": true
+        "once": true,
+        "repeat": 1000,
+        "payloadType": "date"
       },
-      "input": 1,
-      "output": 1,
-      "formTemplatePath": "/pages/node_forms/channel_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/channel/weather.svg",
-      "inputLocations": [
-        30
-      ],
-      "outputLocations": [
-        30
-      ],
-      "x": 745.2745971679688,
-      "y": 488.1766357421875
-    },
-    {
-      "id": "99d90160-4447-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
+      "type": "operation:interval",
+      "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "interval",
+      "name": "heartbeat",
+      "once": true,
+      "repeat": 1000,
       "payloadType": "date",
-      "once": false,
-      "name": "trigger",
-      "class": "trigger",
-      "category": "operation",
-      "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:trigger",
-      "defaults": {
-        "payloadType": "date",
-        "once": false
-      },
-      "input": 0,
-      "output": 1,
-      "formTemplatePath": "/pages/node_forms/button_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/trigger.svg",
-      "inputLocations": [],
+      "resourceType": "flow-node",
+      "id": "a0cefd00-4436-11e4-a23b-b971de77de9b"
+    },
+    {
+      "method": "GET",
+      "url": "http://stock.octoblu.com/last-trade-price/:symbol",
+      "queryParams": {},
+      "y": 390.4808349609375,
+      "x": 749.4615478515625,
       "outputLocations": [
         30
       ],
+      "inputLocations": [
+        30
+      ],
+      "logo": "https://ds78apnml6was.cloudfront.net/channel/stock-price.svg",
+      "formTemplatePath": "/pages/node_forms/channel_form.html",
+      "output": 1,
+      "input": 1,
+      "defaults": {
+        "online": true,
+        "category": "channel",
+        "type": "channel:stock-price",
+        "name": "StockPrice",
+        "uuid": "12da6a45-379b-11e4-b94f-515f9772f0f1",
+        "channelActivationId": "54092746c16098000058dd3a",
+        "channelid": "53275d4841da719147d9e36a"
+      },
+      "class": "StockPrice",
+      "online": true,
+      "category": "channel",
+      "type": "channel:stock-price",
+      "name": "StockPrice",
+      "uuid": "12da6a45-379b-11e4-b94f-515f9772f0f1",
+      "channelActivationId": "54092746c16098000058dd3a",
+      "channelid": "53275d4841da719147d9e36a",
+      "resourceType": "flow-node",
+      "id": "93645370-4447-11e4-b69f-ebd95511d992",
+      "urlParams": {
+        ":symbol": "GOOG"
+      },
+      "bodyParams": {}
+    },
+    {
+      "method": "GET",
+      "url": "http://weather.octoblu.com/temperature/fahrenheit",
+      "queryParams": {
+        "city": "Chandler",
+        "state": "Arizona",
+        "country": "USA"
+      },
+      "y": 488.1766357421875,
+      "x": 745.2745971679688,
+      "outputLocations": [
+        30
+      ],
+      "inputLocations": [
+        30
+      ],
+      "logo": "https://ds78apnml6was.cloudfront.net/channel/weather.svg",
+      "formTemplatePath": "/pages/node_forms/channel_form.html",
+      "output": 1,
+      "input": 1,
+      "defaults": {
+        "online": true,
+        "category": "channel",
+        "type": "channel:weather",
+        "name": "Weather",
+        "uuid": "12da6a46-379b-11e4-b94f-515f9772f0f1",
+        "channelActivationId": "540927f9c16098000058dd3b",
+        "channelid": "5337a38d76a65b9693bc2a9f"
+      },
+      "class": "Weather",
+      "online": true,
+      "category": "channel",
+      "type": "channel:weather",
+      "name": "Weather",
+      "uuid": "12da6a46-379b-11e4-b94f-515f9772f0f1",
+      "channelActivationId": "540927f9c16098000058dd3b",
+      "channelid": "5337a38d76a65b9693bc2a9f",
+      "resourceType": "flow-node",
+      "id": "95b60ba0-4447-11e4-b69f-ebd95511d992",
+      "urlParams": {},
+      "bodyParams": {}
+    },
+    {
+      "y": 447.00482177734375,
       "x": 541.5090942382812,
-      "y": 447.00482177734375
-    },
-    {
-      "id": "9d2916c0-4447-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "active": true,
-      "debug": true,
-      "complete": false,
-      "name": "debug",
-      "class": "debug",
-      "category": "operation",
-      "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:debug",
-      "defaults": {
-        "active": true,
-        "debug": true,
-        "complete": false
-      },
-      "color": "#87a980",
-      "input": 1,
-      "output": 0,
-      "align": "right",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/debug.svg",
-      "inputLocations": [
+      "outputLocations": [
         30
       ],
-      "outputLocations": [],
+      "inputLocations": [],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/trigger.svg",
+      "formTemplatePath": "/pages/node_forms/button_form.html",
+      "output": 1,
+      "input": 0,
+      "defaults": {
+        "once": false,
+        "payloadType": "date"
+      },
+      "type": "operation:trigger",
+      "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "trigger",
+      "name": "trigger",
+      "once": false,
+      "payloadType": "date",
+      "resourceType": "flow-node",
+      "id": "99d90160-4447-11e4-b69f-ebd95511d992"
+    },
+    {
+      "y": 350.7047424316406,
       "x": 909.2639770507812,
-      "y": 350.7047424316406
-    },
-    {
-      "id": "a0532d90-4447-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "name": "When you deploy,\nthis will start pulsing",
-      "class": "comment",
-      "category": "operation",
-      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:comment",
-      "defaults": {},
-      "input": 0,
-      "output": 0,
-      "formTemplatePath": "/pages/node_forms/comment_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
-      "inputLocations": [],
       "outputLocations": [],
-      "x": 223.99691772460938,
-      "y": 185.49105834960938
-    },
-    {
-      "id": "dfb7f7e0-4447-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "name": "click the trigger to \ntest out your flow",
-      "class": "comment",
-      "category": "operation",
-      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:comment",
-      "defaults": {},
-      "input": 0,
-      "output": 0,
-      "formTemplatePath": "/pages/node_forms/comment_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
-      "inputLocations": [],
-      "outputLocations": [],
-      "x": 430.8520202636719,
-      "y": 433.0740966796875
-    },
-    {
-      "id": "0b116160-4448-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "active": true,
-      "debug": true,
-      "complete": false,
-      "name": "debug",
-      "class": "debug",
-      "category": "operation",
-      "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:debug",
-      "defaults": {
-        "active": true,
-        "debug": true,
-        "complete": false
-      },
-      "color": "#87a980",
-      "input": 1,
-      "output": 0,
-      "align": "right",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/debug.svg",
       "inputLocations": [
         30
       ],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/debug.svg",
+      "align": "right",
+      "output": 0,
+      "input": 1,
+      "color": "#87a980",
+      "defaults": {
+        "complete": false,
+        "debug": true,
+        "active": true
+      },
+      "type": "operation:debug",
+      "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "debug",
+      "name": "debug",
+      "complete": false,
+      "debug": true,
+      "active": true,
+      "resourceType": "flow-node",
+      "id": "9d2916c0-4447-11e4-b69f-ebd95511d992"
+    },
+    {
+      "y": 185.49105834960938,
+      "x": 223.99691772460938,
       "outputLocations": [],
+      "inputLocations": [],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
+      "formTemplatePath": "/pages/node_forms/comment_form.html",
+      "output": 0,
+      "input": 0,
+      "type": "operation:comment",
+      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "comment",
+      "name": "When you deploy,\nthis will start pulsing",
+      "resourceType": "flow-node",
+      "id": "a0532d90-4447-11e4-b69f-ebd95511d992"
+    },
+    {
+      "y": 433.0740966796875,
+      "x": 430.8520202636719,
+      "outputLocations": [],
+      "inputLocations": [],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
+      "formTemplatePath": "/pages/node_forms/comment_form.html",
+      "output": 0,
+      "input": 0,
+      "type": "operation:comment",
+      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "comment",
+      "name": "click the trigger to \ntest out your flow",
+      "resourceType": "flow-node",
+      "id": "dfb7f7e0-4447-11e4-b69f-ebd95511d992"
+    },
+    {
+      "y": 523.7658081054688,
       "x": 913.450927734375,
-      "y": 523.7658081054688
+      "outputLocations": [],
+      "inputLocations": [
+        30
+      ],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/debug.svg",
+      "align": "right",
+      "output": 0,
+      "input": 1,
+      "color": "#87a980",
+      "defaults": {
+        "complete": false,
+        "debug": true,
+        "active": true
+      },
+      "type": "operation:debug",
+      "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "debug",
+      "name": "debug",
+      "complete": false,
+      "debug": true,
+      "active": true,
+      "resourceType": "flow-node",
+      "id": "0b116160-4448-11e4-b69f-ebd95511d992"
     },
     {
-      "id": "6ea61630-4448-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "name": "click this debug to see\nthe output of StockPrice",
-      "class": "comment",
-      "category": "operation",
-      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:comment",
-      "defaults": {},
-      "input": 0,
-      "output": 0,
-      "formTemplatePath": "/pages/node_forms/comment_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
-      "inputLocations": [],
-      "outputLocations": [],
+      "y": 336.6131591796875,
       "x": 1037.484130859375,
-      "y": 336.6131591796875
+      "outputLocations": [],
+      "inputLocations": [],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
+      "formTemplatePath": "/pages/node_forms/comment_form.html",
+      "output": 0,
+      "input": 0,
+      "type": "operation:comment",
+      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "comment",
+      "name": "click this debug to see\nthe output of StockPrice",
+      "resourceType": "flow-node",
+      "id": "6ea61630-4448-11e4-b69f-ebd95511d992"
     },
     {
-      "id": "841b4030-4448-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "name": "click this debug to see\nthe output of Weather",
-      "class": "comment",
-      "category": "operation",
-      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:comment",
-      "defaults": {},
-      "input": 0,
-      "output": 0,
-      "formTemplatePath": "/pages/node_forms/comment_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
-      "inputLocations": [],
-      "outputLocations": [],
+      "y": 523.1043090820312,
       "x": 1023.5509033203125,
-      "y": 523.1043090820312
+      "outputLocations": [],
+      "inputLocations": [],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
+      "formTemplatePath": "/pages/node_forms/comment_form.html",
+      "output": 0,
+      "input": 0,
+      "type": "operation:comment",
+      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "comment",
+      "name": "click this debug to see\nthe output of Weather",
+      "resourceType": "flow-node",
+      "id": "841b4030-4448-11e4-b69f-ebd95511d992"
     },
     {
-      "id": "959ee4b0-4448-11e4-b69f-ebd95511d992",
-      "resourceType": "flow-node",
-      "name": "Click Play to see your flow run",
-      "class": "comment",
-      "category": "operation",
-      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
-      "type": "operation:comment",
-      "defaults": {},
-      "input": 0,
-      "output": 0,
-      "formTemplatePath": "/pages/node_forms/comment_form.html",
-      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
-      "inputLocations": [],
-      "outputLocations": [],
+      "y": 137.26058959960938,
       "x": 1330.082275390625,
-      "y": 137.26058959960938
+      "outputLocations": [],
+      "inputLocations": [],
+      "logo": "https://ds78apnml6was.cloudfront.net/operation/comment.svg",
+      "formTemplatePath": "/pages/node_forms/comment_form.html",
+      "output": 0,
+      "input": 0,
+      "type": "operation:comment",
+      "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
+      "category": "operation",
+      "class": "comment",
+      "name": "Click Play to see your flow run",
+      "resourceType": "flow-node",
+      "id": "959ee4b0-4448-11e4-b69f-ebd95511d992"
     }
   ],
   "links": [
     {
-      "from": "99d90160-4447-11e4-b69f-ebd95511d992",
-      "fromPort": 0,
+      "toPort": 0,
       "to": "93645370-4447-11e4-b69f-ebd95511d992",
-      "toPort": 0
+      "fromPort": 0,
+      "from": "99d90160-4447-11e4-b69f-ebd95511d992"
     },
     {
-      "from": "99d90160-4447-11e4-b69f-ebd95511d992",
-      "fromPort": 0,
+      "toPort": 0,
       "to": "95b60ba0-4447-11e4-b69f-ebd95511d992",
-      "toPort": 0
+      "fromPort": 0,
+      "from": "99d90160-4447-11e4-b69f-ebd95511d992"
     },
     {
-      "from": "93645370-4447-11e4-b69f-ebd95511d992",
-      "fromPort": 0,
+      "toPort": 0,
       "to": "9d2916c0-4447-11e4-b69f-ebd95511d992",
-      "toPort": 0
+      "fromPort": 0,
+      "from": "93645370-4447-11e4-b69f-ebd95511d992"
     },
     {
-      "from": "95b60ba0-4447-11e4-b69f-ebd95511d992",
-      "fromPort": 0,
+      "toPort": 0,
       "to": "0b116160-4448-11e4-b69f-ebd95511d992",
-      "toPort": 0
+      "fromPort": 0,
+      "from": "95b60ba0-4447-11e4-b69f-ebd95511d992"
     }
   ],
-  "zoomScale": 0.9330201283771982,
-  "zoomX": -82.31458822674016,
-  "zoomY": -42.722627846110925,
+  "zoomScale": 0.878711788453005,
+  "zoomX": -18.331846884763404,
+  "zoomY": -20.451854727215686,
   "selectedLink": null,
   "selectedFlowNode": null,
-  "hash": "4de60b6f"
+  "hash": "ae08c4e4"
 }
