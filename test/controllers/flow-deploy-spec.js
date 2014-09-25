@@ -51,7 +51,6 @@ describe('flowDeployController', function () {
         it('should call FlowDeploy.deploy with the user uuid and token', function () {
           expect(FakeFlowDeploy.start).to.be.calledWith(
             'some.uuid',
-            'some.hobit',
             {flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}},
             fakeMeshblu
           );

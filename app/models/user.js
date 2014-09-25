@@ -238,11 +238,7 @@ UserSchema.statics.findOrCreateByEmailAndPassword = function(email, password){
         local: {
           email: email,
           password: self.generateHash(password)
-        },
-        api: [
-          {channelid: '5337a38d76a65b9693bc2a9f', 'authtype': 'none'}, // weather
-          {channelid: '53275d4841da719147d9e36a', 'authtype': 'none'} // stock_price
-        ]
+        }
       };
 
       return self.create(userParams);

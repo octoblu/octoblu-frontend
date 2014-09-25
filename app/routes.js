@@ -33,6 +33,9 @@ module.exports = function(app, passport) {
     var BoxController = require('./controllers/box-controller');
     var boxController = new BoxController();
 
+    var DemoFlowController = require('./controllers/demo-flow-controller');
+    var demoFlowController = new DemoFlowController({meshblu: conn});
+
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
@@ -63,8 +66,8 @@ module.exports = function(app, passport) {
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
-//    var InstagramController = require('./controllers/instagram-controller');
-//    var instagramController = new InstagramController();
+    var InstagramController = require('./controllers/instagram-controller');
+    var instagramController = new InstagramController();
 
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
@@ -121,6 +124,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
+            app.post('/api/demo_flows', demoFlowController.create);
+
             app.post('/api/flows', flowController.create);
             app.put('/api/flows/:id', flowController.update);
             app.delete('/api/flows/:id', flowController.delete);
@@ -166,8 +171,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
 
-//            app.get('/api/oauth/instagram',          instagramController.authorize);
-//            app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
+           app.get('/api/oauth/instagram',          instagramController.authorize);
+           app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);

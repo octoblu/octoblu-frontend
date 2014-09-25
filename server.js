@@ -45,7 +45,7 @@ passport.use(require('./config/github'));
 passport.use(require('./config/google'));
 passport.use(require('./config/rdio'));
 passport.use(require('./config/twitter'));
-//passport.use(require('./config/instagram'));
+passport.use(require('./config/instagram'));
 passport.use(require('./config/nest'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/linked-in'));
@@ -75,7 +75,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(cors());
 if (process.env.NODE_ENV === 'development') {
-  app.use(errorhandler())
+  app.use(errorhandler());
 }
 
 require('./app/routes.js')(app, passport);
