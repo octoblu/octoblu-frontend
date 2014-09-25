@@ -60,6 +60,7 @@ angular.module('octobluApp')
         staticMessage: {},
         type: node.type
       },
+      resourceType: 'flow-node-type',
       input: 1,
       output: 1,
       formTemplatePath: "/pages/node_forms/subdevice_form.html"
