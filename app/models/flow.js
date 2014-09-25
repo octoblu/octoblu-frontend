@@ -21,10 +21,6 @@ var FlowSchema = new mongoose.Schema({
   }
 });
 
-FlowSchema.statics.deleteByFlowIdAndUserUUID = function(flowId, userUUID){
-  return this.remove({flowId : flowId, 'resource.owner.uuid' : userUUID }).exec();
-};
-
 var registerFlow = function(meshblu, userUUID){
   return when.promise(function(resolve,reject){
     meshblu.register({owner: userUUID, type: 'octoblu:flow'}, function(data){
@@ -33,9 +29,18 @@ var registerFlow = function(meshblu, userUUID){
   });
 };
 
+var unregisterFlow = function(meshblu, flowId, token){
+  return when.promise(function(resolve,reject){
+    meshblu.unregister({uuid: flowId, token: token}, function(data){
+      resolve(data);
+    });
+  });
+};
+
 var mergeFlowData = function(userUUID, flowData, device) {
   var data = {
     flowId: device.uuid,
+    token: device.token,
     name: 'Flow ' + device.uuid.substr(0, 8),
     resource: {
       nodeType: 'flow',
@@ -55,6 +60,20 @@ FlowSchema.statics.createByUserUUID = function (userUUID, flowData, meshblu) {
     return self.create(data).then(function(){
       return data;
     });
+  });
+};
+
+FlowSchema.statics.deleteByFlowIdAndUserUUID = function(flowId, userUUID, meshblu){
+  var query, self;
+  var FlowDeploy = require('./flow-deploy');
+  self = this;
+  query = {flowId : flowId};
+  
+  self.findOne(query, function(err, flow){
+    FlowDeploy.stop(userUUID, flow, meshblu);
+    return unregisterFlow(meshblu, flow.flowId, flow.token).then(function(){
+      return self.remove(query).exec();
+    })
   });
 };
 
