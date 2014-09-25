@@ -402,15 +402,15 @@ angular.module('octobluApp')
             $scope.step1open = true;
             $log.log("Searching LoadTop");
             $scope.loadTopfacetObject = {
-                "toUuids": {"terms": {"script_field": "doc['toUuid.uuid'].value", "size": 5 }},
-                "fromUuids": { "terms": { "script_field": "doc['fromUuid.uuid'].value" , "size":5 }},
+                "toUuids": {"terms": {"script_field": "doc['toUuid'].value", "size": 5 }},
+                "fromUuids": { "terms": { "script_field": "doc['fromUuid'].value" , "size":5 }},
                 "eventCodes": {"terms": { "field": "eventCode" } }
             };
             $scope.loadTopAggObject = {
                 "distCountDevice":  {"cardinality": { "field": "uuid"} },
                 "distCountChannels" : {"cardinality": {"field":"channel"}},
-                "distCountToDevice": { "cardinality": {"field":"toUuid.uuid"}},
-                "distCountFromDevice": {"cardinality" : {"field":"fromUuid.uuid"}}
+                "distCountToDevice": { "cardinality": {"field":"toUuid"}},
+                "distCountFromDevice": {"cardinality" : {"field":"fromUuid"}}
             };
             elasticService.paramSearch({"from":usageFrom, "to":"now", "size":0, "query":"", "facet": $scope.loadTopfacetObject, "aggs":$scope.loadTopAggObject }, $scope.devices, function (err, data) {
                 if (err) {
