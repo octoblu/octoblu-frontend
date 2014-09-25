@@ -33,6 +33,9 @@ module.exports = function(app, passport) {
     var BoxController = require('./controllers/box-controller');
     var boxController = new BoxController();
 
+    var DemoFlowController = require('./controllers/demo-flow-controller');
+    var demoFlowController = new DemoFlowController({meshblu: conn});
+
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
@@ -120,6 +123,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/github/signup', signupController.verifyInvitationCode, signupController.storeTesterId, githubController.authorize);
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
+
+            app.post('/api/demo_flows', demoFlowController.create);
 
             app.post('/api/flows', flowController.create);
             app.put('/api/flows/:id', flowController.update);

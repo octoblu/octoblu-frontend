@@ -51,7 +51,7 @@ angular.module('octobluApp')
   self.getAllFlows = function () {
     return $http.get("/api/flows").then(function(response){
       if (_.isEmpty(response.data)) {
-        return self.createFlow().then(function(flow){
+        return self.createDemoFlow().then(function(flow){
           return [flow];
         });
       }
@@ -64,6 +64,12 @@ angular.module('octobluApp')
 
   self.createFlow = function(options) {
     return $http.post('/api/flows').then(function(response) {
+      return new FlowModel(response.data);
+    });
+  }
+
+  self.createDemoFlow = function(options) {
+    return $http.post('/api/demo_flows').then(function(response) {
       return new FlowModel(response.data);
     });
   }
