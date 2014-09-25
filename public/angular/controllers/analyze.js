@@ -40,8 +40,10 @@ angular.module('octobluApp')
         $scope.logic_devices = "";
         $scope.deviceLookup = {};
         _.each($scope.devices, function (device) {
-            $scope.logic_devices += device.uuid + " OR ";
-            $scope.deviceLookup[device.uuid] = device.name;
+            if (!/^octoblu:/.test(device.type)) {
+                $scope.logic_devices += device.uuid + " OR ";
+                $scope.deviceLookup[device.uuid] = device.name;
+            }
         });
 
         //$scope.devices[$scope.devices.length] = { _id: "_all", name: "All Devices", "uuid": "*" };
