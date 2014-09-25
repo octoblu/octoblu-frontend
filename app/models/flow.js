@@ -5,7 +5,8 @@ var resource = require('./mixins/resource');
 
 var FlowSchema = new mongoose.Schema({
   flowId: String,
-  name:   String,
+  token: String,
+  name: String,
   zoomScale: Number,
   zoomX: Number,
   zoomY: Number,

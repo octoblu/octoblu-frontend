@@ -27,7 +27,7 @@ angular.module('octobluApp')
 
     var refreshFlows = function () {
       return FlowService.getAllFlows().then(function (flows) {
-          $scope.flows = flows;
+        $scope.flows = flows;
       });
     };
 
