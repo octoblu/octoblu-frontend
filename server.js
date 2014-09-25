@@ -75,7 +75,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(cors());
 if (process.env.NODE_ENV === 'development') {
-  app.use(errorhandler())
+  app.use(errorhandler());
 }
 
 require('./app/routes.js')(app, passport);
