@@ -104,7 +104,7 @@ angular.module('octobluApp')
             });
 
             var deviceModal = $modal.open({
-                templateUrl: 'pages/connector/devices/device/add-edit.html',
+                templateUrl: '/pages/connector/devices/device/add-edit.html',
                 controller: 'AddEditDeviceController',
                 backdrop: true,
                 resolve: {
