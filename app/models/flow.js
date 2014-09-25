@@ -51,7 +51,7 @@ var mergeFlowData = function(userUUID, flowData, device) {
       }
     }
   }
-  return _.extend({}, flowData, data);
+  return _.extend({}, data, flowData);
 };
 
 FlowSchema.statics.createByUserUUID = function (userUUID, flowData, meshblu) {
