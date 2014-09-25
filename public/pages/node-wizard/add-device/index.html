@@ -16,7 +16,7 @@
         <form class="form" ng-submit="addDevice()">
             <div class="form-group">
                 <select class="form-control input-lg" ng-model="newDevice.selectedDevice"
-                        ng-options="getDeviceLabel(device) for device in newDevice.unclaimedDevices">
+                        ng-options="device.label for device in newDevice.unclaimedDevices">
                     <option value="">Add New</option>
                 </select>
             </div>

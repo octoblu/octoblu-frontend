@@ -33,6 +33,9 @@ module.exports = function(app, passport) {
     var BoxController = require('./controllers/box-controller');
     var boxController = new BoxController();
 
+    var DemoFlowController = require('./controllers/demo-flow-controller');
+    var demoFlowController = new DemoFlowController({meshblu: conn});
+
     var DropboxController = require('./controllers/dropbox-controller');
     var dropboxController = new DropboxController();
 
@@ -43,7 +46,7 @@ module.exports = function(app, passport) {
     var fitbitController = new FitbitController();
 
     var FlowController = require('./controllers/flow-controller');
-    var flowController = new FlowController();
+    var flowController = new FlowController({meshblu: conn});
 
     var FlowDeployController = require('./controllers/flow-deploy');
     var flowDeployController = new FlowDeployController({meshblu: conn});
@@ -121,7 +124,10 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
             app.get('/api/oauth/twitter/signup', signupController.verifyInvitationCode, signupController.storeTesterId, twitterController.authorize);
 
-            app.put('/api/flows/:id', flowController.updateOrCreate);
+            app.post('/api/demo_flows', demoFlowController.create);
+
+            app.post('/api/flows', flowController.create);
+            app.put('/api/flows/:id', flowController.update);
             app.delete('/api/flows/:id', flowController.delete);
             app.get('/api/flows', flowController.getAllFlows);
             app.post('/api/flows/:id/instance', flowDeployController.startInstance);
@@ -174,8 +180,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/vimeo',          vimeoController.authorize);
             app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);
 
-            app.get('/api/oauth/linkedin',          linkedinController.authorize);
-            app.get('/api/oauth/linkedin/callback', linkedinController.callback, linkedinController.redirectToDesigner);
+            app.get('/api/oauth/linked-in',          linkedinController.authorize);
+            app.get('/api/oauth/linked-in/callback', linkedinController.callback, linkedinController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);

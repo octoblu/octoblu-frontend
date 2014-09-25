@@ -8,21 +8,17 @@ angular.module('octobluApp')
     NodeTypeService.getNodeTypes().then(function (nodeTypes) {
       $scope.nodeType = _.findWhere(nodeTypes, {_id: $stateParams.nodeTypeId});
     })
-      .then(function () {
-        return deviceService.getUnclaimed($scope.nodeType.skynet.type);
-      })
-      .then(function (unclaimedDevices) {
-        $scope.newDevice.unclaimedDevices = unclaimedDevices;
-        $scope.newDevice.selectedDevice = _.first(unclaimedDevices);
-        $scope.newDevice.unclaimedDevices.unshift({type: 'existing'});
+    .then(function () {
+      return deviceService.getUnclaimed($scope.nodeType.skynet.type);
+    })
+    .then(function (unclaimedDevices) {
+      _.each(unclaimedDevices, function(device){
+        device.label = device.uuid + '(' + (device.type || 'device') + ')';
       });
-
-    $scope.getDeviceLabel = function (device) {
-      if (device.type === 'existing') {
-        return 'Claim Existing';
-      }
-      return device.uuid + '(' + (device.type || 'device') + ')';
-    };
+      $scope.newDevice.unclaimedDevices = unclaimedDevices;
+      $scope.newDevice.selectedDevice = _.first(unclaimedDevices);
+      $scope.newDevice.unclaimedDevices.unshift({type: 'existing', label: 'Claim Existing'});
+    });
 
     $scope.addDevice = function () {
       var deviceOptions, promise;
