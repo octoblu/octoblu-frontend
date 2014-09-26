@@ -60,6 +60,9 @@ module.exports = function(app, passport) {
     var GoogleController = require('./controllers/google-controller');
     var googleController = new GoogleController();
 
+    var GoToMeetingController = require('./controllers/gotomeeting-controller');
+    var goToMeetingController = new GoToMeetingController();
+
     var RdioController = require('./controllers/rdio-controller');
     var rdioController = new RdioController();
 
@@ -167,6 +170,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
+            app.get('/api/oauth/goToMeeting',          goToMeetingController.authorize);
+            app.get('/api/oauth/goToMeeting/callback', goToMeetingController.callback, goToMeetingController.redirectToDesigner);
 
             app.get('/api/oauth/google-drive',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google-drive/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
