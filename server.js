@@ -43,6 +43,7 @@ passport.use(require('./config/facebook'));
 passport.use(require('./config/fitbit'));
 passport.use(require('./config/github'));
 passport.use(require('./config/google'));
+passport.use(require('./config/gotomeeting'));
 passport.use(require('./config/rdio'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/instagram'));

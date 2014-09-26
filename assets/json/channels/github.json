@@ -1,6 +1,33 @@
 {
   "_id": "532a258a50411e5802cb8053",
   "__v": 0,
+  "auth_strategy": "oauth",
+  "bodyFormat": "json",
+  "name": "Github",
+  "oauth": {
+    "development": {
+      "clientID": "463a8c25ee407035cd1c",
+      "clientSecret": "fdccd7d4fa72cda2746dc3db787e5558b8bb3837",
+      "callbackURL":    "http://localhost:8080/api/oauth/github/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://app.octoblu.com/api/oauth/github/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://staging.octoblu.com/api/oauth/github/callback",
+      "tokenMethod": "access_token_query"
+    }
+  },
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://developer.github.com/v3/",
+  "type": "channel:github",
   "application": {
     "base": "https://api.github.com",
     "resources": [
@@ -8556,34 +8583,5 @@
         "url": "https://api.github.com/setup/api/settings/authorized-keys"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "bodyFormat": "json",
-  "oauth": {
-    "development": {
-      "clientID": "463a8c25ee407035cd1c",
-      "clientSecret": "fdccd7d4fa72cda2746dc3db787e5558b8bb3837",
-      "callbackURL":    "http://localhost:8080/api/oauth/github/callback",
-      "tokenMethod": "access_token_query"
-    },
-    "production": {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL":    "https://app.octoblu.com/api/oauth/github/callback",
-      "tokenMethod": "access_token_query"
-    },
-    "staging": {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL":    "https://staging.octoblu.com/api/oauth/github/callback",
-      "tokenMethod": "access_token_query"
-    }
-  },
-  "custom_tokens": [],
-  "description": "",
-  "documentation": "https://developer.github.com/v3/",
-  "enabled": true,
-  "isPassport": true,
-  "name": "Github",
-  "type": "channel:github"
+  }
 }
