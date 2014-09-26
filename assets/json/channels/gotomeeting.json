@@ -1,4 +1,5 @@
- _id: "2U2U372S8S8922-D-3-2UDHUEUW",
+{
+  "_id": "2U2U372S8S8922-D-3-2UDHUEUW",
   "application": {
     "base": "https://api.citrixonline.com",
     "resources": [
@@ -369,5 +370,8 @@
         "curl": "curl -X ",
         "params": [],
         "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-groups"
-      } 
-      
+      }
+
+    ]
+  }
+}
