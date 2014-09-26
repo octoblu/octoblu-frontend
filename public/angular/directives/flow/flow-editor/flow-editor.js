@@ -47,6 +47,9 @@ angular.module('octobluApp')
               if (debugNode && debugNode.debug) {
                 $scope.$emit('flow-node-debug', {node: debugNode, message: message.payload})
               }
+              if (message.payload.msgType == 'error') {
+                $scope.$emit('flow-node-error', {node: debugNode, message: message.payload})
+              }
             }
           });
         });

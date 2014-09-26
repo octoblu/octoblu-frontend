@@ -54,14 +54,19 @@ angular.module('octobluApp')
         });
     };
 
-    $scope.$on('flow-node-debug', function (event, message) {
-      $log.debug(message);
-      $scope.debugLines.push(_.clone(message.message));
+    $scope.$on('flow-node-debug', function (event, options) {
+      $log.debug(options);
+      $scope.debugLines.push(_.clone(options.message));
       if ($scope.debugLines.length > 100) {
         $scope.debugLines.shift();
       }
-      $scope.$apply();
     });
+
+    $scope.$on('flow-node-error', function(event, options) {
+      $log.debug(options);
+      $scope.debugLines.push(_.clone(options.message));
+      options.node.errorMessage = options.message.msg;
+    })
 
     $scope.$on('flow-node-type-selected', function(event, flowNodeType){
       $scope.omniSearch = flowNodeType;
@@ -135,6 +140,9 @@ angular.module('octobluApp')
         e.preventDefault();
       }
       $scope.deploying = true;
+      _.each($scope.activeFlow.nodes, function(node) {
+        delete node['errorMessage'];
+      });
       FlowService.start();
     };
 
