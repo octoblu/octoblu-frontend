@@ -4,9 +4,13 @@ angular.module('octobluApp')
 
     $scope.zoomLevel = 0;
     $scope.debugLines = [];
+    $scope.deviceOnline = false;
 
     skynetService.getSkynetConnection().then(function (skynetConnection) {
       skynetConnection.on('message', function (message) {
+        if (message.topic === 'device-status') {
+          $scope.deviceOnline = message.payload.online;
+        }
         if (message.topic !== 'nodered-instance') {
           return;
         }
