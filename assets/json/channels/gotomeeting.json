@@ -1,6 +1,7 @@
 {
   "_id": "a053d110f5cc498686f496e5",
   "auth_strategy": "oauth",
+  "bodyFormat": "json",
   "name": "GoToMeeting",
   "type": "channel:gotomeeting",
   "oauth": {
@@ -8,19 +9,22 @@
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "http://localhost:8080/api/oauth/gotomeeting/callback",
-      "tokenMethod": "access_token_query"
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
     },
     "production": {
       "clientID": "***REMOVED***",
       "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "https://app.octoblu.com/api/oauth/gotomeeting/callback",
-      "tokenMethod": "access_token_query"
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
     },
     "staging": {
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "***REMOVED***",
       "callbackURL": "https://staging.octoblu.com/api/oauth/gotomeeting/callback",
-      "tokenMethod": "access_token_query"
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
     }
   },
   "application": {
@@ -36,45 +40,43 @@
         "curl": "curl -X",
         "params": [
           {
-            "style": "body",
-            "type": "string",
             "name": "subject",
+            "style": "body",
+            "type": "string",
             "required": true
           },
           {
-            "style": "body",
-            "type": "string",
             "name": "starttime",
+            "style": "body",
+            "type": "string",
             "required": true
           },
           {
-            "style": "body",
-            "type": "string",
             "name": "endtime",
+            "style": "body",
+            "type": "string",
             "required": true
           },
           {
-            "style": "body",
-            "type": "string",
             "name": "passwordrequired",
-            "required": true
-          },
-          {
             "style": "body",
             "type": "string",
+            "required": true,
+            "default": "false"
+          },
+          {
             "name": "conferencecallinfo",
-            "required": true
+            "style": "body",
+            "type": "string",
+            "required": true,
+            "default": "Free"
           },
           {
             "style": "body",
-            "type": "string",
-            "name": "timezonekey"
-          },
-          {
-            "style": "query",
             "type": "string",
             "name": "meetingtype",
-            "required": true
+            "required": true,
+            "default": "Scheduled"
           }
         ],
         "url": "https://api.citrixonline.com/G2M/rest/meetings"
