@@ -35,7 +35,7 @@
     </div>
 
     <div class="btn-group">
-      <button ng-click="stop()" ng-class="{ 'btn-danger': !deviceOnline, stopping: stopping }" class="stop-button btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
+      <button ng-click="stop()" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }" class="stop-button btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
         <i class="fa fa-stop"></i>
       </button>
       <button ng-click="start()" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }" class="start-button btn btn-default button-shadow" tooltip="Start" tooltip-placement="bottom">

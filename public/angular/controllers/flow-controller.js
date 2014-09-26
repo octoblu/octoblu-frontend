@@ -4,18 +4,26 @@ angular.module('octobluApp')
 
     $scope.zoomLevel = 0;
     $scope.debugLines = [];
-    $scope.deviceOnline = false;
+    $scope.deviceOnline;
 
     skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.mydevices({}, function(result){
+        var device = _.findWhere(result.devices, {uuid: $stateParams.flowId});
+        if (device) {
+          $scope.deviceOnline = device.online;
+        }
+      });
+
       skynetConnection.on('message', function (message) {
         if (message.topic === 'device-status') {
           $scope.deviceOnline = message.payload.online;
         }
-        if (message.topic !== 'nodered-instance') {
-          return;
+        if (message.topic === 'nodered-instance') {
+          if (message.payload.success) {
+            $scope.deploying = false;
+            $scope.stopping = false;
+          }
         }
-        $scope.deploying = false;
-        $scope.stopping = false;
       });
     });
 
