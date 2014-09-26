@@ -3,18 +3,21 @@ angular.module('octobluApp')
   'use strict';
   var self, activeFlow;
   self = this;
+  var previousHashableFlow;
+
+  self.hashFlow = function(flow) {
+    var hashableFlow = _.pick(flow, ['links', 'nodes', 'name']);
+    return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
+  }
 
   self.saveActiveFlow = function () {
     if(!activeFlow){return;}
-    var flow = _.clone(activeFlow);
-    self.saveFlow(flow);
+    self.saveFlow(activeFlow);
   };
-  self.debouncedSaveFlow = _.debounce(self.saveActiveFlow, 1000);
 
   self.saveFlow = function(flow) {
-    var hashableFlow = _.pick(flow, ['links', 'nodes']);
-    flow.hash = XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
-    return $http.put("/api/flows/" + flow.flowId, flow);
+    flow.hash = self.hashFlow(flow);
+    return $http.put("/api/flows/" + flow.flowId, _.clone(flow));
   }
 
   self.selectNode = function(flowNode){

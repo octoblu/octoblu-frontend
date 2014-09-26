@@ -427,6 +427,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
+      .state('ob.nodewizard.addmicroblu', {
+        url: '/add-microblu/:nodeTypeId',
+        controller: 'addDeviceController',
+        templateUrl: '/pages/node-wizard/add-device/index.html'
+      })
       .state('ob.nodewizard.addgateway', {
         url: '/add-gateway/:nodeTypeId',
         controller: 'addDeviceController',

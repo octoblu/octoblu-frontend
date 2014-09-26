@@ -5,6 +5,7 @@ angular.module('octobluApp')
   var STATES = {
     'channel': 'ob.nodewizard.addchannel.existing',
     'device': 'ob.nodewizard.adddevice',
+    'microblu': 'ob.nodewizard.addmicroblu',
     'gateway': 'ob.nodewizard.addgateway',
     'subdevice': 'ob.nodewizard.addsubdevice.selectgateway'
   };

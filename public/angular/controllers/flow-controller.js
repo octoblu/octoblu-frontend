@@ -60,12 +60,14 @@ angular.module('octobluApp')
       if ($scope.debugLines.length > 100) {
         $scope.debugLines.shift();
       }
+      $scope.$apply();
     });
 
     $scope.$on('flow-node-error', function(event, options) {
       $log.debug(options);
       $scope.debugLines.push(_.clone(options.message));
       options.node.errorMessage = options.message.msg;
+      $scope.$apply();
     })
 
     $scope.$on('flow-node-type-selected', function(event, flowNodeType){
@@ -234,5 +236,21 @@ angular.module('octobluApp')
       $scope.currentMouseY = null;
     };
 
-    $scope.$watch('activeFlow', FlowService.debouncedSaveFlow, true);
+    var immediateCalculateFlowHash = function(newFlow, oldFlow) {
+      newFlow.hash = FlowService.hashFlow(newFlow);
+      $scope.$apply();
+    }
+    var calculateFlowHash = _.debounce(immediateCalculateFlowHash, 1000);
+
+    var compareFlowHash = function(newHash, oldHash){
+      if (!oldHash) {
+        return;
+      }
+      if (!_.isEqual(newHash, oldHash)) {
+        FlowService.saveActiveFlow();
+      }
+    }
+
+    $scope.$watch('activeFlow', calculateFlowHash, true);
+    $scope.$watch('activeFlow.hash', compareFlowHash);
   });
