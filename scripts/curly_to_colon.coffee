@@ -15,7 +15,6 @@ class CurlyToColonConverter
     _.each channel.application.resources, (resource) =>
       _.each resource, (value, key) =>
         return unless _.isString value
-        regex = new RegExp(, "g")
         value = value.replace /\{(.*?)\}/g, (full, param) => ":#{param}"
         resource[key] = value
 
