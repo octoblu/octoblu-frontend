@@ -2,49 +2,24 @@
   "_id": "53275d4841da719147d9e36a",
   "name": "StockPrice",
   "auth_strategy": "none",
-  "description": "Get YAHOO! Finance stock price",
-  "documentation": "http://developer.yahoo.com/",
   "enabled": true,
   "useCustom": true,
   "oauth": {},
-  "custom_tokens": [],
   "application": {
-    "base": "http://download.finance.yahoo.com/",
+    "base": "http://stock.octoblu.com",
     "resources": [
       {
+        "path": "/last-trade-price/:symbol",
+        "httpMethod": "GET",
+        "url": "http://stock.octoblu.com/last-trade-price/:symbol",
         "params": [
           {
-            "doc": {
-              "t": "YAHOO! Stock symbol",
-              "url": "http://finance.yahoo.com/lookup"
-            },
-            "name": "s",
-            "style": "query",
-            "type": "string",
-            "value": "none",
-            "required": "true"
-          },
-          {
-            "doc": {
-              "t": "YAHOO! Stock format option",
-              "url": "http://www.gummy-stuff.org/Yahoo-data.htm"
-            },
-            "name": "f",
-            "style": "query",
-            "type": "string",
-            "value": "none",
-            "required": "true"
+            "name": ":symbol",
+            "displayName": "Symbol",
+            "style": "url",
+            "type": "string"
           }
-        ],
-        "curl": "curl -s 'http://download.finance.yahoo.com/d/quotes.csv?s=MSFT&f=l1'",
-        "path": "/d/quotes.csv",
-        "displayName": "/d/quotes.csv",
-        "doc": {
-          "t": "YAHOO! Finance Stock price",
-          "url": "http://www.gummy-stuff.org/Yahoo-data.htm"
-        },
-        "httpMethod": "GET",
-        "url": "http://download.finance.yahoo.com//d/quotes.csv"
+        ]
       }
     ]
   },

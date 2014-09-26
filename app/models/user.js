@@ -127,7 +127,6 @@ UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, t
 
   for (var l = 0; l < this.api.length; l++) {
     if (this.api[l].channelid == channelid) {
-      console.log('updating existing');
       this.api[l].key = key;
       this.api[l].authtype = type;
       this.api[l].token = token;

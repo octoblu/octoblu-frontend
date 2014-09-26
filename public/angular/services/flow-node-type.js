@@ -51,12 +51,17 @@ angular.module('octobluApp')
       class: node.name,
       type: node.type,
       logo: node.logo,
+      uuid: node.uuid,
       defaults: {
         logo: node.logo,
         category: 'device',
         uuid: node.uuid,
+        schema: node && node.plugin ? node.plugin.messageSchema : {},
+        useStaticMessage: true,
+        staticMessage: {},
         type: node.type
       },
+      resourceType: 'flow-node-type',
       input: 1,
       output: 1,
       formTemplatePath: "/pages/node_forms/subdevice_form.html"

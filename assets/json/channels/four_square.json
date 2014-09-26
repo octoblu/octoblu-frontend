@@ -1549,24 +1549,28 @@
   "enabled": true,
   "name": "FourSquare",
   "oauth": {
-    "accessTokenIncludeClientInfo": true,
-    "accessTokenURL": "https://foursquare.com/oauth2/access_token",
-    "apiKey": "",
-    "authTokenPath": "/oauth2/authenticate",
-    "authTokenURL": "https://foursquare.com/oauth2/authenticate",
-    "baseURL": "https://www.smartsheet.com",
-    "clientId": "0FHIAV0KFBVSBNYAXBKYMZY4HE0CMBTXLIBG0TGZLQ0TRJYB",
-    "grant_type": "authorization_code",
-    "host": "foursquare.com",
-    "isManual": true,
-    "protocol": "https",
-    "requestTokenURL": "",
-    "scope": "",
-    "secret": "3XRB1YRDIP1WYTUXZWZPN5IE5OLXV0GIBQT1VYZYDFMKGWX4",
-    "tokenMethod": "oauth_token",
-    "useOAuthLib": true,
-    "version": "2.0"
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/four-square/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/four-square/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/four-square/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
+    }
   },
-  "useCustom": true,
+  "isPassport": true,
   "type": "channel:four-square"
 }

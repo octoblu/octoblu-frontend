@@ -5,9 +5,6 @@ angular.module('octobluApp')
         host: $location.host(),
         port: $location.port(),
         path: '/api/elastic',
-	//path: '',
-        //host: 'es.octoblu.com',
-	//port: 80,
         es_index: 'skynet_trans_log',
         debug_logging: true
     };
@@ -20,18 +17,10 @@ angular.module('octobluApp')
     });
 
     this.buildDevices = function(myDevices) {
-        var _this = this;
-
-        _this.first = true;
-        var deviceString = "";
-        _.each(myDevices, function(data){
-            if (_this.first && data.uuid) {
-                _this.first = false;
-                deviceString += " _type:" + data.uuid;
-            }
-            else if (data.uuid) { deviceString += " OR _type:"+data.uuid;  }
+        var deviceStrings = _.map(myDevices, function(device){
+            return " _type:"+data.uuid;
         });
-        return deviceString;
+        return deviceStrings.join(" OR ");
     };
 
     this.setOwnedDevices = function(myDevices){

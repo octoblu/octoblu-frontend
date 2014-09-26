@@ -53,7 +53,6 @@
   },
   "resolutions": {
     "d3": "~3.4.8",
-    "jquery-ui": "~1.10.4",
     "jquery": "~2.1.1"
   },
   "devDependencies": {

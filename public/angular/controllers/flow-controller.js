@@ -1,9 +1,19 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService) {
+  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService) {
     var originalNode;
 
     $scope.zoomLevel = 0;
     $scope.debugLines = [];
+
+    skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.on('message', function (message) {
+        if (message.topic !== 'nodered-instance') {
+          return;
+        }
+        $scope.deploying = false;
+        $scope.stopping = false;
+      });
+    });
 
     FlowNodeTypeService.getFlowNodeTypes()
       .then(function (flowNodeTypes) {
@@ -17,7 +27,7 @@ angular.module('octobluApp')
 
     var refreshFlows = function () {
       return FlowService.getAllFlows().then(function (flows) {
-          $scope.flows = flows;
+        $scope.flows = flows;
       });
     };
 
@@ -50,9 +60,7 @@ angular.module('octobluApp')
     });
 
     $scope.addFlow = function () {
-      var name = 'Flow ' + ($scope.flows.length + 1);
-      var newFlow = FlowService.newFlow({name: name});
-      FlowService.saveFlow(newFlow).then(function(){
+      return FlowService.createFlow().then(function(newFlow){
         $state.go('flow', {flowId: newFlow.flowId});
       });
     };
@@ -118,6 +126,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
+      $scope.deploying = true;
       FlowService.start();
     };
 
@@ -127,6 +136,7 @@ angular.module('octobluApp')
       if (e) {
         e.preventDefault();
       }
+      $scope.stopping = true;
       FlowService.stop();
     };
 

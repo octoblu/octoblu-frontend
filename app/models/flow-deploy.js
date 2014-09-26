@@ -1,17 +1,17 @@
 var _ = require('lodash'),
     FlowDeviceCollection = require('../collections/flow-device-collection'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose')
+    when = require('when');
 
 var FlowDeploy = function(options){
   var User = mongoose.model('User');
 
-  var self, config, request, userUUID, userToken, meshblu, tranformations;
+  var self, config, request, userUUID, meshblu, tranformations;
   self = this;
 
   options         = options || {};
 
   userUUID        = options.userUUID;
-  userToken       = options.userToken;
   config          = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
   request         = options.request || require('request');
   meshblu         = options.meshblu;
@@ -80,19 +80,15 @@ var FlowDeploy = function(options){
     return flow;
   };
 
-  self.startFlow = function(flow, token){
-    self.sendMessage(flow, token, 'nodered-instance-start');
+  self.startFlow = function(flow){
+    self.sendMessage(flow, 'nodered-instance-start');
   };
 
-  self.stopFlow = function(flow, token){
-    self.sendMessage(flow, token, 'nodered-instance-stop');
+  self.stopFlow = function(flow){
+    self.sendMessage(flow, 'nodered-instance-stop');
   };
 
-  self.restartFlow = function(flow, token){
-    self.sendMessage(flow, token, 'nodered-instance-restart');
-  };
-
-  self.sendMessage = function(flow, token, topic) {
+  self.sendMessage = function(flow, topic) {
     meshblu.mydevices({}, function(data){
       managerDevices = _.where(data.devices, {type: 'nodered-docker-manager'});
       devices = _.pluck(managerDevices, 'uuid');
@@ -103,7 +99,7 @@ var FlowDeploy = function(options){
       };
       msg.payload = {
         uuid: flow.flowId,
-        token: token,
+        token: flow.token,
         flow: self.convertFlow(flow)
       };
       meshblu.message(msg);
@@ -128,67 +124,33 @@ var FlowDeploy = function(options){
       return [];
     });
   };
-
-  self.registerFlow = function(flowId, callback) {
-    meshblu.register({uuid: flowId, type: 'octoblu:flow', owner: userUUID}, callback);
-  };
-
-  self.unregisterFlow = function(flowId, token) {
-    meshblu.unregister({uuid: flowId, token: token});
-  };
 };
 
-FlowDeploy.start = function(userUUID, userToken, flow, meshblu){
-  var flowDeploy, mergedFlow, flowDevice, user;
+FlowDeploy.start = function(userUUID, flow, meshblu){
+  var flowDeploy, mergedFlow, flowDevice, user, deviceCollection;
   var Channel = require('../models/channel');
 
-  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
+  flowDeploy = new FlowDeploy({userUUID: userUUID, meshblu: meshblu});
   return flowDeploy.getUser(userUUID).then(function(theUser){
     user = theUser;
     return Channel.findAll();
   }).then(function(channels){
     mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api, channels);
-
-    deviceCollection = new FlowDeviceCollection(userUUID);
-    deviceCollection.fetch().then(function(myDevices){
-      flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
-      if (flowDevice) {
-        flowDeploy.startFlow(mergedFlow, flowDevice.token);
-      } else {
-        flowDeploy.registerFlow(flow.flowId, function(flowDevice){
-          flowDeploy.startFlow(mergedFlow, flowDevice.token);
-        });
-      }
-    });
+    flowDeploy.startFlow(mergedFlow);
   }, function(error){
     console.log('Error', error);
     throw new Error(error);
   });
 };
 
-FlowDeploy.stop = function(userUUID, userToken, flow, meshblu){
+FlowDeploy.stop = function(userUUID, flow, meshblu){
   var flowDeploy, flowDevice;
 
-  try {
-  flowDeploy = new FlowDeploy({userUUID: userUUID, userToken: userToken, meshblu: meshblu});
-  deviceCollection = new FlowDeviceCollection(userUUID);
-  deviceCollection.fetch().then(function(myDevices){
-    flowDevice = _.findWhere(myDevices, {uuid: flow.flowId});
-    if (flowDevice) {
-      flowDeploy.stopFlow(flow, flowDevice.token);
-      flowDeploy.unregisterFlow(flow.flowId);
-    }
+  flowDeploy = new FlowDeploy({userUUID: userUUID, meshblu: meshblu});
+  return when.promise(function(resolve,reject){
+    flowDeploy.stopFlow(flow);
+    return resolve();
   });
-} catch (err) {
-  console.log(err);
-  throw err;
-}
-};
-
-FlowDeploy.restart = function(userUUID, userToken, flow, meshblu){
-  var flowDeploy;
-  FlowDeploy.stop(userUUID, userToken, flow, meshblu);
-  FlowDeploy.start(userUUID, userToken, flow, meshblu);
 };
 
 module.exports = FlowDeploy;

@@ -19,6 +19,19 @@ describe('FlowService', function () {
     });
   });
 
+  describe('#createFlow', function () {
+    it('should return a flow', function (done) {
+      $httpBackend.expectPOST('/api/flows').respond(201, {flowId:'1'});
+
+      sut.createFlow().then(function (flow) {
+        expect(flow.flowId).to.eq('1');
+        done();
+      }, done);
+
+      $httpBackend.flush();
+    });
+  });
+
   describe('#getAllFlows', function () {
     it('should return an array', function (done) {
       $httpBackend.expectGET('/api/flows').respond(200, ['hi']);
@@ -45,13 +58,14 @@ describe('FlowService', function () {
     describe('when the server gives us zero flows', function(){
       beforeEach(function(){
         $httpBackend.expectGET('/api/flows').respond(200, []);
+        $httpBackend.expectPOST('/api/demo_flows').respond(201, {flowId: '101', name: 'Flow 1'});
       });
 
       it('should inject an empty flow with a name and flowId', function(done){
         fakeUUIDService.v1.returns = 'fakeFlowID';
         sut.getAllFlows().then(function (flows) {
           expect(flows[0].name).to.equal('Flow 1');
-          expect(flows[0].flowId).to.equal('fakeFlowID');
+          expect(flows[0].flowId).to.equal('101');
           done();
         }, done);
 
@@ -60,40 +74,7 @@ describe('FlowService', function () {
     });
   });
 
-  describe('#newFlow', function(){
-    it('should return an object', function(){
-      expect(sut.newFlow()).to.be.instanceof(Object);
-    });
-
-    it('should accept a default name', function(){
-      expect(sut.newFlow({name: 'foo'}).name).to.equal('foo');
-    });
-
-    it('should accept a default name', function(){
-      expect(sut.newFlow({name: 'food'}).name).to.equal('food');
-    });
-
-    it('should have nodes', function() {
-      expect(sut.newFlow().nodes).to.deep.equal([]);
-    });
-
-    it('should have links', function() {
-      expect(sut.newFlow().links).to.deep.equal([]);
-    });
-
-    it('should generate a flowId', function(){
-      fakeUUIDService.v1.returns = 'some-thing';
-      expect(sut.newFlow().flowId).to.deep.equal('some-thing');
-    });
-
-    it('should generate a flowId', function(){
-      fakeUUIDService.v1.returns = 'some-thing-else';
-      expect(sut.newFlow().flowId).to.deep.equal('some-thing-else');
-    });
-  });
-
   describe('#deleteFlow', function(){
-
     it('should exist', function(){
       var flowId = '123456';
       $httpBackend.expectDELETE('/api/flows/' + flowId).respond(200);

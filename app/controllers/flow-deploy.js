@@ -29,10 +29,9 @@ var FlowDeploy = function(options){
     var userUUID, userToken;
 
     userUUID = req.user.skynet.uuid;
-    userToken = req.user.skynet.token;
 
     Flow.findOne({flowId: req.params.id}, function(err, flow){
-      cmd(userUUID, userToken, flow, meshblu);
+      cmd(userUUID, flow, meshblu);
     });
   };
 

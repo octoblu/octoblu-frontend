@@ -90,8 +90,16 @@ angular.module('octobluApp')
                 var deviceOptions = _.omit(options, reservedProperties);
 
                 return skynetPromise.then(function(skynetConnection){
-                    deviceOptions.owner = skynetConnection.options.uuid;
-                    return service.updateDevice(deviceOptions);
+                    var defer = $q.defer();
+
+                    skynetConnection.claimdevice(deviceOptions, function(result){
+                        if(result.error) {
+                            return defer.reject(result.error);
+                        }
+                        return service.updateDevice(deviceOptions);
+                    });
+
+                    return defer.promise;
                 })
                 .then(function(){
                     return service.refreshDevices();

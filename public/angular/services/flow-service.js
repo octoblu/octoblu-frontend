@@ -36,14 +36,6 @@ angular.module('octobluApp')
     var currentUser;
 
     $http.post("/api/flows/" + activeFlow.flowId + '/instance');
-    AuthService.getCurrentUser().then(function(user){
-      currentUser = user;
-      return skynetService.getSkynetConnection();
-    }).then(function (conn) {
-      conn.register({uuid: activeFlow.flowId, type: 'octoblu:flow', owner: currentUser.resource.uuid}, function(){
-        conn.subscribe({uuid: activeFlow.flowId});
-      });
-    });
   };
 
   self.stop = function(){
@@ -59,7 +51,9 @@ angular.module('octobluApp')
   self.getAllFlows = function () {
     return $http.get("/api/flows").then(function(response){
       if (_.isEmpty(response.data)) {
-        return [self.newFlow({name: 'Flow 1'})];
+        return self.createDemoFlow().then(function(flow){
+          return [flow];
+        });
       }
 
       return _.map(response.data, function(data) {
@@ -68,9 +62,17 @@ angular.module('octobluApp')
     });
   };
 
-  self.newFlow = function(options) {
-    return FlowModel(options);
-  };
+  self.createFlow = function(options) {
+    return $http.post('/api/flows').then(function(response) {
+      return new FlowModel(response.data);
+    });
+  }
+
+  self.createDemoFlow = function(options) {
+    return $http.post('/api/demo_flows').then(function(response) {
+      return new FlowModel(response.data);
+    });
+  }
 
   self.deleteFlow = function(flowId){
     return $http.delete('/api/flows/' + flowId).then(function(response){

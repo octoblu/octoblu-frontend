@@ -1,13 +1,14 @@
 var _ = require('lodash');
 
 describe('Flow', function () {
-  var Flow;
+  var Flow, Meshblu;
 
   before(function(done){
     var mongoose   = require('mongoose');
     var FlowSchema = require('../../app/models/flow');
     var db = mongoose.createConnection();
     Flow   = db.model('Flow', FlowSchema);
+    Meshblu = new FakeMeshblu();
     db.open('localhost', 'octoblu_test', done);
   });
 
@@ -56,10 +57,13 @@ describe('Flow', function () {
     });
   });
 
-  describe('.updateOrCreateByFlowIdAndUser', function () {
+  describe('.createByUserUUID', function () {
     describe('when its called with flow id and user uuid', function () {
+      var flowId;
+
       beforeEach(function (done) {
-        Flow.updateOrCreateByFlowIdAndUser('1', '2').then(function(){done()}, done);
+        Meshblu.register.responds = {uuid: '1'};
+        Flow.createByUserUUID('2', {}, Meshblu).then(function(){done()}, done);
       });
 
       it('should save a record in the database', function (done) {
@@ -75,7 +79,8 @@ describe('Flow', function () {
 
     describe('when its called with a different flow id and user uuid', function () {
       beforeEach(function (done) {
-        Flow.updateOrCreateByFlowIdAndUser('6', '3').then(function(){done()}, done);
+        Meshblu.register.responds = {uuid: '6'};
+        Flow.createByUserUUID('3', {}, Meshblu).then(function(){done()}, done);
       });
 
       it('should save a record in the database', function (done) {
@@ -91,8 +96,9 @@ describe('Flow', function () {
     describe('when its called with flowData', function () {
       beforeEach(function (done) {
         var flowData = {nodes: [{foo: 'bar'}]};
+        Meshblu.register.responds = {uuid: '6'};
 
-        Flow.updateOrCreateByFlowIdAndUser('6', '3', flowData).then(function(){done()}, done);
+        Flow.createByUserUUID('3', flowData, Meshblu).then(function(){done()}, done);
       });
 
       it('should store the flowData', function (done) {
@@ -104,8 +110,10 @@ describe('Flow', function () {
         });
       });
     });
+  });
 
-    describe('when there is already a flow', function () {
+  describe('.updateByFlowIdAndUser', function () {
+    describe('when there is a flow', function () {
       beforeEach(function (done) {
         Flow.create({
           flowId: '2',
@@ -121,7 +129,7 @@ describe('Flow', function () {
 
       describe('and its called with the same id', function () {
         beforeEach(function (done) {
-          Flow.updateOrCreateByFlowIdAndUser('2', 'unique', {name: 'Foo'})
+          Flow.updateByFlowIdAndUser('2', 'unique', {name: 'Foo'})
           .then(function(){done()}, done);
         });
 
@@ -130,6 +138,24 @@ describe('Flow', function () {
             expect(_.size(flows)).to.equal(1);
             var flow = _.first(flows);
             expect(flow.name).to.equal('Foo');
+            done();
+          });
+        });
+      });
+    });
+
+    describe('when there is not a flow', function () {
+      describe('and update is called', function () {
+        var updatePromise;
+
+        beforeEach(function () {
+          updatePromise = Flow.updateByFlowIdAndUser('2', 'unique', {name: 'Foo'});
+        });
+
+        it('should reject the promise', function (done) {
+          updatePromise.then(function(){
+            done('Promise was not rejected');
+          }, function(){
             done();
           });
         });
@@ -160,4 +186,16 @@ describe('Flow', function () {
       });
     });
   });
+
+  var FakeMeshblu = function() {
+    var self = this;
+
+    self.register = function(options, callback){
+      _.defer(function() {
+        callback(self.register.responds);
+      });
+    }
+
+    return this;
+  }
 });

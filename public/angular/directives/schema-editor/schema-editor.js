@@ -41,6 +41,10 @@ angular.module('octobluApp')
                         if (editor.getValue()) {
                             angular.copy(editor.getValue(), scope.editingDevice);
                             scope.$apply();
+                            
+                            if( !scope.control && editor.validate().length === 0 ) {
+                                angular.copy(scope.editingDevice, originalDevice);
+                            }
                         }
                     });
                 }

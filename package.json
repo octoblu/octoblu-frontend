@@ -46,7 +46,7 @@
     "passport-dropbox-oauth2": "~0.1.6",
     "passport-facebook": "^1.0.3",
     "passport-fitbit": "^0.1.2",
-    "passport-foursquare": "^1.0.0",
+    "passport-foursquare": "~1.0.0",
     "passport-github": "git://github.com/jaredhanson/passport-github.git",
     "passport-google-oauth": "^0.1.5",
     "passport-http-oauth": "~0.1.3",
@@ -71,7 +71,9 @@
     "passport-instagram": "~0.1.2",
     "passport-yahoo-oauth": "~0.1.2",
     "passport-box": "~0.1.0",
-    "passport-nest": "~1.0.0"
+    "passport-nest": "~1.0.0",
+    "passport-linkedin-oauth2": "~1.1.1",
+    "gulp-nodemon": "~1.0.4"
   },
   "devDependencies": {
     "bower": "^1.3.3",

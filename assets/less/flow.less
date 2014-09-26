@@ -704,3 +704,49 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+@-webkit-keyframes startPulse {
+  from { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-info, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-info, 20%); }
+  to { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+}
+
+@keyframes startPulse {
+  from { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-info, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-info, 20%); }
+  to { background-color: @brand-info; -webkit-box-shadow: 0 0 9px #999; }
+}
+
+.start-button {
+  &.deploying {
+    -webkit-animation-name: startPulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: startPulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@-webkit-keyframes stopPulse {
+  from { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-danger, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-danger, 20%); }
+  to { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+}
+
+@keyframes stopPulse {
+  from { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+  50% { background-color: lighten(@brand-danger, 20%); -webkit-box-shadow: 0 0 18px lighten(@brand-danger, 20%); }
+  to { background-color: @brand-danger; -webkit-box-shadow: 0 0 9px #999; }
+}
+
+.stop-button {
+  &.stopping {
+    -webkit-animation-name: stopPulse;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: stopPulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+}
