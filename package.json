@@ -46,7 +46,7 @@
     "passport-dropbox-oauth2": "~0.1.6",
     "passport-facebook": "^1.0.3",
     "passport-fitbit": "^0.1.2",
-    "passport-foursquare": "^1.0.0",
+    "passport-foursquare": "~1.0.0",
     "passport-github": "git://github.com/jaredhanson/passport-github.git",
     "passport-google-oauth": "^0.1.5",
     "passport-http-oauth": "~0.1.3",

@@ -529,6 +529,19 @@
 		"type" : "channel:instagram"
 	},
 	{
+		"_id" : "542593853fb93d59863dfaef",
+		"category" : "channel",
+		"description" : "",
+		"enabled" : true,
+		"name" : "FourSquare",
+		"skynet" : {
+			"type" : "channel",
+			"subtype" : "FourSquare"
+		},
+		"channelid" : "52f9b628ebbb409983000001",
+		"type" : "channel:four-square"
+	},
+	{
 		"_id" : "53c9b838f400e177dca325c6",
 		"category" : "channel",
 		"description" : "",
