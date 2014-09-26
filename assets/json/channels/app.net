@@ -1,0 +1,1603 @@
+ _id: "hfhsjsfjsdlfsfsdij-sf-sdf23rwer",
+  "application": {
+    "base": "https://api.app.net",
+    "resources": [
+      {
+        "path": "/users/{user_id}",
+        "displayName": "/users/{user_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/lookup/"
+      },
+      {
+        "path": "/users",
+        "displayName": "/users",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/lookup/"
+      },
+      {
+        "path": "/users/me",
+        "displayName": "/users/me",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/me",
+        "displayName": "/users/me",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "PATCH",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/{user_id}/avatar",
+        "displayName": "/users/{user_id}/avatar",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/me/avatar",
+        "displayName": "/users/me/avatar",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "avatar",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/{user_id}/cover",
+        "displayName": "/users/{user_id}/cover",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id",
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/me/cover",
+        "displayName": "/users/me/cover",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/profile/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "cover",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/user/profile/"
+      },
+      {
+        "path": "/users/{user_id}/follow",
+        "displayName": "/users/{user_id}/follow",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/follow",
+        "displayName": "/users/{user_id}/follow",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "ACCESS_TOKEN",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/following",
+        "displayName": "/users/{user_id}/following",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/followers",
+        "displayName": "/users/{user_id}/followers",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/following/ids",
+        "displayName": "/users/{user_id}/following/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/followers/ids",
+        "displayName": "/users/{user_id}/followers/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/following/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/following/"
+      },
+      {
+        "path": "/users/{user_id}/mute",
+        "displayName": "/users/{user_id}/mute",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/{user_id}/mute",
+        "displayName": "/users/{user_id}/mute",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/{user_id}/muted",
+        "displayName": "/users/{user_id}/muted",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/muted/ids",
+        "displayName": "/users/muted/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/muting/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/muting/"
+      },
+      {
+        "path": "/users/{user_id}/block",
+        "displayName": "/users/{user_id}/block",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/users/{user_id}/block",
+        "displayName": "/users/{user_id}/block",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/users/{user_id}/blocked",
+        "displayName": "/users/{user_id}/blocked",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/users/blocked/ids",
+        "displayName": "/users/blocked/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/blocking/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/blocking/"
+      },
+      {
+        "path": "/posts/{post_id}/reposters",
+        "displayName": "/posts/{post_id}/reposters",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "post_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+      },
+      {
+        "path": "/posts/{post_id}/stars",
+        "displayName": "/posts/{post_id}/stars",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "post_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/post-interactions/"
+      },
+      {
+        "path": "/users/search",
+        "displayName": "/users/search",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user/search/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "q"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "count"
+        }],
+        "url": "https://developers.app.net/reference/resources/user/search/"
+      },
+      {
+        "path": "/posts/{post_id}",
+        "displayName": "/posts/{post_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "post_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/lookup/"
+      },
+      {
+        "path": "/posts",
+        "displayName": "/posts",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/post/lookup/"
+      },
+      {
+        "path": "/posts",
+        "displayName": "/posts",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lifecycle/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "text"
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "reply_to"
+          },{
+        "path": "/posts/{post_id}",
+        "displayName": "/posts/{post_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "post_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/post/lifecycle/"
+      },
+      {
+        "path": "/posts/stream/global",
+        "displayName": "/posts/stream/global",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/post/streams/"
+      },
+      {
+        "path": "/users/{user_id}/posts",
+        "displayName": "/users/{user_id}/posts",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id",
+          "required": true
+          }],
+        "url": "https://developers.app.net/reference/resources/post/streams/"
+      },
+      {
+        "path": "/users/{user_id}/mentions",
+        "displayName": "/users/{user_id}/mentions",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id",
+          "required": true
+          }],
+        "url": "https://developers.app.net/reference/resources/post/streams/"
+      },
+      {
+        "path": "/posts/stream",
+        "displayName": "/posts/stream",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/post/streams/"
+      },
+      {
+        "path": "/posts/stream/unified",
+        "displayName": "/posts/stream/unified",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/post/streams/"
+      },
+      {
+        "path": "/posts/tag/{hashtag}",
+        "displayName": "/posts/tag/{hashtag}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/streams/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/post/streams/"
+      },
+      {
+        "path": "/posts/{post_id}/replies",
+        "displayName": "/posts/{post_id}/replies",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/replies/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "post_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/replies/"
+      },
+      {
+        "path": "/posts/{post_id}/repost",
+        "displayName": "/posts/{post_id}/repost",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/reposts/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "post_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/reposts/"
+      },
+      {
+        "path": "/posts/{post_id}/repost",
+        "displayName": "/posts/{post_id}/repost",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/reposts/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "name": "post_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/reposts/"
+      },
+      {
+        "path": "/posts/{post_id}/star",
+        "displayName": "/posts/{post_id}/star",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/stars/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "post_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/stars/"
+      },
+      {
+        "path": "/posts/{post_id}/star",
+        "displayName": "/posts/{post_id}/star",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/stars/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "post_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/stars/"
+      },
+      {
+        "path": "/users/{user_id}/stars",
+        "displayName": "/users/{user_id}/stars",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/stars/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "user_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/stars/"
+      },
+      {
+        "path": "/posts/{post_id}/report",
+        "displayName": "/posts/{post_id}/report",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/report/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "post_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/post/report/"
+      },
+      {
+        "path": "/posts/search",
+        "displayName": "/posts/search",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/search/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "index"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "order"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "query"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "text"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "hashtags"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "links"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "link_domains"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "mentions"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "leading_mentions"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "annotation_types"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "attachment_types"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "crosspost_url"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "crosspost_domain"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "place_id"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "is_reply"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "is_directed"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_location"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_checkin"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "is_crosspost"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_attachment"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_photo"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_video"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_html5video"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_rich"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "language"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "client_id"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "creator_id"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "reply_to"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "thread_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/post/search/"
+      },
+      {
+        "path": "/channels/{channel_id}",
+        "displayName": "/channels/{channel_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/lookup/"
+      },
+      {
+        "path": "/channels",
+        "displayName": "/channels",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/lookup/"
+      },
+      {
+        "path": "/users/me/channels",
+        "displayName": "/users/me/channels",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/channel/lookup/"
+      },
+      {
+        "path": "/users/me/channels/pm/num_unread",
+        "displayName": "/users/me/channels/pm/num_unread",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/channel/lookup/"
+      },
+      {
+        "path": "/users/me/channels/broadcast/num_unread",
+        "displayName": "/users/me/channels/broadcast/num_unread",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/channel/lookup/"
+      },
+      {
+        "path": "/users/me/channels/broadcast/num_unread",
+        "displayName": "/users/me/channels/broadcast/num_unread",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lookup/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/channel/lookup/"
+      },
+      {
+        "path": "/channels",
+        "displayName": "/channels",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lifecycle/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/channel/lifecycle/"
+      },
+      {
+        "path": "/channels/{channel_id}",
+        "displayName": "/channels/{channel_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lifecycle/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "channel_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/lifecycle/"
+      },
+      {
+        "path": "/channels/{channel_id}",
+        "displayName": "/channels/{channel_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/lifecycle/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/lifecycle/"
+      },
+      {
+        "path": "/users/me/channels/muted",
+        "displayName": "/users/me/channels/muted",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/muting/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/channel/muting/"
+      },
+      {
+        "path": "/channels/{channel_id}/mute",
+        "displayName": "/channels/{channel_id}/mute",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/muting/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/muting/"
+      },
+      {
+        "path": "/channels/{channel_id}/mute",
+        "displayName": "/channels/{channel_id}/mute",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/muting/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/muting/"
+      },
+      {
+        "path": "/channels",
+        "displayName": "/channels",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+      },
+      {
+        "path": "/channels/{channel_id}/subscribe",
+        "displayName": "/channels/{channel_id}/subscribe",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+      },
+      {
+        "path": "/channels/{channel_id}/subscribe",
+        "displayName": "/channels/{channel_id}/subscribe",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+      },
+      {
+        "path": "/channels/{channel_id}/subscribers",
+        "displayName": "/channels/{channel_id}/subscribers",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+      },
+      {
+        "path": "/channels/{channel_id}/subscribers/ids",
+        "displayName": "/channels/{channel_id}/subscribers/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+      },
+      {
+        "path": "/channels/subscribers/ids",
+        "displayName": "/channels/subscribers/ids",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/subscriptions/"
+      },
+      {
+        "path": "/channels/search",
+        "displayName": "/channels/search",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/channel/search/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "order",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "q",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "type",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "creator_id",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "tags",
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "is_private",
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "is_public",
+        }],
+        "url": "https://developers.app.net/reference/resources/channel/search/"
+      },
+      {
+        "path": "/channels/{channel_id}/messages/{message_id}",
+        "displayName": "/channels/{channel_id}/messages/{message_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "message_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/message/lookup/"
+      },
+      {
+        "path": "/channels/messages",
+        "displayName": "/channels/messages",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/message/lookup/"
+      },
+      {
+        "path": "/users/me/messages",
+        "displayName": "/users/me/messages",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/message/lookup/"
+      },
+      {
+        "path": "/channels/{channel_id}/messages",
+        "displayName": "/channels/{channel_id}/messages",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lifecycle/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/message/lifecycle/"
+      },
+      {
+        "path": "/channels/{channel_id}/messages/{message_id}",
+        "displayName": "/channels/{channel_id}/messages/{message_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        },{
+          "type": "string",
+          "name": "message_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/message/lifecycle/"
+      },
+      {
+        "path": "/channels/{channel_id}/messages",
+        "displayName": "/channels/{channel_id}/messages",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/lifecycle/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "channel_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/message/lifecycle/"
+      },
+      {
+        "path": "/channels/messages/search",
+        "displayName": "/channels/messages/search",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/message/search/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "index"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "order"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "query"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "text"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "channel_ids"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "hashtags"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "links"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "link_domains"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "mentions"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "leading_mentions"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "annotation_types"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "attachment_types"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "place_id"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "is_reply"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "is_directed"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_location"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_checkin"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_attachment"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_photo"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_video"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_html5video"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "has_oembed_rich"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "language"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "client_id"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "creator_id"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "reply_to"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "thread_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/message/search/"
+      },
+      {
+        "path": "/files/{file_id}",
+        "displayName": "/files/{file_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "file_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/file/lookup/"
+      },
+      {
+        "path": "/files",
+        "displayName": "/files",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "ids"
+        }],
+        "url": "https://developers.app.net/reference/resources/file/lookup/"
+      },
+      {
+        "path": "/users/me/files",
+        "displayName": "/users/me/files",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lookup/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/file/lookup/"
+      },
+      {
+        "path": "/files",
+        "displayName": "/files",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lifecycle/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/file/lifecycle/"
+      },
+      {
+        "path": "/files/{file_id}",
+        "displayName": "/files/{file_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lifecycle/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "file_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/file/lifecycle/"
+      },
+      {
+        "path": "/files/{file_id}",
+        "displayName": "/files/{file_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X ",
+        "params": [{
+          "type": "string",
+          "name": "file_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/file/lifecycle/"
+      },
+      {
+        "path": "/files/{file_id}/content",
+        "displayName": "/files/{file_id}/content",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/content/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "file_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/file/content/"
+      },
+      {
+        "path": "/files/{file_id}/content",
+        "displayName": "/files/{file_id}/content",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/content/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "file_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/file/content/"
+      },
+      {
+        "path": "/files/{file_id}/content/{derived_file_key}",
+        "displayName": "/files/{file_id}/content/{derived_file_key}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/content/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "file_id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "derived_file_key",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/file/content/"
+      },
+      {
+        "path": "/files/{file_id}/content/{derived_file_key}",
+        "displayName": "/files/{file_id}/content/{derived_file_key}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/file/content/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "file_id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "derived_file_key",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/file/content/"
+      },
+      {
+        "path": "/streams",
+        "displayName": "/streams",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+      },
+      {
+        "path": "/streams/{stream_id}",
+        "displayName": "/streams/{stream_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "stream_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+      },
+      {
+        "path": "/streams",
+        "displayName": "/streams",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "key"
+        }],
+        "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+      },
+      {
+        "path": "/streams/{stream_id}",
+        "displayName": "/streams/{stream_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "stream_id",
+          "required": true
+        },{
+        "path": "/streams/{stream_id}",
+        "displayName": "/streams/{stream_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/post/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "post_id"
+        }],
+        "url": "https://developers.app.net/reference/resources/post/lifecycle/"
+      },
+      {
+        "path": "/streams",
+        "displayName": "/streams",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/app-stream/lifecycle/"
+      },
+      {
+        "path": "/users/me/streams/{connection_id}",
+        "displayName": "/users/me/streams/{connection_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "connection_id",
+          "required": true
+          }],
+        "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/"
+      },
+      {
+        "path": "/users/me/streams/{connection_id}/{subscription_id}",
+        "displayName": "/users/me/streams/{connection_id}/{subscription_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "connection_id",
+          "required": true
+          },{
+          "type": "string",
+          "name": "subscription_id",
+          "required": true
+          }],
+        "url": "https://developers.app.net/reference/resources/user-stream/lifecycle/"
+      },
+      {
+        "path": "/filters",
+        "displayName": "/filters",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+      },
+      {
+        "path": "/filters/{filter_id}",
+        "displayName": "/filters/{filter_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "filter_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+      },
+      {
+        "path": "/filters",
+        "displayName": "/filters",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+      },
+      {
+        "path": "/filters/{filter_id}",
+        "displayName": "/filters/{filter_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "filter_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+      },
+      {
+        "path": "/filters/{filter_id}",
+        "displayName": "/filters/{filter_id}",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [{
+          "type": "string",
+          "name": "filter_id",
+          "required": true
+        }],
+        "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+      },
+      {
+        "path": "/filters",
+        "displayName": "/filters",
+        "doc": {
+          "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://developers.app.net/reference/resources/filter/lifecycle/"
+      }]
