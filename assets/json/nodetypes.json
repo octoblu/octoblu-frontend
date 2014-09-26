@@ -82,6 +82,20 @@
 		"type" : "device:blink1"
 	},
 	{
+		"_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",
+		"category" : "subdevice",
+		"description" : "AllJoyn Notification",
+		"display" : true,
+		"enabled" : true,
+		"name" : "AllJoyn Notification",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "alljoyn-notification",
+			"plugin" : "skynet-alljoyn"
+		},
+		"type" : "device:alljoyn-notification"
+	},
+	{
 		"_id" : "53c9b830f400e177dca325a8",
 		"category" : "device",
 		"description" : "Raspberry Pi",
