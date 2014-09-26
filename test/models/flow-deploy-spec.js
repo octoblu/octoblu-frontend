@@ -157,39 +157,6 @@ describe('FlowDeploy', function () {
       });
     });
   });
-
-  describe('registerFlow', function () {
-    var sut, fakeMeshblu;
-
-    beforeEach(function () {
-      fakeMeshblu = new FakeMeshblu();
-      sut = new FlowDeploy({meshblu: fakeMeshblu, userUUID: 'useruuid'});
-    });
-
-    describe('when a flow', function(){
-      beforeEach(function () {
-        sut.registerFlow('hello.world');
-      });
-
-      it('should call register', function () {
-        expect(fakeMeshblu.register).to.have.been.calledOnce;
-      });
-
-      it('should call register with the flowId', function () {
-        expect(fakeMeshblu.register).to.have.been.calledWith({uuid: 'hello.world', type: 'octoblu:flow', owner: 'useruuid'});
-      });
-    });
-
-    describe('when another flow', function(){
-      beforeEach(function () {
-        sut.registerFlow('else');
-      });
-
-      it('should call register with the flowId', function () {
-        expect(fakeMeshblu.register).to.have.been.calledWith({uuid: 'else', type: 'octoblu:flow', owner: 'useruuid'});
-      });
-    });
-  });
 });
 
 var FakeMeshblu = function(){

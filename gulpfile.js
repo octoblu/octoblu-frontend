@@ -6,6 +6,7 @@ var gulp         = require('gulp'),
   less           = require('gulp-less'),
   plumber        = require('gulp-plumber'),
   sourcemaps     = require('gulp-sourcemaps'),
+  nodemon        = require('gulp-nodemon'),
   _              = require('lodash');
 
 gulp.task('bower', function() {
@@ -56,4 +57,10 @@ gulp.task('watch', ['default'], function() {
   gulp.watch(['./assets/less/**/*.less'], ['less:compile']);
   gulp.watch(['./public/angular/**/*.js'], ['javascript:concat']);
   gulp.watch(['./assets/json/channels/*.json'], ['channels:concat']);
+
+  nodemon({
+    script : 'server.js',
+    ext : 'js json',
+    watch : ['server.js', 'app/*', 'config/*', 'assets/*']
+  });
 });

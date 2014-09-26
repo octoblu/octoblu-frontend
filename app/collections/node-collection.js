@@ -45,19 +45,14 @@ var NodeCollection = function (userUUID) {
     return nodeTypeCollection.fetch().then(function(nodeTypes){
       return _.map(nodes, function(node){
         var logo, nodeType;
-
-        nodeType = _.findWhere(nodeTypes, function(nodeType) {
-          if(node.subtype){
-            return nodeType.type === node.subtype;
-          }
-          return nodeType.type === node.type;
-        });
-
-        if (nodeType) {
-          logo = nodeType.logo;
+        nodeType = _.findWhere(nodeTypes, {type: node.type});
+        if(nodeType) {
+          node.category = nodeType.category;
         }
-        return _.extend({nodeType: {logo: logo}}, node);
+        node.nodeType = {};
+        return node;
       });
+
     });
   };
 
