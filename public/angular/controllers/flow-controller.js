@@ -17,12 +17,8 @@ angular.module('octobluApp')
       skynetConnection.on('message', function (message) {
         if (message.topic === 'device-status') {
           $scope.deviceOnline = message.payload.online;
-        }
-        if (message.topic === 'nodered-instance') {
-          if (message.payload.success) {
-            $scope.deploying = false;
-            $scope.stopping = false;
-          }
+          $scope.deploying = false;
+          $scope.stopping = false;
         }
       });
     });
