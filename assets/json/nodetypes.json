@@ -84,16 +84,16 @@
 	{
 		"_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",
 		"category" : "subdevice",
-		"description" : "AllJoyn Notification",
+		"description" : "AllJoyn",
 		"display" : true,
 		"enabled" : true,
-		"name" : "AllJoyn Notification",
+		"name" : "AllJoyn",
 		"skynet" : {
-			"type" : "device",
-			"subtype" : "alljoyn-notification",
+			"type" : "subdevice",
+			"subtype" : "alljoyn",
 			"plugin" : "skynet-alljoyn"
 		},
-		"type" : "device:alljoyn-notification"
+		"type" : "subdevice:alljoyn"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325a8",
