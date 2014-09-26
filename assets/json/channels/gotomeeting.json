@@ -43,25 +43,29 @@
             "name": "subject",
             "style": "body",
             "type": "string",
-            "required": true
+            "required": true,
+            "default": "New Meeting"
           },
           {
             "name": "starttime",
             "style": "body",
             "type": "string",
-            "required": true
+            "required": true,
+            "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "name": "endtime",
             "style": "body",
             "type": "string",
-            "required": true
+            "required": true,
+            "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "name": "passwordrequired",
             "style": "body",
             "type": "string",
             "required": true,
+            "hidden": true,
             "default": "false"
           },
           {
@@ -141,12 +145,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "startDate"
+            "name": "startDate",
+            "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "endDate"
+            "name": "endDate",
+            "default": "2014-10-26T22:00:00+00:00"
           }
         ],
         "url": "https://api.citrixonline.com/G2M/rest/meetings"
@@ -173,12 +179,14 @@
           {
             "style": "query",
             "type": "string",
-            "name": "startDate"
+            "name": "startDate",
+            "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "endDate"
+            "name": "endDate",
+            "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "name": ":groupKey",
@@ -247,13 +255,15 @@
             "style": "body",
             "type": "string",
             "name": "starttime",
-            "required": true
+            "required": true,
+            "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "body",
             "type": "string",
             "name": "endtime",
-            "required": true
+            "required": true,
+            "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "style": "body",
@@ -453,13 +463,15 @@
             "style": "query",
             "type": "string",
             "name": "startDate",
-            "required": true
+            "required": true,
+            "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
-            "required": true
+            "required": true,
+            "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "name": ":groupKey",
@@ -472,8 +484,8 @@
         "url": "https://api.citrixonline.com/G2M/rest/groups/:groupKey/attendees"
       },
       {
-        "path": "/G2M/rest/meetings/:meetingInstanceKey/attendees",
-        "displayName": "/G2M/rest/meetings/:meetingInstanceKey/attendees",
+        "path": "/G2M/rest/meetings/:meeting_instance_id/attendees",
+        "displayName": "/G2M/rest/meetings/:meeting_instance_id/attendees",
         "doc": {
           "url": "https://developer.citrixonline.com/api/gotomeeting-rest-api/apimethod/get-attendees-meeting"
         },
@@ -484,23 +496,26 @@
             "style": "query",
             "type": "string",
             "name": "startDate",
-            "required": true
+            "required": true,
+            "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
-            "required": true
+            "required": true,
+            "default": "2014-10-26T22:00:00+00:00"
           },
           {
-            "name": ":meetingInstanceKey",
+            "name": ":meeting_instance_id",
+            "displayName": "Meeting Instance ID",
             "style": "url",
             "type": "string",
             "value": "",
             "required": "true"
           }
         ],
-        "url": "https://api.citrixonline.com/G2M/rest/meetings/:meetingInstanceKey/attendees"
+        "url": "https://api.citrixonline.com/G2M/rest/meetings/:meeting_instance_id/attendees"
       },
       {
         "path": "/G2M/rest/organizers/:organizerKey/attendees",
@@ -515,13 +530,15 @@
             "style": "query",
             "type": "string",
             "name": "startDate",
-            "required": true
+            "required": true,
+            "default": "2014-09-26T20:00:00+00:00"
           },
           {
             "style": "query",
             "type": "string",
             "name": "endDate",
-            "required": true
+            "required": true,
+            "default": "2014-10-26T22:00:00+00:00"
           },
           {
             "name": ":organizerKey",
