@@ -69,17 +69,17 @@ angular.module('octobluApp')
     return $http.post('/api/flows').then(function(response) {
       return new FlowModel(response.data);
     });
-  }
+  };
 
   self.createDemoFlow = function(options) {
     return $http.post('/api/demo_flows').then(function(response) {
       return new FlowModel(response.data);
     });
-  }
+  };
 
   self.deleteFlow = function(flowId){
     return $http.delete('/api/flows/' + flowId).then(function(response){
       return response.data;
     });
-  }
+  };
 });

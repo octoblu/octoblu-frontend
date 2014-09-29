@@ -5,15 +5,15 @@
 
   <div class="flow-toolbar">
 
-    <div class="input-group flow-name" dropdown>
+    <div class="input-group flow-name dropdown" >
       <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name">
-      <span class="input-group-addon flow-dropdown" dropdown-toggle>
-        <i class="fa fa-lg fa-angle-down"></i>
+      <span class="input-group-addon flow-dropdown dropdown-toggle" id="flowMenuDropdown" data-toggle="dropdown"  ng-click="flowMenuIsOpen = !flowMenuIsOpen">
+          <i class="fa fa-lg fa-angle-down"></i>
       </span>
-      <ul class="dropdown-menu" role="menu">
-        <li class="text-center" dropdown-toggle ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown">
+        <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
         <li role="presentation"  class="divider"></li>
-        <li class="" dropdown-toggle ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'">
+        <li class="" data-toggle="dropdown" ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'">
           <a ui-sref="flow({flowId: flow.flowId})">{{flow.name}}</a>
         </li>
       </ul>
