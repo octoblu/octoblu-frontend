@@ -15,7 +15,7 @@ var DeviceCollection = function (userUUID) {
     return self.getUser(userUUID).then(function (user) {
       return self.getDevicesByOwner(user).then(function(devices){
         return _.reject(devices, {type: 'octoblu:flow'});
-      })
+      });
     });
   };
 
