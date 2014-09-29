@@ -9,7 +9,7 @@ angular.module('octobluApp')
     $scope.nextStepUrl = function (node) {
         var sref = 'ob.connector.nodes.' + node.category + '-detail';
         var params = {};
-        if (node.category === 'device') {
+        if (node.category === 'device' || node.category === 'microblu') {
             params.uuid = node.uuid;
         } else if (node.category === 'channel') {
             params.id = node.channelid;
@@ -18,7 +18,7 @@ angular.module('octobluApp')
     };
 
     $scope.isAvailable = function (node) {
-        if (node.category === 'device') {
+        if (node.category === 'device' || node.category === 'microblu') {
             return node.resource.online;
         }
         return true;
