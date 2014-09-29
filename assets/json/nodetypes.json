@@ -135,17 +135,18 @@
 		"type" : "device:beaglebone"
 	},
 	{
-		"_id" : "3a919b7f-1883-4705-a3fb-7d00c1f8a3c7",
-		"category" : "device",
+		"_id" : "5f8f2fa1349c4a1293109486",
+		"category" : "subdevice",
 		"description" : "Lightblue Bean",
 		"display" : true,
 		"enabled" : true,
 		"name" : "Lightblue Bean",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "lightblue-bean"
+			"subtype" : "bean",
+			"plugin" : "skynet-bean"
 		},
-		"type" : "device:lightblue-bean"
+		"type" : "subdevice:bean"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325ab",
