@@ -220,7 +220,6 @@ angular.module('octobluApp')
       FlowService.saveActiveFlow();
     };
 
-
     $scope.save = _.throttle($scope.immediateSave, 1000);
 
     $scope.setMousePosition = function (e) {
@@ -254,4 +253,9 @@ angular.module('octobluApp')
 
     $scope.$watch('activeFlow', calculateFlowHash, true);
     $scope.$watch('activeFlow.hash', compareFlowHash);
+
+    $scope.$on('update-active-flow-edit', function(event, newFlow){
+      var flow = _.pick(newFlow, ['links', 'nodes', 'name']);
+      $scope.setActiveFlow(angular.extend($scope.activeFlow, flow));
+    });
   });
