@@ -107,14 +107,7 @@ angular.module('octobluApp')
       }
     };
 
-    $scope.unMousetrap = function (e) {
-
-    };
-
     $scope.copySelection = function (e) {
-      if (e) {
-        e.preventDefault();
-      }
       if ($scope.activeFlow && $scope.activeFlow.selectedFlowNode) {
         $scope.copiedNode = JSON.stringify($scope.activeFlow.selectedFlowNode);
       }
