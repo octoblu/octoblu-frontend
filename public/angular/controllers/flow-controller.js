@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService) {
+  .controller('FlowController', function ( $log, $state, $stateParams, $scope, $window, AuthService, FlowService, FlowNodeTypeService, NodeTypeService, skynetService, reservedProperties) {
     var originalNode;
 
     $scope.zoomLevel = 0;
@@ -239,7 +239,8 @@ angular.module('octobluApp')
     var immediateCalculateFlowHash = function(newFlow, oldFlow) {
       newFlow.hash = FlowService.hashFlow(newFlow);
       $scope.$apply();
-    }
+    };
+
     var calculateFlowHash = _.debounce(immediateCalculateFlowHash, 1000);
 
     var compareFlowHash = function(newHash, oldHash){
@@ -249,7 +250,7 @@ angular.module('octobluApp')
       if (!_.isEqual(newHash, oldHash)) {
         FlowService.saveActiveFlow();
       }
-    }
+    };
 
     $scope.$watch('activeFlow', calculateFlowHash, true);
     $scope.$watch('activeFlow.hash', compareFlowHash);

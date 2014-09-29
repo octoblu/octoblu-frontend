@@ -9,9 +9,10 @@ angular.module('octobluApp')
       flowNodeTypes : '=',
       nodeTypes : '=',
       flow: '=',
-      debugLines: '='
+      debugLines: '=',
+      activeFlow: '='
     },
-    controller: function ($scope, FlowNodeTypeService) {
+    controller: function ($scope, FlowNodeTypeService, reservedProperties) {
       var tabs = {
         debug: {
           name: 'debug',
@@ -31,6 +32,11 @@ angular.module('octobluApp')
         unconfigurednodes: {
           name: 'unconfigurednodes',
           template: '/pages/flow-browser-unconfigured-nodes.html',
+          controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        },
+        shareflow: {
+          name: 'shareflow',
+          template: '/pages/flow-browser-shareflow.html',
           controlsTemplate: '/pages/flow-browser-nodes-controls.html'
         }
       };
@@ -66,7 +72,7 @@ angular.module('octobluApp')
 
       $scope.hasActiveTab = function() {
         return !_.isEmpty($scope.activeTab);
-      }
+      };
 
       $scope.toggleMaximize = function() {
         $scope.maximized = !$scope.maximized;
@@ -84,6 +90,26 @@ angular.module('octobluApp')
           $('.flow-browser').trigger($.Event('resize'));
         }, 300);
       });
+
+      $scope.$watch('activeFlow', function(newFlow, oldFlow){
+        var flow = _.clone(newFlow);
+        flow = _.omit(flow, reservedProperties);
+        $scope.activeFlowJSON = JSON.stringify(flow, undefined, 2);
+      });
+
+      $scope.handleActiveFlowChange = function(json){
+        $scope.shareFlowError = false;
+        $scope.shareFlowSuccess = false;
+        var flow;
+        try{
+          flow = _.extend($scope.activeFlow, JSON.parse(json));
+        }catch(e){
+          $scope.shareFlowError = true;
+          return;
+        }
+        $scope.shareFlowSuccess = true;
+        $scope.activeFlow = flow;
+      };
 
       $scope.filterNonOperators = function(flowNodeType){
         return flowNodeType && (flowNodeType.category === 'device' || flowNodeType.category === 'channel');
