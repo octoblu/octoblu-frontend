@@ -3,8 +3,8 @@ angular.module('octobluApp')
     .controller('MessagingDeviceController', function ($scope, AuthService,  deviceService, skynetService, PluginService) {
 
         $scope.messageDevice = {
-            recipientDevices : [$scope.device],
-            recipientDevice : $scope.device,
+            recipientDevices : [_.clone($scope.device)],
+            recipientDevice : _.clone($scope.device),
             schemaEditor :{}
         };
 

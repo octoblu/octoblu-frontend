@@ -174,7 +174,6 @@ angular.module('octobluApp')
 
             gatewayConfig: function (options) {
                 var defer = $q.defer();
-
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.gatewayConfig(options, function (result) {
                         defer.resolve(result);

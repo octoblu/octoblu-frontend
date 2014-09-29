@@ -19,7 +19,7 @@ angular.module('octobluApp')
               "token": gateway.token,
               "method": "configurationDetails"
             }).then(function (response) {
-              return subdevicesToDevices(gateway.uuid, response.result);
+              return self.subdevicesToDevices(gateway.uuid, response.result);
             }, function (err) {
               return [];
             });
@@ -36,7 +36,7 @@ angular.module('octobluApp')
       })
     }
 
-    function subdevicesToDevices(gatewayUuid, gatewayConfig) {
+    self.subdevicesToDevices = function(gatewayUuid, gatewayConfig) {
 
       if(!gatewayConfig) {
         return [];
@@ -49,7 +49,7 @@ angular.module('octobluApp')
           newSubdevice.category = 'subdevice';
           newSubdevice.online = true;
 
-          newSubdevice.type = 'subdevice:' +  subdevice.type.replace('skynet-', '');
+          newSubdevice.type = 'device:' +  subdevice.type.replace('skynet-', '');
           newSubdevice = deviceService.addLogoUrl(newSubdevice);
 
           newSubdevice.plugin = _.findWhere(gatewayConfig.plugins, { name: subdevice.type });
