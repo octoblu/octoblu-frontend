@@ -161,6 +161,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'DeviceDetailController',
         templateUrl: '/pages/connector/devices/detail/index.html'
       })
+      .state('ob.connector.nodes.microblu-detail', {
+        url: '/microblu/:uuid',
+        controller: 'DeviceDetailController',
+        templateUrl: '/pages/connector/devices/detail/index.html'
+      })
       .state('ob.connector.nodes.shared-device-detail', {
         url: '/device-shared/:uuid',
         controller: 'DeviceDetailSharedController',
