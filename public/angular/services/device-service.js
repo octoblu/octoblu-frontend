@@ -173,6 +173,7 @@ angular.module('octobluApp')
             },
 
             gatewayConfig: function (options) {
+               options.timeout = 1000;
                 var defer = $q.defer();
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.gatewayConfig(options, function (result) {

@@ -10,7 +10,7 @@ angular.module('octobluApp')
     return _.defaults({id: UUIDService.v1(), resourceType: 'flow-node'}, defaults, flowNodeType);
   };
 
-  self.getFlowNodeType  = function(type){
+  self.  getFlowNodeType  = function(type){
     return self.getFlowNodeTypes().then(function(flowNodeTypes){
       return _.findWhere(flowNodeTypes, {type: type});
     });
