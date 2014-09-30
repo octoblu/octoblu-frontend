@@ -105,9 +105,17 @@ angular.module('octobluApp')
         $scope.shareFlowError = false;
         $scope.shareFlowSuccess = false;
         var flow;
+        // Does it validate JSON?
         try{
           flow = JSON.parse(json);
         }catch(e){
+          // Negatory Captin
+          $scope.shareFlowError = true;
+          return;
+        }
+        // Is it an object?
+        if(!_.isObject(flow)){
+          // You should know better than to fool a fool
           $scope.shareFlowError = true;
           return;
         }
