@@ -9,8 +9,9 @@
 <div class="form-group">
 	<label class="form-label" for="pin-type">Pin Type</label>
 	<select id="pin-type" class="form-control" ng-model="flowNode.pinType">
-		<option value="OUTPUT">Digital (0/1)</option>
-		<option value="PWM">Analog (0-255)</option>
-		<option value="SERVO">Servo (0-180)</option>
+		<option value="OUTPUT">Digital Write</option>
+		<option value="PWM">Analog Write</option>
+		<option value="SERVO">Servo Write</option>
+		<option value="INPUT">Digital Read</option>
 	</select>
 </div>
