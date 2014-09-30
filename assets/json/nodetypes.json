@@ -338,7 +338,7 @@
 		"_id" : "53c9b837f400e177dca325c2",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Vimeo",
 		"skynet" : {
 			"type" : "channel",
@@ -351,7 +351,7 @@
 		"_id" : "53c9b833f400e177dca325b5",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "LinkedIn",
 		"skynet" : {
 			"type" : "channel",
@@ -364,7 +364,7 @@
 		"_id" : "53c9b834f400e177dca325b6",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "FitBit",
 		"skynet" : {
 			"type" : "channel",
@@ -468,8 +468,7 @@
 		"_id" : "53c9b837f400e177dca325c0",
 		"category" : "channel",
 		"description" : "",
-		"display" : true,
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Rdio",
 		"skynet" : {
 			"subtype" : "Rdio",
@@ -534,7 +533,7 @@
 		"_id" : "541b5072025549193cb8293a",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Instagram",
 		"skynet" : {
 			"type" : "channel",
@@ -647,7 +646,7 @@
 		"_id" : "53c9b83bf400e177dca325cb",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Google Drive",
 		"skynet" : {
 			"type" : "channel",
@@ -726,7 +725,7 @@
 		"_id" : "53c9b83df400e177dca325d1",
 		"category" : "channel",
 		"description" : "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "App.net",
 		"skynet" : {
 			"type" : "channel",
