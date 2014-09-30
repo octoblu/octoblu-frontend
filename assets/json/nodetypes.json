@@ -751,7 +751,7 @@
 		"_id" : "53ea57ee2522c76ff9298af9",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Unison",
 		"skynet" : {
 			"type" : "channel",

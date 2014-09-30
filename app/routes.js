@@ -18,6 +18,9 @@ module.exports = function(app, passport) {
         "protocol" : "websocket"
     });
 
+    var ChannelBasicAuthController = require('./controllers/channel-basic-auth-controller');
+    var channelBasicAuthController = new ChannelBasicAuthController();
+
     var NodeTypeController = require('./controllers/node-type-controller');
     var nodeTypeController = new NodeTypeController();
 
@@ -123,6 +126,8 @@ module.exports = function(app, passport) {
             require('./controllers/permissions')(app);
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
+
+            app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
             app.get('/api/oauth/facebook/signup', signupController.verifyInvitationCode, signupController.storeTesterId, facebookController.authorize);
