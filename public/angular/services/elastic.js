@@ -18,7 +18,7 @@ angular.module('octobluApp')
 
     this.buildDevices = function(myDevices) {
         var deviceStrings = _.map(myDevices, function(device){
-            return " _type:"+data.uuid;
+            return " _type:"+device.uuid;
         });
         return deviceStrings.join(" OR ");
     };
