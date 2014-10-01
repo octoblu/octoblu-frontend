@@ -1,0 +1,132 @@
+<html>
+	<head>
+			<title>Octoblu Login</title>
+      <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="/assets/stylesheets/font-awesome.min.css">
+      <script src="/lib/jquery/dist/jquery.js"></script>
+      <script>
+        (function(){
+
+          function getParam(variable, url) {
+              if(!url) url = window.location.href;
+              if(!~url.indexOf('?')){
+                  return false;
+              }
+              var query = url.split('?')[1];
+              var vars = query.split('&');
+              for (var i = 0; i < vars.length; i++) {
+                  var pair = vars[i].split('=');
+                  if (pair[0] === variable) {
+                      return decodeURIComponent(pair[1]);
+                  }
+              }
+              return false;
+          }
+
+          function loginViaProvider(provider){
+            var url = '/api/oauth/' + provider;
+            url += '?mobile=true&referrer=' + encodeURIComponent('/static/pebble-login.html');
+            var authWindow = window.open(url, '_self', 'location=no,toolbar=no');
+
+            $(authWindow).on('loadstart', function (e) {
+                var url = e.originalEvent.url;
+                var uuidTest = /\?uuid=(.+)$/.exec(url);
+
+                console.log('Auth window loading url : ', url);
+
+                if (uuidTest) {
+                    var uuid = getParam('uuid', url),
+                        token = getParam('token', url);
+                        // Set new Skynet Tokens
+                    if (uuid && token) {
+                        console.log('Verified Credentials');
+                        window.location.href = "pebblejs://close#" + encodeURIComponent(JSON.stringify({
+                          uuid : uuid,
+                          token : token
+                        }));
+                    } else {
+                        console.log('No Credentials Backup' + JSON.stringify([uuid, token]));
+                        alert('Error logging in!');
+                    }
+
+                    authWindow.close();
+                }
+            });
+          }
+          $(document).ready(function(){
+            $('.login-via-provider').click(function(e){
+              e.preventDefault();
+              console.log('Here');
+              loginViaProvider($(this).attr('data-provider'));
+              return false;
+            });
+
+            $('#loginForm').submit(function(){
+              $.post('/api/auth', {
+                email : $('#email').val(),
+                password : $('#password').val()
+              }).success(function(currentUser){
+                window.location.href = "pebblejs://close#" + encodeURIComponent(JSON.stringify({
+                  uuid : currentUser.skynet.uuid,
+                  token : currentUser.skynet.token
+                }));
+              }).error(function(){
+                alert('There was an error signing into Octoblu');
+              });
+              return false;
+            });
+          });
+
+        })();
+      </script>
+	</head>
+	<body>
+    <div class="row">
+      <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+        <h3>Octoblu Login</h3>
+    		<form id="loginForm">
+    			<div class="form-group">
+    				<label for="email">Email</label>
+    				<input class="form-control" name="email" type="email" id="email" placeholder="john.doe@example.com" />
+    			</div>
+    			<div class="form-group">
+    				<label for="password">Password</label>
+    				<input class="form-control" name="password" type="password" id="password" />
+    			</div>
+    		  <button type="submit" class="btn btn-lg center-block btn-success">Login</button>
+    		</form>
+      </div>
+    </div>
+
+		<div class="row text-center">
+      <div class="col-xs-12 col-lg-4 col-lg-offset-2">
+        <p>
+          <button class="btn-lg btn-primary btn-github login-via-provider" data-provider="github">
+            <span class="fa fa-github"> Github</span>
+          </button>
+        </p><br>
+      </div>
+      <div class="col-xs-12 col-lg-4">
+        <p>
+          <button class="btn-lg btn-primary btn-facebook login-via-provider" data-provider="facebook">
+            <span class="fa fa-facebook"> Facebook</span>
+          </button>
+        </p><br>
+      </div>
+      <div class="col-xs-12 col-lg-4 col-lg-offset-2">
+        <p>
+          <button class="btn-lg btn-primary btn-twitter login-via-provider" data-provider="twitter">
+            <span class="fa fa-twitter"> Twitter</span>
+          </button>
+        </p><br>
+      </div>
+      <div class="col-xs-12 col-lg-4">
+        <p>
+          <button class="btn-lg btn-primary btn-google-plus login-via-provider" data-provider="google">
+            <span class="fa fa-google-plus"> Google+</span>
+          </button>
+        </p><br>
+      </div>
+    </div>
+	</body>
+</html>
