@@ -240,7 +240,7 @@ angular.module('octobluApp')
       $scope.$apply();
     };
 
-    var calculateFlowHash = _.debounce(immediateCalculateFlowHash, 1000);
+    var calculateFlowHash = _.debounce(immediateCalculateFlowHash, 500);
 
     var compareFlowHash = function(newHash, oldHash){
       if (!oldHash) {
