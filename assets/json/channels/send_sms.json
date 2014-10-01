@@ -1,0 +1,56 @@
+{
+  "_id": "542c2f2eab1c05dde14544e0",
+  "name": "Send SMS",
+  "auth_strategy": "basic",
+  "description" : "Send SMS text messages through Octoblu.",
+  "enabled": true,
+  "useCustom": true,
+  "oauth": {},
+  "application": {
+    "base": "http://localhost:9090",
+    "resources": [
+      {
+        "path": "/message",
+        "httpMethod": "POST",
+        "url": "https://localhost:9090/message",
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": ":dst",
+            "displayName": "Destination Number",
+            "style": "body",
+            "type": "String",
+            "required" : true
+          },
+          {
+            "name": ":message",
+            "displayName": "Message",
+            "style": "body",
+            "type": "String",
+            "required" : true
+          }
+        ]
+      },
+      {
+        "path": "/message/:messageid/status",
+        "httpMethod": "GET",
+        "url": "http://stock.octoblu.com/message",
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": ":messageid",
+            "displayName": "Message ID",
+            "style": "url",
+            "type": "String",
+            "required" : true
+          }
+        ]
+      }
+    ]
+  },
+  "type": "channel:sms-send"
+}

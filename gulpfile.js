@@ -61,6 +61,7 @@ gulp.task('watch', ['default'], function() {
   nodemon({
     script : 'server.js',
     ext : 'js json',
-    watch : ['server.js', 'app/*', 'config/*', 'assets/*']
+    watch : ['server.js', 'app/*', 'config/*', 'assets/*'],
+    env: { 'NODE_ENV': 'development' }
   });
 });
