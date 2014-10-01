@@ -299,7 +299,7 @@
 		"_id" : "53c9b833f400e177dca325b4",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Spotify",
 		"skynet" : {
 			"type" : "channel",
