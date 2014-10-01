@@ -16,7 +16,8 @@ var WebhookController = function(options) {
         topic: 'webhook',
         qos: 0,
         payload: {
-          from: req.params.id
+          from: req.params.id,
+          params: req.body
         }
       };
    
