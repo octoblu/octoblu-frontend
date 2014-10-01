@@ -1,6 +1,12 @@
 {
   "_id": "53e10a8813c57e0267403a82",
   "__v": 0,
+  "auth_strategy": "basic",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://developers.unison.com/v1/explorer/",
+  "name": "Unison",
+  "type": "channel:unison",
   "application": {
     "base": "https://unison.com",
     "resources": [
@@ -180,12 +186,5 @@
         "url": "https://unison.com/api/v1/rooms/:room_id/topics/:topic_id/comments/:comment_id"
       }
     ]
-  },
-  "auth_strategy": "basic",
-  "custom_tokens": [],
-  "description": "",
-  "documentation": "https://developers.unison.com/v1/explorer/",
-  "enabled": true,
-  "name": "Unison",
-  "type": "channel:unison"
+  }
 }

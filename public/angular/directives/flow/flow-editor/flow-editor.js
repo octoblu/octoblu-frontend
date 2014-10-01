@@ -73,7 +73,7 @@ angular.module('octobluApp')
         flowRenderer.on('nodeButtonClicked', function (flowNode) {
           skynetService.getSkynetConnection().then(function (skynetConnection) {
             var msg = {
-              devices: $scope.flow.flowId,
+              devices: [$scope.flow.flowId],
               topic: 'button',
               qos: 0,
               payload: {
