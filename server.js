@@ -51,6 +51,7 @@ passport.use(require('./config/nest'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/linked-in'));
 passport.use(require('./config/four-square'));
+passport.use(require('./config/spotify'));
 passport.use(require('./config/local'));
 
 // set up our express application
