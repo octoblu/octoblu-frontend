@@ -120,6 +120,18 @@
     "formTemplatePath": "/pages/node_forms/button_form.html"
   },
   {
+    "name": "webhook",
+    "class": "webhook",
+    "category" : "operation",
+    "uuid": "d5886aa5-4052-41be-8eed-9d1df32befb1",
+    "type": "operation:webhook",
+    "defaults": {
+    },
+    "input": 0,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/webhook_form.html"
+  },
+  {
     "name": "interval",
     "class": "interval",
     "category" : "operation",

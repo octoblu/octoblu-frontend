@@ -93,6 +93,9 @@ module.exports = function(app, passport) {
     var SignupController = require('./controllers/signup-controller');
     var signupController = new SignupController();
 
+    var WebhookController = require('./controllers/webhook-controller');
+    var webhookController = new WebhookController({meshblu: conn});
+
     var referrer = require('./controllers/middleware/referrer.js');
 
     conn.on('notReady', function(data){
@@ -108,6 +111,7 @@ module.exports = function(app, passport) {
             app.all('/api/auth/*', security.bypassAuth, security.bypassTerms);
             app.all('/api/oauth/*', security.bypassAuth, security.bypassTerms);
             app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms);
+            app.post('/api/webhooks/:id', security.bypassAuth, webhookController.trigger);
 
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
@@ -185,8 +189,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
 
-           app.get('/api/oauth/instagram',          instagramController.authorize);
-           app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
+            app.get('/api/oauth/instagram',          instagramController.authorize);
+            app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
