@@ -213,6 +213,30 @@
             "type": "string",
             "value": "",
             "required": "true"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "startDate",
+            "default": "2014-09-26T20:00:00+00:00"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "endDate",
+            "default": "2014-10-26T22:00:00+00:00"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "history",
+            "value": ""
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "schedule",
+            "value": ""
           }
         ],
         "url": "https://api.citrixonline.com/G2M/rest/organizers/:organizerKey/meetings"

@@ -1,5 +1,7 @@
+<h5 ng-if="flow.selectedFlowNode.name">Selected Flow: {{ flow.selectedFlowNode.name }}</h5>
 <ul class="flow-browser-debug">
-  <li ng-repeat="debug in debugLines | filter : {node: flow.selectedFlowNode.id}">
-    <prism code="debug"></prism>
+  <li ng-repeat="debug in debugLines | filter : {node: flow.selectedFlowNode._id}">
+  	<small>{{ debug.date | date: 'short'}}</small>
+    <prism code="debug.message"></prism>
   </li>
 </ul>

@@ -54,21 +54,28 @@ angular.module('octobluApp')
         });
     };
 
+    function pushDebugLines(message){
+      var debug = {};
+      debug.date = new Date();
+      debug.message = message;
+      $scope.debugLines.unshift(debug);
+      if ($scope.debugLines.length > 100) {
+        $scope.debugLines.pop();
+      }
+    }
+
     $scope.$on('flow-node-debug', function (event, options) {
       $log.debug(options);
-      $scope.debugLines.push(_.clone(options.message));
-      if ($scope.debugLines.length > 100) {
-        $scope.debugLines.shift();
-      }
+      pushDebugLines(_.clone(options.message));
       $scope.$apply();
     });
 
     $scope.$on('flow-node-error', function(event, options) {
       $log.debug(options);
-      $scope.debugLines.push(_.clone(options.message));
+      pushDebugLines(_.clone(options.message));
       options.node.errorMessage = options.message.msg;
       $scope.$apply();
-    })
+    });
 
     $scope.$on('flow-node-type-selected', function(event, flowNodeType){
       $scope.omniSearch = flowNodeType;

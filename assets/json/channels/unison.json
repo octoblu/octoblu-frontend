@@ -12,7 +12,7 @@
         },
         "displayName": "/whoami",
         "path": "/whoami",
-        "url": "https://unison.com/whoami"
+        "url": "https://unison.com/api/v1/whoami"
       },
       {
         "httpMethod": "GET",
@@ -22,7 +22,7 @@
         },
         "displayName": "/rooms",
         "path": "/rooms",
-        "url": "https://unison.com/rooms"
+        "url": "https://unison.com/api/v1/rooms"
       },
       {
         "httpMethod": "POST",
@@ -41,7 +41,7 @@
             "required": "true"
           }
         ],
-        "url": "https://unison.com/rooms"
+        "url": "https://unison.com/api/v1/rooms"
       },
       {
         "httpMethod": "GET",
@@ -49,8 +49,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/rooms /{room_id}",
-        "path": "/rooms /{room_id}",
+        "displayName": "/rooms/:room_id",
+        "path": "/rooms/:room_id",
         "params": [
           {
             "name": "",
@@ -60,7 +60,7 @@
             "required": "false"
           }
         ],
-        "url": "https://unison.com/rooms /{room_id}"
+        "url": "https://unison.com/api/v1/rooms/:room_id"
       },
       {
         "httpMethod": "GET",
@@ -68,8 +68,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/rooms /{room_id} /topics",
-        "path": "/rooms /{room_id} /topics",
+        "displayName": "/rooms/:room_id/topics",
+        "path": "/rooms/:room_id/topics",
         "params": [
           {
             "name": "anchor",
@@ -86,7 +86,7 @@
             "required": "false"
           }
         ],
-        "url": "https://unison.com/rooms /{room_id} /topics"
+        "url": "https://unison.com/api/v1/rooms/:room_id/topics"
       },
       {
         "httpMethod": "POST",
@@ -94,8 +94,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/rooms /{room_id} /topics",
-        "path": "/rooms /{room_id} /topics",
+        "displayName": "/rooms/:room_id/topics",
+        "path": "/rooms/:room_id/topics",
         "params": [
           {
             "name": "application/json",
@@ -105,7 +105,7 @@
             "required": "true"
           }
         ],
-        "url": "https://unison.com/rooms /{room_id} /topics"
+        "url": "https://unison.com/api/v1/rooms/:room_id/topics"
       },
       {
         "httpMethod": "GET",
@@ -113,8 +113,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/rooms /{room_id} /topics /{topic_id}",
-        "path": "/rooms /{room_id} /topics /{topic_id}",
+        "displayName": "/rooms/:room_id/topics/:topic_id",
+        "path": "/rooms/:room_id/topics/:topic_id",
         "params": [
           {
             "name": "Room Id",
@@ -124,14 +124,14 @@
             "required": "true"
           }
         ],
-        "url": "https://unison.com/rooms /{room_id} /topics /{topic_id}"
+        "url": "https://unison.com/api/v1/rooms/:room_id/topics/:topic_id"
       },
       {
         "httpMethod": "GET",
         "doc": {},
         "authentication": {},
-        "displayName": "/rooms /{room_id} /topics /{topic_id} /comments",
-        "path": "/rooms /{room_id} /topics /{topic_id} /comments",
+        "displayName": "/rooms/:room_id/topics/:topic_id/comments",
+        "path": "/rooms/:room_id/topics/:topic_id/comments",
         "params": [
           {
             "name": "anchor",
@@ -148,7 +148,7 @@
             "required": "false"
           }
         ],
-        "url": "https://unison.com/rooms /{room_id} /topics /{topic_id} /comments"
+        "url": "https://unison.com/api/v1/rooms/:room_id/topics/:topic_id/comments"
       },
       {
         "httpMethod": "POST",
@@ -156,8 +156,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/rooms /{room_id} /topics /{topic_id} /comments",
-        "path": "/rooms /{room_id} /topics /{topic_id} /comments",
+        "displayName": "/rooms/:room_id/topics/:topic_id/comments",
+        "path": "/rooms/:room_id/topics/:topic_id/comments",
         "params": [
           {
             "name": "application/json",
@@ -167,7 +167,7 @@
             "required": "true"
           }
         ],
-        "url": "https://unison.com/rooms /{room_id} /topics /{topic_id} /comments"
+        "url": "https://unison.com/api/v1/rooms/:room_id/topics/:topic_id/comments"
       },
       {
         "httpMethod": "GET",
@@ -175,18 +175,17 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/rooms /{room_id} /topics /{topic_id} /comments /{comment_id}",
-        "path": "/rooms /{room_id} /topics /{topic_id} /comments /{comment_id}",
-        "url": "https://unison.com/rooms /{room_id} /topics /{topic_id} /comments /{comment_id}"
+        "displayName": "/rooms/:room_id/topics/:topic_id/comments/:comment_id",
+        "path": "/rooms/:room_id/topics/:topic_id/comments/:comment_id",
+        "url": "https://unison.com/api/v1/rooms/:room_id/topics/:topic_id/comments/:comment_id"
       }
     ]
   },
-  "auth_strategy": "",
+  "auth_strategy": "basic",
   "custom_tokens": [],
   "description": "",
   "documentation": "https://developers.unison.com/v1/explorer/",
   "enabled": true,
   "name": "Unison",
-  "oauth": {},
   "type": "channel:unison"
 }

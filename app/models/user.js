@@ -119,42 +119,6 @@ UserSchema.methods.acceptTerms = function (termsAccepted) {
   });
 };
 
-// Deprecated, use overwriteOrAddApiByChannelId
-UserSchema.methods.addOrUpdateApiByChannelId = function (channelid, type, key, token, secret, verifier, custom_tokens) {
-  this.api = this.api || [];
-
-  var isoDate = moment().format();
-
-  for (var l = 0; l < this.api.length; l++) {
-    if (this.api[l].channelid == channelid) {
-      this.api[l].key = key;
-      this.api[l].authtype = type;
-      this.api[l].token = token;
-      this.api[l].secret = secret;
-      this.api[l].verifier = verifier;
-      this.api[l].updated = isoDate;
-      this.api[l].custom_tokens = custom_tokens;
-
-      return;
-    }
-  }
-
-
-  // at this point the match wasn't found, so add it..
-  var item = {
-    channelid: channelid,
-    authtype: type,
-    key: key,
-    token: token,
-    secret: secret,
-    verifier: verifier,
-    custom_tokens: custom_tokens,
-    updated: isoDate
-  };
-
-  this.api.push(item);
-};
-
 UserSchema.methods.overwriteOrAddApiByChannelId = function (channelid, options) {
   var old_api, new_api;
 

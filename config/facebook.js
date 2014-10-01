@@ -4,8 +4,8 @@ var User             = mongoose.model('User');
 
 var CONFIG = {
   development: {
-    clientID     : '125271024334065',
-    clientSecret : '999a5e310b8934a3dd0bdc37c87f39a1',
+    clientID     : 'INSERT_SECERT_HERE',
+    clientSecret : 'INSERT_SECERT_HERE',
     callbackURL  : 'http://localhost:8080/api/oauth/facebook/callback',
     passReqToCallback: true
   },
@@ -16,8 +16,8 @@ var CONFIG = {
     passReqToCallback: true
   },
   staging: {
-    clientID     : '1476628102576653',
-    clientSecret : 'd7173aef0ca4636201b38f369e9bda5f',
+    clientID     : 'INSERT_SECERT_HERE',
+    clientSecret : 'INSERT_SECERT_HERE',
     callbackURL  : 'https://staging.octoblu.com/api/oauth/facebook/callback',
     passReqToCallback: true
   }
@@ -45,11 +45,15 @@ var ensureUser = function(req, user, profile, callback){
 
   User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
   .then(function (user) {
-    callback(null, user);
+      if(!user){
+        callback(new Error('You need a valid invitation code'));
+      } else {
+        callback(null, user);
+      }
   }, function(err){
     callback(err);
   });
-}
+};
 
 var facebookStrategy = new FacebookStrategy(CONFIG,
   function (req, token, secret, profile, done) {
