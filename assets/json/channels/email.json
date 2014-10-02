@@ -7,10 +7,10 @@
   "name": "Email",
   "type": "channel:email",
   "application": {
-    "base": "http://localhost:9011",
+    "base": "https://email.octoblu.com",
     "resources": [
       {
-        "url": "http://localhost:9011/messages",
+        "url": "https://email.octoblu.com/messages",
         "path": "/messages",
         "httpMethod": "POST",
         "params": [
