@@ -488,7 +488,7 @@
 		"_id" : "542593853fb93d59863dfaef",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "FourSquare",
 		"skynet" : {
 			"type" : "channel",
