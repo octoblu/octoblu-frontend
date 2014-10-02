@@ -62,6 +62,7 @@
     "passport-rdio": "^0.1.2",
     "passport-readability": "~0.1.2",
     "passport-stackexchange": "~0.1.0",
+    "passport-surveymonkey": "^1.1.1",
     "passport-tumblr": "~0.1.2",
     "passport-twitter": "~1.0.2",
     "passport-vimeo": "~0.1.2",
