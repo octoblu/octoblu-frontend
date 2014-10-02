@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var FlowDeployController = require('../../app/controllers/flow-deploy');
 var mongoose = require('mongoose');
 
