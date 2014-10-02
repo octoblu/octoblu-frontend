@@ -32,7 +32,7 @@
             "required" : true
           }
         ]
-      },iin
+      },
       {
         "path": "/message/:messageid",
         "httpMethod": "GET",
