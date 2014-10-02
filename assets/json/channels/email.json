@@ -4,7 +4,7 @@
   "bodyFormat": "json",
   "documentation": "http://github.com/octoblu/email-service",
   "enabled": true,
-  "name": "Email",
+  "name": "Send Email",
   "type": "channel:email",
   "application": {
     "base": "https://email.octoblu.com",
