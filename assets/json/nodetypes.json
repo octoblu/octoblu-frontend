@@ -28,16 +28,16 @@
 	{
 		"_id" : "53c9b82ff400e177dca325a3",
 		"category" : "subdevice",
-		"description" : "Phillips Hue light bulbs",
+		"description" : "Philips Hue light bulbs",
 		"display" : true,
 		"enabled" : true,
-		"name" : "Phillips Hue",
+		"name" : "Philips Hue",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "phillips-hue",
+			"subtype" : "philips-hue",
 			"plugin" : "skynet-hue"
 		},
-		"type" : "device:phillips-hue"
+		"type" : "device:philips-hue"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a4",
