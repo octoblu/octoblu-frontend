@@ -81,6 +81,9 @@ module.exports = function(app, passport) {
     var NestController = require('./controllers/nest-controller');
     var nestController = new NestController();
 
+    var SurveyMonkeyController = require('./controllers/survey-monkey-controller');
+    var surveyMonkeyController = new SurveyMonkeyController();
+
     var VimeoController = require('./controllers/vimeo-controller');
     var vimeoController = new VimeoController();
 
@@ -194,6 +197,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
+
+            app.get('/api/oauth/survey-monkey',          surveyMonkeyController.authorize);
+            app.get('/api/oauth/survey-monkey/callback', surveyMonkeyController.callback, surveyMonkeyController.redirectToDesigner);
 
             app.get('/api/oauth/vimeo',          vimeoController.authorize);
             app.get('/api/oauth/vimeo/callback', vimeoController.callback, vimeoController.redirectToDesigner);

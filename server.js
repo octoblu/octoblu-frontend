@@ -41,16 +41,17 @@ passport.use(require('./config/box'));
 passport.use(require('./config/dropbox'));
 passport.use(require('./config/facebook'));
 passport.use(require('./config/fitbit'));
+passport.use(require('./config/four-square'));
 passport.use(require('./config/github'));
 passport.use(require('./config/google'));
 passport.use(require('./config/gotomeeting'));
-passport.use(require('./config/rdio'));
-passport.use(require('./config/twitter'));
 passport.use(require('./config/instagram'));
-passport.use(require('./config/nest'));
-passport.use(require('./config/vimeo'));
 passport.use(require('./config/linked-in'));
-passport.use(require('./config/four-square'));
+passport.use(require('./config/nest'));
+passport.use(require('./config/rdio'));
+passport.use(require('./config/survey-monkey'));
+passport.use(require('./config/twitter'));
+passport.use(require('./config/vimeo'));
 passport.use(require('./config/local'));
 
 // set up our express application
