@@ -225,64 +225,6 @@
 		"type" : "device:gateway"
 	},
 	{
-		"_id" : "53c9b831f400e177dca325b1",
-		"category" : "device",
-		"description" : "Inbound SMS phone number",
-		"display" : true,
-		"enabled" : true,
-		"name" : "SMS inbound",
-		"optionsSchema" : {
-			"type" : "object",
-			"properties" : {
-				"phoneNumber" : {
-					"type" : "string",
-					"required" : true
-				},
-				"plivoAuthId" : {
-					"type" : "string",
-					"required" : true
-				},
-				"plivoAuthToken" : {
-					"type" : "string",
-					"required" : true
-				}
-			}
-		},
-		"skynet" : {
-			"type" : "inboundSMS"
-		},
-		"type" : "device:inbound-sms"
-	},
-	{
-		"_id" : "53c9b831f400e177dca325b2",
-		"category" : "device",
-		"description" : "Outbound SMS phone number",
-		"display" : true,
-		"enabled" : true,
-		"name" : "SMS outbound",
-		"optionsSchema" : {
-			"type" : "object",
-			"properties" : {
-				"phoneNumber" : {
-					"type" : "string",
-					"required" : true
-				},
-				"plivoAuthId" : {
-					"type" : "string",
-					"required" : true
-				},
-				"plivoAuthToken" : {
-					"type" : "string",
-					"required" : true
-				}
-			}
-		},
-		"skynet" : {
-			"type" : "outboundSMS"
-		},
-		"type" : "device:outbound-sms"
-	},
-	{
 		"_id" : "53c9b832f400e177dca325b3",
 		"category" : "device",
 		"description" : "Other Generic Device",
