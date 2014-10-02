@@ -7,25 +7,25 @@
   "useCustom": true,
   "oauth": {},
   "application": {
-    "base": "http://localhost:9090",
+    "base": "http://sms.octoblu.com",
     "resources": [
       {
         "path": "/message",
         "httpMethod": "POST",
-        "url": "https://localhost:9090/message",
+        "url": "http://sms.octoblu.com/message",
         "authentication": {
           "required": "true"
         },
         "params": [
           {
-            "name": ":dst",
+            "name": "dst",
             "displayName": "Destination Number",
             "style": "body",
             "type": "String",
             "required" : true
           },
           {
-            "name": ":message",
+            "name": "text",
             "displayName": "Message",
             "style": "body",
             "type": "String",
@@ -34,9 +34,9 @@
         ]
       },
       {
-        "path": "/message/:messageid/status",
+        "path": "/message/:messageid",
         "httpMethod": "GET",
-        "url": "http://stock.octoblu.com/message",
+        "url": "http://stock.octoblu.com/message/:messageid",
         "authentication": {
           "required": "true"
         },

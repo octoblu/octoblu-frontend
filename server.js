@@ -49,15 +49,10 @@ passport.use(require('./config/instagram'));
 passport.use(require('./config/linked-in'));
 passport.use(require('./config/nest'));
 passport.use(require('./config/rdio'));
+passport.use(require('./config/spotify'));
 passport.use(require('./config/survey-monkey'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/vimeo'));
-<<<<<<< HEAD
-=======
-passport.use(require('./config/linked-in'));
-passport.use(require('./config/four-square'));
-passport.use(require('./config/spotify'));
->>>>>>> 038f2f2cc8839424bcf262d21d665b37d1343eed
 passport.use(require('./config/local'));
 
 // set up our express application
