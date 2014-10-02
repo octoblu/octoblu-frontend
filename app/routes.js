@@ -93,6 +93,9 @@ module.exports = function(app, passport) {
     var SpotifyController = require('./controllers/spotify-controller');
     var spotifyController = new SpotifyController();
 
+    var SmartsheetController = require('./controllers/smartsheet-controller');
+    var smartsheetController = new SmartsheetController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -212,6 +215,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/four-square',          fourSquareController.authorize);
             app.get('/api/oauth/four-square/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
+
+            app.get('/api/oauth/smartsheet',          smartsheetController.authorize);
+            app.get('/api/oauth/smartsheet/callback', smartsheetController.callback, smartsheetController.redirectToDesigner);
 
             app.get('/api/oauth/spotify',          spotifyController.authorize);
             app.get('/api/oauth/spotify/callback', spotifyController.callback, spotifyController.redirectToDesigner);

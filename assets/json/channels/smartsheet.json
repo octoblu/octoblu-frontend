@@ -966,22 +966,27 @@
   "enabled": true,
   "name": "Smartsheet",
   "oauth": {
-    "accessTokenURL": "https://api.smartsheet.com/1.1/token",
-    "apiKey": "",
-    "authTokenPath": "/b/authorize",
-    "authTokenURL": "https://www.smartsheet.com/b/authorize",
-    "baseURL": "https://www.smartsheet.com",
-    "clientId": "1uicos1cvzm64rpf0kp",
-    "grant_type": "authorization_code",
-    "host": "www.smartsheet.com",
-    "isManual": true,
-    "protocol": "https",
-    "requestTokenURL": "",
-    "scope": "READ_SHEETS,WRITE_SHEETS,SHARE_SHEETS,DELETE_SHEETS,CREATE_SHEETS,ADMIN_USERS,ADMIN_SHEETS,ADMIN_WORKSPACES",
-    "secret": "29kbwcoggrbkglpfiw",
-    "tokenMethod": "bearer",
-    "useOAuthLib": false,
-    "version": "2.0"
+    "development": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "scope": "READ_SHEETS,WRITE_SHEETS,SHARE_SHEETS,DELETE_SHEETS,CREATE_SHEETS,ADMIN_USERS,ADMIN_SHEETS,ADMIN_WORKSPACES",
+      "tokenMethod": "access_token_bearer",
+      "callbackURL": "http://localhost:8080/api/oauth/smartsheet/callback"
+    },
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "scope": "READ_SHEETS,WRITE_SHEETS,SHARE_SHEETS,DELETE_SHEETS,CREATE_SHEETS,ADMIN_USERS,ADMIN_SHEETS,ADMIN_WORKSPACES",
+      "tokenMethod": "access_token_bearer",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/smartsheet/callback"
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "scope": "READ_SHEETS,WRITE_SHEETS,SHARE_SHEETS,DELETE_SHEETS,CREATE_SHEETS,ADMIN_USERS,ADMIN_SHEETS,ADMIN_WORKSPACES",
+      "tokenMethod": "access_token_bearer",
+      "callbackURL": "https://app.octoblu.com/api/oauth/smartsheet/callback"
+    }
   },
   "useCustom": true,
   "type": "channel:smartsheet"

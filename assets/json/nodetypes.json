@@ -672,7 +672,7 @@
 		"_id" : "53c9b83cf400e177dca325cd",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Smartsheet",
 		"skynet" : {
 			"type" : "channel",
