@@ -7,10 +7,10 @@
   "name": "Send Email",
   "type": "channel:email",
   "application": {
-    "base": "https://email.octoblu.com",
+    "base": "http://email.octoblu.com",
     "resources": [
       {
-        "url": "https://email.octoblu.com/messages",
+        "url": "http://email.octoblu.com/messages",
         "path": "/messages",
         "httpMethod": "POST",
         "params": [
