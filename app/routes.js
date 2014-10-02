@@ -90,6 +90,9 @@ module.exports = function(app, passport) {
     var FourSquareController = require('./controllers/foursquare-controller');
     var fourSquareController = new FourSquareController();
 
+    var SpotifyController = require('./controllers/spotify-controller');
+    var spotifyController = new SpotifyController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -209,6 +212,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/four-square',          fourSquareController.authorize);
             app.get('/api/oauth/four-square/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
+
+            app.get('/api/oauth/spotify',          spotifyController.authorize);
+            app.get('/api/oauth/spotify/callback', spotifyController.callback, spotifyController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
