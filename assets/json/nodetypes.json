@@ -3,7 +3,6 @@
 		"_id" : "53c9b82ef400e177dca325a1",
 		"category" : "device",
 		"description" : "SkyNet cloud",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Meshblu",
 		"skynet" : {
@@ -16,7 +15,6 @@
 		"_id" : "53c9b82ef400e177dca325a2",
 		"category" : "microblu",
 		"description" : "Arduino microcontroller",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Arduino",
 		"skynet" : {
@@ -29,7 +27,6 @@
 		"_id" : "53c9b82ff400e177dca325a3",
 		"category" : "subdevice",
 		"description" : "Philips Hue light bulbs",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Philips Hue",
 		"skynet" : {
@@ -43,7 +40,6 @@
 		"_id" : "53c9b82ff400e177dca325a4",
 		"category" : "subdevice",
 		"description" : "Belkin Wemo home automation",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Belkin Wemo",
 		"skynet" : {
@@ -57,7 +53,6 @@
 		"_id" : "53c9b82ff400e177dca325a6",
 		"category" : "subdevice",
 		"description" : "Insteon home automation",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Insteon",
 		"skynet" : {
@@ -71,7 +66,6 @@
 		"_id" : "53c9b82ff400e177dca325a7",
 		"category" : "subdevice",
 		"description" : "Blink1 USB LED",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Blink(1)",
 		"skynet" : {
@@ -85,7 +79,6 @@
 		"_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",
 		"category" : "subdevice",
 		"description" : "AllJoyn",
-		"display" : true,
 		"enabled" : true,
 		"name" : "AllJoyn",
 		"skynet" : {
@@ -99,7 +92,6 @@
 		"_id" : "53c9b830f400e177dca325a8",
 		"category" : "device",
 		"description" : "Raspberry Pi",
-		"display" : true,
 		"enabled" : true,
 		"name" : "RaspberryPi",
 		"skynet" : {
@@ -112,7 +104,6 @@
 		"_id" : "53c9b830f400e177dca325a9",
 		"category" : "device",
 		"description" : "Intel Galileo",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Intel Galileo",
 		"skynet" : {
@@ -125,7 +116,6 @@
 		"_id" : "53c9b830f400e177dca325aa",
 		"category" : "device",
 		"description" : "Beagle Bone",
-		"display" : true,
 		"enabled" : true,
 		"name" : "BeagleBone",
 		"skynet" : {
@@ -138,7 +128,6 @@
 		"_id" : "5f8f2fa1349c4a1293109486",
 		"category" : "subdevice",
 		"description" : "Lightblue Bean",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Lightblue Bean",
 		"skynet" : {
@@ -152,7 +141,6 @@
 		"_id" : "53c9b830f400e177dca325ab",
 		"category" : "device",
 		"description" : "Spark device",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Spark",
 		"skynet" : {
@@ -165,7 +153,6 @@
 		"_id" : "53c9b830f400e177dca325ac",
 		"category" : "device",
 		"description" : "Pinoccio device",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Pinoccio",
 		"skynet" : {
@@ -178,7 +165,6 @@
 		"_id" : "53c9b830f400e177dca325ad",
 		"category" : "device",
 		"description" : "Tessel device",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Tessel",
 		"skynet" : {
@@ -191,7 +177,6 @@
 		"_id" : "53c9b831f400e177dca325ae",
 		"category" : "device",
 		"description" : "Apple iOS Device",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Apple",
 		"skynet" : {
@@ -216,7 +201,6 @@
 		"_id" : "53c9b831f400e177dca325b0",
 		"category" : "gateway",
 		"description" : "Skynet Hub",
-		"display" : false,
 		"enabled" : true,
 		"name" : "Gateblu",
 		"skynet" : {
@@ -228,7 +212,6 @@
 		"_id" : "53c9b832f400e177dca325b3",
 		"category" : "device",
 		"description" : "Other Generic Device",
-		"display" : true,
 		"enabled" : true,
 		"name" : "Generic Device",
 		"skynet" : {
@@ -653,7 +636,6 @@
 		"_id" : "53c9b83df400e177dca325d0",
 		"category" : "channel",
 		"description" : null,
-		"display" : true,
 		"enabled" : true,
 		"name" : "Bitly",
 		"skynet" : {
