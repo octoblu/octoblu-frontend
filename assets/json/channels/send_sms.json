@@ -18,7 +18,7 @@
         "params": [
           {
             "name": "dst",
-            "displayName": "Destination Number",
+            "displayName": "Destination Number(s)",
             "style": "body",
             "type": "String",
             "required" : true
@@ -27,7 +27,7 @@
             "name": "text",
             "displayName": "Message",
             "style": "body",
-            "type": "String",
+            "type": "string",
             "required" : true
           }
         ]
