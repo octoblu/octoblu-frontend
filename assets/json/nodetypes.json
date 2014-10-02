@@ -772,5 +772,18 @@
     },
     "channelid" : "542c2f2eab1c05dde14544e0",
     "type" : "channel:sms-send"
+  },
+  {
+    "_id" : "9115e25c-8eed-40f8-a1d8-140a1ffea5be",
+    "category" : "channel",
+    "description" : "Send Email messages through Octoblu.",
+    "enabled" : true,
+    "name" : "Send Email",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "email"
+    },
+    "channelid" : "542ce2ad47a930b1280b0d05",
+    "type" : "channel:email"
   }
 ]

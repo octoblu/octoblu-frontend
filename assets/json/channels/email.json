@@ -1,16 +1,16 @@
 {
-  "_id": "432dc0ef-8a0b-4bc8-82ab-95f806511e7e",
+  "_id": "542ce2ad47a930b1280b0d05",
   "auth_strategy": "basic",
   "bodyFormat": "json",
   "documentation": "http://github.com/octoblu/email-service",
   "enabled": true,
-  "name": "Email",
+  "name": "Send Email",
   "type": "channel:email",
   "application": {
-    "base": "https://email.octoblu.com",
+    "base": "http://email.octoblu.com",
     "resources": [
       {
-        "url": "https://email.octoblu.com/messages",
+        "url": "http://email.octoblu.com/messages",
         "path": "/messages",
         "httpMethod": "POST",
         "params": [

@@ -266,5 +266,29 @@
     "input": 0,
     "output": 0,
     "formTemplatePath": "/pages/node_forms/comment_form.html"
+  },
+  {
+    "name": "Set Key",
+    "class": "set-key",
+    "category" : "operation",
+    "uuid": "5a6bb5a5-b2ef-4a9e-b15f-f0f646ee90d6",
+    "type": "operation:set-key",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/set_key_form.html"
+  },
+  {
+    "name": "Get Key",
+    "class": "get-key",
+    "category" : "operation",
+    "uuid": "6daa638e-ced8-4de9-be9b-dcd026be6348",
+    "type": "operation:get-key",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/get_key_form.html"
   }
 ]

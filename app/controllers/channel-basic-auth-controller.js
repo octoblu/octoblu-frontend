@@ -5,7 +5,7 @@ function ChannelBasicAuthController(){
   self.create = function(req, res){
     var channelId = req.params.id;
 
-    req.user.overwriteOrAddApiByChannelId(channelId, { token : req.body.username, secret : req.body.password });
+    req.user.overwriteOrAddApiByChannelId(channelId, { authtype: 'basic', token : req.body.username, secret : req.body.password });
     req.user.save(function(err){
       if(err){
         console.log('Error saving user', err);
