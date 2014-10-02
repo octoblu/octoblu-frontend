@@ -2,6 +2,7 @@
   "_id": "53e259588e3257fb7d6fdad3",
   "__v": 0,
   "auth_strategy": "oauth",
+  "bodyFormat": "json",
   "custom_tokens": [],
   "description": "",
   "documentation": "https://developer.surveymonkey.com/api_console",
