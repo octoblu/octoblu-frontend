@@ -7,7 +7,7 @@
             <div class='row'>
               <div class='col-sm-12'>
                 <div class='text-center'>
-                  <!-- <img width="121" height="31" src="assets/images/logo_lg.svg" /> -->
+                   <img src="/assets/images/octoblucircle.png" />
                 </div>
               </div>
             </div>
@@ -16,6 +16,7 @@
         <div class='login-container'>
           <div class='container'>
             <div class='row'>
+
               <div class='col-sm-4 col-sm-offset-4'>
                 <h1 class='text-center title'>Sign in</h1>
                 <form class='validate-form' target="_self" ng-submit="login()">
@@ -34,38 +35,44 @@
                   <button type="submit" class="btn btn-block btn-primary">Sign in</button>
                 </form>
                 <div class='text-center'>
-                  <hr class='hr-normal'>
-                  <a href='/forgot'>Forgot your password?</a> /
-                  <a href='/signup'><strong>Sign up!</strong></a>
-                </div>
-                <br>
-                <br>
 
+                  <hr class='hr-normal'>
+                    <div class="col-xs-12 col-lg-6">
+                        <a href="/forgot">Forgot your password?</a>
+                    </div>
+                    <div class="col-xs-12 col-lg-6">
+                        <a href ui-sref="invitation.request">
+                            <i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Request an Invite
+                        </a>
+                    </div>
+                    <br>
+                    <br>
+                </div>
                 <div class="row text-center">
                   <div class="col-xs-12 col-lg-6">
                     <p>
-                      <a class="btn-lg btn-block btn-github" href="{{getLoginUrl('/auth/github')}}" target="_self">
+                      <a class="btn-lg btn-block btn-github" href="{{getLoginUrl('/api/oauth/github')}}" target="_self">
                         <span class="fa fa-github"> Github</span>
                       </a>
                     </p><br>
                   </div>
                   <div class="col-xs-12 col-lg-6">
                     <p>
-                      <a class="btn-lg btn-block btn-facebook" href="{{getLoginUrl('/auth/facebook')}}" target="_self">
+                      <a class="btn-lg btn-block btn-facebook" href="{{getLoginUrl('/api/oauth/facebook')}}" target="_self">
                         <span class="fa fa-facebook"> Facebook</span>
                       </a>
                     </p><br>
                   </div>
                   <div class="col-xs-12 col-lg-6">
                     <p>
-                      <a class="btn-lg btn-block btn-twitter" href="{{getLoginUrl('/auth/twitter')}}" target="_self">
+                      <a class="btn-lg btn-block btn-twitter" href="{{getLoginUrl('/api/oauth/twitter')}}" target="_self">
                         <span class="fa fa-twitter"> Twitter</span>
                       </a>
                     </p><br>
                   </div>
                   <div class="col-xs-12 col-lg-6">
                     <p>
-                      <a class="btn-lg btn-block btn-google-plus" href="{{getLoginUrl('/auth/google')}}" target="_self">
+                      <a class="btn-lg btn-block btn-google-plus" href="{{getLoginUrl('/api/oauth/google')}}" target="_self">
                         <span class="fa fa-google-plus"> Google+</span>
                       </a>
                     </p><br>
@@ -75,7 +82,16 @@
               </div>
             </div>
           </div>
-          <br /><br /><br /><br />
+          <br />
+          <br />
+          <!--<div class="row">-->
+
+              <!--<div class="col-xs-12 col-lg-6">-->
+                  <!--<a href ui-sref="invitation.accept">Enter your Invitation Code</a>-->
+              <!--</div>-->
+          <!--</div>-->
+          <br />
+          <br />
 
         </div>
         <div class='login-container-footer'>

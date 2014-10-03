@@ -1,4 +1,5 @@
 angular.module('octobluApp')
-    .controller('homeController', function ($rootScope, $scope){
+.controller('homeController', function (){
+  'use strict';
 
-    });
+});

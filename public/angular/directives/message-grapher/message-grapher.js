@@ -3,7 +3,7 @@ angular.module('octobluApp')
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'angular/directives/message-grapher/message-grapher.html',
+            templateUrl: '/angular/directives/message-grapher/message-grapher.html',
             scope: {
                 device: '=',
                 width: '='
@@ -34,7 +34,6 @@ angular.module('octobluApp')
                                     color: lineColors.pop()
                                 };
                                 smoothie.addTimeSeries(messageLines[key].line, { strokeStyle: messageLines[key].color, lineWidth: 3 });
-                                console.log('added line for: ' + key);
                             }
                         });
                     }

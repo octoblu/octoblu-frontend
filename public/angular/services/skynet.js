@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('skynetService', function ($q, $rootScope, skynetConfig, AuthService) {
         var user, defer = $q.defer(), skynetPromise = defer.promise;
@@ -13,8 +14,7 @@ angular.module('octobluApp')
             });
 
             conn.on('ready', function (data) {
-                console.log(data);
-                console.log('Connected to skynet');
+                console.log('Connected to skynet', data);
                 defer.resolve(conn);
             });
 
@@ -48,7 +48,6 @@ angular.module('octobluApp')
                 return skynetPromise.then(function (skynetConnection) {
                     return skynetConnection;
                 });
-
             },
 
             sendMessage: function (options) {
@@ -57,9 +56,7 @@ angular.module('octobluApp')
                     var defer = $q.defer(), promise = defer.promise;
 
                     skynetPromise.then(function () {
-                        console.log('sending message.');
                         skynetConnection.message(options, function (result) {
-                            console.log('meshblu response:', result);
                             defer.resolve(result);
                         });
                     });

@@ -1,16 +1,17 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('addChannelOauthController', function($scope, $window, nodeType) {
-        $scope.activate = function(){
-            var url = '/api/auth/';
+.controller('addChannelOauthController', function($scope, $window, nodeType, channelService) {
+  var channelPromise, getPath;
 
-            if (nodeType.channel.owner || nodeType.channel.useCustom) {
-                url = url + nodeType.channel._id + '/custom';
-            } else {
-                url = url + nodeType.channel.name;
-            }
+  channelPromise = channelService.getById(nodeType.channelid);
+  getPath = function(channel){
+    return '/api/oauth/' + channel.type.replace('channel:', '');
+  };
 
-            $window.location.href = url;
-        }
+  $scope.activate = function(){
+    channelPromise.then(function(channel){
+      $window.location.href = getPath(channel);
     });
+  }
+});

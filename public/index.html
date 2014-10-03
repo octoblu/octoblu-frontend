@@ -2,7 +2,6 @@
 
 <html>
 <head>
-    <base href="/" />
     <!-- META -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta content="text/html;charset=utf-8" http-equiv="content-type">
@@ -18,14 +17,11 @@
 
     <title>Octoblu - Internet of Everything!</title>
 
-    <link href="assets/stylesheets/style.css" rel="stylesheet" media="screen">
-    <link href="assets/stylesheets/animation.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/stylesheets/dist/styles.css" type="text/css"/>
-    <link rel="stylesheet" href="/lib/fontawesome/css/font-awesome.css" type="text/css"/>
+    <link href="/assets/stylesheets/dist/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="/lib/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
     <link href="/lib/nvd3/nv.d3.css" rel="stylesheet"/>
+    <link href="/lib/prism/themes/prism-coy.css" rel="stylesheet"/>
 
-    <script src="assets/javascripts/skynet.bundle.js"></script>
-    <!--<script src="assets/javascripts/skynet.js"></script>-->
 
     <style type="text/css">
         .reveal-animation.ng-enter {
@@ -48,135 +44,28 @@
     </style>
 </head>
 <body class="contrast-sea-blue container-fluid" ng-app="octobluApp">
-<div ui-view="" class="row-fluid"></div>
+
+<div ui-view="" class="row-fluid full-height"></div>
 
 <footer></footer>
 
-<!-- build:js scripts/plugins.js -->
-<!-- <script src="assets/javascripts/athenaSlide.js"></script> -->
-<script src="lib/jquery/dist/jquery.js" type="text/javascript"></script>
-<script src="lib/jquery-ui/ui/jquery-ui.js" type="text/javascript"></script>
-<!-- <script src="lib/requirejs/require.js" type="text/javascript"></script> -->
-<!-- <script src="lib/jquery-mobile/js/requirejs.config.js" type="text/javascript"></script> -->
-<!-- <script src="lib/jquery-mobile/js/jquery.mobile.init.js" type="text/javascript"></script> -->
-<!-- <script src="lib/jquery-mobile/js/jquery.mobile.define.js" type="text/javascript"></script> -->
-<script src="lib/angular/angular.js"></script>
-<script src="lib/angular-animate/angular-animate.js"></script>
-<script src="lib/angular-sanitize/angular-sanitize.js"></script>
-<script src="lib/angular-cookies/angular-cookies.js"></script>
-<script src="lib/angular-resource/angular-resource.js"></script>
-<script src="lib/lodash/dist/lodash.js"></script>
-<script src="lib/d3/d3.js"></script>
-<script src="lib/nvd3/nv.d3.js"></script>
-<!--<script src="lib/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>-->
-<!-- endbuild -->
+<script src="//d1g8h12lk9ydf.cloudfront.net/js/v1.1.0/skynet.bundle.js"></script>
+<script src="/assets/javascripts/dist/dependencies.js"></script>
+<script src="/assets/javascripts/dist/application.js"></script>
 
-<!-- build:js scripts/modules.js -->
-<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="lib/angular-ui-utils/ui-utils.js"></script>
-<script src="lib/angular-google-analytics/src/angular-google-analytics.js"></script>
-<script src="lib/modernizr/modernizr.js" type="text/javascript"></script>
-<script src="lib/json-editor/dist/jsoneditor.js" type="text/javascript"></script>
-<script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
-<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="lib/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
-<script src="lib/elastic.js/dist/elastic.js"></script>
-<script src="lib/elasticsearch/elasticsearch.angular.js"></script>
-<script src="lib/smoothie/smoothie.js"></script>
-<script src="lib/ng-table/ng-table.js"></script>
-<!-- <script src="lib/jpreloader/js/jpreloader.js"></script> -->
-<!-- <script src="assets/javascripts/loop.js"></script> -->
-<!-- endbuild -->
+<!-- Site metrics -->
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(100764712);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100764712ns.gif" /></p></noscript>
 
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="angular/app.js"></script>
-<script src="angular/services/auth.js"></script>
-<script src="angular/services/channel.js"></script>
-<script src="angular/services/device.js"></script>
-<script src="angular/services/elastic.js"></script>
-<script src="angular/services/group.js"></script>
-<script src="angular/services/invitation.js"></script>
-<script src="angular/services/node-type.js"></script>
-<script src="angular/services/node.js"></script>
-<script src="angular/services/nodered.js"></script>
-<script src="angular/services/permissions.js"></script>
-<script src="angular/services/plugin.js"></script>
-<script src="angular/services/rubber.js"></script>
-<script src="angular/services/skynet.js"></script>
-<script src="angular/services/user.js"></script>
-<script src="angular/directives/nvd3-line-chart.js"></script>
-<script src="angular/directives/nvd3-pie-chart.js"></script>
-<script src="angular/directives/nvd3-line-with-focus-chart.js"></script>
-<script src="angular/directives/popover.js"></script>
-<script src="angular/directives/toggle.js"></script>
-<script src="angular/directives/message-grapher/message-grapher.js"></script>
-<script src="angular/directives/device-property-editor/device-property-editor.js"></script>
-<script src="angular/directives/schema-editor/schema-editor.js"></script>
-<script src="angular/controllers/about.js"></script>
-<script src="angular/controllers/admin.js"></script>
-<script src="angular/controllers/admin-detail.js"></script>
-<script src="angular/controllers/add-edit-device.js"></script>
-<script src="angular/controllers/subdevice.js"></script>
-<script src="angular/controllers/device-wizard.js"></script>
-<script src="angular/controllers/device-detail.js"></script>
-<script src="angular/controllers/device-detail-shared.js"></script>
-<script src="angular/controllers/home.js"></script>
-<script src="angular/controllers/accept-terms.js"></script>
-<script src="angular/controllers/add-channel.js"></script>
-<script src="angular/controllers/add-channel-existing.js"></script>
-<script src="angular/controllers/add-channel-noauth.js"></script>
-<script src="angular/controllers/add-channel-oauth.js"></script>
-<script src="angular/controllers/add-channel-simple.js"></script>
-<script src="angular/controllers/add-device.js"></script>
-<script src="angular/controllers/add-node.js"></script>
-<script src="angular/controllers/add-subdevice.js"></script>
-<script src="angular/controllers/add-subdevice-add-gateway.js"></script>
-<script src="angular/controllers/add-subdevice-form.js"></script>
-<script src="angular/controllers/add-subdevice-select-gateway.js"></script>
-<script src="angular/controllers/analyze.js"></script>
-<script src="angular/controllers/api.js"></script>
-<script src="angular/controllers/channel.js"></script>
-<script src="angular/controllers/custom-channel.js"></script>
-<script src="angular/controllers/messaging.js"></script>
-<script src="angular/controllers/messaging-device.js"></script>
-<script src="angular/controllers/contact.js"></script>
-<script src="angular/controllers/design.js"></script>
-<script src="angular/controllers/docs.js"></script>
-<script src="angular/controllers/faqs.js"></script>
-<script src="angular/controllers/forgot.js"></script>
-<script src="angular/controllers/node.js"></script>
-<script src="angular/controllers/node-wizard.js"></script>
-<script src="angular/controllers/octoblu.js"></script>
-<script src="angular/controllers/login.js"></script>
-<script src="angular/controllers/pricing.js"></script>
-<script src="angular/controllers/process.js"></script>
-<script src="angular/controllers/profile.js"></script>
-<script src="angular/controllers/reset.js"></script>
-<script src="angular/controllers/services.js"></script>
-<script src="angular/controllers/signup.js"></script>
-<script src="angular/controllers/design2.js"></script>
-<!-- endbuild -->
-
-<!-- Designer Dependencies -->
-<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/assets/design/ba-tiny-pubsub.js"></script>
-<script src="/assets/design/orion/built-editor.min.js"></script>
-<script src="/assets/design/d3.v3.min.js"></script>
-<script src="/assets/design/red/main.js"></script>
-<script src="/assets/design/red/ui/state.js"></script>
-<script src="/assets/design/red/nodes.js"></script>
-<script src="/assets/design/red/history.js"></script>
-<script src="/assets/design/red/validators.js"></script>
-<script src="/assets/design/red/ui/keyboard.js"></script>
-<script src="/assets/design/red/ui/tabs.js"></script>
-<script src="/assets/design/red/ui/view.js"></script>
-<script src="/assets/design/red/ui/sidebar.js"></script>
-<script src="/assets/design/red/ui/palette.js"></script>
-<script src="/assets/design/red/ui/tab-info.js"></script>
-<script src="/assets/design/red/ui/tab-config.js"></script>
-<script src="/assets/design/red/ui/editor.js"></script>
-<script src="/assets/design/red/ui/library.js"></script>
-<script src="/assets/design/red/ui/notifications.js"></script>
-<!-- End Designer Dependencies -->
 </body>
 </html>

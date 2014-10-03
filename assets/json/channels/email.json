@@ -1,0 +1,46 @@
+{
+  "_id": "542ce2ad47a930b1280b0d05",
+  "auth_strategy": "meshblu",
+  "bodyFormat": "json",
+  "documentation": "http://github.com/octoblu/email-service",
+  "enabled": true,
+  "name": "Send Email",
+  "type": "channel:email",
+  "application": {
+    "base": "http://email.octoblu.com",
+    "resources": [
+      {
+        "url": "http://email.octoblu.com/messages",
+        "path": "/messages",
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": "to",
+            "displayName": "To",
+            "type": "string",
+            "style": "body"
+          },
+          {
+            "name": "subject",
+            "displayName": "Subject",
+            "type": "string",
+            "style": "body"
+          },
+          {
+            "name": "body",
+            "displayName": "Body",
+            "type": "string",
+            "style": "body"
+          },
+          {
+            "name": "flowId",
+            "type": "string",
+            "hidden": true,
+            "style": "body",
+            "default": "{{flow.flowId}}"
+          }
+        ]
+      }
+    ]
+  }
+}

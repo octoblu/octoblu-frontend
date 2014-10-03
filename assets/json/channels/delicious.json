@@ -1,0 +1,486 @@
+{
+  "_id": "52f9b75bdfeb56fca700000d",
+  "name": "Delicious",
+  "type": "channel:delicious",
+  "auth_strategy": "oauth",
+  "oauth": {
+    "development": {
+      "consumerKey":    "dj0yJmk9WElNZkpSN3FOQlN1JmQ9WVdrOU5WQktZVTVOTlRZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0xMw--",
+      "consumerSecret": "e3ac15fb687be3a2323432bf7da536a618cfafd7",
+      "callbackURL":    "http://localhost:8080/api/oauth/rdio/callback",
+      "tokenMethod":    "oauth_signed"
+    }
+  },
+  "application": {
+    "base": "https://api.del.icio.us/v1",
+    "resources": [
+      {
+        "path": "/posts/all?hashes",
+        "doc": {
+          "t": "Returns a change manifest of all posts. Call the update function to see if you need to fetch this at all.",
+          "url": "http://www.delicious.com/help/api#posts_all_hashes"
+        },
+        "curl": "curl -X GET -u 'username:password' https://api.del.icio.us/v1/posts/all?hashes",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/posts/all?hashes"
+      },
+      {
+        "path": "/posts/suggest",
+        "params": [
+          {
+            "name": "url",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "URL for which you'd like suggestions."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of popular tags, recommended tags and network tags for a user. URL for which you'd like suggestions.",
+          "url": "http://www.delicious.com/help/api#posts_suggest"
+        },
+        "curl": "curl -X GET -u 'username:password' https://api.del.icio.us/v1/posts/suggest",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/posts/suggest"
+      },
+      {
+        "path": "/posts/add",
+        "params": [
+          {
+            "name": "url",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The URL of the item."
+            }
+          },
+          {
+            "name": "description",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The description of the item."
+            }
+          },
+          {
+            "name": "extended",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Notes for the item."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Tags for the item (space delimited)."
+            }
+          },
+          {
+            "name": "dt",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Datestamp of the item (format \"CCYY-MM-DDThh:mm:ssZ\"). Requires a LITERAL \"T\" and \"Z\" like in ISO8601 at http://www.cl.cam.ac.uk/~mgk25/iso-time.html for example: \"1984-09-01T14:21:31Z\""
+            }
+          },
+          {
+            "name": "replace",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "no",
+            "required": "true",
+            "doc": {
+              "t": "Don't replace post if given url has already been posted."
+            }
+          },
+          {
+            "name": "shared",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "no",
+            "required": "true",
+            "doc": {
+              "t": "Make the item private."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Add a post to Delicious. The URL of the item. The description of the item. Notes for the item. Tags for the item (space delimited). Datestamp of the item (format \"CCYY-MM-DDThh:mm:ssZ\"). Requires a LITERAL \"T\" and \"Z\" like in ISO8601 at http://www.cl.cam.ac.uk/~mgk25/iso-time.html for example: \"1984-09-01T14:21:31Z\" Don't replace post if given url has already been posted. Make the item private.",
+          "url": "http://www.delicious.com/help/api#posts_add"
+        },
+        "curl": "curl -X PUT -u 'username:password' -d 'replace=no&shared=no' https://api.del.icio.us/v1/posts/add",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_PUT",
+        "httpMethod": "PUT",
+        "url": "https://api.del.icio.us/v1/posts/add"
+      },
+      {
+        "path": "/posts/delete",
+        "params": [
+          {
+            "name": "url",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The URL of the item."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Delete a post from Delicious. The URL of the item.",
+          "url": "http://www.delicious.com/help/api#posts_delete"
+        },
+        "curl": "curl -X DELETE -u 'username:password' https://api.del.icio.us/v1/posts/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_DELETE",
+        "httpMethod": "DELETE",
+        "url": "https://api.del.icio.us/v1/posts/delete"
+      },
+      {
+        "path": "/posts/get",
+        "params": [
+          {
+            "name": "url",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Fetch a bookmark for this URL, regardless of date. Note: Be sure to URL-encode the argument value."
+            }
+          },
+          {
+            "name": "hashes",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Fetch multiple bookmarks by one or more URL MD5s regardless of date, separated by URL-encoded spaces (ie. '+')."
+            }
+          },
+          {
+            "name": "meta",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "yes",
+            "required": "true",
+            "doc": {
+              "t": "Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes."
+            }
+          },
+          {
+            "name": "tag",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Filter by this tag (space delimited)."
+            }
+          },
+          {
+            "name": "dt",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Filter by this date, defaults to the most recent date on which bookmarks were saved."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns one or more posts on a single day matching the arguments. If no date or url is given, most recent date will be used. Fetch a bookmark for this URL, regardless of date. Note: Be sure to URL-encode the argument value. Fetch multiple bookmarks by one or more URL MD5s regardless of date, separated by URL-encoded spaces (ie. '+'). Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes. Filter by this tag (space delimited). Filter by this date, defaults to the most recent date on which bookmarks were saved.",
+          "url": "http://www.delicious.com/help/api#posts_get"
+        },
+        "curl": "curl -X GET -u 'username:password' -d 'meta=yes' https://api.del.icio.us/v1/posts/get",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/posts/get"
+      },
+      {
+        "path": "/posts/dates",
+        "params": [
+          {
+            "name": "tag",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Filter by this tag."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of dates with the number of posts at each date. Filter by this tag.",
+          "url": "http://www.delicious.com/help/api#posts_dates"
+        },
+        "curl": "curl -X GET -u 'username:password' https://api.del.icio.us/v1/posts/dates",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/posts/dates"
+      },
+      {
+        "path": "/posts/recent",
+        "params": [
+          {
+            "name": "tag",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Filter by this tag."
+            }
+          },
+          {
+            "name": "count",
+            "type": "xsd:integer",
+            "style": "query",
+            "default": "15",
+            "required": "true",
+            "doc": {
+              "t": "Number of items to retrieve (Default:15, Maximum:100)."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of the most recent posts, filtered by argument. Maximum 100. Filter by this tag. Number of items to retrieve (Default:15, Maximum:100).",
+          "url": "http://www.delicious.com/help/api#posts_recent"
+        },
+        "curl": "curl -X GET -u 'username:password' -d 'count=15' https://api.del.icio.us/v1/posts/recent",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/posts/recent"
+      },
+      {
+        "path": "/posts/all",
+        "doc": {
+          "t": "Returns all posts. Please use sparingly. Call the update function to see if you need to fetch this at all.",
+          "url": "http://www.delicious.com/help/api#posts_all"
+        },
+        "curl": "curl -X GET -u 'username:password' https://api.del.icio.us/v1/posts/all",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Posts",
+        "displayName": "Posts_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/posts/all"
+      },
+      {
+        "path": "/tags/bundles/delete",
+        "params": [
+          {
+            "name": "bundle",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Name of the bundle."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Delete a bundle. Name of the bundle.",
+          "url": "http://www.delicious.com/help/api#tags_bundles_delete"
+        },
+        "curl": "curl -X DELETE -u 'username:password' https://api.del.icio.us/v1/tags/bundles/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Tag Bundles",
+        "displayName": "Tag Bundles_DELETE",
+        "httpMethod": "DELETE",
+        "url": "https://api.del.icio.us/v1/tags/bundles/delete"
+      },
+      {
+        "path": "/tags/bundles/all",
+        "params": [
+          {
+            "name": "bundle",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Fetch just the named bundle."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieve all of a user's bundles. Fetch just the named bundle.",
+          "url": "http://www.delicious.com/help/api#tags_bundles_all"
+        },
+        "curl": "curl -X GET -u 'username:password' https://api.del.icio.us/v1/tags/bundles/all",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Tag Bundles",
+        "displayName": "Tag Bundles_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/tags/bundles/all"
+      },
+      {
+        "path": "/tags/bundles/set",
+        "params": [
+          {
+            "name": "bundle",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Name of the bundle."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "List of tags, space-separated."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Assign a set of tags to a single bundle, wipes away previous settings for bundle. Name of the bundle. List of tags, space-separated.",
+          "url": "http://www.delicious.com/help/api#tags_bundles_set"
+        },
+        "curl": "curl -X PUT -u 'username:password' https://api.del.icio.us/v1/tags/bundles/set",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Tag Bundles",
+        "displayName": "Tag Bundles_PUT",
+        "httpMethod": "PUT",
+        "url": "https://api.del.icio.us/v1/tags/bundles/set"
+      },
+      {
+        "path": "/tags/rename",
+        "params": [
+          {
+            "name": "old",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Tag to rename."
+            }
+          },
+          {
+            "name": "new",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "New tag name."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Rename an existing tag with a new tag name. Tag to rename. New tag name.",
+          "url": "http://www.delicious.com/help/api#tags_rename"
+        },
+        "curl": "curl -X POST -u 'username:password' https://api.del.icio.us/v1/tags/rename",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Tags",
+        "displayName": "Tags_POST",
+        "httpMethod": "POST",
+        "url": "https://api.del.icio.us/v1/tags/rename"
+      },
+      {
+        "path": "/tags/delete",
+        "params": [
+          {
+            "name": "tag",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Tag to delete."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Delete an existing tag. Tag to delete.",
+          "url": "http://www.delicious.com/help/api#tags_delete"
+        },
+        "curl": "curl -X DELETE -u 'username:password' https://api.del.icio.us/v1/tags/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Tags",
+        "displayName": "Tags_DELETE",
+        "httpMethod": "DELETE",
+        "url": "https://api.del.icio.us/v1/tags/delete"
+      },
+      {
+        "path": "/tags/get",
+        "doc": {
+          "t": "Returns a list of tags and number of times used by a user.",
+          "url": "http://www.delicious.com/help/api#tags_get"
+        },
+        "curl": "curl -X GET -u 'username:password' https://api.del.icio.us/v1/tags/get",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Tags",
+        "displayName": "Tags_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/tags/get"
+      },
+      {
+        "path": "/posts/update",
+        "doc": {
+          "t": "Returns the last update time for the user, as well as the number of new items in the user's inbox since it was last visited.",
+          "url": "http://www.delicious.com/help/api#posts_update"
+        },
+        "curl": "curl -X GET -u 'username:password' https://api.del.icio.us/v1/posts/update",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Update",
+        "displayName": "Update_GET",
+        "httpMethod": "GET",
+        "url": "https://api.del.icio.us/v1/posts/update"
+      }
+    ]
+  }
+}

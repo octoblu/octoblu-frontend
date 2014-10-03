@@ -16,11 +16,10 @@ module.exports = {
                 'error': 'unauthorized'
             });
         } else {
-            console.log('finding user by header data');
             User.findBySkynetUUIDAndToken(skynetuuid, skynettoken)
                 .then(function (user) {
                     if (!user) {
-                        res.json(401, { 'error': 'Invalid user' })
+                        return res.json(401, { 'error': 'Invalid user' })
                     }
                     req.user = user;
                     next();

@@ -1,0 +1,89 @@
+{
+  "_id": "53e11cd28e3257fb7d6fdad0",
+  "__v": 0,
+  "application": {
+    "base": "https://api.automatic.com/v1/",
+    "resources": [
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "per_page"
+          }
+        ],
+        "path": "/trips",
+        "displayName": "/trips",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.automatic.com/v1//trips"
+      },
+      {
+        "path": "/trips/:id",
+        "displayName": "/trips/:id",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.automatic.com/v1//trips/:id"
+      },
+      {
+        "path": "/user",
+        "displayName": "/user",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.automatic.com/v1//user"
+      },
+      {
+        "path": "/vehicles",
+        "displayName": "/vehicles",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.automatic.com/v1//vehicles"
+      },
+      {
+        "path": "/vehicles/:id",
+        "displayName": "/vehicles/:id",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.automatic.com/v1//vehicles/:id"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://www.automatic.com/developer/documentation/",
+  "enabled": true,
+  "name": "Automatic",
+  "oauth": {
+    "version": "1.0",
+    "key": "INSERT_SECERT_HERE",
+    "secret": "INSERT_SECERT_HERE",
+    "accessTokenURL": "https://www.automatic.com/oauth/access_token",
+    "requestTokenURL": "https://www.automatic.com/oauth/request_token",
+    "authTokenURL": "https://www.automatic.com/oauth/authorize",
+    "tokenMethod": "oauth_signed",
+    "scope": "scope:trip:summary scope:location scope:vehicle scope:notification:hard_accel scope:notification:hard_brake scope:notification:speeding",
+    "is0LegAuth": false
+  },
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:automatic"
+}

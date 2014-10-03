@@ -1,0 +1,28 @@
+{
+  "strict": false,
+  "undef": true,
+  "unused": false,
+  "scripturl": true,
+  "expr": true,
+  "predef": [
+    "_",
+    "angular",
+    "require",
+    "describe",
+    "it",
+    "expect",
+    "beforeEach",
+    "afterEach",
+    "module",
+    "inject",
+    "process",
+    "sinon",
+    "casper",
+    "console",
+    "$",
+    "xdescribe",
+    "ObjectId",
+    "async",
+    "db"
+  ]
+}

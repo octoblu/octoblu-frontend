@@ -1,0 +1,5284 @@
+{
+  "_id": "53f77117710850ee08e28484",
+  "__v": 0,
+  "application": {
+    "base": "https://public-api.wordpress.com/rest/v1",
+    "resources": [
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "offset"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order_by"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "authors_only"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "type"
+          }
+        ],
+        "path": "/sites/$site/users",
+        "displayName": "/sites/$site/users",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/users/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/users"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/me",
+        "displayName": "/me",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/me/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/me"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site",
+        "displayName": "/sites/$site",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site"
+      },
+      {
+        "path": "/sites/$site/posts/",
+        "displayName": "/sites/$site/posts/",
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "offset"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order_by"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "after"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "before"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "category"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "sticky"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "author"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "search"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta_key"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta_value"
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://app.octoblu.com/connect/advanced/custom_channels/editor/53f77117710850ee08e28484"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID",
+        "displayName": "/sites/$site/posts/$post_ID",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/posts/%24post_ID/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID",
+        "displayName": "/sites/$site/posts/$post_ID",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/%24post_ID/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$post_slug"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/slug:$post_slug",
+        "displayName": "/sites/$site/posts/slug:$post_slug",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/posts/slug:%24post_slug/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/slug:$post_slug"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/new",
+        "displayName": "/sites/$site/posts/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID/delete",
+        "displayName": "/sites/$site/posts/$post_ID/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/%24post_ID/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID/likes/",
+        "displayName": "/sites/$site/posts/$post_ID/likes/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/posts/%24post_ID/likes/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/likes/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID/likes/new",
+        "displayName": "/sites/$site/posts/$post_ID/likes/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/%24post_ID/likes/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/likes/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID/likes/mine/delete",
+        "displayName": "/sites/$site/posts/$post_ID/likes/mine/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/%24post_ID/likes/mine/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/likes/mine/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID/likes/mine/",
+        "displayName": "/sites/$site/posts/$post_ID/likes/mine/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/posts/%24post_ID/likes/mine/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/likes/mine/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID/reblogs/mine",
+        "displayName": "/sites/$site/posts/$post_ID/reblogs/mine",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/posts/%24post_ID/reblogs/mine/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/reblogs/mine"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$post_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/posts/$post_ID/reblogs/new",
+        "displayName": "/sites/$site/posts/$post_ID/reblogs/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/%24post_ID/reblogs/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/reblogs/new"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/%24post/related/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/posts/$post/related",
+        "path": "/sites/$site/posts/$post/related",
+        "params": [
+          {
+            "name": "$site",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$post",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post/related"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/comments/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/comments/",
+        "path": "/sites/$site/comments/",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "number",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "order",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "hierarchical",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "after",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "before",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/posts/%24post_ID/replies/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/posts/$post_ID/replies/",
+        "path": "/sites/$site/posts/$post_ID/replies/",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$post_ID",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "number",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "order",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "hierarchical",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "after",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "before",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/replies/"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/comments/%24comment_ID/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/comments/$comment_ID",
+        "path": "/sites/$site/comments/$comment_ID",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$comment_ID",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/comments/%24comment_ID/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/comments/$comment_ID",
+        "path": "/sites/$site/comments/$comment_ID",
+        "params": [
+          {
+            "name": "$site",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$comment_ID",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/posts/%24post_ID/replies/new/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/posts/$post_ID/replies/new",
+        "path": "/sites/$site/posts/$post_ID/replies/new",
+        "params": [
+          {
+            "name": "$site",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$post_ID",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/posts/$post_ID/replies/new"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/comments/%24comment_ID/replies/new/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/comments/$comment_ID/replies/new",
+        "path": "/sites/$site/comments/$comment_ID/replies/new",
+        "params": [
+          {
+            "name": "$site",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$comment_ID",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID/replies/new"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/comments/%24comment_ID/delete/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/comments/$comment_ID/delete",
+        "path": "/sites/$site/comments/$comment_ID/delete",
+        "params": [
+          {
+            "name": "$site",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$comment_ID",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID/delete"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/comments/%24comment_ID/likes/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/comments/$comment_ID/likes/",
+        "path": "/sites/$site/comments/$comment_ID/likes/",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$comment_ID",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID/likes/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$comment_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/comments/$comment_ID/likes/new",
+        "displayName": "/sites/$site/comments/$comment_ID/likes/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/comments/%24comment_ID/likes/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID/likes/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$comment_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "displayName": "/sites/$site/comments/$comment_ID/likes/mine/delete",
+        "path": "/sites/$site/comments/$comment_ID/likes/mine/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/comments/%24comment_ID/likes/mine/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID/likes/mine/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "$comment_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/comments/$comment_ID/likes/mine/",
+        "displayName": "/sites/$site/comments/$comment_ID/likes/mine/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/comments/%24comment_ID/likes/mine/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/comments/$comment_ID/likes/mine/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$category"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/categories/slug:$category",
+        "displayName": "/sites/$site/categories/slug:$category",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/categories/slug:%24category/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/categories/slug:$category"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$category"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/categories/slug:$category",
+        "displayName": "/sites/$site/categories/slug:$category",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/categories/slug:%24category/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/categories/slug:$category"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/categories",
+        "displayName": "/sites/$site/categories",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/categories/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/categories"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/tags",
+        "displayName": "/sites/$site/tags",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/tags/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/tags"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/tags/slug:$tag",
+        "displayName": "/sites/$site/tags/slug:$tag",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/tags/slug:%24tag/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/tags/slug:$tag"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/tags/slug:$tag",
+        "displayName": "/sites/$site/tags/slug:$tag",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/tags/slug:%24tag/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/tags/slug:$tag"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/categories/new",
+        "displayName": "/sites/$site/categories/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/categories/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/categories/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/tags/new",
+        "displayName": "/sites/$site/tags/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/tags/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/tags/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$category"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/categories/slug:$category/delete",
+        "displayName": "/sites/$site/categories/slug:$category/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/categories/slug:%24category/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/categories/slug:$category/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/tags/slug:$tag/delete",
+        "displayName": "/sites/$site/tags/slug:$tag/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/tags/slug:%24tag/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/tags/slug:$tag/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          }
+        ],
+        "path": "/sites/$site/follows/",
+        "displayName": "/sites/$site/follows/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/follows/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/follows/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/follows/new",
+        "displayName": "/sites/$site/follows/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/follows/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/follows/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/follows/mine/delete",
+        "displayName": "/sites/$site/follows/mine/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/follows/mine/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/follows/mine/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/follows/mine",
+        "displayName": "/sites/$site/follows/mine",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/follows/mine/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/follows/mine"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "after"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "before"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "content_width"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "thumb_width"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "thumb_height"
+          }
+        ],
+        "path": "/freshly-pressed/",
+        "displayName": "/freshly-pressed/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/freshly-pressed/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/freshly-pressed/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "ids"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "unread"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "read"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "since"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "before"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "num_note_items"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "trap"
+          }
+        ],
+        "path": "/notifications/",
+        "displayName": "/notifications/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/notifications/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/notifications/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "$note_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "num_note_items"
+          }
+        ],
+        "path": "/notifications/$note_ID",
+        "displayName": "/notifications/$note_ID",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/notifications/%24note_ID/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/notifications/$note_ID"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/notifications/seen",
+        "displayName": "/notifications/seen",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/notifications/seen/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/notifications/seen"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/notifications/read",
+        "displayName": "/notifications/read",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/notifications/read/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/notifications/read"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/insights",
+        "displayName": "/insights",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/insights/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/insights"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$slug"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "unit"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "after"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "before"
+          }
+        ],
+        "path": "/insights/$slug",
+        "displayName": "/insights/$slug",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/insights/%24slug/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/insights/$slug"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/read/menu/",
+        "displayName": "/read/menu/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/menu/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/menu/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$feed_url"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/read/feed/$feed_url",
+        "displayName": "/read/feed/$feed_url",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/feed/%24feed_url/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/feed/$feed_url"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "after"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "before"
+          }
+        ],
+        "displayName": "/read/following/",
+        "path": "/read/following/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/following/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/following/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "after"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "before"
+          }
+        ],
+        "path": "/read/liked/",
+        "displayName": "/read/liked/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/liked/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/liked/"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "after"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "before"
+          }
+        ],
+        "path": "/read/tags/$tag/posts",
+        "displayName": "/read/tags/$tag/posts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/tags/%24tag/posts/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/tags/$tag/posts"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "$tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "path": "/read/tags/$tag/mine",
+        "displayName": "/read/tags/$tag/mine",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/tags/%24tag/mine/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/tags/$tag/mine"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/read/tags/$tag/mine/new",
+        "displayName": "/read/tags/$tag/mine/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/read/tags/%24tag/mine/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/read/tags/$tag/mine/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$tag"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/read/tags/$tag/mine/delete",
+        "displayName": "/read/tags/$tag/mine/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/read/tags/%24tag/mine/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/read/tags/$tag/mine/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          }
+        ],
+        "displayName": "/read/following/mine",
+        "path": "/read/following/mine",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/following/mine/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/following/mine"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "url"
+          }
+        ],
+        "displayName": "/read/following/mine/new",
+        "path": "/read/following/mine/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/read/following/mine/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/read/following/mine/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "url"
+          }
+        ],
+        "path": "/read/following/mine/delete",
+        "displayName": "/read/following/mine/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/read/following/mine/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/read/following/mine/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "exclude"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "number"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "lang"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "source"
+          }
+        ],
+        "path": "/read/recommendations/mine/",
+        "displayName": "/read/recommendations/mine/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/read/recommendations/mine/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/read/recommendations/mine/"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/stats/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/stats",
+        "path": "/sites/$site/stats",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/stats"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/stats/visits/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/stats/visits",
+        "path": "/sites/$site/stats/visits",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "unit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "quantity",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/stats/visits"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/stats/referrers/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/stats/referrers",
+        "path": "/sites/$site/stats/referrers",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "days",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/stats/referrers"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/stats/top-posts/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/stats/top-posts",
+        "path": "/sites/$site/stats/top-posts",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "days",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/stats/top-posts"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/stats/country-views/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/stats/country-views",
+        "path": "/sites/$site/stats/country-views",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "days",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/stats/country-views"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/stats/clicks/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/stats/clicks",
+        "path": "/sites/$site/stats/clicks",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "days",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/stats/clicks"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/stats/search-terms/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/stats/search-terms",
+        "path": "/sites/$site/stats/search-terms",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "days",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/stats/search-terms"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/media/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/media/",
+        "path": "/sites/$site/media/",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "number",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "parent_id",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "mime_type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/media/"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/sites/%24site/media/%24media_ID/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/media/$media_ID",
+        "path": "/sites/$site/media/$media_ID",
+        "params": [
+          {
+            "name": "$site",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$media_ID",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/media/$media_ID"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/media/%24media_ID/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sites/$site/media/$media_ID",
+        "path": "/sites/$site/media/$media_ID",
+        "params": [
+          {
+            "name": "$site",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "$media_ID",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "context",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_envelope",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pretty",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "meta",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fields",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/media/$media_ID"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": ""
+          }
+        ],
+        "path": "/sites/$site/media/new",
+        "displayName": "/sites/$site/media/new",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/media/new/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/media/new"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "$site"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "$media_ID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "context"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "callback"
+          }
+        ],
+        "path": "/sites/$site/media/$media_ID/delete",
+        "displayName": "/sites/$site/media/$media_ID/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/post/sites/%24site/media/%24media_ID/delete/"
+        },
+        "httpMethod": "POST",
+        "url": "https://public-api.wordpress.com/rest/v1/sites/$site/media/$media_ID/delete"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "http_envelope"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "pretty"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "meta"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fields"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "callback"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "urls"
+          }
+        ],
+        "path": "/batch/",
+        "displayName": "/batch/",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.wordpress.com/docs/api/1/get/batch/"
+        },
+        "httpMethod": "GET",
+        "url": "https://public-api.wordpress.com/rest/v1/batch/"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://developer.wordpress.com/docs/api/",
+  "enabled": true,
+  "name": "WordPress",
+  "oauth": {
+    "version": "2.0"
+  },
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:word-press"
+}

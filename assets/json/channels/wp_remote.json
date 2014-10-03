@@ -1,0 +1,2781 @@
+{
+  "_id": "53fe63446b465e1815c63732",
+  "__v": 0,
+  "application": {
+    "base": "https://wpremote.com/api/json/",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/sites/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site",
+        "path": "/site",
+        "url": "https://wpremote.com/api/json//site"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/sites/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site",
+        "path": "/site",
+        "params": [
+          {
+            "name": "domain",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "nicename",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "group",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}",
+        "path": "/site/{SITE_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}",
+        "path": "/site/{SITE_ID}",
+        "params": [
+          {
+            "name": "domain",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "nicename",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_auth_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_auth_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_method",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_hostname",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}",
+        "path": "/site/{SITE_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/themes/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme",
+        "path": "/site/{SITE_ID}/theme",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/theme/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme/{THEME_SLUG}",
+        "path": "/site/{SITE_ID}/theme/{THEME_SLUG}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme/{THEME_SLUG}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/theme/lock-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme/{THEME_SLUG}/lock-update",
+        "path": "/site/{SITE_ID}/theme/{THEME_SLUG}/lock-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme/{THEME_SLUG}/lock-update"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/theme/lock-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme/{THEME_SLUG}/lock-update",
+        "path": "/site/{SITE_ID}/theme/{THEME_SLUG}/lock-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme/{THEME_SLUG}/lock-update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/theme/install/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme/{THEME_SLUG}/install",
+        "path": "/site/{SITE_ID}/theme/{THEME_SLUG}/install",
+        "params": [
+          {
+            "name": "version",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme/{THEME_SLUG}/install"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/theme/update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme/{THEME_SLUG}/update",
+        "path": "/site/{SITE_ID}/theme/{THEME_SLUG}/update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme/{THEME_SLUG}/update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/theme/delete/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme/{THEME_SLUG}/delete",
+        "path": "/site/{SITE_ID}/theme/{THEME_SLUG}/delete",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme/{THEME_SLUG}/delete"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/theme/activate/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/theme/{THEME_SLUG}/activate",
+        "path": "/site/{SITE_ID}/theme/{THEME_SLUG}/activate",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/theme/{THEME_SLUG}/activate"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/posts/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post",
+        "path": "/site/{SITE_ID}/post",
+        "params": [
+          {
+            "name": "author",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "author_name",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "author__in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "author__not_in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "cat",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "category_name",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "category__and",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "category__in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "category__not_in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tag",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tag_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tag__and",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tag__in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tag__not_in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tag_slug__and",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tag_slug__in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "s",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "name",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pagename",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_parent",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_parent__in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_parent__not_in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post__in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post__not_in",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "order",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "orderby",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "nopaging",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "posts_per_page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "paged",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ignore_sticky_posts",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/posts/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/https://wpremote.com/api-docs/site/posts/",
+        "path": "/https://wpremote.com/api-docs/site/posts/",
+        "params": [
+          {
+            "name": "post_parent",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "menu_order",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ping_status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_author",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_content",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_date",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_date_gmt",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_excerpt",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_title",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tags_input",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//https://wpremote.com/api-docs/site/posts/"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}",
+        "path": "/site/{SITE_ID}/post/{POST_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}",
+        "path": "/site/{SITE_ID}/post/{POST_ID}",
+        "params": [
+          {
+            "name": "menu_order",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ping_status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_author",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_content",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_date",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_date_gmt",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_excerpt",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_parent",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_title",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tags_input",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}",
+        "path": "/site/{SITE_ID}/post/{POST_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/metas/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}/meta",
+        "path": "/site/{SITE_ID}/post/{POST_ID}/meta",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}/meta"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/metas/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}/meta",
+        "path": "/site/{SITE_ID}/post/{POST_ID}/meta",
+        "params": [
+          {
+            "name": "meta_key",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "meta_value",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}/meta"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}",
+        "params": [
+          {
+            "name": "meta_value",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/post/{POST_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/email-notification/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/email-notification",
+        "path": "/site/{SITE_ID}/email-notification",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/email-notification"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/email-notification/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/email-notification",
+        "path": "/site/{SITE_ID}/email-notification",
+        "params": [
+          {
+            "name": "frequency",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/email-notification"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/users/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user",
+        "path": "/site/{SITE_ID}/user",
+        "params": [
+          {
+            "name": "include",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "exclude",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "search",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "orderby",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "order",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "number",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/users/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user",
+        "path": "/site/{SITE_ID}/user",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/user/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}",
+        "path": "/site/{SITE_ID}/user/{USER_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/user/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}",
+        "path": "/site/{SITE_ID}/user/{USER_ID}",
+        "params": [
+          {
+            "name": "user_email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "display_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "first_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "last_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user_nicename",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user_pass",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user_url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/user/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}",
+        "path": "/site/{SITE_ID}/user/{USER_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/metas/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}/meta",
+        "path": "/site/{SITE_ID}/user/{USER_ID}/meta",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}/meta"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/post/metas/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}/meta",
+        "path": "/site/{SITE_ID}/user/{USER_ID}/meta",
+        "params": [
+          {
+            "name": "meta_key",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "meta_value",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}/meta"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/user/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/user/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}",
+        "params": [
+          {
+            "name": "meta_value",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/user/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/user/{USER_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugins/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin",
+        "path": "/site/{SITE_ID}/plugin",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/deactivate/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/deactivate",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/deactivate",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}/deactivate"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/lock-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/lock-update",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/lock-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}/lock-update"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/lock-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/lock-update",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/lock-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}/lock-update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/update",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}/update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/uninstall/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/uninstall",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/uninstall",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}/uninstall"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/install/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/install",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/install",
+        "params": [
+          {
+            "name": "version",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}/install"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/plugin/activate/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/activate",
+        "path": "/site/{SITE_ID}/plugin/{PLUGIN_SLUG}/activate",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/plugin/{PLUGIN_SLUG}/activate"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/auto-theme-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/auto-theme-update",
+        "path": "/site/{SITE_ID}/auto-theme-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/auto-theme-update"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/auto-theme-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/auto-theme-update",
+        "path": "/site/{SITE_ID}/auto-theme-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/auto-theme-update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/auto-plugin-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/auto-plugin-update",
+        "path": "/site/{SITE_ID}/auto-plugin-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/auto-plugin-update"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/auto-plugin-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/auto-plugin-update",
+        "path": "/site/{SITE_ID}/auto-plugin-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/auto-plugin-update"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/webhooks/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/webhook",
+        "path": "/site/{SITE_ID}/webhook",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/webhook"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/webhooks/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/webhook",
+        "path": "/site/{SITE_ID}/webhook",
+        "params": [
+          {
+            "name": "url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/webhook"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/webhooks/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/webhook",
+        "path": "/site/{SITE_ID}/webhook",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/webhook"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/webhook/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/webhook/{WEBHOOK_ID}",
+        "path": "/site/{SITE_ID}/webhook/{WEBHOOK_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/webhook/{WEBHOOK_ID}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comments/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment",
+        "path": "/site/{SITE_ID}/comment",
+        "params": [
+          {
+            "name": "status",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "orderby",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "order",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "post_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comments/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment",
+        "path": "/site/{SITE_ID}/comment",
+        "params": [
+          {
+            "name": "comment_post_ID",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_author",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_author_email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_author_url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_date",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_date_gmt",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_content",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_approved",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_parent",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}",
+        "params": [
+          {
+            "name": "comment_post_ID",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_author",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_author_email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_author_url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_date",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_date_gmt",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_content",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_approved",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "comment_parent",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/metas/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}/meta"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/metas/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta",
+        "params": [
+          {
+            "name": "meta_key",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "meta_value",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}/meta"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}",
+        "params": [
+          {
+            "name": "meta_value",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/comment/meta/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}",
+        "path": "/site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/comment/{COMMENT_ID}/meta/{META_KEY}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backups/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup",
+        "path": "/site/{SITE_ID}/backup",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/site/{SITE_ID}/backup/location",
+        "displayName": "/site/{SITE_ID}/backup/location",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/site/{SITE_ID}/backup/location",
+        "displayName": "/site/{SITE_ID}/backup/location",
+        "params": [
+          {
+            "name": "location",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/ftp/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/ftp",
+        "path": "/site/{SITE_ID}/backup/location/ftp",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/ftp"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/ftp/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/ftp",
+        "path": "/site/{SITE_ID}/backup/location/ftp",
+        "params": [
+          {
+            "name": "host",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "port",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "path",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/ftp"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/ftp/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/ftp",
+        "path": "/site/{SITE_ID}/backup/location/ftp",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/ftp"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/sftp/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/sftp",
+        "path": "/site/{SITE_ID}/backup/location/sftp",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/sftp"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/sftp/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/sftp",
+        "path": "/site/{SITE_ID}/backup/location/sftp",
+        "params": [
+          {
+            "name": "host",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "port",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "path",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/sftp"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/sftp/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/sftp",
+        "path": "/site/{SITE_ID}/backup/location/sftp",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/sftp"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/s3/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/s3",
+        "path": "/site/{SITE_ID}/backup/location/s3",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/s3"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/s3/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/s3",
+        "path": "/site/{SITE_ID}/backup/location/s3",
+        "params": [
+          {
+            "name": "aws_secret_key",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "aws_access_key",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "aws_bucket_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/s3"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/s3/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/s3",
+        "path": "/site/{SITE_ID}/backup/location/s3",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/s3"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/dropbox/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/dropbox",
+        "path": "/site/{SITE_ID}/backup/location/dropbox",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/dropbox"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/dropbox/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": "access_token",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/site/{SITE_ID}/backup/location/dropbox",
+        "path": "/site/{SITE_ID}/backup/location/dropbox",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/dropbox"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/location/dropbox/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/location/dropbox",
+        "path": "/site/{SITE_ID}/backup/location/dropbox",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/location/dropbox"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/exclude/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/exclude",
+        "path": "/site/{SITE_ID}/backup/exclude",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/exclude"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/exclude/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": "rules",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/site/{SITE_ID}/backup/exclude",
+        "path": "/site/{SITE_ID}/backup/exclude",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/exclude"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/exclude/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/exclude",
+        "path": "/site/{SITE_ID}/backup/exclude",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/exclude"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/{BACKUP_ID}",
+        "path": "/site/{SITE_ID}/backup/{BACKUP_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/{BACKUP_ID}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/{BACKUP_ID}",
+        "path": "/site/{SITE_ID}/backup/{BACKUP_ID}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/{BACKUP_ID}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/download/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/{BACKUP_ID}/download",
+        "path": "/site/{SITE_ID}/backup/{BACKUP_ID}/download",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/{BACKUP_ID}/download"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/auto-backups/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/auto-backup",
+        "path": "/site/{SITE_ID}/backup/auto-backup",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/auto-backup"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/backup/auto-backups/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/backup/auto-backup",
+        "path": "/site/{SITE_ID}/backup/auto-backup",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/backup/auto-backup"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/refresh-data/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/refresh-data",
+        "path": "/site/{SITE_ID}/refresh-data",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/refresh-data"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/history/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/history",
+        "path": "/site/{SITE_ID}/history",
+        "params": [
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "action",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "start_timestamp",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "end_timestamp",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/history"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/history/enable-remote-history/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/history/enable-remote-history",
+        "path": "/site/{SITE_ID}/history/enable-remote-history",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/history/enable-remote-history"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/history/enable-remote-history/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/history/enable-remote-history",
+        "path": "/site/{SITE_ID}/history/enable-remote-history",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/history/enable-remote-history"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/core/lock-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/core/lock-update",
+        "path": "/site/{SITE_ID}/core/lock-update",
+        "params": [
+          {
+            "name": "domain",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "nicename",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_auth_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_auth_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_method",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_hostname",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/core/lock-update"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/core/lock-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/core/lock-update",
+        "path": "/site/{SITE_ID}/core/lock-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/core/lock-update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/core/auto-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/core/auto-update",
+        "path": "/site/{SITE_ID}/core/auto-update",
+        "params": [
+          {
+            "name": "type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/core/auto-update"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/core/auto-update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/site/{SITE_ID}/core/auto-update",
+        "displayName": "/site/{SITE_ID}/core/auto-update",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/core/auto-update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/core/update/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/core/update",
+        "path": "/site/{SITE_ID}/core/update",
+        "params": [
+          {
+            "name": "domain",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "nicename",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_auth_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "http_auth_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_method",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_hostname",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filesystem_password",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/core/update"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/lock/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/lock",
+        "path": "/site/{SITE_ID}/lock",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/lock"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/lock/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/lock",
+        "path": "/site/{SITE_ID}/lock",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/lock"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/note/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/site/{SITE_ID}/note",
+        "displayName": "/site/{SITE_ID}/note",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/note"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/note/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/note",
+        "path": "/site/{SITE_ID}/note",
+        "params": [
+          {
+            "name": "note",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/note"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/group/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/group",
+        "path": "/site/{SITE_ID}/group",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/group"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/group/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/group",
+        "path": "/site/{SITE_ID}/group",
+        "params": [
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/group"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/download/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/site/{SITE_ID}/download",
+        "displayName": "/site/{SITE_ID}/download",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/download"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/download/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/download",
+        "path": "/site/{SITE_ID}/download",
+        "params": [
+          {
+            "name": "type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/download"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/download/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/download",
+        "path": "/site/{SITE_ID}/download",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/download"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/premium/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/premium",
+        "path": "/site/{SITE_ID}/premium",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/premium"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/premium/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/premium",
+        "path": "/site/{SITE_ID}/premium",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/premium"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/api-key/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/api-key",
+        "path": "/site/{SITE_ID}/api-key",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/api-key"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/api-key/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/api-key",
+        "path": "/site/{SITE_ID}/api-key",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/api-key"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/option/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/option/{OPTION_NAME}",
+        "path": "/site/{SITE_ID}/option/{OPTION_NAME}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/option/{OPTION_NAME}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/option/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": "option_value",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/site/{SITE_ID}/option/{OPTION_NAME}",
+        "path": "/site/{SITE_ID}/option/{OPTION_NAME}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/option/{OPTION_NAME}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/option/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/{SITE_ID}/option/{OPTION_NAME}",
+        "path": "/site/{SITE_ID}/option/{OPTION_NAME}",
+        "url": "https://wpremote.com/api/json//site/{SITE_ID}/option/{OPTION_NAME}"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/site/historys/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/site/history",
+        "path": "/site/history",
+        "params": [
+          {
+            "name": "site_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "action",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "start_timestamp",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "end_timestamp",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//site/history"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/account/webhooks/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/account/webhook",
+        "path": "/account/webhook",
+        "url": "https://wpremote.com/api/json//account/webhook"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/account/webhooks/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": "url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/account/webhook",
+        "path": "/account/webhook",
+        "url": "https://wpremote.com/api/json//account/webhook"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/account/webhooks/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/account/webhook",
+        "path": "/account/webhook",
+        "url": "https://wpremote.com/api/json//account/webhook"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/account/webhook/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/account/webhook/{WEBHOOK_ID}",
+        "path": "/account/webhook/{WEBHOOK_ID}",
+        "url": "https://wpremote.com/api/json//account/webhook/{WEBHOOK_ID}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/account/subscription/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/account/subscription",
+        "displayName": "/account/subscription",
+        "params": [
+          {
+            "name": "stripe_token",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "coupon",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://wpremote.com/api/json//account/subscription"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/account/subscription/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/account/subscription",
+        "path": "/account/subscription",
+        "url": "https://wpremote.com/api/json//account/subscription"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://wpremote.com/api-docs/account/subscription/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/account/subscription",
+        "path": "/account/subscription",
+        "url": "https://wpremote.com/api/json//account/subscription"
+      }
+    ]
+  },
+  "auth_strategy": "basic",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://wpremote.com/api-docs/",
+  "enabled": true,
+  "name": "WP REMOTE",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:wp-remote"
+}

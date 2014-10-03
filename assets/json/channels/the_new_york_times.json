@@ -1,0 +1,240 @@
+{
+  "_id": "53dbfb2c626a43a44f966d08",
+  "__v": 0,
+  "application": {
+    "base": "http://api.nytimes.com/svc/",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.nytimes.com/docs/read/article_search_api_v2"
+        },
+        "authentication": {
+          "required": "false"
+        },
+        "displayName": "Article Search",
+        "path": "search/v2/articlesearch",
+        "params": [
+          {
+            "name": "q",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fq",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "begin_date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "end_date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fl",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "hl",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "facet_field",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "facet_filter",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "response-format",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "api-key",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://api.nytimes.com/svc/search/v2/articlesearch"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.nytimes.com/docs/events_api"
+        },
+        "authentication": {},
+        "displayName": "Event Listings",
+        "path": "events/{version}/listings",
+        "params": [
+          {
+            "name": "version",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "api-key",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "response-format",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ll",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "radius",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ne",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sw",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "query",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filters",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date_range",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "facets",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://api.nytimes.com/svc/events/{version}/listings"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {},
+        "authentication": {},
+        "displayName": "The Best Sellers",
+        "path": "books/{version}/lists",
+        "url": "http://api.nytimes.com/svc/books/{version}/lists"
+      }
+    ]
+  },
+  "auth_strategy": "",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://developer.nytimes.com/docs/",
+  "enabled": true,
+  "name": "The New York Times",
+  "owner": "01f45d00-0611-11e4-83bd-196bfd08cd39",
+  "type": "channel:the-new-york-times"
+}

@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('DeviceDetailSharedController', function ($scope, $stateParams, $modal, currentUser, availableNodeTypes,
                                                           PermissionsService, deviceService) {
@@ -53,7 +54,6 @@ angular.module('octobluApp')
                 function () {
                     deviceService.unregisterDevice(device)
                         .then(function (devices) {
-                            console.log(devices);
                             $state.go('ob.connector.nodes.all', {}, {reload: true});
                         }, function (error) {
                             console.log(error);

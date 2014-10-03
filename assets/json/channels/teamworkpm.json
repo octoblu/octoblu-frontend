@@ -1,0 +1,743 @@
+{
+  "_id": "54078e046b465e1815c63737",
+  "__v": 0,
+  "application": {
+    "base": "http://foo.teamworkpm.net",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/account"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/account.json",
+        "path": "/account.json",
+        "url": "http://foo.teamworkpm.net/account.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/account"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/authenticate.json",
+        "path": "/authenticate.json",
+        "url": "http://foo.teamworkpm.net/authenticate.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/activity#latest_activity_a"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/latestActivity.json",
+        "path": "/latestActivity.json",
+        "url": "http://foo.teamworkpm.net/latestActivity.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/activity#latest_activity_a"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/latestActivity.json",
+        "path": "/projects/{project_id}/latestActivity.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/latestActivity.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/activity#latest_activity_a"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/activity/{id}.json",
+        "path": "/activity/{id}.json",
+        "url": "http://foo.teamworkpm.net/activity/{id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/messagecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/messageCategories.json",
+        "path": "/projects/{project_id}/messageCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/messagecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messageCategories/{id}.json",
+        "path": "/messageCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/messageCategories/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/messagecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/messageCategories.json",
+        "path": "/projects/{project_id}/messageCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/messagecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messageCategories/{id}.json",
+        "path": "/messageCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/messageCategories/{id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/messagecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messageCategories/{id}.json",
+        "path": "/messageCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/messageCategories/{id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/filecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/fileCategories.json",
+        "path": "/projects/{project_id}/fileCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/filecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/fileCategories/{id}.json",
+        "path": "/fileCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/fileCategories/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/filecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/projects/{project_id}/fileCategories.json",
+        "displayName": "/projects/{project_id}/fileCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/filecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/fileCategories/{id}.json",
+        "path": "/fileCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/fileCategories/{id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/filecategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/fileCategories/{id}.json",
+        "path": "/fileCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/fileCategories/{id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/notebookcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/notebookCategories.json",
+        "path": "/projects/{project_id}/notebookCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/notebookcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/notebookCategories/{id}.json",
+        "path": "/notebookCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/notebookCategories/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/notebookcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/notebookCategories.json",
+        "path": "/projects/{project_id}/notebookCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/notebookcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/notebookCategories/{id}.json",
+        "path": "/notebookCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/notebookCategories/{id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/notebookcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/notebookCategories/{id}.json",
+        "path": "/notebookCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/notebookCategories/{id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/linkcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/projects/#{project_id}/linkCategories.json",
+        "displayName": "/projects/#{project_id}/linkCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/linkcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/linkCategories/#{id}.json",
+        "path": "/linkCategories/#{id}.json",
+        "url": "http://foo.teamworkpm.net/linkCategories/#{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/linkcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/#{project_id}/linkCategories.json",
+        "path": "/projects/#{project_id}/linkCategories.json",
+        "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/linkcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/linkCategories/#{id}.json",
+        "path": "/linkCategories/#{id}.json",
+        "url": "http://foo.teamworkpm.net/linkCategories/#{id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/linkcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/linkCategories/#{id}.json",
+        "path": "/linkCategories/#{id}.json",
+        "url": "http://foo.teamworkpm.net/linkCategories/#{id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/projectcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projectcategories.json",
+        "path": "/projectcategories.json",
+        "url": "http://foo.teamworkpm.net/projectcategories.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/projectcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projectCategories/{id}.json",
+        "path": "/projectCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/projectCategories/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/projectcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projectCategories.json",
+        "path": "/projectCategories.json",
+        "url": "http://foo.teamworkpm.net/projectCategories.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/projectcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projectCategories/{id}.json",
+        "path": "/projectCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/projectCategories/{id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/projectcategories"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projectCategories/{id}.json",
+        "path": "/projectCategories/{id}.json",
+        "url": "http://foo.teamworkpm.net/projectCategories/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/comments"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{resource}/{resource_id}/comments.json",
+        "path": "/{resource}/{resource_id}/comments.json",
+        "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/comments"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/comments/{comment_id}.json",
+        "path": "/comments/{comment_id}.json",
+        "url": "http://foo.teamworkpm.net/comments/{comment_id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/comments"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/{resource}/{resource_id}/comments.json",
+        "path": "/{resource}/{resource_id}/comments.json",
+        "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/comments"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/comments/{id}.json",
+        "path": "/comments/{id}.json",
+        "url": "http://foo.teamworkpm.net/comments/{id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/comments"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/comments/{id}.json",
+        "path": "/comments/{id}.json",
+        "url": "http://foo.teamworkpm.net/comments/{id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/companies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/companies.json",
+        "path": "/companies.json",
+        "url": "http://foo.teamworkpm.net/companies.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/companies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/companies/{project_id}.json",
+        "path": "/companies/{project_id}.json",
+        "url": "http://foo.teamworkpm.net/companies/{project_id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/companies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/companies/{id}.json",
+        "path": "/companies/{id}.json",
+        "url": "http://foo.teamworkpm.net/companies/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/companies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/companies/{company_id}.json",
+        "path": "/companies/{company_id}.json",
+        "url": "http://foo.teamworkpm.net/companies/{company_id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/companies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/companies.json",
+        "path": "/companies.json",
+        "url": "http://foo.teamworkpm.net/companies.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/companies"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/companies.json",
+        "path": "/projects/{project_id}/companies.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/companies.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/files"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/files.json",
+        "path": "/projects/{project_id}/files.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/files.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/files"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/files/{file_id}.json",
+        "path": "/files/{file_id}.json",
+        "url": "http://foo.teamworkpm.net/files/{file_id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/files"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/files.json",
+        "path": "/projects/{project_id}/files.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/files.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/files"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/files/{file_id}.json",
+        "path": "/files/{file_id}.json",
+        "url": "http://foo.teamworkpm.net/files/{file_id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/files"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/files/{file_id}.json",
+        "path": "/files/{file_id}.json",
+        "url": "http://foo.teamworkpm.net/files/{file_id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/uploadingfiles"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/pendingfiles.json",
+        "path": "/pendingfiles.json",
+        "url": "http://foo.teamworkpm.net/pendingfiles.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/events"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/calendarevents.json",
+        "path": "/calendarevents.json",
+        "params": [
+          {
+            "name": "startdate",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "endDate",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "showDeleted",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "updatedAfterDate",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://foo.teamworkpm.net/calendarevents.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/events"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/calendarevents/{id}.json",
+        "displayName": "/calendarevents/{id}.json",
+        "url": "http://foo.teamworkpm.net/calendarevents/{id}.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/events"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/calendarevents.json",
+        "path": "/calendarevents.json",
+        "url": "http://foo.teamworkpm.net/calendarevents.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/events"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/calendarevents/{id}.json",
+        "path": "/calendarevents/{id}.json",
+        "url": "http://foo.teamworkpm.net/calendarevents/{id}.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://developer.teamwork.com/events"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/calendarevents/{id}.json",
+        "path": "/calendarevents/{id}.json",
+        "url": "http://foo.teamworkpm.net/calendarevents/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/events"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/calendareventtypes.json",
+        "path": "/calendareventtypes.json",
+        "url": "http://foo.teamworkpm.net/calendareventtypes.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.teamwork.com/messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/posts.json",
+        "path": "/projects/{project_id}/posts.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/posts.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/posts/{id}.json",
+        "path": "/posts/{id}.json",
+        "url": "http://foo.teamworkpm.net/posts/{id}.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/projects/{project_id}/posts.json",
+        "displayName": "/projects/{project_id}/posts.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/posts.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://developer.teamwork.com/messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{project_id}/cat/{category_id}/posts.json",
+        "path": "/projects/{project_id}/cat/{category_id}/posts.json",
+        "url": "http://foo.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://developer.teamwork.com/messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/posts/{id}.json",
+        "path": "/posts/{id}.json",
+        "url": "http://foo.teamworkpm.net/posts/{id}.json"
+      }
+    ]
+  },
+  "auth_strategy": "basic",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://developer.teamwork.com/api",
+  "enabled": true,
+  "name": "TEAMWORKPM",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:teamworkpm"
+}

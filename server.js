@@ -1,4 +1,5 @@
 var express        = require('express');
+var errorhandler   = require('errorhandler');
 var http           = require('http');
 var https          = require('https');
 var morgan         = require('morgan');
@@ -34,13 +35,36 @@ var RedisStore = connectRedis(expressSession);
 require('./initializeModels.js');
 
 require('./config/passport')(env, passport); // pass passport for configuration
-
+passport.use(require('./config/app-net'));
+passport.use(require('./config/bitly'));
+passport.use(require('./config/box'));
+passport.use(require('./config/dropbox'));
+passport.use(require('./config/facebook'));
+passport.use(require('./config/fitbit'));
+passport.use(require('./config/four-square'));
+passport.use(require('./config/github'));
+passport.use(require('./config/google'));
+passport.use(require('./config/gotomeeting'));
+passport.use(require('./config/instagram'));
+passport.use(require('./config/linked-in'));
+passport.use(require('./config/nest'));
+passport.use(require('./config/rdio'));
+passport.use(require('./config/spotify'));
+passport.use(require('./config/survey-monkey'));
+passport.use(require('./config/twitter'));
+passport.use(require('./config/vimeo'));
+passport.use(require('./config/smartsheet'));
+passport.use(require('./config/local'));
 
 // set up our express application
 app.use(morgan('dev', {immediate:false})); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
+
 // app.use(express.bodyParser()); // get information from html forms
-app.use(bodyParser());
+// app.use(bodyParser());
+// increasing body size for resources
+app.use(bodyParser({limit: '50mb'}));
+
 app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
 
 // app.set('view engine', 'jade'); // set up jade for templating
@@ -55,6 +79,9 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(cors());
+if (process.env.NODE_ENV === 'development') {
+  app.use(errorhandler());
+}
 
 require('./app/routes.js')(app, passport);
 

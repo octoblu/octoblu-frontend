@@ -3,130 +3,82 @@ var record = {
     "base": "https://api.lockitron.com",
     "resources": [
       {
-        "displayName": "/v1/locks",
+        "displayName": "/v2/locks",
         "doc": {
           "t": "Locks returns a list of the users available keys as well as data about those keys including their start and expiration times.",
           "url": "/docs"
         },
         "httpMethod": "GET",
         "params": [],
-        "path": "/v1/locks"
+        "path": "/v2/locks"
       },
       {
-        "displayName": "/v1/locks/lock_id/unlock",
+        "displayName": "/v2/locks/:lock_id",
         "doc": {
-          "t": "The unlock resource tells the specified Lockitron to unlock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it unlocked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
-          "url": "/v1/locks/lock_id/unlock"
+          "t": "This method will lock or unlock the user's door. It blocks until locking/unlocking is finished. If the Lockitron is asleep, it can take several minutes. Failures return standard errors.",
+          "url": "/v2/locks/{lock_id}/unlock"
         },
-        "httpMethod": "POST",
+        "httpMethod": "PUT",
         "params": [
           {
-            "name": "lock_id",
+            "name": ":lock_id",
             "required": true,
-            "style": "query",
-            "doc": {
-              "t": "the id of the Lockitron to lock"
-            }
-          }
-        ],
-        "path": "/v1/locks/lock_id/unlock"
-      },
-      {
-        "displayName": "/v1/locks/lock_id/lock",
-        "doc": {
-          "t": "The lock resource tells the specified Lockitron to lock. It'll always return the status code 200 if you have access to the Lockitron. It'll then redirect you to a Log object for that resource. Within the Log object, result indicates whether or not it locked successfully and motion indicates whether you locked or unlocked the door. If you don't have access to the lock, it'll return a 403.",
-          "url": "/v1/locks/lock_id/lock"
-        },
-        "httpMethod": "POST",
-        "params": [
-          {
-            "name": "lock_id",
-            "required": true,
-            "style": "query",
-            "doc": {
-              "t": "the id of the Lockitron to lock"
-            }
-          }
-        ],
-        "path": "/v1/locks/lock_id/lock"
-      },
-      {
-        "displayName": "/v1/locks/lock_id/add",
-        "doc": {
-          "t": "The invite resource will invite a user by email to a lock. If they already have a Lockitron account, it'll add the key to it. Otherwise, it'll send them an invitation to email. This resource returns the user's Key object and a status code of 200. If it fails, it'll return a 500. If the user isn't allowed to invite guests, it'll return a 403. Note that only locks with text message access activated may use the phone argument alone to invite users.",
-          "url": "/v1/locks/lock_id/add"
-        },
-        "httpMethod": "POST",
-        "params": [
-          {
-            "name": "lock_id",
-            "required": true,
-            "style": "query",
+            "style": "url",
             "doc": {
               "t": "the id of the Lockitron to lock"
             }
           },
           {
-            "name": "phone",
+            "name": "state",
             "required": true,
-            "style": "query",
+            "style": "body",
             "doc": {
-              "t": "the phone of the user to invite"
-            }
-          },
-          {
-            "name": "fullname",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "a suggested full name for the user being invited"
-            }
-          },
-          {
-            "name": "role",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "the desired role for the user - guest or admin"
-            }
-          },
-          {
-            "name": "start",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "the desired start time for the key as a Unix timestamp"
-            }
-          },
-          {
-            "name": "expiration",
-            "required": false,
-            "style": "query",
-            "doc": {
-              "t": "the desired expiration time for the key as a Unix timestamp"
+              "t": "Possible states include: \"lock\", \"unlock\", or \"toggle\""
             }
           }
         ],
-        "path": "/v1/locks/lock_id/add"
-      },
+        "path": "/v2/locks/:lock_id"
+      }
     ]
   },
   "auth_strategy": "oauth",
   "description" : "Lockitron lets you replace your keys with your phone.",
-  "documentation": "https://api.lockitron.com/v1/docs",
+  "documentation": "https://api.lockitron.com/v2/docs",
   "enabled": true,
   "logo": "https://s3-us-west-2.amazonaws.com/octoblu-icons/lockitron.png",
   "logobw": "https://s3-us-west-2.amazonaws.com/octoblu-icons/lockitron-bw.png",
   "name": "Lockitron",
   "oauth": {
-    "authTokenPath": "/oauth/token",
-    "authTokenURL": "https://api.lockitron.com/oauth/authorize",
-    "baseURL": "https://api.lockitron.com",
-    "clientId": "59e9b56517291cf40a87d3a60a5feb4febe402983e60c528182d32ee23b8576e",
-    "scope": "",
-    "secret": "ada2e03c69fdf4fb404098a5bb884fb83881912c4f28d52bf83c07ed8b42ae2f",
-    "tokenMethod": "token",
-    "version": "2.0"
+    "development": {
+      "authTokenPath": "/oauth/token",
+      "authTokenURL": "https://api.lockitron.com/oauth/authorize",
+      "baseURL": "https://api.lockitron.com",
+      "clientId": "59e9b56517291cf40a87d3a60a5feb4febe402983e60c528182d32ee23b8576e",
+      "secret": "ada2e03c69fdf4fb404098a5bb884fb83881912c4f28d52bf83c07ed8b42ae2f",
+      "scope": "",
+      "tokenMethod": "access_token_query",
+      "version": "2.0"
+    },
+    "production": {
+      "authTokenPath": "/oauth/token",
+      "authTokenURL": "https://api.lockitron.com/oauth/authorize",
+      "baseURL": "https://api.lockitron.com",
+      "clientId": "47386cc5bb78cfb3d785904a3c82bbaaf39f50ea24119d43c692313292b23ea0",
+      "secret": "40f69716b8eb3bced057220dbe1c7bf3bc9d55b8eed538be78ecfe94dcdc4c61",
+      "scope": "",
+      "tokenMethod": "access_token_query",
+      "version": "2.0"
+    },
+    "staging": {
+      "authTokenPath": "/oauth/token",
+      "authTokenURL": "https://api.lockitron.com/oauth/authorize",
+      "baseURL": "https://api.lockitron.com",
+      "clientId": "78c93f5c1f5467b74b5736997eb8a73881ecc4dafacf20563b8c83290f85c5e0",
+      "secret": "21e255ba632c8c54ce8201fa049261f7db986b0ac110d2f9f6f97f4eb4e7896f",
+      "scope": "",
+      "tokenMethod": "access_token_query",
+      "version": "2.0"
+    }
   },
   "useCustom": true
 }

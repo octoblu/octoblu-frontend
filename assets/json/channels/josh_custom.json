@@ -1,0 +1,144 @@
+{
+  "_id": "53beae78b74924000012b946",
+  "__v": 0,
+  "application": {
+    "base": "test",
+    "resources": [
+      {
+        "curl": "curl /sample1",
+        "path": "/sample1",
+        "displayName": "sample1",
+        "doc": {
+          "t": "sample",
+          "url": "sample"
+        },
+        "httpMethod": "GET",
+        "url": "test/sample1"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://docs.example.com/api/sample",
+          "t": "sample"
+        },
+        "authentication": {},
+        "displayName": "/sample",
+        "path": "/sample",
+        "url": "test/sample"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.example.com/oauth/sample2",
+          "t": "sample2"
+        },
+        "authentication": {},
+        "displayName": "/sample2",
+        "path": "/sample2",
+        "params": [
+          {
+            "name": "user",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "test/sample2"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "sample3",
+          "t": "sample3"
+        },
+        "authentication": {},
+        "displayName": "sample3",
+        "path": "/sample3",
+        "params": [
+          {
+            "name": "param1",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "param2",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "param3",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "test/sample3"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "sample4",
+          "t": "sample4"
+        },
+        "authentication": {},
+        "displayName": "sample4",
+        "path": "/sample4",
+        "params": [
+          {
+            "name": "one",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "two",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "three",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "four",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "test/sample4"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "test",
+  "documentation": "test",
+  "enabled": true,
+  "name": "Josh Custom",
+  "oauth": {
+    "version": "1.0",
+    "key": "123",
+    "secret": "13123123123",
+    "accessTokenURL": "https://api.example.com/oauth/access_token",
+    "requestTokenURL": "https://api.example.com/oauth/request_token",
+    "authTokenURL": "https://api.example.com/oauth/authorize",
+    "authTokenPath": "authorization_code",
+    "scope": "user"
+  },
+  "owner": "d982ad81-8e98-11e3-b224-23fcd9c1f8ad",
+  "type": "channel:josh-custom"
+}

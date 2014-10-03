@@ -1,0 +1,169 @@
+{
+  "_id": "53c403b467605b33c1d4b09b",
+  "name": "Nest",
+  "auth_strategy": "oauth",
+  "documentation": "https://developer.nest.com/documentation",
+  "enabled": true,
+  "isPassport" : true,
+  "bodyFormat": "json",
+  "followAllRedirects": true,
+  "oauth": {
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/nest/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam": "auth"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/nest/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam": "auth"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/nest/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam": "auth"
+    }
+  },
+  "application": {
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "fullURL": "https://developer-api.nest.com/devices.json",
+        "path": "/devices.json",
+        "displayName": "/devices.json",
+        "doc": {
+          "t": "Retrieves information about your Nest devices."
+        },
+        "url": "https://developer-api.nest.com/devices.json"
+      },
+      {
+        "httpMethod": "PATCH",
+        "fullURL": "https://developer-api.nest.com/devices/thermostats/:device_id",
+        "path": "/devices/thermostats/:device_id",
+        "displayName": "/devices/thermostats/:device_id",
+        "doc": {
+          "t": "Update information on your Nest devices."
+        },
+        "params": [
+          {
+            "name": ":device_id",
+            "required": true,
+            "style": "url",
+            "doc": {
+              "t": "Device Id"
+            }
+          },
+          {
+            "name": "fan_timer_active",
+            "required": false,
+            "style": "body",
+            "type": "boolean",
+            "doc": {
+              "t": true
+            }
+          },
+          {
+            "name": "target_temperature_f",
+            "required": false,
+            "style": "body",
+            "type": "number",
+            "doc": {
+              "t": 76
+            }
+          },
+          {
+            "name": "target_temperature_c",
+            "required": false,
+            "style": "body",
+            "type": "number",
+            "doc": {
+              "t": 21.5
+            }
+          },
+          {
+            "name": "target_temperature_high_f",
+            "required": false,
+            "style": "body",
+            "type": "number",
+            "doc": {
+              "t": 72
+            }
+          },
+          {
+            "name": "target_temperature_high_c",
+            "required": false,
+            "style": "body",
+            "type": "number",
+            "doc": {
+              "t": 21.5
+            }
+          },
+          {
+            "name": "target_temperature_low_f",
+            "required": false,
+            "style": "body",
+            "type": "number",
+            "doc": {
+              "t": 64
+            }
+          },
+          {
+            "name": "target_temperature_low_c",
+            "required": false,
+            "style": "body",
+            "type": "number",
+            "doc": {
+              "t": 17.5
+            }
+          },
+          {
+            "name": "hvac_mode",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "heat"
+            }
+          }
+        ],
+        "url": "https://developer-api.nest.com/devices/thermostats/:device_id"
+      },
+      {
+        "httpMethod": "PATCH",
+        "fullURL": "https://developer-api.nest.com/structures/:structure_id",
+        "path": "/structures/:structure_id",
+        "displayName": "/structures/:structure_id",
+        "doc": {
+          "t": "Update information on your Nest structures."
+        },
+        "params": [
+          {
+            "name": ":structure_id",
+            "required": true,
+            "style": "url",
+            "doc": {
+              "t": "Device Id"
+            }
+          },
+          {
+            "name": "away",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "away"
+            }
+          }
+        ],
+        "url": "https://developer-api.nest.com/structures/:structure_id"
+      }
+    ],
+    "base": "https://developer-api.nest.com"
+  },
+  "requestTokenURL": "",
+  "type": "channel:nest"
+}

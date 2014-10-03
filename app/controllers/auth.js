@@ -1,11 +1,12 @@
-'use strict';
-
 var request = require('request'),
     mongoose = require('mongoose'),
-    Api = mongoose.model('Api'),
     crypto = require('crypto'),
     url = require('url'),
+    _ = require('lodash'),
+    referrer = require('./middleware/referrer.js'),
+    querystring = require('querystring'),
     User = mongoose.model('User'),
+    Channel = require('../models/channel'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
 var ObjectId = require('mongoose').Types.ObjectId;
 
@@ -13,18 +14,19 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var skynetdb = require('../lib/skynetdb').collection('devices');
 
 module.exports = function (app, passport, config) {
-
-    app.post('/api/auth', passport.authenticate('local-login'), loginRoute);
-    app.get('/api/auth/login', passport.authenticate('local-login'), loginRoute);
+    app.post('/api/auth', passport.authenticate('local'), loginRoute);
+    app.get('/api/auth/login', passport.authenticate('local'), loginRoute);
 
     app.delete('/api/auth', logoutRoute);
     app.get('/api/auth/logout', logoutRoute);
     app.put('/api/auth/accept_terms', isAuthenticated, updateTerms);
     app.put('/api/auth/password', isAuthenticated, updatePassword);
 
-    app.get('/api/auth', isAuthenticated, function (req, res) {
+    app.get('/api/auth', function (req, res) {
         res.send(req.user);
     });
+
+    app.get('/auth/logout', logoutAndRedirectRoute);
 
     function loginRoute(req, res) {
         var user = req.user;
@@ -33,17 +35,6 @@ module.exports = function (app, passport, config) {
             res.send(401, {error: 'unauthorized'});
             return;
         }
-        res.cookie('skynetuuid', user.skynet.uuid, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
-
-        res.cookie('skynettoken', user.skynet.token, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
         res.send(user);
     }
 
@@ -54,7 +45,18 @@ module.exports = function (app, passport, config) {
         if (req.logout) {
             req.logout();
         }
-        res.send(200);
+        res.send(204);
+    }
+
+    function logoutAndRedirectRoute(req, res) {
+        res.clearCookie('skynetuuid');
+        res.clearCookie('skynettoken');
+
+        if (req.logout) {
+            req.logout();
+        }
+
+        res.redirect('/');
     }
 
     function updatePassword (req, res) {
@@ -75,7 +77,7 @@ module.exports = function (app, passport, config) {
         req.user.acceptTerms(req.body.accept_terms).then(function(){
             return res.send(204);
         })
-        .catch(function(){
+        .catch(function(err){
             return res.send(422, {errors: {accept_terms: ['must be true']}});
         })
     }
@@ -105,28 +107,61 @@ module.exports = function (app, passport, config) {
 
     var getOauth1Instance = function (req, api) {
         var OAuth = require('oauth');
+        var creds = getOAuthCredentials(api.oauth);
         return new OAuth.OAuth(
-            api.oauth.requestTokenURL,
-            api.oauth.accessTokenURL,
-            api.oauth.key,
-            api.oauth.secret,
-            api.oauth.version,
+            creds.requestTokenURL,
+            creds.accessTokenURL,
+            creds.key,
+            creds.secret,
+            creds.version,
             getOAuthCallbackUrl(req, api._id),
             'HMAC-SHA1'
         );
     };
 
+    var getOAuthCredentials = function(oauth) {
+        return oauth[process.env.NODE_ENV] || oauth;
+    };
+
+    var getOauth2AccessInstance = function (api) {
+        var creds = getOAuthCredentials(api.oauth);
+        var oauth_creds = {
+            clientID: creds.clientId || creds.key,
+            clientSecret: creds.secret,
+            site: creds.baseURL,
+            tokenPath: creds.accessTokenPath
+        };
+        return require('simple-oauth2')(oauth_creds);
+    };
+
+    var getOauth2TokenInstance = function (api) {
+        var creds = getOAuthCredentials(api.oauth);
+        var oauth_creds = {
+            clientID: creds.clientId || creds.key,
+            clientSecret: creds.secret,
+            site: creds.tokenBaseURL || creds.baseURL,
+            tokenPath: creds.authTokenPath
+        };
+        return require('simple-oauth2')(oauth_creds);
+    };
+
     var getOauth2Instance = function (api) {
-        return require('simple-oauth2')({
-            clientID: api.oauth.clientId,
-            clientSecret: api.oauth.secret,
-            site: api.oauth.baseURL,
-            tokenPath: api.oauth.authTokenPath
-        });
+        var creds = getOAuthCredentials(api.oauth);
+        var oauth_creds = {
+            clientID: creds.clientId || creds.key,
+            clientSecret: creds.secret,
+            site: creds.baseURL,
+            tokenPath: creds.authTokenPath,
+            scope: creds.scope,
+            authorizationPath : creds.accessTokenPath
+        };
+        return require('simple-oauth2')(oauth_creds);
     };
 
     var getOAuthCallbackUrl = function (req, channelid) {
-        return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        return (req.headers.host.indexOf('octoblu.com')>=0) ? 'https://'+ req.headers.host + '/api/auth/' + channelid + '/callback/custom'
+          : req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
+        // return req.protocol + '://' + req.headers.host + '/api/auth/' + channelid + '/callback/custom';
     };
 
     var handleApiCompleteRedirect = function (res, channelid, err) {
@@ -148,25 +183,21 @@ module.exports = function (app, passport, config) {
         return result;
     };
 
-    app.get('/auth/facebook', storeReferrer, passport.authenticate('facebook', { scope: 'email' }));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', { scope: ['profile', 'email']}), restoreReferrer, completeLogin);
-
-    app.get('/auth/twitter', storeReferrer, passport.authenticate('twitter', { scope: 'email' }));
-    app.get('/auth/twitter/callback', passport.authenticate('twitter'), restoreReferrer, completeLogin);
-
-    app.get('/auth/google', storeReferrer, passport.authenticate('google', { scope: ['profile', 'email'] }));
-    app.get('/auth/google/callback', passport.authenticate('google'), restoreReferrer, completeLogin);
-
-    app.get('/auth/github', storeReferrer, passport.authenticate('github', { scope: ['user:email'] }));
-    app.get('/auth/github/callback', passport.authenticate('github'), restoreReferrer, completeLogin);
-
-    // working on custom oauth handling here.....
     app.get('/api/auth/:id/custom', function (req, res) {
+        var channelid = req.params.id;
+        var user = req.user;
 
-        Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
-            if (api.oauth.version === '2.0') {
-                if (api.oauth.isManual) {
-                    console.log(api.oauth.protocol, api.oauth.host, api.oauth.authTokenPath)
+        Channel.findById(channelid).then(function (api) {
+            var creds = getOAuthCredentials(api.oauth);
+            if(creds.version==='1.0' && creds.is0LegAuth==true) {
+                // add api to user record
+                var token = '0LegAuth';
+                user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
+                user.save(function (err) {
+                    res.redirect('/connect/nodes/channel/' + api._id);
+                });
+            } else if (creds.version === '2.0') {
+                if (creds.isManual) { // shoot yourself
                     // manually handle oauth...
                     var csrfToken = generateCSRFToken();
                     var timestamp = (new Date()).getTime();
@@ -174,9 +205,9 @@ module.exports = function (app, passport, config) {
 
                     res.cookie('csrf', csrfToken);
                     var query;
-                    if (api.oauth.useOAuthParams) {
+                    if (creds.useOAuthParams) {
                         query = {
-                            oauth_consumer_key: api.oauth.clientId,
+                            oauth_consumer_key: creds.clientId,
                             response_type: 'code',
                             oauth_signature: csrfToken,
                             oauth_signature_method: 'HMAC-SHA1',
@@ -186,35 +217,34 @@ module.exports = function (app, passport, config) {
                         };
                     } else {
                         query = {
-                            client_id: api.oauth.clientId,
+                            client_id: creds.clientId,
                             response_type: 'code',
                             state: csrfToken,
                             redirect_uri: getOAuthCallbackUrl(req, api._id)
                         };
                     }
 
-                    if(api.oauth.auth_use_client_id_value) {
-                        query.client_id = api.oauth.auth_use_client_id_value;
+                    if(creds.auth_use_client_id_value) {
+                        query.client_id = creds.auth_use_client_id_value;
                     }
-                    if(api.oauth.auth_use_api_key==true && api.oauth.clientId) {
-                        query.api_key = api.oauth.clientId;
+                    if(creds.auth_use_api_key === true && creds.clientId) {
+                        query.api_key = creds.clientId;
                     }
 
-                    if (api.oauth.scope.length > 0) {
-                        query.scope = api.oauth.scope;
+                    if (creds.scope && creds.scope.length > 0) {
+                        query.scope = creds.scope;
                     }
 
                     var redirectURL = url.format({
-                        protocol: api.oauth.protocol,
-                        hostname: api.oauth.host,
-                        pathname: api.oauth.authTokenPath,
+                        protocol: creds.protocol,
+                        hostname: creds.host,
+                        pathname: creds.authTokenPath,
                         query: query
                     });
-                    console.log(redirectURL);
                     res.redirect(url.format({
-                        protocol: api.oauth.protocol,
-                        hostname: api.oauth.host,
-                        pathname: api.oauth.authTokenPath,
+                        protocol: creds.protocol,
+                        hostname: creds.host,
+                        pathname: creds.authTokenPath,
                         query: query
                     }));
 
@@ -222,14 +252,11 @@ module.exports = function (app, passport, config) {
                     var oauth2 = getOauth2Instance(api);
                     var authorization_uri = oauth2.AuthCode.authorizeURL({
                         redirect_uri: getOAuthCallbackUrl(req, api._id),
-                        scope: api.oauth.scope,
+                        scope: creds.scope,
                         state: '3(#0/!~'
                     });
-                    console.log(api.oauth);
-                    console.log('oauth2 redirect: ' + authorization_uri);
                     res.redirect(authorization_uri);
                 }
-
             } else {
                 // oauth 1.0..
                 var oa = getOauth1Instance(req, api);
@@ -239,24 +266,20 @@ module.exports = function (app, passport, config) {
                         res.send('yeah no. didn\'t work.')
                     }
                     else {
-                        console.log(error, oauth_token, oauth_token_secret, results);
                         req.session.oauth = {};
                         req.session.oauth.token = oauth_token;
                         req.session.oauth.token_secret = oauth_token_secret;
                         var callbackURL = getOAuthCallbackUrl(req, api._id);
 
-                        var authURL = api.oauth.authTokenURL + '?oauth_token='
-                            + oauth_token;
+                        var authURL = creds.authTokenURL + '?oauth_token=' + oauth_token;
 
                         if (api.name != 'Tumblr') {
-                            authURL += '&oauth_consumer_key=' + api.oauth.key
+                            authURL += '&oauth_consumer_key=' + creds.key
                                 + '&callback=' + callbackURL;
                         }
-                        console.log(authURL);
                         res.redirect(authURL);
                     }
                 });
-
             }
 
         });
@@ -267,50 +290,46 @@ module.exports = function (app, passport, config) {
         var channelid = req.params.id;
         var user = req.user;
 
-        Api.findOne({_id: new ObjectId(req.params.id)}, function (err, api) {
-            if (err) {
-                console.log(error);
-                res.redirect(500, '/apis/' + api._id);
-            } else if (api.oauth.version == '2.0') {
-                if (api.oauth.isManual) {
-                    console.log('handling manual callback');
+        Channel.findById(channelid).then(function (api) {
+            var creds = getOAuthCredentials(api.oauth);
+            if (creds.version == '2.0') {
+                if (creds.isManual) {
                     if (req.query.error) {
-                        console.log('error position 1');
                         return res.send('ERROR ' + req.query.error + ': ' + req.query.error_description);
                     }
                     // check CSRF token
-                    if (api.oauth.checkCSRFOnCallback && (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf) < 0)) {
+                    if (creds.checkCSRFOnCallback && (req.query.state !== req.cookies.csrf || req.query.state.indexOf(req.cookies.csrf) < 0)) {
                         return res.status(401).send('CSRF token mismatch, possible cross-site request forgery attempt.');
                     }
 
                     var form = {
                         code: req.query.code,
-                        grant_type: api.oauth.grant_type,
+                        grant_type: creds.grant_type || 'client_credentials',
                         redirect_uri: getOAuthCallbackUrl(req, api._id)
                     };
                     if (api.name === 'Bitly') {
                         delete form.grant_type;
                     }
-                    if (api.oauth.accessTokenIncludeClientInfo || api.name === 'Box' || api.name === 'GoogleDrive' || api.name == 'Facebook') {
-                        form.client_id = api.oauth.clientId;
-                        form.client_secret = api.oauth.secret;
+                    if (creds.accessTokenIncludeClientInfo || api.name === 'Box' || api.name === 'GoogleDrive' || api.name == 'Facebook') {
+                        form.client_id = creds.clientId;
+                        form.client_secret = creds.secret;
                     }
                     if (api.name === 'Smartsheet') {
-                        form.client_id = api.oauth.clientId;
-                        form.hash = getApiHashCode(api.oauth.secret, req.query.code);
+                        form.client_id = creds.clientId;
+                        form.hash = getApiHashCode(creds.secret, req.query.code);
                     }
 
                     var auth = {
-                        user: api.oauth.clientId,
-                        pass: api.oauth.secret
+                        user: creds.clientId,
+                        pass: creds.secret
                     };
 
                     var query = {};
-                    if(api.oauth.auth_use_client_id_value) {
-                        form.client_id = api.oauth.auth_use_client_id_value;
+                    if(creds.auth_use_client_id_value) {
+                        form.client_id = creds.auth_use_client_id_value;
                     }
-                    if(api.oauth.auth_use_api_key==true && api.oauth.clientId) {
-                        query.api_key = api.oauth.clientId;
+                    if(creds.auth_use_api_key === true && creds.clientId) {
+                        query.api_key = creds.clientId;
                     }
 
                     if (api.name === 'Bitly') auth = null;
@@ -325,13 +344,10 @@ module.exports = function (app, passport, config) {
                         auth: auth,
                         qs: query
                     };
-                    console.log(api.oauth.accessTokenURL, opts);
-                    request.post(api.oauth.accessTokenURL, opts, function (error, response, body) {
-                        console.log(response.statusCode);
+                    request.post(creds.accessTokenURL, opts, function (error, response, body) {
                         var data;
 
                         if (response.statusCode != '200') {
-                            console.log(body);
                             return res.send('ERROR: HTTP Status ' + response.statusCode);
 
                         } else if (body == 'INVALID_LOGIN') {
@@ -345,7 +361,6 @@ module.exports = function (app, passport, config) {
                         }
 
                         if (data.error) {
-                            console.log('error position 2');
                             return res.send('ERROR: ' + data.error);
                         }
 
@@ -353,39 +368,40 @@ module.exports = function (app, passport, config) {
                         var token = data.access_token;
 
                         if (token) {
-                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
+                            user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + channelid);
-                                res.redirect('/connect/nodes/channel/' + channelid);
+                                res.redirect('/design');
                             });
                         }
                     });
                 } else {
-                    var OAuth2 = getOauth2Instance(api);
-                    var code = req.query.code;
-                    console.log('oauth2 lib getting token...');
-
+                    var OAuth2 = getOauth2TokenInstance(api);
                     OAuth2.AuthCode.getToken({
-                        code: code,
-                        redirect_uri: getOAuthCallbackUrl(req, api._id)
+                        code: req.query.code,
+                        redirect_uri: getOAuthCallbackUrl(req, api._id),
+                        client_id : creds.clientId || creds.key,
+                        client_secret : creds.secret
                     }, function (error, result) {
-                        var token = result;
                         if (error) {
                             console.log('Access Token Error', error);
-                            res.redirect('/node-wizard/node-wizard/add-channel/'+api._id+'/oauth');
-                        } else {
-                            user.addOrUpdateApiByChannelId(api._id, 'oauth', null, token, null, null, null);
-                            user.save(function (err) {
-                                console.log('saved oauth token: ' + api._id);
-                                res.redirect('/connect/nodes/channel/' + channelid);
-                            });
+                            return res.send(500, error);
                         }
+
+                        var token = result;
+                        token = token.access_token || token;
+                        if(_.contains(result, 'access_token')) {
+                            token = querystring.parse(result).access_token;
+                        }
+
+                        user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
+                        user.save(function (err) {
+                            res.redirect('/design');
+                        });
                     });
                 }
 
             } else {
                 // oauth 1.0 here
-                console.log('oauth 1.0 callback');
                 req.session.oauth.verifier = req.query.oauth_verifier;
                 var oauth = req.session.oauth;
 
@@ -399,7 +415,6 @@ module.exports = function (app, passport, config) {
                             user.addOrUpdateApiByChannelId(channelid, 'oauth', null,
                                 oauth_access_token, oauth_access_token_secret, null, null);
                             user.save(function (err) {
-                                console.log('saved oauth token: ' + channelid);
                                 return handleApiCompleteRedirect(res, channelid, err);
                             });
                         }
@@ -409,45 +424,7 @@ module.exports = function (app, passport, config) {
         });
 
     });
-
-    //Keep the referrer in the session as briefly as possible - this prevents the login infinite redirect error.
-    function storeReferrer(req, res, next) {
-        req.session.referrer = req.query.referrer;
-        req.session.mobile = req.query.mobile;
-        delete req.query.referrer;
-        delete req.query.mobile;
-        next();
-    }
-
-    function restoreReferrer(req, res, next) {
-        req.referrer = req.session.referrer;
-        req.mobile = req.session.mobiler;
-        delete req.session.referrer;
-        delete req.session.mobile;
-        next();
-    }
-
-    function completeLogin(req, res) {
-        var user = req.user;
-        res.cookie('skynetuuid', user.skynet.uuid, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
-        res.cookie('skynettoken', user.skynet.token, {
-            maxAge: 1000 * 60 * 60 * 60 * 24 * 365,
-            domain: config.domain,
-            httpOnly: false
-        });
-
-        if (req.referrer) {
-            if (req.session.js || req.mobile) {
-                res.send('<script>window.location.href="' + req.referrer + '?uuid=' + encodeURIComponent(user.skynet.uuid) + '&token=' + encodeURIComponent(user.skynet.token) + '"</script>');
-            } else {
-                res.redirect(req.referrer + '?uuid=' + encodeURIComponent(user.skynet.uuid) + '&token=' + encodeURIComponent(user.skynet.token));
-            }
-        } else {
-            res.redirect('/home');
-        }
+    function completeLogin(req, res){
+        res.redirect('/home');
     }
 };

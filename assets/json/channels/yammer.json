@@ -1,0 +1,1771 @@
+{
+  "_id": "53fd0bea710850ee08e28489",
+  "__v": 0,
+  "application": {
+    "base": "https://www.yammer.com/api/v1",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages.json",
+        "path": "/messages.json",
+        "params": [
+          {
+            "name": "older_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "newer_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threaded",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/my_feed.json",
+        "path": "/messages/my_feed.json",
+        "params": [
+          {
+            "name": "older_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "newer_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threaded",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/my_feed.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": "older_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "newer_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threaded",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "displayName": "/messages/algo.json",
+        "path": "/messages/algo.json",
+        "url": "https://www.yammer.com/api/v1/messages/algo.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/following.json",
+        "path": "/messages/following.json",
+        "params": [
+          {
+            "name": "older_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "newer_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threaded",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/following.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/sent.json",
+        "path": "/messages/sent.json",
+        "params": [
+          {
+            "name": "older_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "newer_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threaded",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/sent.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/private.json",
+        "path": "/messages/private.json",
+        "params": [
+          {
+            "name": "older_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "newer_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threaded",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/private.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/received.json",
+        "path": "/messages/received.json",
+        "params": [
+          {
+            "name": "older_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "newer_than",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threaded",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/received.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages.json",
+        "path": "/messages.json",
+        "params": [
+          {
+            "name": "body",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "group_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "replied_to_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "direct_to_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "broadcast",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "topicn",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "attachmentn",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pending_attachmentn",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_<property>",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "og_title",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_image",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_object_type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_site_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_meta",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_fetch",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/[:id]",
+        "path": "/messages/[:id]",
+        "params": [
+          {
+            "name": "body",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "group_id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "replied_to_id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "direct_to_id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "broadcast",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "topicn",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "attachmentn",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "pending_attachmentn",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_<property>",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_url",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "og_title",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_image",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_description",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_object_type",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_site_name",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_meta",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "og_fetch",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/[:id]"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/pending_attachments",
+        "displayName": "/pending_attachments",
+        "params": [
+          {
+            "name": "attachment",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/pending_attachments"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/pending_attachments/[:id]",
+        "path": "/pending_attachments/[:id]",
+        "params": [
+          {
+            "name": "attachment",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/pending_attachments/[:id]"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/email",
+        "path": "/messages/email",
+        "url": "https://www.yammer.com/api/v1/messages/email"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/threads/[:id].json",
+        "path": "/threads/[:id].json",
+        "url": "https://www.yammer.com/api/v1/threads/[:id].json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/liked_by/current.json",
+        "path": "/messages/liked_by/current.json",
+        "params": [
+          {
+            "name": "message_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/liked_by/current.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/messages/liked_by/current.json",
+        "displayName": "/messages/liked_by/current.json",
+        "params": [
+          {
+            "name": "message_id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/messages/liked_by/current.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/topics/[:id].json",
+        "path": "/topics/[:id].json",
+        "url": "https://www.yammer.com/api/v1/topics/[:id].json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-messages"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/messages/about_topic/[:id].json",
+        "path": "/messages/about_topic/[:id].json",
+        "url": "https://www.yammer.com/api/v1/messages/about_topic/[:id].json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-groups"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/group_memberships.json",
+        "path": "/group_memberships.json",
+        "params": [
+          {
+            "name": "group_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/group_memberships.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-groups"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/group_memberships.json",
+        "path": "/group_memberships.json",
+        "params": [
+          {
+            "name": "group_id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/group_memberships.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users.json",
+        "path": "/users.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "letter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort_by",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "reverse",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "delete",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users/current.json",
+        "path": "/users/current.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "letter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort_by",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "reverse",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "delete",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users/current.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/users/[:id].json",
+        "displayName": "/users/[:id].json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "letter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort_by",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "reverse",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "delete",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users/[:id].json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users/by_email.json",
+        "path": "/users/by_email.json",
+        "params": [
+          {
+            "name": "email",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "letter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort_by",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "reverse",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "delete",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users/by_email.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users/in_group/[:id].json",
+        "path": "/users/in_group/[:id].json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "letter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort_by",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "reverse",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "delete",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users/in_group/[:id].json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users.json",
+        "path": "/users.json",
+        "params": [
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "full_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "job_title",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "department_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "location",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "im_provider",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "im_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "work_telephone",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "work_extension",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "mobile_telephone",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "external_profiles",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "significant_other",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "kids_names",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "interests",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "summary",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "expertise",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "education[] (school,degree,description,start_year,end_year)",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "previous_companies[] (company,position,description,start_year,end_year)",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users/[:id].json",
+        "path": "/users/[:id].json",
+        "params": [
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "full_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "job_title",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "department_name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "location",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "im_provider",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "im_username",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "work_telephone",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "work_extension",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "mobile_telephone",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "external_profiles",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "significant_other",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "kids_names",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "interests",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "summary",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "expertise",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "education[] (school,degree,description,start_year,end_year)",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "previous_companies[] (company,position,description,start_year,end_year)",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users/[:id].json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users/[:id].json",
+        "path": "/users/[:id].json",
+        "params": [
+          {
+            "name": "page",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "letter",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort_by",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "reverse",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "delete",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/users/[:id].json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-relationships"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/relationships.json",
+        "path": "/relationships.json",
+        "params": [
+          {
+            "name": "user_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "email_address",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "relationship_type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/relationships.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-relationships"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/relationships.json",
+        "path": "/relationships.json",
+        "params": [
+          {
+            "name": "user_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "email_address",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "relationship_type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/relationships.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-relationships"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/relationships/[:id].json",
+        "path": "/relationships/[:id].json",
+        "params": [
+          {
+            "name": "user_id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "email_address",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "relationship_type",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/relationships/[:id].json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-notifications"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/streams/notifications.json",
+        "path": "/streams/notifications.json",
+        "url": "https://www.yammer.com/api/v1/streams/notifications.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-suggestions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/suggestions.json",
+        "path": "/suggestions.json",
+        "params": [
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/suggestions.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-suggestions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/suggestions/[:id].json",
+        "displayName": "/suggestions/[:id].json",
+        "params": [
+          {
+            "name": "limit",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/suggestions/[:id].json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/subscriptions/to_user/[:id].json",
+        "path": "/subscriptions/to_user/[:id].json",
+        "params": [
+          {
+            "name": "target_type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "target_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/subscriptions/to_user/[:id].json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/subscriptions/to_thread/[:id].json",
+        "path": "/subscriptions/to_thread/[:id].json",
+        "params": [
+          {
+            "name": "target_type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "target_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/subscriptions/to_thread/[:id].json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/subscriptions/to_topic/[:id].json",
+        "path": "/subscriptions/to_topic/[:id].json",
+        "params": [
+          {
+            "name": "target_type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "target_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/subscriptions/to_topic/[:id].json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/subscriptions",
+        "path": "/subscriptions",
+        "params": [
+          {
+            "name": "target_type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "target_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/subscriptions"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-subscriptions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/subscriptions",
+        "path": "/subscriptions",
+        "params": [
+          {
+            "name": "target_type",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "target_id",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/subscriptions"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-autocomplete"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/autocomplete/ranked",
+        "path": "/autocomplete/ranked",
+        "params": [
+          {
+            "name": "prefix",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "models",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/autocomplete/ranked"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-invitations"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/invitations.json",
+        "path": "/invitations.json",
+        "params": [
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/invitations.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-search"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/search.json",
+        "path": "/search.json",
+        "params": [
+          {
+            "name": "search",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "num_per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/search.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.yammer.com/restapi/#rest-networks"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/networks/current.json",
+        "path": "/networks/current.json",
+        "params": [
+          {
+            "name": "include_suspended",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "exclude_own_messages_from_unseen",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://www.yammer.com/api/v1/networks/current.json"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://developer.yammer.com/restapi/",
+  "enabled": true,
+  "name": "YAMMER",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:yammer"
+}

@@ -205,7 +205,7 @@ db.nodetypes.insert({
 });
 
 db.nodetypes.insert({
-    logo: "assets/images/octoblucircle.png",
+    logo: "/assets/images/octoblucircle.png",
     name: "Skynet Hub",
     description: "Skynet Hub",
     skynet: {

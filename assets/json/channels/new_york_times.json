@@ -1,0 +1,3320 @@
+{
+  "_id": "52f9b454e641dbb25d00000c",
+  "application": {
+    "base": "http://api.nytimes.com/svc",
+    "resources": [
+      {
+        "path": "/search/v1/article",
+        "params": [
+          {
+            "name": "query",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search keywords (optionally applied to specific fields) and/or facets. Keywords can be specified with or without a limiting \"field:\" label. Facets must be specified in the format \"facet-field:[facet-value]\". See \"Constructing a Search Query\" in the API docs for more information and examples."
+            }
+          },
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "629a39d0768609d31fee424b52fbb704:5:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Article Search API."
+            }
+          },
+          {
+            "name": "begin_date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point (inclusive) of the range of publication dates to return. Must be used with end_date. Format: YYYYMMDD"
+            }
+          },
+          {
+            "name": "end_date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the end point (inclusive) of the range of publication dates to return. Must be used with begin_date. Format: YYYYMMDD"
+            }
+          },
+          {
+            "name": "facets",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-delimited list of up to 5 facets. Specifies the sets of facet values to include in the facets array at the beginning of response, which collects the facet values from all the search results. See API docs for more info."
+            }
+          },
+          {
+            "name": "fields",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-delimited list of fields (no limit). Specifies the fields (including facets) you want return for each search result. By default (unless you include a fields list in your request), the following fields are returned for each result: body, byline, date, title, url. To return only the array of facet values (no search results), set fields to a blank space (encoded: fields=+) and include the facets parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "format",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "json",
+            "required": "true",
+            "doc": {
+              "t": "Response format. Currently, only JSON is supported. Default: json"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:integer",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "The value of offset corresponds to a set of 10 results (it does not indicate the starting number of the result set). For example, offset=0 corresponds to records 0-9. To return records 10-19, set offset to 1, not 10. Range: 0 to last set of ten. Default: 0"
+            }
+          },
+          {
+            "name": "rank",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "newest",
+            "required": "true",
+            "doc": {
+              "t": "Use the rank parameter to set the order of the results. Accepted values: newest (default), oldest, closest"
+            }
+          }
+        ],
+        "doc": {
+          "t": "With the Article Search API, you can search New York Times articles from 1981 to today, retrieving headlines, abstracts, lead paragraphs, links to associated multimedia and other article metadata. Along with standard keyword searching, the API also offers faceted searching. The available facets include Times-specific fields such as sections, taxonomic classifiers and controlled vocabulary terms (names of people, organizations and geographic locations). Search keywords (optionally applied to specific fields) and/or facets. Keywords can be specified with or without a limiting \"field:\" label. Facets must be specified in the format \"facet-field:[facet-value]\". See \"Constructing a Search Query\" in the API docs for more information and examples. API Key for Article Search API. Sets the starting point (inclusive) of the range of publication dates to return. Must be used with end_date. Format: YYYYMMDD Sets the end point (inclusive) of the range of publication dates to return. Must be used with begin_date. Format: YYYYMMDD Comma-delimited list of up to 5 facets. Specifies the sets of facet values to include in the facets array at the beginning of response, which collects the facet values from all the search results. See API docs for more info. Comma-delimited list of fields (no limit). Specifies the fields (including facets) you want return for each search result. By default (unless you include a fields list in your request), the following fields are returned for each result: body, byline, date, title, url. To return only the array of facet values (no search results), set fields to a blank space (encoded: fields=+) and include the facets parameter. See API docs for more info. Response format. Currently, only JSON is supported. Default: json The value of offset corresponds to a set of 10 results (it does not indicate the starting number of the result set). For example, offset=0 corresponds to records 0-9. To return records 10-19, set offset to 1, not 10. Range: 0 to last set of ten. Default: 0 Use the rank parameter to set the order of the results. Accepted values: newest (default), oldest, closest",
+          "url": "http://developer.nytimes.com/docs/article_search_api/"
+        },
+        "curl": "curl -X GET  -d 'api-key=629a39d0768609d31fee424b52fbb704:5:64325990&format=json&offset=0&rank=newest' http://api.nytimes.com/svc/search/v1/article",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Article Search API",
+        "displayName": "Article Search API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/search/v1/article"
+      },
+      {
+        "path": "/books/{version}/lists.{response-format}",
+        "params": [
+          {
+            "name": "list",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "list-name",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Required list name search parameter. be sure to replace spaces with hyphens (e.g., \"e-book-fiction\" or \"hardcover-fiction\", not \"E-Book Fiction\" or \"Hardcover Fiction\"). (The parameter is not case sensitive.) Can also be passed as list; the two labels are provided for ease of use."
+            }
+          },
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "d28cb3126eae332c6279f9dedf4bb830:10:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Best Sellers API."
+            }
+          },
+          {
+            "name": "bestsellers-date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "isbn",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "list-name",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "published-date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "rank",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "rank-last-week",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "weeks-on-list",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional search parameter. See API docs for more info."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Accepted values: positive integer, multiple of 20"
+            }
+          },
+          {
+            "name": "sort-by",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "rank",
+            "required": "true",
+            "doc": {
+              "t": "For details on the available sort options, see API docs. If you do not specify a sort-by value, the results will be sorted by best-seller rank. Accepted values: bestsellers-date, date, isbn, list, list-name, published-date, rank, rank-last-week, weeks-on-list"
+            }
+          },
+          {
+            "name": "sort-order",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ASC",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the result set. The default is ASC (ascending). The sort-order parameter is used with the sort-by parameter — for details, see each request type. Accepted values: ASC (ascending), DESC (descending)"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Searches for best-seller list data. See API docs for more information about search parameters. Required list name search parameter. be sure to replace spaces with hyphens (e.g., \"e-book-fiction\" or \"hardcover-fiction\", not \"E-Book Fiction\" or \"Hardcover Fiction\"). (The parameter is not case sensitive.) Can also be passed as list; the two labels are provided for ease of use. API Key for Best Sellers API. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Optional search parameter. See API docs for more info. Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Accepted values: positive integer, multiple of 20 For details on the available sort options, see API docs. If you do not specify a sort-by value, the results will be sorted by best-seller rank. Accepted values: bestsellers-date, date, isbn, list, list-name, published-date, rank, rank-last-week, weeks-on-list Sets the sort order of the result set. The default is ASC (ascending). The sort-order parameter is used with the sort-by parameter — for details, see each request type. Accepted values: ASC (ascending), DESC (descending)",
+          "url": "http://developer.nytimes.com/docs/best_sellers_api/#h3-list-search"
+        },
+        "curl": "curl -X GET  -d 'api-key=d28cb3126eae332c6279f9dedf4bb830:10:64325990&offset=0&sort-by=rank&sort-order=ASC' http://api.nytimes.com/svc/books/v2/lists",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Best Sellers API",
+        "displayName": "Best Sellers API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/books/{version}/lists.{response-format}"
+      },
+      {
+        "path": "/books/{version}/lists/names.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "d28cb3126eae332c6279f9dedf4bb830:10:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Best Sellers API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the complete set of Times best-seller list names. API Key for Best Sellers API.",
+          "url": "http://developer.nytimes.com/docs/best_sellers_api/#h3-list-names"
+        },
+        "curl": "curl -X GET  -d 'api-key=d28cb3126eae332c6279f9dedf4bb830:10:64325990' http://api.nytimes.com/svc/books/v2/lists/names",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Best Sellers API",
+        "displayName": "Best Sellers API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/books/{version}/lists/names.{response-format}"
+      },
+      {
+        "path": "/books/{version}/lists/best-sellers/history.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "d28cb3126eae332c6279f9dedf4bb830:10:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Best Sellers API."
+            }
+          },
+          {
+            "name": "age-group",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search parameter; at least one is required. See API docs for more info."
+            }
+          },
+          {
+            "name": "author",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search parameter; at least one is required. See API docs for more info."
+            }
+          },
+          {
+            "name": "contributor",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search parameter; at least one is required. See API docs for more info."
+            }
+          },
+          {
+            "name": "isbn",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search parameter; at least one is required. See API docs for more info."
+            }
+          },
+          {
+            "name": "price",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search parameter; at least one is required. See API docs for more info."
+            }
+          },
+          {
+            "name": "publisher",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search parameter; at least one is required. See API docs for more info."
+            }
+          },
+          {
+            "name": "title",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search parameter; at least one is required. See API docs for more info."
+            }
+          },
+          {
+            "name": "sort-by",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "rank",
+            "required": "true",
+            "doc": {
+              "t": "For details on the available sort options, see API docs. If you do not specify a sort-by value, the results will be sorted by title (exception: if you are searching by ISBN, the results will be sorted by ISBN). Accepted values: age-group, author, contributor, isbn, price, publisher, title"
+            }
+          },
+          {
+            "name": "sort-order",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ASC",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the result set. The default is ASC (ascending). The sort-order parameter is used with the sort-by parameter — for details, see each request type. Accepted values: ASC (ascending), DESC (descending)"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the history of a best seller (its rank and number of weeks on the various Times best-seller lists). API Key for Best Sellers API. Search parameter; at least one is required. See API docs for more info. Search parameter; at least one is required. See API docs for more info. Search parameter; at least one is required. See API docs for more info. Search parameter; at least one is required. See API docs for more info. Search parameter; at least one is required. See API docs for more info. Search parameter; at least one is required. See API docs for more info. Search parameter; at least one is required. See API docs for more info. For details on the available sort options, see API docs. If you do not specify a sort-by value, the results will be sorted by title (exception: if you are searching by ISBN, the results will be sorted by ISBN). Accepted values: age-group, author, contributor, isbn, price, publisher, title Sets the sort order of the result set. The default is ASC (ascending). The sort-order parameter is used with the sort-by parameter — for details, see each request type. Accepted values: ASC (ascending), DESC (descending)",
+          "url": "http://developer.nytimes.com/docs/best_sellers_api/#h3-history"
+        },
+        "curl": "curl -X GET  -d 'api-key=d28cb3126eae332c6279f9dedf4bb830:10:64325990&sort-by=rank&sort-order=ASC' http://api.nytimes.com/svc/books/v2/lists/best-sellers/history",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Best Sellers API",
+        "displayName": "Best Sellers API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/books/{version}/lists/best-sellers/history.{response-format}"
+      },
+      {
+        "path": "/books/{version}/lists",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "d28cb3126eae332c6279f9dedf4bb830:10:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Best Sellers API."
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The best-seller list publication date. You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for \"lists/2008-10-01/hardcover-nonfiction.xml\" will retrieve the list that was published on 10-05. If you do not include a date, the current list-name will be returned. Format: YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "list-name",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The Times best-seller list to retrieve. To get all valid best-seller list names, use the Best-Seller List Names request type. Be sure to replace spaces with hyphens (e.g., e-book-fiction or hardcover-fiction, not E-Book Fiction or Hardcover Fiction). (The parameter is not case sensitive.) Note: This parameter can be passed as list-name or list. Format: string, hyphenated"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Accepted values: positive integer, multiple of 20"
+            }
+          },
+          {
+            "name": "sort-by",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "rank",
+            "required": "true",
+            "doc": {
+              "t": "For details on the available sort options, see API docs. If you do not specify a sort-by value, the results will be sorted by best-seller rank. Accepted values: bestsellers-date, date, isbn, list, list-name, published-date, rank, rank-last-week, weeks-on-list"
+            }
+          },
+          {
+            "name": "sort-order",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ASC",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the result set. The default is ASC (ascending). The sort-order parameter is used with the sort-by parameter — for details, see each request type. Accepted values: ASC (ascending), DESC (descending)"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a Times best-seller list. API Key for Best Sellers API. The best-seller list publication date. You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for \"lists/2008-10-01/hardcover-nonfiction.xml\" will retrieve the list that was published on 10-05. If you do not include a date, the current list-name will be returned. Format: YYYY-MM-DD The Times best-seller list to retrieve. To get all valid best-seller list names, use the Best-Seller List Names request type. Be sure to replace spaces with hyphens (e.g., e-book-fiction or hardcover-fiction, not E-Book Fiction or Hardcover Fiction). (The parameter is not case sensitive.) Note: This parameter can be passed as list-name or list. Format: string, hyphenated Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Accepted values: positive integer, multiple of 20 For details on the available sort options, see API docs. If you do not specify a sort-by value, the results will be sorted by best-seller rank. Accepted values: bestsellers-date, date, isbn, list, list-name, published-date, rank, rank-last-week, weeks-on-list Sets the sort order of the result set. The default is ASC (ascending). The sort-order parameter is used with the sort-by parameter — for details, see each request type. Accepted values: ASC (ascending), DESC (descending)",
+          "url": "http://developer.nytimes.com/docs/best_sellers_api/#h3-list"
+        },
+        "curl": "curl -X GET  -d 'api-key=d28cb3126eae332c6279f9dedf4bb830:10:64325990&offset=0&sort-by=rank&sort-order=ASC' http://api.nytimes.com/svc/books/v2/lists/",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Best Sellers API",
+        "displayName": "Best Sellers API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/books/{version}/lists"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/filings/types/{form-type-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves FEC electronic filings by form type. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-electronic-filings-by-type"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/filings/types/{form-type-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/filings/types/{form-type-id}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/president/candidates/{candidate-name-or-committeeID}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves campaign finance details for a particular presidential candidate. This request type is for presidential candidates only, and is provided for backward compatibility with version 2 of the Campaign Finance API. Responses vary slightly from the main version 3 Candidate Details response. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-pres-candidate-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/president/candidates/{candidate-name-or-committeeID}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/president/candidates/{candidate-name-or-committeeID}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/president/{resource-type}/{location}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves totals (donations to all presidential candidates) for a particular location. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-pres-state-zip"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/president/{resource-type}/{location}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/president/{resource-type}/{location}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/president/contributions/donorsearch.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "lname",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "A donor's last name. Specify either this or both (with zip), but not neither. Example: paley"
+            }
+          },
+          {
+            "name": "zip",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "A donor's ZIP code location. Specify either this or both (with lname), but not neither. Example: 11797"
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves information about an individual donor to a presidential campaign or get a summary of donors in a particular location. API Key for Campaign Finance API. A donor's last name. Specify either this or both (with zip), but not neither. Example: paley A donor's ZIP code location. Specify either this or both (with lname), but not neither. Example: 11797 JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-donor"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/president/contributions/donorsearch",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/president/contributions/donorsearch.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/filings/{year}/{month}/{day}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns metadata for FEC reports filed electronically on a specific date. Electronic filings are available back to 2001. Paper filings by Senate candidate committees and senatorial party committees go back to 1999. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-electronic-filings-by-date"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/filings/{year}/{month}/{day}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/filings/{year}/{month}/{day}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/filings/types.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of available form types for FEC electronic filings. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-electronic-filing-form-types"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/filings/types",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/filings/types.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/candidates/search.{response-format}",
+        "params": [
+          {
+            "name": "lname",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The candidate last name or partial last name. Examples: Greene (retrieves Greene), Robin (retrieves both Robin and Robinson)"
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          },
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Searches for Congressional and presidential candidates by last name. The candidate last name or partial last name. Examples: Greene (retrieves Greene), Robin (retrieves both Robin and Robinson) JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests. API Key for Campaign Finance API.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-search"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/candidates/search",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/candidates/search.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/candidates/{fec-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves campaign finance details for a particular candidate (presidential or Congressional) API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/candidates/{fec-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/candidates/{fec-id}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/candidates/leaders/{category}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves the top 20 candidates in a specific category (such as contribution total or debts owed) API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-candidate-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/candidates/leaders/{category}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/candidates/leaders/{category}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/seats/{state}/{chamber}/{district}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves House and Senate candidates for a particular state (and optional chamber and district) API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-state-candidates"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/seats/{state}/{chamber}/{district}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/seats/{state}/{chamber}/{district}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/candidates/new.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves the 20 most recently added candidates. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-new-candidates"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/candidates/new",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/candidates/new.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/committees/search.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "name",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The committee name or partial name. Examples: medicare, viacom"
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Searches for political committee by full or partiatl name. API Key for Campaign Finance API. The committee name or partial name. Examples: medicare, viacom JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-committee-search"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/committees/search",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/committees/search.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns details about a committee by FEC ID. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-committee-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/committees/{fec-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/committees/new.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves the 20 most recently added committees. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-new-committees"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/committees/new",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/committees/new.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:integer",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "The value of offset corresponds to a set of 10 results (it does not indicate the starting number of the result set). For example, offset=0 corresponds to records 0-9. To return records 10-19, set offset to 1, not 10. Range: 0 to last set of ten. Default: 0"
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves all available data about a particular committee's contributions to candidates. API Key for Campaign Finance API. The value of offset corresponds to a set of 10 results (it does not indicate the starting number of the result set). For example, offset=0 corresponds to records 0-9. To return records 10-19, set offset to 1, not 10. Range: 0 to last set of ten. Default: 0 JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-committee-contributions"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990&offset=0' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/committees/{fec-id}/contributions",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/candidates/{candidate-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves committee contributions to a particular candidate. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-committee-contributions"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/committees/{fec-id}/contributions/candidates/{candidate-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/candidates/{candidate-id}.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/filings.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves a committee's electronic filings. Electronic filings are available back to 2001. Paper filings by Senate candidate committees and senatorial party committees go back to 1999. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-committee-filings"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/committees/{fec-id}/filings",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/filings.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/committees/leadership.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves committees designated as \"leadership PACs\" by the FEC. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-leadership-committees"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/committees/leadership",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/committees/leadership.{response-format}"
+      },
+      {
+        "path": "/elections/us/{version}/finances/{campaign-cycle}/president/totals.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "9746e90579a5e13719708aceb37ad848:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Campaign Finance API."
+            }
+          },
+          {
+            "name": "callback",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves totals (receipts and disbursements) for all presidential candidates for a particular campaign cycle. API Key for Campaign Finance API. JSONP callback function. As of February 2011, the Campaign Finance API supports JSONP requests.",
+          "url": "http://developer.nytimes.com/docs/campaign_finance_api/#h3-pres-candidate-totals"
+        },
+        "curl": "curl -X GET  -d 'api-key=9746e90579a5e13719708aceb37ad848:0:64325990' http://api.nytimes.com/svc/elections/us/v3/finances/{campaign-cycle}/president/totals",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Campaign Finance API",
+        "displayName": "Campaign Finance API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/elections/us/{version}/finances/{campaign-cycle}/president/totals.{response-format}"
+      },
+      {
+        "path": "/community/{version}/comments/user/id/{user-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ffd13be0b6e879f3cee1075d3c05a59f:11:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Community API."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25"
+            }
+          },
+          {
+            "name": "sort",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieve comments posted by a specific NYTimes.com user. API Key for Community API. Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25 Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection",
+          "url": "http://developer.nytimes.com/docs/community_api/#commentsUser"
+        },
+        "curl": "curl -X GET  -d 'api-key=ffd13be0b6e879f3cee1075d3c05a59f:11:64325990' http://api.nytimes.com/svc/community/v2/comments/user/id/{user-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Community API",
+        "displayName": "Community API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/community/{version}/comments/user/id/{user-id}.{response-format}"
+      },
+      {
+        "path": "/community/{version}/comments/url/{match-type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ffd13be0b6e879f3cee1075d3c05a59f:11:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Community API."
+            }
+          },
+          {
+            "name": "url",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The URL to search for."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25"
+            }
+          },
+          {
+            "name": "sort",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieve comments posted by a specific NYTimes.com user. API Key for Community API. The URL to search for. Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25 Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection",
+          "url": "http://developer.nytimes.com/docs/community_api/#commentsURL"
+        },
+        "curl": "curl -X GET  -d 'api-key=ffd13be0b6e879f3cee1075d3c05a59f:11:64325990' http://api.nytimes.com/svc/community/v2/comments/url/{match-type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Community API",
+        "displayName": "Community API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/community/{version}/comments/url/{match-type}.{response-format}"
+      },
+      {
+        "path": "/community/{version}/comments/by-date/{date}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ffd13be0b6e879f3cee1075d3c05a59f:11:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Community API."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25"
+            }
+          },
+          {
+            "name": "sort",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieve comments posted on a specific date. API Key for Community API. Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25 Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection",
+          "url": "http://developer.nytimes.com/docs/community_api/#commentsDate"
+        },
+        "curl": "curl -X GET  -d 'api-key=ffd13be0b6e879f3cee1075d3c05a59f:11:64325990' http://api.nytimes.com/svc/community/v2/comments/by-date/{date}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Community API",
+        "displayName": "Community API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/community/{version}/comments/by-date/{date}.{response-format}"
+      },
+      {
+        "path": "/community/{version}/comments/random.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ffd13be0b6e879f3cee1075d3c05a59f:11:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Community API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieve a random set of user comments (50 records) API Key for Community API.",
+          "url": "http://developer.nytimes.com/docs/community_api/#commentsRandom"
+        },
+        "curl": "curl -X GET  -d 'api-key=ffd13be0b6e879f3cee1075d3c05a59f:11:64325990' http://api.nytimes.com/svc/community/v2/comments/random",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Community API",
+        "displayName": "Community API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/community/{version}/comments/random.{response-format}"
+      },
+      {
+        "path": "/community/{version}/comments/recent.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "ffd13be0b6e879f3cee1075d3c05a59f:11:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Community API."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25"
+            }
+          },
+          {
+            "name": "force-replies",
+            "type": "xsd:boolean",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to comments that have been replied to. Accepted values: 1 (limit is set), 0 (limit is not set)"
+            }
+          },
+          {
+            "name": "sort",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieve the most recent user comments. API Key for Community API. Sets the starting point of the result set. The first 25 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=25 displays results 26-50). Format: positive integer, multiple of 25 Limits the results to comments that have been replied to. Accepted values: 1 (limit is set), 0 (limit is not set) Sets the sort order of the result set. See API docs for more details. Accepted values: newest, oldest, recommended, replied, editors-selection",
+          "url": "http://developer.nytimes.com/docs/community_api/#commentsRecent"
+        },
+        "curl": "curl -X GET  -d 'api-key=ffd13be0b6e879f3cee1075d3c05a59f:11:64325990' http://api.nytimes.com/svc/community/v2/comments/recent",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Community API",
+        "displayName": "Community API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/community/{version}/comments/recent.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/cosponsors.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns information about the cosponsors of a particular bill. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-bill-cosponsors"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/bills/{bill-id}/cosponsors",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/cosponsors.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{member-id}/floor_appearances.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns information about a particular member's appearances on the House or Senate floor. Responses provide data from the C-SPAN Congressional Chronicle, including transcripts and (where available) video of the speech. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-member-floor-appearances"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{member-id}/floor_appearances",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{member-id}/floor_appearances.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/sessions/{session-number}/votes/{roll-call-number}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a specific roll-call vote, including a complete list of member positions. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-votes"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/{chamber}/sessions/{session-number}/votes/{roll-call-number}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/sessions/{session-number}/votes/{roll-call-number}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/votes/{vote-type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns vote information in four categories: missed votes, party votes, lone no votes and perfect votes. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-votes-by-type"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/{chamber}/votes/{vote-type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/votes/{vote-type}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{chamber}/votes/{year}/{month}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns all votes in a particular month. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{chamber}/votes/{year}/{month}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{chamber}/votes/{year}/{month}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{chamber}/votes/{start-date}/{end-date}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns all votes in a in a particular date range (fewer than 30 days). API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-votes-by-date"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{chamber}/votes/{start-date}/{end-date}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{chamber}/votes/{start-date}/{end-date}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/nominations.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns Senate votes on presidential nominations. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-nom-votes"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/nominations",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/nominations.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/bills/{type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns 20 most recent bills by type. For the current Congress, \"recent bills\" can be one of four types (see the descriptions below). For previous Congresses, \"recent bills\" means the last 20 bills of that Congress. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-bills"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/{chamber}/bills/{type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/bills/{type}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          },
+          {
+            "name": "state",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the list of members by state. Format: Two-letter state code (e.g., CA)"
+            }
+          },
+          {
+            "name": "district",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the list of members by district (House only). If you specify a district, you must also specify a state. If the district number you specify is higher than the total number of districts for that state, a 404 response will be returned. Note: Member list responses include district numbers. Format: House of Representatives district number"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves a list of members of a particular chamber in a particular Congress. API Key for Congress API. Limits the list of members by state. Format: Two-letter state code (e.g., CA) Limits the list of members by district (House only). If you specify a district, you must also specify a state. If the district number you specify is higher than the total number of districts for that state, a 404 response will be returned. Note: Member list responses include district numbers. Format: House of Representatives district number",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-members"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/{chamber}/members",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{member-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves biographical and Congressional role information for a particular member of Congress. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-member-roles"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{member-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{member-id}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/new.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of the most recent new members of the current Congress. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-new-members"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/new",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/new.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{chamber}/{state}/{district}/current.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the current members of Congress for a particular chamber. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-current-member"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{chamber}/{state}/{district}/current",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{chamber}/{state}/{district}/current.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members/leaving.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of members who have left the Senate or House or have announced plans to do so. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-members-leaving"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/{chamber}/members/leaving",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members/leaving.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{member-id}/votes.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves the most recent vote positions for a specific member of the House of Representatives or Senate. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-member-positions"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{member-id}/votes",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{member-id}/votes.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{first-member-id}/votes/{second-member-id}/{congress-number}/{chamber}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Compares two members' vote positions in a particular Congress and chamber. Responses include four calculated values, showing the number and percentage of votes in which the members took the same position or opposing positions. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-compare-members"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{first-member-id}/votes/{second-member-id}/{congress-number}/{chamber}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{first-member-id}/votes/{second-member-id}/{congress-number}/{chamber}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns bill cosponsorship data for a particular member. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-cosponsor-bills"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{member-id}/bills/{type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{member-id-1}/bills/{member-id-2}/{congress-number}/{chamber}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Compares bill sponsorship between two members who served in the same Congress and chamber. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-member-sponsorship-comparison"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{member-id-1}/bills/{member-id-2}/{congress-number}/{chamber}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{member-id-1}/bills/{member-id-2}/{congress-number}/{chamber}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the 20 bills most recently introduced or updated by a particular member. Results can include more than one Congress. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-bills-by-member"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/{member-id}/bills/{type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns additional details about a particular bill, including actions taken. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-bill-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/bills/{bill-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/{resource}.{response-format}",
+        "doc": {
+          "t": "Returns bill subject terms, amendments or related bills.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-bill-subjects"
+        },
+        "curl": "curl -X GET  http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/bills/{bill-id}/{resource}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/{resource}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{chamber}/schedule.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns today's schedule for the House or Senate. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-chamber-schedule"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{chamber}/schedule",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{chamber}/schedule.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/nominees/{nomination-category}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns lists of presidential nominations for civilian positions. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-nominees"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/nominees/{nomination-category}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/nominees/{nomination-category}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/nominees/{nominee-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns details about a particular presidential civilian nomination. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-nominee-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/nominees/{nominee-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/nominees/{nominee-id}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/nominees/state/{state}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the 20 most recent nominees from a particular state. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-nominees-by-state"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/{congress-number}/nominees/state/{state}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/nominees/state/{state}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/states/members/party.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns party membership counts for all states (current Congress only). API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-state-parties"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/states/members/party",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/states/members/party.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/committees/{committee-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "65551def4f298d7b18824aca7ebe3b75:1:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Congress API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of Senate or House committees or the members of a particular committee. API Key for Congress API.",
+          "url": "http://developer.nytimes.com/docs/congress_api/#h3-committees"
+        },
+        "curl": "curl -X GET  -d 'api-key=65551def4f298d7b18824aca7ebe3b75:1:64325990' http://api.nytimes.com/svc/politics/v3/us/legislative/congress/states/members/party",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Congress API",
+        "displayName": "Congress API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/us/legislative/congress/{congress-number}/{chamber}/committees/{committee-id}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/districts.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "32a5e84812bc2d9a9b04ef4c00aa1557:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for District API."
+            }
+          },
+          {
+            "name": "lat",
+            "type": "xsd:double",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the response to political districts that contain the specified point. Specify a latitude and longitude to retrieve districts (at all levels) for a particular location in NYC. If you include one of these parameters, you must include the other; you cannot specify only latitude or only longitude. If you do not specify a lat and lng, a complete list of New York City districts will be returned."
+            }
+          },
+          {
+            "name": "lng",
+            "type": "xsd:double",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the response to political districts that contain the specified point. Specify a latitude and longitude to retrieve districts (at all levels) for a particular location in NYC. If you include one of these parameters, you must include the other; you cannot specify only latitude or only longitude. If you do not specify a lat and lng, a complete list of New York City districts will be returned."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns New York City political districts. API Key for District API. Limits the response to political districts that contain the specified point. Specify a latitude and longitude to retrieve districts (at all levels) for a particular location in NYC. If you include one of these parameters, you must include the other; you cannot specify only latitude or only longitude. If you do not specify a lat and lng, a complete list of New York City districts will be returned. Limits the response to political districts that contain the specified point. Specify a latitude and longitude to retrieve districts (at all levels) for a particular location in NYC. If you include one of these parameters, you must include the other; you cannot specify only latitude or only longitude. If you do not specify a lat and lng, a complete list of New York City districts will be returned.",
+          "url": "http://developer.nytimes.com/docs/district_api/"
+        },
+        "curl": "curl -X GET  -d 'api-key=32a5e84812bc2d9a9b04ef4c00aa1557:9:64325990' http://api.nytimes.com/svc/politics/v2/districts",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Districts API",
+        "displayName": "Districts API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/districts.{response-format}"
+      },
+      {
+        "path": "/mostpopular/{version}/{resource-type}/{section}/{share-types}/{time-period}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "4413ed4c9a09a153cf6f31083183f7d6:8:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Most Popular API."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: positive integer, multiple of 20"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns New York City political most_popular. API Key for Most Popular API. Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: positive integer, multiple of 20",
+          "url": "http://developer.nytimes.com/docs/district_api/"
+        },
+        "curl": "curl -X GET  -d 'api-key=4413ed4c9a09a153cf6f31083183f7d6:8:64325990' http://api.nytimes.com/svc/most_popular/{version}/{resource-type}/{section}/{time-period}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Most Popular API",
+        "displayName": "Most Popular API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/mostpopular/{version}/{resource-type}/{section}/{share-types}/{time-period}.{response-format}"
+      },
+      {
+        "path": "/movies/{version}/reviews/search.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "887a8ea540f1b1c44a32584e84ee9383:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Movie Reviews API."
+            }
+          },
+          {
+            "name": "query",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Search keywords; matches movie title and indexed terms. See API docs for more details."
+            }
+          },
+          {
+            "name": "critics-pick",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits by NYT Critics' Picks status. Set this parameter to Y to limt the results to NYT Critics' Picks. To get only those movies that have not been highlighted by Times critics, specify critics-pick=N. (To get all reviews regardless of critics-pick status, simply omit this parameter.) Accepted values: Y, N"
+            }
+          },
+          {
+            "name": "thousand-best",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits by Best 1,000 Movies status. Set this parameter to Y to limit the results to movies on the Times list of The Best 1,000 Movies Ever Made. To get only those movies that are not on the list, specify thousand-best=N. (To get all reviews regardless of thousand-best status, simply omit this parameter.) Accepted values: Y, N"
+            }
+          },
+          {
+            "name": "dvds",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits by format. Set this parameter to Y to limit the results to movies that have been released on DVD. To get only those movies that have not been released on DVD, specify dvd=N. (To get all reviews regardless of format, simply omit this parameter.) Accepted values: Y, N"
+            }
+          },
+          {
+            "name": "reviewer",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits by a specific NYT critic. Include this parameter to limit your results to reviews by a specific critic. Reviewer names should be hyphenated or concatenated with dots (e.g., manohla-dargis or manohla.dargis)."
+            }
+          },
+          {
+            "name": "publication-date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits by date or range of dates. The publication-date is the date the review was first published in The Times. Format: Single date: YYYY-MM-DD, or Start and end date: YYYY-MM-DD;YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "opening-date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits by date or range of dates. The publication-date is the movie's opening date in the New York region. Format: Single date: YYYY-MM-DD, or Start and end date: YYYY-MM-DD;YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "opening-date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits by date or range of dates. The publication-date is the movie's opening date in the New York region. Format: Single date: YYYY-MM-DD, or Start and end date: YYYY-MM-DD;YYYY-MM-DD"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: Positive integer, multiple of 20"
+            }
+          },
+          {
+            "name": "order",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the results. Accepted values: by-title, by-publication-date, by-opening-date, by-dvd-release-date. See API docs for more details."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns movie reviews by keyword. API Key for Movie Reviews API. Search keywords; matches movie title and indexed terms. See API docs for more details. Limits by NYT Critics' Picks status. Set this parameter to Y to limt the results to NYT Critics' Picks. To get only those movies that have not been highlighted by Times critics, specify critics-pick=N. (To get all reviews regardless of critics-pick status, simply omit this parameter.) Accepted values: Y, N Limits by Best 1,000 Movies status. Set this parameter to Y to limit the results to movies on the Times list of The Best 1,000 Movies Ever Made. To get only those movies that are not on the list, specify thousand-best=N. (To get all reviews regardless of thousand-best status, simply omit this parameter.) Accepted values: Y, N Limits by format. Set this parameter to Y to limit the results to movies that have been released on DVD. To get only those movies that have not been released on DVD, specify dvd=N. (To get all reviews regardless of format, simply omit this parameter.) Accepted values: Y, N Limits by a specific NYT critic. Include this parameter to limit your results to reviews by a specific critic. Reviewer names should be hyphenated or concatenated with dots (e.g., manohla-dargis or manohla.dargis). Limits by date or range of dates. The publication-date is the date the review was first published in The Times. Format: Single date: YYYY-MM-DD, or Start and end date: YYYY-MM-DD;YYYY-MM-DD Limits by date or range of dates. The publication-date is the movie's opening date in the New York region. Format: Single date: YYYY-MM-DD, or Start and end date: YYYY-MM-DD;YYYY-MM-DD Limits by date or range of dates. The publication-date is the movie's opening date in the New York region. Format: Single date: YYYY-MM-DD, or Start and end date: YYYY-MM-DD;YYYY-MM-DD Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: Positive integer, multiple of 20 Sets the sort order of the results. Accepted values: by-title, by-publication-date, by-opening-date, by-dvd-release-date. See API docs for more details.",
+          "url": "http://developer.nytimes.com/docs/movie_reviews_api/#h3-search"
+        },
+        "curl": "curl -X GET  -d 'api-key=887a8ea540f1b1c44a32584e84ee9383:9:64325990' http://api.nytimes.com/svc/movies/v2/reviews/search",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Movie Reviews API",
+        "displayName": "Movie Reviews API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/movies/{version}/reviews/search.{response-format}"
+      },
+      {
+        "path": "/movies/{version}/reviews/{resource-path}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "887a8ea540f1b1c44a32584e84ee9383:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Movie Reviews API."
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: Positive integer, multiple of 20"
+            }
+          },
+          {
+            "name": "order",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the results. Accepted values: by-title, by-publication-date, by-opening-date, by-dvd-release-date. See API docs for more details."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns movie reviews by keyword. API Key for Movie Reviews API. Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: Positive integer, multiple of 20 Sets the sort order of the results. Accepted values: by-title, by-publication-date, by-opening-date, by-dvd-release-date. See API docs for more details.",
+          "url": "http://developer.nytimes.com/docs/movie_reviews_api/#h3-reviews"
+        },
+        "curl": "curl -X GET  -d 'api-key=887a8ea540f1b1c44a32584e84ee9383:9:64325990' http://api.nytimes.com/svc/movies/v2/reviews/{resource-path}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Movie Reviews API",
+        "displayName": "Movie Reviews API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/movies/{version}/reviews/{resource-path}.{response-format}"
+      },
+      {
+        "path": "/movies/{version}/reviews/reviewer/{reviewer-name}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "887a8ea540f1b1c44a32584e84ee9383:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Movie Reviews API."
+            }
+          },
+          {
+            "name": "critics-pick",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Set this parameter to Y to get movies selected by reviewer-name as an NYT Critics' Pick. To get only those movies that have not been highlighted by this critic, specify critics-pick=N. (To get all reviews regardless of critics-pick status, simply omit this parameter.) Accepted values: Y, N"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: Positive integer, multiple of 20"
+            }
+          },
+          {
+            "name": "order",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the sort order of the results. Accepted values: by-title, by-publication-date, by-opening-date, by-dvd-release-date. See API docs for more details."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns movie reviews by a specific Times reviewer. API Key for Movie Reviews API. Set this parameter to Y to get movies selected by reviewer-name as an NYT Critics' Pick. To get only those movies that have not been highlighted by this critic, specify critics-pick=N. (To get all reviews regardless of critics-pick status, simply omit this parameter.) Accepted values: Y, N Sets the starting point of the result set. The first 20 results are shown by default. To page through the results, set offset to the appropriate value (e.g., offset=20 displays results 21–40). Format: Positive integer, multiple of 20 Sets the sort order of the results. Accepted values: by-title, by-publication-date, by-opening-date, by-dvd-release-date. See API docs for more details.",
+          "url": "http://developer.nytimes.com/docs/movie_reviews_api/#h3-reviews-reviewers"
+        },
+        "curl": "curl -X GET  -d 'api-key=887a8ea540f1b1c44a32584e84ee9383:9:64325990' http://api.nytimes.com/svc/movies/v2/reviews/reviewer/{reviewer-name}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Movie Reviews API",
+        "displayName": "Movie Reviews API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/movies/{version}/reviews/reviewer/{reviewer-name}.{response-format}"
+      },
+      {
+        "path": "/movies/{version}/critics/{resource-type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "887a8ea540f1b1c44a32584e84ee9383:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Movie Reviews API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns biographical information about reviewers. API Key for Movie Reviews API.",
+          "url": "http://developer.nytimes.com/docs/movie_reviews_api/#h3-reviewers"
+        },
+        "curl": "curl -X GET  -d 'api-key=887a8ea540f1b1c44a32584e84ee9383:9:64325990' http://api.nytimes.com/svc/movies/v2/critics/{resource-type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Movie Reviews API",
+        "displayName": "Movie Reviews API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/movies/{version}/critics/{resource-type}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/{year}/{chamber}/committees/{committee-name}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns details about a particular committee. API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-cmte-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/{year}/{chamber}/committees/{committee-name}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/{year}/{chamber}/committees/{committee-name}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/members/{member-name}/bills/{type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the 20 bills that were most recently introduced or updated by a particular member. API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bills-by-member"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/members/{member-name}/bills/{type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/members/{member-name}/bills/{type}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/{year}/{chamber}/bills/{type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the 20 bills that were most recently introduced or updated (by chamber) API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bills"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/{year}/{chamber}/bills/{type}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/{year}/{chamber}/bills/{type}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/{year}/bills/{bill-id}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns additional details about a particular bill. API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-bill-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/{year}/bills/{bill-id}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/{year}/bills/{bill-id}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/{year}/{chamber}/members.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of members by chapter. API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-member-lists"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/{year}/{chamber}/members",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/{year}/{chamber}/members.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/members/{member-name}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns details about a particular member of the Senate or Assembly. API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-member-details"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/members/{member-name}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/members/{member-name}.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/{chamber}/{district}/current.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the current member of the Assembly or Senate for a particular district. API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-current-by-district"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/{chamber}/{district}/current",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/{chamber}/{district}/current.{response-format}"
+      },
+      {
+        "path": "/politics/{version}/ny/legislative/{year}/{chamber}/committees.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "a700c2a580b06029a22fa4898b24c682:9:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for NY State Legislature API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a list of committees by chamber. API Key for NY State Legislature API.",
+          "url": "http://developer.nytimes.com/docs/ny_state_leg_api/#h3-cmte-lists"
+        },
+        "curl": "curl -X GET  -d 'api-key=a700c2a580b06029a22fa4898b24c682:9:64325990' http://api.nytimes.com/svc/politics/v2/ny/legislative/{year}/{chamber}/committees",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "NY State Legislature API",
+        "displayName": "NY State Legislature API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/politics/{version}/ny/legislative/{year}/{chamber}/committees.{response-format}"
+      },
+      {
+        "path": "/real-estate/{version}/sales/count.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Real Estate API."
+            }
+          },
+          {
+            "name": "building-built-year",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results by the year the property was built. Format: YYYY"
+            }
+          },
+          {
+            "name": "building-type-id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments."
+            }
+          },
+          {
+            "name": "date-range",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned."
+            }
+          },
+          {
+            "name": "geo-extent-level",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip"
+            }
+          },
+          {
+            "name": "geo-extent-value",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method."
+            }
+          },
+          {
+            "name": "geo-summary-level",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the geographic unit for grouping the results. Within the extent you specify (with geo-extent-level and geo-extent-value), results are grouped by the geo-summary-level value. Accepted values: borough, neighborhood, zip."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns sales counts (for example, the total number of properties sold in the Bronx in the first month of 2008) API Key for Real Estate API. Limits the results by the year the property was built. Format: YYYY Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments. Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned. Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method. Sets the geographic unit for grouping the results. Within the extent you specify (with geo-extent-level and geo-extent-value), results are grouped by the geo-summary-level value. Accepted values: borough, neighborhood, zip.",
+          "url": "http://developer.nytimes.com/docs/real_estate_api/#h3-sales-count"
+        },
+        "curl": "curl -X GET  -d 'api-key=86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990' http://api.nytimes.com/svc/real-estate/v2/sales/count",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Real Estate API",
+        "displayName": "Real Estate API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/real-estate/{version}/sales/count.{response-format}"
+      },
+      {
+        "path": "/real-estate/v2/neighborhoods.{response-format}",
+        "params": [
+          {
+            "name": "borough",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Optional limit by NYC borough. Accepted values: Bronx, Brooklyn, Manhattan, Queens, Staten Island"
+            }
+          },
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Real Estate API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns valid neighborhood values. Optional limit by NYC borough. Accepted values: Bronx, Brooklyn, Manhattan, Queens, Staten Island API Key for Real Estate API.",
+          "url": "http://developer.nytimes.com/docs/real_estate_api/"
+        },
+        "curl": "curl -X GET  -d 'api-key=86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990' http://api.nytimes.com/svc/real-estate/v2/neighborhoods",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Real Estate API",
+        "displayName": "Real Estate API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/real-estate/v2/neighborhoods.{response-format}"
+      },
+      {
+        "path": "/real-estate/{version}/listings/percentile/{percentile-value}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Real Estate API."
+            }
+          },
+          {
+            "name": "bedrooms",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "1",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results by number of bedrooms. Default: 1 or more"
+            }
+          },
+          {
+            "name": "building-type-id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments."
+            }
+          },
+          {
+            "name": "date-range",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned."
+            }
+          },
+          {
+            "name": "geo-extent-level",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip"
+            }
+          },
+          {
+            "name": "geo-extent-value",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns listings percentiles (for example, the 50th percentile price for condo listings in Manhattan in July 2007) API Key for Real Estate API. Limits the results by number of bedrooms. Default: 1 or more Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments. Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned. Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method.",
+          "url": "http://developer.nytimes.com/docs/real_estate_api/#h3-listings-percentile"
+        },
+        "curl": "curl -X GET  -d 'api-key=86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990&bedrooms=1' http://api.nytimes.com/svc/real-estate/v2/listings/percentile/{percentile-value}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Real Estate API",
+        "displayName": "Real Estate API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/real-estate/{version}/listings/percentile/{percentile-value}.{response-format}"
+      },
+      {
+        "path": "/real-estate/{version}/listings/count.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Real Estate API."
+            }
+          },
+          {
+            "name": "bedrooms",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "1",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results by number of bedrooms. Default: 1 or more"
+            }
+          },
+          {
+            "name": "building-built-year",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results by the year the property was built. Format: YYYY"
+            }
+          },
+          {
+            "name": "building-type-id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments."
+            }
+          },
+          {
+            "name": "date-range",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned."
+            }
+          },
+          {
+            "name": "geo-extent-level",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip"
+            }
+          },
+          {
+            "name": "geo-extent-value",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method."
+            }
+          },
+          {
+            "name": "geo-summary-level",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the geographic unit for grouping the results. Within the extent you specify (with geo-extent-level and geo-extent-value), results are grouped by the geo-summary-level value. Accepted values: borough, neighborhood, zip."
+            }
+          },
+          {
+            "name": "loft",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "N",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to lofts. Lofts are defined as properties with zero bedrooms, priced at under $5 million. Accepted values: Y, N. Default: N"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns listings counts (for example, the total number of two-bedroom apartments listed in 10025 in September 2008) API Key for Real Estate API. Limits the results by number of bedrooms. Default: 1 or more Limits the results by the year the property was built. Format: YYYY Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments. Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned. Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method. Sets the geographic unit for grouping the results. Within the extent you specify (with geo-extent-level and geo-extent-value), results are grouped by the geo-summary-level value. Accepted values: borough, neighborhood, zip. Limits the results to lofts. Lofts are defined as properties with zero bedrooms, priced at under $5 million. Accepted values: Y, N. Default: N",
+          "url": "http://developer.nytimes.com/docs/real_estate_api/#h3-listings-count"
+        },
+        "curl": "curl -X GET  -d 'api-key=86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990&bedrooms=1&loft=N' http://api.nytimes.com/svc/real-estate/v2/listings/count",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Real Estate API",
+        "displayName": "Real Estate API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/real-estate/{version}/listings/count.{response-format}"
+      },
+      {
+        "path": "/real-estate/{version}/sales/percentile/{percentile-value}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Real Estate API."
+            }
+          },
+          {
+            "name": "building-type-id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments."
+            }
+          },
+          {
+            "name": "date-range",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned."
+            }
+          },
+          {
+            "name": "geo-extent-level",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip"
+            }
+          },
+          {
+            "name": "geo-extent-value",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns sales percentiles (for example, the 90th percentile price of town houses sold on the Upper East Side in the last quarter of 2008) API Key for Real Estate API. Limits the results to a type of building (e.g., condo). To get a list of a valid building-type-id values, issue a building-types request. Note: Use type 2 (\"Rental\") for apartments. Sets the quarter, month, week or day for the results. Format: quarter: YYYY-Qq, month: YYYY-MM, week: YYYY-Www, day: YYYY-MM-DD. Quarters and weeks are specified by number (e.g., 2008-Q1, 2008-W52) in ISO 8601 format. For listings requests, listings that were active (on the market) during the specified date range are returned. For sales requests, recorded sales within the specified date range are returned. Sets the geographic unit for the results. This parameter sets the unit (not the value) for the geographic extent of the results. Specify the value (the actual borough, neighborhood or ZIP code) with the geo-extent-value parameter. Accepted values: borough, neighborhood, zip Limits the results to a particular area (New York City only). Use geo-extent-level to specify a geographic unit, and then specify a borough, neighborhood or ZIP code with geo-extent-value. To get a list of a valid neighborhood values, use the neighborhoods method.",
+          "url": "http://developer.nytimes.com/docs/real_estate_api/#h3-sales-percentile"
+        },
+        "curl": "curl -X GET  -d 'api-key=86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990' http://api.nytimes.com/svc/real-estate/v2/sales/percentile/{percentile-value}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Real Estate API",
+        "displayName": "Real Estate API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/real-estate/{version}/sales/percentile/{percentile-value}.{response-format}"
+      },
+      {
+        "path": "/real-estate/v2/building-types.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Real Estate API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns valid building-type-id values. API Key for Real Estate API.",
+          "url": "http://developer.nytimes.com/docs/real_estate_api/"
+        },
+        "curl": "curl -X GET  -d 'api-key=86ddd05d3b2a50a1c94ebcc93550d11f:16:64325990' http://api.nytimes.com/svc/real-estate/v2/building-types",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Real Estate API",
+        "displayName": "Real Estate API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/real-estate/v2/building-types.{response-format}"
+      },
+      {
+        "path": "/news/{version}/content.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "718e9c614a4e157613c18ea201dca81c:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Times Newswire API."
+            }
+          },
+          {
+            "name": "url",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The complete URL of a specific news item, URL-encoded or backslash-escaped."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a specific news item. The response will be a standard Newswire response, but for that item only. Note: The Newswire cache is cleared regularly, so only recent news items can be retrieved with this request type. Use the Article Search API to get older items. API Key for Times Newswire API. The complete URL of a specific news item, URL-encoded or backslash-escaped.",
+          "url": "http://developer.nytimes.com/docs/times_newswire_api/#h3-specific-item"
+        },
+        "curl": "curl -X GET  -d 'api-key=718e9c614a4e157613c18ea201dca81c:0:64325990' http://api.nytimes.com/svc/news/v3/content",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Times Newswire API",
+        "displayName": "Times Newswire API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/news/{version}/content.{response-format}"
+      },
+      {
+        "path": "/news/{version}/content/{source}/{section}/{time-period}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "718e9c614a4e157613c18ea201dca81c:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Times Newswire API."
+            }
+          },
+          {
+            "name": "limit",
+            "type": "xsd:integer",
+            "style": "query",
+            "default": "20",
+            "required": "true",
+            "doc": {
+              "t": "Limits the number of results. Format: Integer, 1–20. Default: 20"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:integer",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Sets the starting point of the result set. Format: Integer, 0-[number of available records]. Default: 0 (first record)"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns recent news items. API Key for Times Newswire API. Limits the number of results. Format: Integer, 1–20. Default: 20 Sets the starting point of the result set. Format: Integer, 0-[number of available records]. Default: 0 (first record)",
+          "url": "http://developer.nytimes.com/docs/times_newswire_api/#h3-items"
+        },
+        "curl": "curl -X GET  -d 'api-key=718e9c614a4e157613c18ea201dca81c:0:64325990&limit=20&offset=0' http://api.nytimes.com/svc/news/v3/content/{source}/{section}/{time-period}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Times Newswire API",
+        "displayName": "Times Newswire API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/news/{version}/content/{source}/{section}/{time-period}.{response-format}"
+      },
+      {
+        "path": "/news/{version}/content/section-list.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "718e9c614a4e157613c18ea201dca81c:0:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Times Newswire API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns list of valid section names. API Key for Times Newswire API.",
+          "url": "http://developer.nytimes.com/docs/times_newswire_api/"
+        },
+        "curl": "curl -X GET  -d 'api-key=718e9c614a4e157613c18ea201dca81c:0:64325990' http://api.nytimes.com/svc/news/v3/content/section-list",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Times Newswire API",
+        "displayName": "Times Newswire API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/news/{version}/content/section-list.{response-format}"
+      },
+      {
+        "path": "/timespeople/api/{version}/user/{hash}/id.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "f681165acece8375403e96ae5e6650c6:13:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Times People API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns the user ID of a TimesPeople user given a hash of their email address. API Key for Times People API.",
+          "url": "http://developer.nytimes.com/docs/timespeople_api/#h3-id-hash"
+        },
+        "curl": "curl -X GET  -d 'api-key=f681165acece8375403e96ae5e6650c6:13:64325990' http://api.nytimes.com/svc/timespeople/api/v1/user/{hash}/id.js",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "TimesPeople API",
+        "displayName": "TimesPeople API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/timespeople/api/{version}/user/{hash}/id.{response-format}"
+      },
+      {
+        "path": "/timespeople/api/{version}/user/{user-id}/{data-type}.{response-format}",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "f681165acece8375403e96ae5e6650c6:13:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Times People API."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Returns a user's profile, activity, news feed or followers/following lists. API Key for Times People API.",
+          "url": "http://developer.nytimes.com/docs/timespeople_api/#h3-id-data"
+        },
+        "curl": "curl -X GET  -d 'api-key=f681165acece8375403e96ae5e6650c6:13:64325990' http://api.nytimes.com/svc/timespeople/api/v1/user/{user-id}/{data-type}.js",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "TimesPeople API",
+        "displayName": "TimesPeople API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/timespeople/api/{version}/user/{user-id}/{data-type}.{response-format}"
+      },
+      {
+        "path": "/timestags/suggest",
+        "params": [
+          {
+            "name": "api-key",
+            "type": "xsd:string",
+            "style": "query",
+            "default": "c28274f6569da85ddee578fdea6886bb:10:64325990",
+            "required": "true",
+            "doc": {
+              "t": "API Key for Times People API."
+            }
+          },
+          {
+            "name": "query",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Your search query. If you do not specify a value for \"filter\", your query will be matched to tags in all four Times dictionaries: subject, geographic location, organization and person. See API docs for more info."
+            }
+          },
+          {
+            "name": "filter",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the results to the specified Times dictionaries. See API docs for more info. Format: Comma-delimited list (case-sensitive)"
+            }
+          },
+          {
+            "name": "max",
+            "type": "xsd:integer",
+            "style": "query",
+            "default": "10",
+            "required": "true",
+            "doc": {
+              "t": "Sets the maximum number of results. If you do not specify a value for max, 10 results will be returned."
+            }
+          }
+        ],
+        "doc": {
+          "t": "With the TimesTags API, you can mine the riches of the New York Times tag set. The TimesTags service matches your query to the controlled vocabularies that fuel NYTimes.com metadata. You supply a string of characters, and the service returns a ranked list of suggested terms. API Key for Times People API. Your search query. If you do not specify a value for \"filter\", your query will be matched to tags in all four Times dictionaries: subject, geographic location, organization and person. See API docs for more info. Limits the results to the specified Times dictionaries. See API docs for more info. Format: Comma-delimited list (case-sensitive) Sets the maximum number of results. If you do not specify a value for max, 10 results will be returned.",
+          "url": "http://developer.nytimes.com/docs/timestags_api/"
+        },
+        "curl": "curl -X GET  -d 'api-key=c28274f6569da85ddee578fdea6886bb:10:64325990&max=10' http://api.nytimes.com/svc/timestags/suggest",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "TimesTags API",
+        "displayName": "TimesTags API_GET",
+        "httpMethod": "GET",
+        "url": "http://api.nytimes.com/svc/timestags/suggest"
+      }
+    ]
+  },
+  "auth_strategy": "custom",
+  "custom_tokens": [
+    {
+      "name": "Articles API key"
+    },
+    {
+      "name": "Best Sellers API key"
+    },
+    {
+      "name": "Campaign Finance API key"
+    },
+    {
+      "name": "Community API key"
+    },
+    {
+      "name": "Congress API key"
+    },
+    {
+      "name": "Districts API key"
+    },
+    {
+      "name": "Event Listings API key"
+    },
+    {
+      "name": "Geo API API key"
+    },
+    {
+      "name": "Most Popular API key"
+    },
+    {
+      "name": "Movie Reviews API key"
+    },
+    {
+      "name": "Real Estate API key"
+    },
+    {
+      "name": "Semantic API key"
+    },
+    {
+      "name": "Newswire API key"
+    },
+    {
+      "name": "Times Tags API key"
+    }
+  ],
+  "enabled": false,
+  "name": "NewYorkTimes",
+  "type": "channel:new-york-times"
+}

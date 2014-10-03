@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('InvitationService', function ($q, $http) {
 
@@ -6,21 +7,18 @@ angular.module('octobluApp')
          * @param user - the user sending the invitation
          * @param recipientEmail - email address of the recipient
          */
-        this.sendInvitation = function (recipientEmail) {
-            return $http.post('/api/user/invitation/send',{ 'email': recipientEmail})
+        this.requestInvite = function (inviteOptions) {
+            return $http.post('/api/invitation/request', inviteOptions)
                 .then(function (result) {
                     return result.data;
                 });
         };
 
-        /**
-         * Deletes the invitation from the users list of invitations. The
-         * invitation must be sent by the user in order to be deleted.
-         *
-         * @param invitation
-         */
-        this.deleteInvitation = function (invitation) {
-
+        this.verifyInvitation = function(invitationCode, email){
+          return $http.get('/api/invitation/verify?email=' + email + '&invitationCode='+invitationCode)
+            .then(function(result){
+              return result.data;
+            });
 
         };
     });

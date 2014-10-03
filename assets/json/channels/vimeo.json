@@ -1,0 +1,61 @@
+{
+  "_id": "52f97d3c0db568444400040e",
+  "application": {
+    "base": "http://vimeo.com/api/v2",
+    "resources": [
+      {
+        "curl": "curl http://vimeo.com/api/v2/sunnythaper/info.json",
+        "authentication": {
+          "required": "false"
+        },
+        "path": "/{username}/info.json",
+        "displayName": "User Info_GET",
+        "httpMethod": "GET",
+        "doc": {
+          "t": "User info. Contains full URLs for the avatar and other user resources."
+        },
+        "category": "User Info",
+        "url": "http://vimeo.com/api/v2/{username}/info.json"
+      },
+      {
+        "curl": "curl http://vimeo.com/api/v2/sunnythaper/videos.json",
+        "authentication": {
+          "required": "false"
+        },
+        "path": "/{username}/videos.json",
+        "displayName": "Videos_GET",
+        "httpMethod": "GET",
+        "doc": {
+          "t": "Returns up to 20 videos from a given user, starting with the most recent. The root object is an array."
+        },
+        "category": "Videos",
+        "url": "http://vimeo.com/api/v2/{username}/videos.json"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "name": "Vimeo",
+  "enabled": true,
+  "oauth": {
+    "development" : {
+      "consumerKey": "8e73b5f8606313eb0180942d4cd38063e594908c",
+      "consumerSecret" : "099a360b3518266f88bcf5bc3913780f90f3b7f2",
+      "callbackURL": "http://localhost:8080/api/oauth/vimeo/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging" : {
+      "consumerKey": "56c0dc91a4622a7704f3a4c596405faee6f98d61",
+      "consumerSecret" : "77ff6947d23d3581ea673c9d804bbf68dfcba5eb",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/vimeo/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "consumerKey": "2f7491daf6e2534669755dfb901ed6d0a29351b8",
+      "consumerSecret" : "f36a461a895e2be8bef31f7db72b2a52689210cd",
+      "callbackURL": "https://app.octoblu.com/api/oauth/vimeo/callback",
+      "tokenMethod": "access_token_query"
+    }
+  },
+  "isPassport" : true,
+  "type": "channel:vimeo"
+}

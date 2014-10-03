@@ -1,0 +1,267 @@
+{
+  "_id": "53ee6fb263a8751728a5a3c0",
+  "__v": 0,
+  "application": {
+    "base": "http://crisply.com/api/v1",
+    "resources": [
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359043-activity-item"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/activity_items.xml",
+        "path": "/activity_items.xml",
+        "url": "http://crisply.com/api/v1/activity_items.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359043-activity-item"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/activity_items.xml",
+        "path": "/activity_items.xml",
+        "params": [
+          {
+            "name": "user_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://crisply.com/api/v1/activity_items.xml"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/clients.xml",
+        "path": "/clients.xml",
+        "url": "http://crisply.com/api/v1/clients.xml"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/clients/{id}.xml",
+        "path": "/clients/{id}.xml",
+        "url": "http://crisply.com/api/v1/clients/{id}.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/clients.xml",
+        "path": "/clients.xml",
+        "url": "http://crisply.com/api/v1/clients.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359130-client"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/clients/{id}.xml",
+        "path": "/clients/{id}.xml",
+        "url": "http://crisply.com/api/v1/clients/{id}.xml"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects.xml",
+        "path": "/projects.xml",
+        "url": "http://crisply.com/api/v1/projects.xml"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{id}.xml",
+        "path": "/projects/{id}.xml",
+        "url": "http://crisply.com/api/v1/projects/{id}.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects.xml",
+        "path": "/projects.xml",
+        "url": "http://crisply.com/api/v1/projects.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359062-project"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{id}.xml",
+        "path": "/projects/{id}.xml",
+        "url": "http://crisply.com/api/v1/projects/{id}.xml"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users.xml",
+        "path": "/users.xml",
+        "url": "http://crisply.com/api/v1/users.xml"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/user/{id}.xml",
+        "displayName": "/user/{id}.xml",
+        "url": "http://crisply.com/api/v1/user/{id}.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users.xml",
+        "path": "/users.xml",
+        "url": "http://crisply.com/api/v1/users.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users/{id}.xml",
+        "path": "/users/{id}.xml",
+        "url": "http://crisply.com/api/v1/users/{id}.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359380-user"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/users/me.xml",
+        "path": "/users/me.xml",
+        "url": "http://crisply.com/api/v1/users/me.xml"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359425-project-assignment"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/project_assignments.xml",
+        "path": "/project_assignments.xml",
+        "url": "http://crisply.com/api/v1/project_assignments.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359425-project-assignment"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/project_assignments.xml",
+        "path": "/project_assignments.xml",
+        "params": [
+          {
+            "name": "project_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://crisply.com/api/v1/project_assignments.xml"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://support.crisply.com/customer/portal/articles/359563-time-entry"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/time_entries.xml",
+        "path": "/time_entries.xml",
+        "params": [
+          {
+            "name": "user_id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://crisply.com/api/v1/time_entries.xml"
+      }
+    ]
+  },
+  "auth_strategy": "basic",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://support.crisply.com/customer/portal/articles/250733-overview",
+  "enabled": true,
+  "name": "Crisply",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:crisply"
+}

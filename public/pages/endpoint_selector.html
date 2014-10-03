@@ -1,0 +1,10 @@
+<div>
+  <div class="form-group">
+    <label for="selectedEndpoint">Endpoint</label>
+    <select id="selectedEndpoint" ng-model="selectedEndpoint" ng-options="getEndpointLabel(endpoint) for endpoint in resources" class="form-control"></select>
+  </div>
+
+  <param-input ng-model="node.urlParams"   param-definitions="urlParamDefinitions"></param-input>
+  <param-input ng-model="node.queryParams" param-definitions="queryParamDefinitions"></param-input>
+  <param-input ng-model="node.bodyParams"  param-definitions="bodyParamDefinitions"></param-input>
+</div>

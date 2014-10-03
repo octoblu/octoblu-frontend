@@ -3,9 +3,6 @@
 
 var mongoose = require('mongoose');
 
-var ApiSchema = require('./app/models/api');
-mongoose.model('Api', ApiSchema);
-
 var ResourcePermissionSchema = require('./app/models/resourcePermission');
 mongoose.model('ResourcePermission', ResourcePermissionSchema);
 
@@ -24,5 +21,5 @@ mongoose.model('Group', GroupSchema);
 var InvitationSchema = require('./app/models/invitation');
 mongoose.model('Invitation', InvitationSchema);
 
-var NodeTypeSchema = require('./app/models/node-type');
-mongoose.model('NodeType', NodeTypeSchema);
+var FlowSchema = require('./app/models/flow');
+mongoose.model('Flow', FlowSchema);

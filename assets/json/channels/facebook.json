@@ -1,0 +1,4030 @@
+{
+  "_id": "53359922443595b588409210",
+  "application": {
+    "base": "https://graph.facebook.com",
+    "resources": [
+      {
+        "doc": {
+          "t": "GET /{app-id} \"/{app-id}\" ); FB.api(     \"/{app-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{app-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{app-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{app-id}"
+        },
+        "displayName": "/{app-id}",
+        "path": "/{app-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/app",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The application ID",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "android_key_hash",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Indicates the app key hash for this app's Android native implementation.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "app_domains ¹",
+            "type": "string[]",
+            "style": "",
+            "doc": {
+              "t": "Domains and subdomains this app can use.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_dialog_data_help_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL of a special landing page that helps users of an app begin publishing Open Graph activity",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_dialog_headline ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "One line description of an app that appears in the Login Dialog",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_dialog_perms_explanation ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The text to explain why an app needs additional permissions that appears in the Login Dialog",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_referral_default_activity_privacy ¹",
+            "type": "enum{SELF, EVERYONE, ALL_FRIENDS, NONE}",
+            "style": "",
+            "doc": {
+              "t": "The default privacy setting selected for Open Graph activities in the Login Dialog",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_referral_enabled ¹",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether Authenticated Referrals are enabled.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_referral_extended_perms ¹",
+            "type": "string[]",
+            "style": "",
+            "doc": {
+              "t": "Extended permissions that a user can choose to grant when Authenticated Referrals are enabled.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_referral_friend_perms ¹",
+            "type": "string[]",
+            "style": "",
+            "doc": {
+              "t": "Basic friends permissions that a user must grant when Authenticated Referrals are enabled.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_referral_user_perms ¹",
+            "type": "string[]",
+            "style": "",
+            "doc": {
+              "t": "Basic user permissions that a user must grant when Authenticated Referrals are enabled",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "auth_referral_response_type ¹",
+            "type": "enum{code, token}",
+            "style": "",
+            "doc": {
+              "t": "The format that an app receives the auth token from the Login Dialog in",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "canvas_fluid_height ¹",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether app uses fluid or settable height values for Canvas",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "canvas_fluid_width ¹",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether app uses fluid or fixed width values for Canvas",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "canvas_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The non-secure URL from which Canvas app content is loaded.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The category of the application",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "company",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The company the application belongs to",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "contact_email ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Email address listed for users to contact developers.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "Unix timestamp that indicates when the app was created",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "creator_uid",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "User ID of the creator of this app",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "daily_active_users",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The number of daily active users the application has",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "daily_active_users_rank",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Ranking of this app vs other apps comparing daily active users",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "deauth_callback_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL that is pinged whenever a user removes the app",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The description of the application written by the 3rd party developers",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "hosting_url",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Webspace created with one of our hosting partners for this app",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "icon_url",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL of the application's icon",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "ios_bundle_id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Indicates the bundle ID for this app's native iOS implementation.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "iphone_app_store_id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of the app in the iPhone App Store",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A link to the Application on Facebook",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "logo_url",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL of the application's logo",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "migrations ¹",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Migrations settings for this app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "{migration-name}",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "There will be multiple migration settings in the migration object depending on how many migrations are currently available to apps. The value of each of these fields indicates whether that migration is active for this app or not.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "mobile_web_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL to which Mobile users will be directed when using the app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "monthly_active_users",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The number of monthly active users the application has",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "monthly_active_users_rank",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Ranking of this app vs other apps comparing monthly active users",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The title of the application",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "namespace ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The namespace for the app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "page_tab_default_name ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The title of the app when used in a Page Tab",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "page_tab_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The non-secure URL from which Page Tab app content is loaded.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "privacy_policy_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL that links to a Privacy Policy for the app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "restrictions ¹",
+            "type": "object[] Object with one or more of the following fields: type, location, age, and age_distr",
+            "style": "",
+            "doc": {
+              "t": "Demographic restrictions set for this app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "type",
+            "type": "enum{alcohol}",
+            "style": "",
+            "doc": {
+              "t": "Indicates a restriction type.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "location",
+            "type": "csv[string]",
+            "style": "",
+            "doc": {
+              "t": "Indicates a restriction based on location, such as 'DE' for apps restricted to Germany",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "age",
+            "type": "enum{13+, 17+, 18+, 19+, 21+}",
+            "style": "",
+            "doc": {
+              "t": "Indicates a restriction based on a minimum age.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "secure_canvas_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The secure URL from which Canvas app content is loaded.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "secure_page_tab_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The secure URL from which Page Tab app content is loaded.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "server_ip_whitelist ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "App requests must originate from this comma-separated list of IP addresses",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "social_discovery ¹",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether app usage stories show up in the Ticker or News Feed.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "subcategory",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The subcategory of the application",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "terms_of_service_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL to Terms of Service which is linked to in Login Dialog.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "user_support_email ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Main contact email for this app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "user_support_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL of support for users of an app shown in Canvas footer.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "website_url ¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL of a website that integrates with this app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          },
+          {
+            "name": "weekly_active_users",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The number of weekly active users the application has",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/app"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{app-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{check-in-id} \"/{check-in-id}\" ); FB.api(     \"/{check-in-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{check-in-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{check-in-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{check-in-id}"
+        },
+        "displayName": "/{check-in-id}",
+        "path": "/{check-in-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/checkin",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "application",
+            "type": "App",
+            "style": "",
+            "doc": {
+              "t": "The app that made the check-in.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time the check-in was created.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The user who made the check-in.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The check-in's unique ID.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The message the user added to the check-in.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "place",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The Facebook Page that represents the location of the check-in.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "tags",
+            "type": "User[]",
+            "style": "",
+            "doc": {
+              "t": "The people that the author tagged in the check-in.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The type of this object; always returns checkin",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/checkin"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{check-in-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{comment-id} \"/{comment-id}\" ); FB.api(     \"/{comment-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{comment-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{comment-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{comment-id}"
+        },
+        "displayName": "/{comment-id}",
+        "path": "/{comment-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/comment",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The comment ID",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "attachment",
+            "type": "StoryAttachment",
+            "style": "",
+            "doc": {
+              "t": "Link or photo attached to the comment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Text accompanying the attachment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "description_tags",
+            "type": "string[]",
+            "style": "",
+            "doc": {
+              "t": "Profiles tagged in the text accompanying the attachment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "media",
+            "type": "StoryAttachmentMedia",
+            "style": "",
+            "doc": {
+              "t": "Media object (photo, link etc.) contained in the attachment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "image",
+            "type": "ImageSource",
+            "style": "",
+            "doc": {
+              "t": "An image in the attachment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "height",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Height of the image",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "src",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URI of the image",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "width",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Width of the image",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "target",
+            "type": "StoryAttachmentTarget",
+            "style": "",
+            "doc": {
+              "t": "Object that the attachment links to",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "id",
+            "type": "numeric string",
+            "style": "",
+            "doc": {
+              "t": "ID.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Title of the attachment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Type of the attachment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL of the attachment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "can_comment",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Whether the viewer can reply to this comment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "can_remove",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Whether the viewer can remove this comment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "comment_count",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Number of replies to this comment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time this comment was made",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The person that made this comment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "like_count",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Number of times this comment was liked",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The comment text",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "message_tags",
+            "type": "string[]",
+            "style": "",
+            "doc": {
+              "t": "Profiles tagged in mentions in the message",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "parent",
+            "type": "Comment",
+            "style": "",
+            "doc": {
+              "t": "For comment replies, this the comment that this is a reply to",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          },
+          {
+            "name": "user_likes",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Whether the viewer has liked this comment",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/comment"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{comment-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{domain-id} \"/{domain-id}\" ); FB.api(     \"/{domain-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{domain-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{domain-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{domain-id}"
+        },
+        "displayName": "/{domain-id}",
+        "path": "/{domain-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/domain",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/domain"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The ID of the domain.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/domain"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The name of the domain.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/domain"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{domain-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{event-id} \"/{event-id}\" ); FB.api(     \"/{event-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{event-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{event-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{event-id}"
+        },
+        "displayName": "/{event-id}",
+        "path": "/{event-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/event",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "id",
+            "type": "numeric string",
+            "style": "",
+            "doc": {
+              "t": "The event ID.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "cover",
+            "type": "CoverPhoto",
+            "style": "",
+            "doc": {
+              "t": "The event's cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL to the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "offset_y",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "The vertical offset in pixels of the photo from the bottom.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "offset_x",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "The horizontal offset in pixels of the photo from the left.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Long-form description of the event.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "end_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "End time of the event, if one has been set.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "is_date_only",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether the event only has a date specified, but no time.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The location of the event, if any.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The name of the event.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "owner",
+            "type": "User|Page|Group",
+            "style": "",
+            "doc": {
+              "t": "The profile that created the event.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "parent_group",
+            "type": "Group",
+            "style": "",
+            "doc": {
+              "t": "The group the event belongs to, if any.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "privacy",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Who can see the event.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "start_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "Start time of the event.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "ticket_uri",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The link users can visit to buy a ticket to this event. Can only be added to events created by Pages.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "timezone",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Any timezone that the event has.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "updated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "Last time that the event was updated.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          },
+          {
+            "name": "venue",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "Venue hosting the event, if any.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/event"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{event-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{friendlist-id} \"/{friendlist-id}\" ); FB.api(     \"/{friendlist-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{friendlist-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{friendlist-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{friendlist-id}"
+        },
+        "displayName": "/{friendlist-id}",
+        "path": "/{friendlist-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/friendlist",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/friendlist"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The friend list ID",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/friendlist"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The name of the friend list",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/friendlist"
+            }
+          },
+          {
+            "name": "list_type",
+            "type": "enum{close_friends, acquaintances, restricted, user_created, education, work, current_city, family}",
+            "style": "",
+            "doc": {
+              "t": "The type of the friend list",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/friendlist"
+            }
+          },
+          {
+            "name": "owner",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The owner of the friend list",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/friendlist"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{friendlist-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{group-id} \"/{group-id}\" ); FB.api(     \"/{group-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{group-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{group-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{group-id}"
+        },
+        "displayName": "/{group-id}",
+        "path": "/{group-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/group/",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The group ID",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "cover",
+            "type": "CoverPhoto",
+            "style": "",
+            "doc": {
+              "t": "Information about the group's cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL to the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "offset_y",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "The vertical offset in pixels of the photo from the bottom.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "offset_x",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "The horizontal offset in pixels of the photo from the left.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A brief description of the group.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The email address to upload content to the group. Only current members of the group can use this.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL for the group's icon.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The group's website.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The name of the group.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "owner",
+            "type": "User|Page",
+            "style": "",
+            "doc": {
+              "t": "The profile that created this group.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "parent",
+            "type": "Group|Page|App",
+            "style": "",
+            "doc": {
+              "t": "The parent of this group, if it exists.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "privacy",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The privacy setting of the group.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          },
+          {
+            "name": "updated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The last time the group was updated (this includes changes in the group's properties and changes in posts and comments if the session user can see them).",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/group/"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{group-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{link-id} \"/{link-id}\" ); FB.api(     \"/{link-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{link-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{link-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{link-id}"
+        },
+        "displayName": "/{link-id}",
+        "path": "/{link-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/link",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The link ID.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "`datetime",
+            "style": "",
+            "doc": {
+              "t": "The time the message was published.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A description of the link (appears beneath the link caption).",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The user that created the link.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A URL to the link icon that Facebook displays in the news feed.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL that was shared.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The optional message from the user about this link.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The name of the link.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          },
+          {
+            "name": "picture",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A URL to the thumbnail image used in the link post",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/link"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{link-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{message-id} \"/{message-id}\" ); FB.api(     \"/{message-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{message-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{message-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{message-id}"
+        },
+        "displayName": "/{message-id}",
+        "path": "/{message-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/message",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/message"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "A timestamp of when this message was created",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/message"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The sender of this message.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/message"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The unique ID for this message.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/message"
+            }
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The text of the message.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/message"
+            }
+          },
+          {
+            "name": "to",
+            "type": "User[]",
+            "style": "",
+            "doc": {
+              "t": "A list of the message recipients.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/message"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{message-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{milestone-id} \"/{milestone-id}\" ); FB.api(     \"/{milestone-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{milestone-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{milestone-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{milestone-id}"
+        },
+        "displayName": "/{milestone-id}",
+        "path": "/{milestone-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/milestone/",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The ID of a milestone event",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The title of the milestone",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "from",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The Page that posted the milestone.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The description of the milestone",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The creation time of the milestone",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "updated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The update time of the milestone",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "start_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The start time of the milestone",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          },
+          {
+            "name": "end_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The end time of the milestone. Page milestones have the same start and end time",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/milestone/"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{milestone-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{note-id} \"/{note-id}\" ); FB.api(     \"/{note-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{note-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{note-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{note-id}"
+        },
+        "displayName": "/{note-id}",
+        "path": "/{note-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/note",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The note's ID.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time the note was initially published.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The profile that created the note.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The icon that Facebook displays with notes.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The content of the note.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The title of the note.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          },
+          {
+            "name": "updated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time the note was last updated.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/note"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{note-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{object-id}/comments \"/{object-id}/comments\" ); FB.api(     \"/{object-id}/comments\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{object-id}/comments\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{object-id}/comments\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{object-id}/comments"
+        },
+        "displayName": "/{object-id}/comments",
+        "path": "/{object-id}/comments",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/object/comments/",
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://graph.facebook.com/{object-id}/comments"
+      },
+      {
+        "doc": {
+          "t": "GET /{object-id}/comments \"/{object-id}/comments\" ); FB.api(     \"/{object-id}/comments\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{object-id}/comments\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{object-id}/comments\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{object-id}/comments"
+        },
+        "displayName": "/{object-id}/comments",
+        "path": "/{object-id}/comments",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/object/comments/",
+        "httpMethod": "GET",
+        "params": [],
+        "url": "https://graph.facebook.com/{object-id}/comments"
+      },
+      {
+        "doc": {
+          "t": "GET /{offer-id} \"/{offer-id}\" ); FB.api(     \"/{offer-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{offer-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{offer-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{offer-id}"
+        },
+        "displayName": "/{offer-id}",
+        "path": "/{offer-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/offer",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The offer's ID.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "claim_limit",
+            "type": "integer",
+            "style": "",
+            "doc": {
+              "t": "The maximum number of times the offer can be claimed.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "coupon_type",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The type of offer.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time the offer was created.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "expiration_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The expiration time of the offer (for display purposes).",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "from",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The page that published the offer.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "image_url",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL for the offer's image.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "published",
+            "type": "boolean",
+            "style": "",
+            "doc": {
+              "t": "Whether a post is published or not, default is true.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "redemption_code",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A code to to receive the discount or promotion.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "redemption_link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL where the offer may be redeemed.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "reminder_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "Time before the expiration_time of the offer when the user receives a notification that the offer is about to expire. This notification time will occur in the user's set timezone.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "scheduled_publish_time",
+            "type": "Unix timestamp",
+            "style": "",
+            "doc": {
+              "t": "Time when the Page post should go live, this should be between 10 mins and 6 months from the time of publishing the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "terms",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The terms of the offer.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The title of the offer.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/offer"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{offer-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /platform \"/platform\" ); FB.api(     \"/platform\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/platform\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/platform\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/platform"
+        },
+        "displayName": "/platform",
+        "path": "/platform",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/page",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "id",
+            "type": "numeric string",
+            "style": "",
+            "doc": {
+              "t": "The Page ID",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "about¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Information about the Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "attire",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Dress code of the business. Applicable to Restaurants or Nightlife. Can be one of Casual, Dressy or Unspecified",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "band_members",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Members of the band. Applicable to Bands",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "best_page",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The best available Page on Facebook for the concept represented by this Page. The best available Page takes into account authenticity and fan count",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "birthday",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Birthday of this person. Applicable to Pages representing people",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "booking_agent",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Booking agent of the band. Applicable to Bands",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "can_post",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Whether the current session user can post on this Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The Page's category. e.g. Product/Service, Computers/Technology",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "category_list",
+            "type": "PageCategory[]",
+            "style": "",
+            "doc": {
+              "t": "The Page's categories",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "checkins",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Number of checkins at a place represented by a Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "company_overview¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The company overview. Applicable to Companies",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "cover¹",
+            "type": "CoverPhoto",
+            "style": "",
+            "doc": {
+              "t": "Information about the Page's cover photo",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL to the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "offset_y",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "The vertical offset in pixels of the photo from the bottom.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "offset_x",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "The horizontal offset in pixels of the photo from the left.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "current_location",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Current location of the Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "description¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The description of the Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "directed_by",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The director of the film. Applicable to Films",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "founded",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "When the company is founded. Applicable to Companies",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "general_info¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "General information provided by the Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "general_manager",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "General manager of the business. Applicable to Restaurants or Nightlife",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "hometown",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Hometown of the band. Applicable to Bands",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "hours¹",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Indicates the opening hours for this location.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "{day}_{number}_{status}",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Indicates a single range of opening hours for a day. Each day can have 2 different hours ranges. {day} should be the first 3 characters of the day of the week, {number} should be either 1 or 2 to allow for the two different hours ranges per day. {status} should be either open or close to delineate the start or end of a time range. An example would be mon_1_open with value 17:00 and mon_1_close with value 21:15 which would represent a single opening range of 5pm to 9:15pm on Mondays.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "is_permanently_closed¹",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "For businesses that are no longer operating.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "is_published",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether the Page is published and visible to non-admins",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "is_unclaimed",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether the Page is unclaimed",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "likes",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "The number of users who like the Page. For Global Brand Pages this is the count for all pages across the brand",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The Page's Facebook URL",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "location",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "The location of this place. Applicable to all Places",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Country of the location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "City of the location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "longitude",
+            "type": "float",
+            "style": "",
+            "doc": {
+              "t": "Longitude of the location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "zip",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Zip code of the location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "State of the location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "street",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Street of the location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "located_in",
+            "type": "id",
+            "style": "",
+            "doc": {
+              "t": "The parent location if this location is located within another location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "latitude",
+            "type": "float",
+            "style": "",
+            "doc": {
+              "t": "Latitude of the location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "mission¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The company mission. Applicable to Companies",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "name¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The name of the Page.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "parking¹",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Information about the parking available at a place.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "street",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Indicates street parking is available.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "lot",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Indicates a parking lot is available.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "valet",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Indicates a valet is available.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "phone¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Phone number provided by a Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "press_contact",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Press contact information of the band. Applicable to Bands",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "price_range",
+            "type": "enum{$, $$, $$$, $$$$, Unspecified}",
+            "style": "",
+            "doc": {
+              "t": "Price range of the business. Applicable to Restaurants or Nightlife.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "products",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The products of this company. Applicable to Companies",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "restaurant_services",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Services the restaurant provides. Applicable to Restaurants",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "kids",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant is kids-friendly",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "delivery",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant has delivery service",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "walkins",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant welcomes walkins",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "catering",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant has catering service",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "reserve",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant takes reservations",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "groups",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant is group-friendly",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "waiter",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant has waiters",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "outdoor",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant has outdoor seating",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "takeout",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant has takeout service",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "restaurant_specialties",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "The restaurant's specialties. Applicable to Restaurants",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "coffee",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant serves coffee",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "drinks",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant serves drinks",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "breakfast",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant serves breakfast",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "dinner",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant serves dinner",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "lunch",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Whether the restaurant serves lunch",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "talking_about_count",
+            "type": "unsigned int32",
+            "style": "",
+            "doc": {
+              "t": "The number of people talking about this Page",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The alias of the Page. For example, for www.facebook.com/platform the username is 'platform'",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "website¹",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The URL of the Page's website",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          },
+          {
+            "name": "were_here_count",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "The number of visits to this Page's location",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/page"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/platform"
+      },
+      {
+        "doc": {
+          "t": "GET /{photo-id} \"/{photo-id}\" ); FB.api(     \"/{photo-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{photo-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{photo-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{photo-id}"
+        },
+        "displayName": "/{photo-id}",
+        "path": "/{photo-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/photo",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "id",
+            "type": "numeric string",
+            "style": "",
+            "doc": {
+              "t": "The photo ID",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "album",
+            "type": "Album",
+            "style": "",
+            "doc": {
+              "t": "The album this photo is in",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "backdated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time that the photo was taken",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "backdated_time_granularity",
+            "type": "enum{'year', 'month', 'day', 'hour', 'min', 'none'}",
+            "style": "",
+            "doc": {
+              "t": "How accurate the backdated time is.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time this photo was published",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User or Page",
+            "style": "",
+            "doc": {
+              "t": "The profile that uploaded this photo",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "height",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "The height of this photo in pixels",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The icon that Facebook displays when photos are published to newsfeed",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "images",
+            "type": "ImageSource[]",
+            "style": "",
+            "doc": {
+              "t": "The 4 different stored representations of the photo",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "height",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Height of the image",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URI of the image",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "width",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Width of the image",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A link to the photo on Facebook",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The user provided caption given to this photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "name_tags",
+            "type": "object[]",
+            "style": "",
+            "doc": {
+              "t": "An array containing an array of objects mentioned in the name field.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "id",
+            "type": "numeric string",
+            "style": "",
+            "doc": {
+              "t": "ID of the profile",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "object",
+            "type": "Profile",
+            "style": "",
+            "doc": {
+              "t": "The object itself",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "length",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Number of characters in the text indicating the object",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Name of the object",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "The character offset in the source text of the text indicating the object",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Type of the object",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "page_story_id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of the page story this corresponds to if any",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "picture",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Link to the 100px wide representation of this photo",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "place",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "Location associated with the photo, if any",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "position",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "Deprecated. Returns 0",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Link to the image source of the photo",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "updated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The last time the photo or its caption was updated",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          },
+          {
+            "name": "width",
+            "type": "int32",
+            "style": "",
+            "doc": {
+              "t": "The width of this photo in pixels",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/photo"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{photo-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{post-id} \"/{post-id}\" ); FB.api(     \"/{post-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{post-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{post-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{post-id}"
+        },
+        "displayName": "/{post-id}",
+        "path": "/{post-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/post",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The post ID",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "actions",
+            "type": "object[]",
+            "style": "",
+            "doc": {
+              "t": "A list of available actions on the post (including commenting, liking, and any optional app-specified actions).",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The action's link name.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Where the action link goes to.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "application",
+            "type": "App",
+            "style": "",
+            "doc": {
+              "t": "Information about the app this post was published by.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "caption",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The caption of a link in the post (appears beneath the name).",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time the post was initially published.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A description of a link in the post (appears beneath the caption).",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "from",
+            "type": "Profile",
+            "style": "",
+            "doc": {
+              "t": "Information about the profile that posted the message.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "icon",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A link to an icon representing the type of this post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "is_hidden",
+            "type": "boolean",
+            "style": "",
+            "doc": {
+              "t": "If this post is marked as hidden (applies to Pages only).",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The link attached to this post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The status message in the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "message_tags",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Profiles tagged in message.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "{tag-key}",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Each tag in the message has a unique key within the message_tags object, which also indicates the order in which it appears in the message. The corresponding value of this key is another object representing the tag itself.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of the profile that was tagged.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The text used in the tag.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "type",
+            "type": "enum{user, page, group}",
+            "style": "",
+            "doc": {
+              "t": "Indicates which type of profile is tagged.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "integer",
+            "style": "",
+            "doc": {
+              "t": "Where the first character of the tagged text is in the message.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "length",
+            "type": "integer",
+            "style": "",
+            "doc": {
+              "t": "How many characters this tag consists of, after the offset.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The name of the link.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "object_id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The ID of any uploaded photo or video attached to the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "picture",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The picture scraped from any link included with the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "place",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "Any location information attached to the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "privacy",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "The privacy settings of the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Text that describes the privacy settings, as they would appear on Facebook.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "value",
+            "type": "enum{EVERYONE, ALL_FRIENDS, FRIENDS_OF_FRIENDS, SELF, CUSTOM}",
+            "style": "",
+            "doc": {
+              "t": "The actual privacy setting.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "friends",
+            "type": "enum{ALL_FRIENDS, FRIENDS_OF_FRIENDS, SOME_FRIENDS}",
+            "style": "",
+            "doc": {
+              "t": "If value is CUSTOM, this indicates which group of friends can see the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "allow",
+            "type": "csv<string>",
+            "style": "",
+            "doc": {
+              "t": "If value is CUSTOM, this is a comma-separated ID list of users and friendlists (if any) that can see the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "deny",
+            "type": "csv<string>",
+            "style": "",
+            "doc": {
+              "t": "If value is CUSTOM, this is a comma-separated ID list of users and friendlists (if any) that cannot see the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "properties",
+            "type": "object[]",
+            "style": "",
+            "doc": {
+              "t": "A list of properties for any attached video, for example, the length of the video.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The property name.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The value of the property.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "href",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Any link associated with the property.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "shares",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "The number of times this post has been shared. If there are no shares, this field is not included.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "count",
+            "type": "integer",
+            "style": "",
+            "doc": {
+              "t": "The count of shares.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A URL to any Flash movie or video file attached to the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "status_type",
+            "type": "enum{mobile_status_update, created_note, added_photos, added_video, shared_story, created_group, created_event, wall_post, app_created_story, published_story, tagged_in_photo, approved_friend}",
+            "style": "",
+            "doc": {
+              "t": "Description of the type of a status update.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "story",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Text from stories not intentionally generated by users, such as those generated when two people become friends, or when someone else posts on the person's wall.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "story_tags",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Deprecated field, same as message_tags.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "to",
+            "type": "Profile[]",
+            "style": "",
+            "doc": {
+              "t": "Profiles mentioned or targeted in this post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "type",
+            "type": "enum{link, status, photo, video}",
+            "style": "",
+            "doc": {
+              "t": "A string indicating the object type of this post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "updated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time of the last change to this post, or the comments on it.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          },
+          {
+            "name": "with_tags",
+            "type": "Profile[]",
+            "style": "",
+            "doc": {
+              "t": "Profiles tagged as being 'with' the publisher of the post.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/post"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{post-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /me \"/me\" ); FB.api(     \"/me\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/me\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/me\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/me"
+        },
+        "displayName": "/me",
+        "path": "/me",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/user/",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "id",
+            "type": "numeric string",
+            "style": "",
+            "doc": {
+              "t": "The id of this person's user account.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "age_range",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Unspecific age range that this person's age fits into.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "min",
+            "type": "enum{13, 18, 21}",
+            "style": "",
+            "doc": {
+              "t": "The lower bounds of the range for this person's age.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "max",
+            "type": "enum{17, 20, None}",
+            "style": "",
+            "doc": {
+              "t": "The upper bounds of the range for this person's age.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "bio",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The 'about me' section of this person's profile.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "birthday",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "This person's birthday in the format MM/DD/YYYY.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "currency",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "This person's local currency information",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "user_currency",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The ISO-4217-3 code for the user's preferred currency (defaulting to USD if the user hasn't set one)",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "currency_exchange",
+            "type": "float",
+            "style": "",
+            "doc": {
+              "t": "Deprecated - Ignore The exchange rate between US Dollars and Facebook Credits",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "currency_exchange_inverse",
+            "type": "float",
+            "style": "",
+            "doc": {
+              "t": "Deprecated - Ignore The inverse of currency_exchange",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "usd_exchange",
+            "type": "float",
+            "style": "",
+            "doc": {
+              "t": "The exchange rate between the user's preferred currency and US Dollars",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "usd_exchange_inverse",
+            "type": "float",
+            "style": "",
+            "doc": {
+              "t": "The inverse of currency_exchange",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "currency_offset",
+            "type": "integer",
+            "style": "",
+            "doc": {
+              "t": "Deprecated - Ignore The denominator between Facebook Credits and US Dollars",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "education",
+            "type": "object[]",
+            "style": "",
+            "doc": {
+              "t": "The sections of a person's education history.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "school",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The Facebook Page that represents a school in this section.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "year",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The Facebook Page that represents the year of graduation in this section.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "concentration",
+            "type": "Page[]",
+            "style": "",
+            "doc": {
+              "t": "Facebook Pages representing the subjects studied in this section.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Indicates the type of educational institution.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "cover",
+            "type": "CoverPhoto",
+            "style": "",
+            "doc": {
+              "t": "Information about the person's cover photo",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "URL to the Photo that represents this cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "offset_y",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "The vertical offset in pixels of the photo from the bottom.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "This person's primary email address listed on their profile. This field will not be returned if no valid email address is available.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "favorite_athletes",
+            "type": "Page[]",
+            "style": "",
+            "doc": {
+              "t": "Facebook Pages representing athletes listed under the Likes section of this person's profile.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "favorite_teams",
+            "type": "Page[]",
+            "style": "",
+            "doc": {
+              "t": "Facebook Pages representing sports teams listed under the Likes section of this person's profile.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's first name",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's gender",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "hometown",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The person's hometown",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "inspirational_people",
+            "type": "Page[]",
+            "style": "",
+            "doc": {
+              "t": "Facebook Pages representing inspirational people listed under the Likes section of this person's profile.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "installed",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Is the app making the request installed?",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "is_verified",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "People with large numbers of followers can have the authenticity of their identity manually verified by Facebook. This field indicates whether the user profile is verified in this way.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "languages",
+            "type": "Page[]",
+            "style": "",
+            "doc": {
+              "t": "Facebook Pages representing the languages this person knows.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's last name.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A link to the person's profile.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "locale",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's locale.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "location",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The person's current location as entered by them on their profile. This is not a check in field.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "middle_name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's middle name.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's full name",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "name_format",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's name formatted to correctly handle Chinese, Japanese, Korean ordering",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "political",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's political views",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "quotes",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's favorite quotes",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "relationship_status",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's relationship status",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "religion",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's religion",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "significant_other",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The person's significant other",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "third_party_id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A string containing an anonymous, but unique identifier for this person. You can use this identifier with third-parties",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's username",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "verified",
+            "type": "bool",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether the user account has been verified. This is distinct from the is_verified field. Someone is considered verified if they take any of the following actions: Register for mobile Confirm their account via SMS   Enter a valid credit card ",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "website",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The person's website",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "work",
+            "type": "object[]",
+            "style": "",
+            "doc": {
+              "t": "The periods of a person's employment history.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "employer",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The Facebook Page that represents the employer in this period.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "location",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The Facebook Page representing the location of this employment.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "position",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The Facebook Page that represents the position that was held.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "start_date",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "When the employment period started.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "end_date",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "When the employment period ended. Not returned if employment is still current.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "projects",
+            "type": "object[]",
+            "style": "",
+            "doc": {
+              "t": "Each of the projects this person was involved in during this employment period. Each project is presented by a Facebook Page with additional fields shown below.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "with",
+            "type": "User[]",
+            "style": "",
+            "doc": {
+              "t": "A list of people involved with this project.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The description given to this project.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "start_date",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "When the project started.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          },
+          {
+            "name": "end_date",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "When the project ended. Not returned if project is still ongoing.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/user/"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/me"
+      },
+      {
+        "doc": {
+          "t": "GET /{achievement-id} \"/{achievement-id}\" ); FB.api(     \"/{achievement-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{achievement-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{achievement-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{achievement-id}"
+        },
+        "displayName": "/{achievement-id}",
+        "path": "/{achievement-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/achievement",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "ID of this particular achievement.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The user who achieved this.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "publish_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "Time at which this was achieved.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "application",
+            "type": "App",
+            "style": "",
+            "doc": {
+              "t": "The app in which the user achieved this.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "data",
+            "type": "object",
+            "style": "",
+            "doc": {
+              "t": "Information about the achievement type this instance is connected with.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "achievement",
+            "type": "AchievementType",
+            "style": "",
+            "doc": {
+              "t": "The achievement type that the user achieved.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "importance",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "A weighting given to each achievement type by the app.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "type",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "Always game.achievement.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          },
+          {
+            "name": "no_feed_story",
+            "type": "boolean",
+            "style": "",
+            "doc": {
+              "t": "Indicates whether gaining the achievement published a feed story for the user.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/achievement"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{achievement-id}"
+      },
+      {
+        "doc": {
+          "t": "GET /{album-id} \"/{album-id}\" ); FB.api(     \"/{album-id}\",     function (response) {       if (response && !response.error) {         /* handle the result */       }     } );/* make the API call */ [FBRequestConnection startWithGraphPath:@\"/{album-id}\"                              parameters:nil                              HTTPMethod:@\"GET\"                       completionHandler:^(                           FBRequestConnection *connection,                           id result,                           NSError *error                       ) {                           /* handle the result */                       }];/* make the API call */ new Request(     session,     \"/{album-id}\",     null,     HttpMethod.GET,     new Request.Callback() {         public void onCompleted(Response response) {             /* handle the result */         }     } ).executeAsync();curl https://graph.facebook.com/{album-id}"
+        },
+        "displayName": "/{album-id}",
+        "path": "/{album-id}",
+        "fullURL": "https://developers.facebook.com/docs/graph-api/reference/album",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "",
+            "type": "",
+            "style": "",
+            "doc": {
+              "t": "",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The album ID.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "can_upload",
+            "type": "boolean",
+            "style": "",
+            "doc": {
+              "t": "Whether the viewer can upload photos to this album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "count",
+            "type": "int",
+            "style": "",
+            "doc": {
+              "t": "Number of photos in this album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "cover_photo",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The ID of the album's cover photo.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "created_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The time the album was initially created.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The description of the album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "from",
+            "type": "User",
+            "style": "",
+            "doc": {
+              "t": "The profile that created the album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "link",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "A link to this album on Facebook.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The textual location of the album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The title of the album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "place",
+            "type": "Page",
+            "style": "",
+            "doc": {
+              "t": "The place associated with this album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "privacy",
+            "type": "string",
+            "style": "",
+            "doc": {
+              "t": "The privacy settings for the album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "type",
+            "type": "enum{profile, mobile, wall, normal, album}",
+            "style": "",
+            "doc": {
+              "t": "The type of the album.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          },
+          {
+            "name": "updated_time",
+            "type": "datetime",
+            "style": "",
+            "doc": {
+              "t": "The last time the album was updated.",
+              "url": "https://developers.facebook.com/docs/graph-api/reference/album"
+            }
+          }
+        ],
+        "url": "https://graph.facebook.com/{album-id}"
+      },
+      {
+        "params": [],
+        "httpMethod": "GET",
+        "path": "/{user-id}/feed",
+        "displayName": "/{user-id}/feed",
+        "doc": {
+          "t": "GET /{user-id}/feed",
+          "url": "https://developers.facebook.com/docs/graph-api/reference/v2.0/user/feed"
+        },
+        "url": "https://graph.facebook.com/{user-id}/feed"
+      },
+      {
+        "params": [],
+        "httpMethod": "GET",
+        "path": "/me/feed",
+        "displayName": "/me/feed",
+        "doc": {
+          "t": "GET /me/feed",
+          "url": "https://developers.facebook.com/docs/graph-api/reference/v2.0/user/feed"
+        },
+        "url": "https://graph.facebook.com/me/feed"
+      },
+      {
+        "params": [
+          {
+            "doc": {
+              "url": "https://developers.facebook.com/docs/graph-api/reference/v2.0/user/feed"
+            },
+            "required": false,
+            "style": "body",
+            "type": "string",
+            "name": "message"
+          },
+          {
+            "doc": {
+              "url": "https://developers.facebook.com/docs/graph-api/reference/v2.0/user/feed"
+            },
+            "required": false,
+            "style": "body",
+            "type": "string",
+            "name": "link"
+          }
+        ],
+        "httpMethod": "POST",
+        "path": "/me/feed",
+        "displayName": "/me/feed",
+        "doc": {
+          "t": "POST /me/feed",
+          "url": "https://developers.facebook.com/docs/graph-api/reference/v2.0/user/feed"
+        },
+        "url": "https://graph.facebook.com/me/feed"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "documentation": "https://developers.facebook.com/docs/graph-api/reference/",
+  "enabled": true,
+  "name": "Facebook",
+  "oauth": {
+    "accessTokenURL": "https://graph.facebook.com/oauth/access_token",
+    "apiKey": "",
+    "authTokenPath": "/dialog/oauth",
+    "authTokenURL": "https://www.facebook.com/dialog/oauth",
+    "baseURL": "https://www.facebook.com",
+    "clientId": "125271024334065",
+    "grant_type": "",
+    "host": "www.facebook.com",
+    "isManual": true,
+    "protocol": "https",
+    "requestTokenURL": "",
+    "scope": "publish_stream,offline_access,manage_pages,publish_actions",
+    "secret": "999a5e310b8934a3dd0bdc37c87f39a1",
+    "tokenMethod": "access_token_query",
+    "useOAuthLib": false,
+    "version": "2.0"
+  },
+  "useCustom": true,
+  "type": "channel:facebook"
+}

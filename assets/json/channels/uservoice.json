@@ -1,0 +1,3881 @@
+{
+  "_id": "53f616b5710850ee08e28482",
+  "__v": 0,
+  "application": {
+    "base": "http://uservoice.uservoice.com/api/v1/oauth/",
+    "resources": [
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "admin_permission[tickets]"
+          },
+          {
+            "name": "admin_permission[feedback]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "admin_permission[knowledgebase]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "admin_permission[settings]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "httpMethod": "PUT",
+        "displayName": "/api/v1/users/user_id/admin_permission.json",
+        "path": "/api/v1/users/user_id/admin_permission.json",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_admin_permission_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id/admin_permission.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_admin_permission_delete"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users/user_id/admin_permission.json",
+        "path": "/api/v1/users/user_id/admin_permission.json",
+        "params": [
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id/admin_permission.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_admin_permission_delete"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/articles.json",
+        "path": "/api/v1/articles.json",
+        "params": [
+          {
+            "name": "article[question]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "article[answer_html]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "article[published]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "article[topic_id]",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "article[topic_name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/articles.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_articles_article_id_delete"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/articles/article_id.json",
+        "path": "/api/v1/articles/article_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/articles/article_id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_articles_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/articles.json",
+        "path": "/api/v1/articles.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/articles.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_topics_topic_id_articles_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/topics/topic_id/articles.json",
+        "path": "/api/v1/topics/topic_id/articles.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/topics/topic_id/articles.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_articles_search_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/articles/search.json",
+        "path": "/api/v1/articles/search.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "query",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/articles/search.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_topics_topic_id_articles_search_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/topics/topic_id/articles/search.json",
+        "path": "/api/v1/topics/topic_id/articles/search.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "query",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/topics/topic_id/articles/search.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_articles_article_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/articles/article_id.json",
+        "path": "/api/v1/articles/article_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/articles/article_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_articles_article_id_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/articles/article_id.json",
+        "path": "/api/v1/articles/article_id.json",
+        "params": [
+          {
+            "name": "article[question]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "article[answer_html]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "article[published]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "article[topic_id]",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "article[topic_name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/articles/article_id.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_categories_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/categories.json",
+        "path": "/api/v1/forums/forum_id/categories.json",
+        "params": [
+          {
+            "name": "category[name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/categories.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_categories_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/categories/category_id.json",
+        "path": "/api/v1/forums/forum_id/categories/category_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/categories/category_id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_categories_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/categories.json",
+        "path": "/api/v1/forums/forum_id/categories.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/categories.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_categories_category_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/categories/category_id.json",
+        "path": "/api/v1/forums/forum_id/categories/category_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/categories/category_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_categories_category_id_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/categories/category_id.json",
+        "path": "/api/v1/forums/forum_id/categories/category_id.json",
+        "params": [
+          {
+            "name": "category[name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/categories/category_id.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments.json",
+        "params": [
+          {
+            "name": "comment[text]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/comments.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/comments/identify.json",
+        "path": "/api/v1/comments/identify.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/comments/identify.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/comments.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/comments.json",
+        "path": "/api/v1/comments.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/comments.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_comments_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users/user_id/comments.json",
+        "path": "/api/v1/users/user_id/comments.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id/comments.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_comment_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_comment_id_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json",
+        "params": [
+          {
+            "name": "comment[text]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_custom_fields_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/custom_fields.json",
+        "path": "/api/v1/custom_fields.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/custom_fields.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_custom_fields_public_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/custom_fields/public.json",
+        "path": "/api/v1/custom_fields/public.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/custom_fields/public.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_comment_id_flags_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id/flags.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id/flags.json",
+        "params": [
+          {
+            "name": "code",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id/flags.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_flags_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/flags.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/flags.json",
+        "params": [
+          {
+            "name": "code",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/flags.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_flags_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/faqs/faq_id/flags.json",
+        "path": "/api/v1/faqs/faq_id/flags.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/faqs/faq_id/flags.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_flags_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id/flags.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id/flags.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/comments/comment_id/flags.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_comments_comment_id_flags_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/flags.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/flags.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/flags.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_flags_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/faqs/faq_id/flags.json",
+        "path": "/api/v1/faqs/faq_id/flags.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/faqs/faq_id/flags.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_flags_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums.json",
+        "path": "/api/v1/forums.json",
+        "params": [
+          {
+            "name": "forum[name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "forum[welcome]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[prompt]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[example]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[state]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[closed_at]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[default_locale]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[private]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[access_denied_message]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[authorization_operator]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allow_by_ip]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allowed_ips][][ip]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allow_by_email_domain]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allowed_email_domains][][domain]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id.json",
+        "path": "/api/v1/forums/forum_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums.json",
+        "path": "/api/v1/forums.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id.json",
+        "path": "/api/v1/forums/forum_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id.json",
+        "path": "/api/v1/forums/forum_id.json",
+        "params": [
+          {
+            "name": "forum[name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "forum[welcome]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[prompt]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[example]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[state]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[closed_at]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[default_locale]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[private]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[access_denied_message]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[authorization_operator]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allow_by_ip]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allowed_ips][][ip]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allow_by_email_domain]",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "forum[allowed_email_domains][][domain]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/gadgets.json",
+        "path": "/api/v1/gadgets.json",
+        "params": [
+          {
+            "name": "gadget[name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "gadget[gadget_type]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "gadget[data][url]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "gadget[order]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/gadgets.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/gadgets/gadget_id.json",
+        "path": "/api/v1/gadgets/gadget_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/gadgets/gadget_id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/gadgets.json",
+        "path": "/api/v1/gadgets.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/gadgets.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/gadgets/gadget_id.json",
+        "path": "/api/v1/gadgets/gadget_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/gadgets/gadget_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/gadgets/gadget_id.json",
+        "path": "/api/v1/gadgets/gadget_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/gadgets/gadget_id.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/manual_actions.json",
+        "path": "/api/v1/manual_actions.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/manual_actions.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/manual_actions/id.json",
+        "path": "/api/v1/manual_actions/id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/manual_actions/id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/api/v1/manual_actions.json",
+        "displayName": "/api/v1/manual_actions.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/manual_actions.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/manual_actions/id.json",
+        "path": "/api/v1/manual_actions/id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/manual_actions/id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_gadgets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/manual_actions/id.json",
+        "path": "/api/v1/manual_actions/id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/manual_actions/id.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_notes_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes.json",
+        "params": [
+          {
+            "name": "note[text]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/notes.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_notes_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes/note_id.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes/note_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/notes/note_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_notes_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/notes/identify.json",
+        "path": "/api/v1/notes/identify.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/notes/identify.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_notes_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/notes.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_notes_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/notes.json",
+        "path": "/api/v1/notes.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/notes.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_notes_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users/user_id/notes.json",
+        "path": "/api/v1/users/user_id/notes.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id/notes.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_notes_note_id_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes/note_id.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/notes/note_id.json",
+        "params": [
+          {
+            "name": "note[text]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/notes/note_id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_oembed_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/oembed.json",
+        "path": "/api/v1/oembed.json",
+        "params": [
+          {
+            "name": "url",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/oembed.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "stale_threshold"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "agent_ids"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "exclude_weekends"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "custom_fields[custom_field_name]"
+          }
+        ],
+        "path": "/api/v1/reports/agent_backlog.json (BETA, subject to change)",
+        "displayName": "/api/v1/reports/agent_backlog.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_agent_backlog_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/agent_backlog.json (BETA, subject to change)"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "start_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "end_date"
+          }
+        ],
+        "path": "/api/v1/reports/agent_leaderboard.json (BETA, subject to change)",
+        "displayName": "/api/v1/reports/agent_leaderboard.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_agent_leaderboard_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/agent_leaderboard.json (BETA, subject to change)"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "start_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "end_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "granularity"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "custom_fields[custom_field_name]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "support_queue_id"
+          }
+        ],
+        "path": "/api/v1/reports/agent_performance.json (BETA, subject to change)",
+        "displayName": "/api/v1/reports/agent_performance.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_agent_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/agent_performance.json (BETA, subject to change)"
+      },
+      {
+        "path": "/api/v1/reports/backlog.json",
+        "displayName": "/api/v1/reports/backlog.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_agent_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/backlog.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "start_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "end_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "granularity"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "custom_fields[custom_field_name]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "user_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "support_queue_id"
+          }
+        ],
+        "path": "/api/v1/reports/channel_performance.json (BETA, subject to change)",
+        "displayName": "/api/v1/reports/channel_performance.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_agent_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/channel_performance.json (BETA, subject to change)"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "start_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "end_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "granularity"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "custom_fields[custom_field_name]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "user_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "support_queue_id"
+          }
+        ],
+        "path": "/api/v1/reports/custom_field_performance.json (BETA, subject to change)",
+        "displayName": "/api/v1/reports/custom_field_performance.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_custom_field_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/custom_field_performance.json (BETA, subject to change)"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "start_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "end_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "granularity"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "custom_fields[custom_field_name]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "user_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "support_queue_id"
+          }
+        ],
+        "path": "/api/v1/reports/hourly_performance.json (BETA, subject to change)",
+        "displayName": "/api/v1/reports/hourly_performance.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_hourly_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/hourly_performance.json (BETA, subject to change)"
+      },
+      {
+        "path": "/api/v1/reports/instant_answers.json",
+        "displayName": "/api/v1/reports/instant_answers.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_hourly_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/instant_answers.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "support_queue_ids"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "stale_threshold"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "exclude_weekends"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "custom_fields[custom_field_name]"
+          }
+        ],
+        "displayName": "/api/v1/reports/queue_backlog.json (BETA, subject to change)",
+        "path": "/api/v1/reports/queue_backlog.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_queue_backlog_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/queue_backlog.json (BETA, subject to change)"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "start_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "end_date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "granularity"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "custom_fields[custom_field_name]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "user_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "support_queue_id"
+          }
+        ],
+        "path": "/api/v1/reports/support_performance.json (BETA, subject to change)",
+        "displayName": "/api/v1/reports/support_performance.json (BETA, subject to change)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_support_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/support_performance.json (BETA, subject to change)"
+      },
+      {
+        "path": "/api/v1/reports/user_insights.json",
+        "displayName": "/api/v1/reports/user_insights.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_support_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/user_insights.json"
+      },
+      {
+        "path": "/api/v1/reports/user_satisfaction.json",
+        "displayName": "/api/v1/reports/user_satisfaction.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_support_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/user_satisfaction.json"
+      },
+      {
+        "path": "/api/v1/reports/user_satisfaction_by_traits.json",
+        "displayName": "/api/v1/reports/user_satisfaction_by_traits.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_support_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/user_satisfaction_by_traits.json"
+      },
+      {
+        "path": "/api/v1/reports/user_satisfaction_responses.json",
+        "displayName": "/api/v1/reports/user_satisfaction_responses.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_support_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/reports/user_satisfaction_responses.json"
+      },
+      {
+        "path": "/api/v1/search.json",
+        "displayName": "/api/v1/search.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_support_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/search.json"
+      },
+      {
+        "path": "/api/v1/instant_answers/search.json",
+        "displayName": "/api/v1/instant_answers/search.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_reports_support_performance_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/instant_answers/search.json"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "service_hook[name]"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "service_hook[service_type]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "service_hook[data]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "service_hook[data]"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "service_hook[events]"
+          }
+        ],
+        "path": "/api/v1/service_hooks.json",
+        "displayName": "/api/v1/service_hooks.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_service_hooks_post"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/service_hooks.json"
+      },
+      {
+        "path": "/api/v1/service_hooks/id.json",
+        "displayName": "/api/v1/service_hooks/id.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_service_hooks_id_delete"
+        },
+        "httpMethod": "DELETE",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/service_hooks/id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_service_hooks_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/service_hooks.json",
+        "path": "/api/v1/service_hooks.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/service_hooks.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_service_hooks_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/service_hooks/id.json",
+        "path": "/api/v1/service_hooks/id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/service_hooks/id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_statuses_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/statuses.json",
+        "path": "/api/v1/statuses.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/statuses.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_statuses_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/statuses/status_id.json",
+        "path": "/api/v1/statuses/status_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/statuses/status_id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_stream_private_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/stream/private.json",
+        "path": "/api/v1/forums/forum_id/stream/private.json",
+        "params": [
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "since",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/stream/private.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_stream_private_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/stream/private.json",
+        "path": "/api/v1/stream/private.json",
+        "params": [
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "since",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/stream/private.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_stream_public_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/stream/public.json",
+        "path": "/api/v1/forums/forum_id/stream/public.json",
+        "params": [
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "since",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/stream/public.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_stream_public_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/stream/public.json",
+        "path": "/api/v1/stream/public.json",
+        "params": [
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "since",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/stream/public.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_subdomains_key_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/api/v1/subdomains/key.json",
+        "displayName": "/api/v1/subdomains/key.json",
+        "params": [
+          {
+            "name": "key",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/subdomains/key.json"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "suggestion[title]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "suggestion[text]"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "suggestion[votes]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "suggestion[category_id]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "suggestion[referrer]"
+          }
+        ],
+        "path": "/api/v1/forums/forum_id/suggestions.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_subdomains_key_get"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions.json"
+      },
+      {
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_post"
+        },
+        "httpMethod": "DELETE",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id.json"
+      },
+      {
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/dissociate.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/dissociate.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_post"
+        },
+        "httpMethod": "DELETE",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/dissociate.json"
+      },
+      {
+        "path": "/api/v1/suggestions/identify.json",
+        "displayName": "/api/v1/suggestions/identify.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_post"
+        },
+        "httpMethod": "PUT",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/suggestions/identify.json"
+      },
+      {
+        "path": "/api/v1/suggestions.json",
+        "displayName": "/api/v1/suggestions.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_post"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/suggestions.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "category"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "status_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "sort"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "updated_after_date"
+          }
+        ],
+        "path": "/api/v1/forums/forum_id/suggestions.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_post"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "status_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "category"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "sort"
+          }
+        ],
+        "path": "/api/v1/users/user_id/suggestions.json",
+        "displayName": "/api/v1/users/user_id/suggestions.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_suggestions_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id/suggestions.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "status_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "category"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "sort"
+          }
+        ],
+        "path": "/api/v1/forums/forum_id/users/user_id/suggestions.json",
+        "displayName": "/api/v1/forums/forum_id/users/user_id/suggestions.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_users_user_id_suggestions_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/users/user_id/suggestions.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "query"
+          }
+        ],
+        "path": "/api/v1/suggestions/search.json",
+        "displayName": "/api/v1/suggestions/search.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_suggestions_search_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/suggestions/search.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "query"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "category_id"
+          }
+        ],
+        "path": "/api/v1/forums/forum_id/suggestions/search.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions/search.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_search_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/search.json"
+      },
+      {
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id.json"
+      },
+      {
+        "path": "/api/v1/suggestions/suggestion_id.json",
+        "displayName": "/api/v1/suggestions/suggestion_id.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/suggestions/suggestion_id.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "suggestion[title]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "suggestion[text]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "suggestion[category_id]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "suggestion[category_name]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "suggestion[forum_id]"
+          }
+        ],
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_put"
+        },
+        "httpMethod": "PUT",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "to"
+          }
+        ],
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/votes.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/votes.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_votes_post"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/votes.json"
+      },
+      {
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/watch.json",
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/watch.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_votes_post"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/watch.json"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "support_queue[name]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "support_queue[member_ids]"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "support_queue[member_emails]"
+          }
+        ],
+        "path": "/api/v1/support_queues.json",
+        "displayName": "/api/v1/support_queues.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_votes_post"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/support_queues.json"
+      },
+      {
+        "path": "/api/v1/support_queues/id.json",
+        "displayName": "/api/v1/support_queues/id.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_support_queues_post"
+        },
+        "httpMethod": "DELETE",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/support_queues/id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_support_queues_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/support_queues.json",
+        "path": "/api/v1/support_queues.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/support_queues.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_support_queues_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/support_queues/id.json",
+        "path": "/api/v1/support_queues/id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/support_queues/id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_support_queues_sort_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/support_queues/sort.json",
+        "path": "/api/v1/support_queues/sort.json",
+        "params": [
+          {
+            "name": "order",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/support_queues/sort.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_support_queues_id_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/support_queues/id.json",
+        "path": "/api/v1/support_queues/id.json",
+        "params": [
+          {
+            "name": "support_queue[name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "support_queue[member_ids]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "support_queue[member_emails]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/support_queues/id.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_supporters_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/forums/forum_id/suggestions/suggestion_id/supporters.json",
+        "path": "/api/v1/forums/forum_id/suggestions/suggestion_id/supporters.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/forums/forum_id/suggestions/suggestion_id/supporters.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_forums_forum_id_suggestions_suggestion_id_supporters_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id/history.json",
+        "path": "/api/v1/tickets/ticket_id/history.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket_id",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id/history.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_history_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id/ticket_messages.json",
+        "path": "/api/v1/tickets/ticket_id/ticket_messages.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id/ticket_messages.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_history_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/ticket_messages/identify.json",
+        "path": "/api/v1/ticket_messages/identify.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/ticket_messages/identify.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_history_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id/ticket_messages.json",
+        "path": "/api/v1/tickets/ticket_id/ticket_messages.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id/ticket_messages.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_history_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/ticket_messages.json",
+        "path": "/api/v1/ticket_messages.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/ticket_messages.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_notes_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id/notes.json",
+        "path": "/api/v1/tickets/ticket_id/notes.json",
+        "params": [
+          {
+            "name": "note[text]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "note[attachments][][name]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "note[attachments][][data]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "note[attachments][][content_type]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id/notes.json"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_notes_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id/notes/note_id.json",
+        "path": "/api/v1/tickets/ticket_id/notes/note_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id/notes/note_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_notes_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/ticket_notes/identify.json",
+        "path": "/api/v1/ticket_notes/identify.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/ticket_notes/identify.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_notes_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id/notes.json",
+        "path": "/api/v1/tickets/ticket_id/notes.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id/notes.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets.json",
+        "path": "/api/v1/tickets.json",
+        "params": [
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[state]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[subject]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "ticket[message]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "ticket[referrer]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[attachments][][name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[attachments][][data]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[attachments][][content_type]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[support_queue_id]",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[support_queue]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[user_agent]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[lang]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[custom_field_values][_field_name_]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_create_via_jsonp_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/create_via_jsonp.json",
+        "path": "/api/v1/tickets/create_via_jsonp.json",
+        "params": [
+          {
+            "name": "format",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "callback",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "email",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "name",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[state]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[subject]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "ticket[message]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "ticket[referrer]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[user_agent]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[lang]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[custom_field_values][_field_name_]",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/create_via_jsonp.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_create_via_jsonp_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/api/v1/tickets/identify.json",
+        "displayName": "/api/v1/tickets/identify.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/identify.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets.json",
+        "path": "/api/v1/tickets.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "filter",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "state",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sort",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "assignee_id",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "support_queue_id",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "support_queue",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "updated_after_date",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_search_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/search.json",
+        "path": "/api/v1/tickets/search.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "query",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "old_query",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/search.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id.json",
+        "path": "/api/v1/tickets/ticket_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/ticket_id.json",
+        "path": "/api/v1/tickets/ticket_id.json",
+        "params": [
+          {
+            "name": "ticket[subject]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[state]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[support_queue_id]",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[support_queue]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[assignee_id]",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ticket[custom_field_values][_field_name_]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/ticket_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_tickets_ticket_id_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/tickets/upsert.json",
+        "path": "/api/v1/tickets/upsert.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/tickets/upsert.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_topics_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/topics.json",
+        "path": "/api/v1/topics.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/topics.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_topics_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/topics/topic_id.json",
+        "path": "/api/v1/topics/topic_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/topics/topic_id.json"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_topics_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users.json",
+        "path": "/api/v1/users.json",
+        "params": [
+          {
+            "name": "user[email]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "user[display_name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "request_token",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_post"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users/current.json",
+        "path": "/api/v1/users/current.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/current.json"
+      },
+      {
+        "path": "/api/v1/users/user_id.json",
+        "displayName": "/api/v1/users/user_id.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_delete"
+        },
+        "httpMethod": "DELETE",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id.json"
+      },
+      {
+        "path": "/api/v1/users/find_or_create.json",
+        "displayName": "/api/v1/users/find_or_create.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_delete"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/find_or_create.json"
+      },
+      {
+        "path": "/api/v1/users/forgot_password.json",
+        "displayName": "/api/v1/users/forgot_password.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_delete"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/forgot_password.json"
+      },
+      {
+        "path": "/api/v1/users/identify.json",
+        "displayName": "/api/v1/users/identify.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_delete"
+        },
+        "httpMethod": "PUT",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/identify.json"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "filter"
+          }
+        ],
+        "path": "/api/v1/users.json",
+        "displayName": "/api/v1/users.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_get"
+        },
+        "httpMethod": "GET",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users.json"
+      },
+      {
+        "path": "/api/v1/users/login_as.json",
+        "displayName": "/api/v1/users/login_as.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_get"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/login_as.json"
+      },
+      {
+        "path": "/api/v1/users/login_as_owner.json",
+        "displayName": "/api/v1/users/login_as_owner.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_get"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/login_as_owner.json"
+      },
+      {
+        "path": "/api/v1/users/reconfirm_email.json",
+        "displayName": "/api/v1/users/reconfirm_email.json",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_get"
+        },
+        "httpMethod": "POST",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/reconfirm_email.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_search_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users/search.json",
+        "path": "/api/v1/users/search.json",
+        "params": [
+          {
+            "name": "page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "per_page",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "guid",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "query",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/search.json"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_get"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users/user_id.json",
+        "path": "/api/v1/users/user_id.json",
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id.json"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.uservoice.com/docs/api/reference/#_api_v1_users_user_id_put"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/api/v1/users/user_id.json",
+        "path": "/api/v1/users/user_id.json",
+        "params": [
+          {
+            "name": "user[email]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[display_name]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[title]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[guid]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[agent_signature]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[locale]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[password]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[password_confirmation]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[email_updates]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[email_comment_updates]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][own]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][suggestions]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][responses]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][statuses]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][digests]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][notes]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][moderation]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][tickets]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][newsletter]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][watched_tickets]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "user[admin_emails][support_queue_ids][]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "http://uservoice.uservoice.com/api/v1/oauth//api/v1/users/user_id.json"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://developer.uservoice.com/docs/api/reference",
+  "enabled": true,
+  "name": "USERVOICE",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:uservoice"
+}

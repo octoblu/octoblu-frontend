@@ -1,0 +1,294 @@
+[
+  {
+    "name": "debounce",
+    "class": "debounce",
+    "type": "operation:debounce",
+    "category" : "operation",
+    "uuid": "52a55b44-923d-4f56-9ad4-e7aa1262c6cb",
+    "defaults": {
+      "interval": 1000
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/debounce_form.html"
+  },
+  {
+    "name": "delay",
+    "class": "delay",
+    "type": "operation:delay",
+    "category" : "operation",
+    "uuid": "37e73da4-2f17-11e4-9617-a6c5e4d22fb7",
+    "defaults": {
+      "timeout": 5,
+      "timeoutUnits": "seconds"
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/delay_form.html"
+  },
+  {
+    "name": "demultiplex",
+    "class": "demultiplex",
+    "type": "operation:demultiplex",
+    "category" : "operation",
+    "uuid": "99b84aa0-338b-11e4-8c21-0800200c9a66",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/demultiplexer_form.html"
+  },
+  {
+    "name": "equal",
+    "class": "equal",
+    "category" : "operation",
+    "uuid": "2bebd428-4818-48ea-b1f5-88a32199f17b",
+    "type": "operation:equal",
+    "defaults": {
+      "key": "",
+      "value": ""
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/equal_form.html"
+  },
+  {
+    "name": "function",
+    "class": "function",
+    "category" : "operation",
+    "uuid": "37f0a3a8-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:function",
+    "defaults": {
+      "output": 1,
+      "func": "\nreturn msg;"
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/function_form.html"
+  },
+  {
+    "name": "greater-than",
+    "class": "greater-than",
+    "category" : "operation",
+    "uuid": "7c801bad-4e1d-4ad0-aabd-d1ace2fcc001",
+    "type": "operation:greater-than",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/greater_than_form.html"
+  },
+  {
+    "name": "less-than",
+    "class": "less-than",
+    "category" : "operation",
+    "uuid": "c7852f9b-96e2-4f9e-b5b5-d349e32bbf9a",
+    "type": "operation:less-than",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/less_than_form.html"
+  },
+  {
+    "name": "pluck",
+    "class": "pluck",
+    "category" : "operation",
+    "uuid": "86aef89e-6dfd-435f-863e-6deac12fc6ec",
+    "type": "operation:pluck",
+    "defaults": {
+      "key": ""
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/pluck_form.html"
+  },
+  {
+    "name": "trigger",
+    "class": "trigger",
+    "category" : "operation",
+    "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:trigger",
+    "defaults": {
+      "payloadType": "date",
+      "once": false
+    },
+    "input": 0,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/button_form.html"
+  },
+  {
+    "name": "webhook",
+    "class": "webhook",
+    "category" : "operation",
+    "uuid": "d5886aa5-4052-41be-8eed-9d1df32befb1",
+    "type": "operation:webhook",
+    "defaults": {
+    },
+    "input": 0,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/webhook_form.html"
+  },
+  {
+    "name": "interval",
+    "class": "interval",
+    "category" : "operation",
+    "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:interval",
+    "defaults": {
+      "payloadType": "date",
+      "repeat": 1000,
+      "once": true
+    },
+    "input": 0,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/interval_form.html"
+  },
+  {
+    "name": "schedule",
+    "class": "schedule",
+    "category" : "operation",
+    "uuid": "37f0ac4a-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:schedule",
+    "defaults": {
+      "payloadType": "date",
+      "crontab": "* * * * *",
+      "once": false
+    },
+    "input": 0,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/schedule_form.html"
+  },
+  {
+    "name": "throttle",
+    "class": "throttle",
+    "type": "operation:throttle",
+    "category" : "operation",
+    "uuid": "794922ff-3792-4e4e-a0e2-a0823ed6b82e",
+    "defaults": {
+      "interval": 1000
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/throttle_form.html"
+  },
+  {
+    "name": "Meshblu device",
+    "class": "device",
+    "category" : "operation",
+    "uuid": "be0d21d3-f6b0-4f21-ae3b-484d69f6063a",
+    "type": "operation:device",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/generic_device_form.html"
+  },
+  {
+    "name": "RSS request",
+    "class": "rss",
+    "category" : "operation",
+    "uuid": "2aac8e4a-7695-4269-ba98-3678581f7a59",
+    "type": "operation:rss",
+    "defaults": {
+      "method": "GET"
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/http_request_form.html"
+  },
+  {
+    "name": "http request",
+    "class": "http-request",
+    "category" : "operation",
+    "uuid": "37f0aefc-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:http-request",
+    "defaults": {
+      "method": "GET"
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/http_request_form.html"
+  },
+  {
+    "name": "sentiment",
+    "class": "sentiment",
+    "category" : "operation",
+    "uuid": "37f0b3f2-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:sentiment",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/sentiment_form.html"
+  },
+  {
+    "name": "debug",
+    "class": "debug",
+    "category" : "operation",
+    "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:debug",
+    "defaults": {
+      "active": true,
+      "debug": true,
+      "complete": false
+    },
+    "color": "#87a980",
+    "input": 1,
+    "output": 0,
+    "align": "right"
+  },
+  {
+    "name": "template",
+    "class": "template",
+    "category" : "operation",
+    "uuid": "8f2e02ff-08da-446d-ab50-e5115f511cba",
+    "type": "operation:template",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/template_form.html"
+  },
+  {
+    "name": "comment",
+    "class": "comment",
+    "category" : "operation",
+    "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
+    "type": "operation:comment",
+    "defaults": {
+    },
+    "input": 0,
+    "output": 0,
+    "formTemplatePath": "/pages/node_forms/comment_form.html"
+  },
+  {
+    "name": "Set Key",
+    "class": "set-key",
+    "category" : "operation",
+    "uuid": "5a6bb5a5-b2ef-4a9e-b15f-f0f646ee90d6",
+    "type": "operation:set-key",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/set_key_form.html"
+  },
+  {
+    "name": "Get Key",
+    "class": "get-key",
+    "category" : "operation",
+    "uuid": "6daa638e-ced8-4de9-be9b-dcd026be6348",
+    "type": "operation:get-key",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/get_key_form.html"
+  }
+]

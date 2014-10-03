@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .controller('AddEditSubDeviceController', function ($q, $scope, $modalInstance, hubs, subdevice, pluginName, availableNodeTypes, PluginService) {
         $scope.model = {
@@ -27,7 +28,6 @@ angular.module('octobluApp')
                         return PluginService.getInstalledPlugins($scope.model.hub);
                     })
                     .then(function (result) {
-                        console.log(result);
                         newHub.plugins = result;
                         $scope.model.plugin = _.findWhere(newHub.plugins, {name: pluginName})
                     });

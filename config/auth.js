@@ -2,6 +2,12 @@ var config = {
   rh: {
   },
   development: {
+    'promiseTimeout' : 1000,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
     'githubAuth' : {
       'clientID': 'eb5bb208bc4dba9e8c13',
       'clientSecret': 'ce1d5cb7487b0974e970c0c76f5c9c76412309e9',
@@ -15,9 +21,9 @@ var config = {
     },
 
     'twitterAuth' : {
-      'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
-      'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
-      'callbackURL'     : 'http://localhost:8080/auth/twitter/callback'
+      'consumerKey'     : 'QR33u9b7OvczwT1UomvVbjnDS',
+      'consumerSecret'  : 's52fmqtw7M21sxKeaOoLdFBdsnQYuimkp5Pd0GR7ShpakNER90',
+      'callbackURL'     : 'http://127.0.0.1:8080/auth/twitter/callback'
     },
 
     'googleAuth' : {
@@ -96,9 +102,25 @@ var config = {
     'domain': null
   },
   test: {
-
-  },
+    'promiseTimeout' : 100,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
+    'designer': {
+      'host': process.env.DESIGNER_HOST || 'http://designer.octoblu.com',
+      'port': process.env.DESIGNER_PORT || 1025,
+      'docker_port': process.env.DESIGNER_DOCKER_PORT
+  }
+ },
   production: {
+    'promiseTimeout' : 5000,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
     'githubAuth' : {
       'clientID': 'INSERT_SECERT_HERE',
       'clientSecret': 'INSERT_SECERT_HERE',
@@ -111,9 +133,9 @@ var config = {
     },
 
     'twitterAuth' : {
-      'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
-      'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
-      'callbackURL'     : 'http://app.octoblu.com/auth/twitter/callback'
+      'consumerKey'     : 'di4CBlZkwJp7rJoaqP6fBA0yC',
+      'consumerSecret'  : '2Ndg7hDyGR0Roe3P2AQ5ttL7yG6lRmU1UQ9mjFn40HtBc5C073',
+      'callbackURL'     : 'https://app.octoblu.com/auth/twitter/callback'
     },
     // // Meshines
     // 'googleAuth' : {
@@ -183,7 +205,7 @@ var config = {
       },
 
     'skynet' : {
-         'host' : process.env.SKYNET_HOST || 'skynet.im',
+         'host' : process.env.SKYNET_HOST || 'meshblu.octoblu.com',
         'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
          'port' : process.env.SKYNET_PORT || 80
     },
@@ -197,33 +219,31 @@ var config = {
     'domain': '.octoblu.com'
   },
   staging: {
+    'promiseTimeout' : 5000,
+    betaInvites : {
+      betaId : 4829,
+      apiKey : 'UrswKVa4CaC6aaXtN6Zh',
+      baseUrl: 'https://octoblu.prefinery.com/api/v2'
+    },
     'githubAuth' : {
       'clientID': 'INSERT_SECERT_HERE',
       'clientSecret': 'INSERT_SECERT_HERE',
       'callbackURL'   : 'http://staging.octoblu.com/auth/github/callback'
     },
     'facebookAuth' : {
-      'clientID'    : '1478230185752033', // your App ID
-      'clientSecret'  : '787e17c6cbfbf2e9434069e356804078', // your App Secret
+      'clientID'    : '1476628102576653', // your App ID
+      'clientSecret'  : 'd7173aef0ca4636201b38f369e9bda5f', // your App Secret
       'callbackURL'   : 'http://staging.octoblu.com/auth/facebook/callback'
     },
-
     'twitterAuth' : {
-      'consumerKey'     : '2GFvhpzG7PzDAiommSLIg',
-      'consumerSecret'  : 'PMftByICxSfbvf7rPqfivAocDE25a0EqZGDkMbKh6Q',
-      'callbackURL'     : 'http://staging.octoblu.com/auth/twitter/callback'
+      'consumerKey'     : '97w9x63DUmWcuYoKy4p8epWFu',
+      'consumerSecret'  : 'n0b5smHWGP1cNpBT02sGqlg6JRQ2LZOrRtfM6X2I4DbegYuiLy',
+      'callbackURL'     : 'https://staging.octoblu.com/auth/twitter/callback'
     },
-    // // Meshines
-    // 'googleAuth' : {
-    //   'clientID'    : '541059729530-bbt3n8qh5s8c8m5dm7dh6gojiqqrfrbg.apps.googleusercontent.com',
-    //   'clientSecret'  : 'SVTqhJ7RtsK6zqRcKUZrjxM6',
-    //   'callbackURL'   : 'http://staging.octoblu.com/auth/google/callback'
-    // },
-    // Octoblu
     'googleAuth' : {
       'clientID'    : '413378006378-c72poeh9lsab0ut86g9ejepr2ucjpsh8.apps.googleusercontent.com',
       'clientSecret'  : 'sN79Qi65ykVRjSvZAUBnB5Pp',
-      'callbackURL'   : 'http://staging.octoblu.com/auth/google/callback'
+      'callbackURL'   : 'https://staging.octoblu.com/auth/google/callback'
     },
     'stackexchange' : {
       'clientId'       : '2619',
@@ -281,7 +301,7 @@ var config = {
     },
 
     'skynet' : {
-         'host' : process.env.SKYNET_HOST || 'skynet.im',
+         'host' : process.env.SKYNET_HOST || 'meshblu-staging.octoblu.com',
         'override_token' : process.env.SKYNET_OVERRIDE_TOKEN || 'w0rldd0m1n4t10n',
          'port' : process.env.SKYNET_PORT || 80
     },
@@ -297,5 +317,5 @@ var config = {
 };
 
 module.exports = function (environment) {
-  return config[environment || process.env];
+  return config[environment || process.env.NODE_ENV];
 };

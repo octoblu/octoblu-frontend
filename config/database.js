@@ -10,20 +10,17 @@ var config = {
         redisSessionUrl: 'redis://localhost/test-octoblu-session'
     },
     staging: {
-        // url : 'mongodb://[user]:[password]@dharma.mongohq.com:10040/meshines'
-        url : 'mongodb://172.31.44.170:27017/meshines',
-        skynetUrl: 'mongodb://172.31.44.146:27017/skynet',
-        redisSessionUrl: 'redis://meshblu-redis.csy8op.0001.usw2.cache.amazonaws.com'
+        url : 'mongodb://172.31.33.28:27017/octoblu-staging,mongodb://172.31.38.108:27017/octoblu-staging,mongodb://172.31.32.97:27017/octoblu-staging',
+        skynetUrl : 'mongodb://172.31.33.28:27017/meshblu-staging,mongodb://172.31.38.108:27017/meshblu-staging,mongodb://172.31.32.97:27017/meshblu-staging',
+        redisSessionUrl: 'redis://staging-redis.csy8op.0001.usw2.cache.amazonaws.com'
     },
     production: {
-        // url : 'mongodb://[user]:[password]@dharma.mongohq.com:10040/meshines'
-        url : 'mongodb://172.31.44.170:27017/meshines',
-        skynetUrl: 'mongodb://172.31.44.146:27017/skynet',
+        url : 'mongodb://172.31.33.28:27017/octoblu,mongodb://172.31.38.108:27017/octoblu,mongodb://172.31.32.97:27017/octoblu',
+        skynetUrl : 'mongodb://172.31.33.28:27017/meshblu,mongodb://172.31.38.108:27017/meshblu,mongodb://172.31.32.97:27017/meshblu',
         redisSessionUrl: 'redis://meshblu-redis.csy8op.0001.usw2.cache.amazonaws.com'
     }
 };
 
 module.exports = function (environment) {
-    console.log(environment);
     return config[environment];
 };

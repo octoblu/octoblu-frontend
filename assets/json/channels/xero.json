@@ -1,0 +1,3656 @@
+{
+  "_id": "53e3fab413c57e0267403a89",
+  "__v": 0,
+  "application": {
+    "base": "https://api.xero.com/api.xro/2.0",
+    "resources": [
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": ""
+          }
+        ],
+        "displayName": "Attachments",
+        "path": "/Attachments",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/attachments/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Attachments"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": ""
+          }
+        ],
+        "path": "/Attachments",
+        "displayName": "/Attachments",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/attachments/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/Attachments"
+      },
+      {
+        "path": "/Attachments",
+        "displayName": "/Attachments",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/attachments/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Attachments"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "AccountID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/Accounts",
+        "displayName": "/Accounts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/accounts/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Accounts"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Code"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Name"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Description"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Tax Type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "EnablePaymentsToAccount"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ShowInExpenseClaims"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          }
+        ],
+        "path": "/Accounts",
+        "displayName": "/Accounts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/accounts/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Accounts"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/banktransactions/"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/BankTransactions",
+        "path": "/BankTransactions",
+        "params": [
+          {
+            "name": "Type",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Contact",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Lineitems",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "BankAccount",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "IsReconciled",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Date",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Reference",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "CurrencyCode",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "CurrencyRate",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Url",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Status",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "LineAmountTypes",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "SubTotal",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "TotalTax",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Total",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.xero.com/api.xro/2.0/BankTransactions"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Type"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Contact"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Lineitems"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "BankAccount"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "IsReconciled"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyRate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Url"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SubTotal"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TotalTax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total"
+          }
+        ],
+        "path": "/BankTransactions",
+        "displayName": "/BankTransactions",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/banktransactions/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/BankTransactions"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/BankTransactions",
+        "displayName": "/BankTransactions",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/banktransactions/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/BankTransactions"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "FromBankAccount"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "ToBankAccount"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Amount"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Date"
+          }
+        ],
+        "path": "/BankTransfers",
+        "displayName": "/BankTransfers",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/bank-transfers/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/BankTransfers"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/BankTransfers",
+        "displayName": "/BankTransfers",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/bank-transfers/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/BankTransfers"
+      },
+      {
+        "path": "/BrandingThemes",
+        "displayName": "/BrandingThemes",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/branding-themes/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/BrandingThemes"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactStatus"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FirstName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LastName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "EmailAddress"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SkypeUserName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactPersons"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "BankAccountDetails"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TaxNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AccountsReceivableTaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AccountsPayableTaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Addresses"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Phones"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "UpdatedDateUTC"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "IsSupplier"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "IsCustomer"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "DefaultCurrency"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "XeroNetworkKey"
+          }
+        ],
+        "path": "/Contacts",
+        "displayName": "/Contacts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/contacts/#POST"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/Contacts"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactStatus"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FirstName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LastName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "EmailAddress"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SkypeUserName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ContactPersons"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "BankAccountDetails"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TaxNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AccountsReceivableTaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AccountsPayableTaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Addresses"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Phones"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "UpdatedDateUTC"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "IsSupplier"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "IsCustomer"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "DefaultCurrency"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "XeroNetworkKey"
+          }
+        ],
+        "path": "/Contacts",
+        "displayName": "/Contacts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/contacts/#PUT"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Contacts"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "includeArchived"
+          }
+        ],
+        "path": "/contacts",
+        "displayName": "/contacts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/contacts/#PUT"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/contacts"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Contact"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineItems"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SubTotal"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total Tax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "UpdatedDateUTC"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FullyPaidOnDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CreditNoteID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CreditNoteNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SentToContact"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "BrandingThemeID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HasAttachments"
+          }
+        ],
+        "path": "/CreditNotes",
+        "displayName": "/CreditNotes",
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/credit-notes/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/CreditNotes"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Contact"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineItems"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SubTotal"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total Tax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "UpdatedDateUTC"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FullyPaidOnDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CreditNoteID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CreditNoteNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SentToContact"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "BrandingThemeID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "HasAttachments"
+          }
+        ],
+        "path": "/CreditNotes",
+        "displayName": "/CreditNotes",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/credit-notes/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/CreditNotes"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/CreditNotes",
+        "displayName": "/CreditNotes",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/credit-notes/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/CreditNotes"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "ModifiedAfter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/Currencies",
+        "displayName": "/Currencies",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/currencies/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Currencies"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "EmployeeID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FirstName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LastName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "External Link"
+          }
+        ],
+        "path": "Employees",
+        "displayName": "Employees",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/employees/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0Employees"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "EmployeeID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "FirstName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LastName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "External Link"
+          }
+        ],
+        "path": "/Employees",
+        "displayName": "/Employees",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/employees/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Employees"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "EmployeeID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/Employees",
+        "displayName": "/Employees",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/employees/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Employees"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "User"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Receipts"
+          }
+        ],
+        "path": "/ExpenseClaims",
+        "displayName": "/ExpenseClaims",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/expense-claims/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/ExpenseClaims"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Receipts"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "User"
+          }
+        ],
+        "path": "/ExpenseClaims",
+        "displayName": "/ExpenseClaims",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/expense-claims/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/ExpenseClaims"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "displayName": "/ExpenseClaims",
+        "path": "/ExpenseClaims",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/expense-claims/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/ExpenseClaims"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Type"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Contact"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineItems"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "DueDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "InvoiceNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "BrandingThemeID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Url"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyRate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SentToContact"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ExpectedPaymentDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "PlannedPaymentDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SubTotal"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TotalTax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total"
+          }
+        ],
+        "path": "/Invoices",
+        "displayName": "/Invoices",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/invoices/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/Invoices"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Type"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Contact"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineItems"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "DueDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "InvoiceNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "BrandingThemeID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Url"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyRate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SentToContact"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ExpectedPaymentDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "PlannedPaymentDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SubTotal"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TotalTax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          }
+        ],
+        "path": "/Invoices",
+        "displayName": "/Invoices",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/invoices/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Invoices"
+      },
+      {
+        "path": "/Invoices",
+        "displayName": "/Invoices",
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "page"
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/invoices/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Invoices"
+      },
+      {
+        "path": "/Items",
+        "displayName": "/Items",
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Code"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Description"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "PurchaseDetails"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SalesDetails"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": ""
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/items/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/Items"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Code"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Description"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "PurchaseDetails"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SalesDetails"
+          }
+        ],
+        "path": "/Items",
+        "displayName": "/Items",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/items/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Items"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/Items",
+        "displayName": "/Items",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/items/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Items"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "offset"
+          }
+        ],
+        "path": "/Journals",
+        "displayName": "/Journals",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/journals/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Journals"
+      },
+      {
+        "path": "/ManualJournals",
+        "displayName": "/ManualJournals",
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Narration"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "JournalLines"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Url"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ShowOnCashBasisReports"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/manual-journals/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/ManualJournals"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Narration"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "JournalLines"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Url"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ShowOnCashBasisReports"
+          }
+        ],
+        "path": "/ManualJournals",
+        "displayName": "/ManualJournals",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/manual-journals/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/ManualJournals"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/ManualJournals",
+        "displayName": "/ManualJournals",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/manual-journals/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/ManualJournals"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "APIKey"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "LegalName"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PaysTax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Version"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "BaseCurrency"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "CountryCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "IsDemoCompany"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "OrganisationStatus"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "RegistrationNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "TaxNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "FinancialYearEndDay"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "FinancialYearEndMonth"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "SalesTaxBasis"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "SalesTaxPeriod"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PeriodLockDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "EndOfYearLockDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "CreatedDateUTC"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "OrganisationEntityType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Timezone"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "ShortCode"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "LineOfBusiness"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Addresses"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Phones"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "ExternalLinks"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PaymentTerms"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": ""
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": ""
+          }
+        ],
+        "path": "/Organisation",
+        "displayName": "/Organisation",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/organisation/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Organisation"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Invoice"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "InvoiceID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CreditNoteID"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Account"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AccountID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Code"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyRate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Amount"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "IsReconciled"
+          }
+        ],
+        "path": "/Payments",
+        "displayName": "/Payments",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/payments/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Payments"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CreditNote"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "InvoiceNumber"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CreditNoteNumber"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Account"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "AccountID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Code"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "CurrencyRate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Amount"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "IsReconciled"
+          }
+        ],
+        "path": "/Payments",
+        "displayName": "/Payments",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/payments/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Payments"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "PaymentID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/Payments",
+        "displayName": "/Payments",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/payments/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Payments"
+      },
+      {
+        "path": "/Receipts",
+        "displayName": "/Receipts",
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Contact"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Lineitems"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "User"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SubTotal"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TotalTax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": ""
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/receipts/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/Receipts"
+      },
+      {
+        "path": "/Receipts",
+        "displayName": "/Receipts",
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Date"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Contact"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Lineitems"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "User"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Reference"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "SubTotal"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TotalTax"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Total"
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/receipts/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/Receipts"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/Receipts",
+        "displayName": "/Receipts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/receipts/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Receipts"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Type"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Contact"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Schedule"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "LineItems"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "LineAmountTypes"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Reference"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "BrandingThemeID"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "CurrencyCode"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Status"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "SubTotal"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "TotalTax"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Total"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "RepeatingInvoiceID"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "HasAttachments"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Record filter"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "RepeatingInvoiceID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/RepeatingInvoices",
+        "displayName": "/RepeatingInvoices",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/repeating-invoices/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/RepeatingInvoices"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "reportYear"
+          }
+        ],
+        "path": "/TenNinetyNine",
+        "displayName": "/TenNinetyNine",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/TenNinetyNine"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "contactID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fromDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "toDate"
+          }
+        ],
+        "path": "/AgedPayablesByContact",
+        "displayName": "/AgedPayablesByContact",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://app.octoblu.com/connect/advanced/custom_channels/editor/53e3fab413c57e0267403a89"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/AgedPayablesByContact"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "contactID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fromDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "toDate"
+          }
+        ],
+        "path": "/AgedReceivablesByContact",
+        "displayName": "/AgedReceivablesByContact",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/AgedReceivablesByContact"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "trackingOptionID1"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "trackingOptionID2"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "standardLayout"
+          }
+        ],
+        "path": "/Reports/BalanceSheet",
+        "displayName": "/Reports/BalanceSheet",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Reports/BalanceSheet"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "bankAccountID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fromDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "toDate"
+          }
+        ],
+        "path": "/Reports/BankStatement",
+        "displayName": "/Reports/BankStatement",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Reports/BankStatement"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "periods"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "timeframe"
+          }
+        ],
+        "path": "/Reports/BudgetSummary",
+        "displayName": "/Reports/BudgetSummary",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Reports/BudgetSummary"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "date"
+          }
+        ],
+        "path": "/Reports/ExecutiveSummary",
+        "displayName": "/Reports/ExecutiveSummary",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Reports/ExecutiveSummary"
+      },
+      {
+        "path": "/Reports",
+        "displayName": "/Reports",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Reports"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "fromDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "toDate"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "trackingCategoryID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "trackingOptionID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "standardLayout"
+          }
+        ],
+        "path": "/Reports/ProfitAndLoss",
+        "displayName": "/Reports/ProfitAndLoss",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Reports/ProfitAndLoss"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "date"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "paymentsOnly"
+          }
+        ],
+        "path": "/Reports/TrialBalance",
+        "displayName": "/Reports/TrialBalance",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/reports/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Reports/TrialBalance"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TaxComponents"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ReportTaxType"
+          }
+        ],
+        "path": "/TaxRates",
+        "displayName": "/TaxRates",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/tax-rates/"
+        },
+        "httpMethod": "POST",
+        "url": "https://api.xero.com/api.xro/2.0/TaxRates"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "TaxComponents"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "Status"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "ReportTaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": ""
+          }
+        ],
+        "path": "/TaxRates",
+        "displayName": "/TaxRates",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/tax-rates/"
+        },
+        "httpMethod": "PUT",
+        "url": "https://api.xero.com/api.xro/2.0/TaxRates"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "TaxType"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/TaxRates",
+        "displayName": "/TaxRates",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/tax-rates/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/TaxRates"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "TrackingCategoryID"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Name"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Status"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Options"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "TrackingOptionID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Status"
+          }
+        ],
+        "path": "/TrackingCategories",
+        "displayName": "/TrackingCategories",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/tracking-categories/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/TrackingCategories"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "UserID"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "Modified After"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "where"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          }
+        ],
+        "path": "/Users",
+        "displayName": "/Users",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://developer.xero.com/documentation/api/users/"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.xero.com/api.xro/2.0/Users"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "http://developer.xero.com/documentation/",
+  "enabled": true,
+  "name": "Xero",
+  "oauth": {
+    "version": "1.0",
+    "key": "LL0EHLCTLVNV3PCTUEDZDVY8OLGCTT",
+    "secret": "9I2TI2L1I9JGVQPTVAIZLWQH3U5LVZ",
+    "accessTokenURL": "https://api.xero.com/oauth/AccessToken",
+    "requestTokenURL": "https://api.xero.com/oauth/RequestToken",
+    "authTokenURL": "https://api.xero.com/oauth/Authorize"
+  },
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:xero"
+}

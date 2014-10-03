@@ -1,0 +1,53 @@
+{
+  "_id": "54122934675080635d89c3cc",
+  "__v": 0,
+  "application": {
+    "base": "https://api.connectsense.com/v1/{API_TOKEN}",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://www.connectsense.com/developer/user_devices_list"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/devices",
+        "path": "/devices",
+        "url": "https://api.connectsense.com/v1/{API_TOKEN}/devices"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://www.connectsense.com/developer/user_device"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/devices/{DEVICE_SERIAL_NUMBER}",
+        "path": "/devices/{DEVICE_SERIAL_NUMBER}",
+        "params": [
+          {
+            "name": "DEVICE_SERIAL_NUMBER",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.connectsense.com/v1/{API_TOKEN}/devices/{DEVICE_SERIAL_NUMBER}"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://www.connectsense.com/developer/user_devices_list",
+  "enabled": true,
+  "name": "Connect Sense",
+  "oauth": {
+    "version": "1.0"
+  },
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:connect-sense"
+}

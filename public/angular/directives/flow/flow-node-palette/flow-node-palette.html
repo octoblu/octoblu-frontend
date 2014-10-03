@@ -1,0 +1,17 @@
+<div class="palette">
+    <div class="palette-search">
+        <i class="fa fa-search"></i><input ng-model="paletteFilter" type="text" placeholder="filter"><a href><i
+            class="fa fa-remove"></i></a>
+    </div>
+    <div class="palette-scroll">
+        <div class="palette-category" ng-repeat="(category, flowNodeTypes) in typesByCategory">
+            <div class="palette-header" ng-click="hideCategory = !hideCategory">
+                <i class="expanded fa fa-chevron-down"></i>
+                <span>{{category}}</span>
+            </div>
+            <div ng-hide="hideCategory" class="palette-content">
+                <div ng-repeat="flowNodeType in flowNodeTypes | filter: paletteFilter" ui-draggable="true" drag="flowNodeType" class="palette_node" ng-include="'/angular/directives/flow/flow-node-palette/flow-node-templates/default.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

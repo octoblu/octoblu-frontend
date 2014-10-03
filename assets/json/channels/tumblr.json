@@ -1,0 +1,1197 @@
+{
+  "_id": "52f97e4366f76866b600051d",
+  "application": {
+    "base": "https://api.tumblr.com/v2",
+    "resources": [
+      {
+        "path": "/blog/{base-hostname}/info",
+        "doc": {
+          "t": "This method returns general information about the blog, such as the title, number of posts, and other high-level data.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#blog-info"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/info",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/info"
+      },
+      {
+        "path": "/blog/{base-hostname}/avatar/{size}",
+        "doc": {
+          "t": "Retrieves a blog's avatar in one of 9 different sizes.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#blog-avatar"
+        },
+        "curl": "curl -X GET  http://api.tumblr.com/v2/blog/{base-hostname}/avatar/{size}",
+        "authentication": {
+          "required": "false"
+        },
+        "category": "Blog",
+        "displayName": "Blog_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/avatar/{size}"
+      },
+      {
+        "path": "/blog/{base-hostname}/followers",
+        "params": [
+          {
+            "name": "limit",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "20",
+            "required": "true",
+            "doc": {
+              "t": "The number of results to return: 1–20, inclusive"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Result to start at."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves a blog's followers. The number of results to return: 1–20, inclusive Result to start at.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#blog-followers"
+        },
+        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0' http://api.tumblr.com/v2/blog/{base-hostname}/followers",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/followers"
+      },
+      {
+        "path": "/blog/{base-hostname}/posts/{type}",
+        "params": [
+          {
+            "name": "id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "A specific post ID. Returns the single post specified or (if not found) a 404 error."
+            }
+          },
+          {
+            "name": "tag",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Limits the response to posts with the specified tag"
+            }
+          },
+          {
+            "name": "limit",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "20",
+            "required": "true",
+            "doc": {
+              "t": "The number of posts to return: 1–20, inclusive"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Post number to start at."
+            }
+          },
+          {
+            "name": "reblog_info",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether to return reblog information (specify true or false). Returns the various reblogged_ fields."
+            }
+          },
+          {
+            "name": "notes_info",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether to return notes information (specify true or false). Returns note count and note metadata."
+            }
+          },
+          {
+            "name": "format",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Specifies the post format to return, other than HTML. Plain text, no HTMLAs entered by the user (no post-processing); if the user writes in Markdown, the Markdown will be returned rather than HTML"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Retrieves published posts. A specific post ID. Returns the single post specified or (if not found) a 404 error. Limits the response to posts with the specified tag The number of posts to return: 1–20, inclusive Post number to start at. Indicates whether to return reblog information (specify true or false). Returns the various reblogged_ fields. Indicates whether to return notes information (specify true or false). Returns note count and note metadata. Specifies the post format to return, other than HTML. Plain text, no HTMLAs entered by the user (no post-processing); if the user writes in Markdown, the Markdown will be returned rather than HTML",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posts"
+        },
+        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0&reblog_info=false&notes_info=false' http://api.tumblr.com/v2/blog/{base-hostname}/posts/{type}",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/{type}"
+      },
+      {
+        "path": "/blog/{base-hostname}/posts/queue",
+        "doc": {
+          "t": "Retrieves queued posts.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#blog-queue"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/posts/queue",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/queue"
+      },
+      {
+        "path": "/blog/{base-hostname}/posts/draft",
+        "doc": {
+          "t": "Retrieves draft posts.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#blog-drafts"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/posts/drafts",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/draft"
+      },
+      {
+        "path": "/blog/{base-hostname}/posts/submission",
+        "doc": {
+          "t": "Retrieves submission posts.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#blog-submissions"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/posts/submission",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/submission"
+      },
+      {
+        "path": "/blog/{base-hostname}/post",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "default": "text",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to create."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "title",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The optional title of the post. HTML entities must be escaped."
+            }
+          },
+          {
+            "name": "body",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The full post body, HTML allowed."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Creates a new text blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The optional title of the post. HTML entities must be escaped. The full post body, HTML allowed.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posting"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'type=text&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+      },
+      {
+        "path": "/blog/{base-hostname}/post",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "default": "photo",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to create."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "caption",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The user-supplied caption. HTML allowed."
+            }
+          },
+          {
+            "name": "link",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The \"click-through URL\" for the photo."
+            }
+          },
+          {
+            "name": "source",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The photo source URL. Either the source or data parameter is required."
+            }
+          },
+          {
+            "name": "data",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "One or more image files (as an array) (submit multiple times to create a slide show) Either the source or data parameter is required."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Creates a new photo blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The user-supplied caption. HTML allowed. The \"click-through URL\" for the photo. The photo source URL. Either the source or data parameter is required. One or more image files (as an array) (submit multiple times to create a slide show) Either the source or data parameter is required.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posting"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'type=photo&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+      },
+      {
+        "path": "/blog/{base-hostname}/post",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "default": "quote",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to create."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "quote",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The full text of the quote. HTML entities must be escaped."
+            }
+          },
+          {
+            "name": "source",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Cited source. HTML allowed."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Creates a new quote blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The full text of the quote. HTML entities must be escaped. Cited source. HTML allowed.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posting"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'type=quote&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+      },
+      {
+        "path": "/blog/{base-hostname}/post",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "default": "link",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to create."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "title",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The title of the page the link points to. HTML entities should be escaped."
+            }
+          },
+          {
+            "name": "url",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The link."
+            }
+          },
+          {
+            "name": "description",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "A user-supplied description. HTML allowed."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Creates a new link blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The title of the page the link points to. HTML entities should be escaped. The link. A user-supplied description. HTML allowed.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posting"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'type=link&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+      },
+      {
+        "path": "/blog/{base-hostname}/post",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "default": "chat",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to create."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "title",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The title of the chat."
+            }
+          },
+          {
+            "name": "conversation",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The text of the conversation/chat, with dialogue labels (no HTML)"
+            }
+          }
+        ],
+        "doc": {
+          "t": "Creates a new chat blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The title of the chat. The text of the conversation/chat, with dialogue labels (no HTML)",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posting"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'type=chat&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+      },
+      {
+        "path": "/blog/{base-hostname}/post",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "default": "audio",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to create."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "caption",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The user-supplied caption."
+            }
+          },
+          {
+            "name": "external_url",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The URL of the site that hosts the audio file (not tumblr). Either the external_url or data parameter is required."
+            }
+          },
+          {
+            "name": "data",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The audio file, as URL-encoded binary. Either the external_url or data parameter is required."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Creates a new audio blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The user-supplied caption. The URL of the site that hosts the audio file (not tumblr). Either the external_url or data parameter is required. The audio file, as URL-encoded binary. Either the external_url or data parameter is required.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posting"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'type=audio&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+      },
+      {
+        "path": "/blog/{base-hostname}/post",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "default": "video",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to create."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "caption",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The user-supplied caption."
+            }
+          },
+          {
+            "name": "embed",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "HTML embed code for the video. Either the embed or data parameter is required."
+            }
+          },
+          {
+            "name": "data",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "A video file, as URL-encoded binary. Either the embed or data parameter is required."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Creates a new video blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The user-supplied caption. HTML embed code for the video. Either the embed or data parameter is required. A video file, as URL-encoded binary. Either the embed or data parameter is required.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#posting"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'type=video&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+      },
+      {
+        "path": "/blog/{base-hostname}/post/edit",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The post type."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The ID of the post to edit."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Edits a blog post. The post type. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The ID of the post to edit.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#editing"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post/edit",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post/edit"
+      },
+      {
+        "path": "/blog/{base-hostname}/post/reblog",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The post type."
+            }
+          },
+          {
+            "name": "tags",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Comma-separated tags for this post."
+            }
+          },
+          {
+            "name": "tweet",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet"
+            }
+          },
+          {
+            "name": "date",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The GMT date and time of the post, as a string. Default is the date and time of the POST request."
+            }
+          },
+          {
+            "name": "markdown",
+            "type": "xsd:boolean",
+            "style": "query",
+            "default": "false",
+            "required": "true",
+            "doc": {
+              "t": "Indicates whether the post uses markdown syntax."
+            }
+          },
+          {
+            "name": "id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The ID of the reblogged post on tumblelog. Default is the next available ID."
+            }
+          },
+          {
+            "name": "reblog_key",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The reblog key for the reblogged post – get the reblog key with a /posts request"
+            }
+          },
+          {
+            "name": "comment",
+            "type": "xsd:string",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "A comment added to the reblogged post."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Reblogs a post. The post type. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The ID of the reblogged post on tumblelog. Default is the next available ID. The reblog key for the reblogged post – get the reblog key with a /posts request A comment added to the reblogged post.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#reblogging"
+        },
+        "curl": "curl -X POST -u 'username:password' -d 'markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post/reblog"
+      },
+      {
+        "path": "/blog/{base-hostname}/post/delete",
+        "params": [
+          {
+            "name": "id",
+            "type": "xsd:integer",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The ID of the post to delete."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Deletes a post. The ID of the post to delete.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#deleting-posts"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/post/delete",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "Blog",
+        "displayName": "Blog_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post/delete"
+      },
+      {
+        "path": "/user/dashboard",
+        "params": [
+          {
+            "name": "limit",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "20",
+            "required": "true",
+            "doc": {
+              "t": "The number of results to return: 1–20, inclusive"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Post number to start at."
+            }
+          },
+          {
+            "name": "type",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The type of post to return."
+            }
+          },
+          {
+            "name": "since_id",
+            "type": "xsd:integer",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Return posts that have appeared after this ID. Use this parameter to page through the results: first get a set of posts, and then get posts since the last ID of the previous set."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Use this method to retrieve the dashboard that matches the OAuth credentials submitted with the request. The number of results to return: 1–20, inclusive Post number to start at. The type of post to return. Return posts that have appeared after this ID. Use this parameter to page through the results: first get a set of posts, and then get posts since the last ID of the previous set.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#m-ug-dashboard"
+        },
+        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0&since_id=0' http://api.tumblr.com/v2/user/dashboard",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/user/dashboard"
+      },
+      {
+        "path": "/user/likes",
+        "params": [
+          {
+            "name": "limit",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "20",
+            "required": "true",
+            "doc": {
+              "t": "The number of results to return: 1–20, inclusive"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Liked post number to start at."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Use this method to retrieve the liked posts that match the OAuth credentials submitted with the request. The number of results to return: 1–20, inclusive Liked post number to start at.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#m-ug-likes"
+        },
+        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0' http://api.tumblr.com/v2/user/likes",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/user/likes"
+      },
+      {
+        "path": "/user/following",
+        "params": [
+          {
+            "name": "limit",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "20",
+            "required": "true",
+            "doc": {
+              "t": "The number of results to return: 1–20, inclusive"
+            }
+          },
+          {
+            "name": "offset",
+            "type": "xsd:positiveInteger",
+            "style": "query",
+            "default": "0",
+            "required": "true",
+            "doc": {
+              "t": "Result number to start at."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Use this method to retrieve the blogs followed by the user whose OAuth credentials are submitted with the request. The number of results to return: 1–20, inclusive Result number to start at.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#m-ug-following"
+        },
+        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0' http://api.tumblr.com/v2/user/following",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "User",
+        "displayName": "User_GET",
+        "httpMethod": "GET",
+        "url": "https://api.tumblr.com/v2/user/following"
+      },
+      {
+        "path": "/user/follow",
+        "params": [
+          {
+            "name": "url",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The URL of the blog to follow."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Follow a blog. The URL of the blog to follow.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#m-up-follow"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.tumblr.com/v2/user/follow",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "User",
+        "displayName": "User_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/user/follow"
+      },
+      {
+        "path": "/user/unfollow",
+        "params": [
+          {
+            "name": "url",
+            "type": "xsd:anyURI",
+            "style": "query",
+            "required": "true",
+            "doc": {
+              "t": "The URL of the blog to unfollow."
+            }
+          }
+        ],
+        "doc": {
+          "t": "Unfollow a blog. The URL of the blog to unfollow.",
+          "url": "http://www.tumblr.com/docs/en/api/v2#m-up-unfollow"
+        },
+        "curl": "curl -X POST -u 'username:password' http://api.tumblr.com/v2/user/unfollow",
+        "authentication": {
+          "required": "true"
+        },
+        "category": "User",
+        "displayName": "User_POST",
+        "httpMethod": "POST",
+        "url": "https://api.tumblr.com/v2/user/unfollow"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "enabled": true,
+  "name": "Tumblr",
+  "oauth": {
+    "accessTokenURL": "http://www.tumblr.com/oauth/access_token",
+    "authTokenURL": "http://www.tumblr.com/oauth/authorize",
+    "key": "XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb",
+    "requestTokenURL": "http://www.tumblr.com/oauth/request_token",
+    "scope": "",
+    "secret": "1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs",
+    "tokenMethod": "oauth_signed",
+    "version": "1.0"
+  },
+  "useCustom": true,
+  "type": "channel:tumblr"
+}

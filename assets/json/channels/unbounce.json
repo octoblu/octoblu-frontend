@@ -1,0 +1,642 @@
+{
+  "_id": "53f4dff4710850ee08e28479",
+  "__v": 0,
+  "application": {
+    "base": "https://api.unbounce.com/",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/accounts",
+        "path": "/accounts",
+        "url": "https://api.unbounce.com//accounts"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/:account_id",
+        "path": "/:account_id",
+        "url": "https://api.unbounce.com//:account_id"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/sub_accounts?context=843992"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/accounts/:account_id/sub_accounts",
+        "path": "/accounts/:account_id/sub_accounts",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//accounts/:account_id/sub_accounts"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/sub_accounts?context=843992"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sub_accounts/:sub_account_id",
+        "path": "/sub_accounts/:sub_account_id",
+        "url": "https://api.unbounce.com//sub_accounts/:sub_account_id"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/domains?context=848952"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/domains/:domain_id",
+        "displayName": "/domains/:domain_id",
+        "url": "https://api.unbounce.com//domains/:domain_id"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/pages?context=697202"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/pages",
+        "path": "/pages",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "with_stats",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "role",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//pages"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/pages?context=697202"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/accounts/:account_id/pages",
+        "path": "/accounts/:account_id/pages",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "with_stats",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//accounts/:account_id/pages"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/pages?context=697202"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sub_accounts/:sub_account_id/pages",
+        "path": "/sub_accounts/:sub_account_id/pages",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "with_stats",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//sub_accounts/:sub_account_id/pages"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/pages?context=697202"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/page_groups/:page_group_id/pages",
+        "path": "/page_groups/:page_group_id/pages",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "with_stats",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//page_groups/:page_group_id/pages"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/pages?context=697202"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/domains/:domain_id/pages",
+        "path": "/domains/:domain_id/pages",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "with_stats",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//domains/:domain_id/pages"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/pages?context=697202"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/pages/:page_id",
+        "path": "/pages/:page_id",
+        "url": "https://api.unbounce.com//pages/:page_id"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/form_fields?context=843782"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/pages/:page_id/form_fields",
+        "path": "/pages/:page_id/form_fields",
+        "params": [
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//pages/:page_id/form_fields"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/page_groups?context=802052"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sub_accounts/:sub_account_id/page_groups",
+        "path": "/sub_accounts/:sub_account_id/page_groups",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//sub_accounts/:sub_account_id/page_groups"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/leads?context=529882"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/sub_accounts/:sub_account_id/leads",
+        "path": "/sub_accounts/:sub_account_id/leads",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//sub_accounts/:sub_account_id/leads"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/leads?context=529882"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/pages/:page_id/leads",
+        "path": "/pages/:page_id/leads",
+        "params": [
+          {
+            "name": "from",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "to",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "offset",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "limit",
+            "style": "query",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "count",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//pages/:page_id/leads"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/leads?context=529882"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/leads/:lead_id",
+        "path": "/leads/:lead_id",
+        "url": "https://api.unbounce.com//leads/:lead_id"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://api.unbounce.com/doc/leads?context=529882"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/pages/:page_id/leads",
+        "path": "/pages/:page_id/leads",
+        "params": [
+          {
+            "name": "form_submission[form_data]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "form_submission[submitter_ip]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "form_submission[variant_id]",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "conversion",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "visitor_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.unbounce.com//pages/:page_id/leads"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://api.unbounce.com/doc/",
+  "enabled": true,
+    "name": "UNBOUNCE",
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:unbounce"
+}

@@ -11,6 +11,9 @@ angular.module('octobluApp')
             return deviceService.getUnclaimedGateways();
         })
         .then(function(unclaimedDevices){
+            _.each(unclaimedDevices, function(device){
+              device.label = device.uuid + '(' + (device.type || 'device') + ')';
+            });
             $scope.newDevice.unclaimedDevices = unclaimedDevices;
             $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
         });

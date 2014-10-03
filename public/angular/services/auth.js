@@ -1,3 +1,4 @@
+'use strict';
 angular.module('octobluApp')
     .service('AuthService', function ($q, $cookies,  $http, $window) {
         var service;
@@ -19,11 +20,10 @@ angular.module('octobluApp')
 
         function loginHandler(result) {
             if(result.status >= 400){
-            logoutHandler(result.data);
                throw result.data;
             }
-            angular.copy(result.data, currentUser);
-            $cookies.skynetuuid = currentUser.skynetuuid;
+            _.extend(currentUser, result.data);
+            $cookies.skynetuuid  = currentUser.skynetuuid;
             $cookies.skynettoken = currentUser.skynettoken;
             getProfileUrl(currentUser);
             return currentUser;
@@ -56,13 +56,14 @@ angular.module('octobluApp')
                 });
             },
 
-            signup: function (email, password) {
-                return $http.post('/signup', {
+            signup: function (email, password, testerId, invitationCode) {
+                return $http.post('/api/auth/signup', {
                     email: email,
-                    password: password
-                }).then(loginHandler, function (err) {
-                    logoutHandler(err);
-                    throw err;
+                    password: password,
+                    testerId : testerId,
+                    invitationCode : invitationCode
+                }).then(function(result){
+                    return loginHandler(result);
                 });
             },
 

@@ -1,0 +1,60 @@
+{
+  "_id": "5337a38d76a65b9693bc2a9f",
+  "auth_strategy": "none",
+  "documentation": "http://github.com/octoblu/weather-service",
+  "enabled": true,
+  "name": "Weather",
+  "type": "channel:weather",
+  "application": {
+    "base": "http://weather.octoblu.com",
+    "resources": [
+      {
+        "url": "http://weather.octoblu.com/temperature/celsius",
+        "path": "/temperature/celsius",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "city",
+            "displayName": "City",
+            "type": "string",
+            "style": "query"
+          },
+          {
+            "name": "state",
+            "displayName": "State",
+            "type": "string",
+            "style": "query"
+          },
+          {
+            "name": "country",
+            "displayName": "Country",
+            "type": "string",
+            "style": "query"
+          }
+        ]
+      },
+      {
+        "url": "http://weather.octoblu.com/temperature/fahrenheit",
+        "path": "/temperature/fahrenheit",
+        "httpMethod": "GET",
+        "params": [
+          {
+            "name": "city",
+            "type": "string",
+            "style": "query"
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "style": "query"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "style": "query"
+          }
+        ]
+      }
+    ]
+  }
+}

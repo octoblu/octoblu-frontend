@@ -1,0 +1,16 @@
+{
+  "_id": "53a754bc0fb5a6cb083a15fe",
+  "owner": "52e761b0-d9f4-11e3-a065-0b9815260ada",
+  "auth_strategy": "",
+  "name": "octoblu-test",
+  "description": "",
+  "documentation": "",
+  "enabled": true,
+  "application": {
+    "base": "",
+    "resources": []
+  },
+  "custom_tokens": [],
+  "__v": 0,
+  "type": "channel:octoblu-test"
+}

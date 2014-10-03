@@ -1,5 +1,6 @@
+'use strict';
 angular.module('octobluApp')
-    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService) {
+    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService, NodeService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
 
@@ -41,7 +42,7 @@ angular.module('octobluApp')
                 method: "configurationDetails"
             }).then(function (response) {
                 if (response && response.result) {
-                    $scope.device.subdevices = response.result.subdevices || [];
+                    $scope.device.subdevices = NodeService.subdevicesToDevices($scope.device.uuid, response.result);
                     $scope.device.plugins = response.result.plugins || [];
                 }
             });
@@ -103,7 +104,7 @@ angular.module('octobluApp')
             });
 
             var deviceModal = $modal.open({
-                templateUrl: 'pages/connector/devices/device/add-edit.html',
+                templateUrl: '/pages/connector/devices/device/add-edit.html',
                 controller: 'AddEditDeviceController',
                 backdrop: true,
                 resolve: {
@@ -135,7 +136,7 @@ angular.module('octobluApp')
         
         $scope.editSubdevice = function (subdevice) {
             var subdeviceModal = $modal.open({
-                templateUrl: 'pages/connector/devices/subdevice/add-edit.html',
+                templateUrl: '/pages/connector/devices/subdevice/add-edit.html',
                 controller: 'AddEditSubDeviceController',
                 backdrop: true,
                 resolve: {

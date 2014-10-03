@@ -1,0 +1,31 @@
+{
+  "_id": "533b504c57090ef0e5cc350f",
+  "application": {
+    "base": "https://www.evernote.com",
+    "resources": []
+  },
+  "auth_strategy": "oauth",
+  "documentation": "http://dev.evernote.com/doc/reference/",
+  "enabled": false,
+  "name": "Evernote",
+  "oauth": {
+    "accessTokenURL": "https://www.evernote.com/oauth",
+    "apiKey": "",
+    "authTokenPath": "/oauth",
+    "authTokenURL": "https://www.evernote.com/oauth",
+    "baseURL": "https://www.evernote.com",
+    "clientId": "joshcoffman",
+    "grant_type": "",
+    "host": "www.evernote.com",
+    "isManual": true,
+    "key": "joshcoffman",
+    "protocol": "https",
+    "requestTokenURL": "https://www.evernote.com/oauth",
+    "scope": "",
+    "secret": "5fcd3cce95107325",
+    "useOAuthParams": true,
+    "version": "1.0"
+  },
+  "useCustom": true,
+  "type": "channel:evernote"
+}

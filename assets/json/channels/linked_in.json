@@ -1,0 +1,603 @@
+{
+  "_id": "52f97c5ba990930c8c0003ca",
+  "application": {
+    "base": "https://api.linkedin.com/v1",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "displayName": "1. Profile_GET",
+        "category": "1. Profile",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/id={id}",
+        "doc": {
+          "t": "The Profile API returns a member's LinkedIn profile. If you know the member token of the profile you want to display, you can use it as the key value for this API call. You should include id= to indicate that you are using a member token. Requesting by member token only returns a profile from the logged in person's three degree network and doesn't return any out-of-network profiles. You cannot use a member token to get a public profile. To see just a thumbnail version of the profile, do not include anything after the profile key value. To select your own fields, use the field selector notation- :(field1,field2,field3...). When using field selectors, all fields must be at the same level of depth in the XML",
+          "url": "http://developer.linkedin.com/docs/DOC-1002"
+        },
+        "path": "/people/id={id}",
+        "url": "https://api.linkedin.com/v1/people/id={id}"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "1. Profile_GET",
+        "category": "1. Profile",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~",
+        "doc": {
+          "t": "The Profile API returns a member's LinkedIn profile. Use the tilde character to indicate that you want the profile of the current user. The access token will be used to determine the profile to return.",
+          "url": "http://developer.linkedin.com/docs/DOC-1002"
+        },
+        "path": "/people/~",
+        "url": "https://api.linkedin.com/v1/people/~"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "1. Profile_GET",
+        "category": "1. Profile",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/url={public-profile-url}",
+        "doc": {
+          "t": "The Profile API returns a member's LinkedIn profile. Using the Public Profile URL will return a profile from inside or outside the logged in member's three degree network. The Public Profile URL must be URL escaped.The URL to retrieve the standard and public profiles are the same. To return a public profile, simply add :public to the end of the profile. Without that, the call will return a standard profile.",
+          "url": "http://developer.linkedin.com/docs/DOC-1002"
+        },
+        "path": "/people/url",
+        "url": "https://api.linkedin.com/v1/people/url"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "2. People Search_GET",
+        "category": "2. People Search",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people-search",
+        "doc": {
+          "t": "The People Search API returns information about people.",
+          "url": "http://developer.linkedin.com/docs/DOC-1191"
+        },
+        "path": "/people-search",
+        "url": "https://api.linkedin.com/v1/people-search"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "3. Connections_GET",
+        "category": "3. Connections",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/url={public-profile-url}/connections",
+        "doc": {
+          "t": "The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections.",
+          "url": "http://developer.linkedin.com/docs/DOC-1004"
+        },
+        "path": "/people/url/connections",
+        "url": "https://api.linkedin.com/v1/people/url/connections"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "3. Connections_GET",
+        "category": "3. Connections",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/connections",
+        "doc": {
+          "t": "The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections. If your application iteratively polls to find the latest set of a member's connections, please make a call like: http://api.linkedin.com/v1/people/~/connections?modified=new&modified-since=1267401600000",
+          "url": "http://developer.linkedin.com/docs/DOC-1004"
+        },
+        "path": "/people/~/connections",
+        "url": "https://api.linkedin.com/v1/people/~/connections"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "3. Connections_GET",
+        "category": "3. Connections",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/id={id}/connections",
+        "doc": {
+          "t": "The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections.",
+          "url": "http://developer.linkedin.com/docs/DOC-1004"
+        },
+        "path": "/people/id={id}/connections",
+        "url": "https://api.linkedin.com/v1/people/id={id}/connections"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "4. Mailbox_POST",
+        "category": "4. Mailbox",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<mailbox-item> <recipients> <recipient> <person path='/people/~'/> </recipient> <recipient> <person path=\"/people/abcdefg\" /> </recipient> </recipients> <subject>Congratulations on your new position.</subject> <body>You're certainly the best person for the job!</body> </mailbox-item>' http://api.linkedin.com/v1/people/~/mailbox",
+        "doc": {
+          "t": "LinkedIn offers a simple API for sending messages via LinkedIn between two or more individuals connected to the member sending the message. A 201 Created HTTP status indicates successful creation of a message.Message will be represented as XML POST Body, given a sample.",
+          "url": "http://developer.linkedin.com/docs/DOC-1044"
+        },
+        "path": "/people/~/mailbox",
+        "url": "https://api.linkedin.com/v1/people/~/mailbox"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "4. Mailbox_POST",
+        "category": "4. Mailbox",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<mailbox-item> <recipients> <recipient> <person path=\"/people/email=a_user@domain.com\"> <first-name>Richard</first-name> <last-name>Brautigan</last-name> </person> </recipient> </recipients> <subject>Invitation to Connect</subject> <body>Please join my professional network on LinkedIn.</body> <item-content> <invitation-request> <connect-type>friend</connect-type> </invitation-request> </item-content> </mailbox-item>' http://api.linkedin.com/v1/people/~/mailbox",
+        "doc": {
+          "t": "The Invitation API allows your users to invite people they find in your application to their LinkedIn network. To send an invitation, you POST the invitation XML. You have control over the message subject and text and can invite people by email or member id. Sample XML is given.",
+          "url": "http://developer.linkedin.com/docs/DOC-1012"
+        },
+        "path": "/people/~/mailbox",
+        "url": "https://api.linkedin.com/v1/people/~/mailbox"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "5. Network Updates_GET",
+        "category": "5. Network Updates",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/network/updates",
+        "doc": {
+          "t": "The Get Network Updates API returns the users network updates, which is the LinkedIn term for the user's feed. This call returns most of what shows up in the middle column of the LinkedIn.com home page, either for the member or the member's connections.Returns a feed of event items. Each item contains a core set of information, such as when it occured, what type of event took place, and whether you can comment and like the item.However, the format of the event's information can vary widely from type to type. Information about changing a profile is not similar to the status published by an application. Each event type needs to be parsed differently.We may perodically add new event types to this feed, or deprecate old ones.",
+          "url": "http://developer.linkedin.com/docs/DOC-1006"
+        },
+        "path": "/people/~/network/updates",
+        "url": "https://api.linkedin.com/v1/people/~/network/updates"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "5. Network Updates_POST",
+        "category": "5. Network Updates",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<activity locale=\"en_US\"> <content-type>linkedin-html</content-type> <body>&lt;a href=&quot;http://www.linkedin.com/profile?viewProfile=&amp;key=ABCDEFG&quot;&gt;Richard Brautigan&lt;/a&gt; is reading about &lt;a href=&quot;http://www.tigers.com&quot;&gt;Tigers&lt;/a&gt;http://www.tigers.com&gt;Tigers&lt;/a&gt;.</body> </activity>' http://api.linkedin.com/v1/people/~/person-activities",
+        "doc": {
+          "t": "The Post Network Update API allows you to send in an activity from your site to be posted to the first degree connections of the LinkedIn user. Network updates are the LinkedIn term for news feed activities. Once a network update is posted, it cannot be removed or deleted. A successful response will be indicated by a 201 Created HTTP status code and an empty response body. Invitation should be of POST XML Body, given a sample.",
+          "url": "http://developer.linkedin.com/docs/DOC-1009"
+        },
+        "path": "/people/~/person-activities",
+        "url": "https://api.linkedin.com/v1/people/~/person-activities"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "6. Comments, Likes and Shares_GET",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/network?type=SHAR",
+        "doc": {
+          "t": "To retrieve a stream of shares for the member or their member first degree network, use the Get Network Updates API resource requesting the SHAR update type. For the specified member also use a query parameter of scope=self.Omit the scope for their first degree network.",
+          "url": "http://developer.linkedin.com/docs/DOC-1212"
+        },
+        "path": "/people/~/network",
+        "url": "https://api.linkedin.com/v1/people/~/network"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "6. Comments, Likes and Shares_GET",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments",
+        "doc": {
+          "t": "Some Network Updates may have comments attached to them. These kind of updates are called commentable network updates. They are indicated by the presence of the string \"true\" within the node of update/is-commentable. By default, a network update containing more than 5 comments will only return you the most recent five. This API is used to retrieve all comments for a given network update,where NETWORK UPDATE KEY is a update/update-key representing an update.",
+          "url": "http://developer.linkedin.com/docs/DOC-1043"
+        },
+        "path": "/people/~/network/updates/update-comments",
+        "url": "https://api.linkedin.com/v1/people/~/network/updates/update-comments"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "6. Comments, Likes and Shares_GET",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/network/updates/key={NETWORK-UPDATE-KEY}/likes",
+        "doc": {
+          "t": "Some Network Updates may have likes attached to them. These kind of updates are called likeable network updates. They are indicated by the presence of the string \"true\" within the node of update/is-likeable. This API is used to retrive the complete list of people who liked an update, where NETWORK UPDATE KEY is a update/update-key representing an update.",
+          "url": "http://developer.linkedin.com/docs/DOC-1043"
+        },
+        "path": "/people/~/network/updates/likes",
+        "url": "https://api.linkedin.com/v1/people/~/network/updates/likes"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "6. Comments, Likes and Shares_POST",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<update-comment> <comment>Save me a trout, Richard!</comment> </update-comment>' http://api.linkedin.com/v1/people/~/network/updates/key={NETWORK-UPDATE-KEY}/update-comments",
+        "doc": {
+          "t": "When you want to post a new comment to an existing update,1. Ensure the node update/is-commentable in Network Update Comment XML POST Body is set to true 2. Take the update/update-key from an existing update and POST to the URL structure. A successful comment POST will return a 201 Content Created status code. Comments have a maximum length of 700 characters.",
+          "url": "http://developer.linkedin.com/docs/DOC-1043"
+        },
+        "path": "/people/~/network/updates/update-comments",
+        "url": "https://api.linkedin.com/v1/people/~/network/updates/update-comments"
+      },
+      {
+        "httpMethod": "PUT",
+        "displayName": "6. Comments, Likes and Shares_PUT",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X PUT -u 'username:password' -d '<is-liked>true</is-liked>' http://api.linkedin.com/v1/people/~/network/updates/key={NETWORK-UPDATE-KEY}/is-liked",
+        "doc": {
+          "t": "When you want to Like or Unlike an existing update, 1. Ensure the node update/is-likeable in Network Update Like XML POST Body is set to true 2. Use the same update/update-key and PUT to the URL. A successful comment PUT will return a 201 Content Created status code.",
+          "url": "http://developer.linkedin.com/docs/DOC-1043"
+        },
+        "path": "/people/~/network/updates/is-liked",
+        "url": "https://api.linkedin.com/v1/people/~/network/updates/is-liked"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "6. Comments, Likes and Shares_POST",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<share> <comment>83% of employers will use social media to hire: 78% LinkedIn, 55% Facebook, 45% Twitter [SF Biz Times] http://bit.ly/cCpeOD</comment> <content> <title>Survey: Social networks top hiring tool - San Francisco Business Times</title> <submitted-url>http://sanfrancisco.bizjournals.com/sanfrancisco/stories/2010/06/28/daily34.html</submitted-url> <submitted-image-url>http://images.bizjournals.com/travel/cityscapes/thumbs/sm_sanfrancisco.jpg</submitted-image-url> </content> <visibility> <code>anyone</code> </visibility> </share>' http://api.linkedin.com/v1/people/~/shares",
+        "doc": {
+          "t": "Use the Share API to have a member share content with their network or with all of LinkedIn. This can be a simple short text update, similar to Twitter. Or a URL with a title and optional photo. Or both. You can also forward the shared content to Twitter and reshare another member's share. To add a new share, you markup the content in XML and issue a HTTP POST to this API.To have LinkedIn pass the status message along to a member's tethered Twitter account, if they have one, modify the URL to include a query string of twitter-post=true.Returns 201 Created on success. It will also provide a Location HTTP header with a URL for the created resource. However, at this time, you cannot retrieve the Share from that location. It's there for future compatibility.",
+          "url": "http://developer.linkedin.com/docs/DOC-1212"
+        },
+        "path": "/people/~/shares",
+        "url": "https://api.linkedin.com/v1/people/~/shares"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "6. Comments, Likes and Shares_POST",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<share> <comment>Check out this story! I can't believe it.</comment> <attribution> <share> <id>s24681357</id> </share> </attribution> <visibility> <code>connections-only</code> </visibility> </share>' http://api.linkedin.com/v1/people/~/shares",
+        "doc": {
+          "t": "When a member does a reshare, they can pass along a previously shared item to their network. This can either be as-is, or they can annotate the share to provide their own thoughts. The process is similar to creating a new share, but you provide an attribution/id value instead of a content block. You can only reshare a share with a content block. If this block is empty, you will get a 400 error saying \"Specified share {s28311617} has no content\". Read Retrieving Share Information for instructions to retrieve these value using the API.Returns 201 Created on success. It will also provide a Location HTTP header with a URL for the created resource. However, at this time, you cannot retrieve the Share from that location. It's there for future compatibility. To reshare, you markup the content in XML and issue a HTTP POST to this API.",
+          "url": "http://developer.linkedin.com/docs/DOC-1212"
+        },
+        "path": "/people/~/shares",
+        "url": "https://api.linkedin.com/v1/people/~/shares"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "6. Comments, Likes and Shares_GET",
+        "category": "6. Comments, Likes and Shares",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~:(current-share)",
+        "doc": {
+          "t": "A particular member's current share is detailed in their Profile API, so you can get a member's current share by requesting this API.Use the ~, id, or public profile URL to identify the user.",
+          "url": "http://developer.linkedin.com/docs/DOC-1212"
+        },
+        "path": "/people/~:(current-share)",
+        "url": "https://api.linkedin.com/v1/people/~:(current-share)"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "7. Company_GET",
+        "category": "7. Company",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/companies/1337",
+        "doc": {
+          "t": "Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed). 2 Legged Authentication works for this call.",
+          "url": "https://developer.linkedin.com/documents/company-lookup-api-and-fields"
+        },
+        "path": "/companies/id={id}",
+        "url": "https://api.linkedin.com/v1/companies/id={id}"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "7. Company_GET",
+        "category": "7. Company",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/companies::(162479,universal-name=linkedin)",
+        "doc": {
+          "t": "Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed).",
+          "url": "https://developer.linkedin.com/documents/company-lookup-api-and-fields"
+        },
+        "path": "/companies/bulk",
+        "url": "https://api.linkedin.com/v1/companies/bulk"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "7. Company_GET",
+        "category": "7. Company",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/company-search?keywords=LinkedIn",
+        "doc": {
+          "t": "Use the Company Search API to find companies using keywords, industry, location, or some other criteria. It returns a collection of matching companies. Each entry can contain much of the information available on the company page.",
+          "url": "https://developer.linkedin.com/documents/company-search"
+        },
+        "path": "/company-search",
+        "url": "https://api.linkedin.com/v1/company-search"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "7. Company_GET",
+        "category": "7. Company",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/following/companies",
+        "doc": {
+          "t": "Retrieve a list of companies the member is following.",
+          "url": "https://developer.linkedin.com/documents/company-follow-and-suggestions"
+        },
+        "path": "/people/~/following/companies",
+        "url": "https://api.linkedin.com/v1/people/~/following/companies"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "7. Company_GET",
+        "category": "7. Company",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/suggestions/to-follow/companies",
+        "doc": {
+          "t": "Retrieve a list of recommendations for the member to follow.",
+          "url": "https://developer.linkedin.com/documents/company-follow-and-suggestions"
+        },
+        "path": "/people/~/suggestions/to-follow/companies",
+        "url": "https://api.linkedin.com/v1/people/~/suggestions/to-follow/companies"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "7. Company_POST",
+        "category": "7. Company",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<company> <id>1337</id> </company>' http://api.linkedin.com/v1/people/~/following/companies",
+        "doc": {
+          "t": "Start following a company.",
+          "url": "https://developer.linkedin.com/documents/company-follow-and-suggestions"
+        },
+        "path": "/people/~/following/companies",
+        "url": "https://api.linkedin.com/v1/people/~/following/companies"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "7. Company_GET",
+        "category": "7. Company",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/companies?email-domain=linkedin.com",
+        "doc": {
+          "t": "Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed). 2 Legged Authentication works for this call.",
+          "url": "https://developer.linkedin.com/documents/company-lookup-api-and-fields"
+        },
+        "path": "/companies/email-domain",
+        "url": "https://api.linkedin.com/v1/companies/email-domain"
+      },
+      {
+        "httpMethod": "PUT",
+        "displayName": "8. Groups_PUT",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X PUT -u 'username:password' -d '<is-liked>true</is-liked>' http://api.linkedin.com/v1/posts/g-4058745-S-67686308/relation-to-viewer/is-liked",
+        "doc": {
+          "t": "Like a post in a group (this is the first post in the Groups API Test Group.)",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/posts/{id}/relation-to-viewer/is-liked",
+        "url": "https://api.linkedin.com/v1/posts/{id}/relation-to-viewer/is-liked"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "8. Groups_POST",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<comment> <text>This is a comment on the post from the Apigee Console.</text> </comment>' http://api.linkedin.com/v1/posts/g-4058745-S-67686308/comments",
+        "doc": {
+          "t": "Comment on a post in a group (this is the first post in the Groups API Test Group.)",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/posts/{id}/comments",
+        "url": "https://api.linkedin.com/v1/posts/{id}/comments"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "8. Groups_GET",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/group-memberships",
+        "doc": {
+          "t": "Get groups the member belongs to.",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/people/~/group-memberships",
+        "url": "https://api.linkedin.com/v1/people/~/group-memberships"
+      },
+      {
+        "httpMethod": "PUT",
+        "displayName": "8. Groups_PUT",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X PUT -u 'username:password' -d '<group-membership> <membership-state> <code>member</code> </membership-state> </group-membership>' http://api.linkedin.com/v1/people/~/group-memberships/4058745",
+        "doc": {
+          "t": "Join a group - this is the test group for people using the Groups API. Joining it will make the other calls work.",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/people/~/group-memberships/{id}",
+        "url": "https://api.linkedin.com/v1/people/~/group-memberships/{id}"
+      },
+      {
+        "httpMethod": "DELETE",
+        "displayName": "8. Groups_DELETE",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X DELETE -u 'username:password' http://api.linkedin.com/v1/people/~/group-memberships/4058745",
+        "doc": {
+          "t": "Leave the API Groups Test Group.",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/people/~/group-memberships/{id}",
+        "url": "https://api.linkedin.com/v1/people/~/group-memberships/{id}"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "8. Groups_GET",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/suggestions/groups",
+        "doc": {
+          "t": "Get suggested groups for the member.",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/people/~/suggestions/groups",
+        "url": "https://api.linkedin.com/v1/people/~/suggestions/groups"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "8. Groups_GET",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/group-memberships/4058745:(show-group-logo-in-profile,contact-email,email-digest-frequency,email-announcements-from-managers,allow-messages-from-members,email-for-every-new-post)",
+        "doc": {
+          "t": "Get groups the member belongs to.",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/people/~/group-memberships/{id}:{settings}",
+        "url": "https://api.linkedin.com/v1/people/~/group-memberships/{id}:{settings}"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "8. Groups_GET",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "false"
+        },
+        "curl": "curl -X GET  http://api.linkedin.com/v1/groups/4058745/posts:(creation-timestamp,title,summary,creator:(first-name,last-name,picture-url,headline),likes,attachment:(image-url,content-domain,content-url,title,summary),relation-to-viewer)",
+        "doc": {
+          "t": "Get posts for this group. 2 Legged Authentication works for this call when looking at open groups.",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/groups/{id}/posts",
+        "url": "https://api.linkedin.com/v1/groups/{id}/posts"
+      },
+      {
+        "httpMethod": "POST",
+        "displayName": "8. Groups_POST",
+        "category": "8. Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X POST -u 'username:password' -d '<post> <title>Posting from the Apigee Console</title> <summary>This post was made from the Apigee console at http://developer.linkedin.com/rest-console</summary> </post>' http://api.linkedin.com/v1/groups/4058745/posts",
+        "doc": {
+          "t": "Create a post in a group.",
+          "url": "https://developer.linkedin.com/documents/groups-api"
+        },
+        "path": "/groups/{id}/posts",
+        "url": "https://api.linkedin.com/v1/groups/{id}/posts"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "9. Jobs_GET",
+        "category": "9. Jobs",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/job-search?distance=10",
+        "doc": {
+          "t": "Search for jobs - by default it searches for jobs near the logged in member. Other parameters can be found on the job search documentation page on the developer portal.",
+          "url": "https://developer.linkedin.com/documents/job-search-api"
+        },
+        "path": "/job-search",
+        "url": "https://api.linkedin.com/v1/job-search"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "9. Jobs_GET",
+        "category": "9. Jobs",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/people/~/suggestions/job-suggestions",
+        "doc": {
+          "t": "Get recommended jobs for this member.",
+          "url": "https://developer.linkedin.com/documents/job-bookmarks-and-suggestions"
+        },
+        "path": "/people/~/suggestions/job-suggestions",
+        "url": "https://api.linkedin.com/v1/people/~/suggestions/job-suggestions"
+      },
+      {
+        "httpMethod": "GET",
+        "displayName": "9. Jobs_GET",
+        "category": "9. Jobs",
+        "authentication": {
+          "required": "true"
+        },
+        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/jobs/{JOB-ID}",
+        "doc": {
+          "t": "Retrieve information about a specific job. You need to input the ID for the job in the URL for this to work. Use the job search or recommended jobs calls above to get a job ID to use for this call.",
+          "url": "https://developer.linkedin.com/documents/job-lookup-api-and-fields"
+        },
+        "path": "/jobs/{id}",
+        "url": "https://api.linkedin.com/v1/jobs/{id}"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "name": "LinkedIn",
+  "enabled": true,
+  "oauth": {
+    "development" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/linked-in/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/linked-in/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production" : {
+      "consumerKey": "INSERT_SECERT_HERE",
+      "consumerSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/linked-in/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
+  "isPassport": true,
+  "type": "channel:linked-in"
+}

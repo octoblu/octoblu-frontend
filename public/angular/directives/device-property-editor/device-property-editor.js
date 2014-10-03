@@ -2,7 +2,7 @@ angular.module('octobluApp')
     .directive('devicePropertyEditor', function () {
         return {
             restrict: 'AE',
-            templateUrl: 'angular/directives/device-property-editor/device-property-editor.html',
+            templateUrl: '/angular/directives/device-property-editor/device-property-editor.html',
             replace: true,
             scope: {
                 deviceToEdit: '=', 
@@ -14,8 +14,6 @@ angular.module('octobluApp')
                     originalDevice;
 
                 $scope.$watch('deviceToEdit', function (newDevice, oldDevice) {
-                    console.log('device changed!');
-                    console.log(newDevice);
                     if (newDevice) {
                         originalDevice = newDevice;
                         if(newDevice.type === 'gateway' || newDevice.type === 'octobluMobile'){

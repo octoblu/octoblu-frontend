@@ -1,0 +1,16 @@
+{
+  "_id": "53126ef041f677811a8ba9b4",
+  "__v": 0,
+  "application": {
+    "base": "http://nodester.com",
+    "resources": []
+  },
+  "auth_strategy": "simple",
+  "custom_tokens": [],
+  "description": "nodejs paas",
+  "documentation": "http://nodester.com/docs",
+  "enabled": false,
+  "name": "nodester",
+  "owner": "5d6e9c91-820e-11e3-a399-f5b85b6b9fd0",
+  "type": "channel:nodester"
+}

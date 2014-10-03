@@ -1,0 +1,114 @@
+.flow-node {
+  background-color: #ccc;
+  fill: none;
+  line-height: 40px;
+  height: 40px;
+  width:  40px;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 6px;
+  cursor: move;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &.error {
+    stroke: #f00;
+    box-shadow: 0 0 9px #f00;
+    -webkit-box-shadow: 0 0 9px #f00;
+  }
+
+  &.selected {
+    stroke: #ff7f0e;
+
+    .flow-node-bg {
+      stroke: #ff7f0e;
+    }
+  }
+
+  i {
+    margin-top: 5px;
+  }
+
+  //base styles.
+  .flow-node-bg {
+    fill: gray;
+    stroke: #999;
+    stroke-width: 2;
+    font-size: 12px;
+  }
+
+  .flow-node-button {
+    fill: #aaa;
+    shape-rendering : crispEdges;
+    stroke: #999;
+    stroke-width: 2;
+    cursor: pointer;
+
+    &:hover {
+      fill: #ccc;
+      stroke: #aaa;
+    }
+  }
+
+  .flow-node-label {
+    cursor: move;
+    stroke-width: 0;
+    fill: #333;
+    font-size: 12px;
+  }
+
+  .flow-node-port {
+    fill: #aaa;
+    cursor: crosshair;
+    &:hover {
+      stroke: #ff7f0e;
+      fill: #ff7f0e;
+    }
+  }
+}
+
+.flow-node-editor {
+  &.flow-node-editor-debug {
+    .debug-node-form {
+      display: none;
+    }
+  }
+  overflow: auto;
+}
+
+.flow-link {
+  stroke: #7f7f7f;
+  stroke-width: 4;
+  cursor: crosshair;
+  fill: none;
+
+  &.selected {
+    stroke: #ff7f0e;
+  }
+}
+
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.4;
+
+  &.dark {
+    opacity: 0.9;
+  }
+}
+.grid path {
+      stroke-width: 0;
+}
+
+.flow-editor-render-area {
+  &.grabby-hand {
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+  cursor: -ms-grabbing;
+  cursor: grabbing;
+  }
+}
+

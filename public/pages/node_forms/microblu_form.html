@@ -1,0 +1,22 @@
+<div class="form-group">
+    <label  for="name">Name</label>
+    <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
+</div>
+<div class="form-group">
+	<label class="form-label" for="key">Key</label>
+	<input id="key" class="form-control" ng-model="flowNode.key" type="text">
+</div>
+<div class="form-group">
+	<label class="form-label" for="pin">Pin</label>
+	<input id="pin" class="form-control" ng-model="flowNode.pin" type="number">
+</div>
+<div class="form-group">
+	<label class="form-label" for="pin-config">Pin Type</label>
+	<select id="pin-config" class="form-control" ng-model="flowNode.pinConfig">
+		<option value="analog-write">Analog Write</option>
+		<option value="digital-write">Digital Write</option>
+		<option value="servo-write">Servo Write</option>
+		<option value="analog-read">Analog Read</option>
+		<option value="digital-read">Digital Read</option>
+	</select>
+</div>

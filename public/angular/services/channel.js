@@ -1,8 +1,16 @@
+'use strict';
 angular.module('octobluApp')
     .service('channelService', function ($q, $http) {
         var customchannels = [];
         var activechannels = [];
         var availablechannels = [];
+
+        this.addLogoUrl = function(data) {
+            if (data && data.type) {
+                data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
+            }
+            return data;
+        }
 
         this.getList = function(callback) {
             $http.get('/api/channels', { cache: true})
@@ -23,7 +31,6 @@ angular.module('octobluApp')
             var defer = $q.defer();
             $http.get('/api/channels', { cache: true})
                 .success(function(data) {
-                  // console.log('ALLCHANNELS', data);
                     defer.resolve(data);
                 })
                 .error(function(error) {
@@ -76,11 +83,15 @@ angular.module('octobluApp')
                 return defer.promise;
             } else {
                 return $http.get('/api/channels/active').then(function (res) {
-                   angular.copy(res.data, activechannels);
+                   activechannels.length = 0;
+                   activechannels.push.apply(activechannels, res.data);
                    return activechannels;
                 }, function (err) {
-                    console.log(err);
-                    return angular.copy([], activechannels);
+                    if (err) {
+                        console.log(err);
+                    }
+                    activechannels.length = 0;
+                    return activechannels;
                 });
             }
         };
@@ -107,11 +118,15 @@ angular.module('octobluApp')
                 return defer.promise;
             } else {
                 return $http.get('/api/channels/available').then(function (res) {
-                   angular.copy(res.data, availablechannels);
-                   return availablechannels;
+                    availablechannels.length = 0;
+                    availablechannels.push.apply(availablechannels, res.data);
+                    return availablechannels;
                 }, function (err) {
-                    console.log(err);
-                    return angular.copy([], availablechannels);
+                    if (err) {
+                        console.log(err);
+                    }
+                    availablechannels.length = 0;
+                    return availablechannels;
                 });
             }
         };
@@ -123,9 +138,12 @@ angular.module('octobluApp')
          * @returns {defer.promise|*} a promise that will eventually resolve to an array of smart devices
          */
           this.getNodeTypes = function() {
-            return $http.get('/api/nodetypes')
+            var addLogoUrl = this.addLogoUrl;
+            return $http.get('/api/node_types')
                 .then(function(result){
-                    return result.data;
+                    return _.map(result.data, function(data) {
+                        return addLogoUrl(data);
+                    });
                 });
         };
 
@@ -143,15 +161,34 @@ angular.module('octobluApp')
                    angular.copy(res.data, customchannels);
                    return customchannels;
                 }, function (err) {
-                    console.log(err);
+                    if (err) {
+                        console.log(err);
+                    }
                     return angular.copy([], customchannels);
                 });
             }
         };
 
+        this.getChannelActivationById = function(channelId){
+            return this.getActiveChannels().then(function(channels){
+                return _.findWhere(channels, {_id: channelId});
+            });
+        };
+
+        this.getById = function(channelId){
+            var addLogoUrl = this.addLogoUrl;
+            return $http.get('/api/channels/' + channelId).then(function(response){
+                var data = response.data;
+                data = addLogoUrl(data);
+                return data;
+            });
+        };
+
         this.get = function(id, callback) {
+            var addLogoUrl = this.addLogoUrl;
             $http.get('/api/channels/'+id, { cache: false})
                 .success(function(data) {
+                    data = addLogoUrl(data);
                     callback(data);
                 })
                 .error(function(data) {

@@ -1,0 +1,8 @@
+<ul class="flow-browser-nodes">
+    <li class="flow-node-type" ng-repeat="flowNodeType in nodeTypes"
+        ng-click="addFlowNodeType(flowNodeType)">
+        <div class="node-thumbnail"
+             style="background-image: url({{flowNodeType.logo}});"></div>
+        <label class="text-center">{{flowNodeType.name || flowNodeType.type}}</label>
+    </li>
+</ul>
