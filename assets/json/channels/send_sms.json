@@ -5,6 +5,7 @@
   "description" : "Send SMS text messages through Octoblu.",
   "enabled": true,
   "useCustom": true,
+  "bodyFormat": "json",
   "application": {
     "base": "http://sms.octoblu.com",
     "resources": [
