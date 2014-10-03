@@ -1,7 +1,7 @@
 {
   "_id": "542c2f2eab1c05dde14544e0",
   "name": "Send SMS",
-  "auth_strategy": "basic",
+  "auth_strategy": "meshblu",
   "description" : "Send SMS text messages through Octoblu.",
   "enabled": true,
   "useCustom": true,
