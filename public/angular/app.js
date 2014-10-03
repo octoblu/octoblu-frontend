@@ -422,10 +422,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelSimpleController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
-      .state('ob.nodewizard.addchannel.basic', {
+      .state('ob.nodewizard.addchannel.meshblu', {
         url: '/basic',
-        controller: 'addChannelBasicController',
-        templateUrl: '/pages/node-wizard/add-channel/basic.html'
+        controller: 'addChannelMeshbluController',
+        templateUrl: '/pages/node-wizard/add-channel/noauth.html'
       })
       .state('ob.nodewizard.adddevice', {
         url: '/add-device/:nodeTypeId',

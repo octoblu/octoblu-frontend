@@ -1,6 +1,6 @@
 {
   "_id": "542ce2ad47a930b1280b0d05",
-  "auth_strategy": "basic",
+  "auth_strategy": "meshblu",
   "bodyFormat": "json",
   "documentation": "http://github.com/octoblu/email-service",
   "enabled": true,
