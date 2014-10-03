@@ -6,6 +6,7 @@ angular.module('octobluApp')
     'none':   'ob.nodewizard.addchannel.noauth',
     'simple': 'ob.nodewizard.addchannel.simple',
     'basic':  'ob.nodewizard.addchannel.basic',
+    'meshblu':'ob.nodewizard.addchannel.meshblu',
     'oauth':  'ob.nodewizard.addchannel.oauth'
   };
 
