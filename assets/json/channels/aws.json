@@ -1,0 +1,34 @@
+{
+  "_id": "542ee969b3a9540d7c59d5c2",
+  "auth_strategy": "aws",
+  "documentation": "https://aws.amazon.com/documentation/",
+  "enabled": true,
+  "name": "AWS",
+  "type": "channel:aws",
+  "application": {
+    "base": "https://aws.amazon.com",
+    "resources": [
+      {
+        "url": "https://ec2.amazonaws.com/?Action=DescribeInstances&Version=2014-06-15",
+        "path": "[EC2] DescribeInstances",
+        "httpMethod": "GET",
+        "params": [
+        ]
+      },
+      {
+        "url": "https://s3.amazonaws.com/",
+        "path": "[S3] Service",
+        "httpMethod": "GET",
+        "params": [
+        ]
+      },
+      {
+        "url": "http://sqs.us-east-1.amazonaws.com/?Action=ListQueues",
+        "path": "[SQS] ListQueues",
+        "httpMethod": "GET",
+        "params": [
+        ]
+      }
+    ]
+  }
+}
