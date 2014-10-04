@@ -83,6 +83,19 @@ this.activateNoAuthChannel = function(user, channelid, callback) {
 
 };
 
+this.saveAWSApi = function (uuid, channelid, username, password, callback) {
+
+  $http.post('/api/auth/aws/channel/' + channelid, { username: username, password: password })
+  .success(function (data) {
+    callback(data);
+  })
+  .error(function (data) {
+    console.log('Error: ' + data);
+    callback({});
+  });
+
+};
+
 this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 
   $http.post('/api/auth/basic/channel/' + channelid, { username: username, password: password })
@@ -95,7 +108,6 @@ this.saveBasicApi = function (uuid, channelid, username, password, callback) {
   });
 
 };
-
 
 this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback) {
 

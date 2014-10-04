@@ -3,11 +3,12 @@
 angular.module('octobluApp')
 .controller('addChannelExistingController', function($scope, $state, nodeType, channelService) {
   var AUTH_DESTINATIONS = {
-    'none':   'ob.nodewizard.addchannel.noauth',
-    'simple': 'ob.nodewizard.addchannel.simple',
-    'basic':  'ob.nodewizard.addchannel.basic',
-    'meshblu':'ob.nodewizard.addchannel.meshblu',
-    'oauth':  'ob.nodewizard.addchannel.oauth'
+    'aws'     : 'ob.nodewizard.addchannel.aws',
+    'basic'   : 'ob.nodewizard.addchannel.basic',
+    'meshblu' :'ob.nodewizard.addchannel.meshblu',
+    'none'    : 'ob.nodewizard.addchannel.noauth',
+    'oauth'   : 'ob.nodewizard.addchannel.oauth',
+    'simple'  : 'ob.nodewizard.addchannel.simple'
   };
 
   channelService.getChannelActivationById(nodeType.channelid).then(function(channelActivation){
