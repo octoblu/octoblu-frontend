@@ -1,0 +1,54 @@
+{
+  "_id": "5430bf6b66ffb0f988307ef9",
+  "auth_strategy": "oauth",
+  "bodyFormat": "json",
+  "name": "ShareFile",
+  "type": "channel:sharefile",
+  "oauth": {
+    "development": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/sharefile/callback",
+      "tokenMethod": "access_token_bearer",
+      "tokenQueryParam" : "oauth_token"
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/sharefile/callback",
+      "tokenMethod": "access_token_bearer",
+      "tokenQueryParam" : "oauth_token"
+    },
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/sharefile/callback",
+      "tokenMethod": "access_token_bearer",
+      "tokenQueryParam" : "oauth_token"
+    }
+  },
+  "application": {
+    "base": "https://account.sf-api.com/",
+    "resources": [
+      {
+        "path": "/sf/v3/Items",
+        "displayName": "/sf/v3/Items",
+        "doc": {
+          "url": "GET https://account.sf-api.com/sf/v3/Items"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [
+          {
+            "name": "account",
+            "style": "query",
+            "type": "string",
+            "required": true,
+            "default": "subdomain"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items"
+      }
+    ]
+  }
+}

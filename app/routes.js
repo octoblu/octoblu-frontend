@@ -72,6 +72,9 @@ module.exports = function(app, passport) {
     var RdioController = require('./controllers/rdio-controller');
     var rdioController = new RdioController();
 
+    var ShareFileController = require('./controllers/sharefile-controller');
+    var shareFileController = new ShareFileController();
+
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
@@ -200,6 +203,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
+
+            app.get('/api/oauth/sharefile',          shareFileController.authorize);
+            app.get('/api/oauth/sharefile/callback', shareFileController.callback, shareFileController.redirectToDesigner);
 
             app.get('/api/oauth/instagram',          instagramController.authorize);
             app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);

@@ -722,6 +722,18 @@
     },
     "channelid" : "542ee969b3a9540d7c59d5c2",
     "type" : "channel:aws"
+  },
+  {
+    "_id" : "3b41a1e3-f8dd-4af0-b560-5513edf34047",
+    "category" : "channel",
+    "description" : "ShareFile",
+    "enabled" : true,
+    "name" : "ShareFile",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "sharefile"
+    },
+    "channelid" : "5430bf6b66ffb0f988307ef9",
+    "type" : "channel:sharefile"
   }
-
 ]
