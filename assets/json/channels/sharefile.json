@@ -41,7 +41,7 @@
         "params": [
           {
             "name": "account",
-            "style": "query",
+            "style": "url",
             "type": "string",
             "required": true,
             "default": "subdomain"
