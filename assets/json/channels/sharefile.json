@@ -10,21 +10,21 @@
       "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "http://localhost:8080/api/oauth/sharefile/callback",
       "tokenMethod": "access_token_bearer",
-      "tokenQueryParam" : "oauth_token"
+      "tokenQueryParam": "oauth_token"
     },
     "production": {
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "https://app.octoblu.com/api/oauth/sharefile/callback",
       "tokenMethod": "access_token_bearer",
-      "tokenQueryParam" : "oauth_token"
+      "tokenQueryParam": "oauth_token"
     },
     "staging": {
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "https://staging.octoblu.com/api/oauth/sharefile/callback",
       "tokenMethod": "access_token_bearer",
-      "tokenQueryParam" : "oauth_token"
+      "tokenQueryParam": "oauth_token"
     }
   },
   "application": {
@@ -42,13 +42,6 @@
         "path": "/AccessControls",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "principalid",
             "style": "query",
             "type": "string",
@@ -61,6 +54,13 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/AccessControls"
@@ -76,13 +76,6 @@
         "displayName": "/Items(:id)/AccessControls",
         "path": "/Items(:id)/AccessControls",
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "name": "id",
             "style": "query",
@@ -110,6 +103,20 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/AccessControls"
@@ -125,13 +132,6 @@
         "displayName": "/Items(:id)/AccessControls",
         "path": "/Items(:id)/AccessControls",
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "name": "id",
             "style": "body",
@@ -152,6 +152,20 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/AccessControls"
@@ -168,13 +182,6 @@
         "path": "/AccessControls",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "principalid",
             "style": "",
             "type": "string",
@@ -187,6 +194,13 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/AccessControls"
@@ -201,7 +215,16 @@
         },
         "displayName": "/Accounts",
         "path": "/Accounts",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -213,7 +236,16 @@
         },
         "displayName": "/Accounts/Branding",
         "path": "/Accounts/Branding",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/Branding"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/Branding",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -225,7 +257,16 @@
         },
         "displayName": "/Accounts/Employees",
         "path": "/Accounts/Employees",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/Employees"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/Employees",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -237,7 +278,16 @@
         },
         "path": "/Accounts/Clients",
         "displayName": "/Accounts/Clients",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/Clients"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/Clients",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -251,13 +301,6 @@
         "path": "/Accounts/AddressBook",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "type",
             "style": "query",
             "type": "string",
@@ -270,6 +313,13 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Accounts/AddressBook"
@@ -284,7 +334,16 @@
         },
         "displayName": "/Accounts/MobileSecuritySettings",
         "path": "/Accounts/MobileSecuritySettings",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/MobileSecuritySettings"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/MobileSecuritySettings",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -298,31 +357,24 @@
         "displayName": "/Accounts/SSO",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "provider",
             "style": "query",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Accounts/SSO"
       },
       {
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "required": "false",
             "value": "",
@@ -350,6 +402,13 @@
             "type": "boolean",
             "style": "body",
             "name": "requirehomefolders"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Accounts/GetByUser",
@@ -366,18 +425,18 @@
       {
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "required": "false",
             "value": "",
             "type": "string",
             "style": "body",
             "name": "email"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Accounts/SendToEmail",
@@ -401,7 +460,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
@@ -413,7 +481,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
@@ -425,7 +502,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Accounts/FolderAccessControlDomains",
@@ -437,7 +523,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "POST",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
@@ -450,7 +545,16 @@
           "t": "patch"
         },
         "httpMethod": "PUT",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "displayName": "/Accounts/FolderAccessControlDomains",
@@ -463,7 +567,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "PUT",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Accounts/LoginAccessControlDomains",
@@ -475,7 +588,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "DELETE",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Accounts/FolderAccessControlDomains",
@@ -487,17 +609,19 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "DELETE",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "required": "false",
             "value": "",
@@ -518,6 +642,13 @@
             "type": "boolean",
             "style": "query",
             "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Accounts/RequireWebPop",
@@ -534,13 +665,6 @@
       {
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "required": "false",
             "value": "",
             "type": "string",
@@ -553,6 +677,13 @@
             "type": "string",
             "style": "query",
             "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Accounts/RequireSubdomain",
@@ -569,18 +700,18 @@
       {
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "required": "false",
             "value": "",
             "type": "string",
             "style": "body",
             "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Accounts/FindSubdomain",
@@ -604,23 +735,32 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Accounts/OutlookInformation"
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/OutlookInformation",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "required": "false",
             "value": "",
             "type": "string",
             "style": "query",
             "name": "subdomain"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Accounts/SSOInfo",
@@ -644,7 +784,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/AsyncOperations/GetByBatch(:id)",
@@ -656,7 +812,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/AsyncOperations/GetByFolder(:id)",
@@ -668,7 +840,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/AsyncOperations(:id)/Cancel",
@@ -680,7 +868,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "POST",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)/Cancel"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)/Cancel",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/AsyncOperations(:id)",
@@ -692,7 +896,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "DELETE",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/AsyncOperations/CancelBatch(:id)",
@@ -704,7 +924,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "POST",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/AsyncOperations/CancelBatch(:id)",
@@ -716,7 +952,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "POST",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/AsyncOperations(:id)",
@@ -729,7 +981,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
         },
         "httpMethod": "PUT",
-        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Capabilities",
@@ -741,7 +1009,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Capabilities"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Capabilities"
+        "url": "https://:account.sf-api.com/sf/v3/Capabilities",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Devices(:id)",
@@ -753,7 +1030,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Devices(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Devices(:id)",
@@ -765,23 +1058,46 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "DELETE",
-        "url": "https://:account.sf-api.com/sf/v3/Devices(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "required": "false",
             "value": "",
             "type": "string",
             "style": "query",
             "name": "userid"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":deviceID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Devices(:deviceID)/Wipe",
@@ -805,23 +1121,39 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Devices"
+        "url": "https://:account.sf-api.com/sf/v3/Devices",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "required": "false",
             "value": "",
             "type": "boolean",
             "style": "query",
             "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":deviceID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Devices(:deviceID)/WipeDone",
@@ -845,7 +1177,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Devices(:deviceID)/Status"
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:deviceID)/Status",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":deviceID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Users(:id)/FavoriteFolders",
@@ -857,7 +1205,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders"
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Users(:userid)/FavoriteFolders(:itemid)",
@@ -869,7 +1233,30 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)"
+        "url": "https://:account.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":userid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/FavoriteFolders(userid=:userid,itemid=:itemid)",
@@ -881,7 +1268,30 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)"
+        "url": "https://:account.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":userid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "displayName": "/Users(:id)/FavoriteFolders",
@@ -893,7 +1303,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "POST",
-        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders"
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Users(:id)/FavoriteFolders(:itemid)",
@@ -905,7 +1331,30 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
         },
         "httpMethod": "DELETE",
-        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)"
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Groups",
@@ -917,7 +1366,16 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Groups"
+        "url": "https://:account.sf-api.com/sf/v3/Groups",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Groups(:id)",
@@ -929,7 +1387,23 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Groups(:id)",
@@ -941,17 +1415,33 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
         },
         "httpMethod": "DELETE",
-        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/Groups",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Groups",
@@ -968,11 +1458,18 @@
         "path": "/Groups(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Groups(:id)",
@@ -990,11 +1487,18 @@
         "path": "/Groups(:id)/Contacts",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Groups(:id)/Contacts",
@@ -1019,18 +1523,25 @@
         "httpMethod": "POST",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "",
             "style": "",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Groups(:id)/Contacts"
@@ -1039,11 +1550,18 @@
         "path": "/Groups(:id)/Contacts",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Groups(:id)/Contacts",
@@ -1060,11 +1578,11 @@
         "path": "/Items",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Items",
@@ -1087,23 +1605,46 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Items(:id)"
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "required": "false",
             "value": "",
             "type": "boolean",
             "style": "query",
             "name": "includeDeleted"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Items(:id)/Stream",
@@ -1117,18 +1658,18 @@
       {
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "required": "false",
             "value": "",
             "type": "string",
             "style": "query",
             "name": "path"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Items/ByPath",
@@ -1147,11 +1688,18 @@
         "path": "/Items(:id)/Parent",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "authentication": {
@@ -1167,11 +1715,18 @@
         "path": "/Items(:id)/Children",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Items(:id)/Children",
@@ -1194,23 +1749,46 @@
           "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
         },
         "httpMethod": "GET",
-        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Info"
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Info",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
       },
       {
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "required": "false",
             "value": "",
             "type": "boolean",
             "style": "query",
             "name": "redirect"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Items(:id)/Download",
@@ -1227,13 +1805,6 @@
       {
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "required": "false",
             "value": "",
             "type": "boolean",
@@ -1246,6 +1817,20 @@
             "type": "boolean",
             "style": "body",
             "name": "passthrough"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":parentid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Items(:parentid)/Folder",
@@ -1263,11 +1848,18 @@
         "path": "/Items(:parentid)/Note",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":parentid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Items(:parentid)/Note",
@@ -1284,11 +1876,18 @@
         "path": "/Items(:parentid)/Link",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":parentid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Items(:parentid)/Link",
@@ -1304,18 +1903,18 @@
       {
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "required": "false",
             "value": "",
             "type": "boolean",
             "style": "body",
             "name": "overwrite"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "path": "/Items/SymbolicLink",
@@ -1341,11 +1940,18 @@
         "path": "/Items(:id)/Subscribe",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Subscribe"
@@ -1363,11 +1969,18 @@
         "path": "/Items(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)"
@@ -1385,18 +1998,25 @@
         "path": "/Items/Link(:id)",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "notify",
             "style": "body",
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items/Link(:id)"
@@ -1414,18 +2034,25 @@
         "path": "/Items/Note(:id)",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "notify",
             "style": "body",
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items/Note(:id)"
@@ -1443,11 +2070,18 @@
         "path": "/Items/SymbolicLink(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items/SymbolicLink(:id)"
@@ -1464,11 +2098,18 @@
         "path": "/Items(:id)/BulkDelete",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/BulkDelete"
@@ -1485,18 +2126,25 @@
         "path": "/Items(:id)/Breadcrumbs",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "path",
             "style": "query",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Breadcrumbs"
@@ -1513,13 +2161,6 @@
         "path": "/Items(:id)/Copy",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "targetid",
             "style": "body",
             "type": "string",
@@ -1532,6 +2173,20 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Copy"
@@ -1547,13 +2202,6 @@
         "displayName": "/Items(:id)/Upload",
         "path": "/Items(:id)/Upload",
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "name": "method",
             "style": "body",
@@ -1700,6 +2348,20 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Upload"
@@ -1716,18 +2378,25 @@
         "path": "/Items(:id)/CheckIn",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "message",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/CheckIn"
@@ -1744,11 +2413,18 @@
         "path": "/Items(:id)/CheckOut",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/CheckOut"
@@ -1765,18 +2441,18 @@
         "path": "/Items/Search",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "query",
             "style": "query",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items/Search"
@@ -1793,11 +2469,11 @@
         "path": "/Items/AdvancedSearch",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items/AdvancedSearch"
@@ -1814,11 +2490,18 @@
         "path": "/Items(:id)/WebView",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/WebView"
@@ -1835,11 +2518,18 @@
         "path": "/Items(:id)/ProtocolLinks",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/ProtocolLinks"
@@ -1856,11 +2546,18 @@
         "path": "/Items(:id)/ProtocolLinks(protocol)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(protocol)"
@@ -1877,13 +2574,6 @@
         "path": "/Metadata",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "name",
             "style": "query",
             "type": "string",
@@ -1896,6 +2586,13 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Metadata"
@@ -1912,11 +2609,18 @@
         "path": "/Items(:id)/Metadata",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Metadata"
@@ -1933,11 +2637,18 @@
         "path": "/Items(:id)/Metadata",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Metadata"
@@ -1955,11 +2666,18 @@
         "path": "/Metadata(:metadataId)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":metadataId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Metadata(:metadataId)"
@@ -1977,11 +2695,11 @@
         "path": "/Metadata",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Metadata"
@@ -1998,11 +2716,25 @@
         "path": "/Items(:id)/Metadata(:metadataId)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":metadataId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Metadata(:metadataId)"
@@ -2019,11 +2751,25 @@
         "path": "/Metadata(name=:name,itemid=:itemid)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":name",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
@@ -2040,11 +2786,11 @@
         "path": "/Queues",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues"
@@ -2061,11 +2807,18 @@
         "path": "/Queues(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues(:id)"
@@ -2082,11 +2835,25 @@
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":qid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":eid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
@@ -2103,11 +2870,18 @@
         "path": "/Queues(:id)/Entries",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues(:id)/Entries"
@@ -2123,11 +2897,18 @@
         "path": "/Queues(:id)/Receive",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Queues(:id)/Receive",
@@ -2145,11 +2926,18 @@
         "path": "/Queues(:id)/Complete",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues(:id)/Complete"
@@ -2167,11 +2955,25 @@
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":qid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":eid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
@@ -2188,11 +2990,25 @@
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":qid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":eid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
@@ -2209,11 +3025,11 @@
         "path": "/Sessions",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Sessions"
@@ -2230,11 +3046,11 @@
         "path": "/Sessions",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Sessions"
@@ -2251,13 +3067,6 @@
         "path": "/Sessions/Login",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "authmethod",
             "style": "query",
             "type": "string",
@@ -2270,6 +3079,13 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Sessions/Login"
@@ -2286,11 +3102,11 @@
         "path": "/Shares",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares"
@@ -2307,11 +3123,18 @@
         "path": "/Shares(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)"
@@ -2328,11 +3151,18 @@
         "path": "/Shares(:id)/Recipients",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Recipients"
@@ -2349,11 +3179,18 @@
         "path": "/Shares(:id)/Items",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Items"
@@ -2370,11 +3207,25 @@
         "path": "/Shares(:shareid)/Items(:itemid)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":shareid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:shareid)/Items(:itemid)"
@@ -2390,13 +3241,6 @@
         "displayName": "/Shares(:id)/Download",
         "path": "/Shares(:id)/Download",
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "name": "shareId",
             "style": "query",
@@ -2431,6 +3275,20 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Download"
@@ -2447,13 +3305,6 @@
         "path": "/Shares",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "notify",
             "style": "body",
             "type": "boolean",
@@ -2466,6 +3317,13 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares"
@@ -2483,11 +3341,18 @@
         "path": "/Shares(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)"
@@ -2504,11 +3369,18 @@
         "path": "/Shares(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)"
@@ -2525,13 +3397,6 @@
         "path": "/Shares(:id)/Alias",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "email",
             "style": "body",
             "type": "string",
@@ -2544,6 +3409,20 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Alias"
@@ -2559,13 +3438,6 @@
         "displayName": "/Shares/Send",
         "path": "/Shares/Send",
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "name": "Items",
             "style": "body",
@@ -2586,6 +3458,13 @@
             "type": "string",
             "value": "",
             "required": "true"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares/Send"
@@ -2601,13 +3480,6 @@
         "displayName": "/Shares/Request",
         "path": "/Shares/Request",
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "name": "FolderId",
             "style": "body",
@@ -2635,6 +3507,13 @@
             "type": "string",
             "value": "",
             "required": "true"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares/Request"
@@ -2650,13 +3529,6 @@
         "displayName": "/Shares(:id)/Upload",
         "path": "/Shares(:id)/Upload",
         "params": [
-          {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
           {
             "name": "method",
             "style": "body",
@@ -2789,6 +3661,20 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Upload"
@@ -2805,11 +3691,18 @@
         "path": "/StorageCenters(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/StorageCenters(:id)"
@@ -2827,11 +3720,18 @@
         "path": "/StorageCenters(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/StorageCenters(:id)"
@@ -2848,11 +3748,18 @@
         "path": "/StorageCenters(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/StorageCenters(:id)"
@@ -2869,11 +3776,18 @@
         "path": "/Zones(:id)/StorageCenters",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
@@ -2890,11 +3804,18 @@
         "path": "/Zones(:id)/StorageCenters",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
@@ -2912,11 +3833,25 @@
         "path": "/Zones(:zid)/StorageCenters(:scid)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenters(:scid)"
@@ -2933,11 +3868,25 @@
         "path": "/Zones(:zid)/StorageCenter(:scid)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)"
@@ -2954,11 +3903,25 @@
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
@@ -2975,11 +3938,25 @@
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
@@ -2996,18 +3973,32 @@
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "name",
             "style": "",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
@@ -3024,18 +4015,25 @@
         "path": "/Users(:id)",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "emailAddress",
             "style": "query",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)"
@@ -3052,13 +4050,6 @@
         "path": "/Users",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "pushCreatorDefaultSettings",
             "style": "body",
             "type": "boolean",
@@ -3085,6 +4076,13 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users"
@@ -3101,13 +4099,6 @@
         "path": "/Users/AccountUser",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "pushCreatorDefaultSettings",
             "style": "body",
             "type": "boolean",
@@ -3134,6 +4125,13 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/AccountUser"
@@ -3151,11 +4149,18 @@
         "path": "/Users(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)"
@@ -3173,18 +4178,25 @@
         "path": "/Users(:id)/Roles",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "parentid",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Roles"
@@ -3202,18 +4214,25 @@
         "path": "/Users(:id)/Roles",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "parentid",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Roles"
@@ -3231,11 +4250,18 @@
         "path": "/Users/AccountUser(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/AccountUser(:id)"
@@ -3252,11 +4278,18 @@
         "path": "/Users(:id)/HomeFolder",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/HomeFolder"
@@ -3273,11 +4306,18 @@
         "path": "/Users(:id)/Preferences",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Preferences"
@@ -3294,11 +4334,18 @@
         "path": "/Users(:id)/Security",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Security"
@@ -3315,11 +4362,18 @@
         "path": "/Users(:id)/Security",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Security"
@@ -3336,13 +4390,6 @@
         "path": "/Users(:id)/ResetPassword",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "properties",
             "style": "body",
             "type": "string",
@@ -3355,6 +4402,20 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/ResetPassword"
@@ -3371,11 +4432,18 @@
         "path": "/Users(:id)/ResendWelcome",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/ResendWelcome"
@@ -3392,18 +4460,25 @@
         "path": "/Users(:id)",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "completely",
             "style": "",
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)"
@@ -3420,11 +4495,11 @@
         "path": "/Users/AllSharedFolders",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/AllSharedFolders"
@@ -3441,11 +4516,11 @@
         "path": "/Users/TopFolders",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/TopFolders"
@@ -3461,11 +4536,11 @@
         "path": "/Users/NetworkShareConnectors",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "displayName": "/Users/NetworkShareConnectors",
@@ -3483,11 +4558,11 @@
         "path": "/Users/SharepointConnectors",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/SharepointConnectors"
@@ -3504,18 +4579,18 @@
         "path": "/Users/Confirm",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "settings",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/Confirm"
@@ -3532,11 +4607,11 @@
         "path": "/Users/Info",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/Info"
@@ -3553,13 +4628,6 @@
         "path": "/Zones",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "services",
             "style": "query",
             "type": "string",
@@ -3572,6 +4640,13 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones"
@@ -3588,18 +4663,25 @@
         "path": "/Zones(:id)",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "secret",
             "style": "query",
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)"
@@ -3616,11 +4698,11 @@
         "path": "/Zones",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones"
@@ -3638,11 +4720,18 @@
         "path": "/Zones(:id)",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)"
@@ -3659,18 +4748,25 @@
         "path": "/Zones(:id)",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "force",
             "style": "",
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)"
@@ -3687,11 +4783,18 @@
         "path": "/Zones(:id)/ResetSecret",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/ResetSecret"
@@ -3708,11 +4811,18 @@
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/Metadata"
@@ -3729,11 +4839,18 @@
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
-            "name": "account",
+            "name": ":account",
             "style": "url",
             "type": "string",
-            "required": true,
-            "default": "subdomain"
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/Metadata"
@@ -3750,18 +4867,25 @@
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
-            "name": "account",
-            "style": "url",
-            "type": "string",
-            "required": true,
-            "default": "subdomain"
-          },
-          {
             "name": "name",
             "style": "",
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/Metadata"
