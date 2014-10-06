@@ -117,84 +117,95 @@
         "path": "/customers/:customer_id/cards",
         "params": [
           {
-            "name": "customer_id",
+            "name": ":customer_id",
             "style": "url",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card.number",
+            "name": "card[number]",
+            "displayName": "number",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card.exp_month",
+            "name": "card[exp_month]",
+            "displayName" : "expiration month",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card.exp_year",
+            "name": "card[exp_year]",
+            "displayName" : "expiration year",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "true"
           },
           {
-            "name": "card.cvc",
+            "name": "card[cvc]",
+            "displayName" : "cvc",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card.name",
+            "name": "card[name]",
+            "displayName" : "name",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card.address_line1",
+            "name": "card[address_line1]",
+            "displayName": "address line 1",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card.address_line2",
+            "name": "card[address_line2]",
+            "displayName": "address line 2",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card.address_city",
+            "name": "card[address_city]",
+            "displayName": "address city",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card.address_zip",
+            "name": "card[address_zip]",
+            "displayName": "address zip",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card.address_state",
+            "name": "card[address_state]",
+            "displayName": "address state",
             "style": "body",
             "type": "string",
             "value": "",
             "required": "false"
           },
           {
-            "name": "card.address_country",
+            "name": "card[address_country]",
+            "displayName": "address country",
             "style": "body",
             "type": "string",
             "value": "",
