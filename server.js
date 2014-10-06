@@ -47,6 +47,7 @@ passport.use(require('./config/google'));
 passport.use(require('./config/gotomeeting'));
 passport.use(require('./config/instagram'));
 passport.use(require('./config/linked-in'));
+passport.use(require('./config/paypal'));
 passport.use(require('./config/nest'));
 passport.use(require('./config/rdio'));
 passport.use(require('./config/sharefile'));
