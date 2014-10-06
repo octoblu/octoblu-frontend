@@ -73,6 +73,31 @@
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)"
+      },
+      {
+        "path": "/sf/v3/Items(:id)/Children",
+        "displayName": "/sf/v3/Items(:id)/Children",
+        "doc": {
+          "url": "GET https://account.sf-api.com/sf/v3/Items(:id)/Children"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [
+          {
+            "name": "account",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "default": "subdomain"
+          },
+          {
+            "name": "id",
+            "style": "url",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Children"
       }
     ]
   }
