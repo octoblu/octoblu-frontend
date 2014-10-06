@@ -59,7 +59,7 @@ angular.module('octobluApp')
     };
 
     var inputPortRightSideX = function(node) {
-      return node.x + FlowNodeDimensions.portWidth + 100;
+      return node.x + FlowNodeDimensions.portWidth;
     };
 
     var findInputPortByCoordinate = function(xCoordinate, yCoordinate, nodes){
