@@ -711,6 +711,19 @@
     "type" : "channel:email"
   },
   {
+    "_id" : "af842668-5197-4181-8052-2ec30cf135f8",
+    "category" : "channel",
+    "description" : "Salesforce / Force.com",
+    "enabled" : true,
+    "name" : "SalesForce",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "salesforce"
+    },
+    "channelid" : "542ed0142df9c20401f53dcc",
+    "type" : "channel:salesforce"
+  },
+  {
     "_id" : "37804587-81df-49e6-ab23-38e7d5fba76c",
     "category" : "channel",
     "description" : "Amazon Web Services",
