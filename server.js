@@ -49,11 +49,13 @@ passport.use(require('./config/instagram'));
 passport.use(require('./config/linked-in'));
 passport.use(require('./config/nest'));
 passport.use(require('./config/rdio'));
+passport.use(require('./config/sharefile'));
 passport.use(require('./config/spotify'));
 passport.use(require('./config/survey-monkey'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/smartsheet'));
+passport.use(require('./config/salesforce'));
 passport.use(require('./config/local'));
 
 // set up our express application

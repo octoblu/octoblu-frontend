@@ -77,6 +77,7 @@ var FlowDeploy = function(options){
         node.application = {base: channelApiMatch.application.base};
         node.bodyFormat = channelApiMatch.bodyFormat;
         node.followAllRedirects = channelApiMatch.followAllRedirects;
+        node.skipVerifySSL = channelApiMatch.skipVerifySSL;
         node.oauth = _.defaults(node.oauth, channelOauth);
         node.oauth.key = node.oauth.key || node.oauth.clientID || node.oauth.consumerKey;
         node.oauth.secret = node.oauth.secret || node.oauth.clientSecret || node.oauth.consumerSecret;

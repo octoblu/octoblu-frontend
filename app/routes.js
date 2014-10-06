@@ -18,6 +18,9 @@ module.exports = function(app, passport) {
         "protocol" : "websocket"
     });
 
+    var ChannelAWSAuthController = require('./controllers/channel-aws-auth-controller');
+    var channelAWSAuthController = new ChannelAWSAuthController();
+
     var ChannelBasicAuthController = require('./controllers/channel-basic-auth-controller');
     var channelBasicAuthController = new ChannelBasicAuthController();
 
@@ -69,6 +72,9 @@ module.exports = function(app, passport) {
     var RdioController = require('./controllers/rdio-controller');
     var rdioController = new RdioController();
 
+    var ShareFileController = require('./controllers/sharefile-controller');
+    var shareFileController = new ShareFileController();
+
     var TwitterController = require('./controllers/twitter-controller');
     var twitterController = new TwitterController();
 
@@ -95,6 +101,9 @@ module.exports = function(app, passport) {
 
     var SmartsheetController = require('./controllers/smartsheet-controller');
     var smartsheetController = new SmartsheetController();
+
+    var SalesForceStrategy = require('./controllers/salesforce-controller');
+    var salesForceController = new SalesForceStrategy();
 
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
@@ -139,6 +148,7 @@ module.exports = function(app, passport) {
             require('./controllers/designer')(app);
             require('./controllers/invitation')(app, passport, config);
 
+            app.post('/api/auth/aws/channel/:id', channelAWSAuthController.create);
             app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
@@ -197,6 +207,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
 
+            app.get('/api/oauth/sharefile',          shareFileController.authorize);
+            app.get('/api/oauth/sharefile/callback', shareFileController.callback, shareFileController.redirectToDesigner);
+
             app.get('/api/oauth/instagram',          instagramController.authorize);
             app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
 
@@ -217,6 +230,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/smartsheet',          smartsheetController.authorize);
             app.get('/api/oauth/smartsheet/callback', smartsheetController.callback, smartsheetController.redirectToDesigner);
+
+            app.get('/api/oauth/salesforce',          salesForceController.authorize);
+            app.get('/api/oauth/salesforce/callback', salesForceController.callback, salesForceController.redirectToDesigner);
 
             app.get('/api/oauth/spotify',          spotifyController.authorize);
             app.get('/api/oauth/spotify/callback', spotifyController.callback, spotifyController.redirectToDesigner);
