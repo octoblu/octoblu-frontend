@@ -69,6 +69,7 @@ var UserSchema = new mongoose.Schema({
         pass: String,
         secret: String,
         verifier: String,
+        subdomain: String,
         updated: {
           type: Date,
           default: Date.now

@@ -1,13 +1,13 @@
 {
   "_id": "542ed0142df9c20401f53dcc",
   "application": {
-    "base": "https://na1.salesforce.com/services/data/v20.0",
+    "base": "https://:subdomain.salesforce.com/services/data/v20.0",
     "resources": [
       {
         "path": "/query",
         "displayName": "/query",
         "doc": {
-          "url": "GET https://na1.salesforce.com/services/data/v20.0/query"
+          "url": "GET https://:subdomain.salesforce.com/services/data/v20.0/query"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
@@ -16,11 +16,20 @@
             "name": "q",
             "style": "query",
             "type": "string",
+            "displayName": "Query",
             "required": true,
             "default": ""
+          },
+          {
+            "name": ":subdomain",
+            "displayName": "Subdomain",
+            "style": "url",
+            "type": "string",
+            "required": true,
+            "default": "na1"
           }
         ],
-        "url": "https://na1.salesforce.com/services/data/v20.0/query"
+        "url": "https://:subdomain.salesforce.com/services/data/v20.0/query"
       }
     ]
   },

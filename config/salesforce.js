@@ -12,7 +12,8 @@ CONFIG.scope = ['id','chatter_api', 'api', 'full', 'refresh_token', 'visualforce
 var salesForceStrategy = new SalesForceStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
   var channelId = new mongoose.Types.ObjectId('542ed0142df9c20401f53dcc');
 
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
+	var auth = {authtype: 'oauth', token: accessToken};
+  req.user.overwriteOrAddApiByChannelId(channelId, auth);
   req.user.save(function (err) {
     return done(err, req.user);
   });
