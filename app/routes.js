@@ -102,6 +102,9 @@ module.exports = function(app, passport) {
     var SmartsheetController = require('./controllers/smartsheet-controller');
     var smartsheetController = new SmartsheetController();
 
+    var SalesForceStrategy = require('./controllers/salesforce-controller');
+    var salesForceController = new SalesForceStrategy();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -227,6 +230,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/smartsheet',          smartsheetController.authorize);
             app.get('/api/oauth/smartsheet/callback', smartsheetController.callback, smartsheetController.redirectToDesigner);
+
+            app.get('/api/oauth/salesforce',          salesForceController.authorize);
+            app.get('/api/oauth/salesforce/callback', salesForceController.callback, salesForceController.redirectToDesigner);
 
             app.get('/api/oauth/spotify',          spotifyController.authorize);
             app.get('/api/oauth/spotify/callback', spotifyController.callback, spotifyController.redirectToDesigner);

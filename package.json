@@ -70,6 +70,7 @@
     "passport-twitter": "~1.0.2",
     "passport-vimeo": "~0.1.2",
     "passport-yahoo-oauth": "~0.1.2",
+    "passport-forcedotcom": "~0.1.1",
     "q": "^1.0.1",
     "request": "*",
     "rest": "^1.0.3",

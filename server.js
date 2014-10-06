@@ -55,6 +55,7 @@ passport.use(require('./config/survey-monkey'));
 passport.use(require('./config/twitter'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/smartsheet'));
+passport.use(require('./config/salesforce'));
 passport.use(require('./config/local'));
 
 // set up our express application
