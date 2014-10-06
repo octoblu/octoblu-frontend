@@ -24,6 +24,26 @@
       }
     ]
   },
+  "oauth":{
+    "development": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "http://localhost:8080/api/oauth/salesforce/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://app.octoblu.com/api/oauth/salesforce/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://staging.octoblu.com/api/oauth/salesforce/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
   "auth_strategy": "oauth",
   "documentation": "https://www.salesforce.com/us/developer/docs/api_rest",
   "enabled": true,
