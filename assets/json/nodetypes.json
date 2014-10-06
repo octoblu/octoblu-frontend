@@ -748,5 +748,31 @@
     },
     "channelid" : "5430bf6b66ffb0f988307ef9",
     "type" : "channel:sharefile"
+  },
+  {
+    "_id" : "613691c2-efaa-445f-bf30-1e62f8e46c86",
+    "category" : "channel",
+    "description" : "Splunk",
+    "enabled" : true,
+    "name" : "Splunk",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "splunk"
+    },
+    "channelid" : "53e8ea018e3257fb7d6fdae0",
+    "type" : "channel:splunk"
+  },
+  {
+    "_id" : "60fda3c0-4d82-11e4-b7c9-f1aa66db0b20",
+    "category" : "channel",
+    "description" : "Stripe",
+    "enabled" : true,
+    "name" : "Stripe",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "stripe"
+    },
+    "channelid" : "channel-stripe",
+    "type" : "channel:stripe"
   }
 ]

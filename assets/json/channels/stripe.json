@@ -1,0 +1,248 @@
+{
+  "_id": "channel-stripe",
+  "__v": 0,
+  "auth_strategy": "basic",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://stripe.com/docs/api",
+  "enabled": true,
+  "name": "Stripe",
+  "type": "channel:stripe",
+  "application": {
+    "base": "https://api.stripe.com/v1",
+    "resources": [
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://stripe.com/docs/api#create_customer",
+          "t": "Creates a new customer object"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/customers",
+        "path": "/customers",
+        "params": [
+          {
+            "name": "account_balance",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "coupon",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "plan",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "quantity",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "trial_end",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.stripe.com/v1/customers"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://stripe.com/docs/api#retrieve_customer",
+          "t": "Retrieves the details of an existing customer"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/customers/:id",
+        "path": "/customers/:id",
+        "params": [
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.stripe.com/v1/customers/:id"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://stripe.com/docs/api#create_card",
+          "t": "Creates a new card object"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/customers/:customer_id/cards",
+        "path": "/customers/:customer_id/cards",
+        "params": [
+          {
+            "name": ":customer_id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "card[number]",
+            "displayName": "number",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "card[exp_month]",
+            "displayName" : "expiration month",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "card[exp_year]",
+            "displayName" : "expiration year",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "card[cvc]",
+            "displayName" : "cvc",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[name]",
+            "displayName" : "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_line1]",
+            "displayName": "address line 1",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_line2]",
+            "displayName": "address line 2",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_city]",
+            "displayName": "address city",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_zip]",
+            "displayName": "address zip",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_state]",
+            "displayName": "address state",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_country]",
+            "displayName": "address country",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.stripe.com/v1/customers/:customer_id/cards"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://stripe.com/docs/api#retrieve_card",
+          "t": "Retrieves the details of an existing card"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/customers/:customer_id/cards/:card_id",
+        "path": "/customers/:customer_id/cards/:card_id",
+        "params": [
+          {
+            "name": ":customer_id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":card_id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.stripe.com/v1/customers/:customer_id/cards/:card_id"
+      }
+    ]
+  }
+}
