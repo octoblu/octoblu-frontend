@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var when = require('when');
 var FlowDeployController = require('../../app/controllers/flow-deploy');
 var mongoose = require('mongoose');
 
@@ -16,7 +17,7 @@ describe('flowDeployController', function () {
     beforeEach(function () {
       FakeFlowDeploy = {
         start: sinon.spy()
-      }
+      };
 
       fakeMeshblu = new FakeMeshBlu();
     });
@@ -27,17 +28,20 @@ describe('flowDeployController', function () {
     });
 
     describe('with a flow owned by the user', function () {
-      var stub, fakeFindOne;
+      var stub;
       beforeEach(function () {
-        fakeFindOne = function(flow, callback) {
-          callback({}, {flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}})
-        };
-        stub = sinon.stub(Flow, 'findOne', fakeFindOne);
+        stub = sinon.stub(Flow, 'getFlow', function(){
+          return {
+            then: function(resolve) {
+              return resolve({flowId: 'fake', resource: {owner: {uuid: 'some.uuid'}}});
+            }
+          }
+        });
       });
 
       afterEach(function(){
-        Flow.findOne.restore();
-      })
+        Flow.getFlow.restore();
+      });
 
       describe('an authorized request', function () {
         beforeEach(function () {

@@ -27,19 +27,10 @@ module.exports = function (options) {
   };
 
   _this.getAllFlows = function (req, res) {
-    return _this.getFlows(req.user.resource.uuid, function (error, flows) {
-      if (error) {
-        return res.send(500, error);
-      }
+    return Flow.getFlows(req.user.resource.uuid).then(function(flows){
       res.send(flows);
-    });
-  };
-
-  _this.getFlows = function (userUUID, callback) {
-    Flow.find({'resource.owner.uuid': userUUID}, function (err, flows) {
-      callback(err, _.map(flows, function (flow) {
-        return flow.toObject();
-      }));
+    }, function(error){
+      res.send(500, error);
     });
   };
 

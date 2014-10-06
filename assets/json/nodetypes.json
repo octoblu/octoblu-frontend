@@ -714,7 +714,7 @@
     "_id" : "af842668-5197-4181-8052-2ec30cf135f8",
     "category" : "channel",
     "description" : "Salesforce / Force.com",
-    "enabled" : false,
+    "enabled" : true,
     "name" : "SalesForce",
     "skynet" : {
       "type" : "channel",
@@ -761,5 +761,18 @@
     },
     "channelid" : "53e8ea018e3257fb7d6fdae0",
     "type" : "channel:splunk"
+  },
+  {
+    "_id" : "60fda3c0-4d82-11e4-b7c9-f1aa66db0b20",
+    "category" : "channel",
+    "description" : "Stripe",
+    "enabled" : true,
+    "name" : "Stripe",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "stripe"
+    },
+    "channelid" : "channel-stripe",
+    "type" : "channel:stripe"
   }
 ]
