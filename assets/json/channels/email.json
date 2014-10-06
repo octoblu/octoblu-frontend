@@ -22,13 +22,13 @@
           },
           {
             "name": "subject",
-            "displayName": "Subject ( Add data to subject using {{msg.payload.values}} )",
+            "displayName": "Subject ( Add data to subject using {{payload.values}} )",
             "type": "string",
             "style": "body"
           },
           {
             "name": "body",
-            "displayName": "Body ( Add data to body using {{msg.payload.values}} )",
+            "displayName": "Body ( Add data to body using {{payload.values}} )",
             "type": "string",
             "style": "body"
           },

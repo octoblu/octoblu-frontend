@@ -714,7 +714,7 @@
     "_id" : "af842668-5197-4181-8052-2ec30cf135f8",
     "category" : "channel",
     "description" : "Salesforce / Force.com",
-    "enabled" : false,
+    "enabled" : true,
     "name" : "SalesForce",
     "skynet" : {
       "type" : "channel",

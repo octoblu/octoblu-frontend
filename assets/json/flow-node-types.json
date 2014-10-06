@@ -39,20 +39,6 @@
     "formTemplatePath": "/pages/node_forms/demultiplexer_form.html"
   },
   {
-    "name": "equal",
-    "class": "equal",
-    "category" : "operation",
-    "uuid": "2bebd428-4818-48ea-b1f5-88a32199f17b",
-    "type": "operation:equal",
-    "defaults": {
-      "key": "",
-      "value": ""
-    },
-    "input": 1,
-    "output": 1,
-    "formTemplatePath": "/pages/node_forms/equal_form.html"
-  },
-  {
     "name": "function",
     "class": "function",
     "category" : "operation",
@@ -67,7 +53,20 @@
     "formTemplatePath": "/pages/node_forms/function_form.html"
   },
   {
-    "name": "greater-than",
+    "name": "equal",
+    "class": "equal",
+    "category" : "operation",
+    "uuid": "2bebd428-4818-48ea-b1f5-88a32199f17b",
+    "type": "operation:equal",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/equal_form.html"
+  },
+  {
+    "name": "Greater Than",
     "class": "greater-than",
     "category" : "operation",
     "uuid": "7c801bad-4e1d-4ad0-aabd-d1ace2fcc001",
@@ -80,7 +79,20 @@
     "formTemplatePath": "/pages/node_forms/greater_than_form.html"
   },
   {
-    "name": "less-than",
+    "name": "Greater Than or Equal",
+    "class": "greater-than-equal",
+    "category" : "operation",
+    "uuid": "c36c413c-c4df-4c5b-9861-fcd08bc81503",
+    "type": "operation:greater-than-equal",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/greater_than_equal_form.html"
+  },
+  {
+    "name": "Less Than",
     "class": "less-than",
     "category" : "operation",
     "uuid": "c7852f9b-96e2-4f9e-b5b5-d349e32bbf9a",
@@ -91,6 +103,19 @@
     "input": 1,
     "output": 1,
     "formTemplatePath": "/pages/node_forms/less_than_form.html"
+  },
+  {
+    "name": "Less Than or Equal",
+    "class": "less-than-equal",
+    "category" : "operation",
+    "uuid": "e3d81634-2536-427f-b87f-5305916e28db",
+    "type": "operation:less-than-equal",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/less_than_equal_form.html"
   },
   {
     "name": "pluck",
@@ -291,5 +316,17 @@
     "input": 1,
     "output": 1,
     "formTemplatePath": "/pages/node_forms/get_key_form.html"
+  },
+  {
+    "name": "Range",
+    "class": "range",
+    "category" : "operation",
+    "uuid": "54cedc7a-24fd-425c-8f10-898bdc90bc39",
+    "type": "operation:range",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/range_form.html"
   }
 ]
