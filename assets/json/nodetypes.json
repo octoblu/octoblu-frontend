@@ -709,5 +709,57 @@
     },
     "channelid" : "542ce2ad47a930b1280b0d05",
     "type" : "channel:email"
+  },
+  {
+    "_id" : "af842668-5197-4181-8052-2ec30cf135f8",
+    "category" : "channel",
+    "description" : "Salesforce / Force.com",
+    "enabled" : true,
+    "name" : "SalesForce",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "salesforce"
+    },
+    "channelid" : "542ed0142df9c20401f53dcc",
+    "type" : "channel:salesforce"
+  },
+  {
+    "_id" : "37804587-81df-49e6-ab23-38e7d5fba76c",
+    "category" : "channel",
+    "description" : "Amazon Web Services",
+    "enabled" : true,
+    "name" : "AWS",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "aws"
+    },
+    "channelid" : "542ee969b3a9540d7c59d5c2",
+    "type" : "channel:aws"
+  },
+  {
+    "_id" : "3b41a1e3-f8dd-4af0-b560-5513edf34047",
+    "category" : "channel",
+    "description" : "ShareFile",
+    "enabled" : true,
+    "name" : "ShareFile",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "sharefile"
+    },
+    "channelid" : "5430bf6b66ffb0f988307ef9",
+    "type" : "channel:sharefile"
+  },
+  {
+    "_id" : "60fda3c0-4d82-11e4-b7c9-f1aa66db0b20",
+    "category" : "channel",
+    "description" : "Stripe",
+    "enabled" : true,
+    "name" : "Stripe",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "stripe"
+    },
+    "channelid" : "channel-stripe",
+    "type" : "channel:stripe"
   }
 ]
