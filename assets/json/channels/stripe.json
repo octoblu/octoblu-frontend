@@ -242,6 +242,220 @@
           }
         ],
         "url": "https://api.stripe.com/v1/customers/:customer_id/cards/:card_id"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://stripe.com/docs/api#create_charge",
+          "t": "Creates a new charge"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/charges",
+        "path": "/charges",
+        "params": [
+          {
+            "name": "amount",
+            "style": "body",
+            "type": "number",
+            "value": "50",
+            "required": "true"
+          },
+          {
+            "name": "currency",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "customer",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[number]",
+            "displayName": "card number",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "card[exp_month]",
+            "displayName" : "card expiration month",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "card[exp_year]",
+            "displayName" : "card expiration year",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "card[cvc]",
+            "displayName" : "card cvc",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[name]",
+            "displayName" : "card name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_line1]",
+            "displayName": "card address line 1",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_line2]",
+            "displayName": "card address line 2",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_city]",
+            "displayName": "address city",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_zip]",
+            "displayName": "card address zip",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_state]",
+            "displayName": "card address state",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "card[address_country]",
+            "displayName": "card address country",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "capture",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "statement_description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "receipt_email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.stripe.com/v1/charges/:charge_id/capture"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "https://stripe.com/docs/api#retrieve_charge",
+          "t": "Retrieves the details of an existing charge"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/charges/:charge_id",
+        "path": "/charges/:charge_id",
+        "params": [
+          {
+            "name": ":charge_id",
+            "displayName" : "Charge ID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.stripe.com/v1/charges/:charge_id"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://api.stripe.com/v1/charges/{CHARGE_ID}/capture",
+          "t": "Capture an existing uncaptured charge"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/charges/:charge_id/capture",
+        "path": "/charges/:charge_id/capture",
+        "params": [
+          {
+            "name": ":charge_id",
+            "displayName" : "charge id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "amount",
+            "displayName" : "amount",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "receipt_email",
+            "displayName" : "receipt email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://api.stripe.com/v1/charges/:charge_id/capture"
       }
     ]
   }
