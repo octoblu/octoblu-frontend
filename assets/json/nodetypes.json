@@ -762,7 +762,7 @@
     "channelid" : "53e8ea018e3257fb7d6fdae0",
     "type" : "channel:splunk"
   },
-  {
+	{
     "_id" : "60fda3c0-4d82-11e4-b7c9-f1aa66db0b20",
     "category" : "channel",
     "description" : "Stripe",
@@ -774,5 +774,18 @@
     },
     "channelid" : "channel-stripe",
     "type" : "channel:stripe"
+  },
+  {
+    "_id" : "da1a065b-6a6d-4f02-9511-1204fd8b0d80",
+    "category" : "channel",
+    "description" : "QuickBooks",
+    "enabled" : true,
+    "name" : "QuickBooks",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "quickbooks"
+    },
+    "channelid" : "54332209575a54b586a6b4c0",
+    "type" : "channel:quickbooks"
   }
 ]

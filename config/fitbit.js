@@ -10,7 +10,6 @@ CONFIG.passReqToCallback = true;
 var fitbitStrategy = new FitbitStrategy(CONFIG, function(req, accessToken, secret, profile, done){
   var channelId = new mongoose.Types.ObjectId('52f97cc5a9909344830004ec');
 
-  console.log('sec', accessToken, secret);
   req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken, secret: secret});
   console.log(req.user);
   req.user.save(function (err) {
