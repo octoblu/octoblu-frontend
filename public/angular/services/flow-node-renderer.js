@@ -54,7 +54,6 @@ angular.module('octobluApp')
     };
 
     var inputPortLeftSideX = function(node) {
-      console.log(node.x + FlowNodeDimensions.width - FlowNodeDimensions.portWidth);
       return node.x + FlowNodeDimensions.width - FlowNodeDimensions.portWidth;
     };
 
