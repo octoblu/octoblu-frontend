@@ -1,26 +1,26 @@
 <div class="row">
   <div class="col-xs-12 col-md-offset-4 col-md-4">
-    <h2 class="text-center">To Gateway:</h2>
+    <h2 class="text-center">To Genblu:</h2>
   </div>
 </div>
 
 <div class="row row-centered">
-  <div ng-repeat="gateway in availableGateways | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered">
+  <div ng-repeat="genblu in genblus | orderBy: 'name'" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered">
     <h4 class="text-center">
-      <a href ui-sref="ob.nodewizard.addsubdevice.form({gatewayId: gateway.uuid})" class="">
-        <div title="{{gateway.name}}" class="spiral-thumbnail animated-popout"></div>
-        <strong class="muted-link">{{gateway.name}}</strong>
+      <a href ui-sref="ob.nodewizard.addsubdevice.form({genbluId: genblu.uuid})" class="">
+        <div title="{{genblu.name}}" class="spiral-thumbnail animated-popout"></div>
+        <strong class="muted-link">{{genblu.name}}</strong>
       </a>
     </h4>
   </div>
   <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-centered">
     <h4 class="text-center">
-      <a href ui-sref="ob.nodewizard.addsubdevice.addGateway" class="">
-        <div title="{{gateway.name}}" class="ghost-thumbnail animated-popout">
+      <a href ui-sref="ob.nodewizard.addsubdevice.addGenblu" class="">
+        <div title="{{genblu.name}}" class="ghost-thumbnail animated-popout">
           <div>
             <i class="fa fa-2x fa-plus"></i>
             <br>
-            Add Gateway
+            Add Genblu
           </div>
         </div>
         <br>

@@ -4,18 +4,13 @@ angular.module('octobluApp')
     .controller('addSubdeviceAddGatewayController', function($scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
         $scope.newDevice = {};
 
-        NodeTypeService.getNodeTypes().then(function(nodeTypes){
-            $scope.nodeType = _.findWhere(nodeTypes, {category: 'gateway'});
-        })
-        .then(function(){
-            return deviceService.getUnclaimedGateways();
-        })
-        .then(function(unclaimedDevices){
-            _.each(unclaimedDevices, function(device){
-              device.label = device.uuid + '(' + (device.type || 'device') + ')';
-            });
-            $scope.newDevice.unclaimedDevices = unclaimedDevices;
-            $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
+        NodeTypeService.getNodeTypeByType('device:genblu').then(function(nodeType){
+          $scope.nodeType = nodeType;
+        });
+
+        deviceService.getUnclaimed('device:genblu').then(function(unclaimedDevices){
+          $scope.newDevice.unclaimedDevices = unclaimedDevices;
+          $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
         });
 
         $scope.addDevice = function() {
@@ -23,9 +18,9 @@ angular.module('octobluApp')
           delete $scope.errorMessage;
 
           deviceOptions = {
-            type: $scope.nodeType.skynet.type,
+            type:    $scope.nodeType.skynet.type,
             subtype: $scope.nodeType.skynet.subtype,
-            name: $scope.newDevice.name
+            name:    $scope.newDevice.name
           };
 
           if($scope.newDevice.selectedDevice) {

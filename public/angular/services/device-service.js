@@ -71,6 +71,12 @@ angular.module('octobluApp')
                 });
             },
 
+            getOnlineGenblus: function(){
+                return service.getDevices().then(function(devices){
+                    return _.where(devices, {type: 'device:genblu', online: true});
+                });
+            },
+
             registerDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer();
@@ -114,7 +120,7 @@ angular.module('octobluApp')
             updateDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer();
-                
+
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.update(device, function () {
                         defer.resolve(device);
@@ -143,7 +149,13 @@ angular.module('octobluApp')
                     return service.getUnclaimedGateways();
                 }
 
-                return service.getUnclaimedDevices();
+                if(nodeType === 'device') {
+                    return service.getUnclaimedDevices();
+                }
+
+                return service.getUnclaimedNodes().then(function(devices){
+                    return _.where(devices, {type: nodeType});
+                });
             },
 
             getUnclaimedDevices: function () {
