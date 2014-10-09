@@ -545,7 +545,7 @@
 		"_id" : "53c9b83af400e177dca325c9",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Dropbox",
 		"skynet" : {
 			"type" : "channel",
