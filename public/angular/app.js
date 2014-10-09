@@ -465,13 +465,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('ob.nodewizard.addsubdevice.addGenblu', {
         url: '/add-genblu',
-        controller: 'addSubdeviceAddGatewayController',
+        controller: 'AddSubdeviceAddGenbluController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
       .state('ob.nodewizard.addsubdevice.selectgateway', {
         url: '',
-        controller: 'addSubdeviceSelectGatewayController',
-        templateUrl: '/pages/node-wizard/add-subdevice/select-gateway.html'
+        controller: 'AddSubdeviceSelectGenbluController',
+        templateUrl: '/pages/node-wizard/add-subdevice/select-genblu.html'
       })
       .state('ob.nodewizard.addsubdevice.form', {
         url: '/genblus/:genbluId',

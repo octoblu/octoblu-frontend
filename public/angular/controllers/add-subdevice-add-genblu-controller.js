@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('addSubdeviceAddGatewayController', function($scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
+    .controller('AddSubdeviceAddGenbluController', function($scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
         $scope.newDevice = {};
 
         NodeTypeService.getNodeTypeByType('device:genblu').then(function(nodeType){
