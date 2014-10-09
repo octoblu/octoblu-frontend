@@ -3,20 +3,29 @@ angular.module('octobluApp')
   'use strict';
 
   channelService.getById($scope.node.channelid).then(function(channel){
-    $scope.resources = channel.application.resources;
+    $scope.resources = _.filter(channel.application.resources, function(resource){
+      if(resource.enabled === false){
+        return false;
+      }
+      return true;
+    });
   });
 
   $scope.getEndpointLabel = function(resource) {
     return resource.httpMethod + ' ' + resource.path;
-  }
+  };
 
   var selectEndpoint = function(){
     var node, resources, selectedEndpoint;
 
     node = $scope.node;
-    resources = $scope.resources
+    resources = $scope.resources;
     selectedEndpoint = _.findWhere(resources, {url: node.url, httpMethod: node.method});
     $scope.selectedEndpoint = selectedEndpoint || _.first(resources);
+  };
+
+  var filterParamsByStyle = function(params, style){
+    return _.where(params, {style: style});
   };
 
   var updateNodeWithSelectedEndpoint = function(){
@@ -26,9 +35,9 @@ angular.module('octobluApp')
     $scope.node.url    = $scope.selectedEndpoint.url;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
 
-    $scope.queryParamDefinitions = _.where($scope.selectedEndpoint.params, {style: 'query'});
-    $scope.bodyParamDefinitions  = _.where($scope.selectedEndpoint.params, {style: 'body'})
-    $scope.urlParamDefinitions   = _.where($scope.selectedEndpoint.params, {style: 'url'})
+    $scope.queryParamDefinitions = filterParamsByStyle($scope.selectedEndpoint.params, 'query');
+    $scope.bodyParamDefinitions  = filterParamsByStyle($scope.selectedEndpoint.params, 'body');
+    $scope.urlParamDefinitions   = filterParamsByStyle($scope.selectedEndpoint.params, 'url');
   };
 
   $scope.$watch('resources',   selectEndpoint);

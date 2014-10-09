@@ -276,7 +276,7 @@
 		"_id" : "53c9b833f400e177dca325b5",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "LinkedIn",
 		"skynet" : {
 			"type" : "channel",
