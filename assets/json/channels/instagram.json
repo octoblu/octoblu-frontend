@@ -7,15 +7,22 @@
     "base": "https://api.instagram.com/v1",
     "resources": [
       {
-        "path": "/users/user-id",
-        "displayName": "/users/user-id",
+        "path": "/users/:user-id",
+        "displayName": "/users/:user-id",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/:user-id"
       },
       {
         "path": "/users/self/feed",
@@ -25,97 +32,73 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "COUNT"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_ID"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_ID"
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_id"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "max_id"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/self/feed"
       },
       {
-        "path": "/users/user-id/media/recent",
-        "displayName": "/users/user-id/media/recent",
+        "path": "/users/:user-id/media/recent",
+        "displayName": "/users/:user-id/media/recent",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "COUNT"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_TIMESTAMP"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_TIMESTAMP"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_ID"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_ID"
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
-      },
-      {
-        "path": "/users/user-id/media/recent",
-        "displayName": "/users/user-id/media/recent",
-        "doc": {
-          "url": "http://instagram.com/developer/endpoints/users/"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "COUNT"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_TIMESTAMP"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_TIMESTAMP"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_ID"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "CLIENT_ID",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_ID"
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "max_timestamp"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_timestamp"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_id"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "max_id"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/:user-id/media/recent"
       },
       {
         "path": "/users/self/media/liked",
@@ -125,21 +108,19 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "COUNT"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_LIKE_ID"
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "max_like_id"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/self/media/liked"
       },
       {
         "path": "/users/search",
@@ -149,38 +130,55 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "Q"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "COUNT"
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "q"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/search"
       },
       {
-        "path": "/users/user-id/follows",
-        "displayName": "/users/user-id/follows",
+        "path": "/users/:user-id/follows",
+        "displayName": "/users/:user-id/follows",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/:user-id/follows"
       },
       {
-        "path": "/users/user-id/followed-by",
-        "displayName": "/users/user-id/followed-by",
+        "path": "/users/:user-id/followed-by",
+        "displayName": "/users/:user-id/followed-by",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/:user-id/followed-by"
       },
       {
         "path": "/users/self/requested-by",
@@ -190,60 +188,74 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/self/requested-by"
       },
       {
-        "path": "/users/user-id/relationship",
-        "displayName": "/users/user-id/relationship",
+        "path": "/users/:user-id/relationship",
+        "displayName": "/users/:user-id/relationship",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/:user-id/relationship"
       },
       {
-        "path": "/users/user-id/relationship",
-        "displayName": "/users/user-id/relationship",
+        "path": "/users/:user-id/relationship",
+        "displayName": "/users/:user-id/relationship",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "POST",
         "curl": "curl -X",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "ACTION"
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":user-id",
+            "displayName": "User ID"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "action"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/users/:user-id/relationship"
       },
       {
-        "path": "/media/media-id",
-        "displayName": "/media/media-id",
+        "path": "/media/:media-id",
+        "displayName": "/media/:media-id",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/users/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":media-id",
+            "displayName": "Media ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/:media-id"
       },
       {
         "path": "/media/shortcode/shortcode",
@@ -254,7 +266,7 @@
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "url": "https://api.instagram.com/v1/media/shortcode/shortcode"
       },
       {
         "path": "/media/search",
@@ -264,30 +276,36 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "LAT",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_TIMESTAMP"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "LNG",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_TIMESTAMP"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "DISTANCE"
-        }],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "lat",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_timestamp"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "lng",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "max_timestamp"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "distance"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/search"
       },
       {
         "path": "/media/popular",
@@ -298,131 +316,171 @@
         "httpMethod": "GET",
         "curl": "curl -X ",
         "params": [],
-        "url": "http://instagram.com/developer/endpoints/users/"
+        "url": "https://api.instagram.com/v1/media/popular"
       },
       {
-        "path": "/media/media-id/comments",
-        "displayName": "/media/media-id/comments",
+        "path": "/media/:media-id/comments",
+        "displayName": "/media/:media-id/comments",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/comments/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/comments/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":media-id",
+            "displayName": "Media ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/:media-id/comments"
       },
       {
-        "path": "/media/media-id/comments",
-        "displayName": "/media/media-id/comments",
+        "path": "/media/:media-id/comments",
+        "displayName": "/media/:media-id/comments",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/comments/"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        },{
-          "style": "body",
-          "type": "string",
-          "name": "TEXT"
-        }],
-        "url": "http://instagram.com/developer/endpoints/comments/"
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "TEXT"
+          },
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":media-id",
+            "displayName": "Media ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/:media-id/comments"
       },
       {
-        "path": "/media/media-id/comments/comment-id",
-        "displayName": "/media/media-id/comments/comment-id",
+        "path": "/media/:media-id/comments/comment-id",
+        "displayName": "/media/:media-id/comments/comment-id",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/comments/"
         },
         "httpMethod": "Delete",
         "curl": "curl -X ",
-        "params": [{
-          "style": "",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        }],
-        "url": "http://instagram.com/developer/endpoints/comments/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":media-id",
+            "displayName": "Media ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/:media-id/comments/comment-id"
       },
       {
-        "path": "/media/media-id/likes",
-        "displayName": "/media/media-id/likes",
+        "path": "/media/:media-id/likes",
+        "displayName": "/media/:media-id/likes",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/likes/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/likes/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":media-id",
+            "displayName": "Media ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/:media-id/likes"
       },
       {
-        "path": "/media/media-id/likes",
-        "displayName": "/media/media-id/likes",
+        "path": "/media/:media-id/likes",
+        "displayName": "/media/:media-id/likes",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/likes/"
         },
         "httpMethod": "POST",
         "curl": "curl -X ",
-        "params": [{
-          "style": "body",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        }],
-        "url": "http://instagram.com/developer/endpoints/likes/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":media-id",
+            "displayName": "Media ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/:media-id/likes"
       },
       {
-        "path": "/media/media-id/likes",
-        "displayName": "/media/media-id/likes",
+        "path": "/media/:media-id/likes",
+        "displayName": "/media/:media-id/likes",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/likes/"
         },
         "httpMethod": "DELETE",
         "curl": "curl -X ",
-        "params": [{
-          "style": "",
-          "type": "string",
-          "name": "ACCESS_TOKEN",
-          "required": true
-        }],
-        "url": "http://instagram.com/developer/endpoints/likes/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":media-id",
+            "displayName": "Media ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/media/:media-id/likes"
       },
       {
-        "path": "/tags/tag-name",
-        "displayName": "/tags/tag-name",
+        "path": "/tags/:tag-name",
+        "displayName": "/tags/:tag-name",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/tags/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/tags/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":tag-name",
+            "displayName": "Tag Name"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/tags/:tag-name"
       },
       {
-        "path": "/tags/tag-name/media/recent",
-        "displayName": "/tags/tag-name/media/recent",
+        "path": "/tags/:tag-name/media/recent",
+        "displayName": "/tags/:tag-name/media/recent",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/tags/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "COUNT"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_TAG_ID"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MAX_TAG_ID"
-        }],
-        "url": "http://instagram.com/developer/endpoints/tags/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":tag-name",
+            "displayName": "Tag Name"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_tag_id"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "max_tag_id"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/tags/:tag-name/media/recent"
       },
       {
         "path": "/tags/search",
@@ -432,50 +490,70 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "Q"
-        }],
-        "url": "http://instagram.com/developer/endpoints/tags/"
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "q"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/tags/search"
       },
       {
-        "path": "/locations/location-id",
-        "displayName": "/locations/location-id",
+        "path": "/locations/:location-id",
+        "displayName": "/locations/:location-id",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/locations/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [],
-        "url": "http://instagram.com/developer/endpoints/locations/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":location-id",
+            "displayName": "Location ID"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/locations/:location-id"
       },
       {
-        "path": "/locations/location-id/media/recent",
-        "displayName": "/locations/location-id/media/recent",
+        "path": "/locations/:location-id/media/recent",
+        "displayName": "/locations/:location-id/media/recent",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/locations/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_TIMESTAMP"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_ID"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "MAX_ID"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "MAX_TIMESTAMP"
-        }],
-        "url": "http://instagram.com/developer/endpoints/locations/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":location-id",
+            "displayName": "Location ID"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_timestamp"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_id"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "max_id"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "max_timestamp"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/locations/:location-id/media/recent"
       },
       {
         "path": "/locations/search",
@@ -485,74 +563,90 @@
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "DISTANCE"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "FACEBOOK_PLACES_ID"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "FOURSQUARE_ID"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "LAT",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "LNG",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "FOURSQUARE_V2_ID"
-        }],
-        "url": "http://instagram.com/developer/endpoints/locations/"
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "distance"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "facebook_places_id"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "foursquare_id"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "lat",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "lng",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "foursquare_v2_id"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/locations/search"
       },
       {
-        "path": "/geographies/geo-id/media/recent",
-        "displayName": "/geographies/geo-id/media/recent",
+        "path": "/geographies/:geo-id/media/recent",
+        "displayName": "/geographies/:geo-id/media/recent",
         "doc": {
           "url": "http://instagram.com/developer/endpoints/geographies/"
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "COUNT"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "MIN_ID"
-          }],
-        "url": "http://instagram.com/developer/endpoints/geographies/"
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":geo-id",
+            "displayName": "Geo ID"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "min_id"
+          }
+        ],
+        "url": "https://api.instagram.com/v1/geographies/:geo-id/media/recent"
       }
-      ]
+    ]
   },
   "auth_strategy": "oauth",
-  "isPassport" : true,
+  "isPassport": true,
   "oauth": {
-    "development" : {
+    "development": {
       "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "http://localhost:8080/api/oauth/instagram/callback",
       "tokenMethod": "access_token_query"
     },
-    "staging" : {
+    "staging": {
       "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "https://staging.octoblu.com/api/oauth/instagram/callback",
       "tokenMethod": "access_token_query"
     },
-    "production" : {
+    "production": {
       "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
       "callbackURL": "https://app.octoblu.com/api/oauth/instagram/callback",
       "tokenMethod": "access_token_query"
     }
