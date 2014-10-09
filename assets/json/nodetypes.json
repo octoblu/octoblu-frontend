@@ -787,5 +787,18 @@
     },
     "channelid" : "54332209575a54b586a6b4c0",
     "type" : "channel:quickbooks"
+  },
+  {
+    "_id" : "3e1d77cf-b5fd-467d-903b-58ae5245348a",
+    "category" : "channel",
+    "description" : "EchoSign",
+    "enabled" : true,
+    "name" : "EchoSign",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "echosign"
+    },
+    "channelid" : "53dfcb87626a43a44f966d0a",
+    "type" : "channel:echosign"
   }
 ]

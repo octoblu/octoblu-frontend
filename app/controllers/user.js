@@ -7,7 +7,6 @@ var _ = require('lodash'),
     User = mongoose.model('User'),
     isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request');
-var ObjectId = require('mongoose').Types.ObjectId;
 var uuid = require('node-uuid');
 
 module.exports = function (app) {
@@ -36,7 +35,7 @@ module.exports = function (app) {
             token = req.body.token,
             custom_tokens = req.body.custom_tokens;
 
-        user.addOrUpdateApiByChannelId(req.params.id, 'simple', key, token, null, null, custom_tokens);
+        user.overwriteOrAddApiByChannelId(req.params.id, {authtype: 'oauth', key : key, token : token, custom_tokens : custom_tokens});
         user.save(function (err) {
             if (!err) {
                 res.json(user);
@@ -54,7 +53,7 @@ module.exports = function (app) {
             key = req.body.key,
             token = req.body.token,
             custom_tokens = req.body.custom_tokens;
-        user.addOrUpdateApiByChannelId(req.params.channelid, 'none', null, null, null, null, null);
+        user.overwriteOrAddApiByChannelId(req.params.id, {authtype: 'none' });
         user.save(function (err) {
             if (!err) {
                 console.log(user);

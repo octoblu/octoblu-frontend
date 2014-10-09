@@ -11,11 +11,11 @@ module.exports = function(app, passport) {
 
     // Generic UUID / Token for SkyNet API calls
     var conn = skynet.createConnection({
-        "uuid"     : "9b47c2f1-9d9b-11e3-a443-ab1cdce04787",
-        "token"    : "pxdq6kdnf74iy66rhuvdw9h5d2f0f6r",
-        "server"   : config.skynet.host,
-        "port"     : config.skynet.port,
-        "protocol" : "websocket"
+        'uuid'     : '9b47c2f1-9d9b-11e3-a443-ab1cdce04787',
+        'token'    : 'pxdq6kdnf74iy66rhuvdw9h5d2f0f6r',
+        'server'   : config.skynet.host,
+        'port'     : config.skynet.port,
+        'protocol' : 'websocket'
     });
 
     var ChannelAWSAuthController = require('./controllers/channel-aws-auth-controller');
@@ -110,6 +110,9 @@ module.exports = function(app, passport) {
 
     var QuickBooksContoller = require('./controllers/quickbooks-controller');
     var quickBooksController = new QuickBooksContoller();
+
+    var EchoSignController = require('./controllers/echosign-controller');
+    var echoSignController = new EchoSignController();
 
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
@@ -251,6 +254,8 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
+
+            app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);

@@ -8,7 +8,8 @@ angular.module('octobluApp')
     'meshblu' :'ob.nodewizard.addchannel.meshblu',
     'none'    : 'ob.nodewizard.addchannel.noauth',
     'oauth'   : 'ob.nodewizard.addchannel.oauth',
-    'simple'  : 'ob.nodewizard.addchannel.simple'
+    'simple'  : 'ob.nodewizard.addchannel.simple',
+    'echosign'  : 'ob.nodewizard.addchannel.echosign'
   };
 
   channelService.getChannelActivationById(nodeType.channelid).then(function(channelActivation){

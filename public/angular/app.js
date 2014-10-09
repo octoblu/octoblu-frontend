@@ -427,6 +427,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
       })
+      .state('ob.nodewizard.addchannel.echosign', {
+        url: '/echosign',
+        controller: 'addChannelEchoSignController',
+        templateUrl: '/pages/node-wizard/add-channel/echosign.html'
+      })
       .state('ob.nodewizard.addchannel.basic', {
         url: '/basic',
         controller: 'addChannelBasicController',
