@@ -199,14 +199,14 @@
 	},
 	{
 		"_id" : "53c9b831f400e177dca325b0",
-		"category" : "gateway",
-		"description" : "Skynet Hub",
+		"category" : "device",
+		"description" : "Meshblu device connection manager",
 		"enabled" : true,
-		"name" : "Gateblu",
+		"name" : "Genblu",
 		"skynet" : {
-			"type" : "gateway"
+			"type" : "device:genblu"
 		},
-		"type" : "device:gateway"
+		"type" : "device:genblu"
 	},
 	{
 		"_id" : "53c9b832f400e177dca325b3",
