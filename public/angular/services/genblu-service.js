@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('GenbluService', function (deviceService, $q) {
+.service('GenbluService', function (deviceService, $q, skynetService) {
   'use strict';
   var self = this;
 
@@ -11,7 +11,14 @@ angular.module('octobluApp')
 
   var updateGenblu = function(genblu){
     return deviceService.updateDevice(genblu).then(function(genblu){
-      // Here is where the topic: refresh message to genblu will go
+      skynetService.getSkynetConnection().then(function(conn){
+        conn.message({
+          devices: genblu.uuid,
+          topic: 'refresh',
+          payload: genblu
+        });
+      });
+      return;
     });
   };
 
