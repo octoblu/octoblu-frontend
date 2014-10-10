@@ -59,10 +59,22 @@ angular.module('octobluApp')
                 });
             },
 
+            getDeviceByUUIDAndToken: function(uuid, token){
+                var deferred = $q.defer();
+
+                skynetPromise.then(function(skynetConnection){
+                    skynetConnection.devices({uuid:uuid, token:token}, function(data){
+                        deferred.resolve(_.first(data.devices));
+                    }, deferred.reject);
+                });
+
+                return deferred.promise;
+            },
+
             refreshDevices: function(){
                 return service.getDevices(true).then(function(){
                     return undefined;
-                })
+                });
             },
 
             getGateways: function(){
