@@ -650,7 +650,7 @@
 		"_id" : "53c9b83df400e177dca325d1",
 		"category" : "channel",
 		"description" : "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "App.net",
 		"skynet" : {
 			"type" : "channel",
