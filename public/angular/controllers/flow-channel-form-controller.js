@@ -3,12 +3,22 @@ angular.module('octobluApp')
   'use strict';
 
   channelService.getById($scope.node.channelid).then(function(channel){
-    $scope.resources = _.filter(channel.application.resources, function(resource){
+    var resources = _.filter(channel.application.resources, function(resource){
       if(resource.enabled === false){
         return false;
       }
       return true;
     });
+    resources.sort(function(a, b){
+      if(a.path < b.path){
+        return -1;
+      }
+      if(a.path > b.path){
+        return 1;
+      }
+      return 0;
+    });
+    $scope.resources = resources;
   });
 
   $scope.getEndpointLabel = function(resource) {
