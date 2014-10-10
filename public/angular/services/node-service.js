@@ -4,8 +4,9 @@ angular.module('octobluApp')
 
     var self = this;
 
-    self.getNodes = function () {
-      return $http.get('/api/nodes', {cache : true})
+    self.getNodes = function (options) {
+      options = options || {};
+      return $http.get('/api/nodes', {cache : options.cache})
         .then(function (results) {
           var devices = _.map(results.data, function(device){
             return deviceService.addLogoUrl(device);
@@ -32,9 +33,9 @@ angular.module('octobluApp')
     };
 
     self.getSubdeviceNodes = function() {
-      return self.getNodes().then(function(results){
+      return self.getNodes({cache: true}).then(function(results){
         return _.filter(results, {category: 'subdevice'});
-      })
+      });
     };
 
     self.subdevicesToDevices = function(gatewayUuid, gatewayConfig) {
@@ -54,7 +55,7 @@ angular.module('octobluApp')
           newSubdevice = deviceService.addLogoUrl(newSubdevice);
 
           newSubdevice.plugin = _.findWhere(gatewayConfig.plugins, { name: subdevice.type });
-          
+
           return newSubdevice;
       });
     };
