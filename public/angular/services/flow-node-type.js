@@ -10,20 +10,13 @@ angular.module('octobluApp')
     return _.defaults({id: UUIDService.v1(), resourceType: 'flow-node'}, defaults, flowNodeType);
   };
 
-  self.  getFlowNodeType  = function(type){
+  self.getFlowNodeType  = function(type){
     return self.getFlowNodeTypes().then(function(flowNodeTypes){
       return _.findWhere(flowNodeTypes, {type: type});
     });
   };
 
-  self.getFlowNodeTypes = function () {
-    return $q.all([getServerSideFlowNodeTypes(), getSubdeviceFlowNodeTypes()])
-      .then(function(results){
-        return _.flatten(results);
-      });
-  };
-
-  function getServerSideFlowNodeTypes() {
+  self.getFlowNodeTypes = function() {
     return $http.get('/api/flow_node_types', {cache: true}).then(function(res){
       return _.map(res.data, function(data){
         if (data && data.type) {
@@ -32,7 +25,7 @@ angular.module('octobluApp')
         return data;
       });
     });
-  }
+  };
 
   function getSubdeviceFlowNodeTypes() {
     return NodeService.getSubdeviceNodes().then(function(subdevices){
