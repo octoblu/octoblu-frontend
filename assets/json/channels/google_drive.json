@@ -29,98 +29,96 @@
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
             "type" : "string",
-            "style" : "query",
-            "name" : "fileId"
+            "style" : "url",
+            "name" : ":file-id",
+            "displayName" : "File ID"
           },
           {
-            "required" : "false",
-            "value" : "",
+            "required" : false,
             "type" : "string",
             "style" : "query",
             "name" : "projection"
           },
           {
-            "required" : "false",
-            "value" : "",
+            "required" : false,
             "type" : "string",
             "style" : "query",
             "name" : "updateViewedDate"
           }
         ],
-        "path" : "/files/fileId",
-        "displayName" : "/files/fileId",
+        "path" : "/files/:file-id",
+        "displayName" : "/files/:file-id",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/get"
         },
         "httpMethod" : "GET",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id"
       },
       {
         "params" : [
           {
-            "required" : "true",
+            "required" : true,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "uploadType"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "convert"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "ocr"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "ocrLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "pinned"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextTrackName"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "useContentAsIndexableText"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
@@ -130,7 +128,7 @@
         "path" : "/files",
         "displayName" : "/files",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/insert"
@@ -141,372 +139,344 @@
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
             "type" : "string",
-            "style" : "body",
-            "name" : "fileId"
+            "style" : "url",
+            "name" : ":file-id",
+            "displayName" : "File ID"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "addParents"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "convert"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "newRevision"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "ocr"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "ocrLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "pinned"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "removeParents"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "setModifiedDate"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextTrackName"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "updateViewedDate"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "useContentAsIndexableText"
           }
         ],
-        "path" : "/files/fileId",
-        "displayName" : "/files/fileId",
+        "path" : "/files/:file-id",
+        "displayName" : "/files/:file-id",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/patch",
           "t" : "patch"
         },
         "httpMethod" : "PUT",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id"
       },
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
             "type" : "string",
-            "style" : "body",
-            "name" : "fileId"
+            "style" : "url",
+            "name" : ":file-id",
+            "displayName" : "File ID"
           },
           {
-            "required" : "true",
+            "required" : true,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "uploadType"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "addParents"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "convert"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "newRevision"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "ocr"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "ocrLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "pinned"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "removeParents"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "setModifiedDate"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextTrackName"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "updateViewedDate"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "useContentAsIndexableText"
           }
         ],
-        "path" : "/files/fileId",
-        "displayName" : "/files/fileId",
+        "path" : "/files/:file-id",
+        "displayName" : "/files/:file-id",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/update"
         },
         "httpMethod" : "PUT",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id"
       },
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
             "type" : "string",
-            "style" : "body",
-            "name" : "fileId"
+            "style" : "url",
+            "name" : ":file-id",
+            "displayName" : "File ID"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "convert"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "ocr"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "ocrLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "body",
             "name" : "pinned"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextLanguage"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "timedTextTrackName"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "body",
             "name" : "visibility"
-          },
-          {
-            "required" : "false",
-            "value" : "",
-            "type" : "string",
-            "style" : "",
-            "name" : ""
           }
         ],
-        "path" : "/files/fileId/copy",
-        "displayName" : "/files/fileId/copy",
+        "path" : "/files/:file-id/copy",
+        "displayName" : "/files/:file-id/copy",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/copy"
         },
         "httpMethod" : "POST",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/copy"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/copy"
       },
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
             "type" : "string",
-            "style" : "",
-            "name" : "fileId"
-          },
-          {
-            "required" : "false",
-            "value" : "",
-            "type" : "string",
-            "style" : "",
-            "name" : ""
-          },
-          {
-            "required" : "false",
-            "value" : "",
-            "type" : "string",
-            "style" : "",
-            "name" : ""
-          },
-          {
-            "required" : "false",
-            "value" : "",
-            "type" : "string",
-            "style" : "",
-            "name" : ""
+            "style" : "url",
+            "name" : ":file-id",
+            "displayName" : "File ID"
           }
         ],
-        "path" : "/files/fileId",
-        "displayName" : "/files/fileId",
+        "path" : "/files/:file-id",
+        "displayName" : "/files/:file-id",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/delete"
         },
         "httpMethod" : "DELETE",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id"
       },
       {
         "params" : [
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
             "name" : "corpus"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "number",
             "style" : "query",
             "name" : "maxResults"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
             "name" : "pageToken"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
             "name" : "projection"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
@@ -516,7 +486,7 @@
         "path" : "/files",
         "displayName" : "/files",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/list"
@@ -527,89 +497,89 @@
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
             "type" : "string",
-            "style" : "body",
-            "name" : "fileId"
+            "style" : "url",
+            "name" : ":file-id",
+            "displayName" : "File ID"
           }
         ],
-        "path" : "/files/fileId/touch",
-        "displayName" : "/files/fileId/touch",
+        "path" : "/files/:file-id/touch",
+        "displayName" : "/files/:file-id/touch",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/touch"
         },
         "httpMethod" : "POST",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/touch"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/touch"
       },
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
+            "displayName" : "File ID",
             "type" : "string",
             "style" : "body",
-            "name" : "fileId"
+            "name" : ":file-id"
           }
         ],
-        "displayName" : "/files/fileId/trash",
-        "path" : "/files/fileId/trash",
+        "displayName" : "/files/:file-id/trash",
+        "path" : "/files/:file-id/trash",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/trash"
         },
         "httpMethod" : "POST",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/trash"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/trash"
       },
       {
         "params" : [
           {
-            "required" : "true",
+            "required" : true,
             "value" : "",
             "type" : "string",
             "style" : "query",
-            "name" : "fileId"
+            "name" : ":file-id"
           }
         ],
-        "path" : "files/fileId/untrash",
-        "displayName" : "files/fileId/untrash",
+        "path" : "/files/:file-id/untrash",
+        "displayName" : "/files/:file-id/untrash",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "httpMethod" : "GET",
-        "url" : "https://www.googleapis.com/drive/v2files/fileId/untrash"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/untrash"
       },
       {
         "params" : [
           {
-            "required" : "true",
+            "required" : true,
             "value" : "",
             "type" : "string",
             "style" : "body",
-            "name" : "fileId"
+            "name" : ":file-id"
           }
         ],
-        "path" : "/files/fileId/watch",
-        "displayName" : "/files/fileId/watch",
+        "path" : "/files/:file-id/watch",
+        "displayName" : "/files/:file-id/watch",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/watch"
         },
         "httpMethod" : "POST",
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/watch"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/watch"
       },
       {
         "path" : "/files/trash",
         "displayName" : "/files/trash",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/files/emptyTrash"
@@ -620,21 +590,21 @@
       {
         "params" : [
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
             "name" : "includeSubscribed"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
             "name" : "maxChangeIdCount"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
@@ -644,7 +614,7 @@
         "path" : "/about",
         "displayName" : "/about",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/about/get"
@@ -655,56 +625,56 @@
       {
         "params" : [
           {
-            "required" : "true",
-            "value" : "",
+            "required" : true,
+            "displayName" : "Change ID",
             "type" : "string",
-            "style" : "query",
-            "name" : "changeId"
+            "style" : "url",
+            "name" : ":change-id"
           }
         ],
-        "path" : "/changes/changeId",
-        "displayName" : "/changes/changeId",
+        "path" : "/changes/:change-id",
+        "displayName" : "/changes/:change-id",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/changes/get"
         },
         "httpMethod" : "GET",
-        "url" : "https://www.googleapis.com/drive/v2/changes/changeId"
+        "url" : "https://www.googleapis.com/drive/v2/changes/:change-id"
       },
       {
         "params" : [
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "query",
             "name" : "includeDeleted"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "boolean",
             "style" : "query",
             "name" : "includeSubscribed"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "number",
             "style" : "query",
             "name" : "maxResults"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
             "name" : "pageToken"
           },
           {
-            "required" : "false",
+            "required" : false,
             "value" : "",
             "type" : "string",
             "style" : "query",
@@ -714,7 +684,7 @@
         "path" : "/changes",
         "displayName" : "/changes",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/changes/list"
@@ -726,7 +696,7 @@
         "path" : "/changes/watch",
         "displayName" : "/changes/watch",
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "doc" : {
           "url" : "https://developers.google.com/drive/v2/reference/changes/watch"
@@ -740,27 +710,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/children/delete"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/folderId/children/childId",
-        "path" : "/files/folderId/children/childId",
+        "displayName" : "/files/:folder-id/children/:child-id",
+        "path" : "/files/:folder-id/children/:child-id",
         "params" : [
           {
-            "name" : "childId",
-            "style" : "",
+            "name" : ":child-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Child ID",
+            "required" : true
           },
           {
-            "name" : "folderId",
-            "style" : "",
+            "name" : ":folder-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Folder ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/folderId/children/childId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:folder-id/children/:child-id"
       },
       {
         "httpMethod" : "GET",
@@ -768,27 +738,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/children/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/folderId/children/childId",
-        "path" : "/files/folderId/children/childId",
+        "displayName" : "/files/:folder-id/children/:child-id",
+        "path" : "/files/:folder-id/children/:child-id",
         "params" : [
           {
-            "name" : "childId",
-            "style" : "query",
+            "name" : ":child-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Child ID",
+            "required" : true
           },
           {
-            "name" : "folderId",
-            "style" : "query",
+            "name" : ":folder-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/folderId/children/childId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:folder-id/children/:child-id"
       },
       {
         "httpMethod" : "POST",
@@ -796,20 +766,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/children/insert"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/drive/v2/files/folderId/children",
-        "path" : "/drive/v2/files/folderId/children",
+        "displayName" : "/drive/v2/files/:folder-id/children",
+        "path" : "/drive/v2/files/:folder-id/children",
         "params" : [
           {
-            "name" : "folderId",
-            "style" : "body",
+            "name" : ":folder-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/drive/v2/files/folderId/children"
+        "url" : "https://www.googleapis.com/drive/v2/drive/v2/files/:folder-id/children"
       },
       {
         "httpMethod" : "GET",
@@ -817,41 +787,41 @@
           "url" : "https://developers.google.com/drive/v2/reference/children/list"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/folderId/children",
-        "path" : "/files/folderId/children",
+        "displayName" : "/files/:folder-id/children",
+        "path" : "/files/:folder-id/children",
         "params" : [
           {
-            "name" : "folderId",
-            "style" : "query",
+            "name" : ":folder-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
             "name" : "maxResults",
             "style" : "query",
             "type" : "number",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "pageToken",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "q",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/folderId/children"
+        "url" : "https://www.googleapis.com/drive/v2/files/:folder-id/children"
       },
       {
         "httpMethod" : "DELETE",
@@ -859,27 +829,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/parents/delete"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/parents/parentId",
-        "path" : "/files/fileId/parents/parentId",
+        "displayName" : "/files/:file-id/parents/:parent-id",
+        "path" : "/files/:file-id/parents/:parent-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "value" : "File ID",
+            "required" : true
           },
           {
-            "name" : "parentId",
-            "style" : "",
+            "name" : ":parent-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Parent ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/parents/parentId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/parents/:parent-id"
       },
       {
         "httpMethod" : "GET",
@@ -887,27 +857,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/parents/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/parents/parentId",
-        "path" : "/files/fileId/parents/parentId",
+        "displayName" : "/files/:file-id/parents/:parent-id",
+        "path" : "/files/:file-id/parents/:parent-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
-            "name" : "parentId",
-            "style" : "query",
+            "name" : ":parent-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/parents/parentId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/parents/:parent-id"
       },
       {
         "httpMethod" : "POST",
@@ -915,20 +885,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/parents/insert"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/parents",
-        "path" : "/files/fileId/parents",
+        "displayName" : "/files/:file-id/parents",
+        "path" : "/files/:file-id/parents",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/parents"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/parents"
       },
       {
         "httpMethod" : "GET",
@@ -936,20 +906,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/parents/list"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/parents",
-        "path" : "/files/fileId/parents",
+        "displayName" : "/files/:file-id/parents",
+        "path" : "/files/:file-id/parents",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/parents"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/parents"
       },
       {
         "httpMethod" : "DELETE",
@@ -957,27 +927,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/permissions/delete"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/permissions/permissionId",
-        "path" : "/files/fileId/permissions/permissionId",
+        "displayName" : "/files/:file-id/permissions/:permission-id",
+        "path" : "/files/:file-id/permissions/:permission-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
-            "name" : "permissionId",
-            "style" : "",
+            "name" : ":permission-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Permission ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/permissions/permissionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/permissions/:permission-id"
       },
       {
         "httpMethod" : "GET",
@@ -985,27 +955,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/permissions/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/permissions/permissionId",
-        "path" : "/files/fileId/permissions/permissionId",
+        "displayName" : "/files/:file-id/permissions/:permission-id",
+        "path" : "/files/:file-id/permissions/:permission-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "permissionId",
-            "style" : "query",
+            "name" : ":permission-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Permission ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/permissions/permissionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/permissions/:permission-id"
       },
       {
         "httpMethod" : "POST",
@@ -1013,34 +983,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/permissions/insert"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/permissions",
-        "path" : "/files/fileId/permissions",
+        "displayName" : "/files/:file-id/permissions",
+        "path" : "/files/:file-id/permissions",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
             "name" : "emailMessage",
             "style" : "body",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "sendNotificationEmails",
             "style" : "body",
             "type" : "boolean",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/permissions"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/permissions"
       },
       {
         "httpMethod" : "GET",
@@ -1048,20 +1018,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/permissions/list"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/permissions",
-        "path" : "/files/fileId/permissions",
+        "displayName" : "/files/:file-id/permissions",
+        "path" : "/files/:file-id/permissions",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/permissions"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/permissions"
       },
       {
         "httpMethod" : "PUT",
@@ -1070,34 +1040,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/permissions/patch"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/permissions/permissionId",
-        "path" : "/files/fileId/permissions/permissionId",
+        "displayName" : "/files/:file-id/permissions/:permission-id",
+        "path" : "/files/:file-id/permissions/:permission-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "permissionId",
-            "style" : "body",
+            "name" : ":permission-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Permission ID",
+            "required" : true
           },
           {
             "name" : "transferOwnership",
             "style" : "body",
             "type" : "boolean",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/permissions/permissionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/permissions/:permission-id"
       },
       {
         "httpMethod" : "PUT",
@@ -1105,34 +1075,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/permissions/update"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/permissions/permissionId",
-        "path" : "/files/fileId/permissions/permissionId",
+        "displayName" : "/files/:file-id/permissions/:permission-id",
+        "path" : "/files/:file-id/permissions/:permission-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
-            "name" : "permissionId",
-            "style" : "body",
+            "name" : ":permission-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
             "name" : "transferOwnership",
             "style" : "body",
             "type" : "boolean",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/permissions/permissionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/permissions/:permission-id"
       },
       {
         "httpMethod" : "GET",
@@ -1140,20 +1110,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/permissions/getIdForEmail"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/permissionIds/email",
-        "path" : "/permissionIds/email",
+        "displayName" : "/:permission-id/email",
+        "path" : "/:permission-id/email",
         "params" : [
+          {
+            "name" : ":permission-id",
+            "style" : "url",
+            "type" : "string",
+            "value" : "",
+            "required" : true
+          },
           {
             "name" : "email",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/permissionIds/email"
+        "url" : "https://www.googleapis.com/drive/v2/:permission-id/email"
       },
       {
         "httpMethod" : "DELETE",
@@ -1161,27 +1138,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/revisions/delete"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/revisions/revisionId",
-        "path" : "/files/fileId/revisions/revisionId",
+        "displayName" : "/files/:file-id/revisions/:revision-id",
+        "path" : "/files/:file-id/revisions/:revision-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
-            "name" : "revisionId",
-            "style" : "",
+            "name" : ":revision-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/revisions/revisionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/revisions/:revision-id"
       },
       {
         "httpMethod" : "GET",
@@ -1189,27 +1166,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/revisions/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/revisions/revisionId",
-        "path" : "/files/fileId/revisions/revisionId",
+        "displayName" : "/files/:file-id/revisions/:revision-id",
+        "path" : "/files/:file-id/revisions/:revision-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "revisionId",
-            "style" : "query",
+            "name" : ":revision-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Revision ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/revisions/revisionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/revisions/:revision-id"
       },
       {
         "httpMethod" : "GET",
@@ -1217,20 +1194,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/revisions/list"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/revisions",
-        "path" : "/files/fileId/revisions",
+        "displayName" : "/files/:file-id/revisions",
+        "path" : "/files/:file-id/revisions",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/revisions"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/revisions"
       },
       {
         "httpMethod" : "PUT",
@@ -1239,27 +1216,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/revisions/patch"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/revisions/revisionId",
-        "path" : "/files/fileId/revisions/revisionId",
+        "displayName" : "/files/:file-id/revisions/:revision-id",
+        "path" : "/files/:file-id/revisions/:revision-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "revisionId",
-            "style" : "body",
+            "name" : ":revision-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Revision ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/revisions/revisionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/revisions/:revision-id"
       },
       {
         "httpMethod" : "PUT",
@@ -1267,27 +1244,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/revisions/update"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/revisions/revisionId",
-        "path" : "/files/fileId/revisions/revisionId",
+        "displayName" : "/files/:file-id/revisions/:revision-id",
+        "path" : "/files/:file-id/revisions/:revision-id",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "revisionId",
-            "style" : "body",
+            "name" : ":revision-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Revision ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/revisions/revisionId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/revisions/:revision-id"
       },
       {
         "httpMethod" : "GET",
@@ -1295,7 +1272,7 @@
           "url" : "https://developers.google.com/drive/v2/reference/apps/list"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "displayName" : "/apps",
         "path" : "/apps",
@@ -1305,21 +1282,21 @@
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "appFilterMimeTypes",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "languageCode",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
         "url" : "https://www.googleapis.com/drive/v2/apps"
@@ -1330,20 +1307,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/apps/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/apps/appId",
-        "path" : "/apps/appId",
+        "displayName" : "/apps/:app-id",
+        "path" : "/apps/:app-id",
         "params" : [
           {
-            "name" : "appId",
-            "style" : "query",
+            "name" : ":app-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "App ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/apps/appId"
+        "url" : "https://www.googleapis.com/drive/v2/apps/:app-id"
       },
       {
         "httpMethod" : "DELETE",
@@ -1351,27 +1328,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/comments/delete"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId",
-        "path" : "/files/fileId/comments/commentId",
+        "displayName" : "/files/:file-id/comments/:comment-id",
+        "path" : "/files/:file-id/comments/:comment-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id"
       },
       {
         "httpMethod" : "GET",
@@ -1379,34 +1356,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/comments/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId",
-        "path" : "/files/fileId/comments/commentId",
+        "displayName" : "/files/:file-id/comments/:comment-id",
+        "path" : "/files/:file-id/comments/:comment-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "query",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
             "name" : "includeDeleted",
             "style" : "query",
             "type" : "boolean",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id"
       },
       {
         "httpMethod" : "POST",
@@ -1414,20 +1391,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/comments/insert"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments",
-        "path" : "/files/fileId/comments",
+        "displayName" : "/files/:file-id/comments",
+        "path" : "/files/:file-id/comments",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments"
       },
       {
         "httpMethod" : "GET",
@@ -1435,48 +1412,48 @@
           "url" : "https://developers.google.com/drive/v2/reference/comments/list"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments",
-        "path" : "/files/fileId/comments",
+        "displayName" : "/files/:file-id/comments",
+        "path" : "/files/:file-id/comments",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
             "name" : "includeDeleted",
             "style" : "query",
             "type" : "boolean",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "maxResults",
             "style" : "query",
             "type" : "number",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "pageToken",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "updatedMin",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments"
       },
       {
         "httpMethod" : "PUT",
@@ -1485,27 +1462,27 @@
           "t" : "patch"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId",
-        "path" : "/files/fileId/comments/commentId",
+        "displayName" : "/files/:file-id/comments/:comment-id",
+        "path" : "/files/:file-id/comments/:comment-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "body",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "value" : "File ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id"
       },
       {
         "httpMethod" : "PUT",
@@ -1513,27 +1490,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/comments/update"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId",
-        "path" : "/files/fileId/comments/commentId",
+        "displayName" : "/files/:file-id/comments/:comment-id",
+        "path" : "/files/:file-id/comments/:comment-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "body",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id"
       },
       {
         "httpMethod" : "DELETE",
@@ -1541,34 +1518,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/replies/delete"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId/replies/replyId",
-        "path" : "/files/fileId/comments/commentId/replies/replyId",
+        "displayName" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
+        "path" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "replyId",
-            "style" : "",
+            "name" : ":reply-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Reply ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId/replies/replyId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id/replies/:reply-id"
       },
       {
         "httpMethod" : "GET",
@@ -1576,41 +1553,41 @@
           "url" : "https://developers.google.com/drive/v2/reference/replies/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId/replies/replyId",
-        "path" : "/files/fileId/comments/commentId/replies/replyId",
+        "displayName" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
+        "path" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "query",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "replyId",
-            "style" : "query",
+            "name" : ":reply-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Reply ID",
+            "required" : true
           },
           {
             "name" : "includeDeleted",
             "style" : "query",
             "type" : "boolean",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId/replies/replyId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id/replies/:reply-id"
       },
       {
         "httpMethod" : "POST",
@@ -1618,27 +1595,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/replies/insert"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId/replies",
-        "path" : "/files/fileId/comments/commentId/replies",
+        "displayName" : "/files/:file-id/comments/:comment-id/replies",
+        "path" : "/files/:file-id/comments/:comment-id/replies",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "body",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId/replies"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id/replies"
       },
       {
         "httpMethod" : "GET",
@@ -1646,48 +1623,48 @@
           "url" : "https://developers.google.com/drive/v2/reference/replies/list"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId/replies",
-        "path" : "/files/fileId/comments/commentId/replies",
+        "displayName" : "/files/:file-id/comments/:comment-id/replies",
+        "path" : "/files/:file-id/comments/:comment-id/replies",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "query",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
             "name" : "includeDeleted",
             "style" : "query",
             "type" : "boolean",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "maxResults",
             "style" : "query",
             "type" : "number",
             "value" : "",
-            "required" : "false"
+            "required" : false
           },
           {
             "name" : "pageToken",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId/replies"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id/replies"
       },
       {
         "httpMethod" : "PUT",
@@ -1696,34 +1673,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/replies/patch"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId/replies/replyId",
-        "path" : "/files/fileId/comments/commentId/replies/replyId",
+        "displayName" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
+        "path" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "body",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "replyId",
-            "style" : "body",
+            "name" : ":reply-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Reply ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId/replies/replyId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id/replies/:reply-id"
       },
       {
         "httpMethod" : "PUT",
@@ -1731,34 +1708,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/replies/update"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/comments/commentId/replies/replyId",
-        "path" : "/files/fileId/comments/commentId/replies/replyId",
+        "displayName" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
+        "path" : "/files/:file-id/comments/:comment-id/replies/:reply-id",
         "params" : [
           {
-            "name" : "commentId",
-            "style" : "body",
+            "name" : ":comment-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Comment ID",
+            "required" : true
           },
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "replyId",
-            "style" : "body",
+            "name" : ":reply-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Reply ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/comments/commentId/replies/replyId"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/comments/:comment-id/replies/:reply-id"
       },
       {
         "httpMethod" : "DELETE",
@@ -1766,34 +1743,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/properties/delete"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/properties/propertyKey",
-        "path" : "/files/fileId/properties/propertyKey",
+        "displayName" : "/files/:file-id/properties/:property-key",
+        "path" : "/files/:file-id/properties/:property-key",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "propertyKey",
-            "style" : "",
+            "name" : ":property-key",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Property Key",
+            "required" : true
           },
           {
             "name" : "visibility",
-            "style" : "",
+            "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/properties/propertyKey"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/properties/:property-key"
       },
       {
         "httpMethod" : "GET",
@@ -1801,34 +1778,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/properties/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/properties/propertyKey",
-        "path" : "/files/fileId/properties/propertyKey",
+        "displayName" : "/files/:file-id/properties/:property-key",
+        "path" : "/files/:file-id/properties/:property-key",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
-            "name" : "propertyKey",
-            "style" : "query",
+            "name" : ":property-key",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "Property Key",
+            "required" : true
           },
           {
             "name" : "visibility",
             "style" : "query",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/properties/propertyKey"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/properties/:property-key"
       },
       {
         "httpMethod" : "POST",
@@ -1836,20 +1813,20 @@
           "url" : "https://developers.google.com/drive/v2/reference/properties/insert"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/properties",
-        "path" : "/files/fileId/properties",
+        "displayName" : "/files/:file-id/properties",
+        "path" : "/files/:file-id/properties",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/properties"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/properties"
       },
       {
         "httpMethod" : "GET",
@@ -1858,20 +1835,20 @@
           "t" : ""
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/properties",
-        "path" : "/files/fileId/properties",
+        "displayName" : "/files/:file-id/properties",
+        "path" : "/files/:file-id/properties",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/properties"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/properties"
       },
       {
         "httpMethod" : "PUT",
@@ -1880,34 +1857,34 @@
           "t" : "patch"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "path" : "/files/fileId/properties/propertyKey",
-        "displayName" : "/files/fileId/properties/propertyKey",
+        "path" : "/files/:file-id/properties/:property-key",
+        "displayName" : "/files/:file-id/properties/:property-key",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
-            "name" : "propertyKey",
-            "style" : "body",
+            "name" : ":property-key",
+            "style" : "url",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
             "name" : "visibility",
             "style" : "body",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/properties/propertyKey"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/properties/:property-key"
       },
       {
         "httpMethod" : "POST",
@@ -1915,7 +1892,7 @@
           "url" : "https://developers.google.com/drive/v2/reference/channels/stop"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
         "displayName" : "/channels/stop",
         "path" : "/channels/stop",
@@ -1925,14 +1902,14 @@
             "style" : "body",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
             "name" : "resourceId",
             "style" : "body",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           }
         ],
         "url" : "https://www.googleapis.com/drive/v2/channels/stop"
@@ -1943,27 +1920,27 @@
           "url" : "https://developers.google.com/drive/v2/reference/realtime/get"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/realtime",
-        "path" : "/files/fileId/realtime",
+        "displayName" : "/files/:file-id/realtime",
+        "path" : "/files/:file-id/realtime",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "query",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
             "name" : "revision",
             "style" : "query",
             "type" : "number",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/realtime"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/realtime"
       },
       {
         "httpMethod" : "PUT",
@@ -1971,34 +1948,34 @@
           "url" : "https://developers.google.com/drive/v2/reference/realtime/update"
         },
         "authentication" : {
-          "required" : "true"
+          "required" : true
         },
-        "displayName" : "/files/fileId/realtime",
-        "path" : "/files/fileId/realtime",
+        "displayName" : "/files/:file-id/realtime",
+        "path" : "/files/:file-id/realtime",
         "params" : [
           {
-            "name" : "fileId",
-            "style" : "body",
+            "name" : ":file-id",
+            "style" : "url",
             "type" : "string",
-            "value" : "",
-            "required" : "true"
+            "displayName" : "File ID",
+            "required" : true
           },
           {
             "name" : "uploadType",
             "style" : "body",
             "type" : "string",
             "value" : "",
-            "required" : "true"
+            "required" : true
           },
           {
             "name" : "baseRevision",
             "style" : "body",
             "type" : "string",
             "value" : "",
-            "required" : "false"
+            "required" : false
           }
         ],
-        "url" : "https://www.googleapis.com/drive/v2/files/fileId/realtime"
+        "url" : "https://www.googleapis.com/drive/v2/files/:file-id/realtime"
       }
     ]
   }
