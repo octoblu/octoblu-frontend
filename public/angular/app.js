@@ -468,7 +468,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'AddSubdeviceAddGenbluController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
-      .state('ob.nodewizard.addsubdevice.selectgateway', {
+      .state('ob.nodewizard.addsubdevice.selectgenblu', {
         url: '',
         controller: 'AddSubdeviceSelectGenbluController',
         templateUrl: '/pages/node-wizard/add-subdevice/select-genblu.html'

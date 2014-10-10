@@ -64,15 +64,16 @@
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a7",
-		"category" : "subdevice",
+		"category" : "device",
 		"description" : "Blink1 USB LED",
 		"enabled" : true,
+		"genbluCapable": true,
 		"name" : "Blink(1)",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "blink1",
-			"plugin" : "skynet-blink1"
+			"subtype" : "blink1"
 		},
+		"connector": "meshblu-blink1",
 		"type" : "device:blink1"
 	},
 	{

@@ -9,6 +9,10 @@ angular.module('octobluApp')
         });
 
         deviceService.getUnclaimed('device:genblu').then(function(unclaimedDevices){
+          _.each(unclaimedDevices, function(device){
+            device.label = device.uuid + ' (device:genblu)';
+          });
+
           $scope.newDevice.unclaimedDevices = unclaimedDevices;
           $scope.newDevice.selectedDevice   = _.first(unclaimedDevices);
         });
@@ -31,7 +35,7 @@ angular.module('octobluApp')
           }
 
           promise.then(function(device){
-            $state.go("ob.nodewizard.addsubdevice.form", {gatewayId: device.uuid});
+            $state.go("ob.nodewizard.addsubdevice.form", {genbluId: device.uuid});
           }, function(error){
             $scope.errorMessage = error;
           });
