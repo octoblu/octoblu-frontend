@@ -34,7 +34,7 @@ angular.module('octobluApp')
       genblu = results[1];
 
       genblu.devices = genblu.devices || [];
-      genblu.devices.push(_.pick(device, 'uuid', 'token', 'connector'));
+      genblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
       return updateGenblu(genblu);
     }).then(function(){
       return device;
