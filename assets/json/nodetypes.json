@@ -559,7 +559,7 @@
 		"_id" : "53c9b83af400e177dca325ca",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Box",
 		"skynet" : {
 			"type" : "channel",
