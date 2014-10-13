@@ -813,5 +813,18 @@
     },
     "channelid" : "53dfcb87626a43a44f966d0a",
     "type" : "channel:echosign"
+  },
+  {
+    "_id" : "750242b3-b960-4828-a7f1-c5a07672e98c",
+    "category" : "channel",
+    "description" : "Xero",
+    "enabled" : true,
+    "name" : "Xero",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "xero"
+    },
+    "channelid" : "53e3fab413c57e0267403a89",
+    "type" : "channel:xero"
   }
 ]

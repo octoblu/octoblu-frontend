@@ -114,6 +114,9 @@ module.exports = function(app, passport) {
     var EchoSignController = require('./controllers/echosign-controller');
     var echoSignController = new EchoSignController();
 
+    var XeroController = require('./controllers/xero-controller');
+    var xeroController = new XeroController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -251,6 +254,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/quickbooks',          quickBooksController.authorize);
             app.get('/api/oauth/quickbooks/callback', quickBooksController.callback, quickBooksController.redirectToDesigner);
+
+            app.get('/api/oauth/xero',          xeroController.authorize);
+            app.get('/api/oauth/xero/callback', xeroController.callback, xeroController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);

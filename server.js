@@ -58,6 +58,7 @@ passport.use(require('./config/vimeo'));
 passport.use(require('./config/smartsheet'));
 passport.use(require('./config/salesforce'));
 passport.use(require('./config/quickbooks'));
+passport.use(require('./config/xero'));
 passport.use(require('./config/local'));
 
 // set up our express application
