@@ -17,18 +17,14 @@ angular.module('octobluApp')
                         'localhost', 'secure', 'eventCode', 'updateWhitelist', 'viewWhitelist', 'sendWhitelist', 'receiveWhitelist'],
                     originalDevice, schema, editor;
                 function initializeEditor() {
-
-
                     originalDevice = scope.model;
                     scope.editingDevice = _.omit(angular.copy(originalDevice), readOnlyKeys);
                     schema = _.extend({ title: 'Options'}, scope.schema);
 
                     if (editor) {
-                        //magic.
-                        _.defer(function(){
-                            editor.destroy();
-                        });
+                        editor.destroy();
                     }
+
 
                     editor = new JSONEditor(element[0],
                         {schema: schema,
@@ -45,7 +41,7 @@ angular.module('octobluApp')
                         if (editor.getValue()) {
                             angular.copy(editor.getValue(), scope.editingDevice);
                             scope.$apply();
-
+                            
                             if( !scope.control && editor.validate().length === 0 ) {
                                 angular.copy(scope.editingDevice, originalDevice);
                             }
@@ -54,7 +50,9 @@ angular.module('octobluApp')
                 }
 
                 scope.$watch('schema', initializeEditor);
-                scope.$watch('model', initializeEditor);
+                scope.$watch('model', function(){
+                    initializeEditor();
+                });
 
                 if (scope.control) {
                     scope.control.validate = function () {

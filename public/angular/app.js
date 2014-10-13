@@ -447,13 +447,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
-      .state('ob.nodewizard.addgenblu', {
-        url: '/add-genblu/:nodeTypeId',
+      .state('ob.nodewizard.addmicroblu', {
+        url: '/add-microblu/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
-      .state('ob.nodewizard.addmicroblu', {
-        url: '/add-microblu/:nodeTypeId',
+      .state('ob.nodewizard.addgateway', {
+        url: '/add-gateway/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
@@ -463,18 +463,18 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         templateUrl: '/pages/node-wizard/add-subdevice/index.html',
         abstract: true
       })
-      .state('ob.nodewizard.addsubdevice.addGenblu', {
-        url: '/add-genblu',
-        controller: 'AddSubdeviceAddGenbluController',
+      .state('ob.nodewizard.addsubdevice.addGateway', {
+        url: '/add-gateway',
+        controller: 'addSubdeviceAddGatewayController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
-      .state('ob.nodewizard.addsubdevice.selectgenblu', {
+      .state('ob.nodewizard.addsubdevice.selectgateway', {
         url: '',
-        controller: 'AddSubdeviceSelectGenbluController',
-        templateUrl: '/pages/node-wizard/add-subdevice/select-genblu.html'
+        controller: 'addSubdeviceSelectGatewayController',
+        templateUrl: '/pages/node-wizard/add-subdevice/select-gateway.html'
       })
       .state('ob.nodewizard.addsubdevice.form', {
-        url: '/genblus/:genbluId',
+        url: '/gateways/:gatewayId',
         controller: 'addSubdeviceFormController',
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })

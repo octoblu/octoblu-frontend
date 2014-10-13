@@ -28,8 +28,8 @@
     "resources": [
       {
         "httpMethod": "GET",
-        "path": "/folders/{folder id}/items",
-        "displayName": "/folders/{folder id}/items",
+        "path": "/folders/:folder-id/items",
+        "displayName": "/folders/:folder-id/items",
         "category": "folders",
         "doc": {
           "t": "Retrieves the files and/or folders contained within this folder without any other metadata about the folder. Any attribute in the full files or folders objects can be passed in with the fields parameter to get specific attributes, and only those specific attributes back; otherwise, the mini format is returned for each item by default. Multiple attributes can be passed in separated by commas e.g. fields=name,created_at. Paginated results can be retrieved using the limit and offset parameters.An collection of items contained in the folder is returned. An error is thrown if the folder does not exist, or if any of the parameters are invalid.",
@@ -37,15 +37,17 @@
         },
         "params": [
           {
+            "name": ":folder-id",
+            "type": "string",
+            "required": false,
+            "style": "url",
+            "displayName": "Folder ID"
+          },
+          {
             "name": "fields",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  Attribute(s) to include in the response  "
             }
@@ -55,11 +57,6 @@
             "type": "integer (default=100, max=1000)",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  The number of items to return  "
             }
@@ -69,17 +66,12 @@
             "type": "integer (default=0)",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  The item at which to begin the response  "
             }
           }
         ],
-        "url": "https://api.box.com/2.0/folders/{folder id}/items"
+        "url": "https://api.box.com/2.0/folders/:folder-id/items"
       },
       {
         "httpMethod": "POST",
@@ -95,12 +87,7 @@
             "name": "name",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The desired name for the folder"
             }
@@ -109,12 +96,7 @@
             "name": "parent",
             "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The parent folder"
             }
@@ -123,12 +105,7 @@
             "name": "id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The ID of the parent folder"
             }
@@ -138,8 +115,8 @@
       },
       {
         "httpMethod": "GET",
-        "path": "/folders/{folder id}",
-        "displayName": "/folders/{folder id}",
+        "path": "/folders/:folder-id",
+        "displayName": "/folders/:folder-id",
         "category": "folders",
         "doc": {
           "t": "Retrieves the full metadata about a folder, including information about when it was last updated as well as the files and folders contained in it. The root folder of a Box account is always represented by the id “0″.A full file object is returned, including the most current information available about it. An error is thrown if the folder does not exist or if the user does not have access to it.",
@@ -147,26 +124,19 @@
         },
         "params": [
           {
-            "name": "None are taken",
-            "type": "",
+            "name": ":folder-id",
+            "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
+            "style": "url",
+            "displayName": "Folder ID"
           }
         ],
-        "url": "https://api.box.com/2.0/folders/{folder id}"
+        "url": "https://api.box.com/2.0/folders/:folder-id"
       },
       {
         "httpMethod": "PUT",
-        "path": "/folders/{folder id}",
-        "displayName": "/folders/{folder id}",
+        "path": "/folders/:folder-id",
+        "displayName": "/folders/:folder-id",
         "category": "folders",
         "doc": {
           "t": "Used to update information about the folder. To move a folder, update the ID of its parent. To enable an email address that can be used to upload files to this folder, update the folder_upload_email attribute. An optional If-Match header can be included to ensure that client only updates the folder if it knows about the latest version. The updated folder is returned if the name is valid. Errors generally occur only if there is a name collision.",
@@ -174,57 +144,34 @@
         },
         "params": [
           {
-            "name": "If-Match",
+            "name": ":folder-id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "This is in the ‘etag’ field of the folder object."
-            }
+            "style": "url",
+            "displayName": "Folder ID"
           },
           {
             "name": "name",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "type": "string",
+            "style": "body",
             "doc": {
               "t": "The name of the folder.\nType: string"
             }
           },
           {
             "name": "description",
-            "type": "",
+            "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The description of the folder.\nType: string"
             }
           },
           {
             "name": "parent",
-            "type": "object",
+            "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The parent folder of this file."
             }
@@ -233,12 +180,7 @@
             "name": "id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The ID of the parent folder."
             }
@@ -247,12 +189,7 @@
             "name": "shared_link",
             "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "An object representing this item’s shared link and associated permissions."
             }
@@ -261,12 +198,7 @@
             "name": "access",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The level of access required for this shared link. Can be open, company, collaborators."
             }
@@ -275,26 +207,16 @@
             "name": "unshared_at",
             "type": "timestamp",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The day that this link should be disabled at. Timestamps are rounded off to the given day."
             }
           },
           {
             "name": "permissions",
-            "type": "object",
+            "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The set of permissions that apply to this link."
             }
@@ -303,12 +225,7 @@
             "name": "permissions.can_download",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether this link allows downloads."
             }
@@ -317,12 +234,7 @@
             "name": "permissions.can_preview",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether this link allows previews."
             }
@@ -331,12 +243,7 @@
             "name": "folder_upload_email",
             "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The email-to-upload address for this folder."
             }
@@ -345,12 +252,7 @@
             "name": "access",
             "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Can be open or collaborators."
             }
@@ -359,12 +261,7 @@
             "name": "owned_by",
             "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The user who owns the folder. Only used when moving a collaborated folder that you are not the owner of to a folder you are the owner of. Not a substitute for changing folder owners, please reference collaborations to accomplish folder ownership changes."
             }
@@ -373,51 +270,36 @@
             "name": "id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The ID of the user, should be your own user ID."
             }
           },
           {
             "name": "sync_state",
-            "type": "",
+            "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether Box Sync clients will sync this folder. Values of synced or not_synced can be sent, while partially_synced may also be returned.\nType: string"
             }
           },
           {
             "name": "tags",
-            "type": "",
+            "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "All tags attached to this folder. To add/remove a tag to/from a folder, you can first get the folder’s current tags (be sure to specify ?fields=tags, since the tags field is not returned by default); then modify the list as required; and finally, set the folder’s entire list of tags.\nType: array of strings"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/folders/{folder id}"
+        "url": "https://api.box.com/2.0/folders/:folder-id"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/folders/{folder id}",
-        "displayName": "/folders/{folder id}",
+        "path": "/folders/:folder-id",
+        "displayName": "/folders/:folder-id",
         "category": "folders",
         "doc": {
           "t": "Used to delete a folder. A recursive parameter must be included in order to delete folders that have items inside of them. An optional If-Match header can be included to ensure that client only deletes the folder if it knows about the latest version.An empty 204 response will be returned upon successful deletion. An error is thrown if the folder is not empty and the ‘recursive’ parameter is not included.",
@@ -425,40 +307,28 @@
         },
         "params": [
           {
-            "name": "If-Match",
+            "name": ":folder-id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "This is in the ‘etag’ field of the folder object."
-            }
+            "style": "url",
+            "displayName": "Folder ID"
           },
           {
             "name": "recursive",
             "type": "boolean",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "Whether to delete this folder if it has items inside of it"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/folders/{folder id}"
+        "url": "https://api.box.com/2.0/folders/:folder-id"
       },
       {
         "httpMethod": "POST",
-        "path": "/folders/{folder id}/copy",
-        "displayName": "/folders/{folder id}/copy",
+        "path": "/folders/:folder-id/copy",
+        "displayName": "/folders/:folder-id/copy",
         "category": "folders",
         "doc": {
           "t": "Used to create a copy of a folder in another folder. The original version of the folder will not be altered.A full folder object is returned if the ID is valid and if the update is successful. Errors can be thrown if the destination folder is invalid or if a file-name collision occurs. A 409 will be returned if the intended destination folder is the same, as this will cause a name collision.",
@@ -466,29 +336,26 @@
         },
         "params": [
           {
-            "name": "parentrequired",
+            "name": ":folder-id",
+            "type": "string",
+            "required": false,
+            "style": "url",
+            "displayName": "Folder ID"
+          },
+          {
+            "name": "parent",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "Object representing the new location of the folder"
             }
           },
           {
-            "name": "idrequired",
+            "name": "id",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The ID of the destination folder"
             }
@@ -498,41 +365,32 @@
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "An optional new name for the folder"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/folders/{folder id}/copy"
-      },
-      {
-        "httpMethod": "PUT",
-        "path": "/folders/{folder id}",
-        "displayName": "/folders/{folder id}",
-        "category": "folders",
-        "doc": {
-          "t": "Used to create a shared link for this particular folder. Please see here for more information on the permissions available for shared links. In order to disable a shared link, send this same type of PUT request with the value of shared_link set to null, i.e. {\"shared_link\": null} A full folder object containing the updated shared link is returned if the ID is valid and if the update is successful.",
-          "doc": ""
-        },
-        "params": [],
-        "url": "https://api.box.com/2.0/folders/{folder id}"
+        "url": "https://api.box.com/2.0/folders/:folder-id/copy"
       },
       {
         "httpMethod": "GET",
-        "path": "/folders/{id}/collaborations",
-        "displayName": "/folders/{id}/collaborations",
+        "path": "/folders/:folder-id/collaborations",
+        "displayName": "/folders/:folder-id/collaborations",
         "category": "folders",
         "doc": {
           "t": "Use this to get a list of all the collaborations on a folder i.e. all of the users that have access to that folder.A collection of collaboration objects are returned. If there are no collaborations on this folder, an empty collection will be returned.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/folders/{id}/collaborations"
+        "params": [
+          {
+            "name": ":folder-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Folder ID"
+          }
+        ],
+        "url": "https://api.box.com/2.0/folders/:folder-id/collaborations"
       },
       {
         "httpMethod": "GET",
@@ -549,39 +407,25 @@
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  Attribute(s) to include in the response  "
             }
           },
           {
             "name": "limit",
-            "type": "integer (default=100, max=1000)",
+            "type": "integer",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  The number of items to return  "
             }
           },
           {
             "name": "offset",
-            "type": "integer (default=0)",
+            "type": "integer",
+            "default": "0",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  The item at which to begin the response  "
             }
@@ -591,44 +435,62 @@
       },
       {
         "httpMethod": "GET",
-        "path": "/folders/{folder id}/trash",
-        "displayName": "/folders/{folder id}/trash",
+        "path": "/folders/:folder-id/trash",
+        "displayName": "/folders/:folder-id/trash",
         "category": "folders",
         "doc": {
           "t": "Retrieves an item that has been moved to the trash.The full item will be returned, including information about when the it was moved to the trash.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/folders/{folder id}/trash"
+        "params": [{
+            "name": ":folder-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Folder ID"
+          }],
+        "url": "https://api.box.com/2.0/folders/:folder-id/trash"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/folders/{folder id}/trash",
-        "displayName": "/folders/{folder id}/trash",
+        "path": "/folders/:folder-id/trash",
+        "displayName": "/folders/:folder-id/trash",
         "category": "folders",
         "doc": {
           "t": "Permanently deletes an item that is in the trash. The item will no longer exist in Box. This action cannot be undone.An empty 204 No Content response will be returned upon successful deletion",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/folders/{folder id}/trash"
+        "params": [{
+            "name": ":folder-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Folder ID"
+          }],
+        "url": "https://api.box.com/2.0/folders/:folder-id/trash"
       },
       {
         "httpMethod": "POST",
-        "path": "/folders/{folder id}",
-        "displayName": "/folders/{folder id}",
+        "path": "/folders/:folder-id",
+        "displayName": "/folders/:folder-id",
         "category": "folders",
         "doc": {
           "t": "Restores an item that has been moved to the trash. Default behavior is to restore the item to the folder it was in before it was moved to the trash. If that parent folder no longer exists or if there is now an item with the same name in that parent folder, the new parent folder and/or new name will need to be included in the request.The full item will be returned with a 201 Created status. By default it is restored to the parent folder it was in before it was trashed.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/folders/{folder id}"
+        "params": [{
+            "name": ":folder-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Folder ID"
+          }],
+        "url": "https://api.box.com/2.0/folders/:folder-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/files/{file id}",
-        "displayName": "/files/{file id}",
+        "path": "/files/:file-id",
+        "displayName": "/files/:file-id",
         "category": "files",
         "doc": {
           "t": "Used to retrieve the metadata about a file.A full file object is returned if the ID is valid and if the user has access to the file.",
@@ -636,207 +498,19 @@
         },
         "params": [
           {
-            "name": "None are taken",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
           }
         ],
-        "url": "https://api.box.com/2.0/files/{file id}"
-      },
-      {
-        "httpMethod": "PUT",
-        "path": "/files/{file id}",
-        "displayName": "/files/{file id}",
-        "category": "files",
-        "doc": {
-          "t": "Used to update individual or multiple fields in the file object, including renaming the file, changing it’s description, and creating a shared link for the file. To move a file, change the ID of its parent folder. An optional If-Match header can be included to ensure that client only updates the file if it knows about the latest version. A full file object is returned if the ID is valid and if the update is successful.",
-          "doc": ""
-        },
-        "params": [
-          {
-            "name": "If-Match",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "This is in the ‘etag’ field of the file object."
-            }
-          },
-          {
-            "name": "name",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The new name for the file."
-            }
-          },
-          {
-            "name": "description",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The new description for the file."
-            }
-          },
-          {
-            "name": "parent",
-            "type": "object",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The parent folder of this file."
-            }
-          },
-          {
-            "name": "id",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The ID of the parent folder."
-            }
-          },
-          {
-            "name": "shared_link",
-            "type": "object",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "An object representing this item’s shared link and associated permissions."
-            }
-          },
-          {
-            "name": "access",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The level of access required for this shared link. Can be open, company, collaborators."
-            }
-          },
-          {
-            "name": "unshared_at",
-            "type": "timestamp",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The day that this link should be disabled at. Timestamps are rounded off to the given day."
-            }
-          },
-          {
-            "name": "permissions",
-            "type": "object",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The set of permissions that apply to this link."
-            }
-          },
-          {
-            "name": "permissions.download",
-            "type": "boolean",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "Whether this link allows downloads."
-            }
-          },
-          {
-            "name": "permissions.preview",
-            "type": "boolean",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "Whether this link allows previews."
-            }
-          },
-          {
-            "name": "tags",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "All tags attached to this file. To add/remove a tag to/from a file, you can first get the file’s current tags (be sure to specify ?fields=tags, since the tags field is not returned by default); then modify the list as required; and finally, set the file’s entire list of tags.\nType: array of strings"
-            }
-          }
-        ],
-        "url": "https://api.box.com/2.0/files/{file id}"
+        "url": "https://api.box.com/2.0/files/:file-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/files/{file id}/content",
-        "displayName": "/files/{file id}/content",
+        "path": "/files/:file-id/content",
+        "displayName": "/files/:file-id/content",
         "category": "files",
         "doc": {
           "t": "Retrieves the actual data of the file. An optional version parameter can be set to download a previous version of the file.If the file is available to be downloaded, the response will be a 302 Found to a URL at dl.boxcloud.com. The dl.boxcloud.com URL is not persistent. Clients will need to follow the redirect in order to actually download the file. The raw data of the file is returned unless the file ID is invalid or the user does not have access to it.If the file is not ready to be downloaded (i.e. in the case where the file was uploaded immediately before the download request), a response with an HTTP status of 202 Accepted will be returned with a Retry-After header indicating the time in seconds after which the file will be available for the client to download.",
@@ -844,70 +518,58 @@
         },
         "params": [
           {
+            "name": ":file-id",
+            "type": "string",
+            "required": false,
+            "style": "url",
+            "displayName": "File ID"
+          },
+          {
             "name": "version",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The ID specific version of this file to download."
             }
           }
         ],
-        "url": "https://api.box.com/2.0/files/{file id}/content"
+        "url": "https://api.box.com/2.0/files/:file-id/content"
       },
       {
         "httpMethod": "POST",
-        "path": "/https://upload.box.com/api/2.0/files/content",
-        "displayName": "https://upload.box.com/api/2.0/files/content",
+        "path": "/files/content",
+        "displayName": "/files/content",
         "category": "files",
         "doc": {
           "t": "Use the Uploads API to allow users to add a new file. The user can then upload a file by specifying the destination folder for the file.  If the user provides a file name that  already exists in the destination folder, the user will receive an error.  \nA different Box URL, https://upload.box.com/api/2.0/files/content, handles uploads. This API uses the multipart post method to complete all upload tasks. You can optionally specify a Content-MD5 header with the SHA1 hash of the file to ensure that the file is not corrupted in transit.A full file object is returned inside of a collection if the ID is valid and if the update is successful. An error is thrown when a name collision occurs.",
           "doc": ""
         },
+        "enabled" : false,
         "params": [
           {
-            "name": "  Content-MD5",
+            "name": "Content-MD5",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  The SHA1 hash of the file  "
             }
           },
           {
-            "name": "filenamerequired",
+            "name": "filename",
             "type": "file",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The name of the file to be uploaded"
             }
           },
           {
-            "name": "parent_idrequired",
+            "name": "parent_id",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The ID of folder where this file should be uploaded "
             }
@@ -917,11 +579,6 @@
             "type": "timestamp",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The time this file was created on the user’s machine. See here for more details. "
             }
@@ -931,22 +588,17 @@
             "type": "timestamp",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The time this file was last modified on the user’s machine. See here for more details. "
             }
           }
         ],
-        "url": "https://api.box.com/2.0/https://upload.box.com/api/2.0/files/content"
+        "url": "https://api.box.com/2.0/files/content"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/files/{file id}",
-        "displayName": "/files/{file id}",
+        "path": "/files/:file-id",
+        "displayName": "/files/:file-id",
         "category": "files",
         "doc": {
           "t": "Discards a file to the trash. The etag of the file can be included as an ‘If-Match’ header to prevent race conditions.An empty 204 response is sent to confirm deletion of the file. If the If-Match header is sent and fails, a ’412 Precondition Failed’ error is returned.",
@@ -954,56 +606,38 @@
         },
         "params": [
           {
-            "name": "\tIf-Match     \t ",
+            "name": ":file-id",
             "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": " The etag of the file. This is in the ‘etag’ field of the file object."
-            }
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
           }
         ],
-        "url": "https://api.box.com/2.0/files/{file id}"
+        "url": "https://api.box.com/2.0/files/:file-id"
       },
       {
         "httpMethod": "POST",
-        "path": "/https://upload.box.com/api/2.0/files/{file id}/content",
-        "displayName": "https://upload.box.com/api/2.0/files/{file id}/content",
+        "path": "/https://upload.box.com/api/2.0/files/:file-id/content",
+        "displayName": "https://upload.box.com/api/2.0/files/:file-id/content",
         "category": "files",
         "doc": {
           "t": "Note that uploads are handled through https://upload.box.com. This method is used to upload a new version of an existing file in a user’s account. Similar to regular file uploads, these are performed as multipart form uploads An optional If-Match header can be included to ensure that client only overwrites the file if it knows about the latest version. The filename on Box will remain the same as the previous version. To update the file’s name, use PUT /files/{id}The updated file object will be returned inside of a file collection. Errors may occur due to bad filenames and invalid file IDs.",
           "doc": ""
         },
+        "enabled" : false,
         "params": [
           {
-            "name": "If-Match",
+            "name": ":file-id",
             "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "This is in the ‘etag’ field of the file object."
-            }
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
           },
           {
             "name": "name",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The name of the file to be uploaded"
             }
@@ -1012,23 +646,18 @@
             "name": "content_modified_at",
             "type": "timestamp",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The time this file was last modified on the user’s machine. See here for more details. "
             }
           }
         ],
-        "url": "https://api.box.com/2.0/https://upload.box.com/api/2.0/files/{file id}/content"
+        "url": "https://api.box.com/2.0/https://upload.box.com/api/2.0/files/:file-id/content"
       },
       {
         "httpMethod": "GET",
-        "path": "/files/{file id}/versions",
-        "displayName": "/files/{file id}/versions",
+        "path": "/files/:file-id/versions",
+        "displayName": "/files/:file-id/versions",
         "category": "files",
         "doc": {
           "t": "If there are previous versions of this file, this method can be used to retrieve metadata about the older versions.An array of version objects are returned. If there are no previous versions of this file, then an empty array will be returned.",
@@ -1036,26 +665,19 @@
         },
         "params": [
           {
-            "name": "None are taken",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
           }
         ],
-        "url": "https://api.box.com/2.0/files/{file id}/versions"
+        "url": "https://api.box.com/2.0/files/:file-id/versions"
       },
       {
         "httpMethod": "POST",
-        "path": "/files/{file id}/versions/current",
-        "displayName": "/files/{file id}/versions/current",
+        "path": "/files/:file-id/versions/current",
+        "displayName": "/files/:file-id/versions/current",
         "category": "files",
         "doc": {
           "t": "If there are previous versions of this file, this method can be used to promote one of the older versions to the top of the stack.  This actually mints a copy of the old version and puts it on the top of the versions stack.  The file will have the exact same contents, the same SHA1/etag, and the same name as the original.  Other properties such as comments do not get updated to their former values.The newly promoted file_version object is returned, along with a ’201 Created’ status",
@@ -1063,67 +685,55 @@
         },
         "params": [
           {
-            "name": "typerequired",
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          },
+          {
+            "name": "type",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "Must be ‘file_version’ for this request"
             }
           },
           {
-            "name": "idrequired",
+            "name": "id",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The ID of the file_version that you want to make current"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/files/{file id}/versions/current"
+        "url": "https://api.box.com/2.0/files/:file-id/versions/current"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/files/{file id}/versions/{version_id}",
-        "displayName": "/files/{file id}/versions/{version_id}",
+        "path": "/files/:file-id/versions/{version_id}",
+        "displayName": "/files/:file-id/versions/{version_id}",
         "category": "files",
         "doc": {
           "t": "Discards a specific file version to the trash. An empty 204 response is sent to confirm deletion of the file. If the If-Match header is sent and fails, a ’412 Precondition Failed’ error is returned.",
           "doc": ""
         },
-        "params": [
-          {
-            "name": "\tIf-Match     \t ",
+        "params": [{
+            "name": ":file-id",
             "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": " The etag of the file. This is in the ‘etag’ field of the file object."
-            }
-          }
-        ],
-        "url": "https://api.box.com/2.0/files/{file id}/versions/{version_id}"
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          }],
+        "url": "https://api.box.com/2.0/files/:file-id/versions/{version_id}"
       },
       {
         "httpMethod": "POST",
-        "path": "/files/{file id}/copy",
-        "displayName": "/files/{file id}/copy",
+        "path": "/files/:file-id/copy",
+        "displayName": "/files/:file-id/copy",
         "category": "files",
         "doc": {
           "t": "Used to create a copy of a file in another folder. The original version of the file will not be altered.A full file object is returned if the ID is valid and if the update is successful. Errors can be thrown if the destination folder is invalid or if a file-name collision occurs. A 409 will be returned if the intended destination folder is the same, as this will cause a name collision.",
@@ -1131,29 +741,26 @@
         },
         "params": [
           {
-            "name": "parentrequired",
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          },
+          {
+            "name": "parent",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Folder object representing the new location of the file"
             }
           },
           {
-            "name": "idrequired",
+            "name": "id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The ID of the destination folder"
             }
@@ -1162,83 +769,108 @@
             "name": "name",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "An optional new name for the file"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/files/{file id}/copy"
+        "url": "https://api.box.com/2.0/files/:file-id/copy"
       },
       {
         "httpMethod": "GET",
-        "path": "/files/{file id}/thumbnail.extension",
-        "displayName": "/files/{file id}/thumbnail.extension",
+        "path": "/files/:file-id/thumbnail.extension",
+        "displayName": "/files/:file-id/thumbnail.extension",
         "category": "files",
         "doc": {
           "t": "Retrieves a thumbnail, or smaller image representation, of this file. Sizes of 32x32,  64x64, 128x128, and 256x256 can be returned. Currently thumbnails are only available in .png format and will only be generated for image file formats.There are three success cases that your application needs to account for:If the thumbnail isn’t available yet, a 202 Accepted HTTP status will be returned, including a Location header pointing to a placeholder graphic that can be used until the thumbnail is returned. A Retry-After header will also be returned, indicating the time in seconds after which the thumbnail will be available. Your application should only attempt to get the thumbnail again after Retry-After time.If Box can’t generate a thumbnail for this file type, a 302 Found response will be returned, redirecting to a placeholder graphic in the requested size for this particular file type, e.g. this for a CSV file).If the thumbnail is available, a 200 OK response will be returned with the contents of the thumbnail in the bodyIf Box is unable to generate a thumbnail for this particular file, a 404 Not Found response will be returned with a code of preview_cannot_be_generated. If there are any bad parameters sent in, a standard 400 Bad Request will be returned.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/files/{file id}/thumbnail.extension"
+        "params": [{
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          }],
+        "url": "https://api.box.com/2.0/files/:file-id/thumbnail.extension"
       },
       {
         "httpMethod": "PUT",
-        "path": "/files/{file id}",
-        "displayName": "/files/{file id}",
+        "path": "/files/:file-id",
+        "displayName": "/files/:file-id",
         "category": "files",
         "doc": {
           "t": "Used to create a shared link for this particular file. Please see here for more information on the permissions available for shared links. In order to get default shared link status, set it to an empty access level, i.e. {\"shared_link\": {}}. In order to disable a shared link, send this same type of PUT request with the value of shared_link set to null, i.e. {\"shared_link\": null} A full file object containing the updated shared link is returned if the ID is valid and if the update is successful.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/files/{file id}"
+        "params": [{
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          }],
+        "url": "https://api.box.com/2.0/files/:file-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/files/{file id}/trash",
-        "displayName": "/files/{file id}/trash",
+        "path": "/files/:file-id/trash",
+        "displayName": "/files/:file-id/trash",
         "category": "files",
         "doc": {
           "t": "Retrieves an item that has been moved to the trash.The full item will be returned, including information about when the it was moved to the trash.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/files/{file id}/trash"
+        "params": [{
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          }],
+        "url": "https://api.box.com/2.0/files/:file-id/trash"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/files/{file id}/trash",
-        "displayName": "/files/{file id}/trash",
+        "path": "/files/:file-id/trash",
+        "displayName": "/files/:file-id/trash",
         "category": "files",
         "doc": {
           "t": "Permanently deletes an item that is in the trash. The item will no longer exist in Box. This action cannot be undone.An empty 204 No Content response will be returned upon successful deletion",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/files/{file id}/trash"
+        "params": [{
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          }],
+        "url": "https://api.box.com/2.0/files/:file-id/trash"
       },
       {
         "httpMethod": "POST",
-        "path": "/files/{file id}",
-        "displayName": "/files/{file id}",
+        "path": "/files/:file-id",
+        "displayName": "/files/:file-id",
         "category": "files",
         "doc": {
           "t": "Restores an item that has been moved to the trash. Default behavior is to restore the item to the folder it was in before it was moved to the trash. If that parent folder no longer exists or if there is now an item with the same name in that parent folder, the new parent folder and/or new name will need to be included in the request.The full item will be returned with a 201 Created status. By default it is restored to the parent folder it was in before it was trashed.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/files/{file id}"
+        "params": [{
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          }],
+        "url": "https://api.box.com/2.0/files/:file-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/files/{file id}/comments",
-        "displayName": "/files/{file id}/comments",
+        "path": "/files/:file-id/comments",
+        "displayName": "/files/:file-id/comments",
         "category": "files",
         "doc": {
           "t": "Retrieves the comments on a particular file, if any exist.A collection of comment objects are returned. If there are no comments on the file, an empty comments array is returned.",
@@ -1246,33 +878,32 @@
         },
         "params": [
           {
-            "name": "None are taken",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
           }
         ],
-        "url": "https://api.box.com/2.0/files/{file id}/comments"
+        "url": "https://api.box.com/2.0/files/:file-id/comments"
       },
       {
         "httpMethod": "GET",
-        "path": "/files/{id}/tasks",
-        "displayName": "/files/{id}/tasks",
+        "path": "/files/:file-id/tasks",
+        "displayName": "/files/:file-id/tasks",
         "category": "files",
         "doc": {
           "t": "Retrieves all of the tasks for given file.A collection of mini task objects is returned. If there are no tasks, an empty collection will be returned.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/files/{id}/tasks"
+        "params": [{
+            "name": ":file-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "File ID"
+          }],
+        "url": "https://api.box.com/2.0/files/:file-id/tasks"
       },
       {
         "httpMethod": "POST",
@@ -1283,13 +914,38 @@
           "t": "Used to add a comment by the user to a specific file or comment (i.e. as a reply comment).The new comment object is returned. Errors may occur if the item id is invalid, the item type is invalid/unsupported, or if the user does not have access to the item being commented on.",
           "doc": ""
         },
-        "params": [],
+        "params": [
+          {
+            "name": "item.type",
+            "type": "string",
+            "style": "body",
+            "displayName": "Item Type"
+          },
+          {
+            "name": "item.id",
+            "type": "string",
+            "style": "body",
+            "displayName": "Item ID"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "body",
+            "displayName": "Message"
+          },
+          {
+            "name": "tagged_message",
+            "type": "string",
+            "style": "body",
+            "displayName": "Tagged Message"
+          }
+        ],
         "url": "https://api.box.com/2.0/comments"
       },
       {
         "httpMethod": "PUT",
-        "path": "/comments/{comment id}",
-        "displayName": "/comments/{comment id}",
+        "path": "/comments/:comment-id",
+        "displayName": "/comments/:comment-id",
         "category": "comments",
         "doc": {
           "t": "Used to update the message of the comment.The full updated comment object is returned if the ID is valid and if the user has access to the comment.",
@@ -1297,26 +953,28 @@
         },
         "params": [
           {
-            "name": "messagerequired",
+            "name": ":comment-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Comment ID"
+          },
+          {
+            "name": "message",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The desired text for the comment message"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/comments/{comment id}"
+        "url": "https://api.box.com/2.0/comments/:comment-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/comments/{comment id}",
-        "displayName": "/comments/{comment id}",
+        "path": "/comments/:comment-id",
+        "displayName": "/comments/:comment-id",
         "category": "comments",
         "doc": {
           "t": "Used to retrieve the message and metadata about a specific comment. Information about the user who created the comment is also included.A full comment object is returned is the ID is valid and if the user has access to the comment.",
@@ -1324,26 +982,19 @@
         },
         "params": [
           {
-            "name": "None are accepted",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
+            "name": ":comment-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Comment ID"
           }
         ],
-        "url": "https://api.box.com/2.0/comments/{comment id}"
+        "url": "https://api.box.com/2.0/comments/:comment-id"
       },
       {
-        "httpMethod": "DELETE/comments/{comment",
-        "path": "/id}",
-        "displayName": "id}",
+        "httpMethod": "DELETE",
+        "path": "/comments/:comment-id",
+        "displayName": "/comments/:comment-id",
         "category": "comments",
         "doc": {
           "t": "Permanently deletes a comment.An empty 204 response is returned to confirm deletion of the comment. Errors can be thrown if the ID is invalid or if the user is not authorized to delete this particular comment.",
@@ -1351,21 +1002,14 @@
         },
         "params": [
           {
-            "name": "None are taken",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
+            "name": ":comment-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Comment ID"
           }
         ],
-        "url": "https://api.box.com/2.0/id}"
+        "url": "https://api.box.com/2.0/comments/:comment-id"
       },
       {
         "httpMethod": "POST",
@@ -1381,26 +1025,16 @@
             "name": "notify",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Determines if the user should receive email notification of the collaboration."
             }
           },
           {
             "name": "item",
-            "type": "folder object",
+            "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The item to add the collaboration on"
             }
@@ -1409,12 +1043,7 @@
             "name": "id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The ID of the item to add the collaboration on"
             }
@@ -1423,12 +1052,7 @@
             "name": "type",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Must be folder"
             }
@@ -1437,12 +1061,7 @@
             "name": "accessible_by",
             "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The user or group who this collaboration applies to"
             }
@@ -1451,12 +1070,7 @@
             "name": "id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The ID of this user or group"
             }
@@ -1465,12 +1079,7 @@
             "name": "type",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Type of collaborator, must be either user or group"
             }
@@ -1479,12 +1088,7 @@
             "name": "login",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "An email address (does not need to be a Box user). Omit if this is a group."
             }
@@ -1493,12 +1097,7 @@
             "name": "role",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The access level of this collaboration (see above for roles)"
             }
@@ -1508,8 +1107,8 @@
       },
       {
         "httpMethod": "PUT",
-        "path": "/collaborations/{id}",
-        "displayName": "/collaborations/{id}",
+        "path": "/collaborations/:collaboration-id",
+        "displayName": "/collaborations/:collaboration-id",
         "category": "collaborations",
         "doc": {
           "t": "Used to edit an existing collaboration. Descriptions of the various roles can be found here.The updated collaboration object is returned. Errors may occur if the IDs are invalid or if the user does not have permissions to edit the collaboration.",
@@ -1517,15 +1116,17 @@
         },
         "params": [
           {
+            "name": ":collaboration-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Collaboration ID"
+          },
+          {
             "name": "role",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The access level of this collaboration (see above for roles)"
             }
@@ -1534,23 +1135,18 @@
             "name": "status",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether this collaboration has been accepted"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/collaborations/{id}"
+        "url": "https://api.box.com/2.0/collaborations/:collaboration-id"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/collaborations/{id}",
-        "displayName": "/collaborations/{id}",
+        "path": "/collaborations/:collaboration-id",
+        "displayName": "/collaborations/:collaboration-id",
         "category": "collaborations",
         "doc": {
           "t": "Used to delete a single collaboration.A blank 204 response is returned if the ID is valid, and the user has permissions to remove the collaboration.",
@@ -1558,53 +1154,48 @@
         },
         "params": [
           {
-            "name": "None are taken",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
+            "name": ":collaboration-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Collaboration ID"
           }
         ],
-        "url": "https://api.box.com/2.0/collaborations/{id}"
+        "url": "https://api.box.com/2.0/collaborations/:collaboration-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/collaborations/{id}",
-        "displayName": "/collaborations/{id}",
+        "path": "/collaborations/:collaboration-id",
+        "displayName": "/collaborations/:collaboration-id",
         "category": "collaborations",
         "doc": {
-          "t": "Used to get information about a single collaboration. All collaborations for a single folder can be retrieved through GET /folders/{id}/collaborations. A complete list of the user’s pending collaborations can also be retrieved.The collaboration object is returned. Errors may occur if the IDs are invalid or if the user does not have permissions to see the collaboration.",
+          "t": "Used to get information about a single collaboration. All collaborations for a single folder can be retrieved through GET /folders/:collaboration-id/collaborations. A complete list of the user’s pending collaborations can also be retrieved.The collaboration object is returned. Errors may occur if the IDs are invalid or if the user does not have permissions to see the collaboration.",
           "doc": ""
         },
         "params": [
           {
+            "name": ":collaboration-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Collaboration ID"
+          },
+          {
             "name": "status",
-            "type": "",
+            "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "  Can only be pending"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/collaborations/{id}"
+        "url": "https://api.box.com/2.0/collaborations/:collaboration-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/collaborations?status=pending",
-        "displayName": "/collaborations?status=pending",
+        "path": "/collaborations",
+        "displayName": "/collaborations",
         "category": "collaborations",
         "doc": {
           "t": "Used to retrieve all pending collaboration invites for this user.A collection of pending collaboration objects are returned. If the user has no pending collaborations, the collection will be empty.",
@@ -1612,26 +1203,22 @@
         },
         "params": [
           {
-            "name": "statusrequired",
-            "type": "",
-            "required": false,
+            "name": "status",
+            "type": "string",
+            "required": true,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "default": "pending",
             "doc": {
               "t": "  Must be pending"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/collaborations?status=pending"
+        "url": "https://api.box.com/2.0/collaborations"
       },
       {
         "httpMethod": "GET",
-        "path": "/events?stream_position=0",
-        "displayName": "/events?stream_position=0",
+        "path": "/events",
+        "displayName": "/events",
         "category": "events",
         "doc": {
           "t": "Use this to get events for a given user. A chunk of event objects is returned for the user based on the parameters passed in. Parameters indicating how many chunks are left as well as the next stream_position are also returned.\nA collection of events is returned. See the above table for descriptions of the event types.",
@@ -1640,48 +1227,33 @@
         "params": [
           {
             "name": "stream_position",
-            "type": "string (default=0)",
+            "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "The location in the event stream at which you want to start receiving events. Can specify special case ‘now’ to get 0 events and the latest stream position for initialization."
             }
           },
           {
             "name": "stream_type",
-            "type": "• all: returns everything\n• changes: returns tree changes\n• sync: returns tree changes only for sync folders string (default=all):",
+            "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "Limits the type of events returned"
             }
           },
           {
             "name": "limit",
-            "type": "integer (default=100 max=10,000)",
+            "type": "integer",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
               "t": "Limits the number of events returned"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/events?stream_position=0"
+        "url": "https://api.box.com/2.0/events"
       },
       {
         "httpMethod": "OPTIONS",
@@ -1697,112 +1269,20 @@
       },
       {
         "httpMethod": "GET",
-        "path": "/events?stream_type=admin_logs",
-        "displayName": "/events?stream_type=admin_logs",
-        "category": "events",
-        "doc": {
-          "t": "Retrieves events for all users in an enterprise. Upper and lower bounds as well as filters can be applied to the results. A list of valid values for event_type can be found here.",
-          "doc": ""
-        },
-        "params": [
-          {
-            "name": "stream_type",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "Must be admin_logs"
-            }
-          },
-          {
-            "name": "limit",
-            "type": "integer (default=100 max=500)",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "Limits the number of events returned"
-            }
-          },
-          {
-            "name": "stream_position",
-            "type": "string (default=0)",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "The starting position for fetching the events. This is used in combination with the limit to determine which events to return to the caller. Use the results from the next_stream_position of your last call to get the next set of events."
-            }
-          },
-          {
-            "name": "event_type",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "A comma-separated list of events to filter by"
-            }
-          },
-          {
-            "name": "created_after",
-            "type": "timestamp",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "A lower bound on the timestamp of the events returned"
-            }
-          },
-          {
-            "name": "created_before",
-            "type": "timestamp",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "An upper bound on the timestamp of the events returned"
-            }
-          }
-        ],
-        "url": "https://api.box.com/2.0/events?stream_type=admin_logs"
-      },
-      {
-        "httpMethod": "GET",
-        "path": "/search?query=SEARCH_QUERY",
-        "displayName": "/search?query=SEARCH_QUERY",
+        "path": "/search",
+        "displayName": "/search",
         "category": "search",
         "doc": {
           "t": "The search endpoint provides a simple way of finding items that are accessible in a given user’s Box account.A collection of search results is returned. If there are no matching search results, the entries array will be empty.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/search?query=SEARCH_QUERY"
+        "params": [{
+            "name": "query",
+            "type": "string",
+            "required": false,
+            "style": "query"
+          }],
+        "url": "https://api.box.com/2.0/search"
       },
       {
         "httpMethod": "GET",
@@ -1827,45 +1307,30 @@
         },
         "params": [
           {
-            "name": "   filter_term  ",
+            "name": "filter_term",
             "type": "string",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
-              "t": "   A string used to filter the results to only users starting with the filter_term in either the name or the login     "
+              "t": "A string used to filter the results to only users starting with the filter_term in either the name or the login"
             }
           },
           {
-            "name": "   limit  ",
-            "type": "integer (default=100, max=1000)",
+            "name": "limit",
+            "type": "integer",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
-              "t": "   The number of records to return.     "
+              "t": "The number of records to return."
             }
           },
           {
-            "name": "   offset  ",
-            "type": "integer (default=0)",
+            "name": "offset",
+            "type": "integer",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
-              "t": "   The record at which to start     "
+              "t": "The record at which to start"
             }
           }
         ],
@@ -1882,252 +1347,19 @@
         },
         "params": [
           {
-            "name": "   login   required  ",
+            "name": "login",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
-              "t": "   The email address this user uses to login     "
-            }
-          },
-          {
-            "name": "   name   required  ",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   The name of this user     "
-            }
-          },
-          {
-            "name": "   role  ",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   This user’s enterprise role. Can be coadmin or user     "
-            }
-          },
-          {
-            "name": "   language  ",
-            "type": "ISO 639-1 Language Code",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   The language of this user     "
-            }
-          },
-          {
-            "name": "   is_sync_enabled  ",
-            "type": "boolean",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   Whether or not this user can use Box Sync     "
-            }
-          },
-          {
-            "name": "   job_title  ",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   The user’s job title     "
-            }
-          },
-          {
-            "name": "   phone  ",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   The user’s phone number     "
-            }
-          },
-          {
-            "name": "   address  ",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   The user’s address     "
-            }
-          },
-          {
-            "name": "   space_amount  ",
-            "type": "float",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   The user’s total available space amount in bytes     "
-            }
-          },
-          {
-            "name": "   tracking_codes  ",
-            "type": "array",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   An array of key/value pairs set by the user’s admin     "
-            }
-          },
-          {
-            "name": "   can_see_managed_users  ",
-            "type": "boolean",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   Whether this user can see other enterprise users in its contact list     "
-            }
-          },
-          {
-            "name": "   status  ",
-            "type": "string",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   Can be active or inactive     "
-            }
-          },
-          {
-            "name": "   is_exempt_from_device_limits  ",
-            "type": "boolean",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   Whether to exempt this user from Enterprise device limits      "
-            }
-          },
-          {
-            "name": "   is_exempt_from_login_verification  ",
-            "type": "boolean",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "   Whether or not this user must use two-factor authentication     "
-            }
-          }
-        ],
-        "url": "https://api.box.com/2.0/users"
-      },
-      {
-        "httpMethod": "PUT",
-        "path": "/users/{id}",
-        "displayName": "/users/{id}",
-        "category": "users",
-        "doc": {
-          "t": "Used to edit the settings and information about a user. This method only works for enterprise admins. To roll a user out of the enterprise (and convert them to a standalone free user), update the special enterprise attribute to be nullReturns the a full user object for the updated user. Errors may be thrown when the fields are invalid or this API call is made from a non-admin account.",
-          "doc": ""
-        },
-        "params": [
-          {
-            "name": "notify",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "Whether the user should receive an email when they are rolled out of an enterprise"
-            }
-          },
-          {
-            "name": "enterprise",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": "Setting this to null will roll the user out of the enterprise and make them a free user"
+              "t": "The email address this user uses to login"
             }
           },
           {
             "name": "name",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The name of this user"
             }
@@ -2136,26 +1368,16 @@
             "name": "role",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "This user’s enterprise role. Can be coadmin or user"
             }
           },
           {
             "name": "language",
-            "type": "ISO 639-1 Language Code",
+            "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The language of this user"
             }
@@ -2164,12 +1386,7 @@
             "name": "is_sync_enabled",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether or not this user can use Box Sync"
             }
@@ -2178,12 +1395,7 @@
             "name": "job_title",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The user’s job title"
             }
@@ -2192,12 +1404,7 @@
             "name": "phone",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The user’s phone number"
             }
@@ -2206,12 +1413,7 @@
             "name": "address",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "The user’s address"
             }
@@ -2220,26 +1422,16 @@
             "name": "space_amount",
             "type": "float",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
-              "t": "The user’s total available space amount in byte. A value of -1 grants unlimited storage."
+              "t": "The user's total available space amount in bytes"
             }
           },
           {
             "name": "tracking_codes",
             "type": "array",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "An array of key/value pairs set by the user’s admin"
             }
@@ -2248,12 +1440,7 @@
             "name": "can_see_managed_users",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether this user can see other enterprise users in its contact list"
             }
@@ -2262,12 +1449,7 @@
             "name": "status",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Can be active or inactive"
             }
@@ -2276,12 +1458,7 @@
             "name": "is_exempt_from_device_limits",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether to exempt this user from Enterprise device limits"
             }
@@ -2290,12 +1467,162 @@
             "name": "is_exempt_from_login_verification",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
+            "doc": {
+              "t": "Whether or not this user must use two-factor authentication"
+            }
+          }
+        ],
+        "url": "https://api.box.com/2.0/users"
+      },
+      {
+        "httpMethod": "PUT",
+        "path": "/users/:user-id",
+        "displayName": "/users/:user-id",
+        "category": "users",
+        "doc": {
+          "t": "Used to edit the settings and information about a user. This method only works for enterprise admins. To roll a user out of the enterprise (and convert them to a standalone free user), update the special enterprise attribute to be nullReturns the a full user object for the updated user. Errors may be thrown when the fields are invalid or this API call is made from a non-admin account.",
+          "doc": ""
+        },
+        "params": [
+          {
+            "name": ":user-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "User ID"
+          },
+          {
+            "name": "notify",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Whether the user should receive an email when they are rolled out of an enterprise"
+            }
+          },
+          {
+            "name": "enterprise",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Setting this to null will roll the user out of the enterprise and make them a free user"
+            }
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "The name of this user"
+            }
+          },
+          {
+            "name": "role",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "This user’s enterprise role. Can be coadmin or user"
+            }
+          },
+          {
+            "name": "language",
+            "type": "ISO 639-1 Language Code",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "The language of this user"
+            }
+          },
+          {
+            "name": "is_sync_enabled",
+            "type": "boolean",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Whether or not this user can use Box Sync"
+            }
+          },
+          {
+            "name": "job_title",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "The user’s job title"
+            }
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "The user’s phone number"
+            }
+          },
+          {
+            "name": "address",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "The user’s address"
+            }
+          },
+          {
+            "name": "space_amount",
+            "type": "float",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "The user’s total available space amount in byte. A value of -1 grants unlimited storage."
+            }
+          },
+          {
+            "name": "tracking_codes",
+            "type": "array",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "An array of key/value pairs set by the user’s admin"
+            }
+          },
+          {
+            "name": "can_see_managed_users",
+            "type": "boolean",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Whether this user can see other enterprise users in its contact list"
+            }
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Can be active or inactive"
+            }
+          },
+          {
+            "name": "is_exempt_from_device_limits",
+            "type": "boolean",
+            "required": false,
+            "style": "body",
+            "doc": {
+              "t": "Whether to exempt this user from Enterprise device limits"
+            }
+          },
+          {
+            "name": "is_exempt_from_login_verification",
+            "type": "boolean",
+            "required": false,
+            "style": "body",
             "doc": {
               "t": "Whether or not this user must use two-factor authentication"
             }
@@ -2304,23 +1631,18 @@
             "name": "is_password_reset_required",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "Whether or not the user is required to reset password"
             }
           }
         ],
-        "url": "https://api.box.com/2.0/users/{id}"
+        "url": "https://api.box.com/2.0/users/:user-id"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/users/{user id}",
-        "displayName": "/users/{user id}",
+        "path": "/users/:user-id",
+        "displayName": "/users/:user-id",
         "category": "users",
         "doc": {
           "t": "Deletes a user in an enterprise account.An empty 204 response is sent to confirm deletion of the user. If the user still has files in their account and the ‘force’ parameter is not sent, an error is returned.",
@@ -2328,40 +1650,37 @@
         },
         "params": [
           {
-            "name": "   notify  ",
+            "name": ":user-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "User ID"
+          },
+          {
+            "name": "notify",
             "type": "boolean",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
-              "t": "   Determines if the destination user should receive email notification of the transfer.     "
+              "t": "Determines if the destination user should receive email notification of the transfer.     "
             }
           },
           {
-            "name": "   force  ",
+            "name": "force",
             "type": "boolean",
             "required": false,
             "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
             "doc": {
-              "t": "   Whether or not the user should be deleted even if this user still own files.     "
+              "t": "Whether or not the user should be deleted even if this user still own files.     "
             }
           }
         ],
-        "url": "https://api.box.com/2.0/users/{user id}"
+        "url": "https://api.box.com/2.0/users/:user-id"
       },
       {
         "httpMethod": "PUT",
-        "path": "/users/{user_id}/folders/{folder_id}",
-        "displayName": "/users/{user_id}/folders/{folder_id}",
+        "path": "/users/:user-id/folders/:folder-id",
+        "displayName": "/users/:user-id/folders/:folder-id",
         "category": "users",
         "doc": {
           "t": "Moves all of the owned content from within one user’s folder into a new folder in another user’s account.  You can move folders across users as long as the you have administrative permissions and the ‘source’ user owns the folders.  To move everything from the root folder, use “0″ which always represents the root folder of a Box account Returns the information for the newly created destination folder..  An error is thrown if you do not have the necessary permissions to move the folder",
@@ -2369,85 +1688,105 @@
         },
         "params": [
           {
-            "name": "   owned_by   required  ",
+            "name": ":user-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "User ID"
+          },
+          {
+            "name": ":folder-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Folder ID"
+          },
+          {
+            "name": "owned_by",
             "type": "object",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
-              "t": "   The user who the folder will be transferred to     "
+              "t": "The user who the folder will be transferred to     "
             }
           },
           {
-            "name": "  id  \trequired  ",
+            "name": "id",
             "type": "string",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "  \tThe ID of the user who the folder will be transferred to  \t  "
             }
           },
           {
-            "name": "  \tnotify  ",
+            "name": "notify",
             "type": "boolean",
             "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
+            "style": "body",
             "doc": {
               "t": "  \tDetermines if the destination user should receive email notification of the transfer.  \t  "
             }
           }
         ],
-        "url": "https://api.box.com/2.0/users/{user_id}/folders/{folder_id}"
+        "url": "https://api.box.com/2.0/users/:user-id/folders/:folder-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/users/{user id}/email_aliases",
-        "displayName": "/users/{user id}/email_aliases",
+        "path": "/users/:user-id/email_aliases",
+        "displayName": "/users/:user-id/email_aliases",
         "category": "users",
         "doc": {
           "t": "Retrieves all email aliases for this user. The collection of email aliases does not include the primary login for the user; use GET /users/USER_ID to retrieve the login email address.If the user_id is valid a collection of email aliases will be returned.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/users/{user id}/email_aliases"
+        "params": [{
+            "name": ":user-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "User ID"
+          }],
+        "url": "https://api.box.com/2.0/users/:user-id/email_aliases"
       },
       {
         "httpMethod": "POST",
-        "path": "/users/{user id}/email_aliases",
-        "displayName": "/users/{user id}/email_aliases",
+        "path": "/users/:user-id/email_aliases",
+        "displayName": "/users/:user-id/email_aliases",
         "category": "users",
         "doc": {
           "t": "Adds a new email alias to the given user’s account.  Returns the newly created email_alias object. Errors will be thrown if the user_id is not valid or the particular user’s email alias cannot be modified.",
           "doc": ""
         },
         "params": [],
-        "url": "https://api.box.com/2.0/users/{user id}/email_aliases"
+        "url": "https://api.box.com/2.0/users/:user-id/email_aliases"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/users/{user id}/email_aliases/{email alias id}",
-        "displayName": "/users/{user id}/email_aliases/{email alias id}",
+        "path": "/users/:user-id/email_aliases/:email-aliases-id",
+        "displayName": "/users/:user-id/email_aliases/:email-aliases-id",
         "category": "users",
         "doc": {
           "t": "Removes an email alias from a user.If the user has permission to remove this email alias, an empty 204 No Content response will be returned to confirm deletion.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/users/{user id}/email_aliases/{email alias id}"
+        "params": [
+          {
+            "name": ":user-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "User ID"
+          },
+          {
+            "name": ":email-aliases-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Email Aliases ID"
+          }
+        ],
+        "url": "https://api.box.com/2.0/users/:user-id/email_aliases/:email-aliases-id"
       },
       {
         "httpMethod": "GET",
@@ -2459,20 +1798,6 @@
           "doc": ""
         },
         "params": [
-          {
-            "name": "   none are taken  ",
-            "type": "",
-            "required": false,
-            "style": "query",
-            "curl": "",
-            "category": "",
-            "authentication": {
-              "required": true
-            },
-            "doc": {
-              "t": ""
-            }
-          }
         ],
         "url": "https://api.box.com/2.0/groups"
       },
@@ -2490,39 +1815,59 @@
       },
       {
         "httpMethod": "GET",
-        "path": "/groups/{id}/memberships",
-        "displayName": "/groups/{id}/memberships",
+        "path": "/groups/:group-id/memberships",
+        "displayName": "/groups/:group-id/memberships",
         "category": "groups",
         "doc": {
           "t": "Retrieves all of the members for a given group.A collection of group membership objects will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/groups/{id}/memberships"
+        "params": [{
+            "name": ":group-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Group ID"
+          }],
+        "url": "https://api.box.com/2.0/groups/:group-id/memberships"
       },
       {
         "httpMethod": "GET",
-        "path": "/users/{id}/memberships",
-        "displayName": "/users/{id}/memberships",
+        "path": "/users/:user-id/memberships",
+        "displayName": "/users/:user-id/memberships",
         "category": "groups",
         "doc": {
           "t": "Retrieves all of the group memberships for a given enterprise.  Note this is only available to group admins.  To get a users groups use the users/me/memberships endpoint.A collection of group membership objects will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/users/{id}/memberships"
+        "params": [
+          {
+            "name": ":user-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "User ID"
+          }
+        ],
+        "url": "https://api.box.com/2.0/users/:user-id/memberships"
       },
       {
         "httpMethod": "GET",
-        "path": "/group_memberships/{id}",
-        "displayName": "/group_memberships/{id}",
+        "path": "/group_memberships/:group-id",
+        "displayName": "/group_memberships/:group-id",
         "category": "groups",
         "doc": {
           "t": "Fetches a specific group membership entry.The specified group_membership object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/group_memberships/{id}"
+        "params": [{
+            "name": ":group-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Group ID"
+          }],
+        "url": "https://api.box.com/2.0/group_memberships/:group-id"
       },
       {
         "httpMethod": "POST",
@@ -2533,32 +1878,62 @@
           "t": "Used to add a member to a Group.  A new group membership object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
+        "params": [{
+            "name": "user.id",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "User ID"
+          },{
+            "name": "group.id",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Group ID"
+          },{
+            "name": "role",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Role"
+          }],
         "url": "https://api.box.com/2.0/group_memberships"
       },
       {
         "httpMethod": "PUT",
-        "path": "/group_memberships/{id}",
-        "displayName": "/group_memberships/{id}",
+        "path": "/group_memberships/:group-id",
+        "displayName": "/group_memberships/:group-id",
         "category": "groups",
         "doc": {
           "t": "Used to update a group membership.A new group membership object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/group_memberships/{id}"
+        "params": [{
+            "name": ":group-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Group ID"
+          }],
+        "url": "https://api.box.com/2.0/group_memberships/:group-id"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/group_memberships/{id}",
-        "displayName": "/group_memberships/{id}",
+        "path": "/group_memberships/:group-id",
+        "displayName": "/group_memberships/:group-id",
         "category": "groups",
         "doc": {
           "t": "Deletes a specific group membership.An empty 204 No Content response will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/group_memberships/{id}"
+        "params": [{
+            "name": ":group-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Group ID"
+          }],
+        "url": "https://api.box.com/2.0/group_memberships/:group-id"
       },
       {
         "httpMethod": "POST",
@@ -2569,56 +1944,114 @@
           "t": "Used to create a single task for single user on a single file.A new task object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
+        "params": [{
+            "name": "item.id",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Item ID"
+          },
+          {
+            "name": "item.type",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Item Type"
+          },
+          {
+            "name": "action",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "displayName": "Action"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "required": false,
+            "style": "body",
+            "displayName": "Message"
+          },
+          {
+            "name": "due_at",
+            "type": "timestamp",
+            "required": false,
+            "style": "body",
+            "displayName": "Due At"
+          }],
         "url": "https://api.box.com/2.0/tasks"
       },
       {
         "httpMethod": "GET",
-        "path": "/tasks/{id}",
-        "displayName": "/tasks/{id}",
+        "path": "/tasks/:task-id",
+        "displayName": "/tasks/:task-id",
         "category": "tasks",
         "doc": {
           "t": "Fetches a specific task.The specified task object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/tasks/{id}"
+        "params": [{
+            "name": ":task-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Task ID"
+          }],
+        "url": "https://api.box.com/2.0/tasks/:task-id"
       },
       {
         "httpMethod": "PUT",
-        "path": "/tasks/{id}",
-        "displayName": "/tasks/{id}",
+        "path": "/tasks/:task-id",
+        "displayName": "/tasks/:task-id",
         "category": "tasks",
         "doc": {
           "t": "Updates a specific task.The updated task object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/tasks/{id}"
+        "params": [{
+            "name": ":task-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Task ID"
+          }],
+        "url": "https://api.box.com/2.0/tasks/:task-id"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/tasks/{id}",
-        "displayName": "/tasks/{id}",
+        "path": "/tasks/:task-id",
+        "displayName": "/tasks/:task-id",
         "category": "tasks",
         "doc": {
           "t": "Permanently deletes a specific task.An empty 204 response will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/tasks/{id}"
+        "params": [{
+            "name": ":task-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Task ID"
+          }],
+        "url": "https://api.box.com/2.0/tasks/:task-id"
       },
       {
         "httpMethod": "GET",
-        "path": "/tasks/{id}/assignments",
-        "displayName": "/tasks/{id}/assignments",
+        "path": "/tasks/:task-id/assignments",
+        "displayName": "/tasks/:task-id/assignments",
         "category": "tasks",
         "doc": {
           "t": "Retrieves all of the assignments for a given task.A collection of task assignment mini objects will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/tasks/{id}/assignments"
+        "params": [{
+            "name": ":task-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Task ID"
+          }],
+        "url": "https://api.box.com/2.0/tasks/:task-id/assignments"
       },
       {
         "httpMethod": "POST",
@@ -2629,44 +2062,110 @@
           "t": "Used to assign a task to a single user. There can be multiple assignments on a given task.A new task assignment object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
+        "params": [
+          {
+            "name": "task.type",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Task Type"
+          },
+          {
+            "name": "task.id",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Task ID"
+          },
+          {
+            "name": "assign_to",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Assign To"
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "ID"
+          },
+          {
+            "name": "login",
+            "type": "string",
+            "required": true,
+            "style": "body",
+            "displayName": "Login"
+          }
+        ],
         "url": "https://api.box.com/2.0/task_assignments"
       },
       {
         "httpMethod": "GET",
-        "path": "/task_assignments/{id}",
-        "displayName": "/task_assignments/{id}",
+        "path": "/task_assignments/:task-id",
+        "displayName": "/task_assignments/:task-id",
         "category": "tasks",
         "doc": {
           "t": "Fetches a specific task assignment.The specified task assignment object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/task_assignments/{id}"
+        "params": [{
+            "name": ":task-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Task ID"
+          }],
+        "url": "https://api.box.com/2.0/task_assignments/:task-id"
       },
       {
         "httpMethod": "DELETE",
-        "path": "/task_assignments/{id}",
-        "displayName": "/task_assignments/{id}",
+        "path": "/task_assignments/:task-id",
+        "displayName": "/task_assignments/:task-id",
         "category": "tasks",
         "doc": {
           "t": "Deletes a specific task assignment.An empty 204 No Content response will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/task_assignments/{id}"
+        "params": [{
+            "name": ":task-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Task ID"
+          }],
+        "url": "https://api.box.com/2.0/task_assignments/:task-id"
       },
       {
         "httpMethod": "PUT",
-        "path": "/task_assignments/{id}",
-        "displayName": "/task_assignments/{id}",
+        "path": "/task_assignments/:task-id",
+        "displayName": "/task_assignments/:task-id",
         "category": "tasks",
         "doc": {
           "t": "Used to update a task assignment.A new task assignment object will be returned upon success.",
           "doc": ""
         },
-        "params": [],
-        "url": "https://api.box.com/2.0/task_assignments/{id}"
+        "params": [{
+            "name": ":task-id",
+            "type": "string",
+            "required": true,
+            "style": "url",
+            "displayName": "Task ID"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "style": "body",
+            "displayName": "Message"
+          },
+          {
+            "name": "resolution_state",
+            "type": "string",
+            "style": "body",
+            "displayName": "Resolution State"
+          }],
+        "url": "https://api.box.com/2.0/task_assignments/:task-id"
       }
     ]
   }
