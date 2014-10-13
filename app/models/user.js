@@ -89,17 +89,11 @@ Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'sky
 
 // find api connection by name
 UserSchema.methods.findApiByName = function (name) {
-  if (this.api == null && this.api == nil) {
+  if (_.isEmpty(this.api)) {
     this.api = [];
   }
 
-  for (var l = 0; l < this.api.length; l++) {
-    if (this.api[l].name === name) {
-      return this.api[l];
-    }
-  }
-
-  return null;
+  return _.findWhere(this.api, {name : name});
 };
 
 UserSchema.methods.acceptTerms = function (termsAccepted) {
@@ -121,10 +115,13 @@ UserSchema.methods.acceptTerms = function (termsAccepted) {
 };
 
 UserSchema.methods.overwriteOrAddApiByChannelId = function (channelid, options) {
-  var old_api, new_api;
+  var index, new_api;
 
-  old_api = _.findWhere(this.api, {channelid: channelid});
-  this.api = _.without(this.api, old_api);
+  index = _.findIndex(this.api, {channelid: channelid});
+
+  if(index > -1){
+    this.api.splice(index, 1);
+  }
 
   new_api = options || {};
   new_api.channelid = channelid;
@@ -192,11 +189,11 @@ UserSchema.statics.findOrCreateByEmailAndPassword = function(email, password){
     self.findByEmail(email).then(function(user){
       if(user && user.validPassword(password)){
         return resolve(user);
-      };
+      }
 
       if(user) {
         return reject("User with that email address already exists");
-      };
+      }
 
       var userParams = {
         email: email,

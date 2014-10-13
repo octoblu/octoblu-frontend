@@ -582,6 +582,19 @@
 		"type" : "channel:google-drive"
 	},
 	{
+		"_id" : "543bf1bd652c4207680866f7",
+		"category" : "channel",
+		"description" : "",
+		"enabled" : false,
+		"name" : "Google+",
+		"skynet" : {
+			"type" : "channel",
+			"subtype" : "GooglePlus"
+		},
+		"channelid" : "543bf27e652c4207680866f8",
+		"type" : "channel:google-plus"
+	},
+	{
 		"_id" : "53c9b83bf400e177dca325cc",
 		"category" : "channel",
 		"description" : "",

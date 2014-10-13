@@ -1,0 +1,21 @@
+{
+  "_id" : "543bf27e652c4207680866f8",
+  "name" : "Google+",
+  "type" : "channel:google-plus",
+  "auth_strategy" : "oauth",
+  "oauth" : {
+    "development" : {
+      "tokenMethod" : "access_token_query"
+    },
+    "staging" : {
+      "tokenMethod" : "access_token_query"
+    },
+    "development" : {
+      "tokenMethod" : "access_token_query"
+    }
+  },
+  "application" : {
+    "base" : "https://www.googleapis.com/plus/v1",
+    "resources" : [ ]
+  }
+}
