@@ -117,6 +117,9 @@ module.exports = function(app, passport) {
     var XeroController = require('./controllers/xero-controller');
     var xeroController = new XeroController();
 
+    var RedBoothController = require('./controllers/redbooth-controller');
+    var redBoothController = new RedBoothController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -257,6 +260,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/xero',          xeroController.authorize);
             app.get('/api/oauth/xero/callback', xeroController.callback, xeroController.redirectToDesigner);
+
+            app.get('/api/oauth/redbooth',          redBoothController.authorize);
+            app.get('/api/oauth/redbooth/callback', redBoothController.callback, redBoothController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
