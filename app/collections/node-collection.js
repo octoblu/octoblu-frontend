@@ -65,9 +65,7 @@ var NodeCollection = function (userUUID) {
 
   self.convertDeviceToNode = function (device) {
     return _.extend({}, device, {
-      category: 'device',
-      staticMessage: {},
-      useStaticMessage: true
+      category: 'device'
     });
   };
 

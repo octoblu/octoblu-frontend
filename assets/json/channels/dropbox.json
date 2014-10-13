@@ -15,14 +15,12 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "Use to specify language settings for user error messages and other language specific text. See the notes above for more information about supported locales."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/account/info "
+        "url": "https://www.dropbox.com/1/account/info "
       },
       {
         "doc": {
@@ -32,19 +30,8 @@
         "path": "/files",
         "fullURL": "https://api-content.dropbox.com/1/files/<root>/<path>",
         "httpMethod": "GET",
-        "params": [{
-            "style": "url",
-            "type": "string",
-            "name": ":root",
-            "displayName": "Root"
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":path",
-            "displayName": "Path"
-          }],
-        "url": "https://api-content.dropbox.com/1/files/:root/:path"
+        "params": [],
+        "url": "https://www.dropbox.com/1/files"
       },
       {
         "doc": {
@@ -54,13 +41,10 @@
         "path": "/files_put ",
         "fullURL": "https://api-content.dropbox.com/1/files_put/<root>/<path>?param=val",
         "httpMethod": "PUT",
-        "enabled" : false,
         "params": [
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "The metadata returned on successful upload will have its size field translated based on the given locale."
             }
@@ -68,8 +52,6 @@
           {
             "name": "overwrite",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "This value, either true (default) or false, determines what happens when there's already a file at the specified path. If true, the existing file will be overwritten by the new one. If false, the new file will be automatically renamed (for example, test.txt might be automatically renamed to test (1).txt). The new name can be obtained from the returned metadata."
             }
@@ -77,14 +59,12 @@
           {
             "name": "parent_rev",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "The revision of the file you're editing. If parent_rev matches the latest version of the file on the user's Dropbox, that file will be replaced. Otherwise, the new file will be automatically renamed (for example, test.txt might be automatically renamed to test (conflicted copy).txt). If you specify a revision that doesn't exist, the file won't save (error 400). Get the most recent rev by performing a call to /metadata."
             }
           }
         ],
-        "url": "https://api-content.dropbox.com/1/files_put "
+        "url": "https://www.dropbox.com/1/files_put "
       },
       {
         "doc": {
@@ -94,13 +74,10 @@
         "path": "/files",
         "fullURL": "https://api-content.dropbox.com/1/files/<root>/<path>",
         "httpMethod": "POST",
-        "enabled": false,
         "params": [
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "The metadata returned on successful upload will have its size field translated based on the given locale."
             }
@@ -108,23 +85,19 @@
           {
             "name": "overwrite",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "This value, either true (default) or false, determines what happens when there's already a file at the specified path. If true, the existing file will be overwritten by the new one. If false, the new file will be automatically renamed (for example, test.txt might be automatically renamed to test (1).txt). The new name can be obtained from the returned metadata."
             }
           },
           {
             "name": "parent_rev",
-            "type": "string",
-            "style": "body",
             "required": false,
             "doc": {
               "t": "The revision of the file you're editing. If parent_rev matches the latest version of the file on the user's Dropbox, that file will be replaced. Otherwise, the new file will be automatically renamed (for example, test.txt might be automatically renamed to test (conflicted copy).txt). If you specify a revision that doesn't exist, the file won't save (error 400). Get the most recent rev by performing a call to /metadata."
             }
           }
         ],
-        "url": "https://api-content.dropbox.com/1/files"
+        "url": "https://www.dropbox.com/1/files"
       },
       {
         "doc": {
@@ -136,21 +109,7 @@
         "httpMethod": "GET",
         "params": [
           {
-            "style": "url",
-            "type": "string",
-            "name": ":root",
-            "displayName": "Root"
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":path",
-            "displayName": "Path"
-          },
-          {
             "name": "file_limit",
-            "style": "query",
-            "type": "integer",
             "required": false,
             "doc": {
               "t": "Default is 10,000 (max is 25,000). When listing a folder, the service won't report listings containing more than the specified amount of files and will instead respond with a 406 (Not Acceptable) status response."
@@ -159,8 +118,6 @@
           {
             "name": "hash",
             "required": false,
-            "style": "query",
-            "type": "string",
             "doc": {
               "t": "Each call to /metadata on a folder will return a hash field, generated by hashing all of the metadata contained in that response. On later calls to /metadata, you should provide that value via this parameter so that if nothing has changed, the response will be a 304 (Not Modified) status code instead of the full, potentially very large, folder listing. This parameter is ignored if the specified path is associated with a file or if list=false. A folder shared between two users will have the same hash for each user."
             }
@@ -168,8 +125,6 @@
           {
             "name": "list",
             "required": false,
-            "style": "query",
-            "type": "string",
             "doc": {
               "t": "The strings true and false are valid values. true is the default. If true, the folder's metadata will include a contents field with a list of metadata entries for the contents of the folder. If false, the contents field will be omitted."
             }
@@ -177,8 +132,6 @@
           {
             "name": "include_deleted",
             "required": false,
-            "style": "query",
-            "type": "string",
             "doc": {
               "t": "Only applicable when list is set. If this parameter is set to true, then contents will include the metadata of deleted children. Note that the target of the metadata call is always returned even when it has been deleted (with is_deleted set to true) regardless of this flag."
             }
@@ -186,8 +139,6 @@
           {
             "name": "rev",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "If you include a particular revision number, then only the metadata for that revision will be returned."
             }
@@ -195,14 +146,12 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/metadata/:root/:path"
+        "url": "https://www.dropbox.com/1/metadata "
       },
       {
         "doc": {
@@ -216,8 +165,6 @@
           {
             "name": "cursor",
             "required": false,
-            "style": "query",
-            "type": "string",
             "doc": {
               "t": "A string that is used to keep track of your current state. On the next call pass in this value to return delta entries that have been recorded since the cursor was returned."
             }
@@ -225,23 +172,19 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           },
           {
             "name": "path_prefix",
-            "type": "string",
-            "style": "query",
             "required": false,
             "doc": {
               "t": "If present, this parameter filters the response to only include entries at or under the specified path. For example, a path_prefix of \"/Photos/Vacation\" will return entries for the path \"/Photos/Vacation\" and any files and folders under that path. If you use the path_prefix parameter, you must continue to pass the same prefix on subsequent calls using the returned cursor."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/delta"
+        "url": "https://www.dropbox.com/1/delta"
       },
       {
         "doc": {
@@ -254,8 +197,6 @@
         "params": [
           {
             "name": "cursor",
-            "type": "string",
-            "style": "query",
             "required": false,
             "doc": {
               "t": "A delta cursor as returned from a call to /delta."
@@ -263,15 +204,13 @@
           },
           {
             "name": "timeout",
-            "type": "string",
-            "style": "query",
             "required": false,
             "doc": {
               "t": "An optional integer indicating a timeout, in seconds. The default value is 30 seconds, which is also the minimum allowed value. The maximum is 480 seconds. The request will block for at most this length of time, plus up to 90 seconds of random jitter added to avoid the thundering herd problem. Care should be taken when using this parameter, as some network infrastructure does not support long timeouts."
             }
           }
         ],
-        "url": "https://api-notify.dropbox.com/1/longpoll_delta"
+        "url": "https://www.dropbox.com/1/longpoll_delta"
       },
       {
         "doc": {
@@ -285,8 +224,6 @@
           {
             "name": "rev_limit",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "Default is 10. Max is 1,000. Up to this number of recent revisions will be returned."
             }
@@ -294,14 +231,12 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/revisions"
+        "url": "https://www.dropbox.com/1/revisions"
       },
       {
         "doc": {
@@ -313,37 +248,21 @@
         "httpMethod": "POST",
         "params": [
           {
-            "style": "url",
-            "type": "string",
-            "name": ":root",
-            "displayName": "Root"
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":path",
-            "displayName": "Path"
-          },
-          {
             "name": "rev",
             "required": true,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "required The revision of the file to restore."
             }
           },
           {
             "name": "locale",
-            "type": "string",
-            "style": "body",
             "required": false,
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/restore/:root/:path"
+        "url": "https://www.dropbox.com/1/restore"
       },
       {
         "doc": {
@@ -352,24 +271,10 @@
         "displayName": "/search",
         "path": "/search",
         "fullURL": "https://api.dropbox.com/1/search/<root>/<path>",
-        "httpMethod": "GET",
+        "httpMethod": "",
         "params": [
           {
-            "style": "url",
-            "type": "string",
-            "name": ":root",
-            "displayName": "Root"
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":path",
-            "displayName": "Path"
-          },
-          {
             "name": "query",
-            "type": "string",
-            "style": "query",
             "required": true,
             "doc": {
               "t": "required The search string. This string is split (on spaces) into individual words. Files and folders will be returned if they contain all words in the search string."
@@ -377,8 +282,6 @@
           },
           {
             "name": "file_limit",
-            "type": "string",
-            "style": "query",
             "required": false,
             "doc": {
               "t": "The maximum and default value is 1,000. No more than file_limit search results will be returned."
@@ -386,8 +289,6 @@
           },
           {
             "name": "include_deleted",
-            "type": "string",
-            "style": "query",
             "required": false,
             "doc": {
               "t": "If this parameter is set to true, then files and folders that have been deleted will also be included in the search."
@@ -396,14 +297,12 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/search/:root/:path"
+        "url": "https://www.dropbox.com/1/search"
       },
       {
         "doc": {
@@ -417,8 +316,6 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "Use to specify language settings for user error messages and other language specific text. See the notes above for more information about supported locales."
             }
@@ -426,14 +323,12 @@
           {
             "name": "short_url",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "When true (default), the url returned will be shortened using the Dropbox url shortener. If false, the url will link directly to the file's preview page."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/shares"
+        "url": "https://www.dropbox.com/1/shares"
       },
       {
         "doc": {
@@ -446,15 +341,13 @@
         "params": [
           {
             "name": "locale",
-            "type": "string",
-            "style": "body",
             "required": false,
             "doc": {
               "t": "Use to specify language settings for user error messages and other language specific text. See the notes above for more information about supported locales."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/media"
+        "url": "https://www.dropbox.com/1/media"
       },
       {
         "doc": {
@@ -464,20 +357,8 @@
         "path": "/copy_ref",
         "fullURL": "https://api.dropbox.com/1/copy_ref/<root>/<path>",
         "httpMethod": "GET",
-        "params": [{
-            "style": "url",
-            "type": "string",
-            "name": ":root",
-            "displayName": "Root"
-          },
-          {
-            "style": "url",
-            "type": "string",
-            "name": ":path",
-            "displayName": "Path"
-          }
-        ],
-        "url": "https://api.dropbox.com/1/copy_ref/:root/:path"
+        "params": [],
+        "url": "https://www.dropbox.com/1/copy_ref"
       },
       {
         "doc": {
@@ -491,8 +372,6 @@
           {
             "name": "format",
             "required": false,
-            "type": "string",
-            "style": "query",
             "doc": {
               "t": "jpeg (default) or png. For images that are photos, jpeg should be preferred, while png is better for screenshots and digital art."
             }
@@ -505,7 +384,7 @@
             }
           }
         ],
-        "url": "https://api-content.dropbox.com/1/thumbnails"
+        "url": "https://www.dropbox.com/1/thumbnails"
       },
       {
         "doc": {
@@ -517,8 +396,6 @@
         "httpMethod": "PUT",
         "params": [
           {
-            "type": "string",
-            "style": "body",
             "name": "upload_id",
             "required": false,
             "doc": {
@@ -526,8 +403,6 @@
             }
           },
           {
-            "type": "string",
-            "style": "body",
             "name": "offset",
             "required": false,
             "doc": {
@@ -535,7 +410,7 @@
             }
           }
         ],
-        "url": "https://api-content.dropbox.com/1/chunked_upload"
+        "url": "https://www.dropbox.com/1/chunked_upload"
       },
       {
         "doc": {
@@ -547,8 +422,6 @@
         "httpMethod": "POST",
         "params": [
           {
-            "type": "string",
-            "style": "body",
             "name": "locale",
             "required": false,
             "doc": {
@@ -556,8 +429,6 @@
             }
           },
           {
-            "type": "string",
-            "style": "body",
             "name": "overwrite",
             "required": false,
             "doc": {
@@ -565,8 +436,6 @@
             }
           },
           {
-            "type": "string",
-            "style": "body",
             "name": "parent_rev",
             "required": false,
             "doc": {
@@ -574,8 +443,6 @@
             }
           },
           {
-            "type": "string",
-            "style": "body",
             "name": "upload_id",
             "required": false,
             "doc": {
@@ -583,7 +450,7 @@
             }
           }
         ],
-        "url": "https://api-content.dropbox.com/1/commit_chunked_upload"
+        "url": "https://www.dropbox.com/1/commit_chunked_upload"
       },
       {
         "doc": {
@@ -595,8 +462,6 @@
         "httpMethod": "POST",
         "params": [
           {
-            "type": "string",
-            "style": "body",
             "name": "root",
             "required": true,
             "doc": {
@@ -605,8 +470,6 @@
           },
           {
             "name": "from_path",
-            "type": "string",
-            "style": "body",
             "required": false,
             "doc": {
               "t": "Specifies the file or folder to be copied from relative to root."
@@ -614,8 +477,6 @@
           },
           {
             "name": "to_path",
-            "type": "string",
-            "style": "body",
             "required": true,
             "doc": {
               "t": "required Specifies the destination path, including the new name for the file or folder, relative to root."
@@ -623,8 +484,6 @@
           },
           {
             "name": "locale",
-            "type": "string",
-            "style": "body",
             "required": false,
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
@@ -633,14 +492,12 @@
           {
             "name": "from_copy_ref",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "Specifies a copy_ref generated from a previous /copy_ref call. Must be used instead of the from_path parameter."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/fileops/copy"
+        "url": "https://www.dropbox.com/1/fileops/copy"
       },
       {
         "doc": {
@@ -654,16 +511,12 @@
           {
             "name": "root",
             "required": true,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "required The root relative to which path is specified. Valid values are sandbox and dropbox."
             }
           },
           {
             "name": "path",
-            "type": "string",
-            "style": "body",
             "required": true,
             "doc": {
               "t": "required The path to the new folder to create relative to root."
@@ -671,15 +524,13 @@
           },
           {
             "name": "locale",
-            "type": "string",
-            "style": "body",
             "required": false,
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/fileops/create_folder "
+        "url": "https://www.dropbox.com/1/fileops/create_folder "
       },
       {
         "doc": {
@@ -693,16 +544,12 @@
           {
             "name": "root",
             "required": true,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "required The root relative to which path is specified. Valid values are sandbox and dropbox."
             }
           },
           {
             "name": "path",
-            "type": "string",
-            "style": "body",
             "required": true,
             "doc": {
               "t": "required The path to the file or folder to be deleted."
@@ -711,14 +558,12 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/fileops/delete "
+        "url": "https://www.dropbox.com/1/fileops/delete "
       },
       {
         "doc": {
@@ -731,8 +576,6 @@
         "params": [
           {
             "name": "root",
-            "type": "string",
-            "style": "body",
             "required": true,
             "doc": {
               "t": "required The root relative to which from_path and to_path are specified. Valid values are sandbox and dropbox."
@@ -740,8 +583,6 @@
           },
           {
             "name": "from_path",
-            "type": "string",
-            "style": "body",
             "required": true,
             "doc": {
               "t": "required Specifies the file or folder to be moved from relative to root."
@@ -749,8 +590,6 @@
           },
           {
             "name": "to_path",
-            "type": "string",
-            "style": "body",
             "required": true,
             "doc": {
               "t": "required Specifies the destination path, including the new name for the file or folder, relative to root."
@@ -759,14 +598,23 @@
           {
             "name": "locale",
             "required": false,
-            "type": "string",
-            "style": "body",
             "doc": {
               "t": "The metadata returned will have its size field translated based on the given locale. For more information see above."
             }
           }
         ],
-        "url": "https://api.dropbox.com/1/fileops/move "
+        "url": "https://www.dropbox.com/1/fileops/move "
+      },
+      {
+        "doc": {
+          "t": "Disables the access token used to authenticate the call. This method works for OAuth 1 and OAuth 2 tokens."
+        },
+        "displayName": "/disable_access_token",
+        "path": "/disable_access_token",
+        "fullURL": "https://api.dropbox.com/1/disable_access_token",
+        "httpMethod": "POST",
+        "params": [],
+        "url": "https://www.dropbox.com/1/disable_access_token"
       }
     ]
   },
