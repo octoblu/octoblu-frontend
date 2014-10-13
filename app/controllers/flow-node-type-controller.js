@@ -2,8 +2,7 @@ var _ = require('lodash');
 var FlowNodeTypeCollection = require('../collections/flow-node-type-collection');
 
 module.exports = function (options) {
-  var self, addResourceType;
-  self = this;
+  var self = this;
 
   this.getFlowNodeTypes = function (req, res) {
     var flowNodeTypeCollection = self.getFlowNodeTypeCollection(req.user.resource.uuid);
@@ -20,7 +19,7 @@ module.exports = function (options) {
     return _.map(items, function(item){
       return _.extend({resourceType: 'flow-node-type'}, item);
     });
-  };
+  }
 
   return self;
 };

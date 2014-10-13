@@ -2,17 +2,15 @@ angular.module('octobluApp')
 .controller('AddNodeWizardController', function($scope, $state, NodeTypeService) {
   'use strict';
 
+  var STATES = {
+    'channel': 'ob.nodewizard.addchannel.existing',
+    'device': 'ob.nodewizard.adddevice',
+    'microblu': 'ob.nodewizard.addmicroblu',
+    'gateway': 'ob.nodewizard.addgateway',
+    'subdevice': 'ob.nodewizard.addsubdevice.selectgateway'
+  };
+
   NodeTypeService.getById($state.params.nodeTypeId).then(function(nodeType){
-    var state = 'ob.nodewizard.adddevice';
-
-    if(nodeType.category === 'channel'){
-      state = 'ob.nodewizard.addchannel.existing';
-    }
-
-    if(nodeType.genbluCapable){
-      state = 'ob.nodewizard.addsubdevice.selectgenblu';
-    }
-
-    $state.go(state, {nodeTypeId : $state.params.nodeTypeId}, {location: 'replace'});
+    $state.go(STATES[nodeType.category], {nodeTypeId : $state.params.nodeTypeId}, {location: 'replace'});
   });
 });

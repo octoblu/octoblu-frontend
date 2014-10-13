@@ -3,11 +3,12 @@ var when = require('when');
 var _ = require('lodash');
 
 var FlowNodeTypeCollection = function(userUUID, options){
-  var self, fs;
+  var self, fs, userUUID;
   self = this;
 
   options  = options || {};
   fs       = options.fs || require('fs');
+  userUUID = userUUID;
 
   self.convertNode = function(node){
     return {

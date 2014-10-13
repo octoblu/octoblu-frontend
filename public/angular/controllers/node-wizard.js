@@ -1,5 +1,5 @@
 'use strict';
 
 angular.module('octobluApp')
-.controller('nodeWizardController', function($scope) {
-});
+    .controller('nodeWizardController', function($scope) {
+    });
