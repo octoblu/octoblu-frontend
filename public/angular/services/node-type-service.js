@@ -23,12 +23,6 @@ angular.module('octobluApp')
     });
   };
 
-  self.getNodeTypeByType = function(type){
-    return self.getNodeTypes().then(function(nodeTypes){
-      return _.findWhere(nodeTypes, {type: type});
-    });
-  };
-
   self.getById = self.getNodeTypeById;
 
   return self;

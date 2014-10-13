@@ -64,16 +64,15 @@
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a7",
-		"category" : "device",
+		"category" : "subdevice",
 		"description" : "Blink1 USB LED",
 		"enabled" : true,
-		"genbluCapable": true,
 		"name" : "Blink(1)",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "blink1"
+			"subtype" : "blink1",
+			"plugin" : "skynet-blink1"
 		},
-		"connector": "meshblu-blink1",
 		"type" : "device:blink1"
 	},
 	{
@@ -200,14 +199,14 @@
 	},
 	{
 		"_id" : "53c9b831f400e177dca325b0",
-		"category" : "device",
-		"description" : "Meshblu device connection manager",
+		"category" : "gateway",
+		"description" : "Skynet Hub",
 		"enabled" : true,
-		"name" : "Genblu",
+		"name" : "Gateblu",
 		"skynet" : {
-			"type" : "device:genblu"
+			"type" : "gateway"
 		},
-		"type" : "device:genblu"
+		"type" : "device:gateway"
 	},
 	{
 		"_id" : "53c9b832f400e177dca325b3",
@@ -546,7 +545,7 @@
 		"_id" : "53c9b83af400e177dca325c9",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Dropbox",
 		"skynet" : {
 			"type" : "channel",
