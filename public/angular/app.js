@@ -476,7 +476,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.nodewizard.addsubdevice.selectgenblu', {
         url: '',
         controller: 'AddSubdeviceSelectGenbluController',
-        templateUrl: '/pages/node-wizard/add-subdevice/select-genblu.html'
+        templateUrl: '/pages/node-wizard/add-subdevice/select-gateblu.html'
       })
       .state('ob.nodewizard.addsubdevice.form', {
         url: '/genblus/:genbluId',
