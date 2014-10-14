@@ -12,14 +12,14 @@
       "tokenMethod": "access_token_bearer"
     },
     "production": {
-      "clientID": "AUyRVRBkIGqjJJs3ZGsavw3QXXyvpN5qAG4sIKBO6sSmPKSxHiiDu6paxJ4T",
-      "clientSecret": "EBvoihAqddY6qUAOFlve36T1QFVI_gJWPej-bQaohRsdLsfM5LAY31b_wHuP",
+      "clientID": "AfDwFBA78BBZsnv3Luhc5pr3lQLaRhR7LLMVAbqkPR8nwU0MCx_AsinlHci-",
+      "clientSecret": "EKxBMhAwyYj7sJcRGdp2OzpPUNCigZDIlfQU3gkFKJan18kO0ZdRDtlr-uvc",
       "callbackURL": "https://app.octoblu.com/api/oauth/paypal/callback",
       "tokenMethod": "access_token_bearer"
     },
     "staging": {
-      "clientID": "ARuGGRAMNA8dgArkuaUXxaAA7dv5obKtlfM76iHkmxvOhls8wqx0o-v9p8Yv",
-      "clientSecret": "EJ1fURBxOT4Tn2JeMHdfEzng2w4C_wJla0UX8880mLNlQflfAh6fo_6RXKwC",
+      "clientID": "AcqdTxCujldgs1PcGICRnyA5c7wYf4vIeOITCejWmVfbdOJW11rwsN8S6KqD",
+      "clientSecret": "EHPnxBBKYYigDXEDAowu0EECLYzgfs-DWm0JeGJdSqbjzDGwbjU_O1kOzqX8",
       "callbackURL": "https://staging.octoblu.com/api/oauth/paypal/callback",
       "tokenMethod": "access_token_bearer"
     }
