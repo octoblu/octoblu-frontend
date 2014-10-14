@@ -22,6 +22,27 @@ angular.module('octobluApp')
     });
   };
 
+  var waitForDeviceToHaveOptionsSchema = function(device){
+    var deferred, waitFunction;
+    deferred = $q.defer();
+
+    skynetService.getSkynetConnection().then(function(conn){
+      waitFunction = function(){
+        deviceService.getDeviceByUUIDAndToken(device.uuid, device.token)
+        .then(function(device){
+          if(device && device.optionsSchema){
+            clearInterval(waitFunction);
+            deferred.resolve(device);
+          }
+        });
+
+      };
+      setInterval(waitFunction, 1000);
+    });
+
+    return deferred.promise;
+  };
+
   self.addDevice = function(genbluId, nodeType){
     var device;
 
@@ -37,7 +58,7 @@ angular.module('octobluApp')
       genblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
       return updateGenblu(genblu);
     }).then(function(){
-      return device;
+      return waitForDeviceToHaveOptionsSchema(device);
     });
   };
 

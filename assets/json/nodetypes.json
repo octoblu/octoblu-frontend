@@ -38,29 +38,17 @@
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a4",
-		"category" : "subdevice",
+		"category" : "device",
 		"description" : "Belkin Wemo home automation",
 		"enabled" : true,
+		"genbluCapable" : true,
 		"name" : "Belkin Wemo",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "wemo",
-			"plugin" : "skynet-wemo"
+			"subtype" : "wemo"
 		},
+		"connector": "meshblu-wemo",
 		"type" : "device:wemo"
-	},
-	{
-		"_id" : "53c9b82ff400e177dca325a6",
-		"category" : "subdevice",
-		"description" : "Insteon home automation",
-		"enabled" : true,
-		"name" : "Insteon",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "insteon",
-			"plugin" : "skynet-insteon"
-		},
-		"type" : "device:insteon"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a7",
@@ -75,6 +63,19 @@
 		},
 		"connector": "meshblu-blink1",
 		"type" : "device:blink1"
+	},
+	{
+		"_id" : "53c9b82ff400e177dca325a6",
+		"category" : "subdevice",
+		"description" : "Insteon home automation",
+		"enabled" : true,
+		"name" : "Insteon",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "insteon",
+			"plugin" : "skynet-insteon"
+		},
+		"type" : "device:insteon"
 	},
 	{
 		"_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",

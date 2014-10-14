@@ -1,8 +1,12 @@
 angular.module('octobluApp')
-.controller('addSubdeviceFormController', function($scope, $state, $stateParams, GenbluService, deviceService) {
+.controller('addSubdeviceFormController', function($scope, $state, $stateParams, GenbluService, deviceService, NodeTypeService) {
 'use strict';
 
-  GenbluService.addDevice($stateParams.genbluId, $scope.nodeType).then(function(device){
+  NodeTypeService.getNodeTypeById($stateParams.nodeTypeId).then(function(nodeType){
+    $scope.nodeType = nodeType;
+  }).then(function(){
+    return GenbluService.addDevice($stateParams.genbluId, $scope.nodeType)
+  }).then(function(device){
     $scope.device = device;
   });
 
