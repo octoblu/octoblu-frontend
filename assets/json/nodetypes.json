@@ -793,7 +793,7 @@
     "_id" : "da1a065b-6a6d-4f02-9511-1204fd8b0d80",
     "category" : "channel",
     "description" : "QuickBooks",
-    "enabled" : true,
+    "enabled" : false,
     "name" : "QuickBooks",
     "skynet" : {
       "type" : "channel",
