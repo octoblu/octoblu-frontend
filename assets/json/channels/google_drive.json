@@ -4,23 +4,14 @@
   "type" : "channel:google-drive",
   "auth_strategy" : "oauth",
   "oauth": {
-    "development": {
-      "clientID"     : "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL"  : "http://localhost:8080/api/oauth/google/callback",
-      "tokenMethod": "access_token_query"
+    "development" : {
+      "tokenMethod" : "access_token_query"
     },
-    "production": {
-      "clientID"     : "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL"  : "https://app.octoblu.com/api/oauth/google/callback",
-      "tokenMethod": "access_token_query"
+    "staging" : {
+      "tokenMethod" : "access_token_query"
     },
-    "staging": {
-      "clientID"     : "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL"  : "https://staging.octoblu.com/api/oauth/google/callback",
-      "tokenMethod": "access_token_query"
+    "development" : {
+      "tokenMethod" : "access_token_query"
     }
   },
   "application" : {

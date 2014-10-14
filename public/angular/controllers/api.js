@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('apiController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, $state, currentUser, channelService, userService) {
+    .controller('apiController', function ($rootScope, $scope, $http, $injector, $window, $location, $stateParams, $modal, $log, $state, currentUser, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
         $scope.user_channel = {};
@@ -49,8 +49,8 @@ angular.module('octobluApp')
                         channelService.getActiveChannels(true);
                         channelService.getAvailableChannels(true);
                         _.defer(function(){
-                            window.location = '/design';
-                        })
+                            $window.location = '/design';
+                        });
                     });
                 }
             }, function () {
@@ -123,6 +123,7 @@ angular.module('octobluApp')
         };
 
         $scope.authorize = function (channel) {
+            var loc;
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
@@ -132,15 +133,15 @@ angular.module('octobluApp')
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel._id + '/custom';
-                location.href = loc;
+                loc = '/api/auth/' + channel._id + '/custom';
+                $window.location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
-                location.href = loc;
+                loc = '/api/auth/' + channel.name;
+                $window.location.href = loc;
             }
         };
     })
-    .controller('apiEditorController', function ($rootScope, $scope, $http, $injector, $location, $stateParams,
+    .controller('apiEditorController', function ($rootScope, $scope, $window, $http, $injector, $location, $stateParams,
             $modal, $log, $state, channelService, userService, currentUser) {
         $scope.skynetStatus = false;
         $scope.isEdit = false;
@@ -168,7 +169,7 @@ angular.module('octobluApp')
             if($location.port()!='80')
                 h += ':' + $location.port();
             return $location.protocol() + '://' + h + '/api/auth/' + $scope.channel._id + '/callback/custom';
-        }
+        };
 
         $scope.setEditMode = function () {
             $scope.isEdit = true;
@@ -215,6 +216,7 @@ angular.module('octobluApp')
         };
 
         $scope.authorize = function (channel) {
+            var loc;
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
@@ -224,11 +226,11 @@ angular.module('octobluApp')
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel._id + '/custom';
-                location.href = loc;
+                loc = '/api/auth/' + channel._id + '/custom';
+                $window.location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
-                location.href = loc;
+                loc = '/api/auth/' + channel.name;
+                $window.location.href = loc;
             }
         };
 
@@ -381,7 +383,7 @@ angular.module('octobluApp')
         }
 
     })
-    .controller('apiResourcesController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log
+    .controller('apiResourcesController', function ($rootScope, $window, $scope, $http, $injector, $location, $stateParams, $modal, $log
             ,currentUser, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
@@ -442,6 +444,7 @@ angular.module('octobluApp')
         };
 
         $scope.authorize = function (channel) {
+            var loc;
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
@@ -451,15 +454,15 @@ angular.module('octobluApp')
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel._id + '/custom';
-                location.href = loc;
+                loc = '/api/auth/' + channel._id + '/custom';
+                $window.location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
-                location.href = loc;
+                loc = '/api/auth/' + channel.name;
+                $window.location.href = loc;
             }
         };
     })
-    .controller('apiResourceDetailController', function ($rootScope, $scope, $http, $injector, $location, $stateParams, $modal, $log, currentUser, channelService, userService) {
+    .controller('apiResourceDetailController', function ($rootScope, $window, $scope, $http, $injector, $location, $stateParams, $modal, $log, currentUser, channelService, userService) {
         $scope.skynetStatus = false;
         $scope.channel = {};
         $scope.user_channel = {};
@@ -506,7 +509,7 @@ angular.module('octobluApp')
                         channelService.getActiveChannels(true);
                         channelService.getAvailableChannels(true);
                     });
-                };
+                }
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -517,6 +520,7 @@ angular.module('octobluApp')
         };
 
         $scope.authorize = function (channel) {
+            var loc;
             if (channel.auth_strategy === 'none') {
                 userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
@@ -526,11 +530,11 @@ angular.module('octobluApp')
                     return;
                 });
             } else if (channel.owner || channel.useCustom) {
-                var loc = '/api/auth/' + channel._id + '/custom';
-                location.href = loc;
+                loc = '/api/auth/' + channel._id + '/custom';
+                $window.location.href = loc;
             } else {
-                var loc = '/api/auth/' + channel.name;
-                location.href = loc;
+                loc = '/api/auth/' + channel.name;
+                $window.location.href = loc;
             }
         };
     });

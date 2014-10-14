@@ -498,7 +498,7 @@
 		"_id" : "53d2de0160c378a87a0f908c",
 		"category" : "channel",
 		"description" : "Give your entire team access to our powerful online survey platform. SurveyMonkey Enterprise helps anyone in any function use surveys to make smarter decisions, while your organization gets complete control of your data, users and billing.",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Survey Monkey",
 		"skynet" : {
 			"type" : "channel",
@@ -580,6 +580,19 @@
 		},
 		"channelid" : "5333aefee5c02952f1c33089",
 		"type" : "channel:google-drive"
+	},
+	{
+		"_id" : "543bf1bd652c4207680866f7",
+		"category" : "channel",
+		"description" : "",
+		"enabled" : false,
+		"name" : "Google+",
+		"skynet" : {
+			"type" : "channel",
+			"subtype" : "GooglePlus"
+		},
+		"channelid" : "543bf27e652c4207680866f8",
+		"type" : "channel:google-plus"
 	},
 	{
 		"_id" : "53c9b83bf400e177dca325cc",
@@ -780,7 +793,7 @@
     "_id" : "da1a065b-6a6d-4f02-9511-1204fd8b0d80",
     "category" : "channel",
     "description" : "QuickBooks",
-    "enabled" : true,
+    "enabled" : false,
     "name" : "QuickBooks",
     "skynet" : {
       "type" : "channel",
@@ -801,5 +814,31 @@
     },
     "channelid" : "53dfcb87626a43a44f966d0a",
     "type" : "channel:echosign"
+  },
+  {
+    "_id" : "750242b3-b960-4828-a7f1-c5a07672e98c",
+    "category" : "channel",
+    "description" : "Xero",
+    "enabled" : true,
+    "name" : "Xero",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "xero"
+    },
+    "channelid" : "53e3fab413c57e0267403a89",
+    "type" : "channel:xero"
+  },
+  {
+    "_id" : "fe7eba68-0e91-4c5e-b163-241158be76be",
+    "category" : "channel",
+    "description" : "RedBooth",
+    "enabled" : true,
+    "name" : "RedBooth",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "redbooth"
+    },
+    "channelid" : "53f2431f710850ee08e28474",
+    "type" : "channel:redbooth"
   }
 ]

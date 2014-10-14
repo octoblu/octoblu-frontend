@@ -8,7 +8,7 @@ angular.module('octobluApp')
   self.hashFlow = function(flow) {
     var hashableFlow = _.pick(flow, ['links', 'nodes', 'name']);
     return XXH( JSON.stringify(hashableFlow), 0xABCD ).toString(16);
-  }
+  };
 
   self.saveActiveFlow = function () {
     if(!activeFlow){return;}
@@ -18,7 +18,7 @@ angular.module('octobluApp')
   self.saveFlow = function(flow) {
     flow.hash = self.hashFlow(flow);
     return $http.put("/api/flows/" + flow.flowId, _.clone(flow));
-  }
+  };
 
   self.selectNode = function(flowNode){
     activeFlow.selectedFlowNode = flowNode;

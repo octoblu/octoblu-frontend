@@ -324,8 +324,20 @@
           "t": "Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed).",
           "url": "https://developer.linkedin.com/documents/company-lookup-api-and-fields"
         },
-        "path": "/companies/bulk",
-        "url": "https://api.linkedin.com/v1/companies/bulk"
+        "path": "/companies",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "email-domain"
+          },
+          {
+            "style": "query",
+            "type": "boolean",
+            "name": "is-company-admin"
+          }
+        ],
+        "url": "https://api.linkedin.com/v1/companies"
       },
       {
         "httpMethod": "GET",
@@ -389,21 +401,6 @@
         "enabled": false,
         "path": "/people/~/following/companies",
         "url": "https://api.linkedin.com/v1/people/~/following/companies"
-      },
-      {
-        "httpMethod": "GET",
-        "displayName": "7. Company_GET",
-        "category": "7. Company",
-        "authentication": {
-          "required": "true"
-        },
-        "curl": "curl -X GET -u 'username:password' http://api.linkedin.com/v1/companies?email-domain=linkedin.com",
-        "doc": {
-          "t": "Use the Company Profile API to find companies using a company ID, a universal name, or an email domain. You can retrieve data for individual or multiple companies. The API returns a list of companies with matching profiles. Each entry can contain the basic company information available in the company profile (such as company ID, logo, site URL, and more) and handles to additional company content (such as RSS stream or Twitter feed). 2 Legged Authentication works for this call.",
-          "url": "https://developer.linkedin.com/documents/company-lookup-api-and-fields"
-        },
-        "path": "/companies/email-domain",
-        "url": "https://api.linkedin.com/v1/companies/email-domain"
       },
       {
         "httpMethod": "PUT",

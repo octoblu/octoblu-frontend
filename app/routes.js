@@ -114,6 +114,12 @@ module.exports = function(app, passport) {
     var EchoSignController = require('./controllers/echosign-controller');
     var echoSignController = new EchoSignController();
 
+    var XeroController = require('./controllers/xero-controller');
+    var xeroController = new XeroController();
+
+    var RedBoothController = require('./controllers/redbooth-controller');
+    var redBoothController = new RedBoothController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -210,8 +216,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/goToMeeting',          goToMeetingController.authorize);
             app.get('/api/oauth/goToMeeting/callback', goToMeetingController.callback, goToMeetingController.redirectToDesigner);
 
-            app.get('/api/oauth/google-drive',          referrer.storeReferrer, googleController.authorize);
-            app.get('/api/oauth/google-drive/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+            app.get('/api/oauth/google-*',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/google-*/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
             app.get('/api/oauth/paypal',          referrer.storeReferrer, paypalController.authorize);
             app.get('/api/oauth/paypal/callback', paypalController.callback, paypalController.redirectToDesigner);
@@ -251,6 +257,12 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/quickbooks',          quickBooksController.authorize);
             app.get('/api/oauth/quickbooks/callback', quickBooksController.callback, quickBooksController.redirectToDesigner);
+
+            app.get('/api/oauth/xero',          xeroController.authorize);
+            app.get('/api/oauth/xero/callback', xeroController.callback, xeroController.redirectToDesigner);
+
+            app.get('/api/oauth/redbooth',          redBoothController.authorize);
+            app.get('/api/oauth/redbooth/callback', redBoothController.callback, redBoothController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
