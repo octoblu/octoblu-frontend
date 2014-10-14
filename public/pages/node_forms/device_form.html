@@ -1,4 +1,23 @@
 <div class="form-group">
-    <label for="name">Name</label>
-    <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
+  <label for="name">Name</label>
+  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
+</div>
+
+<div class="form-group">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <label class="form-label" for="use-static-message">Forward Payload</label>
+    </div>
+
+    <div class="col-xs-12 col-md-6 text-right">
+      <div class="btn-group">
+        <input type="button" class="btn btn-default" ng-model="flowNode.useStaticMessage" btn-radio="true" value="No">
+        <input type="button" class="btn btn-default" ng-model="flowNode.useStaticMessage" btn-radio="false" value="Yes">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group" ng-if="flowNode.useStaticMessage">
+  <device-message-form uuid="flowNode.uuid" token="flowNode.token" model="flowNode.staticMessage"></device-message-form>
 </div>

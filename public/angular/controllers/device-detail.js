@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService, NodeService) {
+    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService, NodeService, NodeTypeService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
 
@@ -71,7 +71,7 @@ angular.module('octobluApp')
                 });
 
         };
-        
+
         $scope.deleteSubdevice = function (subdevice) {
             $scope.confirmModal($modal, $scope, $log, 'Delete Subdevice', 'Are you sure you want to delete this subdevice?',
                 function () {
@@ -91,18 +91,7 @@ angular.module('octobluApp')
         };
 
         $scope.editDevice = function (device) {
-            var nodeType = _.findWhere(availableNodeTypes, function (nodeType) {
-                if (device.type) {
-                    if (device.subtype) {
-                        return nodeType.skynet.type === device.type && nodeType.skynet.subtype === device.subtype;
-                    } else {
-                        return nodeType.skynet.type === device.type;
-                    }
-                } else {
-                    return nodeType.skynet.type === 'device' && nodeType.skynet.subtype === 'other';
-                }
-            });
-
+            var nodeType = NodeTypeService.getNodeTypeByType(device.type);
             var deviceModal = $modal.open({
                 templateUrl: '/pages/connector/devices/device/add-edit.html',
                 controller: 'AddEditDeviceController',
@@ -114,7 +103,7 @@ angular.module('octobluApp')
                     owner: function () {
                         return currentUser;
                     },
-                  nodeType: function () {
+                    nodeType: function () {
                         return nodeType;
                     },
                     availableNodeTypes: function () {
@@ -133,7 +122,7 @@ angular.module('octobluApp')
                 console.log('cancelled');
             });
         };
-        
+
         $scope.editSubdevice = function (subdevice) {
             var subdeviceModal = $modal.open({
                 templateUrl: '/pages/connector/devices/subdevice/add-edit.html',
