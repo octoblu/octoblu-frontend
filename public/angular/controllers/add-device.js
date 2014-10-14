@@ -5,9 +5,10 @@ angular.module('octobluApp')
     $scope.newDevice = {};
     $scope.existingDevice = {};
 
-    NodeTypeService.getNodeTypeById($stateParams.nodeTypeId)
-    .then(function (nodeType) {
-      $scope.nodeType  = nodeType;
+    NodeTypeService.getNodeTypes().then(function (nodeTypes) {
+      $scope.nodeType = _.findWhere(nodeTypes, {_id: $stateParams.nodeTypeId});
+    })
+    .then(function () {
       return deviceService.getUnclaimed($scope.nodeType.skynet.type);
     })
     .then(function (unclaimedDevices) {

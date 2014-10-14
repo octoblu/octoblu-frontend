@@ -1,5 +1,5 @@
 describe('FlowChannelFormController', function () {
-  var scope, sut, channel, resource1, resource2, resource3, fakeChannelService;
+  var scope, sut, channel, resource1, resource2, resource3, fakeChannelService, channelService;
 
   describe('When the node has channelid = "1"', function(){
     beforeEach(function () {
@@ -56,8 +56,8 @@ describe('FlowChannelFormController', function () {
   //   });
   // });
 
-  resource1  = {path: '/adams', httpMethod: 'PATCH', params: [{name: 'bar', style: 'query'}, {name: 'bparam', style: 'body'}]};
-  resource2  = {path: '/42',    httpMethod: 'WAIT',  params: [{name: 'foo', style: 'query'}, {name: 'uparam', style: 'url'}]};
+  resource1  = {path: '/42',    httpMethod: 'WAIT',  params: [{name: 'foo', style: 'query'}, {name: 'uparam', style: 'url'}]};
+  resource2  = {path: '/adams', httpMethod: 'PATCH', params: [{name: 'bar', style: 'query'}, {name: 'bparam', style: 'body'}]};
   resource3  = {path: '/asdf',  httpMethod: 'ASDF',  params: [{name: 'bar', style: 'query'}, {name: 'bparam', style: 'body'}]};
   channel    = {application: {base: '', resources: [resource1, resource2]}};
 
@@ -70,5 +70,5 @@ describe('FlowChannelFormController', function () {
 
     this.getById.resolve = q.resolve;
     return this;
-  }
+  };
 });

@@ -4,41 +4,57 @@
     "base": "https://api.tumblr.com/v2",
     "resources": [
       {
-        "path": "/blog/{base-hostname}/info",
+        "path": "/blog/:base-hostname/info",
         "doc": {
           "t": "This method returns general information about the blog, such as the title, number of posts, and other high-level data.",
           "url": "http://www.tumblr.com/docs/en/api/v2#blog-info"
         },
-        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/info",
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/:base-hostname/info",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_GET",
         "httpMethod": "GET",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/info"
+        "params" : [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          }
+        ],
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/info"
       },
       {
-        "path": "/blog/{base-hostname}/avatar/{size}",
+        "path": "/blog/:base-hostname/avatar/:size",
         "doc": {
           "t": "Retrieves a blog's avatar in one of 9 different sizes.",
           "url": "http://www.tumblr.com/docs/en/api/v2#blog-avatar"
         },
-        "curl": "curl -X GET  http://api.tumblr.com/v2/blog/{base-hostname}/avatar/{size}",
+        "curl": "curl -X GET  http://api.tumblr.com/v2/blog/:base-hostname/avatar/:size",
         "authentication": {
           "required": "false"
         },
         "category": "Blog",
         "displayName": "Blog_GET",
         "httpMethod": "GET",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/avatar/{size}"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/avatar/:size"
       },
       {
-        "path": "/blog/{base-hostname}/followers",
+        "path": "/blog/:base-hostname/followers",
         "params": [
           {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
+          {
             "name": "limit",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "20",
             "required": "true",
@@ -48,7 +64,7 @@
           },
           {
             "name": "offset",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "0",
             "required": "true",
@@ -61,21 +77,28 @@
           "t": "Retrieves a blog's followers. The number of results to return: 1–20, inclusive Result to start at.",
           "url": "http://www.tumblr.com/docs/en/api/v2#blog-followers"
         },
-        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0' http://api.tumblr.com/v2/blog/{base-hostname}/followers",
+        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0' http://api.tumblr.com/v2/blog/:base-hostname/followers",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_GET",
         "httpMethod": "GET",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/followers"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/followers"
       },
       {
-        "path": "/blog/{base-hostname}/posts/{type}",
+        "path": "/blog/:base-hostname/posts/:type",
         "params": [
           {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
+          {
             "name": "id",
-            "type": "xsd:integer",
+            "type": "integer",
             "style": "query",
             "required": "true",
             "doc": {
@@ -84,7 +107,7 @@
           },
           {
             "name": "tag",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -93,7 +116,7 @@
           },
           {
             "name": "limit",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "20",
             "required": "true",
@@ -103,7 +126,7 @@
           },
           {
             "name": "offset",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "0",
             "required": "true",
@@ -113,7 +136,7 @@
           },
           {
             "name": "reblog_info",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -123,7 +146,7 @@
           },
           {
             "name": "notes_info",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -144,63 +167,97 @@
           "t": "Retrieves published posts. A specific post ID. Returns the single post specified or (if not found) a 404 error. Limits the response to posts with the specified tag The number of posts to return: 1–20, inclusive Post number to start at. Indicates whether to return reblog information (specify true or false). Returns the various reblogged_ fields. Indicates whether to return notes information (specify true or false). Returns note count and note metadata. Specifies the post format to return, other than HTML. Plain text, no HTMLAs entered by the user (no post-processing); if the user writes in Markdown, the Markdown will be returned rather than HTML",
           "url": "http://www.tumblr.com/docs/en/api/v2#posts"
         },
-        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0&reblog_info=false&notes_info=false' http://api.tumblr.com/v2/blog/{base-hostname}/posts/{type}",
+        "curl": "curl -X GET -u 'username:password' -d 'limit=20&offset=0&reblog_info=false&notes_info=false' http://api.tumblr.com/v2/blog/:base-hostname/posts/:type",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_GET",
         "httpMethod": "GET",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/{type}"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/posts/:type"
       },
       {
-        "path": "/blog/{base-hostname}/posts/queue",
+        "path": "/blog/:base-hostname/posts/queue",
         "doc": {
           "t": "Retrieves queued posts.",
           "url": "http://www.tumblr.com/docs/en/api/v2#blog-queue"
         },
-        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/posts/queue",
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/:base-hostname/posts/queue",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_GET",
         "httpMethod": "GET",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/queue"
+        "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          }
+        ],
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/posts/queue"
       },
       {
-        "path": "/blog/{base-hostname}/posts/draft",
+        "path": "/blog/:base-hostname/posts/draft",
         "doc": {
           "t": "Retrieves draft posts.",
           "url": "http://www.tumblr.com/docs/en/api/v2#blog-drafts"
         },
-        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/posts/drafts",
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/:base-hostname/posts/drafts",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_GET",
         "httpMethod": "GET",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/draft"
+        "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          }
+        ],
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/posts/draft"
       },
       {
-        "path": "/blog/{base-hostname}/posts/submission",
+        "path": "/blog/:base-hostname/posts/submission",
         "doc": {
           "t": "Retrieves submission posts.",
           "url": "http://www.tumblr.com/docs/en/api/v2#blog-submissions"
         },
-        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/posts/submission",
+        "curl": "curl -X GET -u 'username:password' http://api.tumblr.com/v2/blog/:base-hostname/posts/submission",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_GET",
         "httpMethod": "GET",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/posts/submission"
+        "params" : [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          }
+        ],
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/posts/submission"
       },
       {
-        "path": "/blog/{base-hostname}/post",
+        "path": "/blog/:base-hostname/post",
         "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
           {
             "name": "type",
             "style": "query",
@@ -212,7 +269,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -221,7 +278,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -230,7 +287,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -239,7 +296,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -249,7 +306,7 @@
           },
           {
             "name": "title",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -258,7 +315,7 @@
           },
           {
             "name": "body",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -270,17 +327,17 @@
           "t": "Creates a new text blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The optional title of the post. HTML entities must be escaped. The full post body, HTML allowed.",
           "url": "http://www.tumblr.com/docs/en/api/v2#posting"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'type=text&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "curl": "curl -X POST -u 'username:password' -d 'type=text&markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post"
       },
       {
-        "path": "/blog/{base-hostname}/post",
+        "path": "/blog/:base-hostname/post",
         "params": [
           {
             "name": "type",
@@ -293,7 +350,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -302,7 +359,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -311,7 +368,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -320,7 +377,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -330,7 +387,7 @@
           },
           {
             "name": "caption",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -339,7 +396,7 @@
           },
           {
             "name": "link",
-            "type": "xsd:anyURI",
+            "type": "anyURI",
             "style": "query",
             "required": "true",
             "doc": {
@@ -348,7 +405,7 @@
           },
           {
             "name": "source",
-            "type": "xsd:anyURI",
+            "type": "anyURI",
             "style": "query",
             "required": "true",
             "doc": {
@@ -357,7 +414,7 @@
           },
           {
             "name": "data",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -369,17 +426,24 @@
           "t": "Creates a new photo blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The user-supplied caption. HTML allowed. The \"click-through URL\" for the photo. The photo source URL. Either the source or data parameter is required. One or more image files (as an array) (submit multiple times to create a slide show) Either the source or data parameter is required.",
           "url": "http://www.tumblr.com/docs/en/api/v2#posting"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'type=photo&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "curl": "curl -X POST -u 'username:password' -d 'type=photo&markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post",
         "authentication": {
           "required": "true"
         },
+        "params": [{
+          "name" : ":base-hostname",
+          "style" : "url",
+          "type" : "string",
+          "displayName" : "Base Hostname",
+          "required" : true
+        }],
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post"
       },
       {
-        "path": "/blog/{base-hostname}/post",
+        "path": "/blog/:base-hostname/post",
         "params": [
           {
             "name": "type",
@@ -392,7 +456,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -400,8 +464,15 @@
             }
           },
           {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
+          {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -410,7 +481,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -419,7 +490,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -429,7 +500,7 @@
           },
           {
             "name": "quote",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -438,7 +509,7 @@
           },
           {
             "name": "source",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -450,18 +521,25 @@
           "t": "Creates a new quote blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The full text of the quote. HTML entities must be escaped. Cited source. HTML allowed.",
           "url": "http://www.tumblr.com/docs/en/api/v2#posting"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'type=quote&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "curl": "curl -X POST -u 'username:password' -d 'type=quote&markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post"
       },
       {
-        "path": "/blog/{base-hostname}/post",
+        "path": "/blog/:base-hostname/post",
         "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
           {
             "name": "type",
             "style": "query",
@@ -473,7 +551,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -482,7 +560,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -491,7 +569,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -500,7 +578,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -510,7 +588,7 @@
           },
           {
             "name": "title",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -519,7 +597,7 @@
           },
           {
             "name": "url",
-            "type": "xsd:anyURI",
+            "type": "anyURI",
             "style": "query",
             "required": "true",
             "doc": {
@@ -528,7 +606,7 @@
           },
           {
             "name": "description",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -540,18 +618,25 @@
           "t": "Creates a new link blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The title of the page the link points to. HTML entities should be escaped. The link. A user-supplied description. HTML allowed.",
           "url": "http://www.tumblr.com/docs/en/api/v2#posting"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'type=link&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "curl": "curl -X POST -u 'username:password' -d 'type=link&markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post"
       },
       {
-        "path": "/blog/{base-hostname}/post",
+        "path": "/blog/:base-hostname/post",
         "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
           {
             "name": "type",
             "style": "query",
@@ -563,7 +648,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -572,7 +657,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -581,7 +666,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -590,7 +675,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -600,7 +685,7 @@
           },
           {
             "name": "title",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -609,7 +694,7 @@
           },
           {
             "name": "conversation",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -621,18 +706,25 @@
           "t": "Creates a new chat blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The title of the chat. The text of the conversation/chat, with dialogue labels (no HTML)",
           "url": "http://www.tumblr.com/docs/en/api/v2#posting"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'type=chat&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "curl": "curl -X POST -u 'username:password' -d 'type=chat&markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post"
       },
       {
-        "path": "/blog/{base-hostname}/post",
+        "path": "/blog/:base-hostname/post",
         "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
           {
             "name": "type",
             "style": "query",
@@ -644,7 +736,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -653,7 +745,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -662,7 +754,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -671,7 +763,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -681,7 +773,7 @@
           },
           {
             "name": "caption",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -690,7 +782,7 @@
           },
           {
             "name": "external_url",
-            "type": "xsd:anyURI",
+            "type": "anyURI",
             "style": "query",
             "required": "true",
             "doc": {
@@ -699,7 +791,7 @@
           },
           {
             "name": "data",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -711,18 +803,25 @@
           "t": "Creates a new audio blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The user-supplied caption. The URL of the site that hosts the audio file (not tumblr). Either the external_url or data parameter is required. The audio file, as URL-encoded binary. Either the external_url or data parameter is required.",
           "url": "http://www.tumblr.com/docs/en/api/v2#posting"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'type=audio&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "curl": "curl -X POST -u 'username:password' -d 'type=audio&markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post"
       },
       {
-        "path": "/blog/{base-hostname}/post",
+        "path": "/blog/:base-hostname/post",
         "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
           {
             "name": "type",
             "style": "query",
@@ -734,7 +833,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -743,7 +842,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -752,7 +851,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -761,7 +860,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -771,7 +870,7 @@
           },
           {
             "name": "caption",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -780,7 +879,7 @@
           },
           {
             "name": "embed",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -789,7 +888,7 @@
           },
           {
             "name": "data",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -801,18 +900,25 @@
           "t": "Creates a new video blog post. The type of post to create. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The user-supplied caption. HTML embed code for the video. Either the embed or data parameter is required. A video file, as URL-encoded binary. Either the embed or data parameter is required.",
           "url": "http://www.tumblr.com/docs/en/api/v2#posting"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'type=video&markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post",
+        "curl": "curl -X POST -u 'username:password' -d 'type=video&markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post"
       },
       {
-        "path": "/blog/{base-hostname}/post/edit",
+        "path": "/blog/:base-hostname/post/edit",
         "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
           {
             "name": "type",
             "style": "query",
@@ -823,7 +929,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -832,7 +938,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -841,7 +947,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -850,7 +956,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -860,7 +966,7 @@
           },
           {
             "name": "id",
-            "type": "xsd:integer",
+            "type": "integer",
             "style": "query",
             "required": "true",
             "doc": {
@@ -872,18 +978,25 @@
           "t": "Edits a blog post. The post type. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The ID of the post to edit.",
           "url": "http://www.tumblr.com/docs/en/api/v2#editing"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post/edit",
+        "curl": "curl -X POST -u 'username:password' -d 'markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post/edit",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post/edit"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post/edit"
       },
       {
-        "path": "/blog/{base-hostname}/post/reblog",
+        "path": "/blog/:base-hostname/post/reblog",
         "params": [
+          {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
           {
             "name": "type",
             "style": "query",
@@ -894,7 +1007,7 @@
           },
           {
             "name": "tags",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -903,7 +1016,7 @@
           },
           {
             "name": "tweet",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -912,7 +1025,7 @@
           },
           {
             "name": "date",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -921,7 +1034,7 @@
           },
           {
             "name": "markdown",
-            "type": "xsd:boolean",
+            "type": "boolean",
             "style": "query",
             "default": "false",
             "required": "true",
@@ -931,7 +1044,7 @@
           },
           {
             "name": "id",
-            "type": "xsd:integer",
+            "type": "integer",
             "style": "query",
             "required": "true",
             "doc": {
@@ -940,7 +1053,7 @@
           },
           {
             "name": "reblog_key",
-            "type": "xsd:integer",
+            "type": "integer",
             "style": "query",
             "required": "true",
             "doc": {
@@ -949,7 +1062,7 @@
           },
           {
             "name": "comment",
-            "type": "xsd:string",
+            "type": "string",
             "style": "query",
             "required": "true",
             "doc": {
@@ -961,21 +1074,28 @@
           "t": "Reblogs a post. The post type. Comma-separated tags for this post. Manages the autotweet (if enabled) for this post: set to off for no tweet, or enter text to override the default tweet The GMT date and time of the post, as a string. Default is the date and time of the POST request. Indicates whether the post uses markdown syntax. The ID of the reblogged post on tumblelog. Default is the next available ID. The reblog key for the reblogged post – get the reblog key with a /posts request A comment added to the reblogged post.",
           "url": "http://www.tumblr.com/docs/en/api/v2#reblogging"
         },
-        "curl": "curl -X POST -u 'username:password' -d 'markdown=false' http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog",
+        "curl": "curl -X POST -u 'username:password' -d 'markdown=false' http://api.tumblr.com/v2/blog/:base-hostname/post/reblog",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post/reblog"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post/reblog"
       },
       {
-        "path": "/blog/{base-hostname}/post/delete",
+        "path": "/blog/:base-hostname/post/delete",
         "params": [
           {
+            "name" : ":base-hostname",
+            "style" : "url",
+            "type" : "string",
+            "displayName" : "Base Hostname",
+            "required" : true
+          },
+          {
             "name": "id",
-            "type": "xsd:integer",
+            "type": "integer",
             "style": "query",
             "required": "true",
             "doc": {
@@ -987,21 +1107,21 @@
           "t": "Deletes a post. The ID of the post to delete.",
           "url": "http://www.tumblr.com/docs/en/api/v2#deleting-posts"
         },
-        "curl": "curl -X POST -u 'username:password' http://api.tumblr.com/v2/blog/{base-hostname}/post/delete",
+        "curl": "curl -X POST -u 'username:password' http://api.tumblr.com/v2/blog/:base-hostname/post/delete",
         "authentication": {
           "required": "true"
         },
         "category": "Blog",
         "displayName": "Blog_POST",
         "httpMethod": "POST",
-        "url": "https://api.tumblr.com/v2/blog/{base-hostname}/post/delete"
+        "url": "https://api.tumblr.com/v2/blog/:base-hostname/post/delete"
       },
       {
         "path": "/user/dashboard",
         "params": [
           {
             "name": "limit",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "20",
             "required": "true",
@@ -1011,7 +1131,7 @@
           },
           {
             "name": "offset",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "0",
             "required": "true",
@@ -1029,7 +1149,7 @@
           },
           {
             "name": "since_id",
-            "type": "xsd:integer",
+            "type": "integer",
             "style": "query",
             "default": "0",
             "required": "true",
@@ -1056,7 +1176,7 @@
         "params": [
           {
             "name": "limit",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "20",
             "required": "true",
@@ -1066,7 +1186,7 @@
           },
           {
             "name": "offset",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "0",
             "required": "true",
@@ -1093,7 +1213,7 @@
         "params": [
           {
             "name": "limit",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "20",
             "required": "true",
@@ -1103,7 +1223,7 @@
           },
           {
             "name": "offset",
-            "type": "xsd:positiveInteger",
+            "type": "positiveInteger",
             "style": "query",
             "default": "0",
             "required": "true",
@@ -1130,7 +1250,7 @@
         "params": [
           {
             "name": "url",
-            "type": "xsd:anyURI",
+            "type": "anyURI",
             "style": "query",
             "required": "true",
             "doc": {
@@ -1156,7 +1276,7 @@
         "params": [
           {
             "name": "url",
-            "type": "xsd:anyURI",
+            "type": "anyURI",
             "style": "query",
             "required": "true",
             "doc": {
@@ -1183,15 +1303,25 @@
   "enabled": true,
   "name": "Tumblr",
   "oauth": {
-    "accessTokenURL": "http://www.tumblr.com/oauth/access_token",
-    "authTokenURL": "http://www.tumblr.com/oauth/authorize",
-    "key": "XbAAewbcTCBuTulBPksJRwgH4ESS0B87051HK3OhTnmDI73Pbb",
-    "requestTokenURL": "http://www.tumblr.com/oauth/request_token",
-    "scope": "",
-    "secret": "1XKq2MgOZTWBC5me8NAvZyVQxkgn7xSMOM1YWaa2LG8XQV2sqs",
-    "tokenMethod": "oauth_signed",
-    "version": "1.0"
+    "development" : {
+      "clientID": "",
+      "clientSecret" : "",
+      "callbackURL": "http://localhost:8080/api/oauth/tumblr/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging" : {
+      "clientID": "",
+      "clientSecret" : "",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/tumblr/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "clientID": "",
+      "clientSecret" : "",
+      "callbackURL": "https://app.octoblu.com/api/oauth/tumblr/callback",
+      "tokenMethod": "access_token_query"
+    }
   },
-  "useCustom": true,
+  "isPassport": true,
   "type": "channel:tumblr"
 }
