@@ -14,6 +14,7 @@
       "tokenMethod" : "access_token_query"
     }
   },
+  "enabled" : false,
   "application" : {
     "base" : "https://www.googleapis.com/plus/v1",
     "resources" : [ ]

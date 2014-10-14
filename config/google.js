@@ -66,6 +66,7 @@ var googleStrategy = new GoogleStrategy(CONFIG,
     var channels = Channel.syncMatchByType('channel:google');
 
     _.each(channels, function(channel){
+      if(channel.enabled === false){ return; }
       user.overwriteOrAddApiByChannelId(channel._id, {authtype: 'oauth', token: token });
     });
 
