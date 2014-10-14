@@ -841,5 +841,18 @@
     },
     "channelid" : "53f2431f710850ee08e28474",
     "type" : "channel:redbooth"
+  },
+  {
+    "_id" : "0d46c3dd-e020-40cb-8bc0-bb38034b92e6",
+    "category" : "channel",
+    "description" : "YouTube",
+    "enabled" : true,
+    "name" : "YouTube",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "youtube"
+    },
+    "channelid" : "53e14e6d8e3257fb7d6fdad1",
+    "type" : "channel:youtube"
   }
 ]

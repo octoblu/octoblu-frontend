@@ -437,6 +437,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
+      .state('ob.nodewizard.addchannel.apikey-basic', {
+        url: '/apikey-basic',
+        controller: 'addChannelApiKeyBasicController',
+        templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
+      })
       .state('ob.nodewizard.addchannel.meshblu', {
         url: '/meshblu',
         controller: 'addChannelMeshbluController',
