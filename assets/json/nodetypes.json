@@ -497,7 +497,7 @@
 		"_id" : "53d2de0160c378a87a0f908c",
 		"category" : "channel",
 		"description" : "Give your entire team access to our powerful online survey platform. SurveyMonkey Enterprise helps anyone in any function use surveys to make smarter decisions, while your organization gets complete control of your data, users and billing.",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Survey Monkey",
 		"skynet" : {
 			"type" : "channel",
