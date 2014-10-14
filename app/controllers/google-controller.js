@@ -5,7 +5,8 @@ var GoogleController = function(){
 		'profile',
 		'email',
 		'https://www.googleapis.com/auth/drive',
-		'https://www.googleapis.com/auth/monitoring.readonly'
+		'https://www.googleapis.com/auth/monitoring.readonly',
+		'https://gdata.youtube.com'
 	];
   this.authorize = passport.authenticate('google', { scope: scope });
   this.callback  = passport.authenticate('google', { failureRedirect: '/home' });
