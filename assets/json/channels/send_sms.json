@@ -37,10 +37,11 @@
       {
         "path": "/message/:messageid",
         "httpMethod": "GET",
-        "url": "http://stock.octoblu.com/message/:messageid",
+        "url": "http://sms.octoblu.com/message/:messageid",
         "authentication": {
           "required": "true"
         },
+        "enabled" : false,
         "params": [
           {
             "name": ":messageid",
