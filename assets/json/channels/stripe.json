@@ -1,7 +1,7 @@
 {
   "_id": "channel-stripe",
   "__v": 0,
-  "auth_strategy": "basic",
+  "auth_strategy": "apikey-basic",
   "custom_tokens": [],
   "description": "",
   "documentation": "https://stripe.com/docs/api",
