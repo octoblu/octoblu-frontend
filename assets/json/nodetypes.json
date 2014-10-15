@@ -41,7 +41,7 @@
 		"category" : "device",
 		"description" : "Belkin Wemo home automation",
 		"enabled" : true,
-		"genbluCapable" : true,
+		"gatebluCapable" : true,
 		"name" : "Belkin Wemo",
 		"skynet" : {
 			"type" : "device",
@@ -55,7 +55,7 @@
 		"category" : "device",
 		"description" : "Blink1 USB LED",
 		"enabled" : true,
-		"genbluCapable": true,
+		"gatebluCapable": true,
 		"name" : "Blink(1)",
 		"skynet" : {
 			"type" : "device",
@@ -204,11 +204,11 @@
 		"category" : "device",
 		"description" : "Meshblu device connection manager",
 		"enabled" : true,
-		"name" : "Genblu",
+		"name" : "Gateblu",
 		"skynet" : {
-			"type" : "device:genblu"
+			"type" : "device:gateblu"
 		},
-		"type" : "device:genblu"
+		"type" : "device:gateblu"
 	},
 	{
 		"_id" : "53c9b832f400e177dca325b3",

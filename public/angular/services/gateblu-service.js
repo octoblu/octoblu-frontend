@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('GenbluService', function (deviceService, $q, skynetService) {
+.service('GatebluService', function (deviceService, $q, skynetService) {
   'use strict';
   var self = this;
 
@@ -9,13 +9,13 @@ angular.module('octobluApp')
     });
   };
 
-  var updateGenblu = function(genblu){
-    return deviceService.updateDevice(genblu).then(function(genblu){
+  var updateGateblu = function(gateblu){
+    return deviceService.updateDevice(gateblu).then(function(gateblu){
       skynetService.getSkynetConnection().then(function(conn){
         conn.message({
-          devices: genblu.uuid,
+          devices: gateblu.uuid,
           topic: 'refresh',
-          payload: genblu
+          payload: gateblu
         });
       });
       return;
@@ -43,20 +43,20 @@ angular.module('octobluApp')
     return deferred.promise;
   };
 
-  self.addDevice = function(genbluId, nodeType){
+  self.addDevice = function(gatebluId, nodeType){
     var device;
 
     return $q.all([
-      registerDevice({genblu: genbluId, type: nodeType.type, category: 'device', connector: nodeType.connector}),
-      deviceService.getDeviceByUUID(genbluId)
+      registerDevice({gateblu: gatebluId, type: nodeType.type, category: 'device', connector: nodeType.connector}),
+      deviceService.getDeviceByUUID(gatebluId)
     ]).then(function(results){
-      var genblu;
+      var gateblu;
       device = results[0];
-      genblu = results[1];
+      gateblu = results[1];
 
-      genblu.devices = genblu.devices || [];
-      genblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
-      return updateGenblu(genblu);
+      gateblu.devices = gateblu.devices || [];
+      gateblu.devices.push(_.pick(device, 'uuid', 'token', 'connector', 'type'));
+      return updateGateblu(gateblu);
     }).then(function(){
       return waitForDeviceToHaveOptionsSchema(device);
     });

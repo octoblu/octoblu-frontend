@@ -83,9 +83,9 @@ angular.module('octobluApp')
                 });
             },
 
-            getOnlineGenblus: function(){
+            getOnlineGateblus: function(){
                 return service.getDevices().then(function(devices){
-                    return _.where(devices, {type: 'device:genblu', online: true});
+                    return _.where(devices, {type: 'device:gateblu', online: true});
                 });
             },
 

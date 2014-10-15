@@ -9,8 +9,8 @@ angular.module('octobluApp')
       state = 'ob.nodewizard.addchannel.existing';
     }
 
-    if(nodeType.genbluCapable){
-      state = 'ob.nodewizard.addsubdevice.selectgenblu';
+    if(nodeType.gatebluCapable){
+      state = 'ob.nodewizard.addsubdevice.selectgateblu';
     }
 
     $state.go(state, {nodeTypeId : $state.params.nodeTypeId}, {location: 'replace'});

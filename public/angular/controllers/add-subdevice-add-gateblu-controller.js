@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('AddSubdeviceAddGenbluController', function($scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
+    .controller('AddSubdeviceAddGatebluController', function($scope, $state, $stateParams, NodeTypeService, skynetService, deviceService) {
         $scope.newDevice = {};
 
-        NodeTypeService.getNodeTypeByType('device:genblu').then(function(nodeType){
+        NodeTypeService.getNodeTypeByType('device:gateblu').then(function(nodeType){
           $scope.nodeType = nodeType;
         });
 
-        deviceService.getUnclaimed('device:genblu').then(function(unclaimedDevices){
+        deviceService.getUnclaimed('device:gateblu').then(function(unclaimedDevices){
           _.each(unclaimedDevices, function(device){
-            device.label = device.uuid + ' (device:genblu)';
+            device.label = device.uuid + ' (device:gateblu)';
           });
 
           $scope.newDevice.unclaimedDevices = unclaimedDevices;
@@ -35,7 +35,7 @@ angular.module('octobluApp')
           }
 
           promise.then(function(device){
-            $state.go("ob.nodewizard.addsubdevice.form", {genbluId: device.uuid});
+            $state.go("ob.nodewizard.addsubdevice.form", {gatebluId: device.uuid});
           }, function(error){
             $scope.errorMessage = error;
           });
