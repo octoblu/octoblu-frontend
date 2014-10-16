@@ -25,16 +25,29 @@
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a3",
-		"category" : "subdevice",
+		"category" : "device",
+		"gatebluCapable": true,
 		"description" : "Philips Hue light bulbs",
 		"enabled" : true,
 		"name" : "Philips Hue",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "philips-hue",
-			"plugin" : "skynet-hue"
+			"subtype" : "hue"
 		},
-		"type" : "device:philips-hue"
+		"type" : "device:hue"
+	},
+	{
+		"_id" : "543ee87c979057a612382e18",
+		"category" : "device",
+		"gatebluCapable": true,
+		"description" : "Thalmic Labs MYO",
+		"enabled" : true,
+		"name" : "MYO",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "myo"
+		},
+		"type" : "device:myo"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a4",
