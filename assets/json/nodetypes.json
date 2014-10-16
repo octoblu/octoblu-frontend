@@ -34,6 +34,7 @@
 			"type" : "device",
 			"subtype" : "hue"
 		},
+		"connector": "meshblu-hue",
 		"type" : "device:hue"
 	},
 	{
@@ -47,6 +48,7 @@
 			"type" : "device",
 			"subtype" : "myo"
 		},
+		"connector": "meshblu-myo",
 		"type" : "device:myo"
 	},
 	{
