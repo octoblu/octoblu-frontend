@@ -90,6 +90,7 @@ angular.module('octobluApp')
         return;
       }
 
+
       if(xCoordinate < inputPortLeftSideX(node)){
         return;
       }
@@ -164,9 +165,9 @@ angular.module('octobluApp')
             .on('dragend', function () {
               var x, y, point, rectangle, portRect;
 
-              x = d3.event.sourceEvent.offsetX / flow.zoomScale;
+              x = d3.event.sourceEvent.clientX / flow.zoomScale;
               x = x - (flow.zoomX / flow.zoomScale);
-              y = d3.event.sourceEvent.offsetY / flow.zoomScale;
+              y = d3.event.sourceEvent.clientY / flow.zoomScale;
               y = y - (flow.zoomY / flow.zoomScale);
 
               if (sourcePortType == 'output') {
