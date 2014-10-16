@@ -455,7 +455,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.nodewizard.addgateblu', {
         url: '/add-gateblu/:nodeTypeId',
         controller: 'addDeviceController',
-        templateUrl: '/pages/node-wizard/add-device/index.html'
+        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
       .state('ob.nodewizard.addmicroblu', {
         url: '/add-microblu/:nodeTypeId',
