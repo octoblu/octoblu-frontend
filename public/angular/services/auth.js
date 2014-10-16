@@ -8,7 +8,7 @@ angular.module('octobluApp')
         function getProfileUrl(user) {
 
             if (user.local) {
-                user.avatarUrl = 'http://avatars.io/email/' + user.local.email.toString();
+                user.avatarUrl = '//avatars.io/email/' + user.local.email.toString();
             } else if (user.twitter) {
 
             } else if (user.facebook) {
