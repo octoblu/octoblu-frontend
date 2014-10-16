@@ -2,7 +2,7 @@ angular.module('octobluApp')
 .controller('NodeController', function ($scope, $state, NodeService) {
     'use strict';
 
-    NodeService.getNodes().then(function(nodes){
+    NodeService.getNodes({cache: false}).then(function(nodes){
         $scope.nodes = nodes;
     });
 

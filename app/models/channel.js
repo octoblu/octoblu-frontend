@@ -37,6 +37,12 @@ var Channel = {
 
   syncFindByType: function(type){
     return _.findWhere(channels, {type: type});
+  },
+  syncMatchByType: function(prefix){
+    var re = new RegExp('^' + prefix);
+    return _.where(channels, function(channel){
+      return re.test(channel.type);
+    });
   }
 };
 

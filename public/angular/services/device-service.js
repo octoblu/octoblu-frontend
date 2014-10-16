@@ -59,15 +59,33 @@ angular.module('octobluApp')
                 });
             },
 
+            getDeviceByUUIDAndToken: function(uuid, token){
+                var deferred = $q.defer();
+
+                skynetPromise.then(function(skynetConnection){
+                    skynetConnection.devices({uuid:uuid, token:token}, function(data){
+                        deferred.resolve(_.first(data.devices));
+                    }, deferred.reject);
+                });
+
+                return deferred.promise;
+            },
+
             refreshDevices: function(){
                 return service.getDevices(true).then(function(){
                     return undefined;
-                })
+                });
             },
 
             getGateways: function(){
                 return service.getDevices().then(function(devices){
                     return _.where(devices, {type: 'gateway'});
+                });
+            },
+
+            getOnlineGateblus: function(){
+                return service.getDevices().then(function(devices){
+                    return _.where(devices, {type: 'device:gateblu', online: true});
                 });
             },
 
@@ -114,7 +132,7 @@ angular.module('octobluApp')
             updateDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer();
-                
+
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.update(device, function () {
                         defer.resolve(device);
@@ -143,7 +161,13 @@ angular.module('octobluApp')
                     return service.getUnclaimedGateways();
                 }
 
-                return service.getUnclaimedDevices();
+                if(nodeType === 'device') {
+                    return service.getUnclaimedDevices();
+                }
+
+                return service.getUnclaimedNodes().then(function(devices){
+                    return _.where(devices, {type: nodeType});
+                });
             },
 
             getUnclaimedDevices: function () {

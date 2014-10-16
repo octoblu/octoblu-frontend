@@ -89,17 +89,6 @@ describe('AddNodeWizardController', function () {
     it('should call AddNodeWizardController.getById with the id', function () {
       expect(nodeTypeService.getById).to.have.been.calledWith(state.params.nodeTypeId);
     });
-
-    describe('when NodeTypeService.getById resolves', function () {
-      beforeEach(function () {
-        nodeTypeService.getById.resolve({category: 'subdevice'});
-        $rootScope.$apply();
-      });
-
-      it('should redirect to the add subdevice state', function(){
-        expect(state.go).to.have.been.calledWith('ob.nodewizard.addsubdevice.selectgateway', {nodeTypeId: 'subdeviceid'});
-      });
-    });
   });
 
 
