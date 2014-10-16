@@ -13,7 +13,7 @@ angular.module('octobluApp')
       state = 'ob.nodewizard.addchannel.existing';
     }
 
-    if(nodeType.gatebluCapable){
+    if(nodeType.connector){
       state = 'ob.nodewizard.addsubdevice.selectgateblu';
     }
 
