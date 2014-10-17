@@ -1,10 +1,9 @@
 var FlowDeploy = function(options){
-  var FlowDeploy, Redport, redport, self, mongoose, Flow, _, meshblu;
+  var FlowDeploy, self, mongoose, Flow, _, meshblu;
 
   self      = this;
   options    = options || {};
   FlowDeploy = options.FlowDeploy || require('../models/flow-deploy');
-  Redport    = options.Redport    || require('../models/redport');
   mongoose   = options.mongoose   || require('mongoose');
   meshblu    = options.meshblu;
   _          = require('lodash');

@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('addChannelBasicController', function($scope, $state, currentUser, nodeType, userService) {
-        $scope.activate = function(){
-            userService.saveConnection(currentUser.skynetuuid, nodeType.channel._id, 
-            	$scope.newChannel.user, $scope.newChannel.pass, {},
-                function () {
-                    $state.go('ob.connector.nodes.channel-detail', {id: nodeType.channel._id});
-                });
-
-        };
+.controller('addChannelBasicController', function($scope, $state, currentUser, nodeType, userService) {
+  $scope.activate = function(){
+    userService.saveBasicApi(currentUser.skynetuuid, nodeType.channelid, 
+     $scope.newChannel.user, $scope.newChannel.pass,
+     function () {
+      $state.go('design');
     });
+  };
+});

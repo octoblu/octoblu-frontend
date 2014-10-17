@@ -14,14 +14,30 @@ angular.module('octobluApp')
             return deviceService.getDeviceByUUID($stateParams.gatewayId);
         }).then(function(gateway){
             $scope.newSubdevice.gateway = gateway;
-            return PluginService.getOrInstallPlugin($scope.newSubdevice.gateway, $scope.nodeType.skynet.plugin);
+            return deviceService.gatewayConfig({
+                "uuid": gateway.uuid,
+                "token": gateway.token,
+                "method": "configurationDetails"
+            }).then(function (response) {
+                if (response && response.result) {
+                    gateway.subdevices = response.result.subdevices || [];
+                }
+                return PluginService.getOrInstallPlugin($scope.newSubdevice.gateway, $scope.nodeType.skynet.plugin);
+            });
+
         }).then(function(plugin){
             $scope.newSubdevice.plugin = plugin;
         });
 
         $scope.addSubDevice = function(){
-            var errors = $scope.newSubdevice.schemaEditor.validate();
+            var errors, duplicateDevice;
+            errors = $scope.newSubdevice.schemaEditor.validate();
             if (errors && errors.length) {
+                return;
+            }
+
+            duplicateDevice = _.findWhere($scope.newSubdevice.gateway.subdevices, {name: $scope.newSubdevice.name});
+            if (duplicateDevice) {
                 return;
             }
 

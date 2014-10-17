@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var FlowNodeTypeController = require('../../app/controllers/flow-node-type-controller');
 
 describe('FlowNodeTypeController', function () {

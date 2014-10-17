@@ -92,11 +92,13 @@ angular.module('octobluApp')
                 return skynetPromise.then(function(skynetConnection){
                     var defer = $q.defer();
 
-                    skynetConnection.claimdevice(deviceOptions, function(result){
+                 skynetConnection.claimdevice(deviceOptions, function(result){
                         if(result.error) {
                             return defer.reject(result.error);
                         }
-                        return service.updateDevice(deviceOptions);
+                        service.updateDevice(deviceOptions).then(function(updatedDevice) {
+                            defer.resolve(updatedDevice);
+                        });
                     });
 
                     return defer.promise;
@@ -112,7 +114,7 @@ angular.module('octobluApp')
             updateDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer();
-
+                
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.update(device, function () {
                         defer.resolve(device);
@@ -162,7 +164,7 @@ angular.module('octobluApp')
                 var defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
-                    skynetConnection.devices({owner : null}, function (result) {
+                    skynetConnection.unclaimeddevices({}, function (result) {
                         defer.resolve(_.where(result.devices, {online: true}));
                     });
                 });
@@ -171,8 +173,8 @@ angular.module('octobluApp')
             },
 
             gatewayConfig: function (options) {
+               options.timeout = 1000;
                 var defer = $q.defer();
-
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.gatewayConfig(options, function (result) {
                         defer.resolve(result);

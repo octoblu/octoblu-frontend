@@ -59,19 +59,7 @@ angular.module('octobluApp')
         };
 
         $scope.setDeactivate = function () {
-            if ($scope.isOAuth() || $scope.isNoAuth()) {
-                $scope.open();
-                return;
-            }
-
-            // $scope.has_user_channel = false;
-            // channelService.getActiveChannels(true);
-            // channelService.getAvailableChannels(true);
-            userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
-                $scope.has_user_channel = false;
-                channelService.getActiveChannels(true);
-                channelService.getAvailableChannels(true);
-            });
+            $scope.open();
         };
 
         $scope.isActivated = function () {

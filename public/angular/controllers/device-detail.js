@@ -1,6 +1,6 @@
 'use strict';
 angular.module('octobluApp')
-    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService) {
+    .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService, NodeService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
 
@@ -42,7 +42,7 @@ angular.module('octobluApp')
                 method: "configurationDetails"
             }).then(function (response) {
                 if (response && response.result) {
-                    $scope.device.subdevices = response.result.subdevices || [];
+                    $scope.device.subdevices = NodeService.subdevicesToDevices($scope.device.uuid, response.result);
                     $scope.device.plugins = response.result.plugins || [];
                 }
             });

@@ -238,6 +238,10 @@ angular.module('octobluApp')
           .attr('height', nodeHeight)
           .attr("xlink:href",logoUrl(node));
 
+        if (node.errorMessage) {
+          nodeElement.classed('error', true);
+        }
+
         if (node.type === 'operation:trigger') {
           nodeElement
             .append('rect')

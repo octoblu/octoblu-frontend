@@ -5,7 +5,7 @@ angular.module('octobluApp')
     var self = this;
 
     self.getNodes = function () {
-      return $http.get('/api/nodes')
+      return $http.get('/api/nodes', {cache : true})
         .then(function (results) {
           var devices = _.map(results.data, function(device){
             return deviceService.addLogoUrl(device);
@@ -14,12 +14,13 @@ angular.module('octobluApp')
           var gateways = _.filter(devices, {type: 'gateway', online: true});
 
           return $q.all(_.map(gateways, function (gateway) {
+
             return deviceService.gatewayConfig({
               "uuid": gateway.uuid,
               "token": gateway.token,
               "method": "configurationDetails"
             }).then(function (response) {
-              return subdevicesToDevices(gateway.uuid, response.result);
+              return self.subdevicesToDevices(gateway.uuid, response.result);
             }, function (err) {
               return [];
             });
@@ -34,9 +35,9 @@ angular.module('octobluApp')
       return self.getNodes().then(function(results){
         return _.filter(results, {category: 'subdevice'});
       })
-    }
+    };
 
-    function subdevicesToDevices(gatewayUuid, gatewayConfig) {
+    self.subdevicesToDevices = function(gatewayUuid, gatewayConfig) {
 
       if(!gatewayConfig) {
         return [];
@@ -49,13 +50,13 @@ angular.module('octobluApp')
           newSubdevice.category = 'subdevice';
           newSubdevice.online = true;
 
-          newSubdevice.type = 'subdevice:' +  subdevice.type.replace('skynet-', '');
+          newSubdevice.type = 'device:' +  subdevice.type.replace('skynet-', '');
           newSubdevice = deviceService.addLogoUrl(newSubdevice);
 
           newSubdevice.plugin = _.findWhere(gatewayConfig.plugins, { name: subdevice.type });
           
           return newSubdevice;
       });
-    }
+    };
     return self;
   });

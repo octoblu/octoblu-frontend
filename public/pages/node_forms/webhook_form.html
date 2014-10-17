@@ -1,0 +1,13 @@
+<div class="form-group">
+  <label for="name">Name</label>
+  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
+</div>
+<p>
+There are two ways to trigger your webhook:
+<br>
+<h4>Email</h4>
+<a href="mailto:{{flowNode.id}}@webhook.octoblu.com" target="_blank">{{flowNode.id}}@webhook.octoblu.com</a>
+<br>
+<h4>HTTP POST</h4>
+<a ng-href="https://app.octoblu.com/api/webhooks/{{flowNode.id}}" target="_blank">https://app.octoblu.com/api/webhooks/{{flowNode.id}}</a>
+</p>

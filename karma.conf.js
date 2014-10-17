@@ -15,12 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        "../test/assets/skynet.bundle.js",
         "assets/javascripts/dist/dependencies.js",
-
         "lib/angular-mocks/angular-mocks.js",
-
-        "assets/javascripts/skynet.bundle.js",
-
         "angular/**/*.html",
         "angular/**/*.js",
         "../test/angular/test_helper.js",

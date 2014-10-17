@@ -30,7 +30,11 @@ var ensureUser = function(req, user, profile, callback){
 
   User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
   .then(function (user) {
-    callback(null, user);
+      if(!user){
+        callback(new Error('You need a valid invitation code'));
+      } else {
+        callback(null, user);
+      }
   }, function(err){
     callback(err);
   });

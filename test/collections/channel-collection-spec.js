@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var when              = require('when');
 var ChannelCollection = require('../../app/collections/channel-collection');
 var mongoose          = require('mongoose');

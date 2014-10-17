@@ -161,6 +161,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'DeviceDetailController',
         templateUrl: '/pages/connector/devices/detail/index.html'
       })
+      .state('ob.connector.nodes.microblu-detail', {
+        url: '/microblu/:uuid',
+        controller: 'DeviceDetailController',
+        templateUrl: '/pages/connector/devices/detail/index.html'
+      })
       .state('ob.connector.nodes.shared-device-detail', {
         url: '/device-shared/:uuid',
         controller: 'DeviceDetailSharedController',
@@ -417,13 +422,28 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelSimpleController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
+      .state('ob.nodewizard.addchannel.aws', {
+        url: '/aws',
+        controller: 'addChannelAWSController',
+        templateUrl: '/pages/node-wizard/add-channel/aws.html'
+      })
       .state('ob.nodewizard.addchannel.basic', {
         url: '/basic',
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
+      .state('ob.nodewizard.addchannel.meshblu', {
+        url: '/meshblu',
+        controller: 'addChannelMeshbluController',
+        templateUrl: '/pages/node-wizard/add-channel/noauth.html'
+      })
       .state('ob.nodewizard.adddevice', {
         url: '/add-device/:nodeTypeId',
+        controller: 'addDeviceController',
+        templateUrl: '/pages/node-wizard/add-device/index.html'
+      })
+      .state('ob.nodewizard.addmicroblu', {
+        url: '/add-microblu/:nodeTypeId',
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })

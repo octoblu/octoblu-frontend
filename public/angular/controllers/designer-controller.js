@@ -2,11 +2,9 @@ angular.module('octobluApp')
 .controller('DesignerController', function ($state, $scope, FlowService) {
 
   FlowService.getAllFlows().then(function (flows) {
-    var newActiveFlow = _.first(flows);
+    var flow = _.first(flows);
     $state.flows = flows;
-    FlowService.saveFlow(newActiveFlow).then(function () {
-      $state.go('flow', {flowId: newActiveFlow.flowId});
-    });
+    $state.go('flow', {flowId: flow.flowId}, {location: 'replace'});
   });
 
   $scope.getActiveFlow = function () {
@@ -23,7 +21,7 @@ angular.module('octobluApp')
   };
 
   $scope.addFlow = function () {
-    return FlowService.createFlow().then(function () {
+    return FlowService.createFlow().then(function (newFlow) {
       $state.go('flow', {flowId: newFlow.flowId});
     });
   };

@@ -9,9 +9,10 @@ angular.module('octobluApp')
       flowNodeTypes : '=',
       nodeTypes : '=',
       flow: '=',
-      debugLines: '='
+      debugLines: '=',
+      activeFlow: '='
     },
-    controller: function ($scope, FlowNodeTypeService) {
+    controller: function ($scope, FlowNodeTypeService, reservedProperties) {
       var tabs = {
         debug: {
           name: 'debug',
@@ -32,8 +33,18 @@ angular.module('octobluApp')
           name: 'unconfigurednodes',
           template: '/pages/flow-browser-unconfigured-nodes.html',
           controlsTemplate: '/pages/flow-browser-nodes-controls.html'
+        },
+        shareflow: {
+          name: 'shareflow',
+          template: '/pages/flow-browser-shareflow.html',
+          controlsTemplate: '/pages/flow-browser-shareflow-controls.html'
         }
       };
+
+      $scope.flowBrowser = {};
+      $scope.flowBrowser.activeFlowJson = '';
+
+      $scope.activeFlowEdit = false;
 
       $scope.toggleActiveTab = function(name) {
         if ($scope.maximized && $scope.activeTab.name === name) {
@@ -66,7 +77,7 @@ angular.module('octobluApp')
 
       $scope.hasActiveTab = function() {
         return !_.isEmpty($scope.activeTab);
-      }
+      };
 
       $scope.toggleMaximize = function() {
         $scope.maximized = !$scope.maximized;
@@ -84,6 +95,39 @@ angular.module('octobluApp')
           $('.flow-browser').trigger($.Event('resize'));
         }, 300);
       });
+
+
+      $scope.setActiveEdit = function(){
+        $scope.activeFlowEdit = !$scope.activeFlowEdit;
+      };
+
+      $scope.handleActiveFlowChange = function(json){
+        $scope.shareFlowError = false;
+        $scope.shareFlowSuccess = false;
+        var flow;
+        // Does it validate JSON?
+        try{
+          flow = JSON.parse(json);
+        }catch(e){
+          // Negatory Captin
+          $scope.shareFlowError = true;
+          return;
+        }
+        // Is it an object?
+        if(!_.isObject(flow)){
+          // You should know better than to fool a fool
+          $scope.shareFlowError = true;
+          return;
+        }
+        $scope.shareFlowSuccess = true;
+        $scope.$emit('update-active-flow-edit', flow);
+      };
+
+      $scope.$watch('activeFlow', function(newFlow, oldFlow){
+         if(newFlow){
+           $scope.flowBrowser.activeFlowJson = angular.toJson(newFlow, true);
+         }
+      }, true);
 
       $scope.filterNonOperators = function(flowNodeType){
         return flowNodeType && (flowNodeType.category === 'device' || flowNodeType.category === 'channel');

@@ -1,0 +1,57 @@
+{
+  "_id": "542c2f2eab1c05dde14544e0",
+  "name": "Send SMS",
+  "auth_strategy": "meshblu",
+  "bodyFormat" : "json",
+  "description" : "Send SMS text messages through Octoblu.",
+  "enabled": true,
+  "useCustom": true,
+  "bodyFormat": "json",
+  "application": {
+    "base": "http://sms.octoblu.com",
+    "resources": [
+      {
+        "path": "/message",
+        "httpMethod": "POST",
+        "url": "http://sms.octoblu.com/message",
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": "dst",
+            "displayName": "Destination Number(s)",
+            "style": "body",
+            "type": "String",
+            "required" : true
+          },
+          {
+            "name": "text",
+            "displayName": "Message ( Add data to text using {{msg.payload.values}} )",
+            "style": "body",
+            "type": "string",
+            "required" : true
+          }
+        ]
+      },
+      {
+        "path": "/message/:messageid",
+        "httpMethod": "GET",
+        "url": "http://stock.octoblu.com/message/:messageid",
+        "authentication": {
+          "required": "true"
+        },
+        "params": [
+          {
+            "name": ":messageid",
+            "displayName": "Message ID",
+            "style": "url",
+            "type": "String",
+            "required" : true
+          }
+        ]
+      }
+    ]
+  },
+  "type": "channel:sms-send"
+}

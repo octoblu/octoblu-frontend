@@ -47,6 +47,9 @@ angular.module('octobluApp')
               if (debugNode && debugNode.debug) {
                 $scope.$emit('flow-node-debug', {node: debugNode, message: message.payload})
               }
+              if (message.payload.msgType == 'error') {
+                $scope.$emit('flow-node-error', {node: debugNode, message: message.payload})
+              }
             }
           });
         });
@@ -70,7 +73,7 @@ angular.module('octobluApp')
         flowRenderer.on('nodeButtonClicked', function (flowNode) {
           skynetService.getSkynetConnection().then(function (skynetConnection) {
             var msg = {
-              devices: $scope.flow.flowId,
+              devices: [$scope.flow.flowId],
               topic: 'button',
               qos: 0,
               payload: {

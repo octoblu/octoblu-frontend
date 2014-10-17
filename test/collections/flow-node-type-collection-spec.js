@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var FlowNodeTypeCollection = require('../../app/collections/flow-node-type-collection');
 var when = require('when');
 

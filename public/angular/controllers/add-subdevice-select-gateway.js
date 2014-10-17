@@ -8,6 +8,6 @@ angular.module('octobluApp')
             $scope.nodeType = _.findWhere(nodeTypes, {_id: $stateParams.nodeTypeId});
             return deviceService.getGateways();
         }).then(function(gateways){
-            $scope.availableGateways = gateways;
+            $scope.availableGateways = _.where(gateways, {online: true});
         });
     });

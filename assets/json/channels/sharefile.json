@@ -1,0 +1,4895 @@
+{
+  "_id": "5430bf6b66ffb0f988307ef9",
+  "auth_strategy": "oauth",
+  "bodyFormat": "json",
+  "name": "ShareFile",
+  "type": "channel:sharefile",
+  "oauth": {
+    "development": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/sharefile/callback",
+      "tokenMethod": "access_token_bearer",
+      "tokenQueryParam": "oauth_token"
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/sharefile/callback",
+      "tokenMethod": "access_token_bearer",
+      "tokenQueryParam": "oauth_token"
+    },
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/sharefile/callback",
+      "tokenMethod": "access_token_bearer",
+      "tokenQueryParam": "oauth_token"
+    }
+  },
+  "application": {
+    "base": "https://:account.sf-api.com/sf/v3",
+    "resources": [
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/AccessControls",
+        "path": "/AccessControls",
+        "params": [
+          {
+            "name": "principalid",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "itemid",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/AccessControls"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/AccessControls",
+        "path": "/Items(:id)/AccessControls",
+        "params": [
+          {
+            "name": "id",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "recursive",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "message",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sendDefaultNotification",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/AccessControls"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/AccessControls",
+        "path": "/Items(:id)/AccessControls",
+        "params": [
+          {
+            "name": "id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "accessControl",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "recursive",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/AccessControls"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AccessControls"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/AccessControls",
+        "path": "/AccessControls",
+        "params": [
+          {
+            "name": "principalid",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "itemid",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/AccessControls"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts",
+        "path": "/Accounts",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/Branding",
+        "path": "/Accounts/Branding",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/Branding",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/Employees",
+        "path": "/Accounts/Employees",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/Employees",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/Accounts/Clients",
+        "displayName": "/Accounts/Clients",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/Clients",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/AddressBook",
+        "path": "/Accounts/AddressBook",
+        "params": [
+          {
+            "name": "type",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "searchTerm",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/AddressBook"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Accounts/MobileSecuritySettings",
+        "path": "/Accounts/MobileSecuritySettings",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/MobileSecuritySettings",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/Accounts/SSO",
+        "displayName": "/Accounts/SSO",
+        "params": [
+          {
+            "name": "provider",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/SSO"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "username"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "password"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "employeesonly"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "requirehomefolders"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Accounts/GetByUser",
+        "path": "/Accounts/GetByUser",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/GetByUser"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "email"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Accounts/SendToEmail",
+        "displayName": "/Accounts/SendToEmail",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/SendToEmail"
+      },
+      {
+        "path": "/Accounts/LoginAccessControlDomains",
+        "displayName": "/Accounts/LoginAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Accounts/LoginAccessControlDomains",
+        "displayName": "/Accounts/LoginAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Accounts/LoginAccessControlDomains",
+        "displayName": "/Accounts/LoginAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Accounts/FolderAccessControlDomains",
+        "displayName": "/Accounts/FolderAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Accounts/LoginAccessControlDomains",
+        "displayName": "/Accounts/LoginAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts",
+          "t": "patch"
+        },
+        "httpMethod": "PUT",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "displayName": "/Accounts/FolderAccessControlDomains",
+        "path": "/Accounts/FolderAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "t": "patch",
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "PUT",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Accounts/LoginAccessControlDomains",
+        "displayName": "/Accounts/LoginAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Accounts/FolderAccessControlDomains",
+        "displayName": "/Accounts/FolderAccessControlDomains",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "subdomain"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "username"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Accounts/RequireWebPop",
+        "displayName": "/Accounts/RequireWebPop",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/RequireWebPop"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "username"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Accounts/RequireSubdomain",
+        "displayName": "/Accounts/RequireSubdomain",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/RequireSubdomain"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Accounts/FindSubdomain",
+        "displayName": "/Accounts/FindSubdomain",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/FindSubdomain"
+      },
+      {
+        "path": "/Accounts/OutlookInformation",
+        "displayName": "/Accounts/OutlookInformation",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/OutlookInformation",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "subdomain"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Accounts/SSOInfo",
+        "displayName": "/Accounts/SSOInfo",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Accounts"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Accounts/SSOInfo"
+      },
+      {
+        "path": "/AsyncOperations(:id)",
+        "displayName": "/AsyncOperations(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/AsyncOperations/GetByBatch(:id)",
+        "displayName": "/AsyncOperations/GetByBatch(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/AsyncOperations/GetByFolder(:id)",
+        "displayName": "/AsyncOperations/GetByFolder(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/AsyncOperations(:id)/Cancel",
+        "displayName": "/AsyncOperations(:id)/Cancel",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)/Cancel",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/AsyncOperations(:id)",
+        "displayName": "/AsyncOperations(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/AsyncOperations/CancelBatch(:id)",
+        "displayName": "/AsyncOperations/CancelBatch(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/AsyncOperations/CancelBatch(:id)",
+        "displayName": "/AsyncOperations/CancelBatch(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/AsyncOperations(:id)",
+        "displayName": "/AsyncOperations(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "t": "patch",
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=AsyncOperations"
+        },
+        "httpMethod": "PUT",
+        "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Capabilities",
+        "displayName": "/Capabilities",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Capabilities"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Capabilities",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Devices(:id)",
+        "displayName": "/Devices(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Devices(:id)",
+        "displayName": "/Devices(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "userid"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":deviceID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Devices(:deviceID)/Wipe",
+        "displayName": "/Devices(:deviceID)/Wipe",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:deviceID)/Wipe"
+      },
+      {
+        "path": "/Devices",
+        "displayName": "/Devices",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Devices",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "singlePlane"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":deviceID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Devices(:deviceID)/WipeDone",
+        "displayName": "/Devices(:deviceID)/WipeDone",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:deviceID)/WipeDone"
+      },
+      {
+        "path": "/Devices(:deviceID)/Status",
+        "displayName": "/Devices(:deviceID)/Status",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Devices"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Devices(:deviceID)/Status",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":deviceID",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Users(:id)/FavoriteFolders",
+        "displayName": "/Users(:id)/FavoriteFolders",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Users(:userid)/FavoriteFolders(:itemid)",
+        "displayName": "/Users(:userid)/FavoriteFolders(:itemid)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":userid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/FavoriteFolders(userid=:userid,itemid=:itemid)",
+        "displayName": "/FavoriteFolders(userid=:userid,itemid=:itemid)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":userid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "displayName": "/Users(:id)/FavoriteFolders",
+        "path": "/Users(:id)/FavoriteFolders",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Users(:id)/FavoriteFolders(:itemid)",
+        "displayName": "/Users(:id)/FavoriteFolders(:itemid)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=FavoriteFolders"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Groups",
+        "displayName": "/Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Groups",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Groups(:id)",
+        "displayName": "/Groups(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Groups(:id)",
+        "displayName": "/Groups(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/Groups",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Groups",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Groups"
+      },
+      {
+        "path": "/Groups(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Groups(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups",
+          "t": "patch"
+        },
+        "httpMethod": "PUT",
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)"
+      },
+      {
+        "path": "/Groups(:id)/Contacts",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Groups(:id)/Contacts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)/Contacts"
+      },
+      {
+        "path": "/Groups(:id)/Contacts",
+        "displayName": "/Groups(:id)/Contacts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)/Contacts"
+      },
+      {
+        "path": "/Groups(:id)/Contacts",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Groups(:id)/Contacts",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Groups"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://:account.sf-api.com/sf/v3/Groups(:id)/Contacts"
+      },
+      {
+        "path": "/Items",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Items",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items"
+      },
+      {
+        "displayName": "/Items(:id)",
+        "path": "/Items(:id)",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "includeDeleted"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Items(:id)/Stream",
+        "displayName": "/Items(:id)/Stream",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Stream"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "path"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Items/ByPath",
+        "displayName": "/Items/ByPath",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items/ByPath"
+      },
+      {
+        "displayName": "/Items(:id)/Parent",
+        "path": "/Items(:id)/Parent",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Parent"
+      },
+      {
+        "path": "/Items(:id)/Children",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Items(:id)/Children",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Children"
+      },
+      {
+        "path": "/Items(:id)/Info",
+        "displayName": "/Items(:id)/Info",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Info",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "query",
+            "name": "redirect"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Items(:id)/Download",
+        "displayName": "/Items(:id)/Download",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "GET",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Download"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "overwrite"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "passthrough"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":parentid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Items(:parentid)/Folder",
+        "displayName": "/Items(:parentid)/Folder",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:parentid)/Folder"
+      },
+      {
+        "path": "/Items(:parentid)/Note",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":parentid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Items(:parentid)/Note",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:parentid)/Note"
+      },
+      {
+        "path": "/Items(:parentid)/Link",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":parentid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Items(:parentid)/Link",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Items(:parentid)/Link"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "boolean",
+            "style": "body",
+            "name": "overwrite"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "path": "/Items/SymbolicLink",
+        "displayName": "/Items/SymbolicLink",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "httpMethod": "POST",
+        "url": "https://:account.sf-api.com/sf/v3/Items/SymbolicLink"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/Subscribe",
+        "path": "/Items(:id)/Subscribe",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Subscribe"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)",
+        "path": "/Items(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items/Link(:id)",
+        "path": "/Items/Link(:id)",
+        "params": [
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items/Link(:id)"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items/Note(:id)",
+        "path": "/Items/Note(:id)",
+        "params": [
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items/Note(:id)"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items/SymbolicLink(:id)",
+        "path": "/Items/SymbolicLink(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items/SymbolicLink(:id)"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/BulkDelete",
+        "path": "/Items(:id)/BulkDelete",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/BulkDelete"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/Breadcrumbs",
+        "path": "/Items(:id)/Breadcrumbs",
+        "params": [
+          {
+            "name": "path",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Breadcrumbs"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/Copy",
+        "path": "/Items(:id)/Copy",
+        "params": [
+          {
+            "name": "targetid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "overwrite",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Copy"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/Upload",
+        "path": "/Items(:id)/Upload",
+        "params": [
+          {
+            "name": "method",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "raw",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fileName",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fileSize",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "batchId",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "batchLast",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "canResume",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "startOver",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "unzip",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tool",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "overwrite",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "title",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "details",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "isSend",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sendGuid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "opid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threadCount",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "responseFormat",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "clientCreatedDateUTC",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "clientModifiedDateUTC",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Upload"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/CheckIn",
+        "path": "/Items(:id)/CheckIn",
+        "params": [
+          {
+            "name": "message",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/CheckIn"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/CheckOut",
+        "path": "/Items(:id)/CheckOut",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/CheckOut"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items/Search",
+        "path": "/Items/Search",
+        "params": [
+          {
+            "name": "query",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items/Search"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items/AdvancedSearch",
+        "path": "/Items/AdvancedSearch",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items/AdvancedSearch"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/WebView",
+        "path": "/Items(:id)/WebView",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/WebView"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/ProtocolLinks",
+        "path": "/Items(:id)/ProtocolLinks",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/ProtocolLinks"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Items"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/ProtocolLinks(protocol)",
+        "path": "/Items(:id)/ProtocolLinks(protocol)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/ProtocolLinks(protocol)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Metadata",
+        "path": "/Metadata",
+        "params": [
+          {
+            "name": "name",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "itemid",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Metadata"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/Metadata",
+        "path": "/Items(:id)/Metadata",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Metadata"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/Metadata",
+        "path": "/Items(:id)/Metadata",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Metadata"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Metadata(:metadataId)",
+        "path": "/Metadata(:metadataId)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":metadataId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Metadata(:metadataId)"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "t": "patch",
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Metadata",
+        "path": "/Metadata",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Metadata"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Items(:id)/Metadata(:metadataId)",
+        "path": "/Items(:id)/Metadata(:metadataId)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":metadataId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Metadata(:metadataId)"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=MetaData"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Metadata(name=:name,itemid=:itemid)",
+        "path": "/Metadata(name=:name,itemid=:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":name",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Metadata(name=:name,itemid=:itemid)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Queues",
+        "path": "/Queues",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Queues"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Queues(:id)",
+        "path": "/Queues(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Queues(:id)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Queues(:qid)/Entries(:eid)",
+        "path": "/Queues(:qid)/Entries(:eid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":qid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":eid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Queues(:id)/Entries",
+        "path": "/Queues(:id)/Entries",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Queues(:id)/Entries"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/Queues(:id)/Receive",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Queues(:id)/Receive",
+        "url": "https://:account.sf-api.com/sf/v3/Queues(:id)/Receive"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Queues(:id)/Complete",
+        "path": "/Queues(:id)/Complete",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Queues(:id)/Complete"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Queues(:qid)/Entries(:eid)",
+        "path": "/Queues(:qid)/Entries(:eid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":qid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":eid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Queues"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Queues(:qid)/Entries(:eid)",
+        "path": "/Queues(:qid)/Entries(:eid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":qid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":eid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Queues(:qid)/Entries(:eid)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Sessions",
+        "path": "/Sessions",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Sessions"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Sessions",
+        "path": "/Sessions",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Sessions"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Sessions"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Sessions/Login",
+        "path": "/Sessions/Login",
+        "params": [
+          {
+            "name": "authmethod",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "authcomparison",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Sessions/Login"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares",
+        "path": "/Shares",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)",
+        "path": "/Shares(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)/Recipients",
+        "path": "/Shares(:id)/Recipients",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Recipients"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)/Items",
+        "path": "/Shares(:id)/Items",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Items"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:shareid)/Items(:itemid)",
+        "path": "/Shares(:shareid)/Items(:itemid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":shareid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":itemid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:shareid)/Items(:itemid)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)/Download",
+        "path": "/Shares(:id)/Download",
+        "params": [
+          {
+            "name": "shareId",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Name",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Email",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Company",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "redirect",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Download"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares",
+        "path": "/Shares",
+        "params": [
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)",
+        "path": "/Shares(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)",
+        "path": "/Shares(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)/Alias",
+        "path": "/Shares(:id)/Alias",
+        "params": [
+          {
+            "name": "email",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Alias"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares/Send",
+        "path": "/Shares/Send",
+        "params": [
+          {
+            "name": "Items",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Emails",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Subject",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares/Send"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares/Request",
+        "path": "/Shares/Request",
+        "params": [
+          {
+            "name": "FolderId",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "FolderPath",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "Emails",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "Subject",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares/Request"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Shares"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Shares(:id)/Upload",
+        "path": "/Shares(:id)/Upload",
+        "params": [
+          {
+            "name": "method",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "raw",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fileName",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "fileSize",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "batchId",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "batchLast",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "canResume",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "startOver",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "unzip",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "tool",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "overwrite",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "title",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "details",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "isSend",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "sendGuid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "opid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "threadCount",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "responseFormat",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Shares(:id)/Upload"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/StorageCenters(:id)",
+        "path": "/StorageCenters(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/StorageCenters(:id)"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/StorageCenters(:id)",
+        "path": "/StorageCenters(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/StorageCenters(:id)"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/StorageCenters(:id)",
+        "path": "/StorageCenters(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/StorageCenters(:id)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)/StorageCenters",
+        "path": "/Zones(:id)/StorageCenters",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)/StorageCenters",
+        "path": "/Zones(:id)/StorageCenters",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/StorageCenters"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:zid)/StorageCenters(:scid)",
+        "path": "/Zones(:zid)/StorageCenters(:scid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenters(:scid)"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:zid)/StorageCenter(:scid)",
+        "path": "/Zones(:zid)/StorageCenter(:scid)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Storage%20Centers"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
+        "params": [
+          {
+            "name": "name",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":zid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":scid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:zid)/StorageCenter(:scid)/Metadata"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)",
+        "path": "/Users(:id)",
+        "params": [
+          {
+            "name": "emailAddress",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users",
+        "path": "/Users",
+        "params": [
+          {
+            "name": "pushCreatorDefaultSettings",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "addshared",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ifNecessary",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users/AccountUser",
+        "path": "/Users/AccountUser",
+        "params": [
+          {
+            "name": "pushCreatorDefaultSettings",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "addshared",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "ifNecessary",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users/AccountUser"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)",
+        "path": "/Users(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/Roles",
+        "path": "/Users(:id)/Roles",
+        "params": [
+          {
+            "name": "parentid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Roles"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "t": "put",
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/Roles",
+        "path": "/Users(:id)/Roles",
+        "params": [
+          {
+            "name": "parentid",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Roles"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users",
+          "t": "patch"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users/AccountUser(:id)",
+        "path": "/Users/AccountUser(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users/AccountUser(:id)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/HomeFolder",
+        "path": "/Users(:id)/HomeFolder",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/HomeFolder"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/Preferences",
+        "path": "/Users(:id)/Preferences",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Preferences"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/Security",
+        "path": "/Users(:id)/Security",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Security"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/Security",
+        "path": "/Users(:id)/Security",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/Security"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/ResetPassword",
+        "path": "/Users(:id)/ResetPassword",
+        "params": [
+          {
+            "name": "properties",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "notify",
+            "style": "body",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/ResetPassword"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)/ResendWelcome",
+        "path": "/Users(:id)/ResendWelcome",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)/ResendWelcome"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users(:id)",
+        "path": "/Users(:id)",
+        "params": [
+          {
+            "name": "completely",
+            "style": "",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users(:id)"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users/AllSharedFolders",
+        "path": "/Users/AllSharedFolders",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users/AllSharedFolders"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users/TopFolders",
+        "path": "/Users/TopFolders",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users/TopFolders"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "path": "/Users/NetworkShareConnectors",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "displayName": "/Users/NetworkShareConnectors",
+        "url": "https://:account.sf-api.com/sf/v3/Users/NetworkShareConnectors"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users/SharepointConnectors",
+        "path": "/Users/SharepointConnectors",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users/SharepointConnectors"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users/Confirm",
+        "path": "/Users/Confirm",
+        "params": [
+          {
+            "name": "settings",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users/Confirm"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Users"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Users/Info",
+        "path": "/Users/Info",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Users/Info"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones",
+        "path": "/Zones",
+        "params": [
+          {
+            "name": "services",
+            "style": "query",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "includeDisabled",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)",
+        "path": "/Zones(:id)",
+        "params": [
+          {
+            "name": "secret",
+            "style": "query",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones",
+        "path": "/Zones",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "t": "patch",
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)",
+        "path": "/Zones(:id)",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)",
+        "path": "/Zones(:id)",
+        "params": [
+          {
+            "name": "force",
+            "style": "",
+            "type": "boolean",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)/ResetSecret",
+        "path": "/Zones(:id)/ResetSecret",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/ResetSecret"
+      },
+      {
+        "httpMethod": "GET",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)/Metadata",
+        "path": "/Zones(:id)/Metadata",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/Metadata"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)/Metadata",
+        "path": "/Zones(:id)/Metadata",
+        "params": [
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/Metadata"
+      },
+      {
+        "httpMethod": "DELETE",
+        "doc": {
+          "url": "http://api.sharefile.com/rest/docs/resource.aspx?name=Zones"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/Zones(:id)/Metadata",
+        "path": "/Zones(:id)/Metadata",
+        "params": [
+          {
+            "name": "name",
+            "style": "",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": ":account",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://:account.sf-api.com/sf/v3/Zones(:id)/Metadata"
+      }
+    ]
+  }
+}

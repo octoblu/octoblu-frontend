@@ -5,15 +5,15 @@
 
   <div class="flow-toolbar">
 
-    <div class="input-group flow-name" dropdown>
+    <div class="input-group flow-name dropdown" >
       <input type="text" class="form-control" placeholder="Flow Name" ng-model="activeFlow.name">
-      <span class="input-group-addon flow-dropdown" dropdown-toggle>
-        <i class="fa fa-lg fa-angle-down"></i>
+      <span class="input-group-addon flow-dropdown dropdown-toggle" id="flowMenuDropdown" data-toggle="dropdown"  ng-click="flowMenuIsOpen = !flowMenuIsOpen">
+          <i class="fa fa-lg fa-angle-down"></i>
       </span>
-      <ul class="dropdown-menu" role="menu">
-        <li class="text-center" dropdown-toggle ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown">
+        <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
         <li role="presentation"  class="divider"></li>
-        <li class="" dropdown-toggle ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'">
+        <li class="" data-toggle="dropdown" ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'">
           <a ui-sref="flow({flowId: flow.flowId})">{{flow.name}}</a>
         </li>
       </ul>
@@ -35,10 +35,10 @@
     </div>
 
     <div class="btn-group">
-      <button ng-click="stop()" ng-class="{ stopping: stopping }" class="stop-button btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
+      <button ng-click="stop()" ng-class="{ 'btn-danger': deviceOnline === false, stopping: stopping }" class="stop-button btn btn-default button-shadow" tooltip="Stop" tooltip-placement="bottom">
         <i class="fa fa-stop"></i>
       </button>
-      <button ng-click="start()" ng-class="{ deploying: deploying }" class="start-button btn btn-default button-shadow" tooltip="Start" tooltip-placement="bottom">
+      <button ng-click="start()" ng-class="{ 'btn-info': deviceOnline, deploying: deploying }" class="start-button btn btn-default button-shadow" tooltip="Start" tooltip-placement="bottom">
         <i class="fa fa-play"></i>
       </button>
     </div>
@@ -67,5 +67,5 @@
       <flow-editor flow="activeFlow"></flow-editor>
     </div>
   </div>
-  <flow-browser w-mousetrap="{'mod+c':unMousetrap}" flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes"></flow-browser>
+  <flow-browser flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
 </div>
