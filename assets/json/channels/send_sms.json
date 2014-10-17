@@ -27,7 +27,11 @@
           },
           {
             "name": "text",
+<<<<<<< HEAD
             "displayName": "Message ( Add data to text using {{msg.payload.values}} )",
+=======
+            "displayName": "Message ( Add data to text using {{payload.values}} )",
+>>>>>>> FETCH_HEAD
             "style": "body",
             "type": "string",
             "required" : true
@@ -37,10 +41,18 @@
       {
         "path": "/message/:messageid",
         "httpMethod": "GET",
+<<<<<<< HEAD
         "url": "http://stock.octoblu.com/message/:messageid",
         "authentication": {
           "required": "true"
         },
+=======
+        "url": "http://sms.octoblu.com/message/:messageid",
+        "authentication": {
+          "required": "true"
+        },
+        "enabled" : false,
+>>>>>>> FETCH_HEAD
         "params": [
           {
             "name": ":messageid",

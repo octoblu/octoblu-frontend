@@ -1,7 +1,7 @@
-<div class="row" ng-hide="newSubdevice.plugin">
+<div class="row" ng-hide="device">
   <div class="col-xs-12 col-md-offset-3 col-md-6">
     <h1 class="text-center">
-      Updating your gateway...
+      Updating your gateblu...
     </h1>
     <h1 class="text-center">
       <i class="fa fa-spin fa-refresh"></i>
@@ -9,26 +9,24 @@
   </div>
 </div>
 
-<div class="row" ng-show="newSubdevice.plugin">
+<div class="row" ng-if="device">
   <div class="col-xs-12 col-md-offset-3 col-md-6">
-    <form class="form" ng-submit="addSubDevice()">
-      <div class="form-group">
-        <label class="control-label">Gateway</label>
-        <h4>{{newSubdevice.gateway.name}}</h4>
-      </div>
-
+    <h1>Configure your device</h1>
+    <form class="form" ng-submit="submit()">
       <div class="form-group" ng-class="{'has-error': errorMessage}">
         <label for="name" class="control-label">Name</label>
-        <input type="text" ng-model="newSubdevice.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
+        <input type="text" ng-model="device.name" class="form-control input-lg" id="name" placeholder="My {{nodeType.name}}" required>
+
         <p class="help-block" ng-if="errorMessage">{{errorMessage}}</p>
       </div>
 
-      <schema-editor control="newSubdevice.schemaEditor" schema="newSubdevice.plugin.optionsSchema" model="newSubdevice.subdevice.options" allow-json-edit="false"></schema-editor>
+      <div class="form-group">
+        <schema-editor schema="device.optionsSchema" model="device.options" allow-json-edit="true" additional-properties="true"></schema-editor>
+      </div>
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg btn-block">
-          <i class="fa fa-plus"></i>
-          Add
+          Update
         </button>
       </div>
     </form>

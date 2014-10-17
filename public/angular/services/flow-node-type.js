@@ -16,14 +16,7 @@ angular.module('octobluApp')
     });
   };
 
-  self.getFlowNodeTypes = function () {
-    return $q.all([getServerSideFlowNodeTypes(), getSubdeviceFlowNodeTypes()])
-      .then(function(results){
-        return _.flatten(results);
-      });
-  };
-
-  function getServerSideFlowNodeTypes() {
+  self.getFlowNodeTypes = function() {
     return $http.get('/api/flow_node_types', {cache: true}).then(function(res){
       return _.map(res.data, function(data){
         if (data && data.type) {
@@ -32,7 +25,7 @@ angular.module('octobluApp')
         return data;
       });
     });
-  }
+  };
 
   function getSubdeviceFlowNodeTypes() {
     return NodeService.getSubdeviceNodes().then(function(subdevices){

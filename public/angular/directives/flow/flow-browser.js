@@ -12,6 +12,7 @@ angular.module('octobluApp')
       debugLines: '=',
       activeFlow: '='
     },
+<<<<<<< HEAD
     controller: function ($scope, FlowNodeTypeService, reservedProperties) {
       var tabs = {
         debug: {
@@ -138,6 +139,13 @@ angular.module('octobluApp')
       };
 
       $scope.clearActiveTab();
+=======
+    controller: 'FlowBrowserController',
+    link: function(scope,element) {
+      scope.selectAll = function() {
+        $('textarea').select();
+      };
+>>>>>>> FETCH_HEAD
     }
   };
 });

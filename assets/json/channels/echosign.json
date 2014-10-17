@@ -1,6 +1,5 @@
 {
   "_id": "53dfcb87626a43a44f966d0a",
-  "__v": 0,
   "application": {
     "base": "https://secure.echosign.com/api/rest/v2",
     "resources": [
@@ -15,13 +14,6 @@
         },
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
           {
             "name": "x-user-id",
             "style": "header",
@@ -50,27 +42,6 @@
         "displayName": "/widgets",
         "path": "/widgets",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "x-user-id",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "x-user-email",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/widgets"
       },
@@ -85,20 +56,6 @@
         "displayName": "/widgets/{widgetId}",
         "path": "/widgets/{widgetId}",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/widgets/{widgetId}"
       },
@@ -126,13 +83,6 @@
             "type": "string",
             "value": "",
             "required": "false"
-          },
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/widgets/{widgetId}/documents"
@@ -148,13 +98,6 @@
         "displayName": "/widgets/{widgetId}/documents/{documentId}",
         "path": "/widgets/{widgetId}/documents/{documentId}",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
           {
             "name": "",
             "style": "query",
@@ -183,13 +126,7 @@
         "displayName": "/widgets/{widgetId}/auditTrail",
         "path": "/widgets/{widgetId}/auditTrail",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
+
         ],
         "url": "https://secure.echosign.com/api/rest/v2/widgets/{widgetId}/auditTrail"
       },
@@ -224,13 +161,6 @@
             "type": "string",
             "value": "",
             "required": "false"
-          },
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/widgets/{widgetId}/combinedDocument"
@@ -246,13 +176,6 @@
         "displayName": "/widgets/{widgetId}/formData",
         "path": "/widgets/{widgetId}/formData",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/widgets/{widgetId}/formData"
       },
@@ -267,13 +190,6 @@
         "displayName": "/widgets/{widgetId}/agreements",
         "path": "/widgets/{widgetId}/agreements",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/widgets/{widgetId}/agreements"
       },
@@ -291,13 +207,6 @@
           {
             "name": "WidgetPersonalizationInfo",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "Access-Token",
-            "style": "header",
             "type": "string",
             "value": "",
             "required": "true"
@@ -319,13 +228,6 @@
           {
             "name": "WidgetStatusUpdateInfo",
             "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "Access-Token",
-            "style": "header",
             "type": "string",
             "value": "",
             "required": "true"
@@ -366,13 +268,6 @@
         "path": "/transientDocuments",
         "params": [
           {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": "File-Name",
             "style": "body",
             "type": "string",
@@ -400,13 +295,6 @@
         "displayName": "/agreements",
         "path": "/agreements",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
           {
             "name": "x-user-id",
             "style": "header",
@@ -443,13 +331,6 @@
         "path": "/agreements",
         "params": [
           {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": "x-user-id",
             "style": "header",
             "type": "string",
@@ -484,13 +365,6 @@
         "displayName": "/agreements/{agreementId}",
         "path": "/agreements/{agreementId}",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/agreements/{agreementId}"
       },
@@ -505,13 +379,6 @@
         "displayName": "/agreements/{agreementId}/documents",
         "path": "/agreements/{agreementId}/documents",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
           {
             "name": "versionId",
             "style": "query",
@@ -548,13 +415,6 @@
         "path": "/agreements/{agreementId}/documents/{documentId}",
         "params": [
           {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
             "name": "",
             "style": "",
             "type": "string",
@@ -575,13 +435,6 @@
         "displayName": "/agreements/{agreementId}/auditTrail",
         "path": "/agreements/{agreementId}/auditTrail",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://secure.echosign.com/api/rest/v2/agreements/{agreementId}/auditTrail"
       },
@@ -596,13 +449,7 @@
         "displayName": "/agreements/{agreementId}/signingUrls",
         "path": "/agreements/{agreementId}/signingUrls",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
+
         ],
         "url": "https://secure.echosign.com/api/rest/v2/agreements/{agreementId}/signingUrls"
       },
@@ -617,13 +464,6 @@
         "displayName": "/agreements/{agreementId}/combinedDocument",
         "path": "/agreements/{agreementId}/combinedDocument",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
           {
             "name": "versionId",
             "style": "query",
@@ -666,13 +506,7 @@
         "displayName": "/agreements/{agreementId}/formData",
         "path": "/agreements/{agreementId}/formData",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
+
         ],
         "url": "https://secure.echosign.com/api/rest/v2/agreements/{agreementId}/formData"
       },
@@ -687,13 +521,6 @@
         "displayName": "/agreements/{agreementId}/status",
         "path": "/agreements/{agreementId}/status",
         "params": [
-          {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
           {
             "name": "AgreementStatusUpdateInfo",
             "style": "body",
@@ -716,13 +543,6 @@
         "path": "/reminders",
         "params": [
           {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": "ReminderCreationInfo",
             "style": "body",
             "type": "string",
@@ -744,13 +564,6 @@
         "path": "/users",
         "params": [
           {
-            "name": "Access-Token",
-            "style": "header",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": "UserCreationInfo",
             "style": "body",
             "type": "string",
@@ -762,13 +575,6 @@
       },
       {
         "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          },
           {
             "required": "false",
             "value": "",
@@ -790,13 +596,6 @@
       },
       {
         "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          }
         ],
         "path": "/users/{userId}",
         "displayName": "/users/{userId}",
@@ -811,13 +610,6 @@
       },
       {
         "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          },
           {
             "required": "false",
             "value": "",
@@ -846,13 +638,6 @@
       },
       {
         "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          }
         ],
         "path": "/libraryDocuments/{libraryDocumentId}",
         "displayName": "/libraryDocuments/{libraryDocumentId}",
@@ -867,13 +652,6 @@
       },
       {
         "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          }
         ],
         "path": "/libraryDocuments/{libraryDocumentId}/documents",
         "displayName": "/libraryDocuments/{libraryDocumentId}/documents",
@@ -888,13 +666,7 @@
       },
       {
         "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          }
+
         ],
         "path": "/libraryDocuments/{libraryDocumentId}/documents/{documentId}",
         "displayName": "/libraryDocuments/{libraryDocumentId}/documents/{documentId}",
@@ -909,13 +681,6 @@
       },
       {
         "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          }
         ],
         "path": "/libraryDocuments/{libraryDocumentId}/auditTrail",
         "displayName": "/libraryDocuments/{libraryDocumentId}/auditTrail",
@@ -930,13 +695,6 @@
       },
       {
         "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "header",
-            "name": "Access-Token"
-          },
           {
             "required": "false",
             "value": "",
@@ -958,12 +716,16 @@
       }
     ]
   },
-  "auth_strategy": "none",
+  "bodyFormat" : "json",
+  "auth_strategy": "echosign",
   "custom_tokens": [],
+  "applicationCredentials" : {
+    "applicationId" : "9QTFN3324A7D5K",
+    "applicationSecret" : "627b1fe3548835fd3a1bcb97cf6a3cbd"
+  },
   "description": "",
   "documentation": "https://secure.echosign.com/public/docs/restapi/v2;jsessionid=60842BF524165F90EAAAECE0C49F1B60.ord-prod-app8#!/widgets",
   "enabled": true,
-  "name": "Ectosign",
-  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:ectosign"
+  "name": "Echosign",
+  "type": "channel:echosign"
 }

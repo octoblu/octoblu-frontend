@@ -2158,6 +2158,7 @@
         "authentication": {
           "required": "true"
         },
+<<<<<<< HEAD
         "displayName": "/users",
         "path": "/users",
         "url": "https://redbooth.com/api/3/users"
@@ -2174,3 +2175,39 @@
         "path": "/users/{id}",
         "url": "https://redbooth.com/api/3/users/{id}"
       }
+=======
+        "displayName": "/me",
+        "path": "/me",
+        "url": "https://redbooth.com/api/3/me"
+      }
+    ]
+  },
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://developer.redbooth.com/api-docs/",
+  "enabled": true,
+  "name": "RedBooth",
+  "oauth": {
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/redbooth/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/redbooth/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/redbooth/callback",
+      "tokenMethod": "access_token_query"
+    }
+  },
+  "type": "channel:redbooth"
+}
+>>>>>>> FETCH_HEAD

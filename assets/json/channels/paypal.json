@@ -1,5 +1,31 @@
 {
   "_id": "537d58762699fc4331e85167",
+  "auth_strategy": "oauth",
+  "documentation": "https://developer.paypal.com/webapps/developer/docs/api/",
+  "enabled": false,
+  "name": "Paypal",
+  "oauth": {
+    "development": {
+      "clientID": "AdnR0xAvvCVWQt74IjAEDFLWIRdQdN2-Zcig6gPXc5gbMTfAmwgrvaeGsHb6",
+      "clientSecret": "EG9ljxBGKHIePxg4kOUJRVE5N0d18BRT3l8MKtrHwrCH3lH2gBnOHuPOx652",
+      "callbackURL": "http://localhost:8080/api/oauth/paypal/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID": "AfDwFBA78BBZsnv3Luhc5pr3lQLaRhR7LLMVAbqkPR8nwU0MCx_AsinlHci-",
+      "clientSecret": "EKxBMhAwyYj7sJcRGdp2OzpPUNCigZDIlfQU3gkFKJan18kO0ZdRDtlr-uvc",
+      "callbackURL": "https://app.octoblu.com/api/oauth/paypal/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "AcqdTxCujldgs1PcGICRnyA5c7wYf4vIeOITCejWmVfbdOJW11rwsN8S6KqD",
+      "clientSecret": "EHPnxBBKYYigDXEDAowu0EECLYzgfs-DWm0JeGJdSqbjzDGwbjU_O1kOzqX8",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/paypal/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
+  "useCustom": true,
+  "type": "channel:paypal",
   "application": {
     "base": "https://api.sandbox.paypal.com",
     "resources": [
@@ -51,15 +77,23 @@
         "url": "https://api.sandbox.paypal.com/v1/payments/payment"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":paymentId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-payment-resource"
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/payments/payment/{paymentId}",
-        "path": "/v1/payments/payment/{paymentId}",
-        "url": "https://api.sandbox.paypal.com/v1/payments/payment/{paymentId}"
+        "displayName": "/v1/payments/payment/:paymentId",
+        "path": "/v1/payments/payment/:paymentId",
+        "url": "https://api.sandbox.paypal.com/v1/payments/payment/:paymentId"
       },
       {
         "params": [
@@ -74,6 +108,13 @@
             "type": "string",
             "style": "body",
             "required": false
+          },
+          {
+            "name": ":paymentId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "doc": {
@@ -81,42 +122,66 @@
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/payments/payment/{paymentId}/execute",
-        "path": "/v1/payments/payment/{paymentId}/execute",
-        "url": "https://api.sandbox.paypal.com/v1/payments/payment/{paymentId}/execute"
+        "displayName": "/v1/payments/payment/:paymentId/execute",
+        "path": "/v1/payments/payment/:paymentId/execute",
+        "url": "https://api.sandbox.paypal.com/v1/payments/payment/:paymentId/execute"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":transactionId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-sale"
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/payments/sale/{transactionId}",
-        "path": "/v1/payments/sale/{transactionId}",
-        "url": "https://api.sandbox.paypal.com/v1/payments/sale/{transactionId}"
+        "displayName": "/v1/payments/sale/:transactionId",
+        "path": "/v1/payments/sale/:transactionId",
+        "url": "https://api.sandbox.paypal.com/v1/payments/sale/:transactionId"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":transactionId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#refund-a-sale"
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/payments/sale/{transactionId}/refund",
-        "path": "/v1/payments/sale/{transactionId}/refund",
-        "url": "https://api.sandbox.paypal.com/v1/payments/sale/{transactionId}/refund"
+        "displayName": "/v1/payments/sale/:transactionId/refund",
+        "path": "/v1/payments/sale/:transactionId/refund",
+        "url": "https://api.sandbox.paypal.com/v1/payments/sale/:transactionId/refund"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":refundId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-refund"
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/payments/refund/{refundId}",
-        "path": "/v1/payments/refund/{refundId}",
-        "url": "https://api.sandbox.paypal.com/v1/payments/refund/{refundId}"
+        "displayName": "/v1/payments/refund/:refundId",
+        "path": "/v1/payments/refund/:refundId",
+        "url": "https://api.sandbox.paypal.com/v1/payments/refund/:refundId"
       },
       {
         "params": [
@@ -131,6 +196,13 @@
             "type": "boolean",
             "style": "body",
             "required": false
+          },
+          {
+            "name": ":authorizationId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "doc": {
@@ -138,53 +210,85 @@
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/payments/authorization/{authorizationId}",
-        "path": "/v1/payments/authorization/{authorizationId}",
-        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/{authorizationId}"
+        "displayName": "/v1/payments/authorization/:authorizationId",
+        "path": "/v1/payments/authorization/:authorizationId",
+        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/:authorizationId"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":authorizationId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#capture-an-authorization"
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/payments/authorization/{authorizationId}/capture",
-        "path": "/v1/payments/authorization/{authorizationId}/capture",
-        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/{authorizationId}/capture"
+        "displayName": "/v1/payments/authorization/:authorizationId/capture",
+        "path": "/v1/payments/authorization/:authorizationId/capture",
+        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/:authorizationId/capture"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":authorizationId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#void-an-authorization"
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/payments/authorization/{authorizationId}/void",
-        "path": "/v1/payments/authorization/{authorizationId}/void",
-        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/{authorizationId}/void"
+        "displayName": "/v1/payments/authorization/:authorizationId/void",
+        "path": "/v1/payments/authorization/:authorizationId/void",
+        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/:authorizationId/void"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":authorizationId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#reauthorize-a-payment"
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/payments/authorization/{authorizationId}/reauthorize",
-        "path": "/v1/payments/authorization/{authorizationId}/reauthorize",
-        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/{authorizationId}/reauthorize"
+        "displayName": "/v1/payments/authorization/:authorizationId/reauthorize",
+        "path": "/v1/payments/authorization/:authorizationId/reauthorize",
+        "url": "https://api.sandbox.paypal.com/v1/payments/authorization/:authorizationId/reauthorize"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":captureId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-captured-payment"
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/payments/capture/{captureId}",
-        "path": "/v1/payments/capture/{captureId}",
-        "url": "https://api.sandbox.paypal.com/v1/payments/capture/{captureId}"
+        "displayName": "/v1/payments/capture/:captureId",
+        "path": "/v1/payments/capture/:captureId",
+        "url": "https://api.sandbox.paypal.com/v1/payments/capture/:captureId"
       },
       {
         "params": [
@@ -193,6 +297,13 @@
             "type": "string",
             "style": "body",
             "required": true
+          },
+          {
+            "name": ":captureId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "doc": {
@@ -200,9 +311,9 @@
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/payments/capture/{captureId}/refund",
-        "path": "/v1/payments/capture/{captureId}/refund",
-        "url": "https://api.sandbox.paypal.com/v1/payments/capture/{captureId}/refund"
+        "displayName": "/v1/payments/capture/:captureId/refund",
+        "path": "/v1/payments/capture/:captureId/refund",
+        "url": "https://api.sandbox.paypal.com/v1/payments/capture/:captureId/refund"
       },
       {
         "params": [
@@ -271,26 +382,42 @@
         "url": "https://api.sandbox.paypal.com/v1/vault/credit-card"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":creditCardId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#delete-a-stored-credit-card"
         },
         "curl": "",
         "httpMethod": "DELETE",
-        "displayName": "/v1/vault/credit-card/{creditCardId}",
-        "path": "/v1/vault/credit-card/{creditCardId}",
-        "url": "https://api.sandbox.paypal.com/v1/vault/credit-card/{creditCardId}"
+        "displayName": "/v1/vault/credit-card/:creditCardId",
+        "path": "/v1/vault/credit-card/:creditCardId",
+        "url": "https://api.sandbox.paypal.com/v1/vault/credit-card/:creditCardId"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":creditCardId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#look-up-a-stored-credit-card"
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/vault/credit-card/{creditCardId}",
-        "path": "/v1/vault/credit-card/{creditCardId}",
-        "url": "https://api.sandbox.paypal.com/v1/vault/credit-card/{creditCardId}"
+        "displayName": "/v1/vault/credit-card/:creditCardId",
+        "path": "/v1/vault/credit-card/:creditCardId",
+        "url": "https://api.sandbox.paypal.com/v1/vault/credit-card/:creditCardId"
       },
       {
         "params": [
@@ -365,9 +492,9 @@
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/identity/openidconnect/userinfo/?{schema}",
-        "path": "/v1/identity/openidconnect/userinfo/?{schema}",
-        "url": "https://api.sandbox.paypal.com/v1/identity/openidconnect/userinfo/?{schema}"
+        "displayName": "/v1/identity/openidconnect/userinfo/?:schema",
+        "path": "/v1/identity/openidconnect/userinfo/?:schema",
+        "url": "https://api.sandbox.paypal.com/v1/identity/openidconnect/userinfo/?:schema"
       },
       {
         "params": [
@@ -500,6 +627,13 @@
             "name": "",
             "type": "string",
             "style": "body"
+          },
+          {
+            "name": ":invoiceId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "doc": {
@@ -507,9 +641,9 @@
         },
         "curl": "",
         "httpMethod": "GET",
-        "displayName": "/v1/invoicing/invoices/{invoiceId}",
-        "path": "/v1/invoicing/invoices/{invoiceId}",
-        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/{invoiceId}"
+        "displayName": "/v1/invoicing/invoices/:invoiceId",
+        "path": "/v1/invoicing/invoices/:invoiceId",
+        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/:invoiceId"
       },
       {
         "params": [
@@ -608,6 +742,13 @@
             "type": "string",
             "style": "body",
             "required": false
+          },
+          {
+            "name": ":invoiceId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
           }
         ],
         "doc": {
@@ -615,20 +756,28 @@
         },
         "curl": "",
         "httpMethod": "PUT",
-        "displayName": "/v1/invoicing/invoices/{invoiceId}",
-        "path": "/v1/invoicing/invoices/{invoiceId}",
-        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/{invoiceId}"
+        "displayName": "/v1/invoicing/invoices/:invoiceId",
+        "path": "/v1/invoicing/invoices/:invoiceId",
+        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/:invoiceId"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":invoiceId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#delete-an-invoice"
         },
         "curl": "",
         "httpMethod": "DELETE",
-        "displayName": "/v1/invoicing/invoices/{invoiceId}",
-        "path": "/v1/invoicing/invoices/{invoiceId}",
-        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/{invoiceId}"
+        "displayName": "/v1/invoicing/invoices/:invoiceId",
+        "path": "/v1/invoicing/invoices/:invoiceId",
+        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/:invoiceId"
       },
       {
         "params": [],
@@ -637,69 +786,67 @@
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/invoicing/invoices?{query-string}",
-        "path": "/v1/invoicing/invoices?{query-string}",
-        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices?{query-string}"
+        "displayName": "/v1/invoicing/invoices?:query-string",
+        "path": "/v1/invoicing/invoices?:query-string",
+        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices?:query-string"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":invoiceId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#send-an-invoice"
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/invoicing/invoices/{invoiceId}/send",
-        "path": "/v1/invoicing/invoices/{invoiceId}/send",
-        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/{invoiceId}/send"
+        "displayName": "/v1/invoicing/invoices/:invoiceId/send",
+        "path": "/v1/invoicing/invoices/:invoiceId/send",
+        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/:invoiceId/send"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":invoiceId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#send-an-invoice-reminder"
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/invoicing/invoices/{invoiceId}/remind",
-        "path": "/v1/invoicing/invoices/{invoiceId}/remind",
-        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/{invoiceId}/remind"
+        "displayName": "/v1/invoicing/invoices/:invoiceId/remind",
+        "path": "/v1/invoicing/invoices/:invoiceId/remind",
+        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/:invoiceId/remind"
       },
       {
-        "params": [],
+        "params": [
+          {
+            "name": ":invoiceId",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          }
+        ],
         "doc": {
           "url": "https://developer.paypal.com/webapps/developer/docs/api/#cancel-an-invoice"
         },
         "curl": "",
         "httpMethod": "POST",
-        "displayName": "/v1/invoicing/invoices/{invoiceId}/cancel",
-        "path": "/v1/invoicing/invoices/{invoiceId}/cancel",
-        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/{invoiceId}/cancel"
+        "displayName": "/v1/invoicing/invoices/:invoiceId/cancel",
+        "path": "/v1/invoicing/invoices/:invoiceId/cancel",
+        "url": "https://api.sandbox.paypal.com/v1/invoicing/invoices/:invoiceId/cancel"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "documentation": "https://developer.paypal.com/webapps/developer/docs/api/",
-  "enabled": false,
-  "name": "Paypal",
-  "oauth": {
-    "isManual": true,
-    "version": "2.0",
-    "clientId": "Ae23kRDSdXJm5eLVgfVQotoZHx_-NLSV5EAo3851xadqORKPWgp7Vsh6mtp5",
-    "secret": "EL1KKRD12JZ49CCD12ZNiArARRO3taOAWN33NIRyhVM6PO90snC_Tlzea12P",
-    "baseURL": "https://www.sandbox.paypal.com",
-    "accessTokenURL": "https://api.sandbox.paypal.com/v1/oauth2/token",
-    "requestTokenURL": "https://api.sandbox.paypal.com/v1/oauth2/token",
-    "authTokenURL": "https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize",
-    "tokenMethod": "",
-    "authTokenPath": "/webapps/auth/protocol/openidconnect/v1/authorize",
-    "accessTokenIncludeClientInfo": false,
-    "grant_type": "client_credentials",
-    "scope": "openid",
-    "protocol": "https",
-    "host": "www.sandbox.paypal.com",
-    "passTokenInQuery": false,
-    "tokenQueryParam": "",
-    "useOAuthLib": true
-  },
-  "useCustom": true,
-  "type": "channel:paypal"
+  }
 }

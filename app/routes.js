@@ -11,11 +11,11 @@ module.exports = function(app, passport) {
 
     // Generic UUID / Token for SkyNet API calls
     var conn = skynet.createConnection({
-        "uuid"     : "9b47c2f1-9d9b-11e3-a443-ab1cdce04787",
-        "token"    : "pxdq6kdnf74iy66rhuvdw9h5d2f0f6r",
-        "server"   : config.skynet.host,
-        "port"     : config.skynet.port,
-        "protocol" : "websocket"
+        'uuid'     : '9b47c2f1-9d9b-11e3-a443-ab1cdce04787',
+        'token'    : 'pxdq6kdnf74iy66rhuvdw9h5d2f0f6r',
+        'server'   : config.skynet.host,
+        'port'     : config.skynet.port,
+        'protocol' : 'websocket'
     });
 
     var ChannelAWSAuthController = require('./controllers/channel-aws-auth-controller');
@@ -69,6 +69,12 @@ module.exports = function(app, passport) {
     var GoToMeetingController = require('./controllers/gotomeeting-controller');
     var goToMeetingController = new GoToMeetingController();
 
+<<<<<<< HEAD
+=======
+    var PaypalController = require('./controllers/paypal-controller');
+    var paypalController = new PaypalController();
+
+>>>>>>> FETCH_HEAD
     var RdioController = require('./controllers/rdio-controller');
     var rdioController = new RdioController();
 
@@ -105,6 +111,21 @@ module.exports = function(app, passport) {
     var SalesForceStrategy = require('./controllers/salesforce-controller');
     var salesForceController = new SalesForceStrategy();
 
+<<<<<<< HEAD
+=======
+    var QuickBooksContoller = require('./controllers/quickbooks-controller');
+    var quickBooksController = new QuickBooksContoller();
+
+    var EchoSignController = require('./controllers/echosign-controller');
+    var echoSignController = new EchoSignController();
+
+    var XeroController = require('./controllers/xero-controller');
+    var xeroController = new XeroController();
+
+    var RedBoothController = require('./controllers/redbooth-controller');
+    var redBoothController = new RedBoothController();
+
+>>>>>>> FETCH_HEAD
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -201,8 +222,19 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/goToMeeting',          goToMeetingController.authorize);
             app.get('/api/oauth/goToMeeting/callback', goToMeetingController.callback, goToMeetingController.redirectToDesigner);
 
+<<<<<<< HEAD
             app.get('/api/oauth/google-drive',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google-drive/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+=======
+            app.get('/api/oauth/google-*',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/google-*/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
+            app.get('/api/oauth/youtube',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/youtube/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
+            app.get('/api/oauth/paypal',          referrer.storeReferrer, paypalController.authorize);
+            app.get('/api/oauth/paypal/callback', paypalController.callback, paypalController.redirectToDesigner);
+>>>>>>> FETCH_HEAD
 
             app.get('/api/oauth/rdio',          rdioController.authorize);
             app.get('/api/oauth/rdio/callback', rdioController.callback, rdioController.redirectToDesigner);
@@ -237,8 +269,22 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/spotify',          spotifyController.authorize);
             app.get('/api/oauth/spotify/callback', spotifyController.callback, spotifyController.redirectToDesigner);
 
+<<<<<<< HEAD
+=======
+            app.get('/api/oauth/quickbooks',          quickBooksController.authorize);
+            app.get('/api/oauth/quickbooks/callback', quickBooksController.callback, quickBooksController.redirectToDesigner);
+
+            app.get('/api/oauth/xero',          xeroController.authorize);
+            app.get('/api/oauth/xero/callback', xeroController.callback, xeroController.redirectToDesigner);
+
+            app.get('/api/oauth/redbooth',          redBoothController.authorize);
+            app.get('/api/oauth/redbooth/callback', redBoothController.callback, redBoothController.redirectToDesigner);
+
+>>>>>>> FETCH_HEAD
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
+
+            app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);

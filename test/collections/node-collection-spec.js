@@ -150,8 +150,8 @@ describe('NodeCollection', function () {
       it('should fulfill a promise with 2 items', function (done) {
         result.then(function (nodes) {
           expect(nodes).to.deep.equal([
-            {category: 'device'},
-            {category: 'device'}
+            {category: 'device', staticMessage: {}, useStaticMessage: true},
+            {category: 'device', staticMessage: {}, useStaticMessage: true}
           ]);
           done();
         }).catch(done);

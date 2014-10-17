@@ -1,5 +1,6 @@
 'use strict';
 angular.module('octobluApp')
+<<<<<<< HEAD
     .controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService, NodeService) {
         var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
         $scope.device = device;
@@ -154,21 +155,66 @@ angular.module('octobluApp')
                     }
                 }
             });
+=======
+.controller('DeviceDetailController', function ($modal, $log, $scope, $state, $stateParams, currentUser, myDevices, availableNodeTypes, PermissionsService, deviceService, NodeService, NodeTypeService) {
+  var device = _.findWhere(myDevices, { uuid: $stateParams.uuid });
+  $scope.device = device;
 
-            subdeviceModal.result.then(function (result) {
-                var hub = result.hub, updatedSubdevice = result.subdevice;
-                deviceService.updateSubdevice({
-                    uuid: hub.uuid,
-                    token: hub.token,
-                    type: subdevice.type,
-                    name: updatedSubdevice.name,
-                    options: updatedSubdevice.options
-                }).then(function (response) {
-                    console.log(response);
-                });
+  PermissionsService
+  .allSourcePermissions($scope.device.uuid)
+  .then(function (permissions) {
+    $scope.sourcePermissions = permissions;
+  });
 
-            }, function () {
-                console.log('cancelled');
-            });
-        };
+  PermissionsService
+  .flatSourcePermissions($scope.device.uuid)
+  .then(function (permissions) {
+    $scope.sourceGroups = _.uniq(permissions, function (permission) {
+      return permission.uuid;
     });
+  });
+>>>>>>> FETCH_HEAD
+
+  PermissionsService
+  .flatTargetPermissions($scope.device.uuid)
+  .then(function (permissions) {
+    $scope.targetGroups = _.uniq(permissions, function (permission) {
+      return permission.uuid;
+    });
+  });
+
+  PermissionsService
+  .allTargetPermissions($scope.device.uuid)
+  .then(function (permissions) {
+    $scope.targetPermissions = permissions;
+  });
+
+  $scope.multipleNames = function (permission) {
+    return (permission.name instanceof Array);
+  };
+
+  $scope.getDisplayName = function(resource) {
+    if(resource.properties) {
+      resource = resource.properties;
+    }
+    return resource.name || resource.displayName || resource.email || 'unknown';
+  };
+
+  $scope.deleteDevice = function (device) {
+    $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?', function () {
+      deviceService.unregisterDevice(device)
+      .then(function (devices) {
+        $state.go('ob.connector.nodes.all', {}, {reload : true});
+      }, function (error) {
+        console.error(error);
+      });
+    });
+  };
+
+  $scope.saveDevice = function (device) {
+    deviceService.updateDevice(device)
+    .then(null, function (error) {
+      console.error(error);
+    });
+  };
+});

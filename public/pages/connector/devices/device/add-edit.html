@@ -7,29 +7,6 @@
         </h3>
 </div>
 <div class="modal-body">
-    <form class="form-horizontal" role="form">
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Name</label>
-
-            <div class="col-sm-10">
-                <input type="text" name="deviceName" ng-model="model.device.name" placeholder="Name"
-                       class="form-control" required="required">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Type</label>
-
-            <div class="col-sm-10">
-                <select class="form-control" ng-model="model.nodeType"
-                        ng-options="nodeType.name for nodeType in model.nodeTypes"></select>
-            </div>
-        </div>
-    </form>
-        <schema-editor control="model.propertyEditor"
-                       schema="model.schema"
-                       model="model.device"
-                       allow-json-edit="true" additional-properties="true"></schema-editor>
-
 
 </div>
 <div class="modal-footer">

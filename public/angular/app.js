@@ -427,11 +427,27 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
       })
+<<<<<<< HEAD
+=======
+      .state('ob.nodewizard.addchannel.echosign', {
+        url: '/echosign',
+        controller: 'addChannelEchoSignController',
+        templateUrl: '/pages/node-wizard/add-channel/echosign.html'
+      })
+>>>>>>> FETCH_HEAD
       .state('ob.nodewizard.addchannel.basic', {
         url: '/basic',
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
+<<<<<<< HEAD
+=======
+      .state('ob.nodewizard.addchannel.apikey-basic', {
+        url: '/apikey-basic',
+        controller: 'addChannelApiKeyBasicController',
+        templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
+      })
+>>>>>>> FETCH_HEAD
       .state('ob.nodewizard.addchannel.meshblu', {
         url: '/meshblu',
         controller: 'addChannelMeshbluController',
@@ -442,6 +458,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
+<<<<<<< HEAD
       .state('ob.nodewizard.addmicroblu', {
         url: '/add-microblu/:nodeTypeId',
         controller: 'addDeviceController',
@@ -449,6 +466,15 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('ob.nodewizard.addgateway', {
         url: '/add-gateway/:nodeTypeId',
+=======
+      .state('ob.nodewizard.addgateblu', {
+        url: '/add-gateblu/:nodeTypeId',
+        controller: 'addDeviceController',
+        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
+      })
+      .state('ob.nodewizard.addmicroblu', {
+        url: '/add-microblu/:nodeTypeId',
+>>>>>>> FETCH_HEAD
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
@@ -458,18 +484,18 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         templateUrl: '/pages/node-wizard/add-subdevice/index.html',
         abstract: true
       })
-      .state('ob.nodewizard.addsubdevice.addGateway', {
-        url: '/add-gateway',
-        controller: 'addSubdeviceAddGatewayController',
+      .state('ob.nodewizard.addsubdevice.addGateblu', {
+        url: '/add-gateblu',
+        controller: 'AddSubdeviceAddGatebluController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
-      .state('ob.nodewizard.addsubdevice.selectgateway', {
+      .state('ob.nodewizard.addsubdevice.selectgateblu', {
         url: '',
-        controller: 'addSubdeviceSelectGatewayController',
-        templateUrl: '/pages/node-wizard/add-subdevice/select-gateway.html'
+        controller: 'AddSubdeviceSelectGatebluController',
+        templateUrl: '/pages/node-wizard/add-subdevice/select-gateblu.html'
       })
       .state('ob.nodewizard.addsubdevice.form', {
-        url: '/gateways/:gatewayId',
+        url: '/gateblus/:gatebluId',
         controller: 'addSubdeviceFormController',
         templateUrl: '/pages/node-wizard/add-subdevice/form.html'
       })

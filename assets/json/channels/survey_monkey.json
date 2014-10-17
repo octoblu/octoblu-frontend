@@ -35,6 +35,7 @@
   },
   "application": {
     "base": "https://api.surveymonkey.net/v2",
+<<<<<<< HEAD
     "resources": [{
         "httpMethod": "POST",
         "doc": {
@@ -138,6 +139,10 @@
             "required": "false"
 
       },{
+=======
+    "resources": [
+      {
+>>>>>>> FETCH_HEAD
         "httpMethod": "POST",
         "doc": {
           "url": "https://api.surveymonkey.net/v2/surveys/get_survey_details"
@@ -484,6 +489,7 @@
           }
         ],
         "url": "https://api.surveymonkey.net/v2/surveys/get_response_counts"
+<<<<<<< HEAD
       },
       {
         "httpMethod": "POST",
@@ -612,3 +618,9 @@
             "value": "",
             "required": "false"
           }]
+=======
+      }
+    ]
+  }
+}
+>>>>>>> FETCH_HEAD

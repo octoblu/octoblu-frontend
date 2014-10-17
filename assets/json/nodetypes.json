@@ -25,6 +25,7 @@
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a3",
+<<<<<<< HEAD
 		"category" : "subdevice",
 		"description" : "Philips Hue light bulbs",
 		"enabled" : true,
@@ -35,24 +36,76 @@
 			"plugin" : "skynet-hue"
 		},
 		"type" : "device:philips-hue"
+=======
+		"category" : "device",
+		"gatebluCapable": true,
+		"description" : "Philips Hue light bulbs",
+		"enabled" : true,
+		"name" : "Philips Hue",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "hue"
+		},
+		"connector": "meshblu-hue",
+		"type" : "device:hue"
+	},
+	{
+		"_id" : "543ee87c979057a612382e18",
+		"category" : "device",
+		"gatebluCapable": true,
+		"description" : "Thalmic Labs MYO",
+		"enabled" : true,
+		"name" : "MYO",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "myo"
+		},
+		"connector": "meshblu-myo",
+		"type" : "device:myo"
+>>>>>>> FETCH_HEAD
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a4",
-		"category" : "subdevice",
+		"category" : "device",
 		"description" : "Belkin Wemo home automation",
 		"enabled" : true,
+		"gatebluCapable" : true,
 		"name" : "Belkin Wemo",
 		"skynet" : {
 			"type" : "device",
-			"subtype" : "wemo",
-			"plugin" : "skynet-wemo"
+			"subtype" : "wemo"
 		},
+		"connector": "meshblu-wemo",
 		"type" : "device:wemo"
+	},
+	{
+<<<<<<< HEAD
+		"_id" : "53c9b82ff400e177dca325a6",
+		"category" : "subdevice",
+		"description" : "Insteon home automation",
+=======
+		"_id" : "53c9b82ff400e177dca325a7",
+		"category" : "device",
+		"description" : "Blink1 USB LED",
+>>>>>>> FETCH_HEAD
+		"enabled" : true,
+		"gatebluCapable": true,
+		"name" : "Blink(1)",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "blink1"
+		},
+		"connector": "meshblu-blink1",
+		"type" : "device:blink1"
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a6",
 		"category" : "subdevice",
+<<<<<<< HEAD
+		"description" : "Blink1 USB LED",
+=======
 		"description" : "Insteon home automation",
+>>>>>>> FETCH_HEAD
 		"enabled" : true,
 		"name" : "Insteon",
 		"skynet" : {
@@ -61,19 +114,6 @@
 			"plugin" : "skynet-insteon"
 		},
 		"type" : "device:insteon"
-	},
-	{
-		"_id" : "53c9b82ff400e177dca325a7",
-		"category" : "subdevice",
-		"description" : "Blink1 USB LED",
-		"enabled" : true,
-		"name" : "Blink(1)",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "blink1",
-			"plugin" : "skynet-blink1"
-		},
-		"type" : "device:blink1"
 	},
 	{
 		"_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",
@@ -199,6 +239,7 @@
 	},
 	{
 		"_id" : "53c9b831f400e177dca325b0",
+<<<<<<< HEAD
 		"category" : "gateway",
 		"description" : "Skynet Hub",
 		"enabled" : true,
@@ -207,6 +248,16 @@
 			"type" : "gateway"
 		},
 		"type" : "device:gateway"
+=======
+		"category" : "device",
+		"description" : "Meshblu device connection manager",
+		"enabled" : true,
+		"name" : "Gateblu",
+		"skynet" : {
+			"type" : "device:gateblu"
+		},
+		"type" : "device:gateblu"
+>>>>>>> FETCH_HEAD
 	},
 	{
 		"_id" : "53c9b832f400e177dca325b3",
@@ -432,7 +483,7 @@
 		"_id" : "53c9b838f400e177dca325c4",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Paypal",
 		"skynet" : {
 			"type" : "channel",
@@ -497,7 +548,7 @@
 		"_id" : "53d2de0160c378a87a0f908c",
 		"category" : "channel",
 		"description" : "Give your entire team access to our powerful online survey platform. SurveyMonkey Enterprise helps anyone in any function use surveys to make smarter decisions, while your organization gets complete control of your data, users and billing.",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Survey Monkey",
 		"skynet" : {
 			"type" : "channel",
@@ -545,7 +596,7 @@
 		"_id" : "53c9b83af400e177dca325c9",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Dropbox",
 		"skynet" : {
 			"type" : "channel",
@@ -558,7 +609,7 @@
 		"_id" : "53c9b83af400e177dca325ca",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Box",
 		"skynet" : {
 			"type" : "channel",
@@ -579,6 +630,19 @@
 		},
 		"channelid" : "5333aefee5c02952f1c33089",
 		"type" : "channel:google-drive"
+	},
+	{
+		"_id" : "543bf1bd652c4207680866f7",
+		"category" : "channel",
+		"description" : "",
+		"enabled" : false,
+		"name" : "Google+",
+		"skynet" : {
+			"type" : "channel",
+			"subtype" : "GooglePlus"
+		},
+		"channelid" : "543bf27e652c4207680866f8",
+		"type" : "channel:google-plus"
 	},
 	{
 		"_id" : "53c9b83bf400e177dca325cc",
@@ -748,5 +812,99 @@
     },
     "channelid" : "5430bf6b66ffb0f988307ef9",
     "type" : "channel:sharefile"
+<<<<<<< HEAD
+=======
+  },
+  {
+    "_id" : "613691c2-efaa-445f-bf30-1e62f8e46c86",
+    "category" : "channel",
+    "description" : "Splunk",
+    "enabled" : true,
+    "name" : "Splunk",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "splunk"
+    },
+    "channelid" : "53e8ea018e3257fb7d6fdae0",
+    "type" : "channel:splunk"
+  },
+	{
+    "_id" : "60fda3c0-4d82-11e4-b7c9-f1aa66db0b20",
+    "category" : "channel",
+    "description" : "Stripe",
+    "enabled" : true,
+    "name" : "Stripe",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "stripe"
+    },
+    "channelid" : "channel-stripe",
+    "type" : "channel:stripe"
+  },
+  {
+    "_id" : "da1a065b-6a6d-4f02-9511-1204fd8b0d80",
+    "category" : "channel",
+    "description" : "QuickBooks",
+    "enabled" : false,
+    "name" : "QuickBooks",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "quickbooks"
+    },
+    "channelid" : "54332209575a54b586a6b4c0",
+    "type" : "channel:quickbooks"
+  },
+  {
+    "_id" : "3e1d77cf-b5fd-467d-903b-58ae5245348a",
+    "category" : "channel",
+    "description" : "EchoSign",
+    "enabled" : true,
+    "name" : "EchoSign",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "echosign"
+    },
+    "channelid" : "53dfcb87626a43a44f966d0a",
+    "type" : "channel:echosign"
+  },
+  {
+    "_id" : "750242b3-b960-4828-a7f1-c5a07672e98c",
+    "category" : "channel",
+    "description" : "Xero",
+    "enabled" : true,
+    "name" : "Xero",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "xero"
+    },
+    "channelid" : "53e3fab413c57e0267403a89",
+    "type" : "channel:xero"
+  },
+  {
+    "_id" : "fe7eba68-0e91-4c5e-b163-241158be76be",
+    "category" : "channel",
+    "description" : "RedBooth",
+    "enabled" : true,
+    "name" : "RedBooth",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "redbooth"
+    },
+    "channelid" : "53f2431f710850ee08e28474",
+    "type" : "channel:redbooth"
+  },
+  {
+    "_id" : "0d46c3dd-e020-40cb-8bc0-bb38034b92e6",
+    "category" : "channel",
+    "description" : "YouTube",
+    "enabled" : true,
+    "name" : "YouTube",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "youtube"
+    },
+    "channelid" : "53e14e6d8e3257fb7d6fdad1",
+    "type" : "channel:youtube"
+>>>>>>> FETCH_HEAD
   }
 ]

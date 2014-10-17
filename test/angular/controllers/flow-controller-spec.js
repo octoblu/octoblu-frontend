@@ -52,24 +52,10 @@ describe('FlowController', function () {
         fakeWindow.confirm.returns = false;
       });
 
-      it('should call delete flow on the flow service', function(){
+      it('should not call delete flow on the flow service', function(){
         var flow1 = {flowId: 'flowEyeD'};
         scope.deleteFlow(flow1);
         expect(fakeFlowService.deleteFlow).not.to.have.been.called;
-      });
-    });
-
-    describe('when the flow service responds', function () {
-      beforeEach(function(){
-        var flow1 = {flowId: 'flowEyeD'};
-        fakeWindow.confirm.returns = true;
-        fakeFlowService.getAllFlows.reset();
-        scope.deleteFlow(flow1)
-        fakeFlowService.deleteFlow.successCallback();
-      });
-
-      it('should call getAllFlows on the FlowService', function () {
-        expect(fakeFlowService.getAllFlows).to.have.been.called;
       });
     });
   });

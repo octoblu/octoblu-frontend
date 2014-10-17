@@ -3,7 +3,7 @@
     "name": "debounce",
     "class": "debounce",
     "type": "operation:debounce",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "52a55b44-923d-4f56-9ad4-e7aa1262c6cb",
     "defaults": {
       "interval": 1000
@@ -16,7 +16,7 @@
     "name": "delay",
     "class": "delay",
     "type": "operation:delay",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37e73da4-2f17-11e4-9617-a6c5e4d22fb7",
     "defaults": {
       "timeout": 5,
@@ -30,7 +30,7 @@
     "name": "demultiplex",
     "class": "demultiplex",
     "type": "operation:demultiplex",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "99b84aa0-338b-11e4-8c21-0800200c9a66",
     "defaults": {
     },
@@ -39,23 +39,9 @@
     "formTemplatePath": "/pages/node_forms/demultiplexer_form.html"
   },
   {
-    "name": "equal",
-    "class": "equal",
-    "category" : "operation",
-    "uuid": "2bebd428-4818-48ea-b1f5-88a32199f17b",
-    "type": "operation:equal",
-    "defaults": {
-      "key": "",
-      "value": ""
-    },
-    "input": 1,
-    "output": 1,
-    "formTemplatePath": "/pages/node_forms/equal_form.html"
-  },
-  {
     "name": "function",
     "class": "function",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0a3a8-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:function",
     "defaults": {
@@ -67,9 +53,22 @@
     "formTemplatePath": "/pages/node_forms/function_form.html"
   },
   {
-    "name": "greater-than",
+    "name": "equal",
+    "class": "equal",
+    "category": "operation",
+    "uuid": "2bebd428-4818-48ea-b1f5-88a32199f17b",
+    "type": "operation:equal",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/equal_form.html"
+  },
+  {
+    "name": "Greater Than",
     "class": "greater-than",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "7c801bad-4e1d-4ad0-aabd-d1ace2fcc001",
     "type": "operation:greater-than",
     "defaults": {
@@ -80,9 +79,22 @@
     "formTemplatePath": "/pages/node_forms/greater_than_form.html"
   },
   {
-    "name": "less-than",
+    "name": "Greater Than or Equal",
+    "class": "greater-than-equal",
+    "category": "operation",
+    "uuid": "c36c413c-c4df-4c5b-9861-fcd08bc81503",
+    "type": "operation:greater-than-equal",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/greater_than_equal_form.html"
+  },
+  {
+    "name": "Less Than",
     "class": "less-than",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "c7852f9b-96e2-4f9e-b5b5-d349e32bbf9a",
     "type": "operation:less-than",
     "defaults": {
@@ -93,9 +105,22 @@
     "formTemplatePath": "/pages/node_forms/less_than_form.html"
   },
   {
+    "name": "Less Than or Equal",
+    "class": "less-than-equal",
+    "category": "operation",
+    "uuid": "e3d81634-2536-427f-b87f-5305916e28db",
+    "type": "operation:less-than-equal",
+    "defaults": {
+      "value": 0
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/less_than_equal_form.html"
+  },
+  {
     "name": "pluck",
     "class": "pluck",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "86aef89e-6dfd-435f-863e-6deac12fc6ec",
     "type": "operation:pluck",
     "defaults": {
@@ -108,7 +133,7 @@
   {
     "name": "trigger",
     "class": "trigger",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0a74a-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:trigger",
     "defaults": {
@@ -122,7 +147,11 @@
   {
     "name": "webhook",
     "class": "webhook",
+<<<<<<< HEAD
     "category" : "operation",
+=======
+    "category": "operation",
+>>>>>>> FETCH_HEAD
     "uuid": "d5886aa5-4052-41be-8eed-9d1df32befb1",
     "type": "operation:webhook",
     "defaults": {
@@ -134,7 +163,7 @@
   {
     "name": "interval",
     "class": "interval",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0a966-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:interval",
     "defaults": {
@@ -149,7 +178,7 @@
   {
     "name": "schedule",
     "class": "schedule",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0ac4a-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:schedule",
     "defaults": {
@@ -165,7 +194,7 @@
     "name": "throttle",
     "class": "throttle",
     "type": "operation:throttle",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "794922ff-3792-4e4e-a0e2-a0823ed6b82e",
     "defaults": {
       "interval": 1000
@@ -177,7 +206,7 @@
   {
     "name": "Meshblu device",
     "class": "device",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "be0d21d3-f6b0-4f21-ae3b-484d69f6063a",
     "type": "operation:device",
     "defaults": {
@@ -188,9 +217,22 @@
     "formTemplatePath": "/pages/node_forms/generic_device_form.html"
   },
   {
+    "name": "Microblu device",
+    "class": "microblu",
+    "category": "operation",
+    "uuid": "fb99604a-3ed3-4292-872b-a5b1ec1c16ab",
+    "type": "operation:microblu",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/generic_microblu_form.html"
+  },
+  {
     "name": "RSS request",
     "class": "rss",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "2aac8e4a-7695-4269-ba98-3678581f7a59",
     "type": "operation:rss",
     "defaults": {
@@ -202,9 +244,9 @@
     "formTemplatePath": "/pages/node_forms/http_request_form.html"
   },
   {
-    "name": "http request",
+    "name": "http get",
     "class": "http-request",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0aefc-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:http-request",
     "defaults": {
@@ -216,9 +258,53 @@
     "formTemplatePath": "/pages/node_forms/http_request_form.html"
   },
   {
+    "name": "http delete",
+    "class": "http-request-delete",
+    "category": "operation",
+    "uuid": "da37cc30-5326-11e4-ad12-c7f5132c4ef6",
+    "type": "operation:http-delete-request",
+    "defaults": {
+      "method": "DELETE"
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/http_request_form.html"
+  },
+  {
+    "name": "http post",
+    "class": "http-post-request",
+    "category": "operation",
+    "uuid": "95675c2c-5305-11e4-9e35-164230d1df67",
+    "type": "operation:http-post-request",
+    "defaults": {
+      "method": "POST",
+      "contentType": "application/x-www-form-urlencoded"
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/http_request_body_form.html"
+  },
+  {
+    "name": "http put",
+    "class": "http-put-request",
+    "category": "operation",
+    "uuid": "adb9dfe0-5326-11e4-ad12-c7f5132c4ef6",
+    "type": "operation:http-put-request",
+    "defaults": {
+      "method": "PUT",
+      "contentType": "application/x-www-form-urlencoded"
+    },
+    "input": 1,
+    "output": 1,
+    "align": "right",
+    "formTemplatePath": "/pages/node_forms/http_request_body_form.html"
+  },
+  {
     "name": "sentiment",
     "class": "sentiment",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0b3f2-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:sentiment",
     "defaults": {
@@ -230,7 +316,7 @@
   {
     "name": "debug",
     "class": "debug",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0b88e-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:debug",
     "defaults": {
@@ -247,7 +333,11 @@
   {
     "name": "template",
     "class": "template",
+<<<<<<< HEAD
     "category" : "operation",
+=======
+    "category": "operation",
+>>>>>>> FETCH_HEAD
     "uuid": "8f2e02ff-08da-446d-ab50-e5115f511cba",
     "type": "operation:template",
     "defaults": {
@@ -259,7 +349,7 @@
   {
     "name": "comment",
     "class": "comment",
-    "category" : "operation",
+    "category": "operation",
     "uuid": "37f0be60-2f17-11e4-9617-a6c5e4d22fb7",
     "type": "operation:comment",
     "defaults": {
@@ -271,7 +361,11 @@
   {
     "name": "Set Key",
     "class": "set-key",
+<<<<<<< HEAD
     "category" : "operation",
+=======
+    "category": "operation",
+>>>>>>> FETCH_HEAD
     "uuid": "5a6bb5a5-b2ef-4a9e-b15f-f0f646ee90d6",
     "type": "operation:set-key",
     "defaults": {
@@ -283,7 +377,11 @@
   {
     "name": "Get Key",
     "class": "get-key",
+<<<<<<< HEAD
     "category" : "operation",
+=======
+    "category": "operation",
+>>>>>>> FETCH_HEAD
     "uuid": "6daa638e-ced8-4de9-be9b-dcd026be6348",
     "type": "operation:get-key",
     "defaults": {
@@ -291,5 +389,20 @@
     "input": 1,
     "output": 1,
     "formTemplatePath": "/pages/node_forms/get_key_form.html"
+<<<<<<< HEAD
+=======
+  },
+  {
+    "name": "Range",
+    "class": "range",
+    "category": "operation",
+    "uuid": "54cedc7a-24fd-425c-8f10-898bdc90bc39",
+    "type": "operation:range",
+    "defaults": {
+    },
+    "input": 1,
+    "output": 1,
+    "formTemplatePath": "/pages/node_forms/range_form.html"
+>>>>>>> FETCH_HEAD
   }
 ]
