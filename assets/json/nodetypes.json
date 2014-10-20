@@ -26,7 +26,6 @@
 	{
 		"_id" : "53c9b82ff400e177dca325a3",
 		"category" : "device",
-		"gatebluCapable": true,
 		"description" : "Philips Hue light bulbs",
 		"enabled" : true,
 		"name" : "Philips Hue",
@@ -40,7 +39,6 @@
 	{
 		"_id" : "543ee87c979057a612382e18",
 		"category" : "device",
-		"gatebluCapable": true,
 		"description" : "Thalmic Labs MYO",
 		"enabled" : true,
 		"name" : "MYO",
@@ -56,7 +54,6 @@
 		"category" : "device",
 		"description" : "Belkin Wemo home automation",
 		"enabled" : true,
-		"gatebluCapable" : true,
 		"name" : "Belkin Wemo",
 		"skynet" : {
 			"type" : "device",
@@ -70,7 +67,6 @@
 		"category" : "device",
 		"description" : "Blink1 USB LED",
 		"enabled" : true,
-		"gatebluCapable": true,
 		"name" : "Blink(1)",
 		"skynet" : {
 			"type" : "device",
