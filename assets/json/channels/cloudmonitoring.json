@@ -1,4 +1,5 @@
-_id: "sjsfjsfjsjsfkfs",
+{
+  "_id": "sjsfjsfjsjsfkfs",
   "application": {
     "base": "https://www.googleapis.com/cloudmonitoring/v2beta1",
     "resources": [
@@ -9,43 +10,52 @@ _id: "sjsfjsfjsjsfkfs",
           "url": "https://www.googleapis.com/cloudmonitoring/v2beta1/projects/project/timeseries/metric"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",  
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "metric",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "project",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "youngest",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "count"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "labels"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "oldest"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "timespan"
-        }],
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "metric",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "project",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "youngest",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "labels"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "oldest"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "timespan"
+          }
+        ],
         "url": "https://www.googleapis.com/cloudmonitoring/v2beta1/projects/project/timeseries/metric"
       },
       {
@@ -56,42 +66,51 @@ _id: "sjsfjsfjsjsfkfs",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "metric",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "project",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "youngest",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "count"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "labels"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "oldest"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        },,{
-          "style": "query",
-          "type": "string",
-          "name": "timespan"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "metric",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "project",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "youngest",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "labels"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "oldest"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "timespan"
+          }
+        ],
         "url": "https://www.googleapis.com/cloudmonitoring/v2beta1/projects/project/timeseriesDescriptors/metric"
       },
       {
@@ -102,23 +121,31 @@ _id: "sjsfjsfjsjsfkfs",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "project",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "count"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "query"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "project",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "count"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "query"
+          }
+        ],
         "url": "https://www.googleapis.com/cloudmonitoring/v2beta1/projects/project/metricDescriptors"
       }
+    ]
+  }
+}
