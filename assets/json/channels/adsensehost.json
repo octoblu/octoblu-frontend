@@ -1,0 +1,626 @@
+_id: "spjosfojdsojpeo30",
+  "application": {
+    "base": "https://www.googleapis.com/adsensehost/v4.1",
+    "resources": [
+      {
+        "path": "/accounts/accountId",
+        "displayName": "/accounts/accountId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",  
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId"
+      },
+      {
+        "path": "/accounts",
+        "displayName": "/accounts",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "filterAdClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId",
+        "displayName": "/accounts/accountId/adclients/adClientId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "adClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId"
+      },
+      {
+        "path": "/accounts/accountId/adclients",
+        "displayName": "/accounts/accountId/adclients",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "pageToken"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId/adunits/adUnitId",
+        "displayName": "/accounts/accountId/adclients/adClientId/adunits/adUnitId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "adUnitId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId/adunits/adUnitId",
+        "displayName": "/accounts/accountId/adclients/adClientId/adunits/adUnitId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "query",  
+          "type": "string",
+          "name": "adUnitId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId/adunits/adUnitId/adcode",
+        "displayName": "/accounts/accountId/adclients/adClientId/adunits/adUnitId/adcode",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId/adcode"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "query",  
+          "type": "string",
+          "name": "adUnitId",
+          "required": true
+        }{
+          "style": "query",  
+          "type": "string",
+          "name": "hostCustomChannelId"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits/adUnitId/adcode"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId/adunits",
+        "displayName": "/accounts/accountId/adclients/adClientId/adunits",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "datetime",
+          "name": "adClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId/adunits",
+        "displayName": "/accounts/accountId/adclients/adClientId/adunits",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "includeInactive"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId/adunits",
+        "displayName": "/accounts/accountId/adclients/adClientId/adunits",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+        },
+        "httpMethod": "PATCH",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "adUnitId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+      },
+      {
+        "path": "/accounts/accountId/adclients/adClientId/adunits",
+        "displayName": "/accounts/accountId/adclients/adClientId/adunits",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/adclients/adClientId/adunits"
+      },
+      {
+        "path": "/accounts/accountId/reports",
+        "displayName": "/accounts/accountId/reports",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/reports"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "accountId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "endDate",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "startDate",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "dimension"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "filter"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "locale"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "metric"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "sort"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "startIndex"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/accounts/accountId/reports"
+      },
+      {
+        "path": "/adclients/adClientId",
+        "displayName": "/adclients/adClientId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId"
+      },
+      {
+        "path": "/adclients",
+        "displayName": "/adclients",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients"
+      },
+      {
+        "path": "/associationsessions/start",
+        "displayName": "/associationsessions/start",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/associationsessions/start"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "productCode",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "websiteUrl",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userLocale"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "websiteLocale"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/associationsessions/start"
+      },
+      {
+        "path": "/associationsessions/verify",
+        "displayName": "/associationsessions/verify",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/associationsessions/verify"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "token",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/associationsessions/verify"
+      },
+      {
+        "path": "/adclients/adClientId/customchannels/customChannelId",
+        "displayName": "/adclients/adClientId/customchannels/customChannelId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels/customChannelId"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "customChannelId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels/customChannelId"
+      },
+      {
+        "path": "/adclients/adClientId/customchannels/customChannelId",
+        "displayName": "/adclients/adClientId/customchannels/customChannelId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels/customChannelId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "customChannelId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels/customChannelId"
+      },
+      {
+        "path": "/adclients/adClientId/customchannels",
+        "displayName": "/adclients/adClientId/customchannels",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "Number",
+          "name": "adClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+      },
+      {
+        "path": "/adclients/adClientId/customchannels",
+        "displayName": "/adclients/adClientId/customchannels",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+      },
+      {
+        "path": "/adclients/adClientId/customchannels",
+        "displayName": "/adclients/adClientId/customchannels",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+        },
+        "httpMethod": "PATCH",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "customChannelId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+      }  {
+        "path": "/adclients/adClientId/customchannels",
+        "displayName": "/adclients/adClientId/customchannels",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+        },
+        "httpMethod": "Put",
+        "curl": "curl -X",  
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/customchannels"
+      },
+      {
+        "path": "/reports",
+        "displayName": "/reports",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/reports"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "endDate",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "startDate",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "dimension"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "filter"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "locale"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "metric"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "sort"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "startIndex"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/reports"
+      },
+      {
+        "path": "/adclients/adClientId/urlchannels/urlChannelId",
+        "displayName": "/adclients/adClientId/urlchannels/urlChannelId",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels/urlChannelId"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "urlChannelId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels/urlChannelId"
+      },
+      {
+        "path": "/adclients/adClientId/urlchannels",
+        "displayName": "/adclients/adClientId/urlchannels",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels"
+      },
+      {
+        "path": "/adclients/adClientId/urlchannels",
+        "displayName": "/adclients/adClientId/urlchannels",
+        "doc": {
+          "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "adClientId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "pageToken"
+        }],
+        "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels"
+      }
