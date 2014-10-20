@@ -1,0 +1,1122 @@
+_id: "jf39fii39if94ff9e",
+  "application": {
+    "base": "https://www.googleapis.com/blogger/v3",
+    "resources": [
+      {
+        "path": "/blogs/blogId",
+        "displayName": "/blogs/blogId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",  
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxPosts"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId"
+      },
+      {
+        "path": "/blogs/byurl",
+        "displayName": "/blogs/byurl",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/byurl"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "url",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/byurl"
+      },
+      {
+        "path": "/users/userId/blogs",
+        "displayName": "/users/userId/blogs",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchUserInfo"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/comments",
+        "displayName": "/blogs/blogId/posts/postId/comments",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "endDate"
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "startDate"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "status"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/comments/commentId",
+        "displayName": "/blogs/blogId/posts/postId/comments/commentId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "commentId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/comments/commentId/approve",
+        "displayName": "/blogs/blogId/posts/postId/comments/commentId/approve",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId/approve"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "commentId",
+          "required": true
+        },{
+          "style": "body",  
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId/approve"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/comments/commentId",
+        "displayName": "/blogs/blogId/posts/postId/comments/commentId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "commentId",
+          "required": true
+        },{
+          "style": "",  
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId"
+      },
+      {
+        "path": "/blogs/blogId/comments",
+        "displayName": "/blogs/blogId/comments",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/comments"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "endDate"
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "startDate"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/comments"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/comments/commentId/spam",
+        "displayName": "/blogs/blogId/posts/postId/comments/commentId/spam",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId/spam"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "commentId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId/spam"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/comments/commentId/removecontent",
+        "displayName": "/blogs/blogId/posts/postId/comments/commentId/removecontent",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId/removecontent"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "commentId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/comments/commentId/removecontent"
+      },
+      {
+        "path": "/post/reblog",
+        "displayName": "/post/reblog",
+        "doc": {
+          "url": "api.tumblr.com/v2/blog/{base-hostname}/post/reblog"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "number",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "number",
+          "name": "reblog_key",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "comment"
+        }],
+        "url": "api.tumblr.com/v2/blog/{base-hostname}/post/reblog"
+      },
+      {
+        "path": "/blogs/blogId/pages",
+        "displayName": "/blogs/blogId/pages",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "status"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "blogId"
+        },{
+          "style": "",
+          "type": "string",
+          "name": "pageId"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/pages",
+        "displayName": "/blogs/blogId/pages",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "patch",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "pageId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "pageId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/posts",
+        "displayName": "/blogs/blogId/posts",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "endDate",
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies",
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchImages",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "labels",
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "orderBy",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken",
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "startDate",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "status",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view",
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId",
+        "displayName": "/blogs/blogId/posts/postId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "Number",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxComments"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+      },
+      {
+        "path": "/blogs/blogId/posts/search",
+        "displayName": "/blogs/blogId/posts/search",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/search"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "q",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "orderBy"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/search"
+      },
+      {
+        "path": "/blogs/blogId/posts",
+        "displayName": "/blogs/blogId/posts",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "boolean",
+          "name": "isDraft"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+      }  {
+        "path": "/blogs/blogId/posts/postId",
+        "displayName": "/blogs/blogId/posts/postId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",  
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "",
+          "type": "integer",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+      },
+      {
+        "path": "/blogs/blogId/posts/bypath",
+        "displayName": "/blogs/blogId/posts/bypath",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/bypath"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "path",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxComments"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/bypath"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId",
+        "displayName": "/blogs/blogId/posts/postId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+        },
+        "httpMethod": "patch",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId",
+        "displayName": "/blogs/blogId/posts/postId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+        },
+        "httpMethod": "Put",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/publish",
+        "displayName": "/blogs/blogId/posts/postId/publish",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/publish"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "publishDate"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/publish"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId/revert",
+        "displayName": "/blogs/blogId/posts/postId/revert",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/revert"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",  
+          "type": "string",
+          "name": "postId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId/revert"
+      },
+      {
+        "path": "/users/userId",
+        "displayName": "/users/userId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/users/userId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/users/userId"
+      },
+      {
+        "path": "/users/userId/blogs/blogId",
+        "displayName": "/users/userId/blogs/blogId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs/blogId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxPosts"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs/blogId"
+      },
+      {
+        "path": "/blogs/blogId/pageviews",
+        "displayName": "/blogs/blogId/pageviews",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pageviews"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "range"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pageviews"
+      },
+      {
+        "path": "/users/userId/blogs/blogId/posts/postId",
+        "displayName": "/users/userId/blogs/blogId/posts/postId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs/blogId/posts/postId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxComments"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs/blogId/posts/postId"
+      },
+      {
+        "path": "/users/userId/blogs/blogId/posts",
+        "displayName": "/users/userId/blogs/blogId/posts",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs/blogId/posts"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "endDate"
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "labels",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "orderBy",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "startDate"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "status"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/users/userId/blogs/blogId/posts"
+      },
+      {
+        "path": "/blogs/blogId/pages",
+        "displayName": "/blogs/blogId/pages",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "status"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "blogId"
+        },{
+          "style": "",
+          "type": "string",
+          "name": "pageId"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/pages",
+        "displayName": "/blogs/blogId/pages",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "patch",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "pageId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/pages/pageId",
+        "displayName": "/blogs/blogId/pages/pageId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "pageId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/pages/pageId"
+      },
+      {
+        "path": "/blogs/blogId/posts",
+        "displayName": "/blogs/blogId/posts",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "endDate",
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies",
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchImages",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "labels",
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "orderBy",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken",
+        },{
+          "style": "query",
+          "type": "datetime",
+          "name": "startDate",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "status",
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view",
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+      },
+      {
+        "path": "/blogs/blogId/posts/postId",
+        "displayName": "/blogs/blogId/posts/postId",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "Number",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "postId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxComments"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "view"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/postId"
+      },
+      {
+        "path": "/blogs/blogId/posts/search",
+        "displayName": "/blogs/blogId/posts/search",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/search"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "q",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "fetchBodies"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "orderBy"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts/search"
+      },
+      {
+        "path": "/blogs/blogId/posts",
+        "displayName": "/blogs/blogId/posts",
+        "doc": {
+          "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "blogId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "boolean",
+          "name": "isDraft"
+        }],
+        "url": "https://www.googleapis.com/blogger/v3/blogs/blogId/posts"
+      }  
+      

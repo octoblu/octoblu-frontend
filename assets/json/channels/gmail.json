@@ -1,0 +1,675 @@
+_id: "ajssdipfsdewojpsdjpowe3",
+  "application": {
+    "base": "https://www.googleapis.com/upload/gmail/v1",
+    "resources": [
+      {
+        "path": "/users/userId/drafts",
+        "displayName": "/users/userId/drafts",
+        "doc": {
+          "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/drafts"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",  
+        "params": [{
+          "style": "BODY",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "BODY",
+          "type": "string",
+          "name": "uploadType",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/drafts"
+      },
+      {
+        "path": "/users/userId/drafts/id",
+        "displayName": "/users/userId/drafts/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/drafts/id"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/drafts/id"
+      },
+      {
+        "path": "/users/userId/drafts/id",
+        "displayName": "/users/userId/drafts/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/drafts/id"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "format"
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/drafts/id"
+      },
+      {
+        "path": "/users/userId/drafts",
+        "displayName": "/users/userId/drafts",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/drafts"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/drafts"
+      },
+      {
+        "path": "/users/userId/drafts/id",
+        "displayName": "/users/userId/drafts/id",
+        "doc": {
+          "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/drafts/id"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "uploadType"
+        }],
+        "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/drafts/id"
+      },
+      {
+        "path": "/users/userId/drafts/send",
+        "displayName": "/users/userId/drafts/send",
+        "doc": {
+          "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/drafts/send"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "uploadType",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/drafts/send"
+      },
+      {
+        "path": "/users/userId/history",
+        "displayName": "/users/userId/history",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/history"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "labelId"
+        },{
+          "style": "query",  
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",  
+          "type": "integer",
+          "name": "pageToken"
+        },{
+          "style": "query",  
+          "type": "unsigned long",
+          "name": "startHistoryId"
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/history"
+      },
+      {
+        "path": "/users/userId/labels",
+        "displayName": "/users/userId/labels",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/labels"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [{
+          "style": "",
+          "type": "body",
+          "name": "userId",
+          "required": true
+        },],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/labels"
+      },
+      {
+        "path": "/users/userId/labels/id",
+        "displayName": "/users/userId/labels/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+      },
+      {
+        "path": "/users/userId/labels",
+        "displayName": "/users/userId/labels",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/labels"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/labels"
+      },
+      {
+        "path": "/users/userId/labels/id",
+        "displayName": "/users/userId/labels/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+      },
+      {
+        "path": "/users/userId/labels/id",
+        "displayName": "/users/userId/labels/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+      },
+      {
+        "path": "/users/userId/labels/id",
+        "displayName": "/users/userId/labels/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+        },
+        "httpMethod": "patch",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/labels/id"
+      },
+      {
+        "path": "/users/userId/messages/id",
+        "displayName": "/users/userId/messages/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id"
+      },
+      {
+        "path": "/users/userId/messages/id",
+        "displayName": "/users/userId/messages/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "format"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "metadataHeaders"
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id"
+      },
+      {
+        "path": "/users/userId/messages",
+        "displayName": "/users/userId/messages",
+        "doc": {
+          "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/reports/saved"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "integer",
+          "name": "uploadType",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "internalDateSource"
+        }],
+        "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/reports/saved"
+      },
+      {
+        "path": "/users/userId/messages",
+        "displayName": "/users/userId/messages",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/messages"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "includeSpamTrash"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "labelIds"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "q"
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/messages"
+      },
+      {
+        "path": "/users/userId/messages/id/modify",
+        "displayName": "/users/userId/messages/id/modify",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id/modify"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "integer",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id/modify"
+      },
+      {
+        "path": "/users/userId/messages/send",
+        "displayName": "/users/userId/messages/send",
+        "doc": {
+          "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/messages/send"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "uploadType",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/messages/send"
+      },
+      {
+        "path": "/users/userId/messages/id/trash",
+        "displayName": "/users/userId/messages/id/trash",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id/trash"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id/trash"
+      },
+      {
+        "path": "/users/userId/messages/id/untrash",
+        "displayName": "/users/userId/messages/id/untrash",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id/untrash"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X ",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/id/untrash"
+      },{
+        "path": "/users/userId/messages/import",
+        "displayName": "/users/userId/messages/import",
+        "doc": {
+          "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/messages/import"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",  
+        "params": [{
+          "style": "BODY",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "BODY",
+          "type": "string",
+          "name": "uploadType",
+          "required": true
+        },{
+          "style": "BODY",
+          "type": "string",
+          "name": "internalDateSource"
+        }],
+        "url": "https://www.googleapis.com/upload/gmail/v1/users/userId/messages/import"
+      },
+      {
+        "path": "/users/userId/messages/messageId/attachments/id",
+        "displayName": "/users/userId/messages/messageId/attachments/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/messageId/attachments/id"
+        },
+        "httpMethod": "et",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "messageId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/messages/messageId/attachments/id"
+      },
+      {
+        "path": "/users/userId/threads/id",
+        "displayName": "/users/userId/threads/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id"
+      },
+      {
+        "path": "/users/userId/threads",
+        "displayName": "/users/userId/threads",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/threads"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "style": "query",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        },{
+          "style": "query",
+          "type": "boolean",
+          "name": "includeSpamTrash"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "labelIds"
+        },{
+          "style": "query",
+          "type": "integer",
+          "name": "maxResults"
+        },{
+          "style": "query",
+          "type": "string",
+          "name": "pageToken"
+        },,{
+          "style": "query",
+          "type": "string",
+          "name": "q"
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/threads"
+      },
+      {
+        "path": "/users/userId/threads/id/modify",
+        "displayName": "/users/userId/threads/id/modify",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id/modify"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id/modify"
+      },
+      {
+        "path": "/users/userId/threads/id",
+        "displayName": "/users/userId/threads/id",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [{
+          "style": "",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id"
+      },
+      {
+        "path": "/users/userId/threads/id/trash",
+        "displayName": "/users/userId/threads/id/trash",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id/trash"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id/trash"
+      },
+      {
+        "path": "/users/userId/threads/id/untrash",
+        "displayName": "/users/userId/threads/id/untrash",
+        "doc": {
+          "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id/untrash"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [{
+          "style": "body",
+          "type": "string",
+          "name": "id",
+          "required": true
+        },{
+          "style": "body",
+          "type": "string",
+          "name": "userId",
+          "required": true
+        }],
+        "url": "https://www.googleapis.com/gmail/v1/users/userId/threads/id/untrash"
+      }
