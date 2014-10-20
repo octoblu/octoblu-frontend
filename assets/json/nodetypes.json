@@ -37,6 +37,19 @@
 		"type" : "device:hue"
 	},
 	{
+		"_id" : "5445510577c022a84ec48c5b",
+		"category" : "device",
+		"description" : "Lifx",
+		"enabled" : true,
+		"name" : "Lifx",
+		"skynet" : {
+			"type" : "device",
+			"subtype" : "lifx",
+		},
+		"type" : "device:lifx",
+		"connector" : "meshblu-lifx"
+	},
+	{
 		"_id" : "543ee87c979057a612382e18",
 		"category" : "device",
 		"description" : "Thalmic Labs MYO",
@@ -77,29 +90,29 @@
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a6",
-		"category" : "subdevice",
+		"category" : "device",
 		"description" : "Insteon home automation",
 		"enabled" : true,
 		"name" : "Insteon",
 		"skynet" : {
 			"type" : "device",
 			"subtype" : "insteon",
-			"plugin" : "skynet-insteon"
 		},
-		"type" : "device:insteon"
+		"type" : "device:insteon",
+		"connector" : "meshblu-insteon"
 	},
 	{
 		"_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",
-		"category" : "subdevice",
+		"category" : "device",
 		"description" : "AllJoyn",
 		"enabled" : true,
 		"name" : "AllJoyn",
 		"skynet" : {
-			"type" : "subdevice",
+			"type" : "device",
 			"subtype" : "alljoyn",
-			"plugin" : "skynet-alljoyn"
 		},
-		"type" : "subdevice:alljoyn"
+		"type" : "device:alljoyn",
+		"connector" : "meshblu-alljoyn"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325a8",
@@ -139,16 +152,16 @@
 	},
 	{
 		"_id" : "5f8f2fa1349c4a1293109486",
-		"category" : "subdevice",
+		"category" : "device",
 		"description" : "Lightblue Bean",
 		"enabled" : true,
 		"name" : "Lightblue Bean",
 		"skynet" : {
 			"type" : "device",
 			"subtype" : "bean",
-			"plugin" : "skynet-bean"
 		},
-		"type" : "subdevice:bean"
+		"type" : "device:bean",
+		"connector" : "meshblu-bean"
 	},
 	{
 		"_id" : "53c9b830f400e177dca325ab",
