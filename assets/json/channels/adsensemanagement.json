@@ -1,4 +1,4 @@
-_id: "kdskhdsfhef993id0d038d",
+{"_id": "kdskhdsfhef993id0d038d",
   "application": {
     "base": "https://www.googleapis.com/adsense/v1.4",
     "resources": [
@@ -9,17 +9,20 @@ _id: "kdskhdsfhef993id0d038d",
           "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",  
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "boolean",
-          "name": "tree"
-        }],
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "boolean",
+            "name": "tree"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId"
       },
       {
@@ -30,15 +33,18 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts"
       },
       {
@@ -49,20 +55,24 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients"
       },
       {
@@ -73,22 +83,26 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adUnitId",
-          "required": true
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adUnitId",
+            "required": true
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients/adClientId/adunits/adUnitId"
       },
       {
@@ -99,22 +113,26 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adUnitId",
-          "required": true
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adUnitId",
+            "required": true
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients/adClientId/adunits/adUnitId/adcode"
       },
       {
@@ -125,29 +143,35 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",  
-          "type": "boolean",
-          "name": "includeInactive"
-        },{
-          "style": "query",  
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",  
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "boolean",
+            "name": "includeInactive"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients/adClientId/adunits"
       },
       {
@@ -158,30 +182,36 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",  
-          "type": "string",
-          "name": "adUnitId",
-          "required": true
-        },{
-          "style": "query",  
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",  
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adUnitId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.2/accounts/accountId/adclients/adClientId/adunits/adUnitId/customchannels"
       },
       {
@@ -192,17 +222,20 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "delete",
         "curl": "curl -X",
-        "params": [{
-          "style": "",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "",
-          "type": "datetime",
-          "name": "alertId",
-          "required": true
-        }],
+        "params": [
+          {
+            "style": "",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "",
+            "type": "datetime",
+            "name": "alertId",
+            "required": true
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/alerts/alertId"
       },
       {
@@ -213,16 +246,19 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "locale"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "locale"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/alerts"
       },
       {
@@ -233,22 +269,26 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "get",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "customChannelId",
-          "required": true
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "customChannelId",
+            "required": true
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients/adClientId/customchannels/customChannelId"
       },
       {
@@ -259,25 +299,30 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients/adClientId/customchannels"
       },
       {
@@ -288,34 +333,41 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "customChannelId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "boolean",
-          "name": "includeInactive"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "customChannelId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "boolean",
+            "name": "includeInactive"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients/adClientId/customchannels/customChannelId/adunits"
       },
       {
@@ -326,12 +378,14 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/payments"
       },
       {
@@ -342,58 +396,71 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "endDate",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "startDate",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "currency"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "dimension"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "filter"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "locale"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "metric"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "sort"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "startIndex"
-        },{
-          "style": "query",
-          "type": "boolean",
-          "name": "useTimezoneReporting"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "endDate",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "startDate",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "currency"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "dimension"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "filter"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "locale"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "metric"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "sort"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "startIndex"
+          },
+          {
+            "style": "query",
+            "type": "boolean",
+            "name": "useTimezoneReporting"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/reports"
       },
       {
@@ -404,29 +471,35 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "get",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "savedReportId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "locale"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "startIndex"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "savedReportId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "locale"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "startIndex"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/reports/savedReportId"
       },
       {
@@ -437,20 +510,24 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "get",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/reports/saved"
       },
       {
@@ -461,17 +538,20 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "get",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "savedAdStyleId",
-          "required": true
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "savedAdStyleId",
+            "required": true
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/savedadstyles/savedAdStyleId"
       },
       {
@@ -482,20 +562,24 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/savedadstyles"
       },
       {
@@ -506,25 +590,30 @@ _id: "kdskhdsfhef993id0d038d",
         },
         "httpMethod": "GET",
         "curl": "curl -X ",
-        "params": [{
-          "style": "query",
-          "type": "string",
-          "name": "accountId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "adClientId",
-          "required": true
-        },{
-          "style": "query",
-          "type": "integer",
-          "name": "maxResults"
-        },{
-          "style": "query",
-          "type": "string",
-          "name": "pageToken"
-        }],
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "accountId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "adClientId",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "integer",
+            "name": "maxResults"
+          },
+          {
+            "style": "query",
+            "type": "string",
+            "name": "pageToken"
+          }
+        ],
         "url": "https://www.googleapis.com/adsense/v1.4/accounts/accountId/adclients/adClientId/urlchannels"
       },
       {
@@ -548,4 +637,7 @@ _id: "kdskhdsfhef993id0d038d",
         "curl": "curl -X ",
         "params": [],
         "url": "https://www.googleapis.com/adsense/v1.4/metadata/metrics"
-      } 
+      }
+    ]
+  }
+}

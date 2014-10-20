@@ -5826,7 +5826,8 @@
           "style": "query",
           "type": "string",
           "name": "member_type"
-        },,{
+        },
+        {
           "style": "query",
           "type": "string",
           "name": "offset"
@@ -5834,7 +5835,7 @@
           "style": "query",
           "type": "string",
           "name": "query"
-        },,{
+        },{
           "style": "query",
           "type": "string",
           "name": "sort_by"
