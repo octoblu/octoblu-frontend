@@ -878,5 +878,31 @@
     },
     "channelid" : "53e14e6d8e3257fb7d6fdad1",
     "type" : "channel:youtube"
+  },
+  {
+    "_id" : "b7b1b539-6f5b-4f0d-bb5f-533ada0d1196",
+    "category" : "channel",
+    "description" : "Adsense Host",
+    "enabled" : false,
+    "name" : "Adsense Host",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "google-adsense-host"
+    },
+    "channelid" : "544583525a370c58ca66a145",
+    "type" : "channel:google-adsense-host"
+  },
+  {
+    "_id" : "3fb2dc12-74f2-4d59-8400-09cc40b0d342",
+    "category" : "channel",
+    "description" : "Adsense Management",
+    "enabled" : false,
+    "name" : "Adsense Management",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "google-adsense-management"
+    },
+    "channelid" : "544583a75a370c58ca66a146",
+    "type" : "channel:google-adsense-management"
   }
 ]
