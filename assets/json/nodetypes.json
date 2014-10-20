@@ -893,7 +893,7 @@
     "type" : "channel:google-adsense-host"
   },
   {
-    "_id" : "3fb2dc12-74f2-4d59-8400-09cc40b0d342",
+    "_id" : "66e026d2-06de-465d-bf91-95093899ea06",
     "category" : "channel",
     "description" : "Adsense Management",
     "enabled" : false,
@@ -904,5 +904,18 @@
     },
     "channelid" : "544583a75a370c58ca66a146",
     "type" : "channel:google-adsense-management"
+  },
+  {
+    "_id" : "0cf52d18-98b0-460e-8def-6d26864ce5b0",
+    "category" : "channel",
+    "description" : "Podio",
+    "enabled" : true,
+    "name" : "Podio",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "podio"
+    },
+    "channelid" : "54458c5b5a370c58ca66a147",
+    "type" : "channel:podio"
   }
 ]
