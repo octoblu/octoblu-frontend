@@ -1,10 +1,6 @@
 <h5 ng-if="flow.selectedFlowNode.name">Selected Node: {{ flow.selectedFlowNode.name }}</h5>
 <ul class="flow-browser-debug">
-<<<<<<< HEAD
-  <li ng-repeat="debug in debugLines | filter : {node: flow.selectedFlowNode._id}">
-=======
   <li ng-repeat="debug in debugLines | filter : {$: flow.selectedFlowNode.id}">
->>>>>>> FETCH_HEAD
   	<small>{{ debug.date | date: 'short'}} - {{ debug.message.name }}</small>
     <prism code="debug.message"></prism>
   </li>

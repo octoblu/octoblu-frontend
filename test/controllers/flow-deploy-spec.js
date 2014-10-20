@@ -1,8 +1,5 @@
 var _ = require('lodash');
-<<<<<<< HEAD
-=======
 var when = require('when');
->>>>>>> FETCH_HEAD
 var FlowDeployController = require('../../app/controllers/flow-deploy');
 var mongoose = require('mongoose');
 

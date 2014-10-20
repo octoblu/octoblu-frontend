@@ -47,10 +47,7 @@ passport.use(require('./config/google'));
 passport.use(require('./config/gotomeeting'));
 passport.use(require('./config/instagram'));
 passport.use(require('./config/linked-in'));
-<<<<<<< HEAD
-=======
 passport.use(require('./config/paypal'));
->>>>>>> FETCH_HEAD
 passport.use(require('./config/nest'));
 passport.use(require('./config/rdio'));
 passport.use(require('./config/sharefile'));
@@ -60,12 +57,9 @@ passport.use(require('./config/twitter'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/smartsheet'));
 passport.use(require('./config/salesforce'));
-<<<<<<< HEAD
-=======
 passport.use(require('./config/quickbooks'));
 passport.use(require('./config/xero'));
 passport.use(require('./config/redbooth'));
->>>>>>> FETCH_HEAD
 passport.use(require('./config/local'));
 
 // set up our express application

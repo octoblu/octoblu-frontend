@@ -427,27 +427,21 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelAWSController',
         templateUrl: '/pages/node-wizard/add-channel/aws.html'
       })
-<<<<<<< HEAD
-=======
       .state('ob.nodewizard.addchannel.echosign', {
         url: '/echosign',
         controller: 'addChannelEchoSignController',
         templateUrl: '/pages/node-wizard/add-channel/echosign.html'
       })
->>>>>>> FETCH_HEAD
       .state('ob.nodewizard.addchannel.basic', {
         url: '/basic',
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
-<<<<<<< HEAD
-=======
       .state('ob.nodewizard.addchannel.apikey-basic', {
         url: '/apikey-basic',
         controller: 'addChannelApiKeyBasicController',
         templateUrl: '/pages/node-wizard/add-channel/apikey-basic.html'
       })
->>>>>>> FETCH_HEAD
       .state('ob.nodewizard.addchannel.meshblu', {
         url: '/meshblu',
         controller: 'addChannelMeshbluController',
@@ -458,15 +452,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })
-<<<<<<< HEAD
-      .state('ob.nodewizard.addmicroblu', {
-        url: '/add-microblu/:nodeTypeId',
-        controller: 'addDeviceController',
-        templateUrl: '/pages/node-wizard/add-device/index.html'
-      })
-      .state('ob.nodewizard.addgateway', {
-        url: '/add-gateway/:nodeTypeId',
-=======
       .state('ob.nodewizard.addgateblu', {
         url: '/add-gateblu/:nodeTypeId',
         controller: 'addDeviceController',
@@ -474,7 +459,6 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       })
       .state('ob.nodewizard.addmicroblu', {
         url: '/add-microblu/:nodeTypeId',
->>>>>>> FETCH_HEAD
         controller: 'addDeviceController',
         templateUrl: '/pages/node-wizard/add-device/index.html'
       })

@@ -22,21 +22,13 @@
           },
           {
             "name": "subject",
-<<<<<<< HEAD
-            "displayName": "Subject ( Add data to subject using {{msg.payload.values}} )",
-=======
             "displayName": "Subject ( Add data to subject using {{payload.values}} )",
->>>>>>> FETCH_HEAD
             "type": "string",
             "style": "body"
           },
           {
             "name": "body",
-<<<<<<< HEAD
-            "displayName": "Body ( Add data to body using {{msg.payload.values}} )",
-=======
             "displayName": "Body ( Add data to body using {{payload.values}} )",
->>>>>>> FETCH_HEAD
             "type": "string",
             "style": "body"
           },

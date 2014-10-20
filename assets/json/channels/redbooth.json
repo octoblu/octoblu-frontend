@@ -69,7 +69,7 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/activities"
+          "url": "https://developer.redbooth.com/api-docs/#page:activities,header:activities-activity-list"
         },
         "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/activities"
@@ -86,28 +86,28 @@
           {
             "required": "false",
             "value": "",
-            "type": "integer",
+            "type": "number",
             "style": "query",
             "name": "per_page"
           },
           {
             "required": "false",
             "value": "",
-            "type": "integer",
+            "type": "number",
             "style": "query",
             "name": "page"
           },
           {
             "required": "false",
             "value": "",
-            "type": "integer",
+            "type": "number",
             "style": "query",
             "name": "organization_id"
           },
           {
             "required": "false",
             "value": "",
-            "type": "integer",
+            "type": "number",
             "style": "query",
             "name": "project_id"
           },
@@ -124,20 +124,6 @@
             "type": "number",
             "style": "query",
             "name": "target_id"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "integer",
-            "style": "query",
-            "name": "created_from"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "integer",
-            "style": "query",
-            "name": "created_to"
           }
         ],
         "path": "/comments",
@@ -146,7 +132,7 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/comments"
+          "url": "https://developer.redbooth.com/api-docs/#page:comments,header:comments-comment-list"
         },
         "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/comments"
@@ -154,69 +140,11 @@
       {
         "params": [
           {
-            "type": "string",
+            "required": "true",
+            "value": "",
+            "type": "number",
             "style": "query",
-            "name": "order"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "per_page"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "page"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "organization_id"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "project_id"
-          },{
-            "type": "string",
-            "style": "query",
-            "name": "target_type"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "target_id"
-          }
-        ], "path": "/comments",
-        "displayName": "/comments",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/comments"
-        },
-        "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/comments"
-      },
-      {
-        "params": [
-          {
-            "type": "string",
-            "style": "body",
-            "name": "target_type",
-            "required": true
-          },{
-            "type": "integer",
-            "style": "body",
-            "name": "target_id",
-            "required": true
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "body"
-          },{
-            "type": "integer",
-            "style": "body",
-            "name": "minutes"
-          },{
-            "type": "date",
-            "style": "body",
-            "name": "time_tracking_on"
+            "name": "id"
           }
         ],
         "path": "/comment/{id}",
@@ -225,7 +153,7 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/comment/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:comments,header:comments-comment-list"
         },
         "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/comment/{id}"
@@ -236,46 +164,34 @@
             "required": "true",
             "value": "",
             "type": "string",
-            "style": "query",
-            "name": "id"
-          }
-        ],
-        "path": "/comment/{id}",
-        "displayName": "/comment/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/comment/{id}"
-        },
-        "httpMethod": "PUT",
-        "url": "https://redbooth.com/api/3/comment/{id}"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "integer",
-            "style": "body",
-            "name": "id"
-          },{
-            "type": "string",
             "style": "body",
             "name": "target_type"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
             "style": "body",
             "name": "target_id"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "body"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "body",
             "name": "minutes"
-          },{
-            "type": "date",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
             "style": "body",
             "name": "time_tracking_on"
           }
@@ -286,7 +202,84 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/comment/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:comments,header:comments-comment-list"
+        },
+        "httpMethod": "POST",
+        "url": "https://redbooth.com/api/3/comment/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "target_type"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "target_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "body"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "minutes"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "time_tracking_on"
+          }
+        ],
+        "path": "/comment/{id}",
+        "displayName": "/comment/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:comments,header:comments-comment-list"
+        },
+        "httpMethod": "PUT",
+        "url": "https://redbooth.com/api/3/comment/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "",
+            "name": "id"
+          }
+        ],
+        "path": "/comment/{id}",
+        "displayName": "/comment/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:comments,header:comments-comment-list"
         },
         "httpMethod": "DELETE",
         "url": "https://redbooth.com/api/3/comment/{id}"
@@ -294,42 +287,37 @@
       {
         "params": [
           {
-            "required": "true",
-            "type": "integer",
-            "name": "id"
-          }
-        ],
-        "path": "/conversations",
-        "displayName": "/conversations",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/conversations"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/conversations"
-      },
-      {
-        "params": [
-          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "order"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "per_page"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "page"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "organization_id"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "project_id"
           }
@@ -340,31 +328,19 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/conversations"
+          "url": "https://developer.redbooth.com/api-docs/#page:conversations,header:conversations-conversation-list"
         },
-        "httpMethod": "POST",
+        "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/conversations"
       },
       {
         "params": [
           {
-            "type": "integer",
-            "style": "body",
-            "name": "project_id",
-            "required": true
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "name",
-            "required": true
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "body"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "is_private"
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "id"
           }
         ],
         "path": "/conversations/{id}",
@@ -373,7 +349,7 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/conversations/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:conversations,header:conversations-conversation-list"
         },
         "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/conversations/{id}"
@@ -383,42 +359,27 @@
           {
             "required": "true",
             "value": "",
-            "type": "integer",
-            "style": "query",
-            "name": "id"
-          }
-        ],
-        "path": "/conversations/{id}",
-        "displayName": "/conversations/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/conversations/{id}"
-        },
-        "httpMethod": "PUT",
-        "url": "https://redbooth.com/api/3/conversations/{id}"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "integer",
-            "style": "body",
-            "name": "id"
-          },{
-            "type": "integer",
+            "type": "number",
             "style": "body",
             "name": "project_id"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "name"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "body"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "is_private"
@@ -430,271 +391,140 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/conversations/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:conversations,header:conversations-conversation-list"
         },
-        "httpMethod": "DELETE",
+        "httpMethod": "POST",
         "url": "https://redbooth.com/api/3/conversations/{id}"
-      },{
+      },
+      {
         "params": [
           {
             "required": "true",
-            "type": "integer",
-            "name": "id",
-            "required": true
-          },
-      {
-        "path": "/files",
-        "displayName": "/files",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/files"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/files"
-      },
-      {
-        "params": [
-          {
-            "type": "string",
-            "style": "query",
-            "name": "order"
-          },
-          {
-            "type": "integer",
-            "style": "query",
-            "name": "per_page"
-          },
-          {
-            "type": "integer",
-            "style": "query",
-            "name": "page"
-          },
-          {
-            "type": "integer",
-            "style": "query",
-            "name": "organization_id"
-          },
-          {
-            "type": "integer",
-            "style": "query",
-            "name": "project_id"
-          },
-          {
-            "type": "integer",
-            "style": "query",
-            "name": "target_id"
-          },
-          {
-            "type": "boolean_param",
-            "style": "query",
-            "name": "pinned"
-          },
-          {
-            "type": "string",
-            "style": "query",
-            "name": "target_type"
-          }
-        ],
-        "path": "/files",
-        "displayName": "/files",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/files"
-        },
-        "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/files"
-      },
-      {
-        "params": [
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "project_id",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "target_id"
-          },
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "parent_id"
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "name",
-            "required": true
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "backend",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "backend_id"
-          }
-        ],"path": "/files/{id}",
-        "displayName": "/files/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/files/{id}"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/files/{id}"
-      },
-      {
-        "params": [
-          {
-            "type": "integer",
-            "style": "query",
-            "name": "id",
-            "required": true
-          }
-        ],
-        "path": "/files/{id}",
-        "displayName": "/files/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/files/{id}"
-        },
-        "httpMethod": "PUT",
-        "url": "https://redbooth.com/api/3/files/{id}"
-      },
-      {
-        "params": [
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "id",
-            "required": true
-          },
-           {
-            "type": "integer",
-            "style": "body",
-            "name": "project_id",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "target_id"
-          },
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "parent_id"
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "name",
-            "required": true
-          },
-          {
-            "type": "string",
-            "style": "body",
-            "name": "backend",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "backend_id"
-          }
-        ],"path": "/files/{id}",
-        "displayName": "/files/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/files/{id}"
-        },
-        "httpMethod": "DELETE",
-        "url": "https://redbooth.com/api/3/files/{id}"
-      },
-      {
-        "params": [
-          {
-            "type": "integer",
-            "name": "id",
-            "required": true
-          }
-        ],
-        "path": "/me",
-        "displayName": "/me",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/me"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/me"
-      },
-      {
-        "params": [],
-        "path": "/me",
-        "displayName": "/me",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/me"
-        },
-        "httpMethod": "PUT",
-        "url": "https://redbooth.com/api/3/me"
-      },
-      {
-        "params": [
-          {
-            "required": "True",
-            "type": "integer",
+            "value": "",
+            "type": "number",
             "style": "body",
             "name": "id"
           },
           {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "project_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "body"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "is_private"
+          }
+        ],
+        "path": "/conversations/{id}",
+        "displayName": "/conversations/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:conversations,header:conversations-conversation-list"
+        },
+        "httpMethod": "PUT",
+        "url": "https://redbooth.com/api/3/conversations/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "",
+            "name": "id"
+          }
+        ],
+        "path": "/conversations/{id}",
+        "displayName": "/conversations/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:conversations,header:conversations-conversation-list"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://redbooth.com/api/3/conversations/{id}"
+      },
+      {
+        "path": "/me",
+        "displayName": "/me",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:user-information,header:user-information-user-information"
+        },
+        "httpMethod": "GET",
+        "url": "https://redbooth.com/api/3/me"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "id"
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "first_name"
           },
           {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "last_name"
           },
           {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "email"
           },
           {
             "required": "true",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "password"
           },
           {
             "required": "true",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "password_confirmation"
           },
           {
             "required": "true",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "old_password"
@@ -706,7 +536,28 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/me"
+          "url": "https://developer.redbooth.com/api-docs/#page:user-information,header:user-information-user-information"
+        },
+        "httpMethod": "PUT",
+        "url": "https://redbooth.com/api/3/me"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "",
+            "name": "id"
+          }
+        ],
+        "path": "/me",
+        "displayName": "/me",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:user-information,header:user-information-user-information"
         },
         "httpMethod": "DELETE",
         "url": "https://redbooth.com/api/3/me"
@@ -714,45 +565,43 @@
       {
         "params": [
           {
-            "required": "True",
-            "type": "integer",
-            "name": "id"
-          }
-        ],
-        "path": "/memberships",
-        "displayName": "/memberships",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/memberships"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/memberships"
-      },
-      {
-        "params": [
-          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "order"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "per_page"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "page"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "organization_id"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "user_id"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "role"
@@ -764,45 +613,17 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/memberships"
+          "url": "https://developer.redbooth.com/api-docs/#page:memberships,header:memberships-membership-list"
         },
-        "httpMethod": "POST",
+        "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/memberships"
       },
       {
         "params": [
           {
-            "type": "integer",
-            "style": "body",
-            "name": "organization_id",
-            "required": true
-          },{
-            "type": "integer",
-            "style": "body",
-            "name": "user_id",
-            "required": true
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "role"
-          }
-        ],
-        "path": "/memberships/{id}",
-        "displayName": "/memberships/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/memberships/{id}"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/memberships/{id}"
-      },
-      {
-        "params": [
-          {
             "required": "true",
-            "type": "integer",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "id"
           }
@@ -813,33 +634,30 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/memberships/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:memberships,header:memberships-membership-list"
         },
-        "httpMethod": "PUT",
+        "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/memberships/{id}"
       },
       {
         "params": [
           {
             "required": "true",
-            "type": "integer",
-            "style": "body",
-            "name": "id"
-          },
-          {
-            "required": "true",
-            "type": "integer",
+            "value": "",
+            "type": "number",
             "style": "body",
             "name": "organization_id"
           },
           {
             "required": "true",
-            "type": "integer",
+            "value": "",
+            "type": "number",
             "style": "body",
             "name": "user_id"
           },
           {
             "required": "false",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "role"
@@ -851,256 +669,357 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/memberships/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:memberships,header:memberships-membership-list"
         },
-        "httpMethod": "DELETE",
+        "httpMethod": "POST",
         "url": "https://redbooth.com/api/3/memberships/{id}"
       },
       {
         "params": [
           {
             "required": "true",
-            "style": "integer",
-            "name": "id"
-          }
-        ],
-        "path": "/notes",
-        "displayName": "/notes",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notes"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/notes"
-      },
-      {
-        "params": [
-          {
-            "type": "string",
-            "style": "query",
-            "name": "order"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "per_page"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "page"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "organization_id"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "project_id"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "user_id"
-          }
-        ],
-        "path": "/notes",
-        "displayName": "/notes",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notes"
-        },
-        "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/notes"
-      },
-      {
-        "params": [
-          {
-            "type": "integer",
-            "style": "body",
-            "name": "project_id",
-            "required": true
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "name",
-            "required": true
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "content"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "is_private"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "shared"
-          }
-        ],
-        "path": "/notes/{id}",
-        "displayName": "/notes/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notes/{id}"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/notes/{id}"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "integer",
-            "style": "query",
-            "name": "id"
-          }
-        ],
-        "path": "/notes/{id}",
-        "displayName": "/notes/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notes/{id}"
-        },
-        "httpMethod": "PUT",
-        "url": "https://redbooth.com/api/3/notes/{id}"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "integer",
-            "style": "body",
-            "name": "id"
-          },{
-            "type": "integer",
-            "style": "body",
-            "name": "project_id"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "name"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "body"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "is_private"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "shared"
-          }
-        ],
-        "path": "/notes/{id}",
-        "displayName": "/notes/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notes/{id}"
-        },
-        "httpMethod": "DELETE",
-        "url": "https://redbooth.com/api/3/notes/{id}"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "integer",
-            "name": "id"
-          }
-        ],
-        "path": "/notifications",
-        "displayName": "/notifications",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notifications"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/notifications"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "string",
-            "style": "query",
-            "name": "order"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "per_page"
-          },{
-            "type": "integer",
-            "style": "query",
-            "name": "page"
-          }
-        ],
-        "path": "/notifications",
-        "displayName": "/notifications",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notifications"
-        },
-        "httpMethod": "POST",
-        "url": "https://redbooth.com/api/3/notifications"
-      },
-      {
-        "params": [],
-        "path": "/notifications/{id}",
-        "displayName": "/notifications/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notifications/{id}"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/notifications/{id}"
-          },
-      {
-        "params": [
-          {
-            "required": "true",
-            "type": "integer",
-            "style": "query",
-            "name": "id"
-          },
-      {
-        "path": "/notifications/{id}",
-        "displayName": "/notifications/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/notifications/{id}"
-        },
-        "httpMethod": "PUT",
-        "url": "https://redbooth.com/api/3/notifications/{id}"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
+            "value": "",
             "type": "number",
             "style": "body",
             "name": "id"
           },
           {
             "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "organization_id"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "user_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "role"
+          }
+        ],
+        "path": "/memberships/{id}",
+        "displayName": "/memberships/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:memberships,header:memberships-membership-list"
+        },
+        "httpMethod": "PUT",
+        "url": "https://redbooth.com/api/3/memberships/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "",
+            "name": "id"
+          }
+        ],
+        "path": "/memberships/{id}",
+        "displayName": "/memberships/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:memberships,header:memberships-membership-list"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://redbooth.com/api/3/memberships/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "organization_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "project_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "user_id"
+          }
+        ],
+        "path": "/notes",
+        "displayName": "/notes",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notes,header:notes-note-list"
+        },
+        "httpMethod": "GET",
+        "url": "https://redbooth.com/api/3/notes"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "id"
+          }
+        ],
+        "path": "/notes/{id}",
+        "displayName": "/notes/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notes,header:notes-note-list"
+        },
+        "httpMethod": "GET",
+        "url": "https://redbooth.com/api/3/notes/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "project_id"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "content"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "is_private"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "shared"
+          }
+        ],
+        "path": "/notes/{id}",
+        "displayName": "/notes/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notes,header:notes-note-list"
+        },
+        "httpMethod": "POST",
+        "url": "https://redbooth.com/api/3/notes/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "project_id"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "body"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "is_private"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "shared"
+          }
+        ],
+        "path": "/notes/{id}",
+        "displayName": "/notes/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notes,header:notes-note-list"
+        },
+        "httpMethod": "PUT",
+        "url": "https://redbooth.com/api/3/notes/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "",
+            "name": "id"
+          }
+        ],
+        "path": "/notes/{id}",
+        "displayName": "/notes/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notes,header:notes-note-list"
+        },
+        "httpMethod": "DELETE",
+        "url": "https://redbooth.com/api/3/notes/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "false",
+            "value": "",
+            "type": "string",
+            "style": "query",
+            "name": "order"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "per_page"
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "page"
+          }
+        ],
+        "path": "/notifications",
+        "displayName": "/notifications",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notifications,header:notifications-notification-list"
+        },
+        "httpMethod": "GET",
+        "url": "https://redbooth.com/api/3/notifications"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "query",
+            "name": "id"
+          }
+        ],
+        "path": "/notifications/{id}",
+        "displayName": "/notifications/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notifications,header:notifications-notification-list"
+        },
+        "httpMethod": "GET",
+        "url": "https://redbooth.com/api/3/notifications/{id}"
+      },
+      {
+        "path": "/notifications/{id}",
+        "displayName": "/notifications/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notifications,header:notifications-notification-list"
+        },
+        "httpMethod": "POST",
+        "url": "https://redbooth.com/api/3/notifications/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "id"
+          },
+          {
+            "required": "true",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "read"
@@ -1112,7 +1031,28 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/notifications/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:notifications,header:notifications-notification-list"
+        },
+        "httpMethod": "PUT",
+        "url": "https://redbooth.com/api/3/notifications/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "",
+            "name": "id"
+          }
+        ],
+        "path": "/notifications/{id}",
+        "displayName": "/notifications/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:notifications,header:notifications-notification-list"
         },
         "httpMethod": "DELETE",
         "url": "https://redbooth.com/api/3/notifications/{id}"
@@ -1120,34 +1060,23 @@
       {
         "params": [
           {
-            "required": "True",
-            "type": "integer",
-            "name": "id"
-          }
-        ],
-        "path": "/organizations",
-        "displayName": "/organizations",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/organizations"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/organizations"
-      },
-      {
-        "params": [
-          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "order"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "per_page"
-          },{
-            "type": "integer",
+          },
+          {
+            "required": "false",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "page"
           }
@@ -1158,44 +1087,17 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/organizations"
+          "url": "https://developer.redbooth.com/api-docs/#page:organizations,header:organizations-organization-list"
         },
-        "httpMethod": "POST",
+        "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/organizations"
       },
       {
         "params": [
           {
-            "type": "string",
-            "style": "body",
-            "name": "name",
-            "required": "true"
-          },{
-            "style": "body",
-            "name": "permalink",
-            "required": "true"
-          },{
-            "style": "body",
-            "name": "domain",
-            "required": "true"
-          }
-        ],
-        "path": "/organizations/{id}",
-        "displayName": "/organizations/{id}",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://redbooth.com/api/3/organizations/{id}"
-        },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/organizations/{id}"
-      },
-      {
-        "params": [
-          {
             "required": "true",
-            "type": "integer",
+            "value": "",
+            "type": "number",
             "style": "query",
             "name": "id"
           }
@@ -1206,33 +1108,30 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/organizations/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:organizations,header:organizations-organization-list"
         },
-        "httpMethod": "PUT",
+        "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/organizations/{id}"
       },
       {
         "params": [
           {
-            "required": "true", 
-            "type": "number",
-            "style": "body",
-            "name": "id"
-          },
-          {
             "required": "true",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "name"
           },
           {
             "required": "true",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "permalink"
           },
           {
             "required": "true",
+            "value": "",
             "type": "string",
             "style": "body",
             "name": "domain"
@@ -1244,9 +1143,51 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/organizations/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:organizations,header:organizations-organization-list"
         },
-        "httpMethod": "DELETE",
+        "httpMethod": "POST",
+        "url": "https://redbooth.com/api/3/organizations/{id}"
+      },
+      {
+        "params": [
+          {
+            "required": "true",
+            "value": "",
+            "type": "number",
+            "style": "body",
+            "name": "id"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "name"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "permalink"
+          },
+          {
+            "required": "true",
+            "value": "",
+            "type": "string",
+            "style": "body",
+            "name": "domain"
+          }
+        ],
+        "path": "/organizations/{id}",
+        "displayName": "/organizations/{id}",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:organizations,header:organizations-organization-list"
+        },
+        "httpMethod": "PUT",
         "url": "https://redbooth.com/api/3/organizations/{id}"
       },
       {
@@ -1259,44 +1200,64 @@
             "name": "id"
           }
         ],
-        "path": "/people",
-        "displayName": "/people",
+        "path": "/organizations/{id}",
+        "displayName": "/organizations/{id}",
         "authentication": {
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/people"
+          "url": "https://developer.redbooth.com/api-docs/#page:organizations,header:organizations-organization-list"
         },
-        "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/people"
+        "httpMethod": "DELETE",
+        "url": "https://redbooth.com/api/3/organizations/{id}"
       },
       {
         "params": [
           {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "order"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "per_page"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "page"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "organization_id"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "project_id"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "user_id"
-          },{
+          },
+          {
+            "required": "false",
+            "value": "",
             "type": "string",
             "style": "query",
             "name": "role"
@@ -1308,27 +1269,19 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/people"
+          "url": "https://developer.redbooth.com/api-docs/#page:people,header:people-people-list"
         },
-        "httpMethod": "POST",
+        "httpMethod": "GET",
         "url": "https://redbooth.com/api/3/people"
       },
       {
         "params": [
           {
+            "required": "false",
+            "value": "",
             "type": "string",
-            "style": "body",
-            "name": "project_id",
-            "required": "true"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "user_id",
-            "required": "true"
-          },{
-            "type": "string",
-            "style": "body",
-            "name": "role"
+            "style": "query",
+            "name": "project_id"
           }
         ],
         "path": "/people/{id}",
@@ -1337,51 +1290,85 @@
           "required": "true"
         },
         "doc": {
-          "url": "https://redbooth.com/api/3/people/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:people,header:people-people-list"
         },
         "httpMethod": "GET",
-        "url": "https://redbooth.com/api/3/people/{id}",
-        "params": [
-          {
-            "name": "project_id",
-            "style": "query",
-            "type": "string"
+        "url": "https://redbooth.com/api/3/people/{id}"
       },
       {
-        "httpMethod": "PUT",
-        "displayName": "/people/{id}",
-        "path": "/people/{id}",
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:people,header:people-people-list"
+        },
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://redbooth.com/api/3/people/{id}",
+        "displayName": "/people/{id}",
+        "path": "/people/{id}",
         "params": [
           {
             "name": "project_id",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           },
           {
             "name": "user_id",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           },
           {
             "name": "role",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           }
         ],
         "url": "https://redbooth.com/api/3/people/{id}"
       },
-     
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:people,header:people-people-list"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/people/{id}",
+        "path": "/people/{id}",
+        "params": [
+          {
+            "name": "project_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "user_id",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "role",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://redbooth.com/api/3/people/{id}"
+      },
+      {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://redbooth.com/api/3/people/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:people,header:people-people-list"
         },
         "authentication": {
           "required": "true"
@@ -1391,7 +1378,9 @@
         "params": [
           {
             "name": "id",
+            "style": "",
             "type": "string",
+            "value": "",
             "required": "true"
           }
         ],
@@ -1400,7 +1389,7 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/projects"
+          "url": "https://developer.redbooth.com/api-docs/#page:projects,header:projects-project-list"
         },
         "authentication": {
           "required": "true"
@@ -1412,74 +1401,36 @@
             "name": "order",
             "style": "query",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "per_page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "organization_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "user_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
-          }
-        ],
-        "url": "https://redbooth.com/api/3/projects"
-      },
-       {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://redbooth.com/api/3/projects"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/projects",
-        "path": "/projects",
-        "params": [
-          {
-            "name": "organizations_id",
-            "style": "body",
-            "type": "integer",
-            "required": "true"
-          },
-          {
-            "name": "name",
-            "style": "body",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": "tracks_time",
-            "style": "body",
-            "type": "string",
-            "required": "false"
-          },
-          {
-            "name": "public",
-            "style": "body",
-            "type": "string",
-            "required": "false"
-          },
-          {
-            "name": "publish_pages",
-            "style": "body",
-            "required": "true"
           }
         ],
         "url": "https://redbooth.com/api/3/projects"
@@ -1487,7 +1438,7 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/projects/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:projects,header:projects-project-list"
         },
         "authentication": {
           "required": "true"
@@ -1498,7 +1449,57 @@
           {
             "name": "id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
+            "required": "true"
+          }
+        ],
+        "url": "https://redbooth.com/api/3/projects/{id}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:projects,header:projects-project-list"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/projects/{id}",
+        "path": "/projects/{id}",
+        "params": [
+          {
+            "name": "organizations_id",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "tracks_time",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "public",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "publish_pages",
+            "style": "body",
+            "type": "string",
+            "value": "",
             "required": "true"
           }
         ],
@@ -1507,7 +1508,7 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "https://redbooth.com/api/3/projects/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:projects,header:projects-project-list"
         },
         "authentication": {
           "required": "true"
@@ -1518,42 +1519,50 @@
           {
             "name": "id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
-          },{
+          },
+          {
             "name": "organizations_id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "name",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           },
           {
             "name": "tracks_time",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "public",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "include_weekend_days",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           },
           {
             "name": "publish_pages",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           }
         ],
@@ -1562,7 +1571,7 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://redbooth.com/api/3/projects/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:projects,header:projects-project-list"
         },
         "authentication": {
           "required": "true"
@@ -1573,7 +1582,8 @@
           {
             "name": "id",
             "style": "",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           }
         ],
@@ -1582,47 +1592,7 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/search"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/search",
-        "path": "/search",
-        "params": [
-          {
-            "name": "order",
-            "style": "query",
-            "type": "string"
-          },
-          {
-            "name": "per_page",
-            "style": "query",
-            "type": "integer"
-          },
-          {
-            "name": "page",
-            "style": "query",
-            "type": "integer"
-          },
-          {
-            "name": "project_id",
-            "style": "query",
-            "type": "integer"
-          },
-          {
-            "name": "type",
-            "style": "query",
-            "type": "string"
-          },{
-            "name": "query",
-            "style": "query",
-            "type": "string"
-          },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://redbooth.com/api/3/subtasks"
+          "url": "https://developer.redbooth.com/api-docs/#page:subtasks,header:subtasks-subtasks-list"
         },
         "authentication": {
           "required": "true"
@@ -1633,25 +1603,29 @@
           {
             "name": "task_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "order",
             "style": "query",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "per_page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           }
         ],
@@ -1660,7 +1634,7 @@
       {
         "httpMethod": "POST",
         "doc": {
-          "url": "https://redbooth.com/api/3/subtasks"
+          "url": "https://developer.redbooth.com/api-docs/#page:subtasks,header:subtasks-subtasks-list"
         },
         "authentication": {
           "required": "true"
@@ -1669,27 +1643,31 @@
         "path": "/subtasks",
         "params": [
           {
-            "name": "task_list_id",
+            "name": "task_id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "name",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           },
           {
             "name": "resolved",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "position",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           }
         ],
@@ -1698,72 +1676,77 @@
       {
         "httpMethod": "PUT",
         "doc": {
-          "url": "https://redbooth.com/api/3/subtasks/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:subtasks,header:subtasks-subtasks-list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/subtasks/{id}",
-        "path": "/subtasks/{id}",
+        "displayName": "/subtasks",
+        "path": "/subtasks",
         "params": [
           {
             "name": "id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "task_id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "name",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           },
           {
             "name": "resolved",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "position",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           }
         ],
-        "url": "https://redbooth.com/api/3/subtasks/{id}"
+        "url": "https://redbooth.com/api/3/subtasks"
       },
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://redbooth.com/api/3/subtasks/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:subtasks,header:subtasks-subtasks-list"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "//subtasks/{id}",
-        "path": "//subtasks/{id}",
+        "displayName": "/subtasks",
+        "path": "/subtasks",
         "params": [
           {
             "name": "id",
             "style": "",
-            "type": "integer",
+            "type": "number",
             "value": "",
             "required": "true"
           }
         ],
-        "url": "https://redbooth.com/api/3/subtasks/{id}"
+        "url": "https://redbooth.com/api/3/subtasks"
       },
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/task_lists"
+          "url": "https://developer.redbooth.com/api-docs/#page:tasklists,header:tasklists-tasklist-list"
         },
         "authentication": {
           "required": "true"
@@ -1775,71 +1758,49 @@
             "name": "order",
             "style": "query",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "per_page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "organization_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "project_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "user_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "archived",
             "style": "query",
             "type": "string",
-            "required": "false"
-          },
-        {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://redbooth.com/api/3/task_lists"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/task_lists",
-        "path": "/task_lists",
-        "params": [
-          {
-            "name": "project_id",
-            "style": "query",
-            "type": "integer",
-            "required": "true"
-          },
-          {
-            "name": "name",
-            "style": "query",
-            "type": "string",
-            "required": "true"
-          },
-          {
-            "name": "archived",
-            "style": "query",
-            "type": "string",
+            "value": "",
             "required": "false"
           }
         ],
@@ -1848,7 +1809,7 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/task_lists/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:tasklists,header:tasklists-tasklist-list"
         },
         "authentication": {
           "required": "true"
@@ -1859,8 +1820,44 @@
           {
             "name": "id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
+          }
+        ],
+        "url": "https://redbooth.com/api/3/task_lists/{id}"
+      },
+      {
+        "httpMethod": "POST",
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:tasklists,header:tasklists-tasklist-list"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/task_lists/{id}",
+        "path": "/task_lists/{id}",
+        "params": [
+          {
+            "name": "project_id",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "archived",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
           }
         ],
         "url": "https://redbooth.com/api/3/task_lists/{id}"
@@ -1879,25 +1876,29 @@
           {
             "name": "id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "project_id",
             "style": "body",
-            "type": "integer",
-            "required": "true"
+            "type": "number",
+            "value": "",
+            "required": "false"
           },
           {
             "name": "name",
             "style": "body",
             "type": "string",
-            "required": "true"
+            "value": "",
+            "required": "false"
           },
           {
             "name": "archived",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           }
         ],
@@ -1906,7 +1907,7 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://redbooth.com/api/3/task_lists/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:tasklists,header:tasklists-tasklist-list"
         },
         "authentication": {
           "required": "true"
@@ -1917,7 +1918,8 @@
           {
             "name": "id",
             "style": "",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           }
         ],
@@ -1926,7 +1928,7 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/tasks"
+          "url": "https://developer.redbooth.com/api-docs/#page:tasks,header:tasks-task-list"
         },
         "authentication": {
           "required": "true"
@@ -1938,125 +1940,86 @@
             "name": "order",
             "style": "query",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "per_page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "page",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "organization_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "project_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "task_list_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "user_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "assigned_user_id",
             "style": "query",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "false"
           },
           {
             "name": "assigned",
             "style": "query",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "archived",
             "style": "query",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "status",
             "style": "query",
             "type": "string",
+            "value": "",
             "required": "false"
           }
         ],
         "url": "https://redbooth.com/api/3/tasks"
       },
       {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://redbooth.com/api/3/tasks"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/tasks",
-        "path": "/tasks",
-        "params": [
-          {
-            "name": "project_id",
-            "style": "body",
-            "type": "integer",
-            "required": "true"
-          },
-          {
-            "name": "task_list_id",
-            "style": "body",
-            "type": "integer",
-            "required": "true"
-          },
-          {
-            "name": "name",
-            "style": "body",
-            "type": "integer",
-            "required": "false"
-          },
-          {
-            "name": "description",
-            "style": "body",
-            "type": "string",
-            "required": "false"
-          },
-          {
-            "name": "is_private",
-            "style": "body",
-            "type": "string",
-            "required": "false"
-          },
-          {
-            "name": "status",
-            "style": "body",
-            "type": "string",
-            "required": "false"
-          }
-        ],
-        "url": "https://redbooth.com/api/3/tasks"
-      },  
-      {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/tasks/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:tasks,header:tasks-task-list"
         },
         "authentication": {
           "required": "true"
@@ -2068,15 +2031,16 @@
             "name": "id",
             "style": "query",
             "type": "number",
+            "value": "",
             "required": "true"
           }
         ],
         "url": "https://redbooth.com/api/3/tasks/{id}"
       },
       {
-        "httpMethod": "PUT",
+        "httpMethod": "POST",
         "doc": {
-          "url": "https://redbooth.com/api/3/tasks/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:tasks,header:tasks-task-list"
         },
         "authentication": {
           "required": "true"
@@ -2084,46 +2048,116 @@
         "displayName": "/tasks/{id}",
         "path": "/tasks/{id}",
         "params": [
-        {
-            "name": "id",
-            "style": "body",
-            "type": "integer",
-            "required": "true"
-          },
           {
             "name": "project_id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "task_list_id",
             "style": "body",
-            "type": "integer",
+            "type": "number",
+            "value": "",
             "required": "true"
           },
           {
             "name": "name",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "true"
           },
           {
             "name": "description",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "is_private",
             "style": "body",
             "type": "string",
+            "value": "",
             "required": "false"
           },
           {
             "name": "status",
             "style": "body",
             "type": "string",
+            "value": "",
+            "required": "false"
+          }
+        ],
+        "url": "https://redbooth.com/api/3/tasks/{id}"
+      },
+      {
+        "httpMethod": "PUT",
+        "doc": {
+          "url": "https://developer.redbooth.com/api-docs/#page:tasks,header:tasks-task-list"
+        },
+        "authentication": {
+          "required": "true"
+        },
+        "displayName": "/tasks/{id}",
+        "path": "/tasks/{id}",
+        "params": [
+          {
+            "name": "id",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "true"
+          },
+          {
+            "name": "project_id",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "task_list_id",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "assigned_user_id",
+            "style": "body",
+            "type": "number",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "name",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "description",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "is_private",
+            "style": "body",
+            "type": "string",
+            "value": "",
+            "required": "false"
+          },
+          {
+            "name": "status",
+            "style": "body",
+            "type": "string",
+            "value": "",
             "required": "false"
           }
         ],
@@ -2132,7 +2166,7 @@
       {
         "httpMethod": "DELETE",
         "doc": {
-          "url": "https://redbooth.com/api/3/tasks/{id}"
+          "url": "https://developer.redbooth.com/api-docs/#page:tasks,header:tasks-task-list"
         },
         "authentication": {
           "required": "true"
@@ -2143,7 +2177,7 @@
           {
             "name": "id",
             "style": "",
-            "type": "integer",
+            "type": "number",
             "value": "",
             "required": "true"
           }
@@ -2153,29 +2187,11 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://redbooth.com/api/3/users"
+          "url": "https://developer.redbooth.com/api-docs/#page:users,header:users-user-list"
         },
         "authentication": {
           "required": "true"
         },
-<<<<<<< HEAD
-        "displayName": "/users",
-        "path": "/users",
-        "url": "https://redbooth.com/api/3/users"
-      },
-      {
-        "httpMethod": "GET",
-        "doc": {
-          "url": "https://redbooth.com/api/3/users/{id}"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/users/{id}",
-        "path": "/users/{id}",
-        "url": "https://redbooth.com/api/3/users/{id}"
-      }
-=======
         "displayName": "/me",
         "path": "/me",
         "url": "https://redbooth.com/api/3/me"
@@ -2210,4 +2226,3 @@
   },
   "type": "channel:redbooth"
 }
->>>>>>> FETCH_HEAD

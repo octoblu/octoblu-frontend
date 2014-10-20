@@ -132,7 +132,7 @@ angular.module('octobluApp')
             updateDevice: function (options) {
                 var device = _.omit(options, reservedProperties),
                     defer = $q.defer();
-                
+
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.update(device, function () {
                         defer.resolve(device);

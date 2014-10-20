@@ -25,18 +25,6 @@
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a3",
-<<<<<<< HEAD
-		"category" : "subdevice",
-		"description" : "Philips Hue light bulbs",
-		"enabled" : true,
-		"name" : "Philips Hue",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "philips-hue",
-			"plugin" : "skynet-hue"
-		},
-		"type" : "device:philips-hue"
-=======
 		"category" : "device",
 		"gatebluCapable": true,
 		"description" : "Philips Hue light bulbs",
@@ -62,7 +50,6 @@
 		},
 		"connector": "meshblu-myo",
 		"type" : "device:myo"
->>>>>>> FETCH_HEAD
 	},
 	{
 		"_id" : "53c9b82ff400e177dca325a4",
@@ -79,15 +66,9 @@
 		"type" : "device:wemo"
 	},
 	{
-<<<<<<< HEAD
-		"_id" : "53c9b82ff400e177dca325a6",
-		"category" : "subdevice",
-		"description" : "Insteon home automation",
-=======
 		"_id" : "53c9b82ff400e177dca325a7",
 		"category" : "device",
 		"description" : "Blink1 USB LED",
->>>>>>> FETCH_HEAD
 		"enabled" : true,
 		"gatebluCapable": true,
 		"name" : "Blink(1)",
@@ -101,11 +82,7 @@
 	{
 		"_id" : "53c9b82ff400e177dca325a6",
 		"category" : "subdevice",
-<<<<<<< HEAD
-		"description" : "Blink1 USB LED",
-=======
 		"description" : "Insteon home automation",
->>>>>>> FETCH_HEAD
 		"enabled" : true,
 		"name" : "Insteon",
 		"skynet" : {
@@ -239,16 +216,6 @@
 	},
 	{
 		"_id" : "53c9b831f400e177dca325b0",
-<<<<<<< HEAD
-		"category" : "gateway",
-		"description" : "Skynet Hub",
-		"enabled" : true,
-		"name" : "Gateblu",
-		"skynet" : {
-			"type" : "gateway"
-		},
-		"type" : "device:gateway"
-=======
 		"category" : "device",
 		"description" : "Meshblu device connection manager",
 		"enabled" : true,
@@ -257,7 +224,6 @@
 			"type" : "device:gateblu"
 		},
 		"type" : "device:gateblu"
->>>>>>> FETCH_HEAD
 	},
 	{
 		"_id" : "53c9b832f400e177dca325b3",
@@ -275,7 +241,7 @@
 		"_id" : "53c9b833f400e177dca325b4",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : true,
+		"enabled" : false,
 		"name" : "Spotify",
 		"skynet" : {
 			"type" : "channel",
@@ -327,7 +293,7 @@
 		"_id" : "53c9b833f400e177dca325b5",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "LinkedIn",
 		"skynet" : {
 			"type" : "channel",
@@ -509,7 +475,7 @@
 		"_id" : "541b5072025549193cb8293a",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Instagram",
 		"skynet" : {
 			"type" : "channel",
@@ -622,7 +588,7 @@
 		"_id" : "53c9b83bf400e177dca325cb",
 		"category" : "channel",
 		"description" : "",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "Google Drive",
 		"skynet" : {
 			"type" : "channel",
@@ -713,7 +679,7 @@
 		"_id" : "53c9b83df400e177dca325d1",
 		"category" : "channel",
 		"description" : "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
-		"enabled" : false,
+		"enabled" : true,
 		"name" : "App.net",
 		"skynet" : {
 			"type" : "channel",
@@ -812,8 +778,6 @@
     },
     "channelid" : "5430bf6b66ffb0f988307ef9",
     "type" : "channel:sharefile"
-<<<<<<< HEAD
-=======
   },
   {
     "_id" : "613691c2-efaa-445f-bf30-1e62f8e46c86",
@@ -905,6 +869,5 @@
     },
     "channelid" : "53e14e6d8e3257fb7d6fdad1",
     "type" : "channel:youtube"
->>>>>>> FETCH_HEAD
   }
 ]

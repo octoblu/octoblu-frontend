@@ -1,21 +1,13 @@
 {
   "_id": "542ed0142df9c20401f53dcc",
   "application": {
-<<<<<<< HEAD
-    "base": "https://na1.salesforce.com/services/data/v20.0",
-=======
     "base": "https://:subdomain.salesforce.com/services/data/v20.0",
->>>>>>> FETCH_HEAD
     "resources": [
       {
         "path": "/query",
         "displayName": "/query",
         "doc": {
-<<<<<<< HEAD
-          "url": "GET https://na1.salesforce.com/services/data/v20.0/query"
-=======
           "url": "GET https://:subdomain.salesforce.com/services/data/v20.0/query"
->>>>>>> FETCH_HEAD
         },
         "httpMethod": "GET",
         "curl": "curl -X",
@@ -24,16 +16,6 @@
             "name": "q",
             "style": "query",
             "type": "string",
-<<<<<<< HEAD
-            "required": true,
-            "default": ""
-          }
-        ],
-        "url": "https://na1.salesforce.com/services/data/v20.0/query"
-      }
-    ]
-  },
-=======
             "displayName": "Query",
             "required": true,
             "default": ""
@@ -71,7 +53,6 @@
       "tokenMethod": "access_token_bearer"
     }
   },
->>>>>>> FETCH_HEAD
   "auth_strategy": "oauth",
   "documentation": "https://www.salesforce.com/us/developer/docs/api_rest",
   "enabled": true,

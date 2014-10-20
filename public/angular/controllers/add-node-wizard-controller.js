@@ -2,17 +2,6 @@ angular.module('octobluApp')
 .controller('AddNodeWizardController', function($scope, $state, NodeTypeService) {
   'use strict';
 
-<<<<<<< HEAD
-  var STATES = {
-    'channel': 'ob.nodewizard.addchannel.existing',
-    'device': 'ob.nodewizard.adddevice',
-    'microblu': 'ob.nodewizard.addmicroblu',
-    'gateway': 'ob.nodewizard.addgateway',
-    'subdevice': 'ob.nodewizard.addsubdevice.selectgateway'
-  };
-
-=======
->>>>>>> FETCH_HEAD
   NodeTypeService.getById($state.params.nodeTypeId).then(function(nodeType){
     var state = 'ob.nodewizard.adddevice';
 

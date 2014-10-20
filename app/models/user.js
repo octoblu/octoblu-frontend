@@ -115,12 +115,6 @@ UserSchema.methods.acceptTerms = function (termsAccepted) {
 };
 
 UserSchema.methods.overwriteOrAddApiByChannelId = function (channelid, options) {
-<<<<<<< HEAD
-  var old_api, new_api;
-
-  old_api = _.findWhere(this.api, {channelid: channelid});
-  this.api = _.without(this.api, old_api);
-=======
   var index, new_api;
 
   index = _.findIndex(this.api, {channelid: channelid});
@@ -128,7 +122,6 @@ UserSchema.methods.overwriteOrAddApiByChannelId = function (channelid, options) 
   if(index > -1){
     this.api.splice(index, 1);
   }
->>>>>>> FETCH_HEAD
 
   new_api = options || {};
   new_api.channelid = channelid;

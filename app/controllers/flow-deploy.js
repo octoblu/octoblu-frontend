@@ -1,24 +1,13 @@
-<<<<<<< HEAD
-var FlowDeploy = function(options){
-=======
 var FlowDeploy = function (options) {
->>>>>>> FETCH_HEAD
   var FlowDeploy, self, mongoose, Flow, _, meshblu;
 
   self = this;
   options = options || {};
   FlowDeploy = options.FlowDeploy || require('../models/flow-deploy');
-<<<<<<< HEAD
-  mongoose   = options.mongoose   || require('mongoose');
-  meshblu    = options.meshblu;
-  _          = require('lodash');
-  Flow       = mongoose.model('Flow');
-=======
   mongoose = options.mongoose || require('mongoose');
   meshblu = options.meshblu;
   _ = require('lodash');
   Flow = mongoose.model('Flow');
->>>>>>> FETCH_HEAD
 
   self.startInstance = function (req, res) {
     self.runOnInstance(req, FlowDeploy.start);

@@ -35,114 +35,8 @@
   },
   "application": {
     "base": "https://api.surveymonkey.net/v2",
-<<<<<<< HEAD
-    "resources": [{
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://api.surveymonkey.net/v2/batch/create_flow?api_key=your_api_key"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/create_flow",
-        "path": "/create_flow",
-        "params": [
-          {
-            "name": "survey.template_id",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-
-      },{
-            "name": "survey.from_survey_id",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-
-      },{
-            "name": "survey.survey_title",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-
-      },{
-            "name": "collector.type",
-            "style": "body",
-            "type": "String-ENUM",
-            "value": "",
-            "required": "true"
-
-      },{
-            "name": "collector.name",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-
-      },{
-            "name": "collector.recipients[_].email",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-
-      },{
-            "name": "collector.recipients[_].first_name",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-
-      },{
-            "name": "collector.recipients[_].last_name",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-
-      },{
-            "name": "collector.recipients[_].custom_id",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-
-      },{
-            "name": "collector.send",
-            "style": "body",
-            "type": "Boolean",
-            "value": "",
-            "required": "false"
-
-      },{
-            "name": "email_message.reply_email",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-
-      },{
-            "name": "email_message.subject",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-
-      },{
-            "name": "email_message.body_text",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-
-      },{
-=======
     "resources": [
       {
->>>>>>> FETCH_HEAD
         "httpMethod": "POST",
         "doc": {
           "url": "https://api.surveymonkey.net/v2/surveys/get_survey_details"
@@ -189,28 +83,28 @@
           {
             "name": "page",
             "style": "body",
-            "type": "Integer",
+            "type": "number",
             "value": "",
             "required": "false"
           },
           {
             "name": "page_size",
             "style": "body",
-            "type": "Integer",
+            "type": "number",
             "value": "",
             "required": "false"
           },
           {
             "name": "start_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
           {
             "name": "end_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
@@ -238,7 +132,7 @@
           {
             "name": "fields",
             "style": "body",
-            "type": "Array",
+            "type": "string",
             "value": "",
             "required": "false"
           }
@@ -266,28 +160,28 @@
           {
             "name": "page",
             "style": "body",
-            "type": "Integer",
+            "type": "number",
             "value": "",
             "required": "false"
           },
           {
             "name": "page_size",
             "style": "body",
-            "type": "Integer",
+            "type": "number",
             "value": "",
             "required": "false"
           },
           {
             "name": "start_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
           {
             "name": "end_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
@@ -301,14 +195,14 @@
           {
             "name": "order_asc",
             "style": "body",
-            "type": "Boolean",
+            "type": "string",
             "value": "",
             "required": "false"
           },
           {
             "name": "fields",
             "style": "body",
-            "type": "Array",
+            "type": "string",
             "value": "",
             "required": "false"
           }
@@ -378,42 +272,42 @@
           {
             "name": "page",
             "style": "body",
-            "type": "Integer",
+            "type": "number",
             "value": "",
             "required": "false"
           },
           {
             "name": "page_size",
             "style": "body",
-            "type": "Integer",
+            "type": "number",
             "value": "",
             "required": "false"
           },
           {
             "name": "start_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
           {
             "name": "end_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
           {
             "name": "start_modified_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
           {
             "name": "end_modified_date",
             "style": "body",
-            "type": "DateString",
+            "type": "string",
             "value": "",
             "required": "false"
           },
@@ -434,7 +328,7 @@
           {
             "name": "fields",
             "style": "body",
-            "type": "Array",
+            "type": "string",
             "value": "",
             "required": "false"
           }
@@ -455,7 +349,7 @@
           {
             "name": "respondent_ids",
             "style": "body",
-            "type": "Array of Strings",
+            "type": "string",
             "value": "",
             "required": "true"
           },
@@ -489,138 +383,7 @@
           }
         ],
         "url": "https://api.surveymonkey.net/v2/surveys/get_response_counts"
-<<<<<<< HEAD
-      },
-      {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://api.surveymonkey.net/v2/templates/get_template_list?api_key=your_api_key"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/get_template_list",
-        "path": "/get_template_list",
-        "params": [
-          {
-            "name": "page",
-            "style": "body",
-            "type": "Integer",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "page_size",
-            "style": "body",
-            "type": "Integer",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "language_id",
-            "style": "body",
-            "type": "Integer-ENUM",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "category_id",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "show_only_available_to_current_user",
-            "style": "body",
-            "type": "Boolean",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "fields",
-            "style": "body",
-            "type": "Array",
-            "value": "",
-            "required": "false"
-          }
-    ,
-      {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://api.surveymonkey.net/v2/batch/send_flow?api_key=your_api_key"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/send_flow",
-        "path": "/send_flow",
-        "params": [
-          {
-            "name": "survey_id",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "true"
-          },{
-            "name": "collector.type",
-            "style": "body",
-            "type": "String-ENUM",
-            "value": "",
-            "required": "true"
-          },{
-            "name": "collector.name",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "collector.recipients[_].email",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "true"
-          },{
-            "name": "collector.recipients[_].first_name",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "collector.recipients[_].last_name",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "collector.recipients[_].custom_id",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "collector.send",
-            "style": "body",
-            "type": "boolean",
-            "value": "",
-            "required": "false"
-          },{
-            "name": "email_message.reply_email",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "true"
-          },{
-            "name": "email_message.subject",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "true"
-          },{
-            "name": "email_message.body_text",
-            "style": "body",
-            "type": "String",
-            "value": "",
-            "required": "false"
-          }]
-=======
       }
     ]
   }
 }
->>>>>>> FETCH_HEAD
