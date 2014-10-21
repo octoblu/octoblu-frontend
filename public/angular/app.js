@@ -422,6 +422,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelSimpleController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
+      .state('ob.nodewizard.addchannel.header', {
+        url: '/header',
+        controller: 'addChannelHeaderController',
+        templateUrl: '/pages/node-wizard/add-channel/simple.html'
+      })
       .state('ob.nodewizard.addchannel.aws', {
         url: '/aws',
         controller: 'addChannelAWSController',

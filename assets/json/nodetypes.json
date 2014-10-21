@@ -536,10 +536,19 @@
     "_id" : "90d49e5d-abb8-4f98-8525-7129ca9f1356",
     "category" : "channel",
     "description" : "",
-    "enabled" : true,
+    "enabled" : false,
     "name" : "GoToMeeting",
     "channelid" : "a053d110f5cc498686f496e5",
     "type" : "channel:gotomeeting"
+  },
+  {
+    "_id" : "bac4a355-a89f-4a10-b279-1da92b4fdffc",
+    "category" : "channel",
+    "description" : "GoToMeeting Free",
+    "enabled" : true,
+    "name" : "GoToMeeting Free",
+    "channelid" : "54468c4914d3e4c4645c6e27",
+    "type" : "channel:gotomeeting-free"
   },
   {
     "_id" : "53c9b839f400e177dca325c7",
@@ -917,5 +926,18 @@
     },
     "channelid" : "54458c5b5a370c58ca66a147",
     "type" : "channel:podio"
+  },
+  {
+    "_id" : "900c3f60-f066-44ae-8bc4-0fe943bfcd8a",
+    "category" : "channel",
+    "description" : "Agile Zen",
+    "enabled" : false,
+    "name" : "Agile Zen",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "agile-zen"
+    },
+    "channelid" : "53eb9f4cdfc4201817c77acf",
+    "type" : "channel:agile-zen"
   }
 ]
