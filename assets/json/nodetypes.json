@@ -939,5 +939,18 @@
     },
     "channelid" : "53eb9f4cdfc4201817c77acf",
     "type" : "channel:agile-zen"
+  },
+  {
+    "_id" : "b71350dd-17ac-46db-9259-12fd07403d9c",
+    "category" : "channel",
+    "description" : "WP Remote",
+    "enabled" : true,
+    "name" : "WP Remote",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "wp-remote"
+    },
+    "channelid" : "53fe63446b465e1815c63732",
+    "type" : "channel:wp-remote"
   }
 ]
