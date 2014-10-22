@@ -64,5 +64,15 @@
   "enabled": true,
   "name": "Connect Sense",
   "oauth": {},
+  "defaultParams" : [
+  	{
+      "name": ":API_TOKEN",
+      "style": "url",
+      "type": "string",
+      "value": "",
+      "required": true,
+      "displayName" : "API Token"
+    }
+  ],
   "type": "channel:connect-sense"
 }

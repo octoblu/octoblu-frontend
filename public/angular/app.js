@@ -402,8 +402,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
           }
         }
       })
-      .state('ob.nodewizard.addchannel.existing', {
+      .state('ob.nodewizard.addchannel.default-options', {
         url: '',
+        controller: 'addDefaultOptionsController',
+        templateUrl: '/pages/node-wizard/add-channel/default-options.html'
+      })
+      .state('ob.nodewizard.addchannel.existing', {
+        url: '/existing',
         controller: 'addChannelExistingController',
         templateUrl: '/pages/node-wizard/add-channel/existing.html'
       })

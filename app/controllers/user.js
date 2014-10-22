@@ -33,9 +33,10 @@ module.exports = function (app) {
         var user = req.user,
             key = req.body.key,
             token = req.body.token,
+            defaultParams = req.body.defaultParams,
             custom_tokens = req.body.custom_tokens;
 
-        user.overwriteOrAddApiByChannelId(req.params.id, {authtype: 'oauth', key : key, token : token, custom_tokens : custom_tokens});
+        user.overwriteOrAddApiByChannelId(req.params.id, {authtype: 'oauth', key : key, token : token, custom_tokens : custom_tokens, defaultParams : defaultParams});
         user.save(function (err) {
             if (!err) {
                 res.json(user);
