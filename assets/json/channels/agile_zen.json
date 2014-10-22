@@ -1436,7 +1436,18 @@
   },
   "auth_strategy": "header",
   "oauth": {
-    "headerParam": "X-Zen-ApiKey"
+  	"development": {
+			"tokenMethod": "header",
+    	"headerParam": "X-Zen-ApiKey"
+		},
+  	"staging": {
+			"tokenMethod": "header",
+    	"headerParam": "X-Zen-ApiKey"
+		},
+		"production": {
+			"tokenMethod": "header",
+    	"headerParam": "X-Zen-ApiKey"
+		}
   },
   "custom_tokens": [],
   "description": "",
