@@ -32,7 +32,6 @@ angular.module('octobluApp')
               no_additional_properties: !scope.additionalProperties,
               startval: scope.editingDevice,
               disable_collapse: true,
-              required_by_default: true,
               disable_edit_json: !scope.allowJsonEdit,
               theme: 'bootstrap3',
               iconlib: 'font-awesome4'
