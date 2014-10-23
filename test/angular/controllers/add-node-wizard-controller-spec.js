@@ -70,7 +70,7 @@ describe('AddNodeWizardController', function () {
       });
 
       it('should redirect to the add channel state', function(){
-        expect(state.go).to.have.been.calledWith('ob.nodewizard.addchannel.existing', {nodeTypeId: 'channelid'});
+        expect(state.go).to.have.been.calledWith('ob.nodewizard.addchannel.default-options', {nodeTypeId: 'channelid'});
       });
     });
   });

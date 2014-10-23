@@ -109,9 +109,10 @@ this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 
 };
 
-this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback) {
+this.saveConnection = function (uuid, channelid, key, token, custom_tokens, callback, defaultParams) {
 
-  $http.put('/api/user/' + uuid+ '/channel/' + channelid, { key: key, token: token, custom_tokens: custom_tokens })
+  $http.put('/api/user/' + uuid+ '/channel/' + channelid,
+  	{ key: key, token: token, custom_tokens: custom_tokens, defaultParams : defaultParams })
   .success(function (data) {
     callback(data);
   })

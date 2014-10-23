@@ -60,6 +60,8 @@ passport.use(require('./config/salesforce'));
 passport.use(require('./config/quickbooks'));
 passport.use(require('./config/xero'));
 passport.use(require('./config/redbooth'));
+passport.use(require('./config/podio'));
+passport.use(require('./config/wordpress'));
 passport.use(require('./config/local'));
 
 // set up our express application
