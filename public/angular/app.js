@@ -402,8 +402,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
           }
         }
       })
-      .state('ob.nodewizard.addchannel.existing', {
+      .state('ob.nodewizard.addchannel.default-options', {
         url: '',
+        controller: 'addDefaultOptionsController',
+        templateUrl: '/pages/node-wizard/add-channel/default-options.html'
+      })
+      .state('ob.nodewizard.addchannel.existing', {
+        url: '/existing',
         controller: 'addChannelExistingController',
         templateUrl: '/pages/node-wizard/add-channel/existing.html'
       })
@@ -420,6 +425,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.nodewizard.addchannel.simple', {
         url: '/simple',
         controller: 'addChannelSimpleController',
+        templateUrl: '/pages/node-wizard/add-channel/simple.html'
+      })
+      .state('ob.nodewizard.addchannel.header', {
+        url: '/header',
+        controller: 'addChannelHeaderController',
         templateUrl: '/pages/node-wizard/add-channel/simple.html'
       })
       .state('ob.nodewizard.addchannel.aws', {

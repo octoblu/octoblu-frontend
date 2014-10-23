@@ -1,4 +1,8 @@
-{"_id": "kdskhdsfhef993id0d038d",
+{
+	"_id": "544583a75a370c58ca66a146",
+  "name" : "Adsense Management",
+  "type" : "channel:google-adsense-management",
+  "auth_strategy" : "oauth",
   "application": {
     "base": "https://www.googleapis.com/adsense/v1.4",
     "resources": [
@@ -639,5 +643,16 @@
         "url": "https://www.googleapis.com/adsense/v1.4/metadata/metrics"
       }
     ]
-  }
+  },
+  "oauth" : {
+	  "development" : {
+	    "tokenMethod" : "access_token_query"
+	  },
+	  "staging" : {
+	    "tokenMethod" : "access_token_query"
+	  },
+	  "development" : {
+	    "tokenMethod" : "access_token_query"
+	  }
+	}
 }

@@ -10,7 +10,7 @@ angular.module('octobluApp')
     }
 
     if(nodeType.category === 'channel'){
-      state = 'ob.nodewizard.addchannel.existing';
+      state = 'ob.nodewizard.addchannel.default-options';
     }
 
     if(nodeType.connector){

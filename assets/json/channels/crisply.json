@@ -2,7 +2,7 @@
   "_id": "53ee6fb263a8751728a5a3c0",
   "__v": 0,
   "application": {
-    "base": "http://crisply.com/api/v1",
+    "base": "https://:subdomain.crisply.com/api/v1",
     "resources": [
       {
         "httpMethod": "POST",
@@ -14,7 +14,14 @@
         },
         "displayName": "/activity_items.xml",
         "path": "/activity_items.xml",
-        "url": "http://crisply.com/api/v1/activity_items.xml"
+        "url": "https://:subdomain.crisply.com/api/activity_items.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -33,9 +40,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "http://crisply.com/api/v1/activity_items.xml"
+        "url": "https://:subdomain.crisply.com/api/activity_items.xml"
       },
       {
         "httpMethod": "POST",
@@ -47,7 +61,14 @@
         },
         "displayName": "/clients.xml",
         "path": "/clients.xml",
-        "url": "http://crisply.com/api/v1/clients.xml"
+        "url": "https://:subdomain.crisply.com/api/clients.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "PUT",
@@ -59,7 +80,14 @@
         },
         "displayName": "/clients/{id}.xml",
         "path": "/clients/{id}.xml",
-        "url": "http://crisply.com/api/v1/clients/{id}.xml"
+        "url": "https://:subdomain.crisply.com/api/clients/{id}.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -71,7 +99,14 @@
         },
         "displayName": "/clients.xml",
         "path": "/clients.xml",
-        "url": "http://crisply.com/api/v1/clients.xml"
+        "url": "https://:subdomain.crisply.com/api/clients.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -83,7 +118,14 @@
         },
         "displayName": "/clients/{id}.xml",
         "path": "/clients/{id}.xml",
-        "url": "http://crisply.com/api/v1/clients/{id}.xml"
+        "url": "https://:subdomain.crisply.com/api/clients/{id}.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "POST",
@@ -95,7 +137,14 @@
         },
         "displayName": "/projects.xml",
         "path": "/projects.xml",
-        "url": "http://crisply.com/api/v1/projects.xml"
+        "url": "https://:subdomain.crisply.com/api/projects.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "PUT",
@@ -107,7 +156,14 @@
         },
         "displayName": "/projects/{id}.xml",
         "path": "/projects/{id}.xml",
-        "url": "http://crisply.com/api/v1/projects/{id}.xml"
+        "url": "https://:subdomain.crisply.com/api/projects/{id}.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -119,7 +175,14 @@
         },
         "displayName": "/projects.xml",
         "path": "/projects.xml",
-        "url": "http://crisply.com/api/v1/projects.xml"
+        "url": "https://:subdomain.crisply.com/api/projects.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -131,7 +194,14 @@
         },
         "displayName": "/projects/{id}.xml",
         "path": "/projects/{id}.xml",
-        "url": "http://crisply.com/api/v1/projects/{id}.xml"
+        "url": "https://:subdomain.crisply.com/api/projects/{id}.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "POST",
@@ -143,7 +213,14 @@
         },
         "displayName": "/users.xml",
         "path": "/users.xml",
-        "url": "http://crisply.com/api/v1/users.xml"
+        "url": "https://:subdomain.crisply.com/api/users.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "PUT",
@@ -155,7 +232,14 @@
         },
         "path": "/user/{id}.xml",
         "displayName": "/user/{id}.xml",
-        "url": "http://crisply.com/api/v1/user/{id}.xml"
+        "url": "https://:subdomain.crisply.com/api/user/{id}.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -167,7 +251,14 @@
         },
         "displayName": "/users.xml",
         "path": "/users.xml",
-        "url": "http://crisply.com/api/v1/users.xml"
+        "url": "https://:subdomain.crisply.com/api/users.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -179,7 +270,14 @@
         },
         "displayName": "/users/{id}.xml",
         "path": "/users/{id}.xml",
-        "url": "http://crisply.com/api/v1/users/{id}.xml"
+        "url": "https://:subdomain.crisply.com/api/users/{id}.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -191,7 +289,14 @@
         },
         "displayName": "/users/me.xml",
         "path": "/users/me.xml",
-        "url": "http://crisply.com/api/v1/users/me.xml"
+        "url": "https://:subdomain.crisply.com/api/users/me.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "PUT",
@@ -203,7 +308,14 @@
         },
         "displayName": "/project_assignments.xml",
         "path": "/project_assignments.xml",
-        "url": "http://crisply.com/api/v1/project_assignments.xml"
+        "url": "https://:subdomain.crisply.com/api/project_assignments.xml",
+        "params": [{
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }]
       },
       {
         "httpMethod": "GET",
@@ -229,9 +341,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "http://crisply.com/api/v1/project_assignments.xml"
+        "url": "https://:subdomain.crisply.com/api/project_assignments.xml"
       },
       {
         "httpMethod": "GET",
@@ -250,15 +369,36 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":subdomain",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "http://crisply.com/api/v1/time_entries.xml"
+        "url": "https://:subdomain.crisply.com/api/time_entries.xml"
       }
     ]
   },
-  "auth_strategy": "basic",
+  "auth_strategy": "header",
   "custom_tokens": [],
   "description": "",
+  "oauth": {
+    "development": {
+      "tokenMethod": "header",
+      "headerParam": "X-Crisply-Authentication"
+    },
+    "staging": {
+      "tokenMethod": "header",
+      "headerParam": "X-Crisply-Authentication"
+    },
+    "production": {
+      "tokenMethod": "header",
+      "headerParam": "X-Crisply-Authentication"
+    }
+  },
   "documentation": "http://support.crisply.com/customer/portal/articles/250733-overview",
   "enabled": true,
   "name": "Crisply",
