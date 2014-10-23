@@ -991,5 +991,18 @@
     },
     "channelid" : "5447dced5534771656d0fdf5",
     "type" : "channel:wordpress"
+  },
+  {
+    "_id" : "6dfb4c80-696f-4aa6-aeb2-0ddd2c7f40f9",
+    "category" : "channel",
+    "description" : "UserVoice",
+    "enabled" : true,
+    "name" : "UserVoice",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "uservoice"
+    },
+    "channelid" : "53f616b5710850ee08e28482",
+    "type" : "channel:uservoice"
   }
 ]

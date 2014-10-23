@@ -126,6 +126,9 @@ module.exports = function(app, passport) {
     var WordPressController = require('./controllers/wordpress-controller');
     var wordPressController = new WordPressController();
 
+    var UserVoiceController = require('./controllers/uservoice-controller');
+    var userVoiceController = new UserVoiceController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -278,6 +281,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/wordpress',          wordPressController.authorize);
             app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
+
+            app.get('/api/oauth/uservoice',          userVoiceController.authorize);
+            app.get('/api/oauth/uservoice/callback', userVoiceController.callback, userVoiceController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
