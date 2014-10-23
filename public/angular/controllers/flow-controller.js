@@ -54,10 +54,28 @@ angular.module('octobluApp')
         });
     };
 
+    function escapeLargeValue(value){
+    	var maxLength = 500;
+			if(value.length > maxLength){
+    		return '...value to long...';
+    	}
+    	return value;
+    }
+
     function pushDebugLines(message){
-      var debug = {};
+      var debug = {}, newMessage, msg;
       debug.date = new Date();
-      debug.message = message;
+      newMessage = _.clone(message);
+      if(newMessage.msg){
+      	if(_.isArray(newMessage.msg)){
+		      newMessage.msg = _.map(newMessage.msg, function(value){
+		      	return _.mapValues(value, escapeLargeValue);
+		      });
+      	}else if(_.isObject(newMessage.msg)){
+		      newMessage.msg = _.mapValues(newMessage.msg, escapeLargeValue);
+      	}
+	    }
+      debug.message = newMessage;
       $scope.debugLines.unshift(debug);
       if ($scope.debugLines.length > 100) {
         $scope.debugLines.pop();
@@ -66,13 +84,13 @@ angular.module('octobluApp')
 
     $scope.$on('flow-node-debug', function (event, options) {
       $log.debug(options);
-      pushDebugLines(_.clone(options.message));
+      pushDebugLines(options.message);
       $scope.$apply();
     });
 
     $scope.$on('flow-node-error', function(event, options) {
       $log.debug(options);
-      pushDebugLines(_.clone(options.message));
+      pushDebugLines(options.message);
       options.node.errorMessage = options.message.msg;
       $scope.$apply();
     });
