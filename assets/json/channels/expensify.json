@@ -1,0 +1,1028 @@
+{
+  "_id": "dkr99d93jti5u39eif9302",
+  "application": {
+    "base": "https://integrations.expensify.com",
+    "resources": [
+      {
+        "path": "/ReportExporter",
+        "displayName": "/ReportExporter",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "onReceive",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "outputSettings",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "test"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "limit"
+        },{
+            "style": "query",
+            "type": "array",
+            "name": "onFinish"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "partnerUserID",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "partnerUserSecret",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "immediateResponse",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "query",
+            "type": "object",
+            "name": "filters",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "reportState"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "employeeEmail"
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "reportIDList"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "policyIDList"
+          },{
+            "style": "query",
+            "type": "Date",
+            "name": "startDate",
+            "required": true
+        },{
+            "style": "query",
+            "type": "Date",
+            "name": "endDate"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "markedAsExported"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "fileExtension",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "fileBasename"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "actionName"
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "recipients",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "message",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "label",
+            "required": true
+        },{
+            "style": "query",
+            "type": "object",
+            "name": "sftpData",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "host",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "login",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "password",
+            "required": true
+          },{
+            "style": "query",
+            "type": "Integer",
+            "name": "port",
+            "required": true
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/ReportExporter",
+        "displayName": "/ReportExporter",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "onReceive",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "outputSettings",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "test"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "limit"
+        },{
+            "style": "body",
+            "type": "array",
+            "name": "onFinish"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserID",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserSecret",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "immediateResponse",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "object",
+            "name": "filters",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "reportState"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "employeeEmail"
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "reportIDList"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "policyIDList"
+          },{
+            "style": "body",
+            "type": "Date",
+            "name": "startDate",
+            "required": true
+        },{
+            "style": "body",
+            "type": "Date",
+            "name": "endDate"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "markedAsExported"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "fileExtension",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "fileBasename"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "actionName"
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "recipients",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "message",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "label",
+            "required": true
+        },{
+            "style": "body",
+            "type": "object",
+            "name": "sftpData",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "host",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "login",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "password",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Integer",
+            "name": "port",
+            "required": true
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/ReportCreator",
+        "displayName": "/ReportCreator",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "partnerUserID",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "partnerUserSecret",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "employeeEmail",
+            "required": true
+          },{
+            "style": "query",
+            "type": "Object",
+            "name": "report",
+            "required": true
+        },{
+            "style": "query",
+            "type": "array",
+            "name": "expenses"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "policyID",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "title",
+            "required": true
+          },{
+            "style": "query",
+            "type": "Object",
+            "name": "fields"
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "merchant",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "currency",
+            "required": true
+          },{
+            "style": "query",
+            "type": "Date",
+            "name": "date",
+            "required": true
+          },{
+            "style": "query",
+            "type": "Integer",
+            "name": "amount",
+            "required": true
+        }],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/ReportCreator",
+        "displayName": "/ReportCreator",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserID",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserSecret",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "employeeEmail",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Object",
+            "name": "report",
+            "required": true
+        },{
+            "style": "body",
+            "type": "array",
+            "name": "expenses"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "policyID",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "title",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Object",
+            "name": "fields"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "merchant",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "currency",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Date",
+            "name": "date",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Integer",
+            "name": "amount",
+            "required": true
+        }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/ExpenseCreator",
+        "displayName": "/ExpenseCreator",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "employeeEmail",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "array",
+            "name": "transactionList",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "merchant",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "created",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "Integer",
+            "name": "amount",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "currency",
+            "required": true
+          }],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/PolicyCreator",
+        "displayName": "/PolicyCreator",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "query",
+            "type": "String",
+            "name": "policyName",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "plan"
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/PolicyCreator",
+        "displayName": "/PolicyCreator",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "policyName",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "plan"
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/Filedownloader",
+        "displayName": "/Filedownloader",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "fileName",
+            "required": true
+          },
+          {
+            "style": "query",
+            "type": "String",
+            "name": "partnerUserID",
+            "required": true
+          },{
+            "style": "query",
+            "type": "String",
+            "name": "partnerUserSecret",
+            "required": true
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/Filedownloader",
+        "displayName": "/Filedownloader",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "fileName",
+            "required": true
+          },
+          {
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserID",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserSecret",
+            "required": true
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },{
+        "path": "/EmployeeUpdater",
+        "displayName": "/EmployeeUpdater",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "Post",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserID",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "partnerUserSecret",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "fileType",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "policyID",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "EmployeeEmail",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "ManagerEmail",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Boolean",
+            "name": "Admin",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "EmployeeUserId"
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "EmployeePayrollId"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "ForwardManagerEmail"
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/PolicyUpdater",
+        "displayName": "/PolicyUpdater",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "categories"
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "tags"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "reportFields"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "policyID",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "action",
+            "required": true
+          },{
+            "style": "body",
+            "type": "array",
+            "name": "data",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "name",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Boolean",
+            "name": "enabled",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "glCode"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "payrollCode"
+          },{
+            "style": "body",
+            "type": "Boolean",
+            "name": "areCommentsRequired"
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "commentHint"
+          },{
+            "style": "body",
+            "type": "Integer",
+            "name": "maxExpenseAmount"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "action",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "data"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "name",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "tags",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "name",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Boolean",
+            "name": "enabled"
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "glCode"
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "action",
+            "required": true
+          },{
+            "style": "body",
+            "type": "array",
+            "name": "data",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "name",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "values",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "defaultValue"
+          }
+        ],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      },
+      {
+        "path": "/ReportStatusUpdater",
+        "displayName": "/ReportStatusUpdater",
+        "doc": {
+          "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "credentials",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "inputSettings",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "type",
+            "required": true
+        },{
+            "style": "body",
+            "type": "String",
+            "name": "status",
+            "required": true
+          },{
+            "style": "body",
+            "type": "object",
+            "name": "filters",
+            "required": true
+          },{
+            "style": "body",
+            "type": "String",
+            "name": "reportIDList"
+        },{
+            "style": "body",
+            "type": "Date",
+            "name": "startDate",
+            "required": true
+          },{
+            "style": "body",
+            "type": "Date",
+            "name": "endDate"
+          }],
+        "url": "https://integrations.expensify.com/Integration-Server/ExpensifyIntegrations"
+      }
+    ]
+  },
+  "type": "channel:",
+  "auth_strategy": "oauth",
+  "name": "DoubleClickSearch",
+  "oauth": {
+    "development": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "staging": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    },
+    "production": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": "",
+      "tokenMethod": ""
+    }
+  }
+}
