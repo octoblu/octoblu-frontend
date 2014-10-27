@@ -7,9 +7,8 @@ angular.module('octobluApp')
       options = options || {};
 
       return $http.get('/api/nodes', options).then(function (results) {
-        return results.data
-          .map(deviceService.getAutoUpdatingDevice)
-          .map(deviceService.addLogoUrl);
+        _.each(results.data, deviceService.addOrUpdateDevice);
+        return deviceService.getDevices();
       });
     };
 

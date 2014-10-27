@@ -159,7 +159,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
       .state('ob.connector.nodes.device-detail', {
         url: '/device/:uuid',
         controller: 'DeviceDetailController',
-        templateUrl: '/pages/connector/devices/detail/index.html'
+        templateUrl: '/pages/connector/devices/detail/index.html',
+        resolve: {
+          device: function(deviceService, $stateParams){
+                return deviceService.getDeviceByUUID($stateParams.uuid);
+          }
+        }
       })
       .state('ob.connector.nodes.microblu-detail', {
         url: '/microblu/:uuid',

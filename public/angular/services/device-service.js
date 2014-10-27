@@ -25,6 +25,8 @@ angular.module('octobluApp')
                 }
                 $rootScope.$apply();
             });
+
+            skynetConnection.on('config', service.addOrUpdateDevice);
         });
 
 
@@ -39,34 +41,31 @@ angular.module('octobluApp')
             });
         };
 
-        var service = {
-            getAutoUpdatingDevice: function(device){
+        var service = window.ds = {
+            addOrUpdateDevice: function(device){
                 subscribeToDevice(device);
                 var existingDevice = _.findWhere(myDevices, {uuid: device.uuid});
                 if(existingDevice) {
-                    return _.extend(existingDevice, device);
+                    _.extend(existingDevice, device);
+                    return;
                 }
                 myDevices.push(device);
-                return device;
             },
             getDevices: function (force) {
-                var defer = $q.defer();
-                if (myDevices.length && !force) {
-                    defer.resolve(myDevices);
-                } else {
-                    skynetPromise
-                        .then(function (skynetConnection) {
-                            skynetConnection.mydevices({}, function (result) {
-                                myDevices.length = 0;
-                                _.each(result.devices, function (device) {
-                                    addDevice(device);
-                                });
-
-                                defer.resolve(myDevices);
-                            });
-                        });
-                }
-                return defer.promise;
+                return skynetPromise.then(function(skynetConnection){
+                    if (myDevices.length && !force) {
+                        return myDevices;
+                    }
+                    var defer = $q.defer();
+                    skynetConnection.mydevices({}, function (result) {
+                        myDevices.length = 0;
+                        _.each(result.devices, addDevice);
+                        defer.resolve(myDevices);
+                    });
+                    return defer.promise;
+                }).then(function(devices){
+                    return _.map(devices, service.addLogoUrl);
+                });
             },
 
             getSharedDevices: function (force) {
