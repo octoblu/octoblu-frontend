@@ -80,8 +80,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
           currentUser: function (AuthService) {
             return AuthService.getCurrentUser();
           },
-          myDevices: function (NodeService) {
-            return NodeService.getNodes({cache: false})
+          myDevices: function (deviceService) {
+            return deviceService.getDevices();
           }
         },
         onEnter: function ($state, currentUser) {
