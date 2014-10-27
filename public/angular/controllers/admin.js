@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('adminController', function (allGroupResourcePermissions, $log, $scope, $modal, $state, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
+    .controller('adminController', function (allGroupResourcePermissions,  $scope, $modal, $state, allDevices, operatorsGroup, GroupService, PermissionsService, InvitationService) {
         $scope.allDevices = allDevices;
         $scope.allGroupResourcePermissions = allGroupResourcePermissions;
         $scope.ownedDevices = allDevices;
