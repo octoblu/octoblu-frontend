@@ -129,6 +129,9 @@ module.exports = function(app, passport) {
     var UserVoiceController = require('./controllers/uservoice-controller');
     var userVoiceController = new UserVoiceController();
 
+    var GoToMeetingFreeController = require('./controllers/gotomeeting-free-controller');
+    var goToMeetingFreeController = new GoToMeetingFreeController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -284,6 +287,8 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/uservoice',          userVoiceController.authorize);
             app.get('/api/oauth/uservoice/callback', userVoiceController.callback, userVoiceController.redirectToDesigner);
+
+            app.get('/api/oauth/gotomeeting-free', goToMeetingFreeController.authorize, goToMeetingFreeController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
