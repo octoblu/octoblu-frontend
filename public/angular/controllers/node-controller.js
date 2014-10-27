@@ -1,10 +1,8 @@
 angular.module('octobluApp')
-.controller('NodeController', function ($scope, $state, NodeService) {
+.controller('NodeController', function ($scope, $state, myDevices) {
     'use strict';
 
-    NodeService.getNodes({cache: false}).then(function(nodes){
-        $scope.nodes = nodes;
-    });
+    $scope.nodes = myDevices;
 
     $scope.nextStepUrl = function (node) {
         var sref = 'ob.connector.nodes.' + node.category + '-detail';
