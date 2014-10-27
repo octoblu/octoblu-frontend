@@ -63,8 +63,9 @@ var FlowDeploy = function(options){
       node.oauth = {};
       var userApiMatch = _.findWhere(userApis, {'_id': new mongoose.Types.ObjectId(node.channelActivationId)});
       if (userApiMatch) {
-        node.oauth.access_token = userApiMatch.token;
+        node.oauth.access_token = userApiMatch.token || userApiMatch.key;
         node.oauth.access_token_secret = userApiMatch.secret;
+        node.defaultParams = userApiMatch.defaultParams;
       }
       var channelApiMatch = _.findWhere(channelApis, {'_id': node.channelid});
       if (channelApiMatch) {

@@ -11,9 +11,7 @@ angular.module('octobluApp')
 
   $scope.activate = function(){
     channelPromise.then(function(){
-      var path = getPath();
-      console.log('Path', path);
-      $window.location.href = path;
+      $window.location.href = getPath();
     });
   };
 });

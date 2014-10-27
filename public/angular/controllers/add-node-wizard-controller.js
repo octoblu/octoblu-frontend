@@ -10,10 +10,10 @@ angular.module('octobluApp')
     }
 
     if(nodeType.category === 'channel'){
-      state = 'ob.nodewizard.addchannel.existing';
+      state = 'ob.nodewizard.addchannel.default-options';
     }
 
-    if(nodeType.gatebluCapable){
+    if(nodeType.connector){
       state = 'ob.nodewizard.addsubdevice.selectgateblu';
     }
 

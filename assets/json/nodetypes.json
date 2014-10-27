@@ -1,719 +1,737 @@
 [
-	{
-		"_id" : "53c9b82ef400e177dca325a1",
-		"category" : "device",
-		"description" : "SkyNet cloud",
-		"enabled" : true,
-		"name" : "Meshblu",
-		"skynet" : {
-			"type" : "skynet",
-			"subtype" : "cloud"
-		},
-		"type" : "device:cloud"
-	},
-	{
-		"_id" : "53c9b82ef400e177dca325a2",
-		"category" : "microblu",
-		"description" : "Arduino microcontroller",
-		"enabled" : true,
-		"name" : "Arduino",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "arduino"
-		},
-		"type" : "device:arduino"
-	},
-	{
-		"_id" : "53c9b82ff400e177dca325a3",
-		"category" : "device",
-		"gatebluCapable": true,
-		"description" : "Philips Hue light bulbs",
-		"enabled" : true,
-		"name" : "Philips Hue",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "hue"
-		},
-		"connector": "meshblu-hue",
-		"type" : "device:hue"
-	},
-	{
-		"_id" : "543ee87c979057a612382e18",
-		"category" : "device",
-		"gatebluCapable": true,
-		"description" : "Thalmic Labs MYO",
-		"enabled" : true,
-		"name" : "MYO",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "myo"
-		},
-		"connector": "meshblu-myo",
-		"type" : "device:myo"
-	},
-	{
-		"_id" : "53c9b82ff400e177dca325a4",
-		"category" : "device",
-		"description" : "Belkin Wemo home automation",
-		"enabled" : true,
-		"gatebluCapable" : true,
-		"name" : "Belkin Wemo",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "wemo"
-		},
-		"connector": "meshblu-wemo",
-		"type" : "device:wemo"
-	},
-	{
-		"_id" : "53c9b82ff400e177dca325a7",
-		"category" : "device",
-		"description" : "Blink1 USB LED",
-		"enabled" : true,
-		"gatebluCapable": true,
-		"name" : "Blink(1)",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "blink1"
-		},
-		"connector": "meshblu-blink1",
-		"type" : "device:blink1"
-	},
-	{
-		"_id" : "53c9b82ff400e177dca325a6",
-		"category" : "subdevice",
-		"description" : "Insteon home automation",
-		"enabled" : true,
-		"name" : "Insteon",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "insteon",
-			"plugin" : "skynet-insteon"
-		},
-		"type" : "device:insteon"
-	},
-	{
-		"_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",
-		"category" : "subdevice",
-		"description" : "AllJoyn",
-		"enabled" : true,
-		"name" : "AllJoyn",
-		"skynet" : {
-			"type" : "subdevice",
-			"subtype" : "alljoyn",
-			"plugin" : "skynet-alljoyn"
-		},
-		"type" : "subdevice:alljoyn"
-	},
-	{
-		"_id" : "53c9b830f400e177dca325a8",
-		"category" : "device",
-		"description" : "Raspberry Pi",
-		"enabled" : true,
-		"name" : "RaspberryPi",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "raspberrypi"
-		},
-		"type" : "device:raspberrypi"
-	},
-	{
-		"_id" : "53c9b830f400e177dca325a9",
-		"category" : "device",
-		"description" : "Intel Galileo",
-		"enabled" : true,
-		"name" : "Intel Galileo",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "galileo"
-		},
-		"type" : "device:galileo"
-	},
-	{
-		"_id" : "53c9b830f400e177dca325aa",
-		"category" : "device",
-		"description" : "Beagle Bone",
-		"enabled" : true,
-		"name" : "BeagleBone",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "beaglebone"
-		},
-		"type" : "device:beaglebone"
-	},
-	{
-		"_id" : "5f8f2fa1349c4a1293109486",
-		"category" : "subdevice",
-		"description" : "Lightblue Bean",
-		"enabled" : true,
-		"name" : "Lightblue Bean",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "bean",
-			"plugin" : "skynet-bean"
-		},
-		"type" : "subdevice:bean"
-	},
-	{
-		"_id" : "53c9b830f400e177dca325ab",
-		"category" : "device",
-		"description" : "Spark device",
-		"enabled" : true,
-		"name" : "Spark",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "spark"
-		},
-		"type" : "device:spark"
-	},
-	{
-		"_id" : "53c9b830f400e177dca325ac",
-		"category" : "device",
-		"description" : "Pinoccio device",
-		"enabled" : true,
-		"name" : "Pinoccio",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "pinoccio"
-		},
-		"type" : "device:pinoccio"
-	},
-	{
-		"_id" : "53c9b830f400e177dca325ad",
-		"category" : "device",
-		"description" : "Tessel device",
-		"enabled" : true,
-		"name" : "Tessel",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "tessel"
-		},
-		"type" : "device:tessel"
-	},
-	{
-		"_id" : "53c9b831f400e177dca325ae",
-		"category" : "device",
-		"description" : "Apple iOS Device",
-		"enabled" : true,
-		"name" : "Apple",
-		"skynet" : {
-			"type" : "octobluMobile",
-			"subtype" : "apple"
-		},
-		"type" : "device:apple"
-	},
-	{
-		"_id" : "53c9b831f400e177dca325af",
-		"category" : "device",
-		"description" : "Android Device",
-		"enabled" : true,
-		"name" : "Android",
-		"skynet" : {
-			"type" : "octobluMobile",
-			"subtype" : "android"
-		},
-		"type" : "device:android"
-	},
-	{
-		"_id" : "53c9b831f400e177dca325b0",
-		"category" : "device",
-		"description" : "Meshblu device connection manager",
-		"enabled" : true,
-		"name" : "Gateblu",
-		"skynet" : {
-			"type" : "device:gateblu"
-		},
-		"type" : "device:gateblu"
-	},
-	{
-		"_id" : "53c9b832f400e177dca325b3",
-		"category" : "device",
-		"description" : "Other Generic Device",
-		"enabled" : true,
-		"name" : "Generic Device",
-		"skynet" : {
-			"type" : "device",
-			"subtype" : "other"
-		},
-		"type" : "device:other"
-	},
-	{
-		"_id" : "53c9b833f400e177dca325b4",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Spotify",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Spotify"
-		},
-		"channelid" : "52f9b382e641dbb25d000001",
-		"type" : "channel:spotify"
-	},
-	{
-		"_id" : "53c9b836f400e177dca325bd",
-		"category" : "channel",
-		"description" : "Get YAHOO! Finance stock price",
-		"enabled" : true,
-		"name" : "StockPrice",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "StockPrice"
-		},
-		"channelid" : "53275d4841da719147d9e36a",
-		"type" : "channel:stock-price"
-	},
-	{
-		"_id" : "53c9b837f400e177dca325bf",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Evernote",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Evernote"
-		},
-		"channelid" : "533b504c57090ef0e5cc350f",
-		"type" : "channel:evernote"
-	},
-	{
-		"_id" : "53c9b837f400e177dca325c2",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Vimeo",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Vimeo"
-		},
-		"channelid" : "52f97d3c0db568444400040e",
-		"type" : "channel:vimeo"
-	},
-	{
-		"_id" : "53c9b833f400e177dca325b5",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "LinkedIn",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "LinkedIn"
-		},
-		"channelid" : "52f97c5ba990930c8c0003ca",
-		"type" : "channel:linked-in"
-	},
-	{
-		"_id" : "53c9b834f400e177dca325b6",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "FitBit",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "FitBit"
-		},
-		"channelid" : "52f97cc5a9909344830004ec",
-		"type" : "channel:fitbit"
-	},
-	{
-		"_id" : "53c9b834f400e177dca325b7",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Tumblr",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Tumblr"
-		},
-		"channelid" : "52f97e4366f76866b600051d",
-		"type" : "channel:tumblr"
-	},
-	{
-		"_id" : "53c9b834f400e177dca325b8",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Twilio",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Twilio"
-		},
-		"channelid" : "53e268e18e3257fb7d6fdad4",
-		"type" : "channel:twilio"
-	},
-	{
-		"_id" : "53c9b835f400e177dca325b9",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Tropo",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Tropo"
-		},
-		"channelid" : "52f97e98a9909344830004f7",
-		"type" : "channel:tropo"
-	},
-	{
-		"_id" : "53c9b835f400e177dca325ba",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "StackOverflow",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "StackOverflow"
-		},
-		"channelid" : "52f9b35c9f713b92e5000001",
-		"type" : "channel:stack-overflow"
-	},
-	{
-		"_id" : "53c9b835f400e177dca325bb",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "NewYorkTimes",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "NewYorkTimes"
-		},
-		"channelid" : "52f9b454e641dbb25d00000c",
-		"type" : "channel:new-york-times"
-	},
-	{
-		"_id" : "53c9b836f400e177dca325bc",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "MusixMatch",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "MusixMatch"
-		},
-		"channelid" : "52f9b53cebbb407a9400000b",
-		"type" : "channel:musix-match"
-	},
-	{
-		"_id" : "53c9b836f400e177dca325be",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Weather",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Weather"
-		},
-		"channelid" : "5337a38d76a65b9693bc2a9f",
-		"type" : "channel:weather"
-	},
-	{
-		"_id" : "53c9b837f400e177dca325c0",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Rdio",
-		"skynet" : {
-			"subtype" : "Rdio",
-			"type" : "channel"
-		},
-		"channelid" : "53d15c363e304fe01a0851ee",
-		"type" : "channel:rdio"
-	},
-	{
-		"_id" : "53c9b837f400e177dca325c1",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Readability",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Readability"
-		},
-		"channelid" : "52f9b3b66970a8d041000001",
-		"type" : "channel:readability"
-	},
-	{
-		"_id" : "53c9b837f400e177dca325c3",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Delicious",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Delicious"
-		},
-		"channelid" : "52f9b75bdfeb56fca700000d",
-		"type" : "channel:delicious"
-	},
-	{
-		"_id" : "53c9b838f400e177dca325c4",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Paypal",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Paypal"
-		},
-		"channelid" : "537d58762699fc4331e85167",
-		"type" : "channel:paypal"
-	},
-	{
-		"_id" : "53c9b838f400e177dca325c5",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Nest",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Nest"
-		},
-		"channelid" : "53c403b467605b33c1d4b09b",
-		"type" : "channel:nest"
-	},
-	{
-		"_id" : "541b5072025549193cb8293a",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Instagram",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Instagram"
-		},
-		"channelid" : "541b21fe025549193cb82939",
-		"type" : "channel:instagram"
-	},
-	{
-		"_id" : "542593853fb93d59863dfaef",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "FourSquare",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "FourSquare"
-		},
-		"channelid" : "52f9b628ebbb409983000001",
-		"type" : "channel:four-square"
-	},
-	{
-		"_id" : "53c9b838f400e177dca325c6",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Etsy",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Etsy"
-		},
-		"channelid" : "52f9b6a7ebbb407a94000021",
-		"type" : "channel:etsy"
-	},
-	{
-		"_id" : "53d2de0160c378a87a0f908c",
-		"category" : "channel",
-		"description" : "Give your entire team access to our powerful online survey platform. SurveyMonkey Enterprise helps anyone in any function use surveys to make smarter decisions, while your organization gets complete control of your data, users and billing.",
-		"enabled" : true,
-		"name" : "Survey Monkey",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Survey Monkey"
-		},
-		"channelid" : "53e259588e3257fb7d6fdad3",
-		"type" : "channel:survey-monkey"
-	},
-	{
-		"_id" : "90d49e5d-abb8-4f98-8525-7129ca9f1356",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "GoToMeeting",
-		"channelid" : "a053d110f5cc498686f496e5",
-		"type" : "channel:gotomeeting"
-	},
-	{
-		"_id" : "53c9b839f400e177dca325c7",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Twitter",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Twitter"
-		},
-		"channelid" : "5409f79403f1d8b163401370",
-		"type" : "channel:twitter"
-	},
-	{
-		"_id" : "53c9b839f400e177dca325c8",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Github",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Github"
-		},
-		"channelid" : "532a258a50411e5802cb8053",
-		"type" : "channel:github"
-	},
-	{
-		"_id" : "53c9b83af400e177dca325c9",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Dropbox",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Dropbox"
-		},
-		"channelid" : "532a60c06d3281aa4aeacab3",
-		"type" : "channel:dropbox"
-	},
-	{
-		"_id" : "53c9b83af400e177dca325ca",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Box",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Box"
-		},
-		"channelid" : "5333294ab64eb201df08a5b3",
-		"type" : "channel:box"
-	},
-	{
-		"_id" : "53c9b83bf400e177dca325cb",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Google Drive",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "GoogleDrive"
-		},
-		"channelid" : "5333aefee5c02952f1c33089",
-		"type" : "channel:google-drive"
-	},
-	{
-		"_id" : "543bf1bd652c4207680866f7",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Google+",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "GooglePlus"
-		},
-		"channelid" : "543bf27e652c4207680866f8",
-		"type" : "channel:google-plus"
-	},
-	{
-		"_id" : "53c9b83bf400e177dca325cc",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "Facebook",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Facebook"
-		},
-		"channelid" : "53359922443595b588409210",
-		"type" : "channel:facebook"
-	},
-	{
-		"_id" : "53c9b83cf400e177dca325cd",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Smartsheet",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Smartsheet"
-		},
-		"channelid" : "533987f06d8a28a6ca8ff923",
-		"type" : "channel:smartsheet"
-	},
-	{
-		"_id" : "53c9b83cf400e177dca325ce",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "FourSquare",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "FourSquare"
-		},
-		"channelid" : "52f9b628ebbb409983000001",
-		"type" : "channel:four-square"
-	},
-	{
-		"_id" : "53c9b83cf400e177dca325cf",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : false,
-		"name" : "LastFM",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "LastFM"
-		},
-		"channelid" : "52f9b59edfeb5678c700000b",
-		"type" : "channel:last-fm"
-	},
-	{
-		"_id" : "53c9b83df400e177dca325d0",
-		"category" : "channel",
-		"description" : null,
-		"enabled" : true,
-		"name" : "Bitly",
-		"skynet" : {
-			"subtype" : "Bitly",
-			"type" : "channel"
-		},
-		"channelid" : "52f9b79febbb40641600000b",
-		"type" : "channel:bitly"
-	},
-	{
-		"_id" : "53c9b83df400e177dca325d1",
-		"category" : "channel",
-		"description" : "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
-		"enabled" : true,
-		"name" : "App.net",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "App.net"
-		},
-		"channelid" : "5393128e59745965b10fc541",
-		"type" : "channel:app.net"
-	},
-	{
-		"_id" : "53c9b83df400e177dca325d2",
-		"category" : "channel",
-		"description" : "Parse skynet data logged to ElasticSearch",
-		"enabled" : false,
-		"name" : "ElasticLogs",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "ElasticLogs"
-		},
-		"channelid" : "53a26faf0ced4e00501e05b0",
-		"type" : "channel:elastic-logs"
-	},
-	{
-		"_id" : "53ea57ee2522c76ff9298af9",
-		"category" : "channel",
-		"description" : "",
-		"enabled" : true,
-		"name" : "Unison",
-		"skynet" : {
-			"type" : "channel",
-			"subtype" : "Unison"
-		},
-		"channelid" : "53e10a8813c57e0267403a82",
-		"type" : "channel:unison"
-	},
+  {
+    "_id" : "53c9b82ef400e177dca325a1",
+    "category" : "device",
+    "description" : "SkyNet cloud",
+    "enabled" : true,
+    "name" : "Meshblu",
+    "skynet" : {
+      "type" : "skynet",
+      "subtype" : "cloud"
+    },
+    "type" : "device:cloud"
+  },
+  {
+    "_id" : "53c9b82ef400e177dca325a2",
+    "category" : "microblu",
+    "description" : "Arduino microcontroller",
+    "enabled" : true,
+    "name" : "Arduino",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "arduino"
+    },
+    "type" : "device:arduino"
+  },
+  {
+    "_id" : "53c9b82ff400e177dca325a3",
+    "category" : "device",
+    "description" : "Philips Hue light bulbs",
+    "enabled" : true,
+    "name" : "Philips Hue",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "hue"
+    },
+    "connector": "meshblu-hue",
+    "type" : "device:hue"
+  },
+  {
+    "_id" : "5445510577c022a84ec48c5b",
+    "category" : "device",
+    "description" : "Lifx",
+    "enabled" : true,
+    "name" : "Lifx",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "lifx"
+    },
+    "type" : "device:lifx",
+    "connector" : "meshblu-lifx"
+  },
+  {
+    "_id" : "543ee87c979057a612382e18",
+    "category" : "device",
+    "description" : "Thalmic Labs MYO",
+    "enabled" : true,
+    "name" : "MYO",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "myo"
+    },
+    "connector": "meshblu-myo",
+    "type" : "device:myo"
+  },
+  {
+    "_id" : "53c9b82ff400e177dca325a4",
+    "category" : "device",
+    "description" : "Belkin Wemo home automation",
+    "enabled" : true,
+    "name" : "Belkin Wemo",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "wemo"
+    },
+    "connector": "meshblu-wemo",
+    "type" : "device:wemo"
+  },
+  {
+    "_id" : "53c9b82ff400e177dca325a7",
+    "category" : "device",
+    "description" : "Blink1 USB LED",
+    "enabled" : true,
+    "name" : "Blink(1)",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "blink1"
+    },
+    "connector": "meshblu-blink1",
+    "type" : "device:blink1"
+  },
+  {
+    "_id" : "53c9b82ff400e177dca325a6",
+    "category" : "device",
+    "description" : "Insteon home automation",
+    "enabled" : true,
+    "name" : "Insteon",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "insteon"
+    },
+    "type" : "device:insteon",
+    "connector" : "meshblu-insteon"
+  },
+  {
+    "_id" : "385bc510-1ea2-43aa-bed9-af120cf16890",
+    "category" : "device",
+    "description" : "AllJoyn",
+    "enabled" : true,
+    "name" : "AllJoyn",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "alljoyn"
+    },
+    "type" : "device:alljoyn",
+    "connector" : "meshblu-alljoyn"
+  },
+  {
+    "_id" : "53c9b830f400e177dca325a8",
+    "category" : "device",
+    "description" : "Raspberry Pi",
+    "enabled" : true,
+    "name" : "RaspberryPi",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "raspberrypi"
+    },
+    "type" : "device:raspberrypi"
+  },
+  {
+    "_id" : "53c9b830f400e177dca325a9",
+    "category" : "device",
+    "description" : "Intel Galileo",
+    "enabled" : true,
+    "name" : "Intel Galileo",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "galileo"
+    },
+    "type" : "device:galileo"
+  },
+  {
+    "_id" : "53c9b830f400e177dca325aa",
+    "category" : "device",
+    "description" : "Beagle Bone",
+    "enabled" : true,
+    "name" : "BeagleBone",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "beaglebone"
+    },
+    "type" : "device:beaglebone"
+  },
+  {
+    "_id" : "5f8f2fa1349c4a1293109486",
+    "category" : "device",
+    "description" : "Lightblue Bean",
+    "enabled" : true,
+    "name" : "Lightblue Bean",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "bean"
+    },
+    "type" : "device:bean",
+    "connector" : "meshblu-bean"
+  },
+  {
+    "_id" : "53c9b830f400e177dca325ab",
+    "category" : "device",
+    "description" : "Spark device",
+    "enabled" : true,
+    "name" : "Spark",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "spark"
+    },
+    "type" : "device:spark"
+  },
+  {
+    "_id" : "53c9b830f400e177dca325ac",
+    "category" : "device",
+    "description" : "Pinoccio device",
+    "enabled" : true,
+    "name" : "Pinoccio",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "pinoccio"
+    },
+    "type" : "device:pinoccio"
+  },
+  {
+    "_id" : "53c9b830f400e177dca325ad",
+    "category" : "device",
+    "description" : "Tessel device",
+    "enabled" : true,
+    "name" : "Tessel",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "tessel"
+    },
+    "type" : "device:tessel"
+  },
+  {
+    "_id" : "53c9b831f400e177dca325ae",
+    "category" : "device",
+    "description" : "Apple iOS Device",
+    "enabled" : true,
+    "name" : "Apple",
+    "skynet" : {
+      "type" : "octobluMobile",
+      "subtype" : "apple"
+    },
+    "type" : "device:apple"
+  },
+  {
+    "_id" : "53c9b831f400e177dca325af",
+    "category" : "device",
+    "description" : "Android Device",
+    "enabled" : true,
+    "name" : "Android",
+    "skynet" : {
+      "type" : "octobluMobile",
+      "subtype" : "android"
+    },
+    "type" : "device:android"
+  },
+  {
+    "_id" : "53c9b831f400e177dca325b0",
+    "category" : "device",
+    "description" : "Meshblu device connection manager",
+    "enabled" : true,
+    "name" : "Gateblu",
+    "skynet" : {
+      "type" : "device:gateblu"
+    },
+    "type" : "device:gateblu"
+  },
+  {
+    "_id" : "53c9b832f400e177dca325b3",
+    "category" : "device",
+    "description" : "Other Generic Device",
+    "enabled" : true,
+    "name" : "Generic Device",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "other"
+    },
+    "type" : "device:other"
+  },
+  {
+    "_id" : "53c9b833f400e177dca325b4",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Spotify",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Spotify"
+    },
+    "channelid" : "52f9b382e641dbb25d000001",
+    "type" : "channel:spotify"
+  },
+  {
+    "_id" : "53c9b836f400e177dca325bd",
+    "category" : "channel",
+    "description" : "Get YAHOO! Finance stock price",
+    "enabled" : true,
+    "name" : "StockPrice",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "StockPrice"
+    },
+    "channelid" : "53275d4841da719147d9e36a",
+    "type" : "channel:stock-price"
+  },
+  {
+    "_id" : "53c9b837f400e177dca325bf",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Evernote",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Evernote"
+    },
+    "channelid" : "533b504c57090ef0e5cc350f",
+    "type" : "channel:evernote"
+  },
+  {
+    "_id" : "53c9b837f400e177dca325c2",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Vimeo",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Vimeo"
+    },
+    "channelid" : "52f97d3c0db568444400040e",
+    "type" : "channel:vimeo"
+  },
+  {
+    "_id" : "53c9b833f400e177dca325b5",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "LinkedIn",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "LinkedIn"
+    },
+    "channelid" : "52f97c5ba990930c8c0003ca",
+    "type" : "channel:linked-in"
+  },
+  {
+    "_id" : "53c9b834f400e177dca325b6",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "FitBit",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "FitBit"
+    },
+    "channelid" : "52f97cc5a9909344830004ec",
+    "type" : "channel:fitbit"
+  },
+  {
+    "_id" : "53c9b834f400e177dca325b7",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Tumblr",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Tumblr"
+    },
+    "channelid" : "52f97e4366f76866b600051d",
+    "type" : "channel:tumblr"
+  },
+  {
+    "_id" : "53c9b834f400e177dca325b8",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Twilio",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Twilio"
+    },
+    "channelid" : "53e268e18e3257fb7d6fdad4",
+    "type" : "channel:twilio"
+  },
+  {
+    "_id" : "53c9b835f400e177dca325b9",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Tropo",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Tropo"
+    },
+    "channelid" : "52f97e98a9909344830004f7",
+    "type" : "channel:tropo"
+  },
+  {
+    "_id" : "53c9b835f400e177dca325ba",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "StackOverflow",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "StackOverflow"
+    },
+    "channelid" : "52f9b35c9f713b92e5000001",
+    "type" : "channel:stack-overflow"
+  },
+  {
+    "_id" : "53c9b835f400e177dca325bb",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "NewYorkTimes",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "NewYorkTimes"
+    },
+    "channelid" : "52f9b454e641dbb25d00000c",
+    "type" : "channel:new-york-times"
+  },
+  {
+    "_id" : "53c9b836f400e177dca325bc",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "MusixMatch",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "MusixMatch"
+    },
+    "channelid" : "52f9b53cebbb407a9400000b",
+    "type" : "channel:musix-match"
+  },
+  {
+    "_id" : "53c9b836f400e177dca325be",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Weather",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Weather"
+    },
+    "channelid" : "5337a38d76a65b9693bc2a9f",
+    "type" : "channel:weather"
+  },
+  {
+    "_id" : "53c9b837f400e177dca325c0",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Rdio",
+    "skynet" : {
+      "subtype" : "Rdio",
+      "type" : "channel"
+    },
+    "channelid" : "53d15c363e304fe01a0851ee",
+    "type" : "channel:rdio"
+  },
+  {
+    "_id" : "53c9b837f400e177dca325c1",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Readability",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Readability"
+    },
+    "channelid" : "52f9b3b66970a8d041000001",
+    "type" : "channel:readability"
+  },
+  {
+    "_id" : "53c9b837f400e177dca325c3",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Delicious",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Delicious"
+    },
+    "channelid" : "52f9b75bdfeb56fca700000d",
+    "type" : "channel:delicious"
+  },
+  {
+    "_id" : "53c9b838f400e177dca325c4",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Paypal",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Paypal"
+    },
+    "channelid" : "537d58762699fc4331e85167",
+    "type" : "channel:paypal"
+  },
+  {
+    "_id" : "53c9b838f400e177dca325c5",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Nest",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Nest"
+    },
+    "channelid" : "53c403b467605b33c1d4b09b",
+    "type" : "channel:nest"
+  },
+  {
+    "_id" : "541b5072025549193cb8293a",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Instagram",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Instagram"
+    },
+    "channelid" : "541b21fe025549193cb82939",
+    "type" : "channel:instagram"
+  },
+  {
+    "_id" : "542593853fb93d59863dfaef",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "FourSquare",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "FourSquare"
+    },
+    "channelid" : "52f9b628ebbb409983000001",
+    "type" : "channel:four-square"
+  },
+  {
+    "_id" : "53c9b838f400e177dca325c6",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Etsy",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Etsy"
+    },
+    "channelid" : "52f9b6a7ebbb407a94000021",
+    "type" : "channel:etsy"
+  },
+  {
+    "_id" : "53d2de0160c378a87a0f908c",
+    "category" : "channel",
+    "description" : "Give your entire team access to our powerful online survey platform. SurveyMonkey Enterprise helps anyone in any function use surveys to make smarter decisions, while your organization gets complete control of your data, users and billing.",
+    "enabled" : true,
+    "name" : "Survey Monkey",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Survey Monkey"
+    },
+    "channelid" : "53e259588e3257fb7d6fdad3",
+    "type" : "channel:survey-monkey"
+  },
+  {
+    "_id" : "90d49e5d-abb8-4f98-8525-7129ca9f1356",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "GoToMeeting",
+    "channelid" : "a053d110f5cc498686f496e5",
+    "type" : "channel:gotomeeting"
+  },
+  {
+    "_id" : "bac4a355-a89f-4a10-b279-1da92b4fdffc",
+    "category" : "channel",
+    "description" : "GoToMeeting Free",
+    "enabled" : true,
+    "name" : "GoToMeeting Free",
+    "channelid" : "54468c4914d3e4c4645c6e27",
+    "type" : "channel:gotomeeting-free"
+  },
+  {
+    "_id" : "53c9b839f400e177dca325c7",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Twitter",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Twitter"
+    },
+    "channelid" : "5409f79403f1d8b163401370",
+    "type" : "channel:twitter"
+  },
+  {
+    "_id" : "53c9b839f400e177dca325c8",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Github",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Github"
+    },
+    "channelid" : "532a258a50411e5802cb8053",
+    "type" : "channel:github"
+  },
+  {
+    "_id" : "53c9b83af400e177dca325c9",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Dropbox",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Dropbox"
+    },
+    "channelid" : "532a60c06d3281aa4aeacab3",
+    "type" : "channel:dropbox"
+  },
+  {
+    "_id" : "53c9b83af400e177dca325ca",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Box",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Box"
+    },
+    "channelid" : "5333294ab64eb201df08a5b3",
+    "type" : "channel:box"
+  },
+  {
+    "_id" : "53c9b83bf400e177dca325cb",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Google Drive",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "GoogleDrive"
+    },
+    "channelid" : "5333aefee5c02952f1c33089",
+    "type" : "channel:google-drive"
+  },
+  {
+    "_id" : "543bf1bd652c4207680866f7",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Google+",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "GooglePlus"
+    },
+    "channelid" : "543bf27e652c4207680866f8",
+    "type" : "channel:google-plus"
+  },
+  {
+    "_id" : "53c9b83bf400e177dca325cc",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "Facebook",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Facebook"
+    },
+    "channelid" : "53359922443595b588409210",
+    "type" : "channel:facebook"
+  },
+  {
+    "_id" : "53c9b83cf400e177dca325cd",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Smartsheet",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Smartsheet"
+    },
+    "channelid" : "533987f06d8a28a6ca8ff923",
+    "type" : "channel:smartsheet"
+  },
+  {
+    "_id" : "53c9b83cf400e177dca325ce",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "FourSquare",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "FourSquare"
+    },
+    "channelid" : "52f9b628ebbb409983000001",
+    "type" : "channel:four-square"
+  },
+  {
+    "_id" : "53c9b83cf400e177dca325cf",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : false,
+    "name" : "LastFM",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "LastFM"
+    },
+    "channelid" : "52f9b59edfeb5678c700000b",
+    "type" : "channel:last-fm"
+  },
+  {
+    "_id" : "53c9b83df400e177dca325d0",
+    "category" : "channel",
+    "description" : null,
+    "enabled" : true,
+    "name" : "Bitly",
+    "skynet" : {
+      "subtype" : "Bitly",
+      "type" : "channel"
+    },
+    "channelid" : "52f9b79febbb40641600000b",
+    "type" : "channel:bitly"
+  },
+  {
+    "_id" : "53c9b83df400e177dca325d1",
+    "category" : "channel",
+    "description" : "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
+    "enabled" : true,
+    "name" : "App.net",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "App.net"
+    },
+    "channelid" : "5393128e59745965b10fc541",
+    "type" : "channel:app.net"
+  },
+  {
+    "_id" : "53c9b83df400e177dca325d2",
+    "category" : "channel",
+    "description" : "Parse skynet data logged to ElasticSearch",
+    "enabled" : false,
+    "name" : "ElasticLogs",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "ElasticLogs"
+    },
+    "channelid" : "53a26faf0ced4e00501e05b0",
+    "type" : "channel:elastic-logs"
+  },
+  {
+    "_id" : "53ea57ee2522c76ff9298af9",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Unison",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Unison"
+    },
+    "channelid" : "53e10a8813c57e0267403a82",
+    "type" : "channel:unison"
+  },
   {
     "_id" : "7fadeaa0-4990-11e4-9bbb-e70e4226a18f",
     "category" : "channel",
@@ -792,7 +810,7 @@
     "channelid" : "53e8ea018e3257fb7d6fdae0",
     "type" : "channel:splunk"
   },
-	{
+  {
     "_id" : "60fda3c0-4d82-11e4-b7c9-f1aa66db0b20",
     "category" : "channel",
     "description" : "Stripe",
@@ -869,5 +887,122 @@
     },
     "channelid" : "53e14e6d8e3257fb7d6fdad1",
     "type" : "channel:youtube"
+  },
+  {
+    "_id" : "b7b1b539-6f5b-4f0d-bb5f-533ada0d1196",
+    "category" : "channel",
+    "description" : "Adsense Host",
+    "enabled" : false,
+    "name" : "Adsense Host",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "google-adsense-host"
+    },
+    "channelid" : "544583525a370c58ca66a145",
+    "type" : "channel:google-adsense-host"
+  },
+  {
+    "_id" : "66e026d2-06de-465d-bf91-95093899ea06",
+    "category" : "channel",
+    "description" : "Adsense Management",
+    "enabled" : false,
+    "name" : "Adsense Management",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "google-adsense-management"
+    },
+    "channelid" : "544583a75a370c58ca66a146",
+    "type" : "channel:google-adsense-management"
+  },
+  {
+    "_id" : "0cf52d18-98b0-460e-8def-6d26864ce5b0",
+    "category" : "channel",
+    "description" : "Podio",
+    "enabled" : true,
+    "name" : "Podio",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "podio"
+    },
+    "channelid" : "54458c5b5a370c58ca66a147",
+    "type" : "channel:podio"
+  },
+  {
+    "_id" : "900c3f60-f066-44ae-8bc4-0fe943bfcd8a",
+    "category" : "channel",
+    "description" : "Agile Zen",
+    "enabled" : false,
+    "name" : "Agile Zen",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "agile-zen"
+    },
+    "channelid" : "53eb9f4cdfc4201817c77acf",
+    "type" : "channel:agile-zen"
+  },
+  {
+    "_id" : "b71350dd-17ac-46db-9259-12fd07403d9c",
+    "category" : "channel",
+    "description" : "WP Remote",
+    "enabled" : true,
+    "name" : "WP Remote",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "wp-remote"
+    },
+    "channelid" : "53fe63446b465e1815c63732",
+    "type" : "channel:wp-remote"
+  },
+  {
+    "_id" : "24fa22c7-734a-48a1-9388-49f3d56e97be",
+    "category" : "channel",
+    "description" : "Crisply",
+    "enabled" : true,
+    "name" : "Crisply",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "crisply"
+    },
+    "channelid" : "53ee6fb263a8751728a5a3c0",
+    "type" : "channel:crisply"
+  },
+  {
+    "_id" : "cb876fdf-544d-4025-9245-bcc7f88748b2",
+    "category" : "channel",
+    "description" : "Connect Sense",
+    "enabled" : true,
+    "name" : "Connect Sense",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "connect-sense"
+    },
+    "channelid" : "54122934675080635d89c3cc",
+    "type" : "channel:connect-sense"
+  },
+  {
+    "_id" : "9412d388-9ce9-4a8d-a8bc-5fbacc72fb64",
+    "category" : "channel",
+    "description" : "Wordpress",
+    "enabled" : true,
+    "name" : "Wordpress",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "wordpress"
+    },
+    "channelid" : "5447dced5534771656d0fdf5",
+    "type" : "channel:wordpress"
+  },
+  {
+    "_id" : "6dfb4c80-696f-4aa6-aeb2-0ddd2c7f40f9",
+    "category" : "channel",
+    "description" : "UserVoice",
+    "enabled" : true,
+    "name" : "UserVoice",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "uservoice"
+    },
+    "channelid" : "53f616b5710850ee08e28482",
+    "type" : "channel:uservoice"
   }
 ]

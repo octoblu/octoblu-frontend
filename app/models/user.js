@@ -74,6 +74,7 @@ var UserSchema = new mongoose.Schema({
           type: Date,
           default: Date.now
         },
+        defaultParams : {},
         custom_tokens: [
           {
             name: String,
@@ -115,15 +116,20 @@ UserSchema.methods.acceptTerms = function (termsAccepted) {
 };
 
 UserSchema.methods.overwriteOrAddApiByChannelId = function (channelid, options) {
-  var index, new_api;
+  var index, new_api, old_api;
 
   index = _.findIndex(this.api, {channelid: channelid});
 
   if(index > -1){
+  	old_api = this.api[index];
     this.api.splice(index, 1);
   }
 
   new_api = options || {};
+  // Set Restore Default Parameters
+  if(old_api && !new_api.defaultParams && old_api.defaultParams){
+  	new_api.defaultParams = old_api.defaultParams;
+  }
   new_api.channelid = channelid;
 
   this.api.push(new_api);
