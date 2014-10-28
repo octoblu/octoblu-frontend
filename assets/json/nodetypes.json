@@ -931,7 +931,7 @@
     "_id" : "900c3f60-f066-44ae-8bc4-0fe943bfcd8a",
     "category" : "channel",
     "description" : "Agile Zen",
-    "enabled" : false,
+    "enabled" : true,
     "name" : "Agile Zen",
     "skynet" : {
       "type" : "channel",
