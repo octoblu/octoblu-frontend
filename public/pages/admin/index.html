@@ -17,7 +17,22 @@
             <span>Admin</span>
         </h1>
     </div>
-
+    <div class="col-xs-12 text-right">
+        <form class="form-inline" role="form" ng-submit="send()">
+            <div class="form-group">
+                <label class="sr-only" for="recipientEmail">Email address</label>
+                <div class="input-group">
+                    <input type="email" class="form-control" id="recipientEmail" ng-model="recipientEmail" placeholder="Enter email">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="fa fa-users"></i> Invite
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <br>
+    </div>
 </div>
 
 <div class="col-xs-12">

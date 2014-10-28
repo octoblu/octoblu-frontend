@@ -19,6 +19,13 @@ angular.module('octobluApp')
             .then(function(result){
               return result.data;
             });
-
         };
+
+        this.sendInvitation = function (recipientEmail) {
+            return $http.post('/api/user/invitation/send',{ 'email': recipientEmail})
+            .then(function (result) {
+                return result.data;
+            });
+         };
+
     });
