@@ -1,4 +1,4 @@
-describe('AdminController', function () {
+xdescribe('AdminController', function () {
   var sut, scope, groupService, groupPermissionsService, $rootScope, $q, fakeWindow;
 
   beforeEach(function () {

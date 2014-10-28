@@ -149,7 +149,6 @@ var invitationController = {
     },
 
     acceptInvitation: function (req, res) {
-      debugger;
         var invitation, sender, recipient;
         Invitation.findById(req.params.id).exec()
             .then(function (inv) {

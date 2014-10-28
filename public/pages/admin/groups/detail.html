@@ -20,7 +20,7 @@
                  <span class="fa-stack fa-2x resource-icon">
                         <i class="fa fa-square-o fa-stack-2x"></i>
                         <i class="fa fa-stack-1x"
-                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
+                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
                  </span>
                         <span>{{getDisplayName(resource)}}</span>
                         <a class="btn btn-danger pull-right"
@@ -30,7 +30,7 @@
                 </ul>
             </div>
             <div class="panel-footer">
-                <div class="input-group-btn">
+                <div class="input-group-btn" dropdown>
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-plus">
                             <i class="fa fa-bullhorn fa-lg" style="margin-right: 5px;"></i>
@@ -41,7 +41,7 @@
                         <li ng-repeat="resource in allResources">
                             <a href ng-click="addResourceToGroup(sourcePermissionsGroup, resource)">
                                 <i class="fa fa-fw"
-                                   ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type === 'device'}"></i>
+                                   ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
                                 {{getDisplayName(resource)}}
                             </a>
                         </li>
@@ -159,7 +159,7 @@
                  <span class="fa-stack fa-2x resource-icon">
                         <i class="fa fa-square-o fa-stack-2x"></i>
                         <i class="fa  fa-stack-1x"
-                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
+                           ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
                  </span>
                         <span>{{getDisplayName(resource)}}</span>
                         <a class="btn btn-danger pull-right"
@@ -169,7 +169,7 @@
                 </ul>
             </div>
             <div class="panel-footer">
-                <div class="input-group-btn">
+                <div class="input-group-btn" dropdown>
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-plus">
                             <i class="fa fa-crosshairs fa-lg" style="margin-right: 5px;"></i>
@@ -180,7 +180,7 @@
                         <li ng-repeat="resource in allResources | filter : {type : 'device'}">
                             <a href ng-click="addResourceToGroup(targetPermissionsGroup, resource)">
                                 <i class="fa fa-fw"
-                                   ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type == 'device'}"></i>
+                                   ng-class="{'fa-user':resource.type == 'user', 'fa-hdd-o': resource.type.indexOf('device') === 0}"></i>
                                 {{getDisplayName(resource)}}
                             </a>
                         </li>
