@@ -35,18 +35,18 @@
                 <form class="form-inline pull-right" role="form">
                     <div class="form-group">
                         <label class="sr-only" for="add-group-name">Email address</label>
-                        <input type="text" ng-model="resourcePermissionName" name="groupName" class="form-control"
+                        <input type="text" ng-model="groupName" name="groupName" class="form-control"
                                id="add-group-name"
                                placeholder="Enter a Group Name" required>
                     </div>
-                    <button type="button" ng-click="addResourcePermission()" class="btn btn-default"><i
+                    <button type="button" ng-click="addGroup(groupName)" class="btn btn-default"><i
                             class="fa fa-plus"></i>Add Group
                     </button>
                 </form>
             </div>
             <h3 class="text-center text-muted col-xs-12 col-sm-12 col-md-12 col-lg-12">Groups</h3>
 
-            <div data-ng-repeat="resourcePermission in allGroupResourcePermissions | orderBy:'name'"
+            <div data-ng-repeat="resourcePermission in groups | orderBy:'name'"
                  class="panel panel-primary col-xs-12 col-sm-12 col-md-2 col-lg-2 group-summary-panel">
                 <div class="panel-heading group-summary-panel-heading">
                     <h4>
@@ -54,7 +54,7 @@
                         <a ui-sref=".detail({ 'uuid' : resourcePermission.uuid })">{{resourcePermission.name}}</a>
                         <a href class="pull-right" tooltip="Delete {{resourcePermission.name}}"
                            tooltip-placement="top"
-                           tooltip-popup-delay="5" ng-click="deleteResourcePermission(resourcePermission)">
+                           tooltip-popup-delay="5" ng-click="deleteGroup(resourcePermission.resource.uuid)">
                             <i class="fa fa-trash-o fa-lg"></i>
                         </a>
 

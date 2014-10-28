@@ -1,5 +1,5 @@
 describe('AdminController', function () {
-  var sut, scope, groupService, permissionsService, $rootScope, $q, fakeWindow;
+  var sut, scope, groupService, groupPermissionsService, $rootScope, $q, fakeWindow;
 
   beforeEach(function () {
     module('octobluApp');
@@ -17,16 +17,16 @@ describe('AdminController', function () {
       $rootScope = _$rootScope_;
 
       scope = $rootScope.$new();
-      
-      fakeWindow = new FakeWindow(); 
+
+      fakeWindow = new FakeWindow();
 
       // groupService = new GroupService();
-      permissionsService = new PermissionsService();
+      groupPermissionsService = new GroupPermissionsService();
 
       sut = $controller('AdminController', {
         $scope: scope,
         $window : fakeWindow,
-        PermissionsService : permissionsService
+        GroupPermissionsService : groupPermissionsService
       });
     });
   });
@@ -35,15 +35,15 @@ describe('AdminController', function () {
     expect(sut).to.exist;
   });
 
-  it('should call PermissionsService.allGroupPermissions() to find all the available group permissions', function(){
+  it('should call GroupPermissionsService.all() to find all the available group permissions', function(){
     sut.refreshGroups();
-      expect(permissionsService.allGroupPermissions).to.have.been.called;
+      expect(groupPermissionsService.all).to.have.been.called;
   });
 
   describe('When there are Group Permissions', function(){
     var groupPermissions = [{},{}];
     beforeEach(function(){
-      permissionsService.allGroupPermissions.resolve(groupPermissions);
+      groupPermissionsService.all.resolve(groupPermissions);
       $rootScope.$apply();
     });
     it('should add the list of Group Resource Permissions to the scope', function(){
@@ -56,9 +56,9 @@ describe('AdminController', function () {
 
     it('should call PermissionService.add()', function(){
       scope.addGroup('n00bs');
-      expect(permissionsService.add).to.have.been.calledWith({name: 'n00bs'});
+      expect(groupPermissionsService.add).to.have.been.calledWith({name: 'n00bs'});
     });
-    
+
   });
 
 
@@ -72,13 +72,13 @@ describe('AdminController', function () {
       it('should call the delete on the permissions service', function(){
         var permissionsUUID = '1234';
         scope.deleteGroup(permissionsUUID);
-        expect(permissionsService.delete).to.have.been.calledWith(permissionsUUID);
+        expect(groupPermissionsService.delete).to.have.been.calledWith(permissionsUUID);
       });
     });
   });
 
 
-  var PermissionsService = function(){
+  var GroupPermissionsService = function(){
     var self;
     self = this;
 
@@ -94,12 +94,12 @@ describe('AdminController', function () {
       return deferred.promise;
     });
 
-    self.allGroupPermissions = sinon.spy(function(){
+    self.all = sinon.spy(function(){
       var deferred = $q.defer();
-      self.allGroupPermissions.resolve = deferred.resolve;
+      self.all.resolve = deferred.resolve;
       return deferred.promise;
     });
-    self.allGroupPermissions.resolve = function(){};
+    self.all.resolve = function(){};
     self.add.resolve = function(){};
     self.delete.resolve = function(){};
   };

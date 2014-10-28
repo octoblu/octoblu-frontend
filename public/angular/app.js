@@ -280,17 +280,8 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         abstract: true,
         url: '/admin',
         templateUrl: '/pages/admin/index.html',
-        controller: 'adminController',
+        controller: 'AdminController',
         resolve: {
-          operatorsGroup: function (GroupService) {
-            return GroupService.getOperatorsGroup();
-          },
-          allDevices: function (deviceService) {
-            return deviceService.getDevices();
-          },
-          allGroupResourcePermissions: function (PermissionsService) {
-            return PermissionsService.allGroupPermissions();
-          }
         }
       })
       .state('ob.admin.all', {

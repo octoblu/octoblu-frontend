@@ -1,9 +1,10 @@
 angular.module('octobluApp')
-    .controller('AdminController', function ($scope, PermissionsService ) {
+    .controller('AdminController', function ($window, $scope, GroupPermissionsService ) {
     var self = this;
 
     this.refreshGroups = function() {
-      PermissionsService.allGroupPermissions().then(function (groupPermissions) {
+      GroupPermissionsService.all().then(function (groupPermissions) {
+        console.log(groupPermissions);
         $scope.groups = groupPermissions;
       });
     };
@@ -11,14 +12,17 @@ angular.module('octobluApp')
     this.refreshGroups();
 
       $scope.addGroup = function(name) {
-        PermissionsService.add({name: name}).then(function(groupPermission){
+        GroupPermissionsService.add({name: name}).then(function(groupPermission){
+          console.log('added', name, groupPermission);
           self.refreshGroups();
         });
       };
 
       $scope.deleteGroup = function(groupUUID){
-        PermissionsService.delete(groupUUID).then(function(){
-          self.refreshGroups();
-        });
+        if ($window.confirm('Are you sure you want to delete this group?')){
+          GroupPermissionsService.delete(groupUUID).then(function(){
+            self.refreshGroups();
+          });
+        }
       };
     }); 
