@@ -1,35 +1,15 @@
 angular.module('octobluApp')
-  .service('NodeService', function ($q, $http, deviceService, NodeTypeService) {
+  .service('NodeService', function ($q, $http, deviceService, NodeTypeService, skynetService) {
     'use strict';
-
     var self = this;
 
     self.getNodes = function (options) {
       options = options || {};
-      return $http.get('/api/nodes', {cache : options.cache})
-        .then(function (results) {
-          var devices = _.map(results.data, function(device){
-            return deviceService.addLogoUrl(device);
-          });
 
-          var gateways = _.filter(devices, {type: 'gateway', online: true});
-
-          return $q.all(_.map(gateways, function (gateway) {
-
-            return deviceService.gatewayConfig({
-              "uuid": gateway.uuid,
-              "token": gateway.token,
-              "method": "configurationDetails"
-            }).then(function (response) {
-              return self.subdevicesToDevices(gateway.uuid, response.result);
-            }, function (err) {
-              return [];
-            });
-          })).then(function (results) {
-            var nodes = _.union(devices, _.flatten(results));
-            return nodes;
-          });
-        });
+      return $http.get('/api/nodes', options).then(function (results) {
+        _.each(results.data, deviceService.addOrUpdateDevice);
+        return deviceService.getDevices();
+      });
     };
 
     self.getSubdeviceNodes = function() {
@@ -59,5 +39,6 @@ angular.module('octobluApp')
           return newSubdevice;
       });
     };
+
     return self;
   });
