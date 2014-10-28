@@ -1,8 +1,11 @@
 angular.module('octobluApp')
-    .controller('AdminController', function ($window, $scope, GroupPermissionsService ) {
+  .controller('AdminController', function ($window,  $scope, InvitationService, GroupPermissionsService, allDevices, operatorsGroup) {
     var self = this;
 
-    this.refreshGroups = function() {
+    $scope.ownedDevices = allDevices;
+    $scope.operatorsGroup = operatorsGroup;
+
+    this.refreshGroups = function () {
       GroupPermissionsService.all().then(function (groupPermissions) {
         console.log(groupPermissions);
         $scope.groups = groupPermissions;
@@ -11,18 +14,29 @@ angular.module('octobluApp')
 
     this.refreshGroups();
 
-      $scope.addGroup = function(name) {
-        GroupPermissionsService.add({name: name}).then(function(groupPermission){
-          console.log('added', name, groupPermission);
+    $scope.addGroup = function (name) {
+      GroupPermissionsService.add({name: name}).then(function (groupPermission) {
+        console.log('added', name, groupPermission);
+        self.refreshGroups();
+      });
+    };
+
+    $scope.deleteGroup = function (groupUUID) {
+      if ($window.confirm('Are you sure you want to delete this group?')) {
+        GroupPermissionsService.delete(groupUUID).then(function () {
           self.refreshGroups();
         });
-      };
+      }
+    };
 
-      $scope.deleteGroup = function(groupUUID){
-        if ($window.confirm('Are you sure you want to delete this group?')){
-          GroupPermissionsService.delete(groupUUID).then(function(){
-            self.refreshGroups();
-          });
-        }
-      };
-    }); 
+    //Send the invitation
+    $scope.recipientEmail = '';
+
+    $scope.send = function () {
+      InvitationService.sendInvitation($scope.recipientEmail)
+        .then(function (invitation) {
+          $scope.recipientEmail = '';
+        });
+    };
+
+  });

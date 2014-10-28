@@ -66,7 +66,7 @@
                 <div class="panel-heading group-summary-panel-heading">
                     <h4>
                         <i class="fa fa-users"></i>
-                        <a ui-sref=".detail({ 'uuid' : resourcePermission.uuid })">{{resourcePermission.name}}</a>
+                        <a ui-sref=".detail({ 'uuid' : resourcePermission.resource.uuid })">{{resourcePermission.name}}</a>
                         <a href class="pull-right" tooltip="Delete {{resourcePermission.name}}"
                            tooltip-placement="top"
                            tooltip-popup-delay="5" ng-click="deleteGroup(resourcePermission.resource.uuid)">
