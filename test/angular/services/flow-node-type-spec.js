@@ -1,4 +1,4 @@
-var sut, $httpBackend, fakeUUIDService, fakeNodeService, $q, $rootScope;
+var sut, $httpBackend, fakeUUIDService, $q, $rootScope;
 describe('FlowNodeTypeService', function () {
 
   beforeEach(function () {
@@ -7,9 +7,6 @@ describe('FlowNodeTypeService', function () {
     module('octobluApp', function($provide){
       fakeUUIDService = new FakeUUIDService();
       $provide.value('UUIDService', fakeUUIDService);
-
-      fakeNodeService = new FakeNodeService();
-      $provide.value('NodeService', fakeNodeService);
     });
 
     inject(function (FlowNodeTypeService, _$httpBackend_, _$q_) {
@@ -19,6 +16,7 @@ describe('FlowNodeTypeService', function () {
       $httpBackend.whenGET('/api/auth').respond(200);
       $httpBackend.whenGET('/pages/octoblu.html').respond(200);
       $httpBackend.whenGET('/pages/home.html').respond(200);
+      $httpBackend.whenGET('/api/nodes').respond(200, []);
       $httpBackend.flush();
     });
   });
@@ -201,19 +199,4 @@ var FakeUUIDService = function(){
   _this.v1 = sinon.spy(function(){
     return _this.v1.returns;
   });
-};
-
-var FakeNodeService = function(){
-  var self = this;
-  self.getSubdeviceNodes = sinon.spy(function(){
-    return ResolvedPromise([]);
-  });
-
-  self.getSubdeviceNodes.resolve = function(){};
-};
-
-var ResolvedPromise = function(value) {
-  var defer = $q.defer();
-  defer.resolve(value);
-  return defer.promise;
 };
