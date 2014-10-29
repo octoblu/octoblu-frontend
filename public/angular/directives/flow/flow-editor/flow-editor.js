@@ -90,9 +90,9 @@ angular.module('octobluApp')
           if (!newFlow) {
             return;
           }
-            if (!oldFlow || (newFlow.flowId !== oldFlow.flowId)) {
+            if (oldFlow && (newFlow.flowId !== oldFlow.flowId)) {
               skynetService.getSkynetConnection().then(function (skynetConnection) {
-                skynetConnection.subscribe({uuid: newFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
+                skynetConnection.unsubscribe({uuid: oldFlow.flowId, type: 'octoblu:flow', topic: 'pulse'});
               });
             }
 
