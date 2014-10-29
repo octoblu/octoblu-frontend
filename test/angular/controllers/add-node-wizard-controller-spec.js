@@ -15,6 +15,7 @@ describe('AddNodeWizardController', function () {
       $httpBackend.whenGET('/api/auth').respond(200);
       $httpBackend.whenGET('/pages/octoblu.html').respond(200);
       $httpBackend.whenGET('/pages/home.html').respond(200);
+      $httpBackend.whenGET('/api/nodes').respond(200, []);
       $httpBackend.flush();
     });
 
@@ -70,7 +71,7 @@ describe('AddNodeWizardController', function () {
       });
 
       it('should redirect to the add channel state', function(){
-        expect(state.go).to.have.been.calledWith('ob.nodewizard.addchannel.existing', {nodeTypeId: 'channelid'});
+        expect(state.go).to.have.been.calledWith('ob.nodewizard.addchannel.default-options', {nodeTypeId: 'channelid'});
       });
     });
   });

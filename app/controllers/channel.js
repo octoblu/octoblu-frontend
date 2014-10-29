@@ -6,7 +6,6 @@ var Channel         = require('../models/channel');
 var isAuthenticated = require('./middleware/security').isAuthenticated;
 
 var User     = mongoose.model('User');
-var ObjectId = mongoose.Types.ObjectId;
 
 module.exports = function (app) {
   var pickProperties, whiteListProperties;
@@ -31,8 +30,8 @@ module.exports = function (app) {
   });
 
   pickProperties = function(channel){
-    return _.pick(channel, '_id', 'name', 'application', 'type', 'auth_strategy');
-  }
+    return _.pick(channel, '_id', 'name', 'application', 'type', 'auth_strategy', 'defaultParams');
+  };
 
   whiteListProperties = function(channels) {
     if(!_.isArray(channels)) {

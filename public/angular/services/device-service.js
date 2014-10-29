@@ -1,8 +1,10 @@
 'use strict';
 angular.module('octobluApp')
     .service('deviceService', function ($q, $rootScope, skynetService, PermissionsService, reservedProperties) {
-        var myDevices = [];
-        var skynetPromise = skynetService.getSkynetConnection();
+        var myDevices, skynetPromise, subscribeToDevice;
+
+        myDevices = [];
+        skynetPromise = skynetService.getSkynetConnection();
 
         function addDevice(device) {
             myDevices.push(device);
@@ -21,28 +23,49 @@ angular.module('octobluApp')
                         device.online = message.payload.online;
                     }
                 }
+                $rootScope.$apply();
             });
+
+            skynetConnection.on('config', service.addOrUpdateDevice);
         });
 
-        var service = {
-            getDevices: function (force) {
-                var defer = $q.defer();
-                if (myDevices.length && !force) {
-                    defer.resolve(myDevices);
-                } else {
-                    skynetPromise
-                        .then(function (skynetConnection) {
-                            skynetConnection.mydevices({}, function (result) {
-                                myDevices.length = 0;
-                                _.each(result.devices, function (device) {
-                                    addDevice(device);
-                                });
 
-                                defer.resolve(myDevices);
-                            });
-                        });
+        subscribeToDevice = function(device){
+            if(device.category === 'channel') {
+                return;
+            }
+
+            skynetPromise.then(function (skynetConnection) {
+                skynetConnection.unsubscribe({uuid: device.uuid, token: device.token});
+                skynetConnection.subscribe({uuid: device.uuid, token: device.token});
+            });
+        };
+
+        var service = window.ds = {
+            addOrUpdateDevice: function(device){
+                subscribeToDevice(device);
+                var existingDevice = _.findWhere(myDevices, {uuid: device.uuid});
+                if(existingDevice) {
+                    _.extend(existingDevice, device);
+                    return;
                 }
-                return defer.promise;
+                myDevices.push(device);
+            },
+            getDevices: function (force) {
+                return skynetPromise.then(function(skynetConnection){
+                    if (myDevices.length && !force) {
+                        return myDevices;
+                    }
+                    var defer = $q.defer();
+                    skynetConnection.mydevices({}, function (result) {
+                        myDevices.length = 0;
+                        _.each(result.devices, addDevice);
+                        defer.resolve(myDevices);
+                    });
+                    return defer.promise;
+                }).then(function(devices){
+                    return _.map(devices, service.addLogoUrl);
+                });
             },
 
             getSharedDevices: function (force) {
@@ -52,7 +75,6 @@ angular.module('octobluApp')
                        });
                 });
             },
-
             getDeviceByUUID: function(uuid){
                 return service.getDevices().then(function(devices){
                     return _.findWhere(devices, {uuid: uuid});

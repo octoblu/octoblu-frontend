@@ -23,7 +23,7 @@ angular.module('octobluApp')
   };
 
   var waitForDeviceToHaveOptionsSchema = function(device){
-    var deferred, waitFunction;
+    var deferred, waitFunction, waitInterval;
     deferred = $q.defer();
 
     skynetService.getSkynetConnection().then(function(conn){
@@ -31,13 +31,15 @@ angular.module('octobluApp')
         deviceService.getDeviceByUUIDAndToken(device.uuid, device.token)
         .then(function(device){
           if(device && device.optionsSchema){
-            clearInterval(waitFunction);
+            deviceService.addOrUpdateDevice(device);
+
+            clearInterval(waitInterval);
             deferred.resolve(device);
           }
         });
 
       };
-      setInterval(waitFunction, 1000);
+      waitInterval = setInterval(waitFunction, 1000);
     });
 
     return deferred.promise;

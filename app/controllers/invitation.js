@@ -169,7 +169,7 @@ var invitationController = {
                     .then(function (rcp) {
                         recipient = rcp;
                         if (!recipient || recipient.skynetuuid !== req.user.skynetuuid) {
-                            return res.redirect('/signup');
+                            return res.redirect('/login');
                         }
                         return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid }).exec()
                             .then(function (operatorGroup) {

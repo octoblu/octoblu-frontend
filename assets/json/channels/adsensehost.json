@@ -1,4 +1,8 @@
-{"_id": "spjosfojdsojpeo30",
+{
+	"_id": "544583525a370c58ca66a145",
+  "name" : "Adsense Host",
+  "type" : "channel:google-adsense-host",
+  "auth_strategy" : "oauth",
   "application": {
     "base": "https://www.googleapis.com/adsensehost/v4.1",
     "resources": [
@@ -725,5 +729,16 @@
         "url": "https://www.googleapis.com/adsensehost/v4.1/adclients/adClientId/urlchannels"
       }
     ]
-  }
+  },
+	 "oauth" : {
+	  "development" : {
+	    "tokenMethod" : "access_token_query"
+	  },
+	  "staging" : {
+	    "tokenMethod" : "access_token_query"
+	  },
+	  "development" : {
+	    "tokenMethod" : "access_token_query"
+	  }
+	}
 }

@@ -1,0 +1,374 @@
+{
+  "_id": "54468c4914d3e4c4645c6e27",
+  "auth_strategy": "oauth",
+  "bodyFormat": "json",
+  "name": "GoToMeeting Free",
+  "type": "channel:gotomeeting-free",
+  "oauth": {
+    "development": {
+      "clientID": "octoblu",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "tokenMethod": "auth_token",
+      "tokenQueryParam": "token"
+    },
+    "production": {
+      "clientID": "octoblu",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "tokenMethod": "auth_token",
+      "tokenQueryParam": "token"
+    },
+    "staging": {
+      "clientID": "octoblu",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "tokenMethod": "auth_token",
+      "tokenQueryParam": "token"
+    }
+  },
+  "application": {
+    "base": "https://api.g2m.me",
+    "resources": [
+      {
+        "path": "/session",
+        "displayName": "/session",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-POST-Create-session"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://free.gotomeeting.com/api/session"
+      },
+      {
+        "path": "/session/:session-id",
+        "displayName": "/session/:session-id",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-GET-Get-session-info"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "name": ":session-id",
+          "style": "url",
+          "type": "string",
+          "required": true,
+          "default": "Session ID"
+        }],
+        "url": "https://free.gotomeeting.com/api/session/:session-id"
+      },
+      {
+        "path": "/session/:session-id/join",
+        "displayName": "/session/:session-id/join",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-POST-Join-new-participant-to-session"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [{
+          "name": ":session-id",
+          "style": "url",
+          "type": "string",
+          "required": true,
+          "default": "Session ID"
+        }],
+        "url": "https://free.gotomeeting.com/api/session/:session-id/join"
+      },
+      {
+        "path": "/session/:session-id/count",
+        "displayName": "/session/:session-id/count",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-GET-Get-session-participant-count"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+          "name": ":session-id",
+          "style": "url",
+          "type": "string",
+          "required": true,
+          "default": "Session ID"
+        }],
+        "url": "https://free.gotomeeting.com/api/session/:session-id/count"
+      },
+      {
+        "path": "/session/:session-id/document",
+        "displayName": "/session/:session-id/document",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-POST-Upload-document-to-session"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": ":session-id",
+	          "style": "url",
+	          "type": "string",
+	          "required": true,
+	          "default": "Session ID"
+	        },
+	        {
+	          "name": "body",
+	          "style": "body",
+	          "type": "string",
+	          "required": true,
+	          "default": "Body"
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/session/:session-id/document"
+      },
+      {
+        "path": "/session/:session-id/document",
+        "displayName": "/session/:session-id/document",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Session-Methods-DELETE-Remove-all-documents-in-session"
+        },
+        "httpMethod": "DELETE",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": ":session-id",
+	          "style": "url",
+	          "type": "string",
+	          "required": true,
+	          "default": "Session ID"
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/session/:session-id/document"
+      },
+      {
+        "path": "/room/:room-id",
+        "displayName": "/room/:room-id",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Room-Methods-POST-Claim-rooom"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": ":room-id",
+	          "style": "url",
+	          "type": "string",
+	          "required": true,
+	          "default": "Room ID"
+	        },
+	        {
+	          "name": "authToken",
+	          "style": "body",
+	          "type": "string",
+	          "required": true,
+	          "default": "Auth Token or User ID"
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/room/:room-id"
+      },
+      {
+        "path": "/room/:room-id",
+        "displayName": "/room/:room-id",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Room-Methods-GET-Get-room-info"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": ":room-id",
+	          "style": "url",
+	          "type": "string",
+	          "required": true,
+	          "default": "Room ID"
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/room/:room-id"
+      },
+      {
+        "path": "/user/profile",
+        "displayName": "/user/profile",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Room-Methods-GET-Get-room-info"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": "authToken",
+	          "style": "body",
+	          "type": "string",
+	          "required": true,
+	          "default": "Auth Token or User ID"
+	        },
+	        {
+	          "name": "profile",
+	          "style": "body",
+	          "type": "string",
+	          "required": true,
+	          "default": "Profile"
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/user/profile"
+      },
+      {
+        "path": "/user/profile/avatar",
+        "displayName": "/user/profile/avatar",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#User-Methods-POST-Update-user-avatar"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": "authToken",
+	          "style": "body",
+	          "type": "string",
+	          "required": true,
+	          "default": "Auth Token or User ID"
+	        },
+	        {
+	          "name": "avatar",
+	          "style": "body",
+	          "type": "string",
+	          "required": true,
+	          "default": "Avatar"
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/user/profile/avatar"
+      },
+      {
+        "path": "/feedback",
+        "displayName": "/feedback",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Feedback-Methods-POST-Create-feedback"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": "app",
+	          "style": "body",
+	          "type": "string",
+	          "required": true
+	        },
+	        {
+	          "name": "title",
+	          "style": "body",
+	          "type": "string",
+	          "required": true
+	        },
+	        {
+	          "name": "message",
+	          "style": "body",
+	          "type": "string",
+	          "required": true
+	        },
+	        {
+	          "name": "email",
+	          "style": "body",
+	          "type": "string",
+	          "required": true
+	        },
+	        {
+	          "name": "audioVideo",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "browser",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "os",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "session",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "loggingId",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "mobile",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/feedback"
+      },
+      {
+        "path": "/nps",
+        "displayName": "/nps",
+        "doc": {
+          "url": "http://developers.g2m.me/docs/rest-api#Feedback-Methods-POST-Create-nps"
+        },
+        "httpMethod": "POST",
+        "curl": "curl -X",
+        "params": [
+	        {
+	          "name": "app",
+	          "style": "body",
+	          "type": "string",
+	          "required": true
+	        },
+	        {
+	          "name": "rating",
+	          "style": "body",
+	          "type": "string",
+	          "required": true
+	        },
+	        {
+	          "name": "feedback",
+	          "style": "body",
+	          "type": "string",
+	          "required": true
+	        },
+	        {
+	          "name": "browser",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "os",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "session",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "loggingId",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "mobile",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        },
+	        {
+	          "name": "locale",
+	          "style": "body",
+	          "type": "string",
+	          "required": false
+	        }
+        ],
+        "url": "https://free.gotomeeting.com/api/nps"
+      }
+    ]
+  }
+}

@@ -120,6 +120,18 @@ module.exports = function(app, passport) {
     var RedBoothController = require('./controllers/redbooth-controller');
     var redBoothController = new RedBoothController();
 
+    var PodioController = require('./controllers/podio-controller');
+    var podioController = new PodioController();
+
+    var WordPressController = require('./controllers/wordpress-controller');
+    var wordPressController = new WordPressController();
+
+    var UserVoiceController = require('./controllers/uservoice-controller');
+    var userVoiceController = new UserVoiceController();
+
+    var GoToMeetingFreeController = require('./controllers/gotomeeting-free-controller');
+    var goToMeetingFreeController = new GoToMeetingFreeController();
+
     var InvitationController = require('./controllers/invitation-controller');
     var invitationController = new InvitationController(config.betaInvites);
 
@@ -145,6 +157,7 @@ module.exports = function(app, passport) {
             app.all('/api/oauth/*', security.bypassAuth, security.bypassTerms);
             app.post('/api/invitation/request', security.bypassAuth, security.bypassTerms);
             app.post('/api/webhooks/:id', security.bypassAuth, webhookController.trigger);
+            app.get('/api/invitation/:id/accept', security.bypassAuth, security.bypassTerms);
 
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
@@ -266,6 +279,17 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/redbooth',          redBoothController.authorize);
             app.get('/api/oauth/redbooth/callback', redBoothController.callback, redBoothController.redirectToDesigner);
+
+            app.get('/api/oauth/podio',          podioController.authorize);
+            app.get('/api/oauth/podio/callback', podioController.callback, podioController.redirectToDesigner);
+
+            app.get('/api/oauth/wordpress',          wordPressController.authorize);
+            app.get('/api/oauth/wordpress/callback', wordPressController.callback, wordPressController.redirectToDesigner);
+
+            app.get('/api/oauth/uservoice',          userVoiceController.authorize);
+            app.get('/api/oauth/uservoice/callback', userVoiceController.callback, userVoiceController.redirectToDesigner);
+
+            app.get('/api/oauth/gotomeeting-free', goToMeetingFreeController.authorize, goToMeetingFreeController.redirectToDesigner);
 
             app.get('/api/oauth/twitter',          referrer.storeReferrer, twitterController.authorize);
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);

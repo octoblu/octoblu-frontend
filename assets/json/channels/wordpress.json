@@ -1,5 +1,5 @@
 {
-  "_id": "53f77117710850ee08e28484",
+  "_id": "5447dced5534771656d0fdf5",
   "__v": 0,
   "application": {
     "base": "https://public-api.wordpress.com/rest/v1",
@@ -5257,7 +5257,7 @@
             "name": "urls"
           }
         ],
-        "path": "/batch/",
+        "path": "/batchG/",
         "displayName": "/batch/",
         "authentication": {
           "required": "true"
@@ -5277,8 +5277,24 @@
   "enabled": true,
   "name": "WordPress",
   "oauth": {
-    "version": "2.0"
+    "development" : {
+      "clientID": "37337",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/wordpress/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging" : {
+      "clientID": "37336",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/wordpress/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production" : {
+      "clientID": "37335",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/wordpress/callback",
+      "tokenMethod": "access_token_bearer"
+    }
   },
-  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:word-press"
+  "type": "channel:wordpress"
 }

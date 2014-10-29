@@ -21,6 +21,7 @@
     "xdescribe",
     "ObjectId",
     "async",
-    "db"
+    "db",
+    "_"
   ]
 }

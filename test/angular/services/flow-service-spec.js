@@ -15,6 +15,7 @@ describe('FlowService', function () {
       $httpBackend.whenGET('/api/auth').respond(200);
       $httpBackend.whenGET('/pages/octoblu.html').respond(200);
       $httpBackend.whenGET('/pages/home.html').respond(200);
+      $httpBackend.whenGET('/api/nodes').respond(200, []);
       $httpBackend.flush();
     });
   });
