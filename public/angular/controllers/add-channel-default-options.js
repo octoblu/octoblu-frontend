@@ -51,6 +51,7 @@ angular.module('octobluApp')
 	    	$scope.goToNextStep();
 	    	return;
 	    }
+
 	    channelService.getById(nodeType.channelid)
   			.then(function(channel){
   				$scope.channel = channel;

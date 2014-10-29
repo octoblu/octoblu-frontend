@@ -45,9 +45,10 @@ angular.module('octobluApp')
     $scope.node.url    = $scope.selectedEndpoint.url;
     $scope.node.method = $scope.selectedEndpoint.httpMethod;
 
-    $scope.queryParamDefinitions = filterParamsByStyle($scope.selectedEndpoint.params, 'query');
-    $scope.bodyParamDefinitions  = filterParamsByStyle($scope.selectedEndpoint.params, 'body');
-    $scope.urlParamDefinitions   = filterParamsByStyle($scope.selectedEndpoint.params, 'url');
+    $scope.queryParamDefinitions    = filterParamsByStyle($scope.selectedEndpoint.params, 'query');
+    $scope.bodyParamDefinitions     = filterParamsByStyle($scope.selectedEndpoint.params, 'body');
+    $scope.urlParamDefinitions      = filterParamsByStyle($scope.selectedEndpoint.params, 'url');
+    $scope.headerParamDefinitions   = filterParamsByStyle($scope.selectedEndpoint.params, 'header');
   };
 
   $scope.$watch('resources',   selectEndpoint);
