@@ -7,6 +7,11 @@ angular.module('octobluApp')
     $scope.deviceOnline;
 
     skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.subscribe({uuid: $stateParams.flowId, type: 'octoblu:flow', topic: 'pulse'});
+      skynetConnection.on('ready', function(){
+        skynetConnection.subscribe({uuid: $stateParams.flowId, type: 'octoblu:flow', topic: 'pulse'});
+      });
+
       skynetConnection.mydevices({}, function(result){
         var device = _.findWhere(result.devices, {uuid: $stateParams.flowId});
         if (device) {
