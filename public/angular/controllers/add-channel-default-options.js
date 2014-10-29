@@ -12,7 +12,8 @@ angular.module('octobluApp')
     'echosign'      : 'ob.nodewizard.addchannel.echosign',
     'apikey-basic'  : 'ob.nodewizard.addchannel.apikey-basic',
     'header'        : 'ob.nodewizard.addchannel.header',
-    'existing'      : 'ob.nodewizard.addchannel.existing'
+    'existing'      : 'ob.nodewizard.addchannel.existing',
+    'docusign'      : 'ob.nodewizard.addchannel.docusign'
   };
 
   $scope.channelDefaultParams = {};

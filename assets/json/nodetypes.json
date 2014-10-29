@@ -1030,5 +1030,18 @@
     },
     "channelid" : "545126c44df05bc3ae93165a",
     "type" : "channel:biztalk"
+  },
+  {
+    "_id" : "eb42aaa1-823d-4832-8306-42f7f5656580",
+    "category" : "channel",
+    "description" : "Docusign",
+    "enabled" : false,
+    "name" : "Docusign",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "docusign"
+    },
+    "channelid" : "545137ef4b89eff0024584d4",
+    "type" : "channel:docusign"
   }
 ]
