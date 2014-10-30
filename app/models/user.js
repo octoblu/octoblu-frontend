@@ -65,9 +65,11 @@ var UserSchema = new mongoose.Schema({
         authtype: String,
         key: String,
         token: String,
+        token_crypt: String,
         user: String,
         pass: String,
         secret: String,
+        secret_crypt: String,
         verifier: String,
         subdomain: String,
         updated: {

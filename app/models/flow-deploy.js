@@ -1,7 +1,8 @@
 var _ = require('lodash'),
     FlowDeviceCollection = require('../collections/flow-device-collection'),
     mongoose = require('mongoose')
-    when = require('when');
+    when = require('when'),
+    textCrypt = require('../lib/textCrypt');
 
 var FlowDeploy = function(options){
   var User = mongoose.model('User');
@@ -63,6 +64,10 @@ var FlowDeploy = function(options){
       node.oauth = {};
       var userApiMatch = _.findWhere(userApis, {'_id': new mongoose.Types.ObjectId(node.channelActivationId)});
       if (userApiMatch) {
+        if (userApiMatch.token_crypt) {
+          userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt); 
+          userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt); 
+        }
         node.oauth.access_token = userApiMatch.token || userApiMatch.key;
         node.oauth.access_token_secret = userApiMatch.secret;
         node.defaultParams = userApiMatch.defaultParams;
