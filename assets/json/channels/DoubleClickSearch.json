@@ -128,7 +128,7 @@
         "doc": {
           "url": "https://www.googleapis.com/doubleclicksearch/v2/conversion/updateAvailability"
         },
-        "httpMethod": "Post",
+        "httpMethod": "POST",
         "curl": "curl -X",
         "params": [
           {
@@ -172,7 +172,7 @@
         "doc": {
           "url": "https://www.googleapis.com/doubleclicksearch/v2/reports/generate"
         },
-        "httpMethod": "Post",
+        "httpMethod": "POST",
         "curl": "curl -X",
         "params": [{
             "style": "body",
@@ -476,7 +476,7 @@
         "doc": {
           "url": "https://www.googleapis.com/doubleclicksearch/v2/reports"
         },
-        "httpMethod": "post",
+        "httpMethod": "POST",
         "curl": "curl -X",
         "params": [
           {
@@ -761,27 +761,18 @@
       }
     ]
   },
-  "type": "channel:",
+  "type": "channel:doubleclicksearch",
   "auth_strategy": "oauth",
   "name": "DoubleClickSearch",
   "oauth": {
-    "development": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
+    "development" : {
+      "tokenMethod" : "access_token_query"
     },
-    "staging": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
+    "staging" : {
+      "tokenMethod" : "access_token_query"
     },
-    "production": {
-      "clientID": "",
-      "clientSecret": "",
-      "callbackURL": "",
-      "tokenMethod": ""
+    "development" : {
+      "tokenMethod" : "access_token_query"
     }
   }
 }

@@ -235,6 +235,9 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/youtube',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/youtube/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
+            app.get('/api/oauth/doubleclicksearch',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/doubleclicksearch/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
+
             app.get('/api/oauth/paypal',          referrer.storeReferrer, paypalController.authorize);
             app.get('/api/oauth/paypal/callback', paypalController.callback, paypalController.redirectToDesigner);
 

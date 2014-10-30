@@ -8,7 +8,8 @@ var GoogleController = function(){
 		'https://www.googleapis.com/auth/monitoring.readonly',
 		'https://gdata.youtube.com',
 		'https://www.googleapis.com/auth/adsensehost',
-		'https://www.googleapis.com/auth/adsense.readonly'
+		'https://www.googleapis.com/auth/adsense.readonly',
+		'https://www.googleapis.com/auth/dfp'
 	];
   this.authorize = passport.authenticate('google', { scope: scope });
   this.callback  = passport.authenticate('google', { failureRedirect: '/home' });
