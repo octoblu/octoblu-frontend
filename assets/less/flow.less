@@ -45,10 +45,30 @@
   height: 200px;
 }
 
+.flow-top-bar {
+  position: fixed;
+  top: 20px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .flow-toolbar {
   transition: all 0;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
   .flow-name {
     width: 400px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+
+    .input-group {
+    }
+
     .button-shadow;
     .flow-dropdown {
       cursor: pointer;
@@ -62,21 +82,18 @@
       .flow-font;
     }
   }
-  // display: flex;
-  position: fixed;
-  display: -webkit-flex;
-  display: flex;
-  right: 20px;
-  top: 20px;
 
-  .btn-group {
-    margin: 0 5px;
+  .flow-toolbar-btn-toolbar {
     display: flex;
-    align-items: flex-start;
-  }
+    display: -webkit-flex;
+    margin-left: 10px;
 
-  .input-group {
-    margin: 0 5px;
+    .btn-group {
+      margin: 0 5px;
+      display: flex;
+      display: -webkit-flex;
+      align-items: flex-start;
+    }
   }
 }
 
