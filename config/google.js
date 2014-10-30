@@ -66,6 +66,7 @@ var googleStrategy = new GoogleStrategy(CONFIG,
     var channels = Channel.syncMatchByType('channel:google');
 
     channels.push(Channel.syncFindByType('channel:youtube'));
+    channels.push(Channel.syncFindByType('channel:doubleclicksearch'));
 
     _.each(channels, function(channel){
       if(channel.enabled === false){ return; }
