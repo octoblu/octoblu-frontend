@@ -213,6 +213,15 @@ describe('FlowController', function () {
       return _this.confirm.returns;
     });
 
+
+    // emulate jQuery
+    _this.height = function() {
+      return 0;
+    };
+    _this.resize = function() {};
+    _this.style = {};
+    _this.ownerDocument = {defaultView: {getComputedStyle: function(){}}};
+
     return _this;
   };
 });
