@@ -3,17 +3,18 @@
 angular.module('octobluApp')
 .controller('addDefaultOptionsController', function($scope, $state, nodeType, userService, channelService, currentUser) {
 	var AUTH_DESTINATIONS = {
-    'aws'           : 'ob.nodewizard.addchannel.aws',
-    'basic'         : 'ob.nodewizard.addchannel.basic',
-    'meshblu'       : 'ob.nodewizard.addchannel.meshblu',
-    'none'          : 'ob.nodewizard.addchannel.noauth',
-    'oauth'         : 'ob.nodewizard.addchannel.oauth',
-    'simple'        : 'ob.nodewizard.addchannel.simple',
-    'echosign'      : 'ob.nodewizard.addchannel.echosign',
-    'apikey-basic'  : 'ob.nodewizard.addchannel.apikey-basic',
-    'header'        : 'ob.nodewizard.addchannel.header',
-    'existing'      : 'ob.nodewizard.addchannel.existing',
-    'docusign'      : 'ob.nodewizard.addchannel.docusign'
+    'aws'                    : 'ob.nodewizard.addchannel.aws',
+    'basic'                  : 'ob.nodewizard.addchannel.basic',
+    'meshblu'                : 'ob.nodewizard.addchannel.meshblu',
+    'none'                   : 'ob.nodewizard.addchannel.noauth',
+    'oauth'                  : 'ob.nodewizard.addchannel.oauth',
+    'simple'                 : 'ob.nodewizard.addchannel.simple',
+    'echosign'               : 'ob.nodewizard.addchannel.echosign',
+    'apikey-basic'           : 'ob.nodewizard.addchannel.apikey-basic',
+    'header'                 : 'ob.nodewizard.addchannel.header',
+    'existing'               : 'ob.nodewizard.addchannel.existing',
+    'docusign'               : 'ob.nodewizard.addchannel.docusign',
+    'apikey-dummypass-basic' : 'ob.nodewizard.addchannel.apikey-dummypass-basic'
   };
 
   $scope.channelDefaultParams = {};

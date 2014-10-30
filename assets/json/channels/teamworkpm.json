@@ -14,7 +14,7 @@
         },
         "displayName": "/account.json",
         "path": "/account.json",
-        "url": "http://foo.teamworkpm.net/account.json"
+        "url": "https://:site_url/account.json"
       },
       {
         "httpMethod": "GET",
@@ -26,7 +26,7 @@
         },
         "displayName": "/authenticate.json",
         "path": "/authenticate.json",
-        "url": "http://foo.teamworkpm.net/authenticate.json"
+        "url": "https://:site_url/authenticate.json"
       },
       {
         "httpMethod": "GET",
@@ -38,7 +38,7 @@
         },
         "displayName": "/latestActivity.json",
         "path": "/latestActivity.json",
-        "url": "http://foo.teamworkpm.net/latestActivity.json"
+        "url": "https://:site_url/latestActivity.json"
       },
       {
         "httpMethod": "GET",
@@ -50,7 +50,7 @@
         },
         "displayName": "/projects/{project_id}/latestActivity.json",
         "path": "/projects/{project_id}/latestActivity.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/latestActivity.json"
+        "url": "https://:site_url/projects/{project_id}/latestActivity.json"
       },
       {
         "httpMethod": "DELETE",
@@ -62,7 +62,7 @@
         },
         "displayName": "/activity/{id}.json",
         "path": "/activity/{id}.json",
-        "url": "http://foo.teamworkpm.net/activity/{id}.json"
+        "url": "https://:site_url/activity/{id}.json"
       },
       {
         "httpMethod": "POST",
@@ -74,7 +74,7 @@
         },
         "displayName": "/projects/{project_id}/messageCategories.json",
         "path": "/projects/{project_id}/messageCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories.json"
+        "url": "https://:site_url/projects/{project_id}/messageCategories.json"
       },
       {
         "httpMethod": "GET",
@@ -86,7 +86,7 @@
         },
         "displayName": "/messageCategories/{id}.json",
         "path": "/messageCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/messageCategories/{id}.json"
+        "url": "https://:site_url/messageCategories/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -98,7 +98,7 @@
         },
         "displayName": "/projects/{project_id}/messageCategories.json",
         "path": "/projects/{project_id}/messageCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/messageCategories.json"
+        "url": "https://:site_url/projects/{project_id}/messageCategories.json"
       },
       {
         "httpMethod": "PUT",
@@ -110,7 +110,7 @@
         },
         "displayName": "/messageCategories/{id}.json",
         "path": "/messageCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/messageCategories/{id}.json"
+        "url": "https://:site_url/messageCategories/{id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -122,7 +122,7 @@
         },
         "displayName": "/messageCategories/{id}.json",
         "path": "/messageCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/messageCategories/{id}.json"
+        "url": "https://:site_url/messageCategories/{id}.json"
       },
       {
         "httpMethod": "POST",
@@ -134,7 +134,7 @@
         },
         "displayName": "/projects/{project_id}/fileCategories.json",
         "path": "/projects/{project_id}/fileCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories.json"
+        "url": "https://:site_url/projects/{project_id}/fileCategories.json"
       },
       {
         "httpMethod": "GET",
@@ -146,7 +146,7 @@
         },
         "displayName": "/fileCategories/{id}.json",
         "path": "/fileCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/fileCategories/{id}.json"
+        "url": "https://:site_url/fileCategories/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -158,7 +158,7 @@
         },
         "path": "/projects/{project_id}/fileCategories.json",
         "displayName": "/projects/{project_id}/fileCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/fileCategories.json"
+        "url": "https://:site_url/projects/{project_id}/fileCategories.json"
       },
       {
         "httpMethod": "PUT",
@@ -170,7 +170,7 @@
         },
         "displayName": "/fileCategories/{id}.json",
         "path": "/fileCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/fileCategories/{id}.json"
+        "url": "https://:site_url/fileCategories/{id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -182,7 +182,7 @@
         },
         "displayName": "/fileCategories/{id}.json",
         "path": "/fileCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/fileCategories/{id}.json"
+        "url": "https://:site_url/fileCategories/{id}.json"
       },
       {
         "httpMethod": "POST",
@@ -194,7 +194,7 @@
         },
         "displayName": "/projects/{project_id}/notebookCategories.json",
         "path": "/projects/{project_id}/notebookCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories.json"
+        "url": "https://:site_url/projects/{project_id}/notebookCategories.json"
       },
       {
         "httpMethod": "GET",
@@ -206,7 +206,7 @@
         },
         "displayName": "/notebookCategories/{id}.json",
         "path": "/notebookCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/notebookCategories/{id}.json"
+        "url": "https://:site_url/notebookCategories/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -218,7 +218,7 @@
         },
         "displayName": "/projects/{project_id}/notebookCategories.json",
         "path": "/projects/{project_id}/notebookCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/notebookCategories.json"
+        "url": "https://:site_url/projects/{project_id}/notebookCategories.json"
       },
       {
         "httpMethod": "PUT",
@@ -230,7 +230,7 @@
         },
         "displayName": "/notebookCategories/{id}.json",
         "path": "/notebookCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/notebookCategories/{id}.json"
+        "url": "https://:site_url/notebookCategories/{id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -242,7 +242,7 @@
         },
         "displayName": "/notebookCategories/{id}.json",
         "path": "/notebookCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/notebookCategories/{id}.json"
+        "url": "https://:site_url/notebookCategories/{id}.json"
       },
       {
         "httpMethod": "POST",
@@ -254,7 +254,7 @@
         },
         "path": "/projects/#{project_id}/linkCategories.json",
         "displayName": "/projects/#{project_id}/linkCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories.json"
+        "url": "https://:site_url/projects/#{project_id}/linkCategories.json"
       },
       {
         "httpMethod": "GET",
@@ -266,7 +266,7 @@
         },
         "displayName": "/linkCategories/#{id}.json",
         "path": "/linkCategories/#{id}.json",
-        "url": "http://foo.teamworkpm.net/linkCategories/#{id}.json"
+        "url": "https://:site_url/linkCategories/#{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -278,7 +278,7 @@
         },
         "displayName": "/projects/#{project_id}/linkCategories.json",
         "path": "/projects/#{project_id}/linkCategories.json",
-        "url": "http://foo.teamworkpm.net/projects/#{project_id}/linkCategories.json"
+        "url": "https://:site_url/projects/#{project_id}/linkCategories.json"
       },
       {
         "httpMethod": "PUT",
@@ -290,7 +290,7 @@
         },
         "displayName": "/linkCategories/#{id}.json",
         "path": "/linkCategories/#{id}.json",
-        "url": "http://foo.teamworkpm.net/linkCategories/#{id}.json"
+        "url": "https://:site_url/linkCategories/#{id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -302,7 +302,7 @@
         },
         "displayName": "/linkCategories/#{id}.json",
         "path": "/linkCategories/#{id}.json",
-        "url": "http://foo.teamworkpm.net/linkCategories/#{id}.json"
+        "url": "https://:site_url/linkCategories/#{id}.json"
       },
       {
         "httpMethod": "POST",
@@ -314,7 +314,7 @@
         },
         "displayName": "/projectcategories.json",
         "path": "/projectcategories.json",
-        "url": "http://foo.teamworkpm.net/projectcategories.json"
+        "url": "https://:site_url/projectcategories.json"
       },
       {
         "httpMethod": "GET",
@@ -326,7 +326,7 @@
         },
         "displayName": "/projectCategories/{id}.json",
         "path": "/projectCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/projectCategories/{id}.json"
+        "url": "https://:site_url/projectCategories/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -338,7 +338,7 @@
         },
         "displayName": "/projectCategories.json",
         "path": "/projectCategories.json",
-        "url": "http://foo.teamworkpm.net/projectCategories.json"
+        "url": "https://:site_url/projectCategories.json"
       },
       {
         "httpMethod": "PUT",
@@ -350,7 +350,7 @@
         },
         "displayName": "/projectCategories/{id}.json",
         "path": "/projectCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/projectCategories/{id}.json"
+        "url": "https://:site_url/projectCategories/{id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -362,7 +362,7 @@
         },
         "displayName": "/projectCategories/{id}.json",
         "path": "/projectCategories/{id}.json",
-        "url": "http://foo.teamworkpm.net/projectCategories/{id}.json"
+        "url": "https://:site_url/projectCategories/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -374,7 +374,7 @@
         },
         "displayName": "/{resource}/{resource_id}/comments.json",
         "path": "/{resource}/{resource_id}/comments.json",
-        "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments.json"
+        "url": "https://:site_url/{resource}/{resource_id}/comments.json"
       },
       {
         "httpMethod": "GET",
@@ -386,7 +386,7 @@
         },
         "displayName": "/comments/{comment_id}.json",
         "path": "/comments/{comment_id}.json",
-        "url": "http://foo.teamworkpm.net/comments/{comment_id}.json"
+        "url": "https://:site_url/comments/{comment_id}.json"
       },
       {
         "httpMethod": "POST",
@@ -398,7 +398,7 @@
         },
         "displayName": "/{resource}/{resource_id}/comments.json",
         "path": "/{resource}/{resource_id}/comments.json",
-        "url": "http://foo.teamworkpm.net/{resource}/{resource_id}/comments.json"
+        "url": "https://:site_url/{resource}/{resource_id}/comments.json"
       },
       {
         "httpMethod": "PUT",
@@ -410,7 +410,7 @@
         },
         "displayName": "/comments/{id}.json",
         "path": "/comments/{id}.json",
-        "url": "http://foo.teamworkpm.net/comments/{id}.json"
+        "url": "https://:site_url/comments/{id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -422,7 +422,7 @@
         },
         "displayName": "/comments/{id}.json",
         "path": "/comments/{id}.json",
-        "url": "http://foo.teamworkpm.net/comments/{id}.json"
+        "url": "https://:site_url/comments/{id}.json"
       },
       {
         "httpMethod": "POST",
@@ -434,7 +434,7 @@
         },
         "displayName": "/companies.json",
         "path": "/companies.json",
-        "url": "http://foo.teamworkpm.net/companies.json"
+        "url": "https://:site_url/companies.json"
       },
       {
         "httpMethod": "PUT",
@@ -446,7 +446,7 @@
         },
         "displayName": "/companies/{project_id}.json",
         "path": "/companies/{project_id}.json",
-        "url": "http://foo.teamworkpm.net/companies/{project_id}.json"
+        "url": "https://:site_url/companies/{project_id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -458,7 +458,7 @@
         },
         "displayName": "/companies/{id}.json",
         "path": "/companies/{id}.json",
-        "url": "http://foo.teamworkpm.net/companies/{id}.json"
+        "url": "https://:site_url/companies/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -470,7 +470,7 @@
         },
         "displayName": "/companies/{company_id}.json",
         "path": "/companies/{company_id}.json",
-        "url": "http://foo.teamworkpm.net/companies/{company_id}.json"
+        "url": "https://:site_url/companies/{company_id}.json"
       },
       {
         "httpMethod": "GET",
@@ -482,7 +482,7 @@
         },
         "displayName": "/companies.json",
         "path": "/companies.json",
-        "url": "http://foo.teamworkpm.net/companies.json"
+        "url": "https://:site_url/companies.json"
       },
       {
         "httpMethod": "GET",
@@ -494,7 +494,7 @@
         },
         "displayName": "/projects/{project_id}/companies.json",
         "path": "/projects/{project_id}/companies.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/companies.json"
+        "url": "https://:site_url/projects/{project_id}/companies.json"
       },
       {
         "httpMethod": "GET",
@@ -506,7 +506,7 @@
         },
         "displayName": "/projects/{project_id}/files.json",
         "path": "/projects/{project_id}/files.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/files.json"
+        "url": "https://:site_url/projects/{project_id}/files.json"
       },
       {
         "httpMethod": "GET",
@@ -518,7 +518,7 @@
         },
         "displayName": "/files/{file_id}.json",
         "path": "/files/{file_id}.json",
-        "url": "http://foo.teamworkpm.net/files/{file_id}.json"
+        "url": "https://:site_url/files/{file_id}.json"
       },
       {
         "httpMethod": "POST",
@@ -530,7 +530,7 @@
         },
         "displayName": "/projects/{project_id}/files.json",
         "path": "/projects/{project_id}/files.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/files.json"
+        "url": "https://:site_url/projects/{project_id}/files.json"
       },
       {
         "httpMethod": "POST",
@@ -542,7 +542,7 @@
         },
         "displayName": "/files/{file_id}.json",
         "path": "/files/{file_id}.json",
-        "url": "http://foo.teamworkpm.net/files/{file_id}.json"
+        "url": "https://:site_url/files/{file_id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -554,7 +554,7 @@
         },
         "displayName": "/files/{file_id}.json",
         "path": "/files/{file_id}.json",
-        "url": "http://foo.teamworkpm.net/files/{file_id}.json"
+        "url": "https://:site_url/files/{file_id}.json"
       },
       {
         "httpMethod": "POST",
@@ -566,7 +566,7 @@
         },
         "displayName": "/pendingfiles.json",
         "path": "/pendingfiles.json",
-        "url": "http://foo.teamworkpm.net/pendingfiles.json"
+        "url": "https://:site_url/pendingfiles.json"
       },
       {
         "httpMethod": "GET",
@@ -608,7 +608,7 @@
             "required": "false"
           }
         ],
-        "url": "http://foo.teamworkpm.net/calendarevents.json"
+        "url": "https://:site_url/calendarevents.json"
       },
       {
         "httpMethod": "GET",
@@ -620,7 +620,7 @@
         },
         "path": "/calendarevents/{id}.json",
         "displayName": "/calendarevents/{id}.json",
-        "url": "http://foo.teamworkpm.net/calendarevents/{id}.json"
+        "url": "https://:site_url/calendarevents/{id}.json"
       },
       {
         "httpMethod": "POST",
@@ -632,7 +632,7 @@
         },
         "displayName": "/calendarevents.json",
         "path": "/calendarevents.json",
-        "url": "http://foo.teamworkpm.net/calendarevents.json"
+        "url": "https://:site_url/calendarevents.json"
       },
       {
         "httpMethod": "PUT",
@@ -644,7 +644,7 @@
         },
         "displayName": "/calendarevents/{id}.json",
         "path": "/calendarevents/{id}.json",
-        "url": "http://foo.teamworkpm.net/calendarevents/{id}.json"
+        "url": "https://:site_url/calendarevents/{id}.json"
       },
       {
         "httpMethod": "DELETE",
@@ -656,7 +656,7 @@
         },
         "displayName": "/calendarevents/{id}.json",
         "path": "/calendarevents/{id}.json",
-        "url": "http://foo.teamworkpm.net/calendarevents/{id}.json"
+        "url": "https://:site_url/calendarevents/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -668,7 +668,7 @@
         },
         "displayName": "/calendareventtypes.json",
         "path": "/calendareventtypes.json",
-        "url": "http://foo.teamworkpm.net/calendareventtypes.json"
+        "url": "https://:site_url/calendareventtypes.json"
       },
       {
         "httpMethod": "POST",
@@ -680,7 +680,7 @@
         },
         "displayName": "/projects/{project_id}/posts.json",
         "path": "/projects/{project_id}/posts.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/posts.json"
+        "url": "https://:site_url/projects/{project_id}/posts.json"
       },
       {
         "httpMethod": "GET",
@@ -692,7 +692,7 @@
         },
         "displayName": "/posts/{id}.json",
         "path": "/posts/{id}.json",
-        "url": "http://foo.teamworkpm.net/posts/{id}.json"
+        "url": "https://:site_url/posts/{id}.json"
       },
       {
         "httpMethod": "GET",
@@ -704,7 +704,7 @@
         },
         "path": "/projects/{project_id}/posts.json",
         "displayName": "/projects/{project_id}/posts.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/posts.json"
+        "url": "https://:site_url/projects/{project_id}/posts.json"
       },
       {
         "httpMethod": "GET",
@@ -716,7 +716,7 @@
         },
         "displayName": "/projects/{project_id}/cat/{category_id}/posts.json",
         "path": "/projects/{project_id}/cat/{category_id}/posts.json",
-        "url": "http://foo.teamworkpm.net/projects/{project_id}/cat/{category_id}/posts.json"
+        "url": "https://:site_url/projects/{project_id}/cat/{category_id}/posts.json"
       },
       {
         "httpMethod": "PUT",
@@ -728,16 +728,24 @@
         },
         "displayName": "/posts/{id}.json",
         "path": "/posts/{id}.json",
-        "url": "http://foo.teamworkpm.net/posts/{id}.json"
+        "url": "https://:site_url/posts/{id}.json"
       }
     ]
   },
-  "auth_strategy": "basic",
+  "defaultParams" : [{
+    "name": ":site_url",
+    "style": "url",
+    "type": "string",
+    "value": "foo.teamworkpm.net",
+    "displayName" : "Site Url",
+    "required": true
+  }],
+  "auth_strategy": "apikey-dummypass-basic",
   "custom_tokens": [],
   "description": "",
   "documentation": "http://developer.teamwork.com/api",
   "enabled": true,
-  "name": "TEAMWORKPM",
+  "name": "Teamwork PM",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:teamworkpm"
 }
