@@ -1,5 +1,5 @@
 {
-  "_id": "dkr99d93jti5u39eif9302",
+  "_id": "5450069056971d74da7cd882",
   "application": {
     "base": "https://integrations.expensify.com",
     "resources": [
@@ -1002,9 +1002,9 @@
       }
     ]
   },
-  "type": "channel:",
+  "type": "channel:expensify",
   "auth_strategy": "oauth",
-  "name": "DoubleClickSearch",
+  "name": "Expensify",
   "oauth": {
     "development": {
       "clientID": "",

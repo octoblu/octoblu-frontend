@@ -6,6 +6,11 @@ angular.module('octobluApp')
     $scope.debugLines = [];
     $scope.deviceOnline;
 
+    $scope.flowSelectorHeight = $($window).height() - 100;
+    $($window).resize(function(){
+      $scope.flowSelectorHeight = $($window).height() - 100;
+    });
+
     skynetService.getSkynetConnection().then(function (skynetConnection) {
       skynetConnection.subscribe({uuid: $stateParams.flowId, type: 'octoblu:flow', topic: 'pulse'});
       skynetConnection.on('ready', function(){

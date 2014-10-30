@@ -452,6 +452,11 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ngDragDro
         controller: 'addChannelBasicController',
         templateUrl: '/pages/node-wizard/add-channel/basic.html'
       })
+      .state('ob.nodewizard.addchannel.docusign', {
+        url: '/docusign',
+        controller: 'addChannelDocuSignController',
+        templateUrl: '/pages/node-wizard/add-channel/docusign.html'
+      })
       .state('ob.nodewizard.addchannel.apikey-basic', {
         url: '/apikey-basic',
         controller: 'addChannelApiKeyBasicController',
