@@ -10,7 +10,7 @@
         <span class="input-group-addon flow-dropdown dropdown-toggle" id="flowMenuDropdown" data-toggle="dropdown"  ng-click="flowMenuIsOpen = !flowMenuIsOpen">
             <i class="fa fa-lg fa-angle-down"></i>
         </span>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="height: {{flowSelectorHeight}}px;">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="flowMenuDropdown" style="max-height: {{flowSelectorHeight}}px;">
           <li class="text-center" data-toggle="dropdown" ng-click="addFlow()"><a class="fa fa-plus" href></a></li>
           <li role="presentation"  class="divider"></li>
           <li class="" data-toggle="dropdown" ng-click="setActiveFlow(flow)" ng-repeat="flow in flows | orderBy: 'name'" >
