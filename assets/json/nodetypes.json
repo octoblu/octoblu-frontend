@@ -1069,5 +1069,18 @@
     },
     "channelid" : "54078e046b465e1815c63737",
     "type" : "channel:teamworkpm"
+  },
+  {
+    "_id" : "device-fadecandy",
+    "category" : "device",
+    "description" : "FadeCandy device",
+    "enabled" : true,
+    "name" : "FadeCandy",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "fadecandy"
+    },
+    "connector": "meshblu-fadecandy",
+    "type" : "device:fadecandy"
   }
 ]
