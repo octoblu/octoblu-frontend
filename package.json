@@ -56,7 +56,7 @@
     "passport-http-oauth": "~0.1.3",
     "passport-instagram": "~0.1.2",
     "passport-intuit-oauth": "~0.1.0",
-    "passport-jawbone": "^0.1.0",
+    "passport-jawbone": "git://github.com/octoblu/passport-jawbone.git",
     "passport-linkedin": "~0.1.3",
     "passport-linkedin-oauth2": "~1.1.1",
     "passport-local": "^0.1.6",

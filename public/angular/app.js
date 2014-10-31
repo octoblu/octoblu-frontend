@@ -169,7 +169,12 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
       .state('ob.connector.nodes.microblu-detail', {
         url: '/microblu/:uuid',
         controller: 'DeviceDetailController',
-        templateUrl: '/pages/connector/devices/detail/index.html'
+        templateUrl: '/pages/connector/devices/detail/index.html',
+        resolve: {
+          device: function(deviceService, $stateParams){
+            return deviceService.getDeviceByUUID($stateParams.uuid);
+          }
+        }
       })
       .state('ob.connector.nodes.shared-device-detail', {
         url: '/device-shared/:uuid',
@@ -496,7 +501,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
       .state('ob.nodewizard.addsubdevice.addGateblu', {
         url: '/add-gateblu',
         controller: 'AddSubdeviceAddGatebluController',
-        templateUrl: '/pages/node-wizard/add-device/index.html'
+        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
       .state('ob.nodewizard.addsubdevice.selectgateblu', {
         url: '',

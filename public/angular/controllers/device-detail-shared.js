@@ -53,8 +53,8 @@ angular.module('octobluApp')
             $scope.confirmModal($modal, $scope, $log, 'Delete Device ' + device.name, 'Are you sure you want to delete this Device?',
                 function () {
                     deviceService.unregisterDevice(device)
-                        .then(function (devices) {
-                            $state.go('ob.connector.nodes.all', {}, {reload: true});
+                        .then(function () {
+                            $state.go('ob.connector.nodes.all');
                         }, function (error) {
                             console.log(error);
                         });
