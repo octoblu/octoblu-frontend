@@ -496,7 +496,7 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
       .state('ob.nodewizard.addsubdevice.addGateblu', {
         url: '/add-gateblu',
         controller: 'AddSubdeviceAddGatebluController',
-        templateUrl: '/pages/node-wizard/add-device/index.html'
+        templateUrl: '/pages/node-wizard/add-gateblu/index.html'
       })
       .state('ob.nodewizard.addsubdevice.selectgateblu', {
         url: '',

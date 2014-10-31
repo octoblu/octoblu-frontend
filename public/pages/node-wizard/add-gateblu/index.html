@@ -12,16 +12,21 @@
 <br>
 
 <div class="row">
-  <div class="col-xs-12 col-md-offset-3 col-md-6 text-center">
+  <div class="col-xs-12 col-md-offset-4 col-md-2 text-center">
     <h3>
-      <a href="http://gateblu.octoblu.com">Don't have Gateblu? Get it here.</a>
+      <a class="btn btn-primary btn-lg" href="http://gateblu.octoblu.com"><i class="fa fa-download"></i> Download Gateblu</a>
+    </h3>
+  </div>
+  <div class="col-xs-12 col-md-2 text-center">
+    <h3>
+      <a class="btn btn-success btn-lg" ng-click="downloaded = true"><i class="fa fa-check"></i> Already Downloaded!</a>
     </h3>
   </div>
 </div>
 
 <br>
 
-<div class="row">
+<div class="row" ng-show="downloaded">
   <div class="col-xs-12 col-md-offset-3 col-md-6">
       <form class="form" ng-submit="addDevice()">
         <div class="form-group">
