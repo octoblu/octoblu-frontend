@@ -1069,5 +1069,18 @@
     },
     "channelid" : "54078e046b465e1815c63737",
     "type" : "channel:teamworkpm"
+  },
+  {
+    "_id" : "540107bdb6df48bb4ec6d62f",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Jawbone",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Jawbone"
+    },
+    "channelid" : "540107bdb6df48bb4ec6d62f",
+    "type" : "channel:jawbone"
   }
 ]

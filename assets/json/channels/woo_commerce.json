@@ -2,7 +2,7 @@
   "_id": "53ee4de563a8751728a5a3bf",
   "__v": 0,
   "application": {
-    "base": "http://www.example.com/wc-api/v1/orders",
+    "base": "http://:site_url/wc-api/v1/orders",
     "resources": [
       {
         "path": "/",
@@ -14,7 +14,7 @@
           "url": "http://woothemes.github.io/woocommerce/rest-api/#get"
         },
         "httpMethod": "GET",
-        "url": "http://www.example.com/wc-api/v1/orders/"
+        "url": "http://:site_url/wc-api/v1/orders/"
       },
       {
         "path": "/coupons",
@@ -26,7 +26,7 @@
           "url": "http://woothemes.github.io/woocommerce/rest-api/#get-coupons"
         },
         "httpMethod": "GET",
-        "url": "http://www.example.com/wc-api/v1/orders/coupons"
+        "url": "http://:site_url/wc-api/v1/orders/coupons"
       },
       {
         "httpMethod": "GET",
@@ -38,7 +38,7 @@
         },
         "displayName": "/coupons/count",
         "path": "/coupons/count",
-        "url": "http://www.example.com/wc-api/v1/orders/coupons/count"
+        "url": "http://:site_url/wc-api/v1/orders/coupons/count"
       },
       {
         "httpMethod": "GET",
@@ -50,7 +50,7 @@
         },
         "displayName": "/coupons/{id}",
         "path": "/coupons/{id}",
-        "url": "http://www.example.com/wc-api/v1/orders/coupons/{id}"
+        "url": "http://:site_url/wc-api/v1/orders/coupons/{id}"
       },
       {
         "httpMethod": "GET",
@@ -62,7 +62,7 @@
         },
         "displayName": "/coupons/code/{code}",
         "path": "/coupons/code/{code}",
-        "url": "http://www.example.com/wc-api/v1/orders/coupons/code/{code}"
+        "url": "http://:site_url/wc-api/v1/orders/coupons/code/{code}"
       },
       {
         "httpMethod": "GET",
@@ -74,7 +74,7 @@
         },
         "displayName": "/customers",
         "path": "/customers",
-        "url": "http://www.example.com/wc-api/v1/orders/customers"
+        "url": "http://:site_url/wc-api/v1/orders/customers"
       },
       {
         "httpMethod": "GET",
@@ -86,7 +86,7 @@
         },
         "displayName": "/customers/count",
         "path": "/customers/count",
-        "url": "http://www.example.com/wc-api/v1/orders/customers/count"
+        "url": "http://:site_url/wc-api/v1/orders/customers/count"
       },
       {
         "httpMethod": "GET",
@@ -98,7 +98,7 @@
         },
         "displayName": "/customers/{id}",
         "path": "/customers/{id}",
-        "url": "http://www.example.com/wc-api/v1/orders/customers/{id}"
+        "url": "http://:site_url/wc-api/v1/orders/customers/{id}"
       },
       {
         "httpMethod": "GET",
@@ -110,7 +110,7 @@
         },
         "displayName": "/customers/#{id}/orders",
         "path": "/customers/#{id}/orders",
-        "url": "http://www.example.com/wc-api/v1/orders/customers/#{id}/orders"
+        "url": "http://:site_url/wc-api/v1/orders/customers/#{id}/orders"
       },
       {
         "httpMethod": "GET",
@@ -122,7 +122,7 @@
         },
         "displayName": "/orders",
         "path": "/orders",
-        "url": "http://www.example.com/wc-api/v1/orders/orders"
+        "url": "http://:site_url/wc-api/v1/orders/orders"
       },
       {
         "httpMethod": "GET",
@@ -134,7 +134,7 @@
         },
         "displayName": "/orders/count",
         "path": "/orders/count",
-        "url": "http://www.example.com/wc-api/v1/orders/orders/count"
+        "url": "http://:site_url/wc-api/v1/orders/orders/count"
       },
       {
         "httpMethod": "GET",
@@ -146,7 +146,7 @@
         },
         "displayName": "/orders/{id}",
         "path": "/orders/{id}",
-        "url": "http://www.example.com/wc-api/v1/orders/orders/{id}"
+        "url": "http://:site_url/wc-api/v1/orders/orders/{id}"
       },
       {
         "httpMethod": "PUT",
@@ -167,7 +167,7 @@
             "required": "false"
           }
         ],
-        "url": "http://www.example.com/wc-api/v1/orders/orders/{id}"
+        "url": "http://:site_url/wc-api/v1/orders/orders/{id}"
       },
       {
         "httpMethod": "GET",
@@ -179,7 +179,7 @@
         },
         "displayName": "/orders/{id}/notes",
         "path": "/orders/{id}/notes",
-        "url": "http://www.example.com/wc-api/v1/orders/orders/{id}/notes"
+        "url": "http://:site_url/wc-api/v1/orders/orders/{id}/notes"
       },
       {
         "httpMethod": "GET",
@@ -191,7 +191,7 @@
         },
         "displayName": "/products",
         "path": "/products",
-        "url": "http://www.example.com/wc-api/v1/orders/products"
+        "url": "http://:site_url/wc-api/v1/orders/products"
       },
       {
         "httpMethod": "GET",
@@ -203,7 +203,7 @@
         },
         "displayName": "/products/count",
         "path": "/products/count",
-        "url": "http://www.example.com/wc-api/v1/orders/products/count"
+        "url": "http://:site_url/wc-api/v1/orders/products/count"
       },
       {
         "httpMethod": "GET",
@@ -215,7 +215,7 @@
         },
         "displayName": "/products/{id}",
         "path": "/products/{id}",
-        "url": "http://www.example.com/wc-api/v1/orders/products/{id}"
+        "url": "http://:site_url/wc-api/v1/orders/products/{id}"
       },
       {
         "httpMethod": "GET",
@@ -227,7 +227,7 @@
         },
         "displayName": "/products/{id}/reviews",
         "path": "/products/{id}/reviews",
-        "url": "http://www.example.com/wc-api/v1/orders/products/{id}/reviews"
+        "url": "http://:site_url/wc-api/v1/orders/products/{id}/reviews"
       },
       {
         "httpMethod": "GET",
@@ -239,7 +239,7 @@
         },
         "displayName": "/reports",
         "path": "/reports",
-        "url": "http://www.example.com/wc-api/v1/orders/reports"
+        "url": "http://:site_url/wc-api/v1/orders/reports"
       },
       {
         "httpMethod": "GET",
@@ -251,14 +251,22 @@
         },
         "displayName": "/reports/sales",
         "path": "/reports/sales",
-        "url": "http://www.example.com/wc-api/v1/orders/reports/sales"
+        "url": "http://:site_url/wc-api/v1/orders/reports/sales"
       }
     ]
   },
-  "auth_strategy": "oauth",
+"defaultParams" : [{
+    "name": ":site_url",
+    "style": "url",
+    "type": "string",
+    "value": "www.example.com",
+    "displayName" : "Site Url",
+    "required": true
+  }],
+  "auth_strategy": "basic",
   "custom_tokens": [],
   "description": "",
-  "documentation": "http://woothemes.github.io/woocommerce/rest-api/#endpoints",
+  "documentation": "http://docs.woocommercev2.apiary.io/introduction/requirements",
   "enabled": true,
   "name": "WooCommerce",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",

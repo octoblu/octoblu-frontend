@@ -3554,11 +3554,19 @@
     ]
   },
   "auth_strategy": "oauth",
+  "oauth": {
+    "development": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "http://localhost:8080/api/oauth/jawbone/callback",
+      "tokenMethod": "access_token_query"
+    }
+  },
   "custom_tokens": [],
   "description": "",
   "documentation": "https://jawbone.com/up/developer/endpoints",
   "enabled": true,
   "name": "UP by Jawbone",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:up-by-jawbone"
+  "type": "channel:jawbone"
 }

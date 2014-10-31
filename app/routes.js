@@ -102,6 +102,9 @@ module.exports = function(app, passport) {
     var SpotifyController = require('./controllers/spotify-controller');
     var spotifyController = new SpotifyController();
 
+    var JawboneController = require('./controllers/jawbone-controller');
+    var jawboneController = new JawboneController();
+
     var SmartsheetController = require('./controllers/smartsheet-controller');
     var smartsheetController = new SmartsheetController();
 
@@ -222,6 +225,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/github',          referrer.storeReferrer, githubController.authorize);
             app.get('/api/oauth/github/callback', githubController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, githubController.redirectToDesigner);
+
+            app.get('/api/oauth/jawbone',          referrer.storeReferrer, jawboneController.authorize);
+            app.get('/api/oauth/jawbone/callback', jawboneController.callback, jawboneController.redirectToDesigner);
 
             app.get('/api/oauth/google',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
