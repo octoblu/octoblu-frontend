@@ -24,6 +24,11 @@ var configAuth = require('./config/auth.js')(env);
 var port       = process.env.OCTOBLU_PORT || configAuth.port;
 var sslPort    = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 
+if (process.env.AIRBRAKE_KEY) {
+  var airbrake = require('airbrake').createClient(process.env.AIRBRAKE_KEY);
+  app.use(airbrake.expressHandler())
+}
+
 var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
 skynetdb.connect(configDB.skynetUrl);
