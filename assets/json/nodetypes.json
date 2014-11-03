@@ -17,6 +17,7 @@
     "description" : "Arduino microcontroller",
     "enabled" : true,
     "name" : "Arduino",
+    "payloadOnly" : true,
     "skynet" : {
       "type" : "device",
       "subtype" : "arduino"
@@ -143,6 +144,7 @@
     "category" : "device",
     "description" : "Beagle Bone",
     "enabled" : true,
+    "payloadOnly" : true,
     "name" : "BeagleBone",
     "skynet" : {
       "type" : "device",
@@ -169,6 +171,7 @@
     "description" : "Spark device",
     "enabled" : true,
     "name" : "Spark",
+    "payloadOnly" : true,
     "skynet" : {
       "type" : "device",
       "subtype" : "spark"
@@ -181,6 +184,7 @@
     "description" : "Pinoccio device",
     "enabled" : true,
     "name" : "Pinoccio",
+    "payloadOnly" : true,
     "skynet" : {
       "type" : "device",
       "subtype" : "pinoccio"
@@ -193,6 +197,7 @@
     "description" : "Tessel device",
     "enabled" : true,
     "name" : "Tessel",
+    "payloadOnly" : true,
     "skynet" : {
       "type" : "device",
       "subtype" : "tessel"
@@ -1071,6 +1076,19 @@
     "type" : "channel:teamworkpm"
   },
   {
+    "_id" : "540107bdb6df48bb4ec6d62f",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "Jawbone",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "Jawbone"
+    },
+    "channelid" : "540107bdb6df48bb4ec6d62f",
+    "type" : "channel:jawbone"
+},
+{
     "_id" : "device-fadecandy",
     "category" : "device",
     "description" : "FadeCandy device",

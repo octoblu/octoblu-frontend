@@ -102,6 +102,9 @@ module.exports = function(app, passport) {
     var SpotifyController = require('./controllers/spotify-controller');
     var spotifyController = new SpotifyController();
 
+    var JawboneController = require('./controllers/jawbone-controller');
+    var jawboneController = new JawboneController();
+
     var SmartsheetController = require('./controllers/smartsheet-controller');
     var smartsheetController = new SmartsheetController();
 
@@ -210,6 +213,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/box',          boxController.authorize);
             app.get('/api/oauth/box/callback', boxController.callback, boxController.redirectToDesigner);
+            
+            app.get('/api/oauth/doubleclicksearch',          referrer.storeReferrer, googleController.authorize);
+            app.get('/api/oauth/doubleclicksearch/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
             app.get('/api/oauth/dropbox',          dropboxController.authorize);
             app.get('/api/oauth/dropbox/callback', dropboxController.callback, dropboxController.redirectToDesigner);
@@ -232,11 +238,11 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/google-*',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/google-*/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
+            app.get('/api/oauth/jawbone',          jawboneController.authorize);
+            app.get('/api/oauth/jawbone/callback', jawboneController.callback, jawboneController.redirectToDesigner);
+
             app.get('/api/oauth/youtube',          referrer.storeReferrer, googleController.authorize);
             app.get('/api/oauth/youtube/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
-
-            app.get('/api/oauth/doubleclicksearch',          referrer.storeReferrer, googleController.authorize);
-            app.get('/api/oauth/doubleclicksearch/callback', googleController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, googleController.redirectToDesigner);
 
             app.get('/api/oauth/paypal',          referrer.storeReferrer, paypalController.authorize);
             app.get('/api/oauth/paypal/callback', paypalController.callback, paypalController.redirectToDesigner);

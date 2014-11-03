@@ -229,8 +229,8 @@
         "url": "https://jawbone.com/nudge/api/v.1.1//users/@me/body_events"
       },
       {
-        "path": "/body_events/{event_xid}",
-        "displayName": "/body_events/{event_xid}",
+        "path": "/body_events/:event_xid",
+        "displayName": "/body_events/:event_xid",
         "authentication": {
           "required": "true"
         },
@@ -238,7 +238,16 @@
           "url": "https://jawbone.com/up/developer/endpoints/body"
         },
         "httpMethod": "GET",
-        "url": "https://jawbone.com/nudge/api/v.1.1//body_events/{event_xid}"
+        "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
+        "params": [
+          {
+            "name": ":event_xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -325,9 +334,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/body_events/{event_xid}",
-        "path": "/body_events/{event_xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//body_events/{event_xid}"
+        "displayName": "/body_events/:event_xid",
+        "path": "/body_events/:event_xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//body_events/:event_xid",
+        "params": [
+          {
+            "name": ":event_xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -603,8 +621,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/generic_events/{xid}/partialUpdate",
-        "path": "/generic_events/{xid}/partialUpdate",
+        "displayName": "/generic_events/:xid/partialUpdate",
+        "path": "/generic_events/:xid/partialUpdate",
         "params": [
           {
             "name": "title",
@@ -689,9 +707,16 @@
             "type": "boolean",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/{xid}/partialUpdate"
+        "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/:xid/partialUpdate"
       },
       {
         "httpMethod": "DELETE",
@@ -701,9 +726,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/generic_events/{xid}",
-        "path": "/generic_events/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/{xid}"
+        "displayName": "/generic_events/:xid",
+        "path": "/generic_events/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//generic_events/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -1126,9 +1160,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/meals/{xid}",
-        "path": "/meals/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//meals/{xid}"
+        "displayName": "/meals/:xid",
+        "path": "/meals/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -1376,8 +1419,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/meals/{xid}/partialUpdate",
-        "path": "/meals/{xid}/partialUpdate",
+        "displayName": "/meals/:xid/partialUpdate",
+        "path": "/meals/:xid/partialUpdate",
         "params": [
           {
             "name": "note",
@@ -1595,9 +1638,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://jawbone.com/nudge/api/v.1.1//meals/{xid}/partialUpdate"
+        "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid/partialUpdate"
       },
       {
         "httpMethod": "DELETE",
@@ -1607,9 +1657,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/meals/{xid}",
-        "path": "/meals/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//meals/{xid}"
+        "displayName": "/meals/:xid",
+        "path": "/meals/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//meals/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -1724,9 +1783,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/mood/{xid}",
-        "path": "/mood/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//mood/{xid}"
+        "displayName": "/mood/:xid",
+        "path": "/mood/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//mood/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -1785,9 +1853,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/mood/{xid}",
-        "path": "/mood/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//mood/{xid}"
+        "displayName": "/mood/:xid",
+        "path": "/mood/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//mood/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -2049,9 +2126,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/moves/{move_xid}",
-        "path": "/moves/{move_xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//moves/{move_xid}"
+        "displayName": "/moves/:move_xid",
+        "path": "/moves/:move_xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid",
+        "params": [
+          {
+            "name": ":move_xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -2061,9 +2147,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/moves/{move_xid}/image",
-        "path": "/moves/{move_xid}/image",
-        "url": "https://jawbone.com/nudge/api/v.1.1//moves/{move_xid}/image"
+        "displayName": "/moves/:move_xid/image",
+        "path": "/moves/:move_xid/image",
+        "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid/image",
+        "params": [
+          {
+            "name": ":move_xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -2073,8 +2168,8 @@
         "authentication": {
           "required": "true"
         },
-        "path": "/moves/{move_xid}/ticks",
-        "displayName": "/moves/{move_xid}/ticks",
+        "path": "/moves/:move_xid/ticks",
+        "displayName": "/moves/:move_xid/ticks",
         "params": [
           {
             "name": "distance",
@@ -2117,9 +2212,16 @@
             "type": "number",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":move_xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://jawbone.com/nudge/api/v.1.1//moves/{move_xid}/ticks"
+        "url": "https://jawbone.com/nudge/api/v.1.1//moves/:move_xid/ticks"
       },
       {
         "httpMethod": "POST",
@@ -2444,9 +2546,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/sleeps/{xid}",
-        "path": "/sleeps/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/{xid}"
+        "displayName": "/sleeps/:xid",
+        "path": "/sleeps/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -2456,9 +2567,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/sleeps/{xid}/image",
-        "path": "/sleeps/{xid}/image",
-        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/{xid}/image"
+        "displayName": "/sleeps/:xid/image",
+        "path": "/sleeps/:xid/image",
+        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid/image",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -2468,8 +2588,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/sleeps/{xid}/ticks",
-        "path": "/sleeps/{xid}/ticks",
+        "displayName": "/sleeps/:xid/ticks",
+        "path": "/sleeps/:xid/ticks",
         "params": [
           {
             "name": "depth",
@@ -2484,9 +2604,16 @@
             "type": "number",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/{xid}/ticks"
+        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid/ticks"
       },
       {
         "httpMethod": "POST",
@@ -2538,9 +2665,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/sleeps/{xid}",
-        "path": "/sleeps/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/{xid}"
+        "displayName": "/sleeps/:xid",
+        "path": "/sleeps/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//sleeps/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -3257,9 +3393,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/workouts/{xid}",
-        "path": "/workouts/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/{xid}"
+        "displayName": "/workouts/:xid",
+        "path": "/workouts/:xid",
+        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -3269,9 +3414,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/workouts/{xid}/image",
-        "path": "/workouts/{xid}/image",
-        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/{xid}/image"
+        "displayName": "/workouts/:xid/image",
+        "path": "/workouts/:xid/image",
+        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/image",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -3281,8 +3435,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/workouts/{xid}/ticks",
-        "path": "/workouts/{xid}/ticks",
+        "displayName": "/workouts/:xid/ticks",
+        "path": "/workouts/:xid/ticks",
         "params": [
           {
             "name": "distance",
@@ -3325,9 +3479,16 @@
             "type": "number",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/{xid}/ticks"
+        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/ticks"
       },
       {
         "httpMethod": "POST",
@@ -3442,8 +3603,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/workouts/{xid}/partialUpdate",
-        "path": "/workouts/{xid}/partialUpdate",
+        "displayName": "/workouts/:xid/partialUpdate",
+        "path": "/workouts/:xid/partialUpdate",
         "params": [
           {
             "name": "sub_type",
@@ -3535,9 +3696,16 @@
             "type": "number",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/{xid}/partialUpdate"
+        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid/partialUpdate"
       },
       {
         "httpMethod": "DELETE",
@@ -3547,18 +3715,47 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/workouts/{xid}",
-        "path": "/workouts/{xid}",
-        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/{xid}"
+        "displayName": "/workouts/:xid",
+        "path": "/workouts/:xid",
+        "params": [
+          {
+            "name": ":xid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ],
+        "url": "https://jawbone.com/nudge/api/v.1.1//workouts/:xid"
       }
     ]
   },
   "auth_strategy": "oauth",
+  "oauth": {
+    "development": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/jawbone/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/jawbone/callback",
+      "tokenMethod": "access_token_bearer"      
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/jawbone/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
   "custom_tokens": [],
   "description": "",
   "documentation": "https://jawbone.com/up/developer/endpoints",
   "enabled": true,
-  "name": "UP by Jawbone",
+  "name": "Jawbone",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:up-by-jawbone"
+  "type": "channel:jawbone"
 }

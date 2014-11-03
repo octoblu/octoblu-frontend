@@ -17,18 +17,18 @@ class AddMissingURLParams
     _.each channel.application.resources, (resource) =>
       unless resource.params
         resource.params = []
-        @names = _.pluck resource.params, 'name'
-        matches = resource.url.match /\:([\w-_]*)/g
-        matches = matches.slice 1, matches.length
-        _.each matches, (match) =>
-        		return if _.contains @names, match
-        		resource.params.push {
-        		    "name": match,
-        		    "style": "url",
-        		    "type": "string",
-        		    "value": "",
-        		    "required": true
-        		}
+      @names = _.pluck resource.params, 'name'
+      matches = resource.url.match /\:([\w-_]*)/g
+      matches = matches.slice 1, matches.length
+      _.each matches, (match) =>
+      		return if _.contains @names, match
+      		resource.params.push {
+      		    "name": match,
+      		    "style": "url",
+      		    "type": "string",
+      		    "value": "",
+      		    "required": true
+      		}
 
     prettyChannel = JSON.stringify channel, null, 2
     fs.writeFileSync @channel_filename, prettyChannel

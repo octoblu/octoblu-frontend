@@ -169,9 +169,7 @@ angular.module('octobluApp')
 
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.unregister(device, function (result) {
-                        service.getDevices(true).then(function(devices){
-                            defer.resolve(devices);
-                        });
+                        defer.resolve();
                     });
                 });
 

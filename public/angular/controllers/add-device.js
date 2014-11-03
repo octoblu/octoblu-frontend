@@ -25,14 +25,15 @@ angular.module('octobluApp')
     delete $scope.errorMessage;
 
     deviceOptions = {
-      type: $scope.nodeType.skynet.type,
-      subtype: $scope.nodeType.skynet.subtype,
+      type: $scope.nodeType.type,
       name: $scope.newDevice.name
     };
 
-    if($scope.nodeType.skynet.subtype) {
-      deviceOptions.type += ':' + $scope.nodeType.skynet.subtype;
+    if($scope.nodeType.payloadOnly){
+      deviceOptions.payloadOnly = $scope.nodeType.payloadOnly;
     }
+
+
 
     if ($scope.newDevice.selectedDevice) {
       if ($scope.newDevice.selectedDevice.type === 'existing') {
