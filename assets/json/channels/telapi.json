@@ -12,9 +12,9 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}",
-        "path": "/Accounts/{AccountSid}",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}"
+        "displayName": "/Accounts/:AccountSid",
+        "path": "/Accounts/:AccountSid",
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid"
       },
       {
         "httpMethod": "GET",
@@ -24,9 +24,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Usages/{UsageSid}",
-        "path": "/Accounts/{AccountSid}/Usages/{UsageSid}",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Usages/{UsageSid}"
+        "displayName": "/Accounts/:AccountSid/Usages/:UsageSid",
+        "path": "/Accounts/:AccountSid/Usages/:UsageSid",
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Usages/:UsageSid",
+        "params": [
+          {
+            "name": ":UsageSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -36,8 +45,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Usages",
-        "path": "/Accounts/{AccountSid}/Usages",
+        "displayName": "/Accounts/:AccountSid/Usages",
+        "path": "/Accounts/:AccountSid/Usages",
         "params": [
           {
             "name": "Day",
@@ -82,7 +91,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Usages"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Usages"
       },
       {
         "httpMethod": "GET",
@@ -92,9 +101,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/SMS/Messages/{SMSMessageSid}",
-        "path": "/Accounts/{AccountSid}/SMS/Messages/{SMSMessageSid}",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/SMS/Messages/{SMSMessageSid}"
+        "displayName": "/Accounts/:AccountSid/SMS/Messages/:SMSMessageSid",
+        "path": "/Accounts/:AccountSid/SMS/Messages/:SMSMessageSid",
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/SMS/Messages/:SMSMessageSid",
+        "params": [
+          {
+            "name": ":SMSMessageSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "POST",
@@ -104,8 +122,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/SMS/Messages",
-        "path": "/Accounts/{AccountSid}/SMS/Messages",
+        "displayName": "/Accounts/:AccountSid/SMS/Messages",
+        "path": "/Accounts/:AccountSid/SMS/Messages",
         "params": [
           {
             "name": "To",
@@ -143,7 +161,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/SMS/Messages"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/SMS/Messages"
       },
       {
         "httpMethod": "POST",
@@ -153,8 +171,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/SMS/Messages",
-        "path": "/Accounts/{AccountSid}/SMS/Messages",
+        "displayName": "/Accounts/:AccountSid/SMS/Messages",
+        "path": "/Accounts/:AccountSid/SMS/Messages",
         "params": [
           {
             "name": "To",
@@ -192,7 +210,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/SMS/Messages"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/SMS/Messages"
       },
       {
         "httpMethod": "GET",
@@ -202,9 +220,18 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}",
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}"
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid",
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid",
+        "params": [
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -214,8 +241,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Calls",
-        "path": "/Accounts/{AccountSid}/Calls",
+        "displayName": "/Accounts/:AccountSid/Calls",
+        "path": "/Accounts/:AccountSid/Calls",
         "params": [
           {
             "name": "To",
@@ -260,7 +287,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls"
       },
       {
         "httpMethod": "POST",
@@ -270,8 +297,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Calls",
-        "path": "/Accounts/{AccountSid}/Calls",
+        "displayName": "/Accounts/:AccountSid/Calls",
+        "path": "/Accounts/:AccountSid/Calls",
         "params": [
           {
             "name": "To",
@@ -449,7 +476,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls"
       },
       {
         "httpMethod": "GET",
@@ -459,8 +486,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}",
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}",
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid",
         "params": [
           {
             "name": "Url",
@@ -482,9 +509,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid"
       },
       {
         "httpMethod": "POST",
@@ -494,8 +528,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Play",
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Play",
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid/Play",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid/Play",
         "params": [
           {
             "name": "AudioUrl",
@@ -531,9 +565,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Play"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Play"
       },
       {
         "httpMethod": "POST",
@@ -543,8 +584,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Effect",
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Effect",
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid/Effect",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid/Effect",
         "params": [
           {
             "name": "AudioDirection",
@@ -587,9 +628,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Effect"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Effect"
       },
       {
         "httpMethod": "POST",
@@ -599,8 +647,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid/Recordings",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid/Recordings",
         "params": [
           {
             "name": "Record",
@@ -685,13 +733,20 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Recordings"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Recordings"
       },
       {
-        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}",
-        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}",
+        "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid",
+        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid",
         "authentication": {
           "required": "true"
         },
@@ -699,7 +754,16 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid",
+        "params": [
+          {
+            "name": ":ConferenceSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "params": [
@@ -746,8 +810,8 @@
             "name": "PageSize"
           }
         ],
-        "path": "/Accounts/{AccountSid}/Conferences",
-        "displayName": "/Accounts/{AccountSid}/Conferences",
+        "path": "/Accounts/:AccountSid/Conferences",
+        "displayName": "/Accounts/:AccountSid/Conferences",
         "authentication": {
           "required": "true"
         },
@@ -755,11 +819,11 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences"
       },
       {
-        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
-        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
+        "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
+        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
         "authentication": {
           "required": "true"
         },
@@ -767,7 +831,23 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/view-participant/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
+        "params": [
+          {
+            "name": ":ConferenceSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },
+          {
+            "name": ":ParticipantSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "params": [
@@ -798,10 +878,17 @@
             "type": "string",
             "style": "query",
             "name": "PageSize"
+          },
+          {
+            "name": ":ConferenceSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants",
-        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants",
+        "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants",
+        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants",
         "authentication": {
           "required": "true"
         },
@@ -809,7 +896,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/list-participants/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants"
       },
       {
         "params": [
@@ -826,10 +913,24 @@
             "type": "string",
             "style": "body",
             "name": "Deaf"
+          },
+          {
+            "name": ":ConferenceSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },
+          {
+            "name": ":ParticipantSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participant/{ParticipantSid}",
-        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participant/{ParticipantSid}",
+        "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participant/:ParticipantSid",
+        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participant/:ParticipantSid",
         "authentication": {
           "required": "true"
         },
@@ -837,11 +938,11 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/deaf-or-mute/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participant/{ParticipantSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participant/:ParticipantSid"
       },
       {
-        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
-        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}",
+        "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
+        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
         "authentication": {
           "required": "true"
         },
@@ -849,7 +950,23 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/hangup-participant/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
+        "params": [
+          {
+            "name": ":ConferenceSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },
+          {
+            "name": ":ParticipantSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "params": [
@@ -859,10 +976,24 @@
             "type": "string",
             "style": "body",
             "name": "AudioUrl"
+          },
+          {
+            "name": ":ConferenceSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },
+          {
+            "name": ":ParticipantSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}/Play",
-        "displayName": "/Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}/Play",
+        "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid/Play",
+        "displayName": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid/Play",
         "authentication": {
           "required": "true"
         },
@@ -870,11 +1001,11 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/play-audio/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Conferences/{ConferenceSid}/Participants/{ParticipantSid}/Play"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid/Play"
       },
       {
-        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
-        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "path": "/Accounts/:AccountSid/Applications/:ApplicationSid",
+        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid",
         "authentication": {
           "required": "true"
         },
@@ -882,7 +1013,16 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid",
+        "params": [
+          {
+            "name": ":ApplicationSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "params": [
@@ -908,8 +1048,8 @@
             "name": "PageSize"
           }
         ],
-        "path": "/Accounts/{AccountSid}/Applications",
-        "displayName": "/Accounts/{AccountSid}/Applications",
+        "path": "/Accounts/:AccountSid/Applications",
+        "displayName": "/Accounts/:AccountSid/Applications",
         "authentication": {
           "required": "true"
         },
@@ -917,7 +1057,7 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications"
       },
       {
         "params": [
@@ -1020,8 +1160,8 @@
             "name": "HangupCallbackMethod"
           }
         ],
-        "path": "/Accounts/{AccountSid}/Applications",
-        "displayName": "/Accounts/{AccountSid}/Applications",
+        "path": "/Accounts/:AccountSid/Applications",
+        "displayName": "/Accounts/:AccountSid/Applications",
         "authentication": {
           "required": "true"
         },
@@ -1029,7 +1169,7 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/create/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications"
       },
       {
         "params": [
@@ -1130,10 +1270,17 @@
             "type": "string",
             "style": "body",
             "name": "HangupCallbackMethod"
+          },
+          {
+            "name": ":ApplicationSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
-        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "path": "/Accounts/:AccountSid/Applications/:ApplicationSid",
+        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid",
         "authentication": {
           "required": "true"
         },
@@ -1141,11 +1288,11 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/update/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid"
       },
       {
-        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
-        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}",
+        "path": "/Accounts/:AccountSid/Applications/:ApplicationSid",
+        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid",
         "authentication": {
           "required": "true"
         },
@@ -1153,11 +1300,20 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/delete/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid",
+        "params": [
+          {
+            "name": ":ApplicationSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/{ClientSid}",
-        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/{ClientSid}",
+        "path": "/Accounts/:AccountSid/Applications/:ApplicationSid/Clients/:ClientSid",
+        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid/Clients/:ClientSid",
         "authentication": {
           "required": "true"
         },
@@ -1165,7 +1321,23 @@
           "url": "http://www.telapi.com/docs/api/rest/application-clients/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/{ClientSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid/Clients/:ClientSid",
+        "params": [
+          {
+            "name": ":ApplicationSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },
+          {
+            "name": ":ClientSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "params": [
@@ -1182,10 +1354,17 @@
             "type": "string",
             "style": "query",
             "name": "PageSize"
+          },
+          {
+            "name": ":ApplicationSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients",
-        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients",
+        "path": "/Accounts/:AccountSid/Applications/:ApplicationSid/Clients",
+        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid/Clients",
         "authentication": {
           "required": "true"
         },
@@ -1193,7 +1372,7 @@
           "url": "http://www.telapi.com/docs/api/rest/application-clients/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid/Clients"
       },
       {
         "params": [
@@ -1203,10 +1382,17 @@
             "type": "string",
             "style": "body",
             "name": "Nickname"
+          },
+          {
+            "name": ":ApplicationSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "displayName": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/Tokens",
-        "path": "/Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/Tokens",
+        "displayName": "/Accounts/:AccountSid/Applications/:ApplicationSid/Clients/Tokens",
+        "path": "/Accounts/:AccountSid/Applications/:ApplicationSid/Clients/Tokens",
         "authentication": {
           "required": "true"
         },
@@ -1214,11 +1400,11 @@
           "url": "http://www.telapi.com/docs/api/rest/application-clients/create/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Applications/{ApplicationSid}/Clients/Tokens"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid/Clients/Tokens"
       },
       {
-        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
-        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
+        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
         "authentication": {
           "required": "true"
         },
@@ -1226,7 +1412,16 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
+        "params": [
+          {
+            "name": ":IncomingPhoneNumberSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "params": [
@@ -1259,8 +1454,8 @@
             "name": "PageSize"
           }
         ],
-        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers",
-        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers",
+        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers",
         "authentication": {
           "required": "true"
         },
@@ -1268,7 +1463,7 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers"
       },
       {
         "params": [
@@ -1369,10 +1564,17 @@
             "type": "string",
             "style": "body",
             "name": "HangupCallbackMethod"
+          },
+          {
+            "name": ":IncomingPhoneNumberSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
-        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
+        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
         "authentication": {
           "required": "true"
         },
@@ -1380,7 +1582,7 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/update/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid"
       },
       {
         "params": [
@@ -1497,8 +1699,8 @@
             "name": "HangupCallbackMethod"
           }
         ],
-        "path": "/Accounts/{AccountSid}/IncomingPhoneNumbers/",
-        "displayName": "/Accounts/{AccountSid}/IncomingPhoneNumbers/",
+        "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/",
+        "displayName": "/Accounts/:AccountSid/IncomingPhoneNumbers/",
         "authentication": {
           "required": "true"
         },
@@ -1506,7 +1708,7 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/add-or-delete/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/IncomingPhoneNumbers/"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers/"
       },
       {
         "params": [
@@ -1551,10 +1753,24 @@
             "type": "string",
             "style": "query",
             "name": "PageSize"
+          },
+          {
+            "name": ":IsoCountryCode",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          },
+          {
+            "name": ":Local",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/{Local/TollFree}",
-        "displayName": "/Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/{Local/TollFree}",
+        "path": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/:Local/TollFree",
+        "displayName": "/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/:Local/TollFree",
         "authentication": {
           "required": "true"
         },
@@ -1562,7 +1778,7 @@
           "url": "http://www.telapi.com/docs/api/rest/available-phone-numbers/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/{Local/TollFree}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/:Local/TollFree"
       },
       {
         "params": [
@@ -1649,10 +1865,17 @@
             "type": "string",
             "style": "body",
             "name": "RecordingUrl"
+          },
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid/Recordings",
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid/Recordings",
         "authentication": {
           "required": "true"
         },
@@ -1660,11 +1883,11 @@
           "url": "http://www.telapi.com/docs/api/rest/calls/record/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Recordings"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Recordings"
       },
       {
-        "path": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
-        "displayName": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
+        "path": "/Accounts/:AccountSid/Recordings/:RecordingSid",
+        "displayName": "/Accounts/:AccountSid/Recordings/:RecordingSid",
         "authentication": {
           "required": "true"
         },
@@ -1672,7 +1895,16 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings/{RecordingSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings/:RecordingSid",
+        "params": [
+          {
+            "name": ":RecordingSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "params": [
@@ -1705,8 +1937,8 @@
             "name": "PageSize"
           }
         ],
-        "path": "/Accounts/{AccountSid}/Recordings",
-        "displayName": "/Accounts/{AccountSid}/Recordings",
+        "path": "/Accounts/:AccountSid/Recordings",
+        "displayName": "/Accounts/:AccountSid/Recordings",
         "authentication": {
           "required": "true"
         },
@@ -1714,7 +1946,7 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings"
       },
       {
         "params": [
@@ -1745,10 +1977,17 @@
             "type": "string",
             "style": "query",
             "name": "PageSize"
+          },
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Recordings",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid/Recordings",
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid/Recordings",
         "authentication": {
           "required": "true"
         },
@@ -1756,11 +1995,11 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Recordings"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Recordings"
       },
       {
-        "path": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
-        "displayName": "/Accounts/{AccountSid}/Recordings/{RecordingSid}",
+        "path": "/Accounts/:AccountSid/Recordings/:RecordingSid",
+        "displayName": "/Accounts/:AccountSid/Recordings/:RecordingSid",
         "authentication": {
           "required": "true"
         },
@@ -1768,11 +2007,20 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/delete/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings/{RecordingSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings/:RecordingSid",
+        "params": [
+          {
+            "name": ":RecordingSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/Accounts/{AccountSid}/Notifications/{NotificationSid}",
-        "displayName": "/Accounts/{AccountSid}/Notifications/{NotificationSid}",
+        "path": "/Accounts/:AccountSid/Notifications/:NotificationSid",
+        "displayName": "/Accounts/:AccountSid/Notifications/:NotificationSid",
         "authentication": {
           "required": "true"
         },
@@ -1780,11 +2028,20 @@
           "url": "http://www.telapi.com/docs/api/rest/notifications/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Notifications/{NotificationSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Notifications/:NotificationSid",
+        "params": [
+          {
+            "name": ":NotificationSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/Accounts/{AccountSid}/Notifications",
-        "displayName": "/Accounts/{AccountSid}/Notifications",
+        "path": "/Accounts/:AccountSid/Notifications",
+        "displayName": "/Accounts/:AccountSid/Notifications",
         "authentication": {
           "required": "true"
         },
@@ -1792,11 +2049,11 @@
           "url": "http://www.telapi.com/docs/api/rest/notifications/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Notifications"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Notifications"
       },
       {
-        "displayName": "/Accounts/{AccountSid}/Calls/{CallSid}/Notifications",
-        "path": "/Accounts/{AccountSid}/Calls/{CallSid}/Notifications",
+        "displayName": "/Accounts/:AccountSid/Calls/:CallSid/Notifications",
+        "path": "/Accounts/:AccountSid/Calls/:CallSid/Notifications",
         "params": [
           {
             "required": "false",
@@ -1818,6 +2075,13 @@
             "type": "string",
             "style": "query",
             "name": "PageSize"
+          },
+          {
+            "name": ":CallSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
         "authentication": {
@@ -1827,11 +2091,11 @@
           "url": "http://www.telapi.com/docs/api/rest/notifications/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Calls/{CallSid}/Notifications"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Notifications"
       },
       {
-        "path": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}",
-        "displayName": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}",
+        "path": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid",
+        "displayName": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid",
         "authentication": {
           "required": "true"
         },
@@ -1839,11 +2103,20 @@
           "url": "http://www.telapi.com/docs/api/rest/transcriptions/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions/:TranscriptionSid",
+        "params": [
+          {
+            "name": ":TranscriptionSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
-        "path": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.txt",
-        "displayName": "/Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.txt",
+        "path": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.txt",
+        "displayName": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.txt",
         "authentication": {
           "required": "true"
         },
@@ -1851,7 +2124,16 @@
           "url": "http://www.telapi.com/docs/api/rest/transcriptions/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions/{TranscriptionSid}.txt"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions/:TranscriptionSid.txt",
+        "params": [
+          {
+            "name": ":TranscriptionSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
+          }
+        ]
       },
       {
         "httpMethod": "GET",
@@ -1861,8 +2143,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Transcriptions/",
-        "path": "/Accounts/{AccountSid}/Transcriptions/",
+        "displayName": "/Accounts/:AccountSid/Transcriptions/",
+        "path": "/Accounts/:AccountSid/Transcriptions/",
         "params": [
           {
             "name": "Status",
@@ -1893,7 +2175,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions/"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions/"
       },
       {
         "httpMethod": "GET",
@@ -1903,8 +2185,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/{RecordingSid}/Transcriptions",
-        "path": "/Accounts/{AccountSid}/{RecordingSid}/Transcriptions",
+        "displayName": "/Accounts/:AccountSid/:RecordingSid/Transcriptions",
+        "path": "/Accounts/:AccountSid/:RecordingSid/Transcriptions",
         "params": [
           {
             "name": "Status",
@@ -1933,9 +2215,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":RecordingSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/{RecordingSid}/Transcriptions"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/:RecordingSid/Transcriptions"
       },
       {
         "httpMethod": "POST",
@@ -1945,8 +2234,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Transcriptions",
-        "path": "/Accounts/{AccountSid}/Transcriptions",
+        "displayName": "/Accounts/:AccountSid/Transcriptions",
+        "path": "/Accounts/:AccountSid/Transcriptions",
         "params": [
           {
             "name": "AudioUrl",
@@ -1991,7 +2280,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Transcriptions"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions"
       },
       {
         "httpMethod": "POST",
@@ -2001,8 +2290,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions",
-        "path": "/Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions",
+        "displayName": "/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions",
+        "path": "/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions",
         "params": [
           {
             "name": "TranscribeCallback",
@@ -2080,9 +2369,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":RecordingSid",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Recordings/{RecordingSid}/Transcriptions"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions"
       },
       {
         "httpMethod": "POST",
@@ -2092,8 +2388,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Lookups/Carrier",
-        "path": "/Accounts/{AccountSid}/Lookups/Carrier",
+        "displayName": "/Accounts/:AccountSid/Lookups/Carrier",
+        "path": "/Accounts/:AccountSid/Lookups/Carrier",
         "params": [
           {
             "name": "PhoneNumber",
@@ -2103,7 +2399,7 @@
             "required": "true"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Carrier"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Carrier"
       },
       {
         "httpMethod": "GET",
@@ -2113,8 +2409,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Lookups/Carrier",
-        "path": "/Accounts/{AccountSid}/Lookups/Carrier",
+        "displayName": "/Accounts/:AccountSid/Lookups/Carrier",
+        "path": "/Accounts/:AccountSid/Lookups/Carrier",
         "params": [
           {
             "name": "Page",
@@ -2131,7 +2427,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Carrier"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Carrier"
       },
       {
         "httpMethod": "POST",
@@ -2141,8 +2437,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Lookups/Cnam",
-        "path": "/Accounts/{AccountSid}/Lookups/Cnam",
+        "displayName": "/Accounts/:AccountSid/Lookups/Cnam",
+        "path": "/Accounts/:AccountSid/Lookups/Cnam",
         "params": [
           {
             "name": "PhoneNumber",
@@ -2152,7 +2448,7 @@
             "required": "true"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Cnam"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Cnam"
       },
       {
         "httpMethod": "GET",
@@ -2162,8 +2458,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Lookups/Cnam",
-        "path": "/Accounts/{AccountSid}/Lookups/Cnam",
+        "displayName": "/Accounts/:AccountSid/Lookups/Cnam",
+        "path": "/Accounts/:AccountSid/Lookups/Cnam",
         "params": [
           {
             "name": "Page",
@@ -2180,7 +2476,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Cnam"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Cnam"
       },
       {
         "httpMethod": "POST",
@@ -2190,8 +2486,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Lookups/Bna",
-        "path": "/Accounts/{AccountSid}/Lookups/Bna",
+        "displayName": "/Accounts/:AccountSid/Lookups/Bna",
+        "path": "/Accounts/:AccountSid/Lookups/Bna",
         "params": [
           {
             "name": "PhoneNumber",
@@ -2201,7 +2497,7 @@
             "required": "true"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Bna"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Bna"
       },
       {
         "httpMethod": "GET",
@@ -2211,8 +2507,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Lookups/Bna",
-        "path": "/Accounts/{AccountSid}/Lookups/Bna",
+        "displayName": "/Accounts/:AccountSid/Lookups/Bna",
+        "path": "/Accounts/:AccountSid/Lookups/Bna",
         "params": [
           {
             "name": "Page",
@@ -2229,7 +2525,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Lookups/Bna"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Bna"
       },
       {
         "httpMethod": "GET",
@@ -2239,8 +2535,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Fraud",
-        "path": "/Accounts/{AccountSid}/Fraud",
+        "displayName": "/Accounts/:AccountSid/Fraud",
+        "path": "/Accounts/:AccountSid/Fraud",
         "params": [
           {
             "name": "Page",
@@ -2257,7 +2553,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud"
       },
       {
         "httpMethod": "POST",
@@ -2267,8 +2563,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Fraud/Authorize/{CountryCode}",
-        "path": "/Accounts/{AccountSid}/Fraud/Authorize/{CountryCode}",
+        "displayName": "/Accounts/:AccountSid/Fraud/Authorize/:CountryCode",
+        "path": "/Accounts/:AccountSid/Fraud/Authorize/:CountryCode",
         "params": [
           {
             "name": "MobileEnabled",
@@ -2292,14 +2588,14 @@
             "required": "false"
           },
           {
-            "name": "",
-            "style": "",
+            "name": ":CountryCode",
+            "style": "url",
             "type": "string",
             "value": "",
-            "required": "false"
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Authorize/{CountryCode}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Authorize/:CountryCode"
       },
       {
         "httpMethod": "POST",
@@ -2309,8 +2605,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Fraud/Block/{CountryCode}",
-        "path": "/Accounts/{AccountSid}/Fraud/Block/{CountryCode}",
+        "displayName": "/Accounts/:AccountSid/Fraud/Block/:CountryCode",
+        "path": "/Accounts/:AccountSid/Fraud/Block/:CountryCode",
         "params": [
           {
             "name": "MobileEnabled",
@@ -2332,9 +2628,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":CountryCode",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Block/{CountryCode}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Block/:CountryCode"
       },
       {
         "httpMethod": "POST",
@@ -2344,8 +2647,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Fraud/Extend/{CountryCode}",
-        "path": "/Accounts/{AccountSid}/Fraud/Extend/{CountryCode}",
+        "displayName": "/Accounts/:AccountSid/Fraud/Extend/:CountryCode",
+        "path": "/Accounts/:AccountSid/Fraud/Extend/:CountryCode",
         "params": [
           {
             "name": "MobileEnabled",
@@ -2367,9 +2670,16 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":CountryCode",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Extend/{CountryCode}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Extend/:CountryCode"
       },
       {
         "httpMethod": "POST",
@@ -2379,8 +2689,8 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Accounts/{AccountSid}/Fraud/Whitelist/{CountryCode}",
-        "path": "/Accounts/{AccountSid}/Fraud/Whitelist/{CountryCode}",
+        "displayName": "/Accounts/:AccountSid/Fraud/Whitelist/:CountryCode",
+        "path": "/Accounts/:AccountSid/Fraud/Whitelist/:CountryCode",
         "params": [
           {
             "name": "MobileEnabled",
@@ -2402,18 +2712,35 @@
             "type": "string",
             "value": "",
             "required": "false"
+          },
+          {
+            "name": ":CountryCode",
+            "style": "url",
+            "type": "string",
+            "value": "",
+            "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/{AccountSid}/Fraud/Whitelist/{CountryCode}"
+        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Whitelist/:CountryCode"
       }
     ]
   },
-  "auth_strategy": "oauth",
+  "defaultParams": [
+    {
+      "name": ":AccountSid",
+      "style": "url",
+      "type": "string",
+      "value": "ACdf88908462dedd5f1a4b47ca91d952ed",
+      "displayName": "Account SID",
+      "required": true
+    }
+  ],
+  "auth_strategy": "basic",
   "custom_tokens": [],
   "description": "",
   "documentation": "http://www.telapi.com/docs/api/rest/",
   "enabled": true,
-  "name": "TELAPI",
+  "name": "TelAPI",
   "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
   "type": "channel:telapi"
 }

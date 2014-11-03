@@ -1100,5 +1100,18 @@
     },
     "connector": "meshblu-fadecandy",
     "type" : "device:fadecandy"
+  },
+  {
+    "_id" : "545570f1a4c4a0f2edbee150",
+    "category" : "channel",
+    "description" : "",
+    "enabled" : true,
+    "name" : "TelAPI",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "TelAPI"
+    },
+    "channelid" : "53ee9881bacd88b6355f4504",
+    "type" : "channel:telapi"
   }
 ]
