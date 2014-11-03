@@ -1102,6 +1102,19 @@
     "type" : "device:fadecandy"
   },
   {
+    "_id" : "device-osc",
+    "category" : "device",
+    "description" : "OSC Udp transfer",
+    "enabled" : true,
+    "name" : "OSC",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "osc"
+    },
+    "connector": "meshblu-osc",
+    "type" : "device:osc"
+  },
+  {
     "_id" : "545570f1a4c4a0f2edbee150",
     "category" : "channel",
     "description" : "",
