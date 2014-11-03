@@ -14,7 +14,7 @@
         },
         "displayName": "/Accounts/:AccountSid",
         "path": "/Accounts/:AccountSid",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid"
       },
       {
         "httpMethod": "GET",
@@ -26,7 +26,7 @@
         },
         "displayName": "/Accounts/:AccountSid/Usages/:UsageSid",
         "path": "/Accounts/:AccountSid/Usages/:UsageSid",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Usages/:UsageSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Usages/:UsageSid",
         "params": [
           {
             "name": ":UsageSid",
@@ -91,7 +91,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Usages"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Usages"
       },
       {
         "httpMethod": "GET",
@@ -103,7 +103,7 @@
         },
         "displayName": "/Accounts/:AccountSid/SMS/Messages/:SMSMessageSid",
         "path": "/Accounts/:AccountSid/SMS/Messages/:SMSMessageSid",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/SMS/Messages/:SMSMessageSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/SMS/Messages/:SMSMessageSid",
         "params": [
           {
             "name": ":SMSMessageSid",
@@ -161,7 +161,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/SMS/Messages"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/SMS/Messages"
       },
       {
         "httpMethod": "POST",
@@ -210,7 +210,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/SMS/Messages"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/SMS/Messages"
       },
       {
         "httpMethod": "GET",
@@ -222,7 +222,7 @@
         },
         "displayName": "/Accounts/:AccountSid/Calls/:CallSid",
         "path": "/Accounts/:AccountSid/Calls/:CallSid",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid",
         "params": [
           {
             "name": ":CallSid",
@@ -287,7 +287,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls"
       },
       {
         "httpMethod": "POST",
@@ -476,7 +476,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls"
       },
       {
         "httpMethod": "GET",
@@ -518,7 +518,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid"
       },
       {
         "httpMethod": "POST",
@@ -574,7 +574,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Play"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid/Play"
       },
       {
         "httpMethod": "POST",
@@ -637,7 +637,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Effect"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid/Effect"
       },
       {
         "httpMethod": "POST",
@@ -742,7 +742,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Recordings"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid/Recordings"
       },
       {
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid",
@@ -754,7 +754,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Conferences/:ConferenceSid",
         "params": [
           {
             "name": ":ConferenceSid",
@@ -819,7 +819,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Conferences"
       },
       {
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
@@ -831,7 +831,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/view-participant/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
         "params": [
           {
             "name": ":ConferenceSid",
@@ -896,7 +896,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/list-participants/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants"
       },
       {
         "params": [
@@ -938,7 +938,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/deaf-or-mute/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participant/:ParticipantSid"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Conferences/:ConferenceSid/Participant/:ParticipantSid"
       },
       {
         "path": "/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
@@ -950,7 +950,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/hangup-participant/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid",
         "params": [
           {
             "name": ":ConferenceSid",
@@ -1001,7 +1001,7 @@
           "url": "http://www.telapi.com/docs/api/rest/conferences/play-audio/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid/Play"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Conferences/:ConferenceSid/Participants/:ParticipantSid/Play"
       },
       {
         "path": "/Accounts/:AccountSid/Applications/:ApplicationSid",
@@ -1013,7 +1013,7 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications/:ApplicationSid",
         "params": [
           {
             "name": ":ApplicationSid",
@@ -1057,7 +1057,7 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications"
       },
       {
         "params": [
@@ -1169,7 +1169,7 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/create/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications"
       },
       {
         "params": [
@@ -1288,7 +1288,7 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/update/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications/:ApplicationSid"
       },
       {
         "path": "/Accounts/:AccountSid/Applications/:ApplicationSid",
@@ -1300,7 +1300,7 @@
           "url": "http://www.telapi.com/docs/api/rest/applications/delete/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications/:ApplicationSid",
         "params": [
           {
             "name": ":ApplicationSid",
@@ -1321,7 +1321,7 @@
           "url": "http://www.telapi.com/docs/api/rest/application-clients/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid/Clients/:ClientSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications/:ApplicationSid/Clients/:ClientSid",
         "params": [
           {
             "name": ":ApplicationSid",
@@ -1372,7 +1372,7 @@
           "url": "http://www.telapi.com/docs/api/rest/application-clients/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid/Clients"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications/:ApplicationSid/Clients"
       },
       {
         "params": [
@@ -1400,7 +1400,7 @@
           "url": "http://www.telapi.com/docs/api/rest/application-clients/create/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Applications/:ApplicationSid/Clients/Tokens"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Applications/:ApplicationSid/Clients/Tokens"
       },
       {
         "path": "/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
@@ -1412,7 +1412,7 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid",
         "params": [
           {
             "name": ":IncomingPhoneNumberSid",
@@ -1463,7 +1463,7 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/IncomingPhoneNumbers"
       },
       {
         "params": [
@@ -1582,7 +1582,7 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/update/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/IncomingPhoneNumbers/:IncomingPhoneNumberSid"
       },
       {
         "params": [
@@ -1708,7 +1708,7 @@
           "url": "http://www.telapi.com/docs/api/rest/incoming-phone-numbers/add-or-delete/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/IncomingPhoneNumbers/"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/IncomingPhoneNumbers/"
       },
       {
         "params": [
@@ -1778,7 +1778,7 @@
           "url": "http://www.telapi.com/docs/api/rest/available-phone-numbers/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/:Local/TollFree"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/AvailablePhoneNumbers/:IsoCountryCode/:Local/TollFree"
       },
       {
         "params": [
@@ -1883,7 +1883,7 @@
           "url": "http://www.telapi.com/docs/api/rest/calls/record/"
         },
         "httpMethod": "POST",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Recordings"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid/Recordings"
       },
       {
         "path": "/Accounts/:AccountSid/Recordings/:RecordingSid",
@@ -1895,7 +1895,7 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings/:RecordingSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Recordings/:RecordingSid",
         "params": [
           {
             "name": ":RecordingSid",
@@ -1946,7 +1946,7 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Recordings"
       },
       {
         "params": [
@@ -1995,7 +1995,7 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Recordings"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid/Recordings"
       },
       {
         "path": "/Accounts/:AccountSid/Recordings/:RecordingSid",
@@ -2007,7 +2007,7 @@
           "url": "http://www.telapi.com/docs/api/rest/recordings/delete/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings/:RecordingSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Recordings/:RecordingSid",
         "params": [
           {
             "name": ":RecordingSid",
@@ -2028,7 +2028,7 @@
           "url": "http://www.telapi.com/docs/api/rest/notifications/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Notifications/:NotificationSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Notifications/:NotificationSid",
         "params": [
           {
             "name": ":NotificationSid",
@@ -2049,7 +2049,7 @@
           "url": "http://www.telapi.com/docs/api/rest/notifications/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Notifications"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Notifications"
       },
       {
         "displayName": "/Accounts/:AccountSid/Calls/:CallSid/Notifications",
@@ -2091,7 +2091,7 @@
           "url": "http://www.telapi.com/docs/api/rest/notifications/list/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Calls/:CallSid/Notifications"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Calls/:CallSid/Notifications"
       },
       {
         "path": "/Accounts/:AccountSid/Transcriptions/:TranscriptionSid",
@@ -2103,7 +2103,7 @@
           "url": "http://www.telapi.com/docs/api/rest/transcriptions/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions/:TranscriptionSid",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Transcriptions/:TranscriptionSid",
         "params": [
           {
             "name": ":TranscriptionSid",
@@ -2124,7 +2124,7 @@
           "url": "http://www.telapi.com/docs/api/rest/transcriptions/view/"
         },
         "httpMethod": "GET",
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions/:TranscriptionSid.txt",
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Transcriptions/:TranscriptionSid.txt",
         "params": [
           {
             "name": ":TranscriptionSid",
@@ -2175,7 +2175,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions/"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Transcriptions/"
       },
       {
         "httpMethod": "GET",
@@ -2224,7 +2224,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/:RecordingSid/Transcriptions"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/:RecordingSid/Transcriptions"
       },
       {
         "httpMethod": "POST",
@@ -2280,7 +2280,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Transcriptions"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Transcriptions"
       },
       {
         "httpMethod": "POST",
@@ -2378,7 +2378,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Recordings/:RecordingSid/Transcriptions"
       },
       {
         "httpMethod": "POST",
@@ -2399,7 +2399,7 @@
             "required": "true"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Carrier"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Lookups/Carrier"
       },
       {
         "httpMethod": "GET",
@@ -2427,7 +2427,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Carrier"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Lookups/Carrier"
       },
       {
         "httpMethod": "POST",
@@ -2448,7 +2448,7 @@
             "required": "true"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Cnam"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Lookups/Cnam"
       },
       {
         "httpMethod": "GET",
@@ -2476,7 +2476,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Cnam"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Lookups/Cnam"
       },
       {
         "httpMethod": "POST",
@@ -2497,7 +2497,7 @@
             "required": "true"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Bna"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Lookups/Bna"
       },
       {
         "httpMethod": "GET",
@@ -2525,7 +2525,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Lookups/Bna"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Lookups/Bna"
       },
       {
         "httpMethod": "GET",
@@ -2553,7 +2553,7 @@
             "required": "false"
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Fraud"
       },
       {
         "httpMethod": "POST",
@@ -2595,7 +2595,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Authorize/:CountryCode"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Fraud/Authorize/:CountryCode"
       },
       {
         "httpMethod": "POST",
@@ -2637,7 +2637,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Block/:CountryCode"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Fraud/Block/:CountryCode"
       },
       {
         "httpMethod": "POST",
@@ -2679,7 +2679,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Extend/:CountryCode"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Fraud/Extend/:CountryCode"
       },
       {
         "httpMethod": "POST",
@@ -2721,7 +2721,7 @@
             "required": true
           }
         ],
-        "url": "https://api.telapi.com/v2//Accounts/:AccountSid/Fraud/Whitelist/:CountryCode"
+        "url": "https://api.telapi.com/v2/Accounts/:AccountSid/Fraud/Whitelist/:CountryCode"
       }
     ]
   },
