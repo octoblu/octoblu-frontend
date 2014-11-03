@@ -13,7 +13,7 @@ AESCrypt.decrypt = function(encryptdata) {
 
 AESCrypt.encrypt = function(cleardata) {
   var encypher = crypto.createCipheriv('aes-256-cbc', cryptkey, iv);
-  var encyphered = encypher.update(cleardata, 'utf8');
+  var encyphered = encypher.update(cleardata, 'utf8', 'hex');
   encyphered += encypher.final('hex');
   return encyphered
 }
