@@ -1,0 +1,16 @@
+<div class="form-group">
+  <label for="name">Name</label>
+  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
+</div>
+
+<div ng-repeat="key in flowNode.composeKeys track by $index">
+  <div class="form-group">
+    <label>Key {{$index + 1}}</label>
+    <div class="input-group">
+      <input class="form-control" ng-model="flowNode.composeKeys[$index]" required>
+      <a href ng-click="flowNode.composeKeys.splice($index, 1)" class="btn btn-default input-group-addon"><i class="fa fa-minus"></i></a>
+    </div>
+  </div>
+</div>
+
+<a href ng-click="flowNode.composeKeys.push('')" class="btn btn-block btn-primary"><i class="fa fa-plus"></i></a>

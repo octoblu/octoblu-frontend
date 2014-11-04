@@ -40,17 +40,20 @@
         "params": [
           {
             "name": "city",
+            "displayName": "City",
             "type": "string",
             "style": "query"
           },
           {
             "name": "state",
             "type": "string",
+            "displayName": "State",
             "style": "query"
           },
           {
             "name": "country",
             "type": "string",
+            "displayName": "Country",
             "style": "query"
           }
         ]
