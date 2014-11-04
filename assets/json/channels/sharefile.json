@@ -1954,6 +1954,7 @@
             "required": "true"
           }
         ],
+        "enabled" : false,
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Subscribe"
       },
       {
