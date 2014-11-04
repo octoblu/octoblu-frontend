@@ -11,24 +11,37 @@ angular.module('octobluApp')
       $scope.flowSelectorHeight = $($window).height() - 100;
     });
 
-    skynetService.getSkynetConnection().then(function (skynetConnection) {
-      skynetConnection.subscribe({uuid: $stateParams.flowId, type: 'octoblu:flow', topic: 'pulse'});
-      skynetConnection.on('ready', function(){
-        skynetConnection.subscribe({uuid: $stateParams.flowId, type: 'octoblu:flow', topic: 'pulse'});
-      });
+    var subscribeToFlow = function(skynetConnection, flowId){
+      skynetConnection.subscribe({uuid: flowId, type: 'octoblu:flow', topic: 'pulse'});
+    };
 
+    var setDeviceStatus = function(status) {
+      $scope.deviceOnline = status;
+      $scope.deploying = false;
+      $scope.stopping = false;
+    };
+
+    var checkDeviceStatus = function(skynetConnection, flowId) {
       skynetConnection.mydevices({}, function(result){
         var device = _.findWhere(result.devices, {uuid: $stateParams.flowId});
         if (device) {
-          $scope.deviceOnline = device.online;
+          setDeviceStatus(device.online);
         }
       });
+    };
+
+    skynetService.getSkynetConnection().then(function (skynetConnection) {
+      skynetConnection.on('ready', function(){
+        subscribeToFlow(skynetConnection, $stateParams.flowId);
+        checkDeviceStatus(skynetConnection, $stateParams.flowId);
+      });
+
+      subscribeToFlow(skynetConnection, $stateParams.flowId);
+      checkDeviceStatus(skynetConnection, $stateParams.flowId);
 
       skynetConnection.on('message', function (message) {
         if (message.topic === 'device-status') {
-          $scope.deviceOnline = message.payload.online;
-          $scope.deploying = false;
-          $scope.stopping = false;
+          setDeviceStatus(message.payload.online);
         }
       });
     });
