@@ -12,17 +12,19 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/attachments",
+        "displayName": "/projects/projectid/stories/storyid/attachments",
         "path": "/projects/:projectid/stories/:storyid/attachments",
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -43,12 +45,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -69,18 +73,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":attachmentid",
+            "displayName": "Attachment ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -101,18 +108,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":attachmentid",
+            "displayName": "Attachment ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -139,18 +149,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":attachmentid",
+            "displayName": "Attachment ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -171,12 +184,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -197,18 +212,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "text",
+            "displayName": "Text",
             "style": "body",
             "type": "string",
             "required": "true"
@@ -229,18 +247,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":commentid",
+            "displayName": "Comment ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -261,24 +282,28 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":commentid",
+            "displayName": "Comment ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "text",
+            "displayName": "Text",
             "style": "body",
             "type": "string",
             "required": "true"
@@ -299,18 +324,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":commentid",
+            "displayName": "Comment ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -331,6 +359,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -351,12 +380,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":inviteid",
+            "displayName": "Invite ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -377,18 +408,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "email",
+            "displayName": "Email",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "role",
+            "displayName": "Role",
             "style": "body",
             "type": "integer",
             "required": "false"
@@ -409,12 +443,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
-            "name": "inviteid",
+            "name": ":inviteid",
+            "displayName": "Invite ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -447,24 +483,28 @@
         "params": [
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "username",
+            "displayName": "Username",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "email",
+            "displayName": "Email",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "bio",
+            "displayName": "Bio",
             "style": "body",
             "type": "string",
             "required": "false"
@@ -509,6 +549,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -529,18 +570,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "body",
             "type": "string",
             "required": "true"
@@ -573,6 +617,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -599,6 +644,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -611,12 +657,14 @@
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "body",
             "type": "string",
             "required": "false"
@@ -649,6 +697,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -669,6 +718,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -695,6 +745,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -721,6 +772,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -759,6 +811,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -779,30 +832,35 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "description",
+            "displayName": "Description",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "details",
+            "displayName": "Details",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "owner",
+            "displayName": "Owner",
             "style": "body",
             "type": "user",
             "required": "false"
@@ -823,6 +881,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -843,6 +902,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -863,6 +923,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -895,6 +956,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -915,12 +977,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "true"
@@ -941,12 +1005,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":tag",
+            "displayName": "Tag",
             "style": "query",
             "type": "string",
             "required": "true"
@@ -967,18 +1033,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":tag",
+            "displayName": "Tag",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "false"
@@ -999,12 +1068,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":tag",
+            "displayName": "Tag",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1025,12 +1096,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":tag",
+            "displayName": "Tag",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1051,12 +1124,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":tag",
+            "displayName": "Tag",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1077,12 +1152,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":tag",
+            "displayName": "Tag",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1103,18 +1180,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":tag",
+            "displayName": "Tag",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1137,12 +1217,14 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Story ID",
             "name": ":storyid"
           }
         ],
@@ -1163,18 +1245,21 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Story ID",
             "name": ":storyid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "body",
+            "displayName": "Text",
             "name": "text"
           },
           {
@@ -1201,12 +1286,14 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Story ID",
             "name": ":storyid"
           }
         ],
@@ -1227,18 +1314,21 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Story ID",
             "name": ":storyid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Task ID",
             "name": ":taskid"
           }
         ],
@@ -1259,28 +1349,33 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Story ID",
             "name": ":storyid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Task ID",
             "name": ":taskid"
           },
           {
             "name": "text",
+            "displayName": "Text",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "status",
+            "displayName": "Status",
             "style": "body",
             "type": "string",
             "required": "false"
@@ -1303,18 +1398,21 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Story ID",
             "name": ":storyid"
           },
           {
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Task ID",
             "name": ":taskid"
           }
         ],
@@ -1335,6 +1433,7 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           }
         ],
@@ -1355,16 +1454,19 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": "access",
+            "displayName": "Access",
             "style": "body",
             "type": "access",
             "required": "false"
@@ -1387,10 +1489,12 @@
             "required": "true",
             "type": "string",
             "style": "url",
+            "displayName": "Project ID",
             "name": ":projectid"
           },
           {
             "name": ":roleid",
+            "displayName": "Role ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1411,24 +1515,28 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":roleid",
+            "displayName": "Role ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "access",
+            "displayName": "Access",
             "style": "body",
             "type": "access",
             "required": "false"
@@ -1449,12 +1557,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":roleid",
+            "displayName": "Role ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1475,12 +1585,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":roleid",
+            "displayName": "Role ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1501,12 +1613,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":roleid",
+            "displayName": "Role ID",
             "style": "body",
             "type": "string",
             "required": "true"
@@ -1527,12 +1641,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":roleid",
+            "displayName": "Role ID",
             "style": "body",
             "type": "string",
             "required": "true"
@@ -1553,18 +1669,21 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":roleid",
+            "displayName": "Role ID",
             "style": "",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":userid",
+            "displayName": "User ID",
             "style": "",
             "type": "string",
             "required": "true"
@@ -1585,6 +1704,7 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1605,60 +1725,70 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "text",
+            "displayName": "Text",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": "details",
+            "displayName": "Details",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "size",
+            "displayName": "Size",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "priority",
+            "displayName": "Priority",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "color",
+            "displayName": "Color",
             "style": "body",
             "type": "color",
             "required": "false"
           },
           {
             "name": "phase",
+            "displayName": "Phrase",
             "style": "body",
             "type": "mixed",
             "required": "false"
           },
           {
             "name": "owner",
+            "displayName": "Owner",
             "style": "body",
             "type": "mixed",
             "required": "false"
           },
           {
             "name": "tags",
+            "displayName": "Tags",
             "style": "body",
             "type": "array",
             "required": "false"
           },
           {
             "name": "tasks",
+            "displayName": "Tasks",
             "style": "body",
             "type": "array",
             "required": "false"
@@ -1679,12 +1809,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "query",
             "type": "string",
             "required": "true"
@@ -1705,48 +1837,56 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "body",
             "type": "string",
             "required": "true"
           },
           {
             "name": "text",
+            "displayName": "Text",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "details",
+            "displayName": "Details",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "size",
+            "displayName": "Size",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "priority",
+            "displayName": "Priority",
             "style": "body",
             "type": "string",
             "required": "false"
           },
           {
             "name": "color",
+            "displayName": "Color",
             "style": "body",
             "type": "color",
             "required": "false"
           },
           {
             "name": "status",
+            "displayName": "Status",
             "style": "body",
             "type": "status",
             "required": "false"
@@ -1759,12 +1899,14 @@
           },
           {
             "name": "phase",
+            "displayName": "Phrase",
             "style": "body",
             "type": "mixed",
             "required": "false"
           },
           {
             "name": "owner",
+            "displayName": "Owner",
             "style": "body",
             "type": "mixed",
             "required": "false"
@@ -1785,12 +1927,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1811,12 +1955,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "filter",
+            "displayName": "Filter",
             "style": "body",
             "type": "string",
             "required": "true"
@@ -1837,12 +1983,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": "filter",
+            "displayName": "Filter",
             "style": "query",
             "type": "string",
             "required": "true"
@@ -1863,12 +2011,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "query",
             "type": "string",
             "required": "true"
@@ -1884,17 +2034,19 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tags",
+        "displayName": "/projects/projectid/stories/storyid/tags",
         "path": "/projects/:projectid/stories/:storyid/tags",
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1910,17 +2062,19 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/projects/:projectid/stories/:storyid/tags",
+        "displayName": "/projects/projectid/stories/storyid/tags",
         "path": "/projects/:projectid/stories/:storyid/tags",
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
@@ -1941,12 +2095,14 @@
         "params": [
           {
             "name": ":projectid",
+            "displayName": "Project ID",
             "style": "url",
             "type": "string",
             "required": "true"
           },
           {
             "name": ":storyid",
+            "displayName": "Story ID",
             "style": "url",
             "type": "string",
             "required": "true"
