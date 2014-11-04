@@ -23,10 +23,15 @@ angular.module('octobluApp')
 
     var checkDeviceStatus = function(skynetConnection, flowId) {
       skynetConnection.mydevices({}, function(result){
-        var device = _.findWhere(result.devices, {uuid: $stateParams.flowId});
-        if (device) {
-          setDeviceStatus(device.online);
-        }
+        _.each($scope.flows, function(flow) {
+          var device = _.findWhere(result.devices, {uuid: flow.flowId});
+          if (device) {
+            flow.online = device.online;
+          }
+          if (device.uuid === flowId) {
+            setDeviceStatus(device.online);
+          }
+        });
       });
     };
 
