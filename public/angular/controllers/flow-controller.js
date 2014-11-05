@@ -84,7 +84,7 @@ angular.module('octobluApp')
 
     function escapeLargeValue(value){
     	var maxLength = 500;
-			if(value.length > maxLength){
+			if( _.isArray(value) && value.length > maxLength){
     		return '...value to long...';
     	}
     	return value;
