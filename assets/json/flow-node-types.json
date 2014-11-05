@@ -398,5 +398,17 @@
     "input": 1,
     "output": 1,
     "formTemplatePath": "/pages/node_forms/compose_form.html"
+  },
+  {
+    "name": "Output",
+    "class": "output",
+    "category": "operation",
+    "uuid": "2be62b90-6519-11e4-867f-276797c27ed6",
+    "type": "operation:output",
+    "defaults": {
+      "uuid" : "*"
+    },
+    "input": 1,
+    "formTemplatePath": "/pages/node_forms/output_form.html"
   }
 ]

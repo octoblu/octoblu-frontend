@@ -83,26 +83,19 @@ angular.module('octobluApp')
     };
 
     function escapeLargeValue(value){
-    	var maxLength = 500;
-			if( _.isArray(value) && value.length > maxLength){
-    		return '...value to long...';
-    	}
+      
+      if(JSON.stringify(value).length > 100000 ) {
+        return '...value too long...';
+      }    	
+
     	return value;
     }
 
     function pushDebugLines(message){
       var debug = {}, newMessage, msg;
       debug.date = new Date();
-      newMessage = _.clone(message);
-      if(newMessage.msg){
-      	if(_.isArray(newMessage.msg)){
-		      newMessage.msg = _.map(newMessage.msg, function(value){
-		      	return _.mapValues(value, escapeLargeValue);
-		      });
-      	}else if(_.isObject(newMessage.msg)){
-		      newMessage.msg = _.mapValues(newMessage.msg, escapeLargeValue);
-      	}
-	    }
+      newMessage = _.clone(message);  
+    	newMessage.msg = escapeLargeValue(newMessage.msg);
       debug.message = newMessage;
       $scope.debugLines.unshift(debug);
       if ($scope.debugLines.length > 100) {

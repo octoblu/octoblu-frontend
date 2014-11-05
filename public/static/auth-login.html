@@ -1,0 +1,58 @@
+<html>
+	<head>
+			<title>Octoblu Login</title>
+      <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="/assets/stylesheets/font-awesome.min.css">
+      <script src="/lib/jquery/dist/jquery.js"></script>
+      <script src="/static/auth-login.js"></script>
+	</head>
+	<body>
+		<div class="row text-center">
+			<div class="col-xs-10 col-xs-offset-1">
+	      <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+	      	<img src="/assets/images/octoblucircle.png" class="center-block">
+	        <h3 class="text-center">Octoblu Login</h3>
+	    		<form id="loginForm">
+	    			<div class="form-group">
+	    				<label for="email">Email</label>
+	    				<input class="form-control" name="email" type="email" id="email" placeholder="john.doe@example.com" />
+	    			</div>
+	    			<div class="form-group">
+	    				<label for="password">Password</label>
+	    				<input class="form-control" name="password" type="password" id="password" />
+	    			</div>
+	    		  <button type="submit" class="btn btn-lg center-block btn-success">Login</button>
+	    		</form>
+	      </div>
+	      <div class="col-xs-6 col-lg-4 col-lg-offset-2">
+	        <p>
+	          <button class="btn-lg btn-primary btn-github login-via-provider" data-provider="github">
+	            <span class="fa fa-github"> Github</span>
+	          </button>
+	        </p><br>
+	      </div>
+	      <div class="col-xs-6 col-lg-4">
+	        <p>
+	          <button class="btn-lg btn-primary btn-facebook login-via-provider" data-provider="facebook">
+	            <span class="fa fa-facebook"> Facebook</span>
+	          </button>
+	        </p><br>
+	      </div>
+	      <div class="col-xs-6 col-lg-4 col-lg-offset-2">
+	        <p>
+	          <button class="btn-lg btn-primary btn-twitter login-via-provider" data-provider="twitter">
+	            <span class="fa fa-twitter"> Twitter</span>
+	          </button>
+	        </p><br>
+	      </div>
+	      <div class="col-xs-6 col-lg-4">
+	        <p>
+	          <button class="btn-lg btn-primary btn-google-plus login-via-provider" data-provider="google">
+	            <span class="fa fa-google-plus"> Google+</span>
+	          </button>
+	        </p><br>
+				  </div>
+				</div>
+    </div>
+	</body>
+</html>
