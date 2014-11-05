@@ -3,7 +3,7 @@
   "auth_strategy": "cloud_auth",
   "custom_tokens": [ ],
   "description": "",
-  "enabled": false,
+  "enabled": "false",
   "name": "Cloud",
   "type": "channel:cloud",
   "defaultParams": [
@@ -12,7 +12,7 @@
         "displayName": "App ID",
         "type": "integer",
         "style": "query",
-        "required": true
+        "required": "true"
     }
   ],
   "application": {
@@ -28,14 +28,14 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "url",
-            "required": true
+            "required": "true"
           }
         ]
       },
@@ -49,21 +49,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
           ]
       },
@@ -77,42 +77,42 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "search",
             "displayName": "Search",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
           ]
       },
@@ -126,14 +126,14 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           }
         ]
       },
@@ -147,28 +147,28 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
           ]
       },
@@ -182,42 +182,42 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -231,14 +231,14 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           }
         ]
       },
@@ -252,21 +252,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -280,21 +280,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -308,21 +308,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -336,21 +336,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -364,35 +364,35 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -406,42 +406,42 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":uid",
             "displayName": "Device UUID",
             "type": "string",
             "style": "url",
-            "required": true
+            "required": "true"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -455,21 +455,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -483,49 +483,49 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "channels",
             "displayName": "Channels",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "keep_alive",
             "displayName": "Keep-Alive Interval",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "timeout",
             "displayName": "Timeout",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "latitude",
             "displayName": "Latitude",
             "type": "float",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "longitude",
             "displayName": "Longitude",
             "type": "float",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
@@ -539,14 +539,14 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "name",
             "displayName": "Name",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           }
         ]
       },
@@ -560,21 +560,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "strng",
             "style": "body",
-            "required": true
+            "required": "true"
           }
         ]
       },
@@ -588,21 +588,21 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "strng",
             "style": "body",
-            "required": true
+            "required": "true"
           }
         ]
       },
@@ -616,56 +616,56 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "name",
             "displayName": "Name of Notification",
             "type": "strng",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "devices",
             "displayName": "Array of Devices",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sender",
             "displayName": "Sender",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "payload",
             "displayName": "Payload",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "apns_payload",
             "displayName": "APNS Formatted Notification",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "gcm_payload",
             "displayName": "Google Cloud Messaging Payload",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           }
         ]
       }

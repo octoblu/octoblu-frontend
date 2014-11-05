@@ -711,7 +711,7 @@
       {
         "params": [
           {
-            "required": "false",
+            "required": "true",
             "value": "",
             "type": "string",
             "style": "query",
@@ -739,6 +739,7 @@
             "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Locale",
             "name": "locale"
           },
           {
@@ -746,6 +747,7 @@
             "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Result Type",
             "name": "result_type"
           },
           {
@@ -761,6 +763,7 @@
             "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Until",
             "name": "until"
           },
           {
@@ -859,7 +862,7 @@
           "url": "https://dev.twitter.com/docs/api/1.1/post/statuses/filter"
         },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/statuses/filter.json"
+        "url": "https://stream.twitter.com/1.1/statuses/filter.json"
       },
       {
         "params": [
@@ -889,7 +892,7 @@
           "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/sample"
         },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/sample.json"
+        "url": "ttps://stream.twitter.com/1.1/statuses/sample.json"
       },
       {
         "params": [
@@ -927,7 +930,7 @@
           "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/firehose"
         },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/firehose.json"
+        "url": "https://stream.twitter.com/1.1/statuses/firehose.json"
       },
       {
         "params": [
@@ -997,7 +1000,7 @@
           "url": "https://dev.twitter.com/docs/api/1.1/get/user"
         },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/user.json"
+        "url": "https://userstream.twitter.com/1.1/user.json"
       },
       {
         "params": [
@@ -1059,7 +1062,7 @@
           "url": "https://dev.twitter.com/docs/api/1.1/get/site"
         },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/site.json"
+        "url": "https://sitestream.twitter.com/1.1/site.json"
       },
       {
         "params": [
@@ -2723,9 +2726,9 @@
         "path": "/users/suggestions/:slug.json",
         "params": [
           {
-            "name": "slug",
+            "name": ":slug",
             "displayName": "Slug",
-            "style": "query",
+            "style": "url",
             "type": "string",
             "value": "",
             "required": "true"
@@ -2759,20 +2762,6 @@
             "type": "string",
             "value": "",
             "required": "false"
-          },
-          {
-            "name": "",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "",
-            "style": "",
-            "type": "string",
-            "value": "",
-            "required": "false"
           }
         ],
         "url": "https://api.twitter.com/1.1/users/suggestions.format"
@@ -2789,9 +2778,9 @@
         "path": "/users/suggestions/:slug/members.json",
         "params": [
           {
-            "name": "slug",
+            "name": ":slug",
             "displayName": "Slug",
-            "style": "query",
+            "style": "url",
             "type": "string",
             "value": "",
             "required": "true"
@@ -3344,8 +3333,8 @@
             "name": "skip_status"
           }
         ],
-        "path": "/subscribers/show.json",
-        "displayName": "/subscribers/show.json",
+        "path": "/lists/subscribers/show.json",
+        "displayName": "/lists/subscribers/show.json",
         "authentication": {
           "required": "true"
         },
@@ -3353,7 +3342,7 @@
           "url": "https://dev.twitter.com/docs/api/1.1/get/lists/subscribers/show"
         },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/subscribers/show.json"
+        "url": "https://api.twitter.com/1.1/lists/subscribers/show.json"
       },
       {
         "params": [
@@ -4044,7 +4033,7 @@
             "required": "true",
             "value": "",
             "type": "string",
-            "style": "query",
+            "style": "url",
             "displayName": "ID",
             "name": "id"
           }
@@ -4088,7 +4077,7 @@
             "required": "true",
             "value": "",
             "type": "string",
-            "style": "body",
+            "style": "url",
             "displayName": "ID",
             "name": "id"
           }
@@ -4110,7 +4099,7 @@
             "required": "true",
             "value": "",
             "type": "string",
-            "style": "query",
+            "style": "url",
             "displayName": "Place ID",
             "name": "place_id"
           }
