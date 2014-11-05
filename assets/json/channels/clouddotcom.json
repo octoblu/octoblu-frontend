@@ -1,20 +1,11 @@
 {
   "_id": "54593c536a3da535f1bbcfc4",
-  "auth_strategy": "cloud_auth",
+  "auth_strategy": "clouddotcom",
   "custom_tokens": [ ],
   "description": "",
   "enabled": "false",
-  "name": "Cloud",
-  "type": "channel:cloud",
-  "defaultParams": [
-    {
-       "name": "app_id",
-        "displayName": "App ID",
-        "type": "integer",
-        "style": "query",
-        "required": "true"
-    }
-  ],
+  "name": "CloudDotCom",
+  "type": "channel:clouddotcom",
   "application": {
     "base": "https://api.cliff.cloudburrito.com",
     "resources": [
