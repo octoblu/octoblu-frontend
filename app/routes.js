@@ -21,6 +21,9 @@ module.exports = function(app, passport) {
     var ChannelAWSAuthController = require('./controllers/channel-aws-auth-controller');
     var channelAWSAuthController = new ChannelAWSAuthController();
 
+    var ChannelCloudDotComController = require('./controllers/channel-clouddotcom-controller');
+    var channelCloudDotComController = new ChannelCloudDotComController();
+
     var ChannelBasicAuthController = require('./controllers/channel-basic-auth-controller');
     var channelBasicAuthController = new ChannelBasicAuthController();
 
@@ -180,6 +183,7 @@ module.exports = function(app, passport) {
             require('./controllers/invitation')(app, passport, config);
 
             app.post('/api/auth/aws/channel/:id', channelAWSAuthController.create);
+            app.post('/api/auth/clouddotcom/channel/:id', channelCloudDotComController.create);
             app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
 
             app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);

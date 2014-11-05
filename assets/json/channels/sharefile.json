@@ -73,12 +73,12 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Items(:id)/AccessControls",
+        "displayName": "/Items/:id)/AccessControls",
         "path": "/Items(:id)/AccessControls",
         "params": [
           {
             "name": "id",
-            "style": "query",
+            "style": "url",
             "type": "string",
             "value": "",
             "required": "true"

@@ -96,6 +96,19 @@ this.saveAWSApi = function (uuid, channelid, username, password, callback) {
 
 };
 
+this.saveCloudDotComApi = function (uuid, channelid, username, password, callback) {
+
+  $http.post('/api/auth/clouddotcom/channel/' + channelid, { username: username, password: password })
+  .success(function (data) {
+    callback(data);
+  })
+  .error(function (data) {
+    console.log('Error: ' + data);
+    callback({});
+  });
+
+};
+
 this.saveBasicApi = function (uuid, channelid, username, password, callback) {
 
   $http.post('/api/auth/basic/channel/' + channelid, { username: username, password: password })
