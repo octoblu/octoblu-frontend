@@ -38,6 +38,7 @@
     "mongoose-slug": "^1.2.0",
     "mongoose-timestamps": "0.0.1",
     "morgan": "~1.2.0",
+    "newrelic": "^1.13.0",
     "node-uuid": "*",
     "nodemailer": "^0.6.3",
     "npm": "~1.4.19",
