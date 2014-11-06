@@ -1,3 +1,9 @@
+'use strict';
+
+if ((process.env.USE_NEWRELIC  || 'false').toLowerCase() === 'true') {
+  require('newrelic');
+}
+
 var express        = require('express');
 var errorhandler   = require('errorhandler');
 var http           = require('http');
@@ -15,18 +21,12 @@ var connectRedis   = require('connect-redis');
 var fs             = require('fs');
 var privateKey     = fs.readFileSync('config/server.key', 'utf8');
 var certificate    = fs.readFileSync('config/server.crt', 'utf8');
-
-var credentials = {key: privateKey, cert: certificate};
-
-var app        = express();
-var env        = app.settings.env;
-var configAuth = require('./config/auth.js')(env);
-var port       = process.env.OCTOBLU_PORT || configAuth.port;
-var sslPort    = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
-
-if ((process.env.USE_NEWRELIC  || 'false').toLowerCase() === 'true') {
-  require('newrelic');
-}
+var credentials    = {key: privateKey, cert: certificate};
+var app            = express();
+var env            = app.settings.env;
+var configAuth     = require('./config/auth.js')(env);
+var port           = process.env.OCTOBLU_PORT || configAuth.port;
+var sslPort        = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 
 if (process.env.AIRBRAKE_KEY) {
   var airbrake = require('airbrake').createClient(process.env.AIRBRAKE_KEY);

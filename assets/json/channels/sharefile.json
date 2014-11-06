@@ -4,6 +4,13 @@
   "bodyFormat": "json",
   "name": "ShareFile",
   "type": "channel:sharefile",
+  "defaultParams": [{
+      "name": ":account",
+      "style": "url",
+      "type": "string",
+      "displayName": "Account Name",
+      "required": "true"
+    }],
   "oauth": {
     "development": {
       "clientID": "INSERT_SECERT_HERE",
@@ -45,22 +52,14 @@
             "name": "principalid",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "itemid",
+            "displayName": "Item ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/AccessControls"
@@ -73,50 +72,36 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/Items/:id)/AccessControls",
-        "path": "/Items(:id)/AccessControls",
+        "displayName": "/Items/:id/AccessControls",
+        "path": "/Items/:id/AccessControls",
         "params": [
           {
-            "name": "id",
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "recursive",
+            "displayName": "Recursive",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "message",
+            "displayName": "Message",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sendDefaultNotification",
+            "displayName": "Send Default Notification",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":id",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/AccessControls"
@@ -134,37 +119,30 @@
         "params": [
           {
             "name": "id",
+            "displayName": "ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "accessControl",
+            "displayName": "Access Control",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "recursive",
+            "displayName": "Recursive",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -183,24 +161,17 @@
         "params": [
           {
             "name": "principalid",
-            "style": "",
+            "displayName": "Principal ID",
+            "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "itemid",
-            "style": "",
+            "displayName": "Item ID",
+            "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/AccessControls"
@@ -217,13 +188,6 @@
         "path": "/Accounts",
         "url": "https://:account.sf-api.com/sf/v3/Accounts",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -238,13 +202,6 @@
         "path": "/Accounts/Branding",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/Branding",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -259,13 +216,6 @@
         "path": "/Accounts/Employees",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/Employees",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -280,13 +230,6 @@
         "displayName": "/Accounts/Clients",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/Clients",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -304,22 +247,13 @@
             "name": "type",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "searchTerm",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Accounts/AddressBook"
@@ -336,13 +270,6 @@
         "path": "/Accounts/MobileSecuritySettings",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/MobileSecuritySettings",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -358,17 +285,10 @@
         "params": [
           {
             "name": "provider",
+            "displayName": "Provider",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Accounts/SSO"
@@ -377,38 +297,31 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Username",
             "name": "username"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Password",
             "name": "password"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Employees Only",
             "name": "employeesonly"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Require Home Folders",
             "name": "requirehomefolders"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "displayName": "/Accounts/GetByUser",
@@ -426,17 +339,10 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Email",
             "name": "email"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "path": "/Accounts/SendToEmail",
@@ -462,13 +368,6 @@
         "httpMethod": "GET",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -483,13 +382,6 @@
         "httpMethod": "GET",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -504,13 +396,6 @@
         "httpMethod": "POST",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -525,13 +410,6 @@
         "httpMethod": "POST",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -547,13 +425,6 @@
         "httpMethod": "PUT",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -569,13 +440,6 @@
         "httpMethod": "PUT",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -590,13 +454,6 @@
         "httpMethod": "DELETE",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/LoginAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -611,44 +468,30 @@
         "httpMethod": "DELETE",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/FolderAccessControlDomains",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Subdomain",
             "name": "subdomain"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Username",
             "name": "username"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "query",
+            "displayName": "Single Plane",
             "name": "singlePlane"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "path": "/Accounts/RequireWebPop",
@@ -666,24 +509,17 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Username",
             "name": "username"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Single Plane",
             "name": "singlePlane"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "path": "/Accounts/RequireSubdomain",
@@ -701,17 +537,10 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Single Plane",
             "name": "singlePlane"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "path": "/Accounts/FindSubdomain",
@@ -737,30 +566,16 @@
         "httpMethod": "GET",
         "url": "https://:account.sf-api.com/sf/v3/Accounts/OutlookInformation",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Subdomain",
             "name": "subdomain"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "path": "/Accounts/SSOInfo",
@@ -787,17 +602,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -815,17 +623,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByBatch(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -843,17 +644,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/GetByFolder(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -871,17 +665,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)/Cancel",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -899,17 +686,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -927,17 +707,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -955,17 +728,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations/CancelBatch(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -984,17 +750,10 @@
         "url": "https://:account.sf-api.com/sf/v3/AsyncOperations(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1011,13 +770,6 @@
         "httpMethod": "GET",
         "url": "https://:account.sf-api.com/sf/v3/Capabilities",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -1033,17 +785,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Devices(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1061,17 +806,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Devices(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1080,23 +818,14 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "name": "userid"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":deviceID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1123,36 +852,20 @@
         "httpMethod": "GET",
         "url": "https://:account.sf-api.com/sf/v3/Devices",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "query",
             "name": "singlePlane"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":deviceID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1180,17 +893,9 @@
         "url": "https://:account.sf-api.com/sf/v3/Devices(:deviceID)/Status",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":deviceID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1208,17 +913,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1236,24 +934,17 @@
         "url": "https://:account.sf-api.com/sf/v3/Users(:userid)/FavoriteFolders(:itemid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":userid",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":itemid",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1271,24 +962,17 @@
         "url": "https://:account.sf-api.com/sf/v3/FavoriteFolders(userid=:userid,itemid=:itemid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":userid",
+            "displayName": "User ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":itemid",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1306,17 +990,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1334,24 +1011,17 @@
         "url": "https://:account.sf-api.com/sf/v3/Users(:id)/FavoriteFolders(:itemid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":itemid",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1368,13 +1038,6 @@
         "httpMethod": "GET",
         "url": "https://:account.sf-api.com/sf/v3/Groups",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ]
       },
       {
@@ -1390,17 +1053,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Groups(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1418,17 +1074,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Groups(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1436,13 +1085,6 @@
       {
         "path": "/Groups",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "displayName": "/Groups",
         "authentication": {
@@ -1458,17 +1100,10 @@
         "path": "/Groups(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1487,17 +1122,10 @@
         "path": "/Groups(:id)/Contacts",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1523,24 +1151,16 @@
         "httpMethod": "POST",
         "params": [
           {
-            "name": "",
-            "style": "",
+            "name": "contacts",
+            "style": "Contacts",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1550,18 +1170,17 @@
         "path": "/Groups(:id)/Contacts",
         "params": [
           {
-            "name": ":account",
+            "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":id",
-            "style": "url",
+            "name": "contacts",
+            "style": "Contacts",
             "type": "string",
-            "value": "",
-            "required": "true"
+            "required": "false"
           }
         ],
         "displayName": "/Groups(:id)/Contacts",
@@ -1577,13 +1196,6 @@
       {
         "path": "/Items",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "displayName": "/Items",
         "authentication": {
@@ -1608,17 +1220,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1627,23 +1232,16 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "query",
+            "displayName": "Include Deleted",
             "name": "includeDeleted"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1659,17 +1257,9 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "name": "path"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "path": "/Items/ByPath",
@@ -1688,17 +1278,10 @@
         "path": "/Items(:id)/Parent",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1715,17 +1298,10 @@
         "path": "/Items(:id)/Children",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1752,17 +1328,10 @@
         "url": "https://:account.sf-api.com/sf/v3/Items(:id)/Info",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1771,23 +1340,15 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "query",
             "name": "redirect"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1806,30 +1367,20 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
             "name": "overwrite"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
             "name": "passthrough"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":parentid",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1848,17 +1399,9 @@
         "path": "/Items(:parentid)/Note",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":parentid",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1876,17 +1419,9 @@
         "path": "/Items(:parentid)/Link",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":parentid",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1904,17 +1439,10 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Overwrite",
             "name": "overwrite"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "path": "/Items/SymbolicLink",
@@ -1940,17 +1468,10 @@
         "path": "/Items(:id)/Subscribe",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1970,17 +1491,10 @@
         "path": "/Items(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2000,23 +1514,16 @@
         "params": [
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2036,23 +1543,16 @@
         "params": [
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2071,17 +1571,10 @@
         "path": "/Items/SymbolicLink(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2099,17 +1592,10 @@
         "path": "/Items(:id)/BulkDelete",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2128,23 +1614,16 @@
         "params": [
           {
             "name": "path",
+            "displayName": "Path",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2163,30 +1642,23 @@
         "params": [
           {
             "name": "targetid",
+            "displayName": "Target ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "overwrite",
+            "displayName": "Overwrite",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2205,163 +1677,155 @@
         "params": [
           {
             "name": "method",
+            "displayName": "Method",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "raw",
+            "displayName": "Raw",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "fileName",
+            "displayName": "File Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "fileSize",
+            "displayName": "File Size",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "batchId",
+            "displayName": "Batch ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "batchLast",
+            "displayName": "Batch Last",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "canResume",
+            "displayName": "Can Resume",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "startOver",
+            "displayName": "Start Over",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "unzip",
+            "displayName": "Unzip",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "tool",
+            "displayName": "Tool",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "overwrite",
+            "displayName": "Overwrite",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "details",
+            "displayName": "Details",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "isSend",
+            "displayName": "Is Send",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sendGuid",
+            "displayName": "Send GUID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "opid",
+            "displayName": "OPID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "threadCount",
+            "displayName": "Thread Count",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "responseFormat",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "clientCreatedDateUTC",
+            "displayName": "Client Created Date (UTC format)",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "clientModifiedDateUTC",
+            "displayName": "Client Modified Date (UTC format)",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2380,23 +1844,16 @@
         "params": [
           {
             "name": "message",
+            "displayName": "Message",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2414,17 +1871,10 @@
         "path": "/Items(:id)/CheckOut",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2443,17 +1893,10 @@
         "params": [
           {
             "name": "query",
+            "displayName": "Query",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items/Search"
@@ -2469,13 +1912,6 @@
         "displayName": "/Items/AdvancedSearch",
         "path": "/Items/AdvancedSearch",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Items/AdvancedSearch"
       },
@@ -2491,17 +1927,10 @@
         "path": "/Items(:id)/WebView",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2519,17 +1948,10 @@
         "path": "/Items(:id)/ProtocolLinks",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2547,17 +1969,10 @@
         "path": "/Items(:id)/ProtocolLinks(protocol)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2576,24 +1991,17 @@
         "params": [
           {
             "name": "name",
+            "displayName": "Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "itemid",
+            "displayName": "Item ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Metadata"
@@ -2610,17 +2018,10 @@
         "path": "/Items(:id)/Metadata",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2638,17 +2039,10 @@
         "path": "/Items(:id)/Metadata",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2667,17 +2061,10 @@
         "path": "/Metadata(:metadataId)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":metadataId",
+            "displayName": "Meta Data ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2695,13 +2082,6 @@
         "displayName": "/Metadata",
         "path": "/Metadata",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Metadata"
       },
@@ -2717,24 +2097,17 @@
         "path": "/Items(:id)/Metadata(:metadataId)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":metadataId",
+            "displayName": "Meta Data ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2752,24 +2125,17 @@
         "path": "/Metadata(name=:name,itemid=:itemid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":name",
+            "displayName": "Name",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":itemid",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2786,13 +2152,6 @@
         "displayName": "/Queues",
         "path": "/Queues",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Queues"
       },
@@ -2808,17 +2167,10 @@
         "path": "/Queues(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2836,24 +2188,17 @@
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":qid",
+            "displayName": "Query ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":eid",
+            "displayName": "Entry ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2871,17 +2216,10 @@
         "path": "/Queues(:id)/Entries",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2898,17 +2236,10 @@
         "path": "/Queues(:id)/Receive",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2927,17 +2258,10 @@
         "path": "/Queues(:id)/Complete",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2956,24 +2280,17 @@
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":qid",
+            "displayName": "Query ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":eid",
+            "displayName": "Entry ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2991,24 +2308,17 @@
         "path": "/Queues(:qid)/Entries(:eid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":qid",
+            "displayName": "Query ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":eid",
+            "displayName": "Entry ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3025,13 +2335,6 @@
         "displayName": "/Sessions",
         "path": "/Sessions",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Sessions"
       },
@@ -3046,13 +2349,6 @@
         "displayName": "/Sessions",
         "path": "/Sessions",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Sessions"
       },
@@ -3069,24 +2365,17 @@
         "params": [
           {
             "name": "authmethod",
+            "displayName": "Authentication Method",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "authcomparison",
+            "displayName": "Authentication Comparison",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Sessions/Login"
@@ -3102,13 +2391,6 @@
         "displayName": "/Shares",
         "path": "/Shares",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares"
       },
@@ -3124,17 +2406,10 @@
         "path": "/Shares(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3152,17 +2427,10 @@
         "path": "/Shares(:id)/Recipients",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3180,17 +2448,10 @@
         "path": "/Shares(:id)/Items",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3208,24 +2469,17 @@
         "path": "/Shares(:shareid)/Items(:itemid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":shareid",
+            "displayName": "Share ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":itemid",
+            "displayName": "Item ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3244,51 +2498,41 @@
         "params": [
           {
             "name": "shareId",
+            "displayName": "Share ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "Email",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "Company",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "redirect",
+            "displayName": "Redirect",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3307,24 +2551,17 @@
         "params": [
           {
             "name": "notify",
-            "style": "body",
+            "displayName": "Notify",
+            "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": "",
-            "style": "",
+            "name": "share",
+            "displayName": "Share",
+            "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Shares"
@@ -3342,17 +2579,10 @@
         "path": "/Shares(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3370,17 +2600,10 @@
         "path": "/Shares(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3399,30 +2622,23 @@
         "params": [
           {
             "name": "email",
+            "displayName": "Email",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3443,28 +2659,18 @@
             "name": "Items",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "Emails",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "Subject",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3485,35 +2691,24 @@
             "name": "FolderId",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "FolderPath",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "Emails",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "Subject",
             "style": "body",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3532,149 +2727,142 @@
         "params": [
           {
             "name": "method",
+            "displayName": "Method",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "raw",
+            "displayName": "Raw",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "fileName",
+            "displayName": "File Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "fileSize",
+            "displayName": "File Size",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "batchId",
+            "displayName": "Batch ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "batchLast",
+            "displayName": "Batch Last",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "canResume",
+            "displayName": "Can Resume",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "startOver",
+            "displayName": "Start Over",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "unzip",
+            "displayName": "Unzip",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "tool",
+            "displayName": "Tool",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "overwrite",
+            "displayName": "Overwrite",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "details",
+            "displayName": "Details",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "isSend",
+            "displayName": "Is Send",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sendGuid",
+            "displayName": "Send GUID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "opid",
+            "displayName": "OPID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "threadCount",
+            "displayName": "Thread Count",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "responseFormat",
+            "displayName": "Response Format",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3692,17 +2880,10 @@
         "path": "/StorageCenters(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3721,17 +2902,10 @@
         "path": "/StorageCenters(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3749,17 +2923,10 @@
         "path": "/StorageCenters(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3777,17 +2944,10 @@
         "path": "/Zones(:id)/StorageCenters",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3805,17 +2965,10 @@
         "path": "/Zones(:id)/StorageCenters",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3834,24 +2987,17 @@
         "path": "/Zones(:zid)/StorageCenters(:scid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":zid",
+            "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":scid",
+            "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3869,24 +3015,17 @@
         "path": "/Zones(:zid)/StorageCenter(:scid)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":zid",
+            "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":scid",
+            "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3904,24 +3043,17 @@
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":zid",
+            "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":scid",
+            "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3939,24 +3071,17 @@
         "path": "/Zones(:zid)/StorageCenter(:scid)/Metadata",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":zid",
+            "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":scid",
+            "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3975,30 +3100,23 @@
         "params": [
           {
             "name": "name",
-            "style": "",
+            "displayName": "Metadata Name",
+            "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":zid",
+            "displayName": "Zone ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":scid",
+            "displayName": "Storage Center ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4017,23 +3135,16 @@
         "params": [
           {
             "name": "emailAddress",
+            "displayName": "Email Address",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4052,38 +3163,31 @@
         "params": [
           {
             "name": "pushCreatorDefaultSettings",
+            "displayName": "Push Creator Default Settings",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "addshared",
+            "displayName": "Add Shared",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "ifNecessary",
+            "displayName": "If Necessary",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users"
@@ -4101,38 +3205,31 @@
         "params": [
           {
             "name": "pushCreatorDefaultSettings",
+            "displayName": "Push Creator Default Settings",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "addshared",
+            "displayName": "Add Shared",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "ifNecessary",
+            "displayName": "If Necessary",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/AccountUser"
@@ -4150,17 +3247,10 @@
         "path": "/Users(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4180,23 +3270,16 @@
         "params": [
           {
             "name": "parentid",
+            "displayName": "Parent ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4216,23 +3299,16 @@
         "params": [
           {
             "name": "parentid",
+            "displayName": "Parent ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4251,17 +3327,10 @@
         "path": "/Users/AccountUser(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4279,17 +3348,10 @@
         "path": "/Users(:id)/HomeFolder",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4307,17 +3369,10 @@
         "path": "/Users(:id)/Preferences",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4335,17 +3390,10 @@
         "path": "/Users(:id)/Security",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4363,17 +3411,10 @@
         "path": "/Users(:id)/Security",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4392,30 +3433,23 @@
         "params": [
           {
             "name": "properties",
+            "displayName": "Properties",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "notify",
+            "displayName": "Notify",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4433,17 +3467,10 @@
         "path": "/Users(:id)/ResendWelcome",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4462,23 +3489,16 @@
         "params": [
           {
             "name": "completely",
-            "style": "",
+            "displayName": "Completely",
+            "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4495,13 +3515,6 @@
         "displayName": "/Users/AllSharedFolders",
         "path": "/Users/AllSharedFolders",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/AllSharedFolders"
       },
@@ -4516,13 +3529,6 @@
         "displayName": "/Users/TopFolders",
         "path": "/Users/TopFolders",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/TopFolders"
       },
@@ -4536,13 +3542,6 @@
         },
         "path": "/Users/NetworkShareConnectors",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "displayName": "/Users/NetworkShareConnectors",
         "url": "https://:account.sf-api.com/sf/v3/Users/NetworkShareConnectors"
@@ -4558,13 +3557,6 @@
         "displayName": "/Users/SharepointConnectors",
         "path": "/Users/SharepointConnectors",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/SharepointConnectors"
       },
@@ -4581,17 +3573,10 @@
         "params": [
           {
             "name": "settings",
+            "displayName": "Settings",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/Confirm"
@@ -4607,13 +3592,6 @@
         "displayName": "/Users/Info",
         "path": "/Users/Info",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Users/Info"
       },
@@ -4630,24 +3608,17 @@
         "params": [
           {
             "name": "services",
+            "displayName": "Services",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "includeDisabled",
+            "displayName": "Include Disabled",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
-          },
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones"
@@ -4665,23 +3636,16 @@
         "params": [
           {
             "name": "secret",
+            "displayName": "Secret",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4698,13 +3662,6 @@
         "displayName": "/Zones",
         "path": "/Zones",
         "params": [
-          {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
         ],
         "url": "https://:account.sf-api.com/sf/v3/Zones"
       },
@@ -4721,17 +3678,10 @@
         "path": "/Zones(:id)",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4750,23 +3700,16 @@
         "params": [
           {
             "name": "force",
-            "style": "",
+            "displayName": "Force",
+            "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4784,17 +3727,10 @@
         "path": "/Zones(:id)/ResetSecret",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4812,17 +3748,10 @@
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4840,17 +3769,10 @@
         "path": "/Zones(:id)/Metadata",
         "params": [
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4869,23 +3791,16 @@
         "params": [
           {
             "name": "name",
-            "style": "",
+            "displayName": "Name",
+            "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
-            "name": ":account",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
