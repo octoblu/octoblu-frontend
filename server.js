@@ -24,7 +24,7 @@ var configAuth = require('./config/auth.js')(env);
 var port       = process.env.OCTOBLU_PORT || configAuth.port;
 var sslPort    = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 
-if (process.env.USE_NEWRELIC) {
+if ((process.env.USE_NEWRELIC  || 'false').toLowerCase() === 'true') {
   require('newrelic');
 }
 
