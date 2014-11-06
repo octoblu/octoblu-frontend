@@ -10,15 +10,15 @@
     "base": "https://api.cloud.com",
     "resources": [
       {
-        "url": "https://api.cloud.com/push/channels/:name",
-        "path": "/push/channels/:name",
+        "url": "https://api.cloud.com/:app_id/push/channels/:name",
+        "path": "/:app_id/push/channels/:name",
         "httpMethod": "DELETE",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -31,15 +31,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/apns/connections",
-        "path": "/push/apns/connections",
+        "url": "https://api.cloud.com/:app_id/push/apns/connections",
+        "path": "/:app_id/push/apns/connections",
         "httpMethod": "GET",
         "params": [
         {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -59,15 +59,15 @@
           ]
       },
       {
-        "url": "https://api.cloud.com/push/channels",
-        "path": "/push/channels",
+        "url": "https://api.cloud.com/:app_id/push/channels",
+        "path": "/:app_id/push/channels",
         "httpMethod": "GET",
         "params": [  
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -108,15 +108,15 @@
           ]
       },
       {
-        "url": "https://api.cloud.com/push/channels/:name",
-        "path": "push/channels/:name",
+        "url": "https://api.cloud.com/:app_id/push/channels/:name",
+        "path": "/:app_idpush/channels/:name",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -129,15 +129,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/channels/:name/devices",
-        "path": "/push/channels/:name/device",
+        "url": "https://api.cloud.com/:app_id/push/channels/:name/devices",
+        "path": "/:app_id/push/channels/:name/device",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -164,15 +164,15 @@
           ]
       },
       {
-        "url": "https://api.cloud.com/push/channels/:name/notifications",
-        "path": "/push/channels/:name/notifications",
+        "url": "https://api.cloud.com/:app_id/push/channels/:name/notifications",
+        "path": "/:app_id/push/channels/:name/notifications",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -213,15 +213,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/channels/:name/stats",
-        "path": "/push/channels/:name/stats",
+        "url": "https://api.cloud.com/:app_id/push/channels/:name/stats",
+        "path": "/:app_id/push/channels/:name/stats",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -234,15 +234,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/connections",
-        "path": "/push/connections",
+        "url": "https://api.cloud.com/:app_id/push/connections",
+        "path": "/:app_id/push/connections",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -262,15 +262,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/devices",
-        "path": "/push/devices",
+        "url": "https://api.cloud.com/:app_id/push/devices",
+        "path": "/:app_id/push/devices",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -290,15 +290,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/devices/connected",
-        "path": "/push/devices/connected",
+        "url": "https://api.cloud.com/:app_id/push/devices/connected",
+        "path": "/:app_id/push/devices/connected",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -318,15 +318,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/gcm/connections",
-        "path": "/push/gcm/connections",
+        "url": "https://api.cloud.com/:app_id/push/gcm/connections",
+        "path": "/:app_id/push/gcm/connections",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -346,15 +346,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/notifications",
-        "path": "/push/notifications",
+        "url": "https://api.cloud.com/:app_id/push/notifications",
+        "path": "/:app_id/push/notifications",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -388,15 +388,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/notifications/:uid",
-        "path": "/push/notifications/:uid",
+        "url": "https://api.cloud.com/:app_id/push/notifications/:uid",
+        "path": "/:app_id/push/notifications/:uid",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -437,15 +437,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/stats",
-        "path": "/push/stats",
+        "url": "https://api.cloud.com/:app_id/push/stats",
+        "path": "/:app_id/push/stats",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -465,15 +465,15 @@
         ]
       },
             {
-        "url": "https://api.cloud.com/push/subscribe",
-        "path": "/push/subscribe",
+        "url": "https://api.cloud.com/:app_id/push/subscribe",
+        "path": "/:app_id/push/subscribe",
         "httpMethod": "GET",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -521,15 +521,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/channels",
-        "path": "/push/channels",
+        "url": "https://api.cloud.com/:app_id/push/channels",
+        "path": "/:app_id/push/channels",
         "httpMethod": "POST",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -542,15 +542,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/connections/subscribe",
-        "path": "/push/connections/subscribe",
+        "url": "https://api.cloud.com/:app_id/push/connections/subscribe",
+        "path": "/:app_id/push/connections/subscribe",
         "httpMethod": "POST",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -570,15 +570,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/connections/unsubscribe",
-        "path": "/push/connections/unsubscribe",
+        "url": "https://api.cloud.com/:app_id/push/connections/unsubscribe",
+        "path": "/:app_id/push/connections/unsubscribe",
         "httpMethod": "POST",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
@@ -598,15 +598,15 @@
         ]
       },
       {
-        "url": "https://api.cloud.com/push/notify",
-        "path": "/push/notify",
+        "url": "https://api.cloud.com/:app_id/push/notify",
+        "path": "/:app_id/push/notify",
         "httpMethod": "POST",
         "params": [
           {
             "name": "app_id",
             "displayName": "App ID",
             "type": "integer",
-            "style": "query",
+            "style": "url",
             "required": "false"
           },
           {
