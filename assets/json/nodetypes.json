@@ -1126,5 +1126,18 @@
     },
     "channelid" : "53ee9881bacd88b6355f4504",
     "type" : "channel:telapi"
+  },
+  {
+    "_id" : "545aa0c6fa08c4ec2d2ac83f",
+    "category" : "channel",
+    "description" : "Cloud Dot Com",
+    "enabled" : true,
+    "name" : "CloudDotCom",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "clouddotcom"
+    },
+    "channelid" : "54593c536a3da535f1bbcfc4",
+    "type" : "channel:clouddotcom"
   }
 ]

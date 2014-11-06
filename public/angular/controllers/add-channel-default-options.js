@@ -5,6 +5,7 @@ angular.module('octobluApp')
 	var AUTH_DESTINATIONS = {
     'aws'                    : 'ob.nodewizard.addchannel.aws',
     'basic'                  : 'ob.nodewizard.addchannel.basic',
+    'clouddotcom'            : 'ob.nodewizard.addchannel.clouddotcom',
     'meshblu'                : 'ob.nodewizard.addchannel.meshblu',
     'none'                   : 'ob.nodewizard.addchannel.noauth',
     'oauth'                  : 'ob.nodewizard.addchannel.oauth',

@@ -1,25 +1,16 @@
 {
   "_id": "54593c536a3da535f1bbcfc4",
-  "auth_strategy": "cloud_auth",
+  "auth_strategy": "clouddotcom",
   "custom_tokens": [ ],
   "description": "",
-  "enabled": false,
-  "name": "Cloud",
-  "type": "channel:cloud",
-  "defaultParams": [
-    {
-       "name": "app_id",
-        "displayName": "App ID",
-        "type": "integer",
-        "style": "query",
-        "required": true
-    }
-  ],
+  "enabled": "false",
+  "name": "CloudDotCom",
+  "type": "channel:clouddotcom",
   "application": {
-    "base": "https://api.cliff.cloudburrito.com",
+    "base": "https://api.cloud.com",
     "resources": [
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name",
+        "url": "https://api.cloud.com/push/channels/:name",
         "path": "/push/channels/:name",
         "httpMethod": "DELETE",
         "params": [
@@ -28,19 +19,19 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "url",
-            "required": true
+            "required": "true"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/apns/connections",
+        "url": "https://api.cloud.com/push/apns/connections",
         "path": "/push/apns/connections",
         "httpMethod": "GET",
         "params": [
@@ -49,26 +40,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
           ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels",
+        "url": "https://api.cloud.com/push/channels",
         "path": "/push/channels",
         "httpMethod": "GET",
         "params": [  
@@ -77,47 +68,47 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "search",
             "displayName": "Search",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
           ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name",
+        "url": "https://api.cloud.com/push/channels/:name",
         "path": "push/channels/:name",
         "httpMethod": "GET",
         "params": [
@@ -126,19 +117,19 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name/devices",
+        "url": "https://api.cloud.com/push/channels/:name/devices",
         "path": "/push/channels/:name/device",
         "httpMethod": "GET",
         "params": [
@@ -147,33 +138,33 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
           ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name/notifications",
+        "url": "https://api.cloud.com/push/channels/:name/notifications",
         "path": "/push/channels/:name/notifications",
         "httpMethod": "GET",
         "params": [
@@ -182,47 +173,47 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name/stats",
+        "url": "https://api.cloud.com/push/channels/:name/stats",
         "path": "/push/channels/:name/stats",
         "httpMethod": "GET",
         "params": [
@@ -231,19 +222,19 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/connections",
+        "url": "https://api.cloud.com/push/connections",
         "path": "/push/connections",
         "httpMethod": "GET",
         "params": [
@@ -252,26 +243,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/devices",
+        "url": "https://api.cloud.com/push/devices",
         "path": "/push/devices",
         "httpMethod": "GET",
         "params": [
@@ -280,26 +271,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/devices/connected",
+        "url": "https://api.cloud.com/push/devices/connected",
         "path": "/push/devices/connected",
         "httpMethod": "GET",
         "params": [
@@ -308,26 +299,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/gcm/connections",
+        "url": "https://api.cloud.com/push/gcm/connections",
         "path": "/push/gcm/connections",
         "httpMethod": "GET",
         "params": [
@@ -336,26 +327,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/notifications",
+        "url": "https://api.cloud.com/push/notifications",
         "path": "/push/notifications",
         "httpMethod": "GET",
         "params": [
@@ -364,40 +355,40 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/notifications/:uid",
+        "url": "https://api.cloud.com/push/notifications/:uid",
         "path": "/push/notifications/:uid",
         "httpMethod": "GET",
         "params": [
@@ -406,47 +397,47 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": ":uid",
             "displayName": "Device UUID",
             "type": "string",
             "style": "url",
-            "required": true
+            "required": "true"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_by",
             "displayName": "Sort By",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sort_order",
             "displayName": "Sort Order",
             "type": "string",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/stats",
+        "url": "https://api.cloud.com/push/stats",
         "path": "/push/stats",
         "httpMethod": "GET",
         "params": [
@@ -455,26 +446,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "limit",
             "displayName": "Limit",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
             {
-        "url": "https://api.cliff.cloudburrito.com/push/subscribe",
+        "url": "https://api.cloud.com/push/subscribe",
         "path": "/push/subscribe",
         "httpMethod": "GET",
         "params": [
@@ -483,54 +474,54 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "channels",
             "displayName": "Channels",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
             "style": "query",
-            "required": true
+            "required": "true"
           },
           {
             "name": "keep_alive",
             "displayName": "Keep-Alive Interval",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "timeout",
             "displayName": "Timeout",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "latitude",
             "displayName": "Latitude",
             "type": "float",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "longitude",
             "displayName": "Longitude",
             "type": "float",
             "style": "query",
-            "required": false
+            "required": "false"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels",
+        "url": "https://api.cloud.com/push/channels",
         "path": "/push/channels",
         "httpMethod": "POST",
         "params": [
@@ -539,19 +530,19 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "name",
             "displayName": "Name",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/connections/subscribe",
+        "url": "https://api.cloud.com/push/connections/subscribe",
         "path": "/push/connections/subscribe",
         "httpMethod": "POST",
         "params": [
@@ -560,26 +551,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "strng",
             "style": "body",
-            "required": true
+            "required": "true"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/connections/unsubscribe",
+        "url": "https://api.cloud.com/push/connections/unsubscribe",
         "path": "/push/connections/unsubscribe",
         "httpMethod": "POST",
         "params": [
@@ -588,26 +579,26 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "strng",
             "style": "body",
-            "required": true
+            "required": "true"
           }
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/notify",
+        "url": "https://api.cloud.com/push/notify",
         "path": "/push/notify",
         "httpMethod": "POST",
         "params": [
@@ -616,56 +607,56 @@
             "displayName": "App ID",
             "type": "integer",
             "style": "query",
-            "required": false
+            "required": "false"
           },
           {
             "name": "channels",
             "displayName": "Array of Channels",
             "type": "string",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "name",
             "displayName": "Name of Notification",
             "type": "strng",
             "style": "body",
-            "required": true
+            "required": "true"
           },
           {
             "name": "devices",
             "displayName": "Array of Devices",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "sender",
             "displayName": "Sender",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "payload",
             "displayName": "Payload",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "apns_payload",
             "displayName": "APNS Formatted Notification",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           },
           {
             "name": "gcm_payload",
             "displayName": "Google Cloud Messaging Payload",
             "type": "string",
             "style": "body",
-            "required": false
+            "required": "false"
           }
         ]
       }
