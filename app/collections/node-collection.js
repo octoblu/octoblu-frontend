@@ -104,7 +104,7 @@ var NodeCollection = function (userUUID) {
   };
 
   self.getFlowCollection = function () {
-    return new FlowCollection(userUUID);
+    return new FlowCollection();
   };
 
   self.getNodeTypeCollection = function () {
