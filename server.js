@@ -24,6 +24,10 @@ var configAuth = require('./config/auth.js')(env);
 var port       = process.env.OCTOBLU_PORT || configAuth.port;
 var sslPort    = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 
+if (process.env.USE_NEWRELIC) {
+  require('newrelic');
+}
+
 if (process.env.AIRBRAKE_KEY) {
   var airbrake = require('airbrake').createClient(process.env.AIRBRAKE_KEY);
   app.use(airbrake.expressHandler())
