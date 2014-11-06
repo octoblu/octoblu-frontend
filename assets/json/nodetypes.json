@@ -1115,6 +1115,19 @@
     "type" : "device:osc"
   },
   {
+    "_id" : "device-serial",
+    "category" : "device",
+    "description" : "Serial access",
+    "enabled" : true,
+    "name" : "serial",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "serial"
+    },
+    "connector": "meshblu-serial",
+    "type" : "device:serial"
+  },
+  {
     "_id" : "545570f1a4c4a0f2edbee150",
     "category" : "channel",
     "description" : "",
