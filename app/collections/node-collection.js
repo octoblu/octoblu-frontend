@@ -2,6 +2,7 @@ var _ = require('lodash');
 var when = require('when');
 var ChannelCollection  = require('./channel-collection');
 var DeviceCollection   = require('./device-collection');
+var FlowCollection   = require('./flow-collection');
 var NodeTypeCollection = require('./node-type-collection');
 var config = require('../../config/auth')();
 
@@ -9,7 +10,7 @@ var NodeCollection = function (userUUID) {
   var self = this;
 
   self.mergedNodes = function(){
-    return when.all([self.getDevices(), self.getChannels()]).then(function (nodeResults) {
+    return when.all([self.getDevices(), self.getChannels(), self.getFlows()]).then(function (nodeResults) {
       return _.flatten(nodeResults, true);
     });
   };
@@ -38,6 +39,15 @@ var NodeCollection = function (userUUID) {
     .then(function (channels) {
       return _.map(channels, self.convertChannelToNode);
     });
+  };
+
+  self.getFlows = function () {
+    var FlowCollection = self.getFlowCollection();
+    return FlowCollection.fetch(userUUID)
+    .then(function (flows) {
+      return _.map(flows, self.convertFlowToNode);
+    });
+
   };
 
   self.mergeNodeTypes = function(nodes){
@@ -71,8 +81,30 @@ var NodeCollection = function (userUUID) {
     });
   };
 
+  self.convertFlowToNode = function (flow) {
+    return {
+      name: flow.name,
+      uuid: flow.flowId,
+      category: 'device',
+      type: 'device:flow',
+      staticMessage: {},
+      topic: 'message',
+      useStaticMessage: false,
+      triggers: _.map( _.find(flow.nodes, {type: 'operation:trigger'}), function(trigger){
+        return {
+          name: trigger.name,
+          uuid: trigger.uuid
+        };
+      })
+    };
+  };
+
   self.getDeviceCollection = function () {
     return new DeviceCollection(userUUID);
+  };
+
+  self.getFlowCollection = function () {
+    return new FlowCollection(userUUID);
   };
 
   self.getNodeTypeCollection = function () {

@@ -9,7 +9,7 @@ angular.module('octobluApp')
 
     self.fetch = function (omniItems) {
       flowNodes = omniItems;
-      return $q.all([self.getFlowNodeTypes(), NodeTypeService.getNodeTypes(), self.getFlows()]).then(function (results) {
+      return $q.all([self.getFlowNodeTypes(), NodeTypeService.getNodeTypes()]).then(function (results) {
         return _.union(omniItems, _.flatten(results, true));
       });
     };
@@ -18,19 +18,6 @@ angular.module('octobluApp')
       return FlowNodeTypeService.getFlowNodeTypes().then(function (theFlowNodeTypes) {
         flowNodeTypes = theFlowNodeTypes;
         return flowNodeTypes;
-      });
-    };
-
-    self.getFlows = function() {
-      return FlowService.getAllFlows().then(function(flows){
-          return _.map(flows, function(flow){
-              var flowNode = {};
-              flowNode.logo = 'https://ds78apnml6was.cloudfront.net/device/flow.svg';
-              flowNode.class = 'flow';
-              flowNode.resourceType = 'flow-node-type';
-              flowNode.name = flow.name;
-              return flowNode;
-          });
       });
     };
 

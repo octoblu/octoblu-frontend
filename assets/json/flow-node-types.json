@@ -406,7 +406,8 @@
     "uuid": "2be62b90-6519-11e4-867f-276797c27ed6",
     "type": "operation:output",
     "defaults": {
-      "uuid" : "*"
+      "uuid" : "*",
+      "topic" : "message"
     },
     "input": 1,
     "formTemplatePath": "/pages/node_forms/output_form.html"

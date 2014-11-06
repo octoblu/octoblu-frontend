@@ -83,8 +83,8 @@ angular.module('octobluApp')
     };
 
     function escapeLargeValue(value){
-      
-      if(JSON.stringify(value).length > 100000 ) {
+      var str = JSON.stringify(value);
+      if(str && str.length > 100000 ) {
         return '...value too long...';
       }    	
 
