@@ -7,10 +7,10 @@
   "name": "CloudDotCom",
   "type": "channel:clouddotcom",
   "application": {
-    "base": "https://api.cliff.cloudburrito.com",
+    "base": "https://api.cloud.com",
     "resources": [
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name",
+        "url": "https://api.cloud.com/push/channels/:name",
         "path": "/push/channels/:name",
         "httpMethod": "DELETE",
         "params": [
@@ -31,7 +31,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/apns/connections",
+        "url": "https://api.cloud.com/push/apns/connections",
         "path": "/push/apns/connections",
         "httpMethod": "GET",
         "params": [
@@ -59,7 +59,7 @@
           ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels",
+        "url": "https://api.cloud.com/push/channels",
         "path": "/push/channels",
         "httpMethod": "GET",
         "params": [  
@@ -108,7 +108,7 @@
           ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name",
+        "url": "https://api.cloud.com/push/channels/:name",
         "path": "push/channels/:name",
         "httpMethod": "GET",
         "params": [
@@ -129,7 +129,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name/devices",
+        "url": "https://api.cloud.com/push/channels/:name/devices",
         "path": "/push/channels/:name/device",
         "httpMethod": "GET",
         "params": [
@@ -164,7 +164,7 @@
           ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name/notifications",
+        "url": "https://api.cloud.com/push/channels/:name/notifications",
         "path": "/push/channels/:name/notifications",
         "httpMethod": "GET",
         "params": [
@@ -213,7 +213,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels/:name/stats",
+        "url": "https://api.cloud.com/push/channels/:name/stats",
         "path": "/push/channels/:name/stats",
         "httpMethod": "GET",
         "params": [
@@ -234,7 +234,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/connections",
+        "url": "https://api.cloud.com/push/connections",
         "path": "/push/connections",
         "httpMethod": "GET",
         "params": [
@@ -262,7 +262,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/devices",
+        "url": "https://api.cloud.com/push/devices",
         "path": "/push/devices",
         "httpMethod": "GET",
         "params": [
@@ -290,7 +290,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/devices/connected",
+        "url": "https://api.cloud.com/push/devices/connected",
         "path": "/push/devices/connected",
         "httpMethod": "GET",
         "params": [
@@ -318,7 +318,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/gcm/connections",
+        "url": "https://api.cloud.com/push/gcm/connections",
         "path": "/push/gcm/connections",
         "httpMethod": "GET",
         "params": [
@@ -346,7 +346,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/notifications",
+        "url": "https://api.cloud.com/push/notifications",
         "path": "/push/notifications",
         "httpMethod": "GET",
         "params": [
@@ -388,7 +388,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/notifications/:uid",
+        "url": "https://api.cloud.com/push/notifications/:uid",
         "path": "/push/notifications/:uid",
         "httpMethod": "GET",
         "params": [
@@ -437,7 +437,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/stats",
+        "url": "https://api.cloud.com/push/stats",
         "path": "/push/stats",
         "httpMethod": "GET",
         "params": [
@@ -465,7 +465,7 @@
         ]
       },
             {
-        "url": "https://api.cliff.cloudburrito.com/push/subscribe",
+        "url": "https://api.cloud.com/push/subscribe",
         "path": "/push/subscribe",
         "httpMethod": "GET",
         "params": [
@@ -521,7 +521,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/channels",
+        "url": "https://api.cloud.com/push/channels",
         "path": "/push/channels",
         "httpMethod": "POST",
         "params": [
@@ -542,7 +542,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/connections/subscribe",
+        "url": "https://api.cloud.com/push/connections/subscribe",
         "path": "/push/connections/subscribe",
         "httpMethod": "POST",
         "params": [
@@ -570,7 +570,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/connections/unsubscribe",
+        "url": "https://api.cloud.com/push/connections/unsubscribe",
         "path": "/push/connections/unsubscribe",
         "httpMethod": "POST",
         "params": [
@@ -598,7 +598,7 @@
         ]
       },
       {
-        "url": "https://api.cliff.cloudburrito.com/push/notify",
+        "url": "https://api.cloud.com/push/notify",
         "path": "/push/notify",
         "httpMethod": "POST",
         "params": [
