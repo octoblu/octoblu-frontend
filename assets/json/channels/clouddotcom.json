@@ -3,7 +3,7 @@
   "auth_strategy": "clouddotcom",
   "custom_tokens": [ ],
   "description": "",
-  "enabled": "false",
+  "enabled": "true",
   "name": "CloudDotCom",
   "type": "channel:clouddotcom",
   "application": {
@@ -14,13 +14,6 @@
         "path": "/push/channels/:name",
         "httpMethod": "DELETE",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": ":name",
             "displayName": "Name",
@@ -35,13 +28,6 @@
         "path": "/push/apns/connections",
         "httpMethod": "GET",
         "params": [
-        {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "offset",
             "displayName": "Offset",
@@ -63,13 +49,6 @@
         "path": "/push/channels",
         "httpMethod": "GET",
         "params": [  
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "offset",
             "displayName": "Offset",
@@ -113,13 +92,6 @@
         "httpMethod": "GET",
         "params": [
           {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
-          {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
@@ -133,13 +105,6 @@
         "path": "/push/channels/:name/device",
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": ":name",
             "displayName": "Name",
@@ -168,13 +133,6 @@
         "path": "/push/channels/:name/notifications",
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": ":name",
             "displayName": "Name",
@@ -218,13 +176,6 @@
         "httpMethod": "GET",
         "params": [
           {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
-          {
             "name": ":name",
             "displayName": "Name",
             "type": "string",
@@ -238,13 +189,6 @@
         "path": "/push/connections",
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "offset",
             "displayName": "Offset",
@@ -267,13 +211,6 @@
         "httpMethod": "GET",
         "params": [
           {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
-          {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
@@ -294,13 +231,6 @@
         "path": "/push/devices/connected",
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "offset",
             "displayName": "Offset",
@@ -323,13 +253,6 @@
         "httpMethod": "GET",
         "params": [
           {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
-          {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
@@ -350,13 +273,6 @@
         "path": "/push/notifications",
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "offset",
             "displayName": "Offset",
@@ -392,13 +308,6 @@
         "path": "/push/notifications/:uid",
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": ":uid",
             "displayName": "Device UUID",
@@ -442,13 +351,6 @@
         "httpMethod": "GET",
         "params": [
           {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
-          {
             "name": "offset",
             "displayName": "Offset",
             "type": "integer",
@@ -469,13 +371,6 @@
         "path": "/push/subscribe",
         "httpMethod": "GET",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "channels",
             "displayName": "Channels",
@@ -526,13 +421,6 @@
         "httpMethod": "POST",
         "params": [
           {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
-          {
             "name": "name",
             "displayName": "Name",
             "type": "string",
@@ -546,13 +434,6 @@
         "path": "/push/connections/subscribe",
         "httpMethod": "POST",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "device",
             "displayName": "Device UUID",
@@ -575,13 +456,6 @@
         "httpMethod": "POST",
         "params": [
           {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
-          {
             "name": "device",
             "displayName": "Device UUID",
             "type": "string",
@@ -602,13 +476,6 @@
         "path": "/push/notify",
         "httpMethod": "POST",
         "params": [
-          {
-            "name": "app_id",
-            "displayName": "App ID",
-            "type": "integer",
-            "style": "query",
-            "required": "false"
-          },
           {
             "name": "channels",
             "displayName": "Array of Channels",

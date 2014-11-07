@@ -42,16 +42,19 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Count",
             "name": "count"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Min Id",
             "name": "min_id"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Max ID",
             "name": "max_id"
           }
         ],
@@ -75,26 +78,31 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Count",
             "name": "count"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Max Timestamp",
             "name": "max_timestamp"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Minimum Timestamp",
             "name": "min_timestamp"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Min Id",
             "name": "min_id"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Max ID",
             "name": "max_id"
           }
         ],
@@ -112,11 +120,13 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Count",
             "name": "count"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Maximum Like ID",
             "name": "max_like_id"
           }
         ],
@@ -134,11 +144,13 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Query",
             "name": "q"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Count",
             "name": "count"
           }
         ],
@@ -234,6 +246,7 @@
           {
             "style": "body",
             "type": "string",
+            "displayName": "Action",
             "name": "action"
           }
         ],
@@ -281,27 +294,33 @@
             "style": "query",
             "type": "string",
             "name": "lat",
+            "displayName": "Latitude",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Minimum Timestamp",
             "name": "min_timestamp"
           },
           {
             "style": "query",
             "type": "string",
             "name": "lng",
+            "displayName": "Longitude",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Max ID",
+            "displayName": "Max Timestamp",
             "name": "max_timestamp"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Distance",
             "name": "distance"
           }
         ],
@@ -467,16 +486,19 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Count",
             "name": "count"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Minimum Tag ID",
             "name": "min_tag_id"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Maximum Tag ID",
             "name": "max_tag_id"
           }
         ],
@@ -494,6 +516,7 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Query",
             "name": "q"
           }
         ],
@@ -535,21 +558,25 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Minimum Timestamp",
             "name": "min_timestamp"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Min Id",
             "name": "min_id"
           },
           {
             "style": "query",
             "type": "integer",
+            "displayName": "Max ID",
             "name": "max_id"
           },
           {
             "style": "query",
             "type": "integer",
+            "displayName": "Max Timestamp",
             "name": "max_timestamp"
           }
         ],
@@ -567,33 +594,39 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Distance",
             "name": "distance"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Facebook Places ID",
             "name": "facebook_places_id"
           },
           {
             "style": "query",
             "type": "integer",
+            "displayName": "Foursquare ID",
             "name": "foursquare_id"
           },
           {
             "style": "query",
             "type": "integer",
             "name": "lat",
+            "displayName": "Latitude",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
             "name": "lng",
+            "displayName": "Longitude",
             "required": true
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Foursquare V.2 ID",
             "name": "foursquare_v2_id"
           }
         ],
@@ -617,11 +650,13 @@
           {
             "style": "query",
             "type": "string",
+            "displayName": "Count",
             "name": "count"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Min Id",
             "name": "min_id"
           }
         ],
