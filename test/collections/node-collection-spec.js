@@ -9,7 +9,8 @@ describe('NodeCollection', function () {
     fakeChannelCollection,
     result,
     fakeDeviceCollection,
-    fakeNodeTypeCollection;
+    fakeNodeTypeCollection,
+    fakeFlowCollection;
 
   beforeEach(function () {
     var userUUID = 'u1';
@@ -26,6 +27,11 @@ describe('NodeCollection', function () {
     fakeNodeTypeCollection = new FakeCollection();
     nodeTypeCollectionStub = sinon.stub(sut, 'getNodeTypeCollection');
     nodeTypeCollectionStub.returns(fakeNodeTypeCollection);
+
+    fakeFlowCollection = new FakeCollection();
+    flowCollectionStub = sinon.stub(sut, 'getFlowCollection');
+    flowCollectionStub.returns(fakeFlowCollection);
+
   });
 
   describe('#fetch', function () {
@@ -53,6 +59,10 @@ describe('NodeCollection', function () {
       expect(fakeDeviceCollection.fetch).to.have.been.called;
     });
 
+    it('should call fetch on FlowCollection', function () {
+      expect(fakeFlowCollection.fetch).to.have.been.called;
+    });
+
     describe('when DeviceCollection and ChannelCollection has nodes', function () {
       var channels, devices;
       beforeEach(function () {
@@ -70,7 +80,7 @@ describe('NodeCollection', function () {
 
       describe('when nodetypes come back', function () {
         beforeEach(function () {
-          var nodeTypes = [
+          var flows = [
             {skynet: {type: 'channel:bbc'}, logo: 'bbc.ping'},
             {skynet: {type: 'channel:c2'}, logo: 'c2.pee-een-ghee'},
             {skynet: {type: 'netduino'}, logo: 'netduino.jif'},
