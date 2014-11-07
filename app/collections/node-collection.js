@@ -1,62 +1,64 @@
 var _ = require('lodash');
 var when = require('when');
-var ChannelCollection  = require('./channel-collection');
-var DeviceCollection   = require('./device-collection');
-var FlowCollection   = require('./flow-collection');
+var ChannelCollection = require('./channel-collection');
+var DeviceCollection = require('./device-collection');
+var FlowCollection = require('./flow-collection');
 var NodeTypeCollection = require('./node-type-collection');
 var config = require('../../config/auth')();
 
-var NodeCollection = function (userUUID) {
+var NodeCollection = function(userUUID) {
   var self = this;
 
-  self.mergedNodes = function(){
-    return when.all([self.getDevices(), self.getChannels(), self.getFlows()]).then(function (nodeResults) {
+  self.mergedNodes = function() {
+    return when.all([self.getDevices(), self.getChannels(), self.getFlows()]).then(function(nodeResults) {
       return _.flatten(nodeResults, true);
     });
   };
 
-  self.fetch = function () {
+  self.fetch = function() {
     return self.mergedNodes().then(self.mergeNodeTypes);
   };
 
-  self.getChannelCollection = function () {
+  self.getChannelCollection = function() {
     return new ChannelCollection();
   };
 
-  self.getDevices = function () {
+  self.getDevices = function() {
     var deviceCollection = self.getDeviceCollection();
 
     return deviceCollection.fetch()
-    .then(function (devices) {
-      return _.map(devices, self.convertDeviceToNode);
-    });
+      .then(function(devices) {
+        return _.map(devices, self.convertDeviceToNode);
+      });
   };
 
-  self.getChannels = function () {
+  self.getChannels = function() {
     var channelCollection = self.getChannelCollection();
 
     return channelCollection.fetch(userUUID)
-    .then(function (channels) {
-      return _.map(channels, self.convertChannelToNode);
-    });
+      .then(function(channels) {
+        return _.map(channels, self.convertChannelToNode);
+      });
   };
 
-  self.getFlows = function () {
+  self.getFlows = function() {
     var FlowCollection = self.getFlowCollection();
     return FlowCollection.fetch(userUUID)
-    .then(function (flows) {
-      return _.map(flows, self.convertFlowToNode);
-    });
+      .then(function(flows) {
+        return _.map(flows, self.convertFlowToNode);
+      });
 
   };
 
-  self.mergeNodeTypes = function(nodes){
+  self.mergeNodeTypes = function(nodes) {
     var nodeTypeCollection = self.getNodeTypeCollection();
-    return nodeTypeCollection.fetch().then(function(nodeTypes){
-      return _.map(nodes, function(node){
+    return nodeTypeCollection.fetch().then(function(nodeTypes) {
+      return _.map(nodes, function(node) {
         var logo, nodeType;
-        nodeType = _.findWhere(nodeTypes, {type: node.type});
-        if(nodeType) {
+        nodeType = _.findWhere(nodeTypes, {
+          type: node.type
+        });
+        if (nodeType) {
           node.category = nodeType.category;
         }
         node.nodeType = {};
@@ -73,7 +75,7 @@ var NodeCollection = function (userUUID) {
     });
   };
 
-  self.convertDeviceToNode = function (device) {
+  self.convertDeviceToNode = function(device) {
     return _.extend({}, device, {
       category: 'device',
       staticMessage: {},
@@ -81,7 +83,7 @@ var NodeCollection = function (userUUID) {
     });
   };
 
-  self.convertFlowToNode = function (flow) {
+  self.convertFlowToNode = function(flow) {
     return {
       name: flow.name,
       uuid: flow.flowId,
@@ -89,25 +91,19 @@ var NodeCollection = function (userUUID) {
       type: 'device:flow',
       staticMessage: {},
       topic: 'message',
-      useStaticMessage: false,
-      triggers: _.map( _.find(flow.nodes, {type: 'operation:trigger'}), function(trigger){
-        return {
-          name: trigger.name,
-          uuid: trigger.uuid
-        };
-      })
+      useStaticMessage: true   
     };
   };
 
-  self.getDeviceCollection = function () {
+  self.getDeviceCollection = function() {
     return new DeviceCollection(userUUID);
   };
 
-  self.getFlowCollection = function () {
+  self.getFlowCollection = function() {
     return new FlowCollection();
   };
 
-  self.getNodeTypeCollection = function () {
+  self.getNodeTypeCollection = function() {
     return new NodeTypeCollection(userUUID);
   };
 
