@@ -6,17 +6,9 @@ var mongoose = require('mongoose');
 var ResourcePermissionSchema = require('./app/models/resourcePermission');
 mongoose.model('ResourcePermission', ResourcePermissionSchema);
 
-var DeviceTypeSchema = require('./app/models/device-type');
-mongoose.model('DeviceType', DeviceTypeSchema);
-
 var UserSchema = require('./app/models/user');
 mongoose.model('User', UserSchema);
-
-var EventSchema = require('./app/models/event');
-mongoose.model('Event', EventSchema);
 
 var GroupSchema = require('./app/models/group');
 mongoose.model('Group', GroupSchema);
 
-var FlowSchema = require('./app/models/flow');
-mongoose.model('Flow', FlowSchema);

@@ -7,7 +7,7 @@ var config = {
     },
     test: {
     		databaseType : 'mongodb',
-        url: 'mongodb://localhost:27017/meshines',
+        url: 'mongodb://localhost:27017/octoblu_test',
         skynetUrl: 'mongodb://localhost:27017/skynet-test',
         redisSessionUrl: 'redis://localhost/test-octoblu-session'
     },

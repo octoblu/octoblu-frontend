@@ -3,7 +3,7 @@ var config = require('../../config/auth')(),
   _ = require('lodash');
 
 var FlowCollection = function (Flow) {
-  Flow = Flow || mongoose.model('Flow');
+  Flow = Flow || require('../models/flow');
 
   var self = this;
   var User = mongoose.model('User');

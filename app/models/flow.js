@@ -1,26 +1,65 @@
-var _ = require('lodash');
-var mongoose = require('mongoose');
-var when = require('when');
-var resource = require('./mixins/resource');
+'use strict';
 
-var FlowSchema = new mongoose.Schema({
-  flowId: String,
-  token: String,
-  name: String,
-  zoomScale: Number,
-  zoomX: Number,
-  zoomY: Number,
-  hash: String,
-  nodes: [],
-  links: [],
-  resource: {
-    nodeType: String,
-    owner: {
-      nodeType: String,
-      uuid: String
+var octobluDB = require('../lib/database');
+
+var _ = require('lodash');
+var when = require('when');
+
+function FlowModel() {
+  var collection = octobluDB.getCollection('flows');
+
+  var methods = {
+    createByUserUUID : function (userUUID, flowData, meshblu) {
+      var self = this;
+      return registerFlow(meshblu, userUUID).then(function (device) {
+        var data = mergeFlowData(userUUID, flowData, device);
+        return self.insert(data).then(function () {
+          return data;
+        });
+      });
+    },
+
+    deleteByFlowIdAndUserUUID : function (flowId, userUUID, meshblu) {
+      var query, self;
+      var FlowDeploy = require('./flow-deploy');
+      self = this;
+      query = {flowId: flowId};
+      console.log('findingOne');
+
+      return self.findOne(query).then(function (flow) {
+        FlowDeploy.stop(userUUID, flow, meshblu);
+        console.log('stopping');
+        return unregisterFlow(meshblu, flow.flowId, flow.token).then(function () {
+          console.log(query);
+          return self.remove(query, true);
+        })
+      });
+    },
+
+    updateByFlowIdAndUser : function (flowId, userUUID, flowData) {
+      var self = this;
+      var query = {flowId: flowId, 'resource.owner.uuid': userUUID};
+
+      return self.findOne(query).then(function(flow) {
+        return _.extend(flow, flowData);
+      }).then(function(newFlow){
+        return self.update(query, newFlow);
+      });
+    },
+
+    getFlows : function (userUUID) {
+      var self = this;
+      return self.find({'resource.owner.uuid': userUUID});
+    },
+
+    getFlow : function (flowId) {
+      var self = this;
+      return self.findOne({'flowId': flowId});
     }
-  }
-});
+  };
+
+  return _.extend({}, collection, methods);
+}
 
 var registerFlow = function (meshblu, userUUID) {
   return when.promise(function (resolve, reject) {
@@ -54,49 +93,4 @@ var mergeFlowData = function (userUUID, flowData, device) {
   return _.extend({}, data, flowData);
 };
 
-FlowSchema.statics.createByUserUUID = function (userUUID, flowData, meshblu) {
-  var self = this;
-  return registerFlow(meshblu, userUUID).then(function (device) {
-    var data = mergeFlowData(userUUID, flowData, device);
-    return self.create(data).then(function () {
-      return data;
-    });
-  });
-};
-
-FlowSchema.statics.deleteByFlowIdAndUserUUID = function (flowId, userUUID, meshblu) {
-  var query, self;
-  var FlowDeploy = require('./flow-deploy');
-  self = this;
-  query = {flowId: flowId};
-
-  return self.findOne(query).exec().then(function (flow) {
-    FlowDeploy.stop(userUUID, flow, meshblu);
-    return unregisterFlow(meshblu, flow.flowId, flow.token).then(function () {
-      return self.remove(query).exec();
-    })
-  });
-};
-
-FlowSchema.statics.updateByFlowIdAndUser = function (flowId, userUUID, flowData) {
-  var query = {flowId: flowId, 'resource.owner.uuid': userUUID};
-
-  return this.update(query, flowData).exec().then(function (numAffected) {
-    if (numAffected !== 1) {
-      throw new Error('404')
-    }
-  });
-};
-
-FlowSchema.statics.getFlows = function (userUUID) {
-  var self = this;
-  return self.find({'resource.owner.uuid': userUUID}).lean().exec();
-};
-
-FlowSchema.statics.getFlow = function (flowId) {
-  var self = this;
-  return self.findOne({'flowId': flowId}).lean().exec();
-};
-
-
-module.exports = FlowSchema;
+module.exports = new FlowModel();

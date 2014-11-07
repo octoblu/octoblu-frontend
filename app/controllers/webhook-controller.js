@@ -1,12 +1,10 @@
-var mongoose = require('mongoose');
-
 var WebhookController = function(options) {
   var self, meshblu;
   self = this;
 
   options = options || {};
   meshblu = options.meshblu;
-  Flow    = mongoose.model('Flow');
+  Flow    = require('../models/flow');
 
   self.trigger = function(req, res) {
     var query = {'nodes.id': req.params.id};

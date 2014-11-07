@@ -3,58 +3,13 @@ var _ = require('lodash');
 describe('Flow', function () {
   var Flow, Meshblu;
 
-  before(function(done){
-    var mongoose   = require('mongoose');
-    var FlowSchema = require('../../app/models/flow');
-    var db = mongoose.createConnection();
-    Flow   = db.model('Flow', FlowSchema);
+  before(function(){
+    Flow   = require('../../app/models/flow');
     Meshblu = new FakeMeshblu();
-    db.open('localhost', 'octoblu_test', done);
   });
 
   beforeEach(function (done) {
     Flow.remove(done);
-  });
-
-  it('should instantiate', function () {
-    expect(new Flow()).to.exist;
-  });
-
-  describe('when a Flow is saved with a node and a link', function () {
-    beforeEach(function (done) {
-      var sut = new Flow();
-      sut.name = 'name 1';
-      sut.resource.type = 'flow';
-      sut.resource.owner.uuid = '1';
-      sut.resource.owner.nodeType = 'user';
-      sut.nodes = [{foo: 'bar'}];
-      sut.links = [{first: 'second'}];
-      sut.save(done);
-    });
-
-    it('should store the flow name', function (done) {
-      Flow.findOne({}, function(err, flow){
-        expect(err).to.be.null;
-        expect(flow.name).to.deep.equal('name 1');
-        done();
-      });
-    });
-
-    it('should store the node', function (done) {
-      Flow.findOne({}, function(err, flow){
-        expect(err).to.be.null;
-        expect(_.first(flow.nodes)).to.deep.equal({foo: 'bar'});
-        done();
-      });
-    });
-
-    it('should have links', function (done) {
-      Flow.findOne({}, function(err, flow){
-        expect(err).to.be.null;
-        expect(_.first(flow.links)).to.deep.equal({first: 'second'});
-        done();
-      });
-    });
   });
 
   describe('.createByUserUUID', function () {
@@ -104,7 +59,7 @@ describe('Flow', function () {
       it('should store the flowData', function (done) {
         var query = {flowId: '6', 'resource.owner.uuid': '3', 'resource.owner.nodeType': 'user'};
 
-        Flow.findOne(query, function(err, flow){
+        Flow.findOne(query).then(function(flow){
           expect(flow.nodes).include({foo: 'bar'});
           done();
         });
@@ -115,7 +70,7 @@ describe('Flow', function () {
   describe('.updateByFlowIdAndUser', function () {
     describe('when there is a flow', function () {
       beforeEach(function (done) {
-        Flow.create({
+        Flow.insert({
           flowId: '2',
           resource: {
             type: 'flow',
@@ -124,7 +79,9 @@ describe('Flow', function () {
               type: 'user'
             }
           }
-        }, done);
+        }).then(function(){
+          done()
+        });
       });
 
       describe('and its called with the same id', function () {
@@ -134,7 +91,7 @@ describe('Flow', function () {
         });
 
         it('should update the existing flow', function (done) {
-          Flow.find({flowId: '2'}, function(err, flows){
+          Flow.find({flowId: '2'}).then(function(flows){
             expect(_.size(flows)).to.equal(1);
             var flow = _.first(flows);
             expect(flow.name).to.equal('Foo');
@@ -165,7 +122,7 @@ describe('Flow', function () {
   describe('.deleteByFlowIdAndUser', function(){
     describe('when it is given a valid flowId and User', function () {
       beforeEach(function (done) {
-        Flow.create({
+        Flow.insert({
           flowId: '657',
           resource: {
             type: 'flow',
@@ -174,12 +131,12 @@ describe('Flow', function () {
               type: 'user'
             }
           }
-        }, done);
+        }).then(function(){done()});
       });
 
       it('should remove the record from the database', function (done) {
         var query = {flowId: '657', 'resource.owner.uuid': 'unique-uuid', 'resource.owner.nodeType': 'user'};
-        Flow.findOne(query, function(err, flow){
+        Flow.findOne(query).then(function(flow){
           expect(flow).to.be.null;
           done();
         });

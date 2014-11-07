@@ -30,6 +30,10 @@ var sslPort        = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 if (process.env.AIRBRAKE_KEY) {
   var airbrake = require('airbrake').createClient(process.env.AIRBRAKE_KEY);
   app.use(airbrake.expressHandler())
+} else {
+  process.on('uncaughtException', function(error) {
+    console.error(error);
+  });
 }
 
 var configDB = require('./config/database.js')(env);

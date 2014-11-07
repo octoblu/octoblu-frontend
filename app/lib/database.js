@@ -33,7 +33,6 @@ Database.prototype.createConnection = function(options){
 	self.collections = {};
 
 	options = options || {};
-	options.collections = options.collections || [];
 
 	if(config.databaseType === 'nedb'){
 		self.getCollectionBase = createNeDBCollection;
