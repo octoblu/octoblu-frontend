@@ -18,8 +18,5 @@ mongoose.model('Event', EventSchema);
 var GroupSchema = require('./app/models/group');
 mongoose.model('Group', GroupSchema);
 
-var InvitationSchema = require('./app/models/invitation');
-mongoose.model('Invitation', InvitationSchema);
-
 var FlowSchema = require('./app/models/flow');
 mongoose.model('Flow', FlowSchema);

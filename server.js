@@ -16,7 +16,6 @@ var cors           = require('cors');
 var mongoose       = require('mongoose');
 var passport       = require('passport');
 var flash          = require('connect-flash');
-var skynetdb       = require('./app/lib/skynetdb');
 var connectRedis   = require('connect-redis');
 var fs             = require('fs');
 var privateKey     = fs.readFileSync('config/server.key', 'utf8');
@@ -35,7 +34,17 @@ if (process.env.AIRBRAKE_KEY) {
 
 var configDB = require('./config/database.js')(env);
 mongoose.connect(configDB.url); // connect to our database
-skynetdb.connect(configDB.skynetUrl);
+
+
+var databaseOptions = {
+	collections : [
+		'invitations'
+	]
+};
+
+var octobluDB = require('./app/lib/database');
+octobluDB.createConnection(databaseOptions);
+
 var RedisStore = connectRedis(expressSession);
 // Initialize Models
 

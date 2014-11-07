@@ -5,7 +5,7 @@ var _ = require('lodash'),
     uuid = require('node-uuid'),
     mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
-    Invitation = mongoose.model('Invitation'),
+    Invitation = require('../models/invitation'),
     User = mongoose.model('User'),
     Group = mongoose.model('Group'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
@@ -103,14 +103,14 @@ var invitationController = {
                     inviteData.recipient.uuid = recipient.skynetuuid;
                 }
 
-                var invitation = new Invitation(inviteData);
-                invitation.save();
-                return invitation;
+                return Invitation.save(inviteData);
+
             }, function (err) {
                 console.log('error!');
                 console.log(err);
             })
-            .then(function (invite) {
+            .then(function (invites) {
+            		var invite = _.first(invites);
 
                 var invitationTemplatePath = process.cwd() + config.email.invitation.templateUrl;
                 var invitationUrl = req.protocol + "://" + req.header('host') + '/api/invitation/' + invite._id + '/accept';
