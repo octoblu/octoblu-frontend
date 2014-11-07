@@ -1,6 +1,5 @@
 var DropboxStrategy = require('passport-dropbox-oauth2').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
+var User     = require('../app/models/user');
 
 var CONFIG = {
   development: {
@@ -26,7 +25,7 @@ var CONFIG = {
 var dropboxStrategy = new DropboxStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
   var channelId = new mongoose.Types.ObjectId('532a60c06d3281aa4aeacab3');
 
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
+  User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: accessToken});
   req.user.save(function (err) {
     return done(err, req.user);
   });

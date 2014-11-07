@@ -1,7 +1,6 @@
 var _ = require('lodash'),
-    mongoose = require('mongoose'),
     Group = require('../models/group'),
-    User = mongoose.model('User'),
+    User = require('../models/user'),
     request = require('request'),
     uuid = require('node-uuid'),
     isAuthenticated = require('./middleware/security').isAuthenticated;

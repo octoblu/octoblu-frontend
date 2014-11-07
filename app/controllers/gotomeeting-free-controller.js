@@ -1,5 +1,6 @@
 var request = require('request');
 var Channel = require('../models/channel');
+var User = require('../models/user');
 
 var channelId = '54468c4914d3e4c4645c6e27';
 var CONFIG = Channel.syncFindById(channelId).oauth[process.env.NODE_ENV];
@@ -27,11 +28,12 @@ var GotoMeetingFreeController = function(){
   			try{
   				json = JSON.parse(body);
   			}catch(e){ console.log('Error parsing', e); }
-  			req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: json.access_token});
-			  req.user.save(function (err) {
-			  	if(err) console.log(err);
-			    next();
-			  });
+  			User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: json.access_token});
+        User.update(req.user).then(function(){
+          next();
+        }).catch(function(error){
+          next(error);
+        });
   		}
   	});
   };

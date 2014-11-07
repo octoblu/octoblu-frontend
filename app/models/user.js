@@ -1,299 +1,175 @@
 'use strict';
+var octobluDB  = require('../lib/database');
+var _          = require('lodash');
+var when       = require('when');
+var uuid       = require('node-uuid');
+var bcrypt     = require('bcrypt-nodejs');
+var configAuth = require('../../config/auth')(process.env.NODE_ENV);
+var rest       = require('rest');
+var mime       = require('rest/interceptor/mime');
+var errorCode  = require('rest/interceptor/errorCode');
+var client     = rest.wrap(mime).wrap(errorCode);
 
-var mongoose = require('mongoose'),
-  bcrypt = require('bcrypt-nodejs'),
-  Resource = require('./mixins/resource'),
-  moment = require('moment'),
-  when = require('when'),
-  _ = require('lodash'),
-  uuid = require('node-uuid'),
+function UserModel() {
+  var collection = octobluDB.getCollection('flows');
 
-  configAuth = require('../../config/auth')(process.env.NODE_ENV),
-  rest = require('rest'),
-  mime = require('rest/interceptor/mime'),
-  errorCode = require('rest/interceptor/errorCode'),
-  client = rest.wrap(mime).wrap(errorCode);
+  var methods = {
+    findOrCreateByEmailAndPassword : function(email, password){
+      var self = this;
 
-// define the schema for our user model
-var UserSchema = new mongoose.Schema({
-    name: String,
-    username: String,
-    displayName: String,
-    email: String,
-    admin: Boolean,
-    resetPasswordToken: String,
-    resetPasswordExpires: Date,
-    terms_accepted_at: Date,
-    testerId: String,
-    skynet: {
-      uuid: {type: String, unique: true, required: true},
-      token: { type: String, required: true}
-    },
-    local: {
-      email: String,
-      password: String
-    },
-    facebook: {
-      id: String,
-      token: String,
-      email: String,
-      name: String
-    },
-    twitter: {
-      id: String,
-      token: String,
-      displayName: String,
-      username: String
-    },
-    google: {
-      id: String,
-      token: String,
-      email: String,
-      name: String
-    },
-    github: {
-      id: String
-    },
-    api: [
-      {
-        name: String,
-        uuid: {
-          type: String,
-          default: uuid.v1
-        },
-        channelid: String,
-        authtype: String,
-        key: String,
-        token: String,
-        token_crypt: String,
-        user: String,
-        pass: String,
-        secret: String,
-        secret_crypt: String,
-        verifier: String,
-        subdomain: String,
-        updated: {
-          type: Date,
-          default: Date.now
-        },
-        defaultParams : {},
-        custom_tokens: [
-          {
-            name: String,
-            value: String
+      return when.promise(function(resolve, reject){
+        self.findByEmail(email).then(function(user){
+          if(user && user.validPassword(password)){
+            return resolve(user);
           }
-        ]
-      }
-    ]
-  },
-  { toObject: {virtuals: true}, toJSON: {virtuals: true} });
 
-Resource.makeResourceModel({schema: UserSchema, type: 'user', uuidProperty: 'skynetuuid', properties: ['displayName', 'email']});
+          if(user) {
+            return reject("User with that email address already exists");
+          }
 
-// find api connection by name
-UserSchema.methods.findApiByName = function (name) {
-  if (_.isEmpty(this.api)) {
-    this.api = [];
-  }
+          var userParams = {
+            email: email,
+            local: {
+              email: email,
+              password: self.generateHash(password)
+            }
+          };
 
-  return _.findWhere(this.api, {name : name});
-};
+          return self.create(userParams);
+        });
+      });
+    },
 
-UserSchema.methods.acceptTerms = function (termsAccepted) {
-  var user = this;
-  if (!termsAccepted) {
-    return when.reject("termsAccepted must be true");
-  }
+    findByEmailAndPassword : function(email, password){
+      var self = this;
 
-  this.terms_accepted_at = new Date();
+      return when.promise(function(resolve, reject){
+        self.findByEmail(email).then(function(user){
+          try {
+            if(user && user.validPassword(password)){
+              return resolve(user);
+            }
+          } catch (error) {
+            return reject(error);
+          }
 
-  return when.promise(function (resolve, reject) {
-    user.save(function (error, user) {
-      if (error) {
-        return reject(error);
-      }
-      resolve(user);
-    });
-  });
-};
+          return reject();
+        });
+      });
+    },
 
-UserSchema.methods.overwriteOrAddApiByChannelId = function (channelid, options) {
-  var index, new_api, old_api;
+    findBySkynetUUID : function (skynetuuid) {
+      var self = this;
+      return self.findOne({'skynet.uuid': skynetuuid});
+    },
 
-  index = _.findIndex(this.api, {channelid: channelid});
+    findLeanBySkynetUUID : function (skynetuuid) {
+      var self = this;
+      return self.findOne({'skynet.uuid': skynetuuid});
+    },
 
-  if(index > -1){
-  	old_api = this.api[index];
-    this.api.splice(index, 1);
-  }
+    findByEmail : function (email) {
+      var self = this;
+      return self.findOne({ email: email });
+    },
 
-  new_api = options || {};
-  // Set Restore Default Parameters
-  if(old_api && !new_api.defaultParams && old_api.defaultParams){
-  	new_api.defaultParams = old_api.defaultParams;
-  }
-  new_api.channelid = channelid;
+    findByResetToken : function (resetToken) {
+      var self = this;
+      var userQuery;
 
-  this.api.push(new_api);
-};
-
-UserSchema.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-UserSchema.methods.saveWithPromise = function () {
-  return when.promise(function (resolve, reject) {
-    this.save(function (error, user) {
-      if (error) {
-        return reject(error);
-      }
-      resolve(user);
-    });
-  });
-};
-
-UserSchema.methods.updatePassword = function (oldPassword, newPassword) {
-  var user;
-  user = this;
-  return when.promise(function (resolve, reject) {
-    if (!user.validPassword(oldPassword)) {
-      reject('Password is invalid');
-    }
-    user.local.password = user.generateHash(newPassword);
-    return user.saveWithPromise();
-  });
-};
-
-// checking if password is valid
-UserSchema.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.local.password);
-};
-
-
-//Convenience method for getting the Skynet UUID
-//TODO: replace this with resource.uuid
-UserSchema.virtual('skynetuuid').get(function () {
-  return this.skynet.uuid || this.local.skynetuuid || this.google.skynetuuid || this.twitter.skynetuuid || this.facebook.skynetuuid;
-});
-
-//Convenience method for getting the Skynet Token
-UserSchema.virtual('skynettoken').get(function () {
-  return this.skynet.token || this.local.skynettoken || this.google.skynettoken || this.twitter.skynettoken || this.facebook.skynettoken;
-});
-
-////Convenience method for getting the Skynet Token
-//UserSchema.virtual('email').get(function () {
-//    return this.local.email || this.google.email || this.facebook.email || this.twitter.username + '@twitter';
-//});
-//
-//UserSchema.virtual('displayName').get(function () {
-//
-//    return this.name || this.google.name || this.facebook.name || this.twitter.displayName || this.email;
-//});
-UserSchema.statics.findOrCreateByEmailAndPassword = function(email, password){
-  var self = this;
-
-  return when.promise(function(resolve, reject){
-    self.findByEmail(email).then(function(user){
-      if(user && user.validPassword(password)){
-        return resolve(user);
-      }
-
-      if(user) {
-        return reject("User with that email address already exists");
-      }
-
-      var userParams = {
-        email: email,
-        local: {
-          email: email,
-          password: self.generateHash(password)
-        }
+      userQuery = {
+        resetPasswordToken: resetToken,
+        resetPasswordExpires: { $gt: (new Date()) }
       };
 
-      return self.create(userParams);
-    });
-  });
-};
+      return self.findOne(userQuery);
+    },
 
-UserSchema.statics.findByEmailAndPassword = function(email, password){
-  var self = this;
+    findBySkynetUUIDAndToken : function (skynetuuid, skynettoken) {
+      var self = this;
+      return self.findOne({'skynet.uuid': skynetuuid, 'skynet.token': skynettoken});
+    },
 
-  return when.promise(function(resolve, reject){
-    self.findByEmail(email).then(function(user){
-      try {
-        if(user && user.validPassword(password)){
-          return resolve(user);
+    generateHash : function (password) {
+      var self = this;
+      return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    },
+
+    acceptTerms : function (user, termsAccepted) {
+      var self = this;
+      if (!termsAccepted) {
+        throw new Error("termsAccepted must be true");
+      }
+
+      user.terms_accepted_at = new Date();
+      return self.update({_id: user._id}, user);
+    },
+
+    overwriteOrAddApiByChannelId : function (user, channelid, options) {
+      var self = this;
+      var index, new_api, old_api;
+
+      index = _.findIndex(user.api, {channelid: channelid});
+
+      if(index > -1){
+        old_api = user.api[index];
+        user.api.splice(index, 1);
+      }
+
+      new_api = options || {};
+      if(old_api && !new_api.defaultParams && old_api.defaultParams){
+        new_api.defaultParams = old_api.defaultParams;
+      }
+      new_api.channelid = channelid;
+
+      user.api.push(new_api);
+    },
+
+    updatePassword : function (user, oldPassword, newPassword) {
+      var self = this;
+      return when.promise(function (resolve, reject) {
+        if (!user.validPassword(user, oldPassword)) {
+          reject('Password is invalid');
         }
-      } catch (error) {
-        return reject(error);
-      }
-
-      return reject();
-    });
-  });
-};
-
-UserSchema.statics.findBySkynetUUID = function (skynetuuid) {
-  return when(this.findOne({'skynet.uuid': skynetuuid}).exec());
-};
-
-UserSchema.statics.findLeanBySkynetUUID = function (skynetuuid) {
-  return when(this.findOne({'skynet.uuid': skynetuuid}).lean().exec());
-};
-
-UserSchema.statics.findByEmail = function (email) {
-  return when(this.findOne({ email: email }).exec());
-};
-
-UserSchema.statics.findByResetToken = function (resetToken) {
-  var userQuery;
-
-  userQuery = {
-    resetPasswordToken: resetToken,
-    resetPasswordExpires: { $gt: (new Date()) }
-  };
-
-  return when(this.findOne(userQuery).exec());
-};
-
-UserSchema.statics.findBySkynetUUIDAndToken = function (skynetuuid, skynettoken) {
-  return when(this.findOne({'skynet.uuid': skynetuuid, 'skynet.token': skynettoken}).exec());
-};
-
-UserSchema.statics.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-UserSchema.pre('validate', function (next) {
-  var user = this;
-  user.skynet = user.skynet || migrateSkynet(user);
-  if (!user.skynet.uuid) {
-    user.skynet = {
-      uuid: user.resource.uuid,
-      token: Resource.generateToken()
-    };
-
-    client({
-      method: 'POST',
-      path: 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices',
-      params: {
-        type: 'user',
-        uuid: user.skynet.uuid,
-        token: user.skynet.token,
-        'email': user.email
-
-      }
-    }).then(function (result) {
-      console.log(result.entity);
-      next();
-    })
-      .catch(function (error) {
-        next(error);
+        user.local.password = self.generateHash(user, newPassword);
+        return User.update(user);
       });
-  } else {
-    next();
-  }
-});
+    },
 
-module.exports = UserSchema;
+    validPassword : function (user, password) {
+      var self = this;
+      return bcrypt.compareSync(password, user.local.password);
+    },
+
+    generateToken : function() {
+      var self = this;
+      return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('hex');
+    },
+
+    registerWithMeshblu : function(user) {
+      var self = this;
+      user.skynet = user.skynet;
+      if (!user.skynet.uuid) {
+        user.skynet = {
+          uuid: user.resource.uuid,
+          token: self.generateToken()
+        };
+
+        client({
+          method: 'POST',
+          path: 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices',
+          params: {
+            type: 'user',
+            uuid: user.skynet.uuid,
+            token: user.skynet.token,
+            'email': user.email
+          }
+        }
+      }
+    }
+  }
+
+  return _.extend({}, collection, methods);
+}
+
+module.exports = new UserModel();

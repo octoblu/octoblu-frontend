@@ -13,7 +13,6 @@ var cookieParser   = require('cookie-parser');
 var bodyParser     = require('body-parser');
 var expressSession = require('express-session');
 var cors           = require('cors');
-var mongoose       = require('mongoose');
 var passport       = require('passport');
 var flash          = require('connect-flash');
 var connectRedis   = require('connect-redis');
@@ -36,10 +35,6 @@ if (process.env.AIRBRAKE_KEY) {
   });
 }
 
-var configDB = require('./config/database.js')(env);
-mongoose.connect(configDB.url); // connect to our database
-
-
 var databaseOptions = {
 	collections : [
 		'invitations'
@@ -53,8 +48,6 @@ var RedisStore = connectRedis(expressSession);
 // Initialize Models
 
 //moved all the models initialization into here, because otherwise when we include the schema twice,
-//mongoose blows up because the model is duplicated.
-require('./initializeModels.js');
 
 require('./config/passport')(env, passport); // pass passport for configuration
 passport.use(require('./config/app-net'));

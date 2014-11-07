@@ -6,14 +6,12 @@ function ChannelAWSAuthController(){
   self.create = function(req, res){
     var channelId = req.params.id;
 
-    req.user.overwriteOrAddApiByChannelId(channelId, { authtype: 'aws', token_crypt : textCrypt.encrypt(req.body.username), secret_crypt : textCrypt.encrypt(req.body.password) });
-    req.user.save(function(err){
-      if(err){
-        console.log('Error saving user', err);
-        res.send(422);
-        return;
-      }
+    User.overwriteOrAddApiByChannelId(req.user, channelId, { authtype: 'aws', token_crypt : textCrypt.encrypt(req.body.username), secret_crypt : textCrypt.encrypt(req.body.password) });
+    User.update(req.user).then(function(){
       res.send(201);
+    }).catch(function(error){
+      console.error(error);
+      res.send(422);
     });
   }
 }

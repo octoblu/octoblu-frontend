@@ -1,11 +1,9 @@
 'use strict';
 
-var mongoose      = require('mongoose'),
-    nodemailer    = require('nodemailer'),
+var nodemailer    = require('nodemailer'),
     request       = require('request'),
     security      = require('./middleware/security'),
-    generateUrlSafeToken = require('../models/mixins/resource').generateUrlSafeToken,
-    User          = mongoose.model('User');
+    User          = require('../models/user');
 
 module.exports = function ( app, passport, config ) {
 
@@ -19,7 +17,7 @@ module.exports = function ( app, passport, config ) {
           throw {code: 404, errors: {email: ['No account with that email address exists.']}};
         }
 
-        return generateUrlSafeToken();
+        return User.generateToken();
       })
       .then(function(token){
         user.resetPasswordToken   = token;
@@ -66,19 +64,15 @@ module.exports = function ( app, passport, config ) {
         return res.send(404, {error: 'Password reset token is invalid or has expired.', arguments: arguments});
       }
 
-      user.local.password       = user.generateHash(req.body.password);
+      user.local.password       = User.generateHash(user, req.body.password);
       user.resetPasswordToken   = null;
       user.resetPasswordExpires = null;
 
-      user.save(function(error, returnedUser) {
-        if(error) {
-          return res.send(404, {error: error});
-        }
-
+      return User.update(user).then(function(returnedUser) {
         return res.send(204);
       });
-    },function(error){
-      res.send(404, {error: error});
+    }).catch(function(error){
+      return res.send(404, {error: error});
     });
   });
 };

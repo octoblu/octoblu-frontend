@@ -3,12 +3,11 @@ var passport  = require('passport');
 var Prefinery = require('../models/prefinery');
 
 var SignupController = function () {
-  var self, mongoose, User;
+  var self, User;
   self = this;
   self.prefinery = new Prefinery();
 
-  mongoose  = require('mongoose');
-  User      = mongoose.model('User');
+  User      = require('../models/user');
 
   self.checkInTester = function(req, res, next) {
     var testerId = req.param('testerId') || req.session.testerId;
@@ -21,10 +20,10 @@ var SignupController = function () {
 
     checkInPromise.then(function(){
       req.user.testerId = testerId;
-      req.user.save(function(error) {
-        if(error){
-          throw error;
-        }
+      User.update(req.user).then(function() {
+        next();
+      }).catch(function(error){
+        console.error(error);
         next();
       });
     });

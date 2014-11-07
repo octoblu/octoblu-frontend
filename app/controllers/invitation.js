@@ -3,12 +3,10 @@ var _ = require('lodash'),
     jade = require('jade'),
     fs = require('fs'),
     uuid = require('node-uuid'),
-    mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
     Invitation = require('../models/invitation'),
-    User = mongoose.model('User'),
+    User = require('../models/user'),
     Group = require('../models/group'),
-
     isAuthenticated = require('./middleware/security').isAuthenticated;
 /*
  File : invitation.js

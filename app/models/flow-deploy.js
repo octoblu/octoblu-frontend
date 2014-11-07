@@ -1,11 +1,10 @@
 var _ = require('lodash'),
     FlowDeviceCollection = require('../collections/flow-device-collection'),
-    mongoose = require('mongoose')
     when = require('when'),
     textCrypt = require('../lib/textCrypt');
 
 var FlowDeploy = function(options){
-  var User = mongoose.model('User');
+  var User = require('../models/user');
 
   var self, config, request, userUUID, meshblu;
   self = this;

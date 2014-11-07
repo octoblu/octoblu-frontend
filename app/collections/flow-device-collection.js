@@ -1,5 +1,4 @@
 var config = require('../../config/auth')(),
-  mongoose = require('mongoose'),
   _ = require('lodash'),
   when = require('when'),
   rest = require('rest'),
@@ -9,7 +8,7 @@ var config = require('../../config/auth')(),
 
 var FlowDeviceCollection = function (userUUID) {
   var self = this;
-  var User = mongoose.model('User');
+  var User = require('../models/user');
 
   self.fetch = function () {
     return self.getUser(userUUID).then(function (user) {

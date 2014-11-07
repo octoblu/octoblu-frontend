@@ -1,14 +1,12 @@
 var request = require('request'),
-    mongoose = require('mongoose'),
     crypto = require('crypto'),
     url = require('url'),
     _ = require('lodash'),
     referrer = require('./middleware/referrer.js'),
     querystring = require('querystring'),
-    User = mongoose.model('User'),
+    User = require('../models/user'),
     Channel = require('../models/channel'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
-var ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports = function (app, passport, config) {
     app.post('/api/auth', passport.authenticate('local'), loginRoute);
@@ -62,16 +60,15 @@ module.exports = function (app, passport, config) {
         oldPassword = req.body.oldPassword;
         newPassword = req.body.newPassword;
 
-        req.user.updatePassword(oldPassword, newPassword).then(function(){
+        User.updatePassword(req.user, oldPassword, newPassword).then(function(){
             return res.send(204);
-        })
-        .catch(function(){
+        }).catch(function(){
             return res.send(422, {errors: {oldPassword: ['is incorrect.']}});
         });
     }
 
     function updateTerms (req, res) {
-        req.user.acceptTerms(req.body.accept_terms).then(function(){
+        User.acceptTerms(req.user, req.body.accept_terms).then(function(){
             return res.send(204);
         })
         .catch(function(err){
@@ -96,9 +93,11 @@ module.exports = function (app, passport, config) {
             token = req.param('oauth_token'),
             verifier = req.param('oauth_verifier');
 
-        user.addOrUpdateApiByChannelId(channelid, 'oauth', null, token, null, verifier, null);
-        user.save(function (err) {
-            return handleApiCompleteRedirect(res, channelid, err);
+        User.addOrUpdateApiByChannelId(user, channelid, 'oauth', null, token, null, verifier, null);
+        User.update(user).then(function () {
+            return handleApiCompleteRedirect(res, channelid);
+        }).catch(function(error){
+            return handleApiCompleteRedirect(res, channelid, error);
         });
     };
 
@@ -189,8 +188,8 @@ module.exports = function (app, passport, config) {
             if(creds.version==='1.0' && creds.is0LegAuth==true) {
                 // add api to user record
                 var token = '0LegAuth';
-                user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
-                user.save(function (err) {
+                User.overwriteOrAddApiByChannelId(user, api._id, {authtype: 'oauth', token: token});
+                User.update(user).then(function (err) {
                     res.redirect('/connect/nodes/channel/' + api._id);
                 });
             } else if (creds.version === '2.0') {
@@ -365,8 +364,8 @@ module.exports = function (app, passport, config) {
                         var token = data.access_token;
 
                         if (token) {
-                            user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
-                            user.save(function (err) {
+                            User.overwriteOrAddApiByChannelId(user, api._id, {authtype: 'oauth', token: token});
+                            User.update(user).then(function (err) {
                                 res.redirect('/design');
                             });
                         }
@@ -390,8 +389,8 @@ module.exports = function (app, passport, config) {
                             token = querystring.parse(result).access_token;
                         }
 
-                        user.overwriteOrAddApiByChannelId(api._id, {authtype: 'oauth', token: token});
-                        user.save(function (err) {
+                        User.overwriteOrAddApiByChannelId(user, api._id, {authtype: 'oauth', token: token});
+                        User.update(user).then(function (err) {
                             res.redirect('/design');
                         });
                     });
@@ -409,9 +408,9 @@ module.exports = function (app, passport, config) {
                             console.log(error);
                             res.redirect(500, '/node-wizard/node-wizard/add-channel/'+channelid+'/oauth');
                         } else {
-                            user.addOrUpdateApiByChannelId(channelid, 'oauth', null,
+                            User.addOrUpdateApiByChannelId(user, channelid, 'oauth', null,
                                 oauth_access_token, oauth_access_token_secret, null, null);
-                            user.save(function (err) {
+                            User.update(user).then(function (err) {
                                 return handleApiCompleteRedirect(res, channelid, err);
                             });
                         }
