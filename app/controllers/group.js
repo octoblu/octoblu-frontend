@@ -2,7 +2,6 @@ var _ = require('lodash'),
     mongoose = require('mongoose'),
     Group = mongoose.model('Group'),
     User = mongoose.model('User'),
-    ResourcePermission = mongoose.model('ResourcePermission'),
     request = require('request'),
     uuid = require('node-uuid'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
@@ -25,6 +24,7 @@ var groupController = {
         Group.find(queryOptions).exec().then(function (groups) {
             res.send(200, groups);
         }, function (error) {
+            console.error(error);
             res.send(400, error);
         });
     },
@@ -42,6 +42,7 @@ var groupController = {
         }).exec().then(function (group) {
             res.send(200, group);
         }, function (error) {
+            console.error(error);
             res.send(400, error);
         });
     },
@@ -59,7 +60,6 @@ var groupController = {
      */
     addGroup: function (req, res) {
         var user = req.user;
-        console.log(req.body);
         var newGroup = new Group({
             name: req.body.name,
             resource: {
@@ -98,6 +98,7 @@ var groupController = {
                 res.send({group: group, subgroups: subgroups});
             })
             .then(null, function (error) {
+                console.error(error);
                 res.send(400, error);
             });
     },

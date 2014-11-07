@@ -1,4 +1,3 @@
-var mongoose = require('mongoose');
 var _ = require('lodash');
 var demoFlow = require('../../assets/flows/demo-flow.json');
 
@@ -8,7 +7,7 @@ var DemoFlowController = function (options) {
 
   options = options || {};
 
-  Flow    = options.Flow || mongoose.model('Flow');
+  Flow    = options.Flow || require('../models/flow');
   meshblu = options.meshblu;
 
   self.create = function (req, res) {

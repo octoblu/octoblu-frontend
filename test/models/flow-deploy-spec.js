@@ -102,34 +102,6 @@ describe('FlowDeploy', function () {
     });
   });
 
-  describe('finalTransformation', function () {
-    describe('when the transformations have no matches', function () {
-      beforeEach(function(){
-        var transformations = {};
-        sut = new FlowDeploy({transformations: transformations});
-      });
-
-      it('should pass the node through', function () {
-        expect(sut.finalTransformation({foo: 'bar'})).to.deep.equal({foo: 'bar'});
-      });
-    });
-
-    describe('when the transformations has a match', function () {
-      beforeEach(function(){
-        var schanelTransformation = function(node){
-          node.schanel = 'lenahcs';
-          return node;
-        }
-        var transformations = {schanel: schanelTransformation};
-        sut = new FlowDeploy({transformations: transformations});
-      });
-
-      it('should alter the node', function () {
-        expect(sut.finalTransformation({blarg: 'jorb', schanel: 'lenahcs', type: 'schanel'})).to.deep.equal({blarg : 'jorb', schanel: 'lenahcs', type : 'schanel'});
-      });
-    });
-  });
-
   describe('mergeFlowTokens', function () {
     var sut, fakeMeshblu, getUser;
 

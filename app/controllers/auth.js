@@ -10,9 +10,6 @@ var request = require('request'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
 var ObjectId = require('mongoose').Types.ObjectId;
 
-// Using MongoJS on SkyNet database queries to avoid schemas
-var skynetdb = require('../lib/skynetdb').collection('devices');
-
 module.exports = function (app, passport, config) {
     app.post('/api/auth', passport.authenticate('local'), loginRoute);
     app.get('/api/auth/login', passport.authenticate('local'), loginRoute);

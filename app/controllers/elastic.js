@@ -1,18 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    request  = require('request'),
-    Event = mongoose.model('Event');
+    request  = require('request')
 
 module.exports = function (app) {
-
-  app.get('/api/events', function (req, res) {
-
-    Event.find({}, function (err, events) {
-      if (err) { res.send(err); } else { res.json(events); }
-    });
-
-  });
 
   app.all('/api/elastic/skynet_trans_log/_search', function(req, res){
     request({
