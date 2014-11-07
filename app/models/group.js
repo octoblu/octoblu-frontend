@@ -2,11 +2,12 @@
 
 var mongoose = require('mongoose');
 var Resource = require('./mixins/resource');
+var ResourcePermission = require('./resourcePermission');
 var _ = require('lodash');
-var ResourcePermission = mongoose.model('ResourcePermission');
 var uuid = require('node-uuid');
 var Q = require('q');
-
+var when = require('when');
+var nodefn = require('when/node/function');
 
 var GroupSchema = new mongoose.Schema({
     uuid: {type: String, required: true, index: true, default: uuid.v1},
@@ -82,7 +83,7 @@ GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
                 'resource.owner.uuid': ownerUUID,
                 'source.uuid': sourcePermissionsGroup.resource.uuid,
                 'target.uuid': targetPermissionsGroup.resource.uuid
-            }).lean().exec();
+            });
         }
     }).then(function (resourcePermission) {
         if (!resourcePermission) {

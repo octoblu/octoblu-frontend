@@ -1,13 +1,12 @@
 var FlowDeploy = function (options) {
-  var FlowDeploy, self, mongoose, Flow, _, meshblu;
+  var FlowDeploy, self, Flow, _, meshblu;
 
   self = this;
   options = options || {};
   FlowDeploy = options.FlowDeploy || require('../models/flow-deploy');
-  mongoose = options.mongoose || require('mongoose');
   meshblu = options.meshblu;
   _ = require('lodash');
-  Flow = mongoose.model('Flow');
+  Flow = require('../models/flow');
 
   self.startInstance = function (req, res) {
     self.runOnInstance(req, FlowDeploy.start);

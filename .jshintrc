@@ -3,9 +3,10 @@
   "undef": true,
   "unused": false,
   "scripturl": true,
+  "browser" : true,
+  "node" : true,
   "expr": true,
   "predef": [
-    "angular",
     "require",
     "describe",
     "it",
@@ -19,9 +20,11 @@
     "casper",
     "console",
     "xdescribe",
-    "ObjectId",
-    "async",
-    "db",
-    "_"
+    "ObjectId"
+  ],
+  "globals" : [
+	  "angular",
+  	"_",
+  	"async"
   ]
 }

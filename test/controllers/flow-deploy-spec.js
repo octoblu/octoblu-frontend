@@ -1,7 +1,6 @@
 var _ = require('lodash');
 var when = require('when');
 var FlowDeployController = require('../../app/controllers/flow-deploy');
-var mongoose = require('mongoose');
 
 describe('flowDeployController', function () {
 
@@ -9,9 +8,7 @@ describe('flowDeployController', function () {
     var sut, res, db, Flow, FlowSchema, FakeFlowDeploy, fakeMeshblu;
 
     before(function () {
-      db = mongoose.createConnection();
-      FlowSchema = db.model('Flow', require('../../app/models/flow'));
-      Flow = db.model('Flow', FlowSchema);
+      Flow = require('../../app/models/flow');
     });
 
     beforeEach(function () {

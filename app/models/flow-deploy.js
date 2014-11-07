@@ -7,7 +7,7 @@ var _ = require('lodash'),
 var FlowDeploy = function(options){
   var User = mongoose.model('User');
 
-  var self, config, request, userUUID, meshblu, tranformations;
+  var self, config, request, userUUID, meshblu;
   self = this;
 
   options         = options || {};
@@ -16,7 +16,6 @@ var FlowDeploy = function(options){
   config          = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
   request         = options.request || require('request');
   meshblu         = options.meshblu;
-  transformations = options.transformations || require('./node-red-transformations');
 
   self.convertFlow = function(flow){
     var convertedNodes = [];
@@ -52,7 +51,7 @@ var FlowDeploy = function(options){
       convertedNode.wires[port] = _.pluck(links, 'to');
     });
 
-    return self.finalTransformation(convertedNode);
+    return convertedNode;
   };
 
   self.getUser = function (userUUID) {
@@ -97,6 +96,7 @@ var FlowDeploy = function(options){
   };
 
   self.stopFlow = function(flow){
+    console.log('stop');
     self.sendMessage(flow, 'nodered-instance-stop');
   };
 
@@ -116,13 +116,6 @@ var FlowDeploy = function(options){
       };
       meshblu.message(msg);
     });
-  };
-
-  self.finalTransformation = function(node){
-    var func = transformations[node.category];
-    if(!func){ return node; }
-
-    return func(node);
   };
 
   self.largestPortNumber = function(groupedLinks){
@@ -158,6 +151,8 @@ FlowDeploy.start = function(userUUID, flow, meshblu){
 FlowDeploy.stop = function(userUUID, flow, meshblu){
   var flowDeploy, flowDevice;
 
+
+  console.log('FlowDeploy.stop');
   flowDeploy = new FlowDeploy({userUUID: userUUID, meshblu: meshblu});
   return when.promise(function(resolve,reject){
     flowDeploy.stopFlow(flow);

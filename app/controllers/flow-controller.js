@@ -1,4 +1,3 @@
-var mongoose = require('mongoose');
 var _ = require('lodash');
 
 module.exports = function (options) {
@@ -7,7 +6,7 @@ module.exports = function (options) {
 
   options = options || {};
 
-  Flow    = options.Flow || mongoose.model('Flow');
+  Flow    = options.Flow || require('../models/flow');
   meshblu = options.meshblu;
 
   _this.create = function (req, res) {
