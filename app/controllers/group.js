@@ -1,6 +1,6 @@
 var _ = require('lodash'),
     mongoose = require('mongoose'),
-    Group = mongoose.model('Group'),
+    Group = require('../models/group'),
     User = mongoose.model('User'),
     request = require('request'),
     uuid = require('node-uuid'),
@@ -21,7 +21,7 @@ var groupController = {
         if (req.query.type) {
             queryOptions.type = req.query.type;
         }
-        Group.find(queryOptions).exec().then(function (groups) {
+        Group.find(queryOptions).then(function (groups) {
             res.send(200, groups);
         }, function (error) {
             console.error(error);
@@ -39,7 +39,7 @@ var groupController = {
         Group.findOne({
             uuid: req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
-        }).exec().then(function (group) {
+        }).then(function (group) {
             res.send(200, group);
         }, function (error) {
             console.error(error);
@@ -59,19 +59,24 @@ var groupController = {
      * @returns {*}
      */
     addGroup: function (req, res) {
-        var user = req.user;
-        var newGroup = new Group({
+        var user, newUuid, newGroup;
+        user = req.user;
+        newUuid = uuid.v1();
+        newGroup = {
+            uuid: newUuid,
             name: req.body.name,
             resource: {
-                owner: user.resourceId
-            }
-        });
-        newGroup.save(function (err, dbGroup) {
-            if (err) {
-                res.send(400, err);
-                return;
-            }
-            res.send(dbGroup);
+                uuid: newUuid,
+                owner: user.resourceId,
+                type: 'group'
+            },
+            type: 'group'
+        };
+        Group.insert(newGroup).then(function () {
+            res.send(newGroup);
+        }).catch(function(error) {
+            res.send(400, error);
+            return;
         });
     },
 
@@ -82,25 +87,24 @@ var groupController = {
      */
     deleteGroup: function (req, res) {
         var user = req.user, group;
-        Group.findOneAndRemove({
+        Group.findOne({
             uuid: req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
-        }).exec()
-            .then(function (dbGroup) {
-                group = dbGroup;
-                if (!dbGroup) {
-                    res.send(400, {error: 'group not found'});
-                    return;
-                }
-                return Group.find({'resource.parent.uuid': group.resource.uuid}).remove().exec();
-            })
-            .then(function (subgroups) {
-                res.send({group: group, subgroups: subgroups});
-            })
-            .then(null, function (error) {
-                console.error(error);
-                res.send(400, error);
+        }).then(function (dbGroup) {
+            group = dbGroup;
+            if (!dbGroup) {
+                res.send(400, {error: 'group not found'});
+                return;
+            }
+            return Group.remove({_id: dbGroup._id}).then(function(){
+                return Group.remove({'resource.parent.uuid': group.resource.uuid});
             });
+        }).then(function (subgroups) {
+            res.send({group: group, subgroups: subgroups});
+        }).catch(function (error) {
+            console.error(error);
+            res.send(400, error);
+        });
     },
 
     /**
@@ -116,23 +120,22 @@ var groupController = {
         Group.findOne({
             uuid: req.params.uuid,
             'resource.owner.uuid': user.resource.uuid
-        }).exec().then(function (dbGroup) {
+        }).then(function (dbGroup) {
             if (!dbGroup) {
                 res.send(400, {error: 'group not found'});
                 return;
             }
-            dbGroup.set({
+            var newGroup = _.extend(dbGroup, {
                 name: group.name,
                 members: group.members
             });
             //<Model>.update doesn't run pre-commit hooks. So we can't use it for
             //resources.
-            dbGroup.save(function (err, dbGroup) {
-                if (err) {
-                    res.send(400, err);
-                    return;
-                }
-                res.send(dbGroup);
+            Group.update({_id: dbGroup._id}, newGroup).then(function () {
+                res.send(newGroup);
+            }).catch(function(err) {
+                res.send(400, err);
+                return;
             });
         });
     },
@@ -142,59 +145,43 @@ var groupController = {
         Group.findOne({
             'resource.owner.uuid': req.user.resource.uuid,
             type: 'operators'
-        }).exec().then(
-            function (dbGroup) {
-                if(dbGroup) {
-                    return dbGroup;
-                }
-                return Group.create({
-                    name: 'operators',
-                    type: 'operators',
-                    resource: {
-                        owner: user.resourceId
-                    }
-                });
-            })
-            .then(function(group){
-                res.send(group);
-            },
-            function (err) {
-                res.send(400, err);
+        }).then(function (dbGroup) {
+            if(dbGroup) {
+                return dbGroup;
             }
-        );
+            return Group.insert({
+                name: 'operators',
+                type: 'operators',
+                resource: {
+                    owner: user.resourceId
+                }
+            });
+        })
+        .then(function(group){
+            res.send(group);
+        }).catch(function (err) {
+            res.send(400, err);
+        });
     },
 
     getGroupsContainingResource: function (req, res) {
         Group.findGroupsContainingResource(req.user.resource.uuid, req.params.uuid)
             .then(function (groups) {
                 res.send(groups);
-            },
-            function (err) {
+            }).catch(function (err) {
                 res.send(err);
             }
         );
     }
 };
 
-
 module.exports = function (app) {
-
     groupController.skynetUrl = app.locals.skynetUrl;
-
     app.get('/api/groups', isAuthenticated, groupController.getGroups);
-
     app.post('/api/groups', isAuthenticated, groupController.addGroup);
-
     app.get('/api/groups/operators', isAuthenticated, groupController.getOperatorsGroup);
-
     app.get('/api/groups/contain/:uuid', isAuthenticated, groupController.getGroupsContainingResource);
-
     app.delete('/api/groups/:uuid', isAuthenticated, groupController.deleteGroup);
-
     app.put('/api/groups/:uuid', isAuthenticated, groupController.updateGroup);
     app.get('/api/groups/:uuid', isAuthenticated, groupController.getGroupById);
 };
-
-
-
-

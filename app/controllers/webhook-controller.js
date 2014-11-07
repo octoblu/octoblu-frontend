@@ -8,7 +8,7 @@ var WebhookController = function(options) {
 
   self.trigger = function(req, res) {
     var query = {'nodes.id': req.params.id};
-    Flow.findOne(query).exec().then(function(flow){
+    Flow.findOne(query).then(function(flow){
       var msg = {
         devices: [flow.flowId],
         topic: 'webhook',

@@ -5,7 +5,3 @@ var mongoose = require('mongoose');
 
 var UserSchema = require('./app/models/user');
 mongoose.model('User', UserSchema);
-
-var GroupSchema = require('./app/models/group');
-mongoose.model('Group', GroupSchema);
-

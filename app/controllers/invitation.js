@@ -7,7 +7,8 @@ var _ = require('lodash'),
     nodemailer = require('nodemailer'),
     Invitation = require('../models/invitation'),
     User = mongoose.model('User'),
-    Group = mongoose.model('Group'),
+    Group = require('../models/group'),
+
     isAuthenticated = require('./middleware/security').isAuthenticated;
 /*
  File : invitation.js
@@ -150,7 +151,7 @@ var invitationController = {
 
     acceptInvitation: function (req, res) {
         var invitation, sender, recipient;
-        Invitation.findById(req.params.id).exec()
+        Invitation.findById(req.params.id)
             .then(function (inv) {
                 invitation = inv;
 
@@ -171,7 +172,7 @@ var invitationController = {
                         if (!recipient || recipient.skynetuuid !== req.user.skynetuuid) {
                             return res.redirect('/login');
                         }
-                        return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid }).exec()
+                        return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid })
                             .then(function (operatorGroup) {
                                 operatorGroup = operatorGroup ||
                                     new Group({

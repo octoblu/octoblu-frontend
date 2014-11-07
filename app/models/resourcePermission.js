@@ -64,12 +64,12 @@ function ResourcePermissionModel() {
                 flatPermissions = _.xor(permissions, groupPermissions);
 
                 return when.all(_.map(groupPermissions, function (permission) {
-                    return Group.findOne({'resource.uuid': permission[otherDirection].uuid}).exec()
+                    return Group.findOne({'resource.uuid': permission[otherDirection].uuid})
                         .then(function (group) {
                             if (group) {
                                 return {
                                     permission: permission,
-                                    group: group.toObject()
+                                    group: group
                                 };
                             }
                         });

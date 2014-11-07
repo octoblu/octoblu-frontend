@@ -1,9 +1,7 @@
 'use strict';
-
 var octobluDB = require('../lib/database');
-
-var _ = require('lodash');
-var when = require('when');
+var _         = require('lodash');
+var when      = require('when');
 
 function FlowModel() {
   var collection = octobluDB.getCollection('flows');
