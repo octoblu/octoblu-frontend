@@ -3,9 +3,6 @@
 
 var mongoose = require('mongoose');
 
-var ResourcePermissionSchema = require('./app/models/resourcePermission');
-mongoose.model('ResourcePermission', ResourcePermissionSchema);
-
 var UserSchema = require('./app/models/user');
 mongoose.model('User', UserSchema);
 

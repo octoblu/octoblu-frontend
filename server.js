@@ -32,7 +32,7 @@ if (process.env.AIRBRAKE_KEY) {
   app.use(airbrake.expressHandler())
 } else {
   process.on('uncaughtException', function(error) {
-    console.error(error);
+    console.error(error.message, error.stack);
   });
 }
 
