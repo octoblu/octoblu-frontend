@@ -41,6 +41,9 @@ function FlowModel() {
       var query = {flowId: flowId, 'resource.owner.uuid': userUUID};
 
       return self.findOne(query).then(function(flow) {
+        if (!flow) {
+          throw new Error('Flow not found', flowId);
+        }
         return _.extend({}, flow, flowData);
       }).then(function(newFlow){
         return self.update(query, newFlow);

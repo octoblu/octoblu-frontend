@@ -112,7 +112,7 @@ describe('Flow', function () {
         it('should reject the promise', function (done) {
           updatePromise.then(function(){
             done('Promise was not rejected');
-          }, function(){
+          }).catch(function(error){
             done();
           });
         });
