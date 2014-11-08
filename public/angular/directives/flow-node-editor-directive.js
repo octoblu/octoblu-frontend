@@ -11,6 +11,7 @@ angular.module('octobluApp')
     controller: 'FlowNodeEditorController',
     templateUrl: '/pages/flow-node-editor.html',
     replace: true,
+    transclude: true,
     scope: {
       flowNode: '='
     },

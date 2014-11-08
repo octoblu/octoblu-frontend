@@ -1,7 +1,7 @@
 'use strict';
 //TODO - remove checkLogin function
 // create the module and name it octobluApp
-angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngResource', 'ngTable', 'mgo-mousetrap'])
+angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 'ui.bootstrap', 'ui.router', 'ui.utils', 'angular-google-analytics', 'elasticsearch', 'ngMaterial', 'ngTable', 'mgo-mousetrap'])
   .config(function ($logProvider) {
     if (window.location.hostname !== 'localhost') {
       $logProvider.debugEnabled(false);
@@ -531,7 +531,10 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         unsecured: true
       });
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+      enabled: true, 
+      requireBase: false
+    });
 
     // For any unmatched url, redirect to /
     $urlRouterProvider.otherwise('/home');
