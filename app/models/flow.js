@@ -41,7 +41,7 @@ function FlowModel() {
       var query = {flowId: flowId, 'resource.owner.uuid': userUUID};
 
       return self.findOne(query).then(function(flow) {
-        return _.extend(flow, flowData);
+        return _.extend({}, flow, flowData);
       }).then(function(newFlow){
         return self.update(query, newFlow);
       });

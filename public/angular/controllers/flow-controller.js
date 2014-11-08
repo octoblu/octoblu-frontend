@@ -27,9 +27,9 @@ angular.module('octobluApp')
           var device = _.findWhere(result.devices, {uuid: flow.flowId});
           if (device) {
             flow.online = device.online;
-          }
-          if (device.uuid === flowId) {
-            setDeviceStatus(device.online);
+            if (device.uuid === flowId) {
+              setDeviceStatus(device.online);
+            }
           }
         });
       });
