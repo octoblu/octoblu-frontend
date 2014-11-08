@@ -1,6 +1,7 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
-var mongoose         = require('mongoose');
-var User             = mongoose.model('User');
+var User             = require('../app/models/user');
+var mongojs          = require('mongojs');
+var _ = require('lodash');
 
 var CONFIG = {
   development: {
@@ -43,22 +44,25 @@ var ensureUser = function(req, user, profile, callback){
     }
   };
 
-  User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
-  .then(function (user) {
+  User.findOne(query).then(function(user){
+    if (!user) {
+      return;
+    }
+    var updatedUser = _.extend({}, user, userParams);
+    return User.update(query, updatedUser, {upsert: upsert, new: upsert});
+  }).then(function (user) {
       if(!user){
         callback(new Error('You need a valid invitation code'));
       } else {
-        callback(null, user);
+        callback(null, updatedUser);
       }
-  }, function(err){
-    callback(err);
+  }).catch(function(error){
+    callback(error);
   });
 };
 
 var facebookStrategy = new FacebookStrategy(CONFIG,
   function (req, token, secret, profile, done) {
-    console.log('facebook callback called');
-
     ensureUser(req, req.user, profile, function(err, user){
       done(err, user);
     });

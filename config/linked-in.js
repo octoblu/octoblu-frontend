@@ -1,7 +1,7 @@
 var LinkedinController = require('passport-linkedin-oauth2').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
+var User     = require('../app/models/user');
 var Channel = require('../app/models/channel');
+var mongojs = require('mongojs');
 
 var config = Channel.syncFindById('52f97c5ba990930c8c0003ca').oauth[process.env.NODE_ENV];
 
@@ -16,10 +16,12 @@ if(!config.clientSecret){
 }
 
 var linkedinStrategy = new LinkedinController(config, function(req, accessToken, refreshToken, profile, done){
-  var channelId = new mongoose.Types.ObjectId('52f97c5ba990930c8c0003ca');
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-  req.user.save(function (err) {
-    return done(err, req.user);
+  var channelId = mongojs.ObjectId('52f97c5ba990930c8c0003ca');
+  User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: accessToken});
+  User.update(req.user).then(function () {
+    done(null, req.user);
+  }).catch(function(error){
+    done(error);
   });
 });
 

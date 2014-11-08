@@ -1,6 +1,5 @@
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
+var User     = require('../app/models/user');
 var Channel = require('../app/models/channel');
 var _       = require('lodash');
 
@@ -47,15 +46,20 @@ var ensureUser = function(req, user, profile, callback){
     }
   };
 
-  User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
-  .then(function (user) {
+  User.findOne(query).then(function(user){
+    if (!user) {
+      return;
+    }
+    var updatedUser = _.extend({}, user, userParams);
+    return User.update(query, updatedUser, {upsert: upsert, new: upsert});
+  }).then(function (user) {
       if(!user){
         callback(new Error('You need a valid invitation code'));
       } else {
-        callback(null, user);
+        callback(null, updatedUser);
       }
-  }, function(err){
-    callback(err);
+  }).catch(function(error){
+    callback(error);
   });
 };
 
@@ -70,13 +74,14 @@ var googleStrategy = new GoogleStrategy(CONFIG,
 
     _.each(channels, function(channel){
       if(channel.enabled === false){ return; }
-      user.overwriteOrAddApiByChannelId(channel._id, {authtype: 'oauth', token: token });
+      User.overwriteOrAddApiByChannelId(user, channel._id, {authtype: 'oauth', token: token });
     });
 
-    user.save(function (err) {
-      done(err, user);
+    User.update(user).then(function () {
+      done(null, user);
+    }).catch(function(error){
+      done(error);
     });
-
   });
 });
 

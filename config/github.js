@@ -1,6 +1,6 @@
 var GithubStrategy = require('passport-github').Strategy;
 var mongoose = require('mongoose');
-var User     = mongoose.model('User');
+var User     = require('../app/models/user');
 
 var CONFIG = {
   development: {
@@ -43,15 +43,20 @@ var ensureUser = function(req, user, profile, callback){
     }
   };
 
-  User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
-  .then(function (user) {
+  User.findOne(query).then(function(user){
+    if (!user) {
+      return;
+    }
+    var updatedUser = _.extend({}, user, userParams);
+    return User.update(query, updatedUser, {upsert: upsert, new: upsert});
+  }).then(function (user) {
       if(!user){
         callback(new Error('You need a valid invitation code'));
       } else {
-        callback(null, user);
+        callback(null, updatedUser);
       }
-  }, function(err){
-    callback(err);
+  }).catch(function(error){
+    callback(error);
   });
 }
 
@@ -59,12 +64,15 @@ var githubStrategy = new GithubStrategy(CONFIG, function(req, accessToken, refre
   ensureUser(req, req.user, profile, function(err, user){
     if(err){ return done(err, user); }
 
-    var channelId = new mongoose.Types.ObjectId('532a258a50411e5802cb8053');
+    var channelId = mongojs.ObjectId('532a258a50411e5802cb8053');
 
-    user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-    user.save(function (err) {
-      done(err, user);
+    User.overwriteOrAddApiByChannelId(user, channelId, {authtype: 'oauth', token: accessToken});
+    User.update(user).then(function () {
+      done(null, user);
+    }).catch(function(error){
+      done(error);
     });
+
   });
 });
 

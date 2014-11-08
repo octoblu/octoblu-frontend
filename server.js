@@ -96,7 +96,7 @@ app.use(express.static(__dirname + '/public'));     // set the static files loca
 
 // required for passport
 app.use(expressSession({
-        store:  new RedisStore({url: configDB.redisSessionUrl}),
+        store:  new RedisStore({url: octobluDB.config.redisSessionUrl}),
         secret: 'e2em2miotskynet',
         cookie: { domain: configAuth.domain}
     })); // session secret

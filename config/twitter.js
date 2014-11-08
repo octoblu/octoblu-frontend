@@ -1,6 +1,6 @@
 var TwitterStrategy = require('passport-twitter').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
+var User     = require('../app/models/user');
+var mongojs = require('mongojs');
 
 var CONFIG = {
   development: {
@@ -43,15 +43,20 @@ var ensureUser = function(req, user, profile, callback){
     }
   };
 
-  User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
-  .then(function (user) {
+  User.findOne(query).then(function(user){
+    if (!user) {
+      return;
+    }
+    var updatedUser = _.extend({}, user, userParams);
+    return User.update(query, updatedUser, {upsert: upsert});
+  }).then(function (user) {
       if(!user){
         callback(new Error('You need a valid invitation code'));
       } else {
-        callback(null, user);
+        callback(null, updatedUser);
       }
-  }, function(err){
-    callback(err);
+  }).catch(function(error){
+    callback(error);
   });
 }
 
@@ -60,11 +65,13 @@ var twitterStrategy = new TwitterStrategy(CONFIG,
   ensureUser(req, req.user, profile, function(err, user){
     if(err){ return done(err, user); }
 
-    var channelId = new mongoose.Types.ObjectId('5409f79403f1d8b163401370');
+    var channelId = mongojs.ObjectId('5409f79403f1d8b163401370');
 
-    user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: token, secret: secret});
-    user.save(function (err) {
-      done(err, user);
+    User.overwriteOrAddApiByChannelId(user, channelId, {authtype: 'oauth', token: token, secret: secret});
+    User.update(user).then(function () {
+      done(null, user);
+    }).catch(function(error){
+      done(error);
     });
   });
 });

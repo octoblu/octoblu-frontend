@@ -1,5 +1,4 @@
-var mongoose      = require('mongoose');
-var User          = mongoose.model('User');
+var User          = require('../app/models/user');
 var LocalStrategy = require('passport-local').Strategy;
 
 var findByEmailAndPassword = function(email, password, done){

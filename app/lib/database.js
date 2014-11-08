@@ -30,9 +30,8 @@ function Database(){
 
 Database.prototype.createConnection = function(options){
 	var self = this;
-	self.collections = {};
-
 	options = options || {};
+	self.config = config;
 
 	if(config.databaseType === 'nedb'){
 		self.getCollectionBase = createNeDBCollection;

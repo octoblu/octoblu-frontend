@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = require('../app/models/user');
+var mongojs = require('mongojs');
 
 module.exports = function (env, passport) {
   passport.serializeUser(function (user, done) {
@@ -7,8 +7,10 @@ module.exports = function (env, passport) {
   });
 
   passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user);
+    User.find({_id : mongojs.ObjectId(id)}).then(function (user) {
+      done(null, user);
+    }).catch(function(error){
+      done(error);
     });
   });
 };
