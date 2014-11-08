@@ -1,16 +1,15 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
+<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
 
-<div ng-repeat="key in flowNode.composeKeys track by $index">
-  <div class="form-group">
-    <label>Key {{$index + 1}}</label>
-    <div class="input-group">
-      <input class="form-control" ng-model="flowNode.composeKeys[$index]" required>
-      <a href ng-click="flowNode.composeKeys.splice($index, 1)" class="btn btn-default input-group-addon"><i class="fa fa-minus"></i></a>
-    </div>
-  </div>
-</div>
-
-<a href ng-click="flowNode.composeKeys.push('')" class="btn btn-block btn-primary"><i class="fa fa-plus"></i></a>
+<md-list>
+  <md-item ng-repeat="key in flowNode.composeKeys track by $index">
+    <md-item-content>
+      <div class="md-tile-content" layout="horizontal" layout-align="space-between">
+        <md-text-float required label="Key {{$index + 1}}" ng-model="flowNode.composeKeys[$index]"> </md-text-float>        
+        <md-button class="md-fab" ng-click="flowNode.composeKeys.splice($index, 1)">
+            <i class="fa fa-minus"></i>
+        </md-button>
+      </div>
+    </md-item-content>
+  </md-item>
+</md-list>
+    <md-button ng-click="flowNode.composeKeys.push('')" class="md-primary">Add Key</md-button>

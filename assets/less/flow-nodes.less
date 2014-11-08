@@ -1,3 +1,15 @@
+.hide-animation {
+  -webkit-animation: 0.25s fadeOutUp ease;
+  -ms-animation: 0.25s fadeOutUp ease;
+  animation: 0.25s fadeOutUp ease;
+}
+
+.show-animation {
+  -webkit-animation: 0.25s fadeInDown ease;
+  -ms-animation: 0.25s fadeOutUp ease;
+  animation: 0.25s fadeOutUp ease;
+}
+
 .flow-node {
   background-color: #ccc;
   fill: none;
@@ -72,16 +84,14 @@
 }
 
 .flow-node-editor {
-  &.ng-hide-add {
-    -webkit-animation: 0.25s fadeOutUp ease;
-    -ms-animation: 0.25s fadeOutUp ease;
-    animation: 0.25s fadeOutUp ease;
-  }
-   &.ng-hide-remove {
-    -webkit-animation: 0.25s fadeInDown ease;
-    -ms-animation: 0.25s fadeOutUp ease;
-    animation: 0.25s fadeOutUp ease;
+position: absolute;
 
+width:400px;  
+   &.ng-hide-remove {
+   .show-animation
+  }
+  &.ng-hide-add {
+   .hide-animation;
   }
 }
 
