@@ -88,7 +88,7 @@
     "safe_datejs": "~0.0.1",
     "should": "^3.3.1",
     "simple-oauth2": "~0.2.0",
-    "skynet": "1.4.0",
+    "skynet": "1.7.0",
     "underscore": "~1.6.0",
     "when": "^3.0.1",
     "nedb": "~0.11.1"
