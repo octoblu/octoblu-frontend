@@ -1,15 +1,3 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
-
-<div class="form-group">
-  <label for="key">Key</label>
-  <input id="key" class="form-control" ng-model="flowNode.key" required>
-</div>
-
-<div class="form-group">
-  <label for="value">Value ( Reference incoming messages using <span ng-non-bindable>{{payload.values}}</span> )<br>
-  <span class="text-muted">The value must be a string.</span></label>
-  <input id="value" class="form-control" ng-model="flowNode.value" required>
-</div>
+<md-text-float label="Name" ng-model="flowNode.name" required> </md-text-float>
+<md-text-float label="Key" ng-model="flowNode.key" required> </md-text-float>
+<md-text-float label="value" ng-model="flowNode.value" required> </md-text-float>

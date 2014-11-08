@@ -7,9 +7,9 @@
       </div>      
     </md-toolbar>
     <md-content>
-      <form style="padding:20px;">
+      <form style="padding:20px;" layout="vertical">
         <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
-              
+        <br>      
         <md-switch ng-model="flowNode.debug">Debug</md-switch>        
       </form>
     </md-content>
