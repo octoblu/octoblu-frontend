@@ -354,7 +354,7 @@ angular.module('octobluApp')
     if ($scope.forms.forms.FF_eventCode !== undefined) {
       query += " eventCode:"+$scope.forms.FF_eventCode;
     }
-                elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynetuuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
+                elasticService.search($scope.devices, $scope.forms.FF_searchText, currentUser.skynet.uuid, currentPage, $scope.forms.FF_eventCode, function (error, response) {
                     if (error) {
                         $log.log(error);
                     } else {

@@ -28,8 +28,8 @@ var DeviceCollection = function (userUUID) {
       path: 'http://' + config.skynet.host + ':' +
         config.skynet.port + '/mydevices',
       headers: {
-        skynet_auth_uuid: user.skynetuuid,
-        skynet_auth_token: user.skynettoken
+        skynet_auth_uuid: user.skynet.uuid,
+        skynet_auth_token: user.skynet.token
       }
     };
 

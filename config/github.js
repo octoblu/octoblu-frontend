@@ -1,6 +1,6 @@
 var GithubStrategy = require('passport-github').Strategy;
-var mongoose = require('mongoose');
 var User     = require('../app/models/user');
+var mongojs = require('mongojs');
 
 var CONFIG = {
   development: {

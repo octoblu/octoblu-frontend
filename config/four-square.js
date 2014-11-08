@@ -1,5 +1,4 @@
 var FourSquare = require('passport-foursquare').Strategy;
-var mongoose = require('mongoose');
 var User     = require('../app/models/user');
 var Channel = require('../app/models/channel');
 var mongojs = require('mongojs');

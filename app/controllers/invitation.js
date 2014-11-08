@@ -22,13 +22,13 @@ var invitationController = {
         //check for sent or received invitations.
         var queryParams = {};
         if (searchParams.sent) {
-            queryParams.from = user.skynetuuid;
+            queryParams.from = user.skynet.uuid;
         }
 
         if (searchParams.received) {
             queryParams.$or = [];
             queryParams.push({
-                'recipient.uuid': user.skynetuuid
+                'recipient.uuid': user.skynet.uuid
             });
             queryParams.push({
                 'recipient.email': user.email
@@ -94,12 +94,12 @@ var invitationController = {
                 recipient = rcp;
                 var inviteData = {};
                 inviteData.recipient = {email: email};
-                inviteData.from = req.user.skynetuuid;
+                inviteData.from = req.user.skynet.uuid;
                 inviteData.status = 'PENDING';
                 inviteData.sent = moment.utc();
 
                 if (rcp) {
-                    inviteData.recipient.uuid = recipient.skynetuuid;
+                    inviteData.recipient.uuid = recipient.skynet.uuid;
                 }
 
                 return Invitation.save(inviteData);
@@ -167,7 +167,7 @@ var invitationController = {
                     })
                     .then(function (rcp) {
                         recipient = rcp;
-                        if (!recipient || recipient.skynetuuid !== req.user.skynetuuid) {
+                        if (!recipient || recipient.skynet.uuid !== req.user.skynet.uuid) {
                             return res.redirect('/login');
                         }
                         return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid })

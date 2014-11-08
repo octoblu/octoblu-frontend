@@ -23,8 +23,8 @@ angular.module('octobluApp')
                throw result.data;
             }
             _.extend(currentUser, result.data);
-            $cookies.skynetuuid  = currentUser.skynetuuid;
-            $cookies.skynettoken = currentUser.skynettoken;
+            $cookies.skynetuuid  = currentUser.skynet.uuid;
+            $cookies.skynettoken = currentUser.skynet.token;
             getProfileUrl(currentUser);
             return currentUser;
         }

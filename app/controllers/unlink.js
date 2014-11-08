@@ -1,7 +1,7 @@
 'use strict';
 
 var request = require('request'),
-    User = request('../models/user');
+    User = require('../models/user');
 
 module.exports = function (app) {
     // =============================================================================

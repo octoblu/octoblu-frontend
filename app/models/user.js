@@ -11,7 +11,7 @@ var errorCode  = require('rest/interceptor/errorCode');
 var client     = rest.wrap(mime).wrap(errorCode);
 
 function UserModel() {
-  var collection = octobluDB.getCollection('flows');
+  var collection = octobluDB.getCollection('users');
 
   var methods = {
     findOrCreateByEmailAndPassword : function(email, password){
@@ -19,7 +19,7 @@ function UserModel() {
 
       return when.promise(function(resolve, reject){
         self.findByEmail(email).then(function(user){
-          if(user && user.validPassword(password)){
+          if(user && self.validPassword(user, password)){
             return resolve(user);
           }
 
@@ -43,18 +43,14 @@ function UserModel() {
     findByEmailAndPassword : function(email, password){
       var self = this;
 
-      return when.promise(function(resolve, reject){
-        self.findByEmail(email).then(function(user){
-          try {
-            if(user && user.validPassword(password)){
-              return resolve(user);
-            }
-          } catch (error) {
-            return reject(error);
-          }
-
-          return reject();
-        });
+      return self.findByEmail(email).then(function(user){
+        if (!user){
+          throw new Error('User not found');
+        }
+        if (!self.validPassword(user, password)){
+          throw new Error('Invalid password');
+        }
+        return user;
       });
     },
 

@@ -3,11 +3,11 @@ var mongojs = require('mongojs');
 
 module.exports = function (env, passport) {
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user.skynet.uuid);
   });
 
-  passport.deserializeUser(function (id, done) {
-    User.find({_id : mongojs.ObjectId(id)}).then(function (user) {
+  passport.deserializeUser(function (uuid, done) {
+    User.findOne({'skynet.uuid' : uuid}).then(function (user) {
       done(null, user);
     }).catch(function(error){
       done(error);
