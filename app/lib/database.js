@@ -38,7 +38,7 @@ Database.prototype.createConnection = function(options){
 		self.getCollectionBase = createNeDBCollection;
 	}else{
 		var mongojs = require('mongojs');
-	  self.db = mongojs(config.url);
+	  self.db = mongojs(config.mongojsUrl);
 	  self.getCollectionBase = _.bind(self.db.collection, self.db);
 	}
 
