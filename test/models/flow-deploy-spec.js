@@ -1,16 +1,9 @@
 var FlowDeploy = require('../../app/models/flow-deploy');
 var _ = require('lodash');
+var mongojs = require('mongojs');
 
 describe('FlowDeploy', function () {
-  var FakeRequest, mongoose;
-
-  before(function(done){
-    mongoose   = require('mongoose');
-    var UserSchema = require('../../app/models/user');
-    var db = mongoose.createConnection();
-    User = db.model('User', UserSchema);
-    db.open('localhost', 'octoblu_test', done);
-  });
+  var FakeRequest;
 
   beforeEach(function () {
     FakeRequest = {
@@ -117,7 +110,7 @@ describe('FlowDeploy', function () {
       var result;
       beforeEach(function () {
         var flow = {nodes: [{category:'channel', channelActivationId:'222222222222', channelid: '111111111111'}]};
-        var userApis = [{_id: mongoose.Types.ObjectId('222222222222'), oauth:{access_token: 'this-is-a-token'}}];
+        var userApis = [{_id: mongojs.ObjectId('222222222222'), oauth:{access_token: 'this-is-a-token'}}];
         var channelApis = [{_id: '111111111111', application: {base: 'http://api.com'}, oauth:{access_token: 'this-is-a-token'}}];
         result = sut.mergeFlowTokens(flow, userApis, channelApis);
       });

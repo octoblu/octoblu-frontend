@@ -109,6 +109,10 @@ function UserModel() {
       var self = this;
       var index, new_api, old_api;
 
+      if (_.isUndefined(user.api)) {
+        user.api = [];
+      }
+
       index = _.findIndex(user.api, {channelid: channelid});
 
       if(index > -1){
@@ -164,7 +168,7 @@ function UserModel() {
             token: user.skynet.token,
             'email': user.email
           }
-        }
+        });
       }
     }
   }

@@ -1,23 +1,14 @@
 var _ = require('lodash');
 var when              = require('when');
 var ChannelCollection = require('../../app/collections/channel-collection');
-var mongoose          = require('mongoose');
 
 describe('ChannelCollection', function () {
-  var sut, fetchChannelsByIds, getUser, result, db;
-
-  beforeEach(function(){
-    var mongoose   = require('mongoose');
-    var UserSchema = require('../../app/models/user');
-
-    db = mongoose.createConnection();
-    db.model('User', UserSchema);
-  });
+  var sut, fetchChannelsByIds, getUser, result;
 
   beforeEach(function(){
     var getUserDefer, fetchChannelByIdDefer, fetchChannelsByIdsDefer;
 
-    sut     = new ChannelCollection({mongoose: db});
+    sut     = new ChannelCollection();
 
     fetchChannelsByIdsDefer = when.defer();
     fetchChannelsByIds = sinon.stub(sut, 'fetchChannelsByIds');
