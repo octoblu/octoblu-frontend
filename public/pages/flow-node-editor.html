@@ -1,4 +1,4 @@
-<md-whiteframe layout="vertical" class="md-whiteframe-z1" ng-hide="!flowNodeType">  
+<md-whiteframe layout="vertical" class="md-whiteframe-z1 flow-node-editor ng-hide" ng-show="flowNodeType">  
   <md-toolbar>
       <div class="md-toolbar-tools">
         <h2><span>Edit Node</span></h2>    
@@ -8,7 +8,7 @@
     </md-toolbar>
     <md-content>
       <form style="padding:20px;">
-        <div ng-include="flowNodeType.formTemplatePath"></div>
+        <div class="flow-node-form" ng-include="flowNodeType.formTemplatePath"></div>
         <br>      
           <md-switch ng-model="flowNode.debug">Debug</md-switch>        
       </form>

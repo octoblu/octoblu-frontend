@@ -72,15 +72,17 @@
 }
 
 .flow-node-editor {
-  position: absolute;
-  width: 500px;
-
-  &.flow-node-editor-debug {
-    .debug-node-form {
-      display: none;
-    }
+  &.ng-hide-add {
+    -webkit-animation: 0.25s fadeOutUp ease;
+    -ms-animation: 0.25s fadeOutUp ease;
+    animation: 0.25s fadeOutUp ease;
   }
-  overflow: auto;
+   &.ng-hide-remove {
+    -webkit-animation: 0.25s fadeInDown ease;
+    -ms-animation: 0.25s fadeOutUp ease;
+    animation: 0.25s fadeOutUp ease;
+
+  }
 }
 
 .flow-link {
