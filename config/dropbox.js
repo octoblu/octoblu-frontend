@@ -27,8 +27,10 @@ var dropboxStrategy = new DropboxStrategy(CONFIG, function(req, accessToken, ref
   var channelId = mongojs.ObjectId('532a60c06d3281aa4aeacab3');
 
   User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: accessToken});
-  req.user.save(function (err) {
-    return done(err, req.user);
+  User.update(user).then(function () {
+    done(null, user);
+  }).catch(function(error){
+    done(error);
   });
 });
 

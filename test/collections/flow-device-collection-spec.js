@@ -7,12 +7,12 @@ describe('FlowDeviceCollection', function () {
   beforeEach(function () {
     users = {
       'u1': {
-        skynetuuid: 'u1',
-        skynettoken: 't1'
+        'skynet.uuid': 'u1',
+        'skynet.token': 't1'
       },
       'u2': {
-        skynetuuid: 'u2',
-        skynettoken: 't2'
+        'skynet.uuid': 'u2',
+        'skynet.token': 't2'
       }
     };
 

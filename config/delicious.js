@@ -12,8 +12,10 @@ var deliciousStrategy = new DeliciousStrategy(CONFIG, function(req, accessToken,
   var channelId = mongojs.ObjectId(channel._id);
 
   User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: accessToken, secret: secret});
-  req.user.save(function (err) {
-    return done(err, req.user);
+  User.update(user).then(function () {
+    done(null, user);
+  }).catch(function(error){
+    done(error);
   });
 });
 
