@@ -10,7 +10,7 @@ CONFIG.passReqToCallback = true;
 var dropboxStrategy = new DropboxStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
 
   User.addApiAuthorization(req.user, 'channel:dropbox', {authtype: 'oauth', token: accessToken}).then(function () {
-    done(null, user);
+    done(null, req.user);
   }).catch(function(error){
     done(error);
   });
