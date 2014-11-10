@@ -95,7 +95,7 @@
             "name": ":name",
             "displayName": "Name",
             "type": "string",
-            "style": "query",
+            "style": "url",
             "required": "true"
           }
         ]
@@ -109,7 +109,7 @@
             "name": ":name",
             "displayName": "Name",
             "type": "string",
-            "style": "query",
+            "style": "url",
             "required": "true"
           },
           {
@@ -137,7 +137,7 @@
             "name": ":name",
             "displayName": "Name",
             "type": "string",
-            "style": "query",
+            "style": "url",
             "required": "true"
           },
           {
@@ -179,7 +179,7 @@
             "name": ":name",
             "displayName": "Name",
             "type": "string",
-            "style": "query",
+            "style": "url",
             "required": "true"
           }
         ]
