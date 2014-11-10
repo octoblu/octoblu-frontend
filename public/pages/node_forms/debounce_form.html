@@ -1,9 +1,3 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
-
-<div class="form-group">
-  <label for="interval">Interval (in milliseconds)</label>
-  <input  id="interval" class="form-control" type="number" ng-model="flowNode.interval" required>
-</div>
+<md-text-float label="Name" ng-model="flowNode.name"></md-text-float>
+<md-text-float label="Interval" ng-model="flowNode.interval" type="number"></md-text-float>
+<p class="text-info">Interval is in milliseconds.</p>
