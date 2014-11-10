@@ -1,19 +1,11 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
+<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
 
-<div class="form-group">
-  <label for="value">Value (Referrence incomming messages with <span ng-non-bindable>{{payload.value}}</span>)</label>
-  <input  id="value" class="form-control" type="text" ng-model="flowNode.value" required>
-</div>
 
-<div class="form-group">
-  <label for="min">Min</label>
-  <input  id="min" class="form-control" type="text" ng-model="flowNode.min" required>
-</div>
 
-<div class="form-group">
-  <label for="max">Max</label>
-  <input  id="max" class="form-control" type="text" ng-model="flowNode.max" required>
-</div>
+<md-text-float label="Value" ng-model="flowNode.value"> </md-text-float>
+<md-text-float label="Min" ng-model="flowNode.min"> </md-text-float>
+<md-text-float label="Max" ng-model="flowNode.max"> </md-text-float>
+
+<p class="text-info">
+  Reference incoming messages with <span ng-non-bindable>{{payload.value}}</span>
+</p>

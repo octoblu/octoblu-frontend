@@ -1,9 +1,5 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
+<md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
 
 <div class="form-group">
-  <label for="func">Function</label>
   <div ui-ace="{mode: 'javascript', theme: 'chrome'}" class="code-editor" ng-model="flowNode.func"></div>
 </div>
