@@ -5,10 +5,7 @@ var when       = require('when');
 var uuid       = require('node-uuid');
 var bcrypt     = require('bcrypt-nodejs');
 var configAuth = require('../../config/auth')(process.env.NODE_ENV);
-var rest       = require('rest');
-var mime       = require('rest/interceptor/mime');
-var errorCode  = require('rest/interceptor/errorCode');
-var client     = rest.wrap(mime).wrap(errorCode);
+var request    = require('request');
 
 function UserModel() {
   var collection = octobluDB.getCollection('users');
@@ -17,26 +14,48 @@ function UserModel() {
     findOrCreateByEmailAndPassword : function(email, password){
       var self = this;
 
-      return when.promise(function(resolve, reject){
-        self.findByEmail(email).then(function(user){
-          if(user && self.validPassword(user, password)){
-            return resolve(user);
-          }
+      return self.findByEmail(email).then(function(user){
+        if(user && self.validPassword(user, password)){
+          return user;
+        }
 
-          if(user) {
-            return reject("User with that email address already exists");
-          }
+        if(user) {
+          throw new Error("User with that email address already exists");
+        }
 
-          var userParams = {
+      }).then(function(user) {
+        if (!_.isEmpty(user)) {
+          return user;
+        } 
+        return self.createUser(email, password);
+      });
+    },
+
+    createUser: function(email, password){
+      var self = this;
+      return self.registerWithMeshblu(email).then(function(skynetData){
+        if (!skynetData.uuid) {
+          throw new Error("Unable to register with Meshblu");
+        }
+
+        var userParams = {
+          email: email,
+          resource: {
+            type: 'user',
+            uuid: skynetData.uuid
+          },
+          skynet: {
+            uuid: skynetData.uuid,
+            token: skynetData.token
+          },
+          api : [],
+          local: {
             email: email,
-            local: {
-              email: email,
-              password: self.generateHash(password)
-            }
-          };
+            password: self.generateHash(password)
+          }
+        };
 
-          return self.create(userParams);
-        });
+        return self.insert(userParams);
       });
     },
 
@@ -146,26 +165,25 @@ function UserModel() {
       return crypto.createHash('sha1').update((new Date()).valueOf().toString() + Math.random().toString()).digest('hex');
     },
 
-    registerWithMeshblu : function(user) {
+    registerWithMeshblu : function(email) {
       var self = this;
-      user.skynet = user.skynet;
-      if (!user.skynet.uuid) {
-        user.skynet = {
-          uuid: user.resource.uuid,
-          token: self.generateToken()
-        };
+      var uri = 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices';
+      var params = { 
+        json: {
+          type: 'user',
+          email: email
+        }
+      };
 
-        client({
-          method: 'POST',
-          path: 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices',
-          params: {
-            type: 'user',
-            uuid: user.skynet.uuid,
-            token: user.skynet.token,
-            'email': user.email
+      return when.promise(function(resolve, reject) {
+        request.post(uri, params, function(error, response, body) {
+          if (error) {
+            reject(error);
+            return;
           }
+          resolve(body);
         });
-      }
+      });
     }
   }
 
