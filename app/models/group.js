@@ -1,114 +1,86 @@
 'use strict';
+var octobluDB = require('../lib/database');
+var _         = require('lodash');
+var when      = require('when');
+var uuid      = require('node-uuid');
 
-var mongoose = require('mongoose');
-var Resource = require('./mixins/resource');
-var ResourcePermission = require('./resourcePermission');
-var _ = require('lodash');
-var uuid = require('node-uuid');
-var Q = require('q');
-var when = require('when');
-var nodefn = require('when/node/function');
+function GroupModel() {
+  var collection = octobluDB.getCollection('flows');
 
-var GroupSchema = new mongoose.Schema({
-    uuid: {type: String, required: true, index: true, default: uuid.v1},
-    name: {type: String, index: true},
-    type: {
-        type: String,
-        default: 'default',
-        enum: ['default', 'operators'],
-        required: true
+  var methods = {
+    updateProperties : ['name', 'members'],
+
+    permissionsSuffix : {
+      sources: '_sources',
+      targets: '_targets'
     },
-    //we want only resourceIds in here, if we can help it.
-    // Devices exist outside the system though, so this is the simplest solution for now.
-    members: {type: [mongoose.Schema.Types.Mixed], default: []}
-});
-GroupSchema.statics.updateProperties = ['name', 'members'];
 
-GroupSchema.statics.permissionsSuffix = {
-    sources: '_sources',
-    targets: '_targets'
-};
+    findResourcePermission : function (groupUUID, ownerUUID) {
+      var Group = this, group, sourcePermissionsGroup, targetPermissionsGroup;
 
-GroupSchema.index({'members.uuid' : 1, required: true});
-GroupSchema.index({'members.type' : 1, required: true});
-
-Resource.makeResourceModel({schema: GroupSchema, type: 'group', uuidProperty: 'uuid'});
-
-GroupSchema.methods.saveWithPromise = function(){
-    var defer = Q.defer();
-    this.save(function(error, group){
-        if(error) {
-            return defer.reject(error);
-        }
-        defer.resolve(group);
-    });
-    return defer.promise;
-};
-
-GroupSchema.statics.findResourcePermission = function (groupUUID, ownerUUID) {
-    var Group = this, group, sourcePermissionsGroup, targetPermissionsGroup;
-
-    return Group.findOne({
+      return Group.findOne({
         uuid: groupUUID,
         'resource.owner.uuid': ownerUUID
-    }).exec().then(function (dbGroup) {
+      }).then(function (dbGroup) {
         if (!dbGroup) {
-            throw {
-                'error': 'Group not found!'
-            };
+          throw {
+            'error': 'Group not found!'
+          };
         }
         group = dbGroup;
         return Group.find({
-            type: 'permissions',
-            'resource.owner.uuid': ownerUUID,
-            'resource.parent.uuid': groupUUID
-        }).exec();
+          type: 'permissions',
+          'resource.owner.uuid': ownerUUID,
+          'resource.parent.uuid': groupUUID
+        });
 
-    }).then(function (permissionsGroups) {
+      }).then(function (permissionsGroups) {
         if (!permissionsGroups) {
-            throw {
-                error: 'Permission groups not found'
-            };
+          throw {
+            error: 'Permission groups not found'
+          };
 
         } else {
-            sourcePermissionsGroup = _.findWhere(permissionsGroups, {
-                name: group.uuid + Group.permissionsSuffix.sources
-            });
+          sourcePermissionsGroup = _.findWhere(permissionsGroups, {
+            name: group.uuid + Group.permissionsSuffix.sources
+          });
 
-            targetPermissionsGroup = _.findWhere(permissionsGroups, {
-                name: group.uuid + Group.permissionsSuffix.targets
-            });
+          targetPermissionsGroup = _.findWhere(permissionsGroups, {
+            name: group.uuid + Group.permissionsSuffix.targets
+          });
 
-            return ResourcePermission.findOne({
-                'resource.owner.uuid': ownerUUID,
-                'source.uuid': sourcePermissionsGroup.resource.uuid,
-                'target.uuid': targetPermissionsGroup.resource.uuid
-            });
+          return ResourcePermission.findOne({
+            'resource.owner.uuid': ownerUUID,
+            'source.uuid': sourcePermissionsGroup.resource.uuid,
+            'target.uuid': targetPermissionsGroup.resource.uuid
+          });
         }
-    }).then(function (resourcePermission) {
+      }).then(function (resourcePermission) {
         if (!resourcePermission) {
-            throw {
-                error: 'Resource permission not found'
-            };
+          throw {
+            error: 'Resource permission not found'
+          };
 
         } else {
-            resourcePermission.source = sourcePermissionsGroup;
-            resourcePermission.target = targetPermissionsGroup;
+          resourcePermission.source = sourcePermissionsGroup;
+          resourcePermission.target = targetPermissionsGroup;
         }
         return resourcePermission;
-    });
-};
+      });
+    },
 
-GroupSchema.statics.findGroupsContainingResource = function (options) {
-    var resourceUUID = options.resourceUUID,
-        Group = mongoose.model('Group'),
-        groupResourceQuery = resourceUUID  instanceof Array ? {$in: resourceUUID} : resourceUUID;
+    findGroupsContainingResource : function (options) {
+      var self = this;
+      var resourceUUID = options.resourceUUID,
+      groupResourceQuery = resourceUUID  instanceof Array ? {$in: resourceUUID} : resourceUUID;
 
-    return Group.find({
+      return self.find({
         'members.uuid': groupResourceQuery
-    }).exec();
-};
+      });
+    }
+  }
 
-GroupSchema.index({'resource.owner.uuid': 1, name: 1}, {unique: true});
+  return _.extend({}, collection, methods);
+}
 
-module.exports = GroupSchema;
+module.exports = new GroupModel();

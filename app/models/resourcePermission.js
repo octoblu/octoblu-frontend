@@ -9,7 +9,6 @@ var rest      = require('rest');
 var mime      = require('rest/interceptor/mime');
 var errorCode = require('rest/interceptor/errorCode');
 var client    = rest.wrap(mime).wrap(errorCode);
-var mongoose  = require('mongoose');
 
 function ResourcePermissionModel() {
   var collection = octobluDB.getCollection('resourcepermissions');
@@ -21,7 +20,7 @@ function ResourcePermissionModel() {
 
     findPermissionsOnResource : function (options) {
         var self = this;
-        var Group = mongoose.model('Group');
+        var Group = require('./group');
 
         return Group.findGroupsContainingResource(options)
             .then(function (groups) {
@@ -38,7 +37,7 @@ function ResourcePermissionModel() {
 
     findFlattenedPermissionsOnResource : function (options) {
         var self = this;
-        var Group = mongoose.model('Group'),
+        var Group = require('./group'),
             groups,
             otherDirection = options.permissionDirection === 'source' ? 'target' : 'source',
             resourceUUIDs = options.resourceUUID instanceof Array ?
@@ -64,12 +63,12 @@ function ResourcePermissionModel() {
                 flatPermissions = _.xor(permissions, groupPermissions);
 
                 return when.all(_.map(groupPermissions, function (permission) {
-                    return Group.findOne({'resource.uuid': permission[otherDirection].uuid}).exec()
+                    return Group.findOne({'resource.uuid': permission[otherDirection].uuid})
                         .then(function (group) {
                             if (group) {
                                 return {
                                     permission: permission,
-                                    group: group.toObject()
+                                    group: group
                                 };
                             }
                         });

@@ -1,5 +1,19 @@
 {
-  "_id": "d838fh8ej3829dj38298d9",
+  "_id": "54611b01e25a5834531cbbe3",
+  "type": "channel:doubleclicksearch",
+  "auth_strategy": "oauth",
+  "name": "DoubleClickSearch",
+  "oauth": {
+    "development" : {
+      "tokenMethod" : "access_token_query"
+    },
+    "staging" : {
+      "tokenMethod" : "access_token_query"
+    },
+    "development" : {
+      "tokenMethod" : "access_token_query"
+    }
+  },
   "application": {
     "base": "https://www.googleapis.com/doubleclicksearch/v2",
     "resources": [
@@ -760,19 +774,5 @@
         "url": "https://www.googleapis.com/doubleclicksearch/v2/agency/agencyId/advertiser/advertiserId/savedcolumns"
       }
     ]
-  },
-  "type": "channel:doubleclicksearch",
-  "auth_strategy": "oauth",
-  "name": "DoubleClickSearch",
-  "oauth": {
-    "development" : {
-      "tokenMethod" : "access_token_query"
-    },
-    "staging" : {
-      "tokenMethod" : "access_token_query"
-    },
-    "development" : {
-      "tokenMethod" : "access_token_query"
-    }
   }
 }

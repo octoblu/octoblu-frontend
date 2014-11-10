@@ -20,7 +20,7 @@ describe('flowDeployController', function () {
     });
 
     beforeEach(function () {
-      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, mongoose: db, meshblu: fakeMeshblu});
+      sut = new FlowDeployController({FlowDeploy: FakeFlowDeploy, meshblu: fakeMeshblu});
       res = new FakeResponse();
     });
 

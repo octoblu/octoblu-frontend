@@ -1,9 +1,7 @@
 'use strict';
-
 var _ = require('lodash'),
     moment = require('moment'),
-    mongoose = require('mongoose'),
-    User = mongoose.model('User'),
+    User = require('../models/user'),
     isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request');
 var uuid = require('node-uuid');
@@ -35,14 +33,12 @@ module.exports = function (app) {
             defaultParams = req.body.defaultParams,
             custom_tokens = req.body.custom_tokens;
 
-        user.overwriteOrAddApiByChannelId(req.params.id, {authtype: 'oauth', key : key, token : token, custom_tokens : custom_tokens, defaultParams : defaultParams});
-        user.save(function (err) {
-            if (!err) {
-                res.json(user);
-            } else {
-                console.log('Error: ' + err);
-                res.json(user);
-            }
+        User.overwriteOrAddApiByChannelId(user, req.params.id, {authtype: 'oauth', key : key, token : token, custom_tokens : custom_tokens, defaultParams : defaultParams});
+        User.update({_id: user._id}, user).then(function(){
+            res.json(user);
+        }).catch(function(error){
+            console.error(error);
+            res.send(422, error);
         });
     };
     app.put('/api/user/:id/channel/:id', isAuthenticated, updateUserChannel);
@@ -53,14 +49,12 @@ module.exports = function (app) {
             key = req.body.key,
             token = req.body.token,
             custom_tokens = req.body.custom_tokens;
-        user.overwriteOrAddApiByChannelId(req.params.channelid, {authtype: 'none' });
-        user.save(function (err) {
-            if (!err) {
-                res.json(user);
-            } else {
-                console.log('Error: ', err);
-                res.json(user);
-            }
+        User.overwriteOrAddApiByChannelId(user, req.params.channelid, {authtype: 'none' });
+        User.update({_id: user._id}, user).then(function(){
+            res.json(user);
+        }).catch(function(error){
+            console.error(error);
+            res.send(422, error);
         });
     };
     app.put('/api/user/:id/activate/:channelid', isAuthenticated, getUserActivation);
@@ -74,14 +68,11 @@ module.exports = function (app) {
         var api = _.findWhere(user.api, {channelid: channelid});
         if (api) {
             user.api = _.without(user.api, api);
-            user.save(function (err) {
-                if (!err) {
-                    res.json({'message': 'success'});
-
-                } else {
-                    console.log('Error: ' + err);
-                    res.json(404, {'message': 'not found'});
-                }
+            User.update({_id: user._id}, user).then(function(){
+              res.json({'message': 'success'});
+            }).catch(function (error) {
+              console.error(error);
+              res.json(404, {'message': 'not found'});
             });
         } else {
             res.send({'message': 'success'});

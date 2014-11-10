@@ -167,11 +167,10 @@ module.exports = function(app, passport) {
 
             app.all('/api/*', security.isAuthenticated, security.enforceTerms);
 
-            require('./controllers/auth')(app, passport, config);
+            require('./controllers/auth-controller')(app, passport, config);
             require('./controllers/channel')(app);
             require('./controllers/connect')(app, passport, config);
             require('./controllers/cors')(app);
-            require('./controllers/device')(app, config);
             require('./controllers/elastic')(app);
             require('./controllers/message')(app, conn);
             require('./controllers/session')(app, passport, config);

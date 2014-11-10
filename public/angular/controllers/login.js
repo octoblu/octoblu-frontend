@@ -8,7 +8,7 @@ angular.module('octobluApp')
             AuthService.login($scope.email, $scope.password).then(function (user) {
                 $rootScope.currentUser = user;
                 if (referrer) {
-                    window.location = referrer + '?uuid=' + user.skynetuuid + '&token=' + user.skynettoken;
+                    window.location = referrer + '?uuid=' + user.skynet.uuid + '&token=' + user.skynet.token;
                 } else {
                     $state.go('ob.home');
                 }

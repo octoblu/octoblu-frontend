@@ -44,7 +44,7 @@ angular.module('octobluApp')
             modalInstance.result.then(function (response) {
                 if (response === 'ok') {
                     // $log.info('clicked ok');
-                    userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
+                    userService.removeConnection(currentUser.skynet.uuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
                         channelService.getActiveChannels(true);
                         channelService.getAvailableChannels(true);
@@ -112,7 +112,7 @@ angular.module('octobluApp')
         $scope.save = function () {
             if (!$scope.channel) return;
 
-            userService.saveConnection(currentUser.skynetuuid, $scope.channel._id, $scope.user_channel.key,
+            userService.saveConnection(currentUser.skynet.uuid, $scope.channel._id, $scope.user_channel.key,
                 $scope.user_channel.token, $scope.custom_tokens,
                 function (data) {
                     // currentUser = data;
@@ -125,7 +125,7 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             var loc;
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynet.uuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
                     channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
@@ -148,7 +148,7 @@ angular.module('octobluApp')
         $scope.isNew = false;
 
         $scope.channel = {
-            owner: currentUser.skynetuuid,
+            owner: currentUser.skynet.uuid,
             auth_strategy: '',
             logo: '',
             name: '',
@@ -204,7 +204,7 @@ angular.module('octobluApp')
         $scope.save = function () {
             $scope.isEdit = false;
             if (!$scope.channel) return;
-            if(!$scope.channel.owner) $scope.channel.owner = currentUser.skynetuuid;
+            if(!$scope.channel.owner) $scope.channel.owner = currentUser.skynet.uuid;
             channelService.save($scope.channel, function (data) {
                 if (data) {
                     $scope.channel = data;
@@ -218,7 +218,7 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             var loc;
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynet.uuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
                     channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
@@ -374,7 +374,7 @@ angular.module('octobluApp')
 
         if ($stateParams.id == 'new') {
             $scope.isNew = true;
-            $scope.channel.owner = currentUser.skynetuuid;
+            $scope.channel.owner = currentUser.skynet.uuid;
         } else {
             channelService.get($stateParams.id, function (data) {
                 $scope.isNew = false;
@@ -428,7 +428,7 @@ angular.module('octobluApp')
                 if (response === 'ok') {
                     // $log.info('clicked ok');
                     $log.info(currentUser);
-                    userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
+                    userService.removeConnection(currentUser.skynet.uuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
                         channelService.getActiveChannels(true);
                         channelService.getAvailableChannels(true);
@@ -446,7 +446,7 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             var loc;
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynet.uuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
                     channelService.getAvailableChannels(true);
                     $scope.currentUser = data;
@@ -504,7 +504,7 @@ angular.module('octobluApp')
             modalInstance.result.then(function (response) {
                 if (response === 'ok') {
                     // $log.info('clicked ok');
-                    userService.removeConnection(currentUser.skynetuuid, $scope.channel._id, function (data) {
+                    userService.removeConnection(currentUser.skynet.uuid, $scope.channel._id, function (data) {
                         $scope.has_user_channel = false;
                         channelService.getActiveChannels(true);
                         channelService.getAvailableChannels(true);
@@ -522,7 +522,7 @@ angular.module('octobluApp')
         $scope.authorize = function (channel) {
             var loc;
             if (channel.auth_strategy === 'none') {
-                userService.activateNoAuthChannel(currentUser.skynetuuid, channel._id, function (data) {
+                userService.activateNoAuthChannel(currentUser.skynet.uuid, channel._id, function (data) {
                     channelService.getActiveChannels(true);
                     channelService.getAvailableChannels(true);
                     $scope.currentUser = data;

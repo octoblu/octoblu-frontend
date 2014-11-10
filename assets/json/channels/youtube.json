@@ -1,5 +1,16 @@
 {
   "_id": "53e14e6d8e3257fb7d6fdad1",
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "description": "",
+  "documentation": "https://developers.google.com/youtube/v3/docs/",
+  "enabled": true,
+  "name": "YouTube",
+  "oauth": {
+    "version": "2.0"
+  },
+  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
+  "type": "channel:youtube",
   "__v": 0,
   "application": {
     "base": "https://www.googleapis.com/youtube/v3",
@@ -1579,16 +1590,5 @@
         "url": "https://www.googleapis.com/youtube/v3/watermarks/unset"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "custom_tokens": [],
-  "description": "",
-  "documentation": "https://developers.google.com/youtube/v3/docs/",
-  "enabled": true,
-  "name": "YouTube",
-  "oauth": {
-    "version": "2.0"
-  },
-  "owner": "cf5467b0-1bea-11e4-944b-7dfd109dce42",
-  "type": "channel:youtube"
+  }
 }

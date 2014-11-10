@@ -1,25 +1,18 @@
+'use strict';
 var LinkedinController = require('passport-linkedin-oauth2').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
-var Channel = require('../app/models/channel');
+var User               = require('../app/models/user');
+var Channel            = require('../app/models/channel');
 
-var config = Channel.syncFindById('52f97c5ba990930c8c0003ca').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:linked-in').oauth[process.env.NODE_ENV];
 
-config.passReqToCallback = true;
+CONFIG.passReqToCallback = true;
 
-if(!config.clientID){
-	config.clientID = config.consumerKey;
-}
-
-if(!config.clientSecret){
-	config.clientSecret = config.consumerSecret;
-}
-
-var linkedinStrategy = new LinkedinController(config, function(req, accessToken, refreshToken, profile, done){
-  var channelId = new mongoose.Types.ObjectId('52f97c5ba990930c8c0003ca');
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-  req.user.save(function (err) {
-    return done(err, req.user);
+var linkedinStrategy = new LinkedinController(CONFIG, function(req, accessToken, refreshToken, profile, done){
+  
+  User.addApiAuthorization(req.user, 'channel:linked-in', {authtype: 'oauth', token: accessToken}).then(function () {
+    done(null, req.user);
+  }).catch(function(error){
+    done(error);
   });
 });
 

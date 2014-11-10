@@ -1,5 +1,32 @@
 {
   "_id": "52f9b79febbb40641600000b",
+  "type": "channel:bitly",
+  "auth_strategy": "oauth",
+  "custom_tokens": [],
+  "documentation": "http://api.bitly.com/v1",
+  "enabled": true,
+  "name": "Bitly",
+  "oauth": {
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/bitly/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/bitly/callback",
+      "tokenMethod": "access_token_query"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/bitly/callback",
+      "tokenMethod": "access_token_query"
+    }
+  },
+  "isPassport" : true,
   "application": {
     "base": "https://api-ssl.bitly.com",
     "resources": [
@@ -2220,32 +2247,5 @@
         "url": "https://api-ssl.bitly.com/v3/user/tracking_domain_shorten_counts"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "custom_tokens": [],
-  "documentation": "http://api.bitly.com/v1",
-  "enabled": true,
-  "name": "Bitly",
-  "oauth": {
-    "development" : {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "http://localhost:8080/api/oauth/bitly/callback",
-      "tokenMethod": "access_token_query"
-    },
-    "staging" : {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/bitly/callback",
-      "tokenMethod": "access_token_query"
-    },
-    "production" : {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "https://app.octoblu.com/api/oauth/bitly/callback",
-      "tokenMethod": "access_token_query"
-    }
-  },
-  "isPassport" : true,
-  "type": "channel:bitly"
+  }
 }

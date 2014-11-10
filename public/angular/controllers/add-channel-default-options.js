@@ -23,7 +23,7 @@ angular.module('octobluApp')
   $scope.saveDefaultParams = function(){
   	userService
   		.saveConnection(
-  				currentUser.skynetuuid,
+  				currentUser.skynet.uuid,
   				nodeType.channelid,
   				undefined,
   				undefined,

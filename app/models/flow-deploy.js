@@ -1,11 +1,11 @@
 var _ = require('lodash'),
     FlowDeviceCollection = require('../collections/flow-device-collection'),
-    mongoose = require('mongoose')
     when = require('when'),
-    textCrypt = require('../lib/textCrypt');
+    textCrypt = require('../lib/textCrypt'),
+    mongojs = require('mongojs');
 
 var FlowDeploy = function(options){
-  var User = mongoose.model('User');
+  var User = require('../models/user');
 
   var self, config, request, userUUID, meshblu;
   self = this;
@@ -61,7 +61,7 @@ var FlowDeploy = function(options){
   self.mergeFlowTokens = function(flow, userApis, channelApis) {
     _.each(flow.nodes, function(node){
       node.oauth = {};
-      var userApiMatch = _.findWhere(userApis, {'_id': new mongoose.Types.ObjectId(node.channelActivationId)});
+      var userApiMatch = _.findWhere(userApis, {'_id': mongojs.ObjectId(node.channelActivationId)});
       if (userApiMatch) {
         if (userApiMatch.token_crypt) {
           userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt); 
@@ -96,7 +96,6 @@ var FlowDeploy = function(options){
   };
 
   self.stopFlow = function(flow){
-    console.log('stop');
     self.sendMessage(flow, 'nodered-instance-stop');
   };
 
@@ -143,7 +142,7 @@ FlowDeploy.start = function(userUUID, flow, meshblu){
     mergedFlow = flowDeploy.mergeFlowTokens(flow, user.api, channels);
     flowDeploy.startFlow(mergedFlow);
   }, function(error){
-    console.log('Error', error);
+    console.error(error);
     throw new Error(error);
   });
 };
@@ -151,8 +150,6 @@ FlowDeploy.start = function(userUUID, flow, meshblu){
 FlowDeploy.stop = function(userUUID, flow, meshblu){
   var flowDeploy, flowDevice;
 
-
-  console.log('FlowDeploy.stop');
   flowDeploy = new FlowDeploy({userUUID: userUUID, meshblu: meshblu});
   return when.promise(function(resolve,reject){
     flowDeploy.stopFlow(flow);

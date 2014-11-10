@@ -3,35 +3,28 @@ describe('User', function () {
   var moment = require('moment');
 
   before(function () {
-    var mongoose   = require('mongoose');
-    var UserSchema = require('../../app/models/user');
-    var db = mongoose.createConnection();
-    User = db.model('User', UserSchema);
-  });
-
-  it('should instantiate', function () {
-    expect(new User()).to.exist;
+    User = require('../../app/models/user');
   });
 
   describe('overwriteOrAddApiByChannelId', function () {
     beforeEach(function () {
-      sut = new User();
+      sut = {};
     });
 
     describe('when api is empty', function () {
       it('should return undefined', function () {
-        expect(sut.overwriteOrAddApiByChannelId()).to.be.undefined;
+        expect(User.overwriteOrAddApiByChannelId(sut)).to.be.undefined;
       });
 
       it('should insert a record into api', function () {
-        sut.overwriteOrAddApiByChannelId('asdf');
+        User.overwriteOrAddApiByChannelId(sut, 'asdf');
         expect(sut.api[0].channelid).to.equal('asdf');
       });
 
       it('should set the "updated" timestamp', function () {
         var updated, now;
 
-        sut.overwriteOrAddApiByChannelId('asdf');
+        User.overwriteOrAddApiByChannelId(sut, 'asdf');
 
         updated = moment(sut.api[0].updated).valueOf();
         now     = moment().valueOf();
@@ -39,29 +32,29 @@ describe('User', function () {
       });
 
       it('should insert a record into api with a different channel id', function () {
-        sut.overwriteOrAddApiByChannelId('1234');
+        User.overwriteOrAddApiByChannelId(sut, '1234');
         expect(sut.api[0].channelid).to.equal('1234');
       });
 
       it('should add in the authtype attribute', function () {
-        sut.overwriteOrAddApiByChannelId('asdf', {authtype: 'oauth'});
+        User.overwriteOrAddApiByChannelId(sut, 'asdf', {authtype: 'oauth'});
         expect(sut.api[0].authtype).to.equal('oauth');
       });
 
       it('should add in the token attribute', function () {
-        sut.overwriteOrAddApiByChannelId('asdf', {token: 'yutu'});
+        User.overwriteOrAddApiByChannelId(sut, 'asdf', {token: 'yutu'});
         expect(sut.api[0].token).to.equal('yutu');
       });
     });
 
     describe('when there is already an api', function () {
       beforeEach(function () {
-        sut.api.push({channelid: 'asdf'});
+        sut.api = [{channelid: 'asdf'}];
       });
 
       describe('when called with the same channelid', function () {
         beforeEach(function(){
-          sut.overwriteOrAddApiByChannelId('asdf', {authtype: 'simple'});
+          User.overwriteOrAddApiByChannelId(sut, 'asdf', {authtype: 'simple'});
         });
 
         it('should update the existing api', function () {
@@ -71,7 +64,7 @@ describe('User', function () {
 
       describe('when called with a different channelid', function () {
         beforeEach(function(){
-          sut.overwriteOrAddApiByChannelId('1234', {authtype: 'complex'});
+          User.overwriteOrAddApiByChannelId(sut, '1234', {authtype: 'complex'});
         });
 
         it('should insert a new record', function () {

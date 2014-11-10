@@ -1,19 +1,18 @@
+'use strict';
 var BoxStrategy = require('passport-box').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
-var Channel = require('../app/models/channel');
+var User        = require('../app/models/user');
+var Channel     = require('../app/models/channel');
 
-var channel = Channel.syncFindByType('channel:box');
-var CONFIG = channel.oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:box').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
 
 var boxStrategy = new BoxStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
-  var channelId = new mongoose.Types.ObjectId(channel._id);
 
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-  req.user.save(function (err) {
-    return done(err, req.user);
+  User.addApiAuthorization(req.user, 'channel:box', {authtype: 'oauth', token: accessToken}).then(function () {
+    done(null, req.user);
+  }).catch(function(error){
+    done(error);
   });
 });
 
