@@ -1,17 +1,15 @@
+'use strict';
 var FitbitStrategy = require('passport-fitbit').Strategy;
-var User     = require('../app/models/user');
-var Channel = require('../app/models/channel');
-var mongojs = require('mongojs');
+var User           = require('../app/models/user');
+var Channel        = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindById('52f97cc5a9909344830004ec').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:fitbit').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
 
 var fitbitStrategy = new FitbitStrategy(CONFIG, function(req, accessToken, secret, profile, done){
-  var channelId = mongojs.ObjectId('52f97cc5a9909344830004ec');
 
-  User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: accessToken, secret: secret});
-  User.update(req.user).then(function () {
+  User.addApiAuthorization(req.user, 'channel:fitbit', {authtype: 'oauth', token: accessToken, secret: secret}).then(function () {
     done(null, req.user);
   }).catch(function(error){
     done(error);

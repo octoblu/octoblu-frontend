@@ -29,7 +29,7 @@ var GotoMeetingFreeController = function(){
   				json = JSON.parse(body);
   			}catch(e){ console.log('Error parsing', e); }
   			User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: json.access_token});
-        User.update(req.user).then(function(){
+        User.update({_id: req.user._id}, req.user).then(function(){
           next();
         }).catch(function(error){
           next(error);

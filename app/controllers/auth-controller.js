@@ -94,7 +94,7 @@ module.exports = function (app, passport, config) {
             verifier = req.param('oauth_verifier');
 
         User.addOrUpdateApiByChannelId(user, channelid, 'oauth', null, token, null, verifier, null);
-        User.update(user).then(function () {
+        User.update({_id: user._id}, user).then(function () {
             return handleApiCompleteRedirect(res, channelid);
         }).catch(function(error){
             return handleApiCompleteRedirect(res, channelid, error);
@@ -189,7 +189,7 @@ module.exports = function (app, passport, config) {
                 // add api to user record
                 var token = '0LegAuth';
                 User.overwriteOrAddApiByChannelId(user, api._id, {authtype: 'oauth', token: token});
-                User.update(user).then(function (err) {
+                User.update({_id: user._id}, user).then(function (err) {
                     res.redirect('/connect/nodes/channel/' + api._id);
                 });
             } else if (creds.version === '2.0') {
@@ -365,7 +365,7 @@ module.exports = function (app, passport, config) {
 
                         if (token) {
                             User.overwriteOrAddApiByChannelId(user, api._id, {authtype: 'oauth', token: token});
-                            User.update(user).then(function (err) {
+                            User.update({_id: user._id}, user).then(function (err) {
                                 res.redirect('/design');
                             });
                         }
@@ -390,7 +390,7 @@ module.exports = function (app, passport, config) {
                         }
 
                         User.overwriteOrAddApiByChannelId(user, api._id, {authtype: 'oauth', token: token});
-                        User.update(user).then(function (err) {
+                        User.update({_id: user._id}, user).then(function (err) {
                             res.redirect('/design');
                         });
                     });
@@ -410,7 +410,7 @@ module.exports = function (app, passport, config) {
                         } else {
                             User.addOrUpdateApiByChannelId(user, channelid, 'oauth', null,
                                 oauth_access_token, oauth_access_token_secret, null, null);
-                            User.update(user).then(function (err) {
+                            User.update({_id : user._id}, user).then(function (err) {
                                 return handleApiCompleteRedirect(res, channelid, err);
                             });
                         }

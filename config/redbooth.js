@@ -1,17 +1,15 @@
+'use strict';
 var RedboothStrategy = require('passport-redbooth').Strategy;
-var User     = require('../app/models/user');
-var Channel = require('../app/models/channel');
-var mongojs = require('mongojs');
+var User             = require('../app/models/user');
+var Channel          = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindById('53f2431f710850ee08e28474').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:redbooth').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
 
 var redboothStrategy = new RedboothStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
-  var channelId = mongojs.ObjectId('53f2431f710850ee08e28474');
 
-  User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: accessToken});
-  User.update(req.user).then(function () {
+  User.addApiAuthorization(req.user, 'channel:redbooth', {authtype: 'oauth', token: accessToken}).then(function () {
     done(null, req.user);
   }).catch(function(error){
     done(error);

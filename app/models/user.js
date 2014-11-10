@@ -65,6 +65,7 @@ function UserModel() {
         });
 
         return self.insert(userParams).then(function(users){
+          console.log('insert', users);
           return _.first(users);
         });
       });
@@ -135,7 +136,6 @@ function UserModel() {
       var self = this;
       var channel = Channel.syncFindByType(type);
       self.overwriteOrAddApiByChannelId(user, self.ObjectId(channel._id), options);
-      console.log('updating', user);
       return self.update({_id: user._id}, user);
     },
 
@@ -170,7 +170,7 @@ function UserModel() {
           reject('Password is invalid');
         }
         user.local.password = self.generateHash(user, newPassword);
-        return User.update(user);
+        return User.update({_id: user._id}, user);
       });
     },
 

@@ -34,7 +34,7 @@ module.exports = function (app) {
             custom_tokens = req.body.custom_tokens;
 
         User.overwriteOrAddApiByChannelId(user, req.params.id, {authtype: 'oauth', key : key, token : token, custom_tokens : custom_tokens, defaultParams : defaultParams});
-        User.update(user).then(function(){
+        User.update({_id: user._id}, user).then(function(){
             res.json(user);
         }).catch(function(error){
             console.error(error);
@@ -50,7 +50,7 @@ module.exports = function (app) {
             token = req.body.token,
             custom_tokens = req.body.custom_tokens;
         User.overwriteOrAddApiByChannelId(user, req.params.channelid, {authtype: 'none' });
-        User.update(user).then(function(){
+        User.update({_id: user._id}, user).then(function(){
             res.json(user);
         }).catch(function(error){
             console.error(error);
@@ -68,7 +68,7 @@ module.exports = function (app) {
         var api = _.findWhere(user.api, {channelid: channelid});
         if (api) {
             user.api = _.without(user.api, api);
-            User.update(user).then(function(){
+            User.update({_id: user._id}, user).then(function(){
               res.json({'message': 'success'});
             }).catch(function (error) {
               console.error(error);

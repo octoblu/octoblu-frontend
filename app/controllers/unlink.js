@@ -16,7 +16,7 @@ module.exports = function (app) {
         var user = req.user;
         user.local.email = undefined;
         user.local.password = undefined;
-        User.update(user).then(function(){
+        User.update({_id: user._id}, user).then(function(){
             res.redirect('/home');
         });
     });
@@ -25,7 +25,7 @@ module.exports = function (app) {
     app.get('/unlink/facebook', function(req, res) {
         var user = req.user;
         user.facebook.token = undefined;
-        User.update(user).then(function(){
+        User.update({_id: user._id}, user).then(function(){
             res.redirect('/home');
         });
     });
@@ -34,7 +34,7 @@ module.exports = function (app) {
     app.get('/unlink/twitter', function(req, res) {
         var user = req.user;
         user.twitter.token = undefined;
-        User.update(user).then(function(){
+        User.update({_id: user._id}, user).then(function(){
             res.redirect('/home');
         });
     });
@@ -43,7 +43,7 @@ module.exports = function (app) {
     app.get('/unlink/google', function(req, res) {
         var user = req.user;
         user.google.token = undefined;
-        User.update(user).then(function(){
+        User.update({_id: user._id}, user).then(function(){
             res.redirect('/home');
         });
     });

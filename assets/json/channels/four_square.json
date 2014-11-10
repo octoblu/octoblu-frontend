@@ -1,5 +1,33 @@
 {
   "_id": "52f9b628ebbb409983000001",
+  "type": "channel:four-square",
+  "auth_strategy": "oauth",
+  "enabled": true,
+  "name": "FourSquare",
+  "oauth": {
+    "development" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/four-square/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
+    },
+    "staging" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/four-square/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
+    },
+    "production" : {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/four-square/callback",
+      "tokenMethod": "access_token_query",
+      "tokenQueryParam" : "oauth_token"
+    }
+  },
+  "isPassport": true,
   "application": {
     "base": "https://api.foursquare.com/v2",
     "resources": [
@@ -1544,33 +1572,5 @@
         "url": "https://api.foursquare.com/v2/venues/{VENUE_ID}"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "enabled": true,
-  "name": "FourSquare",
-  "oauth": {
-    "development" : {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "http://localhost:8080/api/oauth/four-square/callback",
-      "tokenMethod": "access_token_query",
-      "tokenQueryParam" : "oauth_token"
-    },
-    "staging" : {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/four-square/callback",
-      "tokenMethod": "access_token_query",
-      "tokenQueryParam" : "oauth_token"
-    },
-    "production" : {
-      "clientID": "INSERT_SECERT_HERE",
-      "clientSecret" : "INSERT_SECERT_HERE",
-      "callbackURL": "https://app.octoblu.com/api/oauth/four-square/callback",
-      "tokenMethod": "access_token_query",
-      "tokenQueryParam" : "oauth_token"
-    }
-  },
-  "isPassport": true,
-  "type": "channel:four-square"
+  }
 }

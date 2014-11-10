@@ -68,7 +68,7 @@ module.exports = function ( app, passport, config ) {
       user.resetPasswordToken   = null;
       user.resetPasswordExpires = null;
 
-      return User.update(user).then(function(returnedUser) {
+      return User.update({_id: user._id}, user).then(function(returnedUser) {
         return res.send(204);
       });
     }).catch(function(error){

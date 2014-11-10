@@ -1,5 +1,29 @@
 {
   "_id": "532a60c06d3281aa4aeacab3",
+  "type": "channel:dropbox",
+  "auth_strategy": "oauth",
+  "documentation": "https://www.dropbox.com/developers/core/docs",
+  "enabled": true,
+  "name": "Dropbox",
+  "oauth": {
+    "development": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "http://localhost:8080/api/oauth/dropbox/callback"
+    },
+    "production": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://app.octoblu.com/api/oauth/dropbox/callback"
+    },
+    "staging": {
+      "clientID":     "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL":    "https://staging.octoblu.com/api/oauth/dropbox/callback"
+    }
+  },
+  "useCustom": true,
+  "isPassport": true,
   "application": {
     "base": "https://www.dropbox.com/1",
     "resources": [
@@ -769,22 +793,5 @@
         "url": "https://api.dropbox.com/1/fileops/move "
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "documentation": "https://www.dropbox.com/developers/core/docs",
-  "enabled": true,
-  "name": "Dropbox",
-  "oauth": {
-    "accessTokenPath": "/oauth2/authorize",
-    "authTokenPath": "/oauth2/token",
-    "baseURL": "https://www.dropbox.com/1",
-    "tokenBaseURL": "https://api.dropbox.com/1",
-    "clientId": "INSERT_SECERT_HERE",
-    "secret": "INSERT_SECERT_HERE",
-    "tokenMethod": "access_token_query",
-    "version": "2.0"
-  },
-  "useCustom": true,
-  "type": "channel:dropbox",
-  "isPassport": true
+  }
 }

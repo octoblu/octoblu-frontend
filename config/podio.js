@@ -1,17 +1,15 @@
-var BitlyStrategy = require('passport-podio').Strategy;
-var User     = require('../app/models/user');
-var Channel = require('../app/models/channel');
-var mongojs = require('mongojs');
+'use strict';
+var PodioStrategy = require('passport-podio').Strategy;
+var User          = require('../app/models/user');
+var Channel       = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindById('54458c5b5a370c58ca66a147').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:podio').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
 
-var podioStrategy = new BitlyStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
-  var channelId = mongojs.ObjectId('54458c5b5a370c58ca66a147');
+var podioStrategy = new PodioStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
 
-  User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'oauth', token: accessToken});
-  User.update(req.user).then(function () {
+  User.addApiAuthorization(req.user, 'channel:podio', {authtype: 'oauth', token: accessToken}).then(function () {
     done(null, req.user);
   }).catch(function(error){
     done(error);

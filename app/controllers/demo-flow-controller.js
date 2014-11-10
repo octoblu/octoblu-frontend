@@ -17,7 +17,7 @@ var DemoFlowController = function (options) {
     User.overwriteOrAddApiByChannelId(user, '53275d4841da719147d9e36a', {authtype: 'none'}); //stockprice
     User.overwriteOrAddApiByChannelId(user, '542c2f2eab1c05dde14544e0', {authtype: 'basic', token : user.skynet.uuid, secret : user.skynet.token }); //send_sms
     User.overwriteOrAddApiByChannelId(user, '542ce2ad47a930b1280b0d05', {authtype: 'basic', token : user.skynet.uuid, secret : user.skynet.token}); // email
-    User.update(user).then(function(){
+    User.update({_id: user._id}, user).then(function(){
       Flow.createByUserUUID(user.resource.uuid, demoFlow, meshblu).then(function(flow){
         res.send(201, flow);
       }).catch(function(error) {

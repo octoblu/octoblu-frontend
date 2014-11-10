@@ -20,7 +20,7 @@ var SignupController = function () {
 
     checkInPromise.then(function(){
       req.user.testerId = testerId;
-      User.update(req.user).then(function() {
+      User.update({_id: req.user._id}, req.user).then(function() {
         next();
       }).catch(function(error){
         console.error(error);

@@ -21,7 +21,7 @@ var EchoSignController = function(){
           return;
   		  }
         User.overwriteOrAddApiByChannelId(req.user, channelId, {authtype: 'echosign', token: body.accessToken});
-        User.update(req.user).then(function(){
+        User.update({_id: req.user._id}, req.user).then(function(){
           next();
         }).catch(function(error){
           next(error);

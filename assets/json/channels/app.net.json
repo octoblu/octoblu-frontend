@@ -1,5 +1,6 @@
 {
   "_id": "5393128e59745965b10fc541",
+  "type": "channel:app.net",
   "name": "App.net",
   "auth_strategy": "oauth",
   "description": "One account. Many applications. Get instant access to hundreds of great social apps on iPhone, iPad, Android and more.",
@@ -1420,6 +1421,5 @@
         "url": "https://api.app.net/posts/stream/explore/:slug"
       }
     ]
-  },
-  "type": "channel:app.net"
+  }
 }
