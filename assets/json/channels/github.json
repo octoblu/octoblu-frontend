@@ -58,16 +58,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -86,16 +86,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -114,16 +114,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -142,9 +142,9 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -163,9 +163,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -184,9 +184,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -205,9 +205,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -226,9 +226,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -247,16 +247,16 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -287,23 +287,23 @@
         "params": [
           {
             "name": "all",
+            "displayName": "All",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "participating",
+            "displayName": "Participating",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "since",
+            "displayName": "Since",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -322,37 +322,37 @@
         "params": [
           {
             "name": "all",
+            "displayName": "All",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "participating",
+            "displayName": "Participating",
             "style": "query",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "since",
+            "displayName": "Since",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -371,9 +371,9 @@
         "params": [
           {
             "name": "last_read_at",
+            "displayName": "Last Read At",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -392,23 +392,23 @@
         "params": [
           {
             "name": "last_read_at",
+            "displayName": "Last Read At",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -428,9 +428,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -450,9 +450,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -471,9 +471,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -491,23 +491,23 @@
         "params": [
           {
             "name": "subscribed",
+            "displayName": "Subscribed",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "ignored",
+            "displayName": "Ignored",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -527,9 +527,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -548,16 +548,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -576,9 +576,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -596,16 +596,16 @@
         "params": [
           {
             "name": "sort",
+            "displayName": "Sort",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "direction",
+            "displayName": "Direction",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -625,16 +625,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -653,16 +653,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -681,16 +681,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -709,16 +709,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -737,9 +737,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -771,16 +771,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -798,30 +798,30 @@
         "params": [
           {
             "name": "subscribed",
+            "displayName": "Subscribed",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": "ignored",
+            "displayName": "Ignored",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -841,16 +841,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -869,9 +869,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -915,9 +915,9 @@
         "params": [
           {
             "name": "since",
+            "displayName": "Since",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -937,9 +937,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -958,9 +958,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -979,9 +979,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1000,9 +1000,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1021,9 +1021,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1042,9 +1042,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1063,9 +1063,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1084,9 +1084,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1105,9 +1105,9 @@
         "params": [
           {
             "name": ":gist_id",
+            "displayName": "Gist ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1126,16 +1126,16 @@
         "params": [
           {
             "name": ":gist_id",
+            "displayName": "Gist ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1153,16 +1153,16 @@
         "params": [
           {
             "name": "body",
+            "displayName": "Body",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":gist_id",
+            "displayName": "Gist ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1182,23 +1182,23 @@
         "params": [
           {
             "name": "body",
+            "displayName": "Body",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":gist_id",
+            "displayName": "Gist ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1218,16 +1218,16 @@
         "params": [
           {
             "name": ":gist_id",
+            "displayName": "Gist ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1246,23 +1246,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":sha",
+            "displayName": "SHA",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1281,16 +1281,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1309,23 +1309,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":sha",
+            "displayName": "SHA",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1343,58 +1343,58 @@
         "params": [
           {
             "name": "message",
+            "displayName": "Message",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "tree",
+            "displayName": "Tree",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "parents",
+            "displayName": "Parents",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "name",
+            "displayName": "Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "email",
+            "displayName": "Email",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "date",
+            "displayName": "Date",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1414,23 +1414,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":ref",
+            "displayName": "Reference",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1449,16 +1449,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1477,16 +1477,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1504,30 +1504,30 @@
         "params": [
           {
             "name": "ref",
+            "displayName": "Reference",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sha",
+            "displayName": "SHA",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1547,37 +1547,37 @@
         "params": [
           {
             "name": "sha",
+            "displayName": "SHA",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "force",
+            "displayName": "Force",
             "style": "body",
             "type": "boolean",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":ref",
+            "displayName": "Reference",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1597,23 +1597,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":ref",
+            "displayName": "Reference",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1632,23 +1632,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":sha",
+            "displayName": "SHA",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1666,72 +1666,71 @@
         "params": [
           {
             "name": "tag",
+            "displayName": "Tag",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "message",
+            "displayName": "Message",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "object",
+            "displayName": "Object",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "type",
+            "displayName": "Type",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "tagger",
+            "displayName": "Tagger",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "name",
-            "style": "body",
+            "displayName": "Name",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "email",
+            "displayName": "Email",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "date",
+            "displayName": "Date",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1751,23 +1750,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":sha",
+            "displayName": "SHA",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -1785,65 +1784,65 @@
         "params": [
           {
             "name": "tree",
+            "displayName": "Tree",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "base_tree",
+            "displayName": "Base Tree",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "path",
+            "displayName": "Path",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "mode",
+            "displayName": "Mode",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "type",
+            "displayName": "Type",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sha",
+            "displayName": "SHA",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "content",
+            "displayName": "Content",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1888,51 +1887,51 @@
         "params": [
           {
             "name": "filter",
+            "displayName": "Filter",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "state",
+            "displayName": "State",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "labels",
+            "displayName": "Labels",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sort",
+            "displayName": "Sort",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "direction",
+            "displayName": "Direction",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "since",
+            "displayName": "Since",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -1951,79 +1950,79 @@
         "params": [
           {
             "name": "milestone",
+            "displayName": "Milestone",
             "style": "query",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "state",
+            "displayName": "State",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "assignee",
+            "displayName": "Assignee",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "creator",
+            "displayName": "Creator",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "mentioned",
+            "displayName": "Mentioned",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "labels",
+            "displayName": "Labels",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "sort",
+            "displayName": "Sort",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "direction",
+            "displayName": "Direction",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "since",
+            "displayName": "Since",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2043,23 +2042,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2077,51 +2076,51 @@
         "params": [
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "body",
+            "displayName": "Body",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "assignee",
+            "displayName": "Assignee",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "milestone",
+            "displayName": "Milestone",
             "style": "body",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "labels",
+            "displayName": "Labels",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2141,65 +2140,65 @@
         "params": [
           {
             "name": "title",
+            "displayName": "Title",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "body",
+            "displayName": "Body",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "assignee",
+            "displayName": "Assignee",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "state",
+            "displayName": "State",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "milestone",
+            "displayName": "Milestone",
             "style": "body",
             "type": "number",
-            "value": "",
             "required": "false"
           },
           {
             "name": "labels",
+            "displayName": "Labels",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2219,16 +2218,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2247,23 +2246,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":assignee",
+            "displayName": "Assignee",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2282,23 +2281,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2316,37 +2315,37 @@
         "params": [
           {
             "name": "sort",
+            "displayName": "Sort",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "direction",
+            "displayName": "Direction",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "since",
+            "displayName": "Since",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2366,23 +2365,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2400,30 +2399,30 @@
         "params": [
           {
             "name": "body",
+            "displayName": "Body",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2443,30 +2442,30 @@
         "params": [
           {
             "name": "body",
+            "displayName": "Body",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2486,23 +2485,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2521,23 +2520,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":issue_number",
+            "displayName": "Issue Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2556,16 +2555,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2584,23 +2583,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2619,16 +2618,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2647,23 +2646,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":name",
+            "displayName": "Name",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2681,30 +2680,29 @@
         "params": [
           {
             "name": "name",
-            "style": "body",
+            "displayName": "Name",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "color",
+            "displayName": "Color",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2724,37 +2722,36 @@
         "params": [
           {
             "name": "name",
-            "style": "body",
+            "displayName": "Name",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "color",
+            "displayName": "Color",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":name",
+            "displayName": "Name",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2774,23 +2771,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":name",
+            "displayName": "Name",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2809,23 +2806,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2844,23 +2841,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2879,30 +2876,30 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":name",
+            "displayName": "Name",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2921,23 +2918,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2956,23 +2953,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -2991,23 +2988,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3016,37 +3013,37 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "State",
             "name": "state"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Direction",
             "name": "direction"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3075,23 +3072,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3100,44 +3097,44 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Title",
             "name": "title"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "State",
             "name": "state"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Description",
             "name": "description"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Due On",
             "name": "due_on"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3156,51 +3153,51 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Title",
             "name": "title"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "State",
             "name": "state"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Description",
             "name": "description"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Due On",
             "name": "due_on"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3230,23 +3227,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3294,21 +3291,19 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Text",
             "name": "text"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "mode"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "context"
@@ -3342,21 +3337,18 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "name": "hooks"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "name": "git"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "query",
             "name": "verifiable_password_authentication"
@@ -3400,9 +3392,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3434,9 +3426,9 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3445,44 +3437,40 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "billing_email"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "company"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "email"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "location"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3499,22 +3487,6 @@
         "url": "https://api.github.com/orgs/:org"
       },
       {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "filter"
-          },
-          {
-            "name": ":org",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
         "path": "/orgs/:org/members",
         "displayName": "/orgs/:org/members",
         "authentication": {
@@ -3524,7 +3496,23 @@
           "url": "https://developer.github.com/v3/orgs/members/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/orgs/:org/members"
+        "url": "https://api.github.com/orgs/:org/members",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Filter",
+            "name": "filter"
+          },
+          {
+            "name": ":org",
+            "displayName": "Organization",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/orgs/:org/members/:username",
@@ -3540,16 +3528,16 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3568,16 +3556,16 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3596,9 +3584,9 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3617,16 +3605,16 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3645,16 +3633,16 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3673,16 +3661,16 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -3701,30 +3689,14 @@
         "params": [
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "state"
-          },
-          {
-            "name": ":org",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
         "path": "/user/memberships/orgs/:org",
         "displayName": "/user/memberships/orgs/:org",
         "authentication": {
@@ -3735,60 +3707,25 @@
           "t": "patch"
         },
         "httpMethod": "PUT",
-        "url": "https://api.github.com/user/memberships/orgs/:org"
-      },
-      {
+        "url": "https://api.github.com/user/memberships/orgs/:org",
         "params": [
           {
-            "required": "false",
-            "value": "",
+            "required": "true",
             "type": "string",
-            "style": "query",
+            "style": "body",
+            "displayName": "State",
             "name": "state"
           },
           {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "head"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "base"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "sort"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "direction"
-          },
-          {
-            "name": ":owner",
+            "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/repos/:owner/:repo/pulls",
         "displayName": "/repos/:owner/:repo/pulls",
         "authentication": {
@@ -3798,7 +3735,58 @@
           "url": "https://developer.github.com/v3/pulls/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/pulls"
+        "url": "https://api.github.com/repos/:owner/:repo/pulls",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "State",
+            "name": "state"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Head",
+            "name": "head"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Base",
+            "name": "base"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Sort",
+            "name": "sort"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Direction",
+            "name": "direction"
+          },
+          {
+            "name": ":owner",
+            "displayName": "Owner",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":repo",
+            "displayName": "Repository",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number",
@@ -3814,79 +3802,28 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "title"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "head"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "base"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "body"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "number",
-            "style": "body",
-            "name": "issue"
-          },
-          {
-            "name": ":owner",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
         "path": "/repos/:owner/:repo/pulls",
         "displayName": "/repos/:owner/:repo/pulls",
         "authentication": {
@@ -3896,53 +3833,60 @@
           "url": "https://developer.github.com/v3/pulls/"
         },
         "httpMethod": "POST",
-        "url": "https://api.github.com/repos/:owner/:repo/pulls"
-      },
-      {
+        "url": "https://api.github.com/repos/:owner/:repo/pulls",
         "params": [
           {
-            "required": "false",
-            "value": "",
+            "required": "true",
             "type": "string",
             "style": "body",
+            "displayName": "Title",
             "name": "title"
           },
           {
-            "required": "false",
-            "value": "",
+            "required": "true",
             "type": "string",
             "style": "body",
+            "displayName": "Head",
+            "name": "head"
+          },
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "displayName": "Base",
+            "name": "base"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
-            "required": "false",
-            "value": "",
-            "type": "string",
+            "required": "true",
+            "type": "number",
             "style": "body",
-            "name": "state"
+            "displayName": "Issue",
+            "name": "issue"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":number",
-            "style": "url",
-            "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/repos/:owner/:repo/pulls/:number",
         "displayName": "/repos/:owner/:repo/pulls/:number",
         "authentication": {
@@ -3953,7 +3897,51 @@
           "t": "patch"
         },
         "httpMethod": "PUT",
-        "url": "https://api.github.com/repos/:owner/:repo/pulls/:number"
+        "url": "https://api.github.com/repos/:owner/:repo/pulls/:number",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Title",
+            "name": "title"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Body",
+            "name": "body"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "State",
+            "name": "state"
+          },
+          {
+            "name": ":owner",
+            "displayName": "Owner",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":repo",
+            "displayName": "Repository",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":number",
+            "displayName": "Number",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/repos/:owner/:repo/pulls/:number/commits",
@@ -3969,23 +3957,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4004,23 +3992,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4039,23 +4027,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4064,30 +4052,30 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Commit Message",
             "name": "commit_message"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4116,23 +4104,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4141,37 +4129,37 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Direction",
             "name": "direction"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Since",
             "name": "since"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4200,23 +4188,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4225,65 +4213,65 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Commit ID",
             "name": "commit_id"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Path",
             "name": "path"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Position",
             "name": "position"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
             "required": "true",
-            "value": "",
             "type": "number",
             "style": "body",
+            "displayName": "In Reply To",
             "name": "in_reply_to"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4302,30 +4290,30 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4355,23 +4343,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":number",
+            "displayName": "Number",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4380,23 +4368,23 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Type",
             "name": "type"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Direction",
             "name": "direction"
           }
         ],
@@ -4415,30 +4403,30 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Type",
             "name": "type"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Direction",
             "name": "direction"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4457,16 +4445,16 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Type",
             "name": "type"
           },
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4485,9 +4473,9 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Since",
             "name": "since"
           }
         ],
@@ -4519,86 +4507,86 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Description",
             "name": "description"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Homepage",
             "name": "homepage"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Private",
             "name": "private"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Has Issues",
             "name": "has_issues"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Has Wiki",
             "name": "has_wiki"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Has Downloads",
             "name": "has_downloads"
           },
           {
             "required": "false",
-            "value": "",
             "type": "number",
             "style": "body",
+            "displayName": "Team ID",
             "name": "team_id"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Auto Init",
             "name": "auto_init"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": ".gitignore Template",
             "name": "gitignore_template"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "License Template",
             "name": "license_template"
           },
           {
             "name": ":org",
+            "displayName": "Organization",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4627,16 +4615,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4655,9 +4643,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4666,72 +4654,71 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Description",
             "name": "description"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Homepage",
             "name": "homepage"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Private",
             "name": "private"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Has Issues",
             "name": "has_issues"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Has Wiki",
             "name": "has_wiki"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Has Downloads",
             "name": "has_downloads"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "default_branch"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4751,23 +4738,23 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Anon",
             "name": "anon"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4796,16 +4783,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4824,16 +4811,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4852,16 +4839,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4880,16 +4867,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4908,23 +4895,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":branch",
+            "displayName": "Branch",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4943,16 +4930,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4971,16 +4958,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -4999,23 +4986,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5034,23 +5021,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5069,23 +5056,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5104,16 +5091,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5132,23 +5119,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":ref",
+            "displayName": "Reference",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5157,58 +5144,51 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "sha"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Path",
             "name": "path"
           },
           {
             "required": "false",
-            "value": "",
             "type": "number",
             "style": "body",
+            "displayName": "Position",
             "name": "position"
           },
           {
             "required": "false",
-            "value": "",
             "type": "number",
             "style": "body",
+            "displayName": "Line",
             "name": "line"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":sha",
+            "displayName": "SHA",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5237,23 +5217,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5262,30 +5242,30 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5315,23 +5295,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5340,51 +5320,51 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "SHA",
             "name": "sha"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Path",
             "name": "path"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Author",
             "name": "author"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Since",
             "name": "since"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Until",
             "name": "until"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5413,23 +5393,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":sha",
+            "displayName": "SHA",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5448,23 +5428,30 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":base...:head",
+            "name": ":base",
+            "displayName": "Base",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":head",
+            "displayName": "Head",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -5479,20 +5466,48 @@
           "url": "https://developer.github.com/v3/repos/commits/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/compare/user1:branchname...user2:branchname",
+        "url": "https://api.github.com/repos/:owner/:repo/compare/:user1:1branchname...:user2:2branchname",
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":user1",
+            "displayName": "Base Username",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":1branchname",
+            "displayName": "Base Branch Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":user2",
+            "displayName": "Head Username",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":2branchname",
+            "displayName": "Head Branch Name",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -5501,23 +5516,23 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Reference",
             "name": "ref"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5536,37 +5551,37 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Path",
             "name": "path"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Reference",
             "name": "ref"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":path",
+            "displayName": "Path",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5585,65 +5600,58 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "path"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
+            "displayName": "Message",
             "name": "message"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Content",
             "name": "content"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Branch",
             "name": "branch"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Email",
             "name": "email"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":path",
+            "displayName": "Path",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5662,58 +5670,51 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
-            "name": "path"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
+            "displayName": "Message",
             "name": "message"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Content",
             "name": "content"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "SHA",
             "name": "sha"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Branch",
             "name": "branch"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":path",
+            "displayName": "Path",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5732,65 +5733,44 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
-            "style": "",
-            "name": "path"
-          },
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "",
+            "style": "body",
+            "displayName": "Message",
             "name": "message"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
-            "style": "",
+            "style": "body",
+            "displayName": "SHA",
             "name": "sha"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
-            "style": "",
+            "style": "body",
+            "displayName": "Branch",
             "name": "branch"
           },
           {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": "name"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": "email"
-          },
-          {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":path",
+            "displayName": "Path",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5808,45 +5788,30 @@
       {
         "params": [
           {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "archive_format"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "ref"
-          },
-          {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":archive_format",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":ref",
+            "displayName": "Reference",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -5875,16 +5840,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5903,23 +5868,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5938,16 +5903,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5966,23 +5931,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -5991,44 +5956,37 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "SHA",
             "name": "sha"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "ref"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
+            "displayName": "Task",
             "name": "task"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Environment",
             "name": "environment"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6047,65 +6005,65 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Reference",
             "name": "ref"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Task",
             "name": "task"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Auto Merge",
             "name": "auto_merge"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Required Contexts",
             "name": "required_contexts"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Payload",
             "name": "payload"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Environment",
             "name": "environment"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Description",
             "name": "description"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6123,31 +6081,24 @@
       {
         "params": [
           {
-            "required": "true",
-            "value": "",
-            "type": "number",
-            "style": "query",
-            "name": "id"
-          },
-          {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6166,44 +6117,44 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "State",
             "name": "state"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Target URL",
             "name": "target_url"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Description",
             "name": "description"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6232,16 +6183,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6260,23 +6211,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6295,23 +6246,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6320,23 +6271,23 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6355,23 +6306,23 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Organization",
             "name": "organization"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6400,16 +6351,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6428,23 +6379,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6453,51 +6404,44 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Config",
             "name": "config"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Events",
             "name": "events"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Active",
             "name": "active"
           },
           {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": ""
-          },
-          {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6516,58 +6460,58 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Config",
             "name": "config"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Events",
             "name": "events"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Add Events",
             "name": "add_events"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Remove Events",
             "name": "remove_events"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Active",
             "name": "active"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6597,23 +6541,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6632,23 +6576,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6667,23 +6611,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6692,37 +6636,37 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Base",
             "name": "base"
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Head",
             "name": "head"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Commit Message",
             "name": "commit_message"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6751,16 +6695,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6779,16 +6723,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6807,16 +6751,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6835,16 +6779,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6863,23 +6807,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -6888,58 +6832,58 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name Of The Tag",
             "name": "tag_name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Target Commitish",
             "name": "target_commitish"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name Of The Release",
             "name": "name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
+            "displayName": "Draft",
             "name": "draft"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
+            "displayName": "Pre Release",
             "name": "prerelease"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -6958,70 +6902,70 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Tag Name",
             "name": "tag_name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Target Commitish",
             "name": "target_commitish"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Name Of The Release",
             "name": "name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Body",
             "name": "body"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Draft",
             "name": "draft"
           },
           {
             "required": "false",
-            "value": "",
             "type": "boolean",
             "style": "body",
+            "displayName": "Pre Release",
             "name": "prerelease"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
         "path": "/repos/:owner/:repo/releases/:id",
-        "displayName": "/repos/:owner/:repo/releases/:id",
+        "displayName": "Edit A Release",
         "authentication": {
           "required": "true"
         },
@@ -7046,23 +6990,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -7081,23 +7025,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -7116,65 +7060,28 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "name"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "label"
-          },
-          {
-            "name": ":owner",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":id",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
         "path": "/repos/:owner/:repo/releases/assets/:id",
         "displayName": "/repos/:owner/:repo/releases/assets/:id",
         "authentication": {
@@ -7185,7 +7092,43 @@
           "t": "patch"
         },
         "httpMethod": "PUT",
-        "url": "https://api.github.com/repos/:owner/:repo/releases/assets/:id"
+        "url": "https://api.github.com/repos/:owner/:repo/releases/assets/:id",
+        "params": [
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "displayName": "Name",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "name": "label"
+          },
+          {
+            "name": ":owner",
+            "displayName": "Owner",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":repo",
+            "displayName": "Repository",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":id",
+            "displayName": "ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ]
       },
       {
         "path": "/repos/:owner/:repo/releases/assets/:id",
@@ -7201,23 +7144,23 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -7236,16 +7179,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -7264,16 +7207,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -7292,16 +7235,16 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -7320,72 +7263,21 @@
         "params": [
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "state"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "target_url"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "description"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "context"
-          },
-          {
-            "name": ":owner",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":repo",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":sha",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
         "path": "/repos/:owner/:repo/statuses/:sha",
         "displayName": "/repos/:owner/:repo/statuses/:sha",
         "authentication": {
@@ -7395,39 +7287,60 @@
           "url": "https://developer.github.com/v3/repos/statuses/"
         },
         "httpMethod": "POST",
-        "url": "https://api.github.com/repos/:owner/:repo/statuses/:sha"
-      },
-      {
+        "url": "https://api.github.com/repos/:owner/:repo/statuses/:sha",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
-            "style": "query",
-            "name": "ref"
+            "style": "body",
+            "displayName": "State",
+            "name": "state"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Target URL",
+            "name": "target_url"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Description",
+            "name": "description"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Context",
+            "name": "context"
           },
           {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
-            "name": ":ref",
+            "name": ":sha",
+            "displayName": "SHA",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/repos/:owner/:repo/commits/:ref/statuses",
         "displayName": "/repos/:owner/:repo/commits/:ref/statuses",
         "authentication": {
@@ -7437,39 +7350,32 @@
           "url": "https://developer.github.com/v3/repos/statuses/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/commits/:ref/statuses"
-      },
-      {
+        "url": "https://api.github.com/repos/:owner/:repo/commits/:ref/statuses",
         "params": [
           {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "ref"
-          },
-          {
             "name": ":owner",
+            "displayName": "Owner",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":repo",
+            "displayName": "Repository",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":ref",
+            "displayName": "Reference",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/repos/:owner/:repo/commits/:ref/status",
         "displayName": "/repos/:owner/:repo/commits/:ref/status",
         "authentication": {
@@ -7479,32 +7385,32 @@
           "url": "https://developer.github.com/v3/repos/statuses/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/repos/:owner/:repo/commits/:ref/status"
-      },
-      {
+        "url": "https://api.github.com/repos/:owner/:repo/commits/:ref/status",
         "params": [
           {
-            "required": "false",
-            "value": "",
+            "name": ":owner",
+            "displayName": "Owner",
+            "style": "url",
             "type": "string",
-            "style": "query",
-            "name": "q"
+            "required": "true"
           },
           {
-            "required": "false",
-            "value": "",
+            "name": ":repo",
+            "displayName": "Repository",
+            "style": "url",
             "type": "string",
-            "style": "query",
-            "name": "sort"
+            "required": "true"
           },
           {
-            "required": "false",
-            "value": "",
+            "name": ":ref",
+            "displayName": "Reference",
+            "style": "url",
             "type": "string",
-            "style": "query",
-            "name": "order"
+            "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/search/repositories",
         "displayName": "/search/repositories",
         "authentication": {
@@ -7514,32 +7420,32 @@
           "url": "https://developer.github.com/v3/search/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/search/repositories"
-      },
-      {
+        "url": "https://api.github.com/search/repositories",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Query",
             "name": "q"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Order",
             "name": "order"
           }
-        ],
+        ]
+      },
+      {
         "path": "/search/code",
         "displayName": "/search/code",
         "authentication": {
@@ -7549,32 +7455,32 @@
           "url": "https://developer.github.com/v3/search/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/search/code"
-      },
-      {
+        "url": "https://api.github.com/search/code",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Query",
             "name": "q"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Order",
             "name": "order"
           }
-        ],
+        ]
+      },
+      {
         "path": "/search/issues",
         "displayName": "/search/issues",
         "authentication": {
@@ -7584,32 +7490,32 @@
           "url": "https://developer.github.com/v3/search/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/search/issues"
-      },
-      {
+        "url": "https://api.github.com/search/issues",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Query",
             "name": "q"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Order",
             "name": "order"
           }
-        ],
+        ]
+      },
+      {
         "path": "/search/users",
         "displayName": "/search/users",
         "authentication": {
@@ -7619,200 +7525,34 @@
           "url": "https://developer.github.com/v3/search/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/search/users"
-      },
-      {
+        "url": "https://api.github.com/search/users",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "state"
+            "displayName": "Query",
+            "name": "q"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
-            "name": "keyword"
-          },
-          {
-            "name": ":owner",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":repository",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":state",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": ":keyword",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "path": "/legacy/issues/search/:owner/:repository/:state/:keyword",
-        "displayName": "/legacy/issues/search/:owner/:repository/:state/:keyword",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/search/legacy/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/legacy/issues/search/:owner/:repository/:state/:keyword"
-      },
-      {
-        "path": "/legacy/repos/search/:keyword",
-        "displayName": "/legacy/repos/search/:keyword",
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "keyword"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "language"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "start_page"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
+            "displayName": "Sort",
             "name": "sort"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
+            "displayName": "Order",
             "name": "order"
-          },
-          {
-            "name": ":keyword",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
           }
-        ],
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/search/legacy/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/legacy/repos/search/:keyword"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "keyword"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "start_page"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "sort"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "order"
-          },
-          {
-            "name": ":keyword",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "path": "/legacy/user/search/:keyword",
-        "displayName": "/legacy/user/search/:keyword",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/search/legacy/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/legacy/user/search/:keyword"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "name": "email"
-          },
-          {
-            "name": ":email",
-            "style": "url",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          }
-        ],
-        "path": "/legacy/user/email/:email",
-        "displayName": "/legacy/user/email/:email",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/search/legacy/"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.github.com/legacy/user/email/:email"
+        ]
       },
       {
         "path": "/users/:username",
-        "displayName": "/users/:username",
+        "displayName": "Lookup By Username",
         "authentication": {
           "required": "true"
         },
@@ -7824,16 +7564,16 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
       },
       {
         "path": "/user",
-        "displayName": "/user",
+        "displayName": "Authenticated User's Info",
         "authentication": {
           "required": "true"
         },
@@ -7845,57 +7585,6 @@
         "params": []
       },
       {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "name"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "email"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "blog"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "company"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "location"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "boolean",
-            "style": "body",
-            "name": "hireable"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "bio"
-          }
-        ],
         "path": "/user",
         "displayName": "/user",
         "authentication": {
@@ -7906,20 +7595,62 @@
           "t": "patch"
         },
         "httpMethod": "PUT",
-        "url": "https://api.github.com/user"
-      },
-      {
+        "url": "https://api.github.com/user",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
-            "style": "query",
-            "name": "since"
+            "style": "body",
+            "displayName": "Update Name",
+            "name": "name"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "New Email Address",
+            "name": "email"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "New Blog URL",
+            "name": "blog"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "New Company",
+            "name": "company"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "New Location",
+            "name": "location"
+          },
+          {
+            "required": "false",
+            "type": "boolean",
+            "style": "body",
+            "displayName": "Update Hireable Status",
+            "name": "hireable"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "body",
+            "displayName": "Update Bio",
+            "name": "bio"
           }
-        ],
+        ]
+      },
+      {
         "path": "/users",
-        "displayName": "/users",
+        "displayName": "Gets All Users",
         "authentication": {
           "required": "true"
         },
@@ -7927,7 +7658,16 @@
           "url": "https://developer.github.com/v3/users/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/users"
+        "url": "https://api.github.com/users",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Since",
+            "name": "since"
+          }
+        ]
       },
       {
         "path": "/user/emails",
@@ -7982,9 +7722,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8016,9 +7756,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8050,9 +7790,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8071,16 +7811,15 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": ":target_user",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8099,9 +7838,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8120,9 +7859,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8141,9 +7880,9 @@
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8175,9 +7914,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8209,9 +7948,9 @@
         "params": [
           {
             "name": ":id",
+            "displayName": "ID",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ]
@@ -8226,13 +7965,20 @@
           "url": "https://developer.github.com/v3/users/administration/"
         },
         "httpMethod": "PUT",
-        "url": "https://api.github.com/user/:username/site_admin",
+        "url": "https://:hostname/user/:username/site_admin",
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -8247,13 +7993,20 @@
           "url": "https://developer.github.com/v3/users/administration/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.github.com/user/:username/site_admin",
+        "url": "https://:hostname/user/:username/site_admin",
         "params": [
           {
-            "name": ":username",
+            "name": ":hostname",
+            "displayName": "Host Name",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":username",
+            "displayName": "Username",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -8268,13 +8021,20 @@
           "url": "https://developer.github.com/v3/users/administration/"
         },
         "httpMethod": "PUT",
-        "url": "https://api.github.com/user/:username/suspended",
+        "url": "https://:hostname/user/:username/suspended",
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -8289,13 +8049,20 @@
           "url": "https://developer.github.com/v3/users/administration/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.github.com/user/:username/suspended",
+        "url": "https://:hostname/user/:username/suspended",
         "params": [
           {
             "name": ":username",
+            "displayName": "Username",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -8310,13 +8077,20 @@
           "url": "https://developer.github.com/v3/enterprise/admin_stats/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/enterprise/stats/:type",
+        "url": "https://:hostname/enterprise/stats/:type",
         "params": [
           {
             "name": ":type",
+            "displayName": "Type",
             "style": "url",
             "type": "string",
-            "value": "",
+            "required": "true"
+          },
+          {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
             "required": "true"
           }
         ]
@@ -8331,26 +8105,18 @@
           "url": "https://developer.github.com/v3/enterprise/license/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/enterprise/settings/license",
-        "params": []
-      },
-      {
+        "url": "https://:hostname/enterprise/settings/license",
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
             "type": "string",
-            "style": "body",
-            "name": "target"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "",
-            "name": ""
+            "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/staff/indexing_jobs",
         "displayName": "/staff/indexing_jobs",
         "authentication": {
@@ -8360,32 +8126,25 @@
           "url": "https://developer.github.com/v3/enterprise/search_indexing/"
         },
         "httpMethod": "POST",
-        "url": "https://api.github.com/staff/indexing_jobs"
-      },
-      {
+        "url": "https://:hostname/staff/indexing_jobs",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
-            "style": "body",
-            "name": "license"
+            "style": "query",
+            "displayName": "Target",
+            "name": "target"
           },
           {
-            "required": "true",
-            "value": "",
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
             "type": "string",
-            "style": "body",
-            "name": "package"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "name": "settings"
+            "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/setup/api/start",
         "displayName": "/setup/api/start",
         "authentication": {
@@ -8395,25 +8154,39 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "POST",
-        "url": "https://api.github.com/setup/api/start"
-      },
-      {
+        "url": "https://:hostname/setup/api/start",
         "params": [
           {
-            "required": "false",
-            "value": "",
+            "name": ":hostname",
+            "displayName": "Hostname",
+            "type":"string",
+            "style": "url",
+            "required": "true"
+          },
+          {
+            "required": "true",
             "type": "string",
             "style": "body",
+            "displayName": "License",
             "name": "license"
           },
           {
-            "required": "false",
-            "value": "",
+            "required": "true",
             "type": "string",
             "style": "body",
+            "displayName": "Package",
             "name": "package"
+          },
+          {
+            "name": "settings",
+            "displayName": "Path to JSON file containing settings",
+            "style": "body",
+            "type": "string",
+            "required": "false"
           }
-        ],
+        ]
+      },
+      {
         "path": "/setup/api/upgrade",
         "displayName": "/setup/api/upgrade",
         "authentication": {
@@ -8423,7 +8196,37 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "POST",
-        "url": "https://api.github.com/setup/api/upgrade"
+        "url": "https://:hostname/setup/api/upgrade",
+        "params": [
+          {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license",
+            "displayName": "New License",
+            "style": "body",
+            "type": "string",
+            "required": "false"
+          },
+          {
+            "name": "package",
+            "displayName": "New Package",
+            "style": "body",
+            "type": "string",
+            "required": "false"
+          }
+        ]
       },
       {
         "path": "/setup/api/configcheck",
@@ -8435,19 +8238,25 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/setup/api/configcheck",
-        "params": []
-      },
-      {
+        "url": "http://:hostname/setup/api/configcheck",
         "params": [
           {
-            "required": "false",
-            "value": "",
+            "name": ":hostname",
+            "displayName": "Hostname",
+            "type":"string",
+            "style": "url",
+            "required": "true"
+          },
+          {
+            "name": ":license_md5",
+            "displayName": "MD5 Check Sum of License",
             "type": "string",
-            "style": "body",
-            "name": "complete"
+            "style": "query",
+            "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/setup/api/configure",
         "displayName": "/setup/api/configure",
         "authentication": {
@@ -8457,7 +8266,30 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "POST",
-        "url": "https://api.github.com/setup/api/configure"
+        "url": "https://:hostname/setup/api/configure",
+        "params": [
+        {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "complete",
+            "displayName": "Complete",
+            "required": "false",
+            "type": "string",
+            "style": "body"
+          }
+        ]
       },
       {
         "path": "/setup/api/settings",
@@ -8469,19 +8301,25 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/setup/api/settings",
-        "params": []
-      },
-      {
+        "url": "https://:hostname/setup/api/settings",
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
             "type": "string",
-            "style": "body",
-            "name": "settings"
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
           }
-        ],
+          ]
+      },
+      {
         "path": "/setup/api/settings",
         "displayName": "/setup/api/settings",
         "authentication": {
@@ -8491,7 +8329,30 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "PUT",
-        "url": "https://api.github.com/setup/api/settings"
+        "url": "https://:hostname/setup/api/settings",
+        "params": [
+        {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "displayName": "Settings",
+            "name": "settings"
+          }
+        ]
       },
       {
         "path": "/setup/api/maintenance",
@@ -8503,29 +8364,58 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/setup/api/maintenance",
-        "params": []
-      },
-      {
+        "url": "https://:hostname/setup/api/maintenance",
         "params": [
           {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
+          }
+        ]
+      },
+      {
+        "path": "/setup/api/maintenance",
+        "displayName": "/setup/api/maintenance",
+        "authentication": {
+          "required": "true"
+        },
+        "doc": {
+          "url": "https://developer.github.com/v3/enterprise/management_console/"
+        },
+        "httpMethod": "POST",
+        "url": "https://:hostname/setup/api/maintenance",
+        "params": [
+        {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
+          },
+          {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
+            "displayName": "Maintenance",
             "name": "maintenance"
           }
-        ],
-        "path": "/setup/api/maintenance",
-        "displayName": "/setup/api/maintenance",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://developer.github.com/v3/enterprise/management_console/"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.github.com/setup/api/maintenance"
+        ]
       },
       {
         "path": "/setup/api/settings/authorized-keys",
@@ -8537,19 +8427,25 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "GET",
-        "url": "https://api.github.com/setup/api/settings/authorized-keys",
-        "params": []
-      },
-      {
+        "url": "https://:hostname/setup/api/settings/authorized-keys",
         "params": [
           {
-            "required": "true",
-            "value": "",
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
             "type": "string",
-            "style": "body",
-            "name": "authorized_key"
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/setup/api/settings/authorized-keys",
         "displayName": "/setup/api/settings/authorized-keys",
         "authentication": {
@@ -8559,18 +8455,32 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "POST",
-        "url": "https://api.github.com/setup/api/settings/authorized-keys"
-      },
-      {
+        "url": "https://:hostname/setup/api/settings/authorized-keys",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
-            "style": "",
+            "displayName": "Authorized Key",
+            "style": "body",
             "name": "authorized_key"
+          },
+          {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
           }
-        ],
+        ]
+      },
+      {
         "path": "/setup/api/settings/authorized-keys",
         "displayName": "/setup/api/settings/authorized-keys",
         "authentication": {
@@ -8580,7 +8490,30 @@
           "url": "https://developer.github.com/v3/enterprise/management_console/"
         },
         "httpMethod": "DELETE",
-        "url": "https://api.github.com/setup/api/settings/authorized-keys"
+        "url": "https://:hostname/setup/api/settings/authorized-keys",
+        "params": [
+          {
+            "required": "true",
+            "type": "string",
+            "style": "body",
+            "displayName": "Authorized Key",
+            "name": "authorized_key"
+          },
+          {
+            "name": ":hostname",
+            "displayName": "Host Name",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "license_md5",
+            "displayName": "MD5 Checksum of License",
+            "style": "query",
+            "type": "string",
+            "required": "true"
+          }
+        ]
       }
     ]
   }
