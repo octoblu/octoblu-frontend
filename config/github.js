@@ -2,7 +2,6 @@
 var GithubStrategy = require('passport-github').Strategy;
 var User           = require('../app/models/user');
 var Channel        = require('../app/models/channel');
-var mongojs        = require('mongojs');
 var _              = require('lodash');
 
 var CONFIG = Channel.syncFindByType('channel:github').oauth[process.env.NODE_ENV];
@@ -44,7 +43,7 @@ var ensureUser = function(req, user, profile, callback){
   }).catch(function(error){
     callback(error);
   });
-}
+};
 
 var githubStrategy = new GithubStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
   ensureUser(req, req.user, profile, function(err, user){

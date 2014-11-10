@@ -64,7 +64,9 @@ function UserModel() {
           api : []
         });
 
-        return self.insert(userParams);
+        return self.insert(userParams).then(function(users){
+          return _.first(users);
+        });
       });
     },
 
@@ -133,6 +135,7 @@ function UserModel() {
       var self = this;
       var channel = Channel.syncFindByType(type);
       self.overwriteOrAddApiByChannelId(user, self.ObjectId(channel._id), options);
+      console.log('updating', user);
       return self.update({_id: user._id}, user);
     },
 

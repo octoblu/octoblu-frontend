@@ -2,7 +2,6 @@
 var TwitterStrategy = require('passport-twitter').Strategy;
 var User            = require('../app/models/user');
 var Channel         = require('../app/models/channel');
-var mongojs         = require('mongojs');
 var _               = require('lodash');
 
 var CONFIG = Channel.syncFindByType('channel:twitter').oauth[process.env.NODE_ENV];
@@ -44,7 +43,7 @@ var ensureUser = function(req, user, profile, callback){
   }).catch(function(error){
     callback(error);
   });
-}
+};
 
 var twitterStrategy = new TwitterStrategy(CONFIG,
   function (req, token, secret, profile, done) {
