@@ -1,39 +1,20 @@
+'use strict';
 var GithubStrategy = require('passport-github').Strategy;
-var User     = require('../app/models/user');
-var mongojs = require('mongojs');
+var User           = require('../app/models/user');
+var Channel        = require('../app/models/channel');
+var mongojs        = require('mongojs');
+var _              = require('lodash');
 
-var CONFIG = {
-  development: {
-    clientID: "INSERT_SECERT_HERE",
-    clientSecret: "INSERT_SECERT_HERE",
-    callbackURL:    'http://localhost:8080/api/oauth/github/callback',
-    passReqToCallback: true
-  },
-  production: {
-    clientID: "INSERT_SECERT_HERE",
-    clientSecret: "INSERT_SECERT_HERE",
-    callbackURL:    'https://app.octoblu.com/api/oauth/github/callback',
-    passReqToCallback: true
-  },
-  staging: {
-    clientID: "INSERT_SECERT_HERE",
-    clientSecret: "INSERT_SECERT_HERE",
-    callbackURL:    'https://staging.octoblu.com/api/oauth/github/callback',
-    passReqToCallback: true
-  }
-}[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:github').oauth[process.env.NODE_ENV];
+
+CONFIG.passReqToCallback = true;
 
 var ensureUser = function(req, user, profile, callback){
   if(user){ return callback(null, user); }
-  var query, userParams, upsert;
-
-  upsert = false;
-
-  if(req.session.testerId) {
-    upsert = true;
-  }
+  var query, userParams;
 
   query = {'github.id': profile.id};
+
   userParams = {
     username:    profile.username,
     displayName: profile.username,
@@ -43,18 +24,23 @@ var ensureUser = function(req, user, profile, callback){
     }
   };
 
-  User.findOne(query).then(function(user){
-    if (!user) {
+  User.findOne(query).then(function(user) {
+    if (!_.isEmpty(user)){
+      var updatedUser = _.extend({}, user, userParams);
+      User.update({_id:user._id}, updatedUser);
+      callback(null, updatedUser);
       return;
     }
-    var updatedUser = _.extend({}, user, userParams);
-    return User.update(query, updatedUser, {upsert: upsert, new: upsert});
-  }).then(function (user) {
-      if(!user){
-        callback(new Error('You need a valid invitation code'));
-      } else {
-        callback(null, updatedUser);
-      }
+
+    if (!req.session.testerId) {
+      callback(new Error('You must have a valid invitation code'));
+      return;
+    }
+
+    User.createOAuthUser(userParams).then(function(user){
+      callback(null, user);
+    });
+
   }).catch(function(error){
     callback(error);
   });
@@ -64,15 +50,11 @@ var githubStrategy = new GithubStrategy(CONFIG, function(req, accessToken, refre
   ensureUser(req, req.user, profile, function(err, user){
     if(err){ return done(err, user); }
 
-    var channelId = mongojs.ObjectId('532a258a50411e5802cb8053');
-
-    User.overwriteOrAddApiByChannelId(user, channelId, {authtype: 'oauth', token: accessToken});
-    User.update(user).then(function () {
+    User.addApiAuthorization(user, 'channel:github', {authtype: 'oauth', token: accessToken}).then(function(){
       done(null, user);
     }).catch(function(error){
       done(error);
     });
-
   });
 });
 

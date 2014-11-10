@@ -1,3 +1,4 @@
+'use strict';
 var config  = require('../../config/database')(),
   when      = require('when'),
 	nodefn    = require('when/node/function'),
@@ -12,6 +13,11 @@ function createNeDBCollection(collection){
   });
 }
 
+function createObjectId(id) {
+	var mongojs = require('mongojs');
+	return mongojs.ObjectId(id);
+}
+
 function wrapCollection(collection){
 	return {
 	  find: nodefn.lift(_.bind(collection.find, collection)),
@@ -19,7 +25,8 @@ function wrapCollection(collection){
 	  remove: nodefn.lift(_.bind(collection.remove, collection)),
 	  insert: nodefn.lift(_.bind(collection.insert, collection)),
 	  save: nodefn.lift(_.bind(collection.save, collection)),
-	  update: nodefn.lift(_.bind(collection.update, collection))
+	  update: nodefn.lift(_.bind(collection.update, collection)),
+	  ObjectId: createObjectId
 	};
 }
 

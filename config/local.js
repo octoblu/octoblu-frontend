@@ -1,8 +1,8 @@
 var User          = require('../app/models/user');
 var LocalStrategy = require('passport-local').Strategy;
 
-var findByEmailAndPassword = function(email, password, done){
-  User.findByEmailAndPassword(email, password).then(function(user){
+var ensureUser = function(email, password, done){
+  User.createLocalUser({email: email, password: password}).then(function(user){
     done(null, user);
   }).catch(function(error){
     done(error);
@@ -12,6 +12,6 @@ var findByEmailAndPassword = function(email, password, done){
 var localStrategy = new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
-}, findByEmailAndPassword);
+}, ensureUser);
 
 module.exports = localStrategy;

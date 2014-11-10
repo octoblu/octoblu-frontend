@@ -6,16 +6,17 @@ var uuid       = require('node-uuid');
 var bcrypt     = require('bcrypt-nodejs');
 var configAuth = require('../../config/auth')(process.env.NODE_ENV);
 var request    = require('request');
+var Channel    = require('./channel');
 
 function UserModel() {
   var collection = octobluDB.getCollection('users');
 
   var methods = {
-    findOrCreateByEmailAndPassword : function(email, password){
+    createLocalUser : function(data){
       var self = this;
 
-      return self.findByEmail(email).then(function(user){
-        if(user && self.validPassword(user, password)){
+      return self.findByEmail(data.email).then(function(user){
+        if(user && self.validPassword(user, data.password)){
           return user;
         }
 
@@ -26,20 +27,32 @@ function UserModel() {
       }).then(function(user) {
         if (!_.isEmpty(user)) {
           return user;
-        } 
-        return self.createUser(email, password);
+        }
+
+        var userParams = {
+          email: data.email,
+          local: {
+            email: data.email,
+            password: self.generateHash(password)
+          }
+        }
+        return self.createUser(userParams);
       });
     },
 
-    createUser: function(email, password){
+    createOAuthUser: function(data) {
       var self = this;
-      return self.registerWithMeshblu(email).then(function(skynetData){
+      return self.createUser(data);
+    },
+
+    createUser: function(data){
+      var self = this;
+      return self.registerWithMeshblu(data.email).then(function(skynetData){
         if (!skynetData.uuid) {
           throw new Error("Unable to register with Meshblu");
         }
 
-        var userParams = {
-          email: email,
+        var userParams = _.extend({}, data, {
           resource: {
             type: 'user',
             uuid: skynetData.uuid
@@ -48,12 +61,8 @@ function UserModel() {
             uuid: skynetData.uuid,
             token: skynetData.token
           },
-          api : [],
-          local: {
-            email: email,
-            password: self.generateHash(password)
-          }
-        };
+          api : []
+        });
 
         return self.insert(userParams);
       });
@@ -117,6 +126,13 @@ function UserModel() {
       }
 
       user.terms_accepted_at = new Date();
+      return self.update({_id: user._id}, user);
+    },
+
+    addApiAuthorization: function(user, type, options) {
+      var self = this;
+      var channel = Channel.syncFindByType(type);
+      self.overwriteOrAddApiByChannelId(user, self.ObjectId(channel._id), options);
       return self.update({_id: user._id}, user);
     },
 
