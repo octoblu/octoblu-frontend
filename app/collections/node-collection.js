@@ -1,10 +1,10 @@
-var _ = require('lodash');
-var when = require('when');
-var ChannelCollection = require('./channel-collection');
-var DeviceCollection = require('./device-collection');
-var FlowCollection = require('./flow-collection');
+var _                  = require('lodash');
+var when               = require('when');
+var ChannelCollection  = require('./channel-collection');
+var DeviceCollection   = require('./device-collection');
+var FlowCollection     = require('./flow-collection');
 var NodeTypeCollection = require('./node-type-collection');
-var config = require('../../config/auth')();
+var config             = require('../../config/auth')();
 
 var NodeCollection = function(userUUID) {
   var self = this;
