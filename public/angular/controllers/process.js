@@ -12,7 +12,7 @@ angular.module('octobluApp')
             $scope.channels = data;
         });
 
-        userService.getMessageGraph($scope.currentUser.skynetuuid, 'now-30d/d', 'day', function (data) {
+        userService.getMessageGraph($scope.currentUser.skynet.uuid, 'now-30d/d', 'day', function (data) {
             $scope.messages = data
         });
         $scope.devices = myDevices;

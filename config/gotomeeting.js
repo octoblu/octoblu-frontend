@@ -1,19 +1,18 @@
+'use strict';
 var CitrixStrategy = require('passport-citrix').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
-var Channel = require('../app/models/channel');
+var User           = require('../app/models/user');
+var Channel        = require('../app/models/channel');
 
-var channel = Channel.syncFindByType('channel:gotomeeting');
-var CONFIG = channel.oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:gotomeeting').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
 
 var citrixStrategy = new CitrixStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
-  var channelId = new mongoose.Types.ObjectId(channel._id);
 
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-  req.user.save(function (err) {
-    return done(err, req.user);
+  User.addApiAuthorization(req.user, 'channel:gotomeeting', {authtype: 'oauth', token: accessToken}).then(function () {
+    done(null, req.user);
+  }).catch(function(error){
+    done(error);
   });
 });
 

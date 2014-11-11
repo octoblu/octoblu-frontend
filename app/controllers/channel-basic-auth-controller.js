@@ -5,14 +5,12 @@ function ChannelBasicAuthController(){
 
   self.create = function(req, res){
     var channelId = req.params.id;
-    req.user.overwriteOrAddApiByChannelId(channelId, { authtype: 'basic', token_crypt : textCrypt.encrypt(req.body.username), secret_crypt : textCrypt.encrypt(req.body.password) });
-    req.user.save(function(err){
-      if(err){
-        console.log('Error saving user', err);
-        res.send(422);
-        return;
-      }
+    User.overwriteOrAddApiByChannelId(req.user, channelId, { authtype: 'basic', token_crypt : textCrypt.encrypt(req.body.username), secret_crypt : textCrypt.encrypt(req.body.password) });
+    User.update({_id: req.user._id}, req.user).then(function(){
       res.send(201);
+    }).catch(function(error){
+      console.error(error);
+      res.send(422);
     });
   }
 }

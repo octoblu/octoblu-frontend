@@ -12,3 +12,4 @@ atlassian-ide-plugin.xml
 assets/lib
 public/assets/stylesheets/fonts
 assets/json/channels.json
+database

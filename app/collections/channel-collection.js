@@ -1,14 +1,12 @@
 var _        = require('lodash');
 var when     = require('when');
-var mongoose = require('mongoose');
 var Channel  = require('../models/channel');
 
 var ChannelCollection = function(options){
   var self = this;
 
   options  = options || {};
-  mongoose = options.mongoose || mongoose;
-  var User = mongoose.model('User');
+  var User = require('../models/user');
 
   self.fetch = function(userUUID) {
     var userApis;

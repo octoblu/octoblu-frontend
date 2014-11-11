@@ -1,11 +1,8 @@
 'use strict';
 
 var _               = require('lodash');
-var mongoose        = require('mongoose');
 var Channel         = require('../models/channel');
 var isAuthenticated = require('./middleware/security').isAuthenticated;
-
-var User     = mongoose.model('User');
 
 module.exports = function (app) {
   var pickProperties, whiteListProperties;

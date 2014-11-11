@@ -1,5 +1,4 @@
 var config = require('../../config/auth')(),
-  mongoose = require('mongoose'),
   _ = require('lodash'),
   when = require('when'),
   rest = require('rest'),
@@ -9,7 +8,7 @@ var config = require('../../config/auth')(),
 
 var FlowDeviceCollection = function (userUUID) {
   var self = this;
-  var User = mongoose.model('User');
+  var User = require('../models/user');
 
   self.fetch = function () {
     return self.getUser(userUUID).then(function (user) {
@@ -29,8 +28,8 @@ var FlowDeviceCollection = function (userUUID) {
       path: 'http://' + config.skynet.host + ':' +
         config.skynet.port + '/mydevices',
       headers: {
-        skynet_auth_uuid: user.skynetuuid,
-        skynet_auth_token: user.skynettoken
+        skynet_auth_uuid: user.skynet.uuid,
+        skynet_auth_token: user.skynet.token
       }
     };
 

@@ -1,18 +1,18 @@
+'use strict';
 var InstagramStrategy = require('passport-instagram').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
-var Channel = require('../app/models/channel');
+var User              = require('../app/models/user');
+var Channel           = require('../app/models/channel');
 
-var CONFIG = Channel.syncFindById('541b21fe025549193cb82939').oauth[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:instagram').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
 
 var instagramStrategy = new InstagramStrategy(CONFIG, function(req, accessToken, refreshToken, profile, done){
-  var channelId = new mongoose.Types.ObjectId('541b21fe025549193cb82939');
 
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth', token: accessToken});
-  req.user.save(function (err) {
-    return done(err, req.user);
+  User.addApiAuthorization(req.user, 'channel:instagram', {authtype: 'oauth', token: accessToken}).then(function () {
+    done(null, req.user);
+  }).catch(function(error){
+    done(error);
   });
 });
 

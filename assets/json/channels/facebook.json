@@ -1,5 +1,27 @@
 {
   "_id": "53359922443595b588409210",
+  "auth_strategy": "oauth",
+  "documentation": "https://developers.facebook.com/docs/graph-api/reference/",
+  "enabled": true,
+  "name": "Facebook",
+  "type": "channel:facebook",
+  "oauth" : {
+    "development": {
+      "clientID"     : "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL"  : "http://localhost:8080/api/oauth/facebook/callback"
+    },
+    "production": {
+      "clientID"     : "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL"  : "https://app.octoblu.com/api/oauth/facebook/callback"
+    },
+    "staging": {
+      "clientID"     : "INSERT_SECERT_HERE",
+      "clientSecret" : "INSERT_SECERT_HERE",
+      "callbackURL"  : "https://staging.octoblu.com/api/oauth/facebook/callback"
+    }
+  },
   "application": {
     "base": "https://graph.facebook.com",
     "resources": [
@@ -8521,29 +8543,5 @@
         }],
         "url": "https://api.podio.com/widget/{ref_type}/{ref_id}/order"
         }]
-  },
-  "auth_strategy": "oauth",
-  "documentation": "https://developers.facebook.com/docs/graph-api/reference/",
-  "enabled": true,
-  "name": "Facebook",
-  "oauth": {
-    "accessTokenURL": "https://graph.facebook.com/oauth/access_token",
-    "apiKey": "",
-    "authTokenPath": "/dialog/oauth",
-    "authTokenURL": "https://www.facebook.com/dialog/oauth",
-    "baseURL": "https://www.facebook.com",
-    "clientId": "125271024334065",
-    "grant_type": "",
-    "host": "www.facebook.com",
-    "isManual": true,
-    "protocol": "https",
-    "requestTokenURL": "",
-    "scope": "publish_stream,offline_access,manage_pages,publish_actions",
-    "secret": "999a5e310b8934a3dd0bdc37c87f39a1",
-    "tokenMethod": "access_token_query",
-    "useOAuthLib": false,
-    "version": "2.0"
-  },
-  "useCustom": true,
-  "type": "channel:facebook"
+  }
 }

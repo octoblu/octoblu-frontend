@@ -1,7 +1,5 @@
 'use strict';
-
-var mongoose = require('mongoose'),
-    request  = require('request')
+var request = require('request')
 
 module.exports = function (app) {
 

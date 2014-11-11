@@ -3,11 +3,10 @@ var _ = require('lodash'),
     jade = require('jade'),
     fs = require('fs'),
     uuid = require('node-uuid'),
-    mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
     Invitation = require('../models/invitation'),
-    User = mongoose.model('User'),
-    Group = mongoose.model('Group'),
+    User = require('../models/user'),
+    Group = require('../models/group'),
     isAuthenticated = require('./middleware/security').isAuthenticated;
 /*
  File : invitation.js
@@ -23,13 +22,13 @@ var invitationController = {
         //check for sent or received invitations.
         var queryParams = {};
         if (searchParams.sent) {
-            queryParams.from = user.skynetuuid;
+            queryParams.from = user.skynet.uuid;
         }
 
         if (searchParams.received) {
             queryParams.$or = [];
             queryParams.push({
-                'recipient.uuid': user.skynetuuid
+                'recipient.uuid': user.skynet.uuid
             });
             queryParams.push({
                 'recipient.email': user.email
@@ -93,21 +92,21 @@ var invitationController = {
         return User.findByEmail(email)
             .then(function (rcp) {
                 recipient = rcp;
-                var inviteData = {};
-                inviteData.recipient = {email: email};
-                inviteData.from = req.user.skynetuuid;
-                inviteData.status = 'PENDING';
-                inviteData.sent = moment.utc();
-
-                if (rcp) {
-                    inviteData.recipient.uuid = recipient.skynetuuid;
+                var inviteData = {
+                    recipient: {email: email},
+                    from: req.user.skynet.uuid,
+                    status: 'PENDING',
+                    sent: moment.utc()
                 }
 
-                return Invitation.save(inviteData);
+                if (rcp) {
+                    inviteData.recipient.uuid = recipient.skynet.uuid;
+                }
+
+                return Invitation.insert(inviteData);
 
             }, function (err) {
-                console.log('error!');
-                console.log(err);
+                console.error(err);
             })
             .then(function (invites) {
             		var invite = _.first(invites);
@@ -150,7 +149,7 @@ var invitationController = {
 
     acceptInvitation: function (req, res) {
         var invitation, sender, recipient;
-        Invitation.findById(req.params.id).exec()
+        Invitation.findById(req.params.id)
             .then(function (inv) {
                 invitation = inv;
 
@@ -168,10 +167,10 @@ var invitationController = {
                     })
                     .then(function (rcp) {
                         recipient = rcp;
-                        if (!recipient || recipient.skynetuuid !== req.user.skynetuuid) {
+                        if (!recipient || recipient.skynet.uuid !== req.user.skynet.uuid) {
                             return res.redirect('/login');
                         }
-                        return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid }).exec()
+                        return Group.findOne({'type': 'operators', 'resource.owner.uuid': sender.resource.uuid })
                             .then(function (operatorGroup) {
                                 operatorGroup = operatorGroup ||
                                     new Group({
@@ -186,11 +185,11 @@ var invitationController = {
 
                                 invitation.accepted = moment.utc();
                                 invitation.status = "ACCEPTED";
-                                invitation.save();
+                                Invitation.update({_id: invitation._id}, invitation);
 
                                 if (!existingMember) {
                                     operatorGroup.members.push(recipient.resourceId);
-                                    operatorGroup.save();
+                                    Group.update({_id: operatorGroup._id}, operatorGroup);
                                 }
 
                                 res.redirect('/home');
@@ -198,8 +197,7 @@ var invitationController = {
                     });
             })
             .then(null, function(err){
-                console.log('invitation messed up.');
-                console.log(err);
+                console.error(err);
             });
     },
 

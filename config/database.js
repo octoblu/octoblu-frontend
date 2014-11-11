@@ -1,6 +1,10 @@
+path = require('path');
+
 var config = {
     development: {
-        databaseType : 'mongodb',
+        // databaseType : 'nedb',
+        databaseType: 'mongodb',
+        databaseDirectory : path.join(__dirname, '../database'),
         url : process.env.OCTOBLU_DB || 'mongodb://localhost:27017/meshines',
         mongojsUrl : process.env.OCTOBLU_DB || 'mongodb://localhost:27017/meshines',
         skynetUrl: process.env.SKYNET_DB || 'mongodb://localhost:27017/skynet',

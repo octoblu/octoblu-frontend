@@ -2,7 +2,7 @@
 angular.module('octobluApp')
     .service('AuthService', function ($q, $cookies,  $http, $window) {
         var service;
-        var currentUser = {};
+        var currentUser = {skynet: {}};
 
         //TODO: move me to the eventual root controller.
         function getProfileUrl(user) {
@@ -23,8 +23,8 @@ angular.module('octobluApp')
                throw result.data;
             }
             _.extend(currentUser, result.data);
-            $cookies.skynetuuid  = currentUser.skynetuuid;
-            $cookies.skynettoken = currentUser.skynettoken;
+            $cookies.skynetuuid  = currentUser.skynet.uuid;
+            $cookies.skynettoken = currentUser.skynet.token;
             getProfileUrl(currentUser);
             return currentUser;
         }

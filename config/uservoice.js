@@ -1,17 +1,18 @@
+'use strict';
 var UserVoiceStrategy = require('passport-uservoice').Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
-var Channel = require('../app/models/channel');
+var User              = require('../app/models/user');
+var Channel           = require('../app/models/channel');
 
 var CONFIG = Channel.syncFindByType('channel:uservoice').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
 
 var uservoiceStrategy = new UserVoiceStrategy(CONFIG, function(req, token, secret, profile, done){
-  var channelId = '53f616b5710850ee08e28482';
-  req.user.overwriteOrAddApiByChannelId(channelId, {authtype: 'oauth',  token: token, secret: secret});
-  req.user.save(function (err) {
-    return done(err, req.user);
+
+  User.addApiAuthorization(req.user, 'channel:uservoice', {authtype: 'oauth',  token: token, secret: secret}).then(function () {
+    done(null, req.user);
+  }).catch(function(error){
+    done(error);
   });
 });
 

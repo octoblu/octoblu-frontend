@@ -1,20 +1,11 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
+<md-text-float label="Name" ng-model="flowNode.name"></md-text-float>
 
-<div class="form-group">
-  <label for="timeout">Timeout</label>
-  <input  id="timeout" class="form-control" type="number" ng-model="flowNode.timeout" required>
-</div>
+<md-text-float label="Timeout" ng-model="flowNode.timeout" type="number"></md-text-float>
 
-<div class="form-group">
-  <label for="timeoutUnits">Units</label>
-  <select id="timeoutUnits" name="timeoutUnits" class="form-control" ng-model="flowNode.timeoutUnits" required>
-    <option value="milliseconds">Milliseconds</option>
-    <option value="seconds">Seconds</option>
-    <option value="minutes">Minutes</option>
-    <option value="hours">Hours</option>
-    <option value="days">Days</option>
-  </select>
-</div>
+<span>Units</span>
+<md-radio-group ng-model="flowNode.timeoutUnits">
+  <md-radio-button value="milliseconds">Milliseconds</md-radio-button>
+  <md-radio-button value="seconds">Seconds</md-radio-button>
+  <md-radio-button value="minutes">Minutes</md-radio-button>
+  <md-radio-button value="hours">Hours</md-radio-button>
+</md-radio-group>

@@ -1,5 +1,30 @@
 {
   "_id": "52f97c5ba990930c8c0003ca",
+  "type": "channel:linked-in",
+  "auth_strategy": "oauth",
+  "name": "LinkedIn",
+  "enabled": true,
+  "oauth": {
+    "development": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/linked-in/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/linked-in/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID": "INSERT_SECERT_HERE",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/linked-in/callback",
+      "tokenMethod": "access_token_bearer"
+    }
+  },
+  "isPassport": true,
   "application": {
     "base": "https://api.linkedin.com/v1",
     "resources": [
@@ -633,30 +658,5 @@
         "url": "https://api.linkedin.com/v1/jobs/:job-id"
       }
     ]
-  },
-  "auth_strategy": "oauth",
-  "name": "LinkedIn",
-  "enabled": true,
-  "oauth": {
-    "development": {
-      "consumerKey": "INSERT_SECERT_HERE",
-      "consumerSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "http://localhost:8080/api/oauth/linked-in/callback",
-      "tokenMethod": "access_token_bearer"
-    },
-    "staging": {
-      "consumerKey": "INSERT_SECERT_HERE",
-      "consumerSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/linked-in/callback",
-      "tokenMethod": "access_token_bearer"
-    },
-    "production": {
-      "consumerKey": "INSERT_SECERT_HERE",
-      "consumerSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "https://app.octoblu.com/api/oauth/linked-in/callback",
-      "tokenMethod": "access_token_bearer"
-    }
-  },
-  "isPassport": true,
-  "type": "channel:linked-in"
+  }
 }

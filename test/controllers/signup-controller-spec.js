@@ -1,15 +1,9 @@
 var request    = require('request');
 var when = require('when');
 var SignupController = require('../../app/controllers/signup-controller');
-var mongoose = require('mongoose');
 
 describe('SignupController', function () {
   var sut, res;
-
-  before(function () {
-    db = mongoose.createConnection();
-    db.model('User', require('../../app/models/user'));
-  });
 
   beforeEach(function () {
      sut = new SignupController();

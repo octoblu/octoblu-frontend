@@ -1,43 +1,19 @@
+'use strict';
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var mongoose = require('mongoose');
-var User     = mongoose.model('User');
-var Channel = require('../app/models/channel');
-var _       = require('lodash');
+var User           = require('../app/models/user');
+var Channel        = require('../app/models/channel');
+var _              = require('lodash');
+var when           = require('when');
 
-var CONFIG = {
-  development: {
-    clientID     : 'INSERT_SECERT_HERE',
-    clientSecret : 'INSERT_SECERT_HERE',
-    callbackURL  : 'http://localhost:8080/api/oauth/google/callback',
-    tokenMethod  : 'access_token_query'
-  },
-  production: {
-    clientID     : 'INSERT_SECERT_HERE',
-    clientSecret : 'INSERT_SECERT_HERE',
-    callbackURL  : 'https://app.octoblu.com/api/oauth/google/callback',
-    tokenMethod  : 'access_token_query'
-  },
-  staging: {
-    clientID     : 'INSERT_SECERT_HERE',
-    clientSecret : 'INSERT_SECERT_HERE',
-    callbackURL  : 'https://staging.octoblu.com/api/oauth/google/callback',
-    tokenMethod  : 'access_token_query'
-  }
-}[process.env.NODE_ENV];
+var CONFIG = Channel.syncFindByType('channel:google-plus').oauth[process.env.NODE_ENV];
 
 CONFIG.passReqToCallback = true;
-
 var ensureUser = function(req, user, profile, callback){
   if(user){ return callback(null, user); }
-  var query, userParams, upsert;
-
-  upsert = false;
-
-  if(req.session.testerId) {
-    upsert = true;
-  }
+  var query, userParams;
 
   query = {'google.id': profile.id};
+
   userParams = {
     username:    profile.emails[0].value,
     displayName: profile.displayName,
@@ -47,15 +23,25 @@ var ensureUser = function(req, user, profile, callback){
     }
   };
 
-  User.findOneAndUpdate(query, {$set: userParams}, {upsert: upsert, new: upsert}).exec()
-  .then(function (user) {
-      if(!user){
-        callback(new Error('You need a valid invitation code'));
-      } else {
-        callback(null, user);
-      }
-  }, function(err){
-    callback(err);
+  User.findOne(query).then(function(user) {
+    if (!_.isEmpty(user)){
+      var updatedUser = _.extend({}, user, userParams);
+      User.update({_id:user._id}, updatedUser);
+      callback(null, updatedUser);
+      return;
+    }
+
+    if (!req.session.testerId) {
+      callback(new Error('You must have a valid invitation code'));
+      return;
+    }
+
+    User.createOAuthUser(userParams).then(function(user){
+      callback(null, user);
+    });
+
+  }).catch(function(error){
+    callback(error);
   });
 };
 
@@ -63,20 +49,19 @@ var googleStrategy = new GoogleStrategy(CONFIG,
   function (req, token, secret, profile, done) {
   ensureUser(req, req.user, profile, function(err, user){
     if(err){ return done(err, user); }
-    var channels = Channel.syncMatchByType('channel:google');
 
-    channels.push(Channel.syncFindByType('channel:youtube'));
-    channels.push(Channel.syncFindByType('channel:doubleclicksearch'));
-
-    _.each(channels, function(channel){
-      if(channel.enabled === false){ return; }
-      user.overwriteOrAddApiByChannelId(channel._id, {authtype: 'oauth', token: token });
+    when.all([
+      User.addApiAuthorization(user, 'channel:google-drive', {authtype: 'oauth', token: token }),
+      User.addApiAuthorization(user, 'channel:google-plus', {authtype: 'oauth', token: token }),
+      User.addApiAuthorization(user, 'channel:youtube', {authtype: 'oauth', token: token }),
+      User.addApiAuthorization(user, 'channel:doubleclicksearch', {authtype: 'oauth', token: token }),
+    ]).then(function(){
+      return User.findOne({_id: user._id});
+    }).then(function(user){
+      done(null, user);
+    }).catch(function(error){
+      done(error);
     });
-
-    user.save(function (err) {
-      done(err, user);
-    });
-
   });
 });
 

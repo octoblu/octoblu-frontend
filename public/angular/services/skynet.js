@@ -9,8 +9,8 @@ angular.module('octobluApp')
             var conn = skynet.createConnection({
                 server: skynetConfig.host,
                 port: skynetConfig.port,
-                uuid: user.skynetuuid,
-                token: user.skynettoken
+                uuid: user.skynet.uuid,
+                token: user.skynet.token
             });
 
             conn.on('ready', function (data) {

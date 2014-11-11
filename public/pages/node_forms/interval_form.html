@@ -1,28 +1,14 @@
-<div class="form-group">
-  <label for="name">Name</label>
-  <input  id="name" class="form-control" type="text" ng-model="flowNode.name">
-</div>
+<md-text-float label="Name" ng-model="flowNode.name"></md-text-float>
+<md-text-float label="Interval" ng-model="flowNode.interval" type="number"></md-text-float>
+<p class="text-info">Interval is in milliseconds.</p>
 
-<div class="form-group">
-  <label for="repeat">Interval (in milliseconds)</label>
-  <input  id="repeat" class="form-control" type="number" ng-model="flowNode.repeat" required>
-</div>
+<md-text-float label="Topic" ng-model="flowNode.topic"> </md-text-float>
 
-<div class="form-group">
-  <label for="payloadType">Payload</label>
-  <select id="payloadType" name="payloadType" ng-model="flowNode.payloadType" class="form-control" required>
-    <option value="date">Timestamp</option>
-    <option value="none">Blank</option>
-    <option value="string">String</option>
-  </select>
-</div>
+<span>Payload Type</span>
+<md-radio-group ng-model="flowNode.payloadType">
+  <md-radio-button value="date">Timestamp</md-radio-button>
+  <md-radio-button value="none"> Blank </md-radio-button>
+  <md-radio-button value="string">String</md-radio-button>
+</md-radio-group>
 
-<div class="form-group" ng-show="flowNode.payloadType === 'string'">
-  <label for="payload">Payload</label>
-  <input  id="payload" class="form-control" type="text" ng-model="flowNode.payload">
-</div>
-
-<div class="form-group">
-  <label for="topic">Topic</label>
-  <input  id="topic" class="form-control" type="text" ng-model="flowNode.topic">
-</div>
+<md-text-float ng-show="flowNode.payloadType === 'string'" label="Payload" ng-model="flowNode.payload"> </md-text-float>

@@ -2,11 +2,12 @@
 
 <md-text-float label="Topic" ng-model="flowNode.topic"> </md-text-float>
 <br/>
+
 <span>Payload Type</span>
- <md-radio-group ng-model="flowNode.payloadType">
-    <md-radio-button value="date">Timestamp</md-radio-button>
-    <md-radio-button value="none"> Blank </md-radio-button>
-    <md-radio-button value="string">String</md-radio-button>
-  </md-radio-group>
+<md-radio-group ng-model="flowNode.payloadType">
+  <md-radio-button value="date">Timestamp</md-radio-button>
+  <md-radio-button value="none"> Blank </md-radio-button>
+  <md-radio-button value="string">String</md-radio-button>
+</md-radio-group>
 
 <md-text-float ng-show="flowNode.payloadType === 'string'" label="Payload" ng-model="flowNode.payload"> </md-text-float>
