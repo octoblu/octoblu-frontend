@@ -65,7 +65,6 @@ function UserModel() {
         });
 
         return self.insert(userParams).then(function(users){
-          console.log('insert', users);
           return _.first(users);
         });
       });
@@ -141,16 +140,17 @@ function UserModel() {
 
     overwriteOrAddApiByChannelId : function (user, channelid, options) {
       var self = this;
-      var index, new_api, old_api;
+      var index, new_api, old_api, oldUuid;
 
       if (_.isUndefined(user.api)) {
         user.api = [];
       }
 
-      index = _.findIndex(user.api, {channelid: channelid});
+      index = _.findIndex(user.api, {channelid: channelid.toString()});
 
       if(index > -1){
         old_api = user.api[index];
+        oldUuid = old_api.uuid;
         user.api.splice(index, 1);
       }
 
@@ -158,7 +158,8 @@ function UserModel() {
       if(old_api && !new_api.defaultParams && old_api.defaultParams){
         new_api.defaultParams = old_api.defaultParams;
       }
-      new_api.channelid = channelid;
+      new_api.uuid = oldUuid || uuid.v1();
+      new_api.channelid = channelid.toString();
 
       user.api.push(new_api);
     },

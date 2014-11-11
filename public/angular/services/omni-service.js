@@ -23,8 +23,12 @@ angular.module('octobluApp')
 
     self.selectItem = function (item) {
       var flowNodeType, flowNode;
-      flowNodeType = _.findWhere(flowNodeTypes, {uuid: item.uuid});
-      flowNode     = _.findWhere(flowNodes,     {id: item.id});
+      if (_.has(item, 'uuid')) {
+        flowNodeType = _.findWhere(flowNodeTypes, {uuid: item.uuid});
+      }
+      if (_.has(item, 'id')) {
+        flowNode = _.findWhere(flowNodes, {id: item.id});
+      }
 
       if (flowNode) {
         FlowService.selectNode(item);

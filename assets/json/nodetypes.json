@@ -166,6 +166,19 @@
     "connector" : "meshblu-bean"
   },
   {
+    "_id" : "54616a3e2a3a76512a29221c",
+    "category" : "device",
+    "description" : "Neurosky Mindwave",
+    "enabled" : true,
+    "name" : "Mindwave",
+    "skynet" : {
+      "type" : "device",
+      "subtype" : "mindwave"
+    },
+    "type" : "device:mindwave",
+    "connector" : "meshblu-mindwave"
+  },
+  {
     "_id" : "53c9b830f400e177dca325ab",
     "category" : "device",
     "description" : "Spark device",
