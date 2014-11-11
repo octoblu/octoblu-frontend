@@ -79,6 +79,7 @@
     "passport-wordpress": "0.0.3",
     "passport-xero": "~1.0.0",
     "passport-yahoo-oauth": "~0.1.2",
+    "passport-zendesk": "0.0.2",
     "q": "^1.0.1",
     "request": "*",
     "rest": "^1.0.3",

@@ -1165,5 +1165,18 @@
     },
     "channelid" : "54593c536a3da535f1bbcfc4",
     "type" : "channel:clouddotcom"
+  },
+  {
+    "_id" : "4623fff30392d6c7118eb37",
+    "category" : "channel",
+    "description" : "Zendesk",
+    "enabled" : true,
+    "name" : "Zendesk",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "zendesk"
+    },
+    "channelid" : "546258c030392d6c7118eb38",
+    "type" : "channel:zendesk"
   }
 ]

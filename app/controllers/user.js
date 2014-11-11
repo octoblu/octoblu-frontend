@@ -3,7 +3,8 @@ var _ = require('lodash'),
     moment = require('moment'),
     User = require('../models/user'),
     isAuthenticated = require('./middleware/security').isAuthenticated,
-    request = require('request');
+    request = require('request'),
+    mongojs = require('mongojs');
 var uuid = require('node-uuid');
 
 module.exports = function (app) {
@@ -65,18 +66,15 @@ module.exports = function (app) {
             channelid = req.params.channelid;
         var user = req.user;
         user.api = user.api || [];
-        var api = _.findWhere(user.api, {channelid: channelid});
-        if (api) {
-            user.api = _.without(user.api, api);
-            User.update({_id: user._id}, user).then(function(){
-              res.json({'message': 'success'});
-            }).catch(function (error) {
-              console.error(error);
-              res.json(404, {'message': 'not found'});
-            });
-        } else {
-            res.send({'message': 'success'});
-        }
+        user.api = _.filter(user.api, function(api){
+            return api.channelid !== channelid && api.channelid !== mongojs.ObjectId(channelid);
+        });
+        User.update({_id: user._id}, user).then(function(){
+          res.json({'message': 'success'});
+        }).catch(function (error) {
+          console.error(error);
+          res.json(404, {'message': 'not found'});
+        });
     };
     app.delete('/api/user/:id/channel/:channelid', isAuthenticated, deleteUserChannel);
     app.delete('/api/user/channel/:channelid', isAuthenticated, deleteUserChannel);

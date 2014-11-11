@@ -20,78 +20,130 @@
         "url": "https://api.smartsheet.com/1.1/workspaces"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/workspace/{workspaceid} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/workspace/:workspaceid -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Workspace",
-        "path": "/workspace/{workspaceid}",
+        "path": "/workspace/:workspaceid",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceid}"
+        "params": [
+          {
+            "name": ":workspaceid",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceid"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/workspaces -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\": \"New workspace\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/workspaces -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\": \"New workspace\"'",
         "displayName": "Create Workspace",
         "path": "/workspaces",
         "httpMethod": "POST",
         "params": [
           {
-            "name": "name (string)",
-            "required": false,
-            "style": "body"
+            "name": "name",
+            "displayName": "Workspace Name",
+            "type": "string",
+            "style": "body",
+            "required": "false"
           }
         ],
         "url": "https://api.smartsheet.com/1.1/workspaces"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/workspace/7960873114331012 -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '{\"name\": \"Updated workspace\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/workspace/7960873114331012 -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d ':\"name\": \"Updated workspace\"'",
         "displayName": "Update Workspace",
-        "path": "/workspace/{id}",
+        "path": "/workspace/:id",
         "httpMethod": "PUT",
         "params": [
           {
-            "name": "name (string)",
-            "required": false,
-            "style": "body"
+            "name": "name",
+            "displayName": "Workspace Name",
+            "type": "string",
+            "style": "body",
+            "required": "false"
+          },
+          {
+            "name": ":id",
+            "displayName": "Workspace ID",
+            "type": "string",
+            "style": "body",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/workspace/{id}"
+        "url": "https://api.smartsheet.com/1.1/workspace/:id"
       },
       {
         "curl": "curl https://api.smartsheet.com/1.1/workspace/7960873114331012 -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Workspace",
-        "path": "/workspace/{id}",
+        "path": "/workspace/:id",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/workspace/{id}"
+        "params": [
+          {
+            "name": ":id",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/workspace/:id"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/folder/{folderId} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/folder/:folderId -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Folder",
-        "path": "/folder/{folderId}",
+        "path": "/folder/:folderId",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/folder/{folderId}"
+        "params": [
+          {
+            "name": ":folderId",
+            "displayName": "Folder ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/folder/:folderId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/folder/{folderId} -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '{\"name\": \"New name for folder\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/folder/:folderId -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d ':\"name\": \"New name for folder\"'",
         "displayName": "Update Folder",
-        "path": "/folder/{folderId}",
+        "path": "/folder/:folderId",
         "httpMethod": "PUT",
         "params": [
           {
             "name": "name",
-            "required": true,
+            "displayName": "Name",
+            "type": "string",
+            "required": "true",
             "style": "body"
+          },
+          {
+            "name": ":folderId",
+            "displayName": "Folder ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/folder/{folderId}"
+        "url": "https://api.smartsheet.com/1.1/folder/:folderId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/folder/{folderId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/folder/:folderId -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Folder",
-        "path": "/folder/{folderId}",
+        "path": "/folder/:folderId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/folder/{folderId}"
+        "params": [
+          {
+            "name": ":folderId",
+            "displayName": "Folder ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/folder/:folderId"
       },
       {
         "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\"",
@@ -104,60 +156,96 @@
       {
         "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\"",
         "displayName": "List Child Folders",
-        "path": "/workspace/{workspaceId}/folders",
+        "path": "/workspace/:workspaceId/folders",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/folders"
+        "params": [
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/folders"
       },
       {
         "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\"",
         "displayName": "List Child Folders",
-        "path": "/folder/{folderId}/folders",
+        "path": "/folder/:folderId/folders",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/folder/{folderId}/folders"
+        "params": [
+          {
+            "name": ":folderId",
+            "displayName": "Folder ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/folder/:folderId/folders"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\": \"New folder\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\": \"New folder\"'",
         "displayName": "Create Child Folder",
         "path": "/home/folders",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": true,
+            "displayName": "Name",
+            "type": "string",
+            "required": "true",
             "style": "body"
           }
         ],
         "url": "https://api.smartsheet.com/1.1/home/folders"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\": \"New folder\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\": \"New folder\"'",
         "displayName": "Create Child Folder",
-        "path": "/workspace/{workspaceId}/folders",
+        "path": "/workspace/:workspaceId/folders",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": true,
+            "displayName": "Name",
+            "type": "string",
+            "required": "true",
             "style": "body"
+          },
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/folders"
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/folders"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\": \"New folder\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/home/folders -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\": \"New folder\"'",
         "displayName": "Create Child Folder",
-        "path": "/folder/{folderId}/folders",
+        "path": "/folder/:folderId/folders",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": true,
+            "displayName": "Name",
+            "type": "string",
+            "required": "true",
             "style": "body"
+          },
+          {
+            "name": ":folderId",
+            "displayName": "Folder ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/folder/{folderId}/folders"
+        "url": "https://api.smartsheet.com/1.1/folder/:folderId/folders"
       },
       {
         "curl": "curl https://api.smartsheet.com/1.1/templates -H \"Authorization: Bearer ACCESS_TOKEN\"",
@@ -176,103 +264,143 @@
         "url": "https://api.smartsheet.com/1.1/sheets"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Sheet (incl. Rows)",
-        "path": "/sheet/{sheetId}",
+        "path": "/sheet/:sheetId",
         "httpMethod": "GET",
         "params": [
           {
             "name": "include",
-            "required": false,
+            "displayName": "Include",
+            "required": "false",
             "style": "query",
+            "type": "string",
             "doc": {
               "t": "Comma separated list of optional objects to include in the response:discussionsattachmentsTo include discussion attachments, both attachments and discussions parameters must be present in the query string."
             }
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId"
       },
       {
         "curl": "",
         "displayName": "Get as Excel/PDF",
-        "path": "/sheet/{sheetId}",
+        "path": "/sheet/:sheetId",
         "httpMethod": "GET",
         "params": [
           {
-            "name": "paperSize ",
-            "required": false,
+            "name": "paperSize",
+            "displayName": "Paper Size",
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "query string parameter, applies to PDF only, must be one of:LETTER (default)LEGAL WIDE (Same as 11x17)ARCHDA4A3A2A1A0"
             }
           },
           {
-            "name": "Accept",
-            "required": true,
+            "name": "Accept",            
+            "required": "true",
             "style": "query",
             "doc": {
               "t": "Must be either \"application/pdf\" or \"application/vnd.ms-excel\""
             }
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheets -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"newsheet\",\"columns\":[{\"title\":\"Favorite\",\"type\":\"CHECKBOX\",\"symbol\":\"STAR\"}, {\"title\":\"Primary Column\", \"primary\":true,\"type\":\"TEXT_NUMBER\"}, {\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"]}]}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheets -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\":\"newsheet\",\"columns\":[{\"title\":\"Favorite\",\"type\":\"CHECKBOX\",\"symbol\":\"STAR\", :\"title\":\"Primary Column\", \"primary\":true,\"type\":\"TEXT_NUMBER\", :\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"]]}'",
         "displayName": "Create Sheet",
         "path": "/sheets",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": true,
+            "displayName": "Name",
+            "type": "string",
+            "required": "true",
             "style": "body"
           }
         ],
         "url": "https://api.smartsheet.com/1.1/sheets"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheets -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"newsheet\",\"columns\":[{\"title\":\"Favorite\",\"type\":\"CHECKBOX\",\"symbol\":\"STAR\"}, {\"title\":\"Primary Column\", \"primary\":true,\"type\":\"TEXT_NUMBER\"}, {\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"]}]}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheets -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\":\"newsheet\",\"columns\":[{\"title\":\"Favorite\",\"type\":\"CHECKBOX\",\"symbol\":\"STAR\", :\"title\":\"Primary Column\", \"primary\":true,\"type\":\"TEXT_NUMBER\", :\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"]]}'",
         "displayName": "Create Sheet",
-        "path": "/folder/{folderId}/sheets",
+        "path": "/folder/:folderId/sheets",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": true,
+            "displayName": "Name",
+            "type": "string",
+            "required": "true",
             "style": "body"
+          },
+          {
+            "name": ":folderId",
+            "displayName": "Folder ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/folder/{folderId}/sheets"
+        "url": "https://api.smartsheet.com/1.1/folder/:folderId/sheets"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheets -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"newsheet\",\"columns\":[{\"title\":\"Favorite\",\"type\":\"CHECKBOX\",\"symbol\":\"STAR\"}, {\"title\":\"Primary Column\", \"primary\":true,\"type\":\"TEXT_NUMBER\"}, {\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"]}]}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheets -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\":\"newsheet\",\"columns\":[{\"title\":\"Favorite\",\"type\":\"CHECKBOX\",\"symbol\":\"STAR\", :\"title\":\"Primary Column\", \"primary\":true,\"type\":\"TEXT_NUMBER\", :\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"]]}'",
         "displayName": "Create Sheet",
-        "path": "/workspace/{workspaceId}/sheets",
+        "path": "/workspace/:workspaceId/sheets",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": true,
+            "displayName": "Name",
+            "type": "string",
+            "required": "true",
             "style": "body"
+          },
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/sheets"
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/sheets"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheets?include=data,attachments,discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"newsheet\", \"fromId\": 7679398137620356}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheets?include=data,attachments,discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\":\"newsheet\", \"fromId\": 7679398137620356'",
         "displayName": "Create from Sheet or Template",
         "path": "/sheets",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": false,
+            "displayName": "Name",
+            "type": "string",
+            "required": "false",
             "style": "body"
           },
           {
-            "name": "include    ",
-            "required": false,
+            "name": "include",
+            "displayName": "Include",
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "Comma separated list of the following optional elements to be copied from the template to the sheet :dataattachments discussions"
@@ -282,409 +410,738 @@
         "url": "https://api.smartsheet.com/1.1/sheets"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheets?include=data,attachments,discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"newsheet\", \"fromId\": 7679398137620356}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheets?include=data,attachments,discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\":\"newsheet\", \"fromId\": 7679398137620356'",
         "displayName": "Create from Sheet or Template",
-        "path": "/folder/{folderId}/sheets",
+        "path": "/folder/:folderId/sheets",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": false,
-            "style": "body"
+            "displayName": "Name",
+            "required": "false",
+            "style": "body",
+            "type": "string"
           },
           {
-            "name": "include    ",
-            "required": false,
+            "name": "include",
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "Comma separated list of the following optional elements to be copied from the template to the sheet :dataattachments discussions"
             }
+          },
+          {
+            "name": ":folderId",
+            "displayName": "Folder ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/folder/{folderId}/sheets"
+        "url": "https://api.smartsheet.com/1.1/folder/:folderId/sheets"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheets?include=data,attachments,discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"newsheet\", \"fromId\": 7679398137620356}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheets?include=data,attachments,discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\":\"newsheet\", \"fromId\": 7679398137620356'",
         "displayName": "Create from Sheet or Template",
-        "path": "/workspace/{workspaceId}/sheets",
+        "path": "/workspace/:workspaceId/sheets",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": false,
-            "style": "body"
+            "displayName": "Name",
+            "required": "false",
+            "style": "body",
+            "type": "string"
           },
           {
-            "name": "include    ",
-            "required": false,
+            "name": "include",
+            "displayName": "Include",
+            "required": "false",
             "style": "query",
+            "type": "string",
             "doc": {
               "t": "Comma separated list of the following optional elements to be copied from the template to the sheet :dataattachments discussions"
             }
+          },
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/sheets"
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/sheets"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Sheet",
-        "path": "/sheet/{sheetId}",
+        "path": "/sheet/:sheetId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId} -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"name\":\"New Sheet Name\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"name\":\"New Sheet Name\"'",
         "displayName": "Update Sheet",
-        "path": "/sheet/{sheetId}",
+        "path": "/sheet/:sheetId",
         "httpMethod": "PUT",
         "params": [
           {
             "name": "name",
-            "required": false,
-            "style": "body"
+            "displayName": "Name",
+            "required": "false",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/version -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/version -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Sheet Version",
-        "path": "/sheet/{sheetId}/version",
+        "path": "/sheet/:sheetId/version",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/version"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/version"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/emails -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"to\" : [\"john.doe@smartsheet.com\", \"jane.doe@smartsheet.com\"], \"subject\" : \"Check these rows out!\", \"message\": \"Here are the rows I mentioned in our meeting\",\"ccMe\":false,\"format\":\"PDF\",\"formatDetails\":{\"paperSize\":\"A4\"}}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/emails -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"to\" : [\"john.doe@smartsheet.com\", \"jane.doe@smartsheet.com\"], \"subject\" : \"Check these rows out!\", \"message\": \"Here are the rows I mentioned in our meeting\",\"ccMe\":false,\"format\":\"PDF\",\"formatDetails\":{\"paperSize\":\"A4\"}'",
         "displayName": "Send Sheet",
-        "path": "/sheet/{sheetId}/emails",
+        "path": "/sheet/:sheetId/emails",
         "httpMethod": "POST",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/emails"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/emails"
       },
       {
         "curl": "",
         "displayName": "Get Columns",
-        "path": "/sheet/{sheetId}/columns",
+        "path": "/sheet/:sheetId/columns",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/columns"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/columns"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/columns -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"], \"index\":1}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/columns -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"title\":\"Status\", \"type\":\"PICKLIST\", \"options\":[\"Not Started\",\"Started\",\"Completed\"], \"index\":1'",
         "displayName": "Add Column to Sheet",
-        "path": "/sheet/{sheetId}/columns",
+        "path": "/sheet/:sheetId/columns",
         "httpMethod": "POST",
         "params": [
           {
             "name": "title",
-            "required": false,
+            "displayName": "Title",
+            "type": "string",
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/columns"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/columns"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/rows -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"toTop\":true, \"rows\":[ {\"cells\": [ {\"columnId\": 7960873114331012, \"value\": true}, {\"columnId\": 642523719853956, \"value\": \"New status\", \"strict\": false} ] }, {\"cells\": [ {\"columnId\": 7960873114331012, \"value\": true}, {\"columnId\": 642523719853956, \"value\": \"New status\", \"strict\": false} ] } ] }'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/rows -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"toTop\":true, \"rows\":[ {\"cells\": [ {\"columnId\": 7960873114331012, \"value\": true, :\"columnId\": 642523719853956, \"value\": \"New status\", \"strict\": false ] }, :\"cells\": [ {\"columnId\": 7960873114331012, \"value\": true, :\"columnId\": 642523719853956, \"value\": \"New status\", \"strict\": false ] } ] }'",
         "displayName": "Insert Rows into Sheet",
-        "path": "/sheet/{sheetId}/rows",
+        "path": "/sheet/:sheetId/rows",
         "httpMethod": "POST",
         "params": [
           {
             "name": "toTop",
-            "required": true,
-            "style": "body"
+            "displayName": "Add To Top",
+            "required": "true",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "toBottom",
+            "displayName": "Add To Bottom",
+            "required": "true",
+            "style": "body",
+            "type": "boolean"
+          },
+          {
+            "name": "row",
+            "displayName": "Rows To Insert",
+            "required": "true",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/rows"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/rows"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/row/{rowNumber} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/row/:rowNumber -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Row by Number",
-        "path": "/sheet/{sheetId}/row/{rowNumber}",
+        "path": "/sheet/:sheetId/row/:rowNumber",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/row/{rowNumber}"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":rowNumber",
+            "displayName": "Row Number",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/row/:rowNumber"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/attachments -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/attachments -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Sheet Attachments",
-        "path": "/sheet/{sheetId}/attachments",
+        "path": "/sheet/:sheetId/attachments",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/attachments"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/attachments"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/publish -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/publish -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Publish Status",
-        "path": "/sheet/{sheetId}/publish",
+        "path": "/sheet/:sheetId/publish",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/publish"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/publish"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/publish -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '{\"readOnlyLiteEnabled\": true,\"readOnlyFullEnabled\": false,\"readWriteEnabled\": false,\"icalEnabled\": false}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/publish -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d ':\"readOnlyLiteEnabled\": true,\"readOnlyFullEnabled\": false,\"readWriteEnabled\": false,\"icalEnabled\": false'",
         "displayName": "Set Publish Status",
-        "path": "/sheet/{sheetId}/publish",
+        "path": "/sheet/:sheetId/publish",
         "httpMethod": "PUT",
         "params": [
           {
             "name": "readOnlyLiteEnabled",
-            "required": false,
+            "displayName": "Read Only Enabled",
+            "type": "boolean",
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/publish"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/publish"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/column/{columnId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X PUT -d '{\"title\":\"First Column\",\"index\":0, \"sheetId\":SHEET_ID, \"type\" : \"PICKLIST\", \"options\" :[\"One\",\"Two\"]}'",
+        "curl": "curl https://api.smartsheet.com/1.1/column/:columnId -H \"Authorization: Bearer ACCESS_TOKEN\" -X PUT -d ':\"title\":\"First Column\",\"index\":0, \"sheetId\":SHEET_ID, \"type\" : \"PICKLIST\", \"options\" :[\"One\",\"Two\"]'",
         "displayName": "Modify Column",
-        "path": "/column/{columnId}",
+        "path": "/column/:columnId",
         "httpMethod": "PUT",
         "params": [
           {
-            "name": "index (column's new index in the sheet)",
-            "required": false,
+            "name": "index",
+            "displayName": "Index (column's new index in the sheet)",
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":columnId",
+            "displayName": "Column ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/column/{columnId}"
+        "url": "https://api.smartsheet.com/1.1/column/:columnId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/column/{columnId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/column/:columnId -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Column",
-        "path": "/column/{columnId}",
+        "path": "/column/:columnId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/column/{columnId}"
+        "params": [
+          {
+            "name": ":columnId",
+            "displayName": "Column ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/column/:columnId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/row/{rowId}?include=discussions,attachments,columns -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/row/:rowId?include=discussions,attachments,columns -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Row",
-        "path": "/row/{rowId}",
+        "path": "/row/:rowId",
         "httpMethod": "GET",
         "params": [
           {
             "name": "include",
-            "required": true,
+            "displayName": "Include",
+            "required": "true",
             "style": "query",
             "doc": {
               "t": "Comma separated list of optional objects to include in the row:discussionsattachmentscolumnsTo include discussion attachments, both attachments and discussions parameters must be present in the query string.Including the columns will provide all of the columns for the sheet. This enables you to have the full context of the cells in the row."
             }
+          },
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}"
+        "url": "https://api.smartsheet.com/1.1/row/:rowId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/row/{rowId} -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '{\"parentId\": PARENT_ROW_ID, \"expanded\": true}'",
+        "curl": "curl https://api.smartsheet.com/1.1/row/:rowId -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d ':\"parentId\": PARENT_ROW_ID, \"expanded\": true'",
         "displayName": "Modify Row",
-        "path": "/row/{rowId}",
+        "path": "/row/:rowId",
         "httpMethod": "PUT",
         "params": [
           {
             "name": "toTop",
-            "required": false,
+            "displayName": "To Top",
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}"
+        "url": "https://api.smartsheet.com/1.1/row/:rowId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/row/{rowId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/row/:rowId -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Row",
-        "path": "/row/{rowId}",
+        "path": "/row/:rowId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}"
+        "params": [
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/row/:rowId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/row/{rowId}/emails -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"to\" : [\"john.doe@smartsheet.com\", \"jane.doe@smartsheet.com\"], \"subject\" : \"Check this row out!\", \"message\": \"Here are the rows I mentioned in our meeting\", \"ccMe\" : false, \"includeAttachments\" : false, \"includeDiscussions\" : true}'",
+        "curl": "curl https://api.smartsheet.com/1.1/row/:rowId/emails -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"to\" : [\"john.doe@smartsheet.com\", \"jane.doe@smartsheet.com\"], \"subject\" : \"Check this row out!\", \"message\": \"Here are the rows I mentioned in our meeting\", \"ccMe\" : false, \"includeAttachments\" : false, \"includeDiscussions\" : true'",
         "displayName": "Send Row",
-        "path": "/row/{rowId}/emails",
+        "path": "/row/:rowId/emails",
         "httpMethod": "POST",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}/emails"
+        "params": [
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/row/:rowId/emails"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/row/{rowId}/cells -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '[ {\"columnId\": 3738748463671172, \"value\": \"Revision 2\"}, {\"columnId\": 5427598323935108, \"value\": \"On Time\", \"strict\": false} ]'",
+        "curl": "curl https://api.smartsheet.com/1.1/row/:rowId/cells -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '[ :\"columnId\": 3738748463671172, \"value\": \"Revision 2\", :\"columnId\": 5427598323935108, \"value\": \"On Time\", \"strict\": false ]'",
         "displayName": "Update Row Cells",
-        "path": "/row/{rowId}/cells",
+        "path": "/row/:rowId/cells",
         "httpMethod": "PUT",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}/cells"
+        "params": [
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/row/:rowId/cells"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/row/{rowId}/column/{columnId}/history -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/row/:rowId/column/:columnId/history -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Cell History",
-        "path": "/row/{rowId}/column/{columnId}/history",
+        "path": "/row/:rowId/column/:columnId/history",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}/column/{columnId}/history"
+        "params": [
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":columnId",
+            "displayName": "Column ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/row/:rowId/column/:columnId/history"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/row/{rowId}/attachments -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/row/:rowId/attachments -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Row Attachments",
-        "path": "/row/{rowId}/attachments",
+        "path": "/row/:rowId/attachments",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}/attachments"
+        "params": [
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/row/:rowId/attachments"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/attachment/{attachmentId} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/attachment/:attachmentId -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Attachment",
-        "path": "/attachment/{attachmentId}",
+        "path": "/attachment/:attachmentId",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/attachment/{attachmentId}"
+        "params": [
+          {
+            "name": ":attachmentId",
+            "displayName": "Attachment ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/attachment/:attachmentId"
       },
       {
         "curl": "",
         "displayName": "Attach File",
-        "path": "/sheet/{sheetId}/attachments",
+        "path": "/sheet/:sheetId/attachments",
         "httpMethod": "POST",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/attachments"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/attachments"
       },
       {
         "curl": "",
         "displayName": "Attach File",
-        "path": "/row/{rowId}/attachments",
+        "path": "/row/:rowId/attachments",
         "httpMethod": "POST",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}/attachments"
+        "params": [
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/row/:rowId/attachments"
       },
       {
         "curl": "",
         "displayName": "Attach File",
-        "path": "/comment/{commentId}/attachments",
+        "path": "/comment/:commentId/attachments",
         "httpMethod": "POST",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/comment/{commentId}/attachments"
+        "params": [
+          {
+            "name": ":commentId",
+            "displayName": "Comment ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/comment/:commentId/attachments"
       },
       {
         "curl": "",
         "displayName": "Attach URL",
-        "path": "/sheet/{sheetId}/attachments",
+        "path": "/sheet/:sheetId/attachments",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": false,
-            "style": "body"
+            "displayName": "Name",
+            "required": "false",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/attachments"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/attachments"
       },
       {
         "curl": "",
         "displayName": "Attach URL",
-        "path": "/row/{rowId}/attachments",
+        "path": "/row/:rowId/attachments",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": false,
-            "style": "body"
+            "displayName": "Name",
+            "required": "false",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}/attachments"
+        "url": "https://api.smartsheet.com/1.1/row/:rowId/attachments"
       },
       {
         "curl": "",
         "displayName": "Attach URL",
-        "path": "/comment/{commentId}/attachments",
+        "path": "/comment/:commentId/attachments",
         "httpMethod": "POST",
         "params": [
           {
             "name": "name",
-            "required": false,
-            "style": "body"
+            "displayName": "Name",
+            "required": "false",
+            "style": "body",
+            "type": "string"
+          },
+          {
+            "name": ":commentId",
+            "displayName": "Comment ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/comment/{commentId}/attachments"
+        "url": "https://api.smartsheet.com/1.1/comment/:commentId/attachments"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/attachment/{attachmentId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/attachment/:attachmentId -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Attachment",
-        "path": "/attachment/{attachmentId}",
+        "path": "/attachment/:attachmentId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/attachment/{attachmentId}"
+        "params": [
+          {
+            "name": ":attachmentId",
+            "displayName": "Attachment ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/attachment/:attachmentId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/discussion/{discussionId} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/discussion/:discussionId -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Discussion",
-        "path": "/discussion/{discussionId}",
+        "path": "/discussion/:discussionId",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/discussion/{discussionId}"
+        "params": [
+          {
+            "name": ":discussionId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/discussion/:discussionId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"title\": \"This is a new discussion\", \"comment\": {\"text\":\"This text is the body of the first comment\"}}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"title\": \"This is a new discussion\", \"comment\": {\"text\":\"This text is the body of the first comment\"}'",
         "displayName": "Create Discussion",
-        "path": "/sheet/{sheetId}/discussions",
+        "path": "/sheet/:sheetId/discussions",
         "httpMethod": "POST",
         "params": [
           {
             "name": "title (string)",
-            "required": false,
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/discussions"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/discussions"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"title\": \"This is a new discussion\", \"comment\": {\"text\":\"This text is the body of the first comment\"}}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/discussions -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"title\": \"This is a new discussion\", \"comment\": {\"text\":\"This text is the body of the first comment\"}'",
         "displayName": "Create Discussion",
-        "path": "/row/{rowId}/discussions",
+        "path": "/row/:rowId/discussions",
         "httpMethod": "POST",
         "params": [
           {
             "name": "title (string)",
-            "required": false,
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":rowId",
+            "displayName": "Row ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/row/{rowId}/discussions"
+        "url": "https://api.smartsheet.com/1.1/row/:rowId/discussions"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/discussion/{discussionId}/comments -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"text\":\"This is a new comment.\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/discussion/:discussionId/comments -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"text\":\"This is a new comment.\"'",
         "displayName": "Add Comment",
-        "path": "/discussion/{discussionId}/comments",
+        "path": "/discussion/:discussionId/comments",
         "httpMethod": "POST",
         "params": [
           {
             "name": "text",
-            "required": false,
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":discussionId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/discussion/{discussionId}/comments"
+        "url": "https://api.smartsheet.com/1.1/discussion/:discussionId/comments"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/discussion/{discussionId}/attachments -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/discussion/:discussionId/attachments -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Discussion Attachments",
-        "path": "/discussion/{discussionId}/attachments",
+        "path": "/discussion/:discussionId/attachments",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/discussion/{discussionId}/attachments"
+        "params": [
+          {
+            "name": ":discussionId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/discussion/:discussionId/attachments"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/comment/{id} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/comment/:id -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Comment",
-        "path": "/comment/{commentId}",
+        "path": "/comment/:commentId",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/comment/{commentId}"
+        "params": [
+          {
+            "name": ":commentId",
+            "displayName": "Comment ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/comment/:commentId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/comment/{commentId} -H \"Authorization: Bearer ACCESS_TOKEN\"-X 'DELETE'",
+        "curl": "curl https://api.smartsheet.com/1.1/comment/:commentId -H \"Authorization: Bearer ACCESS_TOKEN\"-X 'DELETE'",
         "displayName": "Delete Comment",
-        "path": "/comment/{commentId}",
+        "path": "/comment/:commentId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/comment/{commentId}"
+        "params": [
+          {
+            "name": ":commentId",
+            "displayName": "Comment ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/comment/:commentId"
       },
       {
         "curl": "curl https://api.smartsheet.com/1.1/users -H \"Authorization: Bearer ACCESS_TOKEN\"",
@@ -695,14 +1152,14 @@
         "url": "https://api.smartsheet.com/1.1/users"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/users?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"NEW_USER_EMAIL\", \"admin\": false, \"licensedSheetCreator\": true}'",
+        "curl": "curl https://api.smartsheet.com/1.1/users?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"firstName\": \"John\", \"lastName\": \"Doe\", \"email\": \"NEW_USER_EMAIL\", \"admin\": false, \"licensedSheetCreator\": true'",
         "displayName": "Add User",
         "path": "/users",
         "httpMethod": "POST",
         "params": [
           {
             "name": "sendEmail",
-            "required": false,
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "A boolean flag to indicate whether to send a welcome email or not. Defaults to false."
@@ -710,7 +1167,7 @@
           },
           {
             "name": "email (required)",
-            "required": false,
+            "required": "false",
             "style": "body"
           }
         ],
@@ -725,28 +1182,34 @@
         "url": "https://api.smartsheet.com/1.1/user/me"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/user/{userId} -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '{\"admin\": false, \"licensedSheetCreator\": true}'",
+        "curl": "curl https://api.smartsheet.com/1.1/user/:userId -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d ':\"admin\": false, \"licensedSheetCreator\": true'",
         "displayName": "Update User",
-        "path": "/user/{userIId}",
+        "path": "/user/:userIId",
         "httpMethod": "PUT",
         "params": [
           {
             "name": "admin (boolean)",
-            "required": false,
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":userIId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/user/{userIId}"
+        "url": "https://api.smartsheet.com/1.1/user/:userIId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/user/{userId}?transferTo=USER_ID&removeFromSharing=true -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/user/:userId?transferTo=USER_ID&removeFromSharing=true -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete User",
-        "path": "/user/{userId}",
+        "path": "/user/:userId",
         "httpMethod": "DELETE",
         "params": [
           {
             "name": "transferTo    ",
-            "required": false,
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "The ID of the user to whom the sheets should be transferred.  Defaults to not transferring the sheets."
@@ -754,14 +1217,20 @@
           },
           {
             "name": "removeFromSharing    ",
-            "required": false,
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "Set to \"true\" to remove the user from sharing all sheets/workspaces in the organization. Defaults to false."
             }
+          },
+          {
+            "name": ":userId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/user/{userId}"
+        "url": "https://api.smartsheet.com/1.1/user/:userId"
       },
       {
         "curl": "curl https://api.smartsheet.com/1.1/users/sheets -H \"Authorization: Bearer ACCESS_TOKEN\"",
@@ -774,19 +1243,26 @@
       {
         "curl": "",
         "displayName": "Search Sheet",
-        "path": "/search/sheet/{sheetId}",
+        "path": "/search/sheet/:sheetId",
         "httpMethod": "GET",
         "params": [
           {
             "name": "query",
-            "required": true,
+            "required": "true",
             "style": "query",
             "doc": {
               "t": "Text with which to perform the search."
             }
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/search/sheet/{sheetId}"
+        "url": "https://api.smartsheet.com/1.1/search/sheet/:sheetId"
       },
       {
         "curl": "",
@@ -796,7 +1272,7 @@
         "params": [
           {
             "name": "query",
-            "required": true,
+            "required": "true",
             "style": "query",
             "doc": {
               "t": "Text with which to perform the search."
@@ -806,158 +1282,284 @@
         "url": "https://api.smartsheet.com/1.1/search"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/shares -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/shares -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Shares",
-        "path": "/sheet/{sheetId}/shares",
+        "path": "/sheet/:sheetId/shares",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/shares"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/shares"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/shares -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/shares -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Shares",
-        "path": "/workspace/{workspaceId}/shares",
+        "path": "/workspace/:workspaceId/shares",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/shares"
+        "params": [
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/shares"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Share",
-        "path": "/sheet/{sheetId}/share/{userId}",
+        "path": "/sheet/:sheetId/share/:userId",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId}"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":userId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId} -H \"Authorization: Bearer ACCESS_TOKEN\"",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId -H \"Authorization: Bearer ACCESS_TOKEN\"",
         "displayName": "Get Share",
-        "path": "/workspace/{workspaceId}/share/{userId}",
+        "path": "/workspace/:workspaceId/share/:userId",
         "httpMethod": "GET",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/share/{userId}"
+        "params": [
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":userId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/share/:userId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/shares?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"email\":\"jane.doe@smartsheet.com\", \"accessLevel\": \"EDITOR\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/shares?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"email\":\"jane.doe@smartsheet.com\", \"accessLevel\": \"EDITOR\"'",
         "displayName": "Share to One",
-        "path": "/sheet/{sheetId}/shares",
+        "path": "/sheet/:sheetId/shares",
         "httpMethod": "POST",
         "params": [
           {
             "name": "email (string)",
-            "required": false,
+            "required": "false",
             "style": "body"
           },
           {
             "name": "sendEmail    ",
-            "required": false,
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "Either \"true\" or \"false\" to  indicate whether or not to notify the user by email. Default is false."
             }
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/shares"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/shares"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/shares?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"email\":\"jane.doe@smartsheet.com\", \"accessLevel\": \"EDITOR\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/shares?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"email\":\"jane.doe@smartsheet.com\", \"accessLevel\": \"EDITOR\"'",
         "displayName": "Share to One",
-        "path": "/workspace/{workspaceId}/shares",
+        "path": "/workspace/:workspaceId/shares",
         "httpMethod": "POST",
         "params": [
           {
             "name": "email (string)",
-            "required": false,
+            "required": "false",
             "style": "body"
           },
           {
             "name": "sendEmail    ",
-            "required": false,
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "Either \"true\" or \"false\" to  indicate whether or not to notify the user by email. Default is false."
             }
+          },
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/shares"
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/shares"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/multishare?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"users\":[{\"email\":\"john.doe@smartsheet.com\"},{\"email\":\"jane.doe@smartsheet.com\"}],\"subject\":\"My new Smartsheet\",\"message\":\"I have shared a Smartsheet with you. Please review it for the latest updates\", \"accessLevel\":\"ADMIN\",\"ccMe\":false}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/multishare?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"users\":[{\"email\":\"john.doe@smartsheet.com\",:\"email\":\"jane.doe@smartsheet.com\"],\"subject\":\"My new Smartsheet\",\"message\":\"I have shared a Smartsheet with you. Please review it for the latest updates\", \"accessLevel\":\"ADMIN\",\"ccMe\":false}'",
         "displayName": "Share to Many",
-        "path": "/sheet/{sheetId}/multishare",
+        "path": "/sheet/:sheetId/multishare",
         "httpMethod": "POST",
         "params": [
           {
             "name": "sendEmail    ",
-            "required": false,
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "Either \"true\" or \"false\" to  indicate whether or not to notify the user by email. Default is false."
             }
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/multishare"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/multishare"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/multishare?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d '{\"users\":[{\"email\":\"john.doe@smartsheet.com\"},{\"email\":\"jane.doe@smartsheet.com\"}],\"subject\":\"My new Smartsheet\",\"message\":\"I have shared a Smartsheet with you. Please review it for the latest updates\", \"accessLevel\":\"ADMIN\",\"ccMe\":false}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/multishare?sendEmail=true -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X POST -d ':\"users\":[{\"email\":\"john.doe@smartsheet.com\",:\"email\":\"jane.doe@smartsheet.com\"],\"subject\":\"My new Smartsheet\",\"message\":\"I have shared a Smartsheet with you. Please review it for the latest updates\", \"accessLevel\":\"ADMIN\",\"ccMe\":false}'",
         "displayName": "Share to Many",
-        "path": "/workspace/{workspaceId}/multishare",
+        "path": "/workspace/:workspaceId/multishare",
         "httpMethod": "POST",
         "params": [
           {
             "name": "sendEmail    ",
-            "required": false,
+            "required": "false",
             "style": "query",
             "doc": {
               "t": "Either \"true\" or \"false\" to  indicate whether or not to notify the user by email. Default is false."
             }
+          },
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/multishare"
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/multishare"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId} -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '{\"accessLevel\": \"VIEWER\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d ':\"accessLevel\": \"VIEWER\"'",
         "displayName": "Update Share",
-        "path": "/sheet/{sheetId}/share/{userId}",
+        "path": "/sheet/:sheetId/share/:userId",
         "httpMethod": "PUT",
         "params": [
           {
             "name": "accessLevel (string)",
-            "required": false,
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":userId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId}"
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId} -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d '{\"accessLevel\": \"VIEWER\"}'",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId -H \"Authorization: Bearer ACCESS_TOKEN\" -H \"Content-Type: application/json\" -X PUT -d ':\"accessLevel\": \"VIEWER\"'",
         "displayName": "Update Share",
-        "path": "/workspace/{workspaceId}/share/{userId}",
+        "path": "/workspace/:workspaceId/share/:userId",
         "httpMethod": "PUT",
         "params": [
           {
             "name": "accessLevel (string)",
-            "required": false,
+            "required": "false",
             "style": "body"
+          },
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":userId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
           }
         ],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/share/{userId}"
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/share/:userId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Share",
-        "path": "/sheet/{sheetId}/share/{userId}",
+        "path": "/sheet/:sheetId/share/:userId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId}"
+        "params": [
+          {
+            "name": ":sheetId",
+            "displayName": "Sheet ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":userId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId"
       },
       {
-        "curl": "curl https://api.smartsheet.com/1.1/sheet/{sheetId}/share/{userId} -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
+        "curl": "curl https://api.smartsheet.com/1.1/sheet/:sheetId/share/:userId -H \"Authorization: Bearer ACCESS_TOKEN\" -X DELETE",
         "displayName": "Delete Share",
-        "path": "/workspace/{workspaceId}/share/{userId}",
+        "path": "/workspace/:workspaceId/share/:userId",
         "httpMethod": "DELETE",
-        "params": [],
-        "url": "https://api.smartsheet.com/1.1/workspace/{workspaceId}/share/{userId}"
+        "params": [
+          {
+            "name": ":workspaceId",
+            "displayName": "Workspace ID",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": ":userId",
+            "style": "url",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.smartsheet.com/1.1/workspace/:workspaceId/share/:userId"
       }
     ]
   },

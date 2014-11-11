@@ -135,7 +135,7 @@ function UserModel() {
     addApiAuthorization: function(user, type, options) {
       var self = this;
       var channel = Channel.syncFindByType(type);
-      self.overwriteOrAddApiByChannelId(user, self.ObjectId(channel._id), options);
+      self.overwriteOrAddApiByChannelId(user, channel._id, options);
       return self.update({_id: user._id}, user);
     },
 
@@ -147,7 +147,9 @@ function UserModel() {
         user.api = [];
       }
 
-      index = _.findIndex(user.api, {channelid: channelid});
+      index = _.findIndex(user.api, function(api){
+          return api.channelid === channelid || api.channelid === self.ObjectId(channelid);
+      });
 
       if(index > -1){
         old_api = user.api[index];
@@ -158,7 +160,7 @@ function UserModel() {
       if(old_api && !new_api.defaultParams && old_api.defaultParams){
         new_api.defaultParams = old_api.defaultParams;
       }
-      new_api.channelid = channelid;
+      new_api.channelid = self.ObjectId(channelid);
 
       user.api.push(new_api);
     },

@@ -61,7 +61,9 @@ var FlowDeploy = function(options){
   self.mergeFlowTokens = function(flow, userApis, channelApis) {
     _.each(flow.nodes, function(node){
       node.oauth = {};
-      var userApiMatch = _.findWhere(userApis, {'_id': mongojs.ObjectId(node.channelActivationId)});
+      var userApiMatch = _.findWhere(userApis, function(api){
+          return api._id === node.channelActivationId || api._id === mongojs.ObjectId(node.channelActivationId);
+      });
       if (userApiMatch) {
         if (userApiMatch.token_crypt) {
           userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt); 
@@ -71,7 +73,9 @@ var FlowDeploy = function(options){
         node.oauth.access_token_secret = userApiMatch.secret;
         node.defaultParams = userApiMatch.defaultParams;
       }
-      var channelApiMatch = _.findWhere(channelApis, {'_id': node.channelid});
+      var channelApiMatch = _.findWhere(channelApis, function(api){
+          return api.channelid === node.channelid || api.channelid === mongojs.ObjectId(node.channelid);
+      });
       if (channelApiMatch) {
         if (!channelApiMatch.oauth){
           channelApiMatch.oauth = {

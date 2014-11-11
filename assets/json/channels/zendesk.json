@@ -1,5 +1,5 @@
 {
-  "_id": "fdsdjf34593485239v",
+  "_id": "546258c030392d6c7118eb38",
   "defaultParams": [
     {
       "name": ":subdomain",
@@ -434,7 +434,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/related.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -488,7 +488,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/collaborators.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -506,7 +506,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/incidents.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -562,7 +562,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/twitter/tickets/{id}/statuses.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -587,7 +587,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{ticket_id}/audits.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":ticket_id",
@@ -698,7 +698,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{ticket_id}/comments/{id}/make_private.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":ticket_id",
@@ -723,7 +723,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/exports/tickets.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -916,7 +916,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_forms/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -1039,7 +1039,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_metrics.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/ticket_metrics.json"
       },
@@ -1049,7 +1049,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/ticket_metrics/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -1085,7 +1085,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -1443,7 +1443,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -1471,7 +1471,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{id}.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":id",
@@ -1489,7 +1489,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{id}/comments.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -1519,7 +1519,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/requests/{request_id}/comments/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":request_id",
@@ -1543,7 +1543,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/views.json"
       },
@@ -1553,7 +1553,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/active.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/views/active.json"
       },
@@ -1563,7 +1563,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/compact.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/views/compact.json"
       },
@@ -1573,7 +1573,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -1732,7 +1732,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/{id}/tickets.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -1845,7 +1845,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/views/preview/count.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/views/preview/count.json"
       },
@@ -1855,7 +1855,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/users.json"
       },
@@ -1919,7 +1919,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/show_many.json?ids={ids}"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": "ids",
@@ -1937,7 +1937,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{id}/related.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -2072,7 +2072,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/autocomplete.json?name={name}"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": "name",
@@ -2118,7 +2118,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/user_fields.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/user_fields.json"
       },
@@ -2174,7 +2174,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/user_fields/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -2192,7 +2192,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/user_fields/reorder.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/user_fields/reorder.json"
       },
@@ -2202,7 +2202,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/identities/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":user_id",
@@ -2245,7 +2245,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/end_users/{user_id}/identities.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":user_id",
@@ -2295,7 +2295,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/identities/{id}/make_primary"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":user_id",
@@ -2320,7 +2320,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/identities/{id}/verify"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":user_id",
@@ -2483,7 +2483,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/end_users/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -2519,7 +2519,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/groups.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/groups.json"
       },
@@ -2547,7 +2547,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/groups/assignable.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/groups/assignable.json"
       },
@@ -2557,7 +2557,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/groups/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -2631,7 +2631,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/group_memberships.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/group_memberships.json"
       },
@@ -2659,7 +2659,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/groups/{group_id}/memberships.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":group_id",
@@ -2677,7 +2677,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/group_memberships/assignable.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/group_memberships/assignable.json"
       },
@@ -2687,7 +2687,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/groups/{group_id}/memberships/assignable.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":group_id",
@@ -2705,7 +2705,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/group_memberships/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -2723,7 +2723,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/group_memberships/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":user_id",
@@ -2844,7 +2844,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/custom_roles.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/custom_roles.json"
       },
@@ -2864,7 +2864,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/categories/{id}/forums.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -2882,7 +2882,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/forums/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -2964,7 +2964,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/forum_subscriptions.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/forum_subscriptions.json"
       },
@@ -3048,7 +3048,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/categories/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3120,7 +3120,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/topics.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/topics.json"
       },
@@ -3130,7 +3130,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/forums/{id}/topics.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3148,7 +3148,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{id}/topics.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3430,7 +3430,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/topics/{topic_id}/subscriptions.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":topic_id",
@@ -3448,7 +3448,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/topic_subscriptions.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/topic_subscriptions.json"
       },
@@ -3458,7 +3458,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/topic_subscriptions.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":user_id",
@@ -3522,7 +3522,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/topics/{id}/votes.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3612,7 +3612,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/topics/{id}/vote.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3666,7 +3666,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/account/settings.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/account/settings.json"
       },
@@ -3676,7 +3676,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/account/settings.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/account/settings.json"
       },
@@ -3702,7 +3702,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/activities/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3754,7 +3754,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/attachments/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3826,7 +3826,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/audit_logs.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/audit_logs.json"
       },
@@ -3854,7 +3854,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/autocomplete/tags.json?name={name}"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":name",
@@ -3882,7 +3882,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/automations/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -3996,7 +3996,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/dynamic_content/items/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4050,7 +4050,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/dynamic_content/items/3/variants.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/dynamic_content/items/3/variants.json"
       },
@@ -4060,7 +4060,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/dynamic_content/items/6/variants.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/dynamic_content/items/6/variants.json"
       },
@@ -4080,7 +4080,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/dynamic_content/items/{id}/variants/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4105,7 +4105,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/dynamic_content/items/{id}/variants/{id}.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":id",
@@ -4130,7 +4130,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/dynamic_content/items/{id}/variants/update_many.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":id",
@@ -4301,7 +4301,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/macros/{id}/apply.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4319,7 +4319,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{ticket_id}/macros/{id}/apply.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":ticket_id",
@@ -4354,7 +4354,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/twitter/monitored_twitter_handles/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4372,7 +4372,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/oauth/clients.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/oauth/clients.json"
       },
@@ -4382,7 +4382,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/me/oauth/clients.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/users/me/oauth/clients.json"
       },
@@ -4392,7 +4392,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/oauth/clients/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4420,7 +4420,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/oauth/clients/{id}.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":id",
@@ -4438,7 +4438,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/oauth/clients/{id}.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":id",
@@ -4456,7 +4456,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/oauth/tokens.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/oauth/tokens.json"
       },
@@ -4466,7 +4466,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/oauth/tokens/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4512,7 +4512,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/organizations.json"
       },
@@ -4522,7 +4522,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/organizations.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":user_id",
@@ -4540,7 +4540,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/autocomplete.json?name={name}"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":name",
@@ -4558,7 +4558,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{id}/related.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4576,7 +4576,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4668,7 +4668,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organization_fields.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/organization_fields.json"
       },
@@ -4678,7 +4678,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organization_fields/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4752,7 +4752,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{organization_id}/subscriptions.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":organization_id",
@@ -4770,7 +4770,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organization_subscriptions.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/organization_subscriptions.json"
       },
@@ -4780,7 +4780,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/users/{user_id}/organization_subscriptions.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":user_id",
@@ -4798,7 +4798,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organization_subscriptions/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -4844,7 +4844,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/satisfaction_ratings.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/satisfaction_ratings.json"
       },
@@ -4932,7 +4932,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/portal/search.json?query={search_string}"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "url",
@@ -4955,7 +4955,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/sharing_agreements.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/sharing_agreements.json"
       },
@@ -4975,7 +4975,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/recipient_addresses/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5057,7 +5057,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/suspended_tickets/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5157,7 +5157,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tags.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/tags.json"
       },
@@ -5167,7 +5167,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/tickets/{id}/tags.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5185,7 +5185,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/topics/{id}/tags.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5203,7 +5203,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{id}/tags.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5311,7 +5311,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/organizations/{id}/tags.json"
         },
-        "httpMethod": "put",
+        "httpMethod": "PUT",
         "params": [
           {
             "name": ":id",
@@ -5383,7 +5383,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/targets.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/targets.json"
       },
@@ -5457,7 +5457,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/triggers/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5475,7 +5475,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/triggers/active.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/triggers/active.json"
       },
@@ -5551,7 +5551,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/locales/public.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/locales/public.json"
       },
@@ -5561,7 +5561,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/locales/agent.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/locales/agent.json"
       },
@@ -5571,7 +5571,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/locales/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5589,7 +5589,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/locales/current.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/locales/current.json"
       },
@@ -5599,7 +5599,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/locales/detect_best_locale.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/locales/detect_best_locale.json"
       },
@@ -5609,7 +5609,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/phone_numbers/search.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -5641,7 +5641,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/phone_numbers.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/channels/voice/phone_numbers.json"
       },
@@ -5679,7 +5679,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/phone_numbers/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5718,7 +5718,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/greeting_categories.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/channels/voice/greeting_categories.json"
       },
@@ -5772,7 +5772,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/greetings.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/channels/voice/greetings.json"
       },
@@ -5782,7 +5782,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/greetings/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -5846,7 +5846,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/stats/current_queue_activity.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/channels/voice/stats/current_queue_activity.json"
       },
@@ -5856,7 +5856,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/stats/historical_queue_activity.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/channels/voice/stats/historical_queue_activity.json"
       },
@@ -5866,7 +5866,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/stats/agents_activity.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/channels/voice/stats/agents_activity.json"
       },
@@ -5955,7 +5955,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/channels/voice/agents/{agent_id}/tickets/{ticket_id}/display.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":agent_id",
@@ -6069,7 +6069,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/location_installations.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/apps/location_installations.json"
       },
@@ -6079,7 +6079,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/location_installations/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -6117,7 +6117,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/locations/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -6145,7 +6145,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/job_statuses/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
@@ -6233,7 +6233,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -6251,7 +6251,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/owned.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/apps/owned.json"
       },
@@ -6316,7 +6316,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/installations.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://:subdomain.zendesk.com/api/v2/apps/installations.json"
       },
@@ -6336,7 +6336,7 @@
         "doc": {
           "url": "https://{subdomain}.zendesk.com/api/v2/apps/installations/{id}.json"
         },
-        "httpMethod": "get",
+        "httpMethod": "GET",
         "params": [
           {
             "name": ":id",
@@ -6447,21 +6447,42 @@
   "name": "zendesk",
   "oauth": {
     "development": {
-      "clientID": "octoblu-dev",
-      "clientSecret": "",
+      "clientID": "octoblu",
+      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
       "callbackURL": "http://localhost:8080/api/oauth/zendesk/callback",
-      "tokenMethod": "access_token_bearer"
-    },
-    "staging": {
-      "clientID": "octoblu-staging",
-      "clientSecret": "",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/zendesk/callback",
+      "subdomain": "octoblu",
+      "passReqToCallback": true,
+      "scope": [
+        "read",
+        "write"
+      ],
+      "tokenQueryParam" : "oauth_token",
       "tokenMethod": "access_token_bearer"
     },
     "production": {
       "clientID": "octoblu",
-      "clientSecret": "",
+      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
       "callbackURL": "https://app.octoblu.com/api/oauth/zendesk/callback",
+      "passReqToCallback": true,
+      "subdomain": "octoblu",
+      "scope": [
+        "read",
+        "write"
+      ],
+      "tokenQueryParam" : "oauth_token",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "octoblu",
+      "clientSecret": "9f1b06c24ebaf3647812157a028f95f38433dd251c70f4a6f777ba4c9c3fe4c6",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/zendesk/callback",
+      "passReqToCallback": true,
+      "subdomain": "octoblu",
+      "scope": [
+        "read",
+        "write"
+      ],
+      "tokenQueryParam" : "oauth_token",
       "tokenMethod": "access_token_bearer"
     }
   }
