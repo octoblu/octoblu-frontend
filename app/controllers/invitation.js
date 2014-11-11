@@ -92,21 +92,21 @@ var invitationController = {
         return User.findByEmail(email)
             .then(function (rcp) {
                 recipient = rcp;
-                var inviteData = {};
-                inviteData.recipient = {email: email};
-                inviteData.from = req.user.skynet.uuid;
-                inviteData.status = 'PENDING';
-                inviteData.sent = moment.utc();
+                var inviteData = {
+                    recipient: {email: email},
+                    from: req.user.skynet.uuid,
+                    status: 'PENDING',
+                    sent: moment.utc()
+                }
 
                 if (rcp) {
                     inviteData.recipient.uuid = recipient.skynet.uuid;
                 }
 
-                return Invitation.save(inviteData);
+                return Invitation.insert(inviteData);
 
             }, function (err) {
-                console.log('error!');
-                console.log(err);
+                console.error(err);
             })
             .then(function (invites) {
             		var invite = _.first(invites);
@@ -185,11 +185,11 @@ var invitationController = {
 
                                 invitation.accepted = moment.utc();
                                 invitation.status = "ACCEPTED";
-                                invitation.save();
+                                Invitation.update({_id: invitation._id}, invitation);
 
                                 if (!existingMember) {
                                     operatorGroup.members.push(recipient.resourceId);
-                                    operatorGroup.save();
+                                    Group.update({_id: operatorGroup._id}, operatorGroup);
                                 }
 
                                 res.redirect('/home');
@@ -197,8 +197,7 @@ var invitationController = {
                     });
             })
             .then(null, function(err){
-                console.log('invitation messed up.');
-                console.log(err);
+                console.error(err);
             });
     },
 

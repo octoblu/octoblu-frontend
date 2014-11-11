@@ -24,7 +24,6 @@ function wrapCollection(collection){
     findOne: nodefn.lift(_.bind(collection.findOne, collection)),
     remove: nodefn.lift(_.bind(collection.remove, collection)),
     insert: nodefn.lift(_.bind(collection.insert, collection)),
-    save: nodefn.lift(_.bind(collection.save, collection)),
     update: nodefn.lift(_.bind(collection.update, collection)),
     ObjectId: createObjectId
   };
