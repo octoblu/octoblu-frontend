@@ -1,4 +1,7 @@
 <div class="design2 designer-container full-height">
+  <div class="logo-toolbar"> <!-- Defined first so its on the bottom layer -->
+    <img src="/assets/images/octoblu.png" height="50px"/>
+  </div>
 
   <div class="flow-top-bar">
     <flow-editor-omnibox omni-search="omniSearch" flow-nodes="activeFlow.nodes" selected-flow-node="activeFlow.selectedFlowNode" ></flow-editor-omnibox>
@@ -69,8 +72,5 @@
     </div>
   </div>
 
-  <div class="logo-toolbar">
-    <img src="/assets/images/octoblu.png" height="50px"/>
-  </div>
 <flow-browser flow="activeFlow" debug-lines="debugLines" node-types="nodeTypes" flow-node-types="flowNodeTypes" active-flow="activeFlow"></flow-browser>
   </div>

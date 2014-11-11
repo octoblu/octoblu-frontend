@@ -19,8 +19,8 @@
     "category": "operation",
     "uuid": "37e73da4-2f17-11e4-9617-a6c5e4d22fb7",
     "defaults": {
-      "timeout": 5,
-      "timeoutUnits": "seconds"
+      "timeout": 1000,
+      "timeoutUnits": "milliseconds"
     },
     "input": 1,
     "output": 1,

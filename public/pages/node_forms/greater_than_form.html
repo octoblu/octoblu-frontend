@@ -1,6 +1,9 @@
 <md-text-float label="Name" ng-model="flowNode.name"> </md-text-float>
-<md-content layout="vertical">
-<md-text-float label="Left" ng-model="flowNode.left"> </md-text-float>
-<div layout="horizontal" layout-align="center"><i class="fa fa-4x fa-angle-right"></i></div>
-<md-text-float label="Right" ng-model="flowNode.right"> </md-text-float>
-</md-content>
+
+<div layout="horizontal">
+  <md-text-float flex-sm="33" label="Left" ng-model="flowNode.left"> </md-text-float>
+  <h4 flex-sm="33" class="md-default-theme">
+    <i class="fa fa-4x fa-angle-right"></i>
+  </h4>
+  <md-text-float flex-sm="33" label="Right" ng-model="flowNode.right"> </md-text-float>
+</div>
