@@ -7,6 +7,7 @@ angular.module('octobluApp')
       options = options || {};
 
       return $http.get('/api/nodes', options).then(function (results) {
+        deviceService.clearCache();
         _.each(results.data, deviceService.addOrUpdateDevice);
         return deviceService.getDevices();
       });
