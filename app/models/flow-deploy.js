@@ -2,6 +2,7 @@ var _ = require('lodash'),
     FlowDeviceCollection = require('../collections/flow-device-collection'),
     when = require('when'),
     textCrypt = require('../lib/textCrypt'),
+    Channel = require('../models/channel'),
     mongojs = require('mongojs');
 
 var FlowDeploy = function(options){
@@ -61,21 +62,17 @@ var FlowDeploy = function(options){
   self.mergeFlowTokens = function(flow, userApis, channelApis) {
     _.each(flow.nodes, function(node){
       node.oauth = {};
-      var userApiMatch = _.findWhere(userApis, function(api){
-          return api._id === node.channelActivationId || api._id === mongojs.ObjectId(node.channelActivationId);
-      });
+      var userApiMatch = _.findWhere(userApis, { _id : node.channelActivationId });
       if (userApiMatch) {
         if (userApiMatch.token_crypt) {
-          userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt); 
-          userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt); 
+          userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt);
+          userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt);
         }
         node.oauth.access_token = userApiMatch.token || userApiMatch.key;
         node.oauth.access_token_secret = userApiMatch.secret;
         node.defaultParams = userApiMatch.defaultParams;
       }
-      var channelApiMatch = _.findWhere(channelApis, function(api){
-          return api.channelid === node.channelid || api.channelid === mongojs.ObjectId(node.channelid);
-      });
+      var channelApiMatch = Channel.syncFindByType(node.type);
       if (channelApiMatch) {
         if (!channelApiMatch.oauth){
           channelApiMatch.oauth = {
@@ -136,7 +133,6 @@ var FlowDeploy = function(options){
 
 FlowDeploy.start = function(userUUID, flow, meshblu){
   var flowDeploy, mergedFlow, flowDevice, user, deviceCollection;
-  var Channel = require('../models/channel');
 
   flowDeploy = new FlowDeploy({userUUID: userUUID, meshblu: meshblu});
   return flowDeploy.getUser(userUUID).then(function(theUser){

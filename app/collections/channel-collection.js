@@ -32,7 +32,7 @@ var ChannelCollection = function(options){
 
   self.mergeChannelsAndApis = function(apis, channels){
     return _.map(channels, function(channel){
-      var api = _.findWhere(apis, {channelid: ""+channel._id});
+      var api = _.findWhere(apis, { type: channel.type });
       return {
         channelid : channel._id,
         channelActivationId : api._id,

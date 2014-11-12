@@ -2,6 +2,7 @@
 var _ = require('lodash'),
     moment = require('moment'),
     User = require('../models/user'),
+    Channel = require('../models/channel'),
     isAuthenticated = require('./middleware/security').isAuthenticated,
     request = require('request'),
     mongojs = require('mongojs');
@@ -64,11 +65,10 @@ module.exports = function (app) {
     var deleteUserChannel = function (req, res) {
         var found = false,
             channelid = req.params.channelid;
+        var channel = Channel.syncFindById(channelid);
         var user = req.user;
         user.api = user.api || [];
-        user.api = _.filter(user.api, function(api){
-            return api.channelid !== channelid && api.channelid !== mongojs.ObjectId(channelid);
-        });
+        user.api = _.filter(user.api, { type : channel.type });
         User.update({_id: user._id}, user).then(function(){
           res.json({'message': 'success'});
         }).catch(function (error) {
