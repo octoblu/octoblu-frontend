@@ -109,15 +109,15 @@ describe('FlowDeploy', function () {
     describe('when a flow', function(){
       var result;
       beforeEach(function () {
-        var flow = {nodes: [{category:'channel', channelActivationId:'222222222222', channelid: '111111111111'}]};
+        var flow = {nodes: [{category:'channel', channelActivationId:'222222222222', type: '111111111111'}]};
         var userApis = [{_id: mongojs.ObjectId('222222222222'), oauth:{access_token: 'this-is-a-token'}}];
-        var channelApis = [{_id: '111111111111', application: {base: 'http://api.com'}, oauth:{access_token: 'this-is-a-token'}}];
+        var channelApis = [{type: '111111111111', application: {base: 'http://api.com'}, oauth:{access_token: 'this-is-a-token'}}];
         result = sut.mergeFlowTokens(flow, userApis, channelApis);
       });
 
       it('should merge the api values into the flow', function(){
         expect(JSON.stringify(_.first(result.nodes))).to.deep.equal(
-          JSON.stringify({"category":"channel","channelActivationId":"222222222222","channelid":"111111111111","oauth":{"access_token":"this-is-a-token"},"application":{"base":"http://api.com"}})
+          JSON.stringify({"category":"channel","channelActivationId":"222222222222","type":"111111111111","oauth":{"access_token":"this-is-a-token"},"application":{"base":"http://api.com"}})
         );
       });
     });
