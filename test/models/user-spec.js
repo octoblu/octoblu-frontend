@@ -8,12 +8,19 @@ describe('User', function () {
 
   describe('overwriteOrAddApiByChannelId', function () {
     beforeEach(function () {
-      sut = {};
+      sut = {
+
+      };
     });
 
     describe('when api is empty', function () {
+      var channelId = '12345';
+      beforeEach(function(){
+
+      });
+
       it('should return undefined', function () {
-        expect(User.overwriteOrAddApiByChannelId(sut)).to.be.undefined;
+        expect(User.overwriteOrAddApiByChannelId(sut, channelId)).to.be.undefined;
       });
 
       it('should insert a record into api', function () {
