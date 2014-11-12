@@ -3,6 +3,6 @@
 <md-text-float label="Filter by Topic" ng-model="flowNode.filterTopic"> </md-text-float>
 
 
-<div ng-if="flowNode.useStaticMessage">
+<div ng-show="flowNode.useStaticMessage" ng-hide="!flowNode.useStaticMessage">
   <device-message-form uuid="flowNode.uuid" token="flowNode.token" model="flowNode.staticMessage"></device-message-form>
 </div>
