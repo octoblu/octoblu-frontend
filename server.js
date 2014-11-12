@@ -80,6 +80,7 @@ passport.use(require('./config/uservoice'));
 passport.use(require('./config/vimeo'));
 passport.use(require('./config/wordpress'));
 passport.use(require('./config/xero'));
+passport.use(require('./config/zendesk'));
 
 // set up our express application
 app.use(morgan('dev', {immediate:false})); // log every request to the console

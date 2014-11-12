@@ -90,7 +90,7 @@ var NodeCollection = function(userUUID) {
       category: 'device',
       type: 'device:flow',
       staticMessage: {},
-      topic: 'button',
+      topic: 'flow',
       filterTopic: 'message',
       useStaticMessage: true
     };

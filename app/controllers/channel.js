@@ -15,6 +15,13 @@ module.exports = function (app) {
 
   app.get('/api/channels/active', isAuthenticated, function (req, res) {
     var channelIds = _.pluck(req.user.api, 'channelid');
+    channelIds = _.map(channelIds, function(id){
+      if(id && !_.isString(id)){
+        return id.toString();
+      }else{
+        return id;
+      }
+    });
     Channel.findByIds(channelIds).then(function(channels){
       res.send(whiteListProperties(channels));
     });

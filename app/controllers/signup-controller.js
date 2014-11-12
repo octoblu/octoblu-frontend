@@ -33,16 +33,7 @@ var SignupController = function () {
     });
   };
 
-  self.createUser = function(req, res, next) {
-    User.findOrCreateByEmailAndPassword(req.body.email, req.body.password).then(function(user){
-      req.user = user;
-      next();
-    }).catch(function(error){
-      res.send(422, error);
-    });
-  };
-
-  self.loginUser = passport.authenticate('local');
+  self.authorize = passport.authenticate('local');
 
   this.returnUser = function(req, res){
     res.send(201, req.user);

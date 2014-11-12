@@ -188,7 +188,7 @@ module.exports = function (app, passport, config) {
             if(creds.version==='1.0' && creds.is0LegAuth==true) {
                 // add api to user record
                 var token = '0LegAuth';
-                User.overwriteOrAddApiByChannelId(user, api._id, {authtype: 'oauth', token: token});
+                User.overwriteOrAddApiByChannelId(user, api._id, api.type, {authtype: 'oauth', token: token});
                 User.update({_id: user._id}, user).then(function (err) {
                     res.redirect('/connect/nodes/channel/' + api._id);
                 });

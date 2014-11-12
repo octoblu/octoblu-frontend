@@ -87,6 +87,9 @@ module.exports = function(app, passport) {
     var InstagramController = require('./controllers/instagram-controller');
     var instagramController = new InstagramController();
 
+    var ZendeskController = require('./controllers/zendesk-controller');
+    var zendeskController = new ZendeskController;
+
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
 
@@ -185,7 +188,7 @@ module.exports = function(app, passport) {
             app.post('/api/auth/clouddotcom/channel/:id', channelCloudDotComController.create);
             app.post('/api/auth/basic/channel/:id', channelBasicAuthController.create);
 
-            app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.createUser, signupController.loginUser, signupController.checkInTester, signupController.returnUser);
+            app.post('/api/auth/signup', signupController.verifyInvitationCode, signupController.storeTesterId, signupController.authorize, signupController.checkInTester, signupController.returnUser);
             app.get('/api/oauth/facebook/signup', signupController.verifyInvitationCode, signupController.storeTesterId, facebookController.authorize);
             app.get('/api/oauth/github/signup', signupController.verifyInvitationCode, signupController.storeTesterId, githubController.authorize);
             app.get('/api/oauth/google/signup', signupController.verifyInvitationCode, signupController.storeTesterId, googleController.authorize);
@@ -258,6 +261,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/instagram',          instagramController.authorize);
             app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
+
+            app.get('/api/oauth/zendesk',          zendeskController.authorize);
+            app.get('/api/oauth/zendesk/callback', zendeskController.callback, zendeskController.redirectToDesigner);
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);
