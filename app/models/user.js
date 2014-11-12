@@ -66,7 +66,6 @@ function UserModel() {
         });
 
         return self.insert(userParams).then(function(users){
-          console.log('insert', users);
           return _.first(users);
         });
       });
@@ -151,7 +150,7 @@ function UserModel() {
 
     overwriteOrAddApi : function(user, channel, options){
       var self = this;
-      var index, new_api, old_api;
+      var index, new_api, old_api, oldUuid;
 
       if (_.isUndefined(user.api)) {
         user.api = [];
@@ -161,6 +160,7 @@ function UserModel() {
 
       if(index > -1){
         old_api = user.api[index];
+        oldUuid = old_api.uuid;
         user.api.splice(index, 1);
       }
 
@@ -172,6 +172,7 @@ function UserModel() {
       new_api._id = self.ObjectId();
 
       new_api.type = channel.type;
+      new_api.uuid = oldUuid || uuid.v1();
 
       user.api.push(new_api);
     },

@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditorOmnibox', function () {
+  .directive('flowEditorOmnibox', function ($window) {
     return {
       restrict: 'E',
       replace: true,
@@ -11,6 +11,22 @@ angular.module('octobluApp')
         omniSearch: '='
       },
       link: function (scope, element) {
+        var setScrollableHeight = function() {
+          var size = $window.innerHeight - 125;
+          $('.floating-omnibox .dropdown-menu').css('max-height', size);
+        }
+
+        var w = angular.element($window);
+        setScrollableHeight()
+
+        w.bind('resize', function(){
+          setScrollableHeight();
+        });
+
+        element.find('input.omnibox').on('keydown', function(){
+          _.defer(setScrollableHeight);
+        })
+
         scope.$watch('omniSearch', function(newItem){
           if(!_.isObject(newItem)) { return; }
           scope.selectItem(newItem);

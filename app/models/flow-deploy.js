@@ -1,9 +1,11 @@
 var _ = require('lodash'),
     FlowDeviceCollection = require('../collections/flow-device-collection'),
     when = require('when'),
+    debug = require('debug')('octoblu:flow-deploy'),
     textCrypt = require('../lib/textCrypt'),
     Channel = require('../models/channel'),
-    mongojs = require('mongojs');
+    mongojs = require('mongojs'),
+    url = require('url');
 
 var FlowDeploy = function(options){
   var User = require('../models/user');
@@ -14,7 +16,7 @@ var FlowDeploy = function(options){
   options         = options || {};
 
   userUUID        = options.userUUID;
-  config          = options.config  || require('../../config/auth')(process.env.NODE_ENV).designer;
+  config          = options.config  || require('../../config/auth')(process.env.NODE_ENV);
   request         = options.request || require('request');
   meshblu         = options.meshblu;
 
@@ -99,7 +101,9 @@ var FlowDeploy = function(options){
   };
 
   self.startFlow = function(flow){
-    self.sendMessage(flow, 'nodered-instance-start');
+    self.updateMeshbluFlow(flow).then(function(){
+      self.sendMessage(flow, 'nodered-instance-start');
+    });
   };
 
   self.stopFlow = function(flow){
@@ -133,6 +137,30 @@ var FlowDeploy = function(options){
   self.paddedArray = function(length){
     return _.map(_.range(length), function(){
       return [];
+    });
+  };
+
+  self.updateMeshbluFlow = function(flow){
+    return when.promise(function(resolve, reject){
+
+      var protocol = (config.skynet.port == 443) ? 'https' : 'http';
+      var uri = url.format({
+        protocol: protocol,
+        hostname: config.skynet.host,
+        port: config.skynet.port,
+        pathname: '/devices/' + flow.flowId
+      });
+
+      var options = {
+        json:    { flow: self.convertFlow(flow) },
+        headers: { skynet_auth_uuid: flow.flowId, skynet_auth_token: flow.token }
+      };
+
+      request.put(uri, options, function(error, response, body){
+        debug('update resolved', error, body);
+        if(error) { return reject(error); }
+        resolve(body);
+      });
     });
   };
 };

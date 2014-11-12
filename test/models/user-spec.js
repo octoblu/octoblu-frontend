@@ -84,10 +84,17 @@ describe('User', function () {
 
   describe('overwriteOrAddApiByChannelId', function () {
     beforeEach(function () {
-      sut = {};
+      sut = {
+
+      };
     });
 
     describe('when api is empty', function () {
+      var channelId = '12345';
+      beforeEach(function(){
+
+      });
+
       it('should return undefined', function () {
         expect(User.overwriteOrAddApiByChannelId(sut, twitterChannelId)).to.be.undefined;
       });

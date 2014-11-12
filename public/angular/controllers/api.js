@@ -49,7 +49,7 @@ angular.module('octobluApp')
                         channelService.getActiveChannels(true);
                         channelService.getAvailableChannels(true);
                         _.defer(function(){
-                            $window.location = '/design';
+                            $state.go('design');
                         });
                     });
                 }

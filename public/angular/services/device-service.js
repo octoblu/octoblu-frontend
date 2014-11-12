@@ -41,7 +41,7 @@ angular.module('octobluApp')
             });
         };
 
-        var service = window.ds = {
+        var service = {
             addOrUpdateDevice: function(device){
                 subscribeToDevice(device);
                 var existingDevice = _.findWhere(myDevices, {uuid: device.uuid});
@@ -164,11 +164,16 @@ angular.module('octobluApp')
                 return defer.promise;
             },
 
+            clearCache: function() {
+                myDevices.length = 0;
+            },
+
             unregisterDevice: function (device) {
                 var defer = $q.defer();
 
                 skynetPromise.then(function (skynetConnection) {
                     skynetConnection.unregister(device, function (result) {
+                        myDevices.length = 0;
                         defer.resolve();
                     });
                 });
