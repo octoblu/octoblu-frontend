@@ -3,7 +3,7 @@ var octobluDB  = require('../lib/database');
 var _          = require('lodash');
 var when       = require('when');
 var uuid       = require('node-uuid');
-var bcrypt     = require('bcrypt-nodejs');
+var bcrypt     = require('bcrypt');
 var configAuth = require('../../config/auth')(process.env.NODE_ENV);
 var request    = require('request');
 var Channel    = require('./channel');
@@ -15,29 +15,14 @@ function UserModel() {
     createLocalUser : function(data){
       var self = this;
 
-      return self.findByEmail(data.email).then(function(user){
-        if(user && self.validPassword(user, data.password)){
-          return user;
-        }
-
-        if(user) {
-          throw new Error("User with that email address already exists");
-        }
-
-      }).then(function(user) {
-        if (!_.isEmpty(user)) {
-          return user;
-        }
-
-        var userParams = {
+      var userParams = {
+        email: data.email,
+        local: {
           email: data.email,
-          local: {
-            email: data.email,
-            password: self.generateHash(password)
-          }
+          password: self.generateHash(data.password)
         }
-        return self.createUser(userParams);
-      });
+      }
+      return self.createUser(userParams);
     },
 
     createOAuthUser: function(data) {
@@ -67,20 +52,6 @@ function UserModel() {
         return self.insert(userParams).then(function(users){
           return _.first(users);
         });
-      });
-    },
-
-    findByEmailAndPassword : function(email, password){
-      var self = this;
-
-      return self.findByEmail(email).then(function(user){
-        if (!user){
-          throw new Error('User not found');
-        }
-        if (!self.validPassword(user, password)){
-          throw new Error('Invalid password');
-        }
-        return user;
       });
     },
 
@@ -118,7 +89,7 @@ function UserModel() {
 
     generateHash : function (password) {
       var self = this;
-      return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+      return bcrypt.hashSync(password, 8);
     },
 
     acceptTerms : function (user, termsAccepted) {
@@ -166,13 +137,11 @@ function UserModel() {
 
     updatePassword : function (user, oldPassword, newPassword) {
       var self = this;
-      return when.promise(function (resolve, reject) {
-        if (!user.validPassword(user, oldPassword)) {
-          reject('Password is invalid');
-        }
-        user.local.password = self.generateHash(user, newPassword);
-        return User.update({_id: user._id}, user);
-      });
+      if (!self.validPassword(user, oldPassword)) {
+        throw new Error('Password is invalid');
+      }
+      user.local.password = self.generateHash(newPassword);
+      return User.update({_id: user._id}, user);
     },
 
     validPassword : function (user, password) {

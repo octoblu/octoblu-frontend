@@ -7,7 +7,7 @@
   "dependencies": {
     "airbrake": "^0.3.8",
     "async": "*",
-    "bcrypt-nodejs": "latest",
+    "bcrypt": "^0.8.0",
     "body-parser": "~1.5.0",
     "browserify": "^4.2.0",
     "connect-flash": "~0.1.1",
