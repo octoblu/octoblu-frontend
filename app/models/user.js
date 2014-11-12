@@ -144,7 +144,7 @@ function UserModel() {
         if(channelid && !_.isString(channelid)){
           channelid = channelid.toString();
         }
-        return channel.type === channel.type || channel._id === channelid;
+        return channel.type === api.type || channel._id === channelid;
       });
     },
 

@@ -64,23 +64,8 @@ var FlowDeploy = function(options){
   self.mergeFlowTokens = function(flow, userApis, channelApis) {
     _.each(flow.nodes, function(node){
       node.oauth = {};
-      var userApiMatch = _.findWhere(userApis, function(api){
-        var id = api.id;
-        if(id && !_.isString(id)){
-          id = api.id.toString();
-        }
-        return id === node.channelActivationId;
-      });
-      if (userApiMatch) {
-        if (userApiMatch.token_crypt) {
-          userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt);
-          userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt);
-        }
-        node.oauth.access_token = userApiMatch.token || userApiMatch.key;
-        node.oauth.access_token_secret = userApiMatch.secret;
-        node.defaultParams = userApiMatch.defaultParams;
-      }
-      var channelApiMatch = _.findWhere(channelApis, { type : node.type });
+      var userApiMatch, channelApiMatch;
+      channelApiMatch = _.findWhere(channelApis, { type : node.type });
       if (channelApiMatch) {
         if (!channelApiMatch.oauth){
           channelApiMatch.oauth = {
@@ -95,7 +80,19 @@ var FlowDeploy = function(options){
         node.oauth = _.defaults(node.oauth, channelOauth);
         node.oauth.key = node.oauth.key || node.oauth.clientID || node.oauth.consumerKey;
         node.oauth.secret = node.oauth.secret || node.oauth.clientSecret || node.oauth.consumerSecret;
+        // Get User API Match
+        userApiMatch = User.findApiByChannel(userApis, channelApiMatch);
       }
+      if (userApiMatch) {
+        if (userApiMatch.token_crypt) {
+          userApiMatch.secret = textCrypt.decrypt(userApiMatch.secret_crypt);
+          userApiMatch.token = textCrypt.decrypt(userApiMatch.token_crypt);
+        }
+        node.oauth.access_token = userApiMatch.token || userApiMatch.key;
+        node.oauth.access_token_secret = userApiMatch.secret;
+        node.defaultParams = userApiMatch.defaultParams;
+      }
+
     });
     return flow;
   };
