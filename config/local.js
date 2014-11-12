@@ -3,7 +3,7 @@ var User          = require('../app/models/user');
 var LocalStrategy = require('passport-local').Strategy;
 var _             = require('lodash');
 
-var ensureUser = function(email, password, callback){
+var ensureUser = function(req, email, password, callback){
   var query, userParams;
 
   query = {'local.email': email};
@@ -40,7 +40,8 @@ var ensureUser = function(email, password, callback){
 
 var localStrategy = new LocalStrategy({
   usernameField: 'email',
-  passwordField: 'password'
+  passwordField: 'password',
+  passReqToCallback: true,
 }, ensureUser);
 
 module.exports = localStrategy;
