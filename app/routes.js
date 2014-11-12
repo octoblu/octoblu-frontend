@@ -87,6 +87,9 @@ module.exports = function(app, passport) {
     var InstagramController = require('./controllers/instagram-controller');
     var instagramController = new InstagramController();
 
+    var ZendeskController = require('./controllers/zendesk-controller');
+    var zendeskController = new ZendeskController;
+
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
 
@@ -258,6 +261,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/instagram',          instagramController.authorize);
             app.get('/api/oauth/instagram/callback', instagramController.callback, instagramController.redirectToDesigner);
+
+            app.get('/api/oauth/zendesk',          zendeskController.authorize);
+            app.get('/api/oauth/zendesk/callback', zendeskController.callback, zendeskController.redirectToDesigner);
 
             app.get('/api/oauth/nest',          nestController.authorize);
             app.get('/api/oauth/nest/callback', nestController.callback, nestController.redirectToDesigner);

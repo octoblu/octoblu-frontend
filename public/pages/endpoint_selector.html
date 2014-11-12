@@ -3,7 +3,10 @@
     <label for="selectedEndpoint">Endpoint</label>
     <select id="selectedEndpoint" ng-model="selectedEndpoint" ng-options="getEndpointLabel(endpoint) for endpoint in resources" class="form-control"></select>
   </div>
-
+	<div class="form-group" >
+    <label for="selectedEndpoint">Endpoint URL</label>
+    <span>{{ selectedEndpoint.url }}</span>
+  </div>
   <param-input ng-model="node.headerParams" param-definitions="headerParamDefinitions"></param-input>
   <param-input ng-model="node.urlParams"   	param-definitions="urlParamDefinitions"></param-input>
   <param-input ng-model="node.queryParams" 	param-definitions="queryParamDefinitions"></param-input>

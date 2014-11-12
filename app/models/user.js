@@ -4,6 +4,7 @@ var _          = require('lodash');
 var when       = require('when');
 var uuid       = require('node-uuid');
 var bcrypt     = require('bcrypt');
+var crypto     = require('crypto');
 var configAuth = require('../../config/auth')(process.env.NODE_ENV);
 var request    = require('request');
 var Channel    = require('./channel');
@@ -21,7 +22,7 @@ function UserModel() {
           email: data.email,
           password: self.generateHash(data.password)
         }
-      }
+      };
       return self.createUser(userParams);
     },
 
@@ -104,12 +105,21 @@ function UserModel() {
 
     addApiAuthorization: function(user, type, options) {
       var self = this;
-      var channel = Channel.syncFindByType(type);
-      self.overwriteOrAddApiByChannelId(user, self.ObjectId(channel._id), options);
+      self.overwriteOrAddApiByChannelType(user, type, options);
       return self.update({_id: user._id}, user);
     },
 
-    overwriteOrAddApiByChannelId : function (user, channelid, options) {
+    findApiByChannel : function(apis, channel){
+      return _.findWhere(apis, function(api){
+        var channelid = api.channelid;
+        if(channelid && !_.isString(channelid)){
+          channelid = channelid.toString();
+        }
+        return channel.type === api.type || channel._id === channelid;
+      });
+    },
+
+    overwriteOrAddApi : function(user, channel, options){
       var self = this;
       var index, new_api, old_api, oldUuid;
 
@@ -117,7 +127,7 @@ function UserModel() {
         user.api = [];
       }
 
-      index = _.findIndex(user.api, {channelid: channelid.toString()});
+      index = _.findIndex(user.api, { type : channel.type });
 
       if(index > -1){
         old_api = user.api[index];
@@ -129,10 +139,33 @@ function UserModel() {
       if(old_api && !new_api.defaultParams && old_api.defaultParams){
         new_api.defaultParams = old_api.defaultParams;
       }
+      new_api.channelid = self.ObjectId(channel._id);
+      new_api._id = self.ObjectId();
+
+      new_api.type = channel.type;
       new_api.uuid = oldUuid || uuid.v1();
-      new_api.channelid = channelid.toString();
 
       user.api.push(new_api);
+    },
+
+    overwriteOrAddApiByChannelId : function (user, channelid, options) {
+      var self = this;
+
+      if(channelid && !_.isString(channelid)){
+        channelid = channelid.toString();
+      }
+
+      var channel = Channel.syncFindById(channelid);
+
+      self.overwriteOrAddApi(user, channel, options);
+    },
+
+    overwriteOrAddApiByChannelType : function (user, type, options) {
+      var self = this;
+
+      var channel = Channel.syncFindByType(type);
+
+      self.overwriteOrAddApi(user, channel, options);
     },
 
     updatePassword : function (user, oldPassword, newPassword) {
@@ -141,7 +174,7 @@ function UserModel() {
         throw new Error('Password is invalid');
       }
       user.local.password = self.generateHash(newPassword);
-      return User.update({_id: user._id}, user);
+      return self.update({_id: user._id}, user);
     },
 
     validPassword : function (user, password) {
@@ -157,7 +190,7 @@ function UserModel() {
     registerWithMeshblu : function(email) {
       var self = this;
       var uri = 'http://' + configAuth.skynet.host + ':' + configAuth.skynet.port + '/devices';
-      var params = { 
+      var params = {
         json: {
           type: 'user',
           email: email
@@ -174,7 +207,7 @@ function UserModel() {
         });
       });
     }
-  }
+  };
 
   return _.extend({}, collection, methods);
 }
