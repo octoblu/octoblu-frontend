@@ -5,13 +5,22 @@ var _    = require('lodash');
 
 var channels = JSON.parse(fs.readFileSync('assets/json/channels.json'));
 
+function convertIdToString(id){
+  if(id && !_.isString(id)){
+    return id.toString();
+  }else{
+    return id;
+  }
+}
+
 var Channel = {
 
   findById: function(id){
-    return when(_.findWhere(channels, {_id: id}));
+    return when(_.findWhere(channels, {_id: convertIdToString(id) }));
   },
 
   findByIds: function(ids){
+    ids = _.map(ids, convertIdToString);
     return when(_.filter(channels, function(channel){
       return _.contains(ids, channel._id);
     }));
@@ -32,7 +41,7 @@ var Channel = {
   },
 
   syncFindById: function(id){
-    return _.findWhere(channels, {_id: id});
+    return _.findWhere(channels, {_id: convertIdToString(id) });
   },
 
   syncFindByType: function(type){

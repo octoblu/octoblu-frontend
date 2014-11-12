@@ -30,7 +30,7 @@ function FlowModel() {
         return unregisterFlow(meshblu, flow.flowId, flow.token).then(function () {
           console.log(query);
           return self.remove(query, true);
-        })
+        });
       });
     },
 

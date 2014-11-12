@@ -175,6 +175,12 @@ angular.module('octobluApp')
             });
         };
 
+        this.getChannelActivationByType = function(channelType){
+            return this.getActiveChannels().then(function(channels){
+                return _.findWhere(channels, { type : channelType});
+            });
+        };
+
         this.getById = function(channelId){
             var addLogoUrl = this.addLogoUrl;
             return $http.get('/api/channels/' + channelId).then(function(response){
