@@ -139,6 +139,16 @@ function UserModel() {
       return self.update({_id: user._id}, user);
     },
 
+    findApiByChannel : function(apis, channel){
+      return _.findWhere(apis, function(api){
+        var channelid = api.channelid;
+        if(channelid && !_.isString(channelid)){
+          channelid = channelid.toString();
+        }
+        return channel.type === channel.type || channel._id === channelid;
+      });
+    },
+
     overwriteOrAddApi : function(user, channel, options){
       var self = this;
       var index, new_api, old_api;
@@ -159,6 +169,7 @@ function UserModel() {
         new_api.defaultParams = old_api.defaultParams;
       }
       new_api.channelid = self.ObjectId(channel._id);
+      new_api._id = self.ObjectId();
 
       new_api.type = channel.type;
 

@@ -92,7 +92,7 @@ var NodeCollection = function(userUUID) {
       staticMessage: {},
       topic: 'button',
       filterTopic: 'message',
-      useStaticMessage: true   
+      useStaticMessage: true
     };
   };
 
