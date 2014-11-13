@@ -163,11 +163,19 @@ angular.module('octobluApp')
               LinkRenderer.render(renderScope, from, to);
             })
             .on('dragend', function () {
-              var x, y, point, rectangle, portRect;
+              var x, y, point, rectangle, portRect, clientX, clientY;
 
-              x = d3.event.sourceEvent.clientX / flow.zoomScale;
+              if (d3.event.sourceEvent.changedTouches) {
+                clientX = d3.event.sourceEvent.changedTouches[0].clientX;
+                clientY = d3.event.sourceEvent.changedTouches[0].clientY;
+              } else {
+                clientX = d3.event.sourceEvent.clientX;
+                clientY = d3.event.sourceEvent.clientY;
+              }
+
+              x = clientX / flow.zoomScale;
               x = x - (flow.zoomX / flow.zoomScale);
-              y = d3.event.sourceEvent.clientY / flow.zoomScale;
+              y = clientY / flow.zoomScale;
               y = y - (flow.zoomY / flow.zoomScale);
 
               if (sourcePortType == 'output') {
@@ -216,7 +224,6 @@ angular.module('octobluApp')
             return 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
           }
         };
-
 
         var nodeElement = renderScope
           .append('g')
