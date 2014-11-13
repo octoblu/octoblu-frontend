@@ -24,6 +24,8 @@ var env            = app.settings.env;
 var configAuth     = require('./config/auth.js')(env);
 var port           = process.env.OCTOBLU_PORT || configAuth.port;
 var sslPort        = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
+var databaseConfig = require('./config/database')();
+
 
 if (process.env.AIRBRAKE_KEY) {
   var airbrake = require('airbrake').createClient(process.env.AIRBRAKE_KEY);
@@ -91,10 +93,12 @@ app.use(bodyParser.urlencoded({ extended : true, limit : '50mb' }));
 
 app.use(bodyParser.json({ limit : '50mb' }));
 
-app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public'));
 
-// app.set('view engine', 'jade'); // set up jade for templating
-require('./config/session')(app);
+var expressSession = require('./config/session');
+
+app.use(expressSession);
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
