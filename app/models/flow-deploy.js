@@ -82,7 +82,6 @@ var FlowDeploy = function(options){
         node.oauth.secret = node.oauth.secret || node.oauth.clientSecret || node.oauth.consumerSecret;
         // Get User API Match
         userApiMatch = User.findApiByChannel(userApis, channelApiMatch);
-        console.log(userApiMatch);
       }
       if (userApiMatch) {
         if (userApiMatch.token_crypt) {
