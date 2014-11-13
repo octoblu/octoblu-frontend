@@ -3,7 +3,7 @@
   "auth_strategy": "clouddotcom",
   "custom_tokens": [ ],
   "description": "",
-  "enabled": true,
+  "enabled": "true",
   "name": "CloudDotCom",
   "type": "channel:clouddotcom",
   "application": {
