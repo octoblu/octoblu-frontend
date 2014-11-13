@@ -3,7 +3,7 @@
   "auth_strategy": "clouddotcom",
   "custom_tokens": [ ],
   "description": "",
-  "enabled": false,
+  "enabled": "true",
   "name": "CloudDotCom",
   "type": "channel:clouddotcom",
   "application": {
@@ -11,6 +11,7 @@
     "resources": [
       {
         "url": "https://api.cloud.com/push/channels/:name",
+        "displayName": "/push/channels/:name",
         "path": "/push/channels/:name",
         "httpMethod": "DELETE",
         "params": [
@@ -25,6 +26,7 @@
       },
       {
         "url": "https://api.cloud.com/push/apns/connections",
+        "displayName": "/push/apns/connections",
         "path": "/push/apns/connections",
         "httpMethod": "GET",
         "params": [
@@ -46,6 +48,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels",
+        "displayName": "/push/channels",
         "path": "/push/channels",
         "httpMethod": "GET",
         "params": [  
@@ -88,6 +91,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name",
+        "displayName": "push/channels/:name",
         "path": "push/channels/:name",
         "httpMethod": "GET",
         "params": [
@@ -102,6 +106,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/devices",
+        "displayName": "/push/channels/:name/device",
         "path": "/push/channels/:name/device",
         "httpMethod": "GET",
         "params": [
@@ -130,6 +135,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/notifications",
+        "displayName": "/push/channels/:name/notifications",
         "path": "/push/channels/:name/notifications",
         "httpMethod": "GET",
         "params": [
@@ -172,6 +178,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/stats",
+        "displayName": "/push/channels/:name/stats",
         "path": "/push/channels/:name/stats",
         "httpMethod": "GET",
         "params": [
@@ -186,6 +193,7 @@
       },
       {
         "url": "https://api.cloud.com/push/connections",
+        "displayName": "/push/connections",
         "path": "/push/connections",
         "httpMethod": "GET",
         "params": [
@@ -207,6 +215,7 @@
       },
       {
         "url": "https://api.cloud.com/push/devices",
+        "displayName": "/push/devices",
         "path": "/push/devices",
         "httpMethod": "GET",
         "params": [
@@ -228,6 +237,7 @@
       },
       {
         "url": "https://api.cloud.com/push/devices/connected",
+        "displayName": "/push/devices/connected",
         "path": "/push/devices/connected",
         "httpMethod": "GET",
         "params": [
@@ -249,6 +259,7 @@
       },
       {
         "url": "https://api.cloud.com/push/gcm/connections",
+        "displayName": "/push/gcm/connections",
         "path": "/push/gcm/connections",
         "httpMethod": "GET",
         "params": [
@@ -270,6 +281,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notifications",
+        "displayName": "/push/notifications",
         "path": "/push/notifications",
         "httpMethod": "GET",
         "params": [
@@ -305,6 +317,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notifications/:uid",
+        "displayName": "/push/notifications/:uid",
         "path": "/push/notifications/:uid",
         "httpMethod": "GET",
         "params": [
@@ -347,6 +360,7 @@
       },
       {
         "url": "https://api.cloud.com/push/stats",
+        "displayName": "/push/stats",
         "path": "/push/stats",
         "httpMethod": "GET",
         "params": [
@@ -368,6 +382,7 @@
       },
             {
         "url": "https://api.cloud.com/push/subscribe",
+        "displayName": "/push/subscribe",
         "path": "/push/subscribe",
         "httpMethod": "GET",
         "params": [
@@ -417,6 +432,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels",
+        "displayName": "/push/channels",
         "path": "/push/channels",
         "httpMethod": "POST",
         "params": [
@@ -431,6 +447,7 @@
       },
       {
         "url": "https://api.cloud.com/push/connections/subscribe",
+        "displayName": "/push/connections/subscribe",
         "path": "/push/connections/subscribe",
         "httpMethod": "POST",
         "params": [
@@ -452,6 +469,7 @@
       },
       {
         "url": "https://api.cloud.com/push/connections/unsubscribe",
+        "displayName": "/push/connections/unsubscribe",
         "path": "/push/connections/unsubscribe",
         "httpMethod": "POST",
         "params": [
@@ -473,6 +491,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notify",
+        "displayName": "/push/notify",
         "path": "/push/notify",
         "httpMethod": "POST",
         "params": [
