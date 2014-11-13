@@ -30,6 +30,15 @@
   }
 
   $(document).ready(function() {
+    if($('#creds').size()){
+      var uuid = getParam('uuid');
+      var token = getParam('token');
+      if(uuid && token){
+        $('#creds').attr('data-uuid', uuid);
+        $('#creds').attr('data-token', token);
+      }
+    }
+
 
     $('.login-via-provider').click(function(e) {
       e.preventDefault();
