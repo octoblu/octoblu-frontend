@@ -2,8 +2,8 @@ angular.module('octobluApp')
   .constant('FlowNodeDimensions', {
     width: 80,
     minHeight: 70,
-    portHeight: 10,
-    portWidth: 10
+    portHeight: 15,
+    portWidth: 15
   })
   .service('FlowNodeRenderer', function (FlowNodeDimensions, LinkRenderer, IconCodes) {
 
@@ -253,12 +253,12 @@ angular.module('octobluApp')
         if (node.type === 'operation:trigger') {
           nodeElement
             .append('rect')
-            .attr('width', 20)
-            .attr('height', 20)
+            .attr('width', 30)
+            .attr('height', 30)
             .attr('rx', 2)
             .attr('ry', 2)
-            .attr('x', -15)
-            .attr('y', (nodeHeight / 2) - 10)
+            .attr('x', -35)
+            .attr('y', (nodeHeight / 2) - 15)
             .classed('flow-node-button', true);
         }
 
