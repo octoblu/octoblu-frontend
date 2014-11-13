@@ -18,22 +18,8 @@ angular.module('octobluApp')
           }
           d3.event.preventDefault();
           dispatch.nodeSelected(node);
-          node.touchStart = new Date().getTime();
         };
-        nodeElement.on('touchstart', function(){
-          nodeClicked();
-          node.touchTimer = setTimeout(function(){
-            dispatch.nodeSelected(null);
-            _.pull(flow.nodes, node);
-          }, 1200);
-        });
         nodeElement.on('click', nodeClicked);
-        nodeElement.on('touchend', function(){
-          if (node.touchTimer) {
-            clearTimeout(node.touchTimer);
-            delete node.touchTimer;
-          }
-        });
         nodeElement.on('dblclick', function(){
           d3.event.preventDefault();
           d3.event.stopPropagation();
@@ -46,7 +32,6 @@ angular.module('octobluApp')
             d3.event.preventDefault();
             d3.event.stopPropagation();
             dispatch.nodeButtonClicked(node);
-            node.touchStart = new Date().getTime();
           };
           var button = nodeElement.selectAll('.flow-node-button');
           button.on('click', buttonClicked);
@@ -64,10 +49,10 @@ angular.module('octobluApp')
           }
           d3.event.preventDefault();
           dispatch.linkSelected(link);
-          link.touchStart = new Date().getTime();
         };
         linkElement.on('touchstart', function(){
           linkClicked();
+          clearTimeout(link.touchTimer);
           link.touchTimer = setTimeout(function(){
             dispatch.linkSelected(null);
             _.pull(flow.links, link);
@@ -75,10 +60,7 @@ angular.module('octobluApp')
         });
         linkElement.on('click', linkClicked);
         linkElement.on('touchend', function(){
-          if (link.touchTimer) {
-            clearTimeout(link.touchTimer);
-            delete link.touchTimer;
-          }
+          clearTimeout(link.touchTimer);
         });
         linkElement.on('dblclick', function(){
           d3.event.preventDefault();
@@ -90,19 +72,14 @@ angular.module('octobluApp')
         var dragBehavior = d3.behavior.drag()
           .on('dragstart', function () {
             d3.event.sourceEvent.stopPropagation();
+            dispatch.nodeSelected(node);
           })
           .on('drag', function () {
-            if (node.touchTimer) {
-              clearTimeout(node.touchTimer);
-              delete node.touchTimer;
-            }
-            if (flow.selectedFlowNode === node) {
-              node.x = d3.event.x - (FlowNodeDimensions.width / 2);
-              node.y = d3.event.y - (FlowNodeDimensions.minHeight / 2);
-              d3.select(this)
-                .attr("transform", "translate(" + node.x + "," + node.y + ")");
-              renderLinks(flow);
-            }
+            node.x = d3.event.x - (FlowNodeDimensions.width / 2);
+            node.y = d3.event.y - (FlowNodeDimensions.minHeight / 2);
+            d3.select(this)
+              .attr("transform", "translate(" + node.x + "," + node.y + ")");
+            renderLinks(flow);
           })
           .on('dragend', function () {});
 
