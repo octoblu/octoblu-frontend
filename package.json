@@ -89,7 +89,9 @@
     "simple-oauth2": "~0.2.0",
     "skynet": "1.7.0",
     "underscore": "~1.6.0",
-    "when": "^3.0.1"
+    "when": "^3.0.1",
+    "connect-nedb-session": "0.0.3",
+    "redis": "~0.12.1"
   },
   "devDependencies": {
     "bower": "^1.3.3",

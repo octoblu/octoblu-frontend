@@ -68,7 +68,9 @@ module.exports = function (app) {
         var channel = Channel.syncFindById(channelid);
         var user = req.user;
         user.api = user.api || [];
-        user.api = _.filter(user.api, { type : channel.type });
+        user.api = _.where(user.api, function(api){
+            return api.type !== channel.type;
+        });
         User.update({_id: user._id}, user).then(function(){
           res.json({'message': 'success'});
         }).catch(function (error) {
