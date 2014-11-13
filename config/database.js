@@ -3,7 +3,7 @@ var path = require('path');
 var config = {
     development: {
         sessionSecret: 'e2em2miotskynet',
-        sessionDatabase : 'nedb', // redis or nedb
+        sessionDatabase : 'redis', // redis or nedb
         databaseType: 'mongodb', // mongodb or nedb
         databaseDirectory : path.join(__dirname, '../database'),
         url : process.env.OCTOBLU_DB || 'mongodb://localhost:27017/meshines',
