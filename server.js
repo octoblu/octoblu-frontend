@@ -5,17 +5,16 @@ if ((process.env.USE_NEWRELIC  || 'false').toLowerCase() === 'true') {
 }
 
 var express        = require('express');
+var path           = require('path');
 var errorhandler   = require('errorhandler');
 var http           = require('http');
 var https          = require('https');
 var morgan         = require('morgan');
 var cookieParser   = require('cookie-parser');
 var bodyParser     = require('body-parser');
-var expressSession = require('express-session');
 var cors           = require('cors');
 var passport       = require('passport');
 var flash          = require('connect-flash');
-var connectRedis   = require('connect-redis');
 var fs             = require('fs');
 var privateKey     = fs.readFileSync('config/server.key', 'utf8');
 var certificate    = fs.readFileSync('config/server.crt', 'utf8');
@@ -28,7 +27,7 @@ var sslPort        = process.env.OCTOBLU_SSLPORT || configAuth.sslPort;
 
 if (process.env.AIRBRAKE_KEY) {
   var airbrake = require('airbrake').createClient(process.env.AIRBRAKE_KEY);
-  app.use(airbrake.expressHandler())
+  app.use(airbrake.expressHandler());
 } else {
   process.on('uncaughtException', function(error) {
     console.error(error.message, error.stack);
@@ -44,7 +43,6 @@ var databaseOptions = {
 var octobluDB = require('./app/lib/database');
 octobluDB.createConnection(databaseOptions);
 
-var RedisStore = connectRedis(expressSession);
 // Initialize Models
 
 //moved all the models initialization into here, because otherwise when we include the schema twice,
@@ -89,18 +87,14 @@ app.use(cookieParser()); // read cookies (needed for auth)
 // app.use(express.bodyParser()); // get information from html forms
 // app.use(bodyParser());
 // increasing body size for resources
-app.use(bodyParser({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended : true, limit : '50mb' }));
+
+app.use(bodyParser.json({ limit : '50mb' }));
 
 app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
 
 // app.set('view engine', 'jade'); // set up jade for templating
-
-// required for passport
-app.use(expressSession({
-        store:  new RedisStore({url: octobluDB.config.redisSessionUrl}),
-        secret: 'e2em2miotskynet',
-        cookie: { domain: configAuth.domain}
-    })); // session secret
+require('./config/session')(app);
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -115,9 +109,9 @@ var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(port, function(){
-    console.log('Listening on port ' + port);
+  console.log('HTTP listening on port ' + port);
 });
 
 httpsServer.listen(sslPort, function() {
-  console.log('HTTPS listening on', sslPort);
+  console.log('HTTPS listening on port ' + sslPort);
 });
