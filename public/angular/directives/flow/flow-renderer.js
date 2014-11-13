@@ -31,6 +31,7 @@ angular.module('octobluApp')
           var buttonClicked = function () {
             d3.event.preventDefault();
             d3.event.stopPropagation();
+            dispatch.nodeSelected(node);
             dispatch.nodeButtonClicked(node);
           };
           var button = nodeElement.selectAll('.flow-node-button');
