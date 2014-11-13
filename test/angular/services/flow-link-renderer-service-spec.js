@@ -68,8 +68,8 @@ describe('FlowLinkRenderer', function () {
       var link = $(renderScope.selectAll('.flow-link')[0]);
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
-      expect(pathCoordinates[0].y).to.equal(20);
-      expect(pathCoordinates[1].y).to.equal(20);
+      expect(pathCoordinates[0].y).to.equal(22.5);
+      expect(pathCoordinates[1].y).to.equal(22.5);
     });
 
     it('should render a link from the correct port when 2 nodes', function () {
@@ -82,8 +82,8 @@ describe('FlowLinkRenderer', function () {
       var link = $(renderScope.selectAll('.flow-link')[0]);
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
-      expect(pathCoordinates[0].y).to.equal(20);
-      expect(pathCoordinates[1].y).to.equal(35);
+      expect(pathCoordinates[0].y).to.equal(22.5);
+      expect(pathCoordinates[1].y).to.equal(37.5);
     });
 
     it('should render a link from the correct port when 2 nodes are not at 0,0', function () {
@@ -96,8 +96,8 @@ describe('FlowLinkRenderer', function () {
       var link = $(renderScope.selectAll('.flow-link')[0]);
       var path = link.attr('d');
       var pathCoordinates = getPathEndpoints(path);
-      expect(pathCoordinates[0].y).to.equal(120);
-      expect(pathCoordinates[1].y).to.equal(235);
+      expect(pathCoordinates[0].y).to.equal(122.5);
+      expect(pathCoordinates[1].y).to.equal(237.5);
     });
   });
 });
