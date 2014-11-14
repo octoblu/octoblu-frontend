@@ -14,14 +14,14 @@
       "version" : "1.0",
       "consumerKey" : "97w9x63DUmWcuYoKy4p8epWFu",
       "consumerSecret" : "n0b5smHWGP1cNpBT02sGqlg6JRQ2LZOrRtfM6X2I4DbegYuiLy",
-      "callbackURL" : "https://app.octoblu.com/api/oauth/twitter/callback",
+      "callbackURL" : "https://staging.octoblu.com/api/oauth/twitter/callback",
       "tokenMethod" : "oauth_signed"
     },
     "production" : {
       "version" : "1.0",
       "consumerKey" : "di4CBlZkwJp7rJoaqP6fBA0yC",
       "consumerSecret" : "2Ndg7hDyGR0Roe3P2AQ5ttL7yG6lRmU1UQ9mjFn40HtBc5C073",
-      "callbackURL" : "https://staging.octoblu.com/api/oauth/twitter/callback",
+      "callbackURL" : "https://app.octoblu.com/api/oauth/twitter/callback",
       "tokenMethod" : "oauth_signed"
     }
   },
