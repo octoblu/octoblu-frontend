@@ -11,15 +11,15 @@ angular.module('octobluApp')
         dispatch.linkSelected(null);
       });
 
-      function addNodeClickBehavior(nodeElement, node) {
-        nodeElement.on('click', function () {
+      function addNodeClickBehavior(nodeElement, node, flow) {
+        var nodeClicked = function () {
           if (d3.event.defaultPrevented) {
             return;
           }
           d3.event.preventDefault();
-          dispatch.nodeSelected(null);
           dispatch.nodeSelected(node);
-        });
+        };
+        nodeElement.on('click', nodeClicked);
         nodeElement.on('dblclick', function(){
           d3.event.preventDefault();
           d3.event.stopPropagation();
@@ -28,11 +28,14 @@ angular.module('octobluApp')
 
       function addButtonClickBehavior(nodeElement, node) {
         if (node.type === 'operation:trigger') {
-          nodeElement.selectAll('.flow-node-button').on('click', function () {
+          var buttonClicked = function () {
             d3.event.preventDefault();
             d3.event.stopPropagation();
+            dispatch.nodeSelected(node);
             dispatch.nodeButtonClicked(node);
-          });
+          };
+          var button = nodeElement.selectAll('.flow-node-button');
+          button.on('click', buttonClicked);
         }
         nodeElement.on('dblclick', function(){
           d3.event.preventDefault();
@@ -40,13 +43,25 @@ angular.module('octobluApp')
         });
       }
 
-      function addLinkClickBehavior(linkElement, link) {
-        linkElement.on('click', function () {
+      function addLinkClickBehavior(linkElement, link, flow) {
+        var linkClicked = function () {
           if (d3.event.defaultPrevented) {
             return;
           }
           d3.event.preventDefault();
           dispatch.linkSelected(link);
+        };
+        linkElement.on('touchstart', function(){
+          linkClicked();
+          clearTimeout(link.touchTimer);
+          link.touchTimer = setTimeout(function(){
+            dispatch.linkSelected(null);
+            _.pull(flow.links, link);
+          }, 1200);
+        });
+        linkElement.on('click', linkClicked);
+        linkElement.on('touchend', function(){
+          clearTimeout(link.touchTimer);
         });
         linkElement.on('dblclick', function(){
           d3.event.preventDefault();
@@ -58,6 +73,7 @@ angular.module('octobluApp')
         var dragBehavior = d3.behavior.drag()
           .on('dragstart', function () {
             d3.event.sourceEvent.stopPropagation();
+            dispatch.nodeSelected(node);
           })
           .on('drag', function () {
             node.x = d3.event.x - (FlowNodeDimensions.width / 2);
@@ -89,7 +105,7 @@ angular.module('octobluApp')
         _.each(flow.links, function (link) {
           var linkElement = FlowLinkRenderer.render(renderScope, link, flow);
           if (linkElement) {
-            addLinkClickBehavior(linkElement, link);
+            addLinkClickBehavior(linkElement, link, flow);
           }
         });
       }
@@ -99,7 +115,7 @@ angular.module('octobluApp')
         _.each(flow.nodes, function (node) {
           var nodeElement = FlowNodeRenderer.render(renderScope, node, flow);
           addDragBehavior(nodeElement, node, flow);
-          addNodeClickBehavior(nodeElement, node);
+          addNodeClickBehavior(nodeElement, node, flow);
           addButtonClickBehavior(nodeElement, node);
         });
       }
