@@ -277,8 +277,8 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/linked-in',          linkedinController.authorize);
             app.get('/api/oauth/linked-in/callback', linkedinController.callback, linkedinController.redirectToDesigner);
 
-            app.get('/api/oauth/four-square',          fourSquareController.authorize);
-            app.get('/api/oauth/four-square/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
+            app.get('/api/oauth/foursquare',          fourSquareController.authorize);
+            app.get('/api/oauth/foursquare/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
 
             app.get('/api/oauth/smartsheet',          smartsheetController.authorize);
             app.get('/api/oauth/smartsheet/callback', smartsheetController.callback, smartsheetController.redirectToDesigner);
