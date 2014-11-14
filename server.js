@@ -56,7 +56,7 @@ passport.use(require('./config/box'));
 passport.use(require('./config/dropbox'));
 passport.use(require('./config/facebook'));
 passport.use(require('./config/fitbit'));
-passport.use(require('./config/four-square'));
+passport.use(require('./config/foursquare'));
 passport.use(require('./config/github'));
 passport.use(require('./config/google'));
 passport.use(require('./config/gotomeeting'));
