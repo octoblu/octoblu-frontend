@@ -22,7 +22,7 @@ angular.module('octobluApp')
   });
 
   $scope.getEndpointLabel = function(resource) {
-    return resource.httpMethod + ' ' + resource.displayName || resource.path;
+    return resource.httpMethod + ' ' + (resource.displayName || resource.path);
   };
 
   var selectEndpoint = function(){
