@@ -1,7 +1,13 @@
 <div>
-<md-text-float ng-repeat="paramDefinition in paramDefinitions"
-  ng-hide="paramDefinition.hidden"
-  label="{{paramDefinition.displayName || paramDefinition.name}}"
-  type="{{inputType(paramDefinition.type)}}"
-  ng-model="params[paramDefinition.name]" > </md-text-float>
-  </div>
+    <div ng-repeat="paramDefinition in paramDefinitions">
+        <md-text-float ng-if="!paramDefinition.schema" 
+            ng-hide="paramDefinition.hidden"
+            label="{{paramDefinition.displayName || paramDefinition.name}}"
+            type="{{inputType(paramDefinition.type)}}"
+            ng-model="params[paramDefinition.name]" >
+        </md-text-float>
+        <div ng-show="paramDefinition.schema">
+            <schema-editor schema="paramDefinition.schema" model="params[paramDefinition.name]" allow-json-edit="true" additional-properties="true"></schema-editor>
+        </div>
+    </div>
+</div>

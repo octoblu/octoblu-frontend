@@ -1,6 +1,7 @@
 {
   "_id": "54593c536a3da535f1bbcfc4",
   "auth_strategy": "clouddotcom",
+  "bodyFormat": "json",
   "custom_tokens": [ ],
   "description": "",
   "enabled": "true",
@@ -526,9 +527,10 @@
           {
             "name": "payload",
             "displayName": "Payload",
-            "type": "string",
+            "type": "object",
             "style": "body",
-            "required": "false"
+            "required": "false",
+            "default": {}
           },
           {
             "name": "apns_payload",
