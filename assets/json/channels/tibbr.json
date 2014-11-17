@@ -1,0 +1,1845 @@
+{
+  "_id": "fsdgfje99394jfri3",
+  "application": {
+    "base": "https://test.tibbr.com",
+    "resources": [{
+        "path": "/a/users/activation-code/activate.xml",
+        "displayName": "Activate User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/activation-code/activate.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/activation-code/activate.xml"
+      },{
+        "path": "/a/users/user-id/change_password.xml",
+        "displayName": "Change Password",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/change_password.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "new_password"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "new_password_confirmation"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "password"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/change_password.xml"
+      },{
+        "path": "/a/users/initiate_reset_password.xml",
+        "displayName": "Notify User of Password Reset",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/initiate_reset_password.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "email"
+          }],
+        "url": "https://test.tibbr.com/a/users/initiate_reset_password.xml"
+      },{
+        "path": "/a/users.xml",
+        "displayName": "Follow User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users.xml"
+      },
+      {
+        "path": "/a/users/user-id/follow.xml",
+        "displayName": "Follow User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/follow.xml"
+        },
+        "httpMethod": "put",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "id"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/follow.xml"
+      },
+      {
+        "path": "/a/users/user-id/followers.xml",
+        "displayName": "Get Followers of User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/followers.xml"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "user_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/followers.xml"
+      },
+      {
+        "path": "/a/users/find_by_auth_token.xml",
+        "displayName": "Get Logged-In User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/find_by_auth_token.xml"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/find_by_auth_token.xml"
+      },
+      {
+        "path": "/a/users/user-id/idols.xml",
+        "displayName": "Get People Followed by User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/idols.xml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "user_id"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/idols.xml"
+      },
+      {
+        "path": "/a/users/user-id.xml",
+        "displayName": "Get User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id.xml"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "profile"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id.xml"
+      },
+      {
+        "path": "/a/users/find_by_email.xml",
+        "displayName": "Find User by Email Address",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/find_by_email.xml"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "email"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/find_by_email.xml"
+      },
+      {
+        "path": "/a/users/find_by_login.xml",
+        "displayName": "Find User by Login Name",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/find_by_login.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "login"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/find_by_login.xml"
+      },
+      {
+        "path": "/a/users/login.xml",
+        "displayName": "Log In (Default or LDAP Authentication)",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/login.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "login",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "password",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "remember_me"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "session_manager"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/login.xml"
+      },
+      {
+        "path": "/a/users/login_redirect_url.xml",
+        "displayName": "Get SAML Server URL",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/login_redirect_url.xml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/login_redirect_url.xml"
+      },
+      {
+        "path": "/a/users/login.xml",
+        "displayName": "Log In (SAML Authentication)",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/login.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "SAMLResponse",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "remember_me"
+          }],
+        "url": "https://test.tibbr.com/a/users/login.xml"
+      },
+      {
+        "path": "/a/users/user-id/logout.xml",
+        "displayName": "Log Out",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/logout.xml"
+        },
+        "httpMethod": "put",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/user-id/logout.xml"
+      },
+      {
+        "path": "/a/users/user-id/unfollow.xml",
+        "displayName": "Unfollow User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/unfollow.xml"
+        },
+        "httpMethod": "put",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/unfollow.xml"
+      },
+      {
+        "path": "/a/users/user-id.xml",
+        "displayName": "Update User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id.xml"
+        },
+        "httpMethod": "put",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/user-id.xml"
+      },
+      {
+        "path": "/a/message_filters.xml",
+        "displayName": "Create Message Filter",
+        "doc": {
+          "url": "https://test.tibbr.com/a/message_filters.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/message_filters.xml"
+      },
+      {
+        "path": "/a/message_filters/message-filter-id.xml",
+        "displayName": "Delete Message Filter",
+        "doc": {
+          "url": "https://test.tibbr.com/a/message_filters/message-filter-id.xml"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/message_filters/message-filter-id.xml"
+      },
+      {
+        "path": "/a/message_filters/message-filter-id.xml",
+        "displayName": "Get Message Filter",
+        "doc": {
+          "url": "https://test.tibbr.com/a/message_filters/message-filter-id.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/message_filters/message-filter-id.xml"
+      },
+      {
+        "path": "/a/users/user-id/message_filters.xml",
+        "displayName": "Get Message Filters Created by User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/message_filters.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "USER_ID",
+            "required": true
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/message_filters.xml"
+      },
+      {
+        "path": "/a/message_filters/message-filter-id.xml",
+        "displayName": "Update Message Filter",
+        "doc": {
+          "url": "https://test.tibbr.com/a/message_filters/message-filter-id.xml"
+        },
+        "httpMethod": "put",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/message_filters/message-filter-id.xml"
+      },
+      {
+        "path": "/a/subjects.xml",
+        "displayName": "Create Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/subjects.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/subjects.xml"
+      },
+      {
+        "path": "/a/users/user-id/subscribe.xml",
+        "displayName": "Follow Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subscribe.xml"
+        },
+        "httpMethod": "put",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "login_names"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/subscribe.xml"
+      },
+      {
+        "path": "/a/pages/create_with_languages.xml",
+        "displayName": "Add Page to Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/pages/create_with_languages.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "url"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          }],
+        "url": "https://test.tibbr.com/a/pages/create_with_languages.xml"
+      },
+      {
+        "path": "/a/pages/page-id/update_with_languages.xml",
+        "displayName": "Add Another Language Version of Existing Page to Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/pages/page-id/update_with_languages.xml"
+        },
+        "httpMethod": "put",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "url"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/pages/page-id/update_with_languages.xml"
+      },
+      {
+        "path": "/a/users/user-id/subscribe.xml",
+        "displayName": "Add Users Or Group to Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subscribe.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "recommendation_text"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "group_ids"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "login_names"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/subscribe.xml"
+      },
+      {
+        "path": "/a/subjects/subject-id/delete.xml",
+        "displayName": "Delete Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/subjects/subject-id/delete.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/subjects/subject-id/delete.xml"
+      },
+      {
+        "path": "/a/pages/page-id.xml",
+        "displayName": "Subject Page",
+        "doc": {
+          "url": "https://test.tibbr.com/a/pages/page-id.xml"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/pages/page-id.xml"
+      },
+      {
+        "path": "/a/users/user-id/subjects.xml",
+        "displayName": "Subjects Owned By User",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subjects.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "user_id"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/subjects.xml"
+      },
+      {
+        "path": "/a/users/user-id/subscriptions.xml",
+        "displayName": "Subjects That User Follows",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subscriptions.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "include_self"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "inherited"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "user_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/subscriptions.xml"
+      },
+      {
+        "path": "/a/users/user-id/pause.xml",
+        "displayName": "Pause Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/pause.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "user_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/pause.xml"
+      },
+      {
+        "path": "/a/users/user-id/play.xml",
+        "displayName": "Play Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/play.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "user_id",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/play.xml"
+      },
+      {
+        "path": "/a/users/user-id/subject_assets.xml",
+        "displayName": "Subject Assets",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subject_assets.xml"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "subject_id"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/subject_assets.xml"
+      },
+      {
+        "path": "/a/users/user-id/subscribers.xml",
+        "displayName": "Subject Followers",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subscribers.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "subject_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/subscribers.xml"
+      },
+      {
+        "path": "/a/users/user-id/subject_links.xml",
+        "displayName": "Subject Links",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subject_links.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "subject_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/subject_links.xml"
+      },
+      {
+        "path": "/a/subjects/find_by_name.xml",
+        "displayName": "Subject Details",
+        "doc": {
+          "url": "https://test.tibbr.com/a/subjects/find_by_name.xml"
+        },
+        "httpMethod": "GET",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "name"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/subjects/find_by_name.xml"
+      },
+      {
+        "path": "/a/users/user-id/subscribe.xml",
+        "displayName": "Add Followers to Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subscribe.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "login_names"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/subscribe.xml"
+      },
+      {
+        "path": "/a/subjects/subject-id/undelete.xml",
+        "displayName": "Undelete Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/subjects/subject-id/undelete.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/subjects/subject-id/undelete.xml"
+      },
+      {
+        "path": "/a/users/user-id/unsubscribe.xml",
+        "displayName": "Unfollow Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/unsubscribe.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/unsubscribe.xml"
+      },
+      {
+        "path": "/a/subjects/subject-id.xml",
+        "displayName": "Update Subject",
+        "doc": {
+          "url": "https://test.tibbr.com/a/subjects/subject-id.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/subjects/subject-id.xml"
+      },
+      {
+        "path": "/a/users/user-id/recommend_a_subject.xml",
+        "displayName": "/venues/VENUE_ID/nextvenues",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/recommend_a_subject.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "user_ids"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/recommend_a_subject.xml"
+      },
+      {
+        "path": "/a/users/user-id/message_search.xml",
+        "displayName": "Search for Messages",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/message_search.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+         {
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "search_str"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "message_filter_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "user_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "include_deleted"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "include_inaccessible"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/message_search.xml"
+      },
+      {
+        "path": "/a/users/user-id/search_subjects.xml",
+        "displayName": "Search for Subjects",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/search_subjects.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "search_str"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/search_subjects.xml"
+      },
+      {
+        "path": "/a/users/user-id/search_users.xml",
+        "displayName": "Search for Users",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/search_users.xml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "search_str"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/search_users.xml"
+      },
+      {
+        "path": "/a/messages/message-id/delete.xml",
+        "displayName": "Delete Message",
+        "doc": {
+          "url": "https://test.tibbr.com/a/messages/message-id/delete.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/messages/message-id/delete.xml"
+      },{
+        "path": "/a/users/user-id/messages.xml",
+        "displayName": "Messages",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/messages.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "start_after"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "messages_since"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/messages.xml"
+      },
+      {
+        "path": "/a/messages/message-id/like.xml",
+        "displayName": "Like Message",
+        "doc": {
+          "url": "https://test.tibbr.com/a/messages/message-id/like.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/messages/message-id/like.xml"
+      },
+      {
+        "path": "/a/messages.xml",
+        "displayName": "Message",
+        "doc": {
+          "url": "https://test.tibbr.com/a/messages.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/messages.xml"
+      },
+      {
+        "path": "/a/users/user-id/subject_messages.xml",
+        "displayName": "Subject Messages",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/subject_messages.xml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "subject_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/subject_messages.xml"
+      },
+      {
+        "path": "/a/users/user-id/private_messages.xml",
+        "displayName": "Private Messages",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/private_messages.xml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/private_messages.xml"
+      },
+      {
+        "path": "/a/users/message-id/star.xml",
+        "displayName": "Star Message",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/message-id/star.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/message-id/star.xml"
+      },
+      {
+        "path": "/a/users/message-id/unstar.xml",
+        "displayName": "Unstar Message",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/message-id/unstar.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/message-id/unstar.xml"
+      },
+      {
+        "path": "/a/users/user-id/badges.xml",
+        "displayName": "Get Badges for Unread Messages and Private Messages",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/badges.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/users/user-id/badges.xml"
+      },
+      {
+        "path": "/a/users/user-id/build_templated_channel_schedules.xml",
+        "displayName": "Update Schedule",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/build_templated_channel_schedules.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "channel_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "schedules"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "subject_schedules"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "subject_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "template"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/build_templated_channel_schedules.xml"
+      },
+      {
+        "path": "/a/users/user-id/channel_pause.xml",
+        "displayName": "Pause Channel",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/channel_pause.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "channel_id"
+          }],
+        "url": "https://test.tibbr.com/a/users/user-id/channel_pause.xml"
+      },
+      {
+        "path": "/a/users/user-id/channel_play.xml",
+        "displayName": "Play Channel",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/channel_play.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "channel_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/channel_play.xml"
+      },
+      {
+        "path": "/a/roles.xml",
+        "displayName": "Create Role",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/roles.xml"
+      },
+      {
+        "path": "/a/roles/find_by_rolename_and_context.xml",
+        "displayName": "Role",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles/find_by_rolename_and_context.xml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "rolename"
+            },{
+            "style": "query",
+            "type": "string",
+            "name": "context_type"
+            },{
+            "style": "query",
+            "type": "string",
+            "name": "context_id"
+            },{
+            "style": "query",
+            "type": "string",
+            "name": "include_members"
+            },{
+            "style": "query",
+            "type": "string",
+            "name": "include_privileges"
+            }],
+        "url": "https://test.tibbr.com/a/roles/find_by_rolename_and_context.xml"
+      },
+      {
+        "path": "/a/roles/role-id/members.xml",
+        "displayName": "Get Role Members",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles/role-id/members.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/roles/role-id/members.xml"
+      },
+      {
+        "path": "/a/roles/role-id/add_members.xml",
+        "displayName": "Add Role Members",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles/role-id/add_members.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "user_ids"
+          }],
+        "url": "https://test.tibbr.com/a/roles/role-id/add_members.xml"
+      },
+      {
+        "path": "/a/roles/role-id/remove_members.xml",
+        "displayName": "Remove Role Members",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles/role-id/remove_members.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "user_ids"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/roles/role-id/remove_members.xml"
+      },
+      {
+        "path": "/a/roles/role-id/delete.xml",
+        "displayName": "Delete Role",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles/role-id/delete.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/roles/role-id/delete.xml"
+      },
+      {
+        "path": "/a/roles/role-id/privileges.xml",
+        "displayName": "Get Role Privileges",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles/role-id/privileges.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [],
+        "url": "https://test.tibbr.com/a/roles/role-id/privileges.xml"
+      },
+      {
+        "path": "/a/roles/role-id/overwrite_privileges.xml",
+        "displayName": "Overwrite Role Privileges",
+        "doc": {
+          "url": "https://test.tibbr.com/a/roles/role-id/overwrite_privileges.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X ",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "privileges_array"
+          }],
+        "url": "https://test.tibbr.com/a/roles/role-id/overwrite_privileges.xml"
+      },
+      {
+        "path": "/a/notifications/generate",
+        "displayName": "Generate Notifications",
+        "doc": {
+          "url": "https://test.tibbr.com/a/notifications/generate"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "app_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "notifications"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "target_user_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "type"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "template_objects"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "resource"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "users"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/notifications/generate"
+      },
+      {
+        "path": "/a/notifications",
+        "displayName": "Notifications",
+        "doc": {
+          "url": "https://test.tibbr.com/a/notifications"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X ",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "status"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "start_before"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "last_n_days"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "count"
+          }],
+        "url": "https://test.tibbr.com/a/notifications"
+      },
+      {
+        "path": "/a/notifications/mark_as_read",
+        "displayName": "Mark as Read",
+        "doc": {
+          "url": "https://test.tibbr.com/a/notifications/mark_as_read"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "notification_ids"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/notifications/mark_as_read"
+      },
+      {
+        "path": "/a/application_definitions.xml",
+        "displayName": "Get Application Definitions",
+        "doc": {
+          "url": "https://test.tibbr.com/a/application_definitions.xml"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "mobile_ready"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "url_type"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/application_definitions.xml"
+      },
+      {
+        "path": "/a/application_definitions/application-definition-id/delete.xml",
+        "displayName": "Delete Application Definition",
+        "doc": {
+          "url": "https://test.tibbr.com/a/application_definitions/application-definition-id/delete.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/application_definitions/application-definition-id/delete.xml"
+      },
+      {
+        "path": "/a/application_definitions/application-definition-id/undelete.xml",
+        "displayName": "Undelete Application Definition",
+        "doc": {
+          "url": "https://test.tibbr.com/a/application_definitions/application-definition-id/undelete.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/application_definitions/application-definition-id/undelete.xml"
+      },
+      {
+        "path": "/a/messages.xml",
+        "displayName": "Create Poll",
+        "doc": {
+          "url": "https://test.tibbr.com/a/messages.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "message-source-id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "message-source-type"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "multi-select"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "allow-others-to-add-options"
+          }],
+        "url": "https://test.tibbr.com/a/messages.xml"
+      },
+      {
+        "path": "/a/questions/question-id.xml",
+        "displayName": "Get Poll Question",
+        "doc": {
+          "url": "https://test.tibbr.com/a/questions/question-id.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "question_id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/questions/question-id.xml"
+      },
+      {
+        "path": "/a/questions/question-id/answer.xml",
+        "displayName": "Answer Poll",
+        "doc": {
+          "url": "https://test.tibbr.com/a/questions/question-id/answer.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "question_option_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "set_actions"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/questions/question-id/answer.xml"
+      },
+      {
+        "path": "/a/questions/question-id/unanswer.xml",
+        "displayName": "Unanswer Poll",
+        "doc": {
+          "url": "https://test.tibbr.com/a/questions/question-id/unanswer.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [
+         {
+            "style": "body",
+            "type": "string",
+            "name": "question_option_id"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "set_actions"
+          }],
+        "url": "https://test.tibbr.com/a/questions/question-id/unanswer.xml"
+      },
+      {
+        "path": "/a/questions/question-id/add_question_option.xml",
+        "displayName": "Add Option to Poll",
+        "doc": {
+          "url": "https://test.tibbr.com/a/questions/question-id/add_question_option.xml"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "question_option"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "option_label"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "set_actions"
+          }],
+        "url": "https://test.tibbr.com/a/questions/question-id/add_question_option.xml"
+      },
+      {
+        "path": "/a/questions/question-id/get_option_users.xml",
+        "displayName": "Get Option Users",
+        "doc": {
+          "url": "https://test.tibbr.com/a/questions/question-id/get_option_users.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "question_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "question_options_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/questions/question-id/get_option_users.xml"
+      },
+      {
+        "path": "/a/users/user-id/question_messages.xml",
+        "displayName": "Get Polls",
+        "doc": {
+          "url": "https://test.tibbr.com/a/users/user-id/question_messages.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "query",
+            "type": "string",
+            "name": "subject_id"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "start_after"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "set_actions"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/users/user-id/question_messages.xml"
+      },
+      {
+        "path": "/a/messages.xml",
+        "displayName": "Create Calendar Event",
+        "doc": {
+          "url": "https://test.tibbr.com/a/messages.xml"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [],
+        "url": "https://test.tibbr.com/a/messages.xml"
+      },
+      {
+        "path": "/a/calendars/calendar-id.xml",
+        "displayName": "Status of Calendar Event",
+        "doc": {
+          "url": "https://test.tibbr.com/a/calendars/calendar-id.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "calendar_id",
+            "required": "true"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/calendars/calendar-id.xml"
+      },
+      {
+        "path": "/a/calendars/calendar-id/create_rsvp.xml?status",
+        "displayName": "Respond to Calendar Event",
+        "doc": {
+          "url": "https://test.tibbr.com/a/calendars/calendar-id/create_rsvp.xml?status"
+        },
+        "httpMethod": "PUT",
+        "curl": "curl -X",
+        "params": [{
+            "style": "url",
+            "type": "string",
+            "name": "status",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "id"
+          }],
+        "url": "https://test.tibbr.com/a/calendars/calendar-id/create_rsvp.xml?status"
+      },
+      {
+        "path": "/a/calendars/calendar-id/user_responses.xml?status",
+        "displayName": "Invitee Responses to Calendar Event",
+        "doc": {
+          "url": "https://test.tibbr.com/a/calendars/calendar-id/user_responses.xml?status"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": "status",
+            "required": true
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "id"
+          }
+        ],
+        "url": "https://test.tibbr.com/a/calendars/calendar-id/user_responses.xml?status"
+      },
+      {
+        "path": "/a/calendars/upcoming_events_for_user.xml",
+        "displayName": "Show User’s Upcoming Calendar Events",
+        "doc": {
+          "url": "https://test.tibbr.com/a/calendars/upcoming_events_for_user.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "url",
+            "type": "string",
+            "name": "user",
+            "required": true
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "number",
+            "name": "per_page"
+          }],
+        "url": "https://test.tibbr.com/a/calendars/upcoming_events_for_user.xml"
+      },
+      {
+        "path": "/a/calendars/upcoming_events_for_subject.xml",
+        "displayName": "Show Subject’s Upcoming Calendar Events",
+        "doc": {
+          "url": "https://test.tibbr.com/a/calendars/upcoming_events_for_subject.xml"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "url",
+            "type": "string",
+            "name": "subject",
+            "required": true
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "number",
+            "name": "per_page"
+          }],
+        "url": "https://test.tibbr.com/a/calendars/upcoming_events_for_subject.xml"
+      },
+      {
+        "path": "/a/application_definitions/<client_id>/resource_types.json",
+        "displayName": "Create Resource Type",
+        "doc": {
+          "url": "https://test.tibbr.com/a/application_definitions/<client_id>/resource_types.json"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [
+         {
+            "style": "body",
+            "type": "string",
+            "name": "determiner",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "image_url"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "name"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "plural_noun"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "singular_noun"
+          }],
+        "url": "https://test.tibbr.com/a/application_definitions/<client_id>/resource_types.json"
+      },
+      {
+        "path": "/a/resources/profile.json",
+        "displayName": "Resource Details",
+        "doc": {
+          "url": "https://test.tibbr.com/a/resources/profile.json"
+        },
+        "httpMethod": "get",
+        "curl": "curl -X",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "include"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "include_actions_users"
+          }],
+        "url": "https://test.tibbr.com/a/resources/profile.json"
+      },
+      {
+        "path": "/a/resources/search.json",
+        "displayName": "Search for Resources",
+        "doc": {
+          "url": "https://test.tibbr.com/a/resources/search.json"
+        },
+        "httpMethod": "Get",
+        "curl": "curl -X ",
+        "params": [{
+            "style": "query",
+            "type": "string",
+            "name": "search_str",
+            "required": true
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "search_filter"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "page"
+          },{
+            "style": "query",
+            "type": "string",
+            "name": "per_page"
+          }],
+        "url": "https://test.tibbr.com/a/resources/search.json"
+      },
+      {
+        "path": "/a/application_definitions/<client_id>/action_types.json",
+        "displayName": "Create Action Type",
+        "doc": {
+          "url": "https://test.tibbr.com/a/application_definitions/<client_id>/action_types.json"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X ",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "allow_multiple",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "name",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "plural_past_tense",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "plural_present_tense",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "post_on_resource",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "require_message",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "singular_past_tense",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "singular_present_tense",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "stype",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "supported_tense",
+            "required": true
+          }],
+        "url": "https://test.tibbr.com/a/application_definitions/<client_id>/action_types.json"
+      },{
+        "path": "/a/actions/publish.json",
+        "displayName": "Publish Actions on Resources",
+        "doc": {
+          "url": "https://test.tibbr.com/a/actions/publish.json"
+        },
+        "httpMethod": "post",
+        "curl": "curl -X",
+        "params": [{
+            "style": "body",
+            "type": "string",
+            "name": "action_type",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "message"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "resource",
+            "required": true
+          }],
+        "url": "https://test.tibbr.com/a/actions/publish.json"
+      },
+      {
+        "path": "/a/actions/action_id/unpublish.json",
+        "displayName": "/lists/LIST_ID/additem",
+        "doc": {
+          "url": "https://test.tibbr.com/a/actions/action_id/unpublish.json"
+        },
+        "httpMethod": "delete",
+        "curl": "curl -X",
+        "params": [
+          {
+            "style": "body",
+            "type": "string",
+            "name": "action_type",
+            "required": true
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "message"
+          },{
+            "style": "body",
+            "type": "string",
+            "name": "resource",
+            "required": true
+          }
+        ],
+        "url": "https://test.tibbr.com/a/actions/action_id/unpublish.json"
+      }
+        ]
+  },
+  "type": "channel:tibbr",
+  "auth_strategy": "oauth",
+  "name": "tibbr",
+  "oauth": {
+    "development": {
+      "clientID": "octoblu-dev",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "http://localhost:8080/api/oauth/podio/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "staging": {
+      "clientID": "octoblu-staging",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/podio/callback",
+      "tokenMethod": "access_token_bearer"
+    },
+    "production": {
+      "clientID": "octoblu",
+      "clientSecret": "INSERT_SECERT_HERE",
+      "callbackURL": "https://app.octoblu.com/api/oauth/podio/callback",
+      "tokenMethod": "access_token_bearer"
+    }}}
