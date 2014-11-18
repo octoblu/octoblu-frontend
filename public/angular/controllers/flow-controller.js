@@ -203,12 +203,19 @@ angular.module('octobluApp')
         return;
       }
 
+      if($scope.activeFlow.selectedFlowNode) {
+        var nodeId = $scope.activeFlow.selectedFlowNode.id;
+        var linksToRemove = _.union( _.filter($scope.activeFlow.links, {to: nodeId}), _.filter($scope.activeFlow.links, {from: nodeId}) );
+        $scope.activeFlow.links = _.difference($scope.activeFlow.links, linksToRemove);
+        console.log($scope.activeFlow.links.length);
+      }
+
       _.pull($scope.activeFlow.nodes, $scope.activeFlow.selectedFlowNode);
       _.pull($scope.activeFlow.links, $scope.activeFlow.selectedLink);
 
       $scope.activeFlow.selectedFlowNode = null;
       $scope.activeFlow.selectedLink = null;
-    };
+    };    
 
     $scope.pasteSelection = function (e) {
       if (e) {
