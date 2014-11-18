@@ -67,6 +67,13 @@ angular.module('octobluApp', ['ngAnimate', 'ngSanitize', 'ngCookies', 'ui.ace', 
         url: '/design',
         controller: 'DesignerController'
       })
+
+      .state('flow-import', {
+        url: '/design/import/:flowTemplateId',
+        templateUrl: '/pages/flow-import.html',
+        controller: 'FlowImportController'
+      })
+      
       .state('flow', {
         url: '/design/:flowId',
         templateUrl: '/pages/flow.html',

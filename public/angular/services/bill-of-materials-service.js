@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-.service('BillOfMaterialsService', function ($window) {
+.service('BillOfMaterialsService', function (NodeTypeService) {
   'use strict';
   var self = this;
 
@@ -8,10 +8,11 @@ angular.module('octobluApp')
       return node.type && node.type.indexOf('operation') === 0;
     });
 
-    return _.map(_.uniq(materialNodes, 'type'), function(node) {
-      return { type: node.type };
+    return _.map( _.uniq(materialNodes, 'type'), function(node) {
+      node = NodeTypeService.addLogo(node);
+      return { type: node.type, logo: node.logo };
     });
-    
+
   };
 
   return self; 

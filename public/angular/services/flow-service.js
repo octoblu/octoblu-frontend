@@ -65,6 +65,12 @@ angular.module('octobluApp')
     });
   };
 
+  self.getFlow = function(flowId) {
+    return self.getAllFlows().then(function(flows){
+      return _.findWhere(flows, {flowId : flowId});
+    });
+  };
+
   self.createFlow = function(options) {
     return $http.post('/api/flows').then(function(response) {
       return new FlowModel(response.data);

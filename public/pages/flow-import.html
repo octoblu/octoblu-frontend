@@ -1,0 +1,24 @@
+<div layout="horizontal" layout-align="center" layout-padding>
+  <md-whiteframe class="bill-of-materials md-whiteframe-z2">
+    <md-toolbar>
+      <h2 class="md-toolbar-tools">
+        <span>Bill of Materials</span>
+      </h2>
+    </md-toolbar>
+    <md-content>
+      <md-list>
+        <md-item ng-repeat="material in billOfMaterials">
+          <md-item-content>
+                <div class="bill-of-materials-icon" ng-style="{ 'background-image': 'url(' + material.logo + ')' }"></div>
+                <div class="md-tile-content">
+                  <h3>{{material.type}}</h3>            
+                  <h4>
+                    {{material.type}}
+                  </h4>
+                </div>
+              </md-item-content>
+        </md-item>
+      </md-list>
+    </md-content>
+  </md-whiteframe>
+</div>

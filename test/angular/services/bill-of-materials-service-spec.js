@@ -1,11 +1,17 @@
 describe('BillOfMaterialsService', function () {
-  var sut;
+  var sut, fakeNodeTypeService;
   beforeEach(function () {
     module('octobluApp');
 
-    inject(function(BillOfMaterialsService, _$httpBackend_){
-      sut          = BillOfMaterialsService;
+    module('octobluApp', function($provide){
+      fakeNodeTypeService = new FakeNodeTypeService();
+      $provide.value('NodeTypeService', fakeNodeTypeService);
     });
+
+    inject(function(BillOfMaterialsService){
+      sut = BillOfMaterialsService;
+    });
+
   });
 
   it('should exist', function(){
@@ -95,9 +101,17 @@ describe('BillOfMaterialsService', function () {
       });
 
       it("should remove the other stuffs", function() {
-        expect(_.first(result)).to.deep.equal({type: 'channel:twitter'});
+        expect(_.first(result)).to.deep.equal({type: 'channel:twitter', logo: 'twitter.svg'});
       });
       
     });
   });
+  
+  var FakeNodeTypeService = function() {
+    this.addLogo = function(node) {
+      node.logo = 'twitter.svg';
+      return node;
+    };
+  };
+
 });

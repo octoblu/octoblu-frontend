@@ -10,11 +10,14 @@ angular.module('octobluApp')
         return data.enabled;
       });
 
-      return _.map(nodeTypes, function(data){
-        data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';
-        return data;
-      });
+      return _.map(nodeTypes, self.addLogo);
     });
+  };
+
+  self.addLogo = function(node){
+    var nodeCopy = _.clone(node);
+    nodeCopy.logo = 'https://ds78apnml6was.cloudfront.net/' + nodeCopy.type.replace(':', '/') + '.svg';
+    return nodeCopy;
   };
 
   self.getNodeTypeById = function(id){
