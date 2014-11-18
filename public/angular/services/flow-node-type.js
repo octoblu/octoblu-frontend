@@ -16,6 +16,12 @@ angular.module('octobluApp')
     });
   };
 
+  self.getFlowNodeTypeByUUID = function(uuid){
+    return self.getFlowNodeTypes().then(function(flowNodeTypes){
+      return _.findWhere(flowNodeTypes, {uuid: uuid});
+    });
+  };
+
   self.getFlowNodeTypes = function(cache) {
     return $http.get('/api/flow_node_types').then(function(res){
       return _.map(res.data, function(data){
@@ -28,7 +34,7 @@ angular.module('octobluApp')
   };
 
   self.getOtherMatchingFlowNodeTypes = function(type){
-    return self.getFlowNodeTypes().then(function(flowNodeTypes){
+    return self.getFlowNodeTypes(true).then(function(flowNodeTypes){
       return _.where(flowNodeTypes, { type : type });
     });
   };

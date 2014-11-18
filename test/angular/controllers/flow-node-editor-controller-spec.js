@@ -1,10 +1,11 @@
 describe('FlowNodeEditorController', function () {
-  var sut, scope, fakeFlowNodeTypeService;
+  var sut, scope, fakeFlowNodeTypeService, $q;
 
   beforeEach(function () {
     module('octobluApp');
 
-    inject(function($controller, $rootScope){
+    inject(function($controller, $rootScope, _$q_){
+      $q = _$q_;
       fakeFlowNodeTypeService = new FakeFlowNodeTypeService();
       scope = $rootScope.$new();
       sut = $controller('FlowNodeEditorController', {$scope: scope, FlowNodeTypeService: fakeFlowNodeTypeService});
@@ -85,7 +86,13 @@ describe('FlowNodeEditorController', function () {
         then: function(successCallback){
           self.getFlowNodeType.successCallback = successCallback;
         }
-      }
+      };
+    };
+
+    self.getOtherMatchingFlowNodeTypes = function(type){
+      var defer = $q.defer();
+      defer.resolve([]);
+      return defer.promise;
     };
 
     sinon.spy(self, 'getFlowNodeType');

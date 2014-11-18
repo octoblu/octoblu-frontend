@@ -86,7 +86,7 @@ angular.module('octobluApp')
       var str = JSON.stringify(value);
       if(str && str.length > 100000 ) {
         return '...value too long...';
-      }    	
+      }
 
     	return value;
     }
@@ -94,7 +94,7 @@ angular.module('octobluApp')
     function pushDebugLines(message){
       var debug = {}, newMessage, msg;
       debug.date = new Date();
-      newMessage = _.clone(message);  
+      newMessage = _.clone(message);
     	newMessage.msg = escapeLargeValue(newMessage.msg);
       debug.message = newMessage;
       $scope.debugLines.unshift(debug);

@@ -97,6 +97,14 @@ function TemplateModel() {
         flowId: flowId
       };
       return self.find(query);
+    },
+
+    withUserUUID : function(uuid) {
+      var self = this;
+      var query = {
+        'resource.owner.uuid' : uuid
+      };
+      return self.find(query);
     }
   };
 

@@ -246,6 +246,14 @@ angular.module('octobluApp')
           .attr('height', nodeHeight)
           .attr("xlink:href",logoUrl(node));
 
+        if(node.needsConfiguration){
+          nodeElement
+            .append("svg:image")
+            .attr('width', FlowNodeDimensions.width)
+            .attr('height', nodeHeight)
+            .attr("xlink:href", "https://ds78apnml6was.cloudfront.net/socket.svg");
+        }
+
         if (node.errorMessage) {
           nodeElement.classed('error', true);
         }

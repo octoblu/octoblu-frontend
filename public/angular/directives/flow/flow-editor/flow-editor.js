@@ -1,5 +1,5 @@
 angular.module('octobluApp')
-  .directive('flowEditor', function (FlowRenderer, skynetService, FlowNodeDimensions) {
+  .directive('flowEditor', function (FlowRenderer, NodeTypeService, skynetService, FlowNodeDimensions) {
 
     return {
       restrict: 'E',
@@ -57,6 +57,13 @@ angular.module('octobluApp')
         flowRenderer.on('nodeSelected', function (flowNode) {
           $scope.flow.selectedLink = null;
           $scope.flow.selectedFlowNode = flowNode;
+
+          if(flowNode && flowNode.needsSetup){
+            NodeTypeService.getNodeTypeByType(flowNode.type).then(function(flowNodeType){
+              $scope.$emit('flow-node-type-selected', flowNodeType);
+            });
+          }
+
           $scope.$apply();
         });
 
