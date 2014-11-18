@@ -325,6 +325,7 @@ module.exports = function(app, passport) {
             app.get('/api/templates/:id', templateController.findOne);
             app.post('/api/templates/:id/flows', templateController.importTemplate);
             app.get('/api/flows/:flowId/templates', templateController.withFlowId);
+            app.get('/api/users/:uuid/templates', templateController.withUserUUID);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);

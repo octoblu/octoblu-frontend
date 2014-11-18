@@ -14,6 +14,12 @@ angular.module('octobluApp')
     });
   };
 
+  self.withUserUUID = function(uuid) {
+    return $http.get('/api/users/' + uuid + '/templates').then(function(response) {
+      return response.data;
+    });
+  };
+
   self.getTemplate = function(id) {
     return $http.get('/api/templates/' + id).then(function(response){
       return response.data;
