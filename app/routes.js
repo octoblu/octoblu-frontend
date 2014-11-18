@@ -88,7 +88,7 @@ module.exports = function(app, passport) {
     var instagramController = new InstagramController();
 
     var ZendeskController = require('./controllers/zendesk-controller');
-    var zendeskController = new ZendeskController;
+    var zendeskController = new ZendeskController();
 
     var LinkedinController = require('./controllers/linked-in-controller');
     var linkedinController = new LinkedinController();
@@ -282,6 +282,9 @@ module.exports = function(app, passport) {
 
             app.get('/api/oauth/foursquare',          fourSquareController.authorize);
             app.get('/api/oauth/foursquare/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
+            
+            app.get('/api/oauth/swarm',          fourSquareController.authorize);
+            app.get('/api/oauth/swarm/callback', fourSquareController.callback, fourSquareController.redirectToDesigner);
 
             app.get('/api/oauth/smartsheet',          smartsheetController.authorize);
             app.get('/api/oauth/smartsheet/callback', smartsheetController.callback, smartsheetController.redirectToDesigner);
