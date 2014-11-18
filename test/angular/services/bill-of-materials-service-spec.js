@@ -18,11 +18,11 @@ describe('BillOfMaterialsService', function () {
     expect(sut).to.exist;
   })
 
-  describe("generate", function() {
+  describe("getTypes", function() {
     describe("when given an empty flow", function() {
       it("should return an empty array", function() {
         var bill;
-        bill = sut.generate({});
+        bill = sut.getTypes({});
         expect(bill).to.deep.equal([]);
       });
     });
@@ -30,7 +30,7 @@ describe('BillOfMaterialsService', function () {
     describe("when it has a flow with one node", function() {
       var result;
       beforeEach(function(){
-        result = sut.generate({
+        result = sut.getTypes({
           nodes: [{}]
         });
       });
@@ -43,7 +43,7 @@ describe('BillOfMaterialsService', function () {
     describe("when it has a flow with one operator node", function() {
       var result;
       beforeEach(function(){
-        result = sut.generate({
+        result = sut.getTypes({
           nodes: [{ type: 'operation:trigger' }]
         });
       });
@@ -56,7 +56,7 @@ describe('BillOfMaterialsService', function () {
     describe("when it has a flow with another operator node", function() {
       var result;
       beforeEach(function(){
-        result = sut.generate({
+        result = sut.getTypes({
           nodes: [{ type: 'operation:equal' }]
         });
       });
@@ -69,7 +69,7 @@ describe('BillOfMaterialsService', function () {
     describe("when it has a flow an owl", function() {
       var result;
       beforeEach(function(){
-        result = sut.generate({
+        result = sut.getTypes({
           nodes: [{}, {}]
         });
       });
@@ -82,7 +82,7 @@ describe('BillOfMaterialsService', function () {
     describe("when it has a flow with 2 different types", function() {
       var result;
       beforeEach(function(){
-        result = sut.generate({
+        result = sut.getTypes({
           nodes: [{ type: 'channel:twitter'}, { type: 'device:blink1' }]
         });
       });
@@ -95,13 +95,13 @@ describe('BillOfMaterialsService', function () {
     describe("when the flow has a bunch of other stuff in it", function() {
       var result;
       beforeEach(function(){
-        result = sut.generate({
+        result = sut.getTypes({
           nodes: [{ type: 'channel:twitter', name: 'something'}]
         });
       });
 
       it("should remove the other stuffs", function() {
-        expect(_.first(result)).to.deep.equal({type: 'channel:twitter', logo: 'twitter.svg'});
+        expect(_.first(result)).to.deep.equal('channel:twitter');
       });
       
     });
