@@ -7,12 +7,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.uber.com/v1/endpoints/#product-types"
+          "url": "https://api.uber.com/v1/products"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/v1/products",
+        "displayName": "PRODUCT TYPES",
         "path": "/v1/products",
         "params": [
           {
@@ -70,12 +70,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.uber.com/v1/endpoints/#price-estimates"
+          "url": "https://api.uber.com/v1/estimates/price"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/v1/estimates/price",
+        "displayName": "PRICE ESTIMATES",
         "path": "/v1/estimates/price",
         "params": [
           {
@@ -161,12 +161,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.uber.com/v1/endpoints/#time-estimates"
+          "url": "https://api.uber.com/v1/estimates/time"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/v1/estimates/time",
+        "displayName": "TIME ESTIMATES",
         "path": "/v1/estimates/time",
         "params": [
           {
@@ -224,12 +224,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.uber.com/v1/endpoints"
+          "url": "https://api.uber.com/v1/history"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/v1/history",
+        "displayName": "USER ACTIVITY",
         "path": "/v1/history",
         "params": [
           {
@@ -280,12 +280,12 @@
       {
         "httpMethod": "GET",
         "doc": {
-          "url": "https://developer.uber.com/v1/endpoints/#user-profile"
+          "url": "https://api.uber.com/v1/me"
         },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/v1/me",
+        "displayName": "USER PROFILE",
         "path": "/v1/me",
         "params": [
           {
