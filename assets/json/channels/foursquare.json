@@ -1,3023 +1,2576 @@
 {
-  "_id": "hdgdf532524643grwegre4",
+  "_id": "54656640dece70d991c638c6",
+  "hiddenParams": [{
+    "name": "v",
+    "hidden": "true",
+    "style": "query",
+    "type": "string",
+    "value": "20141117"
+  },
+  {
+    "style": "query",
+    "type": "string",
+    "value": "foursquare",
+    "name": "m",
+    "required": "true"
+  }],
   "application": {
     "base": "https://api.foursquare.com/v2",
     "resources": [
       {
         "path": "/users/USER_ID",
-        "displayName": "/users/USER_ID",
+        "displayName": "User Information",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID",
-            "required": true
+            "displayName": "User ID (Use self for activated user's info)",
+            "name": ":USER_ID",
+            "value": "self",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID"
+        "url": "https://api.foursquare.com/v2/users/:USER_ID"
       },
       {
         "path": "/users/leaderboard",
-        "displayName": "/users/leaderboard",
+        "displayName": "User Leaderboard",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/leaderboard"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "neighbors"
+            "name": "neighbors",
+            "displayName": "Neighbors"
           }
         ],
         "url": "https://api.foursquare.com/v2/users/leaderboard"
       },
       {
-        "path": "/users/requests",
-        "displayName": "/users/requests",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/requests"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [],
-        "url": "https://api.foursquare.com/v2/users/requests"
-      },
-      {
         "path": "/users/search",
-        "displayName": "/users/search",
+        "displayName": "Search Users",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/search"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
-            "name": "phone"
+            "name": "phone",
+            "displayName": "Phone Number"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "email"
+            "name": "email",
+            "displayName": "Email"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "twitter"
+            "name": "twitter",
+            "displayName": "List of Twitter Handles"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "twitterSource"
+            "name": "twitterSource",
+            "displayName": "A Single Twitter Handle to Search"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "fbid"
+            "name": "fbid",
+            "displayName": "Facebook IDs"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           }
         ],
         "url": "https://api.foursquare.com/v2/users/search"
       },
       {
-        "path": "/users/USER_ID/badges",
-        "displayName": "/users/USER_ID/badges",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/badges"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "USER_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/badges"
-      },
-      {
-        "path": "/users/USER_ID/checkins",
-        "displayName": "/users/USER_ID/checkins",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/checkins"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "USER_ID"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "offset"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "sort"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "afterTimestamp"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "beforeTimestamp"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/checkins"
-      },
-      {
-        "path": "/users/USER_ID/friends",
-        "displayName": "/users/USER_ID/friends",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/friends"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "USER_ID"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "offset"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/friends"
-      },
-      {
         "path": "/users/USER_ID/lists",
-        "displayName": "/users/USER_ID/lists",
+        "displayName": "User Lists",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/lists"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID"
+            "displayName": "User ID (Use self for activated user's info)",
+            "name": ":USER_ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "group"
+            "name": "group",
+            "displayName": "Group"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Latitude, Longitude of the user",
             "name": "ll"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/lists"
-      },
-      {
-        "path": "/users/USER_ID/mayorships",
-        "displayName": "/users/USER_ID/mayorships",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/mayorships"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "USER_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/mayorships"
+        "url": "https://api.foursquare.com/v2/users/:USER_ID/lists"
       },
       {
         "path": "/users/USER_ID/photos",
-        "displayName": "/users/USER_ID/photos",
+        "displayName": "User Photos",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/photos"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID"
+            "displayName": "User ID (Use self for activated user's info)",
+            "name": ":USER_ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/photos"
+        "url": "https://api.foursquare.com/v2/users/:USER_ID/photos"
       },
       {
         "path": "/users/USER_ID/tastes",
-        "displayName": "/users/USER_ID/tastes",
+        "displayName": "User Tastes",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/tastes"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
+            "displayName": "User ID (Use self for activated user's info)",
             "name": "USER_ID",
-            "required": true
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/tastes"
+        "url": "https://api.foursquare.com/v2/users/:USER_ID/tastes"
       },
       {
         "path": "/users/USER_ID/tips",
-        "displayName": "/users/USER_ID/tips",
+        "displayName": "User Tips",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/tips"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID"
+            "displayName": "User ID (Use self for activated user's info)",
+            "name": ":USER_ID"
           },
           {
             "style": "query",
             "type": "number",
-            "name": "ll"
+            "name": "ll",
+            "displayName": "Latitude, Longitude of the user"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "number",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/tips"
-      },
-      {
-        "path": "/users/USER_ID/todos",
-        "displayName": "/users/USER_ID/todos",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/todos"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "USER_ID"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "sort"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "ll"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/todos"
-      },
-      {
-        "path": "/users/USER_ID/venuehistory",
-        "displayName": "/users/USER_ID/venuehistory",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/venuehistory"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "USER_ID"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "beforeTimestamp"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "afterTimestamp"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "categoryId"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/venuehistory"
+        "url": "https://api.foursquare.com/v2/users/:USER_ID/tips"
       },
       {
         "path": "/users/USER_ID/venuelikes",
-        "displayName": "/users/USER_ID/venuelikes",
+        "displayName": "User Venue Likes",
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/venuelikes"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID"
+            "displayName": "User ID (Use self for activated user's info)",
+            "name": ":USER_ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "beforeTimestamp"
+            "name": "beforeTimestamp",
+            "displayName": "Before Timestamp"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "afterTimestamp"
+            "name": "afterTimestamp",
+            "displayName": "After Timestamp"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "categoryId"
+            "name": "categoryId",
+            "displayName": "Category ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/venuelikes"
-      },
-      {
-        "path": "/users/USER_ID/approve",
-        "displayName": "/users/USER_ID/approve",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/approve"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "event-number",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/approve"
-      },
-      {
-        "path": "/revenue-events/revenue-schedules/{rs-number}",
-        "displayName": "/revenue-events/revenue-schedules/{rs-number}",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/revenue-events/revenue-schedules/{rs-number}"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "USER_ID",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/revenue-events/revenue-schedules/{rs-number}"
-      },
-      {
-        "path": "/users/USER_ID/deny",
-        "displayName": "/users/USER_ID/deny",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/deny"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "USER_ID",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/deny"
-      },
-      {
-        "path": "/users/USER_ID/setpings",
-        "displayName": "/users/USER_ID/setpings",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/setpings"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "USER_ID",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "value",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/setpings"
-      },
-      {
-        "path": "/users/USER_ID/unfriend",
-        "displayName": "/users/USER_ID/unfriend",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/USER_ID/unfriend"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "USER_ID",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/USER_ID/unfriend"
-      },
-      {
-        "path": "/users/self/update",
-        "displayName": "/users/self/update",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/users/self/update"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "photo",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/users/self/update"
+        "url": "https://api.foursquare.com/v2/users/:USER_ID/venuelikes"
       },
       {
         "path": "/venues/VENUE_ID",
-        "displayName": "/venues/VENUE_ID",
+        "displayName": "Venue Info",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID"
       },
       {
         "path": "/venues/add",
-        "displayName": "/venues/add",
+        "displayName": "Add Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name",
-            "required": true
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "address"
+            "name": "address",
+            "displayName": "Address"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "crossStreet"
+            "name": "crossStreet",
+            "displayName": "Cross Streets"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "city"
+            "name": "city",
+            "displayName": "City"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "state"
+            "name": "state",
+            "displayName": "State"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "zip"
+            "name": "zip",
+            "displayName": "Zip Code"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "revenueDistributions"
+            "name": "phone",
+            "displayName": "Phone Number"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone"
+            "name": "twitter",
+            "displayName": "List of Twitter Handles"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "twitter"
-          },
-          {
-            "style": "body",
-            "type": "string",
+            "displayName": "Latitude, Longitude of the user",
             "name": "ll",
-            "required": true
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "primaryCategoryId"
+            "name": "primaryCategoryId",
+            "displayName": "Primary Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "body",
             "type": "boolean",
-            "name": "ignoreDuplicates"
+            "name": "ignoreDuplicates",
+            "displayName": "Ignore Duplicates"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ignoreDuplicatesKey"
+            "name": "ignoreDuplicatesKey",
+            "displayName": "Ignore Duplicates Key"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/add"
       },
       {
         "path": "/venues/categories",
-        "displayName": "/venues/categories",
+        "displayName": "Venue Categories",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/categories"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.foursquare.com/v2/venues/categories"
       },
       {
         "path": "/venues/explore",
-        "displayName": "/venues/explore",
+        "displayName": "Nearby Venue Recommendations",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/explore"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
+            "displayName": "Latitude, Longitude of the user",
             "name": "ll",
-            "required": true
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "near",
-            "required": true
+            "displayName": "Near",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "llAcc"
+            "name": "llAcc",
+            "displayName": "Accuracy of Latitude and Longitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "alt"
+            "name": "alt",
+            "displayName": "Altitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "altAcc"
+            "name": "altAcc",
+            "displayName": "Accuracy of Altitude"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "radius"
+            "name": "radius",
+            "displayName": "Radius"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "section"
+            "name": "section",
+            "displayName": "Section"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "query"
+            "name": "query",
+            "displayName": "Query"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "novelty"
+            "name": "novelty",
+            "displayName": "Novelty (old or new)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "friendVisits"
+            "name": "friendVisits",
+            "displayName": "Friend Visits (visited or notvisited)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "time"
+            "name": "time",
+            "displayName": "Time of Day"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "day"
+            "name": "day",
+            "displayName": "Day of the Week"
           },
           {
             "style": "query",
             "type": "boolean",
-            "name": "venuePhotos"
+            "name": "venuePhotos",
+            "displayName": "Get Venue Photos?"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "lastVenue"
+            "name": "lastVenue",
+            "displayName": "Last Venue"
           },
           {
             "style": "query",
             "type": "boolean",
-            "name": "openNow"
+            "name": "openNow",
+            "displayName": "Open Now?"
           },
           {
             "style": "query",
             "type": "boolean",
-            "name": "sortByDistance"
+            "name": "sortByDistance",
+            "displayName": "Sort By Distance?"
           },
           {
             "style": "query",
-            "type": "string",
-            "name": "price"
+            "type": "number",
+            "name": "price",
+            "displayName": "Price (1-4)"
           },
           {
             "style": "query",
             "type": "boolean",
-            "name": "saved"
+            "name": "saved",
+            "displayName": "Include Only Saved Venues?"
           },
           {
             "style": "query",
             "type": "boolean",
-            "name": "specials"
+            "name": "specials",
+            "displayName": "Include Only Venues With Specials?"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/explore"
       },
       {
         "path": "/venues/managed",
-        "displayName": "/venues/managed",
+        "displayName": "Managed Venues",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/managed"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/managed"
       },
       {
         "path": "/venues/search",
-        "displayName": "/venues/search",
+        "displayName": "Search Venues",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/search"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
+            "displayName": "Latitude, Longitude of the user",
             "name": "ll",
-            "required": true
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "near",
-            "required": true
+            "displayName": "Near",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "llAcc"
+            "name": "llAcc",
+            "displayName": "Accuracy of Latitude and Longitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "alt"
+            "name": "alt",
+            "displayName": "Altitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "altAcc"
+            "name": "altAcc",
+            "displayName": "Accuracy of Altitude"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "query"
+            "name": "query",
+            "displayName": "Query"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "intent"
+            "name": "intent",
+            "displayName": "Intent(checkin, browse, global, or match)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "radius"
+            "name": "radius",
+            "displayName": "Radius"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "sw"
+            "name": "sw",
+            "displayName": "South West"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "ne"
+            "name": "ne",
+            "displayName": "North East"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "categoryId"
+            "name": "categoryId",
+            "displayName": "Category ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "providerId"
+            "name": "providerId",
+            "displayName": "Identifer to a Known Third Party"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "linkedId"
+            "name": "linkedId",
+            "displayName": "Identifer Used By Third Party"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/search"
       },
       {
         "path": "/venues/suggestcompletion",
-        "displayName": "/venues/suggestcompletion",
+        "displayName": "Search Venues Nearby",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/suggestcompletion"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
+            "displayName": "Latitude, Longitude of the user",
             "name": "ll",
-            "required": true
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "near",
-            "required": true
+            "displayName": "Near",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "llAcc"
+            "name": "llAcc",
+            "displayName": "Accuracy of Latitude and Longitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "alt"
+            "name": "alt",
+            "displayName": "Altitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "altAcc"
+            "name": "altAcc",
+            "displayName": "Accuracy of Altitude"
           },
           {
             "style": "query",
             "type": "string",
             "name": "query",
-            "required": true
+            "displayName": "Query",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "radius"
+            "name": "radius",
+            "displayName": "Radius"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "sw"
+            "name": "sw",
+            "displayName": "South West"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "ne"
+            "name": "ne",
+            "displayName": "North East"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/suggestcompletion"
       },
       {
         "path": "/venues/timeseries",
-        "displayName": "/venues/timeseries",
+        "displayName": "Daily Venue Stats Over A Time Range",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/timeseries"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Start At",
             "name": "startAt"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "endAt"
+            "name": "endAt",
+            "displayName": "End At"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "fields"
+            "name": "fields",
+            "displayName": "Fields"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/timeseries"
       },
       {
-        "path": "/venues/trending",
-        "displayName": "/venues/trending",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/venues/trending"
-        },
-        "httpMethod": "GET",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "ll",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "radius"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/venues/trending"
-      },
-      {
         "path": "/venues/VENUE_ID/events",
-        "displayName": "/venues/VENUE_ID/events",
+        "displayName": "Venue Events",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/events"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/events"
-      },
-      {
-        "path": "/venues/VENUE_ID/herenow",
-        "displayName": "/venues/VENUE_ID/herenow",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/venues/VENUE_ID/herenow"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "VENUE_ID",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "offset"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/herenow"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/events"
       },
       {
         "path": "/venues/VENUE_ID/hours",
-        "displayName": "/venues/VENUE_ID/hours",
+        "displayName": "Venue Hours",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/hours"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/hours"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/hours"
       },
       {
         "path": "/venues/VENUE_ID/likes",
-        "displayName": "/venues/VENUE_ID/likes",
+        "displayName": "Venue Likes",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/likes"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/likes"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/likes"
       },
       {
         "path": "/venues/VENUE_ID/links",
-        "displayName": "/venues/VENUE_ID/links",
+        "displayName": "Venue Links",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/links"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/VENUE_ID/links"
       },
       {
         "path": "/venues/VENUE_ID/listed",
-        "displayName": "/venues/VENUE_ID/listed",
+        "displayName": "Lists A Venue Appears On",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/listed"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID"
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "group"
+            "name": "group",
+            "displayName": "Group"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/listed"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/listed"
       },
       {
         "path": "/venues/VENUE_ID/menu",
-        "displayName": "/venues/VENUE_ID/menu",
+        "displayName": "Venue Menu",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/menu"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/menu"
-      },
-      {
-        "path": "/venues/VENUE_ID/nextvenues",
-        "displayName": "/venues/VENUE_ID/nextvenues",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/venues/VENUE_ID/nextvenues"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "VENUE_ID",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/nextvenues"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/menu"
       },
       {
         "path": "/venues/VENUE_ID/photos",
-        "displayName": "/venues/VENUE_ID/photos",
+        "displayName": "Photos From A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/photos"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "group"
+            "name": "group",
+            "displayName": "Group"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/VENUE_ID/photos"
       },
       {
         "path": "/venues/VENUE_ID/similar",
-        "displayName": "/venues/VENUE_ID/similar",
+        "displayName": "Similar Venues",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/similar"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/similar"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/similar"
       },
       {
         "path": "/venues/VENUE_ID/stats",
-        "displayName": "/venues/VENUE_ID/stats",
+        "displayName": "Venue Stats",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/stats"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Start At",
             "name": "startAt"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "endAt"
+            "name": "endAt",
+            "displayName": "End At"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/stats"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/stats"
       },
       {
         "path": "/venues/VENUE_ID/tips",
-        "displayName": "/venues/VENUE_ID/tips",
+        "displayName": "Venue Tips",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/tips"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "sort"
+            "name": "sort",
+            "displayName": "Sort"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/tips"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/tips"
       },
       {
         "path": "/venues/VENUE_ID/claim",
-        "displayName": "/venues/VENUE_ID/claim",
+        "displayName": "Claim A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/claim"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
+        {
+            "style": "url",
+            "type": "string",
+            "name": ":VENUE_ID",
+            "required": "true"
+          },
           {
             "style": "body",
             "type": "string",
             "name": "visible",
-            "required": true
+            "displayName": "Visible?",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/claim"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/claim"
       },
       {
         "path": "/venues/VENUE_ID/dislike",
-        "displayName": "/venues/VENUE_ID/dislike",
+        "displayName": "Dislike A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/dislike"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "set"
+            "name": "set",
+            "displayName": "Set"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/VENUE_ID/dislike"
       },
       {
         "path": "/venues/VENUE_ID/edit",
-        "displayName": "/venues/VENUE_ID/edit",
+        "displayName": "Edit A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/edit"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "address"
+            "name": "address",
+            "displayName": "Address"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "crossStreet"
+            "name": "crossStreet",
+            "displayName": "Cross Streets"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "city"
+            "name": "city",
+            "displayName": "City"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "state"
+            "name": "state",
+            "displayName": "State"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "zip"
+            "name": "zip",
+            "displayName": "Zip Code"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone"
+            "name": "phone",
+            "displayName": "Phone Number"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ll"
+            "name": "ll",
+            "displayName": "Latitude, Longitude of the user"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "primaryCategoryId"
+            "name": "primaryCategoryId",
+            "displayName": "Primary Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "addCategoryIds"
+            "name": "addCategoryIds",
+            "displayName": "Add Category IDs"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "removeCategoryIds"
+            "name": "removeCategoryIds",
+            "displayName": "Remove Category IDs"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "twitter"
+            "name": "twitter",
+            "displayName": "List of Twitter Handles"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "storeId"
+            "name": "storeId",
+            "displayName": "Store ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "hours"
+            "name": "hours",
+            "displayName": "Hours"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/edit"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/edit"
       },
       {
         "path": "/venues/VENUE_ID/flag",
-        "displayName": "/venues/VENUE_ID/flag",
+        "displayName": "Flag A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/flag"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "problem",
-            "required": true
+            "displayName": "Problem",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "ID of the Duplicate Venue"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/flag"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/flag"
       },
       {
         "path": "/venues/VENUE_ID/like",
-        "displayName": "/venues/VENUE_ID/like",
+        "displayName": "Like A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/like"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "VENUE_ID",
-            "required": true
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "set"
+            "name": "set",
+            "displayName": "Set"
           }
         ],
         "url": "https://api.foursquare.com/v2/venues/VENUE_ID/like"
       },
       {
         "path": "/venues/VENUE_ID/proposeedit",
-        "displayName": "/venues/VENUE_ID/proposeedit",
+        "displayName": "Propose An Edit To A Venue",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/proposeedit"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID To Edit",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "address"
+            "name": "address",
+            "displayName": "Address"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "crossStreet"
+            "name": "crossStreet",
+            "displayName": "Cross Streets"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "city"
+            "name": "city",
+            "displayName": "City"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "state"
+            "name": "state",
+            "displayName": "State"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "zip"
+            "name": "zip",
+            "displayName": "Zip Code"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone"
+            "name": "phone",
+            "displayName": "Phone Number"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "twitter"
+            "name": "twitter",
+            "displayName": "List of Twitter Handles"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "menuUrl"
+            "name": "menuUrl",
+            "displayName": "Menu URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "facebookUrl"
+            "name": "facebookUrl",
+            "displayName": "Facebook URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ll"
+            "name": "ll",
+            "displayName": "Latitude, Longitude of the user"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "venuell"
+            "name": "venuell",
+            "displayName": "Venue Latitude And Longitude"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "primaryCategoryId"
+            "name": "primaryCategoryId",
+            "displayName": "Primary Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "addCategoryIds"
+            "name": "addCategoryIds",
+            "displayName": "Add Category IDs"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "removeCategoryIds"
+            "name": "removeCategoryIds",
+            "displayName": "Remove Category IDs"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "hours"
+            "name": "hours",
+            "displayName": "Hours"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/proposeedit"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/proposeedit"
       },
       {
         "path": "/venues/VENUE_ID/setrole",
-        "displayName": "/venues/VENUE_ID/setrole",
+        "displayName": "Set Venue Roles",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/setrole"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "userId",
-            "required": true
+            "displayName": "User ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "role",
-            "required": true
+            "displayName": "Role",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "visible"
+            "name": "visible",
+            "displayName": "Visible"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/setrole"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/setrole"
       },
       {
         "path": "/venues/VENUE_ID/setsinglelocation",
-        "displayName": "/venues/VENUE_ID/setsinglelocation",
+        "displayName": "Set Venue As A Single Location",
         "doc": {
           "url": "https://api.foursquare.com/v2/venues/VENUE_ID/setsinglelocation"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "VENUE_ID",
-            "required": true
+            "name": ":VENUE_ID",
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venues/VENUE_ID/setsinglelocation"
+        "url": "https://api.foursquare.com/v2/venues/:VENUE_ID/setsinglelocation"
       },
       {
         "path": "/venuegroups/GROUP_ID",
-        "displayName": "/venuegroups/GROUP_ID",
+        "displayName": "Venue Group Information",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "GROUP_ID"
+            "displayName": "Group ID",
+            "name": ":GROUP_ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID"
+        "url": "https://api.foursquare.com/v2/venuegroups/:GROUP_ID"
       },
       {
         "path": "/venuegroups/add",
-        "displayName": "/venuegroups/add",
+        "displayName": "Add Venue To Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
+            "displayName": "Group Name",
             "name": "name",
-            "required": true
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           }
         ],
         "url": "https://api.foursquare.com/v2/venuegroups/add"
       },
       {
         "path": "/venuegroups/GROUP_ID/delete",
-        "displayName": "/venuegroups/GROUP_ID/delete",
+        "displayName": "Delete A Venue Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/delete"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "GROUP_ID",
-            "required": true
+            "displayName": "Group ID",
+            "name": ":GROUP_ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/delete"
+        "url": "https://api.foursquare.com/v2/venuegroups/:GROUP_ID/delete"
       },
       {
         "path": "/venuegroups/list",
-        "displayName": "/venuegroups/list",
+        "displayName": "Venue Group List",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/list"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.foursquare.com/v2/venuegroups/list"
       },
       {
         "path": "/venuegroups/GROUP_ID/timeseries",
-        "displayName": "/venuegroups/GROUP_ID/timeseries",
+        "displayName": "Daily Venue Stats For A Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/timeseries"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "GROUP_ID"
+            "displayName": "Group ID",
+            "name": ":GROUP_ID"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Start At",
             "name": "startAt"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "endAt"
+            "name": "endAt",
+            "displayName": "End At"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "fields"
+            "name": "fields",
+            "displayName": "Fields"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/timeseries"
+        "url": "https://api.foursquare.com/v2/venuegroups/:GROUP_ID/timeseries"
       },
       {
         "path": "/venuegroups/GROUP_ID/addvenue",
-        "displayName": "/venuegroups/GROUP_ID/addvenue",
+        "displayName": "Add Venue To Venue Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/addvenue"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "GROUP_ID",
-            "required": true
+            "displayName": "Group ID",
+            "name": ":GROUP_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "venueId",
-            "required": true
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/addvenue"
-      },
-      {
-        "path": "/venuegroups/GROUP_ID/campaigns",
-        "displayName": "/venuegroups/GROUP_ID/campaigns",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/campaigns"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "GROUP_ID",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/campaigns"
+        "url": "https://api.foursquare.com/v2/venuegroups/:GROUP_ID/addvenue"
       },
       {
         "path": "/venuegroups/VENUEGROUP_ID/edit",
-        "displayName": "/venuegroups/VENUEGROUP_ID/edit",
+        "displayName": "Edit Venue Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/VENUEGROUP_ID/edit"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
-            "name": "VENUEGROUP_ID",
-            "required": true
+            "name": ":VENUEGROUP_ID",
+            "displayName": "Venue Group ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "city"
+            "name": "city",
+            "displayName": "City"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "state"
+            "name": "state",
+            "displayName": "State"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "zip"
+            "name": "zip",
+            "displayName": "Zip Code"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "phone"
+            "name": "phone",
+            "displayName": "Phone Number"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "categoryId"
+            "name": "categoryId",
+            "displayName": "Category ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "twitter"
+            "name": "twitter",
+            "displayName": "List of Twitter Handles"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "hours"
+            "name": "hours",
+            "displayName": "Hours"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venuegroups/VENUEGROUP_ID/edit"
+        "url": "https://api.foursquare.com/v2/venuegroups/:VENUEGROUP_ID/edit"
       },
       {
         "path": "/venuegroups/GROUP_ID/removevenue",
-        "displayName": "/venuegroups/GROUP_ID/removevenue",
+        "displayName": "Remove Venue From Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/removevenue"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "GROUP_ID",
-            "required": true
+            "displayName": "Group ID",
+            "name": ":GROUP_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "venueId",
-            "required": true
+            "displayName": "Venue ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/removevenue"
+        "url": "https://api.foursquare.com/v2/venuegroups/:GROUP_ID/removevenue"
       },
       {
         "path": "/venuegroups/GROUP_ID/update",
-        "displayName": "/venuegroups/GROUP_ID/update",
+        "displayName": "Update Venue Group",
         "doc": {
           "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/update"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "GROUP_ID",
-            "required": true
+            "displayName": "Group ID",
+            "name": ":GROUP_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           }
         ],
         "url": "https://api.foursquare.com/v2/venuegroups/GROUP_ID/update"
       },
       {
-        "path": "/checkins/CHECKIN_ID",
-        "displayName": "/checkins/CHECKIN_ID",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "CHECKIN_ID"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "signature"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID"
-      },
-      {
-        "path": "/checkins/add",
-        "displayName": "/checkins/add",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/checkins/add"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "venueId",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "eventId"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "shout"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "mentions"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "broadcast"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "ll"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "llAcc"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "alt"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "altAcc"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/checkins/add"
-      },
-      {
-        "path": "/checkins/recent",
-        "displayName": "/checkins/recent",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/checkins/recent"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X ",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "ll"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "afterTimestamp"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/checkins/recent"
-      },
-      {
-        "path": "/checkins/CHECKIN_ID/likes",
-        "displayName": "/checkins/CHECKIN_ID/likes",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/likes"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "CHECKIN_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/likes"
-      },
-      {
-        "path": "/CHECKIN_ID/addcomment",
-        "displayName": "/CHECKIN_ID/addcomment",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/CHECKIN_ID/addcomment"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "CHECKIN_ID"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "text"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "mentions"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/CHECKIN_ID/addcomment"
-      },
-      {
-        "path": "/checkins/CHECKIN_ID/addpost",
-        "displayName": "/checkins/CHECKIN_ID/addpost",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/addpost"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "CHECKIN_ID"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "text"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "url"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "contentId"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/addpost"
-      },
-      {
-        "path": "/checkins/CHECKIN_ID/deletecomment",
-        "displayName": "/checkins/CHECKIN_ID/deletecomment",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/deletecomment"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "CHECKIN_ID"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "commentId"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/deletecomment"
-      },
-      {
-        "path": "/checkins/CHECKIN_ID/like",
-        "displayName": "/checkins/CHECKIN_ID/like",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/like"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "CHECKIN_ID",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "set"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/checkins/CHECKIN_ID/like"
-      },
-      {
         "path": "/tips/TIP_ID",
-        "displayName": "/tips/TIP_ID",
+        "displayName": "Tip Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "TIP_ID",
-            "required": true
+            "name": ":TIP_ID",
+            "displayName": "Tip ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/tips/TIP_ID"
+        "url": "https://api.foursquare.com/v2/tips/:TIP_ID"
       },
       {
         "path": "/tips/add",
-        "displayName": "/tips/add",
+        "displayName": "Add Tip",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "venueId",
-            "required": true
+            "displayName": "Venue ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "text",
-            "required": true
+            "displayName": "Text",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "broadcast"
+            "name": "broadcast",
+            "displayName": "Broadcast (public, twitter, facebook)"
           }
         ],
         "url": "https://api.foursquare.com/v2/tips/add"
       },
       {
-        "path": "/tips/search",
-        "displayName": "/tips/search",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/tips/search"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "ll",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "near",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "limit"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "offset"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "filter"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "query"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/tips/search"
-      },
-      {
         "path": "/tips/TIP_ID/likes",
-        "displayName": "/tips/TIP_ID/likes",
+        "displayName": "Tip Like Count",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/likes"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "TIP_ID"
+            "name": ":TIP_ID",
+            "displayName": "Tip ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/tips/TIP_ID/likes"
+        "url": "https://api.foursquare.com/v2/tips/:TIP_ID/likes"
       },
       {
         "path": "/tips/TIP_ID/listed",
-        "displayName": "/tips/TIP_ID/listed",
+        "displayName": "Lists A Tip Appears On",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/listed"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
+            "displayName": "Tip ID",
             "type": "string",
-            "name": "TIP_ID"
+            "name": ":TIP_ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "group"
+            "name": "group",
+            "displayName": "Group"
           }
         ],
-        "url": "https://api.foursquare.com/v2/tips/TIP_ID/listed"
+        "url": "https://api.foursquare.com/v2/tips/:TIP_ID/listed"
       },
       {
         "path": "/tips/TIP_ID/saves",
-        "displayName": "/tips/TIP_ID/saves",
+        "displayName": "Users Who Have Saved A Tip",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/saves"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "TIP_ID"
+            "name": ":TIP_ID",
+            "displayName": "Tip ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/tips/TIP_ID/saves"
+        "url": "https://api.foursquare.com/v2/tips/:TIP_ID/saves"
       },
       {
         "path": "/tips/TIP_ID/flag",
-        "displayName": "/tips/TIP_ID/flag",
+        "displayName": "Flag A Tip",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/flag"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "TIP_ID",
-            "required": true
+            "name": ":TIP_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "comment"
+            "name": "comment",
+            "displayName": "Comment"
           },
           {
             "style": "body",
             "type": "string",
             "name": "problem",
-            "required": true
+            "displayName": "Problem",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/tips/TIP_ID/flag"
+        "url": "https://api.foursquare.com/v2/tips/:TIP_ID/flag"
       },
       {
         "path": "/tips/TIP_ID/like",
-        "displayName": "/tips/TIP_ID/like",
+        "displayName": "Like A Tip",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/like"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "TIP_ID",
-            "required": true
+            "name": ":TIP_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "set"
+            "name": "set",
+            "displayName": "Set"
           }
         ],
-        "url": "https://api.foursquare.com/v2/tips/TIP_ID/like"
+        "url": "https://api.foursquare.com/v2/tips/:TIP_ID/like"
       },
       {
         "path": "/tips/TIP_ID/unmark",
-        "displayName": "/tips/TIP_ID/unmark",
+        "displayName": "Remove A Tip From ToDo List",
         "doc": {
           "url": "https://api.foursquare.com/v2/tips/TIP_ID/unmark"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "TIP_ID",
-            "required": true
+            "name": ":TIP_ID",
+            "displayName": "Tip ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/tips/TIP_ID/unmark"
+        "url": "https://api.foursquare.com/v2/tips/:TIP_ID/unmark"
       },
       {
         "path": "/lists/LIST_ID",
-        "displayName": "/lists/LIST_ID",
+        "displayName": "Lists",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "llBounds"
+            "name": "llBounds",
+            "displayName": "Latitude, Longitude Boundary"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "categoryId"
+            "name": "categoryId",
+            "displayName": "Category ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "sort"
+            "name": "sort",
+            "displayName": "Sort"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID"
       },
       {
         "path": "/lists/add",
-        "displayName": "/lists/add",
+        "displayName": "Add List",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name",
-            "required": true
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "Boolean",
-            "name": "collaborative"
+            "name": "collaborative",
+            "displayName": "Collaborative"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "photoId"
+            "name": "photoId",
+            "displayName": "Photo ID"
           }
         ],
         "url": "https://api.foursquare.com/v2/lists/add"
       },
       {
         "path": "/lists/LIST_ID/followers",
-        "displayName": "/lists/LIST_ID/followers",
+        "displayName": "List Followers",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/followers"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/followers"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/followers"
       },
       {
         "path": "/lists/LIST_ID/ITEM_ID",
-        "displayName": "/lists/LIST_ID/ITEM_ID",
+        "displayName": "List Item Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/ITEM_ID"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "ITEM_ID",
-            "required": true
+            "name": ":ITEM_ID",
+            "displayName": "Item ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/ITEM_ID"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/:ITEM_ID"
       },
       {
         "path": "/lists/LIST_ID/saves",
-        "displayName": "/lists/LIST_ID/saves",
+        "displayName": "List Saves",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/saves"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID"
+            "name": ":LIST_ID",
+            "displayName": "List ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/saves"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/saves"
       },
       {
         "path": "/lists/LIST_ID/suggestphoto",
-        "displayName": "/lists/LIST_ID/suggestphoto",
+        "displayName": "List Photo Suggestions",
         "doc": {
           "url": "https://api.foursquare.com/v2//lists/LIST_ID/suggestphoto"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "itemId",
-            "required": true
+            "displayName": "Item ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/suggestphoto"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/suggestphoto"
       },
       {
         "path": "/lists/LIST_ID/suggesttip",
-        "displayName": "/lists/LIST_ID/suggesttip",
+        "displayName": "List Tip Suggestions",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/suggesttip"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "itemId",
-            "required": true
+            "displayName": "Item ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/suggesttip"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/suggesttip"
       },
       {
         "path": "/lists/LIST_ID/suggestvenues",
-        "displayName": "/lists/LIST_ID/suggestvenues",
+        "displayName": "List Venue Suggestions",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/suggestvenues"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/suggestvenues"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/suggestvenues"
       },
       {
         "path": "/lists/LIST_ID/additem",
-        "displayName": "/lists/LIST_ID/additem",
+        "displayName": "Add Item To List",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/additem"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "tipId"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "listId"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "itemId"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/additem"
-      },
-      {
-        "path": "/lists/LIST_ID/deleteitem",
-        "displayName": "/lists/LIST_ID/deleteitem",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/lists/LIST_ID/deleteitem"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "LIST_ID",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "itemId"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "venueId"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "tipId"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/deleteitem"
-      },
-      {
-        "path": "/lists/LIST_ID/follow",
-        "displayName": "/lists/LIST_ID/follow",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/lists/LIST_ID/follow"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "LIST_ID",
-            "required": true
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/follow"
-      },
-      {
-        "path": "/lists/LIST_ID/moveitem",
-        "displayName": "/lists/LIST_ID/moveitem",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/lists/LIST_ID/moveitem"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": "tipId",
+            "displayName": "Tip ID"
           },
           {
             "style": "body",
             "type": "string",
             "name": "itemId",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "beforeId"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "afterId"
+            "displayName": "Item ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/moveitem"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/additem"
+      },
+      {
+        "path": "/lists/LIST_ID/deleteitem",
+        "displayName": "Delete Item From List",
+        "doc": {
+          "url": "https://api.foursquare.com/v2/lists/LIST_ID/deleteitem"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "itemId",
+            "displayName": "Item ID"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "venueId",
+            "displayName": "Venue ID"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "tipId",
+            "displayName": "Tip ID"
+          }
+        ],
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/deleteitem"
+      },
+      {
+        "path": "/lists/LIST_ID/follow",
+        "displayName": "Follow A List",
+        "doc": {
+          "url": "https://api.foursquare.com/v2/lists/LIST_ID/follow"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
+          }
+        ],
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/follow"
+      },
+      {
+        "path": "/lists/LIST_ID/moveitem",
+        "displayName": "Move Item On List",
+        "doc": {
+          "url": "https://api.foursquare.com/v2/lists/LIST_ID/moveitem"
+        },
+        "httpMethod": "POST",
+        "params": [
+          {
+            "style": "url",
+            "type": "string",
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "itemId",
+            "displayName": "Item ID",
+            "required": "true"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "beforeId",
+            "displayName": "Before ID"
+          },
+          {
+            "style": "body",
+            "type": "string",
+            "name": "afterId",
+            "displayName": "After ID"
+          }
+        ],
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/moveitem"
       },
       {
         "path": "/lists/LIST_ID/share",
-        "displayName": "/lists/LIST_ID/share",
+        "displayName": "Share List",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/share"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "broadcast"
+            "name": "broadcast",
+            "displayName": "Broadcast (public, twitter, facebook)"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "message"
+            "name": "message",
+            "displayName": "Message"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/share"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/share"
       },
       {
         "path": "/lists/LIST_ID/unfollow",
-        "displayName": "/lists/LIST_ID/unfollow",
+        "displayName": "Unfollow List",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/unfollow"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/unfollow"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/unfollow"
       },
       {
         "path": "/lists/LIST_ID/update",
-        "displayName": "/lists/LIST_ID/update",
+        "displayName": "Update List",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/update"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "description"
+            "name": "description",
+            "displayName": "Description"
           },
           {
             "style": "body",
             "type": "boolean",
-            "name": "collaborative"
+            "name": "collaborative",
+            "displayName": "Collaborative"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "photoId"
+            "name": "photoId",
+            "displayName": "Photo ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/update"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/update"
       },
       {
         "path": "/lists/LIST_ID/updateitem",
-        "displayName": "/lists/LIST_ID/updateitem",
+        "displayName": "Update List Item",
         "doc": {
           "url": "https://api.foursquare.com/v2/lists/LIST_ID/updateitem"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "LIST_ID",
-            "required": true
+            "name": ":LIST_ID",
+            "displayName": "List ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "itemId",
-            "required": true
+            "displayName": "Item ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "tipId"
+            "name": "tipId",
+            "displayName": "Tip ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "text"
+            "name": "text",
+            "displayName": "Text"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "url"
+            "name": "url",
+            "displayName": "URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "photoId"
+            "name": "photoId",
+            "displayName": "Photo ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/lists/LIST_ID/updateitem"
+        "url": "https://api.foursquare.com/v2/lists/:LIST_ID/updateitem"
       },
       {
         "path": "/updates/UPDATE_ID",
-        "displayName": "/updates/UPDATE_ID",
+        "displayName": "Updates",
         "doc": {
           "url": "https://api.foursquare.com/v2/updates/UPDATE_ID"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "UPDATE_ID",
-            "required": true
+            "name": ":UPDATE_ID",
+            "displayName": "Update ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/updates/UPDATE_ID"
+        "url": "https://api.foursquare.com/v2/updates/:UPDATE_ID"
       },
       {
         "path": "/updates/notifications",
-        "displayName": "/updates/notifications",
+        "displayName": "Notification Updates",
         "doc": {
           "url": "https://api.foursquare.com/v2/updates/notifications"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           }
         ],
         "url": "https://api.foursquare.com/v2/updates/notifications"
       },
       {
         "path": "/updates/marknotificationsread",
-        "displayName": "/updates/marknotificationsread",
+        "displayName": "Mark Notifications As Read",
         "doc": {
           "url": "https://api.foursquare.com/v2/updates/marknotificationsread"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
             "name": "highWatermark",
-            "required": true
+            "displayName": "Time Stamp",
+            "required": "true"
           }
         ],
         "url": "https://api.foursquare.com/v2/updates/marknotificationsread"
       },
       {
         "path": "/photos/PHOTO_ID",
-        "displayName": "/photos/PHOTO_ID",
+        "displayName": "Photo Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/photos/PHOTO_ID"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "PHOTO_ID",
-            "required": true
+            "name": ":PHOTO_ID",
+            "displayName": "Photo ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/photos/PHOTO_ID"
+        "url": "https://api.foursquare.com/v2/photos/:PHOTO_ID"
       },
       {
         "path": "/photos/add",
-        "displayName": "/photos/add",
+        "displayName": "Add Photos",
         "doc": {
           "url": "https://api.foursquare.com/v2/photos/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
-            "name": "checkinId"
+            "name": "checkinId",
+            "displayName": "Check-In ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "tipId"
+            "name": "tipId",
+            "displayName": "Tip ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Page ID",
             "name": "pageId"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "broadcast"
+            "name": "broadcast",
+            "displayName": "Broadcast (public, twitter, facebook)"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "public"
+            "name": "public",
+            "displayName": "Public"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "ll"
+            "name": "ll",
+            "displayName": "Latitude, Longitude of the user"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "llAcc"
+            "name": "llAcc",
+            "displayName": "Accuracy of Latitude and Longitude (in meters)"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "alt"
+            "name": "alt",
+            "displayName": "Altitude (in meters)"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "altAcc"
+            "name": "altAcc",
+            "displayName": "Accuracy of Altitude"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "postUrl"
+            "name": "postUrl",
+            "displayName": "Post URL"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "postContentId"
+            "name": "postContentId",
+            "displayName": "Post Content ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "postText"
+            "name": "postText",
+            "displayName": "Post Text"
           }
         ],
         "url": "https://api.foursquare.com/v2/photos/add"
       },
       {
         "path": "/settings/SETTING_ID",
-        "displayName": "/settings/SETTING_ID",
+        "displayName": "A Setting",
         "doc": {
           "url": "https://api.foursquare.com/v2/settings/SETTING_ID"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "SETTING_ID"
+            "name": ":SETTING_ID",
+            "displayName": "Setting ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/settings/SETTING_ID"
+        "url": "https://api.foursquare.com/v2/settings/:SETTING_ID"
       },
       {
         "path": "/settings/all",
-        "displayName": "/settings/all",
+        "displayName": "All Settings",
         "doc": {
           "url": "https://api.foursquare.com/v2/settings/all"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.foursquare.com/v2/settings/all"
       },
       {
         "path": "/settings/SETTING_ID/set",
-        "displayName": "/settings/SETTING_ID/set",
+        "displayName": "Set Settings",
         "doc": {
           "url": "https://api.foursquare.com/v2/settings/SETTING_ID/set"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "SETTING_ID",
-            "required": true
+            "name": ":SETTING_ID",
+            "displayName": "Setting ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "value",
-            "required": true
+            "displayName": "Value",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/settings/SETTING_ID/set"
+        "url": "https://api.foursquare.com/v2/settings/:SETTING_ID/set"
       },
       {
         "path": "/specials/SPECIAL_ID",
-        "displayName": "/specials/SPECIAL_ID",
+        "displayName": "Details About A Special",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/SPECIAL_ID"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "SPECIAL_ID",
-            "required": true
+            "name": ":SPECIAL_ID",
+            "displayName": "Special ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
             "name": "venueId",
-            "required": true
+            "displayName": "Venue ID",
+            "required": "true"
           },
           {
             "style": "query",
@@ -3025,811 +2578,595 @@
             "name": "userId"
           }
         ],
-        "url": "https://api.foursquare.com/v2/specials/SPECIAL_ID"
+        "url": "https://api.foursquare.com/v2/specials/:SPECIAL_ID"
       },
       {
         "path": "/specials/add",
-        "displayName": "/specials/add",
+        "displayName": "Add Special",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X ",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "style": "body",
             "type": "string",
             "name": "text",
-            "required": true
+            "displayName": "Text",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "finePrint"
+            "name": "finePrint",
+            "displayName": "Fine Print"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "count1"
+            "name": "count1",
+            "displayName": "Count"
           },
           {
             "style": "body",
             "type": "string",
             "name": "type",
-            "required": true
+            "displayName": "Type",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "offerId"
+            "name": "offerId",
+            "displayName": "Offer ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "cost"
+            "name": "cost",
+            "displayName": "Cost"
           }
         ],
         "url": "https://api.foursquare.com/v2/specials/add"
       },
       {
         "path": "/specials/list",
-        "displayName": "/specials/list",
+        "displayName": "Specials List",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/list"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "status"
+            "name": "status",
+            "displayName": "Status"
           }
         ],
         "url": "https://api.foursquare.com/v2/specials/list"
       },
       {
         "path": "/specials/search",
-        "displayName": "/specials/search",
+        "displayName": "Search Specials",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/search"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
+            "displayName": "Latitude, Longitude of the user",
             "name": "ll",
-            "required": true
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "radius"
+            "name": "radius",
+            "displayName": "Radius"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "llAcc"
+            "name": "llAcc",
+            "displayName": "Accuracy of Latitude and Longitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "alt"
+            "name": "alt",
+            "displayName": "Altitude (in meters)"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "altAcc"
+            "name": "altAcc",
+            "displayName": "Accuracy of Altitude"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           }
         ],
         "url": "https://api.foursquare.com/v2/specials/search"
       },
       {
-        "path": "/specials/SPECIAL_ID/configuration",
-        "displayName": "/specials/SPECIAL_ID/configuration",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/specials/SPECIAL_ID/configuration"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "SPECIAL_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/specials/SPECIAL_ID/configuration"
-      },
-      {
         "path": "/specials/ID/flag",
-        "displayName": "/specials/ID/flag",
+        "displayName": "Flag A Special",
         "doc": {
           "url": "https://api.foursquare.com/v2/specials/ID/flag"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "ID",
-            "required": true
+            "name": ":ID",
+            "displayName": "Special ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "venueId",
-            "required": true
+            "displayName": "Venue ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
             "name": "problem",
-            "required": true
+            "displayName": "Problem",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "text"
+            "name": "text",
+            "displayName": "Text"
           }
         ],
-        "url": "https://api.foursquare.com/v2/specials/ID/flag"
-      },
-      {
-        "path": "/specials/SPECIAL_ID/retire",
-        "displayName": "/specials/SPECIAL_ID/retire",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/specials/SPECIAL_ID/retire"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "SPECIAL_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/specials/SPECIAL_ID/retire"
-      },
-      {
-        "path": "/campaigns/CAMPAIGN_ID",
-        "displayName": "/campaigns/CAMPAIGN_ID",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "CAMPAIGN_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID"
-      },
-      {
-        "path": "/campaigns/add",
-        "displayName": "/campaigns/add",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/campaigns/add"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "specialId",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "groupId",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "venueId",
-            "required": true
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "endAt"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "startAt"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "campaignId"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/campaigns/add"
-      },
-      {
-        "path": "/campaigns/list",
-        "displayName": "/campaigns/list",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/campaigns/list"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "specialId"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "groupId"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "status"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/campaigns/list"
-      },
-      {
-        "path": "/campaigns/CAMPAIGN_ID/timeseries",
-        "displayName": "/campaigns/CAMPAIGN_ID/timeseries",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/timeseries"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "CAMPAIGN_ID",
-            "required": true
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "startAt"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "endAt"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/timeseries"
-      },
-      {
-        "path": "/campaigns/CAMPAIGN_ID/delete",
-        "displayName": "/campaigns/CAMPAIGN_ID/delete",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/delete"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "CAMPAIGN_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/delete"
-      },
-      {
-        "path": "/campaigns/CAMPAIGN_ID/end",
-        "displayName": "/campaigns/CAMPAIGN_ID/end",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/end"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "CAMPAIGN_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/end"
-      },
-      {
-        "path": "/campaigns/CAMPAIGN_ID/start",
-        "displayName": "/campaigns/CAMPAIGN_ID/start",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/start"
-        },
-        "httpMethod": "post",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "body",
-            "type": "string",
-            "name": "CAMPAIGN_ID"
-          },
-          {
-            "style": "body",
-            "type": "string",
-            "name": "startAt"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/campaigns/CAMPAIGN_ID/start"
+        "url": "https://api.foursquare.com/v2/specials/:ID/flag"
       },
       {
         "path": "/events/EVENT_ID",
-        "displayName": "/events/EVENT_ID",
+        "displayName": "Event Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/events/EVENT_ID"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "EVENT_ID",
-            "required": true
+            "name": ":EVENT_ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/events/EVENT_ID"
+        "url": "https://api.foursquare.com/v2/events/:EVENT_ID"
       },
       {
         "path": "/events/categories",
-        "displayName": "/events/categories",
+        "displayName": "Event Categories",
         "doc": {
           "url": "https://api.foursquare.com/v2/events/categories"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [],
         "url": "https://api.foursquare.com/v2/events/categories"
       },
       {
         "path": "/events/search",
-        "displayName": "/events/search",
+        "displayName": "Search Events",
         "doc": {
           "url": "https://api.foursquare.com/v2/events/search"
         },
         "httpMethod": "GET",
-        "curl": "curl -X",
         "params": [
           {
             "style": "query",
             "type": "string",
             "name": "domain",
-            "required": true
+            "displayName": "Domain",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Event ID",
             "name": "eventId",
-            "required": true
+            "required": "true"
           }
         ],
         "url": "https://api.foursquare.com/v2/events/search"
       },
       {
         "path": "/events/add",
-        "displayName": "/events/add",
+        "displayName": "Add Event",
         "doc": {
           "url": "https://api.foursquare.com/v2/events/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name"
           },
           {
             "style": "body",
             "type": "string",
+            "displayName": "Start At",
             "name": "startAt"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "endAt"
+            "name": "endAt",
+            "displayName": "End At"
           }
         ],
         "url": "https://api.foursquare.com/v2/events/add"
       },
       {
-        "path": "/pages/USER_ID",
-        "displayName": "/pages/USER_ID",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/pages/USER_ID"
-        },
-        "httpMethod": "Get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "USER_ID"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/pages/USER_ID"
-      },
-      {
         "path": "/pages/add",
-        "displayName": "/pages/add",
+        "displayName": "Add Page",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
+            "displayName": "Name",
             "name": "name",
-            "required": true
+            "required": "true"
           }
         ],
         "url": "https://api.foursquare.com/v2/pages/add"
       },
       {
         "path": "/pages/managing",
-        "displayName": "/pages/managing",
+        "displayName": "Managed Pages",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/managing"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.foursquare.com/v2/pages/managing"
       },
       {
-        "path": "/pages/search",
-        "displayName": "/pages/search",
-        "doc": {
-          "url": "https://api.foursquare.com/v2/pages/search"
-        },
-        "httpMethod": "get",
-        "curl": "curl -X",
-        "params": [
-          {
-            "style": "query",
-            "type": "string",
-            "name": "name"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "twitter"
-          },
-          {
-            "style": "query",
-            "type": "string",
-            "name": "fbid"
-          }
-        ],
-        "url": "https://api.foursquare.com/v2/pages/search"
-      },
-      {
         "path": "/pages/USER_ID/access",
-        "displayName": "/pages/USER_ID/access",
+        "displayName": "Oauth Access Token For Page",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/USER_ID/access"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID",
-            "required": true
+            "displayName": "Page ID",
+            "name": ":USER_ID",
+            "required": "true"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pages/USER_ID/access"
+        "url": "https://api.foursquare.com/v2/pages/:USER_ID/access"
       },
       {
         "path": "/pages/USER_ID/similar",
-        "displayName": "/pages/USER_ID/similar",
+        "displayName": "Similar Pages",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/USER_ID/similar"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID",
-            "required": true
+            "displayName": "Page ID",
+            "name": ":USER_ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           },
           {
             "style": "query",
             "type": "boolean",
-            "name": "includeFollowing"
+            "name": "includeFollowing",
+            "displayName": "Include Pages User Is Already Following"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pages/USER_ID/similar"
+        "url": "https://api.foursquare.com/v2/pages/:USER_ID/similar"
       },
       {
         "path": "/pages/PAGE_ID/timeseries",
-        "displayName": "/pages/PAGE_ID/timeseries",
+        "displayName": "Daily Page Details Over Time Period",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/PAGE_ID/timeseries"
         },
-        "httpMethod": "get",
-        "curl": "curl -X ",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "PAGE_ID"
+            "displayName": "Page ID",
+            "name": ":PAGE_ID"
           },
           {
             "style": "query",
             "type": "string",
+            "displayName": "Start At",
             "name": "startAt",
-            "required": true
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "endAt"
+            "name": "endAt",
+            "displayName": "End At"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "fields"
+            "name": "fields",
+            "displayName": "Fields"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pages/PAGE_ID/timeseries"
+        "url": "https://api.foursquare.com/v2/pages/:PAGE_ID/timeseries"
       },
       {
         "path": "/pages/PAGE_ID/venues",
-        "displayName": "/pages/PAGE_ID/venues",
+        "displayName": "Page Venues",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/PAGE_ID/venues"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "PAGE_ID",
-            "required": true
+            "name": ":PAGE_ID",
+            "displayName": "Page ID",
+            "required": "true"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "ll"
+            "name": "ll",
+            "displayName": "Latitude, Longitude of the user"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "radius"
+            "name": "radius",
+            "displayName": "Radius"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "sw"
+            "name": "sw",
+            "displayName": "South West"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "ne"
+            "name": "ne",
+            "displayName": "North East"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "offset"
+            "name": "offset",
+            "displayName": "Offset"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "storeId"
+            "name": "storeId",
+            "displayName": "Store ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pages/PAGE_ID/venues"
+        "url": "https://api.foursquare.com/v2/pages/:PAGE_ID/venues"
       },
       {
         "path": "/pages/USER_ID/follow",
-        "displayName": "/pages/USER_ID/follow",
+        "displayName": "Follow Page",
         "doc": {
           "url": "https://api.foursquare.com/v2/pages/USER_ID/follow"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "USER_ID",
-            "required": true
+            "displayName": "Page ID",
+            "name": ":USER_ID",
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "set"
+            "name": "set",
+            "displayName": "Set"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pages/USER_ID/follow"
+        "url": "https://api.foursquare.com/v2/pages/:USER_ID/follow"
       },
       {
         "path": "/pageupdates/UPDATE_ID",
-        "displayName": "/pageupdates/UPDATE_ID",
+        "displayName": "Get Page Update Details",
         "doc": {
           "url": "https://api.foursquare.com/v2/pageupdates/UPDATE_ID"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
-            "style": "query",
+            "style": "url",
             "type": "string",
-            "name": "UPDATE_ID"
+            "displayName": "Update ID",
+            "name": ":UPDATE_ID"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "limit"
+            "name": "limit",
+            "displayName": "Limit"
           },
           {
             "style": "query",
             "type": "string",
-            "name": "ll"
+            "name": "ll",
+            "displayName": "Latitude, Longitude of the user"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pageupdates/UPDATE_ID"
+        "url": "https://api.foursquare.com/v2/pageupdates/:UPDATE_ID"
       },
       {
         "path": "/pageupdates/add",
-        "displayName": "/pageupdates/add",
+        "displayName": "Add Page Update",
         "doc": {
           "url": "https://api.foursquare.com/v2/pageupdates/add"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "body",
             "type": "string",
+            "displayName": "Page ID",
             "name": "pageId",
-            "required": true
+            "required": "true"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "groupId"
+            "name": "groupId",
+            "displayName": "Group ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "venueId"
+            "name": "venueId",
+            "displayName": "Venue ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "shout"
+            "name": "shout",
+            "displayName": "Shout"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "photoId"
+            "name": "photoId",
+            "displayName": "Photo ID"
           },
           {
             "style": "body",
             "type": "string",
-            "name": "broadcast"
+            "name": "broadcast",
+            "displayName": "Broadcast (public, twitter, facebook)"
           }
         ],
         "url": "https://api.foursquare.com/v2/pageupdates/add"
       },
       {
         "path": "/pageupdates/list",
-        "displayName": "/pageupdates/list",
+        "displayName": "List Page Updates",
         "doc": {
           "url": "https://api.foursquare.com/v2/pageupdates/list"
         },
-        "httpMethod": "Get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [],
         "url": "https://api.foursquare.com/v2/pageupdates/list"
       },
       {
         "path": "/pageupdates/UPDATE_ID/delete",
-        "displayName": "/pageupdates/UPDATE_ID/delete",
+        "displayName": "Delete Page Update",
         "doc": {
           "url": "https://api.foursquare.com/v2/pageupdates/UPDATE_ID/delete"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "UPDATE_ID"
+            "name": ":UPDATE_ID",
+            "displayName": "Update ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pageupdates/UPDATE_ID/delete"
+        "url": "https://api.foursquare.com/v2/pageupdates/:UPDATE_ID/delete"
       },
       {
         "path": "/pageupdates/UPDATE_ID/like",
-        "displayName": "/pageupdates/UPDATE_ID/like",
+        "displayName": "Like Page Update",
         "doc": {
           "url": "https://api.foursquare.com/v2/pageupdates/UPDATE_ID/like"
         },
-        "httpMethod": "post",
-        "curl": "curl -X",
+        "httpMethod": "POST",
         "params": [
           {
-            "style": "body",
+            "style": "url",
             "type": "string",
-            "name": "UPDATE_ID"
+            "displayName": "Update ID",
+            "name": ":UPDATE_ID"
           }
         ],
-        "url": "https://api.foursquare.com/v2/pageupdates/UPDATE_ID/like"
+        "url": "https://api.foursquare.com/v2/pageupdates/:UPDATE_ID/like"
       },
       {
         "path": "/multi",
-        "displayName": "/multi",
+        "displayName": "Multiple Requests At Once",
         "doc": {
           "url": "https://api.foursquare.com/v2/multi"
         },
-        "httpMethod": "get",
-        "curl": "curl -X",
+        "httpMethod": "GET",
         "params": [
           {
             "style": "query",
             "type": "string",
             "name": "requests",
-            "required": true
+            "required": "true"
           }
         ],
         "url": "https://api.foursquare.com/v2/multi"
@@ -3841,22 +3178,25 @@
   "name": "foursquare",
   "oauth": {
     "development": {
-      "clientID": "octoblu-dev",
+      "tokenQueryParam": "oauth_token",
+      "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "http://localhost:8080/api/oauth/podio/callback",
-      "tokenMethod": "access_token_bearer"
+      "callbackURL": "http://localhost:8080/api/oauth/foursquare/callback",
+      "tokenMethod": "access_token_query"
     },
     "staging": {
-      "clientID": "octoblu-staging",
+      "tokenQueryParam": "oauth_token",
+      "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "https://staging.octoblu.com/api/oauth/podio/callback",
-      "tokenMethod": "access_token_bearer"
+      "callbackURL": "https://staging.octoblu.com/api/oauth/foursquare/callback",
+      "tokenMethod": "access_token_query"
     },
     "production": {
-      "clientID": "octoblu",
+      "tokenQueryParam": "oauth_token",
+      "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL": "https://app.octoblu.com/api/oauth/podio/callback",
-      "tokenMethod": "access_token_bearer"
+      "callbackURL": "https://app.octoblu.com/api/oauth/foursquare/callback",
+      "tokenMethod": "access_token_query"
     }
   }
 }

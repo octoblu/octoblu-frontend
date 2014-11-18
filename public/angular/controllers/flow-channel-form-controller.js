@@ -10,10 +10,12 @@ angular.module('octobluApp')
       return true;
     });
     resources.sort(function(a, b){
-      if(a.path < b.path){
+      var aKey = a.displayName ? a.displayName : a.path; 
+      var bKey = b.displayName ? b.displayName : b.path; 
+      if(aKey < bKey){
         return -1;
       }
-      if(a.path > b.path){
+      if(aKey > bKey){
         return 1;
       }
       return 0;
