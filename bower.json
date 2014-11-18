@@ -49,7 +49,7 @@
     "prism": "gh-pages",
     "xxhash": "*",
     "mgo-mousetrap": "https://github.com/octoblu/mgo-mousetrap.git#0.1.5",
-    "angular-material": "master"
+    "angular-material": "~0.5"
   },
   "devDependencies": {
     "chai": "~1.9.1",
