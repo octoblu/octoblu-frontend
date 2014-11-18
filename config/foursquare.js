@@ -2,6 +2,7 @@
 var FourSquare = require('passport-foursquare').Strategy;
 var User       = require('../app/models/user');
 var Channel    = require('../app/models/channel');
+var when       = require('when');
 
 var CONFIG = Channel.syncFindByType('channel:foursquare').oauth[process.env.NODE_ENV];
 
@@ -9,7 +10,10 @@ CONFIG.passReqToCallback = true;
 
 var fourSquareStrategy = new FourSquare(CONFIG, function(req, accessToken, refreshToken, profile, done){
 
-  User.addApiAuthorization(req.user, 'channel:foursquare', {authtype: 'oauth', token: accessToken}).then(function () {
+when.all([
+  User.addApiAuthorization(req.user, 'channel:foursquare', {authtype: 'oauth', token: accessToken}),
+  User.addApiAuthorization(req.user, 'channel:swarm', {authtype: 'oauth', token: accessToken})
+    ]).then(function () {
     done(null, req.user);
   }).catch(function(error){
     done(error);

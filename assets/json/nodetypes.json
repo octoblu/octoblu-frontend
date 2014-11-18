@@ -512,19 +512,6 @@
     "type" : "channel:instagram"
   },
   {
-    "_id" : "542593853fb93d59863dfaef",
-    "category" : "channel",
-    "description" : "",
-    "enabled" : false,
-    "name" : "FourSquare",
-    "skynet" : {
-      "type" : "channel",
-      "subtype" : "FourSquare"
-    },
-    "channelid" : "52f9b628ebbb409983000001",
-    "type" : "channel:four-square"
-  },
-  {
     "_id" : "53c9b838f400e177dca325c6",
     "category" : "channel",
     "description" : "",
@@ -671,19 +658,6 @@
     },
     "channelid" : "533987f06d8a28a6ca8ff923",
     "type" : "channel:smartsheet"
-  },
-  {
-    "_id" : "53c9b83cf400e177dca325ce",
-    "category" : "channel",
-    "description" : "",
-    "enabled" : false,
-    "name" : "FourSquare",
-    "skynet" : {
-      "type" : "channel",
-      "subtype" : "FourSquare"
-    },
-    "channelid" : "52f9b628ebbb409983000001",
-    "type" : "channel:four-square"
   },
   {
     "_id" : "53c9b83cf400e177dca325cf",
@@ -1190,6 +1164,19 @@
       "subtype" : "foursquare"
     },
     "channelid" : "54656640dece70d991c638c6",
-    "type" : "channel:foursqaure"
+    "type" : "channel:foursquare"
+  },
+  {
+    "_id" : "546a874814a08dc76cb0e197",
+    "category" : "channel",
+    "description" : "Swarm",
+    "enabled" : true,
+    "name" : "Swarm",
+    "skynet" : {
+      "type" : "channel",
+      "subtype" : "swarm"
+    },
+    "channelid" : "546a874614a08dc76cb0e196",
+    "type" : "channel:swarm"
   }
 ]

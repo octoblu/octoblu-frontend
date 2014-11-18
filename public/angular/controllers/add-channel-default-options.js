@@ -47,6 +47,14 @@ angular.module('octobluApp')
 		$state.go(AUTH_DESTINATIONS[auth_strategy], {}, {location: 'replace'});
   };
 
+  function convertParamsToObject(params){
+    var newObject = {};
+    _.each(params, function(param){
+      newObject[param.name] = param.value;
+    });
+    return newObject;
+  }
+
 	channelService.getChannelActivationById(nodeType.channelid)
 		.then(function(channelActivation){
 	    $scope.existingChannel = channelActivation;
@@ -57,9 +65,14 @@ angular.module('octobluApp')
 
 	    channelService.getById(nodeType.channelid)
   			.then(function(channel){
-  				$scope.channel = channel;
-  				if(!channel.defaultParams){
-  					$scope.goToNextStep();
+          $scope.channel = channel;
+          _.extend($scope.channelDefaultParams, convertParamsToObject(channel.defaultParams));
+  				if(_.isEmpty(channel.defaultParams)){
+            if(!_.isEmpty($scope.channelDefaultParams)){
+              $scope.saveDefaultParams();
+            }else{
+              $scope.goToNextStep();
+            }
   				}
   			});
 	  });
