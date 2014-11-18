@@ -14,7 +14,13 @@ angular.module('octobluApp')
     });
   };
 
+  self.getTemplate = function(id) {
+    return $http.get('/api/templates/' + id).then(function(response){
+      return response.data;
+    });
+  };
+
   self.deleteTemplate = function(id) {
     return $http.delete('/api/templates/' + id);
-  }
+  };
 });

@@ -1,6 +1,6 @@
 angular.module('octobluApp')
-  .controller('FlowImportController', function ( $stateParams, $scope, FlowService, BillOfMaterialsService) {
-    FlowService.getFlow($stateParams.flowTemplateId).then(function(flow){
-      $scope.billOfMaterials = BillOfMaterialsService.generate(flow);
+  .controller('FlowImportController', function ( $stateParams, $scope, TemplateService, BillOfMaterialsService) {
+    TemplateService.getTemplate($stateParams.flowTemplateId).then(function(template){
+      $scope.billOfMaterials = BillOfMaterialsService.generate(template.flow);
     });
   });

@@ -322,6 +322,7 @@ module.exports = function(app, passport) {
 
             app.post('/api/templates', templateController.create);
             app.delete('/api/templates/:id', templateController.delete);
+            app.get('/api/templates/:id', templateController.findOne);
             app.get('/api/flows/:flowId/templates', templateController.withFlowId);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {

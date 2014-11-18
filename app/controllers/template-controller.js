@@ -10,6 +10,17 @@ var TemplateController = function () {
     }, function(error) {
       res.send(422, error);
     });
+  };
+
+  self.findOne = function(req, res) {
+    var query = {
+      uuid: req.params.id
+    };
+    return Template.findOne(query).then(function(template) {
+      res.send(200, template);
+    }, function(error) {
+      res.send(404, error);
+    });
   }
 
   self.withFlowId = function(req, res) {
