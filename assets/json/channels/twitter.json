@@ -36,10 +36,16 @@
     "base": "https://api.twitter.com/1.1",
     "resources": [
       {
+        "path": "/statuses/mentions_timeline.json",
+        "displayName": "Mentions Timeline",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.twitter.com/1.1/statuses/mentions_timeline.json",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -47,7 +53,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Since ID",
@@ -55,7 +60,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max ID",
@@ -63,15 +67,13 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Trim User",
             "name": "trim_user"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Contributer Details",
@@ -79,29 +81,24 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           }
-        ],
-        "path": "/statuses/mentions_timeline.json",
-        "displayName": "/statuses/mentions_timeline.json",
+        ]
+      },
+      {
+        "path": "/statuses/user_timeline.json",
+        "displayName": "User Timeline",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/mentions_timeline"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/user_timeline.json",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "User ID",
@@ -109,7 +106,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Screen Name",
@@ -117,7 +113,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Since ID",
@@ -125,7 +120,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -133,7 +127,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max ID",
@@ -141,15 +134,13 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Trim User",
             "name": "trim_user"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Exclude Replies",
@@ -157,7 +148,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Contributer Details",
@@ -165,29 +155,24 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Include RTS",
             "name": "include_rts"
           }
-        ],
-        "path": "/statuses/user_timeline.json",
-        "displayName": "/statuses/user_timeline.json",
+        ]
+      },
+      {
+        "path": "/statuses/home_timeline.json",
+        "displayName": "Home Timeline",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/user_timeline.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/home_timeline.json",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -195,7 +180,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Since ID",
@@ -203,7 +187,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max ID",
@@ -211,15 +194,13 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Trim User",
             "name": "trim_user"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Exclude Replies",
@@ -227,7 +208,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Contributer Details",
@@ -235,29 +215,24 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           }
-        ],
-        "path": "/statuses/home_timeline.json",
-        "displayName": "/statuses/home_timeline.json",
+        ]
+      },
+      {
+        "path": "/statuses/retweets_of_me.json",
+        "displayName": "My Retweets",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/home_timeline.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/retweets_of_me.json",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -265,7 +240,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Since ID",
@@ -273,7 +247,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max ID",
@@ -281,45 +254,38 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Trim User",
             "name": "trim_user"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Include User Entities",
             "name": "include_user_entities"
           }
-        ],
-        "path": "/statuses/retweets_of_me.json",
-        "displayName": "/statuses/retweets_of_me.json",
+        ]
+      },
+      {
+        "path": "/statuses/retweets/:id.json",
+        "displayName": "Tweet Retweets",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/retweets_of_me"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/retweets_of_me.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/retweets/:id.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "number",
             "style": "query",
             "displayName": "ID",
@@ -327,7 +293,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -335,75 +300,63 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Trim User",
             "name": "trim_user"
           }
-        ],
-        "displayName": "/statuses/retweets/:id.json",
-        "path": "/statuses/retweets/:id.json",
+        ]
+      },
+      {
+        "path": "/statuses/show/id.json",
+        "displayName": "Status By ID",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/retweets/%3Aid"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/retweets/:id.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/show/:id.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
-            "style": "query",
+            "style": "url",
             "displayName": "ID",
-            "name": "id"
+            "name": ":id"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Trim User",
             "name": "trim_user"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include My Retweet",
             "name": "include_my_retweet"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           }
-        ],
-        "path": "/statuses/show.json",
-        "displayName": "/statuses/show.json",
+        ]
+      },
+      {
+        "path": "/statuses/destroy/:id.json",
+        "displayName": "Delete Tweet",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/show/%3Aid"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/show.json"
-      },
-      {
+        "httpMethod": "POST",
+        "url": "https://api.twitter.com/1.1/statuses/destroy/:id.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "ID",
@@ -411,29 +364,24 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
             "displayName": "Trim User",
             "name": "trim_user"
           }
-        ],
-        "path": "/statuses/destroy/:id.json",
-        "displayName": "/statuses/destroy/:id.json",
+        ]
+      },
+      {
+        "path": "/statuses/update.json",
+        "displayName": "Status Update",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/statuses/destroy/%3Aid"
-        },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/statuses/destroy/:id.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/update.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Status",
@@ -441,7 +389,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "In Reply To Status",
@@ -449,7 +396,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Possibly Sensitive",
@@ -457,7 +403,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Latitude",
@@ -465,7 +410,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Longitude",
@@ -473,7 +417,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Place ID",
@@ -481,7 +424,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Display Coordinates",
@@ -489,29 +431,24 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
             "displayName": "Trim User",
             "name": "trim_user"
           }
-        ],
-        "path": "/statuses/update.json",
-        "displayName": "/statuses/update.json",
+        ]
+      },
+      {
+        "path": "/statuses/retweet/:id.json",
+        "displayName": "Retweet Status",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/statuses/update"
-        },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/statuses/update.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/retweet/:id.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "ID",
@@ -519,29 +456,24 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
             "displayName": "Trim User",
             "name": "trim_user"
           }
-        ],
-        "path": "/statuses/retweet/:id.json",
-        "displayName": "/statuses/retweet/:id.json",
+        ]
+      },
+      {
+        "displayName": "Update Status With Media",
+        "path": "/statuses/update_with_media.json",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/statuses/retweet/%3Aid"
-        },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/statuses/retweet/:id.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/update_with_media.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Status",
@@ -549,7 +481,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Media",
@@ -557,7 +488,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Possibly Sensitive",
@@ -565,7 +495,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "In Reply To Status",
@@ -573,7 +502,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Latitude",
@@ -581,7 +509,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Longitude",
@@ -589,7 +516,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Place ID",
@@ -597,29 +523,24 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Display Coordinates",
             "name": "display_coordinates"
           }
-        ],
-        "displayName": "/statuses/update_with_media.json",
-        "path": "/statuses/update_with_media.json",
+        ]
+      },
+      {
+        "path": "/statuses/oembed.json",
+        "displayName": "Oembed Tweet",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/statuses/update_with_media"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/statuses/update_with_media.json"
-      },
-      {
+        "httpMethod": "GET",
+        "url": "https://api.twitter.com/1.1/statuses/oembed.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "ID",
@@ -627,7 +548,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Url",
@@ -635,7 +555,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max Width",
@@ -643,7 +562,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Hide Media",
@@ -651,7 +569,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Hide Thread",
@@ -659,7 +576,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Omit Script",
@@ -667,7 +583,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Align",
@@ -675,7 +590,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Related",
@@ -683,29 +597,24 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Language",
             "name": "lang"
           }
-        ],
-        "path": "/statuses/oembed.json",
-        "displayName": "/statuses/oembed.json",
+        ]
+      },
+      {
+        "path": "/statuses/retweeters/ids.json",
+        "displayName": "Users By Retweet",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/oembed"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/oembed.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/statuses/retweeters/ids.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "ID",
@@ -713,7 +622,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Cursor",
@@ -721,29 +629,24 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Stringify IDs",
             "name": "stringify_ids"
           }
-        ],
-        "path": "/statuses/retweeters/ids.json",
-        "displayName": "/statuses/retweeters/ids.json",
+        ]
+      },
+      {
+        "path": "/search/tweets.json",
+        "displayName": "Search Tweets",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/retweeters/ids"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/statuses/retweeters/ids.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/search/tweets.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Query",
@@ -751,7 +654,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Geocode",
@@ -759,7 +661,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Language",
@@ -767,7 +668,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Locale",
@@ -775,7 +675,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Result Type",
@@ -783,7 +682,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -791,7 +689,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Until",
@@ -799,7 +696,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Since ID",
@@ -807,7 +703,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max ID",
@@ -815,291 +710,31 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Callback",
             "name": "callback"
           }
-        ],
-        "path": "/search/tweets.json",
-        "displayName": "/search/tweets.json",
+        ]
+      },
+      {
+        "path": "/direct_messages.json",
+        "displayName": "Direct Messages",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/search/tweets"
         },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/search/tweets.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/direct_messages.json",
         "params": [
           {
             "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "displayName": "Follow",
-            "name": "follow"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "displayName": "Track",
-            "name": "track"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "displayName": "Locations",
-            "name": "locations"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "displayName": "Delimited",
-            "name": "delimited"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "body",
-            "displayName": "Stall Warnings",
-            "name": "stall_warnings"
-          }
-        ],
-        "displayName": "/statuses/filter.json",
-        "path": "/statuses/filter.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/statuses/filter"
-        },
-        "httpMethod": "POST",
-        "url": "https://stream.twitter.com/1.1/statuses/filter.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Delimited",
-            "name": "delimited"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stall Warnings",
-            "name": "stall_warnings"
-          }
-        ],
-        "path": "/statuses/sample.json",
-        "displayName": "/statuses/sample.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/sample"
-        },
-        "httpMethod": "GET",
-        "url": "https://stream.twitter.com/1.1/statuses/sample.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Count",
-            "name": "count"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Delimited",
-            "name": "delimited"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stall Warnings",
-            "name": "stall_warnings"
-          }
-        ],
-        "path": "/statuses/firehose.json",
-        "displayName": "/statuses/firehose.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/firehose"
-        },
-        "httpMethod": "GET",
-        "url": "https://stream.twitter.com/1.1/statuses/firehose.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Delimited",
-            "name": "delimited"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stall Warnings",
-            "name": "stall_warnings"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "With",
-            "name": "with"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Replies",
-            "name": "replies"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Track",
-            "name": "track"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Locations",
-            "name": "locations"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stringify Friend IDs",
-            "name": "stringify_friend_ids"
-          }
-        ],
-        "path": "/user.json",
-        "displayName": "/user.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/user"
-        },
-        "httpMethod": "GET",
-        "url": "https://userstream.twitter.com/1.1/user.json"
-      },
-      {
-        "params": [
-          {
-            "required": "true",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Follow",
-            "name": "follow"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Delimited",
-            "name": "delimited"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stall Warnings",
-            "name": "stall_warnings"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "With",
-            "name": "with"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Replies",
-            "name": "replies"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stringify Friend IDs",
-            "name": "stringify_friend_ids"
-          }
-        ],
-        "path": "/site.json",
-        "displayName": "/site.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/site"
-        },
-        "httpMethod": "GET",
-        "url": "https://sitestream.twitter.com/1.1/site.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Since ID",
@@ -1107,7 +742,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max ID",
@@ -1115,7 +749,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -1123,37 +756,31 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Skip Status",
             "name": "skip_status"
           }
-        ],
-        "path": "/direct_messages.json",
-        "displayName": "/direct_messages.json",
+        ]
+      },
+      {
+        "path": "/direct_messages/sent.json",
+        "displayName": "Sent Direct Messages",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/direct_messages"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/direct_messages.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/direct_messages/sent.json",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Since ID",
@@ -1161,7 +788,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max ID",
@@ -1169,7 +795,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -1177,7 +802,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Page",
@@ -1185,51 +809,42 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           }
-        ],
-        "path": "/direct_messages/sent.json",
-        "displayName": "/direct_messages/sent.json",
+        ]
+      },
+      {
+        "path": "/direct_messages/show.json",
+        "displayName": "Single Direct Message",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/direct_messages/sent"
-        },
         "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/direct_messages/sent.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/direct_messages/show.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "ID",
             "name": "id"
           }
-        ],
-        "path": "/direct_messages/show.json",
-        "displayName": "/direct_messages/show.json",
+        ]
+      },
+      {
+        "path": "/direct_messages/destroy.json",
+        "displayName": "Delete Direct Message",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/direct_messages/show"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/direct_messages/show.json"
-      },
-      {
+        "httpMethod": "POST",
+        "url": "https://api.twitter.com/1.1/direct_messages/destroy.json",
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "ID",
@@ -1237,29 +852,24 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
             "displayName": "Include Entities",
             "name": "include_entities"
           }
-        ],
-        "path": "/direct_messages/destroy.json",
-        "displayName": "/direct_messages/destroy.json",
+        ]
+      },
+      {
+        "path": "/direct_messages/new.json",
+        "displayName": "New Direct Message",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/direct_messages/destroy"
-        },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/direct_messages/destroy.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/direct_messages/new.json",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "User ID",
@@ -1267,7 +877,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Screen Name",
@@ -1275,219 +884,184 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Text",
             "name": "text"
           }
-        ],
-        "path": "/direct_messages/new.json",
-        "displayName": "/direct_messages/new.json",
+        ]
+      },
+      {
+        "path": "/friendships/no_retweets/ids.json",
+        "displayName": "Friends User Does Not Recieve Retweets From",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/direct_messages/new"
+        "httpMethod": "GET",
+        "url": "https://api.twitter.com/1.1/friendships/no_retweets/ids.json",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Stringify IDs",
+            "name": "stringify_ids"
+          }
+        ]
+      },
+      {
+      "path": "/friends/ids.json",
+        "displayName": "Users You Follow",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.twitter.com/1.1/friends/ids.json",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "User ID",
+            "name": "user_id"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Screen Name",
+            "name": "screen_name"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Cursor",
+            "name": "cursor"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Stringify IDs",
+            "name": "stringify_ids"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Count",
+            "name": "count"
+          }
+        ]
+      },
+      {
+        "path": "/followers/ids.json",
+        "displayName": "Users Following You",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.twitter.com/1.1/followers/ids.json",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "User ID",
+            "name": "user_id"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Screen Name",
+            "name": "screen_name"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Cursor",
+            "name": "cursor"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Stringify IDs",
+            "name": "stringify_ids"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Count",
+            "name": "count"
+          }
+        ]
+      },
+      {
+        "path": "/friendships/incoming.json",
+        "displayName": "Pending Follower Requests",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.twitter.com/1.1/friendships/incoming.json",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Cursor",
+            "name": "cursor"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Stringify IDs",
+            "name": "stringify_ids"
+          }
+        ]
+      },
+      {
+        "path": "/friendships/outgoing.format",
+        "displayName": "Pending Following Requests",
+        "authentication": {
+          "required": "true"
+        },
+        "httpMethod": "GET",
+        "url": "https://api.twitter.com/1.1/friendships/outgoing.format",
+        "params": [
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Cursor",
+            "name": "cursor"
+          },
+          {
+            "required": "false",
+            "type": "string",
+            "style": "query",
+            "displayName": "Stringify IDs",
+            "name": "stringify_ids"
+          }
+        ]
+      },
+      {
+        "displayName": "Follow User",
+        "path": "/friendships/create.json",
+        "authentication": {
+          "required": "true"
         },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/direct_messages/new.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/friendships/create.json",
         "params": [
           {
             "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stringify IDs",
-            "name": "stringify_ids"
-          }
-        ],
-        "path": "/friendships/no_retweets/ids.json",
-        "displayName": "/friendships/no_retweets/ids.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/friendships/no_retweets/ids"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/friendships/no_retweets/ids.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "User ID",
-            "name": "user_id"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Screen Name",
-            "name": "screen_name"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Cursor",
-            "name": "cursor"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stringify IDs",
-            "name": "stringify_ids"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Count",
-            "name": "count"
-          }
-        ],
-        "path": "/friends/ids.json",
-        "displayName": "/friends/ids.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/friends/ids"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/friends/ids.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "User ID",
-            "name": "user_id"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Screen Name",
-            "name": "screen_name"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Cursor",
-            "name": "cursor"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stringify IDs",
-            "name": "stringify_ids"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Count",
-            "name": "count"
-          }
-        ],
-        "path": "/followers/ids.json",
-        "displayName": "/followers/ids.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/followers/ids"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/followers/ids.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Cursor",
-            "name": "cursor"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stringify IDs",
-            "name": "stringify_ids"
-          }
-        ],
-        "path": "/friendships/incoming.json",
-        "displayName": "/friendships/incoming.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/friendships/incoming"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/friendships/incoming.json"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Cursor",
-            "name": "cursor"
-          },
-          {
-            "required": "false",
-            "value": "",
-            "type": "string",
-            "style": "query",
-            "displayName": "Stringify IDs",
-            "name": "stringify_ids"
-          }
-        ],
-        "path": "/friendships/outgoing.format",
-        "displayName": "/friendships/outgoing.format",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/friendships/outgoing"
-        },
-        "httpMethod": "GET",
-        "url": "https://api.twitter.com/1.1/friendships/outgoing.format"
-      },
-      {
-        "params": [
-          {
-            "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Screen Name",
@@ -1495,7 +1069,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "User ID",
@@ -1503,29 +1076,24 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Follow",
             "name": "follow"
           }
-        ],
-        "displayName": "/friendships/create.json",
-        "path": "/friendships/create.json",
+        ]
+      },
+      {
+       "path": "/friendships/destroy.json",
+        "displayName": "Unfollow User",
         "authentication": {
           "required": "true"
         },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/friendships/create"
-        },
         "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/friendships/create.json"
-      },
-      {
+        "url": "https://api.twitter.com/1.1/friendships/destroy.json",
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Screen Name",
@@ -1533,29 +1101,17 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "User ID",
             "name": "user_id"
           }
-        ],
-        "path": "/friendships/destroy.json",
-        "displayName": "/friendships/destroy.json",
-        "authentication": {
-          "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/friendships/destroy"
-        },
-        "httpMethod": "POST",
-        "url": "https://api.twitter.com/1.1/friendships/destroy.json"
+        ]
       },
       {
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Screen Name",
@@ -1563,7 +1119,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "User ID",
@@ -1571,28 +1126,23 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
             "displayName": "Device",
             "name": "device"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "body",
             "displayName": "Retweets",
             "name": "retweets"
           }
         ],
         "path": "/friendships/update.json",
-        "displayName": "/friendships/update.json",
+        "displayName": "Update Following Notifications",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/friendships/update"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/friendships/update.json"
@@ -1601,7 +1151,6 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Source ID",
@@ -1609,7 +1158,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Source Screen Name",
@@ -1617,7 +1165,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Target ID",
@@ -1625,7 +1172,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Target Screen Name",
@@ -1633,33 +1179,26 @@
           }
         ],
         "path": "/friendships/show.json",
-        "displayName": "/friendships/show.json",
+        "displayName": "Show Friendship",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/friendships/show"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/friendships/show.json"
       },
       {
+        "path": "/friends/list.json",
+        "displayName": "Users Following",
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/friends/list"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/friends/list.json",
-        "path": "/friends/list.json",
         "params": [
           {
             "name": "user_id",
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1667,7 +1206,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -1675,7 +1213,6 @@
             "displayName": "Cursor",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1683,23 +1220,20 @@
             "displayName": "Count",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "skip_status",
             "displayName": "Skip Status",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
             "name": "include_user_entities",
             "displayName": "Include User Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -1707,21 +1241,17 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/followers/list"
-        },
         "authentication": {
           "required": "true"
         },
         "path": "/followers/list.json",
-        "displayName": "/followers/list.json",
+        "displayName": "Followers",
         "params": [
           {
             "name": "user_id",
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1729,7 +1259,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -1737,7 +1266,6 @@
             "displayName": "Cursor",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1745,23 +1273,20 @@
             "displayName": "Count",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "skip_status",
             "displayName": "Skip Status",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
             "name": "include_user_entities",
             "displayName": "Include User Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -1769,13 +1294,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/friendships/lookup"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/friendships/lookup.json",
+        "displayName": "Lookup Friendships",
         "path": "/friendships/lookup.json",
         "params": [
           {
@@ -1783,7 +1305,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1791,7 +1312,6 @@
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -1799,41 +1319,33 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/account/settings"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/settings.json",
+        "displayName": "Account Settings",
         "path": "/account/settings.json",
         "url": "https://api.twitter.com/1.1/account/settings.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/account/verify_credentials"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/verify_credentials.json",
+        "displayName": "Verify Credentials",
         "path": "/account/verify_credentials.json",
         "params": [
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
             "name": "skip_status",
             "displayName": "Skip Status",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -1841,13 +1353,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/settings"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/settings.json",
+        "displayName": "Account Settings",
         "path": "/account/settings.json",
         "params": [
           {
@@ -1855,7 +1364,6 @@
             "displayName": "Trend Location WOEID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1863,7 +1371,6 @@
             "displayName": "Sleep Time Enabled",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1871,7 +1378,6 @@
             "displayName": "Start Sleep Time",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1879,7 +1385,6 @@
             "displayName": "End Sleep Time",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1887,7 +1392,6 @@
             "displayName": "Time Zone",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1895,7 +1399,6 @@
             "displayName": "Language",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -1903,13 +1406,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/update_delivery_device"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/update_delivery_device.json",
+        "displayName": "Update Delivery Device",
         "path": "/account/update_delivery_device.json",
         "params": [
           {
@@ -1917,15 +1417,13 @@
             "displayName": "Device",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -1933,13 +1431,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/update_profile"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/update_profile.json",
+        "displayName": "Update Profile",
         "path": "/account/update_profile.json",
         "params": [
           {
@@ -1947,7 +1442,6 @@
             "displayName": "Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1955,7 +1449,6 @@
             "displayName": "URL",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1963,7 +1456,6 @@
             "displayName": "Location",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -1971,15 +1463,13 @@
             "displayName": "Description",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -1987,7 +1477,6 @@
             "displayName": "Skip Status",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -1995,13 +1484,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/update_profile_background_image"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/update_profile_background_image.json",
+        "displayName": "Update Background Image",
         "path": "/account/update_profile_background_image.json",
         "params": [
           {
@@ -2009,7 +1495,6 @@
             "displayName": "Image",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2017,15 +1502,13 @@
             "displayName": "Title",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -2033,7 +1516,6 @@
             "displayName": "Skip Status",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2041,7 +1523,6 @@
             "displayName": "Use",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2049,13 +1530,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/update_profile_colors"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/update_profile_colors.json",
+        "displayName": "Update Profile Colors",
         "path": "/account/update_profile_colors.json",
         "params": [
           {
@@ -2063,7 +1541,6 @@
             "displayName": "Profile Background Color",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2071,7 +1548,6 @@
             "displayName": "Profile Link Color",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2079,7 +1555,6 @@
             "displayName": "Profile Sidebar Border Color",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2087,7 +1562,6 @@
             "displayName": "Profile Sidebar Fill Color",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2095,15 +1569,13 @@
             "displayName": "Profile Text Color",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -2111,7 +1583,6 @@
             "displayName": "Skip Status",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2119,13 +1590,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/update_profile_image"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/update_profile_image.json",
+        "displayName": "Update Profile Image",
         "path": "/account/update_profile_image.json",
         "params": [
           {
@@ -2133,15 +1601,13 @@
             "displayName": "Image",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -2149,7 +1615,6 @@
             "displayName": "Skip Status",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2157,29 +1622,24 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/blocks/list"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/blocks/list.json",
+        "displayName": "Blocked Users",
         "path": "/blocks/list.json",
         "params": [
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
             "name": "skip_status",
             "displayName": "Skip Status",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -2187,7 +1647,6 @@
             "displayName": "Cursor",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2195,13 +1654,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/blocks/ids"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/blocks/ids.json",
+        "displayName": "Blocked User IDs",
         "path": "/blocks/ids.json",
         "params": [
           {
@@ -2209,7 +1665,6 @@
             "displayName": "Stringify IDs",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2217,7 +1672,6 @@
             "displayName": "Cursor",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2225,13 +1679,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/blocks/create"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/blocks/create.json",
+        "displayName": "Block User",
         "path": "/blocks/create.json",
         "params": [
           {
@@ -2239,7 +1690,6 @@
             "displayName": "Screen Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2247,15 +1697,13 @@
             "displayName": "User ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -2263,7 +1711,6 @@
             "displayName": "Skip Status",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2271,13 +1718,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/blocks/destroy"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/blocks/destroy.json",
+        "displayName": "Unblock User",
         "path": "/blocks/destroy.json",
         "params": [
           {
@@ -2285,7 +1729,6 @@
             "displayName": "Screen Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2293,15 +1736,13 @@
             "displayName": "User ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -2309,7 +1750,6 @@
             "displayName": "Skip Status",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2317,13 +1757,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/lookup"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/lookup.json",
+        "displayName": "Lookup Users",
         "path": "/users/lookup.json",
         "params": [
           {
@@ -2331,7 +1768,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2339,15 +1775,13 @@
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2355,13 +1789,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/show"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/show.json",
+        "displayName": "Show User Information",
         "path": "/users/show.json",
         "params": [
           {
@@ -2369,7 +1800,6 @@
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2377,15 +1807,13 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2393,13 +1821,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/search"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/search.json",
+        "displayName": "Search Users",
         "path": "/users/search.json",
         "params": [
           {
@@ -2407,7 +1832,6 @@
             "displayName": "Query",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2415,7 +1839,6 @@
             "displayName": "Page",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2423,15 +1846,13 @@
             "displayName": "Count",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2439,13 +1860,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/contributees"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/contributees.json",
+        "displayName": "Users You Can Contribute To",
         "path": "/users/contributees.json",
         "params": [
           {
@@ -2453,7 +1871,6 @@
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2461,23 +1878,20 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
             "name": "skip_status",
             "displayName": "Skip Status",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2485,21 +1899,17 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/contributors"
-        },
         "authentication": {
           "required": "true"
         },
         "path": "/users/contributors.json",
-        "displayName": "/users/contributors.json",
+        "displayName": "Users That Can Contribute To You",
         "params": [
           {
             "name": "user_id",
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2507,23 +1917,20 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
             "name": "skip_status",
             "displayName": "Skip Status",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2531,25 +1938,19 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/remove_profile_banner"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/remove_profile_banner.json",
+        "displayName": "Remove Profile Banner",
         "path": "/account/remove_profile_banner.json",
         "url": "https://api.twitter.com/1.1/account/remove_profile_banner.json"
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/account/update_profile_banner"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/account/update_profile_banner.json",
+        "displayName": "Update Profile Banner",
         "path": "/account/update_profile_banner.json",
         "params": [
           {
@@ -2557,7 +1958,6 @@
             "displayName": "Banner",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2565,7 +1965,6 @@
             "displayName": "Width",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2573,7 +1972,6 @@
             "displayName": "Height",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2581,7 +1979,6 @@
             "displayName": "Offset Left",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2589,7 +1986,6 @@
             "displayName": "Offset Top",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2597,13 +1993,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/profile_banner"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/profile_banner.json",
+        "displayName": "Profile Banner",
         "path": "/users/profile_banner.json",
         "params": [
           {
@@ -2611,7 +2004,6 @@
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2619,7 +2011,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2627,13 +2018,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/mutes/users/create"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/mutes/users/create.json",
+        "displayName": "Mute User",
         "path": "/mutes/users/create.json",
         "params": [
           {
@@ -2641,7 +2029,6 @@
             "displayName": "Screen Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2649,7 +2036,6 @@
             "displayName": "User ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2657,13 +2043,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/mutes/users/destroy"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/mutes/users/destroy.json",
+        "displayName": "Unmute User",
         "path": "/mutes/users/destroy.json",
         "params": [
           {
@@ -2671,7 +2054,6 @@
             "displayName": "Screen Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2679,7 +2061,6 @@
             "displayName": "User ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2687,13 +2068,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/mutes/users/ids"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/mutes/users/ids.json",
+        "displayName": "Muted User IDs",
         "path": "/mutes/users/ids.json",
         "params": [
           {
@@ -2701,7 +2079,6 @@
             "displayName": "Cursor",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2709,13 +2086,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/mutes/users/list"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/mutes/users/list.json",
+        "displayName": "Muted Users",
         "path": "/mutes/users/list.json",
         "params": [
           {
@@ -2723,23 +2097,20 @@
             "displayName": "Cursor",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
             "name": "skip_status",
             "displayName": "Skip Status",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2747,21 +2118,17 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/suggestions/%3Aslug"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/suggestions/:slug.json",
+        "displayName": "Suggested User List",
         "path": "/users/suggestions/:slug.json",
         "params": [
           {
             "name": ":slug",
-            "displayName": "Slug",
+            "displayName": "List Or Category",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -2769,7 +2136,6 @@
             "displayName": "Language",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2777,21 +2143,17 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/suggestions"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/suggestions.format",
-        "path": "/users/suggestions.format",
+        "displayName": "Suggested Users",
+        "path": "/users/suggestions.json",
         "params": [
           {
             "name": "lang",
             "displayName": "Language",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2799,13 +2161,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/users/suggestions/%3Aslug/members"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/suggestions/:slug/members.json",
+        "displayName": "Suggested User Members",
         "path": "/users/suggestions/:slug/members.json",
         "params": [
           {
@@ -2813,7 +2172,6 @@
             "displayName": "Slug",
             "style": "url",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -2821,13 +2179,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/favorites/list"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/favorites/list.json",
+        "displayName": "Favorites List",
         "path": "/favorites/list.json",
         "params": [
           {
@@ -2835,7 +2190,6 @@
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2843,7 +2197,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2851,7 +2204,6 @@
             "displayName": "Count",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2859,7 +2211,6 @@
             "displayName": "Since ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2867,15 +2218,13 @@
             "displayName": "Max ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2883,13 +2232,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/favorites/destroy"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/favorites/destroy.json",
+        "displayName": "Remove Favorite",
         "path": "/favorites/destroy.json",
         "params": [
           {
@@ -2897,15 +2243,13 @@
             "displayName": "ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2913,13 +2257,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/favorites/create"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/favorites/create.json",
+        "displayName": "Favorite Tweet",
         "path": "/favorites/create.json",
         "params": [
           {
@@ -2927,15 +2268,13 @@
             "displayName": "ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "body",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           }
         ],
@@ -2943,13 +2282,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/list"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/lists/list.json",
+        "displayName": "User Lists",
         "path": "/lists/list.json",
         "params": [
           {
@@ -2957,7 +2293,6 @@
             "displayName": "User ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2965,7 +2300,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -2973,7 +2307,6 @@
             "displayName": "Reverse",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -2981,13 +2314,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/statuses"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/lists/statuses.json",
+        "displayName": "List Statuses",
         "path": "/lists/statuses.json",
         "params": [
           {
@@ -2995,7 +2325,6 @@
             "displayName": "List ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -3003,7 +2332,6 @@
             "displayName": "Slug",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -3011,7 +2339,6 @@
             "displayName": "Owner Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3019,7 +2346,6 @@
             "displayName": "Owner ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3027,7 +2353,6 @@
             "displayName": "Since ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3035,7 +2360,6 @@
             "displayName": "Max ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3043,15 +2367,13 @@
             "displayName": "Count",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "include_entities",
             "displayName": "Include Entities",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -3059,7 +2381,6 @@
             "displayName": "Include RTS",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -3067,13 +2388,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/members/destroy"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/lists/members/destroy.json",
+        "displayName": "Remove Member From List",
         "path": "/lists/members/destroy.json",
         "params": [
           {
@@ -3081,7 +2399,6 @@
             "displayName": "List ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -3089,7 +2406,6 @@
             "displayName": "Slug",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3097,7 +2413,6 @@
             "displayName": "User ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3105,7 +2420,6 @@
             "displayName": "Screen Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3113,7 +2427,6 @@
             "displayName": "Owner Screen Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -3121,7 +2434,6 @@
             "displayName": "Owner ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -3131,7 +2443,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "User ID",
@@ -3139,7 +2450,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Screen Name",
@@ -3147,7 +2457,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -3155,7 +2464,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Cursor",
@@ -3163,7 +2471,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Filter To Owned List",
@@ -3171,12 +2478,9 @@
           }
         ],
         "path": "/lists/memberships.json",
-        "displayName": "/lists/memberships.json",
+        "displayName": "Lists You Are On",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/memberships"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/memberships.json"
@@ -3185,7 +2489,6 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "List ID",
@@ -3193,7 +2496,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Slug",
@@ -3201,7 +2503,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner Screen Name",
@@ -3209,7 +2510,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner ID",
@@ -3217,7 +2517,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Cursor",
@@ -3225,28 +2524,23 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Skip Status",
             "name": "skip_status"
           }
         ],
         "path": "/lists/subscribers.json",
-        "displayName": "/lists/subscribers.json",
+        "displayName": "List Subscribers",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/subscribers"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/subscribers.json"
@@ -3255,7 +2549,6 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner Screen Name",
@@ -3263,7 +2556,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner ID",
@@ -3271,7 +2563,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "List ID",
@@ -3279,7 +2570,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Slug",
@@ -3287,12 +2577,9 @@
           }
         ],
         "path": "/lists/subscribers/create.json",
-        "displayName": "/lists/subscribers/create.json",
+        "displayName": "Subscribe To List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/subscribers/create"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/subscribers/create.json"
@@ -3301,7 +2588,6 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner Screen Name",
@@ -3309,7 +2595,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner ID",
@@ -3317,7 +2602,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "List ID",
@@ -3325,7 +2609,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Slug",
@@ -3333,7 +2616,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "User ID",
@@ -3341,7 +2623,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Screen Name",
@@ -3349,28 +2630,23 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Skip Status",
             "name": "skip_status"
           }
         ],
         "path": "/lists/subscribers/show.json",
-        "displayName": "/lists/subscribers/show.json",
+        "displayName": "Show Lists Subscribed To",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/subscribers/show"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/subscribers/show.json"
@@ -3379,7 +2655,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "List ID",
@@ -3387,7 +2662,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Slug",
@@ -3395,7 +2669,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner Screen Name",
@@ -3403,7 +2676,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner ID",
@@ -3411,12 +2683,9 @@
           }
         ],
         "path": "/lists/subscribers/destroy.json",
-        "displayName": "/lists/subscribers/destroy.json",
+        "displayName": "Unsubscribe From List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/subscribers/destroy"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/subscribers/destroy.json"
@@ -3425,7 +2694,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "List ID",
@@ -3433,7 +2701,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Slug",
@@ -3441,7 +2708,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "User ID",
@@ -3449,7 +2715,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Screen Name",
@@ -3457,14 +2722,12 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "name": "owner_screen_name"
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner ID",
@@ -3472,12 +2735,9 @@
           }
         ],
         "path": "/lists/members/create_all.json",
-        "displayName": "/lists/members/create_all.json",
+        "displayName": "Add Members To List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/members/create_all"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/members/create_all.json"
@@ -3486,7 +2746,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "List ID",
@@ -3494,7 +2753,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Slug",
@@ -3502,7 +2760,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "User ID",
@@ -3510,7 +2767,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Screen Name",
@@ -3518,7 +2774,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner Screen Name",
@@ -3526,7 +2781,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner ID",
@@ -3534,28 +2788,23 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Skip Status",
             "name": "skip_status"
           }
         ],
         "path": "/lists/members/show.json",
-        "displayName": "/lists/members/show.json",
+        "displayName": "Check If Member Is On List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/members/show"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/members/show.json"
@@ -3564,7 +2813,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "List ID",
@@ -3572,7 +2820,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Slug",
@@ -3580,7 +2827,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner Screen Name",
@@ -3588,7 +2834,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner ID",
@@ -3596,7 +2841,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Cursor",
@@ -3604,28 +2848,23 @@
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Include Entities",
             "name": "include_entities"
           },
           {
             "required": "false",
-            "value": "",
-            "type": "string",
+            "type": "boolean",
             "style": "query",
             "displayName": "Skip Status",
             "name": "skip_status"
           }
         ],
         "path": "/lists/members.json",
-        "displayName": "/lists/members.json",
+        "displayName": "List Members On List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/members"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/members.json"
@@ -3634,7 +2873,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "List ID",
@@ -3642,7 +2880,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Slug",
@@ -3650,7 +2887,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "User ID",
@@ -3658,7 +2894,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Screen Name",
@@ -3666,7 +2901,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner Screen Name",
@@ -3674,7 +2908,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner ID",
@@ -3682,12 +2915,9 @@
           }
         ],
         "path": "/lists/members/create.json",
-        "displayName": "/lists/members/create.json",
+        "displayName": "Add Member To List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/members/create"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/members/create.json"
@@ -3696,7 +2926,6 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner Screen Name",
@@ -3704,7 +2933,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner ID",
@@ -3712,7 +2940,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "List ID",
@@ -3720,7 +2947,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Slug",
@@ -3728,12 +2954,9 @@
           }
         ],
         "path": "/lists/destroy.json",
-        "displayName": "/lists/destroy.json",
+        "displayName": "Delete List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/destroy"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/destroy.json"
@@ -3742,7 +2965,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "List ID",
@@ -3750,7 +2972,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Slug",
@@ -3758,7 +2979,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Name",
@@ -3766,7 +2986,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Mode",
@@ -3774,7 +2993,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Description",
@@ -3782,7 +3000,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner Screen Name",
@@ -3790,7 +3007,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner ID",
@@ -3798,12 +3014,9 @@
           }
         ],
         "path": "/lists/update.json",
-        "displayName": "/lists/update.json",
+        "displayName": "Update List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/update"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/update.json"
@@ -3812,7 +3025,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Name",
@@ -3820,7 +3032,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Mode",
@@ -3828,7 +3039,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Description",
@@ -3836,12 +3046,9 @@
           }
         ],
         "path": "/lists/create.json",
-        "displayName": "/lists/create.json",
+        "displayName": "Create List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/create"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/create.json"
@@ -3850,7 +3057,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "List ID",
@@ -3858,7 +3064,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Slug",
@@ -3866,7 +3071,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner Screen Name",
@@ -3874,7 +3078,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Owner ID",
@@ -3882,12 +3085,9 @@
           }
         ],
         "path": "/lists/show.json",
-        "displayName": "/lists/show.json",
+        "displayName": "Show Lists",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/show"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/show.json"
@@ -3896,7 +3096,6 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "User ID",
@@ -3904,7 +3103,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Screen Name",
@@ -3912,7 +3110,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -3920,7 +3117,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Cursor",
@@ -3928,12 +3124,9 @@
           }
         ],
         "path": "/lists/subscriptions.json",
-        "displayName": "/lists/subscriptions.json",
+        "displayName": "Show Subscriptions",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/subscriptions"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/subscriptions.json"
@@ -3942,7 +3135,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "List ID",
@@ -3950,7 +3142,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Slug",
@@ -3958,7 +3149,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "User ID",
@@ -3966,7 +3156,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Screen Name",
@@ -3974,7 +3163,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner Screen Name",
@@ -3982,7 +3170,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Owner ID",
@@ -3990,12 +3177,9 @@
           }
         ],
         "path": "/lists/members/destroy_all.json",
-        "displayName": "/lists/members/destroy_all.json",
+        "displayName": "Remove Members From List",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/lists/members/destroy_all"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/lists/members/destroy_all.json"
@@ -4004,7 +3188,6 @@
         "params": [
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "User ID",
@@ -4012,7 +3195,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Screen Name",
@@ -4020,7 +3202,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Count",
@@ -4028,7 +3209,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Cursor",
@@ -4036,24 +3216,18 @@
           }
         ],
         "path": "/lists/ownerships.json",
-        "displayName": "/lists/ownerships.json",
+        "displayName": "Lists You Own",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/lists/ownerships"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/lists/ownerships.json"
       },
       {
         "path": "/saved_searches/list.json",
-        "displayName": "/saved_searches/list.json",
+        "displayName": "Saved Searches",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/saved_searches/list"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/saved_searches/list.json"
@@ -4062,7 +3236,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "url",
             "displayName": "ID",
@@ -4070,12 +3243,9 @@
           }
         ],
         "path": "/saved_searches/show/:id.json",
-        "displayName": "/saved_searches/show/:id.json",
+        "displayName": "Show Saved Search",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/saved_searches/show/%3Aid"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/saved_searches/show/:id.json"
@@ -4084,7 +3254,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "body",
             "displayName": "Query",
@@ -4092,12 +3261,9 @@
           }
         ],
         "path": "/saved_searches/create.json",
-        "displayName": "/saved_searches/create.json",
+        "displayName": "Create Saved Search",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/saved_searches/create"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/saved_searches/create.json"
@@ -4106,7 +3272,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "url",
             "displayName": "ID",
@@ -4114,12 +3279,9 @@
           }
         ],
         "path": "/saved_searches/destroy/:id.json",
-        "displayName": "/saved_searches/destroy/:id.json",
+        "displayName": "Remove Saved Search",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/saved_searches/destroy/%3Aid"
         },
         "httpMethod": "POST",
         "url": "https://api.twitter.com/1.1/saved_searches/destroy/:id.json"
@@ -4128,7 +3290,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "url",
             "displayName": "Place ID",
@@ -4136,12 +3297,9 @@
           }
         ],
         "path": "/geo/id/:place_id.json",
-        "displayName": "/geo/id/:place_id.json",
+        "displayName": "Place Information",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/geo/id/%3Aplace_id"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/geo/id/:place_id.json"
@@ -4150,7 +3308,6 @@
         "params": [
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Latitude",
@@ -4158,7 +3315,6 @@
           },
           {
             "required": "true",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Longitude",
@@ -4166,7 +3322,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Accuracy",
@@ -4174,7 +3329,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Granularity",
@@ -4182,7 +3336,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Max Results",
@@ -4190,7 +3343,6 @@
           },
           {
             "required": "false",
-            "value": "",
             "type": "string",
             "style": "query",
             "displayName": "Callback",
@@ -4198,25 +3350,19 @@
           }
         ],
         "path": "/geo/reverse_geocode.json",
-        "displayName": "/geo/reverse_geocode.json",
+        "displayName": "Reverse Geocode",
         "authentication": {
           "required": "true"
-        },
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/geo/reverse_geocode"
         },
         "httpMethod": "GET",
         "url": "https://api.twitter.com/1.1/geo/reverse_geocode.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/geo/search"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/geo/search.json",
+        "displayName": "Search Places",
         "path": "/geo/search.json",
         "params": [
           {
@@ -4224,7 +3370,6 @@
             "displayName": "Latitude",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4232,7 +3377,6 @@
             "displayName": "Longitude",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4240,7 +3384,6 @@
             "displayName": "Query",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4248,7 +3391,6 @@
             "displayName": "IP",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4256,7 +3398,6 @@
             "displayName": "Granularity",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4264,7 +3405,6 @@
             "displayName": "Accuracy",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4272,7 +3412,6 @@
             "displayName": "Max Results",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4280,7 +3419,6 @@
             "displayName": "Contained Within",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4288,7 +3426,6 @@
             "displayName": "Street Address",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4296,7 +3433,6 @@
             "displayName": "Callback",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4304,13 +3440,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/geo/similar_places"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/geo/similar_places.json",
+        "displayName": "Similar Places",
         "path": "/geo/similar_places.json",
         "params": [
           {
@@ -4318,7 +3451,6 @@
             "displayName": "Latitude",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4326,7 +3458,6 @@
             "displayName": "Longitude",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4334,7 +3465,6 @@
             "displayName": "Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4342,7 +3472,6 @@
             "displayName": "Contained Within",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4350,7 +3479,6 @@
             "displayName": "Street Address",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4358,91 +3486,17 @@
             "displayName": "Callback",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
         "url": "https://api.twitter.com/1.1/geo/similar_places.json"
       },
       {
-        "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/geo/place"
-        },
-        "authentication": {
-          "required": "true"
-        },
-        "displayName": "/geo/place.json",
-        "path": "/geo/place.json",
-        "params": [
-          {
-            "name": "name",
-            "displayName": "Name",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "contained_within",
-            "displayName": "Contained Within",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "token",
-            "displayName": "Token",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "lat",
-            "displayName": "Latitude",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "long",
-            "displayName": "Longitude",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "true"
-          },
-          {
-            "name": "attribute:street_address",
-            "displayName": "Street Address",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          },
-          {
-            "name": "callback",
-            "displayName": "Callback",
-            "style": "body",
-            "type": "string",
-            "value": "",
-            "required": "false"
-          }
-        ],
-        "url": "https://api.twitter.com/1.1/geo/place.json"
-      },
-      {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/trends/place"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/trends/place.json",
+        "displayName": "Places Trending",
         "path": "/trends/place.json",
         "params": [
           {
@@ -4450,7 +3504,6 @@
             "displayName": "ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4458,7 +3511,6 @@
             "displayName": "Exclude",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4466,25 +3518,19 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/trends/available"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/trends/available.json",
+        "displayName": "Trends Available",
         "path": "/trends/available.json",
         "url": "https://api.twitter.com/1.1/trends/available.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/trends/closest"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/trends/closest.json",
+        "displayName": "Closest Trends",
         "path": "/trends/closest.json",
         "params": [
           {
@@ -4492,7 +3538,6 @@
             "displayName": "Latitude",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4500,7 +3545,6 @@
             "displayName": "Longitude",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4508,13 +3552,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/users/report_spam"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/report_spam.json",
+        "displayName": "Report Spam User",
         "path": "/users/report_spam.json",
         "params": [
           {
@@ -4522,7 +3563,6 @@
             "displayName": "Screen Name",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4530,14 +3570,12 @@
             "displayName": "User ID",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "",
             "style": "",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4545,21 +3583,17 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1/get/oauth/authenticate"
-        },
         "authentication": {
           "required": "true"
         },
         "path": "/oauth/authenticate",
-        "displayName": "/oauth/authenticate",
+        "displayName": "Authenticate Oauth",
         "params": [
           {
             "name": "force_login",
             "displayName": "Force Login",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4567,7 +3601,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4575,13 +3608,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1/get/oauth/authorize"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/oauth/authorize",
+        "displayName": "Authorize Oauth",
         "path": "/oauth/authorize",
         "params": [
           {
@@ -4589,7 +3619,6 @@
             "displayName": "Force Login",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4597,7 +3626,6 @@
             "displayName": "Screen Name",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4605,13 +3633,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1/post/oauth/access_token"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/oauth/access_token",
+        "displayName": "Oauth Access Token",
         "path": "/oauth/access_token",
         "params": [
           {
@@ -4619,7 +3644,6 @@
             "displayName": "Password",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4627,7 +3651,6 @@
             "displayName": "Username",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
@@ -4643,7 +3666,6 @@
             "displayName": "Auth Verifier",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4651,13 +3673,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1/post/oauth/request_token"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/oauth/request_token",
+        "displayName": "Oauth Request Token",
         "path": "/oauth/request_token",
         "params": [
           {
@@ -4665,7 +3684,6 @@
             "displayName": "Oauth Callback",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4673,7 +3691,6 @@
             "displayName": "Auth Access Type",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4681,21 +3698,17 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/oauth2/token"
-        },
         "authentication": {
           "required": "true"
         },
         "path": "/oauth2/token",
-        "displayName": "/oauth2/token",
+        "displayName": "Oauth2 Token",
         "params": [
           {
             "name": "grant_type",
             "displayName": "Grant Type",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           }
         ],
@@ -4703,13 +3716,10 @@
       },
       {
         "httpMethod": "POST",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/post/oauth2/invalidate_token"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/oauth2/invalidate_token",
+        "displayName": "Oauth2 Invalidate Token",
         "path": "/oauth2/invalidate_token",
         "params": [
           {
@@ -4717,14 +3727,12 @@
             "displayName": "Access Token",
             "style": "body",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
             "name": "",
             "style": "",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4732,61 +3740,46 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/help/configuration"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/help/configuration.json",
+        "displayName": "Configuration",
         "path": "/help/configuration.json",
         "url": "https://api.twitter.com/1.1/help/configuration.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/help/languages"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/help/languages.json",
+        "displayName": "Languages",
         "path": "/help/languages.json",
         "url": "https://api.twitter.com/1.1/help/languages.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/help/privacy"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/help/privacy.json",
+        "displayName": "Privacy Policy",
         "path": "/help/privacy.json",
         "url": "https://api.twitter.com/1.1/help/privacy.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/help/tos"
-        },
         "authentication": {
           "required": "true"
         },
         "path": "/help/tos.json",
-        "displayName": "/help/tos.json",
+        "displayName": "Terms Of Service",
         "url": "https://api.twitter.com/1.1/help/tos.json"
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/application/rate_limit_status"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/application/rate_limit_status.json",
+        "displayName": "Rate Limit Status",
         "path": "/application/rate_limit_status.json",
         "params": [
           {
@@ -4794,7 +3787,6 @@
             "displayName": "Resources",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
@@ -4802,13 +3794,10 @@
       },
       {
         "httpMethod": "GET",
-        "doc": {
-          "url": "https://dev.twitter.com/docs/api/1.1/get/statuses/lookup"
-        },
         "authentication": {
           "required": "true"
         },
-        "displayName": "/statuses/lookup.json",
+        "displayName": "Lookup Statuses",
         "path": "/statuses/lookup.json",
         "params": [
           {
@@ -4816,7 +3805,6 @@
             "displayName": "ID",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "true"
           },
           {
@@ -4824,15 +3812,13 @@
             "displayName": "Include Entities",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           },
           {
             "name": "trim_user",
             "displayName": "Trim User",
             "style": "query",
-            "type": "string",
-            "value": "",
+            "type": "boolean",
             "required": "false"
           },
           {
@@ -4840,7 +3826,6 @@
             "displayName": "Map",
             "style": "query",
             "type": "string",
-            "value": "",
             "required": "false"
           }
         ],
