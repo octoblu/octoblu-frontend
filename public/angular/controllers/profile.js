@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('octobluApp')
-    .controller('profileController', function ($rootScope, $scope, AuthService) {
+    .controller('profileController', function ($rootScope, $scope, AuthService, TemplateService) {
+
+      $scope.refreshTemplates = function(){
+        TemplateService.withUserUUID($scope.currentUser.skynet.uuid).then(function(templates) {
+          $scope.templates = templates;
+        });
+      };
 
       $scope.updatePassword = function(passwordForm){
         AuthService.updatePassword($scope.oldPassword, $scope.newPassword).then(function(result){
@@ -24,4 +30,6 @@ angular.module('octobluApp')
         $scope.passwordUpdated = false;
         passwordForm.confirmNewPassword.$setValidity('matches', $scope.newPassword === $scope.confirmNewPassword);
       };
+
+      $scope.refreshTemplates();
     });
