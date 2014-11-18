@@ -52,8 +52,11 @@ function TemplateModel() {
     },
 
     cleanNode : function(node) {
-      var self = this;
-      console.log("Before ", node);
+      if( node.type.indexOf('operation') === 0) {
+        return node;
+      }
+
+      var self = this;      
       var stuffToKeep = ['type', 'category', 'name'];
       _.each(_.keys(node.defaults), function(key){
         if (_.contains(stuffToKeep, key)){
