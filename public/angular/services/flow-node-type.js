@@ -23,7 +23,7 @@ angular.module('octobluApp')
   };
 
   self.getFlowNodeTypes = function(cache) {
-    return $http.get('/api/flow_node_types', {cache: cache}).then(function(res){
+    return $http.get('/api/flow_node_types').then(function(res){
       return _.map(res.data, function(data){
         if (data && data.type) {
           data.logo = 'https://ds78apnml6was.cloudfront.net/' + data.type.replace(':', '/') + '.svg';

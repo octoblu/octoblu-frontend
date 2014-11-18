@@ -117,7 +117,6 @@ angular.module('octobluApp')
     });
 
     $scope.$on('flow-node-type-selected', function(event, flowNodeType){
-      console.log('Triggered flow node type selected', flowNodeType);
       $scope.omniSearch = flowNodeType;
     });
 

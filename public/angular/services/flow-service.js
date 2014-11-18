@@ -51,28 +51,28 @@ angular.module('octobluApp')
     return $http.put("/api/flows/" + activeFlow.flowId + '/instance');
   };
 
-  self.processFlow = function(flow){
-    _.each(flow.nodes, function(node){
-      FlowNodeTypeService.getFlowNodeTypeByUUID(node.uuid).then(function(flowNodeType){
-        node.needsConfiguration = !flowNodeType;
-        return FlowNodeTypeService.getOtherMatchingFlowNodeTypes(node.type);
-      }).then(function(flowNodeTypes){
-        node.needsSetup = _.isEmpty(flowNodeTypes);
+  self.processFlows = function(flows){
+    FlowNodeTypeService.getFlowNodeTypes().then(function(flowNodeTypes){
+      _.each(flows, function(flow){
+        _.each(flow.nodes, function(node){
+          node.needsConfiguration = !_.findWhere(flowNodeTypes, {uuid: node.uuid});
+          node.needsSetup         = !_.findWhere(flowNodeTypes, {type: node.type});
+        });
       });
     });
-    return flow;
+    return flows;
   };
 
   self.getAllFlows = function () {
     return $http.get("/api/flows").then(function(response){
       if (_.isEmpty(response.data)) {
         return self.createDemoFlow().then(function(flow){
-          return [self.processFlow(flow)];
+          return self.processFlows([flow]);
         });
       }
 
-      return _.map(response.data, function(data) {
-        return new FlowModel(self.processFlow(data));
+      return _.map(self.processFlows(response.data), function(flow) {
+        return new FlowModel(flow);
       });
     });
   };
