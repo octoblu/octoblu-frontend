@@ -27,6 +27,12 @@ angular.module('octobluApp')
     });
   };
 
+  self.getOtherMatchingFlowNodeTypes = function(type){
+    return self.getFlowNodeTypes().then(function(flowNodeTypes){
+      return _.where(flowNodeTypes, { type : type });
+    });
+  };
+
   function getSubdeviceFlowNodeTypes() {
     return NodeService.getSubdeviceNodes().then(function(subdevices){
       return _.map(subdevices, function(subdevice){
