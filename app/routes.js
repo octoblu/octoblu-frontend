@@ -148,7 +148,7 @@ module.exports = function(app, passport) {
     var signupController = new SignupController();
 
     var TemplateController = require('./controllers/template-controller');
-    var templateController = new TemplateController();
+    var templateController = new TemplateController({meshblu: conn});
 
     var WebhookController = require('./controllers/webhook-controller');
     var webhookController = new WebhookController({meshblu: conn});
@@ -323,6 +323,7 @@ module.exports = function(app, passport) {
             app.post('/api/templates', templateController.create);
             app.delete('/api/templates/:id', templateController.delete);
             app.get('/api/templates/:id', templateController.findOne);
+            app.post('/api/templates/:id/flows', templateController.importTemplate);
             app.get('/api/flows/:flowId/templates', templateController.withFlowId);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {

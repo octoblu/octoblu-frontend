@@ -22,13 +22,10 @@ function FlowModel() {
       var FlowDeploy = require('./flow-deploy');
       self = this;
       query = {flowId: flowId};
-      console.log('findingOne');
 
       return self.findOne(query).then(function (flow) {
         FlowDeploy.stop(userUUID, flow, meshblu);
-        console.log('stopping');
         return unregisterFlow(meshblu, flow.flowId, flow.token).then(function () {
-          console.log(query);
           return self.remove(query, true);
         });
       });

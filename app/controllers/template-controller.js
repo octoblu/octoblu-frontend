@@ -1,8 +1,10 @@
 var _         = require('lodash');
 var Template  = require('../models/template-model');
 
-var TemplateController = function () {
+var TemplateController = function (options) {
   var self = this;
+
+  var meshblu = options.meshblu;
 
   self.create = function(req, res) {
     Template.createByUserUUID(req.user.resource.uuid, req.body).then(function(template){
@@ -21,7 +23,15 @@ var TemplateController = function () {
     }, function(error) {
       res.send(404, error);
     });
-  }
+  };
+
+  self.importTemplate = function(req, res) {
+    Template.importTemplate(req.user.resource.uuid, req.params.id, meshblu).then(function(flow){
+      res.send(201, flow);
+    }, function(error) {
+      res.send(422, error);
+    });
+  };
 
   self.withFlowId = function(req, res) {
     Template.withFlowId(req.params.flowId).then(function(templates) {

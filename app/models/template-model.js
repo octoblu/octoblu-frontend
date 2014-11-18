@@ -30,6 +30,17 @@ function TemplateModel() {
       });
     },
 
+    importTemplate : function(userUUID, templateId, meshblu) {
+      var self = this;
+      return self.findOne({uuid: templateId}).then(function(template) {
+        var newFlow = _.clone(template.flow);
+        delete newFlow._id;
+        delete newFlow.flowId;
+        delete newFlow.resource;
+        return Flow.createByUserUUID(userUUID, newFlow, meshblu);
+      });
+    },
+
     withFlowId : function(flowId) {
       var self = this;
       var query = {
