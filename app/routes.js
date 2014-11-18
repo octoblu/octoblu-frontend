@@ -147,6 +147,9 @@ module.exports = function(app, passport) {
     var SignupController = require('./controllers/signup-controller');
     var signupController = new SignupController();
 
+    var TemplateController = require('./controllers/template-controller');
+    var templateController = new TemplateController();
+
     var WebhookController = require('./controllers/webhook-controller');
     var webhookController = new WebhookController({meshblu: conn});
 
@@ -313,6 +316,10 @@ module.exports = function(app, passport) {
             app.get('/api/oauth/twitter/callback', twitterController.callback, signupController.checkInTester, referrer.restoreReferrer, referrer.redirectToReferrer, twitterController.redirectToDesigner);
 
             app.get('/api/echosign/auth', echoSignController.authorize, echoSignController.redirectToDesigner);
+
+            app.post('/api/templates', templateController.create);
+            app.delete('/api/templates/:id', templateController.delete);
+            app.get('/api/flows/:flowId/templates', templateController.withFlowId);
 
             app.all(['/api/*', '/angular/*', '/assets/*', '/lib/*', '/pages/*'], function(req, res) {
                 res.send(404, req.url);
