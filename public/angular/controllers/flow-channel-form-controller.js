@@ -9,6 +9,7 @@ angular.module('octobluApp')
       }
       return true;
     });
+
     resources.sort(function(a, b){
       var aKey = a.displayName ? a.displayName : a.path; 
       var bKey = b.displayName ? b.displayName : b.path; 
@@ -20,6 +21,7 @@ angular.module('octobluApp')
       }
       return 0;
     });
+
     $scope.resources = resources;
   });
 

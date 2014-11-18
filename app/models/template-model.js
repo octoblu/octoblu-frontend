@@ -22,8 +22,9 @@ function TemplateModel() {
           }
         }
       }, data);
+
       return Flow.findOne({flowId: data.flowId}).then(function(flow) {
-        template.flow = flow;
+        template.flow = self.cleanFlow(flow);
         return self.insert(template).then(function(){
           return template;
         });
@@ -34,11 +35,35 @@ function TemplateModel() {
       var self = this;
       return self.findOne({uuid: templateId}).then(function(template) {
         var newFlow = _.clone(template.flow);
+        return Flow.createByUserUUID(userUUID, newFlow, meshblu);
+      });
+    },
+
+    cleanFlow : function(flow) {
+        var self = this;
+        var newFlow = _.cloneDeep(flow);
+
         delete newFlow._id;
         delete newFlow.flowId;
         delete newFlow.resource;
-        return Flow.createByUserUUID(userUUID, newFlow, meshblu);
+
+        newFlow.nodes = _.map(newFlow.nodes, self.cleanNode);      
+      return newFlow;
+    },
+
+    cleanNode : function(node) {
+      var self = this;
+      console.log("Before ", node);
+      var stuffToKeep = ['type', 'category', 'name'];
+      _.each(_.keys(node.defaults), function(key){
+        if (_.contains(stuffToKeep, key)){
+          return ;
+        }
+        delete node.defaults[key];
+        delete node[key];
       });
+      console.log("After Butts ", node);
+      return node;
     },
 
     withFlowId : function(flowId) {
@@ -48,7 +73,7 @@ function TemplateModel() {
       };
       return self.find(query);
     }
-  }
+  };
 
   return _.extend({}, collection, methods);
 }
