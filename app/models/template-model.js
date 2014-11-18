@@ -35,19 +35,25 @@ function TemplateModel() {
       var self = this;
       return self.findOne({uuid: templateId}).then(function(template) {
         var newFlow = _.clone(template.flow);
+        
+        _.each(newFlow.nodes, function(node){
+          self.cleanId(node, newFlow.links);
+        });
+
         return Flow.createByUserUUID(userUUID, newFlow, meshblu);
       });
     },
 
     cleanFlow : function(flow) {
-        var self = this;
-        var newFlow = _.cloneDeep(flow);
+      var self = this;
+      var newFlow = _.cloneDeep(flow);
 
-        delete newFlow._id;
-        delete newFlow.flowId;
-        delete newFlow.resource;
+      delete newFlow._id;
+      delete newFlow.flowId;
+      delete newFlow.resource;
 
-        newFlow.nodes = _.map(newFlow.nodes, self.cleanNode);      
+      newFlow.nodes = _.map(newFlow.nodes, self.cleanNode);           
+
       return newFlow;
     },
 
@@ -64,9 +70,25 @@ function TemplateModel() {
         }
         delete node.defaults[key];
         delete node[key];
-      });
-      console.log("After Butts ", node);
+      });    
       return node;
+    },
+
+    cleanId : function(node, links){
+      var oldId = node.id;
+      var newId = uuid.v1();
+      var toLinks = _.filter(links, {to: oldId});
+      var fromLinks = _.filter(links, {from: oldId});
+
+      node.id = newId;
+
+      _.each(toLinks, function(toLink){
+        toLink.to = newId;
+      });
+
+      _.each(fromLinks, function(fromLink){
+        fromLink.from = newId;
+      });
     },
 
     withFlowId : function(flowId) {
