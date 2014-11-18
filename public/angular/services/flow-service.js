@@ -51,16 +51,28 @@ angular.module('octobluApp')
     return $http.put("/api/flows/" + activeFlow.flowId + '/instance');
   };
 
+  self.processFlow = function(flow){
+    _.each(flow.nodes, function(node){
+      FlowNodeTypeService.getFlowNodeTypeByUUID(node.uuid).then(function(flowNodeType){
+        node.needsConfiguration = !flowNodeType;
+        return FlowNodeTypeService.getOtherMatchingFlowNodeTypes(node.type);
+      }).then(function(flowNodeTypes){
+        node.needsSetup = _.isEmpty(flowNodeTypes);
+      });
+    });
+    return flow;
+  };
+
   self.getAllFlows = function () {
     return $http.get("/api/flows").then(function(response){
       if (_.isEmpty(response.data)) {
         return self.createDemoFlow().then(function(flow){
-          return [flow];
+          return [self.processFlow(flow)];
         });
       }
 
       return _.map(response.data, function(data) {
-        return new FlowModel(data);
+        return new FlowModel(self.processFlow(data));
       });
     });
   };
