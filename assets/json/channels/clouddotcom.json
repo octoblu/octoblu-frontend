@@ -12,7 +12,7 @@
     "resources": [
       {
         "url": "https://api.cloud.com/push/channels/:name",
-        "displayName": "/push/channels/:name",
+        "displayName": "Channel Name",
         "path": "/push/channels/:name",
         "httpMethod": "DELETE",
         "params": [
@@ -27,7 +27,7 @@
       },
       {
         "url": "https://api.cloud.com/push/apns/connections",
-        "displayName": "/push/apns/connections",
+        "displayName": "APNS Connections",
         "path": "/push/apns/connections",
         "httpMethod": "GET",
         "params": [
@@ -49,7 +49,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels",
-        "displayName": "/push/channels",
+        "displayName": "Channels",
         "path": "/push/channels",
         "httpMethod": "GET",
         "params": [  
@@ -92,7 +92,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name",
-        "displayName": "push/channels/:name",
+        "displayName": "Channel By Name",
         "path": "push/channels/:name",
         "httpMethod": "GET",
         "params": [
@@ -107,7 +107,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/devices",
-        "displayName": "/push/channels/:name/device",
+        "displayName": "Device On Channel",
         "path": "/push/channels/:name/device",
         "httpMethod": "GET",
         "params": [
@@ -136,7 +136,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/notifications",
-        "displayName": "/push/channels/:name/notifications",
+        "displayName": "Channel Notifications",
         "path": "/push/channels/:name/notifications",
         "httpMethod": "GET",
         "params": [
@@ -179,7 +179,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels/:name/stats",
-        "displayName": "/push/channels/:name/stats",
+        "displayName": "Channel Stats",
         "path": "/push/channels/:name/stats",
         "httpMethod": "GET",
         "params": [
@@ -194,7 +194,7 @@
       },
       {
         "url": "https://api.cloud.com/push/connections",
-        "displayName": "/push/connections",
+        "displayName": "Connections",
         "path": "/push/connections",
         "httpMethod": "GET",
         "params": [
@@ -216,7 +216,7 @@
       },
       {
         "url": "https://api.cloud.com/push/devices",
-        "displayName": "/push/devices",
+        "displayName": "Devices",
         "path": "/push/devices",
         "httpMethod": "GET",
         "params": [
@@ -238,7 +238,7 @@
       },
       {
         "url": "https://api.cloud.com/push/devices/connected",
-        "displayName": "/push/devices/connected",
+        "displayName": "Connected Devices",
         "path": "/push/devices/connected",
         "httpMethod": "GET",
         "params": [
@@ -260,7 +260,7 @@
       },
       {
         "url": "https://api.cloud.com/push/gcm/connections",
-        "displayName": "/push/gcm/connections",
+        "displayName": "Google Cloud Messaging Connections",
         "path": "/push/gcm/connections",
         "httpMethod": "GET",
         "params": [
@@ -282,7 +282,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notifications",
-        "displayName": "/push/notifications",
+        "displayName": "Notifications",
         "path": "/push/notifications",
         "httpMethod": "GET",
         "params": [
@@ -318,7 +318,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notifications/:uid",
-        "displayName": "/push/notifications/:uid",
+        "displayName": "Notifications By Device",
         "path": "/push/notifications/:uid",
         "httpMethod": "GET",
         "params": [
@@ -361,7 +361,7 @@
       },
       {
         "url": "https://api.cloud.com/push/stats",
-        "displayName": "/push/stats",
+        "displayName": "Stats",
         "path": "/push/stats",
         "httpMethod": "GET",
         "params": [
@@ -383,7 +383,7 @@
       },
             {
         "url": "https://api.cloud.com/push/subscribe",
-        "displayName": "/push/subscribe",
+        "displayName": "Subscriptions",
         "path": "/push/subscribe",
         "httpMethod": "GET",
         "params": [
@@ -433,7 +433,7 @@
       },
       {
         "url": "https://api.cloud.com/push/channels",
-        "displayName": "/push/channels",
+        "displayName": "Create Channel",
         "path": "/push/channels",
         "httpMethod": "POST",
         "params": [
@@ -448,7 +448,7 @@
       },
       {
         "url": "https://api.cloud.com/push/connections/subscribe",
-        "displayName": "/push/connections/subscribe",
+        "displayName": "Subscribe",
         "path": "/push/connections/subscribe",
         "httpMethod": "POST",
         "params": [
@@ -470,7 +470,7 @@
       },
       {
         "url": "https://api.cloud.com/push/connections/unsubscribe",
-        "displayName": "/push/connections/unsubscribe",
+        "displayName": "Unsubscribe",
         "path": "/push/connections/unsubscribe",
         "httpMethod": "POST",
         "params": [
@@ -492,7 +492,7 @@
       },
       {
         "url": "https://api.cloud.com/push/notify",
-        "displayName": "/push/notify",
+        "displayName": "Notification",
         "path": "/push/notify",
         "httpMethod": "POST",
         "params": [

@@ -259,7 +259,7 @@
         "doc": {
           "url": "https://api.foursquare.com/v2/users/USER_ID/approve"
         },
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "params": [
           {
             "style": "url",

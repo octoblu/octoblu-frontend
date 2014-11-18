@@ -8,19 +8,19 @@
     "development": {
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL":    "http://localhost:8080/api/oauth/github/callback",
+      "callbackURL": "http://localhost:8080/api/oauth/github/callback",
       "tokenMethod": "access_token_query"
     },
     "production": {
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL":    "https://app.octoblu.com/api/oauth/github/callback",
+      "callbackURL": "https://app.octoblu.com/api/oauth/github/callback",
       "tokenMethod": "access_token_query"
     },
     "staging": {
       "clientID": "INSERT_SECERT_HERE",
       "clientSecret": "INSERT_SECERT_HERE",
-      "callbackURL":    "https://staging.octoblu.com/api/oauth/github/callback",
+      "callbackURL": "https://staging.octoblu.com/api/oauth/github/callback",
       "tokenMethod": "access_token_query"
     }
   },
@@ -33,7 +33,7 @@
     "resources": [
       {
         "path": "/events",
-        "displayName": "/events",
+        "displayName": "Public Events",
         "authentication": {
           "required": "true"
         },
@@ -46,7 +46,7 @@
       },
       {
         "path": "/repos/:owner/:repo/events",
-        "displayName": "/repos/:owner/:repo/events",
+        "displayName": "Repository Events",
         "authentication": {
           "required": "true"
         },
@@ -74,7 +74,7 @@
       },
       {
         "path": "/repos/:owner/:repo/issues/events",
-        "displayName": "/repos/:owner/:repo/issues/events",
+        "displayName": "Issue Events",
         "authentication": {
           "required": "true"
         },
@@ -102,7 +102,7 @@
       },
       {
         "path": "/networks/:owner/:repo/events",
-        "displayName": "/networks/:owner/:repo/events",
+        "displayName": "Public Events For A Network Of Repositories",
         "authentication": {
           "required": "true"
         },
@@ -130,7 +130,7 @@
       },
       {
         "path": "/orgs/:org/events",
-        "displayName": "/orgs/:org/events",
+        "displayName": "Public Events For An Organization",
         "authentication": {
           "required": "true"
         },
@@ -151,7 +151,7 @@
       },
       {
         "path": "/users/:username/received_events",
-        "displayName": "/users/:username/received_events",
+        "displayName": "Received Events",
         "authentication": {
           "required": "true"
         },
@@ -172,7 +172,7 @@
       },
       {
         "path": "/users/:username/received_events/public",
-        "displayName": "/users/:username/received_events/public",
+        "displayName": "Received Public Events",
         "authentication": {
           "required": "true"
         },
@@ -192,7 +192,7 @@
         ]
       },
       {
-        "displayName": "/users/:username/events",
+        "displayName": "Events By User",
         "path": "/users/:username/events",
         "authentication": {
           "required": "true"
@@ -214,7 +214,7 @@
       },
       {
         "path": "/users/:username/events/public",
-        "displayName": "/users/:username/events/public",
+        "displayName": "Public Events By User",
         "authentication": {
           "required": "true"
         },
@@ -235,7 +235,7 @@
       },
       {
         "path": "/users/:username/events/orgs/:org",
-        "displayName": "/users/:username/events/orgs/:org",
+        "displayName": "Events For An Organization",
         "authentication": {
           "required": "true"
         },
@@ -269,7 +269,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/feeds",
+        "displayName": "Feeds",
         "path": "/feeds",
         "url": "https://api.github.com/feeds",
         "params": []
@@ -282,7 +282,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notifications",
+        "displayName": "Notifications",
         "path": "/notifications",
         "params": [
           {
@@ -317,7 +317,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/notifications",
+        "displayName": "Notifications By Repository",
         "path": "/repos/:owner/:repo/notifications",
         "params": [
           {
@@ -366,7 +366,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notifications",
+        "displayName": "Mark Notifications As Read",
         "path": "/notifications",
         "params": [
           {
@@ -387,7 +387,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/notifications",
+        "displayName": "Mark Repository Notifications As Read",
         "path": "/repos/:owner/:repo/notifications",
         "params": [
           {
@@ -422,7 +422,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notifications/threads/:id",
+        "displayName": "Single Thread",
         "path": "/notifications/threads/:id",
         "url": "https://api.github.com/notifications/threads/:id",
         "params": [
@@ -444,7 +444,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notifications/threads/:id",
+        "displayName": "Mark Thread As Read",
         "path": "/notifications/threads/:id",
         "url": "https://api.github.com/notifications/threads/:id",
         "params": [
@@ -465,7 +465,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notifications/threads/:id/subscription",
+        "displayName": "Thread Subscription",
         "path": "/notifications/threads/:id/subscription",
         "url": "https://api.github.com/notifications/threads/:id/subscription",
         "params": [
@@ -486,7 +486,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notifications/threads/:id/subscription",
+        "displayName": "Set Thread Subscription",
         "path": "/notifications/threads/:id/subscription",
         "params": [
           {
@@ -521,7 +521,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/notifications/threads/:id/subscription",
+        "displayName": "Thread Subscription",
         "path": "/notifications/threads/:id/subscription",
         "url": "https://api.github.com/notifications/threads/:id/subscription",
         "params": [
@@ -542,7 +542,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/stargazers",
+        "displayName": "Stargazers",
         "path": "/repos/:owner/:repo/stargazers",
         "url": "https://api.github.com/repos/:owner/:repo/stargazers",
         "params": [
@@ -570,7 +570,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/:username/starred",
+        "displayName": "Starred Repositories By User",
         "path": "/users/:username/starred",
         "url": "https://api.github.com/users/:username/starred",
         "params": [
@@ -591,7 +591,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/user/starred",
+        "displayName": "Starred Repositories",
         "path": "/user/starred",
         "params": [
           {
@@ -619,7 +619,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/user/starred/:owner/:repo",
+        "displayName": "Check If Repository Is Starred",
         "path": "/user/starred/:owner/:repo",
         "url": "https://api.github.com/user/starred/:owner/:repo",
         "params": [
@@ -647,7 +647,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/user/starred/:owner/:repo",
+        "displayName": "Star A Repository",
         "path": "/user/starred/:owner/:repo",
         "url": "https://api.github.com/user/starred/:owner/:repo",
         "params": [
@@ -675,7 +675,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/user/starred/:owner/:repo",
+        "displayName": "Unstar A Repository",
         "path": "/user/starred/:owner/:repo",
         "url": "https://api.github.com/user/starred/:owner/:repo",
         "params": [
@@ -703,7 +703,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/subscribers",
+        "displayName": "Watchers",
         "path": "/repos/:owner/:repo/subscribers",
         "url": "https://api.github.com/repos/:owner/:repo/subscribers",
         "params": [
@@ -731,7 +731,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/:username/subscriptions",
+        "displayName": "Watched Repositories By User",
         "path": "/users/:username/subscriptions",
         "url": "https://api.github.com/users/:username/subscriptions",
         "params": [
@@ -752,7 +752,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/user/subscriptions",
+        "displayName": "Watched Repositories",
         "path": "/user/subscriptions",
         "url": "https://api.github.com/user/subscriptions",
         "params": []
@@ -765,7 +765,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/subscription",
+        "displayName": "Check If Watching Repository",
         "path": "/repos/:owner/:repo/subscription",
         "url": "https://api.github.com/repos/:owner/:repo/subscription",
         "params": [
@@ -793,7 +793,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/subscription",
+        "displayName": "Watch A Repository",
         "path": "/repos/:owner/:repo/subscription",
         "params": [
           {
@@ -835,7 +835,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/subscription",
+        "displayName": "Unwatch A Repository",
         "path": "/repos/:owner/:repo/subscription",
         "url": "https://api.github.com/repos/:owner/:repo/subscription",
         "params": [
@@ -863,7 +863,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/users/:username/gists",
+        "displayName": "Gist By User",
         "path": "/users/:username/gists",
         "url": "https://api.github.com/users/:username/gists",
         "params": [
@@ -884,7 +884,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists",
+        "displayName": "Gists",
         "path": "/gists",
         "url": "https://api.github.com/gists",
         "params": []
@@ -897,7 +897,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/public",
+        "displayName": "Public Gists",
         "path": "/gists/public",
         "url": "https://api.github.com/gists/public",
         "params": []
@@ -910,7 +910,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/starred",
+        "displayName": "Starred Gists",
         "path": "/gists/starred",
         "params": [
           {
@@ -931,7 +931,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id",
+        "displayName": "Gists By ID",
         "path": "/gists/:id",
         "url": "https://api.github.com/gists/:id",
         "params": [
@@ -952,7 +952,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id/commits",
+        "displayName": "Gist Comments",
         "path": "/gists/:id/commits",
         "url": "https://api.github.com/gists/:id/commits",
         "params": [
@@ -973,7 +973,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id/star",
+        "displayName": "Star A Gist",
         "path": "/gists/:id/star",
         "url": "https://api.github.com/gists/:id/star",
         "params": [
@@ -994,7 +994,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id/star",
+        "displayName": "Unstar A Gist",
         "path": "/gists/:id/star",
         "url": "https://api.github.com/gists/:id/star",
         "params": [
@@ -1015,7 +1015,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id/star",
+        "displayName": "Check If Gist Is Starred",
         "path": "/gists/:id/star",
         "url": "https://api.github.com/gists/:id/star",
         "params": [
@@ -1036,7 +1036,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id/forks",
+        "displayName": "Fork A Gist",
         "path": "/gists/:id/forks",
         "url": "https://api.github.com/gists/:id/forks",
         "params": [
@@ -1057,7 +1057,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id/forks",
+        "displayName": "Gist Forks",
         "path": "/gists/:id/forks",
         "url": "https://api.github.com/gists/:id/forks",
         "params": [
@@ -1078,7 +1078,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:id",
+        "displayName": "Delete A Gist",
         "path": "/gists/:id",
         "url": "https://api.github.com/gists/:id",
         "params": [
@@ -1099,7 +1099,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:gist_id/comments",
+        "displayName": "Gist Comments",
         "path": "/gists/:gist_id/comments",
         "url": "https://api.github.com/gists/:gist_id/comments",
         "params": [
@@ -1120,7 +1120,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:gist_id/comments/:id",
+        "displayName": "Gist Comments By ID",
         "path": "/gists/:gist_id/comments/:id",
         "url": "https://api.github.com/gists/:gist_id/comments/:id",
         "params": [
@@ -1148,7 +1148,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:gist_id/comments",
+        "displayName": "Comment A Gist",
         "path": "/gists/:gist_id/comments",
         "params": [
           {
@@ -1177,7 +1177,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:gist_id/comments/:id",
+        "displayName": "Edit A Gist Comment",
         "path": "/gists/:gist_id/comments/:id",
         "params": [
           {
@@ -1212,7 +1212,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/gists/:gist_id/comments/:id",
+        "displayName": "Delete Gist Comment",
         "path": "/gists/:gist_id/comments/:id",
         "url": "https://api.github.com/gists/:gist_id/comments/:id",
         "params": [
@@ -1240,7 +1240,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/blobs/:sha",
+        "displayName": "Blob",
         "path": "/repos/:owner/:repo/git/blobs/:sha",
         "url": "https://api.github.com/repos/:owner/:repo/git/blobs/:sha",
         "params": [
@@ -1275,7 +1275,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/blobs",
+        "displayName": "Create Blob",
         "path": "/repos/:owner/:repo/git/blobs",
         "url": "https://api.github.com/repos/:owner/:repo/git/blobs",
         "params": [
@@ -1303,7 +1303,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/commits/:sha",
+        "displayName": "Commit",
         "path": "/repos/:owner/:repo/git/commits/:sha",
         "url": "https://api.github.com/repos/:owner/:repo/git/commits/:sha",
         "params": [
@@ -1338,7 +1338,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/commits",
+        "displayName": "Create Commit",
         "path": "/repos/:owner/:repo/git/commits",
         "params": [
           {
@@ -1408,7 +1408,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/refs/:ref",
+        "displayName": "Reference",
         "path": "/repos/:owner/:repo/git/refs/:ref",
         "url": "https://api.github.com/repos/:owner/:repo/git/refs/:ref",
         "params": [
@@ -1443,7 +1443,7 @@
         "authentication": {
           "required": "true"
         },
-        "displayName": "/repos/:owner/:repo/git/refs",
+        "displayName": "References",
         "path": "/repos/:owner/:repo/git/refs",
         "url": "https://api.github.com/repos/:owner/:repo/git/refs",
         "params": [
@@ -8159,7 +8159,7 @@
           {
             "name": ":hostname",
             "displayName": "Hostname",
-            "type":"string",
+            "type": "string",
             "style": "url",
             "required": "true"
           },
@@ -8243,7 +8243,7 @@
           {
             "name": ":hostname",
             "displayName": "Hostname",
-            "type":"string",
+            "type": "string",
             "style": "url",
             "required": "true"
           },
@@ -8268,7 +8268,7 @@
         "httpMethod": "POST",
         "url": "https://:hostname/setup/api/configure",
         "params": [
-        {
+          {
             "name": ":hostname",
             "displayName": "Host Name",
             "style": "url",
@@ -8317,7 +8317,7 @@
             "type": "string",
             "required": "true"
           }
-          ]
+        ]
       },
       {
         "path": "/setup/api/settings",
@@ -8331,7 +8331,7 @@
         "httpMethod": "PUT",
         "url": "https://:hostname/setup/api/settings",
         "params": [
-        {
+          {
             "name": ":hostname",
             "displayName": "Host Name",
             "style": "url",
@@ -8394,7 +8394,7 @@
         "httpMethod": "POST",
         "url": "https://:hostname/setup/api/maintenance",
         "params": [
-        {
+          {
             "name": ":hostname",
             "displayName": "Host Name",
             "style": "url",

@@ -6,7 +6,7 @@
             type="{{inputType(paramDefinition.type)}}"
             ng-model="params[paramDefinition.name]" >
         </md-text-float>
-        <div ng-show="paramDefinition.schema">
+        <div ng-if="paramDefinition.schema">        
             <schema-editor schema="paramDefinition.schema" model="params[paramDefinition.name]" allow-json-edit="true" additional-properties="true"></schema-editor>
         </div>
     </div>
