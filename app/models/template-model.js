@@ -35,7 +35,6 @@ function TemplateModel() {
       var self = this;
       return self.findOne({uuid: templateId}).then(function(template) {
         var newFlow = _.clone(template.flow);
-        
         _.each(newFlow.nodes, function(node){
           self.cleanId(node, newFlow.links);
         });
@@ -52,7 +51,7 @@ function TemplateModel() {
       delete newFlow.flowId;
       delete newFlow.resource;
 
-      newFlow.nodes = _.map(newFlow.nodes, self.cleanNode);           
+      newFlow.nodes = _.map(newFlow.nodes, self.cleanNode);
 
       return newFlow;
     },
@@ -63,7 +62,7 @@ function TemplateModel() {
       }
 
       var self = this;      
-      var stuffToKeep = ['type', 'category', 'name'];
+      var stuffToKeep = ['type', 'category', 'name', 'channelid'];
       _.each(_.keys(node.defaults), function(key){
         if (_.contains(stuffToKeep, key)){
           return ;
