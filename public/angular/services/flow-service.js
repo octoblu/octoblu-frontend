@@ -57,6 +57,14 @@ angular.module('octobluApp')
         _.each(flow.nodes, function(node){
           node.needsConfiguration = !_.findWhere(flowNodeTypes, {uuid: node.uuid});
           node.needsSetup         = !_.findWhere(flowNodeTypes, {type: node.type});
+
+          if(node.needsConfiguration && !node.needsSetup){
+            var matchingNode = _.findWhere(flowNodeTypes, {type: node.type});
+
+            node.channelActivationId = matchingNode.defaults.channelActivationId;
+            node.uuid                = matchingNode.defaults.uuid;
+            node.needsConfiguration  = false;
+          }
         });
       });
     });
