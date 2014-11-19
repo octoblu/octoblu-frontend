@@ -10,11 +10,11 @@
 
 <div layout="column" layout-fill flex>
   <div class="flow-image-but-really-the-flow" flex>
-    <div flex style="background-color: #ddd;">
-      <md-button class="md-fab md-primary" style="position:absolute; top: calc(100%/2); right: 28px" ng-click="import()">
-        <i class="fa fa-cloud-download fa-2x"></i>
-      </md-button>
-    </div>
+    <flow-editor flow="template.flow" readonly="true"></flow-editor>
+
+    <md-button class="md-fab md-primary" style="position:absolute; top: calc(100%/2); right: 28px" ng-click="import()">
+      <i class="fa fa-cloud-download fa-2x"></i>
+    </md-button>
   </div>
 
   <md-content class="bill-of-materials" flex layout="row" layout-wrap="wrap" layout-align="space-around">
