@@ -4,20 +4,20 @@
       <i class="fa fa-bars"></i>
     </a>
 
-    <span>{{template.name}}</span>
+    <span>Import: {{template.name}}</span>
   </h2>
 </md-toolbar>
 
-<div layout="column" layout-fill flex>
-  <div class="flow-image-but-really-the-flow" flex>
+<div layout="column" layout-fill flex class="flow-image-but-really-the-flow" ng-class="{importing: importing}">
+  <div flex>
     <flow-editor flow="template.flow" readonly="true"></flow-editor>
 
-    <md-button class="md-fab md-primary" style="position:absolute; top: calc(100%/2); right: 28px" ng-click="import()">
+    <md-button class="md-fab md-primary" style="position:absolute; top: calc(100%/2); right: 28px" ng-click="import()" title="Import">
       <i class="fa fa-cloud-download fa-2x"></i>
     </md-button>
   </div>
 
-  <md-content class="bill-of-materials" flex layout="row" layout-wrap="wrap" layout-align="space-around">
+  <md-content class="bill-of-materials" flex layout="row" layout-wrap="wrap" layout-align="space-around" ng-hide="importing">
     <div layout="column" ng-repeat="material in billOfMaterials">
       <div class="bill-of-materials-icon" ng-style="{ 'background-image': 'url(' + material.logo + ')' }">
       </div>
